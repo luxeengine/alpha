@@ -2,8 +2,6 @@ package lab;
 
 import lab.core.Core;
 
-typedef events core.events;
-
 class Game {
 
 		//local handle to the core engine
