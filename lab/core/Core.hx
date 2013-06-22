@@ -31,6 +31,8 @@ class Core {
     public var mainframe_handle : Dynamic;
     	//the handle to the nme stage
     public var stage_handle : Dynamic;
+        //direct_renderer_handle
+    public var direct_renderer_handle : Dynamic;
 
 //flags
 	
@@ -79,6 +81,11 @@ class Core {
         stage_handle = nme_get_frame_stage( mainframe_handle );
 
         nme_set_stage_handler(stage_handle, on_stage_event, 960, 640);
+
+            //Create the OpenGL View
+        direct_renderer_handle = nme_direct_renderer_create();
+            //Set this handle to the real view with a render function
+        nme_direct_renderer_set( direct_renderer_handle, on_glview_render );
 
         	//Create the subsystems
 
@@ -273,6 +280,11 @@ class Core {
     }
 
     	//Render the window
+
+    public function on_glview_render( _rect:Dynamic ) {
+        _debug('WT');
+    }
+
     public function on_render( _do_broadcast_event : Bool) {
       
         if( !active ) {
