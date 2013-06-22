@@ -226,9 +226,7 @@ class Core {
                 //nmeSetActive(false);
 
             case SystemEvents.resize:
-                //nmeOnResize(_event.x, _event.y);
-                //if (renderRequest == null)
-                //  nmeRender(false);
+                on_resize(_event);
 
             case SystemEvents.poll:
                 on_poll();
@@ -269,6 +267,12 @@ class Core {
         _debug('syswm');
     } //on_syswm
 
+    public function on_resize(_event:Dynamic) {
+    	//nmeOnResize(_event.x, _event.y);
+            //if (renderRequest == null)
+            //  nmeRender(false);
+    }
+    
     	//Render the window
     public function on_render( _do_broadcast_event : Bool) {
       
