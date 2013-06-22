@@ -15,4 +15,9 @@ class Files {
     public function shutdown() {
         core._debug(':: haxelab :: \t Files shut down.');
     }
+
+    public function process() {
+    	
+    }
+    
 }

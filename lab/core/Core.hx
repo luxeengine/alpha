@@ -11,6 +11,8 @@ import lab.core.Debug;
 import lab.core.Time;
 import lab.core.Phoenix;
 
+import haxe.Timer;
+
 class Core {
 
 		//core versioning
@@ -36,7 +38,9 @@ class Core {
 
 //flags
 	
-		//if the core is active
+	   //if we have started a shutdown
+    public var shutting_down : Bool = false;
+        //if the core is active
     public var active : Bool = false;
     	//if the window is invalidated
     public var invalidated : Bool = false;
@@ -88,6 +92,8 @@ class Core {
 
 			//OK, we are done.
 
+        active = true;
+
         _debug(':: haxelab :: Ready.');
         _debug('');
 
@@ -125,10 +131,14 @@ class Core {
 
     }
 
-    public function shutdown() {
-		
+    public function shutdown() {        
+
 		_debug('');
 		_debug(':: haxelab :: Shutting down...');
+
+            //Make sure all systems know we are going down
+
+        shutting_down = true;
 
     		//Order is imporant here too
 
@@ -138,19 +148,20 @@ class Core {
     	events.shutdown();
     	time.shutdown();
     	file.shutdown();
-    	debug.shutdown();	
+    	debug.shutdown();
+
+            //Ok kill it! 
+            //Order matters for events coming
+            //when things below are set to null.
+        nme_close();
 
     		//Clear up for GC
-
     	input = null;
     	audio = null;
     	events = null;
     	time = null;
     	file = null;
     	debug = null;
-
-    		//Ok kill it! 
-        nme_close();
 
         _debug(':: haxelab :: Goodbye.');
     }
@@ -233,7 +244,7 @@ class Core {
                 on_resize(_event);
 
             case SystemEvents.poll:
-                on_poll();
+                on_update();
 
             case SystemEvents.quit: 
                 shutdown();
@@ -303,11 +314,23 @@ class Core {
         _debug('exit'); 
     } //exit
 
-    	//Called when polled by the nme runtime
-    public function on_poll() { 
-        _debug('poll', true, true); 
+    	//Called when updated by the nme/sdl runtime
+    public function on_update() { 
+
+        _debug('on_update ' + Timer.stamp(), true, true); 
+
+            //Update all the subsystems, again, order important
+
+        time.process();     //Timers first
+        input.process();    //Input second
+        audio.process();
+        file.process();
+        debug.process();    //debug late
+        events.process();   //events last
+
         on_render(true);
-    } //on_poll
+
+    } //on_update
 
     	//Called when the application wants to go to the background and stop
     public function on_pause() { 

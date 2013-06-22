@@ -15,4 +15,8 @@ class Debug {
     public function shutdown() {
         core._debug(':: haxelab :: \t Debug shut down.');
     }
+
+	public function process() {
+		
+	}    
 }

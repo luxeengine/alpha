@@ -15,4 +15,8 @@ class Audio {
     public function shutdown() {
         core._debug(':: haxelab :: \t Audio shut down.');
     }
+
+    public function process() {
+        
+    }    
 }

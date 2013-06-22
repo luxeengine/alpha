@@ -15,4 +15,10 @@ class Time {
     public function shutdown() {
         core._debug(':: haxelab :: \t Time shut down.');
     }
+
+
+    public function process() {
+        
+    }
+    
 }

@@ -16,6 +16,11 @@ class Input {
         core._debug(':: haxelab :: \t Input shut down.');
     }
 
+    public function process() {
+        
+    }    
+
+
 //Keyboard
 
     public function core_onchar(_event:Dynamic) {

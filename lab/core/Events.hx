@@ -15,4 +15,9 @@ class Events {
     public function shutdown() {
         core._debug(':: haxelab :: \t Events shut down.');
     }
+
+	public function process() {
+		
+	}    
+    
 }

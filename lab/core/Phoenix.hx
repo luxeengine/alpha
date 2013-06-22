@@ -19,11 +19,10 @@ class Phoenix {
 
             //Set up the OpenGL View
         direct_renderer_handle = nme_direct_renderer_create();
+            //Add this to the main stage, so it will render
+        nme_doc_add_child(core.stage_handle, direct_renderer_handle);
             //Set this handle to the real view with a render function
         nme_direct_renderer_set( direct_renderer_handle, on_render );
-
-            //Set the clear color
-        GL.clearColor(100,100,100,255);
 
             //Done.
         core._debug(':: haxelab :: \t Phoenix Initialized.');
@@ -33,13 +32,22 @@ class Phoenix {
         core._debug(':: haxelab :: \t Phoenix shut down.');
     }
 
+
+    public function process() {
+        
+    }
+
     public function on_render( _rect:Dynamic ) {
+
+            //Set the clear color
+        GL.clearColor(0.2,0.2,0.2,1);
         GL.clear( GL.COLOR_BUFFER_BIT );
+        
     }
 
 
 //nme functions
-
+    private static var nme_doc_add_child            = Core.load("nme","nme_doc_add_child", 2);
     private static var nme_direct_renderer_create   = Core.load("nme","nme_direct_renderer_create", 0);
     private static var nme_direct_renderer_set      = Core.load("nme","nme_direct_renderer_set", 2);
 
