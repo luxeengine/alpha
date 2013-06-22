@@ -179,7 +179,7 @@ class ByteArray extends Bytes #if !haxe3 , #end implements ArrayAccess<Int> #if 
    static public function fromBytes(inBytes:Bytes) 
    {
       var result = new ByteArray( -1);
-	  result.nmeFromBytes(inBytes);
+     result.nmeFromBytes(inBytes);
       return result;
    }
 

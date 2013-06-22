@@ -1,13 +1,12 @@
 package lab.utils;
 #if (cpp || neko)
 
-enum CompressionAlgorithm 
-{
-   DEFLATE;
-   ZLIB;
-   LZMA;
-   GZIP;
-}
+enum CompressionAlgorithm {
+    DEFLATE;
+    ZLIB;
+    LZMA;
+    GZIP;
+} 
 
 #else
 typedef CompressionAlgorithm = flash.utils.CompressionAlgorithm;
