@@ -1,7 +1,7 @@
 package lab.core;
 
-import lab.core.utils.Loader;
 import lab.core.Constants;
+import lab.core.Libs;
 
 import lab.core.Audio;
 import lab.core.Events;
@@ -9,7 +9,7 @@ import lab.core.Input;
 import lab.core.Files;
 import lab.core.Debug;
 import lab.core.Time;
-
+import lab.core.Phoenix;
 
 class Core {
 
@@ -24,15 +24,15 @@ class Core {
 	public var time 	: Time;
 	public var events 	: Events;
 	public var input 	: Input;
-	public var audio 	: Audio;
+    public var audio    : Audio;
+	public var phoenix 	: Phoenix;
 
 //nme specifics
 		//the handle to the window from nme
     public var mainframe_handle : Dynamic;
     	//the handle to the nme stage
     public var stage_handle : Dynamic;
-        //direct_renderer_handle
-    public var direct_renderer_handle : Dynamic;
+
 
 //flags
 	
@@ -82,11 +82,6 @@ class Core {
 
         nme_set_stage_handler(stage_handle, on_stage_event, 960, 640);
 
-            //Create the OpenGL View
-        direct_renderer_handle = nme_direct_renderer_create();
-            //Set this handle to the real view with a render function
-        nme_direct_renderer_set( direct_renderer_handle, on_glview_render );
-
         	//Create the subsystems
 
         startup();
@@ -116,6 +111,7 @@ class Core {
 		events = new Events( this );
 		audio = new Audio( this );	
 		input = new Input( this );
+        phoenix = new Phoenix( this );
 
 			//Now make sure they start up
 
@@ -125,6 +121,7 @@ class Core {
 		events.startup();
 		audio.startup();
 		input.startup();
+        phoenix.startup();
 
     }
 
@@ -135,6 +132,7 @@ class Core {
 
     		//Order is imporant here too
 
+        phoenix.shutdown();
     	input.shutdown();
     	audio.shutdown();
     	events.shutdown();
@@ -280,11 +278,6 @@ class Core {
     }
 
     	//Render the window
-
-    public function on_glview_render( _rect:Dynamic ) {
-        _debug('WT');
-    }
-
     public function on_render( _do_broadcast_event : Bool) {
       
         if( !active ) {
@@ -334,22 +327,24 @@ class Core {
         nme_terminate();
     } //on_force_close
 
+//Lib load wrapper
+    public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
+        return Libs.load( library, method, args );
+    }
 
 //Noisy stuff
 
     	//import nme_library functions
-    private static var nme_render_stage             = Loader.load("nme_render_stage", 1);
-    private static var nme_set_stage_handler        = Loader.load("nme_set_stage_handler",  4);
-    private static var nme_get_frame_stage          = Loader.load("nme_get_frame_stage",    1);
-    private static var nme_pause_animation          = Loader.load("nme_pause_animation",    0);
-    private static var nme_resume_animation         = Loader.load("nme_resume_animation",   0);
+    private static var nme_render_stage             = Core.load("nme","nme_render_stage", 1);
+    private static var nme_set_stage_handler        = Core.load("nme","nme_set_stage_handler",  4);
+    private static var nme_get_frame_stage          = Core.load("nme","nme_get_frame_stage",    1);
+    private static var nme_pause_animation          = Core.load("nme","nme_pause_animation",    0);
+    private static var nme_resume_animation         = Core.load("nme","nme_resume_animation",   0);
 
-    private static var nme_terminate                = Loader.load("nme_terminate", 0);
-    private static var nme_close                    = Loader.load("nme_close", 0);
+    private static var nme_terminate                = Core.load("nme","nme_terminate", 0);
+    private static var nme_close                    = Core.load("nme","nme_close", 0);
 
-    private static var nme_create_main_frame        = Loader.load("nme_create_main_frame", -1);        
-    private static var nme_direct_renderer_create   = Loader.load("nme_direct_renderer_create", 0);
-    private static var nme_direct_renderer_set      = Loader.load("nme_direct_renderer_set", 2);
+    private static var nme_create_main_frame        = Core.load("nme","nme_create_main_frame", -1);        
 
    		//temporary debugging with verbosity options
 
