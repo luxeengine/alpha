@@ -159,76 +159,64 @@ class Core {
 
     //keyboard
             case SystemEvents.char:
-                //if (onKey != null) {
-                //  untyped onKey(_event.code, _event.down, _event.char, _event.flags);
-                //}
+                input.core_onchar(_event);
 
             case SystemEvents.keydown:
-                //nmeOnKey(_event, KeyboardEvent.KEY_DOWN);
+                input.core_onkeydown(_event);
 
             case SystemEvents.keyup:
-                //nmeOnKey(_event, KeyboardEvent.KEY_UP);
+                input.core_onkeyup(_event);
                 
             case SystemEvents.gotinputfocus:
-                //var evt = new Event(FocusEvent.FOCUS_IN);
-                //nmeDispatchEvent(evt);
+            	input.core_gotinputfocus(_event);
 
             case SystemEvents.lostinputfocus:
-                //var evt = new Event(FocusEvent.FOCUS_OUT);
-                //nmeDispatchEvent(evt);
+            	input.core_lostinputfocus(_event);
+
     //mouse             
             case SystemEvents.mousemove:
-                //nmeOnMouse(_event, MouseEvent.MOUSE_MOVE, true);
+                input.core_mousemove(_event);
 
             case SystemEvents.mousedown:
-                //nmeOnMouse(_event, MouseEvent.MOUSE_DOWN, true);
+            	input.core_mousedown(_event);
+                
 
             case SystemEvents.mouseclick:
-                //nmeOnMouse(_event, MouseEvent.CLICK, true);
+            	input.core_mouseclick(_event);
 
             case SystemEvents.mouseup:
-                //nmeOnMouse(_event, MouseEvent.MOUSE_UP, true);
+            	input.core_mouseup(_event);
+                
 
     //touch
             case SystemEvents.touchbegin:
-                //var touchInfo = new TouchInfo();
-                //nmeTouchInfo.set(_event.value, touchInfo);
-                //nmeOnTouch(_event, TouchEvent.TOUCH_BEGIN, touchInfo);
-                //// trace("etTouchBegin : " + _event.value + "   " + _event.x + "," + _event.y+ " OBJ:" + _event.id + " sizeX:" + _event.sx + " sizeY:" + _event.sy );
-                //if ((_event.flags & 0x8000) > 0)
-                //  nmeOnMouse(_event, MouseEvent.MOUSE_DOWN, false);
+               	input.core_touchbegin(_event);
 
             case SystemEvents.touchmove:
-                //var touchInfo = nmeTouchInfo.get(_event.value);
-                //nmeOnTouch(_event, TouchEvent.TOUCH_MOVE, touchInfo);
+                input.core_touchmove(_event);
 
             case SystemEvents.touchend:
-                //var touchInfo = nmeTouchInfo.get(_event.value);
-                //nmeOnTouch(_event, TouchEvent.TOUCH_END, touchInfo);
-                //nmeTouchInfo.remove(_event.value);
-                //// trace("etTouchEnd : " + _event.value + "   " + _event.x + "," + _event.y + " OBJ:" + _event.id + " sizeX:" + _event.sx + " sizeY:" + _event.sy );
-                //if ((_event.flags & 0x8000) > 0)
-                //  nmeOnMouse(_event, MouseEvent.MOUSE_UP, false);
+                input.core_touchend(_event);
 
             case SystemEvents.touchtap:
-                //nmeOnTouchTap(_event.TouchEvent.TOUCH_TAP);
+                input.core_touchtap(_event);
 
     //joystick
 
             case SystemEvents.joyaxismove:
-                //nmeOnJoystick(_event, JoystickEvent.AXIS_MOVE);
+                input.core_joyaxismove(_event);
 
             case SystemEvents.joyballmove:
-                //nmeOnJoystick(_event, JoystickEvent.BALL_MOVE);
+                input.core_joyballmove(_event);
 
             case SystemEvents.joyhatmove:
-                //nmeOnJoystick(_event, JoystickEvent.HAT_MOVE);
+                input.core_joyhatmove(_event);
 
             case SystemEvents.joybuttondown:
-                //nmeOnJoystick(_event, JoystickEvent.BUTTON_DOWN);
+                input.core_joybuttondown(_event);
 
             case SystemEvents.joybuttonup:
-                //nmeOnJoystick(_event, JoystickEvent.BUTTON_UP);
+                input.core_joybuttonup(_event);
 
     //window
             case SystemEvents.activate:
