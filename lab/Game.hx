@@ -10,7 +10,7 @@ class Game {
 		//constructur (don't forget to call super if you overide!)
 	public function new( _core:Core) {
 		
-		core = _core;	    
+		core = _core;
 
 	}
  

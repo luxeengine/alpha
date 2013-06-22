@@ -50,21 +50,23 @@ class Core {
     	_debug(':: haxelab :: initializing - running version ' + version);
         _debug(':: haxelab :: Creating window.');
 
-        nme_create_main_frame( on_main_frame_created, 
-                            960,        //width
-                            640,        //height
-                                Window.RESIZABLE | 
-                                Window.HARDWARE | 
-                                Window.VSYNC | 
-                                Window.HW_AA | 
-                                Window.HW_AA_HIRES | 
-                                Window.ALLOW_SHADERS | 
-                                Window.REQUIRE_SHADERS | 
-                                Window.DEPTH_BUFFER | 
-                                Window.STENCIL_BUFFER , 
-                            "haxelab",  //title
-                            null        //icon
-                        );
+        nme_create_main_frame( 
+            on_main_frame_created, 
+            960,                            //width
+            640,                            //height
+                Window.RESIZABLE | 
+                Window.HARDWARE | 
+                Window.VSYNC | 
+                Window.HW_AA | 
+                Window.HW_AA_HIRES | 
+                Window.ALLOW_SHADERS | 
+                Window.REQUIRE_SHADERS | 
+                Window.DEPTH_BUFFER | 
+                Window.STENCIL_BUFFER ,     //flags
+            "haxelab",                      //title
+            null                            //icon
+
+        ); //nme_create_main_frame
        	
     } //init
     
@@ -331,9 +333,9 @@ class Core {
     private static var nme_resume_animation         = Loader.load("nme_resume_animation",   0);
 
     private static var nme_terminate                = Loader.load("nme_terminate", 0);
-    private static var nme_close                        = Loader.load("nme_close", 0);
+    private static var nme_close                    = Loader.load("nme_close", 0);
 
-    private static var nme_create_main_frame            = Loader.load("nme_create_main_frame", -1);        
+    private static var nme_create_main_frame        = Loader.load("nme_create_main_frame", -1);        
     private static var nme_direct_renderer_create   = Loader.load("nme_direct_renderer_create", 0);
     private static var nme_direct_renderer_set      = Loader.load("nme_direct_renderer_set", 2);
 
