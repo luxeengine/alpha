@@ -40,6 +40,7 @@ class Core {
 	
 	   //if we have started a shutdown
     public var shutting_down : Bool = false;
+    public var has_shutdown : Bool = false;
         //if the core is active
     public var active : Bool = false;
     	//if the window is invalidated
@@ -162,6 +163,9 @@ class Core {
     	time = null;
     	file = null;
     	debug = null;
+
+            //Flag it
+        has_shutdown = true;
 
         _debug(':: haxelab :: Goodbye.');
     }
@@ -318,6 +322,8 @@ class Core {
     public function on_update() { 
 
         _debug('on_update ' + Timer.stamp(), true, true); 
+
+        if(has_shutdown) return;
 
             //Update all the subsystems, again, order important
 
