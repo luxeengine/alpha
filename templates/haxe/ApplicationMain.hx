@@ -1,6 +1,6 @@
 import ::APP_MAIN::;
 
-import haxelab.core.Core;
+import lab.core.Core;
 
 class ApplicationMain {
 		

@@ -1,4 +1,4 @@
-package haxelab.core;
+package lab.core;
 
     //Window constants
 class Window {

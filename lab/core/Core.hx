@@ -1,14 +1,15 @@
-package haxelab.core;
+package lab.core;
 
-import haxelab.core.utils.Loader;
-import haxelab.core.Constants;
+import lab.core.utils.Loader;
+import lab.core.Constants;
 
-import haxelab.core.Audio;
-import haxelab.core.Events;
-import haxelab.core.Input;
-import haxelab.core.Files;
-import haxelab.core.Debug;
-import haxelab.core.Time;
+import lab.core.Audio;
+import lab.core.Events;
+import lab.core.Input;
+import lab.core.Files;
+import lab.core.Debug;
+import lab.core.Time;
+
 
 class Core {
 
@@ -47,12 +48,9 @@ class Core {
     	game = _main_;
 
     	_debug(':: haxelab :: initializing - running version ' + version);
-
-        var create_main_frame = Loader.load("nme_create_main_frame", -1);
-
         _debug(':: haxelab :: Creating window.');
 
-        create_main_frame( on_main_frame_created, 
+        nme_create_main_frame( on_main_frame_created, 
                             960,        //width
                             640,        //height
                                 Window.RESIZABLE | 
@@ -144,9 +142,8 @@ class Core {
     	file = null;
     	debug = null;
 
-    		//Ok kill it!
-        var close = Loader.load("nme_close", 0);
-        close();
+    		//Ok kill it! 
+        nme_close();
 
         _debug(':: haxelab :: Goodbye.');
     }
@@ -272,7 +269,7 @@ class Core {
             //if (renderRequest == null)
             //  nmeRender(false);
     }
-    
+
     	//Render the window
     public function on_render( _do_broadcast_event : Bool) {
       
@@ -320,20 +317,25 @@ class Core {
         // Terminates the process straight away, bypassing graceful shutdown
     public function on_force_close() {  
         _debug('force close');
-
-        var terminate = Loader.load("nme_terminate", 0);
-        terminate();
+        nme_terminate();
     } //on_force_close
 
 
 //Noisy stuff
 
     	//import nme_library functions
-    private static var nme_render_stage         = Loader.load("nme_render_stage", 1);
-    private static var nme_set_stage_handler    = Loader.load("nme_set_stage_handler",  4);
-    private static var nme_get_frame_stage      = Loader.load("nme_get_frame_stage",    1);
-    private static var nme_pause_animation      = Loader.load("nme_pause_animation",    0);
-    private static var nme_resume_animation     = Loader.load("nme_resume_animation",   0);
+    private static var nme_render_stage             = Loader.load("nme_render_stage", 1);
+    private static var nme_set_stage_handler        = Loader.load("nme_set_stage_handler",  4);
+    private static var nme_get_frame_stage          = Loader.load("nme_get_frame_stage",    1);
+    private static var nme_pause_animation          = Loader.load("nme_pause_animation",    0);
+    private static var nme_resume_animation         = Loader.load("nme_resume_animation",   0);
+
+    private static var nme_terminate                = Loader.load("nme_terminate", 0);
+    private static var nme_close                        = Loader.load("nme_close", 0);
+
+    private static var nme_create_main_frame            = Loader.load("nme_create_main_frame", -1);        
+    private static var nme_direct_renderer_create   = Loader.load("nme_direct_renderer_create", 0);
+    private static var nme_direct_renderer_set      = Loader.load("nme_direct_renderer_set", 2);
 
    		//temporary debugging with verbosity options
 

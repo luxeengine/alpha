@@ -1,6 +1,6 @@
-package haxelab.core;
+package lab.core;
 
-import haxelab.core.Core;
+import lab.core.Core;
 
 class Events {
 	

@@ -1,6 +1,8 @@
-package haxelab;
+package lab;
 
-import haxelab.core.Core;
+import lab.core.Core;
+
+typedef events core.events;
 
 class Game {
 

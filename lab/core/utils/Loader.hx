@@ -1,4 +1,5 @@
-package haxelab.core.utils;
+package lab.core.utils;
+
 #if (cpp || neko)
 
 #if neko
