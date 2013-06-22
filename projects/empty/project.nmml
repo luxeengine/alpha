@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta 
+     title="haxelab" 
+     package="com.underscorediscovery.haxelab" 
+     version="1.0.0" 
+     company="underscorediscovery" 
+	/>
+
+	<app
+     main="Main"
+     path="bin"
+     file="haxelab"
+	/>
+
+	<window 
+     width="960" 
+     height="640" 
+     orientation="landscape" 
+     fps="60"
+     background="0x161616"
+     require_shaders="true"
+     resizable="true"
+     hardware="true"
+	/>
+	
+
+	<source path="src" />
+	
+	<haxelib name="haxelab" />
+	<haxelib name="actuate" />
+	
+</project>
