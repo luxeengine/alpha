@@ -13,7 +13,7 @@ class Game {
 		core = _core;	    
 
 	}
-
+ 
 	public function init() {
 		core._debug(':: haxelab.game :: Game Initializing.');
 	}
