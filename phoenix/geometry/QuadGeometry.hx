@@ -40,12 +40,12 @@ class QuadGeometry extends Geometry {
 
  			//Add to the list
 
- 		vertices.add( vert0 );
- 		vertices.add( vert1 );
- 		vertices.add( vert2 );
- 		vertices.add( vert3 );
- 		vertices.add( vert4 );
- 		vertices.add( vert5 );
+ 		vertices.push( vert0 );
+ 		vertices.push( vert1 );
+ 		vertices.push( vert2 );
+ 		vertices.push( vert3 );
+ 		vertices.push( vert4 );
+ 		vertices.push( vert5 );
 
  	}
 

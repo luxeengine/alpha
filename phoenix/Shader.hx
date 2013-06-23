@@ -11,7 +11,7 @@ import nmegl.gl.GLProgram;
 
 class Shader extends Resource {
 
-	public var errors : String = 'no errors';
+	public var errors : String = '';
 
 	public var vert_shader : Dynamic;
 	public var frag_shader : Dynamic;
@@ -43,8 +43,8 @@ class Shader extends Resource {
 		GL.compileShader(_shader);
 
 		if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
-			addError("Failed to compile shader (" + ((type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ));
-            addError( GL.getShaderInfoLog(_shader) );
+			addError("\tFailed to compile shader (" + ((type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
+            addError( "\t\t"+ GL.getShaderInfoLog(_shader) );
             GL.deleteShader(_shader);
             _shader = null;
             return null;

@@ -1,25 +1,24 @@
 
 import phoenix.Texture;
+import phoenix.geometry.QuadGeometry;
 
 
 class Main extends lab.Game {
 	
+	var geom : QuadGeometry;
+
     public function ready() {
 	   trace("I AM A GAME");
 
-	   var a : Map<Int, String>;
-	   a = new Map();
+	   geom = new QuadGeometry( { x:-100, y:-100, width:100, height:100 } );
+	   
+	   core.renderer.default_batcher.add(geom);
 
-	   a.set(1, '111');
-	   a.set(2, '22');
-	   a.set(3, '33');
 
-	   trace(a[1]);
-	   trace(a[3]);
 	}
 
     public function update() {
-
+		geom.vertices[0].pos.y -= 0.1;
     }
 
     public function shutdown() {
