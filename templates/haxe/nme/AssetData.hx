@@ -1,7 +1,7 @@
 package nme;
 
 
-import openfl.Assets;
+import lab.core.Assets;
 
 
 class AssetData {

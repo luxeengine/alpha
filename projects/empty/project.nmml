@@ -2,33 +2,33 @@
 <project>
 	
 	<meta 
-     title="haxelab" 
-     package="com.underscorediscovery.haxelab" 
-     version="1.0.0" 
-     company="underscorediscovery" 
+          title="haxelab - empty" 
+          package="com.underscorediscovery.haxelab_empty" 
+          version="1.0.0" 
+          company="underscorediscovery" 
 	/>
 
 	<app
-     main="Main"
-     path="bin"
-     file="haxelab"
+          main="Main"
+          path="bin"
+          file="haxelab_empty"
 	/>
 
 	<window 
-     width="960" 
-     height="640" 
-     orientation="landscape" 
-     fps="60"
-     background="0x161616"
-     require_shaders="true"
-     resizable="true"
-     hardware="true"
+          width="960" 
+          height="640" 
+          orientation="landscape" 
+          fps="60"
+          background="0x161616"
+          require_shaders="true"
+          resizable="true"
+          hardware="true"
 	/>
 	
+     <assets path="Assets" rename="assets" include="*"/>
 
 	<source path="src" />
 	
 	<haxelib name="haxelab" />
-	<haxelib name="actuate" />
 	
 </project>

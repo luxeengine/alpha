@@ -8,6 +8,11 @@
 		<ndll name="zlib" haxelib="hxcpp" />
 		
 		<ndll name="nme" />
+		<haxelib name="NMEGL" />
+
+		<!-- for now in initial dev phoenix will be underneath lab -->
+		<!-- but it is possible to use it as a haxelib already -->
+		<!-- <haxelib name="haxephoenix" /> -->
 		
 		<ndll name="libfreetype" register="false" if="emscripten" />
 		

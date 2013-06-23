@@ -1,16 +1,20 @@
 
-import lab.Game;
+import phoenix.Texture;
 
-class Main extends Game {
 
-    public override function ready() {
+class Main extends lab.Game {
+	
+    public function ready() {
+	   trace("I AM A GAME");
+	}
 
-        trace('HEY LOOK, I am a game');
+    public function update() {
 
-        //make sprite
-        //do things
     }
 
+    public function shutdown() {
+
+    }
 }
 
 
