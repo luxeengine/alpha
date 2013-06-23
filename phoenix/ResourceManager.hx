@@ -2,8 +2,9 @@ package phoenix;
 
 import phoenix.Resource;
 
-class ResourceManager extends AbstractGarbageCollector {
+class ResourceManager {
 	
+	public var recycle_rate : Int = 10;
 	public var recyclelist : Array<Resource>;
 	public var resourcelist : Array<Resource>;
 
@@ -40,15 +41,15 @@ class ResourceManager extends AbstractGarbageCollector {
 		return null;
 	}
 
-	public override function clean() {
+	public function clean() {
 
 			//no point if there are no recycled objects
 		if(recyclelist.length < 1) return;
 
 			//work out how many based on collection rate
-		var multiplier : Int = Std.int(recyclelist.length / collect_rate);
-    	if( multiplier < collect_rate ) {
-    		multiplier = collect_rate;
+		var multiplier : Int = Std.int(recyclelist.length / recycle_rate);
+    	if( multiplier < recycle_rate ) {
+    		multiplier = recycle_rate;
     	}
 		
 			//for each in the collection
