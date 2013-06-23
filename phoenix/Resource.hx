@@ -24,11 +24,6 @@ class Resource extends Droppable {
 		manager.add( this );
 	}
 
-	public function grab() {
-		references++;
-		return this;
-	}
-
 	public override function drop() {
 		if(!dropped) {
 			drop();

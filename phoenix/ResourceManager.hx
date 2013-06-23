@@ -31,7 +31,7 @@ class ResourceManager {
 	public function find( id : String ) : Resource {
 		for(resource in resourcelist) {
 			if(resource.id == id) {
-				return resource.grab();
+				return resource;
 			}
 		}
 		return null;
