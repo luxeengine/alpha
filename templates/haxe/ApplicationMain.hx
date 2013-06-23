@@ -24,7 +24,7 @@ class ApplicationMain {
 			//Create the game class, give it the runtime
 		_main_ = new ::APP_MAIN::();
 			//Create the haxelab runtime, pass it the nmegl reference
-		_core = new Core( _nmegl, _main_ );
+		_core = new Core( _main_ );
 			//Store the core for reference in the game
 		_main_.core = _core;
 

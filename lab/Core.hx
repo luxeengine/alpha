@@ -40,10 +40,9 @@ class Core {
     public var has_shutdown : Bool = false;
 
     	//constructor
-    public function new( _nmegl:NMEGL, _host:Dynamic ) {
+    public function new( _host:Dynamic ) {
             
             //Keep a reference for use
-        nmegl = _nmegl;
         host = _host;
 
     } //new
@@ -51,8 +50,11 @@ class Core {
         //This gets called once the create_main_frame call inside new() 
         //comes back with our window
 
-    private function ready() {
-        
+    private function ready( _nmegl : NMEGL ) {
+            
+            //Keep a reference
+        nmegl = _nmegl;
+
         _debug(':: haxelab :: Version ' + version);
 
           	//Create the subsystems
