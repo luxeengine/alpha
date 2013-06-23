@@ -4,7 +4,7 @@ import lab.Core;
 import nmegl.gl.GL;
 
 //Default base class will just be a weird color clear color
-//use core.set_renderer to replace the default behavior
+//use the renderer value to replace the default behavior 
 
 class Renderer {
         

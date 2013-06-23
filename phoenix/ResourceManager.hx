@@ -4,13 +4,10 @@ import phoenix.Resource;
 
 class ResourceManager {
 	
-	public var recycle_rate : Int = 10;
-	public var recyclelist : Array<Resource>;
 	public var resourcelist : Array<Resource>;
 
 	public function new() {
 		resourcelist = new Array<Resource>();
-		recyclelist = new Array<Resource>();
 	}
 
 	public function add( res:Resource ) {
@@ -18,18 +15,17 @@ class ResourceManager {
 	}
 
 	public function remove( res:Resource ) {
-		recyclelist.push(res);
+		resourcelist.push(res);
 	}
 
 	public function clear( and_drop : Bool ) {
 		if( and_drop ) {
-			for(res in recyclelist) {
+			for(res in resourcelist) {
 				res.drop();
 			}
 		}
 
-		recyclelist.splice(0, recyclelist.length);
-		resourcelist.splice(0, resourcelist.length );		
+		resourcelist.splice(0, resourcelist.length );
 	}
 
 	public function find( id : String ) : Resource {
@@ -41,40 +37,5 @@ class ResourceManager {
 		return null;
 	}
 
-	public function clean() {
-
-			//no point if there are no recycled objects
-		if(recyclelist.length < 1) return;
-
-			//work out how many based on collection rate
-		var multiplier : Int = Std.int(recyclelist.length / recycle_rate);
-    	if( multiplier < recycle_rate ) {
-    		multiplier = recycle_rate;
-    	}
-		
-			//for each in the collection
-		for( i in 0 ... multiplier ) {
-
-				//if there is anything left to recycle
-			if( recyclelist.length > 0  ) {
-					
-					//get the back item
-				var r : Resource = recyclelist[recyclelist.length-1];
-					//check if it exists
-				if( r != null ) {
-						//remove it from the resources list
-					resourcelist.remove( r );
-				}
-
-					//remove it from the recycle list
-				recyclelist.pop();
-
-			} else {
-					//nothing to do, so jump out
-				break;
-			}
-		}
-
-	} //clean
-
+	
 }
