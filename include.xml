@@ -9,7 +9,6 @@
 		
 		<ndll name="nme" />
 		<haxelib name="NMEGL" />
-		<haxelib name="hxlode" />
 		<haxelib name="format" />
 
 		<!-- for now in initial dev phoenix will be underneath lab -->
