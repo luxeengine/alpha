@@ -19,10 +19,8 @@ class Main extends lab.Game {
        trace("game ready");
 
        tex = core.renderer.load_texture('assets/usable_orange.png');
-       trace(tex);
        
        draw_2d_quad();
-       // draw_cube_obj();
     }
 
     public function draw_2d_quad() {
@@ -31,44 +29,11 @@ class Main extends lab.Game {
         core.renderer.default_batcher.add(geom);
     }
 
-    public function draw_cube_obj() {
-       
-       core.renderer.default_camera.pos.x = 0;
-       core.renderer.default_camera.pos.y = -20;
-       core.renderer.default_camera.pos.z = -300;
-
-       core.renderer.default_camera.set_perspective();
-
-       var obj_file = nmegl.utils.Assets.getText('assets/cube.obj');       
-       var file_input = new haxe.io.StringInput( obj_file );
-
-       var obj_mesh_data = new format.obj.Reader(file_input).read();
-       trace('Loaded mesh, found verts : ' + obj_mesh_data.vertices.length );
-
-
-        geom2 = new Geometry();        
-
-        for(v in obj_mesh_data.vertices) {
-            // trace('vertex from obj' + v);
-            var _v = new Vertex( new Vector(v.pos.x * 100 , v.pos.y* 100, v.pos.z* 100) );
-            if(v.uv != null) {
-                _v.uv[0] = new TextureCoord( v.uv.u, v.uv.v );
-            } else {
-                _v.uv[0] = new TextureCoord( 0, 0 );
-            }
-            geom2.add( _v );
-        }
-
-        geom2.texture = tex; 
-
-        core.renderer.default_batcher.add(geom2);
-
-    }
 
     public function update() {
         if(geom != null) {
-            // geom.verts['tl'].pos.y -= 0.2;
-            // geom.verts['tr'].pos.y -= 0.1;
+            geom.verts['tl'].pos.y -= 0.1;
+            geom.verts['tr'].pos.y -= 0.05;
         }
     }
 

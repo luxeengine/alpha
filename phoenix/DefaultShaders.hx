@@ -35,6 +35,7 @@ class DefaultShaders {
                 float luminosity = (texcolor.r + texcolor.g + texcolor.b) / 3.0;
                 vec4 gray = vec4(luminosity,luminosity,luminosity,1);
                 vec4 color = vec4(texcolor.r, texcolor.g, texcolor.b, 1);
+                // gl_FragColor = gray * ((tcoord.x+tcoord.y)/2.0);
                 gl_FragColor = texcolor;
         	}
         ";

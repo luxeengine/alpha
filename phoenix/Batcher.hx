@@ -20,7 +20,7 @@ class BatchGroup {
 
 class Batcher {
 
-    public var groups : Map< Int, BatchGroup>;
+    public var groups : Map< Int, BatchGroup >;
     public var geometry : Array<Geometry>;
 
     public var vert_list : Array<Float>;
@@ -130,7 +130,7 @@ class Batcher {
         GL.enableVertexAttribArray(vert_attribute);
         GL.enableVertexAttribArray(tcoord_attribute);
 
-        GL.drawArrays( GL.TRIANGLE_STRIP, 0, Std.int(vert_list.length/vert_size) );
+        GL.drawArrays( GL.TRIANGLE_STRIP, 0, Std.int(vert_list.length/3) );
 
         GL.disableVertexAttribArray(vert_attribute);
         GL.disableVertexAttribArray(tcoord_attribute);
