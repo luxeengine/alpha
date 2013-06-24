@@ -31,7 +31,11 @@ class DefaultShaders {
             varying vec2 tcoord;
 
         	void main() {
-                gl_FragColor = texture2D(tex0, tcoord);
+                vec4 texcolor = texture2D(tex0, tcoord);
+                float luminosity = (texcolor.r + texcolor.g + texcolor.b) / 3.0;
+                vec4 gray = vec4(luminosity,luminosity,luminosity,1);
+                vec4 color = vec4(texcolor.r, texcolor.g, texcolor.b, 1);
+                gl_FragColor = texcolor;
         	}
         ";
 

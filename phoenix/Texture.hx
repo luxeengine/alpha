@@ -6,7 +6,7 @@ import nmegl.gl.GL;
 import nmegl.gl.GLTexture;
 
 import nmegl.utils.UInt8Array;
-import nmegl.utils.Int32Array;
+
 import nmegl.utils.Libs;
 import nmegl.utils.ArrayBuffer;
 
@@ -36,7 +36,7 @@ class Rectangle {
 class Texture extends Resource {
 
     public var texture : GLTexture;
-    public var data : Int32Array;
+    public var data : UInt8Array;
 
     public var width : Int = -1;
     public var height : Int = -1;   
@@ -61,7 +61,7 @@ class Texture extends Resource {
                 //clear up old data in case
             data = null;
                 //create a new set of pixels data
-            data = new Int32Array(new ArrayBuffer( width * height * 4));
+            data = new UInt8Array(new ArrayBuffer( width * height * 4));
                 //fill it up!
             for(x in 0 ... width) {
                 for(y in 0 ... height) {
@@ -87,7 +87,7 @@ class Texture extends Resource {
         width = Std.int(_width);
         height = Std.int(_height);            
 
-        data = new Int32Array( image_bytes.getData() );
+        data = new UInt8Array( image_bytes.getData() );
         var image_length = width * height;
 
             //ARGB to RGBA cos format 
@@ -144,7 +144,7 @@ class Texture extends Resource {
         width = Std.int(png_header.width);
         height = Std.int(png_header.height);            
 
-        data = new Int32Array(png_bytes.getData());
+        data = new UInt8Array(png_bytes.getData());
         var image_length = width * height;
 
             //BGRA to RGBA cos format...yea I dunno.
