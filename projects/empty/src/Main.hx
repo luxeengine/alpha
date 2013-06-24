@@ -9,18 +9,16 @@ class Main extends lab.Game {
     var tex : Texture;
 
     public function ready() {
-       trace("I AM A GAME");
+        
+       trace(" -- game ready");
 
-       geom = new QuadGeometry( { x:60, y:60, width:500, height:500 } );
+       geom = new QuadGeometry( { x:60, y:60, width:256, height:256 } );
         
        core.renderer.default_batcher.add(geom);
 
        tex = core.renderer.load_texture('assets/usable_orange.png');
        geom.texture = tex;
 
-       trace(tex.id);
-       trace(tex.width);
-       trace(tex.height);
     }
 
     public function update() {

@@ -31,8 +31,7 @@ class DefaultShaders {
             varying vec2 tcoord;
 
         	void main() {
-        	    vec4 col1 = vec4(tcoord.x,tcoord.y, (tcoord.x+tcoord.y)/2.0 ,1);
-                gl_FragColor = col1 + texture2D(tex0, tcoord);
+                gl_FragColor = texture2D(tex0, tcoord);
         	}
         ";
 

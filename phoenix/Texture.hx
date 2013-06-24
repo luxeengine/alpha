@@ -22,12 +22,11 @@ class Texture extends Resource {
 
     public var texture : GLTexture;
     public var data : UInt8Array;
-    public var _data : nmegl.utils.ArrayBufferView;
 
     public var width : Int = -1;
     public var height : Int = -1;   
 
-    public function new( _manager : ResourceManager, _size : Dynamic ) {
+    public function new( _manager : ResourceManager, _size : Dynamic = null ) {
         
         super( _manager, ResourceType.texture );
 
@@ -37,6 +36,7 @@ class Texture extends Resource {
 
     public function build(_size : Dynamic, _color: Dynamic) {
 
+        if(_size == null) _size = {x:0, y:0};
         if(_color == null) _color = {r:1,g:1,b:1,a:1};
         if(_size.x > 0 && _size.y > 0) {
 
@@ -56,6 +56,67 @@ class Texture extends Resource {
 
             texture = GL.createTexture();
         }
+    }
+
+    public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
+
+        texture = GL.createTexture();
+
+            //First we have to convert to haxe.io.bytes for use with format.png
+        var image_bytes = haxe.io.Bytes.ofData( _asset_bytes.getData() );
+            //Then we need it to be a BytesInput haxe.io.Input
+        var byte_input = new haxe.io.BytesInput(image_bytes,0,image_bytes.length);
+
+        //todo - use nme for the image side.
+
+            //NOW we can read the png from it
+        var png_data = new format.png.Reader(byte_input).read();
+            //Extract the bytes from the png reader
+        var png_bytes = format.png.Tools.extract32(png_data);
+            //And the header information for infomation
+        var png_header = format.png.Tools.getHeader(png_data); 
+
+            //if no problems
+        id = _asset_name;
+        width = Std.int(png_header.width);
+        height = Std.int(png_header.height);            
+
+        data = new UInt8Array(png_bytes.getData());
+        var image_length = width * height;
+
+            //BGRA to RGBA cos format...yea I dunno.
+            //GL doesn't even have BGRA as a default format 
+            //on a ton of platforms.
+        for(i in 0 ... image_length) {
+
+            var b = data[i*4+0];
+            var g = data[i*4+1];
+            var r = data[i*4+2];
+            var a = data[i*4+3];
+
+            //rgba would then be
+
+            data[i*4+0] = r;
+            data[i*4+1] = g;
+            data[i*4+2] = b;
+            data[i*4+3] = a;
+        }
+
+            //Now we can bind it
+        bind();
+            //And send GL the data
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
+
+            //Set the properties
+        set_filtering( FilterType.linear );
+        set_clamp( ClampType.repeat );
+        
+        image_bytes = null;
+        byte_input = null;
+        png_bytes = null;
+        png_header = null;
+        data = null; //todo - sven use lock/unlock
+
     }
 
     public function set_clamp( _clamp : ClampType ) {

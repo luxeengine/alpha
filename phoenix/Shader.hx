@@ -21,7 +21,7 @@ class Shader extends Resource {
 	public function new( _manager : ResourceManager ) {
 		
 		super( _manager, ResourceType.shader );
-
+        
 	}
 
 	public function activate() {
