@@ -52,6 +52,9 @@ class Renderer {
             //create the default batcher
         default_batcher = new Batcher( this );
 
+        GL.enable(GL.DEPTH_TEST);
+        GL.depthFunc(GL.LEQUAL);
+
         trace(':: phoenix :: renderer starting up');        
     }
 

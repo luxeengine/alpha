@@ -17,7 +17,6 @@ class Vertex {
 
 	public var pos : Vector;
 	public var color : Color;
-
 	public var uv : Map<Int, TextureCoord>;
 
 	public function new(_pos : Vector, _color:Color = null) {

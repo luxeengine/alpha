@@ -11,6 +11,7 @@ import nmegl.utils.Float32Array;
 
 enum PrimitiveType {
     triangle_strip;
+    triangles;
 }
 
 class BatchGroup {
@@ -62,6 +63,8 @@ class Batcher {
         
     }
 
+
+
     public function add( _geom:Geometry ) {
         geometry.push(_geom);
     }
@@ -110,6 +113,8 @@ class Batcher {
 
         renderer.default_shader.activate();
 
+        view.process();
+
             //Update the GL Matrices
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
@@ -125,7 +130,7 @@ class Batcher {
         GL.enableVertexAttribArray(vert_attribute);
         GL.enableVertexAttribArray(tcoord_attribute);
 
-        GL.drawArrays( GL.TRIANGLE_STRIP, 0, Std.int(vert_list.length/vert_size) );
+        GL.drawArrays( GL.TRIANGLES, 0, Std.int(vert_list.length/vert_size) );
 
         GL.disableVertexAttribArray(vert_attribute);
         GL.disableVertexAttribArray(tcoord_attribute);
