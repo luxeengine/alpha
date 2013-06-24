@@ -19,7 +19,14 @@ class Camera {
     public var projection_matrix : Matrix3D;
     public var modelview_matrix : Matrix3D;
 
+    public var projection_options : Dynamic;
+    public var projection : ProjectionType;
+
+    public var rotation : Float = 0.0;
+
     public function new( _projection : ProjectionType , options:Dynamic ) {
+
+        projection = _projection;
 
         if(options == null) {
             options = {
@@ -39,36 +46,46 @@ class Camera {
 
         }
 
+        projection_options = options;
+
             //Orthographic projection
         if(_projection == ProjectionType.ortho) {
 
-            trace('camera setting ortho: ' + options);
+            trace('camera setting ortho: ' + projection_options);
 
             set_ortho( 
-                      options.x1, 
-                      options.y1, 
-                      options.x2, 
-                      options.y2, 
-                      options.near, 
-                      options.far 
+                      projection_options.x1, 
+                      projection_options.y1, 
+                      projection_options.x2, 
+                      projection_options.y2, 
+                      projection_options.near, 
+                      projection_options.far 
                     );
 
         } else
             //Perspective projection
         if(_projection == ProjectionType.perspective) {
 
-            set_perspective(options);
+            set_perspective(projection_options);
 
         }
         
     }
 
+    public function set_rotation(_rotation:Float) {
+
+        rotation = _rotation;
+
+        if(projection == ProjectionType.ortho) {
+            modelview_matrix = Matrix3D.create2D( projection_options.x1, projection_options.y1, 1, rotation);
+        }   
+
+    }   
+
     public function set_ortho( _x1:Float, _y1:Float, _x2:Float, _y2:Float, _near:Float, _far:Float) {
 
         projection_matrix = Matrix3D.createOrtho(_x1, _x2, _y2, _y1, _near, _far);
-        // projection_matrix = Matrix3D.createOrtho(0, 960, 640, 0, 1000, -1000);
-        
-        modelview_matrix = Matrix3D.create2D( _x1, _y1, 1, 0);
+        modelview_matrix = Matrix3D.create2D( _x1, _y1, 1, rotation);
 
     }
 

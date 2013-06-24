@@ -7,6 +7,8 @@ class Main extends lab.Game {
     
     var geom : QuadGeometry;
 
+    var r :Float = 0.0;
+
     public function ready() {
        trace("I AM A GAME");
 
@@ -19,6 +21,9 @@ class Main extends lab.Game {
     public function update() {
         geom.verts['tl'].pos.y -= 0.2;
         geom.verts['tr'].pos.y -= 0.1;
+
+        r += 0.1;
+        core.renderer.default_camera.set_rotation( r );
     }
 
     public function shutdown() {
