@@ -6,6 +6,7 @@ import nmegl.gl.GL;
 import nmegl.gl.GLTexture;
 
 import nmegl.utils.UInt8Array;
+import nmegl.utils.Int32Array;
 import nmegl.utils.Libs;
 import nmegl.utils.ArrayBuffer;
 
@@ -35,7 +36,7 @@ class Rectangle {
 class Texture extends Resource {
 
     public var texture : GLTexture;
-    public var data : UInt8Array;
+    public var data : Int32Array;
 
     public var width : Int = -1;
     public var height : Int = -1;   
@@ -60,7 +61,7 @@ class Texture extends Resource {
                 //clear up old data in case
             data = null;
                 //create a new set of pixels data
-            data = new UInt8Array(new ArrayBuffer( width * height * 4));
+            data = new Int32Array(new ArrayBuffer( width * height * 4));
                 //fill it up!
             for(x in 0 ... width) {
                 for(y in 0 ... height) {
@@ -72,48 +73,55 @@ class Texture extends Resource {
         }
     }
 
+        //Create from the bytes from Assets.getBytes() or other method
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
         
         var nme_bitmap_handle = nme_bitmap_data_from_bytes(_asset_bytes, null);
-        
         var _width = nme_bitmap_data_width( nme_bitmap_handle );
         var _height = nme_bitmap_data_height( nme_bitmap_handle );
         
         var image_bytes : nmegl.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
         
-            //Now store the image data
-        var data_test = image_bytes.getData();
-        data = new UInt8Array( data_test );
-        
+            //if no problems
+        id = _asset_name;
+        width = Std.int(_width);
+        height = Std.int(_height);            
 
-        trace(data_test[0] + ' ' + data_test[1] + ' ' + data_test[2] + ' ' + data_test[3]);
-        trace(data_test[4] + ' ' + data_test[5] + ' ' + data_test[6] + ' ' + data_test[7]);
-        trace(data_test[8] + ' ' + data_test[9] + ' ' + data_test[10] + ' ' + data_test[11]);
-        trace(data_test[12] + ' ' + data_test[13] + ' ' + data_test[14] + ' ' + data_test[15]);
-        trace(data_test.length);
+        data = new Int32Array( image_bytes.getData() );
+        var image_length = width * height;
 
-        trace(data[0] + ' ' + data[1] + ' ' + data[2] + ' ' + data[3]);
-        trace(data[4] + ' ' + data[5] + ' ' + data[6] + ' ' + data[7]);
-        trace(data[8] + ' ' + data[9] + ' ' + data[10] + ' ' + data[11]);
-        trace(data[12] + ' ' + data[13] + ' ' + data[14] + ' ' + data[15]);
-        trace(data.length);
+            //ARGB to RGBA cos format 
+            //todo : do inside nme side.
+        for(i in 0 ... image_length) {
 
+            var a = data[i*4+0];
+            var r = data[i*4+1];
+            var g = data[i*4+2];
+            var b = data[i*4+3];
 
-            //Bind it
+            //rgba would then be
+
+            data[i*4+0] = r;
+            data[i*4+1] = g;
+            data[i*4+2] = b;
+            data[i*4+3] = a;
+        }
+
+            //Now we can bind it
         bind();
             //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data_test );
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
 
             //Set the properties
         set_filtering( FilterType.linear );
         set_clamp( ClampType.repeat );
-
-            //Clean up
+        
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
     }
 
-    public function create_from_bytes_haxe( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
+        //THIS IS NOT USED ATM
+    public function create_from_bytes_using_haxe( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
 
         texture = GL.createTexture();
 
@@ -136,7 +144,7 @@ class Texture extends Resource {
         width = Std.int(png_header.width);
         height = Std.int(png_header.height);            
 
-        data = new UInt8Array(png_bytes.getData());
+        data = new Int32Array(png_bytes.getData());
         var image_length = width * height;
 
             //BGRA to RGBA cos format...yea I dunno.
