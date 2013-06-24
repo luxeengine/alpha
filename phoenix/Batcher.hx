@@ -29,12 +29,11 @@ class Batcher {
     public var tcoordBuffer : GLBuffer;
 
     public var projectionmatrix_attribute : Dynamic; 
-    public var modelmatrix_attribute : Dynamic;
-    public var viewmatrix_attribute : Dynamic;
     public var modelviewmatrix_attribute : Dynamic;
 
     public var vert_attribute : Dynamic;
     public var tcoord_attribute : Dynamic;
+    public var tex0_attribute : Dynamic;
 
     public var renderer : Renderer;
     public var view : Camera;
@@ -58,8 +57,8 @@ class Batcher {
 
         projectionmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "projectionMatrix");
         modelviewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelViewMatrix");
-        viewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "viewMatrix");
-        modelmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelMatrix");
+
+        tex0_attribute = GL.getUniformLocation( renderer.default_shader.program, "tex0");
         
     }
 
@@ -72,10 +71,17 @@ class Batcher {
         vert_list.splice(0,vert_list.length);
         tcoord_list.splice(0,tcoord_list.length);
 
+        GL.activeTexture(GL.TEXTURE0);
+
         for(geom in geometry) {
 
             for(vert in geom.vertices) {
                 
+                if(geom.texture != null) {                    
+                    geom.texture.bind();
+                    renderer.default_shader.setUniformTexture("tex0", 0);
+                }
+
                 vert_list.push(vert.pos.x);
                 vert_list.push(vert.pos.y);
                 vert_list.push(vert.pos.z);

@@ -1,7 +1,7 @@
 package nme;
 
 
-import lab.core.Assets;
+import nmegl.utils.Assets;
 
 
 class AssetData {

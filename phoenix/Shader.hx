@@ -120,8 +120,8 @@ class Shader extends Resource {
 		GL.uniform4f( getUniform(uniform_name) , value.r, value.g, value.b, value.a );
     }
 
-    public function setUniformTexture( uniform_name:String, value:Texture ) {
-    	GL.uniform1i( getUniform(uniform_name) , value.texture.id );
+    public function setUniformTexture( uniform_name:String, value:Int ) {
+    	GL.uniform1i( getUniform(uniform_name) , value );
     }
 
     public function addError( error:String ) {

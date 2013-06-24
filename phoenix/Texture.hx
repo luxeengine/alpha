@@ -8,10 +8,21 @@ import nmegl.gl.GLTexture;
 import nmegl.utils.UInt8Array;
 import nmegl.utils.ArrayBuffer;
 
+enum FilterType {
+    nearest;
+    linear;    
+}
+enum ClampType {
+    edge;
+    repeat;    
+    mirror;    
+}
+
 class Texture extends Resource {
 
     public var texture : GLTexture;
     public var data : UInt8Array;
+    public var _data : nmegl.utils.ArrayBufferView;
 
     public var width : Int = -1;
     public var height : Int = -1;   
@@ -45,6 +56,37 @@ class Texture extends Resource {
 
             texture = GL.createTexture();
         }
+    }
+
+    public function set_clamp( _clamp : ClampType ) {
+        bind();
+        switch (_clamp) {
+            case ClampType.edge:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE );
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE );
+            case ClampType.repeat:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT );
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT );
+           case ClampType.mirror:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT );
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT );
+        }
+    }
+
+    public function set_filtering( _filter : FilterType ) {
+
+        bind();
+
+        switch(_filter) {
+            case FilterType.linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
+
+            case FilterType.nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);            
+        }
+
     }
 
     public function bind() {

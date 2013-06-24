@@ -8,13 +8,14 @@ class DefaultShaders {
         attribute vec3 vertexPosition;
         attribute vec2 tcoordPosition;
 
+        varying vec2 tcoord;
+
         uniform mat4 projectionMatrix;
         uniform mat4 modelViewMatrix;
-        uniform mat4 modelMatrix;
-        uniform mat4 viewMatrix; 
 
         void main(void) {
             gl_Position = projectionMatrix * modelViewMatrix * vec4(vertexPosition, 1.0);
+            tcoord = tcoordPosition;
         }
 
         ";
@@ -26,10 +27,12 @@ class DefaultShaders {
 	  	#end
 
 		"
-        	uniform sampler2D uSampler;
+        	uniform sampler2D tex0;
+            varying vec2 tcoord;
 
         	void main() {
-        	    gl_FragColor = vec4(0.4,0.1,0.1,1);
+        	    vec4 col1 = vec4(tcoord.x,tcoord.y, (tcoord.x+tcoord.y)/2.0 ,1);
+                gl_FragColor = col1 + texture2D(tex0, tcoord);
         	}
         ";
 
