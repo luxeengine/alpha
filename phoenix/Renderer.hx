@@ -106,13 +106,7 @@ class Renderer {
 
     }
 
-    private static var nme_bitmap_data_from_bytes = Libs.load("nme", "nme_bitmap_data_from_bytes", 2);
-    private static var nme_bitmap_data_height = Libs.load("nme", "nme_bitmap_data_height", 1);
-    private static var nme_bitmap_data_width = Libs.load("nme", "nme_bitmap_data_width", 1);
-    private static var nme_bitmap_data_get_pixels = Libs.load("nme", "nme_bitmap_data_get_pixels", 2); 
-    #if cpp
-    private static var nme_bitmap_data_get_array = Libs.load("nme", "nme_bitmap_data_get_array", 3);
-    #end
+
 
 }
 

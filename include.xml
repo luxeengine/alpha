@@ -7,7 +7,6 @@
 		<ndll name="regexp" haxelib="hxcpp" />
 		<ndll name="zlib" haxelib="hxcpp" />
 		
-		<ndll name="nme" />
 		<haxelib name="NMEGL" />
 		<haxelib name="format" />
 

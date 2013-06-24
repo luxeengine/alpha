@@ -6,6 +6,7 @@ import nmegl.gl.GL;
 import nmegl.gl.GLTexture;
 
 import nmegl.utils.UInt8Array;
+import nmegl.utils.Libs;
 import nmegl.utils.ArrayBuffer;
 
 enum FilterType {
@@ -16,6 +17,19 @@ enum ClampType {
     edge;
     repeat;    
     mirror;    
+}
+
+class Rectangle {
+    public var x:Float;
+    public var y:Float;
+    public var width:Float;
+    public var height:Float;
+    public function new(_x,_y,_w,_h) {
+        x = _x; 
+        y = _y; 
+        width = _w; 
+        height = _h; 
+    }
 }
 
 class Texture extends Resource {
@@ -59,6 +73,47 @@ class Texture extends Resource {
     }
 
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
+        
+        var nme_bitmap_handle = nme_bitmap_data_from_bytes(_asset_bytes, null);
+        
+        var _width = nme_bitmap_data_width( nme_bitmap_handle );
+        var _height = nme_bitmap_data_height( nme_bitmap_handle );
+        
+        var image_bytes : nmegl.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
+        
+            //Now store the image data
+        var data_test = image_bytes.getData();
+        data = new UInt8Array( data_test );
+        
+
+        trace(data_test[0] + ' ' + data_test[1] + ' ' + data_test[2] + ' ' + data_test[3]);
+        trace(data_test[4] + ' ' + data_test[5] + ' ' + data_test[6] + ' ' + data_test[7]);
+        trace(data_test[8] + ' ' + data_test[9] + ' ' + data_test[10] + ' ' + data_test[11]);
+        trace(data_test[12] + ' ' + data_test[13] + ' ' + data_test[14] + ' ' + data_test[15]);
+        trace(data_test.length);
+
+        trace(data[0] + ' ' + data[1] + ' ' + data[2] + ' ' + data[3]);
+        trace(data[4] + ' ' + data[5] + ' ' + data[6] + ' ' + data[7]);
+        trace(data[8] + ' ' + data[9] + ' ' + data[10] + ' ' + data[11]);
+        trace(data[12] + ' ' + data[13] + ' ' + data[14] + ' ' + data[15]);
+        trace(data.length);
+
+
+            //Bind it
+        bind();
+            //And send GL the data
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data_test );
+
+            //Set the properties
+        set_filtering( FilterType.linear );
+        set_clamp( ClampType.repeat );
+
+            //Clean up
+        image_bytes = null;
+        data = null; //todo - sven use lock/unlock
+    }
+
+    public function create_from_bytes_haxe( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
 
         texture = GL.createTexture();
 
@@ -211,4 +266,11 @@ class Texture extends Resource {
         GL.deleteTexture(texture);
         data = null;
     }
+
+
+    private static var nme_bitmap_data_from_bytes = Libs.load("nme", "nme_bitmap_data_from_bytes", 2);
+    private static var nme_bitmap_data_height = Libs.load("nme", "nme_bitmap_data_height", 1);
+    private static var nme_bitmap_data_width = Libs.load("nme", "nme_bitmap_data_width", 1);
+    private static var nme_bitmap_data_get_pixels = Libs.load("nme", "nme_bitmap_data_get_pixels", 2); 
+
 }

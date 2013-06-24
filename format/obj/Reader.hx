@@ -67,8 +67,8 @@ class Reader {
                 var uv = temp_uvs[ uvIndex-1 ];
                 var normal = temp_normals[ normalIndex-1 ];
 
-                trace('\t pos : ' + pos);
-                trace('\t uv : ' + uv);   
+                // trace('\t pos : ' + pos);
+                // trace('\t uv : ' + uv);   
 
                 data.vertices.push({
                     pos : pos,

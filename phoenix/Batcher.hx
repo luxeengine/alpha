@@ -130,7 +130,7 @@ class Batcher {
         GL.enableVertexAttribArray(vert_attribute);
         GL.enableVertexAttribArray(tcoord_attribute);
 
-        GL.drawArrays( GL.TRIANGLES, 0, Std.int(vert_list.length/vert_size) );
+        GL.drawArrays( GL.TRIANGLE_STRIP, 0, Std.int(vert_list.length/vert_size) );
 
         GL.disableVertexAttribArray(vert_attribute);
         GL.disableVertexAttribArray(tcoord_attribute);

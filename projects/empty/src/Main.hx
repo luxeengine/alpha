@@ -20,8 +20,8 @@ class Main extends lab.Game {
 
        tex = core.renderer.load_texture('assets/usable_orange.png');
        
-       // draw_2d_quad();
-       draw_cube_obj();
+       draw_2d_quad();
+       // draw_cube_obj();
     }
 
     public function draw_2d_quad() {
