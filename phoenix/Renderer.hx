@@ -7,6 +7,7 @@ import phoenix.geometry.Geometry;
 import phoenix.DefaultShaders;
 import phoenix.Shader;
 import phoenix.Color;
+import phoenix.Camera;
 
 
 class Renderer {
@@ -17,6 +18,7 @@ class Renderer {
         //Default rendering
     public var default_shader : Shader;
     public var default_batcher : Batcher;
+    public var default_camera : Camera;
 
     public var should_clear : Bool = true;
     public var clear_color : Color;
@@ -28,13 +30,14 @@ class Renderer {
         resource_manager = new ResourceManager();
 
             //create the default rendering shader
-        default_shader = new Shader( resource_manager );        
+        default_shader = new Shader( resource_manager );  
+        default_camera = new Camera( ProjectionType.ortho, { x2:960, y2:640 } );
 
         var compiles = default_shader.load_from_string( 
                             DefaultShaders.DefaultVertexShader, 
                             DefaultShaders.DefaultFragmentShader 
                         );
-        
+
         if( !compiles ) {
             throw "Default shader compilation error! \n" + default_shader.errors;
         }

@@ -7,10 +7,12 @@ class DefaultShaders {
 
         attribute vec3 vertexPosition;
         attribute vec2 tcoordPosition;
-            
-        uniform mat4 modelViewMatrix;
+
         uniform mat4 projectionMatrix;
-            
+        uniform mat4 modelViewMatrix;
+        uniform mat4 modelMatrix;
+        uniform mat4 viewMatrix; 
+
         void main(void) {
             gl_Position = projectionMatrix * modelViewMatrix * vec4(vertexPosition, 1.0);
         }
@@ -23,7 +25,7 @@ class DefaultShaders {
 	  	"precision mediump float;" +
 	  	#end
 
-		"	
+		"
         	uniform sampler2D uSampler;
 
         	void main() {

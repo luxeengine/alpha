@@ -21,23 +21,23 @@ class Batcher {
 
     public var groups : Map< Int, BatchGroup>;
     public var geometry : Array<Geometry>;
-    
+
     public var vert_list : Array<Float>;
     public var tcoord_list : Array<Float>;
 
     public var vertexBuffer : GLBuffer;
     public var tcoordBuffer : GLBuffer;
 
-    public var projection_attribute : Dynamic;
-    public var modelview_attribute : Dynamic;
+    public var projectionmatrix_attribute : Dynamic; 
+    public var modelmatrix_attribute : Dynamic;
+    public var viewmatrix_attribute : Dynamic;
+    public var modelviewmatrix_attribute : Dynamic;
 
     public var vert_attribute : Dynamic;
     public var tcoord_attribute : Dynamic;
 
-    public var proj : Matrix3D;
-    public var mv : Matrix3D;
-
-    public var renderer:Renderer;
+    public var renderer : Renderer;
+    public var view : Camera;
 
     public function new( _r : Renderer ) {
 
@@ -48,20 +48,19 @@ class Batcher {
         tcoord_list = new Array<Float>();
         groups = new Map();
 
+        view = renderer.default_camera;
+
         vertexBuffer = GL.createBuffer();
         tcoordBuffer = GL.createBuffer();
 
         vert_attribute = GL.getAttribLocation( renderer.default_shader.program , "vertexPosition");
         tcoord_attribute = GL.getAttribLocation( renderer.default_shader.program, "tcoordPosition");
 
-        projection_attribute = GL.getUniformLocation( renderer.default_shader.program, "projectionMatrix");
-        modelview_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelViewMatrix");
-
-        var positionX = 960 / 2;
-        var positionY = 640 / 2;
-
-        proj = Matrix3D.createOrtho (0, 960,640, 0, 1000, -1000);
-        mv = Matrix3D.create2D (positionX, positionY, 1, 0);
+        projectionmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "projectionMatrix");
+        modelviewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelViewMatrix");
+        viewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "viewMatrix");
+        modelmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelMatrix");
+        
     }
 
     public function add( _geom:Geometry ) {
@@ -106,8 +105,8 @@ class Batcher {
         renderer.default_shader.activate();
 
             //Update the GL Matrices
-        GL.uniformMatrix3D (projection_attribute, false, proj);
-        GL.uniformMatrix3D (modelview_attribute, false, mv);
+        GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
+        GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
         var vert_size = 3;
         var tcoord_size = 2;

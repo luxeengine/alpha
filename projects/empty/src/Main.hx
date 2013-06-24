@@ -10,15 +10,15 @@ class Main extends lab.Game {
     public function ready() {
 	   trace("I AM A GAME");
 
-	   geom = new QuadGeometry( { x:-100, y:-100, width:100, height:100 } );
+	   geom = new QuadGeometry( { x:200, y:200, width:200, height:200 } );
 	   
 	   core.renderer.default_batcher.add(geom);
-
 
 	}
 
     public function update() {
-		geom.vertices[0].pos.y -= 0.1;
+        geom.verts['tl'].pos.y -= 0.2;
+		geom.verts['tr'].pos.y -= 0.1;
     }
 
     public function shutdown() {
