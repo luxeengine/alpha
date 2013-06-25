@@ -59,14 +59,6 @@ class Batcher {
         vertexBuffer = GL.createBuffer();
         tcoordBuffer = GL.createBuffer();
 
-            //set the vertices pointer in the shader
-        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
-        GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
-
-            //set the texture coordinates in the shader
-        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
-        GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
-
 
         vert_attribute = GL.getAttribLocation( renderer.default_shader.program , "vertexPosition");
         tcoord_attribute = GL.getAttribLocation( renderer.default_shader.program, "tcoordPosition");
@@ -76,6 +68,10 @@ class Batcher {
 
         tex0_attribute = GL.getUniformLocation( renderer.default_shader.program, "tex0");
         
+    }
+
+    public function l(v:Dynamic) {
+        // trace(v);
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
@@ -89,38 +85,13 @@ class Batcher {
 
     public function stage() {
 
-        // vert_list.splice(0,vert_list.length);
-        // tcoord_list.splice(0,tcoord_list.length);
-
-        // GL.activeTexture(GL.TEXTURE0);
-
-        // for(geom in geometry) {
-
-        //     for(vert in geom.vertices) {
-                
-        //         if(geom.texture != null) {                    
-        //             geom.texture.bind();
-        //             renderer.default_shader.setUniformTexture("tex0", 0);
-        //         }
-
-        //         vert_list.push(vert.pos.x);
-        //         vert_list.push(vert.pos.y);
-        //         vert_list.push(vert.pos.z);
-
-        //         tcoord_list.push(vert.uv[0].u);
-        //         tcoord_list.push(vert.uv[0].v);
-        //     }
-
-        // }
-        
-        // GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
-        // GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(vert_list), GL.STATIC_DRAW);
-
-        // GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
-        // GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(tcoord_list), GL.STATIC_DRAW);
+        l("\t\t\tstage start");
 
         var state : BatchState = new BatchState();
-        var vlist : Array<Vertex> = new Array<Vertex>();
+        var vertlist : Array<Float> = new Array<Float>();
+        var tcoordlist : Array<Float> = new Array<Float>();
+
+        l(" geometry list  : " + geometry.length );
 
             //Loop through the geometry set
         var geom : Geometry = null;
@@ -134,7 +105,8 @@ class Batcher {
 
                     //If the update will cause a state change, submit the vertices accumulated
                 if(state.update(geom)) {
-                    submit_vertex_list( vlist, state.last_state.primitive_type );
+                    l(" state is dirty " );
+                    submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
                 }
 
                     // Now activate state changes (if any)
@@ -155,14 +127,14 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
-                            geom.batch( vlist );
+                            geom.batch( vertlist, tcoordlist );
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
-                            submit_vertex_list( vlist, geom.primitive_type );
+                            submit_vertex_list( vertlist, tcoordlist, geom.primitive_type );
                     }
 
                         // Accumulate, this is standard geometry 
                     else {
-                        geom.batch( vlist );
+                        geom.batch( vertlist, tcoordlist );
                     }   
 
                     //catch
@@ -176,38 +148,60 @@ class Batcher {
         } //geom list
 
             // If there is anything left in the vertex buffer, submit it.
-        if(vlist.length > 0 && geom != null) {
-            //std::cout<<"Submitting the batch... "<<vlist.size()<<" vertices with type "<<state.last().getPrimitiveType()<<std::endl;
+        l("\t\t\t\t finalise");            
+        
+        if(vertlist.length > 0 && geom != null) {
+            l("\t\t\t\t finalising");              
             state.update(geom);
             state.activate( this );
-            submit_vertex_list( vlist, state.last_state.primitive_type );
-        }
 
+            l("\t\t\t\t Submitting the batch... " + vertlist.length  );
+
+            submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
+
+            l("\t\t\t\t Submitted the batch... " + vertlist.length + " vertices with type " + state.last_state.primitive_type );
+        }    
+
+        l("\t\t\t\t finalised");
+
+
+            l("\t\t\t\t cleanup");
         // cleanup
         state.deactivate(this);
         state = null;
+            l("\t\t\t\t cleanuped");
+
+        l("\t\t\tstage end");
 
     }
 
     public function draw() {    
 
+        l("\t begin draw");
+
                     //Set the viewport for GL
+            l("\t\t viewport");
         GL.viewport( 0, 0, 960, 640 );
+            l("\t\t viewported");
 
             //stash all the geometry into lists to send to dl           
+            l("\t\t stage");
         stage();
+            l("\t\t staged");
 
+            l("\t\t shader activate");
         renderer.default_shader.activate();
+            l("\t\t shader activated");
 
+            l("\t\t view process");
         view.process();
+            l("\t\t view processed");
 
             //Update the GL Matrices
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
-        var vert_size = 3;
-        var tcoord_size = 2;
-
+        l("\t end draw");
 
     } //draw
 
@@ -230,23 +224,53 @@ class Batcher {
         }
     }
 
-    public function submit_vertex_list( vlist:Array<Vertex>, type : PrimitiveType ) {
+    public function submit_vertex_list( vertlist:Array<Float>, tcoordlist:Array<Float>, type : PrimitiveType ) {
             
             //Do nothing useful
-        if( vlist.length == 0 ) return;
+        if( vertlist.length == 0 ) {
+            l("doing nothing");
+            return;
+        }
+
+                    l("\t\t\t\t\t\t data : vertexBuffer " + vertexBuffer);
+                    l("\t\t\t\t\t\t data : tcoordBuffer " + tcoordBuffer);
+                    l("\t\t\t\t\t\t data : vert_attribute " + vert_attribute);
+                    l("\t\t\t\t\t\t data : tcoord_attribute " + tcoord_attribute);
 
             //Set shader attributes
         GL.enableVertexAttribArray(vert_attribute);
         GL.enableVertexAttribArray(tcoord_attribute);
 
+            //Update the GL Arrays
+
+            //set the vertices pointer in the shader
+        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+        GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(vertlist), GL.STATIC_DRAW);
+
+            //set the texture coordinates in the shader
+        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
+        GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(tcoordlist), GL.STATIC_DRAW);        
+
+                    l("\t\t\t\t\t\t drawing arrays " + vertlist.length + " as " + type);
+
             //Draw
-        GL.drawArrays( get_opengl_primitive_type(type) , 0, vlist.length );
+        GL.drawArrays( get_opengl_primitive_type(type) , 0, Std.int(vertlist.length) );
+
+                       l("\t\t\t\t\t\t disabling ");
 
             //Unset
         GL.disableVertexAttribArray(vert_attribute);
         GL.disableVertexAttribArray(tcoord_attribute);
-           
+        
+                      l("\t\t\t\t\t\t clearing the vertex list");
+
             //clear the vlist
-        vlist.splice(0, vlist.length);    
+        vertlist.splice(0, vertlist.length);    
+        tcoordlist.splice(0, tcoordlist.length);    
+
+                l("\t\t\t\t\t\t vertlist.length " + vertlist.length);
+                l("\t\t\t\t\t\t tcoordlist.length " + tcoordlist.length);
     }
 }

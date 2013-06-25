@@ -31,7 +31,7 @@ class Main extends lab.Game {
         core.renderer.default_batcher.add(geom);
 
         geom2 = new QuadGeometry( { x:512, y:32, width:128, height:128 } );  
-        geom2.texture = tex;
+        geom2.texture = tex2;
         core.renderer.default_batcher.add(geom2);
     }
 

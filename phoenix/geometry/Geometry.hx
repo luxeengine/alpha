@@ -4,6 +4,9 @@ import phoenix.geometry.Vertex;
 import phoenix.Texture;
 import phoenix.Batcher;
 
+import nmegl.utils.ByteArray;
+import nmegl.utils.Float32Array;
+import nmegl.utils.IMemoryRange;
 
 
 class Geometry {
@@ -46,8 +49,17 @@ class Geometry {
 		vertices.remove(v);
 	}
 
-	public function batch( vlist : Array<Vertex> ) {
-		
+	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float> ) {
+		for(v in vertices) {
+			
+			vertlist.push( v.pos.x );
+			vertlist.push( v.pos.y );
+			vertlist.push( v.pos.z );
+
+			tcoordlist.push( v.uv[0].u );
+			tcoordlist.push( v.uv[0].v );
+			
+		}
 	}
 
 //Depth
