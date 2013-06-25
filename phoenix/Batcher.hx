@@ -104,8 +104,7 @@ class Batcher {
             if(geom != null && !geom.dropped ) {
 
                     //If the update will cause a state change, submit the vertices accumulated
-                if(state.update(geom)) {
-                    l(" state is dirty " );
+                if( state.update(geom) ) {
                     submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
                 }
 
