@@ -262,7 +262,7 @@ class Batcher {
                     l("\t\t\t\t\t\t drawing arrays " + vertlist.length + " as " + type);
 
             //Draw
-        GL.drawArrays( get_opengl_primitive_type(type) , 0, Std.int(vertlist.length) );
+        GL.drawArrays( get_opengl_primitive_type(type) , 0, Std.int(vertlist.length/3) );
 
                        l("\t\t\t\t\t\t disabling ");
 
