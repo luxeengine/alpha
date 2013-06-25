@@ -19,23 +19,39 @@ class BatchState {
 
     public function new(){
         state = new GeometryState();
+        last_state = new GeometryState();
     }
 
-    public function str()  {
-        trace('\t+ BATCHSTATE');
+    public function str() {
+        trace('\t+ BATCHSTATE LAST ');
+            trace("\t\tdepth - "+last_state.depth);
+            trace("\t\tgroup - "+last_state.group);
+            trace("\t\ttexture - " + (( last_state.texture == null) ? 'null' :  last_state.texture.id ));
+            if(last_state.texture != null) {
+                trace("\t\t\t " + last_state.texture.texture);
+            }  
+            trace("\t\tprimitive_type - "+last_state.primitive_type);
+            trace("\t\tclip - "+last_state.clip);
+        trace('\t- BATCHSTATE LAST');
+
+        trace('\t+ BATCHSTATE STATE');
             trace("\t\tdepth - "+state.depth);
             trace("\t\tgroup - "+state.group);
-            trace("\t\ttexture - " + ((state.texture == null) ? 'null' : state.texture.id));
+            trace("\t\ttexture - " + (( state.texture == null) ? 'null' :  state.texture.id ));
+            if(state.texture != null) {
+                trace("\t\t\t " + state.texture.texture);
+            }  
             trace("\t\tprimitive_type - "+state.primitive_type);
             trace("\t\tclip - "+state.clip);
-        trace('\t- BATCHSTATE');
+        trace('\t- BATCHSTATE STATE');
     }
 
-    public function activate(renderer:Batcher) {
+    public function activate(batcher:Batcher) {
+        
 
             // Handle texture state changes 
         if(state.dirty) {
-
+            trace("STATE DIRTY");
             if(state.texture != null) {
 
                 if(!last_texture_id) {
@@ -45,8 +61,7 @@ class BatchState {
                 trace('checking state of texture ; ');
                 trace('was ' + last_texture_id + ' ' + state.texture.id);
                 if(last_texture_id != state.texture.id){
-
-                    last_texture_id = state.texture.id;
+                    last_texture_id = state.texture.id;                    
                     state.texture.bind();
                 }
 
@@ -101,7 +116,7 @@ class BatchState {
         state.clean();
     }
 
-    public function deactivate(renderer:Batcher) {
+    public function deactivate(batcher:Batcher) {
         
         if(last_texture_id) {
             GL.disable(GL.TEXTURE_2D);
@@ -117,9 +132,14 @@ class BatchState {
 
     public function update( geom:Geometry ) : Bool {
 
-        last_state = state;
+        trace('updating state a ' + geom.state.dirty);
+        trace('updating state b ' + state.dirty);
+        last_state = state.clone();
         state.update(geom.state);
 
+        str();
+
+        //todo
         // if(state.clip){
         //     last_clip_rect = clip_rect;
         //     clip_rect = geom.cliprect;

@@ -7,16 +7,13 @@ class GeometryState {
     
     public var dirty:Bool;
 
-    public var depth:Float;
-    public var group:Int;
-    public var texture:Texture;
-    public var primitive_type:PrimitiveType;
-    public var clip:Bool;   
-
+    @:isVar public var primitive_type(default, set) : PrimitiveType;
+    @:isVar public var texture(default, set) : Texture;
+    @:isVar public var depth(default, set) : Float;
+    @:isVar public var group(default, set) : Int;
+    @:isVar public var clip(default, set) : Bool;
 
     public function new() {
-        
-        dirty = false;
 
         clip = false;
         texture = null;
@@ -24,10 +21,24 @@ class GeometryState {
         depth = 0.0;
         primitive_type = PrimitiveType.none;
 
+        dirty = false;
+
+    }
+
+    public function clone() : GeometryState {
+        var new_state = new GeometryState();
+        
+            new_state.dirty = dirty;
+            new_state.texture = texture;
+            new_state.group = group;
+            new_state.depth = depth;
+            new_state.primitive_type = primitive_type;
+
+        return new_state;
     }
 
     public function str() {
-        trace('\t+ GEOMETRYSTATE');
+        trace('\t+ GEOMETRYSTATE ' + dirty);
             trace("\t\tdepth - "+ depth);
             trace("\t\tgroup - "+ group);
             trace("\t\ttexture - " + (( texture == null) ? 'null' :  texture.id ));
@@ -46,7 +57,6 @@ class GeometryState {
     public function compare( other:GeometryState ) {
         
         if( depth < other.depth ) return -1;
-
         if( depth == other.depth && group < other.group ) return -1;
 
         var textureid : Dynamic = texture != null ? texture.id : 0;
@@ -74,7 +84,34 @@ class GeometryState {
         group = other.group;
         texture = other.texture;
         primitive_type = other.primitive_type;
-        clip = other.clip;        
+        clip = other.clip;
     }
+
+//Primitive Type
+    public function set_primitive_type(val : PrimitiveType) : PrimitiveType {       
+        dirty = true;
+        return primitive_type = val;
+    }
+//Texture
+    public function set_texture(val : Texture) : Texture {      
+        dirty = true;
+        return texture = val;
+    }
+//Depth
+    public function set_depth(val : Float) : Float {        
+        dirty = true;      
+        return depth = val;
+    }
+//Group
+    public function set_group(val : Int) : Int {        
+        dirty = true; 
+        return group = val;
+    }
+//Clip
+    public function set_clip(val : Bool) : Bool {
+        dirty = true;
+        return clip = val;
+    }
+//
 
 }

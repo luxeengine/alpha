@@ -46,6 +46,8 @@ class Batcher {
     public var renderer : Renderer;
     public var view : Camera;
 
+    public var draw_calls : Int = 0;
+
     public function new( _r : Renderer ) {
 
         renderer = _r;
@@ -67,7 +69,7 @@ class Batcher {
         projectionmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "projectionMatrix");
         modelviewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelViewMatrix");
 
-        tex0_attribute = GL.getUniformLocation( renderer.default_shader.program, "tex0");
+        tex0_attribute = GL.getUniformLocation( renderer.default_shader.program, "tex0" );
         
     }
 
@@ -96,24 +98,25 @@ class Batcher {
 
             //Loop through the geometry set
         var geom : Geometry = null;
+        var geomindex : Int = 0;
 
         for(_geom in geometry) {
 
                 //grab the next one
-            geom = _geom;
+            geom = _geom;            
+
+            trace("Rendering " + geomindex + "/" + (geometry.length-1));
 
             if(geom != null && !geom.dropped ) {
-
+            
                     //If the update will cause a state change, submit the vertices accumulated                
                 if( state.update(geom) ) {
                     trace('state came back dirty so submitting it');
                     submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
                 }
-
+                
                     // Now activate state changes (if any)
-                state.activate(this);
-
-                geom.state.str();
+                state.activate(this);                
 
                 if(geom.enabled) {
                     //try
@@ -129,7 +132,7 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_strip ||
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
-                            trace("It's a geometry that can't really accumulate in a batch.. ");
+                            // trace("It's a geometry that can't really accumulate in a batch.. ");
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
                             geom.batch( vertlist, tcoordlist );
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
@@ -148,7 +151,12 @@ class Batcher {
 
                 } //geom.enabled
 
-            } //!null && !dropped
+            } else {//!null && !dropped
+                trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
+            }
+
+            ++geomindex;
+
         } //geom list
 
             // If there is anything left in the vertex buffer, submit it.
@@ -181,6 +189,8 @@ class Batcher {
 
     public function draw() {    
 
+        draw_calls = 0;
+
         l("\t begin draw");
 
                     //Set the viewport for GL
@@ -205,7 +215,7 @@ class Batcher {
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
-        l("\t end draw");
+        trace("\t draw calls + " + draw_calls);
 
     } //draw
 
@@ -278,5 +288,7 @@ class Batcher {
 
                 l("\t\t\t\t\t\t vertlist.length " + vertlist.length);
                 l("\t\t\t\t\t\t tcoordlist.length " + tcoordlist.length);
+
+        draw_calls++;
     }
 }

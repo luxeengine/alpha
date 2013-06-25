@@ -38,7 +38,6 @@ class Geometry {
 	}
 
 	public function compare( other:Geometry ) {
-		trace("COMPARING");
 		return state.compare( other.state );
 	}
 
@@ -70,7 +69,6 @@ class Geometry {
 
 	public function set_primitive_type(val : PrimitiveType) : PrimitiveType {		
 		state.primitive_type = val;
-		state.dirty = true;
 		return state.primitive_type;
 	}
 //Texture
@@ -80,7 +78,6 @@ class Geometry {
 
 	public function set_texture(val : Texture) : Texture {		
 		state.texture = val;
-		state.dirty = true;
 		return state.texture;
 	}
 //Depth
@@ -89,8 +86,7 @@ class Geometry {
 	}
 
 	public function set_depth(val : Float) : Float {		
-		state.depth = val;
-		state.dirty = true;
+		state.depth = val;		
 		return state.depth;
 	}
 //Group
@@ -99,8 +95,7 @@ class Geometry {
 	}
 
 	public function set_group(val : Int) : Int {		
-		state.group = val;
-		state.dirty = true;
+		state.group = val;		
 		return state.group;
 	}
 //Clip
@@ -109,8 +104,7 @@ class Geometry {
 	}
 
 	public function set_clip(val : Bool) : Bool {		
-		state.clip = val;
-		state.dirty = true;
+		state.clip = val;		
 		return state.clip;
 	}
 //

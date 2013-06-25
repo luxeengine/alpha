@@ -20,29 +20,26 @@ class Main extends lab.Game {
        trace("game ready");
 
        tex = core.renderer.load_texture('assets/usable_orange.png');
-       tex2 = core.renderer.load_texture('assets/feather.png');
+       tex2 = core.renderer.load_texture('assets/feather.png');       
        
        draw_2d_quad();
     }
 
     public function draw_2d_quad() {
-        geom = new QuadGeometry( { x:32, y:32, width:128, height:128 } );  
-        geom.texture = tex;
+        geom = new QuadGeometry( { x:32, y:32, width:256, height:256 } );  
+        geom.texture = tex2;
         core.renderer.default_batcher.add(geom);
         geom.depth = 1;
 
-        geom2 = new QuadGeometry( { x:512, y:32, width:256, height:256 } );  
-        geom2.texture = tex2;
+        geom2 = new QuadGeometry( { x:320, y:32, width:512, height:512 } );  
+        geom2.texture = tex;
         core.renderer.default_batcher.add(geom2);
-         geom.depth = 2;
+        geom2.depth = 2;
     }
 
 
     public function update() {
-        if(geom != null) {
-            // geom.verts['tl'].pos.y -= 0.2;
-            // geom.verts['tr'].pos.y -= 0.01;
-        }
+
     }
 
     public function shutdown() {

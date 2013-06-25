@@ -26,6 +26,7 @@ class Renderer {
     public var default_camera : Camera;
 
     public var should_clear : Bool = true;
+    public var stop : Bool = false;
     public var clear_color : Color;
 
     public function startup() {
@@ -100,8 +101,9 @@ class Renderer {
             clear( clear_color );
         }
 
-        if(default_batcher != null) {
+        if(default_batcher != null && !stop) {
             default_batcher.draw();
+            stop = false;
         }
 
     }
