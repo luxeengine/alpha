@@ -21,11 +21,20 @@ class BatchState {
         state = new GeometryState();
     }
 
+    public function str()  {
+        trace('\t+ BATCHSTATE');
+            trace("\t\tdepth - "+state.depth);
+            trace("\t\tgroup - "+state.group);
+            trace("\t\ttexture - " + ((state.texture == null) ? 'null' : state.texture.id));
+            trace("\t\tprimitive_type - "+state.primitive_type);
+            trace("\t\tclip - "+state.clip);
+        trace('\t- BATCHSTATE');
+    }
+
     public function activate(renderer:Batcher) {
 
             // Handle texture state changes 
-            trace('\t\t\tstate is dirty? ' + state.dirty);
-        if(state.dirty){
+        if(state.dirty) {
 
             if(state.texture != null) {
 

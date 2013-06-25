@@ -12,15 +12,15 @@ import nmegl.utils.IMemoryRange;
 class Geometry {
 
 	public var vertices : Array<Vertex>;
-	public var primitive_type : PrimitiveType;
 
 	public var enabled : Bool = true;
 	public var locked : Bool = false;
 
-	public var texture : Texture;
 	public var state : GeometryState;
 	public var dropped : Bool = false;
 
+	public var primitive_type(get_primitive_type, set_primitive_type) : PrimitiveType;
+	public var texture(get_texture, set_texture) : Texture;
 	public var depth(get_depth, set_depth) : Float;
 	public var group(get_group, set_group) : Int;
 	public var clip(get_clip, set_clip) : Bool;
@@ -38,6 +38,7 @@ class Geometry {
 	}
 
 	public function compare( other:Geometry ) {
+		trace("COMPARING");
 		return state.compare( other.state );
 	}
 
@@ -58,10 +59,30 @@ class Geometry {
 
 			tcoordlist.push( v.uv[0].u );
 			tcoordlist.push( v.uv[0].v );
-			
+
 		}
 	}
 
+//Primitive Type
+	public function get_primitive_type() : PrimitiveType {
+		return state.primitive_type;
+	}
+
+	public function set_primitive_type(val : PrimitiveType) : PrimitiveType {		
+		state.primitive_type = val;
+		state.dirty = true;
+		return state.primitive_type;
+	}
+//Texture
+	public function get_texture() : Texture {
+		return state.texture;
+	}
+
+	public function set_texture(val : Texture) : Texture {		
+		state.texture = val;
+		state.dirty = true;
+		return state.texture;
+	}
 //Depth
 	public function get_depth() : Float {
 		return state.depth;

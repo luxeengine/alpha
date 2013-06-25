@@ -22,9 +22,22 @@ class GeometryState {
         texture = null;
         group = 0;
         depth = 0.0;
-        primitive_type = PrimitiveType.triangle_strip;
+        primitive_type = PrimitiveType.none;
 
     }
+
+    public function str() {
+        trace('\t+ GEOMETRYSTATE');
+            trace("\t\tdepth - "+ depth);
+            trace("\t\tgroup - "+ group);
+            trace("\t\ttexture - " + (( texture == null) ? 'null' :  texture.id ));
+            if(texture != null) {
+                trace("\t\t\t " + texture.texture);
+            }            
+            trace("\t\tprimitive_type - "+ primitive_type);
+            trace("\t\tclip - "+ clip);
+        trace('\t- GEOMETRYSTATE');     
+    }    
 
     public function clean() {
         dirty = false;
@@ -38,6 +51,9 @@ class GeometryState {
 
         var textureid : Dynamic = texture != null ? texture.id : 0;
         var other_textureid : Dynamic = other.texture != null ? other.texture.id : 0;
+
+        trace("TID " + textureid);
+        trace("OTHER TID " + other_textureid);
 
         var clip_value : Int;
         if(clip == true && other.clip == true) clip_value = 0;

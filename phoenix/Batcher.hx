@@ -14,6 +14,7 @@ import nmegl.utils.Float32Array;
 import phoenix.utils.BinarySearchTree;
 
 enum PrimitiveType {
+    none;
     line_strip;
     line_loop;
     triangle_strip;
@@ -103,13 +104,16 @@ class Batcher {
 
             if(geom != null && !geom.dropped ) {
 
-                    //If the update will cause a state change, submit the vertices accumulated
+                    //If the update will cause a state change, submit the vertices accumulated                
                 if( state.update(geom) ) {
+                    trace('state came back dirty so submitting it');
                     submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
                 }
 
                     // Now activate state changes (if any)
                 state.activate(this);
+
+                geom.state.str();
 
                 if(geom.enabled) {
                     //try
@@ -125,6 +129,7 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_strip ||
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
+                            trace("It's a geometry that can't really accumulate in a batch.. ");
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
                             geom.batch( vertlist, tcoordlist );
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
@@ -218,8 +223,10 @@ class Batcher {
                 return GL.TRIANGLE_STRIP;
             case triangles:
                 return GL.TRIANGLES;
-            case triangle_fan:
+            case triangle_fan:            
                 return GL.TRIANGLE_FAN;
+            case none:
+                return GL.TRIANGLE_STRIP;
         }
     }
 

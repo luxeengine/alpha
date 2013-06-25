@@ -82,6 +82,8 @@ class Texture extends Resource {
         
         var image_bytes : nmegl.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
         
+        texture = GL.createTexture();
+
             //if no problems
         id = _asset_name;
         width = Std.int(_width);
