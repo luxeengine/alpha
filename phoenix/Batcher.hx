@@ -48,6 +48,8 @@ class Batcher {
 
     public var draw_calls : Int = 0;
 
+    public var log : Bool = false;
+
     public function new( _r : Renderer ) {
 
         renderer = _r;
@@ -105,13 +107,13 @@ class Batcher {
                 //grab the next one
             geom = _geom;            
 
-            trace("Rendering " + geomindex + "/" + (geometry.length-1));
+            // trace("Rendering " + geomindex + "/" + (geometry.length-1));
 
             if(geom != null && !geom.dropped ) {
             
                     //If the update will cause a state change, submit the vertices accumulated                
                 if( state.update(geom) ) {
-                    trace('state came back dirty so submitting it');
+                    // trace('state came back dirty so submitting it');
                     submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
                 }
                 
@@ -152,7 +154,7 @@ class Batcher {
                 } //geom.enabled
 
             } else {//!null && !dropped
-                trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
+                // trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
             }
 
             ++geomindex;
@@ -215,7 +217,7 @@ class Batcher {
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
-        trace("\t draw calls + " + draw_calls);
+        // trace("\t draw calls + " + draw_calls);
 
     } //draw
 

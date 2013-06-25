@@ -17,12 +17,17 @@ class BatchState {
     public var clip_rect : Dynamic;
     public var last_clip_rect : Dynamic;
 
+    public var log : Bool = false;
+
     public function new(){
         state = new GeometryState();
         last_state = new GeometryState();
     }
 
     public function str() {
+        
+        if(!log) return;
+
         trace('\t+ BATCHSTATE LAST ');
             trace("\t\tdepth - "+last_state.depth);
             trace("\t\tgroup - "+last_state.group);
@@ -51,15 +56,15 @@ class BatchState {
 
             // Handle texture state changes 
         if(state.dirty) {
-            trace("STATE DIRTY");
+            // trace("STATE DIRTY");
             if(state.texture != null) {
 
                 if(!last_texture_id) {
                     GL.enable(GL.TEXTURE_2D);
                 }
 
-                trace('checking state of texture ; ');
-                trace('was ' + last_texture_id + ' ' + state.texture.id);
+                // trace('checking state of texture ; ');
+                // trace('was ' + last_texture_id + ' ' + state.texture.id);
                 if(last_texture_id != state.texture.id){
                     last_texture_id = state.texture.id;                    
                     state.texture.bind();
@@ -132,8 +137,8 @@ class BatchState {
 
     public function update( geom:Geometry ) : Bool {
 
-        trace('updating state a ' + geom.state.dirty);
-        trace('updating state b ' + state.dirty);
+        // trace('updating state a ' + geom.state.dirty);
+        // trace('updating state b ' + state.dirty);
         last_state = state.clone();
         state.update(geom.state);
 

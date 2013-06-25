@@ -13,6 +13,8 @@ class GeometryState {
     @:isVar public var group(default, set) : Int;
     @:isVar public var clip(default, set) : Bool;
 
+    public var log : Bool = false;
+
     public function new() {
 
         clip = false;
@@ -38,6 +40,8 @@ class GeometryState {
     }
 
     public function str() {
+        if(!log) return;
+
         trace('\t+ GEOMETRYSTATE ' + dirty);
             trace("\t\tdepth - "+ depth);
             trace("\t\tgroup - "+ group);
