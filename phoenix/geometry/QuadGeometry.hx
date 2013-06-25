@@ -2,6 +2,7 @@ package phoenix.geometry;
 
 import phoenix.geometry.Geometry;
 import phoenix.geometry.TextureCoord;
+import phoenix.Batcher;
 
 class QuadGeometry extends Geometry {
 
@@ -44,6 +45,8 @@ class QuadGeometry extends Geometry {
         verts['tr'] = vert3;
         verts['bl'] = vert0;
         verts['br'] = vert2;
+
+        primitive_type = PrimitiveType.triangle_strip;
 
  	}
 
