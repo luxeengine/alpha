@@ -193,7 +193,7 @@ class Core {
 
    		//temporary debugging with verbosity options
 
-	public var log : Bool = true;
+	public var log : Bool = false;
     public var verbose : Bool = true;
     public var more_verbose : Bool = false;
     public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) { 

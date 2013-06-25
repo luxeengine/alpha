@@ -55,11 +55,11 @@ class Renderer {
         GL.enable(GL.DEPTH_TEST);
         GL.depthFunc(GL.LEQUAL);
 
-        trace(':: phoenix :: renderer starting up');        
+        // trace(':: phoenix :: renderer starting up');        
     }
 
     public function shutdown() {
-        trace(':: phoenix :: renderer shutting down');   
+        // trace(':: phoenix :: renderer shutting down');   
     }
 
     public function clear( _color:Color ) {
