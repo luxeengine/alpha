@@ -7,7 +7,7 @@
 		<ndll name="regexp" haxelib="hxcpp" />
 		<ndll name="zlib" haxelib="hxcpp" />
 		
-		<haxelib name="NMEGL" />
+		<haxelib name="lime" />
 		<haxelib name="format" />
 
 		<!-- for now in initial dev phoenix will be underneath lab -->

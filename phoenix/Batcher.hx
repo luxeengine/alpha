@@ -6,10 +6,10 @@ import phoenix.geometry.Vertex;
 import phoenix.Renderer;
 import phoenix.BatchState;
 
-import nmegl.gl.GL;
-import nmegl.gl.GLBuffer;
-import nmegl.geometry.Matrix3D;
-import nmegl.utils.Float32Array;
+import lime.gl.GL;
+import lime.gl.GLBuffer;
+import lime.geometry.Matrix3D;
+import lime.utils.Float32Array;
 
 import phoenix.utils.BinarySearchTree;
 

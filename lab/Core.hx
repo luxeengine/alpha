@@ -1,6 +1,6 @@
 package lab;
 
-import nmegl.NMEGL;
+import lime.LiME;
 
 import lab.Audio;
 import lab.Events;
@@ -21,8 +21,8 @@ class Core {
         //the config passed to us on creation
 	public var config : Dynamic;
 
-        //the reference to the underlying NMEGL system
-    public var nmegl : NMEGL;
+        //the reference to the underlying LiME system
+    public var lime : LiME;
 
 //Sub Systems, mostly in order of importance
 	public var debug    : Debug;
@@ -50,10 +50,10 @@ class Core {
         //This gets called once the create_main_frame call inside new() 
         //comes back with our window
 
-    private function ready( _nmegl : NMEGL ) {
+    private function ready( _lime : LiME ) {
             
             //Keep a reference
-        nmegl = _nmegl;
+        lime = _lime;
 
         _debug(':: haxelab :: Version ' + version);
 
@@ -86,10 +86,10 @@ class Core {
 		audio = new Audio( this );	
 		input = new Input( this );
 
-        if(nmegl.config.renderer == null) {
+        if(lime.config.renderer == null) {
             renderer = new Renderer( this );
         } else {
-            renderer = Type.createInstance(nmegl.config.renderer, [this]);
+            renderer = Type.createInstance(lime.config.renderer, [this]);
         }
 
 			//Now make sure they start up
@@ -148,7 +148,7 @@ class Core {
         _debug(':: haxelab :: Goodbye.');
     }
 
-    	//Called by NMEGL
+    	//Called by LiME
     public function update() { 
 
         _debug('on_update ' + Timer.stamp(), true, true); 
@@ -170,7 +170,7 @@ class Core {
 
     } //update
 
-        //called by NMEGL
+        //called by LiME
     public function render() {
         if(renderer != null && renderer.process != null) {
             renderer.process();   
@@ -186,7 +186,7 @@ class Core {
 
 //Lib load wrapper
     public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
-        return nmegl.utils.Libs.load( library, method, args );
+        return lime.utils.Libs.load( library, method, args );
     }
 
 //Noisy stuff

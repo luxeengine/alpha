@@ -4,7 +4,7 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Vector;
 import phoenix.Color;
 
-import nmegl.utils.Float32Array;
+import lime.utils.Float32Array;
 
 	//for now this is convenience
 	//since uv's is an array

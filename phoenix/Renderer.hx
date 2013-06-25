@@ -1,7 +1,7 @@
 package phoenix;
 
-import nmegl.gl.GL;
-import nmegl.utils.Libs;
+import lime.gl.GL;
+import lime.utils.Libs;
 
 import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
@@ -11,8 +11,8 @@ import phoenix.Color;
 import phoenix.Camera;
 import phoenix.Texture;
 
-import nmegl.utils.UInt8Array;
-import nmegl.utils.ArrayBuffer;
+import lime.utils.UInt8Array;
+import lime.utils.ArrayBuffer;
 
 
 class Renderer {
@@ -74,7 +74,7 @@ class Renderer {
 
         var texture : Texture = new Texture( resource_manager );
 
-        var asset_bytes = nmegl.utils.Assets.getBytes( _name );
+        var asset_bytes = lime.utils.Assets.getBytes( _name );
 
         if(asset_bytes != null) {
 

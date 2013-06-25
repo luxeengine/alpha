@@ -2,13 +2,13 @@ package phoenix;
 
 import phoenix.Resource;
 
-import nmegl.gl.GL;
-import nmegl.gl.GLTexture;
+import lime.gl.GL;
+import lime.gl.GLTexture;
 
-import nmegl.utils.UInt8Array;
+import lime.utils.UInt8Array;
 
-import nmegl.utils.Libs;
-import nmegl.utils.ArrayBuffer;
+import lime.utils.Libs;
+import lime.utils.ArrayBuffer;
 
 enum FilterType {
     nearest;
@@ -80,7 +80,7 @@ class Texture extends Resource {
         var _width = nme_bitmap_data_width( nme_bitmap_handle );
         var _height = nme_bitmap_data_height( nme_bitmap_handle );
         
-        var image_bytes : nmegl.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
+        var image_bytes : lime.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
         
         texture = GL.createTexture();
 

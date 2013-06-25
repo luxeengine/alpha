@@ -5,9 +5,9 @@ import phoenix.ResourceManager;
 import phoenix.Vector;
 import phoenix.Texture;
 
-import nmegl.gl.GL;
-import nmegl.gl.GLShader;
-import nmegl.gl.GLProgram;
+import lime.gl.GL;
+import lime.gl.GLShader;
+import lime.gl.GLProgram;
 
 class Shader extends Resource {
 

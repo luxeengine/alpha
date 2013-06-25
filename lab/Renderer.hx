@@ -1,7 +1,7 @@
 package lab;
 
 import lab.Core;
-import nmegl.gl.GL;
+import lime.gl.GL;
 
 //Default base class will just be a weird color clear color
 //use the renderer value to replace the default behavior 

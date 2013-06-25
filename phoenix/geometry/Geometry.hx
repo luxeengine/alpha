@@ -4,9 +4,9 @@ import phoenix.geometry.Vertex;
 import phoenix.Texture;
 import phoenix.Batcher;
 
-import nmegl.utils.ByteArray;
-import nmegl.utils.Float32Array;
-import nmegl.utils.IMemoryRange;
+import lime.utils.ByteArray;
+import lime.utils.Float32Array;
+import lime.utils.IMemoryRange;
 
 
 class Geometry {
