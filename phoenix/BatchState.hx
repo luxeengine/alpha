@@ -60,7 +60,7 @@ class BatchState {
             // trace("STATE DIRTY");
             if(geom_state.texture != null) {
 
-                if(!last_texture_id) {
+                if(last_texture_id == null) {
                     #if !lime_html5
                         GL.enable(GL.TEXTURE_2D);
                     #end //lime_html5
@@ -71,13 +71,14 @@ class BatchState {
                 if(last_texture_id != geom_state.texture.id){
                     last_texture_id = geom_state.texture.id;                    
                     geom_state.texture.bind();
+                    geom_state.texture.activate(batcher.tex0_attribute);
                 }
 
             } else {
                 #if !lime_html5
-                    GL.disable(GL.TEXTURE_2D);
+                    // GL.disable(GL.TEXTURE_2D);
                 #end //lime_html5
-                last_texture_id = 0;
+                last_texture_id = null;
             }
 
             /*
@@ -149,7 +150,7 @@ class BatchState {
         last_geom_state = geom_state.clone();
         geom_state.update(geom.state);
 
-        str();
+        // str();
 
         //todo
         // if(state.clip){

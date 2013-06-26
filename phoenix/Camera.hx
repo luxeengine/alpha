@@ -22,7 +22,8 @@ class Camera {
     public var projection_matrix : Matrix3D;
     public var modelview_matrix : Matrix3D;
 
-    public var projection_options : Dynamic;
+    public var perspective_options : Dynamic;
+    public var ortho_options : Dynamic;
     public var projection : ProjectionType;
 
     public var rotation : Float = 0.0;
@@ -32,20 +33,32 @@ class Camera {
         projection = _projection;
         pos = new Vector(0,0,0);        
 
-        projection_options = options;
+        ortho_options = {
+            x1 : 0, y1 : 0,
+            x2 : 0, y2 : 0,
+            near : 1000, 
+            far: -1000
+        };        
+
+        perspective_options = {
+            fov : 60,
+            aspect : 1.5,
+            near:1,
+            far:-1000
+        };
 
             //Orthographic projection
         if(_projection == ProjectionType.ortho) {
 
-            trace('camera setting ortho: ' + projection_options);
-            set_ortho( projection_options );
+            set_ortho( options );
+            trace('camera setting ortho: ' + ortho_options);            
 
         } else
             //Perspective projection
         if(_projection == ProjectionType.perspective) {
 
-            trace('camera setting perspective: ' + projection_options);
-            set_perspective(projection_options);
+            set_perspective(options);
+            trace('camera setting perspective: ' + perspective_options);
 
         }
         
@@ -56,7 +69,7 @@ class Camera {
         rotation = _rotation;
 
         if(projection == ProjectionType.ortho) {
-            modelview_matrix = Matrix3D.create2D( projection_options.x1, projection_options.y1, 1, rotation);
+            modelview_matrix = Matrix3D.create2D( ortho_options.x1, ortho_options.y1, 1, rotation);
         }   
 
     }   
@@ -91,63 +104,52 @@ class Camera {
             A,      0,      B,      0,  
             0,      1,      0,      0,  
             C,      0,      D,      0,  
-            pos.x,  pos.y,  pos.z,  1  
+            pos.x,  pos.y,  pos.z,  1
         ]);  
     } 
+
     public function process() {
         if( projection == ProjectionType.perspective ) {
-            set_perspective( projection_options );
+            set_perspective( perspective_options );
         }
     }
     public function set_ortho( options:Dynamic = null ) {
         
-        if(options == null) {
-            options = {
-                x1 : 0, y1 : 0,
-                x2 : 0, y2 : 0,
-                near : 1000, 
-                far: -1000
-            };
-        } else {
+            // Cull triangles which normal is not towards the camera
+        GL.disable(GL.CULL_FACE);
 
-            if(options.x1   == null) { options.x1 = 0; }
-            if(options.x2   == null) { options.x2 = 0; }
-            if(options.y1   == null) { options.y1 = 0; }
-            if(options.y2   == null) { options.y2 = 0; }
-            if(options.near == null) { options.near = 1000; }
-            if(options.far  == null) { options.far = -1000; }
-
-        }
+        merge_options( ortho_options, options );
 
         projection = ProjectionType.ortho;
-        projection_options = options;
 
-        projection_matrix = Matrix3D.createOrtho( options.x1, options.x2, options.y2, options.y1, options.near, options.far);
+        projection_matrix = Matrix3D.createOrtho( ortho_options.x1, options.x2, options.y2, options.y1, options.near, options.far);
         modelview_matrix = Matrix3D.create2D( options.x1, options.y1, 1, rotation);
 
     }
 
-    public function set_perspective( options:Dynamic = null ) {
+    public function merge_options( projection_options:Dynamic, options:Dynamic) {
 
-        if(options == null) {
-            options = {
-                fov : 110.0,
-                aspect : 1.0,
-                near : 1,
-                far : 1000
-            };
-        } else {
-            if(options.fov == null)     { options.fov = 45; }
-            if(options.aspect == null)  { options.aspect = 1; }
-            if(options.near == null)    { options.near = 1; }
-            if(options.far  == null)    { options.far = -1000; }
+        if(projection_options == null) {
+            projection_options = {};
         }
 
-        projection = ProjectionType.perspective;
-        projection_options = options;
+        var fields = Reflect.fields(options);
+        for(field in fields) {
+            Reflect.setField(projection_options, field, Reflect.field(options, field));
+        }
+    }
 
-        projection_matrix = make_perspective( options.fov, options.aspect, options.near, options.far );
+    public function set_perspective( options:Dynamic = null ) {
+
+        merge_options( perspective_options, options );
+
+        projection = ProjectionType.perspective;
+
+        projection_matrix = make_perspective( perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
         modelview_matrix = make_model_view();
+
+            // Cull triangles which normal is not towards the camera
+        GL.enable(GL.CULL_FACE);
     }
 
 }

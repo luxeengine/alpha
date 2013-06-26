@@ -117,6 +117,8 @@ class Texture extends Resource {
             //Set the properties
         set_filtering( FilterType.linear );
         set_clamp( ClampType.repeat );
+
+        GL.generateMipmap(GL.TEXTURE_2D);
         
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
@@ -217,6 +219,11 @@ class Texture extends Resource {
 
     public function bind() {
         GL.bindTexture(GL.TEXTURE_2D, texture);
+    }
+
+    public function activate(att) {
+        GL.activeTexture(GL.TEXTURE0);
+        GL.uniform1i(att, 0);
     }
 
     public function getPixel(_pos) {

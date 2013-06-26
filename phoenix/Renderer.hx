@@ -104,7 +104,7 @@ class Renderer {
 
         if(default_batcher != null && !stop) {
             default_batcher.draw();
-            stop = true;
+            stop = false;
         }
 
     }

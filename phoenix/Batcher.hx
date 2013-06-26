@@ -32,15 +32,18 @@ class Batcher {
 
     public var vert_list : Array<Float>;
     public var tcoord_list : Array<Float>;
+    public var normal_list : Array<Float>;
 
     public var vertexBuffer : GLBuffer;
     public var tcoordBuffer : GLBuffer;
+    public var normalBuffer : GLBuffer;
 
     public var projectionmatrix_attribute : Dynamic; 
     public var modelviewmatrix_attribute : Dynamic;
 
     public var vert_attribute : Dynamic;
     public var tcoord_attribute : Dynamic;
+    public var normal_attribute : Dynamic;
     public var tex0_attribute : Dynamic;
 
     public var renderer : Renderer;
@@ -58,21 +61,33 @@ class Batcher {
 
         vert_list = new Array<Float>();
         tcoord_list = new Array<Float>();
+        normal_list = new Array<Float>();
 
         view = renderer.default_camera;
 
         vertexBuffer = GL.createBuffer();
         tcoordBuffer = GL.createBuffer();
+        normalBuffer = GL.createBuffer();
 
 
         vert_attribute = GL.getAttribLocation( renderer.default_shader.program , "vertexPosition");
         tcoord_attribute = GL.getAttribLocation( renderer.default_shader.program, "tcoordPosition");
+        normal_attribute = GL.getAttribLocation( renderer.default_shader.program, "normalDirection");
+
+        trace("GETTTING NORMAL ATTRIBUTES?? " + vert_attribute);
+        trace("GETTTING NORMAL ATTRIBUTES?? " + tcoord_attribute);
+        trace("GETTTING NORMAL ATTRIBUTES?? " + normal_attribute);
 
         projectionmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "projectionMatrix");
         modelviewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelViewMatrix");
 
         tex0_attribute = GL.getUniformLocation( renderer.default_shader.program, "tex0" );
         
+         // Enable depth test
+        GL.enable(GL.DEPTH_TEST);
+        // Accept fragment if it closer to the camera than the former one
+        GL.depthFunc(GL.LESS);         
+
     }
 
     public function l(v:Dynamic) {
@@ -95,6 +110,7 @@ class Batcher {
         var state : BatchState = new BatchState();
         var vertlist : Array<Float> = new Array<Float>();
         var tcoordlist : Array<Float> = new Array<Float>();
+        var normallist : Array<Float> = new Array<Float>();
 
         l(" geometry list  : " + geometry.length );
 
@@ -105,16 +121,17 @@ class Batcher {
         for(_geom in geometry) {
 
                 //grab the next one
-            geom = _geom;            
+            geom = _geom;      
+            geom.str();      
 
-            trace("Rendering " + geomindex + "/" + (geometry.length-1));
+            // trace("Rendering " + geomindex + "/" + (geometry.length-1));
 
             if(geom != null && !geom.dropped ) {
             
                     //If the update will cause a state change, submit the vertices accumulated                
                 if( state.update(geom) ) {
-                    trace('state.update(geom) came back dirty so submitting it');
-                    submit_vertex_list( vertlist, tcoordlist, state.last_geom_state.primitive_type );
+                    // trace('state.update(geom) came back dirty so submitting it');
+                    submit_vertex_list( vertlist, tcoordlist, normallist, state.last_geom_state.primitive_type );
                 }
                 
                     // Now activate state changes (if any)
@@ -134,16 +151,16 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_strip ||
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
-                            trace("It's a geometry that can't really accumulate in a batch.. ");
+                            // trace("It's a geometry that can't really accumulate in a batch.. ");
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
-                            geom.batch( vertlist, tcoordlist );
+                            geom.batch( vertlist, tcoordlist, normallist );
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
-                            submit_vertex_list( vertlist, tcoordlist, geom.primitive_type );
+                            submit_vertex_list( vertlist, tcoordlist, normallist, geom.primitive_type );
                     }
 
                         // Accumulate, this is standard geometry 
                     else {
-                        geom.batch( vertlist, tcoordlist );
+                        geom.batch( vertlist, tcoordlist, normallist );
                     }   
 
                     //catch
@@ -154,7 +171,7 @@ class Batcher {
                 } //geom.enabled
 
             } else {//!null && !dropped
-                trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
+                // trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
             }
 
             ++geomindex;
@@ -171,7 +188,7 @@ class Batcher {
 
             // l("\t\t\t\t Submitting the batch... " + vertlist.length  );
 
-            submit_vertex_list( vertlist, tcoordlist, state.last_geom_state.primitive_type );
+            submit_vertex_list( vertlist, tcoordlist, normallist, state.last_geom_state.primitive_type );
 
             // l("\t\t\t\t Submitted the batch... " + vertlist.length + " vertices with type " + state.last_geom_state.primitive_type );
         }    
@@ -217,7 +234,7 @@ class Batcher {
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
-        trace("\t end draw calls + " + draw_calls);
+        // trace("\t end draw calls + " + draw_calls);
 
     } //draw
 
@@ -242,24 +259,25 @@ class Batcher {
         }
     }
 
-    public function submit_vertex_list( vertlist:Array<Float>, tcoordlist:Array<Float>, type : PrimitiveType ) {
+    public function submit_vertex_list( vertlist:Array<Float>, tcoordlist:Array<Float>, normallist:Array<Float>, type : PrimitiveType ) {
             
             //Do nothing useful
         if( vertlist.length == 0 ) {
-            trace("doing nothing");
+            //trace("doing nothing");
             return;
         }
 
                     l("\t\t\t\t\t\t data : vertexBuffer " + vertexBuffer);
                     l("\t\t\t\t\t\t data : tcoordBuffer " + tcoordBuffer);
+                    l("\t\t\t\t\t\t data : normalBuffer " + normalBuffer);
                     l("\t\t\t\t\t\t data : vert_attribute " + vert_attribute);
                     l("\t\t\t\t\t\t data : tcoord_attribute " + tcoord_attribute);
+                    l("\t\t\t\t\t\t data : normal_attribute " + normal_attribute);
 
             //Set shader attributes
         GL.enableVertexAttribArray(vert_attribute);
         GL.enableVertexAttribArray(tcoord_attribute);
-
-            //Update the GL Arrays
+        GL.enableVertexAttribArray(normal_attribute);
 
             //set the vertices pointer in the shader
         GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
@@ -271,6 +289,11 @@ class Batcher {
         GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
         GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(tcoordlist), GL.STATIC_DRAW);        
 
+            //set the texture coordinates in the shader
+        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer);
+        GL.vertexAttribPointer(normal_attribute, 3, GL.FLOAT, false, 0, 0);
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(normallist), GL.STATIC_DRAW);        
+
                     l("\t\t\t\t\t\t drawing arrays " + vertlist.length + " as " + type);
 
             //Draw
@@ -281,17 +304,20 @@ class Batcher {
             //Unset
         GL.disableVertexAttribArray(vert_attribute);
         GL.disableVertexAttribArray(tcoord_attribute);
+        GL.disableVertexAttribArray(normal_attribute);
         
                       l("\t\t\t\t\t\t clearing the vertex list");
 
             //clear the vlist
         vertlist.splice(0, vertlist.length);    
         tcoordlist.splice(0, tcoordlist.length);    
+        tcoordlist.splice(0, normallist.length);    
 
                 l("\t\t\t\t\t\t vertlist.length " + vertlist.length);
                 l("\t\t\t\t\t\t tcoordlist.length " + tcoordlist.length);
+                l("\t\t\t\t\t\t normallist.length " + tcoordlist.length);
 
         draw_calls++;
-        trace('draw call increase, now at ' + draw_calls);
+        // trace('draw call increase, now at ' + draw_calls);
     }
 }

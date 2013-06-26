@@ -8,13 +8,13 @@ class QuadGeometry extends Geometry {
 
     public var verts : Map<String, Vertex>;
 
-	public function new( quad : Dynamic ) {
+	public function new( options : Dynamic ) {
 			
-		super();
+		super(options);
 
         verts = new Map();
 
-		set(quad);
+		set(options);
 	}
 
  	public function set( quad:Dynamic) {

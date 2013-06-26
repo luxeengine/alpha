@@ -18,6 +18,7 @@ class Geometry {
 
 	public var state : GeometryState;
 	public var dropped : Bool = false;
+	public var intid : Int = 0;
 
 	public var primitive_type(get_primitive_type, set_primitive_type) : PrimitiveType;
 	public var texture(get_texture, set_texture) : Texture;
@@ -25,13 +26,31 @@ class Geometry {
 	public var group(get_group, set_group) : Int;
 	public var clip(get_clip, set_clip) : Bool;
 
-	public function new() {
+	public function new(options:Dynamic) {
 		
+		intid = Std.int(Math.random() * 9999); 
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
 
+		if(options != null) {
+			state.depth = options.depth == null ? state.depth : options.depth;
+			state.group = options.group == null ? state.group : options.group;
+			state.texture = options.texture == null ? state.texture : options.texture;
+			state.clip = options.clip == null ? state.clip : options.clip;
+			state.primitive_type = options.primitive_type == null ? state.primitive_type : options.primitive_type;
+
+			trace("creating geometry " + intid +  " \t\t " + options );
+		}
+
 	}
 
+	public function str() {
+		if(!state.log) return;
+		trace('\t\tgeometry ; ');
+		state.log = true;
+		state.str();
+		state.log = false;
+	}
 
 	public function drop() {
 		dropped = true;
@@ -49,12 +68,16 @@ class Geometry {
 		vertices.remove(v);
 	}
 
-	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float> ) {
+	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, normallist : Array<Float> ) {
 		for(v in vertices) {
 			
 			vertlist.push( v.pos.x );
 			vertlist.push( v.pos.y );
 			vertlist.push( v.pos.z );
+
+			normallist.push( v.normal.x );
+			normallist.push( v.normal.y );
+			normallist.push( v.normal.z );
 
 			tcoordlist.push( v.uv[0].u );
 			tcoordlist.push( v.uv[0].v );
@@ -68,8 +91,7 @@ class Geometry {
 	}
 
 	public function set_primitive_type(val : PrimitiveType) : PrimitiveType {		
-		state.primitive_type = val;
-		return state.primitive_type;
+		return state.primitive_type = val;
 	}
 //Texture
 	public function get_texture() : Texture {
@@ -77,8 +99,7 @@ class Geometry {
 	}
 
 	public function set_texture(val : Texture) : Texture {		
-		state.texture = val;
-		return state.texture;
+		return state.texture = val;
 	}
 //Depth
 	public function get_depth() : Float {
@@ -86,8 +107,7 @@ class Geometry {
 	}
 
 	public function set_depth(val : Float) : Float {		
-		state.depth = val;		
-		return state.depth;
+		return state.depth = val;
 	}
 //Group
 	public function get_group() : Int {
@@ -95,17 +115,15 @@ class Geometry {
 	}
 
 	public function set_group(val : Int) : Int {		
-		state.group = val;		
-		return state.group;
+		return state.group = val;
 	}
 //Clip
 	public function get_clip() : Bool {
 		return state.clip;
 	}
 
-	public function set_clip(val : Bool) : Bool {		
-		state.clip = val;		
-		return state.clip;
+	public function set_clip(val : Bool) : Bool {
+		return state.clip = val;
 	}
 //
 

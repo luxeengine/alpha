@@ -4,9 +4,10 @@ class DefaultShaders {
 
 	public static var DefaultVertexShader =
 	    "
-
+        
         attribute vec3 vertexPosition;
-        attribute vec2 tcoordPosition;
+        attribute vec3 normalDirection;
+        attribute vec2 tcoordPosition;        
 
         varying vec2 tcoord;
 
@@ -35,8 +36,11 @@ class DefaultShaders {
                 float luminosity = (texcolor.r + texcolor.g + texcolor.b) / 3.0;
                 vec4 gray = vec4(luminosity,luminosity,luminosity,1);
                 vec4 color = vec4(texcolor.r, texcolor.g, texcolor.b, 1);
+                vec4 uvcolor = vec4(tcoord.x, tcoord.y, (tcoord.x+tcoord.y)/2.0, 1);
+                vec4 white = vec4(1, 1, 1, 0.6);
                 // gl_FragColor = gray * ((tcoord.x+tcoord.y)/2.0);
-                gl_FragColor = texcolor;
+                gl_FragColor = texcolor ;
+                // gl_FragColor = uvcolor;
         	}
         ";
 

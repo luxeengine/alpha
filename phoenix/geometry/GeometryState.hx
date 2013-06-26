@@ -13,7 +13,7 @@ class GeometryState {
     @:isVar public var group(default, set) : Int;
     @:isVar public var clip(default, set) : Bool;
 
-    public var log : Bool = true;
+    public var log : Bool = false;
 
     public function new() {
 
@@ -56,18 +56,19 @@ class GeometryState {
 
     public function clean() {
         dirty = false;
+        // trace('cleaned geometry state ');
     }
 
     public function compare( other:GeometryState ) {
         
-        if( depth < other.depth ) return -1;
-        if( depth == other.depth && group < other.group ) return -1;
+        if( depth <= other.depth ) return -1;
+        if( depth == other.depth && group <= other.group ) return -1;
 
         var textureid : Dynamic = texture != null ? texture.id : 0;
         var other_textureid : Dynamic = other.texture != null ? other.texture.id : 0;
 
-        trace("TID " + textureid);
-        trace("OTHER TID " + other_textureid);
+        // trace("TID " + textureid);
+        // trace("OTHER TID " + other_textureid);
 
         var clip_value : Int;
         if(clip == true && other.clip == true) clip_value = 0;
@@ -83,12 +84,48 @@ class GeometryState {
         return 1;
     }
 
+    public function ttrace(v:Dynamic) {
+        if(!log) return;
+        trace(v);
+    }
+
     public function update( other : GeometryState ) {
-        depth = other.depth;
-        group = other.group;
-        texture = other.texture;
-        primitive_type = other.primitive_type;
-        clip = other.clip;
+
+        if(depth != other.depth) {
+            ttrace("\t\tDepth change from " + depth + " to " + other.depth);
+            depth = other.depth;
+        } else {
+            ttrace("\t\tNo change in depth");
+        }
+
+        if(group != other.group) {
+            ttrace("\t\tGroup change from " + group + " to " + other.group);
+            group = other.group;
+        } else {
+            ttrace("\t\tNo change in group");
+        }
+
+        if(texture != other.texture) {
+            ttrace("\t\tTexture change from " + texture + " to " + other.texture);
+            texture = other.texture;
+        } else {
+            ttrace("\t\tNo change in texture");
+        }
+        
+        if(primitive_type != other.primitive_type) {
+            ttrace("\t\tType change from " + primitive_type + " to " + other.primitive_type);
+            primitive_type = other.primitive_type;
+        } else {
+            ttrace("\t\tNo change in Type");
+        }
+        
+        if(clip != other.clip) {
+            ttrace("\t\tclip change from " + clip + " to " + other.clip);
+            clip = other.clip;
+        } else {
+            ttrace("\t\tNo change in clip");
+        }
+        
     }
 
 //Primitive Type

@@ -69,6 +69,7 @@ class Reader {
 
                 // trace('\t pos : ' + pos);
                 // trace('\t uv : ' + uv);   
+                // trace('\t normal : ' + normal);   
 
                 data.vertices.push({
                     pos : pos,
@@ -109,6 +110,7 @@ class Reader {
 
     private function parse_normal(line:String) : format.obj.Normal {
         
+        // trace('parsing normal ' + line);
             //note items[0] is the identifier
         var items = line.split(' ');
 
@@ -138,12 +140,12 @@ class Reader {
         vertexIndices.push( Std.parseInt(vert3[0]) );
 
         uvIndices.push( Std.parseInt(vert1[1]) );
-        uvIndices.push( Std.parseInt(vert1[1]) );
-        uvIndices.push( Std.parseInt(vert1[1]) );
+        uvIndices.push( Std.parseInt(vert2[1]) );
+        uvIndices.push( Std.parseInt(vert3[1]) );
 
         normalIndices.push( Std.parseInt(vert1[2]) );
-        normalIndices.push( Std.parseInt(vert1[2]) );
-        normalIndices.push( Std.parseInt(vert1[2]) );
+        normalIndices.push( Std.parseInt(vert2[2]) );
+        normalIndices.push( Std.parseInt(vert3[2]) );
 
     }
 

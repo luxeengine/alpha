@@ -21,15 +21,17 @@ class Vertex {
 	public var pos : Vector;
 	public var color : Color;
 	public var uv : Map<Int, TextureCoord>;
+	public var normal : Vector;
 
 	// public var vert_array(get_vert_array, null) : Float32Array;
 	// public var tcoord_array(get_tcoord_array, null) : Float32Array;
 
-	public function new(_pos : Vector, _color:Color = null) {
+	public function new(_pos : Vector, _normal:Vector = null, _color:Color = null) {
 
 		uv = new Map<Int, TextureCoord>();
 		
 		pos = _pos;
+		normal = (_normal == null) ? new Vector() : _normal;
 		color = (_color == null) ? new Color() : _color;
 
 	}
