@@ -122,8 +122,8 @@ class Camera {
 
         projection = ProjectionType.ortho;
 
-        projection_matrix = Matrix3D.createOrtho( ortho_options.x1, options.x2, options.y2, options.y1, options.near, options.far);
-        modelview_matrix = Matrix3D.create2D( options.x1, options.y1, 1, rotation);
+        projection_matrix = Matrix3D.createOrtho( ortho_options.x1, ortho_options.x2, ortho_options.y2, ortho_options.y1, ortho_options.near, ortho_options.far);
+        modelview_matrix = Matrix3D.create2D( ortho_options.x1, ortho_options.y1, 1, rotation);
 
     }
 
