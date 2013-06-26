@@ -292,5 +292,6 @@ class Batcher {
                 l("\t\t\t\t\t\t tcoordlist.length " + tcoordlist.length);
 
         draw_calls++;
+        trace('draw call increase, now at ' + draw_calls);
     }
 }
