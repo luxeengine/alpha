@@ -26,7 +26,7 @@ class Main extends lab.Game {
        tex2 = core.renderer.load_texture('assets/feather.png');     
 
        draw_2d_quad();
-       // draw_cube_obj();
+       draw_cube_obj();
     }
 
     public function draw_2d_quad() {
