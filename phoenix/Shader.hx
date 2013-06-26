@@ -100,7 +100,7 @@ class Shader extends Resource {
 	    return true;	
 	}
 
-	public function getUniform( uniform_name : String  ) : Int {
+	public function getUniform( uniform_name : String  ) : lime.gl.GLUniformLocation {
 		return GL.getUniformLocation( program, uniform_name );
 	}
 
