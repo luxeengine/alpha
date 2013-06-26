@@ -60,7 +60,9 @@ class BatchState {
             if(state.texture != null) {
 
                 if(!last_texture_id) {
-                    GL.enable(GL.TEXTURE_2D);
+                    #if !lime_html5
+                        GL.enable(GL.TEXTURE_2D);
+                    #end //lime_html5
                 }
 
                 // trace('checking state of texture ; ');
@@ -71,7 +73,9 @@ class BatchState {
                 }
 
             } else {
-                GL.disable(GL.TEXTURE_2D);
+                #if !lime_html5
+                    GL.disable(GL.TEXTURE_2D);
+                #end //lime_html5
                 last_texture_id = 0;
             }
 
@@ -124,7 +128,9 @@ class BatchState {
     public function deactivate(batcher:Batcher) {
         
         if(last_texture_id) {
-            GL.disable(GL.TEXTURE_2D);
+            #if !lime_html5
+                GL.disable(GL.TEXTURE_2D);
+            #end //line_html5
         }
 
         // finalize the previous group.

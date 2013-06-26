@@ -79,16 +79,17 @@ class Renderer {
         if(asset_bytes != null) {
 
             texture.create_from_bytes( _name, asset_bytes );
+            trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
         } else {
 
-            trace(":: phoenix :: Texture not found by asset name.") ;          
+            trace(":: phoenix :: Texture not found by asset name. " + _name );      
+                //Set the failed to load flagged
+            texture.id = "Failed to load texture : " + _name;    
 
         }
 
         asset_bytes = null;
-
-        trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
         return texture;
 

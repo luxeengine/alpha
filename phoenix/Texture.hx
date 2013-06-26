@@ -61,7 +61,7 @@ class Texture extends Resource {
                 //clear up old data in case
             data = null;
                 //create a new set of pixels data
-            //data = new UInt8Array(new ArrayBuffer( width * height * 4));
+            data = new UInt8Array( cast new ArrayBuffer( width * height * 4 ) );
                 //fill it up!
             for(x in 0 ... width) {
                 for(y in 0 ... height) {

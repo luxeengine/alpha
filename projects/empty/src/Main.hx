@@ -20,12 +20,13 @@ class Main extends lab.Game {
        trace("game ready");
 
        tex = core.renderer.load_texture('assets/usable_orange.png');
-       tex2 = core.renderer.load_texture('assets/feather.png');       
-       
+       tex2 = core.renderer.load_texture('assets/feather.png');     
+
        draw_2d_quad();
     }
 
     public function draw_2d_quad() {
+
         geom = new QuadGeometry( { x:32, y:32, width:256, height:256 } );  
         geom.texture = tex2;
         core.renderer.default_batcher.add(geom);
@@ -35,6 +36,7 @@ class Main extends lab.Game {
         geom2.texture = tex;
         core.renderer.default_batcher.add(geom2);
         geom2.depth = 2;
+
     }
 
 
