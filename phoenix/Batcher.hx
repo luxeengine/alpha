@@ -76,7 +76,7 @@ class Batcher {
     }
 
     public function l(v:Dynamic) {
-        trace(v);
+        // trace(v);
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
@@ -246,7 +246,7 @@ class Batcher {
             
             //Do nothing useful
         if( vertlist.length == 0 ) {
-            l("doing nothing");
+            trace("doing nothing");
             return;
         }
 
