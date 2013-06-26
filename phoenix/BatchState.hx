@@ -9,19 +9,20 @@ import lime.gl.GL;
 
 class BatchState {
 
-    public var state :  GeometryState;
-    public var last_state : GeometryState;
+    public var geom_state :  GeometryState;
+    public var last_geom_state : GeometryState;
+
     public var last_texture_id : Dynamic;
     public var last_group : Int;
     public var is_clipping : Bool;
     public var clip_rect : Dynamic;
     public var last_clip_rect : Dynamic;
 
-    public var log : Bool = false;
+    public var log : Bool = true;
 
     public function new(){
-        state = new GeometryState();
-        last_state = new GeometryState();
+        geom_state = new GeometryState();
+        last_geom_state = new GeometryState();
     }
 
     public function str() {
@@ -29,25 +30,25 @@ class BatchState {
         if(!log) return;
 
         trace('\t+ BATCHSTATE LAST ');
-            trace("\t\tdepth - "+last_state.depth);
-            trace("\t\tgroup - "+last_state.group);
-            trace("\t\ttexture - " + (( last_state.texture == null) ? 'null' :  last_state.texture.id ));
-            if(last_state.texture != null) {
-                trace("\t\t\t " + last_state.texture.texture);
+            trace("\t\tdepth - "+last_geom_state.depth);
+            trace("\t\tgroup - "+last_geom_state.group);
+            trace("\t\ttexture - " + (( last_geom_state.texture == null) ? 'null' :  last_geom_state.texture.id ));
+            if(last_geom_state.texture != null) {
+                trace("\t\t\t " + last_geom_state.texture.texture);
             }  
-            trace("\t\tprimitive_type - "+last_state.primitive_type);
-            trace("\t\tclip - "+last_state.clip);
+            trace("\t\tprimitive_type - "+last_geom_state.primitive_type);
+            trace("\t\tclip - "+last_geom_state.clip);
         trace('\t- BATCHSTATE LAST');
 
         trace('\t+ BATCHSTATE STATE');
-            trace("\t\tdepth - "+state.depth);
-            trace("\t\tgroup - "+state.group);
-            trace("\t\ttexture - " + (( state.texture == null) ? 'null' :  state.texture.id ));
-            if(state.texture != null) {
-                trace("\t\t\t " + state.texture.texture);
+            trace("\t\tdepth - "+geom_state.depth);
+            trace("\t\tgroup - "+geom_state.group);
+            trace("\t\ttexture - " + (( geom_state.texture == null) ? 'null' :  geom_state.texture.id ));
+            if(geom_state.texture != null) {
+                trace("\t\t\t " + geom_state.texture.texture);
             }  
-            trace("\t\tprimitive_type - "+state.primitive_type);
-            trace("\t\tclip - "+state.clip);
+            trace("\t\tprimitive_type - "+geom_state.primitive_type);
+            trace("\t\tclip - "+geom_state.clip);
         trace('\t- BATCHSTATE STATE');
     }
 
@@ -55,9 +56,9 @@ class BatchState {
         
 
             // Handle texture state changes 
-        if(state.dirty) {
+        if(geom_state.dirty) {
             // trace("STATE DIRTY");
-            if(state.texture != null) {
+            if(geom_state.texture != null) {
 
                 if(!last_texture_id) {
                     #if !lime_html5
@@ -67,9 +68,9 @@ class BatchState {
 
                 // trace('checking state of texture ; ');
                 // trace('was ' + last_texture_id + ' ' + state.texture.id);
-                if(last_texture_id != state.texture.id){
-                    last_texture_id = state.texture.id;                    
-                    state.texture.bind();
+                if(last_texture_id != geom_state.texture.id){
+                    last_texture_id = geom_state.texture.id;                    
+                    geom_state.texture.bind();
                 }
 
             } else {
@@ -122,7 +123,7 @@ class BatchState {
             // }
 
             // finally, mark the state as clean.
-        state.clean();
+        geom_state.clean();
     }
 
     public function deactivate(batcher:Batcher) {
@@ -145,8 +146,8 @@ class BatchState {
 
         // trace('updating state a ' + geom.state.dirty);
         // trace('updating state b ' + state.dirty);
-        last_state = state.clone();
-        state.update(geom.state);
+        last_geom_state = geom_state.clone();
+        geom_state.update(geom.state);
 
         str();
 
@@ -156,7 +157,7 @@ class BatchState {
         //     clip_rect = geom.cliprect;
         // }
 
-        return state.dirty;// || last_clip_rect != clip_rect;        
+        return geom_state.dirty;// || last_clip_rect != clip_rect;        
     }
 
 }

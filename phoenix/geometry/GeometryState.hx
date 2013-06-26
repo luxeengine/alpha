@@ -13,7 +13,7 @@ class GeometryState {
     @:isVar public var group(default, set) : Int;
     @:isVar public var clip(default, set) : Bool;
 
-    public var log : Bool = false;
+    public var log : Bool = true;
 
     public function new() {
 

@@ -76,7 +76,7 @@ class Batcher {
     }
 
     public function l(v:Dynamic) {
-        // trace(v);
+        trace(v);
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
@@ -90,7 +90,7 @@ class Batcher {
 
     public function stage() {
 
-        l("\t\t\tstage start");
+        // l("\t\t\tstage start");
 
         var state : BatchState = new BatchState();
         var vertlist : Array<Float> = new Array<Float>();
@@ -107,14 +107,14 @@ class Batcher {
                 //grab the next one
             geom = _geom;            
 
-            // trace("Rendering " + geomindex + "/" + (geometry.length-1));
+            trace("Rendering " + geomindex + "/" + (geometry.length-1));
 
             if(geom != null && !geom.dropped ) {
             
                     //If the update will cause a state change, submit the vertices accumulated                
                 if( state.update(geom) ) {
-                    // trace('state came back dirty so submitting it');
-                    submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
+                    trace('state.update(geom) came back dirty so submitting it');
+                    submit_vertex_list( vertlist, tcoordlist, state.last_geom_state.primitive_type );
                 }
                 
                     // Now activate state changes (if any)
@@ -134,7 +134,7 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_strip ||
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
-                            // trace("It's a geometry that can't really accumulate in a batch.. ");
+                            trace("It's a geometry that can't really accumulate in a batch.. ");
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
                             geom.batch( vertlist, tcoordlist );
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
@@ -154,7 +154,7 @@ class Batcher {
                 } //geom.enabled
 
             } else {//!null && !dropped
-                // trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
+                trace("Ok done, geom was null or dropped " + geomindex + "/" + geometry.length);
             }
 
             ++geomindex;
@@ -162,30 +162,30 @@ class Batcher {
         } //geom list
 
             // If there is anything left in the vertex buffer, submit it.
-        l("\t\t\t\t finalise");            
+        // l("\t\t\t\t finalise");            
         
         if(vertlist.length > 0 && geom != null) {
             l("\t\t\t\t finalising");              
             state.update(geom);
             state.activate( this );
 
-            l("\t\t\t\t Submitting the batch... " + vertlist.length  );
+            // l("\t\t\t\t Submitting the batch... " + vertlist.length  );
 
-            submit_vertex_list( vertlist, tcoordlist, state.last_state.primitive_type );
+            submit_vertex_list( vertlist, tcoordlist, state.last_geom_state.primitive_type );
 
-            l("\t\t\t\t Submitted the batch... " + vertlist.length + " vertices with type " + state.last_state.primitive_type );
+            // l("\t\t\t\t Submitted the batch... " + vertlist.length + " vertices with type " + state.last_geom_state.primitive_type );
         }    
 
-        l("\t\t\t\t finalised");
+        // l("\t\t\t\t finalised");
 
 
-            l("\t\t\t\t cleanup");
+            // l("\t\t\t\t cleanup");
         // cleanup
         state.deactivate(this);
         state = null;
-            l("\t\t\t\t cleanuped");
+            // l("\t\t\t\t cleanuped");
 
-        l("\t\t\tstage end");
+        // l("\t\t\tstage end");
 
     }
 
@@ -196,28 +196,28 @@ class Batcher {
         l("\t begin draw");
 
                     //Set the viewport for GL
-            l("\t\t viewport");
+            // l("\t\t viewport");
         GL.viewport( 0, 0, 960, 640 );
-            l("\t\t viewported");
+            // l("\t\t viewported");
 
             //stash all the geometry into lists to send to dl           
-            l("\t\t stage");
+            // l("\t\t stage");
         stage();
-            l("\t\t staged");
+            // l("\t\t staged");
 
-            l("\t\t shader activate");
+            // l("\t\t shader activate");
         renderer.default_shader.activate();
-            l("\t\t shader activated");
+            // l("\t\t shader activated");
 
-            l("\t\t view process");
+            // l("\t\t view process");
         view.process();
-            l("\t\t view processed");
+            // l("\t\t view processed");
 
             //Update the GL Matrices
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
-        // trace("\t draw calls + " + draw_calls);
+        trace("\t end draw calls + " + draw_calls);
 
     } //draw
 

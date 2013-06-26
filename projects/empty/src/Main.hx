@@ -28,14 +28,14 @@ class Main extends lab.Game {
     public function draw_2d_quad() {
 
         geom = new QuadGeometry( { x:32, y:32, width:256, height:256 } );  
-        geom.texture = tex2;
+        geom.texture = tex;
         core.renderer.default_batcher.add(geom);
         geom.depth = 1;
 
         geom2 = new QuadGeometry( { x:320, y:32, width:512, height:512 } );  
         geom2.texture = tex;
         core.renderer.default_batcher.add(geom2);
-        geom2.depth = 2;
+        geom2.depth = 1;
 
     }
 
