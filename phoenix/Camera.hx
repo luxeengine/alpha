@@ -26,12 +26,16 @@ class Camera {
     public var ortho_options : Dynamic;
     public var projection : ProjectionType;
 
+    public var target:Vector;
+    public var up:Vector;
+
     public var rotation : Float = 0.0;
 
     public function new( _projection : ProjectionType , options:Dynamic ) {
 
         projection = _projection;
-        pos = new Vector(0,0,0);        
+        pos = new Vector(0,0,0);
+        up = new Vector(0,-1,0);
 
         ortho_options = {
             x1 : 0, y1 : 0,
@@ -112,6 +116,10 @@ class Camera {
         if( projection == ProjectionType.perspective ) {
             set_perspective( perspective_options );
         }
+
+        if( projection == ProjectionType.ortho ) {
+            set_ortho( ortho_options );
+        }
     }
     public function set_ortho( options:Dynamic = null ) {
         
@@ -139,6 +147,50 @@ class Camera {
         }
     }
 
+    public function make_look_at(_eye:Vector,_target:Vector,_up:Vector) {
+        return make_model_view().pointAt(_eye,_target,_up);
+    }
+
+    public function make_look_atss(_eye:Vector,_target:Vector,_up:Vector) {
+            
+            var _x = new Vector();
+            var _y = new Vector();
+            var _z = new Vector();
+
+            var _z = Vector.Subtract( _eye, _target ).normalized;
+
+            if ( _z.length == 0 ) {
+                _z.z = 1;
+            }
+
+            _x.crossVectors( _up, _z ).normalized;
+    
+            if ( _x.length == 0 ) {
+
+                _z.x += 0.0001;
+                _x.crossVectors( _up, _z ).normalized;
+
+            }
+
+            _y.crossVectors( _z, _x );
+
+            // te[0] = _x.x; te[4] = _y.x; te[8] = _z.x;
+            // te[1] = _x.y; te[5] = _y.y; te[9] = _z.y;
+            // te[2] = _x.z; te[6] = _y.z; te[10] = _z.z;
+            
+            var nm = new Matrix3D([  
+                _x.x,      _y.x,      _z.x, 
+                _x.y,      _y.y,      _z.y,
+                _x.z,      _y.z,      _z.z //,  
+                // pos.x,     pos.y,     pos.z,      1
+            ]);      
+
+            // var mv = make_model_view();
+            // mv.append(nm);
+            // modelview_matrix = nm;
+            return nm;
+    }
+
     public function set_perspective( options:Dynamic = null ) {
 
         merge_options( perspective_options, options );
@@ -146,7 +198,10 @@ class Camera {
         projection = ProjectionType.perspective;
 
         projection_matrix = make_perspective( perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
-        modelview_matrix = make_model_view();
+        
+        modelview_matrix = (target == null ? make_model_view() : make_look_at(pos, target, up));
+
+        // trace(modelview_matrix);
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);

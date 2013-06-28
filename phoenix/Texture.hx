@@ -61,7 +61,7 @@ class Texture extends Resource {
                 //clear up old data in case
             data = null;
                 //create a new set of pixels data
-            data = new UInt8Array( cast new ArrayBuffer( width * height * 4 ) );
+            data = new UInt8Array( cast new ArrayBuffer(  ) ); //width * height * 4
                 //fill it up!
             for(x in 0 ... width) {
                 for(y in 0 ... height) {
@@ -73,14 +73,42 @@ class Texture extends Resource {
         }
     }
 
+    public function create_from_bytes_html(_asset_name:String, _asset_bytes, _width, _height ) {
+
+        texture = GL.createTexture();
+
+            //if no problems
+        id = _asset_name;
+        width = Std.int(_width);
+        height = Std.int(_height);           
+
+        //Now we can bind it
+        bind();
+            //And send GL the data
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, cast _asset_bytes );
+
+            //Set the properties
+        set_filtering( FilterType.linear );
+        set_clamp( ClampType.repeat );
+
+        GL.generateMipmap(GL.TEXTURE_2D);
+        
+        // image_bytes = null;
+        // data = null; //todo - sven use lock/unlock
+    }
+
         //Create from the bytes from Assets.getBytes() or other method
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
         
+        // trace(_asset_bytes);
+
+        // #if lime_native
         var nme_bitmap_handle = nme_bitmap_data_from_bytes(_asset_bytes, null);
         var _width = nme_bitmap_data_width( nme_bitmap_handle );
         var _height = nme_bitmap_data_height( nme_bitmap_handle );
         
         var image_bytes : lime.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
+        // #end
         
         texture = GL.createTexture();
 

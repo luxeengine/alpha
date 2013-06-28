@@ -28,6 +28,8 @@ class BatchGroup {
 
 class Batcher {
 
+    public var layer : Float = 0.0;
+
     public var geometry : BinarySearchTree<Geometry>;
 
     public var vert_list : Array<Float>;
@@ -72,11 +74,11 @@ class Batcher {
 
         vert_attribute = GL.getAttribLocation( renderer.default_shader.program , "vertexPosition");
         tcoord_attribute = GL.getAttribLocation( renderer.default_shader.program, "tcoordPosition");
-        normal_attribute = GL.getAttribLocation( renderer.default_shader.program, "normalDirection");
+        normal_attribute = 2;//GL.getAttribLocation( renderer.default_shader.program, "normalDirection");
 
-        trace("GETTTING NORMAL ATTRIBUTES?? " + vert_attribute);
-        trace("GETTTING NORMAL ATTRIBUTES?? " + tcoord_attribute);
-        trace("GETTTING NORMAL ATTRIBUTES?? " + normal_attribute);
+        // trace("GETTTING NORMAL ATTRIBUTES?? " + vert_attribute);
+        // trace("GETTTING NORMAL ATTRIBUTES?? " + tcoord_attribute);
+        // trace("GETTTING NORMAL ATTRIBUTES?? " + normal_attribute);
 
         projectionmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "projectionMatrix");
         modelviewmatrix_attribute = GL.getUniformLocation( renderer.default_shader.program, "modelViewMatrix");
@@ -89,6 +91,13 @@ class Batcher {
         GL.depthFunc(GL.LESS);         
 
     }
+
+        //this sorts the batchers in a list by layer
+    public function compare(other:Batcher) {
+        if(layer < other.layer) return -1;
+        if(layer == other.layer) return 0;
+        return 1;
+     }
 
     public function l(v:Dynamic) {
         // trace(v);
@@ -212,29 +221,19 @@ class Batcher {
 
         l("\t begin draw");
 
-                    //Set the viewport for GL
-            // l("\t\t viewport");
         GL.viewport( 0, 0, 960, 640 );
-            // l("\t\t viewported");
-
-            //stash all the geometry into lists to send to dl           
-            // l("\t\t stage");
-        stage();
-            // l("\t\t staged");
-
-            // l("\t\t shader activate");
+            
+            //apply shader                
         renderer.default_shader.activate();
-            // l("\t\t shader activated");
-
-            // l("\t\t view process");
+            //apply camera
         view.process();
-            // l("\t\t view processed");
 
             //Update the GL Matrices
         GL.uniformMatrix3D( projectionmatrix_attribute, false, view.projection_matrix );
         GL.uniformMatrix3D( modelviewmatrix_attribute, false, view.modelview_matrix );
 
-        // trace("\t end draw calls + " + draw_calls);
+            //apply geometries
+        stage();
 
     } //draw
 

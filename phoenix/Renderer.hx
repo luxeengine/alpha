@@ -14,11 +14,13 @@ import phoenix.Texture;
 import lime.utils.UInt8Array;
 import lime.utils.ArrayBuffer;
 
+import phoenix.utils.BinarySearchTree;
+
 
 class Renderer {
 
     public var resource_manager : ResourceManager;
-    public var batchers : Array<Batcher>;
+    public var batchers : BinarySearchTree<Batcher>;
         
         //Default rendering
     public var default_shader : Shader;
@@ -34,6 +36,9 @@ class Renderer {
         clear_color = new Color(0.16,0.16,0.16,1);
 
         resource_manager = new ResourceManager();
+        batchers = new BinarySearchTree<Batcher>( function(a,b){
+            return a.compare(b);
+        } );
 
             //create the default rendering shader
         default_shader = new Shader( resource_manager );  
@@ -52,6 +57,7 @@ class Renderer {
         
             //create the default batcher
         default_batcher = new Batcher( this );
+        add_batch(default_batcher);
 
         GL.enable(GL.DEPTH_TEST);
         GL.depthFunc(GL.LEQUAL);
@@ -61,6 +67,10 @@ class Renderer {
 
     public function shutdown() {
         // trace(':: phoenix :: renderer shutting down');   
+    }
+
+    public function add_batch(batch:Batcher) {
+        batchers.insert(batch);
     }
 
     public function clear( _color:Color ) {
@@ -74,7 +84,28 @@ class Renderer {
 
         var texture : Texture = new Texture( resource_manager );
 
-        var asset_bytes = lime.utils.Assets.getBytes( _name );
+#if lime_html5
+        var image: js.html.ImageElement = js.Browser.document.createImageElement();
+            image.src = './' + _name;
+            image.onload = function(a) {
+              var tmp_canvas = js.Browser.document.createCanvasElement();
+              tmp_canvas.width = image.width; tmp_canvas.height = image.height;
+
+              var tmp_context = tmp_canvas.getContext2d();
+              tmp_context.drawImage( image, 0, 0, tmp_canvas.width, tmp_canvas.height );
+
+              var image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+              var haxe_bytes = new lime.utils.UInt8Array( image_bytes.data );
+
+              texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
+              tmp_canvas = null;
+              haxe_bytes = null;
+        }    
+#end //lime_html5
+
+#if lime_native
+
+        var asset_bytes = cast lime.utils.Assets.getBytes( _name );
 
         if(asset_bytes != null) {
 
@@ -89,8 +120,10 @@ class Renderer {
 
         }
 
-        asset_bytes = null;
+         asset_bytes = null;
 
+#end //lime_native
+       
         return texture;
 
     }
@@ -102,11 +135,13 @@ class Renderer {
             clear( clear_color );
         }
 
-        if(default_batcher != null && !stop) {
-            default_batcher.draw();
-            stop = false;
+        for(batch in batchers) {
+            if(!stop) {
+                batch.draw();
+            }
         }
 
+        stop = false;
     }
 
 

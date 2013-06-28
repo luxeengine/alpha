@@ -39,7 +39,7 @@ class Geometry {
 			state.clip = options.clip == null ? state.clip : options.clip;
 			state.primitive_type = options.primitive_type == null ? state.primitive_type : options.primitive_type;
 
-			trace("creating geometry " + intid +  " \t\t " + options );
+			// trace("creating geometry " + intid +  " \t\t " + options );
 		}
 
 	}
