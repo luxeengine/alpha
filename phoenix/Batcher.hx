@@ -99,15 +99,11 @@ class Batcher {
         // trace(v);
     }
 
-    public function geometry_compare( a:Geometry, b:Geometry, exact : Bool ) : Int {
+    public function geometry_compare( a:Geometry, b:Geometry ) : Int {
             //passed in from the BST if we want to get a reference compare
             //rather than a properties/state compare
-        if(exact) {
-            if(a == b) {
-                return 0;
-            } else {
-                return -1;
-            }
+        if(a == b) {
+            return 0;
         } else {
             return a.compare( b );
         }
@@ -119,6 +115,7 @@ class Batcher {
     }
 
     public function remove(_geom:Geometry) {
+
         var found_geom = geometry.find(_geom);
         if(found_geom != null) {
             geometry.remove( found_geom );

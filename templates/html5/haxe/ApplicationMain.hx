@@ -201,7 +201,7 @@ class ApplicationMain {
 			//Create the haxelab runtime, pass it the lime reference
 		_core = new Core( _main_ );
 			//Store the core for reference in the game
-		_main_.core = _core;
+		_main_.lab = _core;
 
 			//Start up lime, but give it the core library 
 			//as the host instead of the main,

@@ -27,23 +27,9 @@ class Sprite {
         pos = new Vector();
         color = new Color();
 
-//image
+//texture
         if(options.texture != null) {
             texture = options.texture;
-        }
-//size 
-        if(options.size != null) {
-
-            size = options.size;
-
-        } else {
-
-            if(texture != null) {
-                size = new Vector(texture.width, texture.height);
-            } else {
-                size = new Vector(64,64); //default size so its visible at least
-            }
-
         }
 //position
         if(options.pos != null) {
@@ -52,9 +38,43 @@ class Sprite {
 //color
         if(options.color != null) {
             color = options.color;
+        }        
+
+//size is interesting, as it's possible based on texture
+    
+            //user specified a size            
+        if(options.size != null) {
+
+            size = options.size;
+                //the size is explicit, so make the geometry
+            _create_geometry(options);
+
+        } else {
+
+                //if the texture isn't invalid entirely
+            if(texture != null) {
+                if(texture.loaded) {
+                    size = new Vector(texture.width, texture.height);
+                    _create_geometry(options);
+                } else {
+                    texture.onload = function(_texture) {                        
+                        size = new Vector(texture.width, texture.height);
+                        _create_geometry(options);
+                    }
+                } //texture is not loaded
+
+            } else {
+                    //default to a value big enough to see
+                size = new Vector(64,64); 
+            } //texture !=null
+
         }
 
-//other
+
+    } //new
+
+    public function _create_geometry(options : Dynamic) {
+
         geometry = new QuadGeometry({
             x:pos.x, 
             y:pos.y, 
@@ -63,19 +83,16 @@ class Sprite {
             texture : texture,
             color : color,
             shader : options.shader,
-            depth : options.depth == null ? 0 : options.depth,
-            group : options.group == null ? 0 : options.group,
-            enabled : options.visible == null ? 0 : options.visible
+            depth : (options.depth == null) ? 0 : options.depth,
+            group : (options.group == null) ? 0 : options.group,
+            enabled : (options.visible == null) ? 0 : options.visible
         });
 
 
         if(options.add == null || options.add != false) {
             Lab.addGeometry( geometry );            
-        }
-
-
-    } //new
-
+        }        
+    }
     public function destroy() {
             
             //remove the geometry from any drawing lists
@@ -94,6 +111,8 @@ class Sprite {
         //Returns true if a point is inside the default AABB 
         //todo: Improve this to include origins of geom + rotation + scale
     public function point_inside(_p:Vector) : Bool {
+        if(pos == null) return false;
+        if(size == null) return false;
         if(_p.x < pos.x) return false;
         if(_p.y < pos.y) return false;
         if(_p.x > pos.x+size.x) return false;

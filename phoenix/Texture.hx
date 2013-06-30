@@ -40,6 +40,8 @@ class Texture extends Resource {
 
     public var width : Int = -1;
     public var height : Int = -1;   
+    public var loaded : Bool = false;
+    public var onload : Texture -> Void;
 
     public function new( _manager : ResourceManager, _size : Dynamic = null ) {
         
@@ -80,7 +82,7 @@ class Texture extends Resource {
             //if no problems
         id = _asset_name;
         width = Std.int(_width);
-        height = Std.int(_height);           
+        height = Std.int(_height);       
 
         //Now we can bind it
         bind();
@@ -91,8 +93,6 @@ class Texture extends Resource {
         set_filtering( FilterType.linear );
         set_clamp( ClampType.repeat );
 
-        GL.generateMipmap(GL.TEXTURE_2D);
-        
         // image_bytes = null;
         // data = null; //todo - sven use lock/unlock
     }
@@ -146,8 +146,7 @@ class Texture extends Resource {
         set_filtering( FilterType.linear );
         set_clamp( ClampType.repeat );
 
-        GL.generateMipmap(GL.TEXTURE_2D);
-        
+
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
     }
@@ -243,6 +242,13 @@ class Texture extends Resource {
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);            
         }
 
+    }
+
+    public function generate_mipmaps() {
+            //make it active
+        bind();
+            //Generate mipmaps
+        GL.generateMipmap(GL.TEXTURE_2D);
     }
 
     public function bind() {

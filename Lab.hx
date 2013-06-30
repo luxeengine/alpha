@@ -12,8 +12,8 @@ class Lab {
         core.lime.shutdown();
     }
 
-    public static function loadTexture(_id:String) : Texture {
-        return renderer.load_texture(_id);
+    public static function loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture {
+        return renderer.load_texture(_id, _onloaded);
     }
 
     public static function addGeometry(geom:Geometry) {

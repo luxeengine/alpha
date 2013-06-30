@@ -39,7 +39,7 @@ class Renderer {
         clear_color = new Color(0.16,0.16,0.16,1);
 
         resource_manager = new ResourceManager();
-        batchers = new BinarySearchTree<Batcher>( function(a,b,exact){
+        batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
             return a.compare(b);
         } );
 
@@ -66,6 +66,9 @@ class Renderer {
         GL.enable(GL.DEPTH_TEST);
         GL.depthFunc(GL.LEQUAL);
 
+        GL.enable(GL.BLEND);
+        GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
+
         // trace(':: phoenix :: renderer starting up');        
     }
 
@@ -84,27 +87,48 @@ class Renderer {
         GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
-    public function load_texture( _name : String ) : Texture {
+    public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
 
         var texture : Texture = new Texture( resource_manager );
 
 #if lime_html5
         var image: js.html.ImageElement = js.Browser.document.createImageElement();
-            image.src = './' + _name;
-            image.onload = function(a) {
-              var tmp_canvas = js.Browser.document.createCanvasElement();
-              tmp_canvas.width = image.width; tmp_canvas.height = image.height;
+            
+        image.onload = function(a) {
 
-              var tmp_context = tmp_canvas.getContext2d();
-              tmp_context.drawImage( image, 0, 0, tmp_canvas.width, tmp_canvas.height );
+            var tmp_canvas = js.Browser.document.createCanvasElement();
+            tmp_canvas.width = image.width; tmp_canvas.height = image.height;
 
-              var image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
-              var haxe_bytes = new lime.utils.UInt8Array( image_bytes.data );
+            var tmp_context = tmp_canvas.getContext2d();
+            tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
+            tmp_context.drawImage( image, 0, 0, tmp_canvas.width, tmp_canvas.height );
 
-              texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
-              tmp_canvas = null;
-              haxe_bytes = null;
-        }    
+            var image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+            var haxe_bytes = new lime.utils.UInt8Array( image_bytes.data );
+
+            texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
+            texture.loaded = true;
+
+            trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
+
+            tmp_canvas = null;
+            tmp_context = null;
+            haxe_bytes = null;
+            image_bytes = null;
+
+            if(_onloaded != null) {
+                _onloaded(texture);
+            } //if onloaded
+
+            if(texture.onload != null) {
+                texture.onload(texture);
+            } //if texture.onload
+
+        } //image.onload
+
+            //source comes after the onload being set, for race conditions
+        image.src = './' + _name;
+
 #end //lime_html5
 
 #if lime_native
@@ -114,6 +138,16 @@ class Renderer {
         if(asset_bytes != null) {
 
             texture.create_from_bytes( _name, asset_bytes );
+            texture.loaded = true;
+            
+            if(_onloaded != null) {
+                _onloaded(texture);
+            } //if onloaded
+
+            if(texture.onload != null) {
+                texture.onload(texture);
+            } //if texture.onload
+
             trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
         } else {
