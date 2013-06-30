@@ -5,6 +5,8 @@ import phoenix.Texture;
 import phoenix.Vector;
 import phoenix.Color;
 
+import Lab;
+
 class Sprite {
 
     @:isVar public var geometry(default,default) : QuadGeometry;
@@ -12,6 +14,7 @@ class Sprite {
     @:isVar public var pos(default,set) : Vector;
     @:isVar public var size(default,default) : Vector;
     @:isVar public var color(default,set) : Color;
+    @:isVar public var visible(default,set) : Bool;
 
     public function new(options:Dynamic) {
 
@@ -61,10 +64,30 @@ class Sprite {
             color : color,
             shader : options.shader,
             depth : options.depth == null ? 0 : options.depth,
-            group : options.group == null ? 0 : options.group
+            group : options.group == null ? 0 : options.group,
+            enabled : options.visible == null ? 0 : options.visible
         });
 
+
+        if(options.add == null || options.add != false) {
+            Lab.addGeometry( geometry );            
+        }
+
+
     } //new
+
+    public function destroy() {
+            
+            //remove the geometry from any drawing lists
+        if(geometry != null) {
+            Lab.removeGeometry( geometry );
+        }
+
+            //clear our references to these
+        geometry = null;
+        texture = null;
+        
+    }
 
 //Helper functions
 
@@ -78,30 +101,50 @@ class Sprite {
         return true;
     }
 
+//Visibility properties
+    public function set_visible(_v:Bool) {
+
+        visible = _v;
+
+            //careful
+        if(geometry != null) {
+            geometry.enabled = _v;
+        }
+
+        return visible;
+
+    } //set_visible
+
 //Color properties
 
     public function set_color(_c:Color) {
+            //careful
         if(color == null) {
             return color = _c;
         }
-            //A sprite can exist without geometry
+            //careful
         if(geometry != null) {
             geometry.color = _c;
-        }
+        } //geometry != null
 
             //assign the color
         color = _c;
 
             //return a value
         return _c;
-    }
+
+    } //set_color
 
 
 //Position properties
-
+    
+        //An internal callback for when x y or z on a sprite changes
     private function xyz_change(_v:Float) {
         set_pos(pos);
     }
+
+        //An internal function to attach position 
+        //changes to a vector, so we can listen for pos.x as well
     private function _attach_pos(_pos : Vector) {
         _pos.listen_x = xyz_change;
         _pos.listen_y = xyz_change;
@@ -109,13 +152,14 @@ class Sprite {
     }
 
     public function set_pos(_p:Vector) : Vector {
-
+            //careful
         if(pos == null) {
             return pos = _p;
         }
 
-            //Some sprites have no geometry at any time
+            //careful
         if(geometry != null) {
+
                 //have to use .clone() because passing the references
                 //in while mean that geometry.pos = this.pos;
                 //which means when you work out a delta,
@@ -125,13 +169,12 @@ class Sprite {
             geometry.pos = _p.clone();
         }
 
-            //Assign the new value
+            //store the position
         pos = _p;
 
             //Special additional listeners on .x, .y, .z of the position
         _attach_pos( pos );
 
-            //Return the position
         return pos;
     } //set_pos
 

@@ -99,13 +99,32 @@ class Batcher {
         // trace(v);
     }
 
-    public function geometry_compare( a:Geometry, b:Geometry ) : Int {
-        return a.compare( b );
+    public function geometry_compare( a:Geometry, b:Geometry, exact : Bool ) : Int {
+            //passed in from the BST if we want to get a reference compare
+            //rather than a properties/state compare
+        if(exact) {
+            if(a == b) {
+                return 0;
+            } else {
+                return -1;
+            }
+        } else {
+            return a.compare( b );
+        }
     }
 
 
     public function add( _geom:Geometry ) {
         geometry.insert(_geom);
+    }
+
+    public function remove(_geom:Geometry) {
+        var found_geom = geometry.find(_geom);
+        if(found_geom != null) {
+            geometry.remove( found_geom );
+        } else {
+            trace("WARNING : geometry wasn't removed! " + _geom.uuid );
+        }
     }
 
     public function shader_activate( _shader:Shader ) {

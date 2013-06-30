@@ -2,6 +2,8 @@ package lab;
 
 import lime.LiME;
 
+import Lab;
+
 import lab.Audio;
 import lab.Events;
 import lab.Input;
@@ -44,6 +46,8 @@ class Core {
             
             //Keep a reference for use
         host = _host;
+
+        Lab.core = this;
 
     } //new
     
@@ -91,6 +95,9 @@ class Core {
         } else {
             renderer = Type.createInstance(lime.config.renderer, [this]);
         }
+
+            //assign the globals
+        Lab.renderer = renderer;
 
 			//Now make sure they start up
 

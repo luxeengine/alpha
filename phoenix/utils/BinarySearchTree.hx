@@ -46,7 +46,7 @@ class BinarySearchTree<T> implements Collection<T> {
     
     public var length(get_length, null) : Int;
                 
-    private var compare : Null<T> -> Null<T> -> Int;
+    private var compare : Null<T> -> Null<T> -> Bool -> Int;
                 
     /**
         Initializes a BST tree with a given comparison function. The function
@@ -57,11 +57,14 @@ class BinarySearchTree<T> implements Collection<T> {
         danger to this however. If the type of the tree isn't a standard type
         or doesn't implement [__compare(other) : Int], then the tree will fail.
     **/
-    public function new(?compareFunc : Null<T> -> Null<T> -> Int) {
+    public function new(?compareFunc : Null<T> -> Null<T> -> Bool -> Int) {
         root = null;
                         
-        compare = if (compareFunc == null) Reflect.compare
-                  else                     compareFunc;
+        compare = if (compareFunc == null) default_compare else compareFunc;
+    }
+
+    public function default_compare(a:Null<T>,b:Null<T>,e:Bool) : Int {
+        return Reflect.compare(a,b);
     }
     
     /**
@@ -73,7 +76,7 @@ class BinarySearchTree<T> implements Collection<T> {
             var cur = root;
             
             while(cur != null) {
-                if (compare(obj, cur.data) < 0) {
+                if (compare(obj, cur.data, false) < 0) {
                     if (cur.left != null) cur = cur.left;
                     else {
                         cur.setLeftData(obj);
@@ -98,9 +101,9 @@ class BinarySearchTree<T> implements Collection<T> {
         var cur = root;
         
         while (cur != null) {
-            var i = compare(obj, cur.data);
+            var i = compare(obj, cur.data, true);
             if (i == 0) return cur;
-            cur = if (i < 0) cur.left else cur.right;
+            cur = (i < 0) ? cur.left : cur.right;
         }
         
         return null;

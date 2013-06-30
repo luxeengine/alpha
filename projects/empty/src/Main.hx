@@ -6,8 +6,9 @@ import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.Vertex;
 import phoenix.geometry.TextureCoord;
-import phoenix.Vector;
 import phoenix.Quaternion;
+
+import lab.Vector;
 
 import lime.gl.GL;
 
@@ -58,18 +59,18 @@ class Main extends lab.Game {
        moveState = { up: 0.0, down: 0.0, left: 0.0, right: 0.0, forward: 0.0, back: 0.0, pitchUp: 0.0, pitchDown: 0.0, yawLeft: 0.0, yawRight: 0.0, rollLeft: 0.0, rollRight: 0.0 };
 
 
-       tex = core.renderer.load_texture('assets/usable_orange.png');
-       tex2 = core.renderer.load_texture('assets/diffuse_512.png');     
+       tex = Lab.loadTexture('assets/usable_orange.png');
+       tex2 = Lab.loadTexture('assets/diffuse_512.png');     
 
         //2d layer
-       batch2d = new Batcher(core.renderer);
+       batch2d = new Batcher(lab.renderer);
        batch2d.layer = 1;
        
-       batch3d = new Batcher(core.renderer);
+       batch3d = new Batcher(lab.renderer);
        batch3d.layer = 1;
 
-       core.renderer.add_batch(batch2d);
-       core.renderer.add_batch(batch3d);
+       lab.renderer.add_batch(batch2d);
+       lab.renderer.add_batch(batch3d);
 
        cam2d = new Camera(ProjectionType.ortho, { x2:960, y2:640 });
        batch2d.view = cam2d;
@@ -145,7 +146,7 @@ class Main extends lab.Game {
         _batch.view.pos.y = 0.3;
         _batch.view.pos.z = -0.90;    
 
-        _batch.view.set_perspective({fov:95, aspect:core.lime.config.width/core.lime.config.height });
+        _batch.view.set_perspective({fov:95, aspect:lab.lime.config.width/lab.lime.config.height });
 
         add_mesh('assets/ship.obj', tex2, _batch);
         add_mesh('assets/cube.obj', tex, _batch);

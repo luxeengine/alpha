@@ -39,7 +39,7 @@ class Renderer {
         clear_color = new Color(0.16,0.16,0.16,1);
 
         resource_manager = new ResourceManager();
-        batchers = new BinarySearchTree<Batcher>( function(a,b){
+        batchers = new BinarySearchTree<Batcher>( function(a,b,exact){
             return a.compare(b);
         } );
 
