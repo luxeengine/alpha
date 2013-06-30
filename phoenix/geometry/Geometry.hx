@@ -1,6 +1,8 @@
 package phoenix.geometry;
 
 import phoenix.geometry.Vertex;
+import phoenix.Vector;
+import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.Batcher;
 
@@ -18,35 +20,57 @@ class Geometry {
 
 	public var state : GeometryState;
 	public var dropped : Bool = false;
-	public var intid : Int = 0;
+	public var uuid : String = '';
 
-	public var primitive_type(get_primitive_type, set_primitive_type) : PrimitiveType;
-	public var texture(get_texture, set_texture) : Texture;
-	public var depth(get_depth, set_depth) : Float;
-	public var group(get_group, set_group) : Int;
-	public var clip(get_clip, set_clip) : Bool;
+		//State properties
+	@:isVar public var primitive_type(get, set) : PrimitiveType;	
+	@:isVar public var texture(get, set) : Texture;
+	@:isVar public var shader(get, set) : Shader;
+	@:isVar public var depth(get, set) : Float;
+	@:isVar public var group(get, set) : Int;
+	@:isVar public var clip(get, set) : Bool;
+
+		//Geometry properties	
+	@:isVar public var immediate(default, default) : Bool;
+	@:isVar public var pos(default, set) : Vector;
+	@:isVar public var origin(default, default) : Vector;
+	@:isVar public var color(default, default) : Color;
 
 	public function new(options:Dynamic) {
 		
-		intid = Std.int(Math.random() * 9999); 
+		uuid = phoenix.utils.UUID.get();
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
+		pos = new Vector();
+		origin = new Vector();
 
 		if(options != null) {
+			
 			state.depth = options.depth == null ? state.depth : options.depth;
 			state.group = options.group == null ? state.group : options.group;
-			state.texture = options.texture == null ? state.texture : options.texture;
+			state.texture = options.texture == null ? state.texture : options.texture;			
 			state.clip = options.clip == null ? state.clip : options.clip;
 			state.primitive_type = options.primitive_type == null ? state.primitive_type : options.primitive_type;
+			state.shader = options.shader == null? state.shader : options.shader;
 
-			// trace("creating geometry " + intid +  " \t\t " + options );
+			pos = (options.pos == null) ? pos : options.pos;
+			origin = (options.origin == null) ? origin : options.origin;
+			immediate = (options.immediate == null) ? true : options.immediate;
+			
+			color = (options.color == null) ? new Color() : options.color;
+
+			// trace("creating geometry " + uuid +  " \t\t " + options );
 		}
 
 	}
 
+	public function short_id() {
+		return uuid.substr(0, uuid.indexOf('-'));
+	}
+
 	public function str() {
 		if(!state.log) return;
-		trace('\t\tgeometry ; ');
+		trace('\t\tgeometry ; ' + short_id());
 		state.log = true;
 		state.str();
 		state.log = false;
@@ -68,21 +92,59 @@ class Geometry {
 		vertices.remove(v);
 	}
 
-	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, normallist : Array<Float> ) {
+	public function batch( 
+			vertlist : Array<Float>, tcoordlist : Array<Float>, 
+			colorlist:Array<Float>, normallist : Array<Float> ) {
+		
 		for(v in vertices) {
-			
+				
+				//vert positions
 			vertlist.push( v.pos.x );
 			vertlist.push( v.pos.y );
 			vertlist.push( v.pos.z );
 
+				//texture coordinates
+			tcoordlist.push( v.uv[0].u );
+			tcoordlist.push( v.uv[0].v );
+
+				//color values todo : per vertex colors
+			colorlist.push( color.r );
+			colorlist.push( color.g );
+			colorlist.push( color.b );
+			colorlist.push( color.a );
+
+				//normal directions
 			normallist.push( v.normal.x );
 			normallist.push( v.normal.y );
 			normallist.push( v.normal.z );
 
-			tcoordlist.push( v.uv[0].u );
-			tcoordlist.push( v.uv[0].v );
 
 		}
+	}
+
+	public function translate( _offset:Vector ) {
+		for(v in vertices) {
+			v.pos.x += _offset.x;
+			v.pos.y += _offset.y;
+			v.pos.z += _offset.z;
+		}
+	}
+
+//Position
+	public function set_pos(_v:Vector) : Vector {
+			//when first creating the vector, we give it a blank vector
+		if(pos == null) return {
+			pos = _v;
+		}
+
+			//Now there is a position to set,
+			//find the difference between the new position
+			//and the existing position we have.
+		var difference : Vector = Vector.Subtract(_v, pos);
+			//translate that difference only
+		translate(difference);
+			//setter value
+		return pos = _v;
 	}
 
 //Primitive Type
@@ -100,6 +162,14 @@ class Geometry {
 
 	public function set_texture(val : Texture) : Texture {		
 		return state.texture = val;
+	}
+//Shader
+	public function get_shader() : Shader {
+		return state.shader;
+	}
+
+	public function set_shader(val : Shader) : Shader {		
+		return state.shader = val;
 	}
 //Depth
 	public function get_depth() : Float {

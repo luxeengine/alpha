@@ -1,6 +1,7 @@
 package phoenix.geometry;
 
 import phoenix.Texture;
+import phoenix.Shader;
 import phoenix.Batcher;
 
 class GeometryState {
@@ -8,6 +9,7 @@ class GeometryState {
     public var dirty:Bool;
 
     @:isVar public var primitive_type(default, set) : PrimitiveType;
+    @:isVar public var shader(default, set) : Shader;
     @:isVar public var texture(default, set) : Texture;
     @:isVar public var depth(default, set) : Float;
     @:isVar public var group(default, set) : Int;
@@ -19,6 +21,7 @@ class GeometryState {
 
         clip = false;
         texture = null;
+        shader = null;
         group = 0;
         depth = 0.0;
         primitive_type = PrimitiveType.none;
@@ -32,6 +35,7 @@ class GeometryState {
         
             new_state.dirty = dirty;
             new_state.texture = texture;
+            new_state.shader = shader;
             new_state.group = group;
             new_state.depth = depth;
             new_state.primitive_type = primitive_type;
@@ -48,10 +52,11 @@ class GeometryState {
             trace("\t\ttexture - " + (( texture == null) ? 'null' :  texture.id ));
             if(texture != null) {
                 trace("\t\t\t " + texture.texture);
-            }            
+            }
+            trace("\t\tshader - " + (( shader == null) ? 'null' :  shader.id ));
             trace("\t\tprimitive_type - "+ primitive_type);
             trace("\t\tclip - "+ clip);
-        trace('\t- GEOMETRYSTATE');     
+        trace('\t- GEOMETRYSTATE');
     }    
 
     public function clean() {
@@ -112,6 +117,17 @@ class GeometryState {
             ttrace("\t\tNo change in texture");
         }
         
+        if(shader != other.shader) {
+            var shadername = shader == null ? 'null' : shader.id;
+            var othershadername = other.shader == null ? 'null' : other.shader.id;
+            
+            ttrace("\t\tShader change from " + shadername + " to " + othershadername);
+
+            shader = other.shader;
+        } else {
+            ttrace("\t\tNo change in shader");
+        }
+        
         if(primitive_type != other.primitive_type) {
             ttrace("\t\tType change from " + primitive_type + " to " + other.primitive_type);
             primitive_type = other.primitive_type;
@@ -137,6 +153,11 @@ class GeometryState {
     public function set_texture(val : Texture) : Texture {      
         dirty = true;
         return texture = val;
+    }
+//Shader
+    public function set_shader(val : Shader) : Shader {      
+        dirty = true;
+        return shader = val;
     }
 //Depth
     public function set_depth(val : Float) : Float {        

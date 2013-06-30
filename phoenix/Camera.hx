@@ -6,6 +6,8 @@ import lime.gl.GLBuffer;
 import lime.geometry.Matrix3D;
 import lime.utils.Float32Array;
 
+import phoenix.Matrix4;
+
 import phoenix.Vector;
 
 enum ProjectionType {
@@ -15,12 +17,14 @@ enum ProjectionType {
 }
 
 class Camera {
-
-    public var rr : Float = 0;
+    
     public var pos : Vector;
+    public var rotation : Vector;
+    public var scale: Vector;
+
     public var view_matrix : Matrix3D;
-    public var projection_matrix : Matrix3D;
-    public var modelview_matrix : Matrix3D;
+    public var projection_matrix : Matrix4;
+    public var modelview_matrix : Matrix4;
 
     public var perspective_options : Dynamic;
     public var ortho_options : Dynamic;
@@ -29,13 +33,21 @@ class Camera {
     public var target:Vector;
     public var up:Vector;
 
-    public var rotation : Float = 0.0;
-
     public function new( _projection : ProjectionType , options:Dynamic ) {
 
         projection = _projection;
+        
         pos = new Vector(0,0,0);
-        up = new Vector(0,-1,0);
+        rotation = new Vector(0,0,0);
+        scale = new Vector(1,1,1);
+
+        up = new Vector(0,1,0);
+        
+        projection_matrix = new Matrix4();
+        projection_matrix.identity();
+
+        modelview_matrix = new Matrix4();
+        modelview_matrix.identity();
 
         ortho_options = {
             x1 : 0, y1 : 0,
@@ -47,8 +59,8 @@ class Camera {
         perspective_options = {
             fov : 60,
             aspect : 1.5,
-            near:1,
-            far:-1000
+            near:0.1,
+            far:100
         };
 
             //Orthographic projection
@@ -68,50 +80,6 @@ class Camera {
         
     }
 
-    public function set_rotation(_rotation:Float) {
-
-        rotation = _rotation;
-
-        if(projection == ProjectionType.ortho) {
-            modelview_matrix = Matrix3D.create2D( ortho_options.x1, ortho_options.y1, 1, rotation);
-        }   
-
-    }   
-
-    public function make_perspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) {  
-
-        var _ylimit = _near * Math.tan(_fov * Math.PI / 360);
-
-        var A = -( _far + _near ) / ( _far - _near );  
-        var B = -2 * _far * _near / ( _far - _near );  
-        var C = (2 * _near) / ( (_ylimit * _aspect) * 2 );  
-        var D = (2 * _near) / ( _ylimit * 2 );  
-        
-        return new Matrix3D([  
-            C, 0, 0, 0,  
-            0, D, 0, 0,  
-            0, 0, A, -1,  
-            0, 0, B, 0  
-        ]);
-    } 
-
-    public function make_model_view() {  
-        var _y = rr * (Math.PI / 180.0);  
-        var A = Math.cos(_y);
-        var B = -1 * Math.sin(_y);  
-        var C = Math.sin(_y);  
-        var D = Math.cos(_y);
-
-        rr += 0.3;
-
-        return new Matrix3D([  
-            A,      0,      B,      0,  
-            0,      1,      0,      0,  
-            C,      0,      D,      0,  
-            pos.x,  pos.y,  pos.z,  1
-        ]);  
-    } 
-
     public function process() {
         if( projection == ProjectionType.perspective ) {
             set_perspective( perspective_options );
@@ -121,6 +89,7 @@ class Camera {
             set_ortho( ortho_options );
         }
     }
+
     public function set_ortho( options:Dynamic = null ) {
         
             // Cull triangles which normal is not towards the camera
@@ -130,8 +99,8 @@ class Camera {
 
         projection = ProjectionType.ortho;
 
-        projection_matrix = Matrix3D.createOrtho( ortho_options.x1, ortho_options.x2, ortho_options.y2, ortho_options.y1, ortho_options.near, ortho_options.far);
-        modelview_matrix = Matrix3D.create2D( ortho_options.x1, ortho_options.y1, 1, rotation);
+        projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
+        modelview_matrix = modelview_matrix.make2D( ortho_options.x1, ortho_options.y1, 1, rotation.z);
 
     }
 
@@ -148,48 +117,15 @@ class Camera {
     }
 
     public function make_look_at(_eye:Vector,_target:Vector,_up:Vector) {
-        return make_model_view().pointAt(_eye,_target,_up);
+        modelview_matrix.lookAt(_eye, _target, _up);
     }
 
-    public function make_look_atss(_eye:Vector,_target:Vector,_up:Vector) {
-            
-            var _x = new Vector();
-            var _y = new Vector();
-            var _z = new Vector();
-
-            var _z = Vector.Subtract( _eye, _target ).normalized;
-
-            if ( _z.length == 0 ) {
-                _z.z = 1;
-            }
-
-            _x.crossVectors( _up, _z ).normalized;
-    
-            if ( _x.length == 0 ) {
-
-                _z.x += 0.0001;
-                _x.crossVectors( _up, _z ).normalized;
-
-            }
-
-            _y.crossVectors( _z, _x );
-
-            // te[0] = _x.x; te[4] = _y.x; te[8] = _z.x;
-            // te[1] = _x.y; te[5] = _y.y; te[9] = _z.y;
-            // te[2] = _x.z; te[6] = _y.z; te[10] = _z.z;
-            
-            var nm = new Matrix3D([  
-                _x.x,      _y.x,      _z.x, 
-                _x.y,      _y.y,      _z.y,
-                _x.z,      _y.z,      _z.z //,  
-                // pos.x,     pos.y,     pos.z,      1
-            ]);      
-
-            // var mv = make_model_view();
-            // mv.append(nm);
-            // modelview_matrix = nm;
-            return nm;
+    public function lookAt () {
+        var m1 = new Matrix4();
+        m1.lookAt(target, pos, up);
+        rotation.setEulerFromRotationMatrix(m1, 'XYZ');
     }
+
 
     public function set_perspective( options:Dynamic = null ) {
 
@@ -197,11 +133,22 @@ class Camera {
 
         projection = ProjectionType.perspective;
 
-        projection_matrix = make_perspective( perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
-        
-        modelview_matrix = (target == null ? make_model_view() : make_look_at(pos, target, up));
+        // projection_matrix = make_perspective( perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
+        projection_matrix = projection_matrix.makePerspective(perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
 
-        // trace(modelview_matrix);
+        // trace(pos);
+        // trace(rotation);
+        modelview_matrix = modelview_matrix.makeFromPositionEulerScale(pos, rotation, scale, 'XYZ');
+
+        if(target != null) {
+            // lookAt();
+        }
+
+        // modelview_matrix = modelview_matrix.setPosition(pos);
+            //rotate
+        // modelview_matrix = modelview_matrix.setRotationFromEuler( rotation );
+            //scale
+        // modelview_matrix = modelview_matrix.scale( scale );
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);

@@ -189,6 +189,22 @@ class Core {
         return lime.utils.Libs.load( library, method, args );
     }
 
+//input events
+    public function onkeydown(e) {
+        if(host.onkeydown != null) host.onkeydown(e);
+    }
+    public function onkeyup(e) {
+        if(host.onkeyup != null) host.onkeyup(e);
+    }
+    public function onmousedown(e) {
+        if(host.onmousedown != null) host.onmousedown(e);
+    }
+    public function onmouseup(e) {
+        if(host.onmouseup != null) host.onmouseup(e);
+    }
+    public function onmousemove(e) {
+        if(host.onmousemove != null) host.onmousemove(e);
+    }
 //Noisy stuff
 
    		//temporary debugging with verbosity options

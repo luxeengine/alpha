@@ -5,7 +5,8 @@ import lime.utils.Libs;
 
 import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
-import phoenix.DefaultShaders;
+import phoenix.defaults.Shaders;
+
 import phoenix.Shader;
 import phoenix.Color;
 import phoenix.Camera;
@@ -24,6 +25,8 @@ class Renderer {
         
         //Default rendering
     public var default_shader : Shader;
+    public var default_shader_textured : Shader;
+        //Default view and batching renderer
     public var default_batcher : Batcher;
     public var default_camera : Camera;
 
@@ -40,21 +43,22 @@ class Renderer {
             return a.compare(b);
         } );
 
+            //The default view ; todo : unhardcode
+        default_camera = new Camera( ProjectionType.ortho, { x2:960, y2:640 } );
+
             //create the default rendering shader
         default_shader = new Shader( resource_manager );  
         default_shader.id = 'default_shader';
 
-        default_camera = new Camera( ProjectionType.ortho, { x2:960, y2:640 } );
+        default_shader_textured = new Shader( resource_manager );  
+        default_shader_textured.id = 'default_shader_textured';
 
-        var compiles = default_shader.load_from_string( 
-                            DefaultShaders.DefaultVertexShader, 
-                            DefaultShaders.DefaultFragmentShader 
-                        );
+        default_shader.load_from_string( Shaders.vertex_shader(), 
+                                         Shaders.fragment_untextured(), true );
 
-        if( !compiles ) {
-            throw "Default shader compilation error! \n" + default_shader.errors;
-        }
-        
+        default_shader_textured.load_from_string( Shaders.vertex_shader(), 
+                                                  Shaders.fragment_textured(), true );
+
             //create the default batcher
         default_batcher = new Batcher( this );
         add_batch(default_batcher);
@@ -131,14 +135,14 @@ class Renderer {
         //The main render function 
     public function process() {
         
+        if(stop) { return; }
+
         if(should_clear) {
             clear( clear_color );
         }
 
         for(batch in batchers) {
-            if(!stop) {
-                batch.draw();
-            }
+            batch.draw();
         }
 
         stop = false;

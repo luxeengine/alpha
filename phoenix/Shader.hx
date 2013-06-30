@@ -11,7 +11,8 @@ import lime.gl.GLProgram;
 
 class Shader extends Resource {
 
-	public var errors : String = '';
+    public var errors : String = '';
+	public var log : String = '';
 
 	public var vert_shader : Dynamic;
 	public var frag_shader : Dynamic;
@@ -26,24 +27,32 @@ class Shader extends Resource {
 
 	public function activate() {
 		if(program != null) {
+            // trace('\t\t activating shader ' + id + ' ' + program);
+            
 			GL.useProgram( program );
 		} else {
-			GL.useProgram( null );
+			//GL.useProgram( null );
 		}
 	}
 
 	public function deactivate() {
-		GL.useProgram( null );
+		//GL.useProgram( null );
 	}
 
 		//GL.FRAGMENT_SHADER
-	public function compile( type : Int, source:String ) : GLShader {
-		var _shader = GL.createShader( type );
-		GL.shaderSource( _shader,  source);
+	public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
+		var _shader = GL.createShader( _type );
+		GL.shaderSource( _shader,  _source);
 		GL.compileShader(_shader);
 
+        if(_verbose) {
+            trace(":: start -- Shader compile log -- " + id);
+            trace(GL.getShaderInfoLog(_shader));
+            trace(":: end -- Shader compile log -- " + id);
+        }
+
 		if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
-			addError("\tFailed to compile shader (" + ((type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
+			addError("\tFailed to compile shader (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
             addError( "\t\t"+ GL.getShaderInfoLog(_shader) );
             GL.deleteShader(_shader);
             _shader = null;
@@ -62,8 +71,8 @@ class Shader extends Resource {
     	GL.linkProgram(_program);
       
       	if( GL.getProgramParameter(_program, GL.LINK_STATUS) == 0) {
-         	addError("Failed to link shader program:");
-         	addError( GL.getProgramInfoLog(_program) );
+         	addError("\tFailed to link shader program:");
+         	addError( "\t\t"+ GL.getProgramInfoLog(_program) );
          	GL.deleteProgram(_program);
          	_program = null;
          	return null;
@@ -79,7 +88,7 @@ class Shader extends Resource {
 	}
 
 	//! Loads shaders from a string, compiles, and links them */
-	public function load_from_string( _vertex_source:String, _fragment_source:String ) {
+	public function load_from_string( _vertex_source:String, _fragment_source:String, _verbose:Bool = false ) {
 			
 			//First clean up
 		destroy();  		
@@ -93,6 +102,20 @@ class Shader extends Resource {
 
 	    	//Link shader
 	    program = link();
+
+            //Check compile status and throw errors if there are any
+        if(program == null) {
+            if(_verbose) {
+                throw log + '\n' + errors;
+            } else {
+                throw errors;
+            }            
+        } else {
+            trace("SHADER VERBOSE!!" + _verbose);
+            if(_verbose) {
+                trace(log);
+            }
+        }
 
 	    	//if it fails return false
 	    if( program == null ) return false;
@@ -124,8 +147,12 @@ class Shader extends Resource {
     	GL.uniform1i( getUniform(uniform_name) , value );
     }
 
-    public function addError( error:String ) {
-    	errors += error;
+    public function addLog( _log:String ) {
+        log += _log;
+    }
+
+    public function addError( _error:String ) {
+    	errors += _error;
     }
 
 }	

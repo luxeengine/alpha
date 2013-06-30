@@ -99,7 +99,7 @@ class Reader {
 
             //note items[0] is the identifier
         var items = line.split(' ');
-
+        
         var uv : format.obj.UV = {
             u : Std.parseFloat( items[1] ),
             v : Std.parseFloat( items[2] )
