@@ -126,6 +126,10 @@ class Batcher {
             //Textures
         tex0_attribute = GL.getUniformLocation( _shader.program, "tex0" );
 
+            //for now todo
+        GL.activeTexture(GL.TEXTURE0);
+        GL.uniform1i(tex0_attribute, 0);
+
     }
 
         //Run the batcher over the current list of geometry

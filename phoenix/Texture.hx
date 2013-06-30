@@ -250,8 +250,7 @@ class Texture extends Resource {
     }
 
     public function activate(att) {
-        GL.activeTexture(GL.TEXTURE0);
-        GL.uniform1i(att, 0);
+        
     }
 
     public function getPixel(_pos) {

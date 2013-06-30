@@ -45,19 +45,38 @@ class Shader extends Resource {
 		GL.shaderSource( _shader,  _source);
 		GL.compileShader(_shader);
 
+        var shader_log = '';
         if(_verbose) {
-            addLog("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
-            addLog("\t\t" + GL.getShaderInfoLog(_shader) + '\n');
-            addLog("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
-        }
+            shader_log = GL.getShaderInfoLog(_shader);
+            if(shader_log.length > 0) {
+
+                addLog("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
+                
+                addLog("\t\t" + shader_log + '\n');
+                
+                addLog("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
+
+            } //shader_log.length
+
+        } //_verbose
 
 		if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
+
 			addError("\tFailed to compile shader (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
-            addError( "\t\t"+ GL.getShaderInfoLog(_shader) );
+                
+                //only fetch if we haven't already above
+            if(!_verbose) {
+                shader_log = GL.getShaderInfoLog(_shader);
+            }
+
+            addError( "\t\t"+ shader_log );
+
             GL.deleteShader(_shader);
             _shader = null;
+
             return null;
-        }
+
+        } //compile_status
 
         return _shader;
 	}
@@ -111,7 +130,7 @@ class Shader extends Resource {
                 throw errors;
             }            
         } else {            
-            if(_verbose) {
+            if(_verbose && log.length > 0) {
                 trace(log);
             }
         }
