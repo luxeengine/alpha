@@ -113,6 +113,7 @@ class Main extends lab.Game {
         var _geom = new Geometry({
             texture : t,
             primitive_type: PrimitiveType.triangles,
+            immediate : false,
             depth : 2
         });
 
@@ -127,7 +128,7 @@ class Main extends lab.Game {
            }
            var _v = new Vertex( new Vector( (v.pos.x * scale)+p.x , (v.pos.y * scale)+p.y, (v.pos.z * scale)+p.z), normal );
            if(v.uv != null) {
-               _v.uv[0] = new TextureCoord( v.uv.u, -v.uv.v );
+               _v.uv[0] = new TextureCoord( v.uv.u, 1.0 - v.uv.v );
            } else {
                _v.uv[0] = new TextureCoord( 0, 0 );
            }
@@ -148,7 +149,7 @@ class Main extends lab.Game {
 
         add_mesh('assets/ship.obj', tex2, _batch);
         add_mesh('assets/cube.obj', tex, _batch);
-       // _batch.view.target = new Vector(0,0,0);
+       _batch.view.target = new Vector(0,0,0);
 
         moveState.yawLeft = 0.5;
         updateMovementVector();

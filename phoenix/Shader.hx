@@ -46,9 +46,9 @@ class Shader extends Resource {
 		GL.compileShader(_shader);
 
         if(_verbose) {
-            trace(":: start -- Shader compile log -- " + id);
-            trace(GL.getShaderInfoLog(_shader));
-            trace(":: end -- Shader compile log -- " + id);
+            addLog("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
+            addLog("\t\t" + GL.getShaderInfoLog(_shader) + '\n');
+            addLog("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
         }
 
 		if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
@@ -94,8 +94,8 @@ class Shader extends Resource {
 		destroy();  		
 
 			//compile the sources
-	    vert_shader = compile( GL.VERTEX_SHADER, _vertex_source );
-	    frag_shader = compile( GL.FRAGMENT_SHADER, _fragment_source );
+	    vert_shader = compile( GL.VERTEX_SHADER, _vertex_source, _verbose );
+	    frag_shader = compile( GL.FRAGMENT_SHADER, _fragment_source, _verbose );
 
 	    	//Any errors? fail
 	    if( vert_shader == null || frag_shader == null ) return false;
@@ -110,8 +110,7 @@ class Shader extends Resource {
             } else {
                 throw errors;
             }            
-        } else {
-            trace("SHADER VERBOSE!!" + _verbose);
+        } else {            
             if(_verbose) {
                 trace(log);
             }
