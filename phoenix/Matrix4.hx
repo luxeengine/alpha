@@ -85,11 +85,12 @@ class Matrix4
       var c = Math.cos(theta);
       var s = Math.sin(theta);
 
+      var me = elements;
        set(
-         c * _scale,  -s *_scale,  0,  			0,
-         s * _scale,   c *_scale,  0,  			0,
-         0,        	   0,          1,  			0,
-        _x,           _y,          0,  			1
+         c * _scale,  -s *_scale,  me[8], 		me[12],
+         s * _scale,   c *_scale,  me[9],		me[13],
+         me[2],        me[6],      me[10],  	me[14],
+        _x,           _y,          me[11], 		me[15]
       );
 
        return this;

@@ -97,7 +97,7 @@ class Core {
         }
 
             //assign the globals
-        Lab.renderer = renderer;
+        Lab.renderer = renderer;        
 
 			//Now make sure they start up
 
@@ -111,6 +111,8 @@ class Core {
         if(renderer != null && renderer.startup != null) {
             renderer.startup();
         }
+
+        Lab.camera = renderer.default_camera;
 
     }
 

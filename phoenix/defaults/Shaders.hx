@@ -50,7 +50,7 @@ class Shaders {
                 vec4 uvcolor = vec4(tcoord.x, tcoord.y, (tcoord.x+tcoord.y)*2.0, 1);
                 vec4 white = vec4(1, 1, 1, 0.6);
                 // gl_FragColor = gray * ((tcoord.x+tcoord.y)/2.0);
-                gl_FragColor = color*texcolor; //vec4(0,0.9,0.6,1); ;
+                gl_FragColor = color * texcolor; //vec4(0,0.9,0.6,1); ;
                 // vec4 cc = uvcolor * gray;
                 // gl_FragColor = texcolor;
             }

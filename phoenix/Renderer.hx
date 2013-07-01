@@ -36,7 +36,7 @@ class Renderer {
 
     public function startup() {
 
-        clear_color = new Color(0.16,0.16,0.16,1);
+        clear_color = new Color(1.0,0,0,1);
 
         resource_manager = new ResourceManager();
         batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
@@ -63,12 +63,18 @@ class Renderer {
         default_batcher = new Batcher( this );
         add_batch(default_batcher);
 
+            //enable z buffer use
         GL.enable(GL.DEPTH_TEST);
-        GL.depthFunc(GL.LEQUAL);
+            // Accept fragment if it closer or equal away from the other
+        GL.depthFunc(GL.LESS);
 
+            //Enable blending
         GL.enable(GL.BLEND);
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
+            //Make sure that we aren't premultiplying the backbuffer
+        GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
+        
         // trace(':: phoenix :: renderer starting up');        
     }
 

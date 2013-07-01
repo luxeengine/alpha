@@ -74,7 +74,7 @@ class Main extends lab.Game {
 
        cam2d = new Camera(ProjectionType.ortho, { x2:960, y2:640 });
        batch2d.view = cam2d;
-       batch2d.view.rotation.z = 6;
+       batch2d.view.rotation.z = -6;
 
        cam3d = new Camera(ProjectionType.ortho, { x2:960, y2:640 });
        batch3d.view = cam3d;
@@ -113,7 +113,7 @@ class Main extends lab.Game {
 
         var _geom = new Geometry({
             texture : t,
-            primitive_type: PrimitiveType.triangles,
+            type: PrimitiveType.triangles,
             immediate : false,
             depth : 2
         });

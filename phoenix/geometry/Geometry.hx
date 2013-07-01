@@ -50,7 +50,7 @@ class Geometry {
 			state.group = options.group == null ? state.group : options.group;
 			state.texture = options.texture == null ? state.texture : options.texture;			
 			state.clip = options.clip == null ? state.clip : options.clip;
-			state.primitive_type = options.primitive_type == null ? state.primitive_type : options.primitive_type;
+			state.primitive_type = options.type == null ? state.primitive_type : options.type;
 			state.shader = options.shader == null? state.shader : options.shader;
 
 			pos = (options.pos == null) ? pos : options.pos;

@@ -91,7 +91,7 @@ class Camera {
     }
 
     public function set_ortho( options:Dynamic = null ) {
-        
+            
             // Cull triangles which normal is not towards the camera
         GL.disable(GL.CULL_FACE);
 
@@ -100,7 +100,7 @@ class Camera {
         projection = ProjectionType.ortho;
 
         projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
-        modelview_matrix = modelview_matrix.make2D( ortho_options.x1, ortho_options.y1, 1, rotation.z);
+        modelview_matrix = modelview_matrix.makeFromPositionEulerScale(pos, rotation, scale, 'XYZ');
 
     }
 
@@ -152,6 +152,7 @@ class Camera {
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);
+       
     }
 
 }

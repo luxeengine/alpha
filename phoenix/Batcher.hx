@@ -79,12 +79,7 @@ class Batcher {
         tcoordBuffer = GL.createBuffer();
         vcolorBuffer = GL.createBuffer();
         normalBuffer = GL.createBuffer();
-        
 
-         // Enable depth test
-        GL.enable(GL.DEPTH_TEST);
-        // Accept fragment if it closer to the camera than the former one
-        GL.depthFunc(GL.LESS);         
 
     }
 
@@ -317,22 +312,22 @@ class Batcher {
             //set the vertices positions in the shader
         GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
         GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
-        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(vertlist), GL.STATIC_DRAW);
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(vertlist), GL.DYNAMIC_DRAW);
 
             //set the texture coordinates in the shader
         GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
         GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
-        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(tcoordlist), GL.STATIC_DRAW);        
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(tcoordlist), GL.DYNAMIC_DRAW);        
 
             //set the color values in the shader
         GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffer);
         GL.vertexAttribPointer(color_attribute, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(colorlist), GL.STATIC_DRAW);        
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(colorlist), GL.DYNAMIC_DRAW);        
 
             //set the normal directions in the shader
         GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer);
         GL.vertexAttribPointer(normal_attribute, 3, GL.FLOAT, false, 0, 0);
-        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(normallist), GL.STATIC_DRAW);        
+        GL.bufferData (GL.ARRAY_BUFFER, new Float32Array(normallist), GL.DYNAMIC_DRAW);        
 
             //Draw
         GL.drawArrays( get_opengl_primitive_type(type) , 0, Std.int(vertlist.length/3) );

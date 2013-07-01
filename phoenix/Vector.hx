@@ -26,10 +26,21 @@ class Vector implements Dynamic {
 	}
 
 	
-	public function set (_x:Float = 0, _y:Float = 0, _z:Float = 0) : Vector {
-		x = _x;
-		y = _y;
-		z = _z;
+	public function set (?_x:Float, ?_y:Float, ?_z:Float) : Vector {
+		
+		var _setx = x;
+		var _sety = y;
+		var _setz = z;
+			
+			//assign new values
+		if(_x != null) _setx = _x;
+		if(_y != null) _sety = _y;
+		if(_z != null) _setz = _z;
+
+		x = _setx;
+		y = _sety;
+		z = _setz;
+
 		return this;
 	}
 	

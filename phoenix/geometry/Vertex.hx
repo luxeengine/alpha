@@ -29,6 +29,7 @@ class Vertex {
 	public function new(_pos : Vector, _normal:Vector = null, _color:Color = null) {
 
 		uv = new Map<Int, TextureCoord>();
+		uv[0] = new TextureCoord(0,0);
 		
 		pos = _pos;
 		normal = (_normal == null) ? new Vector() : _normal;

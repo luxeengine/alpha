@@ -8,22 +8,19 @@ class Color {
 	public var b : Float = 1.0;
 	public var a : Float = 1.0;
 
-	public function new(_r:Dynamic = null, _g:Float = 1.0, _b:Float = 1.0, _a:Float = 1.0) {
+	public function new(_r:Float = 1.0, _g:Float = 1.0, _b:Float = 1.0, _a:Float = 1.0) {
 		
-		if(Std.is(_r,Int)) {	
-
-			from_int( _r == null ? 0xFFFFFF : _r );
-
-		} else {
-
-			r = _r == null ? 1.0 : _r;
-			g = _g;
-			b = _b;
-			a = _a;
-
-		}
+		r = _r;
+		g = _g;
+		b = _b;
+		a = _a;
 
 	}
+
+	public function rgb(_rgb:Int = 0xFFFFFF) : Color {
+		from_int(_rgb);
+		return this;
+	} //rgb
 
 		//make it traceable
 	public function toString() : String {
@@ -42,7 +39,9 @@ class Color {
 		b = _b / 255;
 
 			//alpha not specified in 0xFFFFFF
-		a = 1.0;
+			//but we don't need to clobber it, 
+			//it was set in the member list
+		// a = 1.0;
 	}
 
 }

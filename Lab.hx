@@ -7,6 +7,7 @@ import phoenix.Texture;
 class Lab {
     public static var core : lab.Core;
     public static var renderer : phoenix.Renderer;
+    public static var camera : phoenix.Camera;
 
     public static function shutdown() {
         core.lime.shutdown();
