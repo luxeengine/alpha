@@ -113,7 +113,7 @@ class Core {
         }
 
         Lab.camera = renderer.default_camera;
-
+        Lab.resources = renderer.resource_manager;
     }
 
     public function shutdown() {        

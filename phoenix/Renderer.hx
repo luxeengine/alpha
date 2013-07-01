@@ -66,14 +66,16 @@ class Renderer {
             //enable z buffer use
         GL.enable(GL.DEPTH_TEST);
             // Accept fragment if it closer or equal away from the other
-        GL.depthFunc(GL.LESS);
+        GL.depthFunc(GL.LEQUAL);
 
             //Enable blending
         GL.enable(GL.BLEND);
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
             //Make sure that we aren't premultiplying the backbuffer
-        GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
+        #if lime_html5
+            GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
+        #end //html5
         
         // trace(':: phoenix :: renderer starting up');        
     }

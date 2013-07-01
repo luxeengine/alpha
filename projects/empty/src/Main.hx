@@ -91,13 +91,13 @@ class Main extends lab.Game {
         geom = new QuadGeometry({
             x:32, y:8, width:128, height:128,
             texture : tex2,
-            depth : 4
+            depth : 6
         });  
         
         geom2 = new QuadGeometry( {
             x:72, y:32, width:256, height:256,
             texture : tex,
-            depth : 6
+            depth : 4
         });  
 
         _batch.add(geom);
