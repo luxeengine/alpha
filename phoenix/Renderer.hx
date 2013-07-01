@@ -36,7 +36,7 @@ class Renderer {
 
     public function startup() {
 
-        clear_color = new Color(1.0,0,0,1);
+        clear_color = new Color(0,0,0,1);
 
         resource_manager = new ResourceManager();
         batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
