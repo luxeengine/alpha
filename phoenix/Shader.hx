@@ -117,7 +117,14 @@ class Shader extends Resource {
 	    frag_shader = compile( GL.FRAGMENT_SHADER, _fragment_source, _verbose );
 
 	    	//Any errors? fail
-	    if( vert_shader == null || frag_shader == null ) return false;
+	    if( vert_shader == null || frag_shader == null ) {
+            if(_verbose) {
+                throw "SHADER : " + id + " \n\n " + log + '\n' + errors;
+            } else {
+                throw errors;
+            } 
+            return false;
+        }
 
 	    	//Link shader
 	    program = link();

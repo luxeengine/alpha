@@ -147,6 +147,9 @@ class Batcher {
         //and submit it to the graphics card for usage
     public function batch( persist_immediate : Bool = false ) {
 
+            //start at 0
+        batched_count = 0;
+
             //The current batch state values
         var state : BatchState = new BatchState(this);
 

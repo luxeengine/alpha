@@ -15,7 +15,6 @@ class Geometry {
 
 	public var vertices : Array<Vertex>;
 
-	public var enabled : Bool = true;
 	public var locked : Bool = false;
 
 	public var state : GeometryState;
@@ -23,7 +22,7 @@ class Geometry {
 	public var uuid : String = '';
 
 		//State properties
-	@:isVar public var primitive_type(get, set) : PrimitiveType;	
+	@:isVar public var primitive_type(get, set) : PrimitiveType;
 	@:isVar public var texture(get, set) : Texture;
 	@:isVar public var shader(get, set) : Shader;
 	@:isVar public var depth(get, set) : Float;
@@ -31,14 +30,15 @@ class Geometry {
 	@:isVar public var clip(get, set) : Bool;
 
 		//Geometry properties	
+	@:isVar public var enabled(default, set) : Bool = true;
 	@:isVar public var immediate(default, default) : Bool;
 	@:isVar public var pos(default, set) : Vector;
 	@:isVar public var origin(default, default) : Vector;
-	@:isVar public var color(default, default) : Color;
+	@:isVar public var color(default, set) : Color;
 
 	public function new(options:Dynamic) {
 		
-		uuid = phoenix.utils.UUID.get();
+		uuid = lab.utils.UUID.get();
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
 		pos = new Vector();
@@ -163,6 +163,16 @@ class Geometry {
 	public function set_texture(val : Texture) : Texture {		
 		return state.texture = val;
 	}
+
+//Enabled
+	public function set_enabled(val : Bool) : Bool {		
+		return enabled = val;
+	}
+//Color
+	public function set_color(val : Color) : Color {		
+		return color = val;
+	}
+	
 //Shader
 	public function get_shader() : Shader {
 		return state.shader;
@@ -177,6 +187,7 @@ class Geometry {
 	}
 
 	public function set_depth(val : Float) : Float {		
+		trace("G depth");
 		return state.depth = val;
 	}
 //Group

@@ -1,5 +1,6 @@
 package phoenix.geometry;
 
+import lab.Vector;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
@@ -13,6 +14,21 @@ class QuadGeometry extends Geometry {
 		set(options);
 
 	}
+
+    public function uv( _tl:Vector, _sz:Vector ) {
+
+        if(texture == null) return;
+
+        var tl = new Vector(_tl.x/texture.width, _tl.y/texture.height);
+        var sz = new Vector(_sz.x/texture.width, _sz.y/texture.height);
+
+        vertices[0].uv[0] = new TextureCoord( tl.x , tl.y );
+        vertices[1].uv[0] = new TextureCoord( tl.x + sz.x , tl.y );
+        vertices[2].uv[0] = new TextureCoord( tl.x + sz.x , tl.y + sz.y );
+        vertices[3].uv[0] = new TextureCoord( tl.x , tl.y + sz.y );
+        vertices[4].uv[0] = new TextureCoord( tl.x , tl.y );
+        vertices[5].uv[0] = new TextureCoord( tl.x + sz.x , tl.y + sz.y );
+    }
 
  	public function set( quad:Dynamic ) {
  		
@@ -45,12 +61,12 @@ class QuadGeometry extends Geometry {
 
            //Add to the list
 
-        vertices.push( vert0 );
-        vertices.push( vert1 );
-        vertices.push( vert2 );
-        vertices.push( vert3 );
-        vertices.push( vert4 );
-        vertices.push( vert5 );
+        add( vert0 );
+        add( vert1 );
+        add( vert2 );
+        add( vert3 );
+        add( vert4 );
+        add( vert5 );
 
 
         primitive_type = PrimitiveType.triangles;

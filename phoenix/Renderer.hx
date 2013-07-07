@@ -116,6 +116,7 @@ class Renderer {
 
             texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
             texture.loaded = true;
+            texture.id = _name; //the full name is useless
 
             trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 

@@ -9,9 +9,14 @@ class Lab {
     public static var renderer : phoenix.Renderer;
     public static var camera : phoenix.Camera;
     public static var resources : phoenix.ResourceManager;
+    public static var utils : lab.utils.Utils;
 
     public static function shutdown() {
         core.lime.shutdown();
+    }
+
+    public static function loadText(_id:String) {
+        return lime.utils.Assets.getText(_id);
     }
 
     public static function loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture {
@@ -25,6 +30,8 @@ class Lab {
     public static function removeGeometry(geom:Geometry) {
         renderer.default_batcher.remove(geom);
     } 
+
+
 
 }
 

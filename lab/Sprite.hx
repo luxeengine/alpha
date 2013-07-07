@@ -5,6 +5,7 @@ import phoenix.Texture;
 import phoenix.Vector;
 import phoenix.Color;
 
+
 import Lab;
 
 class Sprite {
@@ -16,7 +17,11 @@ class Sprite {
     @:isVar public var color(default,set) : Color;
     @:isVar public var visible(default,set) : Bool;
 
+    public var id : String;
+
     public function new(options:Dynamic) {
+
+        id = lab.utils.UUID.get();
 
             //temp
         if(options == null) {
@@ -74,6 +79,11 @@ class Sprite {
     } //new
 
     public function _create_geometry(options : Dynamic) {
+
+            //if they give a geometry, don't create one
+        if(options.geometry != null) {
+            return;
+        }
 
         geometry = new QuadGeometry({
             x:pos.x, 

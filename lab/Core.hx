@@ -48,6 +48,7 @@ class Core {
         host = _host;
 
         Lab.core = this;
+        Lab.utils = new lab.utils.Utils(this);
 
     } //new
     
@@ -150,6 +151,7 @@ class Core {
     	time = null;
     	file = null;
     	debug = null;
+        Lab.utils = null;
 
             //Flag it
         has_shutdown = true;
