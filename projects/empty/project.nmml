@@ -8,11 +8,7 @@
           company="underscorediscovery" 
 	/>
 
-	<app
-          main="Main"
-          path="bin"
-          file="haxelab_empty"
-	/>
+	<app main="Main" path="bin" file="haxelab_empty" />
 
 	<window 
           width="960" 
