@@ -54,10 +54,10 @@ class Renderer {
         default_shader_textured.id = 'default_shader_textured';
 
         default_shader.load_from_string( Shaders.vertex_shader(), 
-                                         Shaders.fragment_untextured(), true );
+                                         Shaders.fragment_untextured(), false );
 
         default_shader_textured.load_from_string( Shaders.vertex_shader(), 
-                                                  Shaders.fragment_textured(), true );
+                                                  Shaders.fragment_textured(), false );
 
             //create the default batcher
         default_batcher = new Batcher( this );
