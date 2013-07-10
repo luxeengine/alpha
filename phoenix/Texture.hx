@@ -77,7 +77,7 @@ class Texture extends Resource {
 
     public function create_from_bytes_html(_asset_name:String, _asset_bytes, _width, _height ) {
 
-        trace('MAX TEXTURE SIZE!! ' + GL.getParameter(GL.MAX_TEXTURE_SIZE));
+        var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
 
         texture = GL.createTexture();
 
@@ -86,6 +86,9 @@ class Texture extends Resource {
         width = Std.int(_width);
         height = Std.int(_height);       
 
+        if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+        if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+        
         //Now we can bind it
         bind();
             //And send GL the data
@@ -104,15 +107,25 @@ class Texture extends Resource {
         
         // trace(_asset_bytes);
 
-        trace('MAX TEXTURE SIZE!! ' + GL.getParameter(GL.MAX_TEXTURE_SIZE));
+        var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
 
-        // #if lime_native
         var nme_bitmap_handle = nme_bitmap_data_from_bytes(_asset_bytes, null);
+        if(nme_bitmap_handle == null) throw "cannot create bitmap " + _asset_name;
+
         var _width = nme_bitmap_data_width( nme_bitmap_handle );
         var _height = nme_bitmap_data_height( nme_bitmap_handle );
         
-        var image_bytes : lime.utils.ByteArray = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
-        // #end
+        if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+        if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+
+        var image_bytes : lime.utils.ByteArray;
+
+        try {
+            image_bytes = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
+        } catch(e:Dynamic) {
+            trace(e);
+            throw " fail!";
+        }
         
         texture = GL.createTexture();
 
@@ -121,7 +134,7 @@ class Texture extends Resource {
         width = Std.int(_width);
         height = Std.int(_height);            
 
-        data = new UInt8Array( image_bytes.getData() );
+        data = new UInt8Array( cast image_bytes );
         var image_length = width * height;
 
             //ARGB to RGBA cos format 
