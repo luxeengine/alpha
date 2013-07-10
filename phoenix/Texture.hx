@@ -77,6 +77,8 @@ class Texture extends Resource {
 
     public function create_from_bytes_html(_asset_name:String, _asset_bytes, _width, _height ) {
 
+        trace('MAX TEXTURE SIZE!! ' + GL.getParameter(GL.MAX_TEXTURE_SIZE));
+
         texture = GL.createTexture();
 
             //if no problems
