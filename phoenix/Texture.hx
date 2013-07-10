@@ -102,6 +102,8 @@ class Texture extends Resource {
         
         // trace(_asset_bytes);
 
+        trace('MAX TEXTURE SIZE!! ' + GL.getParameter(GL.MAX_TEXTURE_SIZE));
+
         // #if lime_native
         var nme_bitmap_handle = nme_bitmap_data_from_bytes(_asset_bytes, null);
         var _width = nme_bitmap_data_width( nme_bitmap_handle );
