@@ -21,6 +21,7 @@ class Sprite {
     @:isVar public var visible(default,set) : Bool;
     @:isVar public var rotation(default,set) : Float = 0.0;
     @:isVar public var centered(default,set) : Bool = true;
+    @:isVar public var origin(default,set) : Vector;
 
     public var id : String;
 
@@ -35,7 +36,8 @@ class Sprite {
 
             //create the position value so we can exploit it a bit
         pos = new Vector();
-        color = new Color();
+        origin = new Vector();
+        color = new Color();        
 
 //texture
         if(options.texture != null) {
@@ -98,7 +100,7 @@ class Sprite {
             y:pos.y, 
             width:size.x, 
             height:size.y,
-            texture : texture,
+            texture : texture,            
             color : color,
             shader : options.shader,
             depth : (options.depth == null) ? 0 : options.depth,
@@ -106,6 +108,9 @@ class Sprite {
             enabled : (options.visible == null) ? 0 : options.visible
         });
 
+            //set the origin and centered once created
+        var _c = centered;
+            centered = _c;
 
         if(options.add == null || options.add != false) {
             Lab.addGeometry( geometry );            
@@ -172,9 +177,35 @@ class Sprite {
 
     } //set_color
 
+//Origin
+
+    public function set_origin(_o:Vector) : Vector {
+        if(geometry != null) {
+            var _diff = Vector.Subtract(geometry.origin, _o);
+            geometry.origin = _o;
+            geometry.translate(_diff);
+        }
+        return origin = _o;
+    }
+
 //Centered 
 
     public function set_centered(_c:Bool) : Bool {
+
+            //centered geometry affects the origin
+        if(geometry != null) {
+            if(size != null) {
+                if(centered) {
+                    geometry.origin = new Vector(size.x/2, size.y/2);
+                } else {
+                    geometry.origin = new Vector();
+                }
+                    //translate the geometry directly, leaving it's
+                    //position as is
+                geometry.translate(geometry.origin.inverted);
+            }
+        }
+
         return centered = _c;
     }
 //Rotation 
