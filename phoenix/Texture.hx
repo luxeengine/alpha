@@ -20,19 +20,6 @@ enum ClampType {
     mirror;    
 }
 
-class Rectangle {
-    public var x:Float;
-    public var y:Float;
-    public var width:Float;
-    public var height:Float;
-    public function new(_x,_y,_w,_h) {
-        x = _x; 
-        y = _y; 
-        width = _w; 
-        height = _h; 
-    }
-}
-
 class Texture extends Resource {
 
     public var texture : GLTexture;

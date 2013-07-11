@@ -1,6 +1,7 @@
 package lab;
 
 import lab.Vector;
+import lab.Rectangle;
 
 import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
@@ -22,6 +23,7 @@ class Sprite {
     @:isVar public var rotation(default,set) : Float = 0.0;
     @:isVar public var centered(default,set) : Bool = true;
     @:isVar public var origin(default,set) : Vector;
+    @:isVar public var uv(default,set) : Rectangle;
 
     public var id : String;
 
@@ -37,7 +39,7 @@ class Sprite {
             //create the position value so we can exploit it a bit
         pos = new Vector();
         origin = new Vector();
-        color = new Color();        
+        color = new Color();
 
 //texture
         if(options.texture != null) {
@@ -208,6 +210,15 @@ class Sprite {
 
         return centered = _c;
     }
+
+//UV / source rect
+
+    public function set_uv(_uv:Rectangle) : Rectangle {
+        if(geometry != null) {
+            geometry.uv(_uv);
+        }
+        return uv = _uv;
+    } 
 //Rotation 
     
     public function set_rotation(_r:Float) : Float {

@@ -201,7 +201,6 @@ class Geometry {
 	}
 
 	public function set_depth(val : Float) : Float {		
-		trace("G depth");
 		return state.depth = val;
 	}
 //Group
