@@ -3,4 +3,29 @@
 
 <h1 id="haxelabindexhtml"><a href="../index.html">haxelab</a></h1>
 
-<h3 id="backtotypestypeshtml"><a href="types.html">Back to types</a></h3></div></div></div></div></body></html>
+<h3 id="backtotypestypeshtml"><a href="types.html">Back to types</a></h3>
+
+<p>To create and play a sound, you can currently use : </p>
+
+<pre><code>Lab.audio.create('clicksound', 'assets/sounds/click.wav');
+Lab.audio.volume('clicksound', 0.6);
+Lab.audio.play('clicksound');
+</code></pre>
+
+<p><em>Create a named sound</em></p>
+
+<p><strong>create</strong>    sound name, sound file, force music?
+<code>Lab.audio.create(_name:String,_file:String, ?_forcemusic:Bool = false ) : Void</code>   </p>
+
+<p><em>Play a sound a by name</em></p>
+
+<p><strong>play</strong>    sound name <br />
+<code>Lab.audio.play(_name:String) : Void</code>    </p>
+
+<p><em>Configure a sound by name</em></p>
+
+<p><strong>volume</strong>    sound name, volume value [0,1] <br />
+   <code>Lab.audio.volume(_name:String, _volume:Float) : Void</code>   </p>
+
+<p><strong>pan</strong>        sound name, pan value [_1, 1] <br />
+   <code>Lab.audio.pan(_name:String, _pan:Float) : Void</code></p></div></div></div></div></body></html>

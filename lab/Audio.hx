@@ -16,8 +16,8 @@ class Audio {
         core._debug(':: haxelab :: \t Audio shut down.');
     }
 
-    public function create(_name:String,_file:String, ?_music:Bool = false ) {
-        core.lime.audio.create_sound(_name, _file, _music);
+    public function create(_name:String,_file:String, ?_forcemusic:Bool = false ) {
+        core.lime.audio.create_sound(_name, _file, _forcemusic);
     }
 
     public function play(_name:String) {

@@ -1,0 +1,57 @@
+{
+  "name": "groc",
+  "version": "0.4.0",
+  "description": "Documentation generation, in the spirit of literate programming.",
+  "keywords": [
+    "documentation",
+    "docs",
+    "generator"
+  ],
+  "homepage": "http://nevir.github.com/groc/",
+  "author": {
+    "name": "Ian MacLeod",
+    "email": "ian@nevir.net",
+    "url": "https://github.com/nevir"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nevir/groc/MIT-LICENSE.txt"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nevir/groc"
+  },
+  "main": "./index",
+  "directories": {
+    "lib": "./lib"
+  },
+  "bin": {
+    "groc": "./bin/groc"
+  },
+  "engines": {
+    "node": ">= v0.4.12"
+  },
+  "dependencies": {
+    "coffee-script": ">= 1.1.3",
+    "colors": ">= 0.5.1",
+    "fs-tools": ">= 0.1.0",
+    "glob": ">= 3.0.1",
+    "jade": ">= 0.17.0",
+    "optimist": ">= 0.3.4",
+    "showdown": ">= 0.2.0",
+    "spate": ">= 0.1.0",
+    "uglify-js": ">= 1.1.1",
+    "underscore": ">= 1.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "readme": "# groc\n\nGroc takes your _documented_ code, and in an admission that people aren't machines, generates\ndocumentation that follows the spirit of literate programming.  Take a look at the\n[self-generated documentation](http://nevir.github.com/groc/), and see if it appeals to you!\n\nIt is very heavily influenced by [Jeremy Ashkenas](https://github.com/jashkenas)'\n[docco](http://jashkenas.github.com/docco/), and is an attempt to further enhance the idea (thus,\ngroc can't tout the same quick 'n dirty principles of docco).\n\n\n## What does it give you?\n\nGroc will:\n\n* Generate documentation from your source code, by displaying your\n  [Markdown](http://daringfireball.net/projects/markdown/) formatted comments next to the code\n  fragments that they document.\n\n* Submit your project's documentation to the [github pages](http://pages.github.com/) for your\n  project.\n\n* Generate a searchable table of contents for all documented files and headers within your project.\n\n* Gracefully handle complex hierarchies of source code across multiple folders.\n\n* Read a configuration file so that you don't have to think when you want your documentation built;\n  you just type `groc`.\n\n\n## How?\n\n### Installing groc\n\nGroc depends on [Node.js](http://nodejs.org/) and [Pygments](http://pygments.org/).  Once you have\nthose installed - and assuming that your node install came with [npm](http://npmjs.org/) - you can\ninstall groc via:\n\n    npm install -g groc\n\nFor those new to npm, `-g` indicates that you want groc installed as a global command for your\nenvironment.  You may need to prefix the command with sudo, depending on how you installed node.\n\n\n### Using groc (CLI)\n\nTo generate documentation, just point groc to source files that you want docs for:\n\n    groc *.rb\n\nGroc will also handle extended globbing syntax if you quote arguments:\n\n    groc \"lib/**/*.coffee\" README.md\n\nBy default, groc will drop the generated documentation in the `doc/` folder of your project, and it\nwill treat `README.md` as the index.  Take a look at your generated docs, and see if everything is\nin order!\n\nOnce you are pleased with the output, you can push your docs to your github pages branch:\n\n    groc --github \"lib/**/*.coffee\" README.md\n\nGroc will automagically create and push the `gh-pages` branch if it is missing.\n\nThere are [additional options](http://nevir.github.com/groc/cli.html#cli-options) supported by\ngroc, if you are interested.\n\n\n### Configuring groc (.groc.json)\n\nGroc supports a simple JSON configuration format once you know the config values that appeal to you.\n\nCreate a `.groc.json` file in your project root, where each key maps to an option you would pass to\nthe `groc` command.  File names and globs are defined as an array with the key `glob`.  For\nexample, groc's own configuration is:\n\n    {\n      \"glob\": [\"lib/**/*.coffee\", \"README.md\", \"lib/styles/*/style.sass\", \"lib/styles/*/*.jade\"],\n      \"github\": true\n    }\n\nFrom now on, if you call `groc` without any arguments, it will use your pre-defined configuration.\n\n\n## Literate programming?\n\n[Literate programming](http://en.wikipedia.org/wiki/Literate_programming) is a programming\nmethodology coined by [Donald Knuth](http://en.wikipedia.org/wiki/Donald_Knuth).  The primary tenet\nis that you write a program so that the structure of both the code and documentation align with\nyour mental model of its behaviors and processes.\n\nGroc aims to provide a happy medium where you can freely write your source files as structured\ndocuments, while not going out of your way to restructure the code to fit the documentation.\nHere are some suggested guidelines to follow when writing your code:\n\n* Try to keep the size of each source file down.  It is helpful if each file fulfills a specific\n  feature of your application or library.\n\n* Rather than commenting individual lines of code, write comments that explain the _behavior_ of a\n  given method or code block.  Take advantage of the fact that comments can span that method.\n\n* Make gratuitous use of lists when explaining processes; step by step explanations are extremely\n  easy to follow!\n\n* Break each source file into sections via headers.  Don't be afraid to split source into even\n  smaller files if it makes them more readable.\n\nWriting documentation is _hard_; hopefully groc helps to streamline the process for you!\n\n\n## Known Issues\n\n* Groc does not fare well with files that have very long line lengths (minimized\n  JavaScript being the prime offender).  Make sure that you exclude them!\n\n\n## What's in the works?\n\nGroc wants to:\n\n* [Fully support hand-held viewing of documentation](https://github.com/nevir/groc/issues/1).  It\n  can almost do this today, but the table of contents is horribly broken in the mobile view.\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/nevir/groc/issues"
+  },
+  "_id": "groc@0.4.0",
+  "_from": "groc@"
+}
