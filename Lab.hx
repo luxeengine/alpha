@@ -24,12 +24,12 @@ class Lab {
         return renderer.load_texture(_id, _onloaded);
     }
 
-    public static function addGeometry(geom:Geometry) {
-        renderer.default_batcher.add(geom);
+    public static function addGeometry(_geom:Geometry) {
+        renderer.default_batcher.add(_geom);
     } 
     
-    public static function removeGeometry(geom:Geometry) {
-        renderer.default_batcher.remove(geom);
+    public static function removeGeometry(_geom:Geometry) {
+        renderer.default_batcher.remove(_geom);
     } 
 
 
