@@ -20,6 +20,7 @@ class Sprite {
     @:isVar public var color(default,set) : Color;
     @:isVar public var visible(default,set) : Bool;
     @:isVar public var rotation(default,set) : Float = 0.0;
+    @:isVar public var centered(default,set) : Bool = true;
 
     public var id : String;
 
@@ -39,6 +40,10 @@ class Sprite {
 //texture
         if(options.texture != null) {
             texture = options.texture;
+        }
+//centered
+        if(options.centered != null) {
+            centered = options.centered;
         }
 //position
         if(options.pos != null) {
@@ -77,8 +82,7 @@ class Sprite {
                 size = new Vector(64,64); 
             } //texture !=null
 
-        }
-
+        }   
 
     } //new
 
@@ -168,6 +172,11 @@ class Sprite {
 
     } //set_color
 
+//Centered 
+
+    public function set_centered(_c:Bool) : Bool {
+        return centered = _c;
+    }
 //Rotation 
     
     public function set_rotation(_r:Float) : Float {
@@ -194,10 +203,6 @@ class Sprite {
     }
 
     public function set_pos(_p:Vector) : Vector {
-            //careful
-        if(pos == null) {
-            return pos = _p;
-        }
 
             //careful
         if(geometry != null) {
