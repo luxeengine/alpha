@@ -20,7 +20,8 @@ class Sprite {
     @:isVar public var size(default,default) : Vector;
     @:isVar public var color(default,set) : Color;
     @:isVar public var visible(default,set) : Bool;
-    @:isVar public var rotation(default,set) : Float = 0.0;
+    @:isVar public var rotation(get,set) : Float = 0.0;
+    @:isVar public var radians(default,set) : Float = 0.0;
     @:isVar public var centered(default,set) : Bool = true;
     @:isVar public var origin(default,set) : Vector;
     @:isVar public var uv(default,set) : Rectangle;
@@ -221,12 +222,22 @@ class Sprite {
     } 
 //Rotation 
     
+    public function get_rotation() : Float {
+        return Maths.radToDeg(radians);
+    }
+
     public function set_rotation(_r:Float) : Float {
-            //transform the geometry
-            if(geometry != null) {
-                geometry.rotate(new Vector(0,0, Maths.degToRad(_r) ));
-            }
+        radians = Maths.degToRad(_r);
         return rotation = _r;
+    }
+
+    public function set_radians(_r:Float) : Float {
+        var _diff = _r - radians;
+            //transform the geometry
+        if(geometry != null) {
+            geometry.rotate(new Vector(0,0,_diff));
+        }
+        return radians = _r;
     }
 
 //Position properties
