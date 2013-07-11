@@ -1,5 +1,8 @@
 package lab;
 
+import lab.Vector;
+
+import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Texture;
 import phoenix.Vector;
@@ -16,6 +19,7 @@ class Sprite {
     @:isVar public var size(default,default) : Vector;
     @:isVar public var color(default,set) : Color;
     @:isVar public var visible(default,set) : Bool;
+    @:isVar public var rotation(default,set) : Float = 0.0;
 
     public var id : String;
 
@@ -164,6 +168,15 @@ class Sprite {
 
     } //set_color
 
+//Rotation 
+    
+    public function set_rotation(_r:Float) : Float {
+            //transform the geometry
+            if(geometry != null) {
+                geometry.rotate(new Vector(0,0, Maths.degToRad(_r) ));
+            }
+        return rotation = _r;
+    }
 
 //Position properties
     

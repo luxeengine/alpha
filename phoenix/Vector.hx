@@ -25,13 +25,6 @@ class Vector implements Dynamic {
 		w = _w;
 	}
 
-	@:communitative @:op(A + B) static public function _add(lhs:Vector, rhs:Vector) : Vector {
-		return lhs.add(rhs);
-	}
-	
-	@:communitative @:op(A - B) static public function _subtract(lhs:Vector, rhs:Vector) : Vector {
-		return lhs.subtract(rhs);
-	}
 	
 	public function set (?_x:Float, ?_y:Float, ?_z:Float) : Vector {
 		
@@ -84,6 +77,13 @@ class Vector implements Dynamic {
 			a.z - b.z
 		);
 	}
+	public static function Add(a:Vector, b:Vector) {
+		return new Vector(
+			a.x + b.x,
+			a.y + b.y,
+			a.z + b.z
+		);
+	}
 
 	public function subtract(other:Vector) {
 
@@ -94,6 +94,27 @@ class Vector implements Dynamic {
 		x -= other.x;
         y -= other.y;
         z -= other.z;
+
+        return this;
+	}
+
+	public static function Multiply(a:Vector, b:Vector) {
+		return new Vector(
+			a.x * b.x,
+			a.y * b.y,
+			a.z * b.z
+		);
+	}
+
+	public function multiply(other:Vector) {
+
+		if(other == null) {
+			throw "vector.multiply other was handed in as null";
+		}
+
+		x *= other.x;
+        y *= other.y;
+        z *= other.z;
 
         return this;
 	}

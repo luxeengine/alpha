@@ -88,7 +88,7 @@ class Texture extends Resource {
 
         if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
         if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
-        
+
         //Now we can bind it
         bind();
             //And send GL the data
@@ -104,7 +104,7 @@ class Texture extends Resource {
 
         //Create from the bytes from Assets.getBytes() or other method
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
-        
+        var start = haxe.Timer.stamp();
         // trace(_asset_bytes);
 
         var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
@@ -139,7 +139,9 @@ class Texture extends Resource {
 
             //ARGB to RGBA cos format 
             //todo : do inside nme side.
+        
         for(i in 0 ... image_length) {
+            // data[i] = ((data[i]>>24) | (data[i]<<8)); 
 
             var a = data[i*4+0];
             var r = data[i*4+1];
@@ -154,6 +156,7 @@ class Texture extends Resource {
             data[i*4+3] = a;
         }
 
+
             //Now we can bind it
         bind();
             //And send GL the data
@@ -166,6 +169,7 @@ class Texture extends Resource {
 
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
+        trace('create_from_bytes took ' + (haxe.Timer.stamp() - start));
     }
 
         //THIS IS NOT USED ATM

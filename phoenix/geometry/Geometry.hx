@@ -1,6 +1,7 @@
 package phoenix.geometry;
 
 import phoenix.geometry.Vertex;
+import phoenix.Matrix4;
 import phoenix.Vector;
 import phoenix.Shader;
 import phoenix.Texture;
@@ -11,11 +12,13 @@ import lime.utils.Float32Array;
 import lime.utils.IMemoryRange;
 
 
+
 class Geometry {
 
 	public var vertices : Array<Vertex>;
 
 	public var locked : Bool = false;
+	public var matrix : Matrix4; //used for rotation and more
 
 	public var state : GeometryState;
 	public var dropped : Bool = false;
@@ -44,6 +47,9 @@ class Geometry {
 		pos = new Vector();
 		origin = new Vector();
 
+		matrix = new Matrix4();
+		matrix = matrix.identity();
+
 		if(options != null) {
 			
 			state.depth = options.depth == null ? state.depth : options.depth;
@@ -58,7 +64,6 @@ class Geometry {
 			immediate = (options.immediate == null) ? true : options.immediate;
 			
 			color = (options.color == null) ? new Color() : options.color;
-
 			// trace("creating geometry " + uuid +  " \t\t " + options );
 		}
 
@@ -120,6 +125,15 @@ class Geometry {
 
 
 		}
+	}
+
+	public function rotate( _offset:Vector ) {
+		translate(pos.inverted);
+		matrix.setRotationFromEuler(_offset);
+		for(v in vertices) {
+			matrix.multiplyVector3(v.pos);
+		}
+		translate(pos);
 	}
 
 	public function translate( _offset:Vector ) {
