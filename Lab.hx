@@ -10,6 +10,7 @@ class Lab {
     public static var camera : phoenix.Camera;
     public static var resources : phoenix.ResourceManager;
     public static var utils : lab.utils.Utils;
+    public static var audio : lab.Audio;
 
     public static function shutdown() {
         core.lime.shutdown();

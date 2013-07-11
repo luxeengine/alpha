@@ -113,6 +113,7 @@ class Core {
             renderer.startup();
         }
 
+        Lab.audio = audio;
         Lab.camera = renderer.default_camera;
         Lab.resources = renderer.resource_manager;
     }
