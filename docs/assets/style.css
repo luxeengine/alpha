@@ -1007,7 +1007,7 @@ nav.searching .toc .discloser{
     display:none
 }
 .comments .wrapper{
-    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:0.9375em;line-height:1.35
+    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:1.1375em;line-height:1.35
 }
 .comments .wrapper h1,.comments .wrapper h2,.comments .wrapper h3,.comments .wrapper h4,.comments .wrapper h5,.comments .wrapper h6{
     font-family:"HelveticaNeue-UltraLight","Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:100;letter-spacing:0.0625em;line-height:1.75
@@ -1091,7 +1091,7 @@ html{
     
 }
 #meta&gt;*{
-    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:0.9375em;line-height:1.35;text-shadow:#272c30 1px 1px 0
+    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:1.1375em;line-height:1.35;text-shadow:#272c30 1px 1px 0
 }
 #meta&gt;*,#meta&gt;* a{
     color:#9faab7
@@ -1100,7 +1100,7 @@ html{
     text-decoration:none
 }
 .comments .wrapper{
-    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:0.9375em;line-height:1.35;text-shadow:#fff 1px 1px 0;color:#4a525a
+    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:1.1375em;line-height:1.35;text-shadow:#fff 1px 1px 0;color:#4a525a
 }
 .code .wrapper{
     font-family:"Droid Sans Mono",Menlo,Monaco,monospace;font-size:0.75em;line-height:1.4;text-shadow:#272c30 1px 1px 0;color:#cbd1d8
@@ -1253,7 +1253,7 @@ nav{
     text-shadow:#f0f0f0 1px 1px 0;color:#4a525a
 }
 nav .tools,nav .toc{
-    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:0.9375em;line-height:1.35
+    font-family:"Helvetica Neue",Helvetica,"Droid Sans",sans-serif;font-weight:300;font-size:1.1375em;line-height:1.35
 }
 nav .tools{
     -webkit-box-shadow:rgba(0,0,0,0.3) 0 0 0.5em 0.1em;-moz-box-shadow:rgba(0,0,0,0.3) 0 0 0.5em 0.1em;box-shadow:rgba(0,0,0,0.3) 0 0 0.5em 0.1em;background:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255,255,255,0.9)), color-stop(100%, rgba(205,205,205,0.9)));background:-webkit-linear-gradient(top, rgba(255,255,255,0.9),rgba(205,205,205,0.9));background:-moz-linear-gradient(top, rgba(255,255,255,0.9),rgba(205,205,205,0.9));background:-o-linear-gradient(top, rgba(255,255,255,0.9),rgba(205,205,205,0.9));background:linear-gradient(top, rgba(255,255,255,0.9),rgba(205,205,205,0.9));-moz-border-radius-bottomleft:0.4em;-webkit-border-bottom-left-radius:0.4em;border-bottom-left-radius:0.4em;border-bottom:1px solid #4a525a;border-left:1px solid #4a525a
