@@ -1,6 +1,5 @@
 package phoenix.geometry;
 
-import lab.Rectangle;
 import lab.Vector;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.TextureCoord;
@@ -16,19 +15,19 @@ class QuadGeometry extends Geometry {
 
 	}
 
-    public function uv( _rect:Rectangle ) {
+    public function uv( _rect:lab.Rectangle ) {
 
         if(texture == null) return;
 
         var tl = new Vector(_rect.x/texture.width, _rect.y/texture.height);
         var sz = new Vector(_rect.w/texture.width, _rect.h/texture.height);
 
-        vertices[0].uv[0] = new TextureCoord( _rect.x , _rect.y );
-        vertices[1].uv[0] = new TextureCoord( _rect.x + _rect.w , _rect.y );
-        vertices[2].uv[0] = new TextureCoord( _rect.x + _rect.w , _rect.y + _rect.h );
-        vertices[3].uv[0] = new TextureCoord( _rect.x , _rect.y + _rect.h );
-        vertices[4].uv[0] = new TextureCoord( _rect.x , _rect.y );
-        vertices[5].uv[0] = new TextureCoord( _rect.x + _rect.w , _rect.y + _rect.h );
+        vertices[0].uv[0] = new TextureCoord( tl.x , tl.y );
+        vertices[1].uv[0] = new TextureCoord( tl.x + sz.x , tl.y );
+        vertices[2].uv[0] = new TextureCoord( tl.x + sz.x , tl.y + sz.y );
+        vertices[3].uv[0] = new TextureCoord( tl.x , tl.y + sz.y );
+        vertices[4].uv[0] = new TextureCoord( tl.x , tl.y );
+        vertices[5].uv[0] = new TextureCoord( tl.x + sz.x , tl.y + sz.y );
     }
 
  	public function set( quad:Dynamic ) {
