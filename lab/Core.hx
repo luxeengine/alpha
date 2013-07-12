@@ -34,6 +34,7 @@ class Core {
 	public var input 	: Input;
     public var audio    : Audio;
 	public var renderer : Dynamic;
+    public var screen   : lab.Rectangle; //todo
 
 //flags
 	
@@ -78,8 +79,11 @@ class Core {
     } //on_main_frame_created
 
     public function startup() {
-		//Create the subsystems
 
+            //Cache the settings locally
+        config = lime.config;
+
+            //Create the subsystems
 		_debug(':: haxelab :: Creating subsystems.');
 
 			//Order is important here
@@ -91,14 +95,16 @@ class Core {
 		audio = new Audio( this );	
 		input = new Input( this );
 
-        if(lime.config.renderer == null) {
+        if(config.renderer == null) {
             renderer = new Renderer( this );
         } else {
-            renderer = Type.createInstance(lime.config.renderer, [this]);
+            renderer = Type.createInstance(config.renderer, [this]);
         }
 
             //assign the globals
-        Lab.renderer = renderer;        
+        Lab.renderer = renderer;   
+            //store the size for access from API
+        screen = new lab.Rectangle( 0,0, config.width, config.height );
 
 			//Now make sure they start up
 

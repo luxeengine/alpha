@@ -1,5 +1,6 @@
 package ;
 
+import lab.Rectangle;
 import phoenix.geometry.Geometry;
 import phoenix.Texture;
 
@@ -11,6 +12,9 @@ class Lab {
     public static var resources : phoenix.ResourceManager;
     public static var utils : lab.utils.Utils;
     public static var audio : lab.Audio;
+
+    @:isVar public static var screen(get, never) : Rectangle;
+    public static function get_screen() { return core.screen; }
 
     public static function shutdown() {
         core.lime.shutdown();

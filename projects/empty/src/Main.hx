@@ -146,7 +146,7 @@ class Main extends lab.Game {
         _batch.view.pos.y = 0.3;
         _batch.view.pos.z = -0.90;    
 
-        _batch.view.set_perspective({fov:95, aspect:lab.lime.config.width/lab.lime.config.height });
+        _batch.view.set_perspective({fov:95, aspect:lab.config.width/lab.config.height });
 
         add_mesh('assets/ship.obj', tex2, _batch);
         add_mesh('assets/cube.obj', tex, _batch);

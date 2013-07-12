@@ -8,6 +8,13 @@ class GeometryUtils {
         lab = _lab;
     }
 
+    public function random_point_in_unit_circle() : Vector {
+        var t = 2*Math.PI*Math.random();
+        var u = Math.random()+Math.random();
+        var r = (u > 1.0) ? (2.0 - u) : u;
+        return new Vector( Math.cos(t), Math.cos(u) );
+    }
+
     public function point_in_polygon(_point:Vector, _offset:Vector, _verts:Array<Vector> ) : Bool {
 
         if(_offset == null) _offset = new Vector();
