@@ -10,7 +10,7 @@
 [Color](lab.Color.html)   
 [Rectangle](lab.Rectangle.html)   
 [Vector](lab.Vector.html)   
-[Vec](lab.Vec.html)   
+[Vec](lab.Vector.html)   
 
 ### Public Types
 

@@ -9,6 +9,7 @@
 		
 		<haxelib name="lime" />
 		<haxelib name="format" />
+		<haxelib name="actuate" />
 
 		<!-- for now in initial dev phoenix will be underneath lab -->
 		<!-- but it is possible to use it as a haxelib already -->
