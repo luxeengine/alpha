@@ -252,11 +252,11 @@ class Batcher {
             //Reset the draw count
         draw_calls = 0;
 
-            //Set the viewport
-        GL.viewport( 0, 0, 960, 640 );
-            
-            //apply camera
+            //update camera if it changes anything
         view.process();
+
+            //Set the viewport to the view todo:this x any y should be from the camera?
+        GL.viewport( 0, 0, cast view.size.x, cast view.size.y );
 
             //apply geometries
         batch( persist_immediate );

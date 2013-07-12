@@ -43,8 +43,8 @@ class Renderer {
             return a.compare(b);
         } );
 
-            //The default view ; todo : unhardcode
-        default_camera = new Camera( ProjectionType.ortho, { x2:960, y2:640 } );
+            //The default view
+        default_camera = new Camera( ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h } );
 
             //create the default rendering shader
         default_shader = new Shader( resource_manager );  

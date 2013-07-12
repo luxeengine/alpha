@@ -21,6 +21,7 @@ class Camera {
     public var pos : Vector;
     public var rotation : Vector;
     public var scale: Vector;
+    public var size: Vector;
 
     public var view_matrix : Matrix3D;
     public var projection_matrix : Matrix4;
@@ -40,6 +41,7 @@ class Camera {
         pos = new Vector(0,0,0);
         rotation = new Vector(0,0,0);
         scale = new Vector(1,1,1);
+        size = new Vector(Lab.screen.w, Lab.screen.h);
 
         up = new Vector(0,1,0);
         
@@ -51,7 +53,7 @@ class Camera {
 
         ortho_options = {
             x1 : 0, y1 : 0,
-            x2 : 0, y2 : 0,
+            x2 : size.x, y2 : size.y,
             near : 1000, 
             far: -1000
         };        
