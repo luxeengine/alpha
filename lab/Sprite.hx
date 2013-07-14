@@ -216,7 +216,6 @@ class Sprite {
 //Size
 
     public function set_size( _v:Vector ) : Vector {  
-        
 
             //resize the mesh
         if(geometry != null) {
@@ -225,15 +224,16 @@ class Sprite {
             if(centered) {
                 geometry.origin = new Vector(_v.x/2, _v.y/2);                
             }
-              
-            geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
-        }
 
+            geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
+
+        } //if geometry != null
 
             //the rotation needs to be re-applied,
             //so we reset the underlying radian value 
             //and set the rotation, which will reapply the value
         radians = 0;
+            //update the rotation
         set_rotation(rotation);
 
             //done
