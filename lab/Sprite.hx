@@ -41,7 +41,7 @@ class Sprite {
             //create the position value so we can exploit it a bit
         pos = new Vector();
         origin = new Vector();
-        scale = new Vector();
+        scale = new Vector(1,1);
         color = new Color();
 
 //texture
