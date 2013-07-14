@@ -10,23 +10,23 @@ abstract Vec(Vector) from Vector to Vector {
     }
 //multiply    
     @:communitative @:op(A * B) static public function _multiply(lhs:Vec, rhs:Vec) : Vec {
-        return Vector.Multiply(lhs, rhs);
+        return Vector.MultiplyVector(lhs, rhs);
     }
     @:communitative @:op(A * B) static public function _multiply_scalar(lhs:Vec, rhs:Float) : Vec {
-        return Vector.MultiplyScalar(lhs, rhs);
+        return Vector.Multiply(lhs, rhs);
     }
     @:communitative @:op(A * B) static public function _multiply_scalar_int(lhs:Vec, rhs:Int) : Vec {
-        return Vector.MultiplyScalar(lhs, rhs);
+        return Vector.Multiply(lhs, rhs);
     }
 // divide
     @:communitative @:op(A / B) static public function _divide(lhs:Vec, rhs:Vec) : Vec {
-        return Vector.Divide(lhs, rhs);
+        return Vector.DivideVector(lhs, rhs);
     }
     @:communitative @:op(A / B) static public function _divide_scalar(lhs:Vec, rhs:Float) : Vec {
-        return Vector.DivideScalar(lhs, rhs);
+        return Vector.Divide(lhs, rhs);
     }
     @:communitative @:op(A / B) static public function _divide_scalar_int(lhs:Vec, rhs:Int) : Vec {
-        return Vector.DivideScalar(lhs, rhs);
+        return Vector.Divide(lhs, rhs);
     }
 // add 
     @:communitative @:op(A + B) static public function _add(lhs:Vec, rhs:Vec) : Vec {
@@ -137,7 +137,7 @@ class Vector implements Dynamic {
 		);
 	}
 
-	public static function Multiply(a:Vector, b:Vector) {
+	public static function MultiplyVector(a:Vector, b:Vector) : Vector {
 		return new Vector(
 			a.x * b.x,
 			a.y * b.y,
@@ -145,7 +145,7 @@ class Vector implements Dynamic {
 		);
 	}
 
-	public static function Divide(a:Vector, b:Vector) {
+	public static function DivideVector(a:Vector, b:Vector) {
 		return new Vector(
 			a.x / b.x,
 			a.y / b.y,
@@ -153,7 +153,7 @@ class Vector implements Dynamic {
 		);
 	}
 
-	public static function MultiplyScalar(a:Vector, b:Float) {
+	public static function Multiply(a:Vector, b:Float) {
 		return new Vector(
 			a.x * b,
 			a.y * b,
@@ -161,7 +161,7 @@ class Vector implements Dynamic {
 		);
 	}
 
-	public static function DivideScalar(a:Vector, b:Float) {
+	public static function Divide(a:Vector, b:Float) {
 		return new Vector(
 			a.x / b,
 			a.y / b,
@@ -278,7 +278,7 @@ class Vector implements Dynamic {
 	}
 
 	public function get_normalized() {
-		return Vector.DivideScalar( this, length );
+		return Vector.Divide( this, length );
 	}
 
 	public function normalize() {

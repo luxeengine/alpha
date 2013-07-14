@@ -221,13 +221,14 @@ class Sprite {
             //resize the mesh
         if(geometry != null) {
                 //todo
-                //first, fix the origin 
+                //first, update the origin 
             if(centered) {
-                geometry.origin = new Vector(_v.x/2, _v.y/2);
-            }          
+                geometry.origin = new Vector(_v.x/2, _v.y/2);                
+            }
               
             geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
         }
+
 
             //the rotation needs to be re-applied,
             //so we reset the underlying radian value 
