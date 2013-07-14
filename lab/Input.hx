@@ -6,9 +6,10 @@ class Input {
     
     public var core : Core;
     public function new( _core:Core ) { core = _core; }
-
+    public static var Keys : lime.utils.Keys;
 
     public function startup() {
+        Keys = new lime.utils.Keys();
         core._debug(':: haxelab :: \t Input Initialized.');
     }
 

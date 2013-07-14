@@ -6,13 +6,15 @@ import phoenix.Texture;
 
 
 class Lab {
-    public static var core : lab.Core;
     public static var dt : Float = 0.016;
-    public static var renderer : phoenix.Renderer;
-    public static var camera : phoenix.Camera;
-    public static var resources : phoenix.ResourceManager;
-    public static var utils : lab.utils.Utils;
+    public static var core : lab.Core;
     public static var audio : lab.Audio;
+    public static var input : lab.Input;
+    public static var utils : lab.utils.Utils;
+
+    public static var camera : phoenix.Camera;
+    public static var renderer : phoenix.Renderer;
+    public static var resources : phoenix.ResourceManager;    
 
     @:isVar public static var screen(get, never) : Rectangle;
     public static function get_screen() { return core.screen; }
