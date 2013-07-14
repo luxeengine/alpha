@@ -141,11 +141,13 @@ class Geometry {
 		//todo use origin!
 	public function scale( _offset:Vector ) {
 		translate(pos.inverted);
+		
 		for(v in vertices) {
 			v.pos.x *= _offset.x;
 			v.pos.y *= _offset.y;
 			v.pos.z *= _offset.z;
 		}
+
 		translate(pos);
 	}
 
