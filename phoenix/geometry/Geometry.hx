@@ -127,11 +127,24 @@ class Geometry {
 		}
 	}
 
+		//todo use origin!
 	public function rotate( _offset:Vector ) {
 		translate(pos.inverted);
-		matrix.setRotationFromEuler(_offset);
+
+			matrix.setRotationFromEuler(_offset);
+			for(v in vertices) {
+				matrix.multiplyVector3(v.pos);
+			}
+
+		translate(pos);
+	}
+		//todo use origin!
+	public function scale( _offset:Vector ) {
+		translate(pos.inverted);
 		for(v in vertices) {
-			matrix.multiplyVector3(v.pos);
+			v.pos.x *= _offset.x;
+			v.pos.y *= _offset.y;
+			v.pos.z *= _offset.z;
 		}
 		translate(pos);
 	}

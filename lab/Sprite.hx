@@ -14,17 +14,18 @@ import Lab;
 
 class Sprite {
 
-    @:isVar public var geometry(default,default) : QuadGeometry;
-    @:isVar public var texture(default,default) : Texture;
-    @:isVar public var pos(default,set) : Vector;
-    @:isVar public var size(default,default) : Vector;
-    @:isVar public var color(default,set) : Color;
-    @:isVar public var visible(default,set) : Bool;
-    @:isVar public var rotation(get,set) : Float = 0.0;
-    @:isVar public var radians(default,set) : Float = 0.0;
-    @:isVar public var centered(default,set) : Bool = true;
-    @:isVar public var origin(default,set) : Vector;
-    @:isVar public var uv(default,set) : Rectangle;
+    @:isVar public var geometry     (default,default)   : QuadGeometry;
+    @:isVar public var texture      (default,default)   : Texture;
+    @:isVar public var pos          (default,set    )   : Vector;
+    @:isVar public var size         (default,set    )   : Vector;
+    @:isVar public var scale        (default,set    )   : Vector;
+    @:isVar public var color        (default,set    )   : Color;
+    @:isVar public var visible      (default,set    )   : Bool;
+    @:isVar public var rotation     (get    ,set    )   : Float = 0.0;
+    @:isVar public var radians      (default,set    )   : Float = 0.0;
+    @:isVar public var centered     (default,set    )   : Bool = true;
+    @:isVar public var origin       (default,set    )   : Vector;
+    @:isVar public var uv           (default,set    )   : Rectangle;
 
     public var id : String;
 
@@ -211,6 +212,43 @@ class Sprite {
 
         return centered = _c;
     }
+
+//Size
+
+    public function set_size( _v:Vector ) : Vector {  
+        
+
+            //resize the mesh
+        if(geometry != null) {
+                //todo
+                //first, fix the origin 
+            if(centered) {
+                geometry.origin = new Vector(_v.x/2, _v.y/2);
+            }          
+              
+            geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
+        }
+
+            //the rotation needs to be re-applied,
+            //so we reset the underlying radian value 
+            //and set the rotation, which will reapply the value
+        radians = 0;
+        set_rotation(rotation);
+
+            //done
+        return size = _v;
+    } //set_size
+
+//Scale
+
+    public function set_scale( _v:Vector ) : Vector {  
+        if(geometry != null) {
+            var diff = Vector.Subtract(_v, scale);
+            geometry.scale( diff );
+        }
+
+        return scale = _v;
+    } //set_scale
 
 //UV / source rect
 

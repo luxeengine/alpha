@@ -106,6 +106,14 @@ class Vector implements Dynamic {
 		);
 	}
 
+	public static function MultiplyScalar(a:Vector, b:Float) {
+		return new Vector(
+			a.x * b,
+			a.y * b,
+			a.z * b
+		);
+	}
+
 	public function multiply(other:Vector) {
 
 		if(other == null) {
@@ -150,7 +158,7 @@ class Vector implements Dynamic {
 
 	}
 
-	 public function multiply_ ( v:Float ) {
+	 public function multiplyScalar ( v:Float ) {
 
 		x *= v;
 		y *= v;
@@ -159,7 +167,7 @@ class Vector implements Dynamic {
 		return this;
 	}
 
-	public function divide_(v:Float) : Vector{
+	public function divideScalar (v:Float) : Vector {
 
 		if ( v != 0 ) {
 

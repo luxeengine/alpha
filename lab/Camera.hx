@@ -29,6 +29,7 @@ class Cam2D {
 		view_position = view.pos;
 	}
 
+
 	public function set_pos(v:Vector) : Vector {		
 		view_position = v;
 		return pos = v;

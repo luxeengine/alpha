@@ -9,9 +9,9 @@ import phoenix.Vector;
 class QuadGeometry extends Geometry {
 
 	public function new( options : Dynamic ) {
-			
+
 		super(options);
-		set(options);
+		set( new Rectangle(options.x, options.y, options.width, options.height) );
 
 	}
 
@@ -30,7 +30,22 @@ class QuadGeometry extends Geometry {
         vertices[5].uv[0] = new TextureCoord( tl.x + sz.x , tl.y + sz.y );
     }
 
- 	public function set( quad:Dynamic ) {
+    public function resize( quad:lab.Rectangle ) {
+
+        vertices[0].pos = new Vector( origin.x, origin.y );
+        vertices[1].pos = new Vector( origin.x+quad.w, origin.y );
+        vertices[2].pos = new Vector( origin.x+quad.w, origin.y+quad.h );
+
+        vertices[3].pos = new Vector( origin.x, origin.y+quad.h );
+        vertices[4].pos = new Vector( origin.x, origin.y );
+        vertices[5].pos = new Vector( origin.x+quad.w , origin.y+quad.h );
+
+        // translate(pos);
+        trace(origin);
+        trace(pos);
+    }
+
+ 	public function set( quad:lab.Rectangle ) {
  		
  		vertices.splice(0, vertices.length);        
 
@@ -42,21 +57,21 @@ class QuadGeometry extends Geometry {
         var vert0 : Vertex = new Vertex( new Vector( origin.x, origin.y ) );
            vert0.uv[0] = new TextureCoord(0,0);
 
-        var vert1 : Vertex = new Vertex( new Vector( origin.x+quad.width, origin.y ) );
+        var vert1 : Vertex = new Vertex( new Vector( origin.x+quad.w, origin.y ) );
            vert1.uv[0] = new TextureCoord(1,0);
 
-        var vert2 : Vertex = new Vertex( new Vector( origin.x+quad.width, origin.y+quad.height ) );
+        var vert2 : Vertex = new Vertex( new Vector( origin.x+quad.w, origin.y+quad.h ) );
             vert2.uv[0] = new TextureCoord(1,1);
 
            //Second triangle
 
-        var vert3 : Vertex = new Vertex( new Vector( origin.x , origin.y+quad.height ) );
+        var vert3 : Vertex = new Vertex( new Vector( origin.x , origin.y+quad.h ) );
             vert3.uv[0] = new TextureCoord(0,1);
 
         var vert4 : Vertex = new Vertex( new Vector( origin.x , origin.y ) );
             vert4.uv[0] = new TextureCoord(0,0);
 
-        var vert5 : Vertex = new Vertex( new Vector( origin.x+quad.width , origin.y+quad.height ) );
+        var vert5 : Vertex = new Vertex( new Vector( origin.x+quad.w , origin.y+quad.h ) );
             vert5.uv[0] = new TextureCoord(1,1);
 
            //Add to the list
