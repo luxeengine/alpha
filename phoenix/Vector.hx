@@ -114,6 +114,14 @@ class Vector implements Dynamic {
 		);
 	}
 
+	public static function DivideScalar(a:Vector, b:Float) {
+		return new Vector(
+			a.x / b,
+			a.y / b,
+			a.z / b
+		);
+	}
+
 	public function multiply(other:Vector) {
 
 		if(other == null) {
