@@ -245,8 +245,10 @@ class Sprite {
 
     public function set_scale( _v:Vector ) : Vector {  
         if(geometry != null) {
-            var diff = Vector.Subtract(_v, scale);
-            geometry.scale( diff );
+                //undo any scaling we had before
+            geometry.scale( new Vector(1/scale.x, 1/scale.y) );                
+                //apply new scaling
+            geometry.scale( _v );
         }
 
         return scale = _v;
