@@ -7,9 +7,15 @@ class Input {
     public var core : Core;
     public function new( _core:Core ) { core = _core; }
     public static var Keys : lime.utils.Keys;
+    public static var Gamepad : lime.utils.Gamepad;
 
     public function startup() {
         Keys = new lime.utils.Keys();
+        Gamepad = new lime.utils.Gamepad();
+        
+            //Default to 360 for now
+        Gamepage.apply_360_profile();
+
         core._debug(':: haxelab :: \t Input Initialized.');
     }
 
@@ -18,7 +24,7 @@ class Input {
     }
 
     public function process() {
-        
+        //todo, poll for gamepad disconnects and reconnects
     }    
 
 
