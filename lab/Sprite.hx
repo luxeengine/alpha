@@ -244,14 +244,18 @@ class Sprite {
 //Scale
 
     public function set_scale( _v:Vector ) : Vector {  
-        if(geometry != null) {
-                //undo any scaling we had before
-            geometry.scale( new Vector(1/scale.x, 1/scale.y) );                
-                //apply new scaling
-            geometry.scale( _v );
-        }
 
-        return scale = _v;
+        if(geometry != null) {
+
+                //apply new scaling values
+            geometry.scale(new Vector(_v.x/scale.x, _v.y/scale.y));
+
+        } //geometry != null
+
+            //update the scale value
+        (scale == null) ? (scale = _v) : scale.set(_v.x, _v.y) ;
+
+        return scale;
     } //set_scale
 
 //UV / source rect

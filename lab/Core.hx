@@ -219,12 +219,14 @@ class Core {
     }
 
 //input events
+//keys
     public function onkeydown(e) {
         if(host.onkeydown != null) host.onkeydown(e);
     }
     public function onkeyup(e) {
         if(host.onkeyup != null) host.onkeyup(e);
     }
+//mouse
     public function onmousedown(e) {
         if(host.onmousedown != null) host.onmousedown(e);
     }
@@ -234,6 +236,23 @@ class Core {
     public function onmousemove(e) {
         if(host.onmousemove != null) host.onmousemove(e);
     }
+//joystick
+    public function onjoyaxismove(e) {
+        if(host.onjoyaxismove != null) host.onjoyaxismove(e);
+    }
+    public function onjoyballmove(e) {
+        if(host.onjoyballmove != null) host.onjoyballmove(e);
+    }
+    public function onjoyhatmove(e) {
+        if(host.onjoyhatmove != null) host.onjoyhatmove(e);
+    }    
+    public function onjoybuttondown(e) {
+        if(host.onjoybuttondown != null) host.onjoybuttondown(e);
+    }    
+    public function onjoybuttonup(e) {
+        if(host.onjoybuttonup != null) host.onjoybuttonup(e);
+    }
+
 //Noisy stuff
 
    		//temporary debugging with verbosity options
