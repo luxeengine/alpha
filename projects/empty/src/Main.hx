@@ -15,8 +15,6 @@ import lime.gl.GL;
 import format.obj.Reader;
 
 class Main extends lab.Game {
-    var dt : Float = 0;
-    var edt : Float = 0;
 
     var geom : QuadGeometry;
     var geom2 : QuadGeometry;
@@ -278,7 +276,7 @@ class Main extends lab.Game {
     public function onmouseup(e) {
     }
 
-    public function update() {
+    public function update(dt:Float) {
 
       // if(_left == true) {
       //   batch3d.view.pos.x -= 1 * dt;
@@ -322,10 +320,6 @@ class Main extends lab.Game {
         // expose the rotation vector for convenience
         cam3d.rotation.setEulerFromQuaternion( thequaternion );
         // object.rotation.setEulerFromQuaternion( object.quaternion, object.eulerOrder );
-
-
-      dt = edt - haxe.Timer.stamp();
-      edt = haxe.Timer.stamp();
     }
 
     public function shutdown() {

@@ -36,6 +36,10 @@ class Core {
 	public var renderer : Dynamic;
     public var screen   : lab.Rectangle; //todo
 
+//Delta times
+    private var end_dt : Float = 0;
+    public var dt : Float = 0;
+
 //flags
 	
 	   //if we have started a shutdown
@@ -183,8 +187,15 @@ class Core {
 
             //Update the game class for them
         if(host.update != null) {
-            host.update();
+            host.update(dt);
         }
+
+            //work out the last frame time
+        dt = end_dt - haxe.Timer.stamp();
+            //store the latest time frame
+        end_dt = haxe.Timer.stamp();
+            //store the value for the framework
+        Lab.dt = dt;
 
     } //update
 
