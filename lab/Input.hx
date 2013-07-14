@@ -14,7 +14,7 @@ class Input {
         Gamepad = new lime.utils.Gamepad();
         
             //Default to 360 for now
-        Gamepage.apply_360_profile();
+        Gamepad.apply_360_profile();
 
         core._debug(':: haxelab :: \t Input Initialized.');
     }
