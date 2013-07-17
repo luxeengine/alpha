@@ -7,6 +7,7 @@ import Lab;
 import lab.Audio;
 import lab.Events;
 import lab.Input;
+import lab.Input;
 import lab.Files;
 import lab.Debug;
 import lab.Time;
@@ -227,14 +228,24 @@ class Core {
         if(host.onkeyup != null) host.onkeyup(e);
     }
 //mouse
-    public function onmousedown(e) {
+    public function onmousedown(e : MouseEvent) {
         if(host.onmousedown != null) host.onmousedown(e);
     }
-    public function onmouseup(e) {
+    public function onmouseup(e : MouseEvent) {
         if(host.onmouseup != null) host.onmouseup(e);
     }
-    public function onmousemove(e) {
+    public function onmousemove(e : MouseEvent) {
         if(host.onmousemove != null) host.onmousemove(e);
+    }
+//touch
+    public function ontouchbegin(e : TouchEvent) {
+        if(host.ontouchbegin != null) host.ontouchbegin(e);
+    }
+    public function ontouchend(e : TouchEvent) {
+        if(host.ontouchend != null) host.ontouchend(e);
+    }
+    public function ontouchmove(e : TouchEvent) {
+        if(host.ontouchmove != null) host.ontouchmove(e);
     }
 //joystick
     public function onjoyaxismove(e) {

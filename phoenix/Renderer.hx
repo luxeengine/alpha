@@ -67,6 +67,10 @@ class Renderer {
         GL.enable(GL.DEPTH_TEST);
             // Accept fragment if it closer or equal away from the other
         GL.depthFunc(GL.LEQUAL);
+            //Clear the depth buffer
+        GL.clearDepth(1.0);
+
+        var s = GL.getFramebufferAttachmentParameter(GL.FRAMEBUFFER, GL.DEPTH_ATTACHMENT, GL.RENDERBUFFER_DEPTH_SIZE);
 
             //Enable blending
         GL.enable(GL.BLEND);

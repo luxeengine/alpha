@@ -270,6 +270,16 @@ class Main extends lab.Game {
 
     } 
 
+    public function ontouchbegin(e) {
+      trace(e);
+    }
+    public function ontouchend(e) {
+      trace(e);
+    }
+    public function ontouchmove(e) {
+      trace(e);
+    }
+
     public function onmousedown(e) {
     }
 

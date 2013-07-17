@@ -2,6 +2,10 @@ package lab;
 
 import lab.Core;
 
+typedef TouchEvent = lime.InputHandler.TouchEvent;
+typedef MouseEvent = lime.InputHandler.MouseEvent;
+typedef GamepadEvent = lime.InputHandler.GamepadEvent;
+
 class Input {
     
     public var core : Core;
@@ -47,31 +51,31 @@ class Input {
 
 //Mouse
     
-    public function mousemove(_event:Dynamic) {
+    public function mousemove(_event:MouseEvent) {
     }
 
-    public function mousedown(_event:Dynamic) {
+    public function mousedown(_event:MouseEvent) {
     }
 
-    public function mouseclick(_event:Dynamic) {
+    public function mouseclick(_event:MouseEvent) {
     }
 
-    public function mouseup(_event:Dynamic) {
+    public function mouseup(_event:MouseEvent) {
     }
 
 //Touch
 
     
-    public function touchbegin(_event:Dynamic) {
+    public function touchbegin(_event:TouchEvent) {
     }
 
-    public function touchmove(_event:Dynamic) {
+    public function touchmove(_event:TouchEvent) {
     }
 
-    public function touchend(_event:Dynamic) {
+    public function touchend(_event:TouchEvent) {
     }
 
-    public function touchtap(_event:Dynamic) {
+    public function touchtap(_event:TouchEvent) {
     }
 
 //Joystick
