@@ -9,6 +9,7 @@ class Lab {
     public static var dt : Float = 0.016;
     public static var core : lab.Core;
     public static var audio : lab.Audio;
+    public static var time : lab.Time;
     public static var input : lab.Input;
     public static var utils : lab.utils.Utils;
 
