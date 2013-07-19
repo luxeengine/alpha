@@ -1,5 +1,4 @@
 
-![Haxe](http://underscorediscovery.com/sven/images/haxe.png) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Logo](http://underscorediscovery.com/sven/images/logo.png)
 
 #[haxelab](../index.html)
@@ -25,10 +24,8 @@
 ### Public Interfaces
 
 [audio](lab.audio.html)   
-[debug](lab.debug.html)   
 [time](lab.time.html)   
 [events](lab.events.html)   
-[files](lab.files.html)   
 
 
 &nbsp;

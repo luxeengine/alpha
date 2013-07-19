@@ -1,12 +1,12 @@
 
-![Haxe](http://underscorediscovery.com/sven/images/haxe.png) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Logo](http://underscorediscovery.com/sven/images/logo.png)
 
 #[haxelab](../index.html)
 ###[Back to types](types.html)
 
+## Lab Audio API
 
-To create and play a sound, you can currently use : 
+To create and play a sound, you can use the following, for **ogg** and **wav** files : 
 
 	Lab.audio.create('clicksound', 'assets/sounds/click.wav');
 	Lab.audio.volume('clicksound', 0.6);

@@ -12,7 +12,7 @@ import phoenix.Color;
 
 import Lab;
 
-class Sprite {
+class Sprite extends Entity {
 
     @:isVar public var geometry     (default,default)   : QuadGeometry;
     @:isVar public var texture      (default,default)   : Texture;

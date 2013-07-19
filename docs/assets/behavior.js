@@ -151,8 +151,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 6,
-                        "title": "Default Renderer",
-                        "slug": "default-renderer"
+                        "title": "Access to the Default Renderer",
+                        "slug": "access-to-the-default-renderer"
                       },
                       "depth": 6
                     }
@@ -250,7 +250,47 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "lab.Utils"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Lab Utils API",
+                "slug": "lab-utils-api"
+              },
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Public methods",
+                    "slug": "public-methods"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Public Properties",
+                    "slug": "public-properties"
+                  },
+                  "depth": 3,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 4,
+                        "title": "geometry",
+                        "slug": "geometry"
+                      },
+                      "depth": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -295,7 +335,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "lab.audio"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Lab Audio API",
+                "slug": "lab-audio-api"
+              },
+              "depth": 2
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -325,7 +375,28 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "lab.events"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Lab Events API",
+                "slug": "lab-events-api"
+              },
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "examples",
+                    "slug": "examples"
+                  },
+                  "depth": 3
+                }
+              ]
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -355,7 +426,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "lab.time"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Lab Time API",
+                "slug": "lab-time-api"
+              },
+              "depth": 2
+            }
+          ]
         }, {
           "type": "file",
           "data": {

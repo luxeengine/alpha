@@ -1,6 +1,7 @@
 
 package lab.utils;
 
+import lab.utils.UUID;
 
 class Utils {
     public var geometry : lab.utils.GeometryUtils;
@@ -12,5 +13,9 @@ class Utils {
             //initialise our helpers
         geometry = new lab.utils.GeometryUtils(lab);
     }  
+
+    public function uuid() : String {
+    	return UUID.get();
+    }
 
 }

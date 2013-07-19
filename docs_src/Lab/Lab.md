@@ -1,5 +1,5 @@
 
-![Logo](http://haxe.org/img/haxe2/logo.png)
+![Logo](http://underscorediscovery.com/sven/images/logo.png)
 #haxelab
 ###### i see
 
