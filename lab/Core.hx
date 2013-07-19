@@ -88,6 +88,9 @@ class Core {
             //when there is a restart etc
         scene.start();
 
+            //otherwise we get a wild value for first hit
+        end_dt = haxe.Timer.stamp();
+
     } //on_main_frame_created
 
     public function startup() {
@@ -209,7 +212,7 @@ class Core {
         }
 
             //work out the last frame time
-        dt = end_dt - haxe.Timer.stamp();
+        dt =  haxe.Timer.stamp() - end_dt;
             //store the latest time frame
         end_dt = haxe.Timer.stamp();
             //store the value for the framework

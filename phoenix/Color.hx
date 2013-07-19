@@ -17,6 +17,30 @@ class Color {
 
 	}
 
+	public function set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : Color {
+		var _setr = r;
+		var _setg = g;
+		var _setb = b;
+		var _seta = a;
+			
+			//assign new values
+		if(_r != null) _setr = _r;
+		if(_g != null) _setg = _g;
+		if(_b != null) _setb = _b;
+		if(_a != null) _seta = _a;
+
+		r = _setr;
+		g = _setg;
+		b = _setb;
+		a = _seta;
+
+		return this;		
+	}
+
+	public function clone() {
+		return new Color(r,g,b,a);
+	}
+
 	public function rgb(_rgb:Int = 0xFFFFFF) : Color {
 		from_int(_rgb);
 		return this;
