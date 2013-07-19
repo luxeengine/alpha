@@ -134,11 +134,13 @@ class Core {
         Lab.audio = audio;
         Lab.events = events;
         Lab.time = time;
-        Lab.camera = renderer.default_camera;
+        Lab.camera = new lab.Camera({view:renderer.default_camera});
         Lab.resources = renderer.resource_manager;
 
         scene = new Scene();
         Lab.scene = scene;
+
+        scene.add(Lab.camera);
     }
 
     public function shutdown() {        

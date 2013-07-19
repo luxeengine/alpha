@@ -1,12 +1,14 @@
 package lab;
 
 import lab.Vector;
+import lab.Entity;
 import phoenix.Camera.ProjectionType;
 
-class Cam2D {
+class Camera extends Entity {
 	
-	public var view:phoenix.Camera;
+	public var view : phoenix.Camera;
 	private var view_position : Vector;
+
 	@:isVar public var pos(default,set) : Vector;
 
 	public var shake_vector : Vector;
@@ -14,16 +16,19 @@ class Cam2D {
     public var shaking : Bool = false;
 
 	public function new(?options:Dynamic) {
+		
+		super();
+
 		pos = new Vector();
 		view_position = new Vector();
+
 		if(options != null) {
 			if(options.view != null) {
-				//todo
-				//view = new phoenix.Camera(ProjectionType.ortho, {x2:Lab.screen.w, y2:Lab.screen.h });			
+				view = options.view;
 			}
 		} else {
 				//default to the main camera. 
-			view = Lab.camera;
+			view = Lab.camera.view;
 		}
 
 		view_position = view.pos;
@@ -41,7 +46,7 @@ class Cam2D {
     }
 
     public function update(dt:Float) {
-
+    	
     		//start at our base position
     	var final_position = view_position.clone();
     		//add camera shake

@@ -4,62 +4,113 @@ class Entity {
 
 	public var _components : Map<String, Entity>;
     public var id : String;
+    public var name : String;
 
 	public function new(){
 		id = lab.utils.UUID.get();
 		_components = new Map();
 	}
 
-	public function add<T>(type:T, ?name:String='') {
+	public function add<T>(type:Class<T>, ?_name:String='') : T {
 		
-		if(name == '') {
+		if(_name == '') {
 			name = Lab.utils.uuid();
-		}
+		} else {
+			name = _name;
+		}		
 
 			//create an instance
-		var _component = Type.createInstance( cast type,[]);
+		var _component = Type.createInstance( type, [] );
 			//store it in the component list
-		_components.set(name, _component);
+		_components.set(name, cast _component);
 
+		return _component;
 	}
 
-	public function get(name:String) : Dynamic {
-		return _components.get(name);
+	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
+		
+		if(!in_children) {
+
+			return _components.get(_name);
+
+		} else {
+
+			var results = [];
+
+			var is_this_component = _components.get(_name);
+			if(is_this_component != null) {
+				if(first_only) {
+					return is_this_component;
+				} else {
+					results.push(is_this_component);	
+				} //first only
+			} //is_this_component
+
+				//check each of our child components for this named item
+			for(_component in _components) {				
+				var found : Dynamic = _component.get( _name, true, first_only );
+				if(found != null) {
+						//early out
+					if(first_only) return found;
+						//store otherwise
+					if(Std.is(found, Array)) {
+						results.concat(found);
+					} else {
+						results.push(found);
+					}
+				} //found != null
+			} //each component
+
+			return (results.length > 0) ? results : null;
+		}
+
+		return null;
+	}
+
+	public function has(name:String) : Bool {
+		return _components.exists(name);
+	}
+
+	private function _call(_object:Entity, _name:String, ?args) {
+		var _func = Reflect.field(_object, _name);
+		if(_func != null) {
+			Reflect.callMethod(_object, _func, args );
+		} //init function exists?
 	}
 
 	public function _init() {
+			//update the parent first
+		_call(this, 'init');
+
 		for(_component in _components) {
-			var _init_func = Reflect.field(_component,'init');
-			if(_init_func != null) {
-				Reflect.callMethod(_component, _init_func, []);
-			} //init function exists?
+			_call(_component, 'init');
 		} //for each component
 	} //_init
 
 	public function _destroy() {
+			//update the parent first
+		_call(this, 'destroy');
+
 		for(_component in _components) {
-			var _destroy_func = Reflect.field(_component,'destroy');
-			if(_destroy_func != null) {
-				Reflect.callMethod(_component, _destroy_func, []);
-			} //destroy function exists?
+			_call(_component, 'destroy');
 		} //for each component
 	} //_destroy
 
 	public function _start() {
+			//update the parent first
+		_call(this, 'start');
+
 		for(_component in _components) {
-			var _start_func = Reflect.field(_component,'start');
-			if(_start_func != null) {
-				Reflect.callMethod(_component, _start_func, []);
-			} //start function exists?
+			_call(_component, 'start');
 		} //for each component
 	} //_start
 
 	public function _update(dt:Float) {
+			//update the parent first
+		_call(this, 'update', [dt]);
+
 		for(_component in _components) {
-			var _update_func = Reflect.field(_component,'update');
-			if(_update_func != null) {
-				Reflect.callMethod(_component, _update_func, [dt]);
-			}//update function exists?
+			_call(_component, 'update', [dt]);
 		} //for each component
 	} //_update
 

@@ -15,7 +15,7 @@ class Lab {
     public static var scene : lab.Scene;
     public static var utils : lab.utils.Utils;
 
-    public static var camera : phoenix.Camera;
+    public static var camera : lab.Camera;
     public static var renderer : phoenix.Renderer;
     public static var resources : phoenix.ResourceManager;    
 
