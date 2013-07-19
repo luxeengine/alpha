@@ -7,7 +7,7 @@ import Lab;
 import lab.Audio;
 import lab.Events;
 import lab.Input;
-import lab.Input;
+import lab.Scene;
 import lab.Files;
 import lab.Debug;
 import lab.Time;
@@ -34,6 +34,7 @@ class Core {
 	public var events 	: Events;
 	public var input 	: Input;
     public var audio    : Audio;
+    public var scene    : Scene;
 	public var renderer : Dynamic;
     public var screen   : lab.Rectangle; //todo
 
@@ -81,6 +82,12 @@ class Core {
             host.ready();
         }
 
+            //After we are ready we can init the scene
+        scene.init();
+            //We can also call start, for now, as this will be deferred later
+            //when there is a restart etc
+        scene.start();
+
     } //on_main_frame_created
 
     public function startup() {
@@ -98,7 +105,7 @@ class Core {
 		time = new Time( this );
 		events = new Events( this );
 		audio = new Audio( this );	
-		input = new Input( this );
+		input = new Input( this );        
 
         if(config.renderer == null) {
             renderer = new Renderer( this );
@@ -129,6 +136,9 @@ class Core {
         Lab.time = time;
         Lab.camera = renderer.default_camera;
         Lab.resources = renderer.resource_manager;
+
+        scene = new Scene();
+        Lab.scene = scene;
     }
 
     public function shutdown() {        
@@ -187,6 +197,9 @@ class Core {
         audio.process();    //Audio
         debug.process();    //debug late
         events.process();   //events last
+
+            //Update the default scene first
+        scene.update(dt);
 
             //Update the game class for them
         if(host.update != null) {

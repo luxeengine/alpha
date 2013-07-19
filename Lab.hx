@@ -12,6 +12,7 @@ class Lab {
     public static var time : lab.Time;
     public static var events : lab.Events;
     public static var input : lab.Input;
+    public static var scene : lab.Scene;
     public static var utils : lab.utils.Utils;
 
     public static var camera : phoenix.Camera;

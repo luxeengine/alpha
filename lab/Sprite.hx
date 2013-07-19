@@ -2,6 +2,7 @@ package lab;
 
 import lab.Vector;
 import lab.Rectangle;
+import lab.Scene;
 
 import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
@@ -26,12 +27,13 @@ class Sprite extends Entity {
     @:isVar public var centered     (default,set    )   : Bool = true;
     @:isVar public var origin       (default,set    )   : Vector;
     @:isVar public var uv           (default,set    )   : Rectangle;
+    @:isVar public var scene        (default,default)   : Scene;
 
-    public var id : String;
+
 
     public function new(options:Dynamic) {
 
-        id = lab.utils.UUID.get();
+        super();
 
             //temp
         if(options == null) {
@@ -59,9 +61,15 @@ class Sprite extends Entity {
 //color
         if(options.color != null) {
             color = options.color;
-        }        
+        }   
+//scene
+        if(options.scene != null) {
+            scene = options.scene;
+        } else {
+            scene = Lab.scene;
+        }
 
-//size is interesting, as it's possible based on texture
+//size is interesting, as it's possibly based on texture
     
             //user specified a size            
         if(options.size != null) {
@@ -119,8 +127,14 @@ class Sprite extends Entity {
 
         if(options.add == null || options.add != false) {
             Lab.addGeometry( geometry );            
-        }        
+        }
+
+        if(scene != null) {
+            Lab.scene.add(this);
+        } 
     }
+
+
     public function destroy() {
             
             //remove the geometry from any drawing lists
