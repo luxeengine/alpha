@@ -95,6 +95,8 @@ class Sprite extends Entity {
             } else {
                     //default to a value big enough to see
                 size = new Vector(64,64); 
+                trace('\t\twarning : null texture handed to sprite');
+                _create_geometry(options);
             } //texture !=null
 
         }   
@@ -241,15 +243,9 @@ class Sprite extends Entity {
             }
 
             geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
+            geometry.rotate( new Vector(0, 0, radians) );
 
         } //if geometry != null
-
-            //the rotation needs to be re-applied,
-            //so we reset the underlying radian value 
-            //and set the rotation, which will reapply the value
-        radians = 0;
-            //update the rotation
-        set_rotation(rotation);
 
             //done
         return size = _v;

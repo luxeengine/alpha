@@ -15,7 +15,7 @@ class BatchState {
 
     public var last_texture_id : Dynamic;
     public var last_shader_id : Dynamic;
-    public var last_group : Int;
+    public var last_group : Int = -1;
     public var is_clipping : Bool;
     public var clip_rect : Dynamic;
     public var last_clip_rect : Dynamic;
@@ -27,8 +27,6 @@ class BatchState {
         geom_state = new GeometryState();
         last_geom_state = new GeometryState();
     }
-
-   
 
     public function activate(batcher:Batcher) {
         
@@ -77,19 +75,32 @@ class BatchState {
                 
             }
 
-            /*
+            
                 // Handle group state changes
-            if(state.group != last_group) {
+            if(geom_state.group != last_group) {
+                // trace("group state change " + last_group + ' -> ' + geom_state.group  );
+
                 // finalize the previous group.
-                auto previous = r.getGroupState(last_group);
-                if(previous) previous->end(r);
+                var previous = batcher.groups.get(last_group);
+                if(previous != null) {
+                    // trace('\t--post render for ' + last_group );
+                    for(_batch_group in previous) {                        
+                        _batch_group.post_render(batcher);
+                    } //for batch_group in previous
+                } //is there?
+                
 
                 // activate the current group.
-                auto current = r.getGroupState(state.group);
-                if(current) current->begin(r);
+                var current = batcher.groups.get(geom_state.group);
+                if(current != null) {
+                    // trace('\t--pre render for ' + geom_state.group);
+                    for(_batch_group in current) {
+                        _batch_group.pre_render(batcher);
+                    }    
+                } //is there?
 
-                last_group = state.group;
-            }*/
+                last_group = geom_state.group;
+            }
 
         } //state.dirty
 
@@ -134,11 +145,13 @@ class BatchState {
             //batchers are not aware of us yet.
         GL.useProgram(null);
 
-            //todo
-        // finalize the previous group.
-        // auto previous = r.getGroupState(last_group);
-        // if(previous) previous->end(r);
-
+        var previous = batcher.groups.get(last_group);
+        if(previous != null) {
+            // trace('\t--post render for '+ last_group);
+            for(_batch_group in previous) {                
+                _batch_group.post_render(batcher);
+            }
+        }
         // remove clipping
         // if( is_clipping ) glDisable( GL_SCISSOR_TEST );
     }

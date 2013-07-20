@@ -4,7 +4,7 @@ import phoenix.utils.Maths;
 
 
 
-class Vector implements Dynamic {
+class Vector {
 	
 	@:isVar public var x(default, set) : Float = 0;
 	@:isVar public var y(default, set) : Float = 0;

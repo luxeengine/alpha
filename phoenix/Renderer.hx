@@ -32,6 +32,7 @@ class Renderer {
 
     public var should_clear : Bool = true;
     public var stop : Bool = false;
+    public var stop_count : Int = 0;
     public var clear_color : Color;
 
     public function startup() {
@@ -192,7 +193,10 @@ class Renderer {
             batch.draw();
         }
 
-        stop = false;
+        // stop_count++;
+        // if(stop_count >= 5) {
+        //     stop = false;
+        // }        
     }
 
 

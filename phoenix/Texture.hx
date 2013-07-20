@@ -156,7 +156,7 @@ class Texture extends Resource {
 
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
-        trace('create_from_bytes took ' + (haxe.Timer.stamp() - start));
+        // trace('create_from_bytes took ' + (haxe.Timer.stamp() - start));
     }
 
         //THIS IS NOT USED ATM

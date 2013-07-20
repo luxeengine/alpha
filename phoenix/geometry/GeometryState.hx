@@ -161,7 +161,6 @@ class GeometryState {
     }
 //Depth
     public function set_depth(val : Float) : Float {        
-        dirty = true;      
         return depth = val;
     }
 //Group

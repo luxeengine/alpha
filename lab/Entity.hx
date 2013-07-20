@@ -12,18 +12,23 @@ class Entity {
 	}
 
 	public function add<T>(type:Class<T>, ?_name:String='') : T {
-		
-		if(_name == '') {
-			name = Lab.utils.uuid();
+		var _temp_name = _name;
+		if(_temp_name == '') {
+			_temp_name = Lab.utils.uuid();
 		} else {
-			name = _name;
-		}		
+			_temp_name = _name;
+		}
 
 			//create an instance
 		var _component = Type.createInstance( type, [] );
+			//cast to entity so we can set its name
+		var _e_component : Entity = cast _component;
+			//apply it!
+		_e_component.name = _temp_name;
 			//store it in the component list
-		_components.set(name, cast _component);
+		_components.set(_temp_name, _e_component );
 
+			//return the component
 		return _component;
 	}
 

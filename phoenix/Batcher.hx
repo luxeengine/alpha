@@ -22,8 +22,27 @@ enum PrimitiveType {
     triangle_fan;
 }
 
-class BatchGroup {
+enum BlendMode {
+    zero; 
+    one;  
+    src_color;
+    one_minus_src_color;
+    src_alpha;          
+    one_minus_src_alpha;
+    dst_alpha;
+    one_minus_dst_alpha; 
+    dst_color;
+    one_minus_dst_color;
+    src_alpha_saturate;
+}
 
+class BatchGroup {
+    public function new(_pre, _post) {
+        pre_render = _pre;
+        post_render = _post;
+    }
+    public var pre_render : Batcher -> Void;
+    public var post_render : Batcher -> Void;
 }
 
 class Batcher {
@@ -31,6 +50,7 @@ class Batcher {
     public var layer : Float = 0.0;
 
     public var geometry : BinarySearchTree<Geometry>;
+    public var groups : Map<Int, Array<BatchGroup> >;
 
     public var vert_list : Array<Float>;
     public var tcoord_list : Array<Float>;
@@ -64,6 +84,7 @@ class Batcher {
         renderer = _r;
 
         geometry = new BinarySearchTree<Geometry>( geometry_compare );
+        groups = new Map();
 
             //Our batch lists
         vert_list = new Array<Float>();
@@ -80,7 +101,6 @@ class Batcher {
         vcolorBuffer = GL.createBuffer();
         normalBuffer = GL.createBuffer();
 
-
     }
 
         //this sorts the batchers in a list by layer
@@ -90,8 +110,55 @@ class Batcher {
         return 1;
      }
 
+    public function add_group(_group:Int, _pre_render:Batcher->Void, _post_render:Batcher->Void ) {
+        if(!groups.exists(_group)) {
+            groups.set(_group, new Array<BatchGroup>());
+        }
+
+        groups.get(_group).push( new BatchGroup(_pre_render, _post_render) );
+    }
+
     public function l(v:Dynamic) {
         // trace(v);
+    }
+
+
+    public function blend_mode_from_BlendMode(_b:BlendMode) {
+
+        switch(_b) {
+            case zero:
+                return GL.ZERO;
+            case one:
+                return GL.ONE;
+            case src_color:
+                return GL.SRC_COLOR;
+            case one_minus_src_color:
+                return GL.ONE_MINUS_SRC_COLOR;
+            case src_alpha:
+                return GL.SRC_ALPHA;
+            case one_minus_src_alpha:
+                return GL.ONE_MINUS_SRC_ALPHA;
+            case dst_alpha:
+                return GL.DST_ALPHA;
+            case one_minus_dst_alpha:
+                return GL.ONE_MINUS_DST_ALPHA;
+            case dst_color:
+                return GL.DST_COLOR;
+            case one_minus_dst_color:
+                return GL.ONE_MINUS_DST_COLOR;
+            case src_alpha_saturate:
+                return GL.SRC_ALPHA_SATURATE;
+        }
+    }
+
+    public function blend_mode(?_src_mode:BlendMode = null, _dst_mode:BlendMode = null) {
+        if(_src_mode == null) _src_mode = BlendMode.src_alpha;
+        if(_dst_mode == null) _dst_mode = BlendMode.one_minus_src_alpha;
+
+        var _src = blend_mode_from_BlendMode(_src_mode);
+        var _dest = blend_mode_from_BlendMode(_dst_mode);
+
+        GL.blendFunc(_src, _dest);
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
@@ -183,7 +250,7 @@ class Batcher {
                 } // state.update(geom)
                 
                     // Now activate state changes (if any)
-                state.activate(this);          
+                state.activate(this);
 
                 if(geom.enabled) {
                     //try
