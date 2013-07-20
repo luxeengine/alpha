@@ -26,6 +26,8 @@ import lab.Particles;
 
 import motion.Actuate;
 
+import tests.BST;
+
 
 class Menu extends Mode {   
 
@@ -120,6 +122,8 @@ class Menu extends Mode {
             }
         );
 
+            //run bst test
+        var n = new BST();
     }
 
     public function start() {
