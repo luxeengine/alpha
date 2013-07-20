@@ -5,16 +5,23 @@ import phoenix.utils.BinarySearchTree;
 
 class TestPriority {
 	public var priority = 0;
-	public function new(p:Int = 0){
+	public var tag = 'default_tag';
+	public function new(p:Int = 0, _tag:String = 'default_tag') {
 		priority = p;
+		tag = _tag;
 	}
+
 	public function compare(other:TestPriority) {
+			//if they are literally the same
+		if(other == this) return 0;
 			//if i am less, -1
 		if(other.priority > priority) return -1;
 			//if i am more, +1
 		if(other.priority < priority) return 1;		
-			//if im equal or values equal, 0
-		return 0;
+			//if value is equal, -1
+		if(other.priority == priority) return -1;
+
+		return -1;
 	}
 
 	public function toString() {
@@ -45,6 +52,7 @@ class BST {
 			//test 5, custom compare function, object
 		tree5 = new BinarySearchTree<TestPriority>(compare_objects);
 		test_object_sortable(tree5);
+
 	}
 
 	public function compare_objects<T>(obj1:T,obj2:T) {
@@ -150,7 +158,7 @@ class BST {
 		
 			var list = [new TestPriority(7),new TestPriority(3),
 						new TestPriority(12),new TestPriority(2),
-						new TestPriority(7),new TestPriority(1) ];
+						new TestPriority(7,'specific_tag'),new TestPriority(1) ];
 			var result = '';
 			var expected = '\ttree: [BST, size=6] [ TestPriority(1) , TestPriority(2) , TestPriority(3) , TestPriority(7) , TestPriority(7) , TestPriority(12) ];';
 
@@ -159,6 +167,26 @@ class BST {
 			}
 
 			result = print_tree(_tree);
+			H.equal(result, expected);
+
+			//Attempt to remove the twelve item
+			result = '';
+			expected = '\ttree: [BST, size=5] [ TestPriority(1) , TestPriority(2) , TestPriority(3) , TestPriority(7) , TestPriority(12) ];';
+			
+			var found = _tree.find( list[4] );
+				//check that it found something			
+			H.equal( found != null, true );
+			trace('found :  ' + found.data.tag);
+				//check that its the correct one
+			H.equal( found.data.tag, 'specific_tag');
+
+				//now remove it 
+			if(found != null) {
+				_tree.remove( found );
+			} //found
+				
+				//Test the similarity
+			var result = print_tree(_tree);
 			H.equal(result, expected);
 
 		});//it
