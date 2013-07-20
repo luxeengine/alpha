@@ -157,11 +157,22 @@ class Menu extends Mode {
         // t.text = 'dt: ' +dt + ' \nflames particles: ' + particles.get('flames').particle_count + ' \nsmoke particles: ' + particles.get('smoke').particle_count;
     }
    
+    public function keyup(e:Dynamic) {
+        if( e.value == Input.Keys.key_L ) {
+            trace("L up");
+        }
+
+    }
+
     public function keydown(e:Dynamic) {
         
         if(e.value == 27) {
             Lab.shutdown();
         }   
+
+        if( e.value == Input.Keys.key_L ) {
+            trace("L");
+        }
 
         if( e.value == Input.Keys.key_S ) {
             Lab.camera.shake(10);
