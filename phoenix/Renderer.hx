@@ -7,7 +7,8 @@ import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
     //default resources
 import phoenix.defaults.Shaders;
-import phoenix.defaults.Fonts;
+import phoenix.defaults.FontString;
+import phoenix.defaults.FontBytes;
 
 import phoenix.Shader;
 import phoenix.Color;
@@ -92,9 +93,16 @@ class Renderer {
         
         #if lime_native
             
-            var bytes = Lab.utils.arrayToBytes( Fonts.font_bytes );            
+            var _data = FontBytes.data.split(' ');
+            var _data2:Array<Int> = [];
+            for(_s in _data) {
+                trace(_s);
+                _data2.push( Std.parseInt( _s ) );
+            }
+
+            var bytes = Lab.utils.arrayToBytes( _data2 );
             _font_texture.create_from_bytes('default_font', lime.utils.ByteArray.fromBytes(bytes) );
-            default_font.load_from_string( Fonts.font_string, 'lab://internal_data/', null, [_font_texture] );
+            default_font.load_from_string( FontString.data, 'lab://internal_data/', null, [_font_texture] );
 
         #end
 

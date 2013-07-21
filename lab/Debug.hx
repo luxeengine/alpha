@@ -24,6 +24,7 @@ class Debug {
 
     public function startup() {
 
+        cpp.vm.Profiler.start("profile.txt");
 
         core._debug(':: haxelab :: \t Debug Initialized.');
     }
@@ -71,6 +72,7 @@ class Debug {
     public function get_stats_string() {
         var s = '';
         s += Lab.renderer.stats;
+        trace(s);
         return s;
     }
 
@@ -93,7 +95,6 @@ class Debug {
 	public function process() {
 
         if(stats_text.visible) {
-            trace('ok');
             stats_text.text = get_stats_string();
         }
 	} //process
