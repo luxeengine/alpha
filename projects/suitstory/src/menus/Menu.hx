@@ -63,8 +63,6 @@ class Menu extends Mode {
             centered: false,
             pos : new Vector(0,0),
             texture : Lab.loadTexture('assets/menus/bg.png'),
-            depth : 0,
-            group : 0
         });
 
         back = new Sprite({
@@ -126,7 +124,7 @@ class Menu extends Mode {
             emit_time : 0.5
         });
 
-        particles.stop();
+        // particles.stop();
 
         Lab.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
