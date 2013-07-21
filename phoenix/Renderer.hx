@@ -96,7 +96,6 @@ class Renderer {
             var _data = FontBytes.data.split(' ');
             var _data2:Array<Int> = [];
             for(_s in _data) {
-                trace(_s);
                 _data2.push( Std.parseInt( _s ) );
             }
 
