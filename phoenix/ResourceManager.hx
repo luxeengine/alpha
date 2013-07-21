@@ -12,15 +12,15 @@ class ResourceStats {
     public function toString() {
         return 
         	'Resource Statistics\n' + 
-            'total resources : ' + resources + '\n' +
-            'textures : ' + textures + '\n' +
-            'fonts : ' + fonts + '\n' +
-            'shaders : ' + shaders + '\n' +
-            'unknown : ' + unknown;
+            '\ttotal resources : ' + resources + '\n' +
+            '\ttextures : ' + textures + ' \n' + '' +
+            '\tfonts : ' + fonts + '\n' +
+            '\tshaders : ' + shaders + '\n' +
+            '\tunknown : ' + unknown;
     }
 
     public function reset() {
-    	resources = 0;
+		resources = 0;
     	fonts = 0;
     	textures = 0;
     	shaders = 0;
@@ -68,15 +68,29 @@ class ResourceManager {
 		stats.resources--;
 	}
 
-	public function clear( and_drop : Bool ) {
-		if( and_drop ) {
-			for(res in resourcelist) {
-				res.drop();
+	public function clear( ?and_persistent : Bool = false ) {
+		
+		var keep = [];
+		for(res in resourcelist) {
+			if(!res.persistent || and_persistent) {
+				res.drop();		
+			} else {
+				keep.push(res);
 			}
 		}
 
-		resourcelist.splice(0, resourcelist.length );
+			//kill everything, and readd them
+			//will reset the counters for internal data
+		resourcelist.splice(0,resourcelist.length);
+		resourcelist = new Array<Resource>();
 		stats.reset();
+
+			//readd
+		for(res in keep) {
+			add(res);
+		}
+
+		keep = null;
 	}
 
 	public function find( id : String ) : Resource {

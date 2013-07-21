@@ -100,6 +100,11 @@ class Shader extends Resource {
       	return _program;
 	}
 
+    public override function drop() {
+        super.drop();
+        destroy();
+    }
+
 	public function destroy() {
 		if( vert_shader != null ) GL.deleteShader( vert_shader );
 		if( frag_shader != null ) GL.deleteShader( frag_shader );

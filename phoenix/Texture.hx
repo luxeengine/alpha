@@ -81,7 +81,7 @@ class Texture extends Resource {
             height = Std.int(_size.y);
             actual_width = width;
             actual_height = height;
-            
+
                 //clear up old data in case
             data = null;
                 //create a new set of pixels data
@@ -392,9 +392,15 @@ class Texture extends Resource {
 
     }
 
-    public function destroy() {
+    public override function drop() {
+        super.drop();
+        destroy();
+    }
+
+    public function destroy() {        
         GL.deleteTexture(texture);
-        data = null;
+        data = null;        
+        Lab.renderer.texture_cache.remove(this.id);        
     }
 
 

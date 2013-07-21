@@ -16,6 +16,7 @@ class Resource extends Droppable {
 	public var manager : ResourceManager;
 	public var type : ResourceType;
 	public var id : String;
+	public var persistent : Bool = false;
 
 	public function new( _manager : ResourceManager, _type:ResourceType ) {
 		manager = _manager;
@@ -26,7 +27,7 @@ class Resource extends Droppable {
 
 	public override function drop() {
 		if(!dropped) {
-			drop();
+			super.drop();
 			manager.remove( this );
 		}
 	}

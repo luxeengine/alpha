@@ -7,6 +7,7 @@ import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.Camera;
 import phoenix.geometry.QuadGeometry;
+import phoenix.Resource;
 
 class Debug {
         
@@ -16,6 +17,7 @@ class Debug {
     public var scene_inspector : Inspector;
     public var render_stats_text : lab.Text;
     public var resource_stats_text : lab.Text;
+    public var resource_list_text : lab.Text;
 
     public var debug_batcher : Batcher;
     public var debug_view : Camera;
@@ -39,7 +41,7 @@ class Debug {
         debug_view = new Camera(ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h });
 
         debug_batcher.view = debug_view;
-        
+
         Lab.renderer.add_batch( debug_batcher );
 
         debug_overlay = new QuadGeometry({
@@ -61,7 +63,9 @@ class Debug {
             pos : new Vector(padding.x, padding.y),
             size : new Vector(Lab.screen.w-(padding.x*2), Lab.screen.h-(padding.y*2)),
             batcher:debug_batcher
-        });        
+        });
+
+        scene_inspector.onrefresh = refresh;
 
         render_stats_text = new lab.Text({
             depth : 999.3,
@@ -85,7 +89,45 @@ class Debug {
             enabled : false
         });
         
+        resource_list_text = new lab.Text({
+            depth : 999.3,
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(padding.x*6,padding.y*7),
+            font : Lab.renderer.default_font,
+            text : get_resource_stats_string(),
+            size : 14,
+            batcher : debug_batcher,
+            enabled : false
+        });
+        
           
+    }
+
+    public function refresh() {
+        var texture_lists = '';
+        var shader_lists = '';
+        var font_lists = '';
+        
+        for(res in Lab.resources.resourcelist) {
+            switch (res.type) {
+                case ResourceType.texture:
+                    texture_lists += '\t' + res.id + '\n';
+                case ResourceType.font:
+                    font_lists += '\t' + res.id + '\n';
+                case ResourceType.shader:
+                    shader_lists += '\t' + res.id + '\n';
+                default:
+            }
+        }
+
+        var lists = 'Textures\n';
+        lists += texture_lists;
+        lists += 'Fonts\n';
+        lists += font_lists;
+        lists += 'Shader\n';
+        lists += shader_lists;
+
+        resource_list_text.text = lists;
     }
 
     public function get_render_stats_string() {        
@@ -100,11 +142,13 @@ class Debug {
             debug_overlay.enabled = true;
             render_stats_text.visible = true;
             resource_stats_text.visible = true;
+            resource_list_text.visible = true;
             scene_inspector.show();
         } else {
             debug_overlay.enabled = false;
             render_stats_text.visible = false;
             resource_stats_text.visible = false;
+            resource_list_text.visible = false;
             scene_inspector.hide();
         }
     } //show_console
@@ -122,7 +166,7 @@ class Debug {
                 Lab.renderer.stats.geometry_count -= debug_geometry_count;
                 Lab.renderer.stats.batched_count -= debug_geometry_count;
                 Lab.renderer.stats.enabled_count -= debug_geometry_count;
-            }
+            }            
 
             render_stats_text.text = get_render_stats_string();
             resource_stats_text.text = get_resource_stats_string();

@@ -32,11 +32,11 @@ class RendererStats {
     public function toString() {
         return 
             'Renderer Statistics\n' + 
-            'batcher count : ' + batchers + '\n' +
-            'total geometry : ' + geometry_count + '\n' +
-            'enabled geometry : ' + enabled_count + '\n' +
-            'batched geometry : ' + batched_count + '\n' +
-            'total draw calls : ' + draw_calls;
+            '\tbatcher count : ' + batchers + '\n' +
+            '\ttotal geometry : ' + geometry_count + '\n' +
+            '\tenabled geometry : ' + enabled_count + '\n' +
+            '\tbatched geometry : ' + batched_count + '\n' +
+            '\ttotal draw calls : ' + draw_calls;
     }
 }
 
@@ -54,6 +54,8 @@ class Renderer {
         //Default font for debug stuff etc
     public var default_font : BitmapFont;
 
+    public var texture_cache : Map<String,Texture>;
+
     public var should_clear : Bool = true;
     public var stop : Bool = false;
     public var stop_count : Int = 0;
@@ -65,6 +67,7 @@ class Renderer {
 
         clear_color = new Color(0,0,0,1);
         stats = new RendererStats();
+        texture_cache = new Map();
 
         resource_manager = new ResourceManager();
         batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
@@ -93,9 +96,7 @@ class Renderer {
 
             //create the default font
         default_font = new BitmapFont( resource_manager );
-            //create the font texture
-        var _font_texture = new Texture( resource_manager );
-                    
+            //create the font texture                    
         var _font_texture = load_texture_from_string_byte_array('default_font', FontBytes.data(), 512,512 );
         default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
 
@@ -133,8 +134,17 @@ class Renderer {
         GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
+    public function check_texture_cache( _name:String ) {
+        return texture_cache.get(_name);
+    }
+
     public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
         
+        var _exists = check_texture_cache(_name);
+        if(_exists != null) {
+            return _exists;
+        }
+
         var _array_data = _string_byte_array.split(' ');
         var _int_array_data : Array<Int> = [];
             //loop over the string items and parse them to int
@@ -157,11 +167,20 @@ class Renderer {
         _int_array_data = null;
         texture.loaded = true;
 
+            //store a reference so we can check if it exists later
+        texture_cache.set(_name, texture);
+
         return texture;        
 
     }
 
     public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
+
+        var _exists = check_texture_cache(_name);
+        if(_exists != null) {
+            trace(":: phoenix :: Texture loaded (cache) " + _exists.id + ' (' + _exists.width + 'x' + _exists.height + ') real size ('+ _exists.actual_width + 'x' + _exists.actual_height +')') ;
+            return _exists;
+        }
 
         var texture : Texture = new Texture( resource_manager );
 
@@ -233,6 +252,9 @@ class Renderer {
          asset_bytes = null;
 
 #end //lime_native
+       
+            //store a reference so we can check if it exists later
+        texture_cache.set(_name, texture);
        
         return texture;
 

@@ -23,6 +23,8 @@ class Inspector {
 	public var _window : NineSlice;
 	private var _batcher : Batcher;
 
+	public var onrefresh : Void->Void;
+
 	public function new(_options:Dynamic) {
 
 		title = 'Inspector';
@@ -52,6 +54,10 @@ class Inspector {
 	public function refresh() {
 		if(_window == null) {
 			_create_window();
+		}
+
+		if(onrefresh != null) {
+			onrefresh();
 		}
 	}
 
