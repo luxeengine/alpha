@@ -24,7 +24,7 @@ class QuadGeometry extends Geometry {
         }
 
         var tl = new Vector(_rect.x/texture.actual_width, _rect.y/texture.actual_height);
-        var sz = new Vector(_rect.w/texture.actual_width, _rect.h/texture.actual_height);
+        var sz = new Vector(_rect.w/texture.actual_width, _rect.h/texture.actual_height);        
 
         vertices[0].uv[0] = new TextureCoord( tl.x , tl.y );
         vertices[1].uv[0] = new TextureCoord( tl.x + sz.x , tl.y );

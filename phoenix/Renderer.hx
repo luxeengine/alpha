@@ -95,12 +95,9 @@ class Renderer {
         default_font = new BitmapFont( resource_manager );
             //create the font texture
         var _font_texture = new Texture( resource_manager );
-        
-            
+                    
         var _font_texture = load_texture_from_string_byte_array('default_font', FontBytes.data(), 512,512 );
         default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
-
-
 
             //enable z buffer use
         GL.enable(GL.DEPTH_TEST);
@@ -158,6 +155,7 @@ class Renderer {
         texture_bytes = null;
         _array_data = null;
         _int_array_data = null;
+        texture.loaded = true;
 
         return texture;        
 

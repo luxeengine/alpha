@@ -387,8 +387,8 @@ class BitmapFont extends Resource {
                 var _geom = _geoms[c.page];
 
                     //Texture size for this page
-                var _tw = pages[c.page].width;
-                var _th = pages[c.page].height;
+                var _tw = pages[c.page].actual_width;
+                var _th = pages[c.page].actual_height;
 
                     //work out the coordinates for the uv's
                 var _u  : Float = c.x/_tw;

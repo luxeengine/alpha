@@ -68,7 +68,7 @@ class Texture extends Resource {
     }
 
     public function toString() {
-        return 'phoenix.Texture (' + width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +')' + filter + ' filtering. id: ' + id;
+        return 'phoenix.Texture (' + width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
     }
 
     public function build(_size : Dynamic, _color: Dynamic) {
@@ -79,7 +79,9 @@ class Texture extends Resource {
 
             width = Std.int(_size.x);
             height = Std.int(_size.y);
-
+            actual_width = width;
+            actual_height = height;
+            
                 //clear up old data in case
             data = null;
                 //create a new set of pixels data
@@ -194,7 +196,6 @@ class Texture extends Resource {
             //Set the properties
         _set_filter( FilterType.linear );
         _set_clamp( ClampType.repeat );
-
 
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
