@@ -31,12 +31,15 @@ class Debug {
         core._debug(':: haxelab :: \t Debug Initialized.');
 
     }
-    
+
     public function create_debug_console() {
 
             //create the debug renderer and view
         debug_batcher = new Batcher( Lab.renderer );
         debug_view = new Camera(ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h });
+
+        debug_batcher.view = debug_view;
+        
         Lab.renderer.add_batch( debug_batcher );
 
         debug_overlay = new QuadGeometry({
