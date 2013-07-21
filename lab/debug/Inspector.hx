@@ -1,9 +1,12 @@
 package lab.debug;
 
 import lab.Text;
+import phoenix.Texture;
 import lab.utils.NineSlice;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
+
+import lab.defaults.TinyUI;
 
 class Inspector {
 
@@ -14,6 +17,8 @@ class Inspector {
 
 		//pieces
 	public var _title_text : Text;
+	public var default_box_texture : Texture;
+	public var default_button_texture : Texture;
 
 	public var _window : NineSlice;
 	private var _batcher : Batcher;
@@ -24,6 +29,10 @@ class Inspector {
 		font = Lab.renderer.default_font;
 		size = new Vector( Std.int(Lab.screen.w*0.2), Std.int(Lab.screen.h*0.6) );
 		pos = new Vector((Lab.screen.w/2) - (size.x/2), (Lab.screen.h/2) - (size.y/2));
+
+			//load the images from the classes, todo:make a single atlas
+		default_box_texture = Lab.renderer.load_texture_from_string_byte_array('default_ui_box', TinyBox.data(), 128,128 );
+		default_button_texture = Lab.renderer.load_texture_from_string_byte_array('default_ui_button', TinyButton.data(), 64,32 );
 		
 			//default to the internal batcher
 		_batcher = Lab.renderer.default_batcher;
@@ -64,7 +73,7 @@ class Inspector {
 
 		_window = new NineSlice({
 			depth : 999.1,
-			texture : Lab.loadTexture('assets/ui/tiny.box.png'),
+			texture : default_box_texture,
 			batcher : _batcher
 		});	
 
