@@ -1,18 +1,20 @@
 package lab;
 
+import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.geometry.CompositeGeometry;
-import phoenix.geometry.CompositeGeometry ;
 
 
 class Text {
     
     public var font : BitmapFont;
     public var geometry : CompositeGeometry;
+    
+    private var _batcher : Batcher;
 
     @:isVar public var text(default,set) : String = '';
     @:isVar public var pos(default,set) : Vector;
-    @:isVar public var size(default,set) : Float;
+    @:isVar public var size(default,set) : Float = 32;
     @:isVar public var color(default,set) : Color;
     @:isVar public var visible(default,set) : Bool;
 
@@ -20,8 +22,10 @@ class Text {
     public var text_options : Dynamic;
 
     public function new( _options : Dynamic ) {
-
-        var _font : Dynamic = (_options.font == null) ? null : _options.font;        
+        
+        var _font : Dynamic = (_options.font == null) ? null : _options.font;
+        _batcher = (_options.batcher == null) ? Lab.renderer.default_batcher : _options.batcher;
+        size = (_options.size == null) ? 32 : _options.size;
 
         if(_font == null) return;
 
@@ -33,11 +37,14 @@ class Text {
             font.load_from_string( Lab.loadText(_font), _folder, onloaded );
 
         } else {
-                //supplied a precreated font?
+                //supplied a precreated font?            
             font = _font;
+            ready = true;
         }
 
         text_options = _options;
+        text_options.size = size;
+
             //Apply the setter, which will draw the geometry
         text = _options.text;
     }
@@ -59,7 +66,8 @@ class Text {
     }
 
     public function set_size(v:Float) : Float {
-        size = v;
+        if(text_options == null) return size = v;
+        size = v;        
         text_options.size = size;
         text = text+'';
         return v;
@@ -78,16 +86,16 @@ class Text {
         visible = b;
         
         if(geometry != null) {
-            geometry.enabled = false;
+            geometry.enabled = visible;
         }
 
         return b;
     }
 
     public function set_text(v:String) {
-        if(!ready) return text = v;
-        if(text_options == null) return v;
 
+        if(!ready) return text = v;
+        if(text_options == null) return v;        
         text_options.text = v;
         
         if(geometry != null) {

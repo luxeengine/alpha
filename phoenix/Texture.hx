@@ -30,12 +30,18 @@ class Texture extends Resource {
     public var loaded : Bool = false;
     public var onload : Texture -> Void;
 
+    @:isVar public var filter(default,set) : FilterType;
+
     public function new( _manager : ResourceManager, _size : Dynamic = null ) {
         
         super( _manager, ResourceType.texture );
 
         id = 'Untitled';
         build( _size, null );
+    }
+
+    public function toString() {
+        return 'phoenix.Texture (' + width + 'x' + height +') ' + filter + ' filtering. id: ' + id;
     }
 
     public function build(_size : Dynamic, _color: Dynamic) {
@@ -82,7 +88,7 @@ class Texture extends Resource {
         GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, cast _asset_bytes );
 
             //Set the properties
-        set_filtering( FilterType.linear );
+        filter = FilterType.linear;
         set_clamp( ClampType.repeat );
 
         // image_bytes = null;
@@ -150,7 +156,7 @@ class Texture extends Resource {
         GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
 
             //Set the properties
-        set_filtering( FilterType.linear );
+        filter = FilterType.linear;
         set_clamp( ClampType.repeat );
 
 
@@ -210,7 +216,7 @@ class Texture extends Resource {
         GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
 
             //Set the properties
-        set_filtering( FilterType.linear );
+        filter = FilterType.linear;
         set_clamp( ClampType.repeat );
         
         image_bytes = null;
@@ -236,7 +242,7 @@ class Texture extends Resource {
         }
     }
 
-    public function set_filtering( _filter : FilterType ) {
+    public function set_filter( _filter : FilterType ) {
 
         bind();
 
@@ -250,6 +256,7 @@ class Texture extends Resource {
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);            
         }
 
+        return filter = _filter;
     }
 
     public function generate_mipmaps() {

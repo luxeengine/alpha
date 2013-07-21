@@ -10,6 +10,7 @@ import phoenix.geometry.TextureCoord;
 import phoenix.geometry.Vertex;
 import phoenix.Resource;
 import phoenix.ResourceManager;
+import phoenix.Texture;
 
 enum TextAlign {
     left;
@@ -96,7 +97,10 @@ class BitmapFont extends Resource {
         }
     }
 
-    public function load_from_string( _bitmap_file : String = '', _folder : String = 'assets/', ?onloaded : Void->Void = null ) {
+    public function load_from_string( _bitmap_file : String = '', 
+                                      _folder : String = 'assets/', 
+                                      ?onloaded : Void->Void = null, 
+                                      ?custom_pages:Array<Texture> = null ) {
 
         var lines : Array<String> = _bitmap_file.split("\n");
         var _pages : Array<Dynamic> = new Array<Dynamic>();
@@ -195,12 +199,24 @@ class BitmapFont extends Resource {
         } //line in lines
 
         //once all loaded, we can load up the pages textures
-        for(_page_item in _pages) {
-                //fetch the texture
-            var _t = Lab.loadTexture( _folder + _page_item.file, one_page_loaded );
-                //store the texture in the map for use
-            pages.set(_page_item.id, _t);
-        }
+        //but only if the custom pages wasn't specified
+        if(custom_pages == null) {
+            for(_page_item in _pages) {
+                    //fetch the texture
+                var _t = Lab.loadTexture( _folder + _page_item.file, one_page_loaded );
+                    //store the texture in the map for use
+                pages.set(_page_item.id, _t);
+            }
+        } else {
+            var _id : Int = 0;
+            for(_page in custom_pages) {
+                pages.set(_id, _page);
+                ++_id;
+            } //for each custom page
+                //still do the callback in case
+            on_all_pages_loaded();
+        } //if custom pages
+
     } //load_from_string
 
     public function set_kerning(_glyph:Int, _index:Int, _amount:Int) {
@@ -289,28 +305,36 @@ class BitmapFont extends Resource {
          var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
          var _size : Float = (options.size == null) ? 0 : options.size;
+         var _batcher : Batcher = (options.batcher == null) ? Lab.renderer.default_batcher : options.batcher;
+         var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
         
         var _final_geom : CompositeGeometry = new CompositeGeometry(null);
 
             //no texture? return empty geometry
-        if(pages[0] == null) return _final_geom;
+        if(pages[0] == null) {
+            trace("Warning ; " + id + " font trying to draw without a texture.");
+            return _final_geom;
+        }
 
             //an array of geometry items, one for each unique texture
         var _geoms : Array<Geometry> = new Array<Geometry>();
         var _page_count = Lambda.count(pages);
 
+        // trace('creating geometry for each unique texture : ' + _page_count + ' at ' + _depth + '\n with ' + _col + ' and ' + _align + ' and at ' + _pos );
+
         for(i in 0 ... _page_count ) {
             var _g = new Geometry({
                 texture : pages[i],
                 color : _col,
-                depth : _depth
+                depth : _depth,
+                enabled : _enabled
             });
 
             _g.primitive_type = PrimitiveType.triangles;
             _g.immediate = false;
             _geoms.push( _g );
-                //Add to the renderer, todo, optionize
-            Lab.addGeometry(_g);
+            _batcher.add(_g);
+
         } //for each page
 
             //so, the font is a %

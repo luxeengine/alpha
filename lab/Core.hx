@@ -24,6 +24,9 @@ class Core {
         //the config passed to us on creation
 	public var config : Dynamic;
 
+        //if the console is displayed atm
+    public var console_visible : Bool = false;
+
         //the reference to the underlying LiME system
     public var lime : LiME;
 
@@ -144,6 +147,9 @@ class Core {
         Lab.scene = scene;
 
         scene.add(Lab.camera);
+
+            //finally, create the debug console
+        debug.create_debug_console();
     }
 
     public function shutdown() {        
@@ -158,20 +164,23 @@ class Core {
             //shutdown the game class
         if(host.shutdown != null) {
             host.shutdown();
-        }        
+        }
+
+            //shutdown the default scene
+        scene.shutdown();        
 
     		//Order is imporant here too
 
         if(renderer != null && renderer.shutdown != null) {
             renderer.shutdown();
-        }
+        }        
 
     	input.shutdown();
     	audio.shutdown();
     	events.shutdown();
     	time.shutdown();
     	file.shutdown();
-    	debug.shutdown();
+    	debug.shutdown();        
 
     		//Clear up for GC
     	input = null;
@@ -239,10 +248,18 @@ class Core {
         return lime.utils.Libs.load( library, method, args );
     }
 
+    public function show_console(_show:Bool = true) {
+        console_visible = _show;
+        debug.show_console(console_visible);
+    }
+
 //input events
 //keys
     public function onkeydown(e) {
         if(host.onkeydown != null) host.onkeydown(e);
+        if(e.value == lab.Input.Keys.tilde) {
+            show_console( !console_visible );
+        }
     }
     public function onkeyup(e) {
         if(host.onkeyup != null) host.onkeyup(e);

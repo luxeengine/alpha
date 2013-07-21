@@ -26,8 +26,6 @@ import lab.Particles;
 
 import motion.Actuate;
 
-import tests.BST;
-
 
 class Menu extends Mode {   
 
@@ -46,6 +44,7 @@ class Menu extends Mode {
         mouse = new Vector();        
 
         play = new Sprite({
+            add:false,
             centered: false,
             pos : new Vector(0,0),
             texture : Lab.loadTexture('assets/menus/bg.png'),
@@ -57,7 +56,7 @@ class Menu extends Mode {
             centered : false,
             pos : new Vector(0, 0),
             size : new Vector(960, 640),
-            color : new Color().rgb(0x212121),
+            color : new Color().rgb(0x121212)            
         });
 
         var t1 = Lab.loadTexture('assets/flame.png');
@@ -112,6 +111,7 @@ class Menu extends Mode {
             emit_time : 0.5
         });
 
+        particles.stop();
 
         Lab.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
@@ -122,8 +122,6 @@ class Menu extends Mode {
             }
         );
 
-            //run bst test
-        var n = new BST();
     }
 
     public function start() {
@@ -131,20 +129,22 @@ class Menu extends Mode {
     }
 
     public function playClicked() {
+
         game.modes.set('level01');
     }
 
     public function mouseup(e) {
+
         mouse = new Vector(e.x, e.y);
-        // if( play.point_inside(mouse) ) {
-            // playClicked();  
-        // }
+        if( play.point_inside(mouse) ) {
+            playClicked();  
+        }
 
         if(particles != null) {
             if(particles.active) {
-                particles.stop();
+                // particles.stop();
             } else {
-                particles.emit(-1);
+                // particles.emit(-1);
             }
         }
         
@@ -162,10 +162,6 @@ class Menu extends Mode {
     }
    
     public function keyup(e:Dynamic) {
-        if( e.value == Input.Keys.key_L ) {
-            trace("L up");
-        }
-
     }
 
     public function keydown(e:Dynamic) {
@@ -174,25 +170,20 @@ class Menu extends Mode {
             Lab.shutdown();
         }   
 
-        if( e.value == Input.Keys.key_L ) {
-            trace("L");
-        }
-
         if( e.value == Input.Keys.key_S ) {
             Lab.camera.shake(10);
         }
-
     }
 
     public function enter() {
-        // play.visible = true;
-        back.visible = true;
-
+        play.visible = true;
+        back.visible = true;        
     }
 
     public function leave() {
-        // play.visible = false;
+        play.visible = false;
         back.visible = false;
+        particles.destroy();
     }
 
 }

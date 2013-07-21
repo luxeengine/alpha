@@ -1,7 +1,7 @@
 package levels;
 
 
-import game.NineSlice;
+import lab.utils.NineSlice;
 import Lab;
 import lab.Sprite;
 import mode.Mode;
@@ -23,6 +23,7 @@ class Level01 extends Mode {
     public var start_camera_drag : Vector;
 
     public var guiback : NineSlice;
+    public var map : Sprite;
 
     public function init() {
             
@@ -37,16 +38,27 @@ class Level01 extends Mode {
             depth : 0
         });
 
-        guiback = new NineSlice({
-            texture : Lab.loadTexture('assets/ui/tiny.box.png'),
-            depth : 2
+        // guiback = new NineSlice({
+        //     texture : Lab.loadTexture('assets/ui/tiny.box.png'),
+        //     depth : 2
+        // });
+
+        //guiback.create( new Vector(200,200), 400, 400 );
+
+        map = new Sprite({
+            centered:false,
+            size:new Vector(4096,4096),
+            texture:Lab.loadTexture('assets/map/map.png')
         });
 
-        guiback.create( new Vector(200,200), 400, 400 );
+        map.texture.filter = phoenix.Texture.FilterType.nearest;
 
     }
 
-    public function destroy() {    
+    public function destroy() {
+
+        trace('destroying level1');
+        
             //will destroy everyhing 
         Lab.scene.empty();
 

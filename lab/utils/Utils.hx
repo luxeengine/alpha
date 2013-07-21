@@ -18,4 +18,11 @@ class Utils {
     	return UUID.get();
     }
 
+    public function arrayToBytes(array:Array<Int>):haxe.io.Bytes {
+        if (array == null) return null;
+        var bytes:haxe.io.Bytes = haxe.io.Bytes.alloc(array.length);
+        for (n in 0 ... bytes.length) bytes.set(n, array[n]);
+        return bytes;
+    }
+
 }

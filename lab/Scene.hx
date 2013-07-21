@@ -27,6 +27,10 @@ class Scene {
 
         entities.splice( 0, entities.length );        
     }
+    
+    public function shutdown() {
+        destroy();
+    }
 
     public function destroy() {
          for(entity in entities) {

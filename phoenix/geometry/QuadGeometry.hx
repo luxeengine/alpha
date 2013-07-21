@@ -13,6 +13,7 @@ class QuadGeometry extends Geometry {
 		super(options);
 		set( new Rectangle(options.x, options.y, options.width, options.height) );
 
+        if(options.enabled != null) enabled = options.enabled;
 	}
 
     public function uv( _rect:lab.Rectangle ) {

@@ -277,7 +277,12 @@ class ParticleEmitter extends Entity {
     } //apply
 
     public function destroy() {
-
+        active_particles = null;
+        for(p in particle_cache) {
+            p.destroy();
+            p = null;
+        }
+        trace('emitter cleaned up ' + name );
     }
 
     public function emit(t:Float){

@@ -5,6 +5,7 @@ class Entity {
 	public var _components : Map<String, Entity>;
     public var id : String;
     public var name : String;
+    public var parent : Entity;
 
 	public function new(){
 		id = lab.utils.UUID.get();
@@ -25,6 +26,8 @@ class Entity {
 		var _e_component : Entity = cast _component;
 			//apply it!
 		_e_component.name = _temp_name;
+			//store the parent
+		_e_component.parent = this;		
 			//store it in the component list
 		_components.set(_temp_name, _e_component );
 
@@ -93,12 +96,13 @@ class Entity {
 	} //_init
 
 	public function _destroy() {
-			//update the parent first
-		_call(this, 'destroy');
 
 		for(_component in _components) {
 			_call(_component, 'destroy');
 		} //for each component
+
+			//update the parent last
+		_call(this, 'destroy');		
 	} //_destroy
 
 	public function _start() {

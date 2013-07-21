@@ -65,6 +65,8 @@ class Geometry {
 			
 			color = (options.color == null) ? new Color() : options.color;
 			// trace("creating geometry " + uuid +  " \t\t " + options );
+
+			enabled = (options.enabled == null) ? true : options.enabled;
 		}
 
 	}
