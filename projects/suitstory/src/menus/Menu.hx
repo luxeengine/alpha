@@ -59,70 +59,80 @@ class Menu extends Mode {
 
         mouse = new Vector();        
 
-        play = new Sprite({
-            centered: false,
-            pos : new Vector(0,0),
-            texture : Lab.loadTexture('assets/menus/bg.png'),
+        // play = new Sprite({
+        //     add:false,
+        //     centered: false,
+        //     pos : new Vector(0,0),
+        //     texture : Lab.loadTexture('assets/menus/bg.png'),
+        // });
+
+        var ttt = Lab.loadTexture('assets/menus/bg.png');
+        var lol : lab.Sprite = new lab.Sprite({
+            texture: ttt, 
+            depth: 100
         });
 
-        back = new Sprite({
-            centered : false,
-            pos : new Vector(0, 0),
-            size : new Vector(960, 640),
-            color : new Color().rgb(0xcc0000)            
-        });
+        lol.pos.x = 100;
+        lol.pos.y = 100;
+
+        // back = new Sprite({
+        //     centered : false,
+        //     pos : new Vector(0, 0),
+        //     size : new Vector(960, 640),
+        //     color : new Color().rgb(0xcc0000)            
+        // });
 
         var t1 = Lab.loadTexture('assets/flame.png');
         var t2 = Lab.loadTexture('assets/smoke.png');
         var t3 = Lab.loadTexture('assets/embers.png');
 
-        particles = back.add(ParticleSystem,'mainparticles');
+        // particles = back.add(ParticleSystem,'mainparticles');
         
-        particles.pos = new Vector(480,320);
-        particles.add_emitter({
-            name : 'flames', 
-            particle_image:t1,
-            pos : particles.pos,
-            start_size:new Vector(96,64),
-            end_size:new Vector(20,20),
-            gravity : new Vector(0,-6),
-            life:0.9,
-            depth:2,
-            group:5,
-            emit_time : 0.04
-        });
+        // particles.pos = new Vector(480,320);
+        // particles.add_emitter({
+        //     name : 'flames', 
+        //     particle_image:t1,
+        //     pos : particles.pos,
+        //     start_size:new Vector(96,64),
+        //     end_size:new Vector(20,20),
+        //     gravity : new Vector(0,-6),
+        //     life:0.9,
+        //     depth:2,
+        //     group:5,
+        //     emit_time : 0.04
+        // });
 
-        particles.add_emitter({
-            name : 'smoke',
-            particle_image : t2,
-            start_color : new Color(0.0,0.0,0.0,0.7),
-            end_color : new Color(0.3,0.3,0.3,0),
-            start_size : new Vector(80,80),
-            end_size : new Vector(200,200),
-            end_size_random : new Vector(40,40),
-            gravity : new Vector(0,-4),
-            life : 1.2,
-            depth:1,
-            group:2,
-            emit_time : 0.2
-        });
+        // particles.add_emitter({
+        //     name : 'smoke',
+        //     particle_image : t2,
+        //     start_color : new Color(0.0,0.0,0.0,0.7),
+        //     end_color : new Color(0.3,0.3,0.3,0),
+        //     start_size : new Vector(80,80),
+        //     end_size : new Vector(200,200),
+        //     end_size_random : new Vector(40,40),
+        //     gravity : new Vector(0,-4),
+        //     life : 1.2,
+        //     depth:1,
+        //     group:2,
+        //     emit_time : 0.2
+        // });
 
-        particles.add_emitter({
-            name : 'embers',
-            particle_image : t3,
-            rotation:0,
-            rotation_random:0,
-            end_rotation:0,
-            end_rotation_random:0,
-            end_color : new Color(0,0,0,0).rgb(0xff8a00),
-            start_size : new Vector(32,32),
-            end_size : new Vector(72,72),
-            gravity : new Vector(0,-2),
-            life : 1.2,
-            depth:3,
-            group:5,
-            emit_time : 0.5
-        });
+        // particles.add_emitter({
+        //     name : 'embers',
+        //     particle_image : t3,
+        //     rotation:0,
+        //     rotation_random:0,
+        //     end_rotation:0,
+        //     end_rotation_random:0,
+        //     end_color : new Color(0,0,0,0).rgb(0xff8a00),
+        //     start_size : new Vector(32,32),
+        //     end_size : new Vector(72,72),
+        //     gravity : new Vector(0,-2),
+        //     life : 1.2,
+        //     depth:3,
+        //     group:5,
+        //     emit_time : 0.5
+        // });
 
         // particles.stop();
 
@@ -149,9 +159,9 @@ class Menu extends Mode {
     public function mouseup(e) {
 
         mouse = new Vector(e.x, e.y);
-        if( play.point_inside(mouse) ) {
-            playClicked();  
-        }
+        // if( play.point_inside(mouse) ) {
+            // playClicked();  
+        // }
 
         if(particles != null) {
             if(particles.active) {
@@ -189,14 +199,14 @@ class Menu extends Mode {
     }
 
     public function enter() {
-        play.visible = true;
-        back.visible = true;        
+        // play.visible = true;
+  //      back.visible = true;        
     }
 
     public function leave() {
-        play.visible = false;
-        back.visible = false;
-        particles.destroy();
+        // play.visible = false;
+        // back.visible = false;
+//        particles.destroy();
     }
 
 }

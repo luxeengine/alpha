@@ -78,24 +78,29 @@ class Sprite extends Entity {
                 //the size is explicit, so make the geometry
             _create_geometry(options);
 
-        } else {
+        } else {    
 
                 //if the texture isn't invalid entirely
             if(texture != null) {
+
                 if(texture.loaded) {
+
                     size = new Vector(texture.width, texture.height);
                     _create_geometry(options);
+
                 } else {
+
                     texture.onload = function(_texture) {                        
                         size = new Vector(texture.width, texture.height);
                         _create_geometry(options);
+
                     }
                 } //texture is not loaded
 
             } else {
                     //default to a value big enough to see
                 size = new Vector(64,64); 
-                trace('\t\twarning : null texture handed to sprite');
+                trace('\t\tWarning : null texture handed to sprite');
                 _create_geometry(options);
             } //texture !=null
 
@@ -105,10 +110,11 @@ class Sprite extends Entity {
 
     public function _create_geometry(options : Dynamic) {
 
+
             //if they give a geometry, don't create one
         if(options.geometry != null) {
             return;
-        }
+        }        
 
         geometry = new QuadGeometry({
             x:pos.x, 
@@ -120,12 +126,12 @@ class Sprite extends Entity {
             shader : options.shader,
             depth : (options.depth == null) ? 0 : options.depth,
             group : (options.group == null) ? 0 : options.group,
-            enabled : (options.visible == null) ? 0 : options.visible
+            enabled : (options.visible == null) ? true : options.visible
         });
 
             //set the origin and centered once created
         var _c = centered;
-            centered = _c;
+        centered = _c;
 
         if(options.add == null || options.add != false) {
             Lab.addGeometry( geometry );            
