@@ -10,7 +10,7 @@ import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
 
 class Debug {
-        
+
     public var core : Core;
     public function new( _core:Core ) { core = _core; }
 
@@ -30,9 +30,9 @@ class Debug {
 
     public function startup() {        
 
-        core._debug(':: haxelab :: \t Debug Initialized.');
+        core._debug(':: haxelab :: \t Debug Initialized.');         
 
-    }
+    }   
 
     public function create_debug_console() {
 
@@ -98,8 +98,7 @@ class Debug {
             size : 14,
             batcher : debug_batcher,
             enabled : false
-        });
-        
+        });        
           
     }
 
@@ -144,7 +143,7 @@ class Debug {
             render_stats_text.visible = true;
             resource_stats_text.visible = true;
             resource_list_text.visible = true;
-            scene_inspector.show();
+            scene_inspector.show();            
         } else {
             debug_overlay.enabled = false;
             render_stats_text.visible = false;
@@ -167,7 +166,7 @@ class Debug {
                 Lab.renderer.stats.geometry_count -= debug_geometry_count;
                 Lab.renderer.stats.batched_count -= debug_geometry_count;
                 Lab.renderer.stats.enabled_count -= debug_geometry_count;
-            }            
+            }
 
             render_stats_text.text = get_render_stats_string();
             resource_stats_text.text = get_resource_stats_string();
@@ -176,3 +175,6 @@ class Debug {
 
 	} //process
 }
+
+//cpp.vm.Profiler.start("log.txt");
+//cpp.vm.Profiler.stop();

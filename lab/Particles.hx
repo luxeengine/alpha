@@ -103,7 +103,6 @@ class ParticleEmitter extends Entity {
     public var cache_size : Int = 100;
     public var cache_index : Int = 0;
 
-
     public var depth : Int = 0;
     public var group : Int = 0;
 
@@ -112,7 +111,7 @@ class ParticleEmitter extends Entity {
     public var pos : Vector;
     public var pos_offset : Vector;
     public var pos_random : Vector;
-    public var emit_time : Float ;
+    public var emit_time : Float;
     public var direction : Float;
     public var direction_random : Float;
     public var gravity : Vector;

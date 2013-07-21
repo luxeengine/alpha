@@ -26,6 +26,7 @@
     <haxelib name="haxelab" />
     <haxelib name="lime" />
     <haxelib name="actuate" />
+    
 
     <ndll name="libfreetype" register="false" if="emscripten" />
     
