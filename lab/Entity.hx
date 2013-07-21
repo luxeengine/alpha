@@ -6,19 +6,25 @@ class Entity {
     public var id : String;
     public var name : String;
     public var parent : Entity;
+    public var debug : Bool = false;
+
+    private function _debug(v){
+    	if(debug) trace(v);
+    }
 
 	public function new(){
 		id = lab.utils.UUID.get();
-		_components = new Map();
+		_components = new Map();		
 	}
 
 	public function add<T>(type:Class<T>, ?_name:String='') : T {
+
 		var _temp_name = _name;
 		if(_temp_name == '') {
 			_temp_name = Lab.utils.uuid();
 		} else {
 			_temp_name = _name;
-		}
+		}			
 
 			//create an instance
 		var _component = Type.createInstance( type, [] );
@@ -30,6 +36,8 @@ class Entity {
 		_e_component.parent = this;		
 			//store it in the component list
 		_components.set(_temp_name, _e_component );
+			//debug stuff
+		_debug('adding an entity to ' + name + ' called ' + _temp_name);
 
 			//return the component
 		return _component;
@@ -90,8 +98,12 @@ class Entity {
 			//update the parent first
 		_call(this, 'init');
 
+		if(name == null) throw "name on entity is null?";
+		_debug('calling init on ' + name);
+
 		for(_component in _components) {
 			_call(_component, 'init');
+			_debug('calling init on ' + _component.name);		
 		} //for each component
 	} //_init
 
@@ -99,18 +111,25 @@ class Entity {
 
 		for(_component in _components) {
 			_call(_component, 'destroy');
+			_debug('calling destroy on ' + _component.name);		
 		} //for each component
 
-			//update the parent last
+		_debug('calling destroy on ' + name);	
+
+			//kill the parent last
 		_call(this, 'destroy');		
+
 	} //_destroy
 
 	public function _start() {
 			//update the parent first
 		_call(this, 'start');
 
+		_debug('calling start on ' + name);	
+
 		for(_component in _components) {
 			_call(_component, 'start');
+			_debug('calling start on ' + _component.name);	
 		} //for each component
 	} //_start
 

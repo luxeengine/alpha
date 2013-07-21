@@ -20,6 +20,10 @@ class Geometry {
 	public var locked : Bool = false;
 	public var matrix : Matrix4; //used for rotation and more
 
+		//batcher information
+	public var added : Bool = false;
+	public var batchers : Array<Batcher>;
+
 	public var state : GeometryState;
 	public var dropped : Bool = false;
 	public var uuid : String = '';
@@ -46,6 +50,7 @@ class Geometry {
 		state = new GeometryState();
 		pos = new Vector();
 		origin = new Vector();
+		batchers = new Array<Batcher>();
 
 		matrix = new Matrix4();
 		matrix = matrix.identity();
@@ -83,8 +88,12 @@ class Geometry {
 		state.log = false;
 	}
 
-	public function drop() {
+	public function drop( ?remove:Bool = false ) {
 		dropped = true;
+		if(remove && added) {
+			for(b in batchers) { b.remove(this); }
+			added = false;
+		}
 	}
 
 	public function compare( other:Geometry ) {

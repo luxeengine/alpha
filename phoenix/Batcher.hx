@@ -78,8 +78,9 @@ class Batcher {
     public var batched_count : Int = 0;
 
     public var log : Bool = false;
+    public var name : String = '';
 
-    public function new( _r : Renderer ) {
+    public function new( _r : Renderer, ?_name:String = '' ) {
 
         renderer = _r;
 
@@ -100,6 +101,13 @@ class Batcher {
         tcoordBuffer = GL.createBuffer();
         vcolorBuffer = GL.createBuffer();
         normalBuffer = GL.createBuffer();
+
+            //A default name
+        if(_name.length == 0) {
+            name = Lab.utils.uuid();
+        } else {
+            name = _name;
+        }
 
     }
 
@@ -173,16 +181,30 @@ class Batcher {
 
 
     public function add( _geom:Geometry ) {
-        geometry.insert(_geom);
+        
+        if( !Lambda.has(_geom.batchers, this) ) {
+            _geom.batchers.push(this);
+            geometry.insert(_geom);
+            _geom.added = true;
+        } else {
+            trace("Warning : Attempting to add geometry to the same batcher twice." + _geom);
+        }
     }
 
     public function remove(_geom:Geometry) {
 
         var found_geom = geometry.find(_geom);
-        if(found_geom != null) {
+        if(found_geom != null) {            
+            
+            found_geom.data.batchers.remove(this);
+            if(found_geom.data.batchers.length == 0) {
+                found_geom.data.added = false;
+            }
+
             geometry.remove( found_geom );
+
         } else {
-            trace("WARNING : geometry wasn't removed! " + _geom.uuid );
+            trace("WARNING : geometry wasn't removed! " + _geom.uuid);
         }
     }
 

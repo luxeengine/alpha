@@ -37,10 +37,10 @@ class CompositeGeometry extends Geometry {
         geometry.remove(g);
     }
 
-    public override function drop() {
+    public override function drop( ?remove:Bool = false ) {
             //todo L keep children?
         for(geom in geometry) {
-            geom.drop();
+            geom.drop( remove );
         }
     }
 
@@ -75,7 +75,6 @@ class CompositeGeometry extends Geometry {
         return texture = val;
     }
     public override function set_depth(val : Float) : Float {  
-        trace("Composite set depth");
         for(geom in geometry) {
             geom.depth = val;
         }

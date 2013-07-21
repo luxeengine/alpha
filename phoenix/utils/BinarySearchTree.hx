@@ -124,7 +124,9 @@ class BinarySearchTree<T> implements Collection<T> {
                 t.left = node.left;
                 t.left.parent = t;
                 t.right = node.right;
-                t.right.parent = t;
+                if(t.right!=null) {
+                    t.right.parent = t;
+                }
             }
              
             if (node == root) root = t;

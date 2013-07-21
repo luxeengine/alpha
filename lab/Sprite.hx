@@ -29,8 +29,6 @@ class Sprite extends Entity {
     @:isVar public var uv           (default,set    )   : Rectangle;
     @:isVar public var scene        (default,default)   : Scene;
 
-
-
     public function new(options:Dynamic) {
 
         super();
@@ -46,6 +44,12 @@ class Sprite extends Entity {
         scale = new Vector(1,1);
         color = new Color();
 
+//name
+        if(options.name != null) {
+            name = options.name;
+        } else {
+            name = Lab.utils.uuid();
+        }
 //texture
         if(options.texture != null) {
             texture = options.texture;
@@ -100,7 +104,7 @@ class Sprite extends Entity {
             } else {
                     //default to a value big enough to see
                 size = new Vector(64,64); 
-                trace('\t\tWarning : null texture handed to sprite');
+                trace('\t\tWarning : null texture handed to sprite constructor');
                 _create_geometry(options);
             } //texture !=null
 
@@ -134,7 +138,7 @@ class Sprite extends Entity {
         centered = _c;
 
         if(options.add == null || options.add != false) {
-            Lab.addGeometry( geometry );            
+            Lab.addGeometry( geometry );
         }
 
         if(scene != null) {
@@ -145,9 +149,9 @@ class Sprite extends Entity {
 
     public function destroy() {
             
-            //remove the geometry from any drawing lists
-        if(geometry != null) {
-            Lab.removeGeometry( geometry );
+            //drop the geometry
+        if(geometry != null && geometry.added ) {
+            geometry.drop(true);
         }
 
             //clear our references to these

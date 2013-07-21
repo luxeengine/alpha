@@ -7,9 +7,8 @@ import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
     //default resources
 import phoenix.defaults.Shaders;
-
-// import phoenix.defaults.FontString;
-// import phoenix.defaults.FontBytes;
+import phoenix.defaults.FontString;
+import phoenix.defaults.FontBytes;
 
 import phoenix.Shader;
 import phoenix.Color;
@@ -22,13 +21,21 @@ import lime.utils.ArrayBuffer;
 
 import phoenix.utils.BinarySearchTree;
 
-typedef RendererStats = {
-    var batchers : Int;
-    var geometry_count : Int;
-    var batched_count : Int;
-    var draw_calls : Int;
-    var group_count : Int;
-};
+class RendererStats {
+    public function new(){}
+    public var batchers : Int = 0;
+    public var geometry_count : Int = 0;
+    public var batched_count : Int = 0;
+    public var draw_calls : Int = 0;
+    public var group_count : Int = 0;
+    public function toString() {
+        return 
+            'batcher count : ' + batchers + '\n' +
+            'total geometry : ' + geometry_count + '\n' +
+            'batched geometry : ' + batched_count + '\n' +
+            'total draw calls : ' + draw_calls;
+    }
+}
 
 class Renderer {
 
@@ -54,13 +61,7 @@ class Renderer {
     public function startup() {
 
         clear_color = new Color(0,0,0,1);
-        stats = {
-            batchers : 0,
-            geometry_count : 0,
-            batched_count : 0,
-            draw_calls : 0,
-            group_count : 0
-        };
+        stats = new RendererStats();
 
         resource_manager = new ResourceManager();
         batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
@@ -84,7 +85,7 @@ class Renderer {
                                                   Shaders.fragment_textured(), false );
 
             //create the default batcher
-        default_batcher = new Batcher( this );
+        default_batcher = new Batcher( this, 'default_batcher' );
         add_batch(default_batcher);
 
             //create the default font
@@ -94,15 +95,15 @@ class Renderer {
         
         #if lime_native
             
-            // var _data = FontBytes.data.split(' ');
-            // var _data2:Array<Int> = [];
-            // for(_s in _data) {
-            //     _data2.push( Std.parseInt( _s ) );
-            // }
+            var _data = FontBytes.data().split(' ');
+            var _data2:Array<Int> = [];
+            for(_s in _data) {
+                _data2.push( Std.parseInt( _s ) );
+            }
 
-            // var bytes = Lab.utils.arrayToBytes( _data2 );
-            // _font_texture.create_from_bytes('default_font', lime.utils.ByteArray.fromBytes(bytes) );
-            // default_font.load_from_string( FontString.data, 'lab://internal_data/', null, [_font_texture] );
+            var bytes = Lab.utils.arrayToBytes( _data2 );
+            _font_texture.create_from_bytes('default_font', lime.utils.ByteArray.fromBytes(bytes) );
+            default_font.load_from_string( FontString.data(), 'lab://internal_data/', null, [_font_texture] );
 
         #end
 
@@ -239,6 +240,7 @@ class Renderer {
         stats.geometry_count = 0;
         stats.batched_count = 0;
         stats.group_count = 0;
+        stats.draw_calls = 0;
 
         for(batch in batchers) {
             batch.draw();
@@ -246,7 +248,7 @@ class Renderer {
             stats.batched_count += batch.batched_count;
             stats.draw_calls += batch.draw_calls;
             stats.group_count += Lambda.count(batch.groups);
-        }
+        }       
 
         // stop_count++;
         // if(stop_count >= 5) {

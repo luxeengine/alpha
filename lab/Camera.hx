@@ -19,6 +19,7 @@ class Camera extends Entity {
 		
 		super();
 
+		name = 'default camera';
 		pos = new Vector();
 		view_position = new Vector();
 

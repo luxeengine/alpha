@@ -11,7 +11,7 @@ class ParticleSystem extends Entity {
         if(emitters == null) new Map<String, ParticleEmitter>();
         if(pos == null) pos = new Vector();
 
-        trace("Init particle system : " + name);
+        // trace("Init particle system : " + name);
     } //init
 
     public function add_emitter(_template:Dynamic) {
@@ -281,8 +281,7 @@ class ParticleEmitter extends Entity {
         for(p in particle_cache) {
             p.destroy();
             p = null;
-        }
-        trace('emitter cleaned up ' + name );
+        }        
     }
 
     public function emit(t:Float){
@@ -329,6 +328,7 @@ class ParticleEmitter extends Entity {
         } else {
 
             particle.sprite = new Sprite( {
+                name : name + '_particle_'+cache_index,
                 depth : depth,
                 group : group,
                 texture : particle_image,
@@ -336,7 +336,6 @@ class ParticleEmitter extends Entity {
             });
 
             particle_cache[cache_index] = particle.sprite;
-            particle.sprite.visible = true;
         }
         
         ++cache_index;

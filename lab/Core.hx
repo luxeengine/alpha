@@ -144,6 +144,7 @@ class Core {
         Lab.resources = renderer.resource_manager;
 
         scene = new Scene();
+        scene.name = 'default scene';
         Lab.scene = scene;
 
         scene.add(Lab.camera);

@@ -4,6 +4,8 @@ package lab;
 
 class Scene {
 
+    public var name : String = 'Untitled Scene';
+    
     public var entities : Array<Entity>;
     public function new() {
         entities = new Array<Entity>();

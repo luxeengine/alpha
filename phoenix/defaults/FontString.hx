@@ -2,8 +2,8 @@ package phoenix.defaults;
 
 class FontString {
 
-public static var data = 
-'info face="OpenSans" size=32 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+public static function data(){ 
+	return 'info face="OpenSans" size=32 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
 common lineHeight=32 base=25 scaleW=512 scaleH=512 pages=1 packed=0 alphaChnl=0 redChnl=4 greenChnl=4 blueChnl=4
 page id=0 file="def_0.png"
 chars count=877
@@ -8736,5 +8736,6 @@ kerning first=1042 second=8218 amount=-1
 kerning first=1040 second=1294 amount=-1  
 kerning first=1042 second=46  amount=-1  
 kerning first=1042 second=44  amount=-1'; 
+}
 
 }

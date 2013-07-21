@@ -69,11 +69,8 @@ class Debug {
         
     }
 
-    public function get_stats_string() {
-        var s = '';
-        s += Lab.renderer.stats;
-        trace(s);
-        return s;
+    public function get_stats_string() {        
+        return Std.string(Lab.renderer.stats);        
     }
 
     public function show_console(_show:Bool = true) {
@@ -95,7 +92,7 @@ class Debug {
 	public function process() {
 
         if(stats_text.visible) {
-            stats_text.text = get_stats_string();
+            stats_text.text = ''+Lab.dt;
         }
 	} //process
 }

@@ -99,6 +99,11 @@ class Text {
         text_options.text = v;
         
         if(geometry != null) {
+            for(g in geometry.geometry) {
+                _batcher.remove(g);
+                g.drop();
+                g = null;
+            }
             geometry.drop();
             geometry = null;
         }
