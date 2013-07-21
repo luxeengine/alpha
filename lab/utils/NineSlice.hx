@@ -223,10 +223,7 @@ class NineSlice extends lab.Sprite {
         return visible = _v;
     }
 
-    public function create( _pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false ) {
-        
-        if(!texture.loaded) return;
-
+    private function _create(_pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false) {
         if(!is_set || _reset) {
             set(_w, _h);
         }
@@ -255,6 +252,16 @@ class NineSlice extends lab.Sprite {
 
         added = true;
         is_set = true;
+    }
+    public function create( _pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false ) {
+        
+        if(!texture.loaded) {
+            texture.onload = function(texture){
+                _create(_pos,_w,_h,_reset);
+            }
+        } else {
+            _create(_pos,_w,_h,_reset);
+        }
 
     }
 

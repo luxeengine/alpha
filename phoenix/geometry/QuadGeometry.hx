@@ -18,10 +18,13 @@ class QuadGeometry extends Geometry {
 
     public function uv( _rect:lab.Rectangle ) {
 
-        if(texture == null) return;
+        if(texture == null) { 
+            trace("Warning : Setting UV on a geometry with null texture.");
+            return;
+        }
 
-        var tl = new Vector(_rect.x/texture.width, _rect.y/texture.height);
-        var sz = new Vector(_rect.w/texture.width, _rect.h/texture.height);
+        var tl = new Vector(_rect.x/texture.actual_width, _rect.y/texture.actual_height);
+        var sz = new Vector(_rect.w/texture.actual_width, _rect.h/texture.actual_height);
 
         vertices[0].uv[0] = new TextureCoord( tl.x , tl.y );
         vertices[1].uv[0] = new TextureCoord( tl.x + sz.x , tl.y );

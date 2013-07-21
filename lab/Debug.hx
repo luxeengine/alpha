@@ -24,12 +24,14 @@ class Debug {
     public var debug_overlay : QuadGeometry;
 
     public var debug_draw_call_count : Int = 3;
-    public var debug_geometry_count : Int = 12;
+    public var debug_geometry_count : Int = 13;
 
     public function startup() {        
 
         core._debug(':: haxelab :: \t Debug Initialized.');
+
     }
+    
     public function create_debug_console() {
 
             //create the debug renderer and view
@@ -111,9 +113,13 @@ class Debug {
 	public function process() {
 
         if(render_stats_text.visible) {
-            Lab.renderer.stats.draw_calls -= debug_draw_call_count;
-            Lab.renderer.stats.geometry_count -= debug_geometry_count;
-            Lab.renderer.stats.batched_count -= debug_geometry_count;
+
+            if(Lab.renderer.stats.geometry_count > debug_geometry_count) {
+                Lab.renderer.stats.draw_calls -= debug_draw_call_count;
+                Lab.renderer.stats.geometry_count -= debug_geometry_count;
+                Lab.renderer.stats.batched_count -= debug_geometry_count;
+                Lab.renderer.stats.enabled_count -= debug_geometry_count;
+            }
 
             render_stats_text.text = get_render_stats_string();
             resource_stats_text.text = get_resource_stats_string();

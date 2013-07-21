@@ -41,9 +41,11 @@ class BatchState {
 
                 if(last_texture_id != geom_state.texture.id){
                     
-                    last_texture_id = geom_state.texture.id;    
-                    geom_state.texture.bind();
-                    geom_state.texture.activate(batcher.tex0_attribute);
+                    last_texture_id = geom_state.texture.id;   
+                    if(geom_state.texture.loaded) { 
+                        geom_state.texture.bind();
+                        geom_state.texture.activate(batcher.tex0_attribute);
+                    }
                 }
 
             } else {

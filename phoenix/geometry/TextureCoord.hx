@@ -12,4 +12,8 @@ class TextureCoord {
 		v = _v;
 		w = _w;
 	}
+
+	public function toString() {
+		return  "{ u:"+u + ", v:" + v +" }" ;
+	}
 }

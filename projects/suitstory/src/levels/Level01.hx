@@ -22,7 +22,6 @@ class Level01 extends Mode {
     public var start_drag : Vector;
     public var start_camera_drag : Vector;
 
-    public var guiback : NineSlice;
     public var map : Sprite;
 
     public function init() {
@@ -47,8 +46,10 @@ class Level01 extends Mode {
 
         map = new Sprite({
             centered:false,
-            size:new Vector(4096,4096),
-            texture:Lab.loadTexture('assets/map/map.png')
+            size : new Vector(2048,2048),
+            pos : new Vector(-10, Lab.screen.h - 2048),
+            depth:1,
+            texture : Lab.loadTexture('assets/map/map.png')
         });
 
         map.texture.filter = phoenix.Texture.FilterType.nearest;
@@ -60,9 +61,9 @@ class Level01 extends Mode {
         trace('destroying level1');
         
             //will destroy everyhing 
-        Lab.scene.empty();
+        back.destroy();
+        map.destroy();
 
-        guiback = null;
         back = null;
     }
 
@@ -106,6 +107,7 @@ class Level01 extends Mode {
     }
 
     public function leave() {
+        Lab.camera.pos = new Vector();
         destroy();
     }
 }

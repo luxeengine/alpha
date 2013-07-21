@@ -97,7 +97,9 @@ class Sprite extends Entity {
                     texture.onload = function(_texture) {                        
                         size = new Vector(texture.width, texture.height);
                         _create_geometry(options);
-
+                        if(texture.actual_width != texture.width || texture.actual_height != texture.height) {
+                            uv = new Rectangle(0,0,texture.width,texture.height);
+                        }
                     }
                 } //texture is not loaded
 
@@ -281,6 +283,7 @@ class Sprite extends Entity {
 //UV / source rect
 
     public function set_uv(_uv:Rectangle) : Rectangle {
+
         if(geometry != null) {
             geometry.uv(_uv);
         }

@@ -69,14 +69,14 @@ class Camera {
         if(_projection == ProjectionType.ortho) {
 
             set_ortho( options );
-            trace('camera setting ortho: ' + ortho_options);            
+            //trace('camera setting ortho: ' + ortho_options);            
 
         } else
             //Perspective projection
         if(_projection == ProjectionType.perspective) {
 
             set_perspective(options);
-            trace('camera setting perspective: ' + perspective_options);
+            //trace('camera setting perspective: ' + perspective_options);
 
         }
         

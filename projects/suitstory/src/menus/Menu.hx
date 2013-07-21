@@ -39,26 +39,27 @@ class Menu extends Mode {
 
     public var dttext : Text;
 
-    public function init() {        
+    public function init() {    
 
         mouse = new Vector();        
 
-        play = new Sprite({
-            name:'play',
-            add:false,
-            centered: false,
-            pos : new Vector(0,0),
-            texture : Lab.loadTexture('assets/menus/bg.png'),
-        });
 
         back = new Sprite({
-            add:false,
             name : 'back',
             centered : false,
             pos : new Vector(0, 0),
             size : new Vector(960, 640),
             color : new Color().rgb(0x121212)            
         });
+
+        play = new Sprite({
+            name:'play',
+            centered: false,
+            pos : new Vector(0,0),
+            depth:1,
+            texture : Lab.loadTexture('assets/menus/bg.png'),
+        });
+
 
         var t1 = Lab.loadTexture('assets/flame.png');
         var t2 = Lab.loadTexture('assets/smoke.png');
@@ -123,7 +124,8 @@ class Menu extends Mode {
             }
         );
 
-        back.visible = false;        
+        back.visible = true;        
+        particles.stop();
 
     }
 
@@ -139,9 +141,9 @@ class Menu extends Mode {
     public function mouseup(e) {
 
         mouse = new Vector(e.x, e.y);
-        // if( play.point_inside(mouse) ) {
-            // playClicked();  
-        // }
+        if( play.point_inside(mouse) ) {
+            playClicked();  
+        }
 
         if(particles != null) {
             if(particles.active) {
@@ -159,7 +161,7 @@ class Menu extends Mode {
     }
 
     public function update(dt:Float) {
-        
+
     }
    
     public function keyup(e:Dynamic) {
@@ -178,14 +180,16 @@ class Menu extends Mode {
     }
 
     public function enter() {
-        // play.visible = true;
-  //      back.visible = true;        
+        play.visible = true;
+        back.visible = true;   
+        // particles.init();
     }
 
     public function leave() {
-        // play.visible = false;
-        // back.visible = false;
-//        particles.destroy();
+        
+        play.visible = false;
+        back.visible = false;
+        // if(particles != null) particles.destroy();
     }
 
 }

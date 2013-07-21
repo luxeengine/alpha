@@ -96,23 +96,11 @@ class Renderer {
             //create the font texture
         var _font_texture = new Texture( resource_manager );
         
-        #if lime_native
             
-            var _data = FontBytes.data().split(' ');
-            var _data2:Array<Int> = [];
-            for(_s in _data) {
-                _data2.push( Std.parseInt( _s ) );
-            }
+        var _font_texture = load_texture_from_string_byte_array('default_font', FontBytes.data(), 512,512 );
+        default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
 
-            var bytes = Lab.utils.arrayToBytes( _data2 );
-            _font_texture.create_from_bytes('default_font', lime.utils.ByteArray.fromBytes(bytes) );
-            default_font.load_from_string( FontString.data(), 'lab://internal_data/', null, [_font_texture] );
 
-        #end
-
-        #if lime_html5
-            //todo
-        #end
 
             //enable z buffer use
         GL.enable(GL.DEPTH_TEST);
@@ -120,8 +108,6 @@ class Renderer {
         GL.depthFunc(GL.LEQUAL);
             //Clear the depth buffer
         GL.clearDepth(1.0);
-
-        var s = GL.getFramebufferAttachmentParameter(GL.FRAMEBUFFER, GL.DEPTH_ATTACHMENT, GL.RENDERBUFFER_DEPTH_SIZE);
 
             //Enable blending
         GL.enable(GL.BLEND);
@@ -150,6 +136,33 @@ class Renderer {
         GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
+    public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
+        
+        var _array_data = _string_byte_array.split(' ');
+        var _int_array_data : Array<Int> = [];
+            //loop over the string items and parse them to int
+        for(_s in _array_data) {
+            _int_array_data.push( Std.parseInt( _s ) );
+        }
+
+        var texture_bytes = Lab.utils.arrayToBytes( _int_array_data );
+        var texture = new Texture(resource_manager);
+
+        #if lime_native 
+            texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
+        #end
+        #if lime_html5
+            texture.create_from_bytes_using_haxe(_name, texture_bytes );
+        #end 
+
+        texture_bytes = null;
+        _array_data = null;
+        _int_array_data = null;
+
+        return texture;        
+
+    }
+
     public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
 
         var texture : Texture = new Texture( resource_manager );
@@ -159,34 +172,35 @@ class Renderer {
             
         image.onload = function(a) {
 
+            var width_pot = Lab.utils.nearest_power_of_two(image.width);
+            var height_pot = Lab.utils.nearest_power_of_two(image.height);
+
             var tmp_canvas = js.Browser.document.createCanvasElement();
-            tmp_canvas.width = image.width; tmp_canvas.height = image.height;
+            tmp_canvas.width = width_pot; tmp_canvas.height = height_pot;
 
             var tmp_context = tmp_canvas.getContext2d();
             tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
-            tmp_context.drawImage( image, 0, 0, tmp_canvas.width, tmp_canvas.height );
+            tmp_context.drawImage( image, 0, 0, image.width, image.height );
 
             var image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
             var haxe_bytes = new lime.utils.UInt8Array( image_bytes.data );
 
             texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
-            texture.loaded = true;
-            texture.id = _name; //the full name is useless
+            texture.width = image.width;
+            texture.height = image.height;
+            texture.id = _name; //the full src name is less useful
 
-            trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
+            trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
 
             tmp_canvas = null;
             tmp_context = null;
             haxe_bytes = null;
             image_bytes = null;
 
-            if(_onloaded != null) {
-                _onloaded(texture);
-            } //if onloaded
-
-            if(texture.onload != null) {
-                texture.onload(texture);
-            } //if texture.onload
+                //append the listener
+            if(_onloaded != null) texture.onload = _onloaded;
+                //and fire the handler
+            texture.do_onload();
 
         } //image.onload
 
@@ -202,15 +216,11 @@ class Renderer {
         if(asset_bytes != null) {
 
             texture.create_from_bytes( _name, asset_bytes );
-            texture.loaded = true;
-            
-            if(_onloaded != null) {
-                _onloaded(texture);
-            } //if onloaded
 
-            if(texture.onload != null) {
-                texture.onload(texture);
-            } //if texture.onload
+                //append the listener
+            if(_onloaded != null) texture.onload = _onloaded;
+                //call all the onload listeners
+            texture.do_onload();
 
             trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
