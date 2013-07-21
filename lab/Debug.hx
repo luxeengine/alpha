@@ -112,7 +112,7 @@ class Debug {
             switch (res.type) {
                 case ResourceType.texture:
                     var t : phoenix.Texture = cast res;
-                    texture_lists += '\t' + t.id + ' (' +  t.actual_width + 'x' + t.actual_height + ')\n';
+                    texture_lists += '\t' + t.id + '    (' +  t.actual_width + 'x' + t.actual_height + ')\n';
                 case ResourceType.font:
                     font_lists += '\t' + res.id + '\n';
                 case ResourceType.shader:
