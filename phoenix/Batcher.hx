@@ -75,7 +75,8 @@ class Batcher {
     public var view : Camera;
 
     public var draw_calls : Int = 0;
-    public var batched_count : Int = 0;
+    public var dynamic_batched_count : Int = 0;
+    public var static_batched_count : Int = 0;
     public var enabled_count : Int = 0;
 
     public var log : Bool = false;
@@ -171,8 +172,6 @@ class Batcher {
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
-            //passed in from the BST if we want to get a reference compare
-            //rather than a properties/state compare
         if(a == b) {
             return 0;
         } else {
@@ -238,7 +237,8 @@ class Batcher {
     public function batch( persist_immediate : Bool = false ) {
 
             //start at 0
-        batched_count = 0;
+        dynamic_batched_count = 0;
+        static_batched_count = 0;
         enabled_count = 0;
 
             //The current batch state values
@@ -281,11 +281,10 @@ class Batcher {
 
                     enabled_count++;
 
-                        //VBO 
+                        //Static batched geometry gets sent on it's own
                     if(geom.locked) {
-                        submit_vertex_buffer_object(geom);   
+                        submit_static_buffer_object(geom);   
                     }
-
                         // Do not accumulate for tri strips, line strips, line loops, triangle fans, quad strips, or polygons 
                     else if( geom.primitive_type == PrimitiveType.line_strip ||
                              geom.primitive_type == PrimitiveType.line_loop ||
@@ -301,7 +300,7 @@ class Batcher {
                         // Accumulate, this is standard geometry 
                     else {
                         geom.batch( vertlist, tcoordlist, colorlist, normallist );
-                        batched_count++;
+                        dynamic_batched_count++;
                     }   
 
                     //catch
@@ -356,9 +355,6 @@ class Batcher {
 
     } //draw
 
-    public function submit_vertex_buffer_object( geom:Geometry ) {
-
-    }
 
     public function get_opengl_primitive_type( type:PrimitiveType ) {
         switch( type ) {
@@ -376,6 +372,111 @@ class Batcher {
                 return GL.TRIANGLE_STRIP;
         }
     }
+
+    private function _enable_attributes() {
+
+            //Update the GL Matrices
+        GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_matrix.float32array() );
+        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.modelview_matrix.float32array() );        
+
+            //Set shader attributes
+        GL.enableVertexAttribArray(vert_attribute);
+        GL.enableVertexAttribArray(tcoord_attribute);
+        GL.enableVertexAttribArray(color_attribute);
+        GL.enableVertexAttribArray(normal_attribute);
+
+    }
+
+    private function _disable_attributes() {
+
+            //Unset
+        GL.disableVertexAttribArray(vert_attribute);
+        GL.disableVertexAttribArray(tcoord_attribute);
+        GL.disableVertexAttribArray(color_attribute);
+        GL.disableVertexAttribArray(normal_attribute);
+
+    }
+
+    public function submit_static_buffer_object( geom:Geometry ) {        
+
+        if( geom.vertices.length == 0 ) {
+            return;
+        }
+
+        var vertlist : Array<Float> = new Array<Float>();
+        var tcoordlist : Array<Float> = new Array<Float>();
+        var colorlist : Array<Float> = new Array<Float>();
+        var normallist : Array<Float> = new Array<Float>(); 
+
+        geom.batch( vertlist, tcoordlist, colorlist, normallist );
+
+            //check if the geometry has buffers
+        if(geom.static_vertex_buffer == null) {
+            geom.static_vertex_buffer = GL.createBuffer();
+            geom.static_tcoord_buffer = GL.createBuffer();
+            geom.static_vcolor_buffer = GL.createBuffer();
+            geom.static_normal_buffer = GL.createBuffer();
+        }
+
+        _enable_attributes();
+
+            //set the vertices positions in the shader, but to static buffers
+        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vertex_buffer);
+        GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
+
+        if(!geom.submitted || geom.dirty) {
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(vertlist), GL.STATIC_DRAW);
+        }
+
+            //set the texture coordinates in the shader, but to static buffers
+        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_tcoord_buffer);
+        GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
+
+        if(!geom.submitted || geom.dirty) {
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tcoordlist), GL.STATIC_DRAW);
+        }
+
+            //set the color values in the shader, but to static buffers
+        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vcolor_buffer);
+        GL.vertexAttribPointer(color_attribute, 4, GL.FLOAT, false, 0, 0);
+
+        if(!geom.submitted || geom.dirty) {
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(colorlist), GL.STATIC_DRAW);
+        }
+
+            //set the normal directions in the shader, but to static buffers
+        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_normal_buffer);
+        GL.vertexAttribPointer(normal_attribute, 3, GL.FLOAT, false, 0, 0);
+
+        if(!geom.submitted || geom.dirty) {
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(normallist), GL.STATIC_DRAW);
+        }
+
+            //Draw
+        GL.drawArrays( get_opengl_primitive_type(geom.primitive_type) , 0, Std.int(vertlist.length/3) );
+
+            //Disable attributes
+        _disable_attributes();
+        
+            //clear the vlist
+        vertlist.splice(0, vertlist.length);    
+        tcoordlist.splice(0, tcoordlist.length);    
+        colorlist.splice(0, colorlist.length);    
+        normallist.splice(0, normallist.length);
+        vertlist = null;
+        tcoordlist = null;
+        colorlist = null;
+        normallist = null;    
+
+        draw_calls++;
+
+            //clear the geometry flags
+        geom.dirty = false;
+        geom.submitted = true;
+            //keep track 
+        static_batched_count++;
+
+    } //submit_static_buffer_object
 
     public function submit_vertex_list( 
         vertlist:Array<Float>, tcoordlist:Array<Float>, 
@@ -395,15 +496,8 @@ class Batcher {
         l("\t\t\t\t\t\t data : color_attribute " + color_attribute);
         l("\t\t\t\t\t\t data : normal_attribute " + normal_attribute);
 
-            //Update the GL Matrices
-        GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_matrix.float32array() );
-        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.modelview_matrix.float32array() );        
-
-            //Set shader attributes
-        GL.enableVertexAttribArray(vert_attribute);
-        GL.enableVertexAttribArray(tcoord_attribute);
-        GL.enableVertexAttribArray(color_attribute);
-        GL.enableVertexAttribArray(normal_attribute);
+            //Enable atttributes
+        _enable_attributes();
 
             //set the vertices positions in the shader
         GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
@@ -428,11 +522,8 @@ class Batcher {
             //Draw
         GL.drawArrays( get_opengl_primitive_type(type) , 0, Std.int(vertlist.length/3) );
 
-            //Unset
-        GL.disableVertexAttribArray(vert_attribute);
-        GL.disableVertexAttribArray(tcoord_attribute);
-        GL.disableVertexAttribArray(color_attribute);
-        GL.disableVertexAttribArray(normal_attribute);
+            //Disable attributes
+        _disable_attributes();
         
             //clear the vlist
         vertlist.splice(0, vertlist.length);    

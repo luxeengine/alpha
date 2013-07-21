@@ -11,13 +11,21 @@ import lime.utils.ByteArray;
 import lime.utils.Float32Array;
 import lime.utils.IMemoryRange;
 
-
+import lime.gl.GLBuffer;
 
 class Geometry {
 
 	public var vertices : Array<Vertex>;
 
+		//statically batched VBO's
 	public var locked : Bool = false;
+	public var submitted : Bool = false;
+	public var dirty : Bool = false;
+	public var static_vertex_buffer : GLBuffer;
+    public var static_tcoord_buffer : GLBuffer;
+    public var static_vcolor_buffer : GLBuffer;
+    public var static_normal_buffer : GLBuffer;
+
 	public var matrix : Matrix4; //used for rotation and more
 
 		//batcher information

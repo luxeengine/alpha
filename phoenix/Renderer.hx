@@ -25,7 +25,8 @@ class RendererStats {
     public function new(){}
     public var batchers : Int = 0;
     public var geometry_count : Int = 0;
-    public var batched_count : Int = 0;
+    public var dynamic_batched_count : Int = 0;
+    public var static_batched_count : Int = 0;
     public var enabled_count : Int = 0;
     public var draw_calls : Int = 0;
     public var group_count : Int = 0;
@@ -35,7 +36,8 @@ class RendererStats {
             '\tbatcher count : ' + batchers + '\n' +
             '\ttotal geometry : ' + geometry_count + '\n' +
             '\tenabled geometry : ' + enabled_count + '\n' +
-            '\tbatched geometry : ' + batched_count + '\n' +
+            '\tdynamic batched geometry : ' + dynamic_batched_count + '\n' +
+            '\tstatic batched geometry : ' + static_batched_count + '\n' +
             '\ttotal draw calls : ' + draw_calls;
     }
 }
@@ -271,7 +273,8 @@ class Renderer {
 
         stats.batchers = batchers.length;
         stats.geometry_count = 0;
-        stats.batched_count = 0;
+        stats.dynamic_batched_count = 0;
+        stats.static_batched_count = 0;
         stats.enabled_count = 0;
         stats.group_count = 0;
         stats.draw_calls = 0;
@@ -279,7 +282,8 @@ class Renderer {
         for(batch in batchers) {
             batch.draw();
             stats.geometry_count += Lambda.count(batch.geometry);
-            stats.batched_count += batch.batched_count;
+            stats.dynamic_batched_count += batch.dynamic_batched_count;
+            stats.static_batched_count += batch.static_batched_count;
             stats.enabled_count += batch.enabled_count;
             stats.draw_calls += batch.draw_calls;
             stats.group_count += Lambda.count(batch.groups);

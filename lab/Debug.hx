@@ -28,6 +28,12 @@ class Debug {
     public var debug_draw_call_count : Int = 3;
     public var debug_geometry_count : Int = 13;
 
+        //track a 10 frame average
+    public var dt_average : Float = 0;
+    public var dt_average_accum : Float = 0;
+    public var dt_average_span : Int = 10;
+    public var dt_average_count : Int = 0;
+
     public function startup() {        
 
         core._debug(':: haxelab :: \t Debug Initialized.');         
@@ -81,7 +87,7 @@ class Debug {
         resource_stats_text = new lab.Text({
             depth : 999.3,
             color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(padding.x*6,padding.y*3),
+            pos : new Vector(padding.x*7,padding.y*3),
             font : Lab.renderer.default_font,
             text : get_resource_stats_string(),
             size : 18,
@@ -92,13 +98,13 @@ class Debug {
         resource_list_text = new lab.Text({
             depth : 999.3,
             color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(padding.x*6,padding.y*7),
+            pos : new Vector(padding.x*7,padding.y*7),
             font : Lab.renderer.default_font,
             text : get_resource_stats_string(),
             size : 14,
             batcher : debug_batcher,
             enabled : false
-        });        
+        });
           
     }
 
@@ -159,18 +165,26 @@ class Debug {
 
 	public function process() {
 
+        dt_average_accum += Lab.dt;
+        dt_average_count++;
+        if(dt_average_count == dt_average_span - 1) {
+            dt_average = dt_average_accum/dt_average_span;
+            dt_average_accum = dt_average;
+            dt_average_count = 0;
+        }
+
         if(render_stats_text.visible) {
 
             if(Lab.renderer.stats.geometry_count > debug_geometry_count) {
                 Lab.renderer.stats.draw_calls -= debug_draw_call_count;
                 Lab.renderer.stats.geometry_count -= debug_geometry_count;
-                Lab.renderer.stats.batched_count -= debug_geometry_count;
+                Lab.renderer.stats.dynamic_batched_count -= debug_geometry_count;
                 Lab.renderer.stats.enabled_count -= debug_geometry_count;
             }
 
             render_stats_text.text = get_render_stats_string();
             resource_stats_text.text = get_resource_stats_string();
-            scene_inspector._title_text.text = "default scene " + (Std.int(Lab.dt*1000) / 1000);
+            scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Lab.dt*1000) / 1000);
         }
 
 	} //process

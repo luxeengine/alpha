@@ -75,13 +75,14 @@ class Menu extends Mode {
             pos : particles.pos,
             start_size:new Vector(96,64),
             end_size:new Vector(20,20),
+            end_color:new Color(1.0,0.2,0.2,0),
             gravity : new Vector(0,-6),
             life:0.9,
             depth:2,
             group:5,
             emit_time : 0.04
         });
-
+ 
         particles.add_emitter({
             name : 'smoke',
             particle_image : t2,
@@ -114,6 +115,7 @@ class Menu extends Mode {
             emit_time : 0.5
         });
 
+        play.geometry.locked = true;
 
         Lab.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
