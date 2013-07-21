@@ -76,6 +76,7 @@ class Batcher {
 
     public var draw_calls : Int = 0;
     public var batched_count : Int = 0;
+    public var enabled_count : Int = 0;
 
     public var log : Bool = false;
     public var name : String = '';
@@ -238,6 +239,7 @@ class Batcher {
 
             //start at 0
         batched_count = 0;
+        enabled_count = 0;
 
             //The current batch state values
         var state : BatchState = new BatchState(this);
@@ -276,6 +278,8 @@ class Batcher {
 
                 if(geom.enabled) {
                     //try
+
+                    enabled_count++;
 
                         //VBO 
                     if(geom.locked) {

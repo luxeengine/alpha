@@ -14,7 +14,8 @@ class Debug {
     public function new( _core:Core ) { core = _core; }
 
     public var scene_inspector : Inspector;
-    public var stats_text : lab.Text;
+    public var render_stats_text : lab.Text;
+    public var resource_stats_text : lab.Text;
 
     public var debug_batcher : Batcher;
     public var debug_view : Camera;
@@ -22,9 +23,10 @@ class Debug {
 
     public var debug_overlay : QuadGeometry;
 
-    public function startup() {
+    public var debug_draw_call_count : Int = 3;
+    public var debug_geometry_count : Int = 12;
 
-        cpp.vm.Profiler.start("profile.txt");
+    public function startup() {        
 
         core._debug(':: haxelab :: \t Debug Initialized.');
     }
@@ -56,31 +58,48 @@ class Debug {
             batcher:debug_batcher
         });        
 
-        stats_text = new lab.Text({
-            font : Lab.renderer.default_font,
-            text : get_stats_string(),
+        render_stats_text = new lab.Text({
             depth : 999.3,
-            size : 18,
-            pos : new Vector(padding.x*2,padding.y*3),
             color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(padding.x*2,padding.y*3),
+            font : Lab.renderer.default_font,
+            text : get_render_stats_string(),
+            size : 18,
             batcher : debug_batcher,
-            enabled : false          
+            enabled : false
         });
         
+        resource_stats_text = new lab.Text({
+            depth : 999.3,
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(padding.x*6,padding.y*3),
+            font : Lab.renderer.default_font,
+            text : get_resource_stats_string(),
+            size : 18,
+            batcher : debug_batcher,
+            enabled : false
+        });
+        
+          
     }
 
-    public function get_stats_string() {        
+    public function get_render_stats_string() {        
         return Std.string(Lab.renderer.stats);        
+    }
+    public function get_resource_stats_string() {        
+        return Std.string(Lab.resources.stats);
     }
 
     public function show_console(_show:Bool = true) {
         if(_show) {
             debug_overlay.enabled = true;
-            stats_text.visible = true;
+            render_stats_text.visible = true;
+            resource_stats_text.visible = true;
             scene_inspector.show();
         } else {
             debug_overlay.enabled = false;
-            stats_text.visible = false;
+            render_stats_text.visible = false;
+            resource_stats_text.visible = false;
             scene_inspector.hide();
         }
     } //show_console
@@ -91,8 +110,15 @@ class Debug {
 
 	public function process() {
 
-        if(stats_text.visible) {
-            stats_text.text = ''+Lab.dt;
+        if(render_stats_text.visible) {
+            Lab.renderer.stats.draw_calls -= debug_draw_call_count;
+            Lab.renderer.stats.geometry_count -= debug_geometry_count;
+            Lab.renderer.stats.batched_count -= debug_geometry_count;
+
+            render_stats_text.text = get_render_stats_string();
+            resource_stats_text.text = get_resource_stats_string();
+            scene_inspector._title_text.text = "default scene " + (Std.int(Lab.dt*1000) / 1000);
         }
+
 	} //process
 }

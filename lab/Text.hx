@@ -89,6 +89,7 @@ class Text {
             geometry.enabled = visible;
         }
 
+        text_options.enabled = visible;
         return b;
     }
 
@@ -97,7 +98,7 @@ class Text {
         if(!ready) return text = v;
         if(text_options == null) return v;        
         text_options.text = v;
-        
+
         if(geometry != null) {
             for(g in geometry.geometry) {
                 _batcher.remove(g);

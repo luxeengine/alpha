@@ -22,7 +22,7 @@
      <assets path="Assets" rename="assets" include="*"/>
 
     <source path="src" />
-    
+
     <haxelib name="haxelab" />
     <haxelib name="lime" />
     <haxelib name="actuate" />

@@ -52,6 +52,7 @@ class Menu extends Mode {
         });
 
         back = new Sprite({
+            add:false,
             name : 'back',
             centered : false,
             pos : new Vector(0, 0),
@@ -63,14 +64,6 @@ class Menu extends Mode {
         var t2 = Lab.loadTexture('assets/smoke.png');
         var t3 = Lab.loadTexture('assets/embers.png');
 
-        dttext = new Text({
-            depth: 200,
-            color : new Color().rgb(0xf6f6f6),
-            pos   : new Vector(20,20),
-            font  : Lab.renderer.default_font,
-            text  : 'hello',
-            size : 32
-        });
 
         particles = back.add(ParticleSystem,'mainparticles');
         
@@ -120,7 +113,6 @@ class Menu extends Mode {
             emit_time : 0.5
         });
 
-        // particles.stop();
 
         Lab.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
@@ -130,6 +122,8 @@ class Menu extends Mode {
                 b.blend_mode();
             }
         );
+
+        back.visible = false;        
 
     }
 
@@ -165,10 +159,7 @@ class Menu extends Mode {
     }
 
     public function update(dt:Float) {
-        dttext.text = Lab.dt+'';        
-        //todo!
-        //for some reason the text changing text is way slower than it should be.
-        // t.text = 'dt: ' +dt + ' \nflames particles: ' + particles.get('flames').particle_count + ' \nsmoke particles: ' + particles.get('smoke').particle_count;
+        
     }
    
     public function keyup(e:Dynamic) {
