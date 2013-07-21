@@ -60,7 +60,6 @@ class Menu extends Mode {
         mouse = new Vector();        
 
         play = new Sprite({
-            add:false,
             centered: false,
             pos : new Vector(0,0),
             texture : Lab.loadTexture('assets/menus/bg.png'),
@@ -72,7 +71,7 @@ class Menu extends Mode {
             centered : false,
             pos : new Vector(0, 0),
             size : new Vector(960, 640),
-            color : new Color().rgb(0x121212)            
+            color : new Color().rgb(0xcc0000)            
         });
 
         var t1 = Lab.loadTexture('assets/flame.png');
