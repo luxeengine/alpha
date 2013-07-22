@@ -182,6 +182,8 @@ class Debug {
                 Lab.renderer.stats.enabled_count -= debug_geometry_count;
             }
 
+            
+
             render_stats_text.text = get_render_stats_string();
             resource_stats_text.text = get_resource_stats_string();
             scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Lab.dt*1000) / 1000);
