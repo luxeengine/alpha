@@ -9,8 +9,6 @@ class Camera extends Entity {
 	public var view : phoenix.Camera;
 	private var view_position : Vector;
 
-	@:isVar public var pos(default,set) : Vector;
-
 	public var shake_vector : Vector;
     public var shake_amount : Float;
     public var shaking : Bool = false;
@@ -35,25 +33,12 @@ class Camera extends Entity {
 		view_position = view.pos;
 	}
 
-        //An internal callback for when x y or z on a sprite changes
-    private function xyz_change(_v:Float) {
-        set_pos(pos);
-    }
-
-        //An internal function to attach position 
-        //changes to a vector, so we can listen for pos.x as well
-    private function _attach_pos(_pos : Vector) {
-        _pos.listen_x = xyz_change;
-        _pos.listen_y = xyz_change;
-        _pos.listen_z = xyz_change;
-    }
-
-	public function set_pos(v:Vector) : Vector {		
+	public override function set_pos(v:Vector) : Vector {		
 		view_position = v;
 		pos = v;
 
 			//listen for sub changes
-		_attach_pos( pos );
+		super.set_pos( pos );
 
 		return pos;
 	}

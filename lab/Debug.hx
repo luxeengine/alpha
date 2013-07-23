@@ -50,7 +50,7 @@ class Debug {
 
     public function startup() {        
 
-        haxe.Log.trace = internal_trace;
+        // haxe.Log.trace = internal_trace;
 
         core._debug(':: haxelab :: \t Debug Initialized.');         
         _last_render_stats = {
@@ -61,7 +61,7 @@ class Debug {
             enabled_count : 0,
             draw_calls : 0,
             group_count : 0      
-        };
+        };        
 
     }   
 
@@ -112,7 +112,10 @@ class Debug {
     }   
 
     public function add_line(_t:String) {        
-
+        if(lines == null) {
+            Sys.println(_t);
+            return;
+        }
             //about to reach the max?
         var line = null;
         if(lines.length > max_lines - 1) {

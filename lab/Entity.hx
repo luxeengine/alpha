@@ -1,21 +1,89 @@
 package lab;
+
+import lab.Vector;
 	
 class Entity {
 
-	public var _components : Map<String, Entity>;
     public var id : String;
     public var name : String;
-    public var parent : Entity;
+	public var _components : Map<String, Entity>;
+
+    @:isVar public var parent 	(default,default) : Entity;
+	@:isVar public var pos 		(get,set) : Vector;
+	@:isVar public var rotation (get,set) : Float = 0;
+	@:isVar public var scale 	(get,set) : Vector;
+
+	private var _last_scale : Vector;
+
     public var debug : Bool = true;
 
     private function _debug(v){
     	if(debug) trace(v);
     }
 
-	public function new(){
-		id = lab.utils.UUID.get();
+	public function new(){		
 		_components = new Map();
+			//defaults
+		id = lab.utils.UUID.get();
+			//transform
+		pos = new Vector();
+		scale = new Vector(1,1);
+		_last_scale = new Vector(1,1);
+		rotation = 0;
+		parent = null;
+
 	}
+
+	    //An internal callback for when x y or z on a transform changes
+    private function pos_change(_v:Float) {
+        set_pos(pos);
+    }
+	    //An internal callback for when x y or z on a transform changes
+    private function scale_change(_v:Float) {
+        set_scale(scale);
+    }
+
+        //An internal function to attach position 
+        //changes to a vector, so we can listen for `pos.x` as well
+    private function _attach_listener(_v : Vector, listener) {
+        _v.listen_x = listener; _v.listen_y = listener; _v.listen_z = listener;
+    }
+
+    public function get_rotation() : Float { return (parent == null) ? rotation : parent.rotation; }
+    public function set_rotation(_r:Float) : Float { return (parent == null) ? rotation = _r : parent.rotation = _r; }
+
+    public function get_scale() : Vector { return (parent == null) ? scale : parent.scale; }
+    public function set_scale(_s:Vector) : Vector {
+
+    	if(parent == null) {
+
+	    		//store the new value
+	    	scale = _s;
+	    		//listen for changes on the new value
+	        _attach_listener( scale, scale_change );
+	        	//store a copy for getting a difference in scale
+	        _last_scale = scale.clone();
+	        	//set requires return
+	        return scale;
+	    } else {
+			return parent.scale = _s;
+	    }
+
+	    return _s;
+    }
+
+    public function get_pos() : Vector { return (parent == null) ? pos : parent.pos; }
+	public function set_pos(_p:Vector) { 
+		if(parent == null) {
+			pos = _p;
+        	_attach_listener( pos, pos_change );
+        	return pos;
+        } else {
+        	return parent.pos = _p;
+        }
+
+        return _p;
+	}	
 
 	public function add<T>(type:Class<T>, ?_name:String='') : T {
 
@@ -33,7 +101,10 @@ class Entity {
 			//apply it!
 		_e_component.name = _temp_name;
 			//store the parent
-		_e_component.parent = this;		
+		_e_component.parent = this;
+		_e_component.pos = this.pos;
+		_e_component.scale = this.scale;
+		_e_component.rotation = this.rotation;
 			//store it in the component list
 		_components.set(_temp_name, _e_component );
 			//debug stuff
@@ -131,7 +202,7 @@ class Entity {
 	} //_start
 
 	public function _update(dt:Float) {
-		
+
 			//update the parent first
 		_call(this, 'update', [dt]);
 

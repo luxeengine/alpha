@@ -17,12 +17,9 @@ class Sprite extends Entity {
 
     @:isVar public var geometry     (default,default)   : QuadGeometry;
     @:isVar public var texture      (default,default)   : Texture;
-    @:isVar public var pos          (default,set    )   : Vector;
     @:isVar public var size         (default,set    )   : Vector;
-    @:isVar public var scale        (default,set    )   : Vector;
     @:isVar public var color        (default,set    )   : Color;
     @:isVar public var visible      (default,set    )   : Bool;
-    @:isVar public var rotation     (get    ,set    )   : Float = 0.0;
     @:isVar public var radians      (default,set    )   : Float = 0.0;
     @:isVar public var centered     (default,set    )   : Bool = true;
     @:isVar public var origin       (default,set    )   : Vector;
@@ -39,9 +36,7 @@ class Sprite extends Entity {
         }
 
             //create the position value so we can exploit it a bit
-        pos = new Vector();
         origin = new Vector();
-        scale = new Vector(1,1);
         color = new Color();
 
 //name
@@ -265,19 +260,21 @@ class Sprite extends Entity {
 
 //Scale
 
-    public function set_scale( _v:Vector ) : Vector {  
+    public override function set_scale( _v:Vector ) : Vector {  
 
         if(geometry != null) {
 
-                //apply new scaling values
-            geometry.scale(new Vector(_v.x/scale.x, _v.y/scale.y));
+                //make sure we can always get back from 0 scale
+            if(_v.x == 0) _v.x += 0.0001;
+            if(_v.y == 0) _v.y += 0.0001;
+            geometry.scale(new Vector(_v.x/_last_scale.x, _v.y/_last_scale.y));
 
         } //geometry != null
 
-            //update the scale value
-        (scale == null) ? (scale = _v) : scale.set(_v.x, _v.y) ;
+            //update the parent
+        super.set_scale(_v);
 
-        return scale;
+        return _v;
     } //set_scale
 
 //UV / source rect
@@ -291,11 +288,11 @@ class Sprite extends Entity {
     } 
 //Rotation 
     
-    public function get_rotation() : Float {
+    public override function get_rotation() : Float {
         return Maths.radToDeg(radians);
     }
 
-    public function set_rotation(_r:Float) : Float {
+    public override function set_rotation(_r:Float) : Float {
         radians = Maths.degToRad(_r);
         return rotation = _r;
     }
@@ -311,20 +308,7 @@ class Sprite extends Entity {
 
 //Position properties
     
-        //An internal callback for when x y or z on a sprite changes
-    private function xyz_change(_v:Float) {
-        set_pos(pos);
-    }
-
-        //An internal function to attach position 
-        //changes to a vector, so we can listen for pos.x as well
-    private function _attach_pos(_pos : Vector) {
-        _pos.listen_x = xyz_change;
-        _pos.listen_y = xyz_change;
-        _pos.listen_z = xyz_change;
-    }
-
-    public function set_pos(_p:Vector) : Vector {
+    public override function set_pos(_p:Vector) : Vector {
 
             //careful
         if(geometry != null) {
@@ -341,8 +325,7 @@ class Sprite extends Entity {
             //store the position
         pos = _p;
 
-            //Special additional listeners on .x, .y, .z of the position
-        _attach_pos( pos );
+        super.set_pos(pos);
 
         return pos;
     } //set_pos
