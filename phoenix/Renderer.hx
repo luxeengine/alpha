@@ -141,10 +141,14 @@ class Renderer {
 
     public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
         
+        trace("Checking if the texture exists in the cache ...");
         var _exists = resource_manager.find_texture(_name);
 
         if(_exists != null) {
+            trace("Yes, returning it instead");
             return _exists;
+        } else {
+            trace("Nope, continuing");
         }
 
         var _array_data = _string_byte_array.split(' ');
@@ -154,11 +158,14 @@ class Renderer {
             _int_array_data.push( Std.parseInt( _s ) );
         }
 
+        trace("have data array");
+
         var texture_bytes = Lab.utils.arrayToBytes( _int_array_data );
         var texture = new Texture(resource_manager);
 
         #if lime_native 
             texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
+            trace("created from bytes");
         #end
         #if lime_html5
             texture.create_from_bytes_using_haxe(_name, texture_bytes );
@@ -169,6 +176,7 @@ class Renderer {
         _int_array_data = null;
         texture.loaded = true;
 
+        trace("add to cache");
         resource_manager.cache(texture);
 
         return texture;        
