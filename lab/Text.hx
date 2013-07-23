@@ -1,5 +1,6 @@
 package lab;
 
+import lab.Vector;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.geometry.CompositeGeometry;
@@ -23,6 +24,8 @@ class Text {
 
     public function new( _options : Dynamic ) {
         
+        pos = new Vector();
+
         var _font : Dynamic = (_options.font == null) ? null : _options.font;
         _batcher = (_options.batcher == null) ? Lab.renderer.default_batcher : _options.batcher;
         size = (_options.size == null) ? 32 : _options.size;
@@ -46,6 +49,10 @@ class Text {
         text_options.size = size;
 
             //Apply the setter, which will draw the geometry
+        if(_options.pos != null) {
+            pos = _options.pos;
+        }
+
         text = _options.text;
     }
 
@@ -55,6 +62,7 @@ class Text {
     }
 
     public function set_pos(v:Vector) : Vector {
+        if(pos == null) return pos = v;
         pos = v.clone();
         text_options.pos = pos;
         
@@ -102,8 +110,6 @@ class Text {
         if(geometry != null) {
             for(g in geometry.geometry) {
                 _batcher.remove(g);
-                g.drop();
-                g = null;
             }
             geometry.drop();
             geometry = null;

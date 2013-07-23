@@ -307,6 +307,7 @@ class BitmapFont extends Resource {
          var _size : Float = (options.size == null) ? 0 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Lab.renderer.default_batcher : options.batcher;
          var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
+         var _supplied_geom : Bool = (options.geometry == null) ? true : options.geometry;
         
         var _final_geom : CompositeGeometry = new CompositeGeometry(null);
 
@@ -323,6 +324,7 @@ class BitmapFont extends Resource {
         // trace('creating geometry for each unique texture : ' + _page_count + ' at ' + _depth + '\n with ' + _col + ' and ' + _align + ' and at ' + _pos );
 
         for(i in 0 ... _page_count ) {
+
             var _g = new Geometry({
                 texture : pages[i],
                 color : _col,
@@ -448,7 +450,7 @@ class BitmapFont extends Resource {
             //replace the composite with the children geometry
         _final_geom.replace( _geoms );
 
-            //translate all of the new text according to the actual position, and alignment
+            //translate all of the new text according to the alignment alignment
         var _po = _pos.clone();
 
         if( _align == TextAlign.center ) {

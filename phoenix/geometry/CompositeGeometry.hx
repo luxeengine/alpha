@@ -9,7 +9,7 @@ class CompositeGeometry extends Geometry {
 
     public var geometry : Array<Geometry>;
 
-    public function new(options:Dynamic) {
+    public function new(?options:Dynamic = null) {
         
         super(options);
 
@@ -29,6 +29,10 @@ class CompositeGeometry extends Geometry {
         geometry = _geometry;
     }
 
+    public function has_geometry( g:Geometry ) {
+        return Lambda.has(geometry, g);
+    }
+
     public function add_geometry( g:Geometry ) {
         geometry.push(g);
     }
@@ -42,6 +46,8 @@ class CompositeGeometry extends Geometry {
         for(geom in geometry) {
             geom.drop( remove );
         }
+
+        geometry = null;
     }
 
     public override function translate( _offset:Vector ) {

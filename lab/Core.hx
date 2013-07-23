@@ -106,7 +106,7 @@ class Core {
 
 			//Order is important here
 		
-		debug = new Debug( this );
+		debug = new Debug( this ); Lab.debug = debug;
 		file = new Files( this );
 		time = new Time( this );
 		events = new Events( this );
@@ -137,7 +137,7 @@ class Core {
             renderer.startup();
         }
 
-        Lab.audio = audio;
+        Lab.audio = audio;        
         Lab.events = events;
         Lab.time = time;
         Lab.camera = new lab.Camera({view:renderer.default_camera});
@@ -258,6 +258,9 @@ class Core {
 //keys
     public function onkeydown(e) {
         if(host.onkeydown != null) host.onkeydown(e);
+        if(e.value == lab.Input.Keys.tab && console_visible) {
+            debug.switch_console();
+        }
         if(e.value == lab.Input.Keys.tilde) {
             show_console( !console_visible );
         }

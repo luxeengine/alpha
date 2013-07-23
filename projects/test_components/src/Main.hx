@@ -88,6 +88,8 @@ class Main extends lab.Game {
     public function onkeyup(e) {
       if(e.value == Input.Keys.escape) {
         Lab.shutdown();
+      } else {
+        trace(e);
       }
     } //onkeyup
 
