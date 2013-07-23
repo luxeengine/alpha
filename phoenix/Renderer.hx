@@ -54,9 +54,7 @@ class Renderer {
     public var default_batcher : Batcher;
     public var default_camera : Camera;
         //Default font for debug stuff etc
-    public var default_font : BitmapFont;
-
-    public var texture_cache : Map<String,Texture>;
+    public var default_font : BitmapFont;    
 
     public var should_clear : Bool = true;
     public var stop : Bool = false;
@@ -69,7 +67,7 @@ class Renderer {
 
         clear_color = new Color(0,0,0,1);
         stats = new RendererStats();
-        texture_cache = new Map();
+        
 
         resource_manager = new ResourceManager();
         batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
@@ -136,13 +134,11 @@ class Renderer {
         GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
-    public function check_texture_cache( _name:String ) {
-        return texture_cache.get(_name);
-    }
 
     public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
         
-        var _exists = check_texture_cache(_name);
+        var _exists = resource_manager.find_texture(_name);
+
         if(_exists != null) {
             return _exists;
         }
@@ -169,8 +165,7 @@ class Renderer {
         _int_array_data = null;
         texture.loaded = true;
 
-            //store a reference so we can check if it exists later
-        texture_cache.set(_name, texture);
+        resource_manager.cache(texture);
 
         return texture;        
 
@@ -178,7 +173,7 @@ class Renderer {
 
     public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
 
-        var _exists = check_texture_cache(_name);
+        var _exists = resource_manager.find_texture(_name);
         if(_exists != null) {
             trace(":: phoenix :: Texture loaded (cache) " + _exists.id + ' (' + _exists.width + 'x' + _exists.height + ') real size ('+ _exists.actual_width + 'x' + _exists.actual_height +')') ;
             return _exists;
@@ -256,7 +251,7 @@ class Renderer {
 #end //lime_native
        
             //store a reference so we can check if it exists later
-        texture_cache.set(_name, texture);
+        resource_manager.cache(texture);
        
         return texture;
 

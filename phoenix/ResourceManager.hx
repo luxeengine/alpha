@@ -1,6 +1,9 @@
 package phoenix;
 
+import phoenix.BitmapFont;
 import phoenix.Resource;
+import phoenix.Shader;
+import phoenix.Texture;
 
 class ResourceStats {
     public function new(){}
@@ -31,10 +34,18 @@ class ResourceStats {
 class ResourceManager {
 	
 	public var resourcelist : Array<Resource>;
+		//cache lists for creating
+	public var textures : Map<String,Texture>;
+	public var shaders : Map<String,Shader>;
+	public var fonts : Map<String,BitmapFont>;
+
 	public var stats : ResourceStats;
 
 	public function new() {
 		resourcelist = new Array<Resource>();
+		textures = new Map();
+		fonts = new Map();
+		shaders = new Map();
 		stats = new ResourceStats();
 	}
 
@@ -42,7 +53,7 @@ class ResourceManager {
 		resourcelist.push(res);
 		switch (res.type) {
 			case ResourceType.texture:
-				stats.textures++;
+				stats.textures++;				
 			case ResourceType.font:
 				stats.fonts++;
 			case ResourceType.shader:
@@ -54,7 +65,9 @@ class ResourceManager {
 	}
 
 	public function remove( res:Resource ) {
-		resourcelist.push(res);
+		resourcelist.remove(res);
+		uncache(res);
+
 		switch (res.type) {
 			case ResourceType.texture:
 				stats.textures--;
@@ -67,6 +80,40 @@ class ResourceManager {
 		}
 		stats.resources--;
 	}
+
+	public function uncache(res:Resource) {
+		switch (res.type) {
+			case ResourceType.texture:
+				textures.remove(res.id);
+			case ResourceType.font:
+				fonts.remove(res.id);
+			case ResourceType.shader:
+				shaders.remove(res.id);
+			case ResourceType.unknown:
+		}		
+	}
+
+	public function cache(res:Resource) {
+		switch (res.type) {
+			case ResourceType.texture:
+				textures.set(res.id, cast res);
+			case ResourceType.font:
+				fonts.set(res.id, cast res);
+			case ResourceType.shader:
+				shaders.set(res.id, cast res);
+			case ResourceType.unknown:
+		}
+	}
+
+	public function find_texture( _name:String ) {
+        return textures.get(_name);
+    }
+	public function find_shader( _name:String ) {
+        return shaders.get(_name);
+    }
+	public function find_font( _name:String ) {
+        return fonts.get(_name);
+    }
 
 	public function clear( ?and_persistent : Bool = false ) {
 		

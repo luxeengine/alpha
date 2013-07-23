@@ -157,7 +157,7 @@ class Debug {
         } // line is a new line 
         else {
             line.pos.y = new_line_y;            
-            line.text = _t;            
+            line.text = _t;       
         }
 
         //move all previous lines up
@@ -215,6 +215,7 @@ class Debug {
     } //create_stats_console
 
     public function refresh() {
+        
         var texture_lists = '';
         var shader_lists = '';
         var font_lists = '';

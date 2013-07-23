@@ -404,8 +404,7 @@ class Texture extends Resource {
 
     public function destroy() {        
         GL.deleteTexture(texture);
-        data = null;        
-        Lab.renderer.texture_cache.remove(this.id);        
+        data = null;      
     }
 
 
