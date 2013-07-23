@@ -280,13 +280,16 @@ class Renderer {
         stats.draw_calls = 0;
 
         for(batch in batchers) {
-            batch.draw();
-            stats.geometry_count += Lambda.count(batch.geometry);
-            stats.dynamic_batched_count += batch.dynamic_batched_count;
-            stats.static_batched_count += batch.static_batched_count;
-            stats.enabled_count += batch.enabled_count;
-            stats.draw_calls += batch.draw_calls;
-            stats.group_count += Lambda.count(batch.groups);
+            if(batch.enabled) {
+                batch.draw();
+                    //Update render stats
+                stats.geometry_count += Lambda.count(batch.geometry);
+                stats.dynamic_batched_count += batch.dynamic_batched_count;
+                stats.static_batched_count += batch.static_batched_count;
+                stats.enabled_count += batch.enabled_count;
+                stats.draw_calls += batch.draw_calls;
+                stats.group_count += Lambda.count(batch.groups);
+            } //batcher enabled
         }       
 
         // stop_count++;

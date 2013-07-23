@@ -5,11 +5,9 @@ class ParticleSystem extends Entity {
 
     public var active : Bool = true;
     public var emitters : Map<String, ParticleEmitter>;
-    @:isVar public var pos(default, set) : Vector;
 
     public function init() {
         if(emitters == null) new Map<String, ParticleEmitter>();
-        if(pos == null) pos = new Vector();
 
         // trace("Init particle system : " + name);
     } //init
@@ -44,13 +42,18 @@ class ParticleSystem extends Entity {
 
     } //add
 
-    public function set_pos(_v:Vector) {
+    public override function set_pos(_v:Vector) {
         if(emitters != null) {
             for(emitter in emitters) {
                 emitter.pos = _v;
             }
         }
-        return pos = _v;
+
+        pos = _v;
+
+        super.set_pos(pos);
+
+        return pos;
     } 
 
     public function emit(duration:Float = -1) {
@@ -108,7 +111,7 @@ class ParticleEmitter extends Entity {
 
         //emitter properties
     public var particle_image : phoenix.Texture = null;
-    public var pos : Vector;
+    public var pos_value : Vector;
     public var pos_offset : Vector;
     public var pos_random : Vector;
     public var emit_time : Float;
@@ -129,7 +132,8 @@ class ParticleEmitter extends Entity {
     public var speed_random : Float;
     public var life : Float;
     public var life_random : Float;
-    public var rotation : Float;
+    
+    public var rotation_value : Float;
     public var rotation_random : Float;
     public var end_rotation : Float;
     public var end_rotation_random : Float;

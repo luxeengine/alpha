@@ -73,6 +73,21 @@ class NineSlice extends lab.Sprite {
 
     }
 
+    public function lock() {
+        if(is_set) {
+            for(slice in slices) {
+                slice.geometry.locked = true;
+            }
+        }
+    }
+    public function dirty() {
+        if(is_set) {
+            for(slice in slices) {
+                slice.geometry.dirty = true;
+            }
+        }
+    }
+
     public function set(_width:Float, _height:Float) {
 
         if(added) {

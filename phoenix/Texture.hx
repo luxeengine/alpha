@@ -97,6 +97,11 @@ class Texture extends Resource {
         }
     }
 
+    public function estimated_memory() {
+        var _bytes = (actual_width * actual_height * 4);        
+        return Lab.utils.bytes_to_string(_bytes);
+    }
+
     public function create_from_bytes_html(_asset_name:String, _asset_bytes, _width, _height ) {
 
         var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);

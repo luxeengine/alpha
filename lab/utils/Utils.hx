@@ -6,12 +6,15 @@ import lab.utils.UUID;
 class Utils {
     public var geometry : lab.utils.GeometryUtils;
 
+    private var _byte_levels : Array<String>;
+    
     public var lab:lab.Core;
     public function new(_lab:lab.Core) {
         lab = _lab;
 
             //initialise our helpers
         geometry = new lab.utils.GeometryUtils(lab);
+        _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
     }  
 
     public function uuid() : String {
@@ -27,6 +30,12 @@ class Utils {
         _value |= _value >> 16;
         _value++;
         return _value;
+    }
+    
+    public function bytes_to_string( bytes:Int ) : String {
+        var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );
+        var _byte_value = ( bytes / Math.pow(1024, index));
+        return _byte_value + _byte_levels[index];
     }
 
     public function arrayToBytes(array:Array<Int>):haxe.io.Bytes {

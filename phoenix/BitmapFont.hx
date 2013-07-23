@@ -296,7 +296,7 @@ class BitmapFont extends Resource {
         return new Vector( max_x, cumulative_y );
     }
 
-        // const string& s, const Vector2d& p, const Color& _c, const Vector2d& _scale, E_TEXT_ALIGNMENT _align
+
     public function draw_text( options : Dynamic ) {
 
          var _string : String = (options.text == null) ? "" : options.text;
@@ -307,17 +307,16 @@ class BitmapFont extends Resource {
          var _size : Float = (options.size == null) ? 0 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Lab.renderer.default_batcher : options.batcher;
          var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
-         var _supplied_geom : Bool = (options.geometry == null) ? true : options.geometry;
+         var _supplied_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
         
-        var _final_geom : CompositeGeometry = new CompositeGeometry(null);
-
             //no texture? return empty geometry
         if(pages[0] == null) {
             trace("Warning ; " + id + " font trying to draw without a texture.");
-            return _final_geom;
+            return _supplied_geom;
         }
 
-            //an array of geometry items, one for each unique texture
+        
+            //an array of geometry items, one for each unique texture            
         var _geoms : Array<Geometry> = new Array<Geometry>();
         var _page_count = Lambda.count(pages);
 
@@ -335,7 +334,7 @@ class BitmapFont extends Resource {
             _g.primitive_type = PrimitiveType.triangles;
             _g.immediate = false;
             _geoms.push( _g );
-            _batcher.add(_g);
+            _batcher.add( _g );
 
         } //for each page
 
@@ -448,7 +447,7 @@ class BitmapFont extends Resource {
         } //line in lines        
                 
             //replace the composite with the children geometry
-        _final_geom.replace( _geoms );
+        _supplied_geom.replace( _geoms );
 
             //translate all of the new text according to the alignment alignment
         var _po = _pos.clone();
@@ -459,9 +458,9 @@ class BitmapFont extends Resource {
             _po.x = _pos.x - (_max_line_width);  
         }
             //translate all of the new text according to the actual position
-        _final_geom.pos = _po;
+        _supplied_geom.pos = _po;
 
-        return _final_geom;
+        return _supplied_geom;
     }
 
     public function set_character( _index:Int,  _char_info : Character ) {

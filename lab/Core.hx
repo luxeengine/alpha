@@ -261,6 +261,9 @@ class Core {
         if(e.value == lab.Input.Keys.tab && console_visible) {
             debug.switch_console();
         }
+        if(e.value == lab.Input.Keys.key_1 && console_visible) {
+            debug.toggle_debug_stats();
+        }
         if(e.value == lab.Input.Keys.tilde) {
             show_console( !console_visible );
         }

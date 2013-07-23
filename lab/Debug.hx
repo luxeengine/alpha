@@ -38,7 +38,7 @@ class Debug {
         //track a 10 frame average
     public var dt_average : Float = 0;
     public var dt_average_accum : Float = 0;
-    public var dt_average_span : Int = 10;
+    public var dt_average_span : Int = 60;
     public var dt_average_count : Int = 0;
 
     public var current_view = 0;
@@ -47,10 +47,11 @@ class Debug {
     public var padding:Vector;
 
     public var _last_render_stats : Dynamic;
+    public var _render_stats : Dynamic;
 
     public function startup() {        
 
-        // haxe.Log.trace = internal_trace;
+        haxe.Log.trace = internal_trace;
 
         core._debug(':: haxelab :: \t Debug Initialized.');         
         _last_render_stats = {
@@ -61,18 +62,29 @@ class Debug {
             enabled_count : 0,
             draw_calls : 0,
             group_count : 0      
-        };        
+        };          
+
+        _render_stats = {
+            batchers : 0,
+            geometry_count : 0,
+            dynamic_batched_count : 0,
+            static_batched_count : 0,
+            enabled_count : 0,
+            draw_calls : 0,
+            group_count : 0
+        };
 
     }   
 
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos) {
-       Lab.debug.add_line(inf.fileName + ':' + inf.lineNumber + ' ' + v );
+        Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+        Lab.debug.add_line(inf.fileName + ':' + inf.lineNumber + ' ' + v );
     }
 
     public function create_debug_console() {
 
             //create the debug renderer and view
-        debug_batcher = new Batcher( Lab.renderer );
+        debug_batcher = new Batcher( Lab.renderer, 'debug_batcher' );
         debug_view = new Camera(ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h });
 
         debug_batcher.view = debug_view;
@@ -97,13 +109,17 @@ class Debug {
             title:'default scene', 
             pos : new Vector(padding.x, padding.y),
             size : new Vector(Lab.screen.w-(padding.x*2), Lab.screen.h-(padding.y*2)),
-            batcher:debug_batcher
+            batcher : debug_batcher
         });
 
         scene_inspector.onrefresh = refresh;
 
         create_stats_console();
         create_log_console();
+
+            //no need to process this while we are here.
+        debug_batcher.enabled = false;
+
     }
 
     public function create_log_console() {
@@ -125,7 +141,7 @@ class Debug {
         var new_line_y = ( Lab.screen.h-(padding.y*2) - 8);
 
         if(line == null) {
-            var new_line_y = 
+
             line = new Text({
                 depth : 999.3,
                 color : new Color(0,0,0,0.6),
@@ -136,16 +152,22 @@ class Debug {
                 batcher : debug_batcher,
                 enabled : true
             });
+
+            
         } // line is a new line 
         else {
             line.pos.y = new_line_y;            
-            line.text = _t;
+            line.text = _t;            
         }
 
         //move all previous lines up
         for(_line in lines) {
             _line.pos = new Vector(_line.pos.x,_line.pos.y-14);
             _line.color = new Color(0,0,0,0.4);
+                //dirty them to update the positions
+            for(_g in _line.geometry.geometry) {
+                _g.dirty = true;
+            }
         }
 
             //line is hidden by state
@@ -201,7 +223,7 @@ class Debug {
             switch (res.type) {
                 case ResourceType.texture:
                     var t : phoenix.Texture = cast res;
-                    texture_lists += '\t' + t.id + '    (' +  t.actual_width + 'x' + t.actual_height + ')\n';
+                    texture_lists += '\t' + t.id + '    (' +  t.actual_width + 'x' + t.actual_height + '  '+ t.estimated_memory() +' )\n';
                 case ResourceType.font:
                     font_lists += '\t' + res.id + '\n';
                 case ResourceType.shader:
@@ -220,8 +242,15 @@ class Debug {
         resource_list_text.text = lists;
     }
 
-    public function get_render_stats_string() {        
-        return Std.string(Lab.renderer.stats);        
+    public function get_render_stats_string() {
+        return 
+            'Renderer Statistics\n' + 
+            '\tbatcher count : ' + _render_stats.batchers + '\n' +
+            '\ttotal geometry : ' + _render_stats.geometry_count + '\n' +
+            '\tenabled geometry : ' + _render_stats.enabled_count + '\n' +
+            '\tdynamic batched geometry : ' + _render_stats.dynamic_batched_count + '\n' +
+            '\tstatic batched geometry : ' + _render_stats.static_batched_count + '\n' +
+            '\ttotal draw calls : ' + _render_stats.draw_calls;  
     }
     public function get_resource_stats_string() {        
         return Std.string(Lab.resources.stats);
@@ -236,7 +265,7 @@ class Debug {
         }
 
         switch (current_view) {
-            case 0:
+            case 0:                
                 show_log_console(true);
                 show_stats_console(false);
             case 1:
@@ -247,6 +276,8 @@ class Debug {
 
     public function show_console(_show:Bool = true) {
         visible = _show;
+        debug_batcher.enabled = _show;
+
         if(_show) {
             switch_console(false);
             debug_overlay.enabled = true;
@@ -289,17 +320,49 @@ class Debug {
 
     public function refresh_render_stats() {
 
-        if(Lab.renderer.stats.geometry_count > debug_geometry_count) {
-            Lab.renderer.stats.draw_calls -= debug_draw_call_count;
-            Lab.renderer.stats.geometry_count -= debug_geometry_count;
-            Lab.renderer.stats.dynamic_batched_count -= debug_geometry_count;
-            Lab.renderer.stats.enabled_count -= debug_geometry_count;
-        }
-
         render_stats_text.text = get_render_stats_string();
         resource_stats_text.text = get_resource_stats_string();
 
+        for(_g in resource_stats_text.geometry.geometry) {
+            _g.locked = true;
+            _g.dirty = true;
+        }
+        
+        for(_g in render_stats_text.geometry.geometry) {
+            _g.locked = true;
+            _g.dirty = true;
+        }
+        
     } //refresh_render_stats
+
+    public var hide_debug : Bool = true;
+    public function toggle_debug_stats() {
+         hide_debug = !hide_debug;
+    }
+    public function update_render_stats() {
+
+        debug_geometry_count = debug_batcher.geometry.length;
+        debug_draw_call_count = debug_batcher.draw_calls;        
+
+        _render_stats.batchers = Lab.renderer.stats.batchers;
+        _render_stats.geometry_count = Lab.renderer.stats.geometry_count;
+        _render_stats.enabled_count = Lab.renderer.stats.enabled_count;
+        _render_stats.dynamic_batched_count = Lab.renderer.stats.dynamic_batched_count;
+        _render_stats.static_batched_count = Lab.renderer.stats.static_batched_count;
+        _render_stats.draw_calls = Lab.renderer.stats.draw_calls;
+
+        if(hide_debug) {
+
+            _render_stats.batchers = _render_stats.batchers - 1;
+            _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
+            _render_stats.enabled_count = _render_stats.enabled_count - debug_geometry_count + lines.length;
+            _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - debug_geometry_count + debug_batcher.static_batched_count + lines.length;
+            _render_stats.static_batched_count = _render_stats.static_batched_count - debug_batcher.static_batched_count;
+            _render_stats.draw_calls -= debug_draw_call_count;
+
+        } //hide debug stats?
+        
+    }   
 
 	public function process() {
 
@@ -315,7 +378,7 @@ class Debug {
         if(!visible) return;
 
             //update the title
-        scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Lab.dt*1000) / 1000);
+        scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Lab.dt*1000) / 1000) + ' ' + Lab.renderer.stats.static_batched_count;
 
         if(current_view == 0) {
 
@@ -323,21 +386,24 @@ class Debug {
         if(current_view == 1) {
 
             var dirty = false;
-    
-            if(_last_render_stats.batchers != Lab.renderer.stats.batchers) 
-                { dirty = true; _last_render_stats.batchers = Lab.renderer.stats.batchers; }
-            if(_last_render_stats.geometry_count != Lab.renderer.stats.geometry_count) 
-                { dirty = true; _last_render_stats.geometry_count = Lab.renderer.stats.geometry_count; }
-            if(_last_render_stats.dynamic_batched_count != Lab.renderer.stats.dynamic_batched_count) 
-                { dirty = true; _last_render_stats.dynamic_batched_count = Lab.renderer.stats.dynamic_batched_count; }
-            if(_last_render_stats.static_batched_count != Lab.renderer.stats.static_batched_count) 
-                { dirty = true; _last_render_stats.static_batched_count = Lab.renderer.stats.static_batched_count; }
-            if(_last_render_stats.enabled_count != Lab.renderer.stats.enabled_count) 
-                { dirty = true; _last_render_stats.enabled_count = Lab.renderer.stats.enabled_count; }
-            if(_last_render_stats.draw_calls != Lab.renderer.stats.draw_calls) 
-                { dirty = true; _last_render_stats.draw_calls = Lab.renderer.stats.draw_calls; }
-            if(_last_render_stats.group_count != Lab.renderer.stats.group_count) 
-                { dirty = true; _last_render_stats.group_count = Lab.renderer.stats.group_count; }
+        
+                //Update the local statistics
+            update_render_stats();
+
+            if(_last_render_stats.batchers != _render_stats.batchers) 
+                { dirty = true; _last_render_stats.batchers = _render_stats.batchers; }
+            if(_last_render_stats.geometry_count != _render_stats.geometry_count) 
+                { dirty = true; _last_render_stats.geometry_count = _render_stats.geometry_count; }
+            if(_last_render_stats.dynamic_batched_count != _render_stats.dynamic_batched_count) 
+                { dirty = true; _last_render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count; }
+            if(_last_render_stats.static_batched_count != _render_stats.static_batched_count) 
+                { dirty = true; _last_render_stats.static_batched_count = _render_stats.static_batched_count; }
+            if(_last_render_stats.enabled_count != _render_stats.enabled_count) 
+                { dirty = true; _last_render_stats.enabled_count = _render_stats.enabled_count; }
+            if(_last_render_stats.draw_calls != _render_stats.draw_calls) 
+                { dirty = true; _last_render_stats.draw_calls = _render_stats.draw_calls; }
+            if(_last_render_stats.group_count != _render_stats.group_count) 
+                { dirty = true; _last_render_stats.group_count = _render_stats.group_count; }
 
             if(dirty) {
                 refresh_render_stats();

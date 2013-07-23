@@ -85,6 +85,9 @@ class Inspector {
 
 		_window.create( pos, size.x, size.y );
 
+			//static batch
+		_window.lock();
+
 		_title_text = new Text({
 			batcher : _batcher,
 			depth : 999.2,

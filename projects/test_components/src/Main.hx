@@ -47,17 +47,20 @@ class Main extends lab.Game {
         var m = new Vector(e.x,e.y);        
     }
 
+    private var spam = false;
+
     public function onkeyup(e) {
       if(e.value == Input.Keys.escape) {
         Lab.shutdown();
       } 
 
       if(e.value == Input.Keys.space) {
-        
+        spam = !spam;
       }
     } //onkeyup
 
     public function update(dt:Float) {
+        if(spam) trace(dt);
     } //update
 
     public function shutdown() {
@@ -156,16 +159,25 @@ class Child2 extends Entity {
             oncerun = true;
         }        
 
-
         rotation += 25*dt;
         pos.x += 300*dir*dt;
-        if(pos.x >= Lab.screen.w || pos.x <= 0) {
-            dir = -dir;
+        var swap = false;
+        if(pos.x > Lab.screen.w) {
+            pos.x = Lab.screen.w;
+            swap = true;
+        } else
+        if(pos.x < 0) {
+            pos.x = 0;
+            swap = true;
+        }     
+
+        if(swap) {
+            dir = -dir;            
             var ns = 1+(Math.random());
             scale = new Vector(ns,ns);
             Lab.camera.get('shaker').amount = 1+9*Math.random();
             Lab.camera.get('shaker').shake();
-        }        
+        }
     }
 } //Child2
 

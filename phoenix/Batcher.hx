@@ -48,6 +48,7 @@ class BatchGroup {
 class Batcher {
 
     public var layer : Float = 0.0;
+    public var enabled : Bool = true;
 
     public var geometry : BinarySearchTree<Geometry>;
     public var groups : Map<Int, Array<BatchGroup> >;
@@ -283,7 +284,7 @@ class Batcher {
 
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
-                        submit_static_buffer_object(geom);   
+                        submit_static_buffer_object(geom);
                     }
                         // Do not accumulate for tri strips, line strips, line loops, triangle fans, quad strips, or polygons 
                     else if( geom.primitive_type == PrimitiveType.line_strip ||
