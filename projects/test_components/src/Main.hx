@@ -5,6 +5,8 @@ import lab.Input;
 import lab.Sprite;
 
 
+import phoenix.defaults.FontString;
+
     /*
         Things we want to test in components         
 
@@ -45,6 +47,7 @@ class Main extends lab.Game {
   
     public function onmousemove(e) {
         var m = new Vector(e.x,e.y);        
+        sprite.pos = m;
     }
 
     private var spam = false;

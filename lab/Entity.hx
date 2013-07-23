@@ -73,7 +73,7 @@ class Entity {
     }
 
     public function get_pos() : Vector { return (parent == null) ? pos : parent.pos; }
-	public function set_pos(_p:Vector) { 
+	public function set_pos(_p:Vector) { 		
 		if(parent == null) {
 			pos = _p;
         	_attach_listener( pos, pos_change );
@@ -92,7 +92,7 @@ class Entity {
 			_temp_name = Lab.utils.uuid();
 		} else {
 			_temp_name = _name;
-		}			
+		}
 
 			//create an instance
 		var _component = Type.createInstance( type, [] );

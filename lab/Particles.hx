@@ -26,9 +26,6 @@ class ParticleSystem extends Entity {
             _name = Lab.utils.uuid();
         } //_name.lengths
 
-        if(_template.pos != null) {
-            pos = _template.pos;
-        }
             //create the emitter instance
         var _emitter = add(ParticleEmitter, _name);
             //store ourselves in the emitter
@@ -43,8 +40,7 @@ class ParticleSystem extends Entity {
     } //add
 
     public override function set_pos(_v:Vector) {
-        trace('set pos');
-        throw "from";
+        trace('set pos in system');        
         if(emitters != null) {
             for(emitter in emitters) {
                 emitter.pos = _v;
@@ -53,7 +49,7 @@ class ParticleSystem extends Entity {
 
         pos = _v;
 
-        super.set_pos(pos);
+        super.set_pos(pos);        
 
         return pos;
     } 

@@ -82,3 +82,17 @@ class Utils {
 // Lab.utils.file_bytes_to_class('assets/ui/tiny.box.png', '/Users/Sven/dev/lab/haxelab/lab/defaults/UIBox.hx');
 // Lab.utils.file_bytes_to_class('assets/ui/tiny.button.png', '/Users/Sven/dev/lab/haxelab/lab/defaults/UIButton.hx');
 
+        //     //create a more bitesized file
+        // var s = FontString.data();
+        // var current = "'";
+        // var final_string = "";        
+        // var _string_length = s.length;
+
+        // for(i in 0..._string_length) {
+        //     final_string += s.charAt(i);
+        //     if(final_string.length % 4096 == 0) {
+        //         final_string+="'+\n'";
+        //     }            
+        // }
+
+        // sys.io.File.saveContent('/Users/Sven/dev/lab/test.txt', final_string);
