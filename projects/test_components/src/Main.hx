@@ -5,8 +5,6 @@ import lab.Input;
 import lab.Sprite;
 
 
-import phoenix.defaults.FontString;
-
     /*
         Things we want to test in components         
 
