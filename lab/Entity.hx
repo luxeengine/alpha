@@ -6,7 +6,7 @@ class Entity {
     public var id : String;
     public var name : String;
     public var parent : Entity;
-    public var debug : Bool = false;
+    public var debug : Bool = true;
 
     private function _debug(v){
     	if(debug) trace(v);
@@ -14,7 +14,7 @@ class Entity {
 
 	public function new(){
 		id = lab.utils.UUID.get();
-		_components = new Map();		
+		_components = new Map();
 	}
 
 	public function add<T>(type:Class<T>, ?_name:String='') : T {
@@ -37,7 +37,7 @@ class Entity {
 			//store it in the component list
 		_components.set(_temp_name, _e_component );
 			//debug stuff
-		_debug('adding an entity to ' + name + ' called ' + _temp_name);
+		_debug('adding an entity to ' + name + ' called ' + _temp_name + ', now at ' + Lambda.count(_components) + ' components');
 
 			//return the component
 		return _component;
@@ -95,23 +95,21 @@ class Entity {
 	}
 
 	public function _init() {
-			//update the parent first
+		_debug('calling init on ' + name);
+			//init the parent first
 		_call(this, 'init');
 
 		if(name == null) throw "name on entity is null?";
-		_debug('calling init on ' + name);
 
 		for(_component in _components) {
-			_call(_component, 'init');
-			_debug('calling init on ' + _component.name);		
+			_call(_component, '_init');			
 		} //for each component
 	} //_init
 
 	public function _destroy() {
 
 		for(_component in _components) {
-			_call(_component, 'destroy');
-			_debug('calling destroy on ' + _component.name);		
+			_call(_component, '_destroy');
 		} //for each component
 
 		_debug('calling destroy on ' + name);	
@@ -122,23 +120,23 @@ class Entity {
 	} //_destroy
 
 	public function _start() {
-			//update the parent first
+			//start the parent first
 		_call(this, 'start');
 
 		_debug('calling start on ' + name);	
 
 		for(_component in _components) {
-			_call(_component, 'start');
-			_debug('calling start on ' + _component.name);	
+			_call(_component, '_start');
 		} //for each component
 	} //_start
 
 	public function _update(dt:Float) {
+		
 			//update the parent first
 		_call(this, 'update', [dt]);
 
 		for(_component in _components) {
-			_call(_component, 'update', [dt]);
+			_call(_component, '_update', [dt]);
 		} //for each component
 	} //_update
 
