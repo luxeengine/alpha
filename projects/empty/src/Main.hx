@@ -1,4 +1,5 @@
 
+import lab.Color;
 import phoenix.Texture;
 import phoenix.Batcher;
 import phoenix.Camera;
@@ -9,6 +10,7 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Quaternion;
 
 import lab.Vector;
+import lab.Text;
 
 import lime.gl.GL;
 
@@ -46,6 +48,8 @@ class Main extends lab.Game {
     var movementSpeed = 1.0;
     var rollSpeed = 0.5;
 
+    public var ttt : Text;
+
     public function ready() {
 
        trace("game ready"); 
@@ -81,7 +85,8 @@ class Main extends lab.Game {
 
        draw_2d_quad(batch2d);
        draw_cube_obj(batch3d);
-       
+
+
     }
 
     public function draw_2d_quad(_batch:Batcher) {
