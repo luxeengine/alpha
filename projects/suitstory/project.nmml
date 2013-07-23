@@ -18,7 +18,7 @@
         background="0x161616"
         resizable="false"
     />
-    
+
      <assets path="Assets" rename="assets" include="*"/>
 
     <source path="src" />
