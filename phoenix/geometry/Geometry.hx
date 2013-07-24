@@ -74,8 +74,8 @@ class Geometry {
 
 			pos = (options.pos == null) ? pos : options.pos;
 			origin = (options.origin == null) ? origin : options.origin;
-			immediate = (options.immediate == null) ? true : options.immediate;
-			
+			immediate = (options.immediate == null) ? false : options.immediate;
+
 			color = (options.color == null) ? new Color() : options.color;
 			// trace("creating geometry " + uuid +  " \t\t " + options );
 
@@ -96,7 +96,7 @@ class Geometry {
 		state.log = false;
 	}
 
-	public function drop( ?remove:Bool = false ) {
+	public function drop( ?remove:Bool = true ) {
 		dropped = true;
 		if(remove && added) {
 			for(b in batchers) { b.remove(this); }
