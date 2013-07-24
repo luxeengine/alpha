@@ -41,7 +41,7 @@ class CompositeGeometry extends Geometry {
         geometry.remove(g);
     }
 
-    public override function drop( ?remove:Bool = false ) {
+    public override function drop( ?remove:Bool = true ) {
             //todo L keep children?
         for(geom in geometry) {
             geom.drop( remove );

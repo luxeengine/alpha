@@ -52,6 +52,9 @@ class Text {
         if(_options.pos != null) {
             pos = _options.pos;
         }
+        if(_options.color != null) {
+            color = _options.color;
+        }
 
         text = _options.text;
     }
@@ -59,6 +62,13 @@ class Text {
     public function onloaded() {
         ready = true;
         text = text + '';
+    }
+
+    public function destroy() {
+        if(geometry != null) {            
+            geometry.drop();
+            geometry = null;
+        }
     }
 
     public function set_pos(v:Vector) : Vector {
@@ -107,13 +117,7 @@ class Text {
         if(text_options == null) return v;        
         text_options.text = v;
 
-        if(geometry != null) {
-            for(g in geometry.geometry) {
-                _batcher.remove(g);
-            }
-            geometry.drop();
-            geometry = null;
-        }
+        destroy();
 
         geometry = font.draw_text(text_options);
 

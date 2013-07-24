@@ -13,7 +13,6 @@ class Menu extends Mode {
 	public var game : Main;
 
 	public var play : Sprite;
-	public var l : LineGeometry;
 
 	public function init() {
 
@@ -35,7 +34,6 @@ class Menu extends Mode {
 
 	public function onmousemove(e) {
 		var m = new Vector(e.x, e.y);
-		l.p0 = m;
 	}
 
 	public function onmouseup(e) {		
@@ -45,16 +43,12 @@ class Menu extends Mode {
 	} //onmousedown
 
 	public function enter() {
-		
-		Actuate.tween(play.color, 0.75, {a:1}).delay(0.5);
-		Actuate.tween(Lab.renderer.clear_color, 0.5, {r:0.0705,g:0.0705,b:0.0705});
+		Actuate.tween(play.color, 0.75, {a:1}).delay(1);
+		Actuate.tween(Lab.renderer.clear_color, 0.5, {r:0.0705,g:0.0705,b:0.0705}).delay(0.5);
 	} //enter
 
-	public function leave() {
-		
+	public function leave() {		
 		Actuate.tween(play.color, 0.75, {a:0});
-		Actuate.tween(Lab.renderer.clear_color, 0.5, {r:0.965,g:0.965,b:0.965}).delay(0.25);
-
 	} //leave
 
 
