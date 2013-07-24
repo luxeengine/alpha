@@ -1,0 +1,16 @@
+{
+	"name" : "default",
+	"author" : "underscorediscovery",
+	"image" : "block_gray.png",
+	"block" : {
+		"x" : "0",
+		"y" : "0",
+		"w" : "80",
+		"h" : "77",
+	},
+	"text" : {
+		"x" : "26",
+		"y" : "12",
+		"h" : "40"
+	}
+}
