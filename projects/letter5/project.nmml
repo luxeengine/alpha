@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta 
+          title="LETTER5" 
+          package="com.underscorediscovery.LETTER5" 
+          version="1.0.0" 
+          company="underscorediscovery" 
+	/>
+
+	<app main="Main" path="bin" file="LETTER5" />
+
+	<window width="640" height="960" orientation="portrait" fps="60" vsync="true" resizable="true" />
+	
+     <assets path="Assets" rename="assets" include="*"/>
+
+	<source path="src" />
+	
+	<haxelib name="haxelab" />
+	<haxelib name="actuate" />
+	<haxelib name="lime" />
+	
+</project>

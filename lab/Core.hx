@@ -32,7 +32,8 @@ class Core {
 
 //Sub Systems, mostly in order of importance
 	public var debug    : Debug;
-	public var file 	: Files;
+    public var file     : Files;
+	public var draw 	: Draw;
 	public var time 	: Time;
 	public var events 	: Events;
 	public var input 	: Input;
@@ -107,6 +108,7 @@ class Core {
 			//Order is important here
 		
 		debug = new Debug( this ); Lab.debug = debug;
+        draw = new Draw( this );
 		file = new Files( this );
 		time = new Time( this );
 		events = new Events( this );
@@ -124,8 +126,9 @@ class Core {
             //store the size for access from API
         screen = new lab.Rectangle( 0,0, config.width, config.height );
 
-			//Now make sure they start up
-
+			//Now make sure 
+            //they start up
+            
 		debug.startup();
 		file.startup();
 		time.startup();
@@ -137,7 +140,8 @@ class Core {
             renderer.startup();
         }
 
-        Lab.audio = audio;        
+        Lab.audio = audio;   
+        Lab.draw = draw;     
         Lab.events = events;
         Lab.time = time;
         Lab.camera = new lab.Camera({ name:'default_camera', view:renderer.default_camera });

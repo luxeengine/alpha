@@ -19,7 +19,7 @@ class Resource extends Droppable {
 	public var persistent : Bool = false;
 
 	public function new( _manager : ResourceManager, _type:ResourceType ) {
-		manager = _manager;
+		manager = _manager == null ? Lab.resources : _manager;
 		type = _type;
 
 		manager.add( this );

@@ -97,12 +97,12 @@ class Renderer {
             //create the default font
         default_font = new BitmapFont( resource_manager );
 
-        trace("Creating the default font...");
+        _debug("Creating the default font...");
             //create the font texture                    
         var _font_texture = load_texture_from_string_byte_array('default_font', FontBytes.data(), 512,512 );
         default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
 
-        trace("Done. " + _font_texture.width + 'x' + _font_texture.height );
+        _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
 
             //enable z buffer use
         GL.enable(GL.DEPTH_TEST);
@@ -138,17 +138,19 @@ class Renderer {
         GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
-
+    private function _debug(v:Dynamic) {
+        //trace(v);
+    }
     public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
         
-        trace("Checking if the texture exists in the cache ..." + _name);
+        _debug("Checking if the texture exists in the cache ..." + _name);
         var _exists = resource_manager.find_texture(_name);
 
         if(_exists != null) {
-            trace("Yes, returning it instead");
+            _debug("Yes, returning it instead");
             return _exists;
         } else {
-            trace("Nope, continuing");
+            _debug("Nope, continuing");
         }
 
         var _array_data = _string_byte_array.split(' ');
@@ -158,14 +160,14 @@ class Renderer {
             _int_array_data.push( Std.parseInt( _s ) );
         }
 
-        trace("have data array");
+        _debug("have data array");
 
         var texture_bytes = Lab.utils.arrayToBytes( _int_array_data );
         var texture = new Texture(resource_manager);
 
         #if lime_native 
             texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
-            trace("created from bytes");
+            _debug("created from bytes");
         #end
         #if lime_html5
             texture.create_from_bytes_using_haxe(_name, texture_bytes );
@@ -176,7 +178,7 @@ class Renderer {
         _int_array_data = null;
         texture.loaded = true;
 
-        trace("add to cache");
+        _debug("add to cache");
         resource_manager.cache(texture);
 
         return texture;        

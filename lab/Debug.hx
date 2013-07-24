@@ -18,7 +18,7 @@ class Debug {
 
     public var scene_inspector : Inspector;
 
-        //stats console
+        //stats consolew
     public var render_stats_text : lab.Text;
     public var resource_stats_text : lab.Text;
     public var resource_list_text : lab.Text;
@@ -382,7 +382,7 @@ class Debug {
         if(!visible) return;
 
             //update the title
-        scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Lab.dt*1000) / 1000) + ' ' + Lab.renderer.stats.static_batched_count;
+        scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Lab.dt*1000) / 1000);
 
         if(current_view == 0) {
 

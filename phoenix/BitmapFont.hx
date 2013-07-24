@@ -58,9 +58,9 @@ class BitmapFont extends Resource {
     public var pages_loaded : Int = 0;
     public var onload : Void -> Void;
 
-    public function new( _resource_manager : ResourceManager ) {
+    public function new( ?_resource_manager : ResourceManager = null ) {
         
-        super(_resource_manager, ResourceType.font);
+        super( _resource_manager, ResourceType.font);
 
         id  = 'Unnamed font';
 

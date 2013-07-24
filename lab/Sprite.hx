@@ -166,10 +166,19 @@ class Sprite extends Entity {
     public function point_inside(_p:Vector) : Bool {
         if(pos == null) return false;
         if(size == null) return false;
-        if(_p.x < pos.x) return false;
-        if(_p.y < pos.y) return false;
-        if(_p.x > pos.x+size.x) return false;
-        if(_p.y > pos.y+size.y) return false;
+        if(centered) {
+            var hx = size.x / 2;
+            var hy = size.y / 2;
+            if(_p.x < pos.x-hx) return false;
+            if(_p.y < pos.y-hy) return false;
+            if(_p.x > pos.x+size.x-hx) return false;
+            if(_p.y > pos.y+size.y-hy) return false;
+        } else {
+            if(_p.x < pos.x) return false;
+            if(_p.y < pos.y) return false;
+            if(_p.x > pos.x+size.x) return false;
+            if(_p.y > pos.y+size.y) return false;
+        }
         return true;
     }
 

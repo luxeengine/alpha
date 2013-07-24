@@ -162,7 +162,7 @@ class Menu extends Mode {
     }
 
     public function update(dt:Float) {
-
+        
     }
    
     public function keyup(e:Dynamic) {

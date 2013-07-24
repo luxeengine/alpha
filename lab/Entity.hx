@@ -15,13 +15,8 @@ class Entity {
 
 	private var _last_scale : Vector;
 
-    public static var debug : Bool = false;
-
-    private function _debug(v){
-    	if(debug) trace(v);
-    }
-
-	public function new(){		
+	public function new(){	
+		
 		_components = new Map();
 			//defaults
 		id = lab.utils.UUID.get();
@@ -30,63 +25,10 @@ class Entity {
 		scale = new Vector(1,1);
 		_last_scale = new Vector(1,1);
 		rotation = 0;
+			//hierarchy
 		parent = null;
 
-	}
-
-	    //An internal callback for when x y or z on a transform changes
-    private function pos_change(_v:Float) {
-        set_pos(pos);
-    }
-	    //An internal callback for when x y or z on a transform changes
-    private function scale_change(_v:Float) {
-        set_scale(scale);
-    }
-
-        //An internal function to attach position 
-        //changes to a vector, so we can listen for `pos.x` as well
-    private function _attach_listener(_v : Vector, listener) {
-        _v.listen_x = listener; _v.listen_y = listener; _v.listen_z = listener;
-    }
-
-    public function get_rotation() : Float { return (parent == null) ? rotation : parent.rotation; }
-    public function set_rotation(_r:Float) : Float { return (parent == null) ? rotation = _r : parent.rotation = _r; }
-
-    public function get_scale() : Vector { return (parent == null) ? scale : parent.scale; }
-    public function set_scale(_s:Vector) : Vector {
-
-    	if(parent == null) {
-
-	    		//store the new value
-	    	scale = _s;
-	    		//listen for changes on the new value
-	        _attach_listener( scale, scale_change );
-	        	//store a copy for getting a difference in scale
-	        _last_scale = scale.clone();
-	        	//set requires return
-	        return scale;
-	    } else {
-			return parent.scale = _s;
-	    }
-
-	    return _s;
-    }
-
-    public function get_pos() : Vector { return (parent == null) ? pos : parent.pos; }
-	public function set_pos(_p:Vector) { 
-
-		if(parent == null) {
-			pos = _p;
-        	_attach_listener( pos, pos_change );
-        	return pos;
-        } else {
-        	// Reflect.setField(parent, 'pos', _p);
-        	pos = _p;
-        	return pos;
-        }
-
-        return _p;
-	}	
+	} //new
 
 	public function add<T>(type:Class<T>, ?_name:String='') : T {
 
@@ -115,14 +57,13 @@ class Entity {
 
 			//return the component
 		return _component;
-	}
+
+	} //add component
 
 	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
 		
 		if(!in_children) {
-
 			return _components.get(_name);
-
 		} else {
 
 			var results = [];
@@ -155,18 +96,11 @@ class Entity {
 		}
 
 		return null;
-	}
+	} //get
 
 	public function has(name:String) : Bool {
 		return _components.exists(name);
-	}
-
-	private function _call(_object:Entity, _name:String, ?args) {
-		var _func = Reflect.field(_object, _name);
-		if(_func != null) {
-			Reflect.callMethod(_object, _func, args );
-		} //init function exists?
-	}
+	} //has
 
 	public function _init() {
 		_debug('calling init on ' + name);
@@ -214,5 +148,76 @@ class Entity {
 		} //for each component
 	} //_update
 
+//Private helper functions
+
+	private function _call(_object:Entity, _name:String, ?args) {
+		var _func = Reflect.field(_object, _name);
+		if(_func != null) {
+			Reflect.callMethod(_object, _func, args );
+		} //does function exist?
+	}
+
+//Debugging
+
+    public static var debug : Bool = false;
+    private function _debug(v){
+    	if(debug) trace(v);
+    }
+
+//Spatial transforms
+
+	    //An internal callback for when x y or z on a transform changes
+    private function pos_change(_v:Float) {
+        set_pos(pos);
+    }
+	    //An internal callback for when x y or z on a transform changes
+    private function scale_change(_v:Float) {
+        set_scale(scale);
+    }
+
+        //An internal function to attach position 
+        //changes to a vector, so we can listen for `pos.x` as well
+    private function _attach_listener(_v : Vector, listener) {
+        _v.listen_x = listener; _v.listen_y = listener; _v.listen_z = listener;
+    }
+
+    public function get_rotation() : Float { return (parent == null) ? rotation : parent.rotation; }
+    public function set_rotation(_r:Float) : Float { return (parent == null) ? rotation = _r : parent.rotation = _r; }
+
+    public function get_scale() : Vector { return (parent == null) ? scale : parent.scale; }
+    public function set_scale(_s:Vector) : Vector {
+
+    	if(parent == null) {
+
+	    		//store the new value
+	    	scale = _s;
+	    		//listen for changes on the new value
+	        _attach_listener( scale, scale_change );
+	        	//store a copy for getting a difference in scale
+	        _last_scale = scale.clone();
+	        	//set requires return
+	        return scale;
+	    } else {
+			return parent.scale = _s;
+	    }
+
+	    return _s;
+    } //set_scale
+
+    public function get_pos() : Vector { return (parent == null) ? pos : parent.pos; }
+	public function set_pos(_p:Vector) { 
+
+		if(parent == null) {
+			pos = _p;
+        	_attach_listener( pos, pos_change );
+        	return pos;
+        } else {
+        	// Reflect.setField(parent, 'pos', _p);
+        	pos = _p;
+        	return pos;
+        }
+
+        return _p;
+	} //set_pos
 
 }
