@@ -17,9 +17,9 @@ class Camera extends Entity {
 		
 		super();
 
-		name = 'default camera';
-		pos = new Vector();
+		name = options.name == null ? 'untitled camera' : options.name;
 		view_position = new Vector();
+
 
 		if(options != null) {
 			if(options.view != null) {
@@ -31,6 +31,7 @@ class Camera extends Entity {
 		}
 
 		view_position = view.pos;
+
 	}
 
 	public override function set_pos(v:Vector) : Vector {		
@@ -38,7 +39,7 @@ class Camera extends Entity {
 		pos = v;
 
 			//listen for sub changes
-		super.set_pos( pos );
+		// super.set_pos( pos );
 
 		return pos;
 	}

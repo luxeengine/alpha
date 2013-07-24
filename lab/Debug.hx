@@ -46,6 +46,7 @@ class Debug {
 
     public var padding:Vector;
 
+    public var started = false;
     public var _last_render_stats : Dynamic;
     public var _render_stats : Dynamic;
 
@@ -77,7 +78,10 @@ class Debug {
     }   
 
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos) {
-        Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+        #if lime_native 
+            Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+        #end
+        
         Lab.debug.add_line(inf.fileName + ':' + inf.lineNumber + ' ' + v );
     }
 
@@ -129,7 +133,6 @@ class Debug {
 
     public function add_line(_t:String) {        
         if(lines == null) {
-            Sys.println(_t);
             return;
         }
             //about to reach the max?

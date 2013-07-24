@@ -11,6 +11,30 @@ class Scene {
         entities = new Array<Entity>();
     }
 
+    public function create<T>(type:Class<T>, ?_name:String='') : T {
+
+        var _temp_name = _name;
+
+        if(_temp_name.length == 0) {
+            _temp_name = Lab.utils.uuid();
+        } else {
+            _temp_name = _name;
+        }
+
+            //create an instance
+        var _component = Type.createInstance( type, [] );
+            //cast to entity so we can set its name
+        var _e_component : Entity = cast _component;
+            //apply it!
+        _e_component.name = _temp_name;
+
+            //add it to this scene
+        add(_e_component);
+
+            //component
+        return _component;
+    }
+
     public function add(entity:Entity) {
         entities.push( entity );
     }
@@ -27,7 +51,7 @@ class Scene {
             entity = null;
         }
 
-        entities.splice( 0, entities.length );        
+        entities.splice( 0, entities.length );
     }
     
     public function shutdown() {

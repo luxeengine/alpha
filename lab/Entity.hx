@@ -15,7 +15,7 @@ class Entity {
 
 	private var _last_scale : Vector;
 
-    public var debug : Bool = true;
+    public static var debug : Bool = false;
 
     private function _debug(v){
     	if(debug) trace(v);
@@ -73,13 +73,16 @@ class Entity {
     }
 
     public function get_pos() : Vector { return (parent == null) ? pos : parent.pos; }
-	public function set_pos(_p:Vector) { 		
+	public function set_pos(_p:Vector) { 
+
 		if(parent == null) {
 			pos = _p;
         	_attach_listener( pos, pos_change );
         	return pos;
         } else {
-        	return parent.pos = _p;
+        	// Reflect.setField(parent, 'pos', _p);
+        	pos = _p;
+        	return pos;
         }
 
         return _p;
@@ -88,7 +91,7 @@ class Entity {
 	public function add<T>(type:Class<T>, ?_name:String='') : T {
 
 		var _temp_name = _name;
-		if(_temp_name == '') {
+		if(_temp_name.length == 0) {
 			_temp_name = Lab.utils.uuid();
 		} else {
 			_temp_name = _name;

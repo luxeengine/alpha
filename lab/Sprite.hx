@@ -16,12 +16,13 @@ import Lab;
 class Sprite extends Entity {
 
     @:isVar public var geometry     (default,default)   : QuadGeometry;
+    @:isVar public var locked       (default,set    )   : Bool = false;
     @:isVar public var texture      (default,default)   : Texture;
     @:isVar public var size         (default,set    )   : Vector;
     @:isVar public var color        (default,set    )   : Color;
     @:isVar public var visible      (default,set    )   : Bool;
     @:isVar public var radians      (default,set    )   : Float = 0.0;
-    @:isVar public var centered     (default,set    )   : Bool = true;
+    @:isVar public var centered     (default,set    )   : Bool = true;    
     @:isVar public var origin       (default,set    )   : Vector;
     @:isVar public var uv           (default,set    )   : Rectangle;
     @:isVar public var scene        (default,default)   : Scene;
@@ -43,8 +44,9 @@ class Sprite extends Entity {
         if(options.name != null) {
             name = options.name;
         } else {
-            name = Lab.utils.uuid();
+            name = id; //default to the entity id
         }
+
 //texture
         if(options.texture != null) {
             texture = options.texture;
@@ -276,6 +278,16 @@ class Sprite extends Entity {
 
         return _v;
     } //set_scale
+
+//Locked
+
+    public function set_locked(_l:Bool) : Bool {
+
+        if(geometry != null) {
+            geometry.locked = _l;
+        }
+        return locked = _l;
+    } 
 
 //UV / source rect
 

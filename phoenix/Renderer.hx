@@ -141,7 +141,7 @@ class Renderer {
 
     public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
         
-        trace("Checking if the texture exists in the cache ...");
+        trace("Checking if the texture exists in the cache ..." + _name);
         var _exists = resource_manager.find_texture(_name);
 
         if(_exists != null) {

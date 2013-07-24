@@ -8,8 +8,6 @@ class ParticleSystem extends Entity {
 
     public function init() {
         if(emitters == null) new Map<String, ParticleEmitter>();
-
-        // trace("Init particle system : " + name);
     } //init
 
     public function add_emitter(_template:Dynamic) {
@@ -30,26 +28,18 @@ class ParticleSystem extends Entity {
         var _emitter = add(ParticleEmitter, _name);
             //store ourselves in the emitter
         _emitter.particle_system = this;
-            //manual init, because it's probably added too late
-        _emitter.init();
-            //apply the template to the emitter
-        _emitter.apply(_template);
+            //store the template to the emitter
+        _emitter.template = _template;
             //store the reference of the emitter
         emitters.set(_name, _emitter);
 
     } //add
 
     public override function set_pos(_v:Vector) {
-        trace('set pos in system');        
-        if(emitters != null) {
-            for(emitter in emitters) {
-                emitter.pos = _v;
-            }
-        }
 
         pos = _v;
 
-        super.set_pos(pos);        
+        super.set_pos(pos);
 
         return pos;
     } 
@@ -143,7 +133,8 @@ class ParticleEmitter extends Entity {
 
         //internal stuff
     var direction_vector : Vector;
-    
+    public var template : Dynamic = null;
+
     public function init() {   
 
         active_particles = new Array<Particle>();
@@ -154,7 +145,7 @@ class ParticleEmitter extends Entity {
         emit_next = 0;
             
             //apply defaults 
-        apply({});
+        apply(template);
     }
 
     public function apply(_template:Dynamic) {
@@ -318,8 +309,9 @@ class ParticleEmitter extends Entity {
 
         particle.rotation = (rotation + rotation_random * random_1_to_1()) + rotation_offset;
 
-        particle.position.x = (pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
-        particle.position.y = (pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;      
+
+        particle.position.x = (parent.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
+        particle.position.y = (parent.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
 
         if(particle_cache[cache_index] != null) {
 

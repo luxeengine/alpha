@@ -24,6 +24,8 @@ class Main extends lab.Game {
     public var sprite:Sprite;
     public function ready() {
 
+        Entity.debug = false;
+
             //game object is a fake class below just for testing
         var go = new GameObject();
         var child1 = go.add(Child1,'child1');

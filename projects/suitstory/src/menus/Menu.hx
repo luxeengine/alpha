@@ -65,10 +65,9 @@ class Menu extends Mode {
         var t2 = Lab.loadTexture('assets/smoke.png');
         var t3 = Lab.loadTexture('assets/embers.png');
 
-
-        particles = back.add(ParticleSystem,'mainparticles');
-        
+        particles = Lab.scene.create(ParticleSystem,'mainparticles');        
         particles.pos = new Vector(480,320);
+
         particles.add_emitter({
             name : 'flames', 
             particle_image:t1,
@@ -115,7 +114,7 @@ class Menu extends Mode {
             emit_time : 0.5
         });
 
-        play.geometry.locked = true;
+        play.locked = true;
 
         Lab.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
@@ -167,6 +166,7 @@ class Menu extends Mode {
     }
    
     public function keyup(e:Dynamic) {
+        
     }
 
     public function keydown(e:Dynamic) {
