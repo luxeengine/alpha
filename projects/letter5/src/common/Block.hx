@@ -27,7 +27,7 @@ class Block {
 	}
 
 	public function init() {
-
+		
 		sprite = new Sprite({
 			centered : false,
 			pos : new Vector(x,y),
