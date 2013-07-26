@@ -183,6 +183,7 @@ class Debug {
     }
 
     public function create_stats_console() {
+
         render_stats_text = new lab.Text({
             depth : 999.3,
             color : new Color(0,0,0,1).rgb(0xf6007b),

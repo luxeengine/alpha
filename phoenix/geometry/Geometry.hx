@@ -11,6 +11,7 @@ import lime.utils.ByteArray;
 import lime.utils.Float32Array;
 import lime.utils.IMemoryRange;
 
+import lime.gl.GL;
 import lime.gl.GLBuffer;
 
 class Geometry {

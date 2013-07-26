@@ -50,7 +50,11 @@ class Block {
 		Actuate.tween(sprite.color, 2, {a:1});
 		Actuate.tween(letter.color, 3, {a:0.8}).onUpdate(function(){
 			letter.color = letter.color;
+		}).onComplete(function(){
+			sprite.locked = true;
 		});
+
+
 
 	}
 
