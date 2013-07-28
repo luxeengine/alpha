@@ -32,11 +32,12 @@ class Block {
 			centered : false,
 			pos : new Vector(x,y),
 			color : new Color(1,1,1,0),
-			size : new Vector(board.blockw, board.blockh),
-			uv : new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h ),
+			size : new Vector(board.blockw, board.blockh),			
 			texture : board.skin.texture,
 			depth : 3
 		});
+
+		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
 
 		letter = new Text({
 			pos : new Vector( x+board.skin.text.x , y+board.skin.text.y ),

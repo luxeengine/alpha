@@ -32,6 +32,10 @@ class NineSlice extends lab.Sprite {
     public var width : Float = 0.0;
     public var bottom : Float = 32;
     public var height : Float = 0.0;
+    public var source_x : Float = 0.0;
+    public var source_y : Float = 0.0;
+    public var source_w : Float = 0.0;
+    public var source_h : Float = 0.0;
     public var is_set : Bool = false;
     public var midwidth : Float = 0.0;
     public var midheight : Float = 0.0;
@@ -56,20 +60,36 @@ class NineSlice extends lab.Sprite {
             _options.scene = false;
         }
 
-        if(_options.top != null) top = _options.top;
-        if(_options.left != null) left = _options.left;
-        if(_options.right != null) right = _options.right;
-        if(_options.bottom != null) bottom = _options.bottom;
-
         options = _options;
         
         if(_options.depth != null) options.depth = _options.depth;
         if(_options.group != null) options.group = _options.group;
         if(_options.batcher != null) _batcher = _options.batcher;
         
-
+            //sprite options to parent
         super(_options);
         slices = new Array<Slice>();
+
+            //now local options
+        if(_options.top != null) top = _options.top;
+        if(_options.left != null) left = _options.left;
+        if(_options.right != null) right = _options.right;
+        if(_options.bottom != null) bottom = _options.bottom;
+
+        if(_options.source_x != null) { source_x = _options.source_x; } 
+        if(_options.source_y != null) { source_y = _options.source_y; }
+        if(_options.source_w != null) {
+            source_w = _options.source_w;
+        } else {
+            source_w = texture.width;
+        }
+
+        if(_options.source_h != null) {
+            source_h = _options.source_h;
+        } else {
+            source_h = texture.height;
+        }
+
 
     }
 
@@ -110,8 +130,8 @@ class NineSlice extends lab.Sprite {
         slices.push({
             source_width  : left,
             source_height : top,
-            source_x : 0, 
-            source_y : 0,
+            source_x : source_x, 
+            source_y : source_y,
             pos : new Vector(0,0),
             width : left,
             height : top,
@@ -119,10 +139,10 @@ class NineSlice extends lab.Sprite {
         });
             //top middle
         slices.push({
-            source_width  : texture.width - left - right,
+            source_width  : source_w - left - right,
             source_height : top,
-            source_x : left, 
-            source_y : 0,
+            source_x : source_x+left, 
+            source_y : source_y,
             pos : new Vector(left,0),
             width : width - left - right,
             height : top,
@@ -132,8 +152,8 @@ class NineSlice extends lab.Sprite {
         slices.push({
             source_width  : right,
             source_height : top,
-            source_x : texture.width - right, 
-            source_y : 0,
+            source_x : source_x+ (source_w - right), 
+            source_y : source_y,
             pos : new Vector(left + midwidth,0),
             width : right,
             height : top,
@@ -144,9 +164,9 @@ class NineSlice extends lab.Sprite {
             //middle left
         slices.push({
             source_width  : left,
-            source_height : texture.height - top - bottom,
-            source_x : 0, 
-            source_y : top,
+            source_height : source_h - top - bottom,
+            source_x : source_x, 
+            source_y : source_y+top,
             pos : new Vector(0,top),
             width : left,
             height : height - top - bottom,
@@ -154,10 +174,10 @@ class NineSlice extends lab.Sprite {
         });
             //middle middle
         slices.push({
-            source_width  : texture.width - left - right,
-            source_height : texture.height - top - bottom,
-            source_x : left, 
-            source_y : top,
+            source_width  : source_w - left - right,
+            source_height : source_h - top - bottom,
+            source_x : source_x+left, 
+            source_y : source_y+top,
             pos : new Vector(left,top),
             width : width - left - right,
             height : height - top - bottom,
@@ -166,9 +186,9 @@ class NineSlice extends lab.Sprite {
             //middle right
         slices.push({
             source_width  : right,
-            source_height : texture.height - top - bottom,
-            source_x : texture.width - right, 
-            source_y : top,
+            source_height : source_h - top - bottom,
+            source_x : source_x+(source_w - right), 
+            source_y : source_y+top,
             pos : new Vector(left + midwidth,top),
             width : right,
             height : height - top - bottom,
@@ -180,8 +200,8 @@ class NineSlice extends lab.Sprite {
         slices.push({
             source_width  : left,
             source_height : bottom,
-            source_x : 0, 
-            source_y : texture.height - bottom,
+            source_x : source_x, 
+            source_y : source_y+ (source_h - bottom),
             pos : new Vector(0,top + midheight),
             width : left,
             height : bottom,
@@ -189,10 +209,10 @@ class NineSlice extends lab.Sprite {
         });
             //bottom middle
         slices.push({
-            source_width  : texture.width - left - right,
+            source_width  : source_w - left - right,
             source_height : bottom,
-            source_x : left, 
-            source_y : texture.height - bottom,
+            source_x : source_x+left, 
+            source_y : source_y+(source_h - bottom),
             pos : new Vector(left,top + midheight),
             width : width - left - right,
             height : bottom,
@@ -202,8 +222,8 @@ class NineSlice extends lab.Sprite {
         slices.push({
             source_width  : right,
             source_height : bottom,
-            source_x : texture.width - right, 
-            source_y : texture.height - bottom,
+            source_x : source_x+(source_w - right), 
+            source_y : source_y+(source_h - bottom),
             pos : new Vector(left + midwidth, top + midheight),
             width : right,
             height : bottom,
