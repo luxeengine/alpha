@@ -5,6 +5,7 @@ import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.geometry.CompositeGeometry;
 
+typedef TextAlign = phoenix.BitmapFont.TextAlign;
 
 class Text {
     
@@ -30,7 +31,7 @@ class Text {
         _batcher = (_options.batcher == null) ? Lab.renderer.default_batcher : _options.batcher;
         size = (_options.size == null) ? 32 : _options.size;
 
-        if(_font == null) return;
+        if(_font == null) _font = Lab.renderer.default_font;
 
         if(Std.is(_font, String)) {
                 //supplied a font name

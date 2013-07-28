@@ -8,6 +8,7 @@ import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.geometry.Vertex;
+import phoenix.Rectangle;
 import phoenix.Resource;
 import phoenix.ResourceManager;
 import phoenix.Texture;
@@ -16,6 +17,8 @@ enum TextAlign {
     left;
     right;
     center;
+    top;
+    bottom;
 }
 
 typedef Character = {
@@ -302,12 +305,20 @@ class BitmapFont extends Resource {
          var _string : String = (options.text == null) ? "" : options.text;
          var _pos: Vector = (options.pos == null) ? new Vector() : options.pos;
          var _col: Color = (options.color == null) ? new Color() : options.color;
+         var _bounds: Rectangle = (options.bounds == null) ? null : options.bounds;
+         var _pos: Vector = (options.pos == null) ? new Vector() : options.pos;
          var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
+         var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
          var _size : Float = (options.size == null) ? 0 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Lab.renderer.default_batcher : options.batcher;
          var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
          var _supplied_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
+
+         var _bounds_based : Bool = false;
+         if(_bounds != null) {
+            _bounds_based = true;
+         }
         
             //no texture? return empty geometry
         if(pages[0] == null) {
@@ -449,16 +460,40 @@ class BitmapFont extends Resource {
             //replace the composite with the children geometry
         _supplied_geom.replace( _geoms );
 
-            //translate all of the new text according to the alignment alignment
-        var _po = _pos.clone();
+        if(!_bounds_based) {
 
-        if( _align == TextAlign.center ) {
-            _po.x = _pos.x - (_max_line_width/2);
-        } else if( _align == TextAlign.right ) {
-            _po.x = _pos.x - (_max_line_width);  
-        }
-            //translate all of the new text according to the actual position
-        _supplied_geom.pos = _po;
+                //translate all of the new text according to the alignment alignment
+            var _po = _pos.clone();
+
+            if( _align == TextAlign.center ) {
+                _po.x = _pos.x - (_max_line_width/2);
+            } else if( _align == TextAlign.right ) {
+                _po.x = _pos.x - (_max_line_width);  
+            }
+                //translate all of the new text according to the actual position
+            _supplied_geom.pos = _po;
+
+        } else {
+
+                //translate all of the new text according to the alignment alignment
+            var _po = new Vector(_bounds.x, _bounds.y);
+
+            if( _align == TextAlign.center ) {
+                _po.x = _po.x + ((_bounds.w/2) - (_dimensions.x/2));
+            } else if( _align == TextAlign.right ) {
+                _po.x = _po.x + ((_bounds.w) - (_dimensions.x));
+            }
+
+            if( _valign == TextAlign.center ) {
+                _po.y = _po.y + ((_bounds.h/2) - (_dimensions.y/2));
+            } else if( _valign == TextAlign.bottom ) {
+                _po.y = _po.y + ((_bounds.h) - (_dimensions.y));
+            }
+                //translate all of the new text according to the actual position
+            _supplied_geom.pos = _po;
+
+        } //_bounds_based
+
 
         return _supplied_geom;
     }

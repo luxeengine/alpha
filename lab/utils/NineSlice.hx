@@ -245,6 +245,21 @@ class NineSlice extends lab.Sprite {
         return pos = _v;
     }
 
+    public override function destroy() {
+
+        if(is_set) {
+            for(slice in slices) {                  
+                if(slice.geometry != null ) {
+                    slice.geometry.drop();
+                }
+            }
+        }
+
+            //clear our references to these
+        geometry = null;
+        texture = null;
+    }
+
     public override function set_visible(_v:Bool) {
 
         super.set_visible(_v);
