@@ -353,8 +353,6 @@ class BitmapFont extends Resource {
         var point_size = _size/font_size;
         var _scale : Vector = new Vector(point_size,point_size);
 
-        Sys.println(_scale);
-
         var _cumulative_x : Float = 0.0;
         var _cumulative_y : Float = 0.0;
 
