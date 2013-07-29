@@ -9,6 +9,7 @@ import lab.Sprite;
 import MIControl;
 import MICanvas;
 import phoenix.BitmapFont.TextAlign;
+import phoenix.Rectangle;
 
 class Main extends lab.Game {
 
@@ -17,6 +18,7 @@ class Main extends lab.Game {
     public var button : MIButton;
     public var image : MIImage;
     public var scroller : MIScrollArea;
+    public var scroller1 : MIScrollArea;
 
     public function ready() {
         
@@ -36,17 +38,35 @@ class Main extends lab.Game {
         scroller = new MIScrollArea({
             parent : canvas,
             name : 'scrollarea',
-            bounds : new Rectangle( 120, 10, 640, 360 )
+            bounds : new Rectangle( 120, 10, 300, 360 )
+        });        
+
+        scroller1 = new MIScrollArea({
+            parent : canvas,
+            name : 'scrollarea1',
+            bounds : new Rectangle( 430, 10, 300, 360 )
         });
 
         image = new MIImage({
-            parent : scroller,
+            parent : scroller1,
             name : 'image',
-            bounds : new Rectangle( 0, -360, 1280, 720 ),
+            bounds : new Rectangle( 0, 0, 1280, 720 ),
             texture : Lab.loadTexture('assets/image.png'),
         });
 
+        scroller1.scrolly(-360);
+
+        for(i in 0 ... 5) {
+            var l = new MILabel({
+                parent : scroller,
+                name : 'label' + (i+1),
+                text : 'label' + (i+1),
+                bounds : new Rectangle(50, i * 100, 100, 100 )
+            });
+        }
+
         trace(scroller.children_bounds());
+        trace(scroller1.children_bounds());
 
     } //ready
     
@@ -58,12 +78,7 @@ class Main extends lab.Game {
         canvas.onmouseup(e);
     }
 
-    public function onmousedown(e) {
-        if(e.button == lime.InputHandler.MouseButton.wheel_up) {
-            scroller.scrollx(-10);
-        } else if(e.button == lime.InputHandler.MouseButton.wheel_down) {
-            scroller.scrollx(10);
-        }
+    public function onmousedown(e) {        
         canvas.onmousedown(e);
     }
 

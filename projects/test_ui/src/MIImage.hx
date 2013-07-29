@@ -18,7 +18,7 @@ class MIImage extends MIControl {
 		image = new Sprite(_options);
 			//clip the geometry
 		image.geometry.clip = true;
-        image.geometry.clip_rect = parent == null ? real_bounds : parent.real_bounds;
+        image.geometry.clip_rect = parent.real_bounds;
 
 	}
 

@@ -99,6 +99,14 @@ class CompositeGeometry extends Geometry {
             }
         }
         return clip = val;
+    }    
+    public override function set_clip_rect(val : Rectangle) : Rectangle {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.clip_rect = val;
+            }
+        }
+        return clip_rect = val;
     }
     public override function set_enabled(val : Bool) : Bool {        
         for(geom in geometry) {

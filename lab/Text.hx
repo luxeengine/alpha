@@ -24,8 +24,7 @@ class Text {
     public var text_options : Dynamic;
 
     public function new( _options : Dynamic ) {
-        
-        pos = new Vector();
+                
 
         var _font : Dynamic = (_options.font == null) ? null : _options.font;
         _batcher = (_options.batcher == null) ? Lab.renderer.default_batcher : _options.batcher;
@@ -48,15 +47,18 @@ class Text {
 
         text_options = _options;
         text_options.size = size;
-
-            //Apply the setter, which will draw the geometry
+            
         if(_options.pos != null) {
             pos = _options.pos;
+        } else {
+            pos = new Vector();
         }
+
         if(_options.color != null) {
             color = _options.color;
         }
 
+            //Apply the setter, which will draw the geometry
         text = _options.text;
     }
 
@@ -73,12 +75,20 @@ class Text {
     }
 
     public function set_pos(v:Vector) : Vector {
-        if(pos == null) return pos = v;
+        
+        var diff : Vector;
+
+        if(pos != null) {
+            diff = Vector.Subtract( v.clone(), pos ); 
+        } else {
+            diff = v.clone();            
+        }
+
         pos = v.clone();
         text_options.pos = pos;
         
         if(geometry != null) {        
-            geometry.pos = pos;
+            geometry.translate(diff);
         }
         
         return pos;

@@ -6,11 +6,12 @@ import MIControl;
 class MIScrollArea extends MIControl {
 	
 
-	public var can_scroll_h : Bool = false;
-	public var can_scroll_v : Bool = false;
+	public var can_scroll_h : Bool = true;
+	public var can_scroll_v : Bool = true;
 
 	public var scroll_amount : Vector;
 	public var scroll_percent : Vector;
+	public var child_bounds : Dynamic;
 
 	public function new(_options:Dynamic) {
 
@@ -28,6 +29,25 @@ class MIScrollArea extends MIControl {
 		refresh_scroll();
 	}
 
+	public override function onmousedown(e) {
+		if(!ishovered) return;
+
+		if(e.button == lime.InputHandler.MouseButton.wheel_up) {
+			if(e.ctrl_down) {
+            	scrollx(-10);
+            } else {
+            	scrolly(-10);
+            }
+        } else if(e.button == lime.InputHandler.MouseButton.wheel_down) {
+			if(e.ctrl_down) {
+            	scrollx(10);
+            } else {
+            	scrolly(10);
+            }
+        }
+
+	}
+
 	public function scrolly(diff:Float) {
 
 		if(diff > 0 && scroll_percent.y <= 0) return;
@@ -42,6 +62,8 @@ class MIScrollArea extends MIControl {
 
 	public function scrollx(diff:Float) {
 
+		if(!can_scroll_h) return;
+
 		if(diff > 0 && scroll_percent.x <= 0) return;
 		if(diff < 0 && scroll_percent.x >= 1) return;
 
@@ -55,46 +77,74 @@ class MIScrollArea extends MIControl {
 	public function refresh_scroll() {
 
 			//get child bounds
-		var _children_bounds = children_bounds();
-		
-			//get them into absolute space, based on our position
-		var _children_y = (real_bounds.y + _children_bounds.y);
-		var _children_x = (real_bounds.x + _children_bounds.x);
-			//when the difference between our y and the children y is 0, the scroll amount is 0
-		var _scroll_percent_x = (real_bounds.x - _children_x) / (_children_bounds.w - real_bounds.w);
-		var _scroll_percent_y = (real_bounds.y - _children_y) / (_children_bounds.h - real_bounds.h);
+		child_bounds = children_bounds();		
 
-			//keep for later
-		scroll_percent.x = _scroll_percent_x;
-		scroll_percent.y = _scroll_percent_y;
-	}
+			//if the children bounds are < our size, it can't scroll
+		if(child_bounds.w < real_bounds.w) {
+			can_scroll_h = false;
+		} else {
+			can_scroll_h = true;
+		}
+
+		if(child_bounds.h < real_bounds.h) {
+			can_scroll_v = false;
+		} else {
+			can_scroll_v = true;
+		}
+		
+		if(can_scroll_h) {
+
+			var _diff_x = (real_bounds.x - child_bounds.realx);
+			scroll_percent.x = (_diff_x / (child_bounds.w - bounds.w));
+			scroll_percent.x = Math.min( Math.max(0.0, scroll_percent.x), 1.0);
+
+		} //can_scroll_h
+
+		if(can_scroll_v) {
+
+			var _diff_y = (real_bounds.y - child_bounds.realy);
+			scroll_percent.y = (_diff_y / (child_bounds.h - bounds.h));
+			scroll_percent.y = Math.min( Math.max(0.0, scroll_percent.y), 1.0);
+
+		} //can_scroll_v
+			
+
+	} // refresh_scroll
 
 	public override function _debug() {
 
-		var _children_size = children_bounds();
+		
 		super._debug();
 
 			//horizontal scroll
-		Lab.draw.rectangle({
-			depth : 8,
-			immediate : true,
-			color : debug_color,			
-			x : real_bounds.x + ((real_bounds.w-10) * scroll_percent.x), 
-			y : (real_bounds.y+real_bounds.h - 4), 
-			w:10, h:3
-		});		
+		if(can_scroll_h) {
+			Lab.draw.rectangle({
+				depth : 8,
+				immediate : true,
+				color : debug_color,			
+				x : real_bounds.x + ((real_bounds.w-10) * scroll_percent.x), 
+				y : (real_bounds.y+real_bounds.h - 4), 
+				w:10, h:3
+			});		
+		}
+
 			//vertical scroll
-		Lab.draw.rectangle({
-			depth : 8,
-			immediate : true,
-			color : debug_color,
-			x : (real_bounds.x+real_bounds.w - 4), 
-			y: real_bounds.y + ((real_bounds.h-10) * scroll_percent.y), 
-			w:3, h:10
-		});
+		if(can_scroll_v) {
+			Lab.draw.rectangle({
+				depth : 8,
+				immediate : true,
+				color : debug_color,
+				x : (real_bounds.x+real_bounds.w - 4), 
+				y: real_bounds.y + ((real_bounds.h-10) * scroll_percent.y), 
+				w:3, h:10
+			});
+		}
+
+		var cy:Float = child_bounds.realy;
+		var diffy:Float = (real_bounds.y - child_bounds.realy);
 
 		Lab.draw.text({
-			text : ' [ ' + scroll_percent.x + ',' +  scroll_percent.y + ' ]',
+			text :  'y =' + real_bounds.y + ' cy = ' + cy + ' diffy = ' + diffy + ' [ ' +scroll_percent.y+ ']',
 			depth : 5,
 			size : 14,
 			immediate : true,
