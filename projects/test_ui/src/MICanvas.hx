@@ -17,6 +17,7 @@ class MICanvas extends MIControl {
 		if(_options.bounds == null) _options.bounds = new Rectangle(0, 0, Lab.screen.w, Lab.screen.h );
 
 		super(_options);
+		mouse_enabled = true;
 
 		debug_color = new Color(0.5,0,0,0.5);
 

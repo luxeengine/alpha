@@ -2,6 +2,7 @@
 import lab.Rectangle;
 import lab.Color;
 import lab.Vector;
+import lab.Input;
 
 	//base class for all controls
 	//handles propogation of events,
@@ -25,14 +26,18 @@ class MIControl {
 	@:isVar public var parent(get,set) : MIControl;
 	public var children : Array<MIControl>;
 
+	@:isVar public var mousedown(get,set) : MIControl->Void;
+	var mouse_down_handlers : Array<MIControl->Void>;
+
 	public var isfocused : Bool = false;
 	public var ishovered : Bool = false;
+	public var mouse_enabled : Bool = true;
 
 	private var debug_color : Color;
 
 	public function new(_options:Dynamic) {
 
-		debug_color = new Color(0.5,0.3,0.2,0.5);
+		debug_color = new Color(0.5,0.3,0.2,0.5);		
 
 		bounds = _options.bounds == null ? new Rectangle(0,0,32,32) : _options.bounds;
 		real_bounds = bounds.clone();
@@ -40,11 +45,21 @@ class MIControl {
 		if(_options.name != null) { name = _options.name; }
 
 		children = [];
+		mouse_down_handlers = [];
 
 		if(_options.parent != null) {
 			_options.parent.add(this);
 		}
 
+	}
+
+	function get_mousedown() {
+		return mouse_down_handlers[0];
+	}
+
+	function set_mousedown( listener:MIControl -> Void ) {
+		mouse_down_handlers.push(listener);
+		return listener;
 	}
 
 	public function add( child:MIControl ) {
@@ -120,11 +135,11 @@ class MIControl {
 		return parent;
 	}
 		
-	public function onmousemove(e) {		
+	public function onmousemove( e:MouseEvent ) {
 		if(real_bounds.point_inside(new Vector(e.x,e.y))) {
 			if(!ishovered) {				
 				onmouseenter(e);
-			} else {
+			} else {				
 				for(child in children) {
 					child.onmousemove(e);
 				}
@@ -137,28 +152,43 @@ class MIControl {
 
 	} //mousemove
 
-	public function onmouseup(e) {
-
+	public function onmouseup( e:MouseEvent ) {
+		if(!mouse_enabled) return;
 	}
-	public function onmousedown(e) {
+	public function onmousedown( e:MouseEvent ) {
+		if(!mouse_enabled) return;
+
 		if(ishovered) {
+			
+			if(e.button == MouseButton.left) {
+				for(handler in mouse_down_handlers) {
+					handler(this);
+				}
+			}
+
 			for(child in children) {
 				child.onmousedown(e);
 			}
 		}
 	}
-	public function onmouseenter(e) {
+	public function onmouseenter( e:MouseEvent ) {
 		if(!ishovered) {
 			ishovered = true;
 			// trace('mouse enter ' + name);
 		}
+
+			//other stuff must be after this
+		if(!mouse_enabled) return;
 	}
 
-	public function onmouseleave(e) {
+	public function onmouseleave( e:MouseEvent ) {		
 		if(ishovered) {
 			ishovered = false;
 			// trace('mouse leave ' + name);
 		}
+
+			//other stuff must be after this
+		if(!mouse_enabled) return;
 	}
 
 	public function _debug() {

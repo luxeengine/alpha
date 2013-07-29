@@ -57,11 +57,13 @@ class Main extends lab.Game {
         scroller1.scrolly(-360);
 
         for(i in 0 ... 5) {
-            var l = new MILabel({
+            var l = new MIButton({
                 parent : scroller,
-                name : 'label' + (i+1),
-                text : 'label' + (i+1),
-                bounds : new Rectangle(50, i * 100, 100, 100 )
+                name : 'button' + (i+1),
+                bounds : new Rectangle(50, i * 100, 100, 100 ),
+                text : 'click me + '+ (i+1),
+                text_size : 18,
+                onclick : function(){ trace('click me + '+ (i+1)); }
             });
         }
 

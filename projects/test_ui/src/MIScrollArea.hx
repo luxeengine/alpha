@@ -30,6 +30,9 @@ class MIScrollArea extends MIControl {
 	}
 
 	public override function onmousedown(e) {
+			//forward to 
+		super.onmousedown(e);
+		
 		if(!ishovered) return;
 
 		if(e.button == lime.InputHandler.MouseButton.wheel_up) {

@@ -2,6 +2,10 @@ package lab;
 
 import lab.Core;
 
+typedef MouseButton = lime.InputHandler.MouseButton;
+typedef MouseState = lime.InputHandler.MouseState;
+typedef TouchState = lime.InputHandler.TouchState;
+
 typedef TouchEvent = lime.InputHandler.TouchEvent;
 typedef MouseEvent = lime.InputHandler.MouseEvent;
 typedef GamepadEvent = lime.InputHandler.GamepadEvent;
