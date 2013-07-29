@@ -19,6 +19,7 @@ class Main extends lab.Game {
     public var image : MIImage;
     public var scroller : MIScrollArea;
     public var scroller1 : MIScrollArea;
+    public var itemlist : MIList;
 
     public function ready() {
         
@@ -34,6 +35,15 @@ class Main extends lab.Game {
             text_size : 15,
             onclick : function(){ trace('hello world'); }
         });
+
+        itemlist = new MIList({
+            parent : canvas,
+            name : 'list1',
+            bounds : new Rectangle(10,40, 100,400)
+        });
+
+        itemlist.add_item('items one');
+        // itemlist.add_items(['item','blah','some more','longer item','short','when do','iam','one','two','three','four','five','six','seven','eight','nine']);
 
         scroller = new MIScrollArea({
             parent : canvas,
@@ -66,9 +76,6 @@ class Main extends lab.Game {
                 onclick : function(){ trace('click me + '+ (i+1)); }
             });
         }
-
-        trace(scroller.children_bounds());
-        trace(scroller1.children_bounds());
 
     } //ready
     

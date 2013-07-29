@@ -79,8 +79,15 @@ class MIControl {
 		}
 	}
 
-//size.x = Gwen::Max( size.x, pChild->Right() );
-//size.y = Gwen::Max( size.y, pChild->Bottom() );
+	private function options_plus(options, plus) {
+		var _fields = Reflect.fields(plus);
+		
+		for(_field in _fields) {
+			Reflect.setField(options, _field, Reflect.field( plus, _field ) );
+		}
+
+		return options;
+	}
 
 	public function width() {
 		return bounds.w;

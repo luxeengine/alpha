@@ -12,9 +12,14 @@ class MIButton extends MIControl {
 			//buttons can be clicked
 		mouse_enabled = true;
 			//create the label
-		label = new MILabel(_options);
-		label.name = name+'.label';
-		
+		label = new MILabel({
+			parent : this,
+			bounds : _options.bounds.clone().set(0,0),
+			text:_options.text,
+			text_size:_options.text_size,
+			name : name + '.label'
+		});
+
 		if(_options.onclick != null) {
 			mousedown = _options.onclick;
 		}
