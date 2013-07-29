@@ -79,7 +79,7 @@ class Debug {
 
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos) {
         #if lime_native 
-            //Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+            Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
         #end
         
         Lab.debug.add_line(inf.fileName + ':' + inf.lineNumber + ' ' + v );

@@ -2,6 +2,7 @@ package phoenix.geometry;
 
 import phoenix.geometry.Vertex;
 import phoenix.Matrix4;
+import phoenix.Rectangle;
 import phoenix.Vector;
 import phoenix.Shader;
 import phoenix.Texture;
@@ -36,6 +37,7 @@ class Geometry {
 	public var state : GeometryState;
 	public var dropped : Bool = false;
 	public var uuid : String = '';
+	public var id : String = '';
 
 		//State properties
 	@:isVar public var primitive_type(get, set) : PrimitiveType;
@@ -44,6 +46,7 @@ class Geometry {
 	@:isVar public var depth(get, set) : Float;
 	@:isVar public var group(get, set) : Int;
 	@:isVar public var clip(get, set) : Bool;
+	@:isVar public var clip_rect(get, set) : Rectangle;
 
 		//Geometry properties	
 	@:isVar public var enabled(default, set) : Bool = true;
@@ -59,6 +62,8 @@ class Geometry {
 		state = new GeometryState();
 		pos = new Vector();
 		origin = new Vector();
+		clip = false;
+		clip_rect = new Rectangle();
 		batchers = new Array<Batcher>();
 
 		matrix = new Matrix4();
@@ -70,6 +75,7 @@ class Geometry {
 			state.group = options.group == null ? state.group : options.group;
 			state.texture = options.texture == null ? state.texture : options.texture;			
 			state.clip = options.clip == null ? state.clip : options.clip;
+			state.clip_rect = options.clip_rect == null ? state.clip_rect : options.clip_rect;
 			state.primitive_type = options.type == null ? state.primitive_type : options.type;
 			state.shader = options.shader == null? state.shader : options.shader;
 
@@ -253,6 +259,14 @@ class Geometry {
 
 	public function set_clip(val : Bool) : Bool {
 		return state.clip = val;
+	}
+//Clip rect
+	public function get_clip_rect() : Rectangle {
+		return state.clip_rect;
+	}
+
+	public function set_clip_rect(val : Rectangle) : Rectangle {
+		return state.clip_rect = val;
 	}
 //
 

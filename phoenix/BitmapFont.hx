@@ -78,6 +78,10 @@ class BitmapFont extends Resource {
 
     }
 
+    public function toString() {
+        return "BitmapFont(" + id + ")";
+    }
+
     private function _tokenize_font_line(_line_tokens:Array<String>) {
         var _item_map : Map<String, KeyValue> = new Map();
         for(_line_token in _line_tokens) {
@@ -310,9 +314,10 @@ class BitmapFont extends Resource {
          var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
          var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
-         var _size : Float = (options.size == null) ? 0 : options.size;
+         var _size : Float = (options.size == null) ? 32 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Lab.renderer.default_batcher : options.batcher;
          var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
+         var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
          var _supplied_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
 
          var _bounds_based : Bool = false;
@@ -339,11 +344,12 @@ class BitmapFont extends Resource {
                 texture : pages[i],
                 color : _col,
                 depth : _depth,
-                enabled : _enabled
+                enabled : _enabled,
+                immediate : _immediate
             });
 
             _g.primitive_type = PrimitiveType.triangles;
-            _g.immediate = false;
+            _g.immediate = _immediate;
             _geoms.push( _g );
             _batcher.add( _g );
 
@@ -494,6 +500,7 @@ class BitmapFont extends Resource {
 
         } //_bounds_based
 
+        _supplied_geom.id = 'drawn_text- ' + _string;
 
         return _supplied_geom;
     }

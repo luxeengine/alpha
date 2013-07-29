@@ -42,12 +42,12 @@ class CompositeGeometry extends Geometry {
     }
 
     public override function drop( ?remove:Bool = true ) {
-            //todo L keep children?
+
         for(geom in geometry) {
             geom.drop( remove );
         }
 
-        geometry = null;
+        geometry.splice(0,geometry.length);
     }
 
     public override function translate( _offset:Vector ) {
@@ -92,9 +92,11 @@ class CompositeGeometry extends Geometry {
         }
         return group = val;
     }
-    public override function set_clip(val : Bool) : Bool {        
-        for(geom in geometry) {
-            geom.clip = val;
+    public override function set_clip(val : Bool) : Bool {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.clip = val;
+            }
         }
         return clip = val;
     }

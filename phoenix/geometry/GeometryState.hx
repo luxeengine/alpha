@@ -1,5 +1,6 @@
 package phoenix.geometry;
 
+import phoenix.Rectangle;
 import phoenix.Texture;
 import phoenix.Shader;
 import phoenix.Batcher;
@@ -14,12 +15,14 @@ class GeometryState {
     @:isVar public var depth(default, set) : Float;
     @:isVar public var group(default, set) : Int;
     @:isVar public var clip(default, set) : Bool;
+    @:isVar public var clip_rect(default, set) : Rectangle;
 
     public var log : Bool = false;
 
     public function new() {
 
         clip = false;
+        clip_rect = new Rectangle();
         texture = null;
         shader = null;
         group = 0;
@@ -39,6 +42,8 @@ class GeometryState {
             new_state.group = group;
             new_state.depth = depth;
             new_state.primitive_type = primitive_type;
+            new_state.clip = clip;
+            new_state.clip_rect = clip_rect.clone();
 
         return new_state;
     }
@@ -56,6 +61,7 @@ class GeometryState {
             trace("\t\tshader - " + (( shader == null) ? 'null' :  shader.id ));
             trace("\t\tprimitive_type - "+ primitive_type);
             trace("\t\tclip - "+ clip);
+            trace("\t\tclip rect - "+ clip_rect );
         trace('\t- GEOMETRYSTATE');
     }    
 
@@ -75,16 +81,15 @@ class GeometryState {
         // trace("TID " + textureid);
         // trace("OTHER TID " + other_textureid);
 
-        var clip_value : Int;
+        var clip_value : Int = -1;
         if(clip == true && other.clip == true) clip_value = 0;
         if(clip == false && other.clip == true) clip_value = -1;
         if(clip == true && other.clip == false) clip_value = 1;
 
         if( depth == other.depth && group == other.group && textureid < other_textureid ) return -1;
         
-        // todo
-        // if( depth == other.depth && group == other.group && textureid == other_textureid && primitive_type < other.primitive_type) return -1;
-        // if( depth == other.depth && group == other.group && textureid == other_textureid && primitive_type == other.primitive_type && (clip_value >= 0)) return -1;
+        if( depth == other.depth && group == other.group && textureid == other_textureid && primitive_type != other.primitive_type) return -1;
+        if( depth == other.depth && group == other.group && textureid == other_textureid && primitive_type == other.primitive_type && (clip_value >= 0)) return -1;
 
         return 1;
     }
@@ -140,7 +145,16 @@ class GeometryState {
             clip = other.clip;
         } else {
             ttrace("\t\tNo change in clip");
-        }
+        }   
+
+        if(clip_rect != null) {
+            if(!clip_rect.equal(other.clip_rect)) {
+                ttrace("\t\tcliprect change from " + clip_rect + " to " + other.clip_rect);
+                clip_rect.set(other.clip_rect.x,other.clip_rect.y, other.clip_rect.w, other.clip_rect.h);
+            } else {
+                ttrace("\t\tNo change in clip rec");
+            }
+        } //clip_rect
         
     }
 
@@ -172,6 +186,11 @@ class GeometryState {
     public function set_clip(val : Bool) : Bool {
         dirty = true;
         return clip = val;
+    }
+//Clip rect
+    public function set_clip_rect(val : Rectangle) : Rectangle {
+        dirty = true;
+        return clip_rect = val;
     }
 //
 

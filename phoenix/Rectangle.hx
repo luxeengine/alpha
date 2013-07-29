@@ -1,5 +1,6 @@
 package phoenix;
 
+
 class Rectangle {
 
     public var x:Float;
@@ -28,6 +29,12 @@ class Rectangle {
 
     public function clone() {
         return new Rectangle(x,y,w,h);
+    }
+
+    public function equal(other:Rectangle) {
+            //todo, epsilon fp check version
+        if(other == null) return false;
+        return x == other.x && y == other.y && w == other.w && h == other.h;
     }
 
     public function set(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) {

@@ -45,14 +45,41 @@ class MIControl {
 		}
 	}
 
+	public function translate( ?_x : Float = 0, ?_y : Float = 0 ) {
+
+		real_bounds.x += _x;
+		bounds.x += _x;
+		real_bounds.y += _y;
+		bounds.y += _y;
+
+		for(child in children) {
+			child.translate( _x, _y );
+		}
+	}
+
+	public function children_bounds() {
+
+		var _current_x : Float = 0; 
+		var _current_y : Float = 0;
+		var _current_w : Float = 0;
+		var _current_h : Float = 0;
+
+		for(child in children) {
+			_current_x = Math.min( child.bounds.x, _current_x );
+			_current_y = Math.min( child.bounds.y, _current_y );
+			_current_w = Math.max( child.bounds.w, _current_w );
+			_current_h = Math.max( child.bounds.h, _current_h );
+		}
+
+		return new Rectangle(_current_x, _current_y, _current_w, _current_h);		
+	}
+
 	private function set_parent(p:MIControl) {
 		if(p != null) {
 			real_bounds.set(p.real_bounds.x+bounds.x, p.real_bounds.y+bounds.y, bounds.w, bounds.h);
 		} else {
 			real_bounds.set(bounds.x, bounds.y, bounds.w, bounds.h);
 		}
-
-		trace(name + ' at ' + real_bounds);
 
 		return parent = p;
 	} //set_parent
@@ -83,14 +110,14 @@ class MIControl {
 	public function onmouseenter(e) {
 		if(!ishovered) {
 			ishovered = true;
-			trace('mouse enter ' + name);
+			//trace('mouse enter ' + name);
 		}
 	}
 
 	public function onmouseleave(e) {
 		if(ishovered) {
 			ishovered = false;
-			trace('mouse leave ' + name);
+			//trace('mouse leave ' + name);
 		}
 	}
 

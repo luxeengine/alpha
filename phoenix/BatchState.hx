@@ -1,5 +1,6 @@
 package phoenix;
 
+import phoenix.Rectangle;
 import phoenix.Texture;
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
@@ -17,8 +18,8 @@ class BatchState {
     public var last_shader_id : Dynamic;
     public var last_group : Int = -1;
     public var is_clipping : Bool;
-    public var clip_rect : Dynamic;
-    public var last_clip_rect : Dynamic;
+    public var clip_rect : Rectangle;
+    public var last_clip_rect : Rectangle;
 
     public var log : Bool = false;
 
@@ -109,28 +110,35 @@ class BatchState {
             // excluded from isDirty because rect can change every time without the state being dirty */
             // Handle clipping state changes 
 
-            // if(state.getClip()){
-            //     if( !is_clipping ){
-            //         glEnable( GL_SCISSOR_TEST );
-            //         is_clipping = true;
-            //     }
+            if(geom_state.clip){
 
-            //     // update scissor test if needed.
-            //     if(clip_rect != last_clip_rect){
-            //         // translate from top-left coords to bottom-left cords
-            //         GLint view[4];
-            //         glGetIntegerv( GL_VIEWPORT, &view[0] );
-            //         GLuint r_y = view[3] - ((GLuint)clip_rect.getX() + (GLuint)clip_rect.getHeight());
+                if( !is_clipping ){
+                    GL.enable( GL.SCISSOR_TEST );
+                    is_clipping = true;
+                }
 
-            //         glScissor( (GLuint)clip_rect.getX() , r_y, (GLsizei)clip_rect.getWidth(), (GLsizei)clip_rect.getHeight() );
-            //     }
-            // }
-            // else{
-            //     if( is_clipping ){
-            //         glDisable( GL_SCISSOR_TEST );
-            //         is_clipping = false;
-            //     }
-            // }
+                    // update scissor test if needed.               
+                if(clip_rect != null) {
+
+                    if(!clip_rect.equal(last_clip_rect)) {
+
+                            // translate from top-left coords to bottom-left cords
+                        var _y = batcher.view.size.y - (clip_rect.y + clip_rect.h);
+                            // set the scissor rect
+                        GL.scissor( Std.int(clip_rect.x) , Std.int(_y), Std.int(clip_rect.w), Std.int(clip_rect.h) );
+
+                    } //last clip_rect
+
+                } //clip_rect
+
+            } else { //clip is false
+
+                if( is_clipping ){
+                    GL.disable( GL.SCISSOR_TEST );
+                    is_clipping = false;
+                }
+
+            } //clip is off
 
             // finally, mark the state as clean.
         geom_state.clean();
@@ -155,7 +163,7 @@ class BatchState {
             }
         }
         // remove clipping
-        // if( is_clipping ) glDisable( GL_SCISSOR_TEST );
+        if( is_clipping ) GL.disable( GL.SCISSOR_TEST );
     }
 
     public function update( geom:Geometry ) : Bool {
@@ -165,13 +173,12 @@ class BatchState {
 
         // str();
 
-        //todo
-        // if(state.clip){
-        //     last_clip_rect = clip_rect;
-        //     clip_rect = geom.cliprect;
-        // }
+        if(geom_state.clip){
+            last_clip_rect = clip_rect;
+            clip_rect = geom.clip_rect;
+        }
 
-        return geom_state.dirty;// || last_clip_rect != clip_rect;        
+        return geom_state.dirty || (last_clip_rect != clip_rect);
     }
 
 

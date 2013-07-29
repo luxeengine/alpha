@@ -303,7 +303,7 @@ class Renderer {
 
         // stop_count++;
         // if(stop_count >= 5) {
-        //     stop = false;
+        //     stop = true;
         // }        
     }
 

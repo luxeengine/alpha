@@ -114,6 +114,10 @@ class Batcher {
 
     }
 
+    public function toString() {
+        return "Batcher(" + name + ")";
+    }
+
         //this sorts the batchers in a list by layer
     public function compare(other:Batcher) {
         if(layer < other.layer) return -1;
