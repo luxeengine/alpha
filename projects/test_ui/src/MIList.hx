@@ -17,20 +17,21 @@ class MIList extends MIControl {
 			name : name + '.view'
 		});
 
-				
+		
 	}
 
 	public function add_item( _item:String ) {
 
-		var b = view.children_bounds();
-			
+		var _childbounds = view.children_bounds();
+
 		var l = new MILabel({
 			text : _item,
-			bounds : new Rectangle(0, b.h, bounds.w, 30),			
+			bounds : new Rectangle(0, _childbounds.h, bounds.w, 30),			
 			parent : view,
+			text_size : 18,
 		});
 
-
+		
 	} //add_item
 
 	public function add_items( _items:Array<String> ) {

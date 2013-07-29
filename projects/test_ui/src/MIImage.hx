@@ -14,6 +14,7 @@ class MIImage extends MIControl {
 			//image size to the parent,
 		_options.centered = false;
 		_options.pos = new Vector(real_bounds.x, real_bounds.y);
+		_options.depth = 2;
 			//create the image
 		image = new Sprite(_options);
 			//clip the geometry

@@ -105,12 +105,17 @@ class MIControl {
 
 	public function children_bounds() : ChildBounds {
 
-		var _current_x : Float = 999999999; 
-		var _current_y : Float = 999999999;
-		var _current_w : Float = -999999999;
-		var _current_h : Float = -999999999;
-		var _real_x : Float = 999999999;
-		var _real_y : Float = 999999999;
+		if(children.length == 0) {
+			return {x:0,y:0,w:0,h:0,realx:real_bounds.x,realy:real_bounds.y};
+		} //no children
+
+		var _first_child = children[0];
+		var _current_x : Float = _first_child.bounds.x; 
+		var _current_y : Float = _first_child.bounds.y;
+		var _current_w : Float = _first_child.right();
+		var _current_h : Float = _first_child.bottom();
+		var _real_x : Float = _first_child.real_bounds.x;
+		var _real_y : Float = _first_child.real_bounds.y;
 
 		for(child in children) {
 
@@ -199,14 +204,14 @@ class MIControl {
 	}
 
 	public function _debug() {
-		Lab.draw.rectangle({
-			immediate : true,
-			color : debug_color,
-			x : real_bounds.x, y:real_bounds.y, w:real_bounds.w, h:real_bounds.h
-		});
-		for(control in children) {
-			control._debug();
-		}		
+		// Lab.draw.rectangle({
+		// 	immediate : true,
+		// 	color : debug_color,
+		// 	x : real_bounds.x, y:real_bounds.y, w:real_bounds.w, h:real_bounds.h
+		// });
+		// for(control in children) {
+		// 	control._debug();
+		// }		
 	}	
 
 }

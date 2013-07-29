@@ -5,6 +5,7 @@ import lab.Rectangle;
 import lab.Sprite;
 import lab.Vector;
 import phoenix.Batcher;
+import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 
@@ -39,6 +40,8 @@ class NineSlice extends lab.Sprite {
     public var is_set : Bool = false;
     public var midwidth : Float = 0.0;
     public var midheight : Float = 0.0;
+
+    public var _geometry : CompositeGeometry;
 
     private var _batcher : Batcher;
 
@@ -90,6 +93,7 @@ class NineSlice extends lab.Sprite {
             source_h = texture.height;
         }
 
+        _geometry = new CompositeGeometry();
 
     }
 
@@ -273,6 +277,28 @@ class NineSlice extends lab.Sprite {
         return visible = _v;
     }
 
+    public override function set_clip(val : Bool) : Bool {
+
+        if(is_set) {
+            for(slice in slices) {
+                slice.geometry.clip = val;
+            }
+        }
+
+        return clip = val;
+    }
+//Clip rect
+    public override function set_clip_rect(val : Rectangle) : Rectangle {
+
+        if(is_set) {
+            for(slice in slices) {
+                slice.geometry.clip_rect = val;
+            }
+        }
+
+        return clip_rect = val;
+    }    
+
     private function _create(_pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false) {
         if(!is_set || _reset) {
             set(_w, _h);
@@ -303,6 +329,7 @@ class NineSlice extends lab.Sprite {
         added = true;
         is_set = true;
     }
+
     public function create( _pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false ) {
         
         if(!texture.loaded) {

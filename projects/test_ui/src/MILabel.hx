@@ -6,7 +6,7 @@ import MIControl;
 
 class MILabel extends MIControl {
 	
-	private var _text : Text;
+	public var _text : Text;
 
 	public function new(_options:Dynamic) {		
 
@@ -19,7 +19,7 @@ class MILabel extends MIControl {
 		if(_options.text_size != null) { _options.size = _options.text_size; }		
 
 		_options.pos = new Vector(real_bounds.x, real_bounds.y);
-		_text = new Text( _options );
+		_text = new Text( options_plus(_options, {depth : 2}) );
 
 		debug_color = new Color(0,1,0.6,0.5);
 

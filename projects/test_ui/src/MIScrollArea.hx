@@ -1,7 +1,9 @@
 
 import lab.Sprite;
 import lab.Vector;
+import lab.Color;
 import MIControl;
+import phoenix.geometry.QuadGeometry;
 
 class MIScrollArea extends MIControl {
 	
@@ -13,12 +15,45 @@ class MIScrollArea extends MIControl {
 	public var scroll_percent : Vector;
 	public var child_bounds : Dynamic;
 
+	public var back : QuadGeometry;
+	public var sliderv : QuadGeometry;
+	public var sliderh : QuadGeometry;
+
 	public function new(_options:Dynamic) {
 
 		super(_options);
 
 		scroll_amount = new Vector();
 		scroll_percent = new Vector();
+
+		back = new QuadGeometry({
+			depth : 1,
+			x: real_bounds.x,
+            y: real_bounds.y,
+            width: real_bounds.w,
+            height: real_bounds.h,
+            color : new Color().rgb(0x121212)
+		});
+		sliderv = new QuadGeometry({
+			depth : 3,
+			x: (real_bounds.x+real_bounds.w - 4),
+            y: real_bounds.y + ((real_bounds.h-10) * scroll_percent.y),
+            width: 3,
+            height: 10,
+            color : new Color().rgb(0xf7f7f7)
+		});
+		sliderh = new QuadGeometry({
+			depth : 3,
+			x: real_bounds.x + ((real_bounds.w-10) * scroll_percent.x),
+            y: (real_bounds.y+real_bounds.h - 4),
+            width: 10,
+            height: 3,
+            color : new Color().rgb(0xf7f7f7)
+		});
+
+		Lab.addGeometry( back );
+		Lab.addGeometry( sliderh );
+		Lab.addGeometry( sliderv );
 
 		refresh_scroll();
 		
@@ -49,6 +84,11 @@ class MIScrollArea extends MIControl {
             }
         }
 
+	}
+
+	public override function translate(?_x:Float = 0, ?_y:Float = 0) {
+		super.translate(_x,_y);
+		back.pos = new Vector( back.pos.x + _x, back.pos.y + _y );
 	}
 
 	public function scrolly(diff:Float) {
@@ -85,21 +125,25 @@ class MIScrollArea extends MIControl {
 			//if the children bounds are < our size, it can't scroll
 		if(child_bounds.w < real_bounds.w) {
 			can_scroll_h = false;
+			sliderh.enabled = false;
 		} else {
 			can_scroll_h = true;
+			sliderh.enabled = true;
 		}
 
 		if(child_bounds.h < real_bounds.h) {
 			can_scroll_v = false;
+			sliderv.enabled = false;
 		} else {
 			can_scroll_v = true;
+			sliderv.enabled = true;
 		}
 		
 		if(can_scroll_h) {
 
 			var _diff_x = (real_bounds.x - child_bounds.realx);
 			scroll_percent.x = (_diff_x / (child_bounds.w - bounds.w));
-			scroll_percent.x = Math.min( Math.max(0.0, scroll_percent.x), 1.0);
+			scroll_percent.x = Math.min( Math.max(0.0, scroll_percent.x), 1.0);			
 
 		} //can_scroll_h
 
@@ -108,8 +152,12 @@ class MIScrollArea extends MIControl {
 			var _diff_y = (real_bounds.y - child_bounds.realy);
 			scroll_percent.y = (_diff_y / (child_bounds.h - bounds.h));
 			scroll_percent.y = Math.min( Math.max(0.0, scroll_percent.y), 1.0);
+			
 
 		} //can_scroll_v
+
+		sliderh.pos = new Vector(real_bounds.x + ((real_bounds.w-10) * scroll_percent.x), (real_bounds.y+real_bounds.h - 4) );
+		sliderv.pos = new Vector((real_bounds.x+real_bounds.w - 4), real_bounds.y + ((real_bounds.h-10) * scroll_percent.y));
 			
 
 	} // refresh_scroll
@@ -143,17 +191,17 @@ class MIScrollArea extends MIControl {
 			});
 		}
 
-		var cy:Float = child_bounds.realy;
-		var diffy:Float = (real_bounds.y - child_bounds.realy);
+		// var cy:Float = child_bounds.realy;
+		// var diffy:Float = (real_bounds.y - child_bounds.realy);
 
-		Lab.draw.text({
-			text :  'y =' + real_bounds.y + ' cy = ' + cy + ' diffy = ' + diffy + ' [ ' +scroll_percent.y+ ']',
-			depth : 5,
-			size : 14,
-			immediate : true,
-			pos : new Vector(real_bounds.x, real_bounds.y),
-			color : debug_color			
-		});
+		// Lab.draw.text({
+		// 	text :  'y =' + real_bounds.y + ' cy = ' + cy + ' diffy = ' + diffy + ' [ ' +scroll_percent.y+ ']',
+		// 	depth : 5,
+		// 	size : 14,
+		// 	immediate : true,
+		// 	pos : new Vector(real_bounds.x, real_bounds.y),
+		// 	color : debug_color			
+		// });
 
 	}
 

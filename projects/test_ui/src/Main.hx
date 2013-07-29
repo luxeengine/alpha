@@ -23,6 +23,8 @@ class Main extends lab.Game {
 
     public function ready() {
         
+        Lab.renderer.clear_color.set(1,1,1);
+
         canvas  = new MICanvas({
             bounds : new Rectangle( 50, 100, 810, 440 )
         });
@@ -30,7 +32,7 @@ class Main extends lab.Game {
         button = new MIButton({
             parent : canvas,
             name : 'click',
-            bounds : new Rectangle( 10, 10, 100, 25 ),
+            bounds : new Rectangle( 10, 10, 100, 35 ),
             text : 'click me',
             text_size : 15,
             onclick : function(){ trace('hello world'); }
@@ -39,11 +41,11 @@ class Main extends lab.Game {
         itemlist = new MIList({
             parent : canvas,
             name : 'list1',
-            bounds : new Rectangle(10,40, 100,400)
+            bounds : new Rectangle(10,50, 100,380)
         });
 
         itemlist.add_item('items one');
-        // itemlist.add_items(['item','blah','some more','longer item','short','when do','iam','one','two','three','four','five','six','seven','eight','nine']);
+        itemlist.add_items(['item','blah','some more','longer item','short','when do','iam','one','two','three','four','five','six','seven','eight','nine']);
 
         scroller = new MIScrollArea({
             parent : canvas,

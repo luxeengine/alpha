@@ -26,6 +26,8 @@ class Sprite extends Entity {
     @:isVar public var origin       (default,set    )   : Vector;
     @:isVar public var uv           (default,set    )   : Rectangle;
     @:isVar public var scene        (default,default)   : Scene;
+    @:isVar public var clip         (default,set    )   : Bool;
+    @:isVar public var clip_rect    (default,set    )   : Rectangle;
 
     public function new(options:Dynamic) {
 
@@ -350,6 +352,16 @@ class Sprite extends Entity {
 
         return pos;
     } //set_pos
+
+//Geometry properties
+//Clip
+    public function set_clip(val : Bool) : Bool {
+        return geometry.clip = val;
+    }
+//Clip rect
+    public function set_clip_rect(val : Rectangle) : Rectangle {
+        return geometry.clip_rect = val;
+    }
 
 } //Sprite
 
