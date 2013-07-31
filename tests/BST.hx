@@ -4,6 +4,7 @@ import tests.H;
 import phoenix.utils.BinarySearchTree;
 
 class TestPriority {
+
 	public var priority = 0;
 	public var tag = 'default_tag';
 	public function new(p:Int = 0, _tag:String = 'default_tag') {
@@ -21,7 +22,7 @@ class TestPriority {
 			//if value is equal, -1
 		if(other.priority == priority) return -1;
 
-		return -1;
+		return 1;
 	}
 
 	public function toString() {
@@ -35,6 +36,7 @@ class BST {
 	var tree3 : BinarySearchTree<String>;
 	var tree4 : BinarySearchTree<TestPriority>;
 	var tree5 : BinarySearchTree<TestPriority>;
+	var tree6 : BinarySearchTree<TestPriority>;
 
 	public function new() {
 			//test 1, default compare function, int
@@ -46,12 +48,15 @@ class BST {
 			//test 3, default compare function, string
 		tree3 = new BinarySearchTree<String>();
 		test_string(tree3);
-			//test 4, default compare function, object
-		tree4 = new BinarySearchTree<TestPriority>();
-		test_object(tree4);
-			//test 5, custom compare function, object
+			//test 4, custom compare function, object
+		tree4 = new BinarySearchTree<TestPriority>(compare_objects);
+		test_object_sortable(tree4);
+			//test 5, test object finding
 		tree5 = new BinarySearchTree<TestPriority>(compare_objects);
-		test_object_sortable(tree5);
+		test_object_find(tree5);
+			//test 6, test object finding and removing (affects tree)
+		tree6 = new BinarySearchTree<TestPriority>(compare_objects);
+		test_object_find_and_remove(tree6);
 
 	}
 
@@ -131,27 +136,6 @@ class BST {
 
 	} //test_string
 
-	public function test_object( _tree:BinarySearchTree<TestPriority> ) {
-
-		H.it( 'should NOT sort the list of objects correctly' , function(){
-		
-			var list = [new TestPriority(7),new TestPriority(3),
-						new TestPriority(12),new TestPriority(2),
-						new TestPriority(7),new TestPriority(1) ];
-			var result = '';
-			var expected = '\ttree: [BST, size=6] [ TestPriority(7) , TestPriority(3) , TestPriority(12) , TestPriority(2) , TestPriority(7) , TestPriority(1) ];';
-
-			for(item in list) {
-				_tree.insert(item);
-			}
-
-			result = print_tree(_tree);
-			H.equal(result, expected);
-
-		});//it
-
-	} //test_priority
-
 	public function test_object_sortable( _tree:BinarySearchTree<TestPriority> ) {
 
 		H.it( 'should sort the list of objects correctly' , function(){
@@ -192,4 +176,163 @@ class BST {
 		});//it
 
 	} //test_priority
+
+	public function test_object_find( _tree:BinarySearchTree<TestPriority> ) {
+		
+		H.it( 'should find items correctly' , function(){
+
+			var list = [new TestPriority(7, 'seven'),new TestPriority(3, 'three'),
+						new TestPriority(12, 'twelve'),new TestPriority(2, 'two'),
+						new TestPriority(7,'seven_two'),new TestPriority(1, 'one') ];
+
+			var result = '';
+			var expected = '\ttree: [BST, size=6] [ TestPriority(1) , TestPriority(2) , TestPriority(3) , TestPriority(7) , TestPriority(7) , TestPriority(12) ];';
+
+			for(item in list) {
+				_tree.insert(item);
+			}
+
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+				//find a few
+			trace(' find one ');
+			var found = _tree.find( list[5] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'one' );			
+			
+			trace(' find two ');
+			var found = _tree.find( list[3] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'two' );
+
+			trace(' find three ');
+			var found = _tree.find( list[1] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'three' );
+
+
+			trace(' find seven ');
+			var found = _tree.find( list[0] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'seven' );
+
+			trace(' find seven_two ');
+			var found = _tree.find( list[4] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'seven_two' );
+
+			trace(' find twelve ');
+			var found = _tree.find( list[2] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'twelve' );
+
+
+		});//it
+
+	} //test_object_find
+
+	public function test_object_find_and_remove( _tree:BinarySearchTree<TestPriority> ) {
+		
+		H.it( 'should find and remove items correctly' , function(){
+
+			var list = [new TestPriority(7, 'seven'),new TestPriority(3, 'three'),
+						new TestPriority(12, 'twelve'),new TestPriority(2, 'two'),
+						new TestPriority(7,'seven_two'),new TestPriority(1, 'one') ];
+
+			var result = '';
+			var expected = '\ttree: [BST, size=6] [ TestPriority(1) , TestPriority(2) , TestPriority(3) , TestPriority(7) , TestPriority(7) , TestPriority(12) ];';
+
+			for(item in list) {
+				_tree.insert(item);
+			}
+
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+				//find a few
+			trace(' find one ');
+			var found = _tree.find( list[5] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'one' );
+				//removing item after finding it
+			_tree.remove( found );
+
+			var expected = '\ttree: [BST, size=5] [ TestPriority(2) , TestPriority(3) , TestPriority(7) , TestPriority(7) , TestPriority(12) ];';
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+			
+
+			trace(' find twelve ');
+			var found = _tree.find( list[2] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'twelve' );
+				//removing item after finding it
+			_tree.remove( found );
+
+			var expected = '\ttree: [BST, size=4] [ TestPriority(2) , TestPriority(3) , TestPriority(7) , TestPriority(7) ];';
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+
+			trace(' find seven_two ');
+			var found = _tree.find( list[4] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'seven_two' );
+				//removing item after finding it
+			_tree.remove( found );
+
+			var expected = '\ttree: [BST, size=3] [ TestPriority(2) , TestPriority(3) , TestPriority(7) ];';
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+			trace(' find two ');
+			var found = _tree.find( list[3] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'two' );
+				//removing item after finding it
+			_tree.remove( found );
+
+			var expected = '\ttree: [BST, size=2] [ TestPriority(3) , TestPriority(7) ];';
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+			trace(' find seven ');
+			var found = _tree.find( list[0] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'seven' );
+				//removing item after finding it
+			_tree.remove( found );
+
+			var expected = '\ttree: [BST, size=1] [ TestPriority(3) ];';
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+			trace(' find three ');
+			var found = _tree.find( list[1] );
+				//check that it found something			
+			H.equal( found != null, true );
+			H.equal( found.data.tag, 'three' );
+				//removing item after finding it
+			_tree.remove( found );
+
+			var expected = '\ttree: [BST, size=0] [  ];';
+			result = print_tree(_tree);	
+			H.equal(result, expected);
+
+		});//it
+
+	} //test_object_find
+
 }

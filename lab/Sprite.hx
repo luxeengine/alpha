@@ -22,6 +22,7 @@ class Sprite extends Entity {
     @:isVar public var color        (default,set    )   : Color;
     @:isVar public var visible      (default,set    )   : Bool;
     @:isVar public var radians      (default,set    )   : Float = 0.0;
+    @:isVar public var depth        (default,set    )   : Float = 0.0;
     @:isVar public var centered     (default,set    )   : Bool = true;    
     @:isVar public var origin       (default,set    )   : Vector;
     @:isVar public var uv           (default,set    )   : Rectangle;
@@ -134,6 +135,9 @@ class Sprite extends Entity {
             enabled : (options.visible == null) ? true : options.visible
         });
 
+            //default to the sprite name
+        geometry.id = name;
+
             //set the origin and centered once created
         var _c = centered;
         centered = _c;
@@ -195,6 +199,20 @@ class Sprite extends Entity {
         }
 
         return visible;
+
+    } //set_visible
+
+    public function set_depth(_v:Float) {
+
+        depth = _v;
+
+            //careful
+        if(geometry != null) {
+            trace('depth changing on sprite ' + name + ' at ' + geometry.depth + ' and id ' + geometry.short_id());
+            geometry.depth = _v;
+        }
+
+        return depth;
 
     } //set_visible
 

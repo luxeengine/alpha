@@ -1,6 +1,7 @@
 
 import MIControl;
 import lab.Rectangle;
+import lab.Color;
 
 class MIList extends MIControl {
 	
@@ -17,7 +18,7 @@ class MIList extends MIControl {
 			name : name + '.view'
 		});
 
-		
+
 	}
 
 	public function add_item( _item:String ) {
@@ -28,9 +29,9 @@ class MIList extends MIControl {
 			text : _item,
 			bounds : new Rectangle(0, _childbounds.h, bounds.w, 30),			
 			parent : view,
+			color : new Color().rgb(0x999999),
 			text_size : 18,
 		});
-
 		
 	} //add_item
 

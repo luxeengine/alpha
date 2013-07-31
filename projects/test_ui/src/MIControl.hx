@@ -35,6 +35,19 @@ class MIControl {
 
 	private var debug_color : Color;
 
+	@:isVar public var depth(default,set) : Float = 0;
+	public function set_depth(v:Float) {
+		//when changing the depth, all children depth become above 
+		if(children != null) {
+			var n = 0;
+			for(child in children) {
+				n++;
+				child.depth = v+(0.01*n);
+			}
+		} //children
+		return v;
+	} //set_depth
+
 	public function new(_options:Dynamic) {
 
 		debug_color = new Color(0.5,0.3,0.2,0.5);		
@@ -79,7 +92,7 @@ class MIControl {
 		}
 	}
 
-	private function options_plus(options, plus) {
+	private function options_plus(options:Dynamic, plus:Dynamic) {
 		var _fields = Reflect.fields(plus);
 		
 		for(_field in _fields) {
@@ -166,6 +179,13 @@ class MIControl {
 
 	public function onmouseup( e:MouseEvent ) {
 		if(!mouse_enabled) return;
+
+		if(ishovered) {
+			for(child in children) {
+				child.onmouseup(e);
+			}
+		}
+
 	}
 	public function onmousedown( e:MouseEvent ) {
 		if(!mouse_enabled) return;

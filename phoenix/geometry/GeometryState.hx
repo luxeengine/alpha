@@ -78,10 +78,8 @@ class GeometryState {
         var textureid : Dynamic = texture != null ? texture.id : 0;
         var other_textureid : Dynamic = other.texture != null ? other.texture.id : 0;
 
-        // trace("TID " + textureid);
-        // trace("OTHER TID " + other_textureid);
-
         var clip_value : Int = -1;
+        
         if(clip == true && other.clip == true) clip_value = 0;
         if(clip == false && other.clip == true) clip_value = -1;
         if(clip == true && other.clip == false) clip_value = 1;
@@ -174,7 +172,7 @@ class GeometryState {
         return shader = val;
     }
 //Depth
-    public function set_depth(val : Float) : Float {        
+    public function set_depth(val : Float) : Float {
         return depth = val;
     }
 //Group

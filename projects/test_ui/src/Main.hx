@@ -16,17 +16,21 @@ class Main extends lab.Game {
 
     public var canvas : MICanvas;
     public var button : MIButton;
+    public var button1 : MIButton;
     public var image : MIImage;
     public var scroller : MIScrollArea;
     public var scroller1 : MIScrollArea;
     public var itemlist : MIList;
+    public var window : MIWindow;
+
+    var s : Sprite;
 
     public function ready() {
         
         Lab.renderer.clear_color.set(1,1,1);
 
         canvas  = new MICanvas({
-            bounds : new Rectangle( 50, 100, 810, 440 )
+            bounds : new Rectangle( 0, 0, Lab.screen.w, Lab.screen.h )
         });
 
         button = new MIButton({
@@ -43,6 +47,23 @@ class Main extends lab.Game {
             name : 'list1',
             bounds : new Rectangle(10,50, 100,380)
         });
+
+        window = new MIWindow({
+            parent : canvas,
+            title : 'inspector',
+            title_size : 15,
+            bounds : new Rectangle(750, 20, 200, 300)
+        });
+
+        button1 = new MIButton({
+            parent : window,
+            name : 'click1',
+            bounds : new Rectangle( 10, 10, 100, 35 ),
+            text : 'clicked',
+            text_size : 15,
+            onclick : function(){ trace('window 1'); }
+        });
+
 
         itemlist.add_item('items one');
         itemlist.add_items(['item','blah','some more','longer item','short','when do','iam','one','two','three','four','five','six','seven','eight','nine']);
@@ -78,6 +99,8 @@ class Main extends lab.Game {
                 onclick : function(){ trace('click me + '+ (i+1)); }
             });
         }
+
+        window.depth = 8;
 
     } //ready
     

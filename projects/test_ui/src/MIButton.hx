@@ -23,8 +23,8 @@ class MIButton extends MIControl {
 			text:_options.text,
 			text_size:_options.text_size,
 			name : name + '.label',
-			depth : 2,
-			color : new Color(0,0,0)
+			depth : 4.1,
+			color : new Color().rgb(0x999999)
 		});
 
 		if(_options.onclick != null) {
@@ -32,7 +32,7 @@ class MIButton extends MIControl {
 		}
 
 		geom = new NineSlice({
-			texture : Lab.loadTexture('default_ui_button'),
+			texture : Lab.loadTexture('assets/button.ui.png'),
 			depth : 2,
 			top : 8, left : 8, right : 8, bottom : 8,
 		});

@@ -21,6 +21,10 @@ class Utils {
     	return UUID.get();
     }
 
+    public function clamp(value:Float, min:Float, max:Float) {
+        return Math.min( Math.max(min, value), max);
+    }
+
     public function nearest_power_of_two(_value:Int) {
         _value--;
         _value |= _value >> 1;

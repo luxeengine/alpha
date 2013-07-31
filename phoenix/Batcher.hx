@@ -120,8 +120,9 @@ class Batcher {
 
         //this sorts the batchers in a list by layer
     public function compare(other:Batcher) {
+        if(other == this) return 0;
         if(layer < other.layer) return -1;
-        if(layer == other.layer) return 0;
+        if(layer == other.layer) return -1;
         return 1;
      }
 
@@ -177,22 +178,25 @@ class Batcher {
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
+        
+        // Sys.println( a.short_id() + ' and ' + b.short_id() );
+
         if(a == b) {
             return 0;
-        } else {
+        } else {            
             return a.compare( b );
         }
     }
 
 
-    public function add( _geom:Geometry ) {
+    public function add( _geom:Geometry, ?_force_add:Bool = false ) {
         
-        if( !Lambda.has(_geom.batchers, this) ) {
+        if( !Lambda.has(_geom.batchers, this) || _force_add ) {
             _geom.batchers.push(this);
             geometry.insert(_geom);
             _geom.added = true;
         } else {
-            trace("Warning : Attempting to add geometry to the same batcher twice." + _geom);
+            trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
         }
     }
 
@@ -209,7 +213,7 @@ class Batcher {
             geometry.remove( found_geom );
 
         } else {
-            trace("WARNING : geometry wasn't removed! " + _geom.uuid);
+            trace("WARNING : geometry wasn't removed! " + _geom.short_id());
         }
     }
 

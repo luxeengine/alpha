@@ -202,6 +202,15 @@ class Geometry {
 		return pos = _v;
 	}
 
+	public function update() {
+		//remove and readd ourselves to get resorted
+		Sys.println("UPDATE GEOM : " + short_id());
+		for( b in batchers ) {
+			b.remove( this );
+			b.add( this, true );
+		} //for each batcher we are a part of
+	} //update
+
 //Primitive Type
 	public function get_primitive_type() : PrimitiveType {
 		return state.primitive_type;
@@ -241,8 +250,10 @@ class Geometry {
 		return state.depth;
 	}
 
-	public function set_depth(val : Float) : Float {		
-		return state.depth = val;
+	public function set_depth(val : Float) : Float {
+		state.depth = val;
+		update();
+		return state.depth;
 	}
 //Group
 	public function get_group() : Int {

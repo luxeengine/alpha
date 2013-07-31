@@ -40,7 +40,7 @@ class MIScrollArea extends MIControl {
             y: real_bounds.y + ((real_bounds.h-10) * scroll_percent.y),
             width: 3,
             height: 10,
-            color : new Color().rgb(0xf7f7f7)
+            color : new Color().rgb(0x999999)
 		});
 		sliderh = new QuadGeometry({
 			depth : 3,
@@ -48,7 +48,7 @@ class MIScrollArea extends MIControl {
             y: (real_bounds.y+real_bounds.h - 4),
             width: 10,
             height: 3,
-            color : new Color().rgb(0xf7f7f7)
+            color : new Color().rgb(0x999999)
 		});
 
 		Lab.addGeometry( back );
@@ -137,13 +137,13 @@ class MIScrollArea extends MIControl {
 		} else {
 			can_scroll_v = true;
 			sliderv.enabled = true;
-		}
+		} 
 		
 		if(can_scroll_h) {
 
 			var _diff_x = (real_bounds.x - child_bounds.realx);
 			scroll_percent.x = (_diff_x / (child_bounds.w - bounds.w));
-			scroll_percent.x = Math.min( Math.max(0.0, scroll_percent.x), 1.0);			
+			scroll_percent.x = Lab.utils.clamp( scroll_percent.x, 0, 1);	
 
 		} //can_scroll_h
 
@@ -151,14 +151,13 @@ class MIScrollArea extends MIControl {
 
 			var _diff_y = (real_bounds.y - child_bounds.realy);
 			scroll_percent.y = (_diff_y / (child_bounds.h - bounds.h));
-			scroll_percent.y = Math.min( Math.max(0.0, scroll_percent.y), 1.0);
+			scroll_percent.y = Lab.utils.clamp( scroll_percent.y, 0, 1);
 			
 
 		} //can_scroll_v
 
 		sliderh.pos = new Vector(real_bounds.x + ((real_bounds.w-10) * scroll_percent.x), (real_bounds.y+real_bounds.h - 4) );
 		sliderv.pos = new Vector((real_bounds.x+real_bounds.w - 4), real_bounds.y + ((real_bounds.h-10) * scroll_percent.y));
-			
 
 	} // refresh_scroll
 
@@ -176,7 +175,7 @@ class MIScrollArea extends MIControl {
 				x : real_bounds.x + ((real_bounds.w-10) * scroll_percent.x), 
 				y : (real_bounds.y+real_bounds.h - 4), 
 				w:10, h:3
-			});		
+			});
 		}
 
 			//vertical scroll
