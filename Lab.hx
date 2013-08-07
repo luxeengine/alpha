@@ -28,6 +28,23 @@ class Lab {
         core.lime.shutdown();
     }
 
+            //todo , move into screen.cursor, Lab.screen.cursor.visible etc.
+        public static function showCursor(_show:Bool) {
+            core.lime.window.set_cursor_visible( _show );
+        }
+        public static function lockCursor(_lock:Bool) {
+            core.lime.window.constrain_cursor_to_window_frame( _lock );
+        }
+        public static function cursorShown() {
+            return core.lime.window.cursor_visible;
+        }
+        public static function cursorLocked() {
+            return core.lime.window.cursor_locked;
+        }
+        public static function setCursorPosition(_x:Int,_y:Int) {
+            core.lime.window.set_cursor_position_in_window( _x,_y );
+        }
+
     public static function loadText(_id:String) {
         return lime.utils.Assets.getText(_id);
     }

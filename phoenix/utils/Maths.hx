@@ -13,6 +13,10 @@ class Maths
 	static public var DEG2RAD:Float = Math.PI / 180;
 	static public var RAD2DEG:Float = 180 / Math.PI;
 	
+	static public function fixed( value:Float, precision:Int ) {
+		var n = Math.pow(10,precision);
+		return (Std.int(value*n) / n);
+	}
 
 	static public function clamp (value:Float, a:Float, b:Float) : Float
 	{

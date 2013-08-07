@@ -262,10 +262,10 @@ class Core {
 //keys
     public function onkeydown(e) {
         if(host.onkeydown != null) host.onkeydown(e);
-        if(e.value == lab.Input.Keys.tab && console_visible) {
+        if(e.value == lab.Input.Keys.key_1 && console_visible) {
             debug.switch_console();
         }
-        if(e.value == lab.Input.Keys.key_1 && console_visible) {
+        if(e.value == lab.Input.Keys.key_2 && console_visible) {
             debug.toggle_debug_stats();
         }
         if(e.value == lab.Input.Keys.tilde) {

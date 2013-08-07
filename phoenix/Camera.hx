@@ -8,6 +8,7 @@ import lime.utils.Float32Array;
 
 import phoenix.Matrix4;
 
+import phoenix.Quaternion;
 import phoenix.Vector;
 
 enum ProjectionType {
@@ -19,7 +20,7 @@ enum ProjectionType {
 class Camera {
     
     public var pos : Vector;
-    public var rotation : Vector;
+    public var rotation : Quaternion;
     public var scale: Vector;
     public var size: Vector;
 
@@ -39,7 +40,7 @@ class Camera {
         projection = _projection;
         
         pos = new Vector(0,0,0);
-        rotation = new Vector(0,0,0);
+        rotation = new Quaternion(0,0,0,0);
         scale = new Vector(1,1,1);
         size = new Vector(Lab.screen.w, Lab.screen.h);
 
@@ -83,6 +84,7 @@ class Camera {
     }
 
     public function process() {
+
         if( projection == ProjectionType.perspective ) {
             set_perspective( perspective_options );
         }
@@ -93,18 +95,18 @@ class Camera {
     }
 
     public function set_ortho( options:Dynamic = null ) {
-            
-            // Cull triangles which normal is not towards the camera
+                        
         GL.disable(GL.CULL_FACE);
-
+            //
         merge_options( ortho_options, options );
-
+            //
         projection = ProjectionType.ortho;
-
+            //
         projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
-        modelview_matrix = modelview_matrix.makeFromPositionEulerScale(pos, rotation, scale, 'XYZ');
+            //
+        modelview_matrix = modelview_matrix.compose( pos, rotation, scale );
 
-    }
+    } //set_ortho
 
     public function merge_options( projection_options:Dynamic, options:Dynamic) {
 
@@ -116,18 +118,18 @@ class Camera {
         for(field in fields) {
             Reflect.setField(projection_options, field, Reflect.field(options, field));
         }
-    }
 
-    public function make_look_at(_eye:Vector,_target:Vector,_up:Vector) {
-        modelview_matrix.lookAt(_eye, _target, _up);
-    }
+    } //merge_options
 
-    public function lookAt () {
+    public function update_look_at() {
+
         var m1 = new Matrix4();
+        
         m1.lookAt(target, pos, up);
-        rotation.setEulerFromRotationMatrix(m1, 'XYZ');
-    }
 
+        rotation.setFromRotationMatrix( m1 );
+
+    } //update_look_at
 
     public function set_perspective( options:Dynamic = null ) {
 
@@ -135,26 +137,18 @@ class Camera {
 
         projection = ProjectionType.perspective;
 
-        // projection_matrix = make_perspective( perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
         projection_matrix = projection_matrix.makePerspective(perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
 
-        // trace(pos);
-        // trace(rotation);
-        modelview_matrix = modelview_matrix.makeFromPositionEulerScale(pos, rotation, scale, 'XYZ');
+                //If we have a target, override the rotation BEFORE we update the matrix 
+            if(target != null) {
+                update_look_at();
+            }
 
-        if(target != null) {
-            // lookAt();
-        }
-
-        // modelview_matrix = modelview_matrix.setPosition(pos);
-            //rotate
-        // modelview_matrix = modelview_matrix.setRotationFromEuler( rotation );
-            //scale
-        // modelview_matrix = modelview_matrix.scale( scale );
+        modelview_matrix = modelview_matrix.compose( pos, rotation, scale );
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);
        
-    }
+    } //set_perspective
 
-}
+} //Camera

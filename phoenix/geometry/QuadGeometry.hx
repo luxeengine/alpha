@@ -11,6 +11,9 @@ class QuadGeometry extends Geometry {
 	public function new( options : Dynamic ) {
 
 		super(options);
+        
+        if(options == null) return;
+
 		set( new Rectangle(options.x, options.y, options.width, options.height) );
 
         if(options.enabled != null) enabled = options.enabled;

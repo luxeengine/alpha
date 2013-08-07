@@ -3,7 +3,6 @@ package phoenix;
 import phoenix.utils.Maths;
 
 
-
 class Vector {
 	
 	@:isVar public var x(default, set) : Float = 0;
@@ -287,12 +286,18 @@ class Vector {
 		return this;
 	}	
 
-	public function applyMatrix4 (m:Matrix4) : Vector {
-		var e = m.elements;
-		var x = this.x, y = this.y, z = this.z;
-		this.x = e[0] * x + e[4] * y + e[8] * z + e[12];
-		this.y = e[1] * x + e[5] * y + e[9] * z + e[13];
-		this.z = e[2] * x + e[6] * y + e[10] * z + e[14];
+	public function applyMatrix4( _m:Matrix4 ) : Vector {
+		
+		var _x = x;
+		var _y = y;
+		var _z = z;
+
+		var e = _m.elements;
+
+			x = e[0] * _x + e[4] * _y + e[8]  * _z + e[12];
+			y = e[1] * _x + e[5] * _y + e[9]  * _z + e[13];
+			z = e[2] * _x + e[6] * _y + e[10] * _z + e[14];
+
 		return this;
 	}
 

@@ -3,6 +3,7 @@ package phoenix;
 import lime.gl.GL;
 import lime.utils.Libs;
 
+import phoenix.RenderPath;
 import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
     //default resources
@@ -55,6 +56,8 @@ class Renderer {
     public var default_camera : Camera;
         //Default font for debug stuff etc
     public var default_font : BitmapFont;    
+        //Default render path is a forward renderer, and acts as a fallback for deferred
+    public var default_render_path : RenderPath;
 
     public var should_clear : Bool = true;
     public var stop : Bool = false;
@@ -67,7 +70,6 @@ class Renderer {
 
         clear_color = new Color(0,0,0,1);
         stats = new RendererStats();
-        
 
         resource_manager = new ResourceManager();
         batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
@@ -76,6 +78,8 @@ class Renderer {
 
             //The default view
         default_camera = new Camera( ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h } );
+            //Create the default render path
+        default_render_path = new RenderPath( this );
 
             //create the default rendering shader
         default_shader = new Shader( resource_manager );  
@@ -288,18 +292,8 @@ class Renderer {
         stats.group_count = 0;
         stats.draw_calls = 0;
 
-        for(batch in batchers) {
-            if(batch.enabled) {
-                batch.draw();
-                    //Update render stats
-                stats.geometry_count += Lambda.count(batch.geometry);
-                stats.dynamic_batched_count += batch.dynamic_batched_count;
-                stats.static_batched_count += batch.static_batched_count;
-                stats.enabled_count += batch.enabled_count;
-                stats.draw_calls += batch.draw_calls;
-                stats.group_count += Lambda.count(batch.groups);
-            } //batcher enabled
-        }       
+            //render 
+        default_render_path.render( batchers, stats ); 
 
         // stop_count++;
         // if(stop_count >= 5) {

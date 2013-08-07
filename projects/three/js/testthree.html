@@ -1,0 +1,73 @@
+<html>
+    <head>
+
+        <script src="three.js" > </script>
+        <script src="FlyControls.js" > </script>
+        <script type="text/javascript">
+            
+                window.onload = function() {
+
+                    console.log("TEST");
+
+                    var camera, scene, renderer;
+                    var geometry, material, mesh, dummy, controls;
+
+                    init();
+                    animate();
+
+                    function init() {
+
+                        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+                        camera.position.z = 1000;
+
+                        scene = new THREE.Scene();
+
+                        geometry = new THREE.CubeGeometry( 500, 500, 500 );
+                        material = new THREE.MeshBasicMaterial( { color: 0x131313, wireframe: false } );
+
+                        dummy = new THREE.Object3D();
+                        controls = new THREE.FlyControls( dummy );
+
+                        dummy.add(camera);
+
+                        mesh = new THREE.Mesh( geometry, material );
+                        scene.add( mesh );
+                        scene.add( dummy );
+
+                        renderer = new THREE.CanvasRenderer();
+                        renderer.setSize( window.innerWidth, window.innerHeight );
+
+                        document.body.appendChild( renderer.domElement );
+
+                }
+
+                function animate() {
+
+                    // note: three.js includes requestAnimationFrame shim
+                    requestAnimationFrame( animate );
+
+                    // camera.rotation.z += 0.01;
+
+                    controls.update(16);
+
+                    renderer.render( scene, camera );
+
+                }
+
+            }
+
+        </script>
+
+        <style>
+            body {
+                overflow: hidden;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+    </body>
+
+</html>

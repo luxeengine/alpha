@@ -112,6 +112,7 @@ class Geometry {
 	}
 
 	public function compare( other:Geometry ) {
+		if(other == this) return 0;
 		return state.compare( other.state );
 	}
 
@@ -155,17 +156,22 @@ class Geometry {
 
 		//todo use origin!
 	public function rotate( _offset:Vector ) {
+
 		translate(pos.inverted);
 
-			matrix.setRotationFromEuler(_offset);
+			matrix.makeRotationFromEuler( _offset );
+
 			for(v in vertices) {
-				matrix.multiplyVector3(v.pos);
+				v.pos.applyMatrix4(matrix);
 			}
 
 		translate(pos);
-	}
+
+	} //rotate
+
 		//todo use origin!
 	public function scale( _offset:Vector ) {
+
 		translate(pos.inverted);
 		
 		for(v in vertices) {
@@ -175,15 +181,18 @@ class Geometry {
 		}
 
 		translate(pos);
-	}
+
+	} //scale
 
 	public function translate( _offset:Vector ) {
+
 		for(v in vertices) {
 			v.pos.x += _offset.x;
 			v.pos.y += _offset.y;
 			v.pos.z += _offset.z;
 		}
-	}
+
+	} //translate
 
 //Position
 	public function set_pos(_v:Vector) : Vector {
@@ -204,7 +213,7 @@ class Geometry {
 
 	public function update() {
 		//remove and readd ourselves to get resorted
-		Sys.println("UPDATE GEOM : " + short_id());
+		// Sys.println("UPDATE GEOM : " + short_id());
 		for( b in batchers ) {
 			b.remove( this );
 			b.add( this, true );

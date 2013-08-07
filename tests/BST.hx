@@ -1,5 +1,7 @@
 package tests;
 
+import phoenix.geometry.Geometry;
+import phoenix.geometry.QuadGeometry;
 import tests.H;
 import phoenix.utils.BinarySearchTree;
 
@@ -39,6 +41,22 @@ class BST {
 	var tree6 : BinarySearchTree<TestPriority>;
 
 	public function new() {
+
+		var s = new Geometry(null);
+		var t = new QuadGeometry(null);
+		var a:Array<Geometry> = [s,t];
+		var b:Array<Geometry> = [s,t];
+		var c:Array<QuadGeometry> = [t];
+
+		trace("IS SAME TYPE EQUAL!?");
+		trace(a[0] == b[0]);
+		trace("IS BASE TYPE EQUAL!?");
+		trace(a[1] == b[1]);
+		trace("IS BASE  EQUAL!?");
+		trace(t == a[1]);
+		trace("IS BASE 2 EQUAL!?");
+		trace(c[0] == a[1]);
+
 			//test 1, default compare function, int
 		tree1 = new BinarySearchTree<Int>();		
 		test_integers(tree1);

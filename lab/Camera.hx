@@ -13,17 +13,20 @@ class Camera extends Entity {
     public var shake_amount : Float;
     public var shaking : Bool = false;
 
-	public function new(?options:Dynamic) {
+	public function new(?options:Dynamic = null) {
 		
 		super();
-
-		name = options.name == null ? 'untitled camera' : options.name;
 		view_position = new Vector();
-
+		name = 'untitled camera';
 
 		if(options != null) {
+
+			name = options.name == null ? name : options.name;
+
 			if(options.view != null) {
 				view = options.view;
+			} else {
+				view = Lab.camera.view;
 			}
 		} else {
 				//default to the main camera. 
@@ -34,7 +37,8 @@ class Camera extends Entity {
 
 	}
 
-	public override function set_pos(v:Vector) : Vector {		
+	public override function set_pos(v:Vector) : Vector {
+		
 		view_position = v;
 		pos = v;
 
@@ -57,7 +61,8 @@ class Camera extends Entity {
         if(shaking) {
             shake_vector = Lab.utils.geometry.random_point_in_unit_circle();
             shake_vector.x *= shake_amount;
-            shake_vector.y *= shake_amount;            
+            shake_vector.y *= shake_amount;   
+            shake_vector.z *= shake_amount;         
             shake_amount *= 0.9;
             final_position = Vector.Add(final_position, shake_vector);
         } 

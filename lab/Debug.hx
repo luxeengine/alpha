@@ -81,6 +81,10 @@ class Debug {
         #if lime_native 
             Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
         #end
+
+        #if lime_html5
+            untyped console.log(inf.fileName + ':' + inf.lineNumber, v);
+        #end
         
         Lab.debug.add_line(inf.fileName + ':' + inf.lineNumber + ' ' + v );
     }
@@ -90,8 +94,10 @@ class Debug {
             //create the debug renderer and view
         debug_batcher = new Batcher( Lab.renderer, 'debug_batcher' );
         debug_view = new Camera(ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h });
-
+            //set the camera of the batcher
         debug_batcher.view = debug_view;
+            //Also, set the layer so it renders last
+        debug_batcher.layer = 999;
 
         Lab.renderer.add_batch( debug_batcher );
 
@@ -279,7 +285,20 @@ class Debug {
         }
     }
 
+    var last_cursor_shown : Bool = true;
+    var last_cursor_locked : Bool = false;
     public function show_console(_show:Bool = true) {
+
+        if(_show) {
+            last_cursor_shown = Lab.cursorShown();
+            last_cursor_locked = Lab.cursorLocked();
+            Lab.showCursor(true);
+            Lab.lockCursor(false);
+        } else {
+            if(last_cursor_shown!=true) Lab.showCursor(last_cursor_shown);
+            if(last_cursor_locked!=false) Lab.lockCursor(last_cursor_locked);
+        }
+
         visible = _show;
         debug_batcher.enabled = _show;
 

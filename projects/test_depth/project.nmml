@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="samples - empty" 
-          package="com.underscorediscovery.sampleempty" 
+          title="test depth" 
+          package="com.underscorediscovery.testdepth" 
           version="1.0.0" 
           company="underscorediscovery" 
 	/>
 
-	<app main="Main" path="bin" file="sample_empty" />
+	<app main="Main" path="bin" file="test_depth" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	

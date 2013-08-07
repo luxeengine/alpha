@@ -3,12 +3,12 @@
 	
 	<meta 
           title="haxelab - empty" 
-          package="com.underscorediscovery.haxelabempty" 
+          package="com.underscorediscovery.threedee" 
           version="1.0.0" 
           company="underscorediscovery" 
 	/>
 
-	<app main="Main" path="bin" file="haxelab_empty" />
+	<app main="Main" path="bin" file="threedee" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" depth-buffer="true" stencil-buffer="true" />
 	
@@ -17,5 +17,6 @@
 	<source path="src" />
 	
 	<haxelib name="haxelab" />
+	<haxelib name="lime" />
 	
 </project>

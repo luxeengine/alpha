@@ -96,8 +96,8 @@ class Level01 extends Mode {
         if(dragging) {
             var diffx = (e.x - start_drag.x);
             var diffy = (e.y - start_drag.y);
-            Lab.camera.pos.x = start_camera_drag.x + (diffx);
-            Lab.camera.pos.y = start_camera_drag.y + (diffy);
+            Lab.camera.pos.x = start_camera_drag.x - (diffx);
+            Lab.camera.pos.y = start_camera_drag.y - (diffy);
         } //if dragging
 
     }

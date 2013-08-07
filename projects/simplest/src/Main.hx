@@ -3,6 +3,9 @@ import lab.Vector;
 import lab.Input;
 import lab.Color;
 
+import lime.gl.GL;
+import lime.gl.GL.Ext;
+
 class Main extends lab.Game {
 
     public var delta_time_text : lab.Text;
