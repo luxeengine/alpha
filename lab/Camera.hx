@@ -4,6 +4,8 @@ import lab.Vector;
 import lab.Entity;
 import phoenix.Camera.ProjectionType;
 
+typedef ProjectionType = phoenix.Camera.ProjectionType;
+
 class Camera extends Entity {
 	
 	public var view : phoenix.Camera;
@@ -14,25 +16,19 @@ class Camera extends Entity {
     public var shaking : Bool = false;
 
 	public function new(?options:Dynamic = null) {
-		
+			
+		if(options == null) options = {};
+
+			//Init the entity part
 		super();
-		view_position = new Vector();
+			//Start with defaults
 		name = 'untitled camera';
 
-		if(options != null) {
-
+				//Apply options
 			name = options.name == null ? name : options.name;
+			view = options.view == null ? new phoenix.Camera(options) : options.view;
 
-			if(options.view != null) {
-				view = options.view;
-			} else {
-				view = Lab.camera.view;
-			}
-		} else {
-				//default to the main camera. 
-			view = Lab.camera.view;
-		}
-
+			//Update
 		view_position = view.pos;
 
 	}
@@ -42,8 +38,8 @@ class Camera extends Entity {
 		view_position = v;
 		pos = v;
 
-			//listen for sub changes
-		// super.set_pos( pos );
+			//listen for sub changes on properties
+		_attach_listener( pos, pos_change );
 
 		return pos;
 	}

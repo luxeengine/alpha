@@ -77,7 +77,7 @@ class Renderer {
         } );
 
             //The default view
-        default_camera = new Camera( ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h } );
+        default_camera = new Camera({ projection:ProjectionType.ortho, x2 : Lab.screen.w, y2 : Lab.screen.h });
             //Create the default render path
         default_render_path = new RenderPath( this );
 

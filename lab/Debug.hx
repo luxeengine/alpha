@@ -93,7 +93,7 @@ class Debug {
 
             //create the debug renderer and view
         debug_batcher = new Batcher( Lab.renderer, 'debug_batcher' );
-        debug_view = new Camera(ProjectionType.ortho, { x2 : Lab.screen.w, y2 : Lab.screen.h });
+        debug_view = new Camera({ projection:ProjectionType.ortho, x2 : Lab.screen.w, y2 : Lab.screen.h });
             //set the camera of the batcher
         debug_batcher.view = debug_view;
             //Also, set the layer so it renders last

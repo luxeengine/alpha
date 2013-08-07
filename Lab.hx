@@ -6,6 +6,7 @@ import phoenix.Texture;
 
 
 class Lab {
+
     public static var dt : Float = 0.016;
     public static var core : lab.Core;
     public static var debug : lab.Debug;
@@ -60,8 +61,6 @@ class Lab {
     public static function removeGeometry(_geom:Geometry) {
         renderer.default_batcher.remove(_geom);
     } 
-
-
 
 }
 

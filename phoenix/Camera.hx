@@ -33,11 +33,15 @@ class Camera {
     public var projection : ProjectionType;
 
     public var target:Vector;
-    public var up:Vector;
+    public var up:Vector;   
 
-    public function new( _projection : ProjectionType , options:Dynamic ) {
+        //A phoenix camera will default to ortho set to screen size        
 
-        projection = _projection;
+    public function new( ?options:Dynamic = null ) {
+
+        if(options == null) options = {};
+
+        projection = options.projection == null ? ProjectionType.ortho : options.projection;
         
         pos = new Vector(0,0,0);
         rotation = new Quaternion(0,0,0,0);
@@ -66,60 +70,30 @@ class Camera {
             far:100
         };
 
-            //Orthographic projection
-        if(_projection == ProjectionType.ortho) {
-
-            set_ortho( options );
-            //trace('camera setting ortho: ' + ortho_options);            
-
-        } else
-            //Perspective projection
-        if(_projection == ProjectionType.perspective) {
-
-            set_perspective(options);
-            //trace('camera setting perspective: ' + perspective_options);
-
-        }
+        switch (projection) {
+            case ProjectionType.ortho:
+                set_ortho( options );                
+            case ProjectionType.perspective:                
+                set_perspective( options );                
+            case ProjectionType.custom:
+                //nothing yet
+        }        
         
-    }
+    } //new 
 
     public function process() {
 
-        if( projection == ProjectionType.perspective ) {
-            set_perspective( perspective_options );
+        switch(projection) {
+            case ProjectionType.perspective:
+                apply_perspective();
+            case ProjectionType.ortho:
+                apply_ortho();
+            case ProjectionType.custom:
+                //todo: nothing yet
         }
 
-        if( projection == ProjectionType.ortho ) {
-            set_ortho( ortho_options );
-        }
-    }
+    } //process
 
-    public function set_ortho( options:Dynamic = null ) {
-                        
-        GL.disable(GL.CULL_FACE);
-            //
-        merge_options( ortho_options, options );
-            //
-        projection = ProjectionType.ortho;
-            //
-        projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
-            //
-        modelview_matrix = modelview_matrix.compose( pos, rotation, scale );
-
-    } //set_ortho
-
-    public function merge_options( projection_options:Dynamic, options:Dynamic) {
-
-        if(projection_options == null) {
-            projection_options = {};
-        }
-
-        var fields = Reflect.fields(options);
-        for(field in fields) {
-            Reflect.setField(projection_options, field, Reflect.field(options, field));
-        }
-
-    } //merge_options
 
     public function update_look_at() {
 
@@ -131,24 +105,68 @@ class Camera {
 
     } //update_look_at
 
-    public function set_perspective( options:Dynamic = null ) {
+    public function apply_ortho() {
 
-        merge_options( perspective_options, options );
+        GL.disable(GL.CULL_FACE);
+            //2D doesn't usually want the depth to interfere
+        GL.clear(GL.DEPTH_BUFFER_BIT);
+            //todo:This doesn't need to be rebuilt every frame
+        projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
+            //Rebuild the modelview, todo:dirtify this
+        modelview_matrix = modelview_matrix.compose( pos, rotation, scale );        
 
-        projection = ProjectionType.perspective;
+    } //apply_ortho
 
+    public function apply_perspective() {
+
+            //Make the perspective matrix based on perspective_options
+            //todo:This doesn't need to be rebuilt every frame
         projection_matrix = projection_matrix.makePerspective(perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
 
-                //If we have a target, override the rotation BEFORE we update the matrix 
-            if(target != null) {
-                update_look_at();
-            }
+            //If we have a target, override the rotation BEFORE we update the matrix 
+        if(target != null) {
+            update_look_at();
+        } //target not null
 
+            //Rebuild the modelview, todo:dirtify this
         modelview_matrix = modelview_matrix.compose( pos, rotation, scale );
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);
-       
+    }
+
+    public function set_ortho( options:Dynamic = null ) {
+            //
+        _merge_options( ortho_options, options );
+            //
+        projection = ProjectionType.ortho;
+            //
+        apply_ortho();
+
+    } //set_ortho
+
+    public function set_perspective( options:Dynamic = null ) {
+
+        _merge_options( perspective_options, options );
+
+        projection = ProjectionType.perspective;
+
+        apply_perspective();
+
     } //set_perspective
+
+
+    private function _merge_options( projection_options:Dynamic, options:Dynamic) {
+
+        if(projection_options == null) {
+            projection_options = {};
+        }
+
+        var fields = Reflect.fields(options);
+        for(field in fields) {
+            Reflect.setField(projection_options, field, Reflect.field(options, field));
+        }
+
+    } //_merge_options    
 
 } //Camera
