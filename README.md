@@ -48,6 +48,6 @@ To get started :
  `cd ~/mydevfolder/luxe/projects/simplest`   
  `haxelib run luxe test mac` or `haxelib run luxe test linux` or `haxelib run luxe test windows`
 
-Note : You can alias `haxelib run luxe` to luxe using symlinks or a batch file in your PATH if you want to - this will be automated soon in a luxe installer.
+Note : You can alias `haxelib run luxe` to `luxe` using symlinks or a batch file in your PATH if you want to - this will be automated soon in a luxe installer.
 
 ###That should be it!
