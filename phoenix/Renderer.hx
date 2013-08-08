@@ -22,26 +22,6 @@ import lime.utils.ArrayBuffer;
 
 import phoenix.utils.BinarySearchTree;
 
-class RendererStats {
-    public function new(){}
-    public var batchers : Int = 0;
-    public var geometry_count : Int = 0;
-    public var dynamic_batched_count : Int = 0;
-    public var static_batched_count : Int = 0;
-    public var enabled_count : Int = 0;
-    public var draw_calls : Int = 0;
-    public var group_count : Int = 0;
-    public function toString() {
-        return 
-            'Renderer Statistics\n' + 
-            '\tbatcher count : ' + batchers + '\n' +
-            '\ttotal geometry : ' + geometry_count + '\n' +
-            '\tenabled geometry : ' + enabled_count + '\n' +
-            '\tdynamic batched geometry : ' + dynamic_batched_count + '\n' +
-            '\tstatic batched geometry : ' + static_batched_count + '\n' +
-            '\ttotal draw calls : ' + draw_calls;
-    }
-}
 
 class Renderer {
 
@@ -57,6 +37,9 @@ class Renderer {
         //Default font for debug stuff etc
     public var default_font : BitmapFont;    
         //Default render path is a forward renderer, and acts as a fallback for deferred
+        //render path is the active render path, can replace it to render in a different manner
+        //It will pass all batchers to be processed etc for you to do whatever with
+    public var render_path : RenderPath;
     public var default_render_path : RenderPath;
 
     public var should_clear : Bool = true;
@@ -80,6 +63,8 @@ class Renderer {
         default_camera = new Camera({ projection:ProjectionType.ortho, x2 : Lab.screen.w, y2 : Lab.screen.h });
             //Create the default render path
         default_render_path = new RenderPath( this );
+            //Apply it
+        render_path = default_render_path;
 
             //create the default rendering shader
         default_shader = new Shader( resource_manager );  
@@ -285,24 +270,50 @@ class Renderer {
         }
 
         stats.batchers = batchers.length;
-        stats.geometry_count = 0;
-        stats.dynamic_batched_count = 0;
-        stats.static_batched_count = 0;
-        stats.enabled_count = 0;
-        stats.group_count = 0;
-        stats.draw_calls = 0;
+        stats.reset();
 
             //render 
-        default_render_path.render( batchers, stats ); 
+        render_path.render( batchers, stats ); 
 
         // stop_count++;
         // if(stop_count >= 5) {
         //     stop = true;
-        // }        
+        // }
+
+    } //process
+
+
+} //renderer
+
+
+
+class RendererStats {
+    public function new(){}
+    public var batchers : Int = 0;
+    public var geometry_count : Int = 0;
+    public var dynamic_batched_count : Int = 0;
+    public var static_batched_count : Int = 0;
+    public var enabled_count : Int = 0;
+    public var draw_calls : Int = 0;
+    public var group_count : Int = 0;
+
+    public function reset() {
+        geometry_count = 0;
+        dynamic_batched_count = 0;
+        static_batched_count = 0;
+        enabled_count = 0;
+        group_count = 0;
+        draw_calls = 0;        
     }
-
-
-
+    public function toString() {
+        return 
+            'Renderer Statistics\n' + 
+            '\tbatcher count : ' + batchers + '\n' +
+            '\ttotal geometry : ' + geometry_count + '\n' +
+            '\tenabled geometry : ' + enabled_count + '\n' +
+            '\tdynamic batched geometry : ' + dynamic_batched_count + '\n' +
+            '\tstatic batched geometry : ' + static_batched_count + '\n' +
+            '\ttotal draw calls : ' + draw_calls;
+    }
 }
-
     

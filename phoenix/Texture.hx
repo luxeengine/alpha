@@ -9,6 +9,7 @@ import lime.utils.UInt8Array;
 
 import lime.utils.Libs;
 import lime.utils.ArrayBuffer;
+import phoenix.Vector;
 
 enum FilterType {
     nearest;
@@ -36,7 +37,7 @@ class Texture extends Resource {
     @:isVar public var onload(never,set) : Texture -> Void;
     @:isVar public var filter(default,set) : FilterType;
 
-    public function new( _manager : ResourceManager, _size : Dynamic = null ) {
+    public function new( _manager : ResourceManager, ?_size : Vector = null ) {
         
         super( _manager, ResourceType.texture );
         _onload_handlers = new Array<Texture -> Void>();
@@ -71,9 +72,9 @@ class Texture extends Resource {
         return 'phoenix.Texture (' + width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
     }
 
-    public function build(_size : Dynamic, _color: Dynamic) {
+    public function build(_size : Vector, _color: Dynamic) {
 
-        if(_size == null) _size = {x:0, y:0};
+        if(_size == null) _size = new Vector();
         if(_color == null) _color = {r:1,g:1,b:1,a:1};
         if(_size.x > 0 && _size.y > 0) {
 
