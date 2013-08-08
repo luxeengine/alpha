@@ -127,7 +127,7 @@ class Menu extends Mode {
         );
 
         back.visible = true;        
-        // particles.stop();
+        particles.stop();
 
     }
 
@@ -137,7 +137,9 @@ class Menu extends Mode {
 
     public function playClicked() {
 
-        game.modes.set('level01');
+        // game.modes.set('level01');
+        play.flipx = !play.flipx;
+        trace('xflip ' + play.flipx);
     }
 
     public function mouseup(e) {
@@ -145,13 +147,16 @@ class Menu extends Mode {
         mouse = new Vector(e.x, e.y);
         if( play.point_inside(mouse) ) {
             playClicked();  
+        } else {
+            play.flipy = !play.flipy;
+            trace('yflip '  + play.flipy);
         }
 
         if(particles != null) {
             if(particles.active) {
-                particles.stop();
+                // particles.stop();
             } else {
-                particles.emit(-1);
+                // particles.emit(-1);
             }
         }
         

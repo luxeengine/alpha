@@ -4,12 +4,14 @@ import luxe.Input;
 import luxe.Sprite;
 
 import phoenix.Batcher;
+import phoenix.Camera;
 import phoenix.RenderTexture;
 
 class Main extends luxe.Game {
 
     var rtt : RenderTexture;
     var batcher : Batcher;
+    var camera : Camera;
     var sprite : Sprite;
     var sprite2 : Sprite;
 
@@ -24,8 +26,12 @@ class Main extends luxe.Game {
             centered : false,
             texture : Luxe.loadTexture('assets/image.jpg')
         });
-    
+        
+            //doing this lets you work with html5 late loading textures,
+            //unless you have a preloader, or on desktop where its sequential, 
+            //you don't have to worry about this not working, it calls for you
         sprite.texture.onload = function(t) {
+            
             batcher.add( sprite.geometry );
             rtt.bindBuffer();
             batcher.draw( false );
@@ -35,11 +41,9 @@ class Main extends luxe.Game {
                 texture : rtt,
                 size : new Vector(512,512),
                 centered:false,
-                pos:new Vector(50,50)
+                pos:new Vector(50,50),
             });
-        }        
-
-        // Luxe.renderer.add_batch( batcher );
+        }
 
     } //ready
   

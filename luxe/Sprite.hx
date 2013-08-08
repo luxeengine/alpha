@@ -30,7 +30,8 @@ class Sprite extends Entity {
     @:isVar public var scene        (default,default)   : Scene;
     @:isVar public var clip         (default,set    )   : Bool;
     @:isVar public var clip_rect    (default,set    )   : Rectangle;
-    @:isVar public var flipv        (default,set    )   : Bool;
+    @:isVar public var flipy        (default,set    )   : Bool;
+    @:isVar public var flipx        (default,set    )   : Bool;
 
     public function new(options:Dynamic) {
 
@@ -138,8 +139,8 @@ class Sprite extends Entity {
         });
 
             //if texture is render target, flipy
-        if(texture.type == ResourceType.render_texture) {
-            flipv = true;
+        if(texture != null && texture.type == ResourceType.render_texture) {
+            flipy = true;
         }
 
             //default to the sprite name
@@ -195,9 +196,23 @@ class Sprite extends Entity {
         return true;
     }
 //Flipping
-    public function set_flipv(_v:Bool) {        
+    public function set_flipy(_v:Bool) {        
 
-        return flipv = _v;
+        if(geometry != null) {
+            geometry.flipy = _v;
+        }
+
+        return flipy = _v;
+
+    } //set_flipy
+
+    public function set_flipx(_v:Bool) {        
+
+        if(geometry != null) {
+            geometry.flipx = _v;
+        }
+
+        return flipx = _v;
 
     } //set_flipv
 
