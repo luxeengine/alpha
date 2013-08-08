@@ -1,6 +1,6 @@
 #luxe
 
-A cross platform game engine written in haxe
+A cross platform game engine written in haxe   
 **Note** : If you are using the older haxelab url, use `git remote set-url git@github.com:underscorediscovery/luxe.git` to change it to the new url
 
 To get started : 
