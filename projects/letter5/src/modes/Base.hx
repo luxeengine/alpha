@@ -1,7 +1,7 @@
 package modes;
 
-import lab.Input;
-import lab.Modes;
+import luxe.Input;
+import luxe.Modes;
 
 import common.Block;
 import common.Cell;
@@ -34,7 +34,7 @@ class Base extends Mode {
 			//create the game board
 		board = new Board(game);
 			//create the words map
-        var wordstring = Lab.loadText('assets/words.txt');
+        var wordstring = Luxe.loadText('assets/words.txt');
         var wordarray = wordstring.split('\n');
         for(word in wordarray) {
             words.set(word, word);
@@ -47,7 +47,7 @@ class Base extends Mode {
 	} //new
 
 	public function enter() {				
-		Actuate.tween(Lab.renderer.clear_color, 0.5, {r:0.9412,g:0.9412,b:0.9412}).onComplete(function(){
+		Actuate.tween(Luxe.renderer.clear_color, 0.5, {r:0.9412,g:0.9412,b:0.9412}).onComplete(function(){
 			board.init();
 		});
 	} //enter

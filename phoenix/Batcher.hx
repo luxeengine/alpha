@@ -107,7 +107,7 @@ class Batcher {
 
             //A default name
         if(_name.length == 0) {
-            name = Lab.utils.uuid();
+            name = Luxe.utils.uuid();
         } else {
             name = _name;
         }

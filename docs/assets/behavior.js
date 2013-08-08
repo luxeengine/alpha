@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/index.md",
+        "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/index.md",
         "projectPath": "index.md",
         "targetPath": "index",
         "title": "index"
@@ -46,10 +46,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/Lab.md",
-        "projectPath": "Lab/Lab.md",
-        "targetPath": "Lab",
-        "title": "Lab"
+        "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/Luxe.md",
+        "projectPath": "Luxe/Luxe.md",
+        "targetPath": "Luxe",
+        "title": "Luxe"
       },
       "depth": 1,
       "outline": [
@@ -57,8 +57,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 1,
-            "title": "haxelab",
-            "slug": "haxelab"
+            "title": "luxe",
+            "slug": "luxe"
           },
           "depth": 1,
           "children": [
@@ -85,8 +85,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     }, {
       "type": "folder",
       "data": {
-        "path": "lab",
-        "title": "lab"
+        "path": "luxe",
+        "title": "luxe"
       },
       "depth": 1,
       "children": [
@@ -98,9 +98,9 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/api.md",
-            "projectPath": "Lab/lab/api.md",
-            "targetPath": "lab/api",
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/api.md",
+            "projectPath": "Luxe/luxe/api.md",
+            "targetPath": "luxe/api",
             "title": "api"
           },
           "depth": 2,
@@ -109,8 +109,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
-                "title": "Lab API",
-                "slug": "lab-api"
+                "title": "Luxe API",
+                "slug": "luxe-api"
               },
               "depth": 2,
               "children": [
@@ -169,10 +169,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Camera.md",
-            "projectPath": "Lab/lab/lab.Camera.md",
-            "targetPath": "lab/lab.Camera",
-            "title": "lab.Camera"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Camera.md",
+            "projectPath": "Luxe/luxe/luxe.Camera.md",
+            "targetPath": "luxe/luxe.Camera",
+            "title": "luxe.Camera"
           },
           "depth": 2,
           "outline": []
@@ -184,10 +184,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Color.md",
-            "projectPath": "Lab/lab/lab.Color.md",
-            "targetPath": "lab/lab.Color",
-            "title": "lab.Color"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Color.md",
+            "projectPath": "Luxe/luxe/luxe.Color.md",
+            "targetPath": "luxe/luxe.Color",
+            "title": "luxe.Color"
           },
           "depth": 2,
           "outline": []
@@ -199,10 +199,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Rectangle.md",
-            "projectPath": "Lab/lab/lab.Rectangle.md",
-            "targetPath": "lab/lab.Rectangle",
-            "title": "lab.Rectangle"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Rectangle.md",
+            "projectPath": "Luxe/luxe/luxe.Rectangle.md",
+            "targetPath": "luxe/luxe.Rectangle",
+            "title": "luxe.Rectangle"
           },
           "depth": 2,
           "outline": []
@@ -214,10 +214,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Sprite.md",
-            "projectPath": "Lab/lab/lab.Sprite.md",
-            "targetPath": "lab/lab.Sprite",
-            "title": "lab.Sprite"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Sprite.md",
+            "projectPath": "Luxe/luxe/luxe.Sprite.md",
+            "targetPath": "luxe/luxe.Sprite",
+            "title": "luxe.Sprite"
           },
           "depth": 2,
           "outline": []
@@ -229,10 +229,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Text.md",
-            "projectPath": "Lab/lab/lab.Text.md",
-            "targetPath": "lab/lab.Text",
-            "title": "lab.Text"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Text.md",
+            "projectPath": "Luxe/luxe/luxe.Text.md",
+            "targetPath": "luxe/luxe.Text",
+            "title": "luxe.Text"
           },
           "depth": 2,
           "outline": []
@@ -244,10 +244,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Utils.md",
-            "projectPath": "Lab/lab/lab.Utils.md",
-            "targetPath": "lab/lab.Utils",
-            "title": "lab.Utils"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Utils.md",
+            "projectPath": "Luxe/luxe/luxe.Utils.md",
+            "targetPath": "luxe/luxe.Utils",
+            "title": "luxe.Utils"
           },
           "depth": 2,
           "outline": [
@@ -255,8 +255,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
-                "title": "Lab Utils API",
-                "slug": "lab-utils-api"
+                "title": "Luxe Utils API",
+                "slug": "luxe-utils-api"
               },
               "depth": 2,
               "children": [
@@ -299,10 +299,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Vec.md",
-            "projectPath": "Lab/lab/lab.Vec.md",
-            "targetPath": "lab/lab.Vec",
-            "title": "lab.Vec"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Vec.md",
+            "projectPath": "Luxe/luxe/luxe.Vec.md",
+            "targetPath": "luxe/luxe.Vec",
+            "title": "luxe.Vec"
           },
           "depth": 2,
           "outline": []
@@ -314,10 +314,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.Vector.md",
-            "projectPath": "Lab/lab/lab.Vector.md",
-            "targetPath": "lab/lab.Vector",
-            "title": "lab.Vector"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.Vector.md",
+            "projectPath": "Luxe/luxe/luxe.Vector.md",
+            "targetPath": "luxe/luxe.Vector",
+            "title": "luxe.Vector"
           },
           "depth": 2,
           "outline": []
@@ -329,10 +329,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.audio.md",
-            "projectPath": "Lab/lab/lab.audio.md",
-            "targetPath": "lab/lab.audio",
-            "title": "lab.audio"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.audio.md",
+            "projectPath": "Luxe/luxe/luxe.audio.md",
+            "targetPath": "luxe/luxe.audio",
+            "title": "luxe.audio"
           },
           "depth": 2,
           "outline": [
@@ -340,8 +340,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
-                "title": "Lab Audio API",
-                "slug": "lab-audio-api"
+                "title": "Luxe Audio API",
+                "slug": "luxe-audio-api"
               },
               "depth": 2
             }
@@ -354,10 +354,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.debug.md",
-            "projectPath": "Lab/lab/lab.debug.md",
-            "targetPath": "lab/lab.debug",
-            "title": "lab.debug"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.debug.md",
+            "projectPath": "Luxe/luxe/luxe.debug.md",
+            "targetPath": "luxe/luxe.debug",
+            "title": "luxe.debug"
           },
           "depth": 2,
           "outline": []
@@ -369,10 +369,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.events.md",
-            "projectPath": "Lab/lab/lab.events.md",
-            "targetPath": "lab/lab.events",
-            "title": "lab.events"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.events.md",
+            "projectPath": "Luxe/luxe/luxe.events.md",
+            "targetPath": "luxe/luxe.events",
+            "title": "luxe.events"
           },
           "depth": 2,
           "outline": [
@@ -380,8 +380,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
-                "title": "Lab Events API",
-                "slug": "lab-events-api"
+                "title": "Luxe Events API",
+                "slug": "luxe-events-api"
               },
               "depth": 2,
               "children": [
@@ -405,10 +405,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.files.md",
-            "projectPath": "Lab/lab/lab.files.md",
-            "targetPath": "lab/lab.files",
-            "title": "lab.files"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.files.md",
+            "projectPath": "Luxe/luxe/luxe.files.md",
+            "targetPath": "luxe/luxe.files",
+            "title": "luxe.files"
           },
           "depth": 2,
           "outline": []
@@ -420,10 +420,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/lab.time.md",
-            "projectPath": "Lab/lab/lab.time.md",
-            "targetPath": "lab/lab.time",
-            "title": "lab.time"
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/luxe.time.md",
+            "projectPath": "Luxe/luxe/luxe.time.md",
+            "targetPath": "luxe/luxe.time",
+            "title": "luxe.time"
           },
           "depth": 2,
           "outline": [
@@ -431,8 +431,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
-                "title": "Lab Time API",
-                "slug": "lab-time-api"
+                "title": "Luxe Time API",
+                "slug": "luxe-time-api"
               },
               "depth": 2
             }
@@ -445,9 +445,9 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/Sven/dev/lab/haxelab/docs_src/Lab/lab/types.md",
-            "projectPath": "Lab/lab/types.md",
-            "targetPath": "lab/types",
+            "sourcePath": "/Users/Sven/dev/lab/luxe/docs_src/Luxe/luxe/types.md",
+            "projectPath": "Luxe/luxe/types.md",
+            "targetPath": "luxe/types",
             "title": "types"
           },
           "depth": 2,
@@ -456,8 +456,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
-                "title": "Lab Types",
-                "slug": "lab-types"
+                "title": "Luxe Types",
+                "slug": "luxe-types"
               },
               "depth": 2,
               "children": [

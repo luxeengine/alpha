@@ -1,8 +1,8 @@
 
-import lab.Vector;
-import lab.Input;
+import luxe.Vector;
+import luxe.Input;
 
-class Main extends lab.Game {
+class Main extends luxe.Game {
 
     public function ready() {
 
@@ -10,7 +10,7 @@ class Main extends lab.Game {
   
     public function onkeyup(e) {
       if(e.value == Input.Keys.escape) {
-        Lab.shutdown();
+        Luxe.shutdown();
       }
     } //onkeyup
 

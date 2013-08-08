@@ -1,8 +1,8 @@
 package common;
 
-import lab.Rectangle;
+import luxe.Rectangle;
 import phoenix.Texture;
-import lab.Vector;
+import luxe.Vector;
 
 typedef Bar = {
 	var x:Int;
@@ -45,10 +45,10 @@ class Skin {
 
 		//parse value from the skin
 	public function parse_value(_s) : Int {
-		if(_s == "screenw") return Std.int(Lab.screen.w);
-		if(_s == "screenh") return Std.int(Lab.screen.h);
-		if(_s == "below_bottom") return Std.int(Lab.screen.h - (board.basetop+board.height));
-		if(_s == "half_below_bottom") return Std.int( (Lab.screen.h - (board.basetop+board.height)) /  2);
+		if(_s == "screenw") return Std.int(Luxe.screen.w);
+		if(_s == "screenh") return Std.int(Luxe.screen.h);
+		if(_s == "below_bottom") return Std.int(Luxe.screen.h - (board.basetop+board.height));
+		if(_s == "half_below_bottom") return Std.int( (Luxe.screen.h - (board.basetop+board.height)) /  2);
 		if(_s == "top") return Std.int(board.basetop);
 		if(_s == "bottom") return Std.int(board.basetop+board.height);
 		return Std.parseInt(_s);
@@ -61,7 +61,7 @@ class Skin {
 		if(template.image != null) { _texture = template.image; }
 
 			//load the image file
-		texture = Lab.loadTexture(_texture);
+		texture = Luxe.loadTexture(_texture);
 
 		if(template.block != null) {
 			block.x = Std.parseInt(template.block.x);

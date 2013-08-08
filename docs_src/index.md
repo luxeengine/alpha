@@ -1,13 +1,13 @@
 
 ![Logo](http://underscorediscovery.com/sven/images/logo.png)
 
-#[haxelab]()
+#[luxe]()
 ######A rapid development, haxe based game engine for 2D and 3D games.
 
 ##Structure
 
-[View Lab API](lab/api.html)   
-[View Lab Types](lab/types.html)   
+[View Luxe API](luxe/api.html)   
+[View Luxe Types](luxe/types.html)   
    
 &nbsp;
 &nbsp;

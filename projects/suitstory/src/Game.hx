@@ -1,15 +1,15 @@
 
     //mode management code
-import lab.Vector;
+import luxe.Vector;
 import mode.Mode;
 import mode.Modes;
 
     //the game classes
 import game.Tower;
-import lab.Input;
+import luxe.Input;
 
 
-class Game extends lab.Game {
+class Game extends luxe.Game {
 
     public var modes : Modes;
     

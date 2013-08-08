@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="samples - empty" 
-          package="com.underscorediscovery.sampleempty" 
+          title="luxe - samples - empty" 
+          package="com.underscorediscovery.luxesampleempty" 
           version="1.0.0" 
           company="underscorediscovery" 
 	/>
 
-	<app main="Main" path="bin" file="sample_empty" />
+	<app main="Main" path="bin" file="luxe_sample_empty" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	
@@ -16,7 +16,7 @@
 
 	<source path="src" />
 	
-	<haxelib name="haxelab" />
+	<haxelib name="luxe" />
 	<haxelib name="lime" />
 	
 </project>

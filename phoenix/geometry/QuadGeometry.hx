@@ -1,6 +1,6 @@
 package phoenix.geometry;
 
-import lab.Vector;
+import phoenix.Vector;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
@@ -19,7 +19,7 @@ class QuadGeometry extends Geometry {
         if(options.enabled != null) enabled = options.enabled;
 	}
 
-    public function uv( _rect:lab.Rectangle ) {
+    public function uv( _rect:luxe.Rectangle ) {
 
         if(texture == null) { 
             trace("Warning : Setting UV on a geometry with null texture.");
@@ -37,7 +37,7 @@ class QuadGeometry extends Geometry {
         vertices[5].uv[0] = new TextureCoord( tl.x + sz.x , tl.y + sz.y );
     }
 
-    public function resize( quad:lab.Rectangle ) {
+    public function resize( quad:luxe.Rectangle ) {
 
         vertices[0].pos = new Vector( pos.x,            pos.y );
         vertices[1].pos = new Vector( pos.x+quad.w,     pos.y );
@@ -51,7 +51,7 @@ class QuadGeometry extends Geometry {
         translate(origin.inverted);
     }
 
- 	public function set( quad:lab.Rectangle ) {
+ 	public function set( quad:luxe.Rectangle ) {
  		
  		vertices.splice(0, vertices.length);        
 

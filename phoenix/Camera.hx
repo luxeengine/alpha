@@ -46,7 +46,7 @@ class Camera {
         pos = new Vector(0,0,0);
         rotation = new Quaternion(0,0,0,0);
         scale = new Vector(1,1,1);
-        size = new Vector(Lab.screen.w, Lab.screen.h);
+        size = new Vector(Luxe.screen.w, Luxe.screen.h);
 
         up = new Vector(0,1,0);
         

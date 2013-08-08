@@ -57,7 +57,7 @@ class Geometry {
 
 	public function new(options:Dynamic) {
 		
-		uuid = lab.utils.UUID.get();
+		uuid = luxe.utils.UUID.get();
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
 		pos = new Vector();

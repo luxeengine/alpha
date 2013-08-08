@@ -1,6 +1,6 @@
 package phoenix.geometry;
 
-import lab.Vector;
+import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
 

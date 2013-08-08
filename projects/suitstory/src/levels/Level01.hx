@@ -1,17 +1,19 @@
 package levels;
 
 
-import lab.utils.NineSlice;
-import Lab;
-import lab.Sprite;
-import mode.Mode;
+import Luxe;
 
-import lab.Vector;
-import lab.Color;
+import luxe.utils.NineSlice;
+import luxe.Sprite;
+import luxe.Vector;
+import luxe.Color;
 
-import game.LevelWorld;
 import phoenix.geometry.Geometry;
 import phoenix.BitmapFont;
+
+
+import mode.Mode;
+import game.LevelWorld;
 
 class Level01 extends Mode {
 
@@ -38,7 +40,7 @@ class Level01 extends Mode {
         });
 
         // guiback = new NineSlice({
-        //     texture : Lab.loadTexture('assets/ui/tiny.box.png'),
+        //     texture : Luxe.loadTexture('assets/ui/tiny.box.png'),
         //     depth : 2
         // });
 
@@ -47,9 +49,9 @@ class Level01 extends Mode {
         map = new Sprite({
             centered:false,
             size : new Vector(2048,2048),
-            pos : new Vector(-10, Lab.screen.h - 2048),
+            pos : new Vector(-10, Luxe.screen.h - 2048),
             depth:1,
-            texture : Lab.loadTexture('assets/map/map.png')
+            texture : Luxe.loadTexture('assets/map/map.png')
         });
 
         map.texture.filter = phoenix.Texture.FilterType.nearest;
@@ -78,7 +80,7 @@ class Level01 extends Mode {
         if(!dragging) {
             dragging = true;
             start_drag.set(e.x,e.y);
-            start_camera_drag.set(Lab.camera.pos.x, Lab.camera.pos.y);
+            start_camera_drag.set(Luxe.camera.pos.x, Luxe.camera.pos.y);
         }
     }
     public function mouseup(e) {
@@ -96,8 +98,8 @@ class Level01 extends Mode {
         if(dragging) {
             var diffx = (e.x - start_drag.x);
             var diffy = (e.y - start_drag.y);
-            Lab.camera.pos.x = start_camera_drag.x - (diffx);
-            Lab.camera.pos.y = start_camera_drag.y - (diffy);
+            Luxe.camera.pos.x = start_camera_drag.x - (diffx);
+            Luxe.camera.pos.y = start_camera_drag.y - (diffy);
         } //if dragging
 
     }
@@ -107,7 +109,7 @@ class Level01 extends Mode {
     }
 
     public function leave() {
-        Lab.camera.pos = new Vector();
+        Luxe.camera.pos = new Vector();
         destroy();
     }
 }

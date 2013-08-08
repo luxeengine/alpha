@@ -1,11 +1,11 @@
 package common;
 
 import common.Board;
-import lab.Color;
-import lab.Rectangle;
-import lab.Sprite;
-import lab.Text;
-import lab.Vector;
+import luxe.Color;
+import luxe.Rectangle;
+import luxe.Sprite;
+import luxe.Text;
+import luxe.Vector;
 import phoenix.geometry.Geometry;
 
 import motion.Actuate;

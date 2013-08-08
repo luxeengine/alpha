@@ -1,6 +1,5 @@
 
-import lab.Color;
-import lab.Entity;
+
 import phoenix.Matrix4;
 import phoenix.Texture;
 import phoenix.Batcher;
@@ -11,18 +10,20 @@ import phoenix.geometry.Vertex;
 import phoenix.geometry.TextureCoord;
 import phoenix.Quaternion;
 
-import lab.Input;
-import lab.Vector;
-import lab.Text;
+import luxe.Input;
+import luxe.Vector;
+import luxe.Text;
+import luxe.Color;
+import luxe.Entity;
 
 import lime.gl.GL;
 
-import format.obj.Reader;
+import phoenix.formats.obj.Reader;
 import phoenix.utils.Maths;
 
 import FlyCamera;
 
-class Main extends lab.Game {
+class Main extends luxe.Game {
 
     var batch3d : Batcher;
     var cam3d : FlyCamera;
@@ -36,23 +37,23 @@ class Main extends lab.Game {
 
         trace("game ready"); 
 
-        Lab.lockCursor(false);
-        Lab.showCursor(true);
+        Luxe.lockCursor(false);
+        Luxe.showCursor(true);
 
         rotation = new Vector(-20, 0, 0);
 
-        tex = Lab.loadTexture('assets/diff.png');
-        tex2 = Lab.loadTexture('assets/transform.png');
+        tex = Luxe.loadTexture('assets/diff.png');
+        tex2 = Luxe.loadTexture('assets/transform.png');
 
-        batch3d = new Batcher(lab.renderer);
+        batch3d = new Batcher(Luxe.renderer);
 
-        lab.renderer.add_batch(batch3d);
+        Luxe.renderer.add_batch(batch3d);
 
             //The camera for the scene
         cam3d = new FlyCamera({
             projection: ProjectionType.perspective,
             fov:90, 
-            aspect:lab.config.width/lab.config.height 
+            aspect:Luxe.screen.w/Luxe.screen.h
         });
 
             //Apply it to our mesh renderer
@@ -60,7 +61,7 @@ class Main extends lab.Game {
             //Load the mesh files
         load_level_obj_into( batch3d );
             //Add camera to scene
-        Lab.scene.add( cam3d );
+        Luxe.scene.add( cam3d );
 
     }
 
@@ -68,7 +69,7 @@ class Main extends lab.Game {
 
         var obj_file = lime.utils.Assets.getText(id);       
         var file_input = new haxe.io.StringInput( obj_file );
-        var obj_mesh_data = new format.obj.Reader(file_input).read();
+        var obj_mesh_data = new phoenix.formats.obj.Reader(file_input).read();
 
         var _geom = new Geometry({
             texture : t,
@@ -116,7 +117,7 @@ class Main extends lab.Game {
         }
 
         if(e.value == Input.Keys.escape) {
-            Lab.shutdown();
+            Luxe.shutdown();
         }        
 
         cam3d.onkeydown(e);
@@ -128,12 +129,12 @@ class Main extends lab.Game {
 
         if(e.value == Input.Keys.key_4) {
             hidden = !hidden;
-            Lab.showCursor(hidden);
+            Luxe.showCursor(hidden);
         }
 
         if(e.value == Input.Keys.key_5) {
             locked = !locked;
-            Lab.lockCursor(locked);
+            Luxe.lockCursor(locked);
         }
 
         cam3d.onkeyup(e);

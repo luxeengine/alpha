@@ -1,7 +1,7 @@
 package common;
 
 import common.Board;
-import lab.Color;
+import luxe.Color;
 import phoenix.geometry.Geometry;
 
 class Cell {
@@ -19,7 +19,7 @@ class Cell {
 	}
 
 	public function init() {
-		_debug_geometry.push(Lab.draw.rectangle({
+		_debug_geometry.push(Luxe.draw.rectangle({
         	x: x, y : y,
         	w : board.blockw, h : board.blockh,
         	color : new Color(1,1,1,0.0)

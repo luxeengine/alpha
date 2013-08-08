@@ -1,6 +1,6 @@
 {
-  "glob": ["./Lab/**/+(*.md)", "./index.md"],  
+  "glob": ["./Luxe/**/+(*.md)", "./index.md"],  
   "github": false,
   "out" : "../docs/",
-  "style" : "haxelab"
+  "style" : "luxe"
 }

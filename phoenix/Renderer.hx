@@ -60,7 +60,7 @@ class Renderer {
         } );
 
             //The default view
-        default_camera = new Camera({ projection:ProjectionType.ortho, x2 : Lab.screen.w, y2 : Lab.screen.h });
+        default_camera = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
             //Create the default render path
         default_render_path = new RenderPath( this );
             //Apply it
@@ -151,7 +151,7 @@ class Renderer {
 
         _debug("have data array");
 
-        var texture_bytes = Lab.utils.arrayToBytes( _int_array_data );
+        var texture_bytes = Luxe.utils.arrayToBytes( _int_array_data );
         var texture = new Texture(resource_manager);
 
         #if lime_native 
@@ -189,8 +189,8 @@ class Renderer {
             
         image.onload = function(a) {
 
-            var width_pot = Lab.utils.nearest_power_of_two(image.width);
-            var height_pot = Lab.utils.nearest_power_of_two(image.height);
+            var width_pot = Luxe.utils.nearest_power_of_two(image.width);
+            var height_pot = Luxe.utils.nearest_power_of_two(image.height);
 
             var tmp_canvas = js.Browser.document.createCanvasElement();
             tmp_canvas.width = width_pot; tmp_canvas.height = height_pot;

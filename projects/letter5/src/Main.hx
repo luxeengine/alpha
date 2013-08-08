@@ -1,18 +1,18 @@
 
-import lab.Color;
-import lab.Sprite;
-import lab.Vector;
-import lab.Input;
+import luxe.Color;
+import luxe.Sprite;
+import luxe.Vector;
+import luxe.Input;
 import phoenix.BitmapFont;
 
-import lab.Modes;
+import luxe.Modes;
 
 import modes.Menu;
 import modes.Base;
 
 import motion.Actuate;
 
-class Main extends lab.Game {
+class Main extends luxe.Game {
 
 
     public var font : BitmapFont;
@@ -29,12 +29,12 @@ class Main extends lab.Game {
         font = new BitmapFont();
         fade = new Sprite({
             centered : false,
-            size : new Vector(Lab.screen.w, Lab.screen.h),
+            size : new Vector(Luxe.screen.w, Luxe.screen.h),
             color : new Color(0,0,0,0).rgb(0xf6f6f6),
             depth : 100,
         });
 
-        font.load_from_string( Lab.loadText('assets/fonts/osb.fnt'), 'assets/fonts/' );
+        font.load_from_string( Luxe.loadText('assets/fonts/osb.fnt'), 'assets/fonts/' );
 
         modes = new Modes();
         menu = modes.add_mode(Menu, 'menu');

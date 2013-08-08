@@ -1,6 +1,6 @@
 import ::APP_MAIN::;
 
-import lab.Core;
+import luxe.Core;
 import lime.LiME;
 
 class ApplicationMain {
@@ -30,10 +30,10 @@ class ApplicationMain {
 		_lime = new LiME();
 			//Create the game class, give it the runtime
 		_main_ = new ::APP_MAIN::();
-			//Create the haxelab runtime, pass it the lime reference
+			//Create the haxeluxe runtime, pass it the lime reference
 		_core = new Core( _main_ );
 			//Store the core for reference in the game
-		_main_.lab = _core;
+		_main_.luxecore = _core;
 
 			//Start up lime, but give it the core library 
 			//as the host instead of the main,

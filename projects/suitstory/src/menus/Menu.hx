@@ -1,31 +1,32 @@
 
 package menus;
 
-import lab.Rectangle;
+
 import mode.Mode;
 
-import lab.Color;
-import lab.Vector;
-import lab.Sprite;
-import lab.Text;
-import lab.Input;
+import luxe.Color;
+import luxe.Vector;
+import luxe.Sprite;
+import luxe.Text;
+import luxe.Input;
+import luxe.Rectangle;
 
 import phoenix.BitmapFont;
 import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.Shader;
 import phoenix.Batcher;
+
 import haxe.Timer;
 
-import lab.utils.UUID;
-import lab.Entity;
-import lab.Scene;
+import luxe.utils.UUID;
+import luxe.Entity;
+import luxe.Scene;
 
-import lab.Camera;
-import lab.Particles;
+import luxe.Camera;
+import luxe.Particles;
 
 import motion.Actuate;
-
 
 class Menu extends Mode {   
 
@@ -57,15 +58,15 @@ class Menu extends Mode {
             centered: false,
             pos : new Vector(0,0),
             depth:1,
-            texture : Lab.loadTexture('assets/menus/bg.png'),
+            texture : Luxe.loadTexture('assets/menus/bg.png'),
         });
 
 
-        var t1 = Lab.loadTexture('assets/flame.png');
-        var t2 = Lab.loadTexture('assets/smoke.png');
-        var t3 = Lab.loadTexture('assets/embers.png');
+        var t1 = Luxe.loadTexture('assets/flame.png');
+        var t2 = Luxe.loadTexture('assets/smoke.png');
+        var t3 = Luxe.loadTexture('assets/embers.png');
 
-        particles = Lab.scene.create(ParticleSystem,'mainparticles');        
+        particles = Luxe.scene.create(ParticleSystem,'mainparticles');        
         particles.pos = new Vector(480,320);
 
         particles.add_emitter({
@@ -116,7 +117,7 @@ class Menu extends Mode {
 
         play.locked = true;
 
-        Lab.renderer.default_batcher.add_group(5, 
+        Luxe.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
                 b.blend_mode(BlendMode.src_alpha, BlendMode.one);
             }, 
@@ -172,11 +173,11 @@ class Menu extends Mode {
     public function keydown(e:Dynamic) {
         
         if(e.value == 27) {
-            Lab.shutdown();
+            Luxe.shutdown();
         }   
 
         if( e.value == Input.Keys.key_S ) {
-            Lab.camera.shake(10);
+            Luxe.camera.shake(10);
             
         }
     }

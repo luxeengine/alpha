@@ -1,9 +1,9 @@
 package game;
 
-import lab.Color;
-import lab.Rectangle;
-import lab.Sprite;
-import lab.Vector;
+import luxe.Color;
+import luxe.Rectangle;
+import luxe.Sprite;
+import luxe.Vector;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 
@@ -19,7 +19,7 @@ typedef Slice = {
     geometry : QuadGeometry
 };
 
-class NineSlice extends lab.Sprite {
+class NineSlice extends luxe.Sprite {
 
     public var slices : Array<Slice>;
     public var added : Bool = false;
@@ -70,7 +70,7 @@ class NineSlice extends lab.Sprite {
 
         if(added) {
             for(slice in slices) {
-                Lab.removeGeometry(slice.geometry);
+                Luxe.removeGeometry(slice.geometry);
                 slice.geometry = null;
             }
 
@@ -225,7 +225,7 @@ class NineSlice extends lab.Sprite {
             });
 
             slice.geometry.uv( new Rectangle(slice.source_x, slice.source_y, slice.source_width, slice.source_height) ); 
-            Lab.addGeometry(slice.geometry);
+            Luxe.addGeometry(slice.geometry);
             slice.geometry.pos = new Vector(_pos.x + slice.pos.x, _pos.y + slice.pos.y);
         }
 

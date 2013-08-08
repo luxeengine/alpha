@@ -2,12 +2,12 @@ package common;
 
 import common.Skin ;
 import common.Skin;
-import lab.Color;
-import lab.Vector;
+import luxe.Color;
+import luxe.Vector;
 
 import phoenix.geometry.Geometry;
 
-import lab.utils.NineSlice;
+import luxe.utils.NineSlice;
 
 class Board {
 
@@ -69,8 +69,8 @@ class Board {
 		selected = [];
 
 			//calculate the offset positions
-        baseleft = Std.int(( Lab.screen.w / 2) - ( (blockw*w)/2 )) + offsetx;
-        basetop = Std.int(( Lab.screen.w / 2) - ( (blockh*h)/2 )) + offsety;
+        baseleft = Std.int(( Luxe.screen.w / 2) - ( (blockw*w)/2 )) + offsetx;
+        basetop = Std.int(( Luxe.screen.w / 2) - ( (blockh*h)/2 )) + offsety;
 
         width = Std.int((blockw+spacing) * w);
         height = Std.int((blockw+spacing) * h);
@@ -102,10 +102,10 @@ class Board {
 	public function init() {
 
             //Load json skin file
-		var template_text = Lab.loadText('assets/skins/default/skin.json');
+		var template_text = Luxe.loadText('assets/skins/default/skin.json');
             //if it's valid
 		if(template_text != null) {
-			var template = lab.utils.JSON.parse(template_text);
+			var template = luxe.utils.JSON.parse(template_text);
 			skin = new Skin(template, this);
 			skin.init();
 		} else {
@@ -144,7 +144,7 @@ class Board {
 
         bottom_ui_bar.create( new Vector(skin.bottom.x, skin.bottom.y), skin.bottom.w, skin.bottom.h );
 
-        _debug_geometry.push(Lab.draw.rectangle({
+        _debug_geometry.push(Luxe.draw.rectangle({
         	x: baseleft, y : basetop,
         	w : width, h : height,
         	color : new Color(1,1,1,0.1)

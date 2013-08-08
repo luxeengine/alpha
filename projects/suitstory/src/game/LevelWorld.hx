@@ -1,13 +1,13 @@
 
 package game;
 
-import lab.Vector;
-import lab.Color;
+import luxe.Vector;
+import luxe.Color;
 
 import phoenix.Batcher.PrimitiveType;
 import phoenix.geometry.Geometry;
 
-import lab.utils.JSON;
+import luxe.utils.JSON;
 import phoenix.geometry.Vertex;
 
 
@@ -137,9 +137,9 @@ class LevelWorld {
     public function show_debug(_show:Bool) {
         for(g in level_debug_geometry) {
             if(_show) {
-                Lab.addGeometry(g);
+                Luxe.addGeometry(g);
             } else {
-                Lab.removeGeometry(g);
+                Luxe.removeGeometry(g);
             }
         }
     }

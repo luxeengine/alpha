@@ -1,6 +1,6 @@
 package phoenix;
 
-import lab.Vector;
+import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.BitmapFont.TextAlign;
 import phoenix.geometry.CompositeGeometry;
@@ -210,7 +210,7 @@ class BitmapFont extends Resource {
         if(custom_pages == null) {
             for(_page_item in _pages) {
                     //fetch the texture
-                var _t = Lab.loadTexture( _folder + _page_item.file, one_page_loaded );
+                var _t = Luxe.loadTexture( _folder + _page_item.file, one_page_loaded );
                     //store the texture in the map for use
                 pages.set(_page_item.id, _t);
             }
@@ -315,7 +315,7 @@ class BitmapFont extends Resource {
          var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
          var _size : Float = (options.size == null) ? 32 : options.size;
-         var _batcher : Batcher = (options.batcher == null) ? Lab.renderer.default_batcher : options.batcher;
+         var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.default_batcher : options.batcher;
          var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
          var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
          var _supplied_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
