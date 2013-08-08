@@ -21,8 +21,8 @@ class Renderer {
     }
 
     public function process() {
-        GL.clearColor(0.3,0.2,0.1,1);
-        GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+        // GL.clearColor(0.3,0.2,0.1,1);
+        // GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
 

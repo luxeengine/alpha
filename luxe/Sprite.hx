@@ -6,6 +6,7 @@ import luxe.Scene;
 
 import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
+import phoenix.Resource;
 import phoenix.Texture;
 import phoenix.Vector;
 import phoenix.Color;
@@ -29,6 +30,7 @@ class Sprite extends Entity {
     @:isVar public var scene        (default,default)   : Scene;
     @:isVar public var clip         (default,set    )   : Bool;
     @:isVar public var clip_rect    (default,set    )   : Rectangle;
+    @:isVar public var flipv        (default,set    )   : Bool;
 
     public function new(options:Dynamic) {
 
@@ -135,6 +137,11 @@ class Sprite extends Entity {
             enabled : (options.visible == null) ? true : options.visible
         });
 
+            //if texture is render target, flipy
+        if(texture.type == ResourceType.render_texture) {
+            flipv = true;
+        }
+
             //default to the sprite name
         geometry.id = name;
 
@@ -187,6 +194,12 @@ class Sprite extends Entity {
         }
         return true;
     }
+//Flipping
+    public function set_flipv(_v:Bool) {        
+
+        return flipv = _v;
+
+    } //set_flipv
 
 //Visibility properties
     public function set_visible(_v:Bool) {

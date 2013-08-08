@@ -7,6 +7,7 @@ import phoenix.ResourceManager;
 enum ResourceType {
 	unknown;
 	texture;
+	render_texture;
 	font;
 	shader;
 }

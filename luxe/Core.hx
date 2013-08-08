@@ -236,8 +236,18 @@ class Core {
 
         //called by LiME
     public function render() {
+
+            //Call back to the game class for them
+        if(host.prerender != null) {
+            host.prerender();
+        }
+
         if(renderer != null && renderer.process != null) {
             renderer.process();   
+        }
+
+        if(host.postrender != null) {
+            host.postrender();
         }
     }
 

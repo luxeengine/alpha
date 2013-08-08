@@ -36,14 +36,16 @@ class Texture extends Resource {
 
     @:isVar public var onload(never,set) : Texture -> Void;
     @:isVar public var filter(default,set) : FilterType;
+    @:isVar public var clamp(default,set) : ClampType;
 
-    public function new( _manager : ResourceManager, ?_size : Vector = null ) {
+    public function new( _manager : ResourceManager, ?_type : ResourceType = null ) {
+            
+        if(_type == null) _type = ResourceType.texture;
         
-        super( _manager, ResourceType.texture );
+        super( _manager, _type );
         _onload_handlers = new Array<Texture -> Void>();
 
         id = 'Untitled';
-        build( _size, null );
     }
 
     public function set_onload( f: Texture -> Void ) {
@@ -263,7 +265,7 @@ class Texture extends Resource {
 
             //Set the properties
         filter = FilterType.linear;
-        set_clamp( ClampType.repeat );
+        clamp = ClampType.repeat;
         
         image_bytes = null;
         byte_input = null;

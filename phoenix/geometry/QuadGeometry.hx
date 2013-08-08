@@ -8,6 +8,8 @@ import phoenix.Vector;
 
 class QuadGeometry extends Geometry {
 
+    var flipped_y : Bool = false;
+
 	public function new( options : Dynamic ) {
 
 		super(options);

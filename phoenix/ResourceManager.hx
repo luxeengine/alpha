@@ -10,6 +10,7 @@ class ResourceStats {
     public var resources : Int = 0;
     public var fonts : Int = 0;
     public var textures : Int = 0;
+    public var render_textures : Int = 0;
     public var shaders : Int = 0;
     public var unknown : Int = 0;
     public function toString() {
@@ -17,6 +18,7 @@ class ResourceStats {
         	'Resource Statistics\n' + 
             '\ttotal resources : ' + resources + '\n' +
             '\ttextures : ' + textures + ' \n' + '' +
+            '\trender textures : ' + render_textures + ' \n' + '' +
             '\tfonts : ' + fonts + '\n' +
             '\tshaders : ' + shaders + '\n' +
             '\tunknown : ' + unknown;
@@ -26,6 +28,7 @@ class ResourceStats {
 		resources = 0;
     	fonts = 0;
     	textures = 0;
+    	render_textures = 0;
     	shaders = 0;
     	unknown = 0;
     }
@@ -35,6 +38,7 @@ class ResourceManager {
 	
 	public var resourcelist : Array<Resource>;
 		//cache lists for creating
+	public var render_textures : Map<String,RenderTexture>;
 	public var textures : Map<String,Texture>;
 	public var shaders : Map<String,Shader>;
 	public var fonts : Map<String,BitmapFont>;
@@ -44,6 +48,7 @@ class ResourceManager {
 	public function new() {
 		resourcelist = new Array<Resource>();
 		textures = new Map();
+		render_textures = new Map();
 		fonts = new Map();
 		shaders = new Map();
 		stats = new ResourceStats();
@@ -54,6 +59,8 @@ class ResourceManager {
 		switch (res.type) {
 			case ResourceType.texture:
 				stats.textures++;				
+			case ResourceType.render_texture:
+				stats.render_textures++;				
 			case ResourceType.font:
 				stats.fonts++;
 			case ResourceType.shader:
@@ -71,6 +78,8 @@ class ResourceManager {
 		switch (res.type) {
 			case ResourceType.texture:
 				stats.textures--;
+			case ResourceType.render_texture:
+				stats.render_textures--;
 			case ResourceType.font:
 				stats.fonts--;
 			case ResourceType.shader:
@@ -85,6 +94,8 @@ class ResourceManager {
 		switch (res.type) {
 			case ResourceType.texture:
 				textures.remove(res.id);
+			case ResourceType.render_texture:
+				render_textures.remove(res.id);
 			case ResourceType.font:
 				fonts.remove(res.id);
 			case ResourceType.shader:
@@ -97,6 +108,8 @@ class ResourceManager {
 		switch (res.type) {
 			case ResourceType.texture:
 				textures.set(res.id, cast res);
+			case ResourceType.render_texture:
+				render_textures.set(res.id, cast res);
 			case ResourceType.font:
 				fonts.set(res.id, cast res);
 			case ResourceType.shader:
@@ -105,6 +118,9 @@ class ResourceManager {
 		}
 	}
 
+	public function find_render_texture( _name:String ) {
+        return render_textures.get(_name);
+    }
 	public function find_texture( _name:String ) {
         return textures.get(_name);
     }

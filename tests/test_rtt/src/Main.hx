@@ -11,9 +11,10 @@ class Main extends luxe.Game {
     var rtt : RenderTexture;
     var batcher : Batcher;
     var sprite : Sprite;
+    var sprite2 : Sprite;
 
     public function ready() {
-        rtt = new RenderTexture( Luxe.resources, new Vector( Luxe.screen.w, Luxe.screen.h ) );
+        rtt = new RenderTexture( Luxe.resources, new Vector( 512,512 ) );
 
         batcher = new Batcher( Luxe.renderer, 'test_rtt_batcher' );
 
@@ -23,10 +24,21 @@ class Main extends luxe.Game {
             centered : false,
             texture : Luxe.loadTexture('assets/image.jpg')
         });
+    
+        sprite.texture.onload = function(t) {
+            batcher.add( sprite.geometry );
+            rtt.bindBuffer();
+            batcher.draw( false );
+            rtt.unbindBuffer();
 
-        batcher.add( sprite.geometry );
+            sprite2 = new Sprite({
+                texture : rtt,
+                size : new Vector(512,512),
+                centered:false,
+                pos:new Vector(50,50)
+            });
+        }        
 
-        batcher.draw( false );
         // Luxe.renderer.add_batch( batcher );
 
     } //ready
@@ -36,6 +48,10 @@ class Main extends luxe.Game {
         Luxe.shutdown();
       }
     } //onkeyup
+
+    public function prerender() {
+        
+    }
 
     public function update(dt:Float) {
         
