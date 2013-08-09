@@ -22,21 +22,18 @@ class Main extends luxe.Game {
 
             //Create a sprite, but don't add it to the batcher
         sprite = new Sprite({
-            add : false,
-            centered : false,
-            texture : Luxe.loadTexture('assets/image.jpg')
+            add : false, //dont add to the main renderer
+            texture : Luxe.loadTexture('assets/image.jpg'),
+            size : new Vector(1024,1024)
         });
         
             //doing this lets you work with html5 late loading textures,
             //unless you have a preloader, or on desktop where its sequential, 
             //you don't have to worry about this not working, it calls for you
         sprite.texture.onload = function(t) {
-            
-            batcher.add( sprite.geometry );
-            rtt.bindBuffer();
-            batcher.draw( false );
-            rtt.unbindBuffer();
 
+            batcher.add( sprite.geometry );
+            
             sprite2 = new Sprite({
                 texture : rtt,
                 size : new Vector(512,512),
@@ -54,11 +51,13 @@ class Main extends luxe.Game {
     } //onkeyup
 
     public function prerender() {
-        
+        rtt.bindBuffer();
+        batcher.draw( false );
+        rtt.unbindBuffer();
     }
 
     public function update(dt:Float) {
-        
+        sprite.rotation += 20 * dt;
     } //update
 
     public function shutdown() {
