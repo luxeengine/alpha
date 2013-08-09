@@ -28,6 +28,39 @@ class Main extends luxe.Game {
             trace("Local Event Fired");
         });
 
+        entity.events.listen('player.*', function(e){
+            trace('player event happened! it was `' + e._event_name_ + '` which has ' + e._event_connection_count_ + ' listeners!');
+        });
+
+        entity.events.listen('player.health.loss', function(e){
+            trace(' ouch! I lost ' + e.amount + ' health :(');
+        });
+        entity.events.listen('player.health.gain', function(e){
+            trace(' woo! I got ' + e.amount + ' hp');
+        });
+        entity.events.listen('player.died', function(e){
+            trace(' oh snap! I was killed by ' + e.attacker );
+        });
+        entity.events.listen('player.spawn', function(e){
+            trace(' ok, letsdoodis, now at ' + e.spawn_node );
+        });
+
+        trace('PRESS SPACE TO FIRE EVENTS');
+
+            //Events class exposes this filter function to test/learn the events
+
+        // trace( Luxe.events.does_filter_event('game.*', 'game.player.test') );
+        // trace( Luxe.events.does_filter_event('game:player:*', 'game:player:health') );
+        // trace( Luxe.events.does_filter_event('game.*.player', 'game.ui.player') );
+        // trace( Luxe.events.does_filter_event('game.*.player', 'game.death.player') );
+        // trace( Luxe.events.does_filter_event('game.*.player', 'game.death.test') );
+        // trace( Luxe.events.does_filter_event('*.player', 'ui.player') );
+        // trace( Luxe.events.does_filter_event('*.player', 'health.player') );
+        // trace( Luxe.events.does_filter_event('*.player', 'derp.plea') );
+        // trace( Luxe.events.does_filter_event('(player)*(house)', 'player inside house') );
+
+        Luxe.core.show_console(true);
+
     } //ready
   
     public function onkeyup(e) {
@@ -40,6 +73,13 @@ class Main extends luxe.Game {
             
             Luxe.events.fire( 'global event' );
             entity.events.fire( 'local event' );
+
+            entity.events.fire('player.health.gain', {amount:10});
+            entity.events.fire('player.health.gain', {amount:23});
+            entity.events.fire('player.health.loss', {amount:60});
+            entity.events.fire('player.died', {attacker:'xKillerx'});
+            entity.events.fire('player.spawn', {spawn_node:'spawn12'});
+            entity.events.fire('player.health.gain', {amount:'100'});
 
         } //space
 

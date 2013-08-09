@@ -151,6 +151,9 @@ class Entity {
 			//update the parent first
 		_call(this, 'update', [dt]);
 
+			//and all our events
+		events.process();
+
 		for(_component in _components) {
 			_call(_component, '_update', [dt]);
 		} //for each component

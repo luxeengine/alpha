@@ -13,6 +13,7 @@ class Events {
     public var event_queue : Map< String, EventObject>;
     public var event_connections : Map< String, EventConnection>; //event id, connect
     public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
+    public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
     public var event_schedules : Map< String, haxe.Timer >; //event id, timer
 
 
@@ -22,6 +23,7 @@ class Events {
             //create the queue, lists and map
         event_connections = new Map();
         event_slots = new Map();
+        event_filters = new Map();
         event_queue = new Map();
         event_schedules = new Map();
     }
@@ -30,27 +32,57 @@ class Events {
         core._debug(':: luxe :: \t Events shut down.');
     }
 
+        //exposed for learning/testing api
+    public function does_filter_event(_filter:String, _event:String) {
+
+        var _replace_stars : EReg = ~/\*/gi;
+        var _final_filter : String = _replace_stars.replace( _filter, '.*?' );
+        var _final_search : EReg = new EReg(_final_filter, 'gi');
+
+        return _final_search.match( _event );
+    
+    } //
+
 
         //Bind a signal (listener) to a slot (event_name)
             //event_name : The event id
             //listener : A function handler that should get called on event firing
-    public function listen( event_name : String, listener : Dynamic -> Void ):String {
+    public function listen( _event_name : String, _listener : Dynamic -> Void ):String {
 
             //we need an ID and a connection to store
         var id : String = UUID.get();
-        var connection : EventConnection = new EventConnection( id, event_name, listener );
+        var connection : EventConnection = new EventConnection( id, _event_name, _listener );
 
-            //now we store it in the hash       
+            //now we store it in the map       
         event_connections.set( id, connection );
 
-            //also store the listener inside the slots
-        if(!event_slots.exists(event_name)) {
-                //no slot exists yet? make one!
-            event_slots.set(event_name, new Array<EventConnection>() );         
-        }
+            //first check if the event name in question has a * wildcard,
+            //if it does we have to store it as a filtered event so it's more optimal
+            //to search through when events are fired
+        var _has_stars : EReg = ~/\*/gi;
+        if(_has_stars.match(_event_name)) {
 
-            //it should exist by now, lets store the connection by event name
-        event_slots.get(event_name).push( connection );
+                //also store the listener inside the slots
+            if(!event_filters.exists(_event_name)) {
+                    //no slot exists yet? make one!
+                event_filters.set(_event_name, new Array<EventConnection>() );         
+            }
+
+                //it should exist by now, lets store the connection by event name
+            event_filters.get(_event_name).push( connection );
+            
+        } else {
+
+                //also store the listener inside the slots
+            if(!event_slots.exists(_event_name)) {
+                    //no slot exists yet? make one!
+                event_slots.set(_event_name, new Array<EventConnection>() );         
+            }
+
+                //it should exist by now, lets store the connection by event name
+            event_slots.get(_event_name).push( connection );
+
+        }
 
             //return the id for disconnecting
         return id;
@@ -67,7 +99,18 @@ class Events {
             var connection = event_connections.get(event_id);               
             var event_slot = event_slots.get(connection.event_name);
 
+            if(event_slot != null) {
                 event_slot.remove(connection);
+                return true;
+            } else {
+                var event_filter = event_filters.get(connection.event_name);
+                if(event_filter != null) {
+                    event_filter.remove(connection);
+                    return true;
+                } else {
+                    return false;
+                } //event_filter != null
+            } //event_slot != null
 
             return true;
 
@@ -124,34 +167,57 @@ class Events {
 
     } //update
 
+
+    private function tag_properties(_properties:Dynamic, _name:String,_count:Int) {
+        
+        if(_properties == null) {
+            _properties = {};
+        }
+
+            //tag these information slots, with _ so they don't clobber other stuff
+        Reflect.setField(_properties,'_event_name_', _name);
+            //tag a listener count 
+        Reflect.setField(_properties,'_event_connection_count_', _count);
+
+        return _properties;
+    }
+
         //Fire an event immediately, bypassing the queue. 
             //event_name : The event (register listeners with connect())
             //properties : A dynamic pass-through value to hand off data        
             //  -- Returns a Bool, true if event existed, false otherwise
-    public function fire( event_name : String, properties : Dynamic = null ) : Bool {
+    public function fire( _event_name : String, ?_properties : Dynamic = null ) : Bool {
 
-        if(event_slots.exists( event_name )){
-               
-            if(properties == null) {
-                properties = {};
-            }
+        //we have to check against our filters if this event matches anything
+        for(_filter in event_filters) {
 
-                //tag these information slots, with _ so they don't clobber other stuff
-            if(!Reflect.field(properties,'_event_name')) {
-                Reflect.setField(properties,'_event_name', event_name);
-            }
+            if(_filter.length > 0) {
 
+                var _filter_name = _filter[0].event_name;
+                if(does_filter_event(_filter_name, _event_name)) {
+                        //ok, it hits so call each of it's listeners
+                    _properties = tag_properties(_properties, _event_name, _filter.length);
+
+                    for(_connection in _filter) {
+                        _connection.listener( _properties );
+                    } //each connection to this filter
+
+                } //if it actually fits this event filter
+            } //if there are any connections
+
+        } //for each of our filters
+
+        if(event_slots.exists( _event_name )) {
+            
                 //we have an event by this name
-            var connections:Array<EventConnection> = event_slots.get(event_name);
+            var connections:Array<EventConnection> = event_slots.get(_event_name);
 
-                //tag a listener count 
-            if(!Reflect.field(properties,'_event_connection_count')) {
-                Reflect.setField(properties,'_event_connection_count', connections.length);
-            }
+                //store additional info about the events 
+            _properties = tag_properties(_properties, _event_name, connections.length);
 
                 //call each listener
             for(connection in connections) {
-                connection.listener( properties );
+                connection.listener( _properties );
             }
 
         } else {
