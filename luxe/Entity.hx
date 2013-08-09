@@ -8,6 +8,8 @@ class Entity {
     public var name : String;
 	public var _components : Map<String, Entity>;
 
+	public var events : luxe.Events;
+
     @:isVar public var parent 	(default,default) : Entity;
 	@:isVar public var pos 		(get,set) : Vector;
 	@:isVar public var rotation (get,set) : Float = 0;
@@ -16,8 +18,11 @@ class Entity {
 	private var _last_scale : Vector;
 
 	public function new(){	
-		
+			//create
 		_components = new Map();
+		events = new luxe.Events( Luxe.core );
+		events.startup();
+
 			//defaults
 		id = luxe.utils.UUID.get();
 			//transform
@@ -124,6 +129,9 @@ class Entity {
 
 			//kill the parent last
 		_call(this, 'destroy');		
+
+			//destroy local properties
+		events.shutdown();
 
 	} //_destroy
 

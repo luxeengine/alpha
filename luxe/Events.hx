@@ -34,7 +34,7 @@ class Events {
         //Bind a signal (listener) to a slot (event_name)
             //event_name : The event id
             //listener : A function handler that should get called on event firing
-    public function connect( event_name : String, listener : Dynamic -> Void ):String {
+    public function listen( event_name : String, listener : Dynamic -> Void ):String {
 
             //we need an ID and a connection to store
         var id : String = UUID.get();
@@ -55,7 +55,7 @@ class Events {
             //return the id for disconnecting
         return id;
 
-    } //connect
+    } //listen
 
         //Disconnect a vound signal
             //event connection id, returned from connect()

@@ -13,10 +13,10 @@ There are two ways to trigger an event, one which sends the event into a queue t
 
 _Listen for an event, by connecting a handler_
 
-**connect**	event name, listening function (returns an event ID to use later)
-`var eventid = Luxe.events.connect( event_name : String, listener : Dynamic -> Void ) : String`
+**listen**	event name, listening function (returns an event ID to use later)
+`var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -> Void ) : String`
 
-**disconnect**	event id from connect (returns if the event was removed)
+**disconnect**	event id from listen (returns if the event was removed)
 `var success = Luxe.events.disconnect( event_id : String ) : Bool`
 
 **queue**	event name, properties to forward to the listeners (returns an event id, not used often)
@@ -36,12 +36,12 @@ _Listen for an event, by connecting a handler_
 
 ### examples
 
-Since event names are string, you can group events by delimeter. A planned feature for the near future is to include filtering or listening to events by 'namespace', like `Luxe.events.connect('game.player.*')` for debugging and such.
+Since event names are string, you can group events by delimeter. A planned feature for the near future is to include filtering or listening to events by 'namespace', like `Luxe.events.listen('game.player.*')` for debugging and such.
 
 
-		var event_id = Luxe.events.connect('debug:event1', function(e) { trace('event listener 1 : ' + e); });
-        Luxe.events.connect('debug:event1', function(e) { trace('event listener 2 : ' +e); });
-        Luxe.events.connect('debug:event1', function(e) { trace('event listener 3 : ' + e); });
+		var event_id = Luxe.events.listen('debug:event1', function(e) { trace('event listener 1 : ' + e); });
+        Luxe.events.listen('debug:event1', function(e) { trace('event listener 2 : ' +e); });
+        Luxe.events.listen('debug:event1', function(e) { trace('event listener 3 : ' + e); });
 
         trace('registered debug:event1 ' + event_id); 
 
