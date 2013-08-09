@@ -12,10 +12,10 @@
 
 <p><em>Listen for an event, by connecting a handler</em></p>
 
-<p><strong>connect</strong>    event name, listening function (returns an event ID to use later)
-<code>var eventid = Luxe.events.connect( event_name : String, listener : Dynamic -&gt; Void ) : String</code></p>
+<p><strong>listen</strong>    event name, listening function (returns an event ID to use later)
+<code>var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -&gt; Void ) : String</code></p>
 
-<p><strong>disconnect</strong>    event id from connect (returns if the event was removed)
+<p><strong>disconnect</strong>    event id from listen (returns if the event was removed)
 <code>var success = Luxe.events.disconnect( event_id : String ) : Bool</code></p>
 
 <p><strong>queue</strong>    event name, properties to forward to the listeners (returns an event id, not used often)
@@ -35,11 +35,11 @@
 
 <h3 id="examples">examples</h3>
 
-<p>Since event names are string, you can group events by delimeter. A planned feature for the near future is to include filtering or listening to events by 'namespace', like <code>Luxe.events.connect('game.player.*')</code> for debugging and such.</p>
+<p>Since event names are string, you can group events by delimeter. A planned feature for the near future is to include filtering or listening to events by 'namespace', like <code>Luxe.events.listen('game.player.*')</code> for debugging and such.</p>
 
-<pre><code>    var event_id = Luxe.events.connect('debug:event1', function(e) { trace('event listener 1 : ' + e); });
-    Luxe.events.connect('debug:event1', function(e) { trace('event listener 2 : ' +e); });
-    Luxe.events.connect('debug:event1', function(e) { trace('event listener 3 : ' + e); });
+<pre><code>    var event_id = Luxe.events.listen('debug:event1', function(e) { trace('event listener 1 : ' + e); });
+    Luxe.events.listen('debug:event1', function(e) { trace('event listener 2 : ' +e); });
+    Luxe.events.listen('debug:event1', function(e) { trace('event listener 3 : ' + e); });
 
     trace('registered debug:event1 ' + event_id); 
 
