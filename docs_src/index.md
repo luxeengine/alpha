@@ -1,5 +1,5 @@
 
-![Logo](http://underscorediscovery.com/sven/images/logo.png)
+[![Logo](http://luxeengine.com/images/logo.png)](./index.html)
 
 #[luxe]()
 ######A rapid development, haxe based game engine for 2D and 3D games.

@@ -1,7 +1,8 @@
 
-![Logo](http://underscorediscovery.com/sven/images/logo.png)
+[![Logo](http://luxeengine.com/images/logo.png)](./index.html)
 #luxe
-###### i see
+
+###### A cross platform haxe based rapid iteration game development framework
 
 ##Structure
 

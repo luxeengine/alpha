@@ -20,6 +20,7 @@ class RigidBody extends Component {
 	
 	public var inertia : Vector;
 	public var mass : Float = 1;
+	public var kinematic : Bool = false;
 	public var _rotation : Quaternion;
 
 	public function init() {
@@ -44,20 +45,12 @@ class RigidBody extends Component {
 		Luxe.physics.addRigidBody( rigid_body );
 
 	} //start
-
 	
 
 	public function update(dt:Float) {
 
-		if(mass > 0) {
-
-			// trace('>>>>>>>>>>>> ');
-				//update the transform position of the parent entity from the physics
+		if(mass > 0 && !kinematic) {
 			pos = rigid_body.origin;
-				//
-			// trace('rigid_body ' + pos);
-			// trace('<<<<<<<<<< ');
-
 		} //only if not static
 	} //fixed_update
 
