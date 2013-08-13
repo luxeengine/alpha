@@ -38,8 +38,8 @@ class MIButton extends MIControl {
 		});
 
 		
-		label._text.geometry.clip = true;
-		label._text.geometry.clip_rect = parent.real_bounds;
+		// label._text.geometry.clip = true;
+		// label._text.geometry.clip_rect = parent.real_bounds;
 
 		geom.pos = new Vector( real_bounds.x, real_bounds.y );
 		geom.create( new Vector(real_bounds.x, real_bounds.y), real_bounds.w, real_bounds.h );

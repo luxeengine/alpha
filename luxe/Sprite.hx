@@ -11,7 +11,6 @@ import phoenix.Texture;
 import phoenix.Vector;
 import phoenix.Color;
 
-
 import Luxe;
 
 class Sprite extends Entity {
@@ -22,6 +21,7 @@ class Sprite extends Entity {
     @:isVar public var size         (default,set    )   : Vector;
     @:isVar public var color        (default,set    )   : Color;
     @:isVar public var visible      (default,set    )   : Bool;
+    @:isVar public var rotation_z   (default,set    )   : Float = 0.0;
     @:isVar public var radians      (default,set    )   : Float = 0.0;
     @:isVar public var depth        (default,set    )   : Float = 0.0;
     @:isVar public var centered     (default,set    )   : Bool = true;    
@@ -357,13 +357,13 @@ class Sprite extends Entity {
     } 
 //Rotation 
     
-    public override function get_rotation() : Float {
+    public function get_rotation_z() : Float {
         return Maths.radToDeg(radians);
-    }
+    } //get_rotation
 
-    public override function set_rotation(_r:Float) : Float {
+    public function set_rotation_z( _r:Float ) : Float {
         radians = Maths.degToRad(_r);
-        return rotation = _r;
+        return rotation_z = _r;
     }
 
     public function set_radians(_r:Float) : Float {

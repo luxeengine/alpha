@@ -6,19 +6,21 @@
 		<ndll name="std" haxelib="hxcpp" />
 		<ndll name="regexp" haxelib="hxcpp" />
 		<ndll name="zlib" haxelib="hxcpp" />
-		
+
 		<haxelib name="lime" />
 		<haxelib name="format" />
 		<haxelib name="actuate" />
 
+		<!-- Tentatively added here, testing in projects/three first -->
+		<!-- This will also only be required on native platforms anyway -->
+		<haxelib name="haxebullet" />
+
 		<!-- for now in initial dev phoenix will be underneath luxe -->
 		<!-- but it is possible to use it as a haxelib already -->
 		<!-- <haxelib name="haxephoenix" /> -->
-		
-		<ndll name="libfreetype" register="false" if="emscripten" />
-		
+			
 	</section>
-	
+
 	<templatePath name="templates" />
 	
 </extension>

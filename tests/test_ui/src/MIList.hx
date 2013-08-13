@@ -18,7 +18,6 @@ class MIList extends MIControl {
 			name : name + '.view'
 		});
 
-
 	}
 
 	public function add_item( _item:String ) {

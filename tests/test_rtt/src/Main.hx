@@ -16,6 +16,7 @@ class Main extends luxe.Game {
     var sprite2 : Sprite;
 
     public function ready() {
+        
         rtt = new RenderTexture( Luxe.resources, new Vector( 512,512 ) );
 
         batcher = new Batcher( Luxe.renderer, 'test_rtt_batcher' );

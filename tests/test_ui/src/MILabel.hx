@@ -19,18 +19,19 @@ class MILabel extends MIControl {
 		if(_options.text_size != null) { _options.size = _options.text_size; }		
 
 		_options.pos = new Vector(real_bounds.x, real_bounds.y);
-		_text = new Text( options_plus(_options, {depth : 2}) );
+			
+			//adjust for labrl
+		_options = options_plus(_options, {depth : 2});
+			//create it
+		renderer.label.init(this,_options);
 
-		debug_color = new Color(0,1,0.6,0.5);
-
-		_text.geometry.clip = true;
-        _text.geometry.clip_rect = parent.real_bounds;
+		debug_color = new Color(0,1,0.6,0.5);		
 
 	} //new
 
 	public override function translate( ?_x : Float = 0, ?_y : Float = 0 ) {
 		super.translate(_x,_y);		
-		_text.pos = new Vector(_text.pos.x + _x, _text.pos.y + _y);
+		renderer.label.translate(this, _x, _y);
 	}
 
 

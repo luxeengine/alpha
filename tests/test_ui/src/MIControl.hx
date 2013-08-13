@@ -21,6 +21,10 @@ class MIControl {
 	
 	public var name : String = 'control';
 
+		//parent canvas
+	public var canvas : MICanvas;
+	public var renderer : MIRenderer;
+
 	public var bounds : Rectangle;
 	public var real_bounds : Rectangle;
 	@:isVar public var parent(get,set) : MIControl;
@@ -62,9 +66,16 @@ class MIControl {
 
 		if(_options.parent != null) {
 			_options.parent.add(this);
+			renderer = parent.renderer;
+			canvas = parent.canvas;
+		} else { //parent != null
+
+			if( !Std.is(this, MICanvas) && canvas == null) {
+				throw "Control without a canvas " + _options;
+			} //canvas
 		}
 
-	}
+	} //new
 
 	function get_mousedown() {
 		return mouse_down_handlers[0];

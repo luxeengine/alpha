@@ -104,7 +104,7 @@ class Debug {
         debug_overlay = new QuadGeometry({
             x:0, y:0, 
             width: Luxe.screen.w,  height: Luxe.screen.h,        
-            color : new Color(1,1,1,0.9),
+            color : new Color(0,0,0,0.8),
             depth : 999,    //debug depth
             group : 999,    //debug group
             enabled : false //default invisible
@@ -153,7 +153,7 @@ class Debug {
 
             line = new Text({
                 depth : 999.3,
-                color : new Color(0,0,0,0.6),
+                color : new Color(1,1,1,0.6),
                 pos : new Vector( padding.x + 24 , new_line_y ),
                 font : Luxe.renderer.default_font,
                 text : _t,
@@ -172,7 +172,7 @@ class Debug {
         //move all previous lines up
         for(_line in lines) {
             _line.pos = new Vector(_line.pos.x,_line.pos.y-14);
-            _line.color = new Color(0,0,0,0.4);
+            _line.color = new Color(1,1,1,0.6);
                 //dirty them to update the positions
             for(_g in _line.geometry.geometry) {
                 _g.dirty = true;
@@ -182,7 +182,7 @@ class Debug {
             //line is hidden by state
         line.visible = visible && current_view == 0;
             //latest line is darker
-        line.color = new Color(0,0,0,0.6);
+        line.color = new Color(1,1,1,0.6);
             //add the line
         lines.push(line);
 

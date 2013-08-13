@@ -127,7 +127,7 @@ class Menu extends Mode {
         );
 
         back.visible = true;        
-        particles.stop();
+        // particles.stop();
 
     }
 

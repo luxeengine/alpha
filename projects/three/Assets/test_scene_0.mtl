@@ -1,29 +1,10 @@
-# MTL written from /Users/Sven/dev/lab/haxelab/projects/three/Assets/test_scene_0.obj
-newmtl Default
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl None
+Ns 0
+Ka 0.000000 0.000000 0.000000
 Kd 0.8 0.8 0.8
-Ns 256
+Ks 0.8 0.8 0.8
 d 1
 illum 2
-Ka 0 0 0
-Ks 0.2 0.2 0.2
-newmtl light
-Kd 0.764035 0.684476 0.47712
-Ns 256
-d 1
-illum 1
-Ka 10 9.29933 8.51441
-Ks 0 0 0
-newmtl light2
-Kd 0.764035 0.684476 0.47712
-Ns 256
-d 1
-illum 1
-Ka 1 1 1
-Ks 0 0 0
-newmtl orange
-Kd 0.789873 0.340102 0.0367686
-Ns 256
-d 1
-illum 2
-Ka 0 0 0
-Ks 0 0 0

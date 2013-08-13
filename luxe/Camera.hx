@@ -39,7 +39,7 @@ class Camera extends Entity {
 		pos = v;
 
 			//listen for sub changes on properties
-		_attach_listener( pos, pos_change );
+		_attach_listener( pos, _pos_change );
 
 		return pos;
 	}

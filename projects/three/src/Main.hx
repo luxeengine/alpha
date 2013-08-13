@@ -15,13 +15,18 @@ import luxe.Vector;
 import luxe.Text;
 import luxe.Color;
 import luxe.Entity;
+import luxe.Mesh;
 
 import lime.gl.GL;
 
 import phoenix.formats.obj.Reader;
 import phoenix.utils.Maths;
 
-import FlyCamera;
+import luxe.components.cameras.FlyCamera;
+import luxe.components.render.MeshComponent;
+import luxe.components.physics.PlaneCollider;
+import luxe.components.physics.SphereCollider;
+import luxe.components.physics.RigidBody;
 
 class Main extends luxe.Game {
 
@@ -30,8 +35,10 @@ class Main extends luxe.Game {
 
     var tex : Texture;
     var tex2 : Texture;
+    var tex3 : Texture;
 
     var rotation : Vector;
+    var info : Text;
 
     public function ready() {
 
@@ -44,6 +51,7 @@ class Main extends luxe.Game {
 
         tex = Luxe.loadTexture('assets/diff.png');
         tex2 = Luxe.loadTexture('assets/transform.png');
+        tex3 = Luxe.loadTexture('assets/sphere.png');
 
         batch3d = new Batcher(Luxe.renderer);
 
@@ -53,72 +61,87 @@ class Main extends luxe.Game {
         cam3d = new FlyCamera({
             projection: ProjectionType.perspective,
             fov:90, 
+            near:0.01,
             aspect:Luxe.screen.w/Luxe.screen.h
+        });
+
+        info = new luxe.Text({
+            color : new Color().rgb(0xf6007b),
+            pos : new Vector(10,10),
+            font : Luxe.renderer.default_font,
+            size : 20
         });
 
             //Apply it to our mesh renderer
         batch3d.view = cam3d.view;
             //Load the mesh files
-        load_level_obj_into( batch3d );
+        load_level_into( batch3d );
             //Add camera to scene
         Luxe.scene.add( cam3d );
 
-    }
+    } //derp
 
-    public function add_mesh(id:String, t:Texture, _batch:Batcher) {
+    var room_mesh : Entity;
+    var transform_mesh : Entity;
+    var sphere_mesh : Entity;
+    var plane_entity : Entity;
 
-        var obj_file = lime.utils.Assets.getText(id);       
-        var file_input = new haxe.io.StringInput( obj_file );
-        var obj_mesh_data = new phoenix.formats.obj.Reader(file_input).read();
-
-        var _geom = new Geometry({
-            texture : t,
-            type: PrimitiveType.triangles,
-            immediate : false,
-            depth : 2
-        });
-
-        var scale = 0.1;
-        var p = new Vector(0,0,0);
-
-        for(v in obj_mesh_data.vertices) {
-           
-           var normal : Vector = new Vector();
-           if(v.normal != null) {
-                normal = new Vector(v.normal.x, v.normal.y, v.normal.z);
-           }
-           var _v = new Vertex( new Vector( (v.pos.x * scale)+p.x , (v.pos.y * scale)+p.y, (v.pos.z * scale)+p.z), normal );
-           if(v.uv != null) {
-               _v.uv[0] = new TextureCoord( v.uv.u, 1.0 - v.uv.v );
-           } else {
-               _v.uv[0] = new TextureCoord( 0, 0 );
-           }
-           _geom.add( _v );
-        }
-
-       _batch.add(_geom);
-
-    }
-
-    public function load_level_obj_into(_batch:Batcher) {
+    public function load_level_into(_batch:Batcher) {
       
         _batch.view.pos.x = 0;
         _batch.view.pos.y = 0;
         _batch.view.pos.z = 0;
 
-        add_mesh('assets/test_scene_0.obj', tex, _batch);
-        add_mesh('assets/transform.obj', tex2, _batch);
+        room_mesh = Luxe.scene.create(Entity, 'room');
 
-    }
+            room_mesh.add(MeshComponent, 'mesh');
+
+                room_mesh.get('mesh').file = 'assets/test_scene_0.obj';
+                room_mesh.get('mesh').texture = tex; 
+                room_mesh.get('mesh').batcher = _batch;
+
+        transform_mesh = Luxe.scene.create(Entity, 'transform');
+
+            transform_mesh.add(MeshComponent, 'mesh');
+
+                transform_mesh.get('mesh').file = 'assets/transform.obj';
+                transform_mesh.get('mesh').texture = tex2; 
+                transform_mesh.get('mesh').batcher = _batch;
+
+        sphere_mesh = Luxe.scene.create(Entity, 'sphere');
+
+            sphere_mesh.add(MeshComponent, 'mesh');
+
+                sphere_mesh.get('mesh').file = 'assets/sphere.obj';
+                sphere_mesh.get('mesh').texture = tex3; 
+                sphere_mesh.get('mesh').batcher = _batch;
+
+
+        plane_entity = Luxe.scene.create(Entity, 'plane');
+
+            plane_entity.add(PlaneCollider, 'collider');
+            var pb = plane_entity.add(RigidBody, 'rigidbody');
+
+            pb.mass = 0;
+
+            //finally , add a sphere collider and rigidbody to the sphere entity
+        sphere_mesh.add(SphereCollider, 'collider');
+        var rb = sphere_mesh.add(RigidBody, 'rigidbody');
+
+            rb.pos = new Vector(0,20,0);
+            rb.mass = 1;
+
+    } //load level
 
     public function onkeydown(e) {
+
         if(e.value == Input.Keys.key_Q) {
-            cam3d.shake(0.1);
+            cam3d.shake(1);
         }
 
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
-        }        
+        }
 
         cam3d.onkeydown(e);
     }
@@ -145,6 +168,7 @@ class Main extends luxe.Game {
     }
 
     public function onmousedown(e) {
+        info.text = ''+cam3d.pos;
     }   
 
     public function onmouseup(e) {
@@ -152,8 +176,7 @@ class Main extends luxe.Game {
     }
 
     public function update(dt:Float) {
-
-
+        
     }
 
     public function shutdown() {

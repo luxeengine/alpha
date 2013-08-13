@@ -14,7 +14,8 @@ class Main extends luxe.Game {
             text : "left && top",
             bounds : new Rectangle(50,50,200,100),
             align : TextAlign.left,
-            align_vertical : TextAlign.top
+            align_vertical : TextAlign.top,
+            size : 24
         });
 
         new Text({
@@ -22,7 +23,8 @@ class Main extends luxe.Game {
             text : "right && center",
             bounds : new Rectangle(250,50,200,100),
             align : TextAlign.right,
-            align_vertical : TextAlign.center
+            align_vertical : TextAlign.center,
+            size : 24
         });
 
         new Text({
@@ -30,7 +32,8 @@ class Main extends luxe.Game {
             text : "center && bottom",
             bounds : new Rectangle(450,50,200,100),
             align : TextAlign.center,
-            align_vertical : TextAlign.bottom
+            align_vertical : TextAlign.bottom,
+            size : 24
         });
 
         Luxe.draw.rectangle({x:50,y:50,w:200,h:100});

@@ -92,11 +92,11 @@ class Inspector {
 			batcher : _batcher,
 			depth : 999.2,
 			color : new Color().rgb(0xf6007b),
-			pos : new Vector( pos.x+(size.x/2), pos.y+18 ),
+			pos : new Vector( pos.x+(size.x/2), pos.y+6 ),
 			align : TextAlign.center,
 			font : font,
 			text : title,
-			size : 19,
+			size : 18,
 			enabled : false
 		});
 

@@ -16,7 +16,6 @@ class Events {
     public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
     public var event_schedules : Map< String, haxe.Timer >; //event id, timer
 
-
     public function startup() {
         core._debug(':: luxe :: \t Events Initialized.');
 

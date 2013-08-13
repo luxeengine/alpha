@@ -17,6 +17,7 @@ class Luxe {
     public static var events : luxe.Events;
     public static var input : luxe.Input;
     public static var scene : luxe.Scene;
+    public static var physics : luxe.Physics;
     public static var utils : luxe.utils.Utils;
 
     public static var camera : luxe.Camera;

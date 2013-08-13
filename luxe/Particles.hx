@@ -1,6 +1,8 @@
 
 package luxe;
 
+import luxe.components.Components;
+
 class ParticleSystem extends Entity {
 
     public var active : Bool = true;
@@ -36,13 +38,10 @@ class ParticleSystem extends Entity {
     } //add
 
     public override function set_pos(_v:Vector) {
-
         pos = _v;
-
         super.set_pos(pos);
-
         return pos;
-    } 
+    } //set_pos
 
     public function emit(duration:Float = -1) {
         active = true;
@@ -73,7 +72,7 @@ class ParticleSystem extends Entity {
 
 }
 
-class ParticleEmitter extends Entity {
+class ParticleEmitter extends Component {
 
     public var particle_system : ParticleSystem;
 
@@ -106,6 +105,9 @@ class ParticleEmitter extends Entity {
     public var direction : Float;
     public var direction_random : Float;
     public var gravity : Vector;
+
+    public var rotation : Float = 0;
+    public var pos : Vector;
 
         //todo
     public var radius : Float = 50;
@@ -309,9 +311,8 @@ class ParticleEmitter extends Entity {
 
         particle.rotation = (rotation + rotation_random * random_1_to_1()) + rotation_offset;
 
-
-        particle.position.x = (parent.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
-        particle.position.y = (parent.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
+        particle.position.x = (entity.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
+        particle.position.y = (entity.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
 
         if(particle_cache[cache_index] != null) {
 
@@ -394,7 +395,7 @@ class ParticleEmitter extends Entity {
         particle.sprite.color = particle.color;
         particle.sprite.pos.x = particle.position.x;
         particle.sprite.pos.y = particle.position.y;
-        particle.sprite.rotation = particle.rotation;
+        particle.sprite.rotation_z = particle.rotation;
         
     } //init_particle
 
@@ -488,11 +489,10 @@ class ParticleEmitter extends Entity {
             // var x = Math.floor( particle.position.x );
             // var y = Math.floor( particle.position.y );
 
-            particle.sprite.pos.x = particle.position.x;
-            particle.sprite.pos.y = particle.position.y;
+            particle.sprite.pos = particle.position;
             particle.sprite.size = particle.draw_size;
             particle.sprite.color = particle.draw_color;
-            particle.sprite.rotation = particle.rotation;
+            particle.sprite.rotation_z = particle.rotation;
 
         }     
     }

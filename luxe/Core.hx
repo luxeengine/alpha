@@ -11,6 +11,7 @@ import luxe.Scene;
 import luxe.Files;
 import luxe.Debug;
 import luxe.Time;
+import luxe.Physics;
 import luxe.Renderer;
 
 import haxe.Timer;
@@ -39,6 +40,7 @@ class Core {
 	public var input 	: Input;
     public var audio    : Audio;
     public var scene    : Scene;
+    public var physics  : Physics;
 	public var renderer : Dynamic;
     public var screen   : luxe.Rectangle; //todo
 
@@ -113,7 +115,8 @@ class Core {
 		time = new Time( this );
 		events = new Events( this );
 		audio = new Audio( this );	
-		input = new Input( this );        
+		input = new Input( this );
+        physics = new Physics( this );    
 
         if(config.renderer == null) {
             renderer = new Renderer( this );
@@ -135,17 +138,19 @@ class Core {
 		events.startup();
 		audio.startup();
 		input.startup();
+        physics.startup();
         
         if(renderer != null && renderer.startup != null) {
             renderer.startup();
-        }
+        } //if we have a renderer
 
-        Luxe.audio = audio;   
+        Luxe.audio = audio;
         Luxe.draw = draw;     
         Luxe.events = events;
         Luxe.time = time;
         Luxe.camera = new luxe.Camera({ name:'default_camera', view:renderer.default_camera });
         Luxe.resources = renderer.resource_manager;
+        Luxe.physics = physics;
 
         scene = new Scene();
         scene.name = 'default scene';

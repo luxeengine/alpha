@@ -22,12 +22,15 @@ import luxe.Sprite;
 class Main extends luxe.Game {
 
     public var sprite:Sprite;
+
     public function ready() {
 
         Entity.debug = false;
 
             //game object is a fake class below just for testing
         var go = new GameObject();
+        
+            //what we want to test is that more than one layer deep affect the parent transform
         var child1 = go.add(Child1,'child1');
         var child2 = child1.add(Child2,'child2');
 
@@ -41,6 +44,7 @@ class Main extends luxe.Game {
         var child1 = sprite.add(Child1,'child1');
         var child2 = child1.add(Child2,'child2');
 
+            //default camera is an entity, so give it a component!
         Luxe.camera.add(RandomCameraShaker,'shaker');        
 
     } //ready

@@ -1,234 +1,402 @@
 package luxe;
 
+import phoenix.Matrix4;
+
 import luxe.Vector;
-	
-class Entity {
+import luxe.components.Components;
 
-    public var id : String;
-    public var name : String;
-	public var _components : Map<String, Entity>;
+//Objects -> Entity
+class Entity extends Objects {
 
-	public var events : luxe.Events;
+	public var components(get,never) : Map<String, Component>;
+	private var _components : Components;
 
-    @:isVar public var parent 	(default,default) : Entity;
-	@:isVar public var pos 		(get,set) : Vector;
-	@:isVar public var rotation (get,set) : Float = 0;
-	@:isVar public var scale 	(get,set) : Vector;
+    public var events : luxe.Events;
+    public var children : Array<Entity>;
+    public var fixed_rate : Float = 2;
 
-	private var _last_scale : Vector;
+    var _destroyed : Bool = false;
 
-	public function new(){	
-			//create
-		_components = new Map();
+    	//The parent entity if any, set to null for no parent
+    @:isVar public var parent   		(get,set) : Entity;
+    	//absolute position in world space
+    @:isVar public var pos      		(get,set) : Vector;
+    	//relative position to parent 
+    @:isVar public var posRelative  	(get,set) : Vector;
+        //absolute rotation in world space
+    @:isVar public var rotation         (get,set) : Vector;
+        //relative rotation to parent 
+    @:isVar public var rotationRelative (get,set) : Vector;
+    	//absolute scale in world space
+    @:isVar public var scale 		    (get,set) : Vector;
+    	//relative scale to parent 
+    @:isVar public var scaleRelative    (get,set) : Vector;
+
+    private var _last_scale:Vector;
+
+    public function new() {
+
+    	super();
+
+    	name = 'Entity';
+    	
+    	_components = new Components( this );
+    	children = new Array<Entity>();
 		events = new luxe.Events( Luxe.core );
-		events.startup();
 
-			//defaults
-		id = luxe.utils.UUID.get();
 			//transform
 		pos = new Vector();
-		scale = new Vector(1,1);
-		_last_scale = new Vector(1,1);
-		rotation = 0;
-			//hierarchy
-		parent = null;
+		posRelative = new Vector();
+        rotation = new Vector();
+        rotationRelative = new Vector();
+        _last_scale = new Vector(1,1,1);
+        scale = new Vector(1,1,1);
+		scaleRelative = new Vector(1,1,1);
 
-	} //new
+			//init events
+		events.startup();
 
-	public function add<T>(type:Class<T>, ?_name:String='') : T {
-
-		var _temp_name = _name;
-		if(_temp_name.length == 0) {
-			_temp_name = Luxe.utils.uuid();
-		} else {
-			_temp_name = _name;
-		}
-
-			//create an instance
-		var _component = Type.createInstance( type, [] );
-			//cast to entity so we can set its name
-		var _e_component : Entity = cast _component;
-			//apply it!
-		_e_component.name = _temp_name;
-			//store the parent
-		_e_component.parent = this;
-		_e_component.pos = this.pos;
-		_e_component.scale = this.scale;
-		_e_component.rotation = this.rotation;
-			//store it in the component list
-		_components.set(_temp_name, _e_component );
-			//debug stuff
-		_debug('adding an entity to ' + name + ' called ' + _temp_name + ', now at ' + Lambda.count(_components) + ' components');
-
-			//return the component
-		return _component;
-
-	} //add component
-
-	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
-		
-		if(!in_children) {
-			return _components.get(_name);
-		} else {
-
-			var results = [];
-
-			var is_this_component = _components.get(_name);
-			if(is_this_component != null) {
-				if(first_only) {
-					return is_this_component;
-				} else {
-					results.push(is_this_component);	
-				} //first only
-			} //is_this_component
-
-				//check each of our child components for this named item
-			for(_component in _components) {				
-				var found : Dynamic = _component.get( _name, true, first_only );
-				if(found != null) {
-						//early out
-					if(first_only) return found;
-						//store otherwise
-					if(Std.is(found, Array)) {
-						results.concat(found);
-					} else {
-						results.push(found);
-					}
-				} //found != null
-			} //each component
-
-			return (results.length > 0) ? results : null;
-		}
-
-		return null;
-	} //get
-
-	public function has(name:String) : Bool {
-		return _components.exists(name);
-	} //has
+    } //new
 
 	public function _init() {
+
 		_debug('calling init on ' + name);
+
 			//init the parent first
 		_call(this, 'init');
 
-		if(name == null) throw "name on entity is null?";
+		if(name == null) throw "name on entity is null? " + this;
 
-		for(_component in _components) {
-			_call(_component, '_init');			
+			//init all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'init');
 		} //for each component
+
+			//now init our children, so they do the same
+		for(_child in children) {
+			_call(_child, '_init');
+		} //for each child
+
 	} //_init
 
-	public function _destroy() {
-
-		for(_component in _components) {
-			_call(_component, '_destroy');
-		} //for each component
-
-		_debug('calling destroy on ' + name);	
-
-			//kill the parent last
-		_call(this, 'destroy');		
-
-			//destroy local properties
-		events.shutdown();
-
-	} //_destroy
-
 	public function _start() {
+
+		_debug('calling start on ' + name);
+
 			//start the parent first
 		_call(this, 'start');
 
-		_debug('calling start on ' + name);	
-
-		for(_component in _components) {
-			_call(_component, '_start');
+			//start all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'start');
 		} //for each component
+
+			//now start our children, so they do the same
+		for(_child in children) {
+			_call(_child, '_start');
+		} //for each child
+
+			//once we have started everything we can create out fixed rate update
+			//but only top tier objects call this, all their children are fixed under the parent rate
+			//for now, that is.
+		if(fixed_rate != 0 && parent == null && !_destroyed) {
+	    	haxe.Timer.delay( _fixed_update, Std.int(fixed_rate*1000) );
+	    } //fixed_rate		
+
+	} //_start
+
+	public function _destroy() {
+
+			//first destroy children
+		for(_child in children) {
+			_call(_child, '_destroy');
+		} //for each child
+
+			//destroy all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'destroy');
+		} //for each component
+
+		_debug('calling destroy on ' + name);
+
+			//destroy the parent last
+		_call(this, 'destroy');
+
+			//mark the flag
+		_destroyed = true;
+
+			//kill the events
+		events.shutdown();
+
 	} //_start
 
 	public function _update(dt:Float) {
 
+		_debug('calling update on ' + name);
+
 			//update the parent first
 		_call(this, 'update', [dt]);
 
-			//and all our events
+			//update the events
 		events.process();
 
-		for(_component in _components) {
-			_call(_component, '_update', [dt]);
+			//update all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'update', [dt]);
 		} //for each component
+
+			//now update our children, so they do the same
+		for(_child in children) {
+			_call(_child, '_update', [dt]);
+		} //for each child
+
 	} //_update
 
-//Private helper functions
+	public function _fixed_update() {
 
-	private function _call(_object:Entity, _name:String, ?args) {
-		var _func = Reflect.field(_object, _name);
-		if(_func != null) {
-			Reflect.callMethod(_object, _func, args );
-		} //does function exist?
-	}
+			//Not allowed post destroy
+		if(_destroyed) return;
 
-//Debugging
+		_debug('calling fixed_update on ' + name);
 
-    public static var debug : Bool = false;
-    private function _debug(v){
-    	if(debug) trace(v);
-    }
+			//fixed_update the parent first
+		_call(this, 'fixed_update');
+
+			//fixed_update all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'fixed_update');
+		} //for each component
+
+			//now fixed_update our children, so they do the same
+		for(_child in children) {
+			_call(_child, '_fixed_update');
+		} //for each child
+
+			//only root objects call the fixed update loop
+		if(fixed_rate != 0 && parent == null && !_destroyed) {
+	    	haxe.Timer.delay( _fixed_update, Std.int(fixed_rate*1000) );
+	    } //fixed_rate
+
+	} //_fixed_update
+
+    public function add<T>(type:Class<T>, ?_name:String='') : T {
+    	return _components.add( type, _name );
+    } //add
+
+    public function get(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Dynamic {
+    	return _components.get( _name, _in_children, _first_only );
+    } //get
+
+    public function has( _name:String ) : Bool {
+    	return _components.has( _name );
+    } //has
+
+    private function get_components() {
+    	return _components.components;
+    } //get_components
+
+    public function addChild(child:Entity) {
+
+    	children.push(child);
+
+    } //addChild
+
+    public function removeChild(child:Entity) {
+
+    	children.remove(child);
+
+    } //removeChild
+
+    private function set_posRelative(_p:Vector) { 
+
+    	if(parent == null) {
+    			//when setting the relative position and we have no parent,
+    			//it will instead just change our absolute position
+    		pos = _p.clone();
+
+    			//apply
+    		return posRelative = _p;
+
+    	} else {
+    			//if we do have a parent, it needs to affect our position
+    			//based on where the parent is sitting
+    		pos = Vector.Add( parent.pos, _p );
+    			//apply
+    		return posRelative = _p; 
+    	}
+
+    } //set_posRelative
+
+    private function set_rotationRelative( _r:Vector ) { 
+
+        if(parent == null) {
+                //when setting the relative rotation and we have no parent,
+                //it will instead just change our absolute rotation
+            rotation = _r.clone();
+
+                //apply
+            return rotationRelative = _r;
+
+        } else {
+                //if we do have a parent, it needs to affect our rotation
+                //based on where the parent is sitting
+            rotation = Vector.Add( parent.rotation, _r );
+                //apply
+            return rotationRelative = _r; 
+        }
+
+    } //set_posRelative    
+
+    private function set_scaleRelative( _s:Vector ) { 
+
+    	if(parent == null) {
+    			//when setting the relative scale and we have no parent,
+    			//it will instead just change our absolute scale
+    		scale = _s.clone();
+
+    			//apply
+    		return scaleRelative = _s;
+
+    	} else {
+    			//if we do have a parent, it needs to affect our scale
+    			//based on where the parent is sitting
+    		scale = Vector.Add( parent.scale, _s );
+    			//apply
+    		return scaleRelative = _s; 
+    	}
+
+    } //set_posRelative    
+
+    private function set_pos(_p:Vector) { 
+
+    		//if we have a parent, we adjust our relative position to match
+    	if(parent != null) {
+    		posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
+    	}
+
+    		//update the value before we propogate
+    	pos = _p; 
+
+    		//if we have children we must propogate the change to them
+    	for(child in children) {
+    		child.internal_parent_pos_changed( pos );
+    	}
+
+    	return pos; 
+    } //set_pos
+
+    private function set_rotation( _r:Vector ) { 
+
+    		//if we have a parent, we adjust our relative rotation to match
+    	if(parent != null) {
+    		rotationRelative.set( _r.x - parent.rotation.x, _r.y - parent.rotation.y, _r.z - parent.rotation.z );
+    	}
+
+    		//update the value before we propogate
+    	rotation = _r; 
+
+    		//if we have children we must propogate the change to them
+    	for(child in children) {
+    		child.internal_parent_rotation_changed( rotation );
+    	} //child
+
+    	return rotation; 
+
+    } //set_rotation
+
+    private function set_scale( _s:Vector ) { 
+
+            //if we have a parent, we adjust our relative scale to match
+        if(parent != null) {
+            scaleRelative.set( _s.x - parent.scale.x, _s.y - parent.scale.y, _s.z - parent.scale.z );
+        }
+
+            //update the value before we propogate
+        scale = _s;
+        _last_scale = scale.clone();        
+
+            //if we have children we must propogate the change to them
+        for(child in children) {
+            child.internal_parent_scale_changed( scale );
+        } //child
+
+        return scale; 
+
+    } //set_scale
+
+    public function internal_parent_pos_changed(_parent_pos:Vector) {
+    		//our position is updated as parent_pos+relativePos
+    	pos = _parent_pos.clone().add( posRelative );
+
+    }//internal_parent_pos_changed
+
+    public function internal_parent_rotation_changed(_parent_rotation:Vector) {
+            //our rotation is updated as parent_rotation+relative
+        rotation = _parent_rotation.clone().add( rotationRelative );
+
+    }//internal_parent_pos_changed
+
+    public function internal_parent_scale_changed(_parent_scale:Vector) {
+    		//our scale is updated as parent_scale+relative
+    	scale = _parent_scale.clone().add( scaleRelative );
+
+    }//internal_parent_pos_changed
+
+    private function set_parent(other:Entity) {
+
+    		//if we are parented already, remove ourselves
+    	if(parent != null) {
+    		parent.removeChild(this);
+    	} //remove
+
+    	parent = other;
+
+    		//detaching parent
+    	if(parent == null) {
+
+    		pos = pos.clone();
+    		rotation = rotation.clone();
+
+    	} else {
+
+    			//update absolute position
+    		pos = parent.pos.clone().add( posRelative );
+    			//update relative rotation
+    		rotation = parent.rotation.clone().add( rotationRelative );
+    			//add to parent as a child
+    		parent.addChild(this);
+
+    	} 
+
+    	return parent;
+
+    } //set_parent
+
+    private function get_pos() { return pos; }                              //get_pos
+    private function get_rotation() { return rotation; }                    //get_rotation
+    private function get_scale() { return scale; }                          //get_scale
+
+    private function get_posRelative() { return posRelative; }              //get_posRelative
+    private function get_rotationRelative() { return rotationRelative; }    //get_rotationRelative
+    private function get_scaleRelative() { return scaleRelative; }          //get_scaleRelative
+
+    private function get_parent() { return parent; }                        //get_parent
 
 //Spatial transforms
 
-	    //An internal callback for when x y or z on a transform changes
-    private function pos_change(_v:Float) {
-        set_pos(pos);
-    }
-	    //An internal callback for when x y or z on a transform changes
-    private function scale_change(_v:Float) {
-        set_scale(scale);
-    }
+        //An internal callback for when x y or z on a transform changes
+    private function _pos_change(_v:Float) { set_pos(pos); }
+        //An internal callback for when x y or z on a transform changes
+    private function _scale_change(_v:Float) { set_scale(scale); }
+        //An internal callback for when x y or z on a transform changes
+    private function _rotation_change(_v:Float) { set_rotation(rotation); }
 
         //An internal function to attach position 
         //changes to a vector, so we can listen for `pos.x` as well
-    private function _attach_listener(_v : Vector, listener) {
-        _v.listen_x = listener; _v.listen_y = listener; _v.listen_z = listener;
-    }
+    private function _attach_listener( _v : Vector, listener ) {
+        _v.listen_x = listener; 
+        _v.listen_y = listener; 
+        _v.listen_z = listener;
+    } //_attach_listener
 
-    public function get_rotation() : Float { return (parent == null) ? rotation : parent.rotation; }
-    public function set_rotation(_r:Float) : Float { return (parent == null) ? rotation = _r : parent.rotation = _r; }
-
-    public function get_scale() : Vector { return (parent == null) ? scale : parent.scale; }
-    public function set_scale(_s:Vector) : Vector {
-
-    	if(parent == null) {
-
-	    		//store the new value
-	    	scale = _s;
-	    		//listen for changes on the new value
-	        _attach_listener( scale, scale_change );
-	        	//store a copy for getting a difference in scale
-	        _last_scale = scale.clone();
-	        	//set requires return
-	        return scale;
-	    } else {
-			return parent.scale = _s;
-	    }
-
-	    return _s;
-    } //set_scale
-
-    public function get_pos() : Vector { return (parent == null) ? pos : parent.pos; }
-	public function set_pos(_p:Vector) { 
-
-		if(parent == null) {
-			pos = _p;
-        	_attach_listener( pos, pos_change );
-        	return pos;
-        } else {
-        	// Reflect.setField(parent, 'pos', _p);
-        	pos = _p;
-        	return pos;
-        }
-
-        return _p;
-	} //set_pos
-
-}
+} //Entity

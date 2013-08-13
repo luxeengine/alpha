@@ -1,4 +1,4 @@
-package luxe.components;
+package luxe.components.cameras;
 
 import luxe.Vector;
 import luxe.Input;
@@ -8,7 +8,6 @@ import phoenix.Camera;
 import phoenix.utils.Maths;
 
 import luxe.Camera.ProjectionType;
-
 
 class FlyCamera extends luxe.Camera {
 
@@ -156,7 +155,7 @@ class FlyCamera extends luxe.Camera {
             pitch = -halfPI;
         while (pitch > halfPI)
             pitch = halfPI;
-    }
+    } //move_look
 
     public function onmouseup(e:MouseEvent) {
         if(e.button == MouseButton.left && !ready) {            
@@ -165,6 +164,7 @@ class FlyCamera extends luxe.Camera {
     }
 
     public function enable() {
+
         Luxe.setCursorPosition( Std.int(Luxe.screen.w/2), Std.int(Luxe.screen.h/2) );
         mouse_delta.set( 0,0 );            
 
@@ -177,7 +177,8 @@ class FlyCamera extends luxe.Camera {
         ignore_next_move = true;
         hide_cursor = true;
         ready = true;
-    }
+
+    } //enable
 
     public function onmousemove(e:MouseEvent) {
         
@@ -199,7 +200,7 @@ class FlyCamera extends luxe.Camera {
 
         mouse_delta.set(e.deltaX,e.deltaY);
 
-    }
+    } //onmousemove
 
     public function onkeydown(e) {
 
@@ -216,9 +217,10 @@ class FlyCamera extends luxe.Camera {
             move_right = true;
         }
 
-    }
+    } //onkeydown
 
     public function onkeyup(e) {
+
         if(e.value == Input.Keys.up || e.value == Input.Keys.key_W) {
             move_forward = false;
         }
@@ -231,6 +233,7 @@ class FlyCamera extends luxe.Camera {
         if(e.value == Input.Keys.right || e.value == Input.Keys.key_D) {
             move_right = false;
         }
-    }
+
+    } //onkeyup
 
 } //FlyCamera

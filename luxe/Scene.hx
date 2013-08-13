@@ -62,22 +62,26 @@ class Scene {
          for(entity in entities) {
             entity._destroy();
         }
-    }
-
+    } //destroy
     public function init() {
         for(entity in entities) {
             entity._init();
         }        
-    }
+    } //init
     public function start() {
         for(entity in entities) {
             entity._start();
         }
-    }
+    } //start
     public function update(dt:Float) {
         for(entity in entities) {
             entity._update(dt);
         }
-    }
+    } //update
+    public function fixed_update() {
+        for(entity in entities) {
+            entity._fixed_update();
+        }
+    } //fixed_update
 
 }

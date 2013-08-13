@@ -51,7 +51,7 @@ class Renderer {
 
     public function startup() {
 
-        clear_color = new Color(0,0,0,1);
+        clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();
 
         resource_manager = new ResourceManager();
@@ -121,10 +121,10 @@ class Renderer {
     }
 
     public function clear( _color:Color ) {
-        // if(_color == null) _color = clear_color;
+        if(_color == null) _color = clear_color;
 
-        // GL.clearColor( _color.r, _color.g, _color.b, _color.a );
-        // GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+        GL.clearColor( _color.r, _color.g, _color.b, _color.a );
+        GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
     }
 
     private function _debug(v:Dynamic) {

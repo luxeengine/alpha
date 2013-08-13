@@ -11,8 +11,11 @@ import MICanvas;
 import phoenix.BitmapFont.TextAlign;
 import phoenix.Rectangle;
 
+import MILuxeRenderer;
+
 class Main extends luxe.Game {
 
+    public var renderer : MILuxeRenderer;
 
     public var canvas : MICanvas;
     public var button : MIButton;
@@ -29,8 +32,11 @@ class Main extends luxe.Game {
         
         Luxe.renderer.clear_color.set(1,1,1);
 
+        renderer = new MILuxeRenderer();
+
         canvas  = new MICanvas({
-            bounds : new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h )
+            bounds : new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h ),
+            renderer : renderer
         });
 
         button = new MIButton({
