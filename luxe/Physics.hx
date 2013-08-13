@@ -17,10 +17,9 @@ class Physics {
 	public var core : Core;
     public function new( _core:Core ) { core = _core; }
 
-    // public var rate : Float = 0.0167;
-    public var rate : Float = 2;
+    public var rate : Float = 0.0167;
     public var step_rate : Float = 0.0167;
-    public var iterations : Int = 10;
+    public var max_iterations : Int = 10;
     public var paused : Bool = false;
 
 	var broadphase:BtDbvtBroadphase;
@@ -48,7 +47,7 @@ class Physics {
 	    dynamicsWorld.setGravity( new Vector( 0, -10, 0 ) );
 
 			//Start the loop
-		start_loop();
+		// start_loop();
 
     	core._debug(':: luxe :: \t Physics Initialized.');
     }  //startup
@@ -67,7 +66,7 @@ class Physics {
 
     private function start_loop() {
 			//Set the fixed update to get started
-	    haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
+	    // haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
     } //start_loop
 
     public function pause( ?_pause:Bool = true ) {
@@ -83,14 +82,14 @@ class Physics {
 
     } //pause
 
-    public function fixedProcess() {
+    public function process() {
 
     	if(!paused) {
 
     			//Update the simulation
-	    	dynamicsWorld.stepSimulation( step_rate, iterations );
+	    	dynamicsWorld.stepSimulation( Luxe.dt, max_iterations );
 	    		//Set the fixed update to get started
-	    	haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
+	    	// haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
 
 	    } //paused 
 

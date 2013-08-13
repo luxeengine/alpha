@@ -21,5 +21,4 @@ class PlaneCollider extends ShapeCollider {
 
 	} //init
 
-
 } //PlaneCollider

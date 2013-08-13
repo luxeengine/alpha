@@ -79,12 +79,34 @@ class Main extends luxe.Game {
             //Add camera to scene
         Luxe.scene.add( cam3d );
 
+        Luxe.draw.line({
+            p0 : new Vector(0-10, 0, 0-10),
+            p1 : new Vector(0+10, 0, 0-10),
+            batcher : batch3d
+        });
+        Luxe.draw.line({
+            p0 : new Vector(0-10, 0, 0-10),
+            p1 : new Vector(0-10, 0, 0+10),
+            batcher : batch3d
+        });
+        Luxe.draw.line({
+            p0 : new Vector(0-10, 0, 0+10),
+            p1 : new Vector(0+10, 0, 0+10),
+            batcher : batch3d
+        });
+        Luxe.draw.line({
+            p0 : new Vector(0+10, 0, 0-10),
+            p1 : new Vector(0+10, 0, 0+10),
+            batcher : batch3d
+        });        
+
     } //derp
 
     var room_mesh : Entity;
     var transform_mesh : Entity;
     var sphere_mesh : Entity;
     var plane_entity : Entity;
+    var rb : RigidBody;
 
     public function load_level_into(_batch:Batcher) {
       
@@ -123,12 +145,13 @@ class Main extends luxe.Game {
             var pb = plane_entity.add(RigidBody, 'rigidbody');
 
             pb.mass = 0;
+            pb.pos = new Vector(0,-1,0);
 
             //finally , add a sphere collider and rigidbody to the sphere entity
         sphere_mesh.add(SphereCollider, 'collider');
-        var rb = sphere_mesh.add(RigidBody, 'rigidbody');
+         rb = sphere_mesh.add(RigidBody, 'rigidbody');
 
-            rb.pos = new Vector(0,20,0);
+            rb.pos = new Vector(0,10,0);
             rb.mass = 1;
 
     } //load level
@@ -149,6 +172,10 @@ class Main extends luxe.Game {
     var hidden = false;
     var locked = false;
     public function onkeyup(e:Dynamic) {
+
+        if(e.value == Input.Keys.key_R) {
+            rb.rigid_body.origin = new Vector(0,10,0);
+        }
 
         if(e.value == Input.Keys.key_4) {
             hidden = !hidden;

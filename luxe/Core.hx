@@ -220,7 +220,8 @@ class Core {
         input.process();    //Input second
         audio.process();    //Audio
         debug.process();    //debug late
-        events.process();   //events last
+        events.process();   //events 
+        physics.process();   //events 
 
             //Update the default scene first
         scene.update(dt);

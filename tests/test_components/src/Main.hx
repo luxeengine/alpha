@@ -1,4 +1,5 @@
 
+import luxe.components.Components;
 import luxe.Entity;
 import luxe.Vector;
 import luxe.Input;
@@ -75,7 +76,7 @@ class Main extends luxe.Game {
     } //shutdown
 }
 
-class RandomCameraShaker extends Entity {
+class RandomCameraShaker extends Components {
     public var amount : Float = 20;
     private var next_shake : Float = 0;
     public function init() {
@@ -125,7 +126,7 @@ class GameObject extends Entity {
 }
 
 
-class Child1 extends Entity {    
+class Child1 extends Components {    
 
     public var oncerun : Bool = false;
     public function init() {
@@ -146,7 +147,7 @@ class Child1 extends Entity {
     }
 } //Child1
 
-class Child2 extends Entity {
+class Child2 extends Components {
 
     public var dir : Float = 1;
     

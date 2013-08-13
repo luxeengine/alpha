@@ -1,10 +1,11 @@
 package luxe.components.render;
 
+import luxe.components.Components.Component;
 import luxe.Mesh;
 import phoenix.Texture;
 import phoenix.Batcher;
 
-class MeshComponent extends Entity {
+class MeshComponent extends Component {
         
     public var mesh : Mesh;
     public var texture : Texture;
@@ -21,19 +22,13 @@ class MeshComponent extends Entity {
 
     } //init
     
-    public override function set_pos(_p:Vector) : Vector {
-
-        trace('pos set in set_pos of MeshComponent ' + _p);
+    public override function entity_pos_change(_p:Vector) {
 
         if(mesh != null) {
             mesh.pos = _p.clone();
-        }
+        } //mesh
 
-            //store the position
-        pos = _p;
-
-        return pos;
-    } //set_pos
+    } //entity_pos_change
 
     public function update(dt:Float) {
 

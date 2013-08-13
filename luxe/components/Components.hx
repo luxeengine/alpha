@@ -3,10 +3,70 @@ package luxe.components;
 class Component extends Objects {
 		//the root entity
 	public var entity : Entity;	
+		//the transfrom the parent entity
+	@:isVar public var pos 				(get,set) : Vector;
+	@:isVar public var posRelative 		(get,set) : Vector;
+	@:isVar public var rotation 		(get,set) : Vector;
+	@:isVar public var rotationRelative (get,set) : Vector;
+	@:isVar public var scale 			(get,set) : Vector;
+	@:isVar public var scaleRelative 	(get,set) : Vector;
+
 	public function new() {
 		super();
-	}
-}
+	} //new
+
+	private function set_pos(_p:Vector) {
+		return entity.pos = _p;
+	} //set_pos
+	private function set_posRelative(_p:Vector) {
+		return entity.posRelative = _p;
+	} //set_posRelative
+	private function get_pos() {
+		return entity.pos;
+	} //get_pos
+	private function get_posRelative() {
+		return entity.posRelative;
+	} //get_posRelative
+
+	private function set_rotation(_r:Vector) {
+		return entity.rotation = _r;
+	} //set_rotation
+	private function set_rotationRelative(_r:Vector) {
+		return entity.rotationRelative = _r;
+	} //set_rotationRelative
+	private function get_rotation() {
+		return entity.rotation;
+	} //get_rotation
+	private function get_rotationRelative() {
+		return entity.rotationRelative;
+	} //get_rotationRelative
+
+	private function set_scale(_s:Vector) {
+		return entity.scale = _s;
+	} //set_scale
+	private function set_scaleRelative(_s:Vector) {
+		return entity.scaleRelative = _s;
+	} //set_scaleRelative
+	private function get_scale() {
+		return entity.scale;
+	} //get_scale
+	private function get_scaleRelative() {
+		return entity.scaleRelative;
+	} //get_scaleRelative
+
+	public function add<T>( type:Class<T>, ?_name:String='' ) : T {
+		return entity.add(type,_name);
+	} //add
+
+	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
+		return entity.get(_name,in_children,first_only);
+	} //get
+
+	public function entity_pos_change(_p:Vector) {}
+	public function entity_scale_change(_p:Vector) {}
+	public function entity_rotation_change(_p:Vector) {}
+
+} //Component
 
 class Components {
 		

@@ -11,9 +11,10 @@ import phoenix.Batcher;
 class Mesh {
 
     public var geometry : Geometry;
-    public var pos : Vector;
-    public var scale : Vector;
-    public var rotation : Quaternion;    
+
+    public var pos              (default,set) : Vector;
+    public var scale            (default,default) : Vector;
+    public var rotation         (default,default) : Quaternion;    
 
     public function new(?_options:Dynamic = null) {
         
@@ -49,15 +50,12 @@ class Mesh {
     } //new
 
     public function set_pos(v:Vector) : Vector {
-        
-        if(geometry != null) {
-            trace('set pos in mesh to geometry');
+            
+        if(geometry != null) {            
             geometry.pos = v.clone();
         }
-
-        pos = v;
-
-        return pos;
+        
+        return pos = v;
     }
 
     public function fromOBJFile( asset_id:String, texture:Texture ) {

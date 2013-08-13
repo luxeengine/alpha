@@ -6,6 +6,7 @@ import phoenix.geometry.Geometry;
 
 
 class LineGeometry extends Geometry {
+	
 	@:isVar public var p0(default,set) : Vector;
 	@:isVar public var p1(default,set) : Vector;
 
@@ -23,6 +24,7 @@ class LineGeometry extends Geometry {
 
 			vertices[0].pos.x = _p.x;
 			vertices[0].pos.y = _p.y;
+			vertices[0].pos.z = _p.z;
 
 		return p0 = _p;
 	}
@@ -32,6 +34,7 @@ class LineGeometry extends Geometry {
 
 			vertices[1].pos.x = _p.x;
 			vertices[1].pos.y = _p.y;
+			vertices[1].pos.z = _p.z;
 
 		return p1 = _p;
 	}
@@ -41,10 +44,10 @@ class LineGeometry extends Geometry {
 		vertices.splice(0, vertices.length);
 
 		//p0
-		var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y ) );
+		var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ) );
 			vert0.uv[0] = new TextureCoord(0,0);
 
-		var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y ) );
+		var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ) );
 			vert1.uv[0] = new TextureCoord(1,0);
 
 		add(vert0);

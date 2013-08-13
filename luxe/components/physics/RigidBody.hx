@@ -1,6 +1,6 @@
 package luxe.components.physics;
 	
-import luxe.Entity;
+import luxe.components.Components.Component;
 
 import bullet.bulletCollision.collisionShapes.BtSphereShape;
 import bullet.bulletCollision.collisionShapes.BtStaticPlaneShape;
@@ -13,7 +13,7 @@ import luxe.Vector;
 
 import luxe.components.physics.ShapeCollider;
 
-class RigidBody extends Entity {
+class RigidBody extends Component {
 
 	public var rigid_body : BtRigidBody;
 	public var collider : ShapeCollider;
@@ -34,9 +34,6 @@ class RigidBody extends Entity {
         	}
         }  //no collider assigned pre startup
 
-        	//two second frame rate
-        fixed_rate = 2;
- 
 	} //init
 
 	public function start() {
@@ -48,16 +45,18 @@ class RigidBody extends Entity {
 
 	} //start
 
-	public function fixed_update() {
+	
+
+	public function update(dt:Float) {
 
 		if(mass > 0) {
 
-			trace('>>>>>>>>>>>> ');
-				//update the transform position from the physics
+			// trace('>>>>>>>>>>>> ');
+				//update the transform position of the parent entity from the physics
 			pos = rigid_body.origin;
 				//
-			trace('rigid_body ' + pos);
-			trace('<<<<<<<<<< ');
+			// trace('rigid_body ' + pos);
+			// trace('<<<<<<<<<< ');
 
 		} //only if not static
 	} //fixed_update

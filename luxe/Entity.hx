@@ -13,7 +13,7 @@ class Entity extends Objects {
 
     public var events : luxe.Events;
     public var children : Array<Entity>;
-    public var fixed_rate : Float = 2;
+    public var fixed_rate : Float = 0.0167;
 
     var _destroyed : Bool = false;
 
@@ -268,7 +268,7 @@ class Entity extends Objects {
     } //set_posRelative    
 
     private function set_pos(_p:Vector) { 
-
+        
     		//if we have a parent, we adjust our relative position to match
     	if(parent != null) {
     		posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
@@ -281,6 +281,12 @@ class Entity extends Objects {
     	for(child in children) {
     		child.internal_parent_pos_changed( pos );
     	}
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_pos_change( pos );
+        } //for each _component
+
 
     	return pos; 
     } //set_pos
@@ -299,6 +305,11 @@ class Entity extends Objects {
     	for(child in children) {
     		child.internal_parent_rotation_changed( rotation );
     	} //child
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_rotation_change( rotation );
+        } //for each _component
 
     	return rotation; 
 
@@ -319,6 +330,11 @@ class Entity extends Objects {
         for(child in children) {
             child.internal_parent_scale_changed( scale );
         } //child
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_scale_change( scale );
+        } //for each _component
 
         return scale; 
 

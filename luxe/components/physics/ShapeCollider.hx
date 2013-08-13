@@ -1,8 +1,8 @@
 package luxe.components.physics;
 
-import luxe.Entity;
+import luxe.components.Components.Component;
 
-class ShapeCollider extends Entity {
+class ShapeCollider extends Component {
 
 	public var shape : Dynamic;
 
