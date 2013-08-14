@@ -26,7 +26,7 @@ class RigidBody extends Component {
 	public function init() {
 			
         inertia = new Vector(0,0,0);
-        _rotation = new Quaternion(0,0,0,1);        
+        _rotation = new Quaternion(0,0,0,1);
 
         if(collider == null) {
         	var _collider : ShapeCollider = get('collider');
@@ -46,13 +46,13 @@ class RigidBody extends Component {
 
 	} //start
 	
-
 	public function update(dt:Float) {
 
 		if(mass > 0 && !kinematic) {
 			pos = rigid_body.origin;
 		} //only if not static
-	} //fixed_update
+
+	} //update
 
 	public function destroy() {
 

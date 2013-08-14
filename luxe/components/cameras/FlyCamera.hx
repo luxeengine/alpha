@@ -58,7 +58,8 @@ class FlyCamera extends luxe.Camera {
 
     public function start() {
             //about 2m tall
-        pos = new Vector(0, 1, 1);
+        pos = new Vector(0, 1, 5);
+
     } //start
     
     public override function update(dt:Float) {

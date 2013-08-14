@@ -175,6 +175,8 @@ class Main extends luxe.Game {
 
         if(e.value == Input.Keys.key_R) {
             rb.rigid_body.origin = new Vector(0,10,0);
+            rb.rigid_body.linearVelocity = new Vector(0,0,0);
+            rb.rigid_body.activate();
         }
 
         if(e.value == Input.Keys.key_4) {

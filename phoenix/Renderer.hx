@@ -177,8 +177,11 @@ class Renderer {
     public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
 
         var _exists = resource_manager.find_texture(_name);
+
         if(_exists != null) {
-            trace(":: phoenix :: Texture loaded (cache) " + _exists.id + ' (' + _exists.width + 'x' + _exists.height + ') real size ('+ _exists.actual_width + 'x' + _exists.actual_height +')') ;
+            if(_name != 'default_ui_button' && _name != 'default_ui_box') {
+                trace(":: phoenix :: Texture loaded (cache) " + _exists.id + ' (' + _exists.width + 'x' + _exists.height + ') real size ('+ _exists.actual_width + 'x' + _exists.actual_height +')') ;
+            }
             return _exists;
         }
 

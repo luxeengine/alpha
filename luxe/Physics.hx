@@ -2,6 +2,9 @@ package luxe;
 
 import luxe.Core;
 
+#if lime_html5
+import bullet.AmmoBinding;
+#end //lime_html
 
 import bullet.bulletCollision.broadphaseCollision.BtDbvtBroadphase;
 import bullet.bulletCollision.collisionDispatch.BtCollisionDispatcher;
@@ -20,7 +23,7 @@ class Physics {
     public var rate : Float = 0.0167;
     public var step_rate : Float = 0.0167;
     public var max_iterations : Int = 10;
-    public var paused : Bool = false;
+    public var paused : Bool = false;    
 
 	var broadphase:BtDbvtBroadphase;
 	var collisionConfiguration:BtDefaultCollisionConfiguration;
@@ -75,7 +78,7 @@ class Physics {
     		//and we unpausing, start the loop
     	if(paused) {
     		if(_pause == false) {
-    			start_loop();
+    			// start_loop();
     		}
     	}
     	paused = _pause;
@@ -88,8 +91,6 @@ class Physics {
 
     			//Update the simulation
 	    	dynamicsWorld.stepSimulation( Luxe.dt, max_iterations );
-	    		//Set the fixed update to get started
-	    	// haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
 
 	    } //paused 
 
