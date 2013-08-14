@@ -81,6 +81,7 @@ class Renderer {
 
             //create the default batcher
         default_batcher = new Batcher( this, 'default_batcher' );
+        default_batcher.layer = 1;
         add_batch(default_batcher);
 
             //create the default font

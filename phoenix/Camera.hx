@@ -109,7 +109,8 @@ class Camera {
 
         GL.disable(GL.CULL_FACE);
             //2D doesn't usually want the depth to interfere
-        GL.clear(GL.DEPTH_BUFFER_BIT);
+        // GL.clear(GL.DEPTH_BUFFER_BIT);
+        GL.disable(GL.DEPTH_TEST);
             //todo:This doesn't need to be rebuilt every frame
         projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
             //Rebuild the modelview, todo:dirtify this
@@ -133,6 +134,7 @@ class Camera {
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);
+        GL.enable(GL.DEPTH_TEST);
     }
 
     public function set_ortho( options:Dynamic = null ) {
