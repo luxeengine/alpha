@@ -274,6 +274,20 @@ class Core {
         debug.show_console(console_visible);
     }
 
+//window events
+    public function onresize(e) {
+            //update the screen sizes
+        Luxe.screen.w = e.x;
+        Luxe.screen.h = e.y;
+
+            //update internal render views
+        debug.onresize(e);
+            //and the defaults
+        if(renderer.onresize != null) renderer.onresize(e);
+            //and then the host
+        if(host.onresize != null) host.onresize(e);
+
+    } // onresize
 //input events
 //keys
     public function onkeydown(e) {

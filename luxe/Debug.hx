@@ -132,6 +132,10 @@ class Debug {
 
     }
 
+    public function onresize(e) {
+        debug_view.set_ortho({ x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+    } //
+
     public function create_log_console() {
         lines = new Array<luxe.Text>();
         add_line('luxe version 0.0.1 Debug Log');

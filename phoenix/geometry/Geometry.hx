@@ -140,10 +140,10 @@ class Geometry {
 			tcoordlist.push( v.uv[0].v );
 
 				//color values todo : per vertex colors
-			colorlist.push( color.r );
-			colorlist.push( color.g );
-			colorlist.push( color.b );
-			colorlist.push( color.a );
+			colorlist.push( v.color.r );
+			colorlist.push( v.color.g );
+			colorlist.push( v.color.b );
+			colorlist.push( v.color.a );
 
 				//normal directions
 			normallist.push( v.normal.x );
@@ -242,7 +242,12 @@ class Geometry {
 		return enabled = val;
 	}
 //Color
-	public function set_color(val : Color) : Color {		
+	public function set_color(val : Color) : Color {
+
+		for(v in vertices) {
+			v.color = val.clone();
+		}
+
 		return color = val;
 	}
 	

@@ -44,7 +44,6 @@ class Menu extends Mode {
 
         mouse = new Vector();        
 
-
         back = new Sprite({
             name : 'back',
             centered : false,
@@ -66,7 +65,9 @@ class Menu extends Mode {
         var t2 = Luxe.loadTexture('assets/smoke.png');
         var t3 = Luxe.loadTexture('assets/embers.png');
 
-        particles = Luxe.scene.create(ParticleSystem,'mainparticles');        
+            //Create a particle system entity in the scene
+        particles = Luxe.scene.create(ParticleSystem,'mainparticles'); 
+            //Move to center screen       
         particles.pos = new Vector(480,320);
 
         particles.add_emitter({
@@ -115,7 +116,11 @@ class Menu extends Mode {
             emit_time : 0.5
         });
 
+            //By locking a piece of geometry, 
+            //It is sent only once to the graphics card (STATIC_DRAW VBO)
         play.locked = true;
+
+            //We want the particles in group 5 to be blended in additive blending
 
         Luxe.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
@@ -127,7 +132,6 @@ class Menu extends Mode {
         );
 
         back.visible = true;        
-        // particles.stop();
 
     }
 

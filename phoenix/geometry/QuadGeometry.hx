@@ -151,6 +151,14 @@ class QuadGeometry extends Geometry {
         var vert4 : Vertex = new Vertex( new Vector( 0 , 0 ) );
         var vert5 : Vertex = new Vertex( new Vector( quad.w , quad.h ) );
 
+            //Apply the color to the vert
+        vert0.color = color;
+        vert1.color = color;
+        vert2.color = color;
+        vert3.color = color;
+        vert4.color = color;
+        vert5.color = color;
+        
            //Add to the list
 
             //tl
