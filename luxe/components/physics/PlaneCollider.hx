@@ -17,8 +17,6 @@ class PlaneCollider extends ShapeCollider {
 
 		shape = new BtStaticPlaneShape( normal, 1 );
 
-		trace(' plane collider init ');
-
 	} //init
 
 } //PlaneCollider

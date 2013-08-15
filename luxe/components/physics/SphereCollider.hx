@@ -16,8 +16,6 @@ class SphereCollider extends ShapeCollider {
 
 		shape = new BtSphereShape(radius);
 
-		trace(' sphere collider init ');
-
 	} //init
 
 

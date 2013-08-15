@@ -26,6 +26,7 @@ import luxe.components.cameras.FlyCamera;
 import luxe.components.render.MeshComponent;
 import luxe.components.physics.PlaneCollider;
 import luxe.components.physics.SphereCollider;
+import luxe.components.physics.MeshCollider;
 import luxe.components.physics.RigidBody;
 
 class Main extends luxe.Game {
@@ -114,13 +115,25 @@ class Main extends luxe.Game {
         _batch.view.pos.y = 0;
         _batch.view.pos.z = 0;
 
+        var roommesh = new Mesh({
+            file: 'assets/test_scene_0.obj', 
+            texture: tex, 
+            batcher: batch3d
+        });
+
         room_mesh = Luxe.scene.create(Entity, 'room');
 
-            room_mesh.add(MeshComponent, 'mesh');
+            var rmc = room_mesh.add(MeshComponent, 'mesh');
 
-                room_mesh.get('mesh').file = 'assets/test_scene_0.obj';
-                room_mesh.get('mesh').texture = tex; 
-                room_mesh.get('mesh').batcher = _batch;
+                room_mesh.get('mesh').mesh = roommesh;
+
+            var mc = room_mesh.add(MeshCollider, 'collider');
+
+                mc.mesh = roommesh;
+
+            var mb = room_mesh.add(RigidBody, 'rigidbody');
+
+                mb.mass = 0;
 
         transform_mesh = Luxe.scene.create(Entity, 'transform');
 
@@ -141,11 +154,12 @@ class Main extends luxe.Game {
 
         plane_entity = Luxe.scene.create(Entity, 'plane');
 
-            plane_entity.add(PlaneCollider, 'collider');
-            var pb = plane_entity.add(RigidBody, 'rigidbody');
+            // plane_entity.add(PlaneCollider, 'collider');
+            // var pb = plane_entity.add(RigidBody, 'rigidbody');
 
-            pb.mass = 0;
-            pb.pos = new Vector(0,-1,0);
+            // pb.mass = 0;
+            // pb.pos = new Vector(0,-1,0);
+
 
             //finally , add a sphere collider and rigidbody to the sphere entity
         sphere_mesh.add(SphereCollider, 'collider');
@@ -197,6 +211,9 @@ class Main extends luxe.Game {
 
     public function onmousedown(e) {
         info.text = ''+cam3d.pos;
+
+        rb.rigid_body.applyImpulse( Vector.MultiplyVector( cam3d.forward, new Vector(10,10,10)) , new Vector() );
+
     }   
 
     public function onmouseup(e) {

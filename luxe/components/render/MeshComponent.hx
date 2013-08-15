@@ -14,11 +14,13 @@ class MeshComponent extends Component {
 
     public function init() {
 
-        mesh = new Mesh({
-            file: file, 
-            texture: texture, 
-            batcher: batcher
-        });
+        if(mesh == null) {
+            mesh = new Mesh({
+                file: file, 
+                texture: texture, 
+                batcher: batcher
+            });
+        }
 
     } //init
     

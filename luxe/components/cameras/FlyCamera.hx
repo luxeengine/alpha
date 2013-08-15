@@ -23,9 +23,9 @@ class FlyCamera extends luxe.Camera {
     var newpos : Vector;
     var mouse_delta : Vector;
 
-    var forward  : Vector;
-    var right : Vector;
-    var up : Vector;
+    public var forward  : Vector;
+    public var right : Vector;
+    public var up : Vector;
 
     var yaw : Float = 0;
     var pitch : Float = 0;
