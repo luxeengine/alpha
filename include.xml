@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
 	
-	<section unless="display">
 		
 		<ndll name="std" haxelib="hxcpp" />
 		<ndll name="regexp" haxelib="hxcpp" />
@@ -19,8 +18,6 @@
 		<!-- but it is possible to use it as a haxelib already -->
 		<!-- <haxelib name="haxephoenix" /> -->
 			
-	</section>
-
 	<templatePath name="templates" />
 	
 </extension>
