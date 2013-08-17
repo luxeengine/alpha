@@ -76,19 +76,11 @@ class Text {
 
     public function set_pos(v:Vector) : Vector {
         
-        var diff : Vector;
-
-        if(pos != null) {
-            diff = Vector.Subtract( v.clone(), pos ); 
-        } else {
-            diff = v.clone();            
-        }
-
         pos = v.clone();
         text_options.pos = pos;
         
         if(geometry != null) {        
-            geometry.translate(diff);
+            geometry.pos = v;
         }
         
         return pos;

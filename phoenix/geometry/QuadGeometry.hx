@@ -130,8 +130,6 @@ class QuadGeometry extends Geometry {
         vertices[4].pos = new Vector( pos.x,            pos.y );
         vertices[5].pos = new Vector( pos.x+quad.w,     pos.y+quad.h );
 
-            //adjust for the origin
-        translate(origin.inverted);
     }
 
  	public function set( quad:luxe.Rectangle ) {

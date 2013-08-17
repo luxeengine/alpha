@@ -190,24 +190,32 @@ class Batcher {
 
     public function add( _geom:Geometry, ?_force_add:Bool = false ) {
         
-        if( !Lambda.has(_geom.batchers, this) || _force_add ) {
-            _geom.batchers.push(this);
+        if( geometry.find(_geom) == null || _force_add ) {
+                //Only add if not already there
+            if( !Lambda.has(_geom.batchers, this) ) {
+                _geom.batchers.push(this);
+            }
+                //Insert into our list
             geometry.insert(_geom);
+                //Make sure it is flagged
             _geom.added = true;
+
         } else {
             trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
         }
-    }
+    } //add
 
-    public function remove(_geom:Geometry) {
+    public function remove(_geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
 
         var found_geom = geometry.find(_geom);
         if(found_geom != null) {            
-            
-            found_geom.data.batchers.remove(this);
-            if(found_geom.data.batchers.length == 0) {
-                found_geom.data.added = false;
-            }
+                
+            if(_remove_batcher_from_geometry) {
+                found_geom.data.batchers.remove(this);
+                if(found_geom.data.batchers.length == 0) {
+                    found_geom.data.added = false;
+                }
+            } //only if we explicitly want to remove from the list
 
             geometry.remove( found_geom );
 

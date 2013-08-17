@@ -14,7 +14,7 @@ class BoxCollider extends ShapeCollider {
 
 	public function init() {
 
-		shape = new BtBoxShape( new Vector(width, height, depth) );
+		shape = new BtBoxShape( width, height, depth );
 
 	} //init
 

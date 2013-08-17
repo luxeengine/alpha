@@ -13,18 +13,27 @@ class Main extends luxe.Game {
     public function ready() {
 
         var image = Luxe.loadTexture('assets/image.png');
+        var image2 = Luxe.loadTexture('assets/luxe.png');
 
         sprites = [];
 
-        for(i in 1 ... 21) {
+        for(i in 1 ... 5) {
+
+            var ih = image.height;
+            var iw = image.width;
+
+            if(i == 1) {
+                iw = image2.width;
+                ih = image2.height;
+            }
 
             sprites.push(new Sprite({
                 name : 's' + i,
                 depth : i,
-                texture: image,
+                texture: (i == 1) ? image2 : image,
                 centered : false,
                 pos : new Vector(100 + (i*20), 100 + (i*20) ),
-                size : new Vector(204,144)
+                size : new Vector(iw*0.2,ih*0.2)
             }));
 
         } //
@@ -43,16 +52,12 @@ class Main extends luxe.Game {
 
 
         if(e.value == Input.Keys.key_D) {
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[4].geometry.short_id());
-            sprites[4].destroy();
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[2].geometry.short_id());
-            sprites[2].destroy();
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[12].geometry.short_id());
-            sprites[12].destroy();
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[5].geometry.short_id());
-            sprites[5].destroy();
                 Sys.println('>>> drop sprite geometry >>> ' + sprites[1].geometry.short_id());
             sprites[1].destroy();
+                Sys.println('>>> drop sprite geometry >>> ' + sprites[2].geometry.short_id());
+            sprites[2].destroy();
+                Sys.println('>>> drop sprite geometry >>> ' + sprites[3].geometry.short_id());
+            sprites[3].destroy();
         }
 
       if(e.value == Input.Keys.key_L) {

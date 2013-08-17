@@ -310,7 +310,6 @@ class BitmapFont extends Resource {
          var _pos: Vector = (options.pos == null) ? new Vector() : options.pos;
          var _col: Color = (options.color == null) ? new Color() : options.color;
          var _bounds: Rectangle = (options.bounds == null) ? null : options.bounds;
-         var _pos: Vector = (options.pos == null) ? new Vector() : options.pos;
          var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
          var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
@@ -318,7 +317,7 @@ class BitmapFont extends Resource {
          var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.default_batcher : options.batcher;
          var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
          var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
-         var _supplied_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
+         var _final_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
 
          var _bounds_based : Bool = false;
          if(_bounds != null) {
@@ -328,7 +327,7 @@ class BitmapFont extends Resource {
             //no texture? return empty geometry
         if(pages[0] == null) {
             trace("Warning ; " + id + " font trying to draw without a texture.");
-            return _supplied_geom;
+            return _final_geom;
         }
 
         
@@ -469,8 +468,8 @@ class BitmapFont extends Resource {
 
         } //line in lines        
                 
-            //replace the composite with the children geometry
-        _supplied_geom.replace( _geoms );
+            //replace the composite with the children geometry we just created
+        _final_geom.replace( _geoms );
 
         if(!_bounds_based) {
 
@@ -483,7 +482,7 @@ class BitmapFont extends Resource {
                 _po.x = _pos.x - (_max_line_width);  
             }
                 //translate all of the new text according to the actual position
-            _supplied_geom.pos = _po;
+            _final_geom.pos = _po;
 
         } else {
 
@@ -502,13 +501,13 @@ class BitmapFont extends Resource {
                 _po.y = _po.y + ((_bounds.h) - (_dimensions.y));
             }
                 //translate all of the new text according to the actual position
-            _supplied_geom.pos = _po;
+            _final_geom.pos = _po;
 
         } //_bounds_based
+        
+        _final_geom.id = 'drawn_text- ' + _string;
 
-        _supplied_geom.id = 'drawn_text- ' + _string;
-
-        return _supplied_geom;
+        return _final_geom;
     }
 
     public function set_character( _index:Int,  _char_info : Character ) {

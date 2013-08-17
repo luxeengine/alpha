@@ -106,8 +106,8 @@ class ParticleEmitter extends Component {
     public var direction_random : Float;
     public var gravity : Vector;
 
-    public var rotation : Float = 0;
-    public var pos : Vector;
+    public var zrotation : Float = 0;
+    public var _position : Vector;
 
         //todo
     public var radius : Float = 50;
@@ -195,8 +195,8 @@ class ParticleEmitter extends Component {
 
 //
         (_template.rotation != null) ?
-            rotation = _template.rotation : 
-            rotation = 0;
+            zrotation = _template.rotation : 
+            zrotation = 0;
 
         (_template.rotation_random != null) ?
             rotation_random = _template.rotation_random : 
@@ -220,8 +220,8 @@ class ParticleEmitter extends Component {
             direction_vector = new Vector();
 
         (_template.pos != null) ?
-            pos = _template.pos : 
-            pos = new Vector();
+            _position = _template.pos : 
+            _position = new Vector();
 
         (_template.pos_offset != null) ?
             pos_offset = _template.pos_offset : 
@@ -309,7 +309,7 @@ class ParticleEmitter extends Component {
 
     private function init_particle( particle:Particle ) {
 
-        particle.rotation = (rotation + rotation_random * random_1_to_1()) + rotation_offset;
+        particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
 
         particle.position.x = (entity.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
         particle.position.y = (entity.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;

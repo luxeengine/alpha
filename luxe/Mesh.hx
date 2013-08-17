@@ -7,28 +7,25 @@ import luxe.Quaternion;
 import phoenix.geometry.Vertex;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
+import phoenix.utils.Maths;
 
 class Mesh {
 
     public var geometry : Geometry;
 
-    public var pos              (default,set) : Vector;
-    public var scale            (default,default) : Vector;
-    public var rotation         (default,default) : Quaternion;    
+    public var pos      (default,set) : Vector;
+    public var scale    (default,set) : Vector;
+    public var rotation (default,set) : Vector;    
+
+    var _rotation_quat : Quaternion;
 
     public function new(?_options:Dynamic = null) {
-        
-        pos = 
-        scale = new Vector(1,1,1);
-        rotation = new Quaternion();        
 
         if(_options == null) throw "Mesh requires non-null options at the moment";
 
         var _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
 
-        pos = (_options.pos == null) ? new Vector() : _options.pos;
-        scale = (_options.scale == null) ? new Vector(1,1,1) : _options.scale;
-        rotation = (_options.rotation == null) ? new Quaternion() : new Quaternion().setFromEuler(_options.rotation);
+        _rotation_quat = new Quaternion();   
 
         if(_options.file != null) {
             var ext = haxe.io.Path.extension( _options.file );
@@ -41,24 +38,70 @@ class Mesh {
         } //options.file
 
         if(geometry != null) {
+
                 //add to the batcher
             _batcher.add(geometry);
+
         } else {
             throw 'Mesh component with null geometry';
         }
 
+        pos = (_options.pos == null) ? new Vector() : _options.pos;
+        scale = (_options.scale == null) ? new Vector(1,1,1) : _options.scale;
+        rotation = (_options.rotation == null) ? new Vector() : _options.rotation;
+
     } //new
 
-    public function set_pos(v:Vector) : Vector {
+//Position
+
+    public function set_pos( _position:Vector ) : Vector {
             
         if(geometry != null) {            
-            geometry.pos = v.clone();
+            geometry.pos = _position;
         }
         
-        return pos = v;
-    }
+        return pos = _position;
 
-    public function fromOBJFile( asset_id:String, texture:Texture ) {
+    } //set_pos
+
+//Rotation
+
+    public function set_rotation( _rotation:Vector ) : Vector {
+        
+        if(rotation == null) {
+            return rotation = _rotation;
+        } //rotation is null
+
+        if(geometry != null) {
+
+                //cache locally, avoids allocation
+            _rotation_quat.setFromEuler(_rotation);
+                //pass to the geometry
+            geometry.rotation = _rotation_quat;
+
+        } //geometry
+        
+        return rotation = _rotation;
+
+    } //set_rotation
+
+//Scale
+
+    public function set_scale( _scale:Vector ) : Vector {
+            
+        if(geometry != null) {            
+            geometry.scale = _scale;
+        }
+        
+        return scale = _scale;
+
+    } //set_scale
+
+//Create a mesh from an Obj file 
+
+    public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector  ) {
+
+        if(_scale == null) _scale = new Vector(1,1,1);
 
         var obj_file = lime.utils.Assets.getText(asset_id);       
         var file_input = new haxe.io.StringInput( obj_file );
@@ -68,30 +111,31 @@ class Mesh {
             texture : texture,
             type: PrimitiveType.triangles,
             immediate : false,
-            depth : 2
+            depth : 1 //todo optionise
         });
 
         for(v in obj_mesh_data.vertices) {
            
-           var normal : Vector = new Vector();
-           if(v.normal != null) {
-                normal = new Vector(v.normal.x, v.normal.y, v.normal.z);
-           }
-           var _v = new Vertex( new Vector( (v.pos.x * scale.x)+pos.x , (v.pos.y * scale.y)+pos.y, (v.pos.z * scale.z)+pos.z), normal );
-           if(v.uv != null) {
-               _v.uv[0] = new TextureCoord( v.uv.u, 1.0 - v.uv.v );
-           } else {
-               _v.uv[0] = new TextureCoord( 0, 0 );
-           }
+               var normal : Vector = new Vector();
+               
+               if(v.normal != null) {
+                    normal.set(v.normal.x, v.normal.y, v.normal.z);
+               }
+
+           var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), normal );
+
+               if(v.uv != null) {                    
+                   _v.uv[0] = new TextureCoord( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space 
+               } else {
+                   _v.uv[0] = new TextureCoord( 0, 0 );
+               }
            
            geometry.add( _v );
 
         } //for all verts
 
-            //only thing left is to rotate the mesh according to the given rotation
-        geometry.rotate( new Vector().setEulerFromQuaternion(rotation) );
-
     } // from obj file
 
 
-} //class mesh
+} //Mesh
+

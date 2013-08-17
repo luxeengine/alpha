@@ -4,6 +4,7 @@ import luxe.Vector;
 import luxe.Rectangle;
 import luxe.Scene;
 
+import phoenix.Quaternion;
 import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
@@ -33,6 +34,10 @@ class Sprite extends Entity {
     @:isVar public var flipy        (default,set    )   : Bool;
     @:isVar public var flipx        (default,set    )   : Bool;
 
+
+    var _rotation_vector : Vector;
+    var _rotation_quat : Quaternion;
+
     public function new(options:Dynamic) {
 
         super();
@@ -45,6 +50,9 @@ class Sprite extends Entity {
             //create the position value so we can exploit it a bit
         origin = new Vector();
         color = new Color();
+//cached values
+        _rotation_vector = new Vector();
+        _rotation_quat = new Quaternion();
 
 //name
         if(options.name != null) {
@@ -231,16 +239,12 @@ class Sprite extends Entity {
     } //set_visible
 
     public function set_depth(_v:Float) {
-
-        depth = _v;
-
-            //careful
+        
         if(geometry != null) {
-            trace('depth changing on sprite ' + name + ' at ' + geometry.depth + ' and id ' + geometry.short_id());
             geometry.depth = _v;
-        }
+        } //geometry
 
-        return depth;
+        return depth = _v;
 
     } //set_visible
 
@@ -267,13 +271,14 @@ class Sprite extends Entity {
 //Origin
 
     public function set_origin(_o:Vector) : Vector {
+        
         if(geometry != null) {
-            var _diff = Vector.Subtract(geometry.origin, _o);
             geometry.origin = _o;
-            geometry.translate(_diff);
         }
+
         return origin = _o;
-    }
+        
+    } //set_origin
 
 //Centered 
 
@@ -287,47 +292,68 @@ class Sprite extends Entity {
                 } else {
                     geometry.origin = new Vector();
                 }
-                    //translate the geometry directly, leaving it's
-                    //position as is
-                geometry.translate(geometry.origin.inverted);
-            }
-        }
+            } //size != null
+        } //geometry != null
 
         return centered = _c;
-    }
+    } //set_centered
 
-//Size
+//Position properties
+    
+    public override function set_pos(_p:Vector) : Vector {
 
-    public function set_size( _v:Vector ) : Vector {  
-
-            //resize the mesh
         if(geometry != null) {
-                //todo
-                //first, update the origin 
-            if(centered) {
-                geometry.origin = new Vector(_v.x/2, _v.y/2);                
-            }
+            geometry.pos = _p.clone();
+        } //geometry ! null
 
-            geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
-            geometry.rotate( new Vector(0, 0, radians) );
+            //store the position
+        pos = _p;
+            //set pos in parent attaches listeners to .x, .y, .z
+        super.set_pos( pos );
+            //
+        return pos;
 
-        } //if geometry != null
+    } //set_pos
 
-            //done
-        return size = _v;
-    } //set_size
+//Rotation 
+    
+    public function get_rotation_z() : Float {
+
+        return Maths.radToDeg(radians);
+
+    } //get_rotation
+
+    public function set_rotation_z( _r:Float ) : Float {
+
+        radians = Maths.degToRad(_r);
+
+        return rotation_z = _r;
+
+    } // set_rotation_z
+
+    public function set_radians(_r:Float) : Float {
+
+            //Sprite only rotates this way
+        _rotation_vector.z = _r;
+        _rotation_quat.setFromEuler( _rotation_vector );
+
+        if(geometry != null) {
+                //send to the geometry
+            geometry.rotation = _rotation_quat;
+
+        } //geometry ! null
+
+        return radians = _r;
+
+    } // set_radians
+
 
 //Scale
 
     public override function set_scale( _v:Vector ) : Vector {  
 
         if(geometry != null) {
-
-                //make sure we can always get back from 0 scale
-            if(_v.x == 0) _v.x += 0.0001;
-            if(_v.y == 0) _v.y += 0.0001;
-            geometry.scale(new Vector(_v.x/_last_scale.x, _v.y/_last_scale.y));
-
+            geometry.scale = _v.clone();
         } //geometry != null
 
             //update the parent
@@ -335,6 +361,29 @@ class Sprite extends Entity {
 
         return _v;
     } //set_scale
+
+//Size
+    
+        //todo:fix this for new transforms inside geometry
+    public function set_size( _v:Vector ) : Vector {  
+
+            //resize the mesh
+        if(geometry != null) {
+                //todo
+                //first, update the origin 
+            // if(centered) {
+                // geometry.origin = new Vector(_v.x/2, _v.y/2);                
+            // }
+
+            // geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
+            // geometry.rotate( new Vector(0, 0, radians) );
+
+        } //if geometry != null
+
+            //done
+        return size = _v;
+
+    } //set_size
 
 //Locked
 
@@ -355,49 +404,6 @@ class Sprite extends Entity {
         }
         return uv = _uv;
     } 
-//Rotation 
-    
-    public function get_rotation_z() : Float {
-        return Maths.radToDeg(radians);
-    } //get_rotation
-
-    public function set_rotation_z( _r:Float ) : Float {
-        radians = Maths.degToRad(_r);
-        return rotation_z = _r;
-    }
-
-    public function set_radians(_r:Float) : Float {
-        var _diff = _r - radians;
-            //transform the geometry
-        if(geometry != null) {
-            geometry.rotate(new Vector(0,0,_diff));
-        }
-        return radians = _r;
-    }
-
-//Position properties
-    
-    public override function set_pos(_p:Vector) : Vector {
-
-            //careful
-        if(geometry != null) {
-
-                //have to use .clone() because passing the references
-                //in while mean that geometry.pos = this.pos;
-                //which means when you work out a delta,
-                //like: geometry.pos.x - this.pos.x you *always* get 0,
-                //because both of them point to the exact same thing.
-                //this can cause memory things, so tagging :tolookat:
-            geometry.pos = _p.clone();
-        }
-
-            //store the position
-        pos = _p;
-
-        super.set_pos(pos);
-
-        return pos;
-    } //set_pos
 
 //Geometry properties
 //Clip

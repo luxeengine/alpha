@@ -2,6 +2,7 @@ package luxe.components.render;
 
 import luxe.components.Components.Component;
 import luxe.Mesh;
+import luxe.Quaternion;
 import phoenix.Texture;
 import phoenix.Batcher;
 
@@ -24,13 +25,21 @@ class MeshComponent extends Component {
 
     } //init
     
-    public override function entity_pos_change(_p:Vector) {
+    public override function entity_pos_change( _p:Vector ) {
 
         if(mesh != null) {
             mesh.pos = _p.clone();
         } //mesh
 
     } //entity_pos_change
+
+    public override function entity_rotation_change( _p:Vector ) {
+
+        if(mesh != null) {
+            mesh.rotation = _p.clone();
+        } //mesh
+
+    } //entity_rotation_change
 
     public function update(dt:Float) {
 

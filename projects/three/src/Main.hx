@@ -1,5 +1,7 @@
 
 
+import luxe.components.physics.BoxCollider;
+import phoenix.geometry.LineGeometry;
 import phoenix.Matrix4;
 import phoenix.Texture;
 import phoenix.Batcher;
@@ -37,6 +39,7 @@ class Main extends luxe.Game {
     var tex : Texture;
     var tex2 : Texture;
     var tex3 : Texture;
+    var tex4 : Texture;
 
     var rotation : Vector;
     var info : Text;
@@ -53,6 +56,7 @@ class Main extends luxe.Game {
         tex = Luxe.loadTexture('assets/diff.png');
         tex2 = Luxe.loadTexture('assets/transform.png');
         tex3 = Luxe.loadTexture('assets/sphere.png');
+        tex4 = Luxe.loadTexture('assets/cube.png');
 
         batch3d = new Batcher(Luxe.renderer);
 
@@ -105,9 +109,11 @@ class Main extends luxe.Game {
 
     var room_mesh : Entity;
     var transform_mesh : Entity;
-    var sphere_mesh : Entity;
+    var cube_mesh : Entity;
     var plane_entity : Entity;
-    var rb : RigidBody;
+
+    var cube_rigidbody_component : RigidBody;
+    var cube_mesh_component : MeshComponent;
 
     public function load_level_into(_batch:Batcher) {
       
@@ -134,6 +140,8 @@ class Main extends luxe.Game {
             var mb = room_mesh.add(RigidBody, 'rigidbody');
 
                 mb.mass = 0;
+                mb.restitution = 0.5;
+                mb.friction = 1;
 
         transform_mesh = Luxe.scene.create(Entity, 'transform');
 
@@ -143,30 +151,28 @@ class Main extends luxe.Game {
                 transform_mesh.get('mesh').texture = tex2; 
                 transform_mesh.get('mesh').batcher = _batch;
 
-        sphere_mesh = Luxe.scene.create(Entity, 'sphere');
+        cube_mesh = Luxe.scene.create(Entity, 'sphere');
 
-            sphere_mesh.add(MeshComponent, 'mesh');
+            cube_mesh_component = cube_mesh.add(MeshComponent, 'mesh');
 
-                sphere_mesh.get('mesh').file = 'assets/sphere.obj';
-                sphere_mesh.get('mesh').texture = tex3; 
-                sphere_mesh.get('mesh').batcher = _batch;
+                cube_mesh.get('mesh').file = 'assets/cube.obj';
+                cube_mesh.get('mesh').texture = tex4; 
+                cube_mesh.get('mesh').batcher = _batch;
 
+            //finally , add a cube collider and rigidbody to the cube entity
+         var block_collider = cube_mesh.add(BoxCollider, 'collider');
 
-        plane_entity = Luxe.scene.create(Entity, 'plane');
+            block_collider.width = 1;
+            block_collider.height = 1;
+            block_collider.depth = 1;
 
-            // plane_entity.add(PlaneCollider, 'collider');
-            // var pb = plane_entity.add(RigidBody, 'rigidbody');
+         cube_rigidbody_component = cube_mesh.add(RigidBody, 'rigidbody');
 
-            // pb.mass = 0;
-            // pb.pos = new Vector(0,-1,0);
-
-
-            //finally , add a sphere collider and rigidbody to the sphere entity
-        sphere_mesh.add(SphereCollider, 'collider');
-         rb = sphere_mesh.add(RigidBody, 'rigidbody');
-
-            rb.pos = new Vector(0,10,0);
-            rb.mass = 1;
+            cube_rigidbody_component.pos = new Vector(0,10,0);
+            cube_rigidbody_component.mass = 1;
+            cube_rigidbody_component.restitution = 1.3;
+            cube_rigidbody_component.friction = 1.5;
+            cube_rigidbody_component.linearDamping = 0.05;
 
     } //load level
 
@@ -180,53 +186,117 @@ class Main extends luxe.Game {
             Luxe.shutdown();
         }
 
+        if(e.value == Input.Keys.space) {
+            Luxe.physics.pause( !Luxe.physics.paused );
+        }
+
         cam3d.onkeydown(e);
-    }
+
+    } //onkeydown
 
     var hidden = false;
     var locked = false;
     public function onkeyup(e:Dynamic) {
 
         if(e.value == Input.Keys.key_R) {
-            rb.rigid_body.origin = new Vector(0,10,0);
-            rb.rigid_body.linearVelocity = new Vector(0,0,0);
-        }
+            cube_rigidbody_component.rigid_body.origin = new Vector(0,10,0);
+            cube_rigidbody_component.rigid_body.linearVelocity = new Vector(0,0,0);
+            cube_rigidbody_component.rigid_body.angularVelocity = new Vector(0,0,0);
+            cube_rigidbody_component.rigid_body.activate();
+        } //key_R
 
+        if(e.value == Input.Keys.key_1) {
+            cube_mesh_component.mesh.rotation = new Vector(0,0,0);
+        } //key_4
+        if(e.value == Input.Keys.key_2) {
+            cube_mesh_component.mesh.rotation = new Vector(0,90,0);
+        } //key_4
+        if(e.value == Input.Keys.key_3) {
+            cube_mesh_component.mesh.rotation = new Vector(0,-90,0);
+        } //key_4
         if(e.value == Input.Keys.key_4) {
-            hidden = !hidden;
-            Luxe.showCursor(hidden);
-        }
-
+            cube_mesh_component.mesh.rotation = new Vector(90,0,0);
+        } //key_5
         if(e.value == Input.Keys.key_5) {
-            locked = !locked;
-            Luxe.lockCursor(locked);
-        }
+            cube_mesh_component.mesh.rotation = new Vector(0,0,90);
+        } //key_5
 
         cam3d.onkeyup(e);
-    }
+
+    } //onkeyup
 
     public function onmousemove(e:MouseEvent) {
+
         cam3d.onmousemove(e);
-    }
+
+    } //onmousemove
 
     public function onmousedown(e) {
-        info.text = ''+cam3d.pos;
 
-        rb.rigid_body.applyImpulse( Vector.MultiplyVector( cam3d.forward, new Vector(10,10,10)) , new Vector() );
+        if(e.button == MouseButton.left) {
+            cube_rigidbody_component.rigid_body.activate();
+            cube_rigidbody_component.rigid_body.applyImpulse( Vector.MultiplyVector( cam3d.forward, new Vector(10,10,10)) , new Vector() );
+        } else {
+            info.text = cam3d.pos + ' ' + cam3d.rotation; 
+        }
 
-    }   
+    } //onmousedown
 
     public function onmouseup(e) {
+
         cam3d.onmouseup(e);
-    }
+
+    } //onmouseup
+
+    // var _lines:Array<LineGeometry>;
+    // var _first : Bool = true;
+    // public function prerender() {        
+
+    //     if(_lines != null) {
+    //         _first = false;
+    //     } else {
+    //         _lines = [];
+    //     }
+
+    //     Luxe.physics.dynamicsWorld.debugDrawWorld();
+    //     var verts = Luxe.physics.dynamicsWorld.getDebugDrawLineVertices();
+
+    //     var i = 0;
+    //     var _count = Std.int(verts.length/6);
+    //     for(i in 0 ... _count) {
+    //         //from.x,from.y,from.z 
+    //         //to.x,to.y,to.z
+    //         var _from = new Vector( verts[(i*6)+0], verts[(i*6)+1], verts[(i*6)+2] );
+    //         var _to = new Vector( verts[(i*6)+3], verts[(i*6)+4], verts[(i*6)+5] );
+
+    //         if(_first) {
+                
+    //             _lines.push(Luxe.draw.line({
+    //                 immediate : false,
+    //                 p0 : _from, p1 : _to,
+    //                 color : new Color(1,1,1,0.2),
+    //                 depth : 888,
+    //                 batcher : batch3d
+    //             }));
+
+    //         } else {
+    //             var _line = _lines[i];
+    //             _line.p0 = _from;
+    //             _line.p1 = _to;
+    //         }
+
+    //     } //_v
+
+    // } //postrender
 
     public function update(dt:Float) {
         
-    }
+    } //update
 
     public function shutdown() {
 
-    }
-}
+    } //shutdown
+
+} //Main
 
 

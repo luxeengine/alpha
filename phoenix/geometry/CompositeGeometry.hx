@@ -14,12 +14,14 @@ class CompositeGeometry extends Geometry {
         super(options);
 
         geometry = new Array<Geometry>();
-    }
+
+    } //new
 
     public function clear() {
             //todo profile these splices vs new assigns in haxe
         geometry.splice(0,geometry.length);
-    }
+
+    } //clear
 
         //loses the old geometry for new geometry
     public function replace(_geometry:Array<Geometry>) {
@@ -27,19 +29,26 @@ class CompositeGeometry extends Geometry {
         clear();
             //store the new geometry
         geometry = _geometry;
-    }
+
+    } //replace
 
     public function has_geometry( g:Geometry ) {
+
         return Lambda.has(geometry, g);
-    }
+
+    } //has_geometry
 
     public function add_geometry( g:Geometry ) {
+
         geometry.push(g);
-    }
+
+    } //add_geometry
 
     public function remove_geometry( g:Geometry ) {
+
         geometry.remove(g);
-    }
+
+    } //remove_geometry
 
     public override function drop( ?remove:Bool = true ) {
 
@@ -48,50 +57,80 @@ class CompositeGeometry extends Geometry {
         }
 
         geometry.splice(0,geometry.length);
-    }
 
-    public override function translate( _offset:Vector ) {
-        for(geom in geometry) {
-            geom.translate(_offset);
+    } //drop
+
+    public override function translate( _offset:Vector ) {        
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.translate(_offset);
+            }
         }
-    }
+    } //translate
+
+    public override function set_pos( _position:Vector ) : Vector {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.pos = _position;
+            }
+        }
+        return pos = _position;
+    } //set_pos
 
     public override function set_color( _color:Color ) : Color {
-        for(geom in geometry) {
-            geom.color = _color;
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.color = _color;
+            }
         }
         return color = _color;
-    }
-    public override function set_primitive_type(val : PrimitiveType) : PrimitiveType {        
-        for(geom in geometry) {
-            geom.primitive_type = val;
+    } //set_color
+
+    public override function set_primitive_type(val : PrimitiveType) : PrimitiveType {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.primitive_type = val;
+            }
         }
         return primitive_type = val;
-    }
-    public override function set_shader(val : Shader) : Shader {        
-        for(geom in geometry) {
-            geom.shader = val;
+    } //set_primitive_type
+
+    public override function set_shader(val : Shader) : Shader {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.shader = val;
+            }
         }
         return shader = val;
-    }
-    public override function set_texture(val : Texture) : Texture {        
-        for(geom in geometry) {
-            geom.texture = val;
+    } //set_shader
+
+    public override function set_texture(val : Texture) : Texture {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.texture = val;
+            }
         }
         return texture = val;
-    }
+    } //set_texture
+
     public override function set_depth(val : Float) : Float {  
-        for(geom in geometry) {
-            geom.depth = val;
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.depth = val;
+            }
         }
         return depth = val;
-    }
-    public override function set_group(val : Int) : Int {        
-        for(geom in geometry) {
-            geom.group = val;
+    } //set_depth
+
+    public override function set_group(val : Int) : Int {   
+        if(geometry != null) {     
+            for(geom in geometry) {
+                geom.group = val;
+            }
         }
         return group = val;
-    }
+    } //set_group
+
     public override function set_clip(val : Bool) : Bool {
         if(geometry != null) {
             for(geom in geometry) {
@@ -99,7 +138,8 @@ class CompositeGeometry extends Geometry {
             }
         }
         return clip = val;
-    }    
+    } //set_clip
+
     public override function set_clip_rect(val : Rectangle) : Rectangle {
         if(geometry != null) {
             for(geom in geometry) {
@@ -107,11 +147,17 @@ class CompositeGeometry extends Geometry {
             }
         }
         return clip_rect = val;
-    }
-    public override function set_enabled(val : Bool) : Bool {        
-        for(geom in geometry) {
-            geom.enabled = val;
+    } //set_clip_rect
+
+    public override function set_enabled(val : Bool) : Bool {
+
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.enabled = val;
+            }
         }
+
         return enabled = val;
-    }
-}
+    } //set_enabled
+
+} //CompositeGeometry

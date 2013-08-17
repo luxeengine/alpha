@@ -54,7 +54,7 @@ class LineGeometry extends Geometry {
 		add(vert1);
 
         primitive_type = PrimitiveType.line_strip;
-        immediate = false;
+        immediate = options.immediate;
 
 	}
 	

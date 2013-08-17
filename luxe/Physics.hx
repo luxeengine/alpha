@@ -23,36 +23,32 @@ class Physics {
     public var rate : Float = 0.0167;
     public var step_rate : Float = 0.0167;
     public var max_iterations : Int = 10;
-    public var paused : Bool = false;    
+    public var paused : Bool = false;
+    public var do_debug_draw : Bool = true;
 
 	var broadphase:BtDbvtBroadphase;
 	var collisionConfiguration:BtDefaultCollisionConfiguration;
 	var dispatcher:BtCollisionDispatcher;
 	var solver:BtSequentialImpulseConstraintSolver;
-	var dynamicsWorld:BtDiscreteDynamicsWorld;
+	public var dynamicsWorld:BtDiscreteDynamicsWorld;
 
 	public function startup() {
 
 		    // Build the broadphase
 	    broadphase = new BtDbvtBroadphase();
-	 
 	    	// Set up the collision configuration and dispatcher
 	    collisionConfiguration = new BtDefaultCollisionConfiguration();
+            // And the collision dispatcher
 	    dispatcher = new BtCollisionDispatcher( collisionConfiguration );
-	 
-	    	// The actual physics solver
+	    	// The physics solver
 	    solver = new BtSequentialImpulseConstraintSolver();
-	 
-	    	// The world
+	    	// Create the world 
 	    dynamicsWorld = new BtDiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
-	    	
 	    	// Set the default gravity
 	    dynamicsWorld.setGravity( new Vector( 0, -10, 0 ) );
 
-			//Start the loop
-		// start_loop();
-
     	core._debug(':: luxe :: \t Physics Initialized.');
+
     }  //startup
 
     public function setGravity( _gravity:luxe.Vector ) {
@@ -90,7 +86,7 @@ class Physics {
     	if(!paused) {
 
     			//Update the simulation
-	    	dynamicsWorld.stepSimulation( Luxe.dt, max_iterations );
+	    	dynamicsWorld.stepSimulation( Luxe.dt, max_iterations );       
 
 	    } //paused 
 
