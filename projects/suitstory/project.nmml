@@ -26,6 +26,7 @@
     <haxelib name="luxe" />
     <haxelib name="lime" />
     <haxelib name="actuate" />    
+    <haxelib name="haxebullet" />    
 
     <ndll name="libfreetype" register="false" if="emscripten" />
     

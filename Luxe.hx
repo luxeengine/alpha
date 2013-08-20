@@ -3,6 +3,7 @@ package ;
 
 import phoenix.geometry.Geometry;
 import phoenix.Texture;
+import phoenix.Shader;
 
 import luxe.Rectangle;
 
@@ -54,6 +55,10 @@ class Luxe {
 
     public static function loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture {
         return renderer.load_texture(_id, _onloaded);
+    }
+
+    public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:Shader->Void ) : Shader {
+        return renderer.load_shader(_ps_id, _vs_id, _onloaded);
     }
 
     public static function addGeometry(_geom:Geometry) {

@@ -5,7 +5,6 @@ import mode.Mode;
 import mode.Modes;
 
     //the game classes
-import game.Tower;
 import luxe.Input;
 
 

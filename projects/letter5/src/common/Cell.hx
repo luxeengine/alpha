@@ -22,7 +22,7 @@ class Cell {
 		_debug_geometry.push(Luxe.draw.rectangle({
         	x: x, y : y,
         	w : board.blockw, h : board.blockh,
-        	color : new Color(1,1,1,0.0)
+        	color : new Color(0,1,0,0.0)
         }));
 	}
 

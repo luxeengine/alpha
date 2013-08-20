@@ -38,6 +38,8 @@ class RectangleGeometry extends Geometry {
 
         primitive_type = PrimitiveType.line_strip;
         immediate = (options.immediate == null) ? false : options.immediate;
+        enabled = (options.enabled == null) ? true : options.enabled;
+        color = (options.color == null) ? new Color() : options.color;
 
 	}
 	

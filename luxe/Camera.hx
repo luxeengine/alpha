@@ -1,7 +1,10 @@
 package luxe;
 
+import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Entity;
+import motion.Actuate;
+import motion.easing.Quad;
 import phoenix.Camera.ProjectionType;
 
 typedef ProjectionType = phoenix.Camera.ProjectionType;
@@ -11,13 +14,15 @@ class Camera extends Entity {
 	public var view : phoenix.Camera;
 	private var view_position : Vector;
 
+	public var bounds : Rectangle;
+
 	public var shake_vector : Vector;
     public var shake_amount : Float;
     public var shaking : Bool = false;
 
 	public function new(?options:Dynamic = null) {
 			
-		if(options == null) options = {};
+		if(options == null) options = {};		
 
 			//Init the entity part
 		super();
@@ -32,6 +37,16 @@ class Camera extends Entity {
 		view_position = view.pos;
 
 	}
+
+		///Focus the camera on a specific point, for Ortho atm
+	public function center( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {	
+
+		var center_point_x = _p.x - (view.size.x/2);
+		var center_point_y = _p.y - (view.size.y/2);
+
+		Actuate.tween(view_position, _t, { x:center_point_x, y:center_point_y }, true ).onComplete( oncomplete ).ease( Quad.easeInOut );
+
+	} //
 
 	public override function set_pos(v:Vector) : Vector {
 		
@@ -62,7 +77,17 @@ class Camera extends Entity {
             shake_amount *= 0.9;
             final_position = Vector.Add(final_position, shake_vector);
         } 
+
+        	//check that we are within the given bounds
+        if(bounds != null) {
+        	if(final_position.x < bounds.x) final_position.x = bounds.x;
+        	if(final_position.y < bounds.y) final_position.y = bounds.y;
+        	if(final_position.x > bounds.w-view.size.x) final_position.x = bounds.w-view.size.x;
+        	if(final_position.y > bounds.h-view.size.y) final_position.y = bounds.h-view.size.y;
+        }
+
         	//add other modifiers
+
 
         	//finally, assign the position
         view.pos = final_position;

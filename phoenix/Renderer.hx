@@ -131,6 +131,44 @@ class Renderer {
     private function _debug(v:Dynamic) {
         //trace(v);
     }
+
+    public function load_shader( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
+        
+        var _frag_shader = '';
+        var _vert_shader = '';
+
+        if(_vsid == 'default' || _vsid == '') {
+            _vert_shader = Shaders.vertex_shader();
+        } else {
+            _vert_shader = lime.utils.Assets.getText(_vsid);
+        }
+
+        if(_psid == 'default' || _psid == '') {
+            _frag_shader = Shaders.fragment_untextured();
+        } else if(_psid == 'textured') {
+            _frag_shader = Shaders.fragment_textured();
+        } else {
+            _frag_shader = lime.utils.Assets.getText(_psid);
+        }
+            
+        var _shader : Shader = null;
+
+        if(_frag_shader.length > 0 && _vert_shader.length > 0) {
+            
+             _shader = new Shader( resource_manager );
+            _shader.load_from_string( _vert_shader , _frag_shader, false );
+
+        } //
+
+        if(_shader != null) {
+            return _shader;
+        } else {
+            return null;
+        }
+
+    } //load_shader
+
+
     public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
         
         _debug("Checking if the texture exists in the cache ..." + _name);
@@ -174,6 +212,7 @@ class Renderer {
         return texture;        
 
     }
+
 
     public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
 

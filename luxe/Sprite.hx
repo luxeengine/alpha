@@ -5,6 +5,7 @@ import luxe.Rectangle;
 import luxe.Scene;
 
 import phoenix.Quaternion;
+import phoenix.Shader;
 import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
@@ -18,7 +19,8 @@ class Sprite extends Entity {
 
     @:isVar public var geometry     (default,default)   : QuadGeometry;
     @:isVar public var locked       (default,set    )   : Bool = false;
-    @:isVar public var texture      (default,default)   : Texture;
+    @:isVar public var texture      (default,set    )   : Texture;
+    @:isVar public var shader       (default,set    )   : Shader;
     @:isVar public var size         (default,set    )   : Vector;
     @:isVar public var color        (default,set    )   : Color;
     @:isVar public var visible      (default,set    )   : Bool;
@@ -64,6 +66,10 @@ class Sprite extends Entity {
 //texture
         if(options.texture != null) {
             texture = options.texture;
+        }
+//shader
+        if(options.shader != null) {
+            shader = options.shader;
         }
 //centered
         if(options.centered != null) {
@@ -140,7 +146,7 @@ class Sprite extends Entity {
             height:size.y,
             texture : texture,            
             color : color,
-            shader : options.shader,
+            shader : shader,
             depth : (options.depth == null) ? 0 : options.depth,
             group : (options.group == null) ? 0 : options.group,
             enabled : (options.visible == null) ? true : options.visible
@@ -158,8 +164,15 @@ class Sprite extends Entity {
         var _c = centered;
         centered = _c;
 
+            //after we set centered the origin will override it
+        if(options.origin != null) origin = options.origin;
+
         if(options.add == null || options.add != false) {
-            Luxe.addGeometry( geometry );
+            if(options.batcher == null) {
+                Luxe.addGeometry( geometry );
+            } else {
+                options.batcher.add( geometry );
+            }
         }
 
         if(scene != null) {
@@ -260,13 +273,27 @@ class Sprite extends Entity {
             geometry.color = _c;
         } //geometry != null
 
-            //assign the color
-        color = _c;
-
-            //return a value
-        return _c;
+        return color = _c;
 
     } //set_color
+
+    function set_texture(_t:Texture) {
+
+        if(geometry != null) {
+            geometry.texture = _t;
+        } //geometry!=null  
+
+        return texture = _t;
+    }
+
+    function set_shader(_s:Shader) {
+
+        if(geometry != null) {
+            geometry.shader = _s;
+        } //geometry!=null  
+
+        return shader = _s;
+    }
 
 //Origin
 
@@ -364,19 +391,13 @@ class Sprite extends Entity {
 
 //Size
     
-        //todo:fix this for new transforms inside geometry
     public function set_size( _v:Vector ) : Vector {  
 
-            //resize the mesh
+            //resize the mesh vertices themselves, as scale is relative to this size
+            //if explicitly set
         if(geometry != null) {
-                //todo
-                //first, update the origin 
-            // if(centered) {
-                // geometry.origin = new Vector(_v.x/2, _v.y/2);                
-            // }
 
-            // geometry.resize( new Rectangle( pos.x, pos.y, _v.x, _v.y ) );
-            // geometry.rotate( new Vector(0, 0, radians) );
+            geometry.resize( new Rectangle( 0, 0, _v.x, _v.y ) );            
 
         } //if geometry != null
 
