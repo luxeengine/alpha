@@ -47,6 +47,8 @@ class BatchGroup {
 
 class Batcher {
 
+    public var batch_index : Node<Batcher>;
+    
     public var layer : Float = 0.0;
     public var enabled : Bool = true;
 

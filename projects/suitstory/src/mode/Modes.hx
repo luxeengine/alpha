@@ -57,7 +57,11 @@ class Modes {
 			if(mode.mousemove != null) mode.mousemove(e);
 		}
 	}
-
+	public function prerender() {
+		for (mode in activemodes) {
+			if(mode.prerender != null) mode.prerender();
+		}
+	}
 	public function update (dt:Float) {
 		for (mode in activemodes) {
 			if(mode.update != null) mode.update (dt);

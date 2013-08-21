@@ -118,7 +118,12 @@ class Renderer {
     }
 
     public function add_batch(batch:Batcher) {
-        batchers.insert(batch);
+        var _batch_index = batchers.insert(batch);
+        batch.batch_index = _batch_index;
+    }
+
+    public function remove_batch(batch:Batcher) {
+        batchers.remove( batch.batch_index );
     }
 
     public function clear( _color:Color ) {
@@ -153,10 +158,16 @@ class Renderer {
             
         var _shader : Shader = null;
 
+
         if(_frag_shader.length > 0 && _vert_shader.length > 0) {
+
+            var prefixes = '';
+            #if lime_html5
+                prefixes += "precision mediump float;";
+            #end //lime_html5
             
              _shader = new Shader( resource_manager );
-            _shader.load_from_string( _vert_shader , _frag_shader, false );
+            _shader.load_from_string( _vert_shader , prefixes + _frag_shader, false );
 
         } //
 

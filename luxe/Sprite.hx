@@ -383,6 +383,10 @@ class Sprite extends Entity {
             geometry.scale = _v.clone();
         } //geometry != null
 
+        scale = _v;
+
+        // trace('scale changing on sprite ' + _v);
+
             //update the parent
         super.set_scale(_v);
 

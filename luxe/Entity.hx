@@ -287,6 +287,7 @@ class Entity extends Objects {
             _component.entity_pos_change( pos );
         } //for each _component
 
+        _attach_listener( pos, _pos_change );
 
     	return pos; 
     } //set_pos
@@ -310,6 +311,9 @@ class Entity extends Objects {
         for(_component in components) {
             _component.entity_rotation_change( rotation );
         } //for each _component
+
+            //attach each component
+        _attach_listener( rotation, _rotation_change );
 
     	return rotation; 
 
@@ -335,6 +339,10 @@ class Entity extends Objects {
         for(_component in components) {
             _component.entity_scale_change( scale );
         } //for each _component
+
+            //attach each component
+        // trace('should apply listener now');
+        _attach_listener( scale, _scale_change );
 
         return scale; 
 
@@ -401,15 +409,19 @@ class Entity extends Objects {
 //Spatial transforms
 
         //An internal callback for when x y or z on a transform changes
-    private function _pos_change(_v:Float) { set_pos(pos); }
+    private function _pos_change(_v:Float) { this.set_pos(pos); }
         //An internal callback for when x y or z on a transform changes
-    private function _scale_change(_v:Float) { set_scale(scale); }
+    private function _scale_change(_v:Float) { this.set_scale(scale); 
+        // trace('changing scale in entity ' + _v); 
+        // untyped __js__('console.log("TTT")');
+    }
         //An internal callback for when x y or z on a transform changes
-    private function _rotation_change(_v:Float) { set_rotation(rotation); }
+    private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
 
         //An internal function to attach position 
         //changes to a vector, so we can listen for `pos.x` as well
     private function _attach_listener( _v : Vector, listener ) {
+        // trace('attaching listener');
         _v.listen_x = listener; 
         _v.listen_y = listener; 
         _v.listen_z = listener;

@@ -1,5 +1,6 @@
 
     //mode management code
+import luxe.Color;
 import luxe.Vector;
 import mode.Mode;
 import mode.Modes;
@@ -16,6 +17,8 @@ class Game extends luxe.Game {
     var level01 : levels.Level01;
 
     public function ready() {
+
+        Luxe.renderer.clear_color = new Color();
         
         modes = new Modes();
             //menus
@@ -34,6 +37,10 @@ class Game extends luxe.Game {
         modes.set('menu');
 
     }   
+
+    public function prerender() {
+        modes.prerender();
+    }
  
     public function onkeydown(e) {
         modes.keydown(e);

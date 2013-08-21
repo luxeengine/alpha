@@ -19,6 +19,7 @@ import phoenix.BitmapFont;
 import mode.Mode;
 
 import motion.Actuate;
+import phoenix.RenderTexture;
 
 class Level01 extends Mode {
 
@@ -39,14 +40,22 @@ class Level01 extends Mode {
     public var msg_text : Text;
 
 
+    public var beacon_list:Map<String,Vector>;
     public var sign_list:Map<String,Vector>;
+    
+    public var beacon_sprites:Map<String,Sprite>;
     public var sign_sprites:Map<String,Sprite>;
     public var sign_text_sprites:Map<String,Sprite>;
 
     public var map_scale : Float = 2;
 
+    public var world_batch : Batcher;
+
     public var hud_batch : Batcher;
     public var hud_view : Camera;
+
+    public var world_view : Sprite;
+    public var world_texture : RenderTexture;
 
     public function init() {
             
@@ -54,17 +63,24 @@ class Level01 extends Mode {
         start_camera_drag = new Vector();
 
         sign_list = new Map<String,Vector>();
+        beacon_list = new Map<String,Vector>();
+        
+        beacon_sprites = new Map<String,Sprite>();
         sign_sprites = new Map<String,Sprite>();
         sign_text_sprites = new Map<String,Sprite>();
 
         sign_list.set('university', new Vector(115,765) );
         sign_list.set('suburbia', new Vector(355,825) );
 
+        beacon_list.set('apartment', new Vector(147,705) );
+
+        world_batch = new Batcher( Luxe.renderer, 'world batcher' );
         hud_batch = new Batcher( Luxe.renderer, 'hud batcher' );
         hud_view = new Camera({name:'hud view'});
 
         hud_batch.view = hud_view.view;
-        hud_batch.layer = 2; //1 is the default
+        // world_batch.layer = 2; //1 is the default
+        hud_batch.layer = 3; //1 is the default
 
         Luxe.renderer.add_batch( hud_batch );
 
@@ -116,6 +132,18 @@ class Level01 extends Mode {
             batcher : hud_batch
         });
 
+        for( _key in beacon_list.keys()) {
+
+            haxe.Timer.delay( function(){
+                var _beacon_pos = beacon_list.get(_key);
+                _beacon_pos.multiplyScalar(map_scale);
+                var _keyl = _key;
+
+                add_beacon(_keyl, _beacon_pos);
+
+            }, 1500);
+        }
+
 
         for(_key in sign_list.keys()) {
                 
@@ -131,7 +159,8 @@ class Level01 extends Mode {
                 centered : true,
                 origin : new Vector(64,450),
                 texture : Luxe.loadTexture('assets/map/signs/sign.png'),
-                pos : _sign_pos
+                pos : _sign_pos,
+                batcher : world_batch
             });
 
                 //the text name
@@ -139,7 +168,8 @@ class Level01 extends Mode {
                 depth : 3,
                 centered : true,
                 texture : Luxe.loadTexture('assets/map/signs/'+ _key +'.png'),
-                pos : _sign_pos 
+                pos : _sign_pos, 
+                batcher : world_batch 
             });
 
                 //store for access and removal
@@ -147,13 +177,28 @@ class Level01 extends Mode {
             sign_text_sprites.set(_key, _sign_text_sprite);
 
         }//for each sign
+        
 
         map = new Sprite({
-            centered:false,
+            centered : false,
             size : new Vector(2048,2048),
             pos : new Vector(0,0),
+            color : new Color(),
             depth : 1,
-            texture : Luxe.loadTexture('assets/map/map.png')
+            texture : Luxe.loadTexture('assets/map/map.png'),
+            batcher : world_batch
+        });
+
+        world_texture = new RenderTexture( Luxe.resources,  new Vector(Luxe.screen.w,Luxe.screen.h) );
+
+        world_view = new Sprite({
+            centered : false,
+            size : new Vector(Luxe.screen.w,Luxe.screen.h),
+            pos : new Vector(0,0),
+            depth : 1,
+            texture : world_texture,
+            batcher : hud_batch,
+            shader : Luxe.loadShader('assets/tilt.shift.glsl', 'default')
         });
 
         map.texture.filter = phoenix.Texture.FilterType.nearest;
@@ -162,6 +207,36 @@ class Level01 extends Mode {
         Luxe.camera.pos = sign_list.get('university').clone().subtract( new Vector(Luxe.screen.w/2, Luxe.screen.h/2) );
 
     } //init
+
+    public function add_beacon( _name:String, _pos:Vector ) {
+
+            var _beacon_sprite = new Sprite({
+                origin : new Vector(70,113),
+                color : new Color(1,1,1,0),
+                depth : 4,
+                centered : true,
+                texture : Luxe.loadTexture('assets/map/beacons/beacon_with_shadow.png'),
+                pos : _pos,
+                batcher : world_batch
+            });
+
+            _beacon_sprite.scale.x = 0.1;
+
+            Actuate.tween( _beacon_sprite.scale, 0.5, { x:1 }, true).onUpdate(function(){
+                // trace(_beacon_sprite.scale.x);
+            });
+
+            Actuate.tween( _beacon_sprite.color, 0.8, { a:1 }, true);
+
+            beacon_sprites.set(_name, _beacon_sprite);
+
+    } //add_beacon
+
+    public function prerender() {
+        world_texture.bindBuffer();
+        world_batch.draw( false );
+        world_texture.unbindBuffer();
+    } //prerender
 
     var showing_dialog : Bool = false;
     var text_alpha : Float = 0;
@@ -173,7 +248,7 @@ class Level01 extends Mode {
             msg_text.visible = true;
         }
 
-        Actuate.tween( this, 0.8, { text_alpha:1 }).onUpdate( function(){
+        Actuate.tween( this, 0.8, { text_alpha:1 }, true).onUpdate( function(){
             msg_text.color = new Color( msg_text.color.r, msg_text.color.g, msg_text.color.b, text_alpha );
         });
 
@@ -185,17 +260,17 @@ class Level01 extends Mode {
 
     } // show_dialog
 
-    
 
     public function hide_dialog() {
 
-        Actuate.tween( this, 0.5, { text_alpha:0 }).onUpdate( function(){
-            msg_text.color = new Color( msg_text.color.r, msg_text.color.g, msg_text.color.b, text_alpha );
+        showing_dialog = false;
+
+        Actuate.tween( this, 0.5, { text_alpha:0 }, true).onUpdate( function(){
+            msg_text.color = new Color( msg_text.color.r, msg_text.color.g, msg_text.color.b, text_alpha );            
         });
 
         Actuate.tween( msg_dialog.color, 0.8, { a:0 }).onComplete(function(){
-            msg_dialog.visible = false;
-            showing_dialog = false;
+            msg_dialog.visible = false;            
         });
 
     } // hide_dialog
@@ -204,6 +279,11 @@ class Level01 extends Mode {
 
         trace('destroying level 01');
         
+        for(_key in beacon_sprites.keys()) {
+            beacon_sprites.get(_key).destroy();
+            beacon_sprites.remove(_key);
+        }
+
         for(_key in sign_sprites.keys()) {
             sign_sprites.get(_key).destroy();
             sign_sprites.remove(_key);
@@ -212,17 +292,18 @@ class Level01 extends Mode {
         }
 
         hudbar.destroy();
-        apt_button.destroy();       
+        apt_button.destroy();
         acq_button.destroy();
         msg_dialog.destroy();
-        msg_text.destroy(); 
+        msg_text.destroy();
         map.destroy();
+        world_view.destroy();
 
         hudbar = null;
         apt_button = null;
         acq_button = null;
         msg_dialog = null;
-        msg_text = null;        
+        msg_text = null;
         map = null;
 
         Luxe.camera.bounds = null;
@@ -243,11 +324,11 @@ class Level01 extends Mode {
     } //keydown
 
     public function mousedown(e) {
-
         mouse = new Vector(e.x,e.y);        
-        mouse_down = true;
 
         if(showing_dialog) return;
+
+        mouse_down = true;        
 
             //in a short time from mousedown, check if it's still actually down before we start dragging
         haxe.Timer.delay(function(){
@@ -261,9 +342,11 @@ class Level01 extends Mode {
 
     } //mousedown
 
+
     public function mouseup(e) {
         
         mouse = new Vector(e.x,e.y);
+            //before the early outs, to undo any mouse downs
         mouse_down = false;
 
         if(showing_dialog) {
@@ -273,7 +356,8 @@ class Level01 extends Mode {
         if(dragging) {
             dragging = false;
         } else {
-            Luxe.camera.center( Vector.Add( mouse, Luxe.camera.pos ) );
+            Luxe.camera.center( Vector.Add( mouse, Luxe.camera.pos ), 0.6 );
+            add_beacon( 'beacon' + Math.random(), Vector.Add( mouse, Luxe.camera.pos ) );
         }
     }
 

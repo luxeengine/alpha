@@ -65,8 +65,6 @@ class RenderTexture extends Texture {
 
 		loaded = true;
 
-		trace(this);
-
 	} //new
 
 	public override function destroy() {
