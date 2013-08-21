@@ -8,6 +8,7 @@ import phoenix.Vector;
 import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.Batcher;
+import phoenix.utils.BinarySearchTree.Node;
 
 import lime.utils.ByteArray;
 import lime.utils.Float32Array;
@@ -33,6 +34,7 @@ class Geometry {
 		//Batcher information
 	public var added : Bool = false;
 	public var batchers : Array<Batcher>;
+	public var batcher_indices : Map<Batcher, Node<Geometry> >;
 
 	public var state : GeometryState;
 	public var dropped : Bool = false;
@@ -71,6 +73,7 @@ class Geometry {
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
 		batchers = new Array<Batcher>();
+		batcher_indices = new Map();
 			
 			//default transform properties
 		pos = new Vector();
@@ -130,13 +133,11 @@ class Geometry {
 		
 		dropped = true;
 
-		if(remove && added) {
+		if( remove && added ) {
 			
-			for(b in batchers) { 
-				b.remove(this);
+			for(b in batchers) {
+				b.remove( this, true );
 			} //for each batcher
-
-			added = false;
 
 		} //if remove && added
 
@@ -144,10 +145,6 @@ class Geometry {
 
 	public function compare( other:Geometry ) : Int {
 		
-		if(other == this) {
-			return 0;
-		} //if the actual object return 0
-
 		return state.compare( other.state );
 
 	} //compare
@@ -263,19 +260,16 @@ class Geometry {
 //When changing important sortable properties
 //on a geometry, it removes it and readds it to the
 //binary search tree inside the batchers so that
-//it can be sorted correctly on insert
+//it can be sorted again, as sort only happens on insertion
+	
+	public function refresh() {
 
-	public function pre_refresh() {
 		for( b in batchers ) {
-			b.remove( this, false );		
-		} //for each batcher we are a part of
-	} //pre_update
-
-	public function post_refresh() {
-		for( b in batchers ) {
+			b.remove( this, false );
 			b.add( this, false );
 		} //for each batcher we are a part of
-	} //post_update
+
+	} //refresh
 
 //Primitive Type
 
@@ -287,13 +281,11 @@ class Geometry {
 
 	private function set_primitive_type( val : PrimitiveType ) : PrimitiveType {	
 
-		pre_refresh();
-				//THEN update value
-			state.primitive_type = val;
-			//readd with new value 
-		post_refresh();
+		state.primitive_type = val;
 
-		return state.primitive_type = val;
+			refresh();
+
+		return state.primitive_type;
 
 	} //set_primitive_type
 
@@ -307,13 +299,11 @@ class Geometry {
 
 	public function set_texture(val : Texture) : Texture {
 		
-		pre_refresh();
-				//THEN update value
-			state.texture = val;
-			//readd with new value 
-		post_refresh();
+		state.texture = val;
 
-		return state.texture = val;
+			refresh();
+
+		return state.texture;
 
 	} //set_texture
 
@@ -347,13 +337,11 @@ class Geometry {
 
 	public function set_shader(val : Shader) : Shader {
 
-		pre_refresh();
-				//THEN update value
-			state.shader = val;
-			//readd with new value 
-		post_refresh();
+		state.shader = val;
 
-		return state.shader = val;
+			refresh();
+
+		return state.shader;
 
 	} //set_shader
 
@@ -367,16 +355,9 @@ class Geometry {
 
 	public function set_depth(val : Float) : Float {
 			
-			//Do pre refresh cleanup
-			//trying to call .remove() from the batcher 
-			//binary search tree when the state changes mid way 
-			//somehow causes the item not to be found in the BST
-			//which makes no sense. For now, this will suffice. 
-		pre_refresh();
-				//THEN update value
-			state.depth = val;
-			//readd with new value 
-		post_refresh();
+		state.depth = val;
+		
+			refresh();
 
 		return state.depth;
 
@@ -392,14 +373,11 @@ class Geometry {
 
 	public function set_group(val : Int) : Int {
 
-			//see set_depth for notes on this
-		pre_refresh();
-				//THEN update value
-			state.group = val;
-			//readd with new value 
-		post_refresh();
+		state.group = val;
+		
+			refresh();
 
-		return state.group = val;
+		return state.group;
 
 	} //set_group
 
@@ -413,14 +391,11 @@ class Geometry {
 
 	public function set_clip(val : Bool) : Bool {
 
-			//see set_depth for notes
-		pre_refresh();
-				//THEN update value
-			state.clip = val;
-			//readd with new value 
-		post_refresh();
+		state.clip = val;
 
-		return state.clip = val;
+			refresh();
+
+		return state.clip;
 
 	} //set_clip
 
@@ -434,14 +409,11 @@ class Geometry {
 
 	public function set_clip_rect(val : Rectangle) : Rectangle {
 
-			//see set_depth for notes
-		pre_refresh();
-				//THEN update value
-			state.clip_rect = val;
-			//readd with new value 
-		post_refresh();
+		state.clip_rect = val;
 
-		return state.clip_rect = val;
+			refresh();
+
+		return state.clip_rect;
 
 	} //set_clip_rect
 

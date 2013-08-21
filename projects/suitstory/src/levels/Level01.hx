@@ -82,18 +82,23 @@ class Level01 extends Mode {
             centered : true,
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
             size : new Vector( 450, 300 ),
-            color : new Color().rgb(0x242424),
+            color : new Color(0,0,0,0).rgb(0x242424),
             batcher : hud_batch
         });
 
         msg_text = new Text({
             depth : 11,
-            bounds : new Rectangle( (Luxe.screen.w/2)-225, (Luxe.screen.h/2)-150 , 450,300),
-            color : new Color().rgb(0xe7e7e7),
+            size : 26,
+            bounds : new Rectangle( (Luxe.screen.w/2)-225, (Luxe.screen.h/2)-150,450,300),
+            color : new Color(0,0,0,0).rgb(0xe7e7e7),
             text : 'message dialog',
             align : TextAlign.center,
-            valign : TextAlign.center
+            align_vertical : TextAlign.center,
+            batcher : hud_batch
         });
+
+        msg_text.visible = false;
+        msg_dialog.visible = false;
 
         acq_button = new Sprite({
             depth:11,
@@ -159,27 +164,41 @@ class Level01 extends Mode {
     } //init
 
     var showing_dialog : Bool = false;
+    var text_alpha : Float = 0;
+
     public function show_dialog( text:String ) {
 
-        if(msg_dialog.color.a == 0) {
+        if(msg_dialog.visible == false) {
             msg_dialog.visible = true;
+            msg_text.visible = true;
         }
+
+        Actuate.tween( this, 0.8, { text_alpha:1 }).onUpdate( function(){
+            msg_text.color = new Color( msg_text.color.r, msg_text.color.g, msg_text.color.b, text_alpha );
+        });
 
         Actuate.tween( msg_dialog.color, 0.5, { a:1 }).onComplete(function(){
             showing_dialog = true;
         });
 
-        msg_text.text = text; 
+        msg_text.text = text;
 
-    }
+    } // show_dialog
+
+    
 
     public function hide_dialog() {
-        Actuate.tween( msg_dialog.color, 0.5, { a:0 }).onComplete(function(){
+
+        Actuate.tween( this, 0.5, { text_alpha:0 }).onUpdate( function(){
+            msg_text.color = new Color( msg_text.color.r, msg_text.color.g, msg_text.color.b, text_alpha );
+        });
+
+        Actuate.tween( msg_dialog.color, 0.8, { a:0 }).onComplete(function(){
             msg_dialog.visible = false;
             showing_dialog = false;
         });
-    }
 
+    } // hide_dialog
 
     public function destroy() {
 
@@ -193,25 +212,32 @@ class Level01 extends Mode {
         }
 
         hudbar.destroy();
-        hudbar = null;
-
-        apt_button.destroy();        
+        apt_button.destroy();       
         acq_button.destroy();
+        msg_dialog.destroy();
+        msg_text.destroy(); 
+        map.destroy();
 
+        hudbar = null;
         apt_button = null;
         acq_button = null;
-
-        map.destroy();
+        msg_dialog = null;
+        msg_text = null;        
         map = null;
 
         Luxe.camera.bounds = null;
 
-    }
+    } //destroy
 
     public function keydown(e) {
         
         if( e.value == Input.Keys.escape ) {
             game.modes.set('menu');
+        }
+
+
+        if( e.value == Input.Keys.key_D ) {
+            show_dialog('Welcome to the danger zone...');
         }
 
     } //keydown
@@ -221,9 +247,7 @@ class Level01 extends Mode {
         mouse = new Vector(e.x,e.y);        
         mouse_down = true;
 
-        if(showing_dialog) {
-            return hide_dialog();
-        }
+        if(showing_dialog) return;
 
             //in a short time from mousedown, check if it's still actually down before we start dragging
         haxe.Timer.delay(function(){
@@ -233,14 +257,18 @@ class Level01 extends Mode {
                 start_drag.set(mouse.x, mouse.y);
                 start_camera_drag.set(Luxe.camera.pos.x, Luxe.camera.pos.y);
             }
-        }, 100);    
+        }, 100);
 
-    }
+    } //mousedown
 
     public function mouseup(e) {
         
         mouse = new Vector(e.x,e.y);
         mouse_down = false;
+
+        if(showing_dialog) {
+            return hide_dialog();
+        } 
 
         if(dragging) {
             dragging = false;

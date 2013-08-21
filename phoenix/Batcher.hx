@@ -120,7 +120,7 @@ class Batcher {
 
         //this sorts the batchers in a list by layer
     public function compare(other:Batcher) {
-        if(other == this) return 0;
+        if(layer == other.layer) return 0;
         if(layer < other.layer) return -1;
         return 1;
      }
@@ -177,14 +177,7 @@ class Batcher {
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
-        
-        // Sys.println( a.short_id() + ' and ' + b.short_id() );
-
-        if(a == b) {
-            return 0;
-        } else {            
-            return a.compare( b );
-        }
+        return a.compare( b );
     }
 
 
@@ -196,7 +189,10 @@ class Batcher {
                 _geom.batchers.push(this);
             }
                 //Insert into our list
-            geometry.insert(_geom);
+            var _geom_key : Node<Geometry> = geometry.insert(_geom);
+                //The key is stored in the geometry instance to remove
+            _geom.batcher_indices.set(this, _geom_key);
+
                 //Make sure it is flagged
             _geom.added = true;
 
@@ -205,22 +201,32 @@ class Batcher {
         }
     } //add
 
-    public function remove(_geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
+    public function remove( _geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
 
-        var found_geom = geometry.find(_geom);
-        if(found_geom != null) {            
-                
+        var _geom_key = _geom.batcher_indices.get( this );
+
+        if(_geom_key != null) {            
+
+                //only if we explicitly want to remove ourselves from the geometry list of batchers
             if(_remove_batcher_from_geometry) {
-                found_geom.data.batchers.remove(this);
-                if(found_geom.data.batchers.length == 0) {
-                    found_geom.data.added = false;
+                _geom.batchers.remove(this);
+                if(_geom.batchers.length == 0) {
+                    _geom.added = false;
                 }
-            } //only if we explicitly want to remove from the list
+            } //_remove_batcher_from_geometry
 
-            geometry.remove( found_geom );
+            var _size = geometry.length;
+            
+            geometry.remove( _geom_key );
+
+            if(geometry.length != (_size-1)) {
+                trace("WARNING : geometry wasn't removed! " + _geom.short_id());
+            } //geometry.length
 
         } else {
-            trace("WARNING : geometry wasn't removed! " + _geom.short_id());
+
+            trace("WARNING : geometry doesn't have a key?!!! " + _geom.short_id());
+
         }
     }
 

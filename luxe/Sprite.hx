@@ -185,7 +185,7 @@ class Sprite extends Entity {
             
             //drop the geometry
         if(geometry != null && geometry.added ) {
-            geometry.drop(true);
+            geometry.drop( true );
         }
 
             //clear our references to these

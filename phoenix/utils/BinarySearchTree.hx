@@ -67,27 +67,37 @@ class BinarySearchTree<T> implements Collection<T> {
         Inserts an item into the tree.
     **/
     public function insert(obj : Null<T>) {
-        if (root == null) root = new Node(obj);
-        else {
+
+        if (root == null) {
+            
+            root = new Node(obj);
+            return root;
+
+        } else { //root == null
+
             var cur = root;
             
             while(cur != null) {
+
                 if (compare(obj, cur.data) < 0) {
                     if (cur.left != null) cur = cur.left;
                     else {
                         cur.setLeftData(obj);
-                        return;
+                        return cur.left;
                     }
                 } else {
                     if (cur.right != null) cur = cur.right;
                     else {
                         cur.setRightData(obj);
-                        return;
+                        return cur.right;
                     }
                 }
-            }
-        }
-    }
+
+            } //while cur != null
+
+            return null; //shouldn't happen?
+        } //else root wasn't null
+    } //insert
     
     /**
         Finds a piece of data in the tree and returns a reference to the node

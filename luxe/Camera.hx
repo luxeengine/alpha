@@ -50,6 +50,13 @@ class Camera extends Entity {
 
 	public override function set_pos(v:Vector) : Vector {
 		
+		if(bounds != null) {
+        	if(v.x < bounds.x) v.x = bounds.x;
+        	if(v.y < bounds.y) v.y = bounds.y;
+        	if(v.x > bounds.w-view.size.x) v.x = bounds.w-view.size.x;
+        	if(v.y > bounds.h-view.size.y) v.y = bounds.h-view.size.y;
+        }
+
 		view_position = v;
 		pos = v;
 
@@ -72,7 +79,7 @@ class Camera extends Entity {
         if(shaking) {
             shake_vector = Luxe.utils.geometry.random_point_in_unit_circle();
             shake_vector.x *= shake_amount;
-            shake_vector.y *= shake_amount;   
+            shake_vector.y *= shake_amount; 
             shake_vector.z *= shake_amount;         
             shake_amount *= 0.9;
             final_position = Vector.Add(final_position, shake_vector);
