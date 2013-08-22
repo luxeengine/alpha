@@ -341,7 +341,6 @@ class Entity extends Objects {
         } //for each _component
 
             //attach each component
-        // trace('should apply listener now');
         _attach_listener( scale, _scale_change );
 
         return scale; 

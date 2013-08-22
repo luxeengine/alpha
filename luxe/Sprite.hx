@@ -144,7 +144,7 @@ class Sprite extends Entity {
             y:pos.y, 
             width:size.x, 
             height:size.y,
-            texture : texture,            
+            texture : texture,
             color : color,
             shader : shader,
             depth : (options.depth == null) ? 0 : options.depth,
@@ -152,10 +152,29 @@ class Sprite extends Entity {
             enabled : (options.visible == null) ? true : options.visible
         });
 
-            //if texture is render target, flipy
-        if(texture != null && texture.type == ResourceType.render_texture) {
-            flipy = true;
+
+        if(texture != null && texture.loaded) {
+            
+                //because the default is 0,0,1,1 uv for the quad, we don't want that when
+                //textures are padded (like on html5)
+            if(options.uv == null) {
+
+                if(texture.actual_width != texture.width || texture.actual_height != texture.height) {
+                    uv = new Rectangle(0,0,texture.width,texture.height);
+                }
+
+            } else {
+                uv = options.uv;
+            }
+
+
+                //if texture is render target, flipy
+            if(texture.type == ResourceType.render_texture) {
+                flipy = true;
+            }
+
         }
+
 
             //default to the sprite name
         geometry.id = name;
@@ -384,8 +403,6 @@ class Sprite extends Entity {
         } //geometry != null
 
         scale = _v;
-
-        // trace('scale changing on sprite ' + _v);
 
             //update the parent
         super.set_scale(_v);

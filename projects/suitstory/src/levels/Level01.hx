@@ -14,6 +14,7 @@ import luxe.Color;
 
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
+import phoenix.Texture;
 import phoenix.BitmapFont;
 
 import mode.Mode;
@@ -141,7 +142,7 @@ class Level01 extends Mode {
 
                 add_beacon(_keyl, _beacon_pos);
 
-            }, 1500);
+            }, 2000);
         }
 
 
@@ -206,7 +207,11 @@ class Level01 extends Mode {
         Luxe.camera.bounds = new Rectangle(0,0,2048,2048);
         Luxe.camera.pos = sign_list.get('university').clone().subtract( new Vector(Luxe.screen.w/2, Luxe.screen.h/2) );
 
+        beacon_texture = Luxe.loadTexture('assets/map/beacons/beacon_with_shadow.png');
+
     } //init
+
+    var beacon_texture : Texture;
 
     public function add_beacon( _name:String, _pos:Vector ) {
 
@@ -215,17 +220,14 @@ class Level01 extends Mode {
                 color : new Color(1,1,1,0),
                 depth : 4,
                 centered : true,
-                texture : Luxe.loadTexture('assets/map/beacons/beacon_with_shadow.png'),
+                texture : beacon_texture,
                 pos : _pos,
                 batcher : world_batch
             });
 
             _beacon_sprite.scale.x = 0.1;
 
-            Actuate.tween( _beacon_sprite.scale, 0.5, { x:1 }, true).onUpdate(function(){
-                // trace(_beacon_sprite.scale.x);
-            });
-
+            Actuate.tween( _beacon_sprite.scale, 0.6, { x:1 }, true);
             Actuate.tween( _beacon_sprite.color, 0.8, { a:1 }, true);
 
             beacon_sprites.set(_name, _beacon_sprite);
