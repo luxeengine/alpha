@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h1><a href="index.html">luxe</a></h1>
+<h3><a href="types.html">Back to types</a></h3>
+<h2>Luxe Utils API</h2>
+<p>The utility class contains various functions that prove useful to the library.</p>
+<h3>Public methods</h3>
+<p><strong>uuid</strong> (returns a Universally Unique Identifier)<br><code>var unique_id = Luxe.utils.uuid() : String</code></p>
+<h3>Public Properties</h3>
+<h4>geometry</h4>
+<p>Accesssed via <code>Luxe.utils.geometry</code>,</p>
+<p><strong>random_point_in_unit_circle</strong> (returns a random point inside a unit circle [-1,1] )
+<code>var shake_direction = Luxe.utils.geometry.random_point_in_unit_circle() : Vector</code></p>
+<p><strong>point_in_polygon</strong> point to check, offset of polygon (position relative to vertices), list of vertices (returns if inside)<br><code>var is_point_inside = Luxe.utils.geometry.point_in_polygon(_point:Vector, _offset:Vector, _verts:Array&lt;Vector&gt; ) : Bool</code></p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,5 @@
+{
+  "glob": ["./Luxe/**/+(*.md)"],  
+  "output" : "../docs/",
+  "style" : "luxe"
+}

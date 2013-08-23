@@ -1,13 +1,64 @@
-<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="index.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">index.md</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo" title="" /></a></p>
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                
+            });
+        </script>
+    </head>
 
-<h1 id="luxe"><a href="">luxe</a></h1>
-
-<h6 id="a-rapid-development-haxe-based-game-engine-for-2d-and-3d-games">A rapid development, haxe based game engine for 2D and 3D games.</h6>
-
-<h2 id="structure">Structure</h2>
-
-<p><a href="luxe/api.html">View Luxe API</a> <br />
-<a href="luxe/types.html">View Luxe Types</a>   </p>
-
+    <body>
+        <div class="content">
+            <p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p>A cross platform haxe powered game development engine</p>
+<h2>About</h2>
+<p>Luxe is a cross platform, rapid development, haxe based OpenGL game engine for deploying games on<br><strong>Mac, Windows, Linux, Android, iOS and WebGL/Html5</strong>.</p>
+<p>Luxe is built on top of open source technologies, like <a href="http://haxe.org">Haxe</a>, <a href="http://github.com/haxenme/NME">NME</a> and built with performance and simplicity in mind, without sacrificing much low level access and without unneccessary complexity.</p>
+<p>Luxe uses common patterns and approaches to simplify working with the engine, such as Components/Entity systems, State Machines and Event Driven models. </p>
+<h2>Quick look</h2>
 <p>&nbsp;
-&nbsp;</p></div></div></div></div></body></html>
+&nbsp;
+<strong>A simple sprite example</strong></p>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Sprite</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Vector</span><span class="p">;</span>
+
+<span class="kd">var</span> player <span class="o">=</span> <span class="k">new</span> <span class="n">Sprite</span><span class="p">({</span>
+    <span class="n">depth</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="p">),</span>
+    <span class="n">texture</span> <span class="p">:</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/player.png&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+
+<span class="n">player</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+</pre></div>
+</code></pre>
+<p>&nbsp;
+&nbsp;
+<strong>A simple component example</strong></p>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Entity</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">MeshComponent</span><span class="p">;</span>
+
+<span class="kd">var</span> cube_mesh <span class="o">=</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">Entity</span><span class="p">,</span> <span class="s1">&#39;sphere&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> cube_mesh_component <span class="o">=</span> <span class="n">cube_mesh</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MeshComponent</span><span class="p">,</span> <span class="s1">&#39;mesh&#39;</span><span class="p">);</span>
+
+    <span class="n">cube_mesh</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">).</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;assets/cube.obj&#39;</span><span class="p">;</span>
+    <span class="n">cube_mesh</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">).</span><span class="n">texture</span> <span class="o">=</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/cube.png&#39;</span><span class="p">);</span>
+</pre></div>
+</code></pre>
+<h2>Documentation</h2>
+<p><a href="all.html">View Full Index</a>    </p>
+<p><a href="api.html">View Luxe API</a><br><a href="types.html">View Luxe Types</a><br><a href="classes.html">View Luxe Classes</a>
+&nbsp;
+&nbsp;</p>
+<p>&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

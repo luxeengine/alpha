@@ -1,13 +1,54 @@
-<!DOCTYPE html><html lang="en"><head><title>Luxe</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="Luxe"><meta name="groc-project-path" content="Luxe/Luxe.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">Luxe/Luxe.md</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo" title="" /></a></p>
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script type="text/javascript" src="./highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+    </head>
 
-<h1 id="luxe">luxe</h1>
-
-<h6 id="a-cross-platform-haxe-based-rapid-iteration-game-development-framework">A cross platform haxe based rapid iteration game development framework</h6>
-
-<h2 id="structure">Structure</h2>
-
-<p><a href="core/types.html">View Core Types</a> <br />
-<a href="core/classes.html">View Core Classes</a>
+    <body>
+        <div class="content">
+            <p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h1>luxe</h1>
+<h6>A cross platform haxe based rapid iteration game development framework</h6>
+<h2>Structure</h2>
+<p><a href="core/types.html">View Core Types</a><br><a href="core/classes.html">View Core Classes</a>
 &nbsp;
-&nbsp;
-&nbsp;</p></div></div></div></div></body></html>
+&nbsp;</p>
+<pre><code>public function line(options:Dynamic) {
+
+    if(options.p0 == null) throw &quot;draw.line requires p0:Vector, and p1:Vector&quot;;
+    if(options.p1 == null) throw &quot;draw.line requires p0:Vector, and p1:Vector&quot;;
+
+    options = default_options(options);
+
+    var _line = new LineGeometry(options);
+
+    options.batcher.add(_line);
+
+    return _line;
+
+} // line
+
+public function rectangle(options:Dynamic) {
+
+    options = default_options(options);
+
+        //the batcher
+
+    var _rect = new RectangleGeometry(options);
+
+    options.batcher.add(_rect);
+
+    return _rect;
+
+} //rectangle</code></pre>
+<p>&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

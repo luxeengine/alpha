@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h1><a href="index.html">luxe</a></h1>
+<h3><a href="types.html">Back to types</a></h3>
+<h2>Luxe Audio API</h2>
+<p>To create and play a sound, you can use the following, for <strong>ogg</strong> and <strong>wav</strong> files : </p>
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/sounds/click.wav&#39;</span><span class="p">);</span>
+<span class="n">Luxe</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">volume</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">);</span>
+<span class="n">Luxe</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">);</span>
+</pre></div>
+</code></pre>
+<p><em>Create a named sound</em></p>
+<p><strong>create</strong>    sound name, sound file, force music?
+<code>Luxe.audio.create(_name:String,_file:String, ?_forcemusic:Bool = false ) : Void</code>   </p>
+<p><em>Play a sound a by name</em></p>
+<p><strong>play</strong>    sound name<br><code>Luxe.audio.play(_name:String) : Void</code>    </p>
+<p><em>Configure a sound by name</em></p>
+<p><strong>volume</strong>    sound name, volume value [0,1]<br>   <code>Luxe.audio.volume(_name:String, _volume:Float) : Void</code>   </p>
+<p><strong>pan</strong>        sound name, pan value [_1, 1]<br>   <code>Luxe.audio.pan(_name:String, _pan:Float) : Void</code></p>
+
+        </div>
+    </body>
+
+</html>
