@@ -8,7 +8,6 @@
 [Color](luxe.Color.html)   
 [Rectangle](luxe.Rectangle.html)   
 [Vector](luxe.Vector.html)   
-[Vec](luxe.Vector.html)   
 
 #### Types
 

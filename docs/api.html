@@ -2,13 +2,16 @@
 <html>
     
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
         <link rel="stylesheet" type="text/css" href="./style.css" media="all">
         <link rel="stylesheet" type="text/css" href="./code.css" media="all">
         <link rel="stylesheet" type="text/css" href="./font.css" media="all">
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
-                
+
             });
         </script>
     </head>
@@ -48,7 +51,7 @@ Our example calculation becomes <code>ball.position.x += (1 * deltatime);</code>
 <h4>Core</h4>
 <p></a></p>
 <p><a name="shutdown" href="#shutdown">shutdown</a></p>
-<pre><code><div class="highlight"><pre><span class="n">shutdown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Quit the game/engine </span>      </p>
@@ -57,27 +60,27 @@ Our example calculation becomes <code>ball.position.x += (1 * deltatime);</code>
 <p></a></p>
 <p><span class="small_desc warn"> These functions are here temporarily, <br/>will soon be migrated to Luxe.screen.cursor </span> </p>
 <p><a name="showCursor" href="#showCursor">showCursor</a></p>
-<pre><code><div class="highlight"><pre><span class="n">showCursor</span><span class="p">(</span> <span class="n">_show</span><span class="err">:Bool</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">showCursor</span><span class="p">(</span> <span class="n">_show</span><span class="err">:Bool</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Show the cursor inside the window </span>      </p>
 <p><a name="lockCursor" href="#lockCursor">lockCursor</a></p>
-<pre><code><div class="highlight"><pre><span class="n">lockCursor</span><span class="p">(</span> <span class="n">_lock</span><span class="err">:Bool</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">lockCursor</span><span class="p">(</span> <span class="n">_lock</span><span class="err">:Bool</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Lock the cursor inside the edges of the window </span>      </p>
 <p><a name="cursorShown" href="#cursorShown">cursorShown</a></p>
-<pre><code><div class="highlight"><pre><span class="n">cursorShown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Bool</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">cursorShown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Bool</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> If the cursor is visible </span>          </p>
 <p><a name="cursorLocked" href="#cursorLocked">cursorLocked</a></p>
-<pre><code><div class="highlight"><pre><span class="n">cursorLocked</span><span class="p">()</span> <span class="err">:</span> <span class="n">Bool</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">cursorLocked</span><span class="p">()</span> <span class="err">:</span> <span class="n">Bool</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> If the cursor is locked </span>          </p>
 <p><a name="setCursorPosition" href="#setCursorPosition">setCursorPosition</a></p>
-<pre><code><div class="highlight"><pre><span class="n">setCursorPosition</span><span class="p">(</span> <span class="n">_x</span><span class="err">:Int</span> <span class="p">,</span> <span class="n">_y</span><span class="err">:Int</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">setCursorPosition</span><span class="p">(</span> <span class="n">_x</span><span class="err">:Int</span> <span class="p">,</span> <span class="n">_y</span><span class="err">:Int</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Set the position in screen space of the cursor in the window (0,0 top left) </span>              </p>
@@ -85,30 +88,30 @@ Our example calculation becomes <code>ball.position.x += (1 * deltatime);</code>
 <h4>Assets</h4>
 <p></a></p>
 <p><a name="loadText" href="#loadText">loadText</a></p>
-<pre><code><div class="highlight"><pre><span class="n">loadText</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">String</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">loadText</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">String</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Load a text based asset by id </span>      </p>
 <p><a name="loadTexture" href="#loadTexture">loadTexture</a></p>
-<pre><code><div class="highlight"><pre><span class="n">loadTexture</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Texture-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Texture</span>    
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Texture-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Texture</span>    
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Load a Texture asset by id </span>      </p>
 <p><a name="loadShader" href="#loadShader">loadShader</a></p>
-<pre><code><div class="highlight"><pre><span class="n">loadShader</span><span class="p">(</span> <span class="err">?</span><span class="n">_pixel_shader_id</span><span class="err">:String=&quot;default&quot;</span><span class="p">,</span> <span class="err">?</span><span class="n">_vertex_shader_id</span> <span class="err">:</span> <span class="err">String=&quot;default&quot;</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Shader</span>    
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">loadShader</span><span class="p">(</span> <span class="err">?</span><span class="n">_pixel_shader_id</span><span class="err">:String=&quot;default&quot;</span><span class="p">,</span> <span class="err">?</span><span class="n">_vertex_shader_id</span> <span class="err">:</span> <span class="err">String=&quot;default&quot;</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Shader</span>    
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Load a Shader asset by id </span>      </p>
+<p><span class="small_desc_flat"> Load a Shader asset by id. If ‘default’ or ‘’ the default shader code will be used. For the pixel shader, ‘textured’ is the default textured shader, and default refers to untextured color shader.  </span>      </p>
 <p><a name="DefaultRenderer" href="#DefaultRenderer"></p>
 <h4>Shortcuts for the default Renderer</h4>
 <p></a></p>
 <p><a name="addGeometry" href="#addGeometry">addGeometry</a></p>
-<pre><code><div class="highlight"><pre><span class="n">addGeometry</span><span class="p">(</span> <span class="n">_geom</span><span class="err">:Geometry</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">addGeometry</span><span class="p">(</span> <span class="n">_geom</span><span class="err">:Geometry</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Add some geometry to the default renderer </span>      </p>
 <p><a name="removeGeometry" href="#removeGeometry">removeGeometry</a></p>
-<pre><code><div class="highlight"><pre><span class="n">removeGeometry</span><span class="p">(</span> <span class="n">_geom</span><span class="err">:Geometry</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">removeGeometry</span><span class="p">(</span> <span class="n">_geom</span><span class="err">:Geometry</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Remove some geometry from the default renderer </span>      </p>

@@ -69,7 +69,7 @@ Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigg
 
 <a name="shutdown" href="#shutdown">shutdown</a>
 
-	shutdown() : Void   
+	Luxe.shutdown() : Void   
 <span class="small_desc_flat"> Quit the game/engine </span>      
 
 <a name="Window" href="#Window">
@@ -81,27 +81,27 @@ Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigg
 <a name="showCursor" href="#showCursor">showCursor</a>
 
 
-	showCursor( _show:Bool ) : Void   
+	Luxe.showCursor( _show:Bool ) : Void   
 <span class="small_desc_flat"> Show the cursor inside the window </span>      
 
 <a name="lockCursor" href="#lockCursor">lockCursor</a>
 
-    lockCursor( _lock:Bool ) : Void   
+    Luxe.lockCursor( _lock:Bool ) : Void   
 <span class="small_desc_flat"> Lock the cursor inside the edges of the window </span>      
 
 <a name="cursorShown" href="#cursorShown">cursorShown</a>
 
-    cursorShown() : Bool   
+    Luxe.cursorShown() : Bool   
 <span class="small_desc_flat"> If the cursor is visible </span>          
 
 <a name="cursorLocked" href="#cursorLocked">cursorLocked</a>
 
-    cursorLocked() : Bool   
+    Luxe.cursorLocked() : Bool   
 <span class="small_desc_flat"> If the cursor is locked </span>          
 
 <a name="setCursorPosition" href="#setCursorPosition">setCursorPosition</a>
 
-    setCursorPosition( _x:Int , _y:Int ) : Void   
+    Luxe.setCursorPosition( _x:Int , _y:Int ) : Void   
 <span class="small_desc_flat"> Set the position in screen space of the cursor in the window (0,0 top left) </span>              
 
 <a name="Assets" href="#Assets">
@@ -110,18 +110,18 @@ Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigg
 
 <a name="loadText" href="#loadText">loadText</a>
 
-	loadText( _id:String ) : String   
+	Luxe.loadText( _id:String ) : String   
 <span class="small_desc_flat"> Load a text based asset by id </span>      
 
 <a name="loadTexture" href="#loadTexture">loadTexture</a>
 
-	loadTexture( _id:String, ?_onloaded:Texture->Void ) : Texture    
+	Luxe.loadTexture( _id:String, ?_onloaded:Texture->Void ) : Texture    
 <span class="small_desc_flat"> Load a Texture asset by id </span>      
 
 <a name="loadShader" href="#loadShader">loadShader</a>
 
-	loadShader( ?_pixel_shader_id:String="default", ?_vertex_shader_id : String="default" ) : Shader    
-<span class="small_desc_flat"> Load a Shader asset by id </span>      
+	Luxe.loadShader( ?_pixel_shader_id:String="default", ?_vertex_shader_id : String="default" ) : Shader    
+<span class="small_desc_flat"> Load a Shader asset by id. If 'default' or '' the default shader code will be used. For the pixel shader, 'textured' is the default textured shader, and default refers to untextured color shader.  </span>      
 
 
 <a name="DefaultRenderer" href="#DefaultRenderer">
@@ -130,12 +130,12 @@ Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigg
 
 <a name="addGeometry" href="#addGeometry">addGeometry</a>
 
-	addGeometry( _geom:Geometry ) : Void   
+	Luxe.addGeometry( _geom:Geometry ) : Void   
 <span class="small_desc_flat"> Add some geometry to the default renderer </span>      
 
 <a name="removeGeometry" href="#removeGeometry">removeGeometry</a>
 
-	removeGeometry( _geom:Geometry ) : Void   
+	Luxe.removeGeometry( _geom:Geometry ) : Void   
 <span class="small_desc_flat"> Remove some geometry from the default renderer </span>      
 
 

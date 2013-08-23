@@ -51,7 +51,7 @@ class Color {
 		return "{ r:"+r+" , g:"+g+" , b:"+b+" , a:"+a+" }";
 	}
 
-	public function from_int(_i:Int) {
+	private function from_int(_i:Int) {
 
 		var _r = _i >> 16;
 		var _g = _i >> 8 & 0xFF;

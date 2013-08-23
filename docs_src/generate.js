@@ -84,6 +84,7 @@ var config = require('./luxe.docs.json');
 
             //copy template files
 
+        fs.createReadStream( _style_path + '/favicon.png').pipe(fs.createWriteStream( config.output + 'favicon.png'));
         fs.createReadStream( _style_path + '/jquery-2.0.3.min.js').pipe(fs.createWriteStream( config.output + 'jquery-2.0.3.min.js'));
         fs.createReadStream( _style_path + '/style.css').pipe(fs.createWriteStream( config.output + 'style.css'));
         fs.createReadStream( _style_path + '/code.css').pipe(fs.createWriteStream( config.output + 'code.css'));

@@ -2,13 +2,16 @@
 <html>
     
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
         <link rel="stylesheet" type="text/css" href="./style.css" media="all">
         <link rel="stylesheet" type="text/css" href="./code.css" media="all">
         <link rel="stylesheet" type="text/css" href="./font.css" media="all">
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
-                
+
             });
         </script>
     </head>
@@ -16,8 +19,23 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
 <h3><a href="types.html">Back to types</a></h3>
+<h3>luxe.Rectangle</h3>
+<p><a name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span> <span class="n">Rectangle</span><span class="p">(</span> <span class="err">?</span><span class="n">_x</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_y</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_w</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_h</span> <span class="err">:</span> <span class="err">Float=0</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Rectangle</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Create a new rectangle instance </span> <code>var rect = new Rectangle(10,10,100,100)</code>     </p>
+<p><a name="set" href="#set">set</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span> <span class="err">?</span><span class="n">_r</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_g</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_b</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span> <span class="err">:</span> <span class="err">Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Rectangle</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Set components of this rect, if any components is passed in as null - it will be left as is. </span> <code>rect.set( 200,200,20,20 )</code>   </p>
+<p><a name="clone" href="#clone">clone</a></p>
+<pre><code><div class="highlight"><pre><span class="n">rect</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Create a copy of this rectangle </span>      </p>
 
         </div>
     </body>
