@@ -11,8 +11,12 @@ import luxe.Scene;
 import luxe.Files;
 import luxe.Debug;
 import luxe.Time;
-import luxe.Physics;
+
 import luxe.Renderer;
+
+#if haxebullet
+    import luxe.Physics;
+#end //haxebullet
 
 import haxe.Timer;
 
@@ -40,9 +44,12 @@ class Core {
 	public var input 	: Input;
     public var audio    : Audio;
     public var scene    : Scene;
-    public var physics  : Physics;
 	public var renderer : Dynamic;
     public var screen   : luxe.Rectangle; //todo
+
+#if haxebullet
+    public var physics  : Physics;
+#end //haxebullet
 
 //Delta times
     private var end_dt : Float = 0;
@@ -116,7 +123,10 @@ class Core {
 		events = new Events( this );
 		audio = new Audio( this );	
 		input = new Input( this );
-        physics = new Physics( this );    
+
+        #if haxebullet
+            physics = new Physics( this );    
+        #end //haxebullet
 
         if(config.renderer == null) {
             renderer = new Renderer( this );
@@ -150,7 +160,10 @@ class Core {
         Luxe.time = time;
         Luxe.camera = new luxe.Camera({ name:'default_camera', view:renderer.default_camera });
         Luxe.resources = renderer.resource_manager;
-        Luxe.physics = physics;
+
+        #if haxebullet
+            Luxe.physics = physics;
+        #end //haxebullet
 
         scene = new Scene();
         scene.name = 'default scene';
@@ -221,7 +234,10 @@ class Core {
         audio.process();    //Audio
         debug.process();    //debug late
         events.process();   //events 
-        physics.process();   //events 
+
+        #if haxebullet
+            physics.process();   //physics 
+        #end //haxebullet
 
             //Update the default scene first
         scene.update(dt);
