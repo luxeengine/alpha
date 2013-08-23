@@ -50,13 +50,23 @@ class Level01 extends Mode {
 
     public var map_scale : Float = 2;
 
+        //the map batcher, for drawing it to a render texture, shares the default camera
+    public var map_batch : Batcher;    
+        //the map display sprite, showing the resulting rendered map with shaders
+    public var map_view : Sprite;
+        //the rendered texture of the map
+    public var map_view_texture : RenderTexture;
+        //the final view of the map
+    public var map_view_batch : Batcher;
+
+        //the world items on top of the map, shares the default camera
     public var world_batch : Batcher;
 
+        //the hud batcher for static items
     public var hud_batch : Batcher;
+        //the camera for the hud static view
     public var hud_view : Camera;
 
-    public var world_view : Sprite;
-    public var world_texture : RenderTexture;
 
     public function init() {
             
@@ -75,15 +85,33 @@ class Level01 extends Mode {
 
         beacon_list.set('apartment', new Vector(147,705) );
 
+            //the batcher for drawing the map into the texture
+        map_batch = new Batcher( Luxe.renderer, 'map batcher' );
+            //the view batcher for the output of the map
+        map_view_batch = new Batcher( Luxe.renderer, 'map view batcher' );
+            //the world items that aren't to be blurred with the map
         world_batch = new Batcher( Luxe.renderer, 'world batcher' );
+
+            //The hud batch renderer
         hud_batch = new Batcher( Luxe.renderer, 'hud batcher' );
+            //The hud camera in fixed view
         hud_view = new Camera({name:'hud view'});
-
+            //Set it to the batcher
         hud_batch.view = hud_view.view;
-        // world_batch.layer = 2; //1 is the default
-        hud_batch.layer = 3; //1 is the default
+            //the hud camera matches the view too
+        map_view_batch.view = hud_view.view;
 
+            //map is below the world and hud
+        map_view_batch.layer = 2;
+            //world is above the map, below the hud
+        world_batch.layer = 3;
+            //the hud is last
+        hud_batch.layer = 4; 
+
+            //add the batchers to the renderer
         Luxe.renderer.add_batch( hud_batch );
+        Luxe.renderer.add_batch( map_view_batch );
+        Luxe.renderer.add_batch( world_batch );
 
         hudbar = new Sprite({
             depth:10,
@@ -142,7 +170,7 @@ class Level01 extends Mode {
 
                 add_beacon(_keyl, _beacon_pos);
 
-            }, 2000);
+            }, 1500);
         }
 
 
@@ -187,18 +215,18 @@ class Level01 extends Mode {
             color : new Color(),
             depth : 1,
             texture : Luxe.loadTexture('assets/map/map.png'),
-            batcher : world_batch
+            batcher : map_batch
         });
 
-        world_texture = new RenderTexture( Luxe.resources,  new Vector(Luxe.screen.w,Luxe.screen.h) );
+        map_view_texture = new RenderTexture( Luxe.resources,  new Vector(Luxe.screen.w,Luxe.screen.h) );
 
-        world_view = new Sprite({
+        map_view = new Sprite({
             centered : false,
             size : new Vector(Luxe.screen.w,Luxe.screen.h),
             pos : new Vector(0,0),
             depth : 1,
-            texture : world_texture,
-            batcher : hud_batch,
+            texture : map_view_texture,
+            batcher : map_view_batch,
             shader : Luxe.loadShader('assets/tilt.shift.glsl', 'default')
         });
 
@@ -235,9 +263,9 @@ class Level01 extends Mode {
     } //add_beacon
 
     public function prerender() {
-        world_texture.bindBuffer();
-        world_batch.draw( false );
-        world_texture.unbindBuffer();
+        map_view_texture.bindBuffer();
+        map_batch.draw( false );
+        map_view_texture.unbindBuffer();
     } //prerender
 
     var showing_dialog : Bool = false;
@@ -299,7 +327,7 @@ class Level01 extends Mode {
         msg_dialog.destroy();
         msg_text.destroy();
         map.destroy();
-        world_view.destroy();
+        map_view.destroy();
 
         hudbar = null;
         apt_button = null;

@@ -28,7 +28,6 @@ class Main extends luxe.Game {
     public function onkeyup(e) {
 
       if(e.value == Input.Keys.key_S) {
-            untyped __js__('console.log("derp")');
             Actuate.tween( test_sprite.scale , 0.6, { x:1+(Math.random()*5) }).ease( motion.easing.Bounce.easeOut );
       }
 
