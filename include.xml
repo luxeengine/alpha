@@ -12,7 +12,7 @@
 
 		<!-- Tentatively added here, testing in projects/three first -->
 		<!-- This will also only be required on native platforms anyway -->
-		<haxelib name="haxebullet" />
+		<!-- <haxelib name="haxebullet" /> -->
 
 		<!-- for now in initial dev phoenix will be underneath luxe -->
 		<!-- but it is possible to use it as a haxelib already -->

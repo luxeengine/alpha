@@ -148,7 +148,9 @@ class Core {
 		events.startup();
 		audio.startup();
 		input.startup();
-        physics.startup();
+        #if haxebullet
+            physics.startup();
+        #end //haxebullet
         
         if(renderer != null && renderer.startup != null) {
             renderer.startup();
