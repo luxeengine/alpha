@@ -19,7 +19,7 @@ class Vector {
 	@:isVar public var listen_z(default,default) : Float -> Void;
 
 	public function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0) {
-		
+
 		x = _x;
 		y = _y;
 		z = _z;
@@ -27,7 +27,7 @@ class Vector {
 
 	} //new
 	
-	public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?w:Float ) : Vector {
+	public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
 		
 		var _setx = x;
 		var _sety = y;
