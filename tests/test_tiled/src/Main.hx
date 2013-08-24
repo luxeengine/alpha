@@ -103,10 +103,12 @@ class Main extends luxe.Game {
 
         map = new TiledDisplay('assets/tiles.tmx');
 
-        map.create( 0, 4, FilterType.nearest );
+        var _map_scale = 4;
+
+        map.create( 0, _map_scale, FilterType.nearest );
 
             //bounds is set to the tilemap size in pixels * scale
-        Luxe.camera.bounds = new Rectangle( 0, 0, map.tiledmap.totalWidth*4, map.tiledmap.totalHeight*4 );
+        Luxe.camera.bounds = new Rectangle( 0, 0, map.tiledmap.totalWidth*_map_scale, map.tiledmap.totalHeight*_map_scale );
 
     } //ready
   
