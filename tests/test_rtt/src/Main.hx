@@ -58,7 +58,7 @@ class Main extends luxe.Game {
     }
 
     public function update(dt:Float) {
-        sprite.rotation += 20 * dt;
+        sprite.rotation_z += 20 * dt;
     } //update
 
     public function shutdown() {

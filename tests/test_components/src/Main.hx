@@ -26,7 +26,7 @@ class Main extends luxe.Game {
 
     public function ready() {
 
-        Entity.debug = false;
+        
 
             //game object is a fake class below just for testing
         var go = new GameObject();
@@ -167,22 +167,22 @@ class Child2 extends Components {
             oncerun = true;
         }        
 
-        rotation += 25*dt;
-        pos.x += 300*dir*dt;
+        entity.rotation.z += 25*dt;
+        entity.pos.x += 300*dir*dt;
         var swap = false;
-        if(pos.x > Luxe.screen.w) {
-            pos.x = Luxe.screen.w;
+        if(entity.pos.x > Luxe.screen.w) {
+            entity.pos.x = Luxe.screen.w;
             swap = true;
         } else
-        if(pos.x < 0) {
-            pos.x = 0;
+        if(entity.pos.x < 0) {
+            entity.pos.x = 0;
             swap = true;
         }     
 
         if(swap) {
             dir = -dir;            
             var ns = 1+(Math.random());
-            scale = new Vector(ns,ns);
+            entity.scale = new Vector(ns,ns);
             Luxe.camera.get('shaker').amount = 1+9*Math.random();
             Luxe.camera.get('shaker').shake();
         }
