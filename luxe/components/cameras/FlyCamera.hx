@@ -162,6 +162,11 @@ class FlyCamera extends luxe.Camera {
         if(e.button == MouseButton.left && !ready) {            
             enable();
         }
+
+        if(e.button == MouseButton.left && !Luxe.cursorShown() ) {
+            Luxe.lockCursor(true);
+            Luxe.showCursor(false);
+        }
     }
 
     public function enable() {
