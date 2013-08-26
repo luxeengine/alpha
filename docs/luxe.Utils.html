@@ -11,7 +11,19 @@
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
 
+                    _child.css('display', _opp);
+                });
             });
         </script>
     </head>
@@ -21,16 +33,16 @@
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
 <h1><a href="index.html">luxe</a></h1>
 <h3><a href="types.html">Back to types</a></h3>
-<h2>Luxe Utils API</h2>
+<h2><a href="api.html">Luxe</a> Utils API</h2>
 <p>The utility class contains various functions that prove useful to the library.</p>
 <h3>Public methods</h3>
-<p><strong>uuid</strong> (returns a Universally Unique Identifier)<br><code>var unique_id = Luxe.utils.uuid() : String</code></p>
+<p><strong>uuid</strong> (returns a Universally Unique Identifier)<br><code>var unique_id = <a href="api.html">Luxe</a>.utils.uuid() : String</code></p>
 <h3>Public Properties</h3>
 <h4>geometry</h4>
-<p>Accesssed via <code>Luxe.utils.geometry</code>,</p>
+<p>Accesssed via <code><a href="api.html">Luxe</a>.utils.geometry</code>,</p>
 <p><strong>random_point_in_unit_circle</strong> (returns a random point inside a unit circle [-1,1] )
-<code>var shake_direction = Luxe.utils.geometry.random_point_in_unit_circle() : Vector</code></p>
-<p><strong>point_in_polygon</strong> point to check, offset of polygon (position relative to vertices), list of vertices (returns if inside)<br><code>var is_point_inside = Luxe.utils.geometry.point_in_polygon(_point:Vector, _offset:Vector, _verts:Array&lt;Vector&gt; ) : Bool</code></p>
+<code>var shake_direction = <a href="api.html">Luxe</a>.utils.geometry.random_point_in_unit_circle() : <a href="luxe.Vector.html">Vector</a></code></p>
+<p><strong>point_in_polygon</strong> point to check, offset of polygon (position relative to vertices), list of vertices (returns if inside)<br><code>var is_point_inside = <a href="api.html">Luxe</a>.utils.geometry.point_in_polygon(_point:<a href="luxe.Vector.html">Vector</a>, _offset:<a href="luxe.Vector.html">Vector</a>, _verts:Array&lt;<a href="luxe.Vector.html">Vector</a>&gt; ) : Bool</code></p>
 
         </div>
     </body>

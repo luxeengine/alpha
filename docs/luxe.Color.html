@@ -11,7 +11,19 @@
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
 
+                    _child.css('display', _opp);
+                });
             });
         </script>
     </head>
@@ -20,14 +32,14 @@
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
 <h3><a href="types.html">Back to types</a></h3>
-<h3>luxe.Color</h3>
+<h3>luxe.<a href="luxe.Color.html">Color</a></h3>
 <p><a name="new" href="#new">new</a></p>
-<pre><code><div class="highlight"><pre><span class="k">new</span> <span class="n">Color</span><span class="p">(</span> <span class="n">_r</span><span class="err">:Float=1</span> <span class="p">,</span> <span class="n">_g</span><span class="err">:Float=1</span><span class="p">,</span> <span class="n">_b</span><span class="err">:Float=1</span> <span class="p">,</span> <span class="n">_a</span><span class="err">:Float=1</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Color</span>   
+<pre><code><div class="highlight"><pre><span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="n">_r</span><span class="err">:Float=1</span> <span class="p">,</span> <span class="n">_g</span><span class="err">:Float=1</span><span class="p">,</span> <span class="n">_b</span><span class="err">:Float=1</span> <span class="p">,</span> <span class="n">_a</span><span class="err">:Float=1</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span>   
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Create a new color instance </span> <code>var color = new Color()</code>     </p>
+<p><span class="small_desc_flat"> Create a new color instance </span> <code>var color = new <a href="luxe.Color.html">Color</a>()</code>     </p>
 <p><a name="set" href="#set">set</a></p>
-<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span> <span class="err">?</span><span class="n">_r</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_g</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_b</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span> <span class="err">:</span> <span class="err">Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Color</span>
+<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span> <span class="err">?</span><span class="n">_r</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_g</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_b</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span> <span class="err">:</span> <span class="err">Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span>
 </pre></div>
 </code></pre>
 <p><span class="small_desc_flat"> Set components of this color, if any components is passed in as null - it will be left as is. </span> <code>color.set( null, null, 0.5 )</code>   </p>
@@ -37,10 +49,10 @@
 </code></pre>
 <p><span class="small_desc_flat"> Create a copy of this color </span>      </p>
 <p><a name="rgb" href="#rgb">rgb</a></p>
-<pre><code><div class="highlight"><pre><span class="n">color</span><span class="p">.</span><span class="n">rgb</span><span class="p">(</span> <span class="n">_rgb</span><span class="err">:Int</span> <span class="err">=</span> <span class="err">0xFFFFFF</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Color</span> 
+<pre><code><div class="highlight"><pre><span class="n">color</span><span class="p">.</span><span class="n">rgb</span><span class="p">(</span> <span class="n">_rgb</span><span class="err">:Int</span> <span class="err">=</span> <span class="err">0xFFFFFF</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span> 
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Set the color using a hex based Int, like 0xf6007b </span> <code>var color = new Color(0,0,0,0.4).rgb(0xf6007b);</code> </p>
+<p><span class="small_desc_flat"> Set the color using a hex based Int, like 0xf6007b </span> <code>var color = new <a href="luxe.Color.html">Color</a>(0,0,0,0.4).rgb(0xf6007b);</code> </p>
 
         </div>
     </body>

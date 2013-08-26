@@ -11,7 +11,19 @@
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
 
+                    _child.css('display', _opp);
+                });
             });
         </script>
     </head>
@@ -19,23 +31,42 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
 <h3><a href="types.html">Back to types</a></h3>
-<h2>Luxe Audio API</h2>
+<p><a href="#CreatingSounds">Creating sounds</a><br><a href="#ConfiguringNamedSounds">Configuring named sounds</a>   </p>
+<h2><a href="api.html">Luxe</a> Audio API</h2>
 <p>To create and play a sound, you can use the following, for <strong>ogg</strong> and <strong>wav</strong> files : </p>
-<pre><code><div class="highlight"><pre><span class="n">Luxe</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/sounds/click.wav&#39;</span><span class="p">);</span>
-<span class="n">Luxe</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">volume</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">);</span>
-<span class="n">Luxe</span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">);</span>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/sounds/click.wav&#39;</span><span class="p">);</span>
+<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">volume</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">);</span>
+<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;clicksound&#39;</span><span class="p">);</span>
 </pre></div>
 </code></pre>
-<p><em>Create a named sound</em></p>
-<p><strong>create</strong>    sound name, sound file, force music?
-<code>Luxe.audio.create(_name:String,_file:String, ?_forcemusic:Bool = false ) : Void</code>   </p>
-<p><em>Play a sound a by name</em></p>
-<p><strong>play</strong>    sound name<br><code>Luxe.audio.play(_name:String) : Void</code>    </p>
-<p><em>Configure a sound by name</em></p>
-<p><strong>volume</strong>    sound name, volume value [0,1]<br>   <code>Luxe.audio.volume(_name:String, _volume:Float) : Void</code>   </p>
-<p><strong>pan</strong>        sound name, pan value [_1, 1]<br>   <code>Luxe.audio.pan(_name:String, _pan:Float) : Void</code></p>
+<p><a name="CreatingSounds" ></a></p>
+<h3>Creating sounds</h3>
+<p><a name="create" href="#create">create</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">create</span><span class="p">(</span> <span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_file</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_forcemusic</span><span class="err">:Bool</span> <span class="err">=</span> <span class="err">false</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Create a named sound </span>      </p>
+<p><a name="play" href="#play">play</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span> <span class="n">_name</span><span class="err">:String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Create a named sound </span>      </p>
+<p><a name="ConfiguringNamedSounds" ></a></p>
+<h3>Configuring named sounds</h3>
+<p><a name="volume" href="#volume">volume</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">volume</span><span class="p">(</span> <span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_volume</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Set the volume of the named sound, in the range <code>[0,1]</code> </span>      </p>
+<p><a name="pan" href="#pan">pan</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">audio</span><span class="p">.</span><span class="n">pan</span><span class="p">(</span> <span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_pan</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Set the pan of the named sound, in the range <code>[-1,1]</code> </span>      </p>
+<p><br/>
+<br/>
+<br/></p>
 
         </div>
     </body>

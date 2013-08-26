@@ -3,9 +3,16 @@
 
 ## Luxe API
 
+[Public values](#PublicValues)   
+[Public default entities](#PublicDefaultEntities)   
+[Public objects](#PublicObjects)   
+[Public methods](#PublicMethods)   
+
 All methods and objects are accessible via the Luxe class. i.e
 
 	var text_file : String = Luxe.loadText('assets/test.txt');   
+
+<a name="PublicValues" ></a>
 
 ### Public values
 
@@ -15,23 +22,29 @@ All methods and objects are accessible via the Luxe class. i.e
 
 <span class="small_desc"> Delta time, the time the last frame took, in seconds. </span>      
 
+<div class="more">
+	<span class="readmore">more...</span>
+	<span class="section">
+	   **Frame rate independence**   
+		<br/>
+		When a block travels across the screen, it can be a simple line of code. `block.position.x += 1;` This 1 here, what unit is that measured in? Actually, this is one pixel - but it is moving 1 pixel per frame. Each time the loop runs, we move one pixel. That is - at 30 frames per second, it moves 30 pixels. At 60 frames per second, it moves 60 pixels. This is really bad for games, because hardware and performance can vary from one device or computer to another. Even between different browsers, this problem can be a huge difference. One player reaches the wall, the other barely moves at all.
+		<br/><br/>
+		In order to ensure that the block moves the same distance over the same amount of time, the concept of delta time is used. This value is the milliseconds per frame (mspf), which is measured while updating your game. It is how long one update takes. By taking the time at the start of your loop, and the time at the end of the loop, you can work out how long the update has taken.
+		<br/><br/>
+		At 30 frames per second (1/30) the delta is about 0.033s. One frame, every 33.3 ms. At 60 frames per second (1/60) the delta is about 0.016 or 16.66 ms per frame. So lets say that the ball is moving at 1 pixel per frame. To solve the problem of frame rate dependence, we multiply any change in position by the mspf value, balancing out the time, making the distance always the same.
+		<br/><br/>
+		![deltatime](http://luxeengine.com/docs/images/deltatime.png)
+		<br/><br/>
+		Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigger delta (slower frame rate) the ball moves more pixels - reaching the destination at the same time as at a smaller delta (higher frame rate). This gives us concrete units that will act the same at any render speed. This is critical for animations, movements and pretty much any value that changes over time: they all should be scaled to the mspf.
+		<br/><br/>
+	</span>
+</div>
 
-<span class="section">
-   **Frame rate independence**   
-<br/>
-When a block travels across the screen, it can be a simple line of code. `block.position.x += 1;` This 1 here, what unit is that measured in? Actually, this is one pixel - but it is moving 1 pixel per frame. Each time the loop runs, we move one pixel. That is - at 30 frames per second, it moves 30 pixels. At 60 frames per second, it moves 60 pixels. This is really bad for games, because hardware and performance can vary from one device or computer to another. Even between different browsers, this problem can be a huge difference. One player reaches the wall, the other barely moves at all.
-<br/><br/>
-In order to ensure that the block moves the same distance over the same amount of time, the concept of delta time is used. This value is the milliseconds per frame (mspf), which is measured while updating your game. It is how long one update takes. By taking the time at the start of your loop, and the time at the end of the loop, you can work out how long the update has taken.
-<br/><br/>
-At 30 frames per second (1/30) the delta is about 0.033s. One frame, every 33.3 ms. At 60 frames per second (1/60) the delta is about 0.016 or 16.66 ms per frame. So lets say that the ball is moving at 1 pixel per frame. To solve the problem of frame rate dependence, we multiply any change in position by the mspf value, balancing out the time, making the distance always the same.
-<br/><br/>
-![deltatime](http://luxeengine.com/docs/images/deltatime.png)
-<br/><br/>
-Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigger delta (slower frame rate) the ball moves more pixels - reaching the destination at the same time as at a smaller delta (higher frame rate). This gives us concrete units that will act the same at any render speed. This is critical for animations, movements and pretty much any value that changes over time: they all should be scaled to the mspf.
-<br/><br/>
-</span> 
+<a name="PublicDefaultEntities" ></a>
 
 ### Public default entities
+
+<a class="toplink" href="#">back to top</a>
 
 [scene](luxe.scene.html)   
 <span class="small_desc"> Access to the default scene </span>   
@@ -40,7 +53,11 @@ Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigg
 [resources](luxe.resources.html)   
 <span class="small_desc"> Access to the default resource manager </span>    
 
+<a name="PublicObjects" ></a>
+
 ### Public objects
+
+<a class="toplink" href="#">back to top</a>
 
 [core](luxe.core.html)   
 <span class="small_desc"> Access to the luxe core object </span>      
@@ -61,7 +78,11 @@ Our example calculation becomes `ball.position.x += (1 * deltatime);`. With bigg
 [renderer](luxe.renderer.html)   
 <span class="small_desc"> Access to the rendering system </span> 
 
+<a name="PublicMethods" ></a>
+
 ### Public methods
+
+<a class="toplink" href="#">back to top</a>
 
 <a name="Core" href="#Core">
 #### Core

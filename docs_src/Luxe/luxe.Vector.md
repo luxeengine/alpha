@@ -3,6 +3,11 @@
 
 ###[Back to types](types.html)
 
+[Properties](#Properties)   
+[Transforms](#Transforms)   
+[Operations](#Operations)   
+[Static Methods](#StaticMethods)   
+
 ###luxe.Vector
 
 <a name="new" href="#new">new</a>
@@ -39,7 +44,11 @@
 	vector.normalize( other:Vector ) : Float 
 <span class="small_desc_flat"> Return the normalize product between this and another vector </span>      
 
+<a name="Properties" ></a>
+
 ###Properties
+
+<a class="toplink" href="#top">back to top</a>
 
 <a name="length" href="#length">length</a>
 
@@ -57,8 +66,11 @@
 	vector.listen_z : Float->Void
 <span class="small_desc_flat"> Listeners for each component, when a sub component changes, this optional function will be called for you. </span> 
 
+<a name="Transforms" ></a>
 
-###Tranforms
+###Transforms
+
+<a class="toplink" href="#top">back to top</a>
 
 <a name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a>
 
@@ -90,8 +102,11 @@
 	vector.transformDirection( _m:Matrix4 ) : Vector
 <span class="small_desc_flat"> Apply a direction matrix to this vector </span>      
 
+<a name="Operations" ></a>
 
 ###Operations
+
+<a class="toplink" href="#top">back to top</a>
 
 <a name="add" href="#add">add</a>
 
@@ -138,8 +153,11 @@
 	vector.divideScalar( scalar:Float ) : Vector 
 <span class="small_desc_flat"> Divide this vector by a scalar value (number) (changes this vector) </span>      
 
+<a name="StaticMethods" ></a>
 
 ###Static Methods
+
+<a class="toplink" href="#">back to top</a>
 
 <a name="Add" href="#Add">Add</a>
 

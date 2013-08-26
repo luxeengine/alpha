@@ -11,7 +11,19 @@
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
 
+                    _child.css('display', _opp);
+                });
             });
         </script>
     </head>
@@ -19,56 +31,87 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
 <h3><a href="types.html">Back to types</a></h3>
-<h2>Luxe Events API</h2>
+<h2><a href="api.html">Luxe</a> Events API</h2>
 <p>The events class offers a way to communicate across components, entities, classes and more by a generic messaging system.   </p>
 <p>There are two ways to trigger an event, one which sends the event into a queue to be processed in the next frame - and one that will fire the event immediately. There are times when immediacy is important, such as return values from a handler and race conditions - but for the majority of cases you can queue them safely. See examples at the end.</p>
 <p><em>Listen for an event, by connecting a handler</em></p>
-<p><strong>listen</strong>    event name, listening function (returns an event ID to use later)
-<code>var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -&gt; Void ) : String</code></p>
-<p><strong>disconnect</strong>    event id from listen (returns if the event was removed)
-<code>var success = Luxe.events.disconnect( event_id : String ) : Bool</code></p>
-<p><strong>queue</strong>    event name, properties to forward to the listeners (returns an event id, not used often)
-<code>var queueid = Luxe.events.queue( event_name : String, properties : Dynamic = null ) : String</code></p>
-<p><strong>dequeue</strong>    event id ( returns if the event was removed )
-<code>var success = Luxe.events.dequeue( event_id: String ) : Bool</code></p>
-<p><strong>fire</strong> event name, properties to forward to the listeners (returns true if the event was found)
-<code>var success = Luxe.events.fire( event_name : String, properties : Dynamic = null ) : Bool</code></p>
-<p><strong>schedule</strong> time in seconds, event name to fire, properties to forward (returns an event id for unschedule)
-<code>var eventid = Luxe.events.schedule( time:Float, event_name : String, properties : Dynamic = null) : String</code></p>
-<p><strong>unschedule</strong> event id (returns if the schedule was cancelled )
-<code>var success = Luxe.events.unschedule( schedule_id : String ) : Bool</code></p>
+<p><a name="Listen" ></a></p>
+<h3>Listen and connect to events</h3>
+<p><a name="listen" href="#listen">listen</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> eventid <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span> <span class="n">event_name</span> <span class="err">:</span> <span class="err">String</span><span class="p">,</span> <span class="n">listener</span> <span class="err">:</span> <span class="err">Dynamic</span> <span class="err">-&gt;</span> <span class="err">Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Listen for an event by name, attaching a function for when the event fires </span>      </p>
+<p><a name="disconnect" href="#disconnect">disconnect</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> success <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">disconnect</span><span class="p">(</span> <span class="n">event_id</span> <span class="err">:</span> <span class="err">String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Disconnect a listener, using the id returned by <code>listen</code> </span>      </p>
+<p><a name="Firing" ></a></p>
+<h3>Firing and Queuing events</h3>
+<p><a name="queue" href="#queue">queue</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> queueid <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">queue</span><span class="p">(</span> <span class="n">event_name</span> <span class="err">:</span> <span class="err">String</span><span class="p">,</span> <span class="n">properties</span> <span class="err">:</span> <span class="err">Dynamic</span> <span class="err">=</span> <span class="err">null</span> <span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Queue an event to be fired for the next frame, , passing the properties object to the handler </span>      </p>
+<p><a name="dequeue" href="#dequeue">dequeue</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> success <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">dequeue</span><span class="p">(</span> <span class="n">event_id</span><span class="err">:</span> <span class="err">String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Remove an event from the queue, provided it exists and hasn&#39;t been fired yet. </span>      </p>
+<p><a name="fire" href="#fire">fire</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> success <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">fire</span><span class="p">(</span> <span class="n">event_name</span> <span class="err">:</span> <span class="err">String</span><span class="p">,</span> <span class="n">properties</span> <span class="err">:</span> <span class="err">Dynamic</span> <span class="err">=</span> <span class="err">null</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Fire the event by name immediately, passing the properties object to the handler </span>      </p>
+<p><a name="schedule" href="#schedule">schedule</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> eventid <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span> <span class="n">time</span><span class="err">:Float</span><span class="p">,</span> <span class="n">event_name</span> <span class="err">:</span> <span class="err">String</span><span class="p">,</span> <span class="n">properties</span> <span class="err">:</span> <span class="err">Dynamic</span> <span class="err">=</span> <span class="err">null</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Fire the event by name some time in the future, passing the properties object to the handler </span>      </p>
+<p><a name="unschedule" href="#unschedule">unschedule</a></p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> success <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">unschedule</span><span class="p">(</span> <span class="n">schedule_id</span> <span class="err">:</span> <span class="err">String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Cancel an event by the ID returned from <code>schedule</code> </span>      </p>
 <h3>examples</h3>
-<p>Since event names are string, you can group events by delimeter. A planned feature for the near future is to include filtering or listening to events by ‘namespace’, like <code>Luxe.events.listen(&#39;game.player.*&#39;)</code> for debugging and such.</p>
-<pre><code><div class="highlight"><pre>    <span class="kd">var</span> event_id <span class="o">=</span> <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;event listener 1 : &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span> <span class="p">});</span>
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;event listener 2 : &#39;</span> <span class="o">+</span><span class="n">e</span><span class="p">);</span> <span class="p">});</span>
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;event listener 3 : &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span> <span class="p">});</span>
+<p>Since event names are string, you can group events by a delimeter,<br>i.e <code><a href="api.html">Luxe</a>.events.listen(&#39;game.player.*&#39;)</code>, which can be used to filter events by type.</p>
+<pre><code><div class="highlight"><pre>    <span class="kd">var</span> event_id <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;event listener 1 : &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span> <span class="p">});</span>
 
-    <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;registered debug:event1 &#39;</span> <span class="o">+</span> <span class="n">event_id</span><span class="p">);</span> 
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span> <span class="s1">&#39;debug:event1&#39;</span> <span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span> <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;event listener 2 : &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span> <span class="p">});</span>
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span> <span class="s1">&#39;debug:event1&#39;</span> <span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span> <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;event listener 3 : &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span> <span class="p">});</span>
 
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">fire</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n">trace</span><span class="p">(</span> <span class="s1">&#39;registered debug:event1 &#39;</span> <span class="o">+</span> <span class="n">event_id</span> <span class="p">);</span> 
+
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">fire</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="p">{</span>
+
         <span class="n">name</span> <span class="p">:</span> <span class="s1">&#39;test event&#39;</span><span class="p">,</span>
         <span class="n">date</span> <span class="p">:</span> <span class="n">Date</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+
     <span class="p">});</span>
 
         <span class="c1">//remove one of them</span>
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">disconnect</span><span class="p">(</span> <span class="n">event_id</span> <span class="p">);</span>
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">disconnect</span><span class="p">(</span> <span class="n">event_id</span> <span class="p">);</span>
 
         <span class="c1">//now only two listeners</span>
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">fire</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">fire</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">,</span> <span class="p">{</span>
+
         <span class="n">name</span> <span class="p">:</span> <span class="s1">&#39;test event&#39;</span><span class="p">,</span>
         <span class="n">date</span> <span class="p">:</span> <span class="n">Date</span><span class="p">.</span><span class="n">now</span><span class="p">()</span>
+
     <span class="p">});</span>
 
         <span class="c1">//fire next frame</span>
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">queue</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">);</span>
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">queue</span><span class="p">(</span><span class="s1">&#39;debug:event1&#39;</span><span class="p">);</span>
 
         <span class="c1">//fire two seconds from now</span>
-    <span class="n">Luxe</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span> <span class="mf">2.0</span> <span class="p">,</span> <span class="s1">&#39;debug:event1&#39;</span><span class="p">);</span>
+    <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span> <span class="mf">2.0</span> <span class="p">,</span> <span class="s1">&#39;debug:event1&#39;</span><span class="p">);</span>
 </pre></div>
 </code></pre>
-<p><em>wip</em></p>
+<p><br/>
+<br/>
+<br/></p>
 
         </div>
     </body>

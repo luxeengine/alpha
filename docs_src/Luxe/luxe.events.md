@@ -1,7 +1,6 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-#[luxe](index.html)
 ###[Back to types](types.html)
 
 
@@ -13,41 +12,68 @@ There are two ways to trigger an event, one which sends the event into a queue t
 
 _Listen for an event, by connecting a handler_
 
-**listen**	event name, listening function (returns an event ID to use later)
-`var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -> Void ) : String`
 
-**disconnect**	event id from listen (returns if the event was removed)
-`var success = Luxe.events.disconnect( event_id : String ) : Bool`
+<a name="Listen" ></a>
 
-**queue**	event name, properties to forward to the listeners (returns an event id, not used often)
-`var queueid = Luxe.events.queue( event_name : String, properties : Dynamic = null ) : String`
+###Listen and connect to events
 
-**dequeue**	event id ( returns if the event was removed )
-`var success = Luxe.events.dequeue( event_id: String ) : Bool`
+<a name="listen" href="#listen">listen</a>
 
-**fire** event name, properties to forward to the listeners (returns true if the event was found)
-`var success = Luxe.events.fire( event_name : String, properties : Dynamic = null ) : Bool`
+    var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -> Void ) : String
+<span class="small_desc_flat"> Listen for an event by name, attaching a function for when the event fires </span>      
 
-**schedule** time in seconds, event name to fire, properties to forward (returns an event id for unschedule)
-`var eventid = Luxe.events.schedule( time:Float, event_name : String, properties : Dynamic = null) : String`
+<a name="disconnect" href="#disconnect">disconnect</a>
 
-**unschedule** event id (returns if the schedule was cancelled )
-`var success = Luxe.events.unschedule( schedule_id : String ) : Bool`
+    var success = Luxe.events.disconnect( event_id : String ) : Bool
+<span class="small_desc_flat"> Disconnect a listener, using the id returned by `listen` </span>      
+
+<a name="Firing" ></a>
+
+###Firing and Queuing events
+
+<a name="queue" href="#queue">queue</a>
+
+    var queueid = Luxe.events.queue( event_name : String, properties : Dynamic = null ) : String
+<span class="small_desc_flat"> Queue an event to be fired for the next frame, , passing the properties object to the handler </span>      
+
+<a name="dequeue" href="#dequeue">dequeue</a>
+
+    var success = Luxe.events.dequeue( event_id: String ) : Bool
+<span class="small_desc_flat"> Remove an event from the queue, provided it exists and hasn't been fired yet. </span>      
+
+<a name="fire" href="#fire">fire</a>
+
+    var success = Luxe.events.fire( event_name : String, properties : Dynamic = null ) : Bool
+<span class="small_desc_flat"> Fire the event by name immediately, passing the properties object to the handler </span>      
+
+<a name="schedule" href="#schedule">schedule</a>
+
+    var eventid = Luxe.events.schedule( time:Float, event_name : String, properties : Dynamic = null) : String
+<span class="small_desc_flat"> Fire the event by name some time in the future, passing the properties object to the handler </span>      
+
+<a name="unschedule" href="#unschedule">unschedule</a>
+
+    var success = Luxe.events.unschedule( schedule_id : String ) : Bool
+<span class="small_desc_flat"> Cancel an event by the ID returned from `schedule` </span>      
 
 ### examples
 
-Since event names are string, you can group events by delimeter. A planned feature for the near future is to include filtering or listening to events by 'namespace', like `Luxe.events.listen('game.player.*')` for debugging and such.
+Since event names are string, you can group events by a delimeter,   
+i.e `Luxe.events.listen('game.player.*')`, which can be used to filter events by type.
 
 
 		var event_id = Luxe.events.listen('debug:event1', function(e) { trace('event listener 1 : ' + e); });
-        Luxe.events.listen('debug:event1', function(e) { trace('event listener 2 : ' +e); });
-        Luxe.events.listen('debug:event1', function(e) { trace('event listener 3 : ' + e); });
 
-        trace('registered debug:event1 ' + event_id); 
+        Luxe.events.listen( 'debug:event1' , function(e){ trace('event listener 2 : ' + e); });
+        Luxe.events.listen( 'debug:event1' , function(e){ trace('event listener 3 : ' + e); });
+
+        trace( 'registered debug:event1 ' + event_id ); 
 
         Luxe.events.fire('debug:event1', {
+
             name : 'test event',
             date : Date.now()
+
         });
 
             //remove one of them
@@ -55,8 +81,10 @@ Since event names are string, you can group events by delimeter. A planned featu
 
             //now only two listeners
         Luxe.events.fire('debug:event1', {
+
             name : 'test event',
             date : Date.now()
+
         });
 
             //fire next frame
@@ -65,5 +93,6 @@ Since event names are string, you can group events by delimeter. A planned featu
             //fire two seconds from now
         Luxe.events.schedule( 2.0 , 'debug:event1');
 
-
-_wip_
+<br/>
+<br/>
+<br/>

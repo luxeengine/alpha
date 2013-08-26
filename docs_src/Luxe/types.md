@@ -5,15 +5,15 @@
 
 #### Core Types
 
-[Color](luxe.Color.html)   
-[Rectangle](luxe.Rectangle.html)   
-[Vector](luxe.Vector.html)   
+Color   
+Rectangle   
+Vector   
 
 #### Types
 
-[Camera](luxe.Camera.html)   
-[Sprite](luxe.Sprite.html)   
-[Text](luxe.Text.html)   
+Camera   
+Sprite   
+Text   
 
 #### Utilities
 

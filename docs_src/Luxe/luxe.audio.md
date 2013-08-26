@@ -1,8 +1,10 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-#[luxe](index.html)
 ###[Back to types](types.html)
+
+[Creating sounds](#CreatingSounds)   
+[Configuring named sounds](#ConfiguringNamedSounds)   
 
 ## Luxe Audio API
 
@@ -12,20 +14,36 @@ To create and play a sound, you can use the following, for **ogg** and **wav** f
 	Luxe.audio.volume('clicksound', 0.6);
 	Luxe.audio.play('clicksound');
 
-_Create a named sound_
+<a name="CreatingSounds" ></a>
 
-**create**	sound name, sound file, force music?
-`Luxe.audio.create(_name:String,_file:String, ?_forcemusic:Bool = false ) : Void`   
+###Creating sounds
 
-_Play a sound a by name_
+<a name="create" href="#create">create</a>
 
-**play**	sound name   
-`Luxe.audio.play(_name:String) : Void`    
+	Luxe.audio.create( _name:String, _file:String, ?_forcemusic:Bool = false ) : Void   
+<span class="small_desc_flat"> Create a named sound </span>      
 
-_Configure a sound by name_
+<a name="play" href="#play">play</a>
 
-**volume**	sound name, volume value [0,1]   
-   `Luxe.audio.volume(_name:String, _volume:Float) : Void`   
+	Luxe.audio.play( _name:String ) : Void   
+<span class="small_desc_flat"> Create a named sound </span>      
 
-**pan**		sound name, pan value [_1, 1]   
-   `Luxe.audio.pan(_name:String, _pan:Float) : Void`
+<a name="ConfiguringNamedSounds" ></a>
+
+###Configuring named sounds
+
+<a name="volume" href="#volume">volume</a>
+
+	Luxe.audio.volume( _name:String, _volume:Float ) : Void   
+<span class="small_desc_flat"> Set the volume of the named sound, in the range `[0,1]` </span>      
+
+<a name="pan" href="#pan">pan</a>
+
+	Luxe.audio.pan( _name:String, _pan:Float ) : Void   
+<span class="small_desc_flat"> Set the pan of the named sound, in the range `[-1,1]` </span>      
+
+
+
+<br/>
+<br/>
+<br/>

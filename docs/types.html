@@ -11,7 +11,19 @@
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
 
+                    _child.css('display', _opp);
+                });
             });
         </script>
     </head>
@@ -19,7 +31,7 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h2>Luxe Types</h2>
+<h2><a href="api.html">Luxe</a> Types</h2>
 <h4>Core Types</h4>
 <p><a href="luxe.Color.html">Color</a><br><a href="luxe.Rectangle.html">Rectangle</a><br><a href="luxe.Vector.html">Vector</a>   </p>
 <h4>Types</h4>

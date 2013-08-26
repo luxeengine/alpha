@@ -12,9 +12,9 @@ h1,h2,h3,h4,h5,h6 {
 	padding: 0;
 }
 
-h2 { font-size: 3em; }
-h3 { font-size: 2em; }
-h4 { font-size: 1.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.1em; }
 h5 { font-size: 1em; }
 h6 { font-size: 0.9em; }
 
@@ -22,7 +22,7 @@ pre,code { height:auto; margin: 0; padding: 0;  }
 
 a {
 	text-decoration: none;
-	font-size: 1.1em;
+	font-size: 0.9em;
 	color:#f6007b;
 	border:0;
 	outline: 0;
@@ -46,18 +46,30 @@ a:hover {
 	display: inline-block;
     margin-left:1em;
     font-size:0.9em;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.6em;    
 }
 
 .small_desc_flat {
-	color:#f6007b;
+	color:#999;
 	position: relative;
 	display: block;
     margin-left:1em;
-    font-size:0.75em;
-    top: -2.2em;
+    font-size:0.85em;
+    top: -1.8em;
     margin-bottom: -2em;
+    opacity:0.8;
 }
+
+.toplink {
+	font-size: 8pt;
+	top: -1.2em;
+	display: block;
+	position: relative;
+}
+
+/*.small_desc_flat:hover {*/
+	/*#f6007b*/
+/*}*/
 
 .warn {
 	color:#cc0000;
@@ -80,6 +92,32 @@ p {
     margin-left:2em;
     font-size:0.9em;
     margin-bottom: 0.6em;
+}
+
+.readmore {
+	display: block;
+	position: relative;
+	min-width:1.7em;	
+	min-height:1.7em;
+	background-repeat: no-repeat;
+	background-image:url('./more.png');
+	background-size: 1.7em 1.7em;	
+	margin: 1em;
+	color:#999;
+	opacity: 0.4;
+	margin-left: 1.5em;
+	margin-right: auto;	
+	padding-left: 1.8em;
+	padding-top: 0.3em;	
+}
+.readmore:hover {
+	cursor:pointer;
+	opacity: 1;
+}
+
+.more {
+	display: block;
+	position: relative;
 }
 
 code {
