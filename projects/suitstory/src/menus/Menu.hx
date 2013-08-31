@@ -69,10 +69,10 @@ class Menu extends Mode {
 
     public function start() {
         
-    }
+    } //start
 
     public function playClicked() {
-        game.modes.set('level01');
+        game.modes.set('manager');
     }
 
     public function mouseup(e) {

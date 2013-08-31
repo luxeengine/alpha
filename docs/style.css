@@ -78,6 +78,11 @@ a:hover {
 	padding:0.5em;
 }
 
+.indent {
+	padding-left: 1.5em;
+	display: block;
+}
+
 p {
 	color:#777;
 	margin-left:0.5em;
@@ -121,7 +126,7 @@ p {
 }
 
 code {
-	font-size: 0.9em;
+	font-size: 1.1em;
 }
 
 .content {

@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="test depth" 
-          package="com.underscorediscovery.testdepth" 
+          title="luxe - test - nineslice" 
+          package="com.underscorediscovery.luxetestnineslice" 
           version="1.0.0" 
           company="underscorediscovery" 
 	/>
 
-	<app main="Main" path="bin" file="test_depth" />
+	<app main="Main" path="bin" file="luxetestnineslice" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	

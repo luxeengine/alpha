@@ -2,7 +2,7 @@ package luxe.debug;
 
 import luxe.Text;
 import phoenix.Texture;
-import luxe.utils.NineSlice;
+import luxe.NineSlice;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
 

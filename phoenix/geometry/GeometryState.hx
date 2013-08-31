@@ -72,9 +72,8 @@ class GeometryState {
 
     public function compare( other:GeometryState ) {
         
-        if( depth <= other.depth ) return -1;
-
-        if( depth == other.depth && group <= other.group ) return -1;
+        if( depth < other.depth ) return -1;
+        if( depth == other.depth && group < other.group ) return -1;
 
         var textureid : Dynamic = texture != null ? texture.id : 0;
         var other_textureid : Dynamic = other.texture != null ? other.texture.id : 0;

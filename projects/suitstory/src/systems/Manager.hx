@@ -1,5 +1,4 @@
-package levels;
-
+package systems;
 
 import Luxe;
 
@@ -7,7 +6,7 @@ import luxe.Camera;
 import luxe.Input;
 import luxe.Rectangle;
 import luxe.Text;
-import luxe.utils.NineSlice;
+import luxe.NineSlice;
 import luxe.Sprite;
 import luxe.Vector;
 import luxe.Color;
@@ -22,7 +21,35 @@ import mode.Mode;
 import motion.Actuate;
 import phoenix.RenderTexture;
 
-class Level01 extends Mode {
+class Aqcuisition {
+    public var name : String = 'unknown_business';
+    public function new() {
+        
+    } //new
+} //Aqcuisition
+
+class Apartment {
+    public var name : String = 'unknown_business';
+    public function new() {
+
+    } //new
+} //Apartment
+
+class Player {
+
+    public var money : Float = 4500.0;
+    public var apartments : Array<Apartment>;
+    public var aqcuisitions : Array<Aqcuisition>;
+
+    public function new() {
+        apartments = [];
+        aqcuisitions = [];
+        
+    } //new
+
+} //Player
+
+class Manager extends Mode {
 
     public var mouse : Vector;
     public var dragging : Bool = false;
@@ -40,6 +67,7 @@ class Level01 extends Mode {
     public var msg_dialog : Sprite;
     public var msg_text : Text;
 
+    public var player : Player;
 
     public var beacon_list:Map<String,Vector>;
     public var sign_list:Map<String,Vector>;
@@ -237,16 +265,19 @@ class Level01 extends Mode {
 
         beacon_texture = Luxe.loadTexture('assets/map/beacons/beacon_with_shadow.png');
 
+        player = new Player();
+
     } //init
 
     var beacon_texture : Texture;
 
-    public function add_beacon( _name:String, _pos:Vector ) {
+    public function add_beacon( _name:String, _pos:Vector, _beacon_scale:Float = 1 ) {
 
             var _beacon_sprite = new Sprite({
-                origin : new Vector(70,113),
+                origin : new Vector( 70 * _beacon_scale, 113 * _beacon_scale ),
                 color : new Color(1,1,1,0),
                 depth : 4,
+                size : new Vector( beacon_texture.width*_beacon_scale, beacon_texture.height*_beacon_scale ),
                 centered : true,
                 texture : beacon_texture,
                 pos : _pos,
@@ -307,7 +338,7 @@ class Level01 extends Mode {
 
     public function destroy() {
 
-        trace('destroying level 01');
+        trace('destroying manager');
         
         for(_key in beacon_sprites.keys()) {
             beacon_sprites.get(_key).destroy();
@@ -387,7 +418,7 @@ class Level01 extends Mode {
             dragging = false;
         } else {
             Luxe.camera.center( Vector.Add( mouse, Luxe.camera.pos ), 0.6 );
-            add_beacon( 'beacon' + Math.random(), Vector.Add( mouse, Luxe.camera.pos ) );
+            add_beacon( 'beacon' + Math.random(), Vector.Add( mouse, Luxe.camera.pos ), 0.5 );
         }
     }
 

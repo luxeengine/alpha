@@ -81,7 +81,7 @@ class Text {
         
         if(geometry != null) {        
             geometry.pos = v;
-        }
+        }        
         
         return pos;
     }

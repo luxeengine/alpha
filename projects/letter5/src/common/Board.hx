@@ -7,7 +7,7 @@ import luxe.Vector;
 
 import phoenix.geometry.Geometry;
 
-import luxe.utils.NineSlice;
+import luxe.NineSlice;
 
 class Board {
 

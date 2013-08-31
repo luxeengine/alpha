@@ -234,7 +234,6 @@ class Core {
         time.process();     //Timers first
         input.process();    //Input second
         audio.process();    //Audio
-        debug.process();    //debug late
         events.process();   //events 
 
         #if haxebullet
@@ -255,6 +254,9 @@ class Core {
         end_dt = haxe.Timer.stamp();
             //store the value for the framework
         Luxe.dt = dt;
+
+            //finally, process the debug update
+        debug.process();    //debug last
 
     } //update
 

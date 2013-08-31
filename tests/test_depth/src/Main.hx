@@ -17,7 +17,7 @@ class Main extends luxe.Game {
 
         sprites = [];
 
-        for(i in 1 ... 5) {
+        for(i in 1 ... 20) {
 
             var ih = image.height;
             var iw = image.width;
@@ -29,7 +29,7 @@ class Main extends luxe.Game {
 
             sprites.push(new Sprite({
                 name : 's' + i,
-                depth : i,
+                depth : 4,
                 texture: (i == 1) ? image2 : image,
                 centered : false,
                 pos : new Vector(100 + (i*20), 100 + (i*20) ),
@@ -37,6 +37,7 @@ class Main extends luxe.Game {
             }));
 
         } //
+
        
     } //ready
   
@@ -46,42 +47,25 @@ class Main extends luxe.Game {
     }
 
     public function onkeyup(e) {
+
       if(e.value == Input.Keys.escape) {
         Luxe.shutdown();
       }
 
-
-        if(e.value == Input.Keys.key_D) {
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[1].geometry.short_id());
-            sprites[1].destroy();
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[2].geometry.short_id());
-            sprites[2].destroy();
-                Sys.println('>>> drop sprite geometry >>> ' + sprites[3].geometry.short_id());
-            sprites[3].destroy();
-        }
-
-      if(e.value == Input.Keys.key_L) {
-            Sys.println('geometry list ; ');
-            for( g in Luxe.renderer.default_batcher.geometry ) {
-                Sys.println('\t ' + g.short_id() + ' at ' + g.depth +' ( ' + g.id +  ' )');
-            }
+      if(e.value == Input.Keys.space) {
+        var d= sprites[0].depth;
+        sprites[0].depth = d;
       }
 
-      if(e.value == Input.Keys.key_0) {
-        sprites[0].depth = 0;
+      if(e.value == Input.Keys.equals) {
+        sprites[0].depth+=1;
+        trace(sprites[0].depth);
       }
-      if(e.value == Input.Keys.key_1) {
-        sprites[0].depth = 1;
+      if(e.value == Input.Keys.minus) {
+        sprites[0].depth-=1;
+        trace(sprites[0].depth);
       }
-      if(e.value == Input.Keys.key_2) {
-        sprites[0].depth = 2;
-      }
-      if(e.value == Input.Keys.key_3) {
-        sprites[0].depth = 3;
-      }
-      if(e.value == Input.Keys.key_4) {
-        sprites[0].depth = 4;
-      }
+
     } //onkeyup
 
     public function update(dt:Float) {

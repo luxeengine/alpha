@@ -327,10 +327,10 @@ class Renderer {
         stats.reset();
 
             //render 
-        render_path.render( batchers, stats ); 
+        render_path.render( batchers, stats );
 
         // stop_count++;
-        // if(stop_count >= 5) {
+        // if(stop_count >= 3) {
         //     stop = true;
         // }
 

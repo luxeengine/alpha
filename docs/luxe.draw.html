@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="api.html">Back to API</a></h3>
+<p><a href="#DrawingGeometry">Drawing geometry</a><br><a href="#DrawingText">Drawing text</a>   </p>
+<h2><a href="api.html">Luxe</a> Drawing API</h2>
+<p>To draw using the draw api :</p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">({</span>
+    <span class="n">p0</span>    <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">),</span>
+    <span class="n">p1</span>    <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="p">),</span>
+    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">().</span><span class="n">rgb</span><span class="p">(</span><span class="mh">0xcc0000</span><span class="p">)</span>
+<span class="p">});</span>
+</pre></div>
+</code></pre>
+<p><a name="DrawingGeometry" ></a></p>
+<h3>Drawing geometry</h3>
+<p><a name="line" href="#line">line</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">LineGeometry</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Draw a line, options are - ( option : Type = default )
+    <span class="indent">
+        <code>p0 : <a href="luxe.Vector.html">Vector</a> = new <a href="luxe.Vector.html">Vector</a>()</code><br>        <code>p1 : <a href="luxe.Vector.html">Vector</a> = new <a href="luxe.Vector.html">Vector</a>()</code><br>        <code>color : new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : Batcher = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
+</span>      </p>
+<p><a name="rectangle" href="#rectangle">rectangle</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">RectangleGeometry</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Draw a rectangle, options are - ( option : Type = default )
+    <span class="indent">
+        <code>x : Float = 0.0</code><br>        <code>y : Float = 0.0</code><br>        <code>w : Float = 0.0</code><br>        <code>h : Float = 0.0</code><br>        <code>color : new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : Batcher = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
+</span>      </p>
+<p><a name="DrawingText" ></a></p>
+<h3>Drawing text</h3>
+<p><a name="text" href="#text">text</a></p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">text</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">CompositeGeometry</span>   
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> Draw some text, options are - ( option : Type = default )
+    <span class="indent">
+        <code>text : String = &#39;&#39;</code><br>        <code>font : BitmapFont = <a href="api.html">Luxe</a>.renderer.default_font</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : Batcher = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
+</span>      </p>
+<p><br/>
+<br/>
+<br/></p>
+
+        </div>
+    </body>
+
+</html>

@@ -68,6 +68,15 @@ class CompositeGeometry extends Geometry {
         }
     } //translate
 
+    public override function set_origin( _origin:Vector ) : Vector {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.origin = _origin;
+            }
+        }
+        return origin = _origin;
+    } //set_origin
+
     public override function set_pos( _position:Vector ) : Vector {
         if(geometry != null) {
             for(geom in geometry) {

@@ -60,7 +60,7 @@ class Geometry {
 	@:isVar public var rotation(get, set) : Quaternion;
 	@:isVar public var scale(get, set) : Vector;
 		//The origin for the transform
-	@:isVar public var origin(default, default) : Vector;
+	@:isVar public var origin(default, set) : Vector;
 		//The transform matrix
 	public var matrix : Matrix4;
 		//Private reuse value
@@ -209,12 +209,14 @@ class Geometry {
 
 	} // translate
 
+	public function set_origin( _origin:Vector ) : Vector {
+
+		return origin = _origin;
+
+	} //set_origin
+
 	public function set_pos( _position:Vector ) : Vector {
 
-		if(pos == null) { 
-			return pos = _position;
-		} //pos == null			
-		
 		return pos = _position;
 
 	} //set_pos
@@ -354,7 +356,7 @@ class Geometry {
 	} //get_depth
 
 	public function set_depth(val : Float) : Float {
-			
+		
 		state.depth = val;
 		
 			refresh();
@@ -393,7 +395,7 @@ class Geometry {
 
 		state.clip = val;
 
-			refresh();
+			// refresh();
 
 		return state.clip;
 
@@ -411,7 +413,7 @@ class Geometry {
 
 		state.clip_rect = val;
 
-			refresh();
+			// refresh();
 
 		return state.clip_rect;
 

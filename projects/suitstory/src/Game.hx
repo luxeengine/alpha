@@ -14,7 +14,7 @@ class Game extends luxe.Game {
     public var modes : Modes;
     
     var mainMenu : menus.Menu;
-    var level01 : levels.Level01;
+    var manager : systems.Manager;
 
     public function ready() {
 
@@ -23,13 +23,13 @@ class Game extends luxe.Game {
         modes = new Modes();
             //menus
         mainMenu = new menus.Menu(this, 'menu');
-            //levels
-        level01 = new levels.Level01(this, 'level01');
+            //the game manager
+        manager = new systems.Manager(this, 'manager');
 
             //add the modes 
             //to the mode manager
-        modes.add(mainMenu);
-        modes.add(level01);
+        modes.add( mainMenu );
+        modes.add( manager );
 
             //start up the menu mode
         mainMenu.init();

@@ -257,10 +257,10 @@ class Batcher {
     }
 
         //Run the batcher over the current list of geometry
-        //and submit it to the graphics card for usage
+        //and submit it to the graphics card for drawing
     public function batch( persist_immediate : Bool = false ) {
 
-            //start at 0
+            //reset render stats before we start
         dynamic_batched_count = 0;
         static_batched_count = 0;
         enabled_count = 0;
@@ -284,7 +284,7 @@ class Batcher {
             geom = _geom;
 
                 //If it's valid to be drawn
-            if(geom != null && !geom.dropped ) {
+            if( geom != null && !geom.dropped ) {
 
                     //If the update will cause a state change, submit the vertices accumulated                
                 if( state.update(geom) ) {

@@ -74,7 +74,7 @@ class Main extends luxe.Game {
 
             next_anim = haxe.Timer.stamp() + anim_delay;
 
-            geom.locked = true;
+            // geom.locked = true;
 
             loaded = true;
         }   
@@ -125,18 +125,18 @@ class Main extends luxe.Game {
 
         if(!loaded) return;
 
-        //     //animate the tile
-        // if(haxe.Timer.stamp() > next_anim) {
-        //     next_anim = haxe.Timer.stamp() + anim_delay;
-        //     geom.quad_uv( big_quad, new Rectangle( (rowx * 16), (rowy * 16), 16, 16));
-        //     rowx++;
-        //     if(rowx == 14) {
-        //         rowy++; rowx = 0;
-        //         if(rowy == 6) {
-        //             rowy = 0;
-        //         }
-        //     }
-        // }
+            //animate the tile
+        if(haxe.Timer.stamp() > next_anim) {
+            next_anim = haxe.Timer.stamp() + anim_delay;
+            geom.quad_uv( big_quad, new Rectangle( (rowx * 16), (rowy * 16), 16, 16));
+            rowx++;
+            if(rowx == 14) {
+                rowy++; rowx = 0;
+                if(rowy == 6) {
+                    rowy = 0;
+                }
+            }
+        }
 
     } //update
 

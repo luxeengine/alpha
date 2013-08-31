@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="api.html">Back to api</a></h3>
+<p><a href="#Mouse">Mouse API</a><br><a href="#Keys">Keys API</a><br><a href="#Gamepad">Gamepad API</a>   </p>
+<p><a name="Mouse" >
+    <a href="#Mouse"> <h3>Mouse API</h3> </a>
+</a></p>
+<p>These are used inside of the <code>onmousemove</code> and <code>onmousedown</code>, and passed in as <code>MouseEvent</code>:
+You can implement the following listeners in your game class : </p>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousedown</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>  <span class="p">{</span> <span class="p">}</span> 
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmouseup</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>    <span class="p">{</span> <span class="p">}</span> 
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>  <span class="p">{</span> <span class="p">}</span> 
+</pre></div>
+</code></pre>
+<h4>examples</h4>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousedown</span><span class="p">(</span> <span class="n">event</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="n">event</span><span class="p">.</span><span class="n">button</span> <span class="o">==</span> <span class="n">MouseButton</span><span class="p">.</span><span class="n">left</span> <span class="p">)</span> <span class="p">{</span>            
+    <span class="p">}</span>
+
+<span class="p">}</span> <span class="c1">//onmousedown</span>
+</pre></div>
+</code></pre>
+<h4>Typedefs and enumerations</h4>
+<pre><code><div class="highlight"><pre><span class="kd">enum</span> <span class="n">MouseState</span> <span class="p">{</span>
+    <span class="n">down</span><span class="p">;</span>
+    <span class="n">move</span><span class="p">;</span>
+    <span class="n">up</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">enum</span> <span class="n">MouseButton</span> <span class="p">{</span>
+    <span class="n">move</span><span class="p">;</span>
+    <span class="n">left</span><span class="p">;</span>
+    <span class="n">middle</span><span class="p">;</span>
+    <span class="n">right</span><span class="p">;</span>
+    <span class="n">wheel_up</span><span class="p">;</span>
+    <span class="n">wheel_down</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">typedef</span> <span class="n">MouseEvent</span> <span class="o">=</span> <span class="p">{</span> 
+
+    <span class="kd">var</span> <span class="n">state</span>       <span class="p">:</span> <span class="n">MouseState</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">flags</span>       <span class="p">:</span> <span class="n">Int</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">button</span>      <span class="p">:</span> <span class="n">MouseButton</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">x</span>           <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">y</span>           <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">deltaX</span>      <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">deltaY</span>      <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">shift_down</span>  <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">ctrl_down</span>   <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">alt_down</span>    <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">meta_down</span>   <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<p><a name="Keys" >
+    <a href="#Keys"> <h3>Keys API</h3> </a>
+</a></p>
+<p>Values accessed via <a href="api.html">Luxe</a>.input.keys.*<br>These are used inside of the <code>onkeydown</code> and <code>onkeyup</code>, and passed in as <code>KeyEvent</code>:
+You can implement the following listeners in your game class : </p>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onkeydown</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>    <span class="p">{</span> <span class="p">}</span> 
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>      <span class="p">{</span> <span class="p">}</span> 
+</pre></div>
+</code></pre>
+<h4>examples</h4>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="n">event</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//quit the game when we press escape</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">event</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">Input</span><span class="p">.</span><span class="n">Keys</span><span class="p">.</span><span class="n">escape</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="p">}</span> <span class="c1">//onkeyup</span>
+</pre></div>
+</code></pre>
+<h4>Values</h4>
+<pre><code><div class="highlight"><pre><span class="n">tab</span>         
+<span class="n">enter</span>   
+<span class="n">meta</span>    
+<span class="n">shift</span>   
+<span class="n">leftctrl</span> 
+<span class="n">leftalt</span>  
+<span class="n">capslock</span> 
+<span class="n">escape</span>   
+<span class="n">space</span>   
+
+<span class="n">left</span>    
+<span class="n">up</span>      
+<span class="n">right</span>       
+<span class="n">down</span>    
+
+<span class="n">key_0</span> 
+<span class="n">key_1</span> 
+<span class="n">key_2</span> 
+<span class="n">key_3</span> 
+<span class="n">key_4</span> 
+<span class="n">key_5</span> 
+<span class="n">key_6</span> 
+<span class="n">key_7</span> 
+<span class="n">key_8</span> 
+<span class="n">key_9</span> 
+
+<span class="n">key_A</span> 
+<span class="n">key_B</span> 
+<span class="n">key_C</span> 
+<span class="n">key_D</span> 
+<span class="n">key_E</span> 
+<span class="n">key_F</span> 
+<span class="n">key_G</span> 
+<span class="n">key_H</span> 
+<span class="n">key_I</span> 
+<span class="n">key_J</span> 
+<span class="n">key_K</span> 
+<span class="n">key_L</span> 
+<span class="n">key_M</span> 
+<span class="n">key_N</span> 
+<span class="n">key_O</span> 
+<span class="n">key_P</span> 
+<span class="n">key_Q</span> 
+<span class="n">key_R</span> 
+<span class="n">key_S</span> 
+<span class="n">key_T</span> 
+<span class="n">key_U</span> 
+<span class="n">key_V</span> 
+<span class="n">key_W</span> 
+<span class="n">key_X</span> 
+<span class="n">key_Y</span> 
+<span class="n">key_Z</span> 
+
+<span class="n">equals</span>  
+<span class="n">minus</span>   
+<span class="n">tilde</span>   
+</pre></div>
+</code></pre>
+<p><a name="Gamepad" >
+    <a href="#Gamepad"> <h3>Gamepad API</h3> </a>
+</a></p>
+<p><strong> Gamepad api is in flux and will be documented more soon </strong></p>
+<p>Values accessed via <a href="api.html">Luxe</a>.input.Gamepad.*
+These are used inside of the <code>onjoyaxismove</code> and others, and passed in as <code>GamepadEvent</code>:
+You can implement the following listeners in your game class : </p>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onjoyaxismove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>    <span class="p">{</span> <span class="p">}</span>
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onjoyballmove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>    <span class="p">{</span> <span class="p">}</span>
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onjoyhatmove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>     <span class="p">{</span> <span class="p">}</span>    
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onjoybuttondown</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>  <span class="p">{</span> <span class="p">}</span>    
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onjoybuttonup</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>    <span class="p">{</span> <span class="p">}</span>
+</pre></div>
+</code></pre>
+<h4>example</h4>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onjoyaxismove</span><span class="p">(</span> <span class="n">event</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="n">event</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">Input</span><span class="p">.</span><span class="n">Gamepad</span><span class="p">.</span><span class="n">axis0</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//move accordingly</span>
+    <span class="p">}</span>
+
+<span class="p">}</span> <span class="c1">//joyaxismove</span>
+</pre></div>
+</code></pre>
+<h4>Values</h4>
+<pre><code><div class="highlight"><pre><span class="n">button0</span>
+<span class="n">button1</span>
+<span class="n">button2</span>
+<span class="n">button3</span>
+<span class="n">button4</span>
+<span class="n">button5</span>
+<span class="n">button6</span>
+<span class="n">button7</span>
+<span class="n">button8</span>
+<span class="n">button9</span>
+<span class="n">button10</span>
+<span class="n">button11</span>
+<span class="n">button12</span>
+<span class="n">button13</span>
+<span class="n">button14</span>
+<span class="n">button15</span>
+
+<span class="n">axis0</span>
+<span class="n">axis1</span>
+<span class="n">axis2</span>
+<span class="n">axis3</span>
+<span class="n">axis4</span>
+<span class="n">axis5</span>
+<span class="n">axis6</span>
+<span class="n">axis7</span>
+
+<span class="n">hat0</span>
+<span class="n">hat1</span>
+<span class="n">hat2</span>
+<span class="n">hat3</span>
+<span class="n">hat4</span>
+<span class="n">hat5</span>
+<span class="n">hat6</span>
+<span class="n">hat7</span>
+</pre></div>
+</code></pre>
+
+        </div>
+    </body>
+
+</html>

@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to types](types.html)
+###[Back to api](api.html)
 
 [Creating sounds](#CreatingSounds)   
 [Configuring named sounds](#ConfiguringNamedSounds)   

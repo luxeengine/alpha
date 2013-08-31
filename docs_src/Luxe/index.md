@@ -44,7 +44,7 @@ Luxe uses common patterns and approaches to simplify working with the engine, su
 
 ##Documentation
 
-[View Full Index](all.html)    
+<!-- [View Full Index](all.html)     -->
 
 [View API](api.html)   
 [View Types](types.html)   
