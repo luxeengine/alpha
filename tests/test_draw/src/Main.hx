@@ -36,7 +36,7 @@ class Main extends luxe.Game {
             w : Luxe.screen.w - 80, 
             h : Luxe.screen.h - 80,
             color : new Color(0.5,0.2,0.2,0.5)
-        });
+        });        
 
     } //ready
   

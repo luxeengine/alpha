@@ -43,7 +43,7 @@ class NineSlice extends luxe.Sprite {
     public var midheight : Float = 0.0;
 
     private var _batcher : Batcher;
-    private var _geometry : ComplexGeometry;
+    public var _geometry : ComplexGeometry;
 
     public function new(_options:Dynamic) {
 

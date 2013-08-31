@@ -356,11 +356,12 @@ class Geometry {
 	} //get_depth
 
 	public function set_depth(val : Float) : Float {
-		
-		state.depth = val;
-		
-			refresh();
 
+		if(state.depth != val) {
+			state.depth = val;
+			refresh();
+		}
+		
 		return state.depth;
 
 	} //set_depth
@@ -373,11 +374,12 @@ class Geometry {
 
 	} //get_group
 
-	public function set_group(val : Int) : Int {
+	public function set_group(val : Int) : Int {		
 
-		state.group = val;
-		
-			refresh();
+		if(state.group != val) {
+			state.group = val;
+			refresh();			
+		}
 
 		return state.group;
 
@@ -391,11 +393,12 @@ class Geometry {
 
 	} //get_clip
 
-	public function set_clip(val : Bool) : Bool {
+	public function set_clip(val : Bool) : Bool {		
 
-		state.clip = val;
-
-			// refresh();
+		if(state.clip != val) {
+			state.clip = val;
+			refresh();
+		}		
 
 		return state.clip;
 
@@ -411,11 +414,7 @@ class Geometry {
 
 	public function set_clip_rect(val : Rectangle) : Rectangle {
 
-		state.clip_rect = val;
-
-			// refresh();
-
-		return state.clip_rect;
+		return state.clip_rect = val;
 
 	} //set_clip_rect
 

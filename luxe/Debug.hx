@@ -289,9 +289,9 @@ class Debug {
     public function get_batcher_list_string() {
         var _final:String = 'Batcher Items: \n';
             for(_geom in Luxe.renderer.default_batcher.geometry) {
-                _final += '\t' + _geom.id + ' d:' + _geom.depth + '\tg:' + _geom.group + '\tv:' + _geom.vertices.length + '\n';
+                _final += '\t' + ' d:' + _geom.depth + '\tg:' + _geom.group + '\tv:' + _geom.vertices.length + '\tid:' + _geom.id + '\n';
             }
-        return _final;            
+        return _final;
     }
 
     public function get_render_stats_string() {
