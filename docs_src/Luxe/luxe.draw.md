@@ -27,7 +27,7 @@ To draw using the draw api :
 	<span class="indent">
 		`p0 : Vector = new Vector()`   
 		`p1 : Vector = new Vector()`   
-		`color : new Color()`   
+		`color : Color = new Color()`   
 		`depth : Int = 0`   
 		`group : Int = 0`   
 		`immediate : Bool = false`   
@@ -44,7 +44,7 @@ To draw using the draw api :
 		`y : Float = 0.0`   
 		`w : Float = 0.0`   
 		`h : Float = 0.0`   
-		`color : new Color()`   
+		`color : Color = new Color()`   
 		`depth : Int = 0`   
 		`group : Int = 0`   
 		`immediate : Bool = false`   
