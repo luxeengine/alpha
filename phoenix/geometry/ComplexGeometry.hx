@@ -28,7 +28,7 @@ class ComplexGeometry extends Geometry {
 
 	public var quads : Map<String, ComplexQuad>;
 
-	public function new(_options) {
+	public function new( _options : Dynamic ) {
 
 		super(_options);
 		primitive_type = PrimitiveType.triangles;
