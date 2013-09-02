@@ -30,7 +30,7 @@ class Main extends luxe.Game {
 
     public function ready() {
 
-         geom = new phoenix.geometry.ComplexGeometry({
+        geom = new phoenix.geometry.ComplexGeometry({
             texture : Luxe.loadTexture('assets/tileset.png')
         });
 
