@@ -56,7 +56,7 @@ class Draw {
 
         options = default_options(options);
 
-        var _text = options.font.draw_text(options);        
+        var _text = options.font.draw_text(options);  
 
         return _text;
     }

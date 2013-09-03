@@ -13,6 +13,7 @@ class Main extends luxe.Game {
 
     public var line : LineGeometry; 
     public var rect : RectangleGeometry; 
+    public var rect2 : RectangleGeometry; 
 
     public function ready() {
 
@@ -31,12 +32,12 @@ class Main extends luxe.Game {
             color : new Color(0.4,0.4,0.4)
         });
 
-        rect = Luxe.draw.rectangle({
+        rect2 = Luxe.draw.rectangle({
             x : 40, y : 40,
             w : Luxe.screen.w - 80, 
             h : Luxe.screen.h - 80,
             color : new Color(0.5,0.2,0.2,0.5)
-        });        
+        });
 
     } //ready
   
@@ -58,6 +59,13 @@ class Main extends luxe.Game {
             h : 120,
             immediate : true,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5)
+        });
+
+        Luxe.draw.text({
+            immediate:true,
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+            pos : mouse,
+            text : 'mouse!'
         });
 
     } //update
