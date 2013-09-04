@@ -88,7 +88,6 @@ class Geometry {
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
 		batchers = new Array<Batcher>();
-		batcher_indices = new Map();
 			
 			//default transform properties
 		pos = new Vector();
