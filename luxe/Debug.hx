@@ -11,7 +11,7 @@ import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
 
-import luxe.structures.BinarySearchTree;
+import luxe.structures.BalancedBinarySearchTree;
 
 class Debug {
 
@@ -423,7 +423,7 @@ class Debug {
         ); //node text
     }
 
-    public function draw_geom_leaf( L:Bool, _leaf : BinarySearchTreeNode<Geometry,Geometry>, _p:Vector ) {
+    public function draw_geom_leaf( L:Bool, _leaf : BalancedBinarySearchTreeNode<Geometry,Geometry>, _p:Vector ) {
 
         var _bw:Float = 20;
         var _bwb:Float = 24;
@@ -436,32 +436,36 @@ class Debug {
             draw_geom_node(L,_leaf.value, _p);
 
             if(_leaf.left != null) {
-                    
+                
+                var __bwb = _leaf.left.nodecount * _bwb;
+
                 _tree_geom.add_geometry( 
                     Luxe.draw.line({
                         p0 : new Vector(_p.x-_bwhalf,_p.y+_bh),
-                        p1 : new Vector(_p.x-_bwb, _p.y+_bh2 ),
+                        p1 : new Vector(_p.x-__bwb, _p.y+_bh2 ),
                         color: new Color(1,1,1,0.2).rgb(0xf6007b),
                         batcher : debug_batcher,
                         depth : 999.4
                     })
                 );
 
-                draw_geom_leaf(true, _leaf.left, new Vector(_p.x-_bwb, _p.y+_bh2 ));
+                draw_geom_leaf(true, _leaf.left, new Vector(_p.x-__bwb, _p.y+_bh2 ));
             }
             if(_leaf.right != null) {
 
+                var __bwb = _leaf.right.nodecount * _bwb;
+                
                 _tree_geom.add_geometry( 
                     Luxe.draw.line({
                         p0 : new Vector(_p.x+_bwhalf,_p.y+_bh),
-                        p1 : new Vector(_p.x+_bwb, _p.y+_bh2),
+                        p1 : new Vector(_p.x+__bwb, _p.y+_bh2),
                         color: new Color(1,1,1,0.2).rgb(0xf6007b),
                         batcher : debug_batcher,
                         depth : 999.4
                     })
                 );
 
-                draw_geom_leaf(false, _leaf.right, new Vector(_p.x+_bwb, _p.y+_bh2));
+                draw_geom_leaf(false, _leaf.right, new Vector(_p.x+__bwb, _p.y+_bh2));
             }
         }
     }

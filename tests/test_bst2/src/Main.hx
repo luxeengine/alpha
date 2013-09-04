@@ -7,7 +7,9 @@ import phoenix.Batcher;
 import phoenix.geometry.CompositeGeometry;
 
 
-import BinarySearchTree;
+import luxe.structures.BinarySearchTree;
+import luxe.structures.BalancedBinarySearchTree;
+
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 import phoenix.Texture;
@@ -15,7 +17,7 @@ import phoenix.Texture;
 class Main extends luxe.Game {
 
     var debug_batcher : Batcher;
-    var tree : BinarySearchTree<Geometry,Geometry>;
+    var tree : BalancedBinarySearchTree<Geometry,Geometry>;
     var geom : Geometry;
     var geomkey : GeometryState;
     var tex : Texture;
@@ -26,7 +28,7 @@ class Main extends luxe.Game {
         debug_batcher.layer = 2;
         Luxe.renderer.add_batch(debug_batcher);
 
-        tree = new BinarySearchTree<Geometry, Geometry>( compare_geometry );
+        tree = new BalancedBinarySearchTree<Geometry, Geometry>( compare_geometry );
 
         tex = Luxe.loadTexture('assets/luxe.png');  
 
@@ -38,7 +40,7 @@ class Main extends luxe.Game {
 
         trace("create tree");
 
-        for(i in 0 ... 5) {
+        for(i in 0 ... 10) {
 
             var g = Luxe.draw.box({
                     x:10+(i*5),y:10+(i*5),w:180,h:180, 
@@ -201,7 +203,7 @@ class Main extends luxe.Game {
             ); //node text
         }
 
-        public function draw_tree_leaf( L:Bool, _leaf : BinarySearchTreeNode<Geometry,Geometry>, _p:Vector ) {
+        public function draw_tree_leaf( L:Bool, _leaf : BalancedBinarySearchTreeNode<Geometry,Geometry>, _p:Vector ) {
 
             var _bw:Float = 20;
             var _bwb:Float = 24;

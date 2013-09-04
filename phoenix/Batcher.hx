@@ -10,7 +10,7 @@ import lime.gl.GL;
 import lime.gl.GLBuffer;
 import lime.utils.Float32Array;
 
-import luxe.structures.BinarySearchTree;
+import luxe.structures.BalancedBinarySearchTree;
 
 enum PrimitiveType {
     none;
@@ -49,7 +49,7 @@ class Batcher {
     public var layer : Int = 0;
     public var enabled : Bool = true;
 
-    public var geometry : BinarySearchTree<Geometry,Geometry>;
+    public var geometry : BalancedBinarySearchTree<Geometry,Geometry>;
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
@@ -87,7 +87,7 @@ class Batcher {
 
         renderer = _r;
 
-        geometry = new BinarySearchTree<Geometry,Geometry>( geometry_compare );
+        geometry = new BalancedBinarySearchTree<Geometry,Geometry>( geometry_compare );
         groups = new Map();
 
             //Our batch lists
@@ -212,19 +212,9 @@ class Batcher {
             }
         } //_remove_batcher_from_geometry
 
-        var _size = geometry.size();
-
         geometry.remove( _geom );
 
         tree_changed = true;
-
-        var _size_after = geometry.size();
-
-        if( _size_after != _size-1 ) {
-            if(this.name == 'default_batcher') {
-                trace("WARNING : geometry not found in list, won't be removed! " + _geom.short_id());
-            }
-        }
 
     } //remove2
 
