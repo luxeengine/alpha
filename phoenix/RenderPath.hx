@@ -3,7 +3,7 @@ package phoenix;
 import lime.gl.GL;
 import phoenix.Renderer;
 import phoenix.Batcher;
-import phoenix.utils.BinarySearchTree;
+import luxe.structures.BinarySearchTree;
 
 //Default base class will do forward rendering
 
@@ -14,7 +14,7 @@ class RenderPath {
         renderer = _renderer; 
     }
 
-    public function render( _batchers: BinarySearchTree<Batcher>, _stats:RendererStats ) {
+    public function render( _batchers: BinarySearchTree<Int,Batcher>, _stats:RendererStats ) {
 
         for(batch in _batchers) {
 

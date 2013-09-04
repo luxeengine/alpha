@@ -20,14 +20,14 @@ import phoenix.BitmapFont;
 import lime.utils.UInt8Array;
 import lime.utils.ArrayBuffer;
 
-import phoenix.utils.BinarySearchTree;
+import luxe.structures.BinarySearchTree;
 
 
 class Renderer {
 
     public var resource_manager : ResourceManager;
-    public var batchers : BinarySearchTree<Batcher>;
-        
+    public var batchers : BinarySearchTree<Int,Batcher>;
+
         //Default rendering
     public var default_shader : Shader;
     public var default_shader_textured : Shader;
@@ -55,8 +55,10 @@ class Renderer {
         stats = new RendererStats();
 
         resource_manager = new ResourceManager();
-        batchers = new BinarySearchTree<Batcher>( function(a:Batcher,b:Batcher){
-            return a.compare(b);
+        batchers = new BinarySearchTree<Int,Batcher>( function(a:Int,b:Int){
+            if(a < b) return -1;
+            if(a == b) return 0;
+            return 1;
         } );
 
             //The default view
@@ -118,12 +120,11 @@ class Renderer {
     }
 
     public function add_batch(batch:Batcher) {
-        var _batch_index = batchers.insert(batch);
-        batch.batch_index = _batch_index;
+        batchers.insert( batch.layer, batch );
     }
 
     public function remove_batch(batch:Batcher) {
-        batchers.remove( batch.batch_index );
+        batchers.remove( batch.layer );
     }
 
     public function clear( _color:Color ) {
@@ -323,7 +324,7 @@ class Renderer {
             clear( clear_color );
         }
 
-        stats.batchers = batchers.length;
+        stats.batchers = batchers.size();
         stats.reset();
 
             //render 

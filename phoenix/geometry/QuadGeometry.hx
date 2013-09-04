@@ -29,7 +29,7 @@ class QuadGeometry extends Geometry {
         _uv_cache = new luxe.Rectangle(0,0,1,1);
 
             //Apply the new options rect
-		set( new Rectangle(options.x, options.y, options.width, options.height) );
+		set( new Rectangle(options.x, options.y, options.w, options.h) );
 
         if(options.enabled != null) enabled = options.enabled;
 

@@ -1,6 +1,7 @@
 package luxe;
 
 import phoenix.geometry.LineGeometry;
+import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
 import phoenix.Batcher;
 
@@ -38,15 +39,25 @@ class Draw {
 
     } // line
 
+    public function box(options:Dynamic) {
+        
+        options = default_options(options);
+
+        var _box = new QuadGeometry(options);
+
+           options.batcher.add(_box);
+
+        return _box;
+
+    } //box
+
     public function rectangle(options:Dynamic) {
 
         options = default_options(options);
 
-    		//the batcher
-
     	var _rect = new RectangleGeometry(options);
 
-    	options.batcher.add(_rect);
+    	   options.batcher.add(_rect);
 
     	return _rect;
     	

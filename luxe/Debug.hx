@@ -6,8 +6,12 @@ import luxe.debug.Inspector;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.Camera;
+import phoenix.geometry.CompositeGeometry;
+import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
+
+import luxe.structures.BinarySearchTree;
 
 class Debug {
 
@@ -106,7 +110,7 @@ class Debug {
 
         debug_overlay = new QuadGeometry({
             x:0, y:0, 
-            width: Luxe.screen.w,  height: Luxe.screen.h,        
+            w: Luxe.screen.w,  h: Luxe.screen.h,        
             color : new Color(0,0,0,0.8),
             depth : 999,    //debug depth
             group : 999,    //debug group
@@ -210,11 +214,11 @@ class Debug {
 
         batcher_list_text = new luxe.Text({
             depth : 999.3,
-            color : new Color(0,0,0,1).rgb(0xf6007b),
+            color : new Color(0,0,0,0.5).rgb(0xf6007b),
             pos : new Vector(padding.x*2,padding.y*3),
             font : Luxe.renderer.default_font,
             text : get_batcher_list_string(),
-            size : 15,
+            size : 14,
             batcher : debug_batcher,
             enabled : false
         });
@@ -289,7 +293,7 @@ class Debug {
     public function get_batcher_list_string() {
         var _final:String = 'Batcher Items: \n';
             for(_geom in Luxe.renderer.default_batcher.geometry) {
-                _final += '\t' + ' d:' + _geom.depth + '\tg:' + _geom.group + '\tv:' + _geom.vertices.length + '\tid:' + _geom.id + '\n';
+                _final += '\t' + _geom.short_id() + ' d:' + _geom.depth + '\tg:' + _geom.group + '\tv:' + _geom.vertices.length + '\tid:' + _geom.id + '\n';
             }
         return _final;
     }
@@ -362,12 +366,131 @@ class Debug {
         }
     }
 
+
+    var _tree_geom : CompositeGeometry;
+    public function clear_batcher_tree() {
+        if(_tree_geom != null) {
+            _tree_geom.drop();
+            _tree_geom = null;
+        }
+    }   
+
+    public function draw_geom_node(l:Bool, _g:Geometry, _p:Vector ) {
+
+        var _bw:Float = 20;
+        var _bwhalf:Float = 9;
+        var _bh:Float = 13;
+
+        _tree_geom.add_geometry( 
+            Luxe.draw.rectangle({
+                x:_p.x-_bwhalf, y:_p.y,
+                w:_bw, h:_bh,
+                color: new Color(1,1,1,0.4).rgb(0xf6007b),
+                batcher : debug_batcher,
+                depth : 999.4
+            })
+        ); //node square
+        
+        _tree_geom.add_geometry( 
+            Luxe.draw.text({
+                pos : _p,
+                size : 13,
+                color : new Color(1,1,1,0.7).rgb(0xf6007b),
+                batcher : debug_batcher,
+                depth : 999.4,
+                text : _g.depth,
+                align : luxe.Text.TextAlign.center
+            })
+        ); //node text
+
+        var t = _p.clone().set( _p.x+(_bwhalf*1.5), _p.y );
+        var talign = luxe.Text.TextAlign.left;
+        if(l) {
+            t.x = _p.x - (_bwhalf*1.5);
+            talign = luxe.Text.TextAlign.right;
+        }
+
+        _tree_geom.add_geometry( 
+            Luxe.draw.text({
+                pos : t,
+                size : 13,
+                color : new Color(1,1,1,0.7).rgb(0xf6007b),
+                batcher : debug_batcher,
+                depth : 999.4,
+                text : _g.id,
+                align : talign
+            })
+        ); //node text
+    }
+
+    public function draw_geom_leaf( L:Bool, _leaf : BinarySearchTreeNode<Geometry,Geometry>, _p:Vector ) {
+
+        var _bw:Float = 20;
+        var _bwb:Float = 24;
+        var _bh:Float = 12;
+        var _bh2:Float = 24;
+        var _bwhalf:Float = 10;
+
+        if(_leaf != null) {
+            
+            draw_geom_node(L,_leaf.value, _p);
+
+            if(_leaf.left != null) {
+                    
+                _tree_geom.add_geometry( 
+                    Luxe.draw.line({
+                        p0 : new Vector(_p.x-_bwhalf,_p.y+_bh),
+                        p1 : new Vector(_p.x-_bwb, _p.y+_bh2 ),
+                        color: new Color(1,1,1,0.2).rgb(0xf6007b),
+                        batcher : debug_batcher,
+                        depth : 999.4
+                    })
+                );
+
+                draw_geom_leaf(true, _leaf.left, new Vector(_p.x-_bwb, _p.y+_bh2 ));
+            }
+            if(_leaf.right != null) {
+
+                _tree_geom.add_geometry( 
+                    Luxe.draw.line({
+                        p0 : new Vector(_p.x+_bwhalf,_p.y+_bh),
+                        p1 : new Vector(_p.x+_bwb, _p.y+_bh2),
+                        color: new Color(1,1,1,0.2).rgb(0xf6007b),
+                        batcher : debug_batcher,
+                        depth : 999.4
+                    })
+                );
+
+                draw_geom_leaf(false, _leaf.right, new Vector(_p.x+_bwb, _p.y+_bh2));
+            }
+        }
+    }
+
+    public function draw_batcher_tree() {
+
+        _tree_geom = null;
+        _tree_geom = new CompositeGeometry({
+            batcher : debug_batcher,
+            depth : 999.4
+        });
+
+        //draw the root
+        var _p : Vector = new Vector(Luxe.screen.w/2, (padding.y*2)+10);
+
+        var _node = Luxe.renderer.default_batcher.geometry.root;
+            
+            draw_geom_leaf(true, _node, _p);
+
+    }
+
     public function show_batcher_list(_show:Bool = true) {
         if(_show) {
             batcher_list_text.text = get_batcher_list_string();
             batcher_list_text.visible = true;
+            draw_batcher_tree();
         } else {            
             batcher_list_text.visible = false;
+            clear_batcher_tree();
         }
     } //show_batcher_list
 
@@ -418,7 +541,7 @@ class Debug {
     }
     public function update_render_stats() {
 
-        debug_geometry_count = debug_batcher.geometry.length;
+        debug_geometry_count = debug_batcher.geometry.size();
         debug_draw_call_count = debug_batcher.draw_calls;
 
         _render_stats.batchers = Luxe.renderer.stats.batchers;
@@ -486,7 +609,13 @@ class Debug {
                 refresh_render_stats();
             } //dirty
 
-        } //current_view
+        } else if(current_view == 2) {//current_view
+            if(Luxe.renderer.default_batcher.tree_changed) {
+                clear_batcher_tree();
+                draw_batcher_tree();
+                Luxe.renderer.default_batcher.tree_changed = false;
+            }
+        }
 
 
 	} //process

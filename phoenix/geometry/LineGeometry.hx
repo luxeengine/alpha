@@ -46,9 +46,11 @@ class LineGeometry extends Geometry {
 		//p0
 		var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ) );
 			vert0.uv[0] = new TextureCoord(0,0);
+			vert0.color = options.color;
 
 		var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ) );
 			vert1.uv[0] = new TextureCoord(1,0);
+			vert1.color = options.color;
 
 		add(vert0);
 		add(vert1);

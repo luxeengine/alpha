@@ -142,8 +142,8 @@ class Sprite extends Entity {
         geometry = new QuadGeometry({
             x:pos.x, 
             y:pos.y, 
-            width:size.x, 
-            height:size.y,
+            w:size.x, 
+            h:size.y,
             texture : texture,
             color : color,
             shader : shader,

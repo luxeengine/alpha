@@ -8,10 +8,9 @@ import phoenix.BatchState;
 
 import lime.gl.GL;
 import lime.gl.GLBuffer;
-import lime.geometry.Matrix3D;
 import lime.utils.Float32Array;
 
-import phoenix.utils.BinarySearchTree;
+import luxe.structures.BinarySearchTree;
 
 enum PrimitiveType {
     none;
@@ -47,13 +46,12 @@ class BatchGroup {
 
 class Batcher {
 
-    public var batch_index : Node<Batcher>;
-    
-    public var layer : Float = 0.0;
+    public var layer : Int = 0;
     public var enabled : Bool = true;
 
-    public var geometry : BinarySearchTree<Geometry>;
+    public var geometry : BinarySearchTree<Geometry,Geometry>;
     public var groups : Map<Int, Array<BatchGroup> >;
+    public var tree_changed : Bool = false;
 
     public var vert_list : Array<Float>;
     public var tcoord_list : Array<Float>;
@@ -89,7 +87,7 @@ class Batcher {
 
         renderer = _r;
 
-        geometry = new BinarySearchTree<Geometry>( geometry_compare );
+        geometry = new BinarySearchTree<Geometry,Geometry>( geometry_compare );
         groups = new Map();
 
             //Our batch lists
@@ -179,6 +177,7 @@ class Batcher {
     }
 
     public function geometry_compare( a:Geometry, b:Geometry ) : Int {
+        if(a == b) return 0;
         return a.compare( b );
     }
 
@@ -191,12 +190,13 @@ class Batcher {
                 _geom.batchers.push(this);
             }
                 //Insert into our list
-            var _geom_key : Node<Geometry> = geometry.insert(_geom);
-                //The key is stored in the geometry instance to remove
-            _geom.batcher_indices.set(this, _geom_key);
+            geometry.insert( _geom, _geom );
 
                 //Make sure it is flagged
             _geom.added = true;
+
+                //and this local test flag
+            tree_changed = true;
 
         } else {
             trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
@@ -204,33 +204,29 @@ class Batcher {
     } //add
 
     public function remove( _geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
+        
+        if(_remove_batcher_from_geometry) {
+            _geom.batchers.remove(this);
+            if(_geom.batchers.length == 0) {
+                _geom.added = false;
+            }
+        } //_remove_batcher_from_geometry
 
-        var _geom_key = _geom.batcher_indices.get( this );
+        var _size = geometry.size();
 
-        if(_geom_key != null) {            
+        geometry.remove( _geom );
 
-                //only if we explicitly want to remove ourselves from the geometry list of batchers
-            if(_remove_batcher_from_geometry) {
-                _geom.batchers.remove(this);
-                if(_geom.batchers.length == 0) {
-                    _geom.added = false;
-                }
-            } //_remove_batcher_from_geometry
+        tree_changed = true;
 
-            var _size = geometry.length;
-            
-            geometry.remove( _geom_key );
+        var _size_after = geometry.size();
 
-            if(geometry.length != (_size-1)) {
-                trace("WARNING : geometry wasn't removed! " + _geom.short_id());
-            } //geometry.length
-
-        } else {
-
-            trace("WARNING : geometry doesn't have a key?!!! " + _geom.short_id());
-
+        if( _size_after != _size-1 ) {
+            if(this.name == 'default_batcher') {
+                trace("WARNING : geometry not found in list, won't be removed! " + _geom.short_id());
+            }
         }
-    }
+
+    } //remove2
 
     public function shader_activate( _shader:Shader ) {
             

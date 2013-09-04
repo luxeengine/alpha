@@ -1,5 +1,6 @@
 package phoenix.geometry;
 
+
 import phoenix.geometry.Vertex;
 import phoenix.Matrix4;
 import phoenix.Quaternion;
@@ -8,7 +9,8 @@ import phoenix.Vector;
 import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.Batcher;
-import phoenix.utils.BinarySearchTree.Node;
+
+import luxe.structures.BinarySearchTree;
 
 import lime.utils.ByteArray;
 import lime.utils.Float32Array;
@@ -34,7 +36,6 @@ class Geometry {
 		//Batcher information
 	public var added : Bool = false;
 	public var batchers : Array<Batcher>;
-	public var batcher_indices : Map<Batcher, Node<Geometry> >;
 
 	public var state : GeometryState;
 	public var dropped : Bool = false;
@@ -50,6 +51,20 @@ class Geometry {
 	@:isVar public var group(get, set) : Int;
 	@:isVar public var clip(get, set) : Bool;
 	@:isVar public var clip_rect(get, set) : Rectangle;
+
+	private var shadow_primitive_type : PrimitiveType;
+	private var shadow_texture : Texture;
+	private var shadow_shader : Shader;
+	private var shadow_group : Int = 0;
+	private var shadow_depth : Float = 0.0;
+	private var shadow_clip : Bool = false;
+
+	private var dirty_primitive_type : Bool = false;
+	private var dirty_texture : Bool = false;
+	private var dirty_shader : Bool = false;
+	private var dirty_group : Bool = false;
+	private var dirty_depth : Bool = false;
+	private var dirty_clip : Bool = false;
 
 		//Geometry properties	
 	@:isVar public var enabled(default, set) : Bool = true;
@@ -259,17 +274,49 @@ class Geometry {
 
 	} //get_scale
 
-//When changing important sortable properties
-//on a geometry, it removes it and readds it to the
-//binary search tree inside the batchers so that
-//it can be sorted again, as sort only happens on insertion
-	
-	public function refresh() {
+//Invariants that cause a shift in the geometry tree
 
-		for( b in batchers ) {
+	function refresh() {
+
+			//remove from all batchers
+		for(b in batchers) {
 			b.remove( this, false );
-			b.add( this, false );
-		} //for each batcher we are a part of
+		} //for each batcher
+
+				//update the values from the shadow values, if needed
+			if(dirty_primitive_type) {
+				dirty_primitive_type = false;
+				state.primitive_type = shadow_primitive_type;
+			} //dirty_primitive_type
+
+			if(dirty_texture) {
+				dirty_texture = false;
+				state.texture = shadow_texture;
+			} //dirty_texture
+
+			if(dirty_shader) {
+				dirty_shader = false;
+				state.shader = shadow_shader;
+			} //dirty_shader
+
+			if(dirty_group) {
+				dirty_group = false;
+				state.group = shadow_group;
+			} //dirty_group
+
+			if(dirty_depth) {
+				dirty_depth = false;
+				state.depth = shadow_depth;
+			} //dirty_depth
+
+			if(dirty_clip) {
+				dirty_clip = false;
+				state.clip = shadow_clip;
+			} //dirty_clip
+
+		for(b in batchers) {
+			b.add(this,false);
+		} //for each batcher
 
 	} //refresh
 
@@ -283,11 +330,13 @@ class Geometry {
 
 	private function set_primitive_type( val : PrimitiveType ) : PrimitiveType {	
 
-		state.primitive_type = val;
-
-			refresh();
-
-		return state.primitive_type;
+		if(state.primitive_type != val) {
+			shadow_primitive_type = val;
+			dirty_primitive_type = true;
+			refresh();		
+		}
+		
+		return primitive_type = val;
 
 	} //set_primitive_type
 
@@ -301,11 +350,13 @@ class Geometry {
 
 	public function set_texture(val : Texture) : Texture {
 		
-		state.texture = val;
-
-			refresh();
-
-		return state.texture;
+		if(state.texture != val) {
+			shadow_texture = val;
+			dirty_texture = true;
+			refresh();		
+		}
+		
+		return texture = val;
 
 	} //set_texture
 
@@ -339,11 +390,13 @@ class Geometry {
 
 	public function set_shader(val : Shader) : Shader {
 
-		state.shader = val;
-
+		if(state.shader != val) {
+			shadow_shader = val;
+			dirty_shader = true;
 			refresh();
-
-		return state.shader;
+		}
+		
+		return shader = val;
 
 	} //set_shader
 
@@ -355,14 +408,16 @@ class Geometry {
 
 	} //get_depth
 
+
 	public function set_depth(val : Float) : Float {
 
 		if(state.depth != val) {
-			state.depth = val;
+			shadow_depth = val;
+			dirty_depth = true;
 			refresh();
 		}
-		
-		return state.depth;
+
+		return depth = val;
 
 	} //set_depth
 
@@ -377,11 +432,12 @@ class Geometry {
 	public function set_group(val : Int) : Int {		
 
 		if(state.group != val) {
-			state.group = val;
-			refresh();			
+			shadow_group = val;
+			dirty_group = true;
+			refresh();
 		}
-
-		return state.group;
+		
+		return group = val;
 
 	} //set_group
 
@@ -396,11 +452,12 @@ class Geometry {
 	public function set_clip(val : Bool) : Bool {		
 
 		if(state.clip != val) {
-			state.clip = val;
-			refresh();
-		}		
-
-		return state.clip;
+			shadow_clip = val;
+			dirty_clip = true;
+			refresh();		
+		}
+		
+		return clip = val;
 
 	} //set_clip
 

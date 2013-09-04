@@ -3,9 +3,6 @@ import luxe.Sprite;
 import luxe.Vector;
 import luxe.Input;
 
-import tests.BST;
-
-
 class Main extends luxe.Game {
 
     public var sprites : Array<Sprite>;
@@ -29,7 +26,7 @@ class Main extends luxe.Game {
 
             sprites.push(new Sprite({
                 name : 's' + i,
-                depth : 4,
+                depth : i,
                 texture: (i == 1) ? image2 : image,
                 centered : false,
                 pos : new Vector(100 + (i*20), 100 + (i*20) ),
@@ -50,6 +47,12 @@ class Main extends luxe.Game {
 
       if(e.value == Input.Keys.escape) {
         Luxe.shutdown();
+      }
+
+      if(e.value == Input.Keys.key_R) {
+            if(sprites[2]!=null) {
+                trace( Luxe.renderer.default_batcher.geometry.find( sprites[2].geometry ) );
+            }
       }
 
       if(e.value == Input.Keys.space) {
