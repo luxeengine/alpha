@@ -306,7 +306,7 @@ class BitmapFont extends Resource {
 
     public function draw_text( options : Dynamic ) {
 
-         var _string : String = (options.text == null) ? "" : options.text;
+         var _string : String = (options.text == null) ? Std.string("") : Std.string(options.text);
          var _pos: Vector = (options.pos == null) ? new Vector() : options.pos;
          var _col: Color = (options.color == null) ? new Color() : options.color;
          var _bounds: Rectangle = (options.bounds == null) ? null : options.bounds;

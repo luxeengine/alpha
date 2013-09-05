@@ -199,8 +199,9 @@ class Batcher {
             tree_changed = true;
 
         } else {
-            trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
+            // trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
         }
+        
     } //add
 
     public function remove( _geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
