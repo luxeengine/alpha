@@ -17,6 +17,6 @@
 		<!-- but it is possible to use it as a haxelib already -->
 		<!-- <haxelib name="haxephoenix" /> -->
 			
-	<templatePath name="templates" />
+	<templatePath name="buildfiles" />
 	
 </extension>

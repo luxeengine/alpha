@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="luxe - samples - empty" 
-          package="com.underscorediscovery.luxesampleempty" 
+          title="luxe - empty project template" 
+          package="com.luxeengine.luxeemptyproject" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
-	<app main="Main" path="bin" file="luxe_sample_empty" />
+	<app main="Main" path="bin" file="luxe_empty_project" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	

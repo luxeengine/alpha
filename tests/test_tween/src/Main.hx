@@ -1,0 +1,57 @@
+
+import luxe.Vector;
+import luxe.Input;
+import luxe.Sprite;
+import luxe.Color;
+
+import phoenix.utils.Maths;
+
+class Main extends luxe.Game {
+
+    var sprite : Sprite;
+    var mouse : Vector;
+
+    public function ready() {
+        sprite = new Sprite({
+            pos : new Vector(480,320),
+            size : new Vector(256,256),
+            color : new Color()
+        });
+
+        mouse = new Vector(480,320);
+
+    } //ready
+    
+    
+    public function onmousemove(e) {
+        mouse.set(e.x, e.y);
+        sprite.pos = mouse;
+    }
+
+    public function onmousedown(e) {
+        
+        sprite.color.tween(1.5, { 
+            r:Math.random(), 
+            g:Math.random(), 
+            b:Math.random(), 
+            a: Maths.clamp(0.5+(Math.random()),0,1) 
+        }); //tween
+
+    }
+
+    public function onkeyup(e) {
+      if(e.value == Input.Keys.escape) {
+        Luxe.shutdown();
+      }
+    } //onkeyup
+
+    public function update(dt:Float) {
+
+    } //update
+
+    public function shutdown() {
+
+    } //shutdown
+}
+
+

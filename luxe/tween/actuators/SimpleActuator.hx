@@ -56,7 +56,6 @@ class SimpleActuator extends GenericActuator {
 		if (!addedEvent) {
 			
 			addedEvent = true;
-			
 			Luxe.core.add_internal_update( on_internal_update );
 			
 		}
