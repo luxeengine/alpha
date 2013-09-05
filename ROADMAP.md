@@ -26,21 +26,15 @@
 - make a website and community site for the engine
 - integrate accounts early so we can implement rewards and stuff
 
-
 ### Goal Engine Features
 
-#####tiles and tilesheets
-- support for tmx including isometric   
-- support for transforms (i.e point to world and vice versa)
-
-####tests and samples
+####samples
 - at least a sample for every major class, all unique assets
-- at least two full sample games (simple ones)
-- more entity tests, in various configurations
+- at least two full sample games (simplish ones)
 
-####modules and extensions
-- figure out good workflow for extensions 
-- figure out if we need/can do modules in a require fashion
+####tests
+- more entity tests, in various configurations
+- more code coverage 
 
 ####physics 
 - tidy up ammo bindings using @:native and externs
@@ -49,6 +43,16 @@
 - implement 2d colliders and shapes
 - add nape support
 - add box2d support 
+
+##modules
+
+####modules and extensions
+- figure out good workflow for extensions 
+- figure out if we need/can do modules in a require fashion
+
+#####tiles and tilesheets module
+- support for tmx (added already), to test: isometric   
+- support for transforms (i.e point to world and vice versa)
 
 ####general
 - browse classes and code from lab projects and see what we can add as modules and extensions, and what should be built in
