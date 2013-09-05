@@ -14,11 +14,11 @@ class Text {
     
     private var _batcher : Batcher;
 
-    @:isVar public var text(default,set) : String = '';
-    @:isVar public var pos(default,set) : Vector;
-    @:isVar public var size(default,set) : Float = 32;
-    @:isVar public var color(default,set) : Color;
-    @:isVar public var visible(default,set) : Bool;
+    @:isVar public var text (default,set) : String = '';
+    @:isVar public var pos (default,set) : Vector;
+    @:isVar public var size (default,set) : Float = 32;
+    @:isVar public var color (default,set) : Color;
+    @:isVar public var visible (default,set) : Bool;
 
     public var ready : Bool = false;
     public var text_options : Dynamic;
@@ -117,7 +117,8 @@ class Text {
     public function set_text(v:String) {
 
         if(!ready) return text = v;
-        if(text_options == null) return v;        
+        if(text_options == null) return v;  
+
         text_options.text = v;
 
         destroy();
