@@ -7,7 +7,7 @@ import common.Block;
 import common.Cell;
 import common.Board;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 
 class Base extends Mode {
 

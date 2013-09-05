@@ -3,8 +3,8 @@ package luxe;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Entity;
-import motion.Actuate;
-import motion.easing.Quad;
+import luxe.tween.Actuate;
+import luxe.tween.easing.Quad;
 import phoenix.Camera.ProjectionType;
 
 typedef ProjectionType = phoenix.Camera.ProjectionType;

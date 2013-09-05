@@ -18,7 +18,7 @@ import phoenix.BitmapFont;
 
 import mode.Mode;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 import phoenix.RenderTexture;
 
 class Aqcuisition {

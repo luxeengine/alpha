@@ -3,7 +3,7 @@ import luxe.NineSlice;
 import luxe.Vector;
 import luxe.Input;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 
 class Main extends luxe.Game {
 

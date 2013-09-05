@@ -8,7 +8,7 @@ import luxe.Text;
 import luxe.Vector;
 import phoenix.geometry.Geometry;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 
 class Block {
 	

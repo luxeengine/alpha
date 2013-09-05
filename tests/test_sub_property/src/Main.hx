@@ -4,7 +4,7 @@ import luxe.Input;
 import luxe.Sprite;
 import luxe.Color;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 
 class Main extends luxe.Game {
 

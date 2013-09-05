@@ -55,6 +55,16 @@ class Core {
     private var end_dt : Float = 0;
     public var dt : Float = 0;
 
+//Additional external internal updates
+        //the list of internal update handlers, for calling 
+    var _update_handlers : Map<String,Float->Void>;
+        //add an internal update
+    public function add_internal_update( _update:Float->Void ) {    
+        var _uuid = Luxe.utils.uuid();
+        _update_handlers.set(_uuid,_update); 
+        return _uuid;
+    }
+
 //flags
 	
 	   //if we have started a shutdown
@@ -67,8 +77,13 @@ class Core {
             //Keep a reference for use
         host = _host;
 
+            //Create internal stuff
+        _update_handlers = new Map();
+
+            //Set external references
         Luxe.core = this;
         Luxe.utils = new luxe.utils.Utils(this);
+
 
     } //new
     
@@ -239,6 +254,11 @@ class Core {
         #if haxebullet
             physics.process();   //physics 
         #end //haxebullet
+
+            //Update internal callbacks
+        for(_update in _update_handlers) {
+            _update(dt);
+        }
 
             //Update the default scene first
         scene.update(dt);

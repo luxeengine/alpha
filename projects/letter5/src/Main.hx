@@ -10,7 +10,7 @@ import luxe.Modes;
 import modes.Menu;
 import modes.Base;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 
 class Main extends luxe.Game {
 

@@ -26,7 +26,7 @@ import luxe.Scene;
 import luxe.Camera;
 import luxe.Particles;
 
-import motion.Actuate;
+import luxe.tween.Actuate;
 
 class Menu extends Mode {   
 

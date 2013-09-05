@@ -5,7 +5,7 @@ import luxe.Color;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Modes;
-import motion.Actuate;
+import luxe.tween.Actuate;
 import phoenix.geometry.LineGeometry;
 
 class Menu extends Mode {

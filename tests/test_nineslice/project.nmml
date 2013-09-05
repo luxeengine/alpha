@@ -18,6 +18,5 @@
 	
 	<haxelib name="luxe" />
 	<haxelib name="lime" />
-	<haxelib name="actuate" />
 	
 </project>
