@@ -14,7 +14,6 @@ To get started :
 
  run `haxelib install nme` , it should be > 4.0.2   
  run `haxelib install openfl-tools`, it should be > 1.0.2    
- run `haxelib install actuate`   
  run `haxelib install format`   
     
  Then, make sure your build environment is setup, this will install xcode/visual studio, etc.
