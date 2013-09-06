@@ -55,4 +55,9 @@ you can copy the included shortcut scripts from /setup/ into the same folder as 
 
 This will be automated in an installer, in the near future.
 
+## Troubleshooting
+If you are on Windows and you get a message such as "Cannot find haxelib luxe [or lime], are you sure it is installed?"
+Then you will need to open the both haxelib's .dev file (by default, this is found in
+C:\HaxeToolkit\haxe\lib\luxe and C:\HaxeToolkit\haxe\lib\lime), and remove the trailing /.
+
 ###That should be it!
