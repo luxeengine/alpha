@@ -42,9 +42,9 @@ To get started :
  ` cd luxe `    
  ` haxelib dev luxe ./ `   
  
-##Build the test project, using `haxelib run luxe`
+##Build the simplest project, using `haxelib run luxe`
     
- `cd ~/mydevfolder/luxe/projects/simplest`   
+ `cd ~/mydevfolder/luxe/samples/simplest`   
  `haxelib run luxe test mac` or `haxelib run luxe test linux` or `haxelib run luxe test windows`
 
 Note : To use the shortcut version of `luxe`,   
