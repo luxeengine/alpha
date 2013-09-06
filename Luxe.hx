@@ -10,6 +10,8 @@ import luxe.Rectangle;
 class Luxe {
 
     public static var dt : Float = 0.016;
+    public static var timescale : Float = 1;
+    
     public static var core : luxe.Core;
     public static var debug : luxe.Debug;
     public static var draw : luxe.Draw;

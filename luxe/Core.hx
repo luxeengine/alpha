@@ -270,7 +270,7 @@ class Core {
         }
 
             //work out the last frame time
-        dt =  haxe.Timer.stamp() - end_dt;
+        dt = (haxe.Timer.stamp() - end_dt) * Luxe.timescale;
             //store the latest time frame
         end_dt = haxe.Timer.stamp();
             //store the value for the framework
@@ -333,6 +333,11 @@ class Core {
 //keys
     public function onkeydown( e:KeyEvent ) {
 
+            //check for named input 
+        if(!shutting_down) {
+            input.check_named_keys(e, true);
+        }
+
         if(host.onkeydown != null) host.onkeydown(e);
 
         if(e.value == luxe.Input.Keys.key_1 && console_visible) {
@@ -351,6 +356,7 @@ class Core {
 
     public function onkeyup( e:KeyEvent ) {
 
+
             //check for named input 
         if(!shutting_down) {
             input.check_named_keys(e);
@@ -362,6 +368,11 @@ class Core {
 //mouse
     
     public function onmousedown(e : MouseEvent) {
+
+        if(!shutting_down) {
+            input.check_named_mouse(e, true);
+        }
+
         if(host.onmousedown != null) host.onmousedown(e);
     }
     

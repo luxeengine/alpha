@@ -46,45 +46,46 @@ class Input {
 
 //Named event handlers
 
-    function add_key_binding( _name:String, _value:KeyValue ) {
+    function add_key_binding( _name:String, _value:KeyValue, _down:Bool=false ) {
         
         if( !key_bindings.exists(_name) ) {
-            key_bindings.set(_name, new Map());   
+            key_bindings.set(_name, new Map());
         } //if the map doesn't exist yet
 
-        key_bindings.get(_name).set( _value, true );
+        key_bindings.get(_name).set( _value, _down );
 
     } //add_key_binding
 
-    function add_mouse_binding( _name:String, _value:MouseButton ) {
+    function add_mouse_binding( _name:String, _value:MouseButton, _down:Bool=false ) {
         
         if( !mouse_bindings.exists(_name) ) {
             mouse_bindings.set(_name, new Map());   
         } //if the map doesn't exist yet
 
-        mouse_bindings.get(_name).set( _value, true );
+        mouse_bindings.get(_name).set( _value, _down );
 
     } //add_key_binding
 
-    public function add( _name:String, _event:Dynamic ) {
+    public function add( _name:String, _event:Dynamic, _down:Bool=false ) {
             
         if(Std.is(_event, KeyValue)) {
                 //if key value, add it
-            add_key_binding(_name, cast _event);
+            add_key_binding(_name, cast _event, _down);
         } else if(Std.is(_event, MouseButton)) { 
                 //if mouse value, add as mouse value
-            add_mouse_binding(_name, cast _event);
+            add_mouse_binding(_name, cast _event, _down);
         }
     }
 
-    @:noCompletion public function check_named_keys( e:KeyEvent ) {
+    @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
 
         var _fired : Array<String> = [];
         for(_name in key_bindings.keys()) {
 
             var _b = key_bindings.get(_name);
             if(_b.exists(e.key)) {
-                if( !Lambda.has(_fired, _name) ) {
+                var _value = _b.get( e.key );
+                if( !Lambda.has(_fired, _name) && _value == _down ) {
                     _fired.push(_name);
                 }
             } //if the key fired is stored in a named binding
@@ -97,14 +98,15 @@ class Input {
 
     } //check_named_keys
 
-    @:noCompletion public function check_named_mouse( e:MouseEvent ) {
+    @:noCompletion public function check_named_mouse( e:MouseEvent, _down:Bool=false ) {
 
         var _fired : Array<String> = [];
         for(_name in mouse_bindings.keys()) {
 
             var _b = mouse_bindings.get(_name);
             if(_b.exists(e.button)) {
-                if( !Lambda.has(_fired, _name) ) {
+                var _value = _b.get( e.button );
+                if( !Lambda.has(_fired, _name) && _value == _down ) {
                     _fired.push(_name);
                 }
             } //if the key fired is stored in a named binding
