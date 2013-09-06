@@ -175,6 +175,7 @@ class Core {
         Luxe.draw = draw;     
         Luxe.events = events;
         Luxe.time = time;
+        Luxe.input = input;
         Luxe.camera = new luxe.Camera({ name:'default_camera', view:renderer.default_camera });
         Luxe.resources = renderer.resource_manager;
 
@@ -330,28 +331,48 @@ class Core {
     } // onresize
 //input events
 //keys
-    public function onkeydown(e) {
+    public function onkeydown( e:KeyEvent ) {
+
         if(host.onkeydown != null) host.onkeydown(e);
+
         if(e.value == luxe.Input.Keys.key_1 && console_visible) {
             debug.switch_console();
         }
+
         if(e.value == luxe.Input.Keys.key_2 && console_visible) {
             debug.toggle_debug_stats();
         }
+
         if(e.value == luxe.Input.Keys.tilde) {
             show_console( !console_visible );
         }
-    }
-    public function onkeyup(e) {
+
+    } //onkeydown
+
+    public function onkeyup( e:KeyEvent ) {
+
+            //check for named input 
+        if(!shutting_down) {
+            input.check_named_keys(e);
+        }
+        
         if(host.onkeyup != null) host.onkeyup(e);
+
     }
 //mouse
+    
     public function onmousedown(e : MouseEvent) {
         if(host.onmousedown != null) host.onmousedown(e);
     }
+    
     public function onmouseup(e : MouseEvent) {
+        if(!shutting_down) {
+            input.check_named_mouse(e);
+        }
+
         if(host.onmouseup != null) host.onmouseup(e);
     }
+
     public function onmousemove(e : MouseEvent) {
         if(host.onmousemove != null) host.onmousemove(e);
     }
