@@ -99,13 +99,12 @@ class Main extends luxe.Game {
     public function onkeyup(e) {
         
         if(e.value == Input.Keys.space) {
-
-            // 
-
-            var c : Color = bar_color;
-
-            trace( c.r + ' ' + c.g + ' ' + c.b  );
-
+            bar_color.tween( 1, { h : 0.5, v : 0 } ).onUpdate(
+                function(){
+                    hsb_strip_top.color = bar_color;        
+                    hsb_strip_bottom.color = bar_color;
+                }
+            );
         }
 
         if(e.value == Input.Keys.escape) {

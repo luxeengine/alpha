@@ -40,7 +40,7 @@ class Color {
 		b = _setb;
 		a = _seta;
 
-		return this;		
+		return this;
 	}
 
 	public function maxRGB() : Float {
@@ -276,6 +276,56 @@ class ColorHSL extends Color {
 
 	} //set
 
+	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
+			
+		if(_dest != null) {
+
+			var _dest_h = h;
+			var _dest_s = s;
+			var _dest_l = l;
+			var _dest_a = a;
+
+			var _change_h = false;
+			var _change_s = false;
+			var _change_l = false;		
+			var _change_a = false;		
+
+			if(Std.is(_dest, ColorHSL)) {
+				
+				_dest_h = _dest.h;
+				_dest_s = _dest.s;
+				_dest_l = _dest.l;
+				_dest_a = _dest.a;
+
+				_change_h = true;
+				_change_s = true;
+				_change_l = true;
+				_change_a = true;
+
+			} else {
+
+				if(_dest.h != null) { _dest_h = _dest.h; _change_h = true; }
+				if(_dest.s != null) { _dest_s = _dest.s; _change_s = true; }
+				if(_dest.l != null) { _dest_l = _dest.l; _change_l = true; }
+				if(_dest.a != null) { _dest_a = _dest.a; _change_a = true; }
+
+			}
+
+			var _properties : Dynamic = {};
+
+			if(_change_h) _properties.h = _dest_h;
+			if(_change_s) _properties.s = _dest_s;
+			if(_change_l) _properties.l = _dest_l;
+			if(_change_a) _properties.a = _dest_a;
+
+			return Actuate.tween( this, _time_in_seconds, _properties, _override );
+
+		} else { //dest is null? 
+			throw " Warning: Color.tween passed a null destination ";
+		}
+
+	} //tween
+
 	public function _refresh() : ColorHSL {
 		super.fromColorHSL(this);
 		return this; 
@@ -393,6 +443,56 @@ class ColorHSV extends Color {
 		return this;
 
 	} //set
+
+	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
+			
+		if(_dest != null) {
+
+			var _dest_h = h;
+			var _dest_s = s;
+			var _dest_v = v;
+			var _dest_a = a;
+
+			var _change_h = false;
+			var _change_s = false;
+			var _change_v = false;		
+			var _change_a = false;		
+
+			if(Std.is(_dest, ColorHSV)) {
+				
+				_dest_h = _dest.h;
+				_dest_s = _dest.s;
+				_dest_v = _dest.v;
+				_dest_a = _dest.a;
+
+				_change_h = true;
+				_change_s = true;
+				_change_v = true;
+				_change_a = true;
+
+			} else {
+
+				if(_dest.h != null) { _dest_h = _dest.h; _change_h = true; }
+				if(_dest.s != null) { _dest_s = _dest.s; _change_s = true; }
+				if(_dest.v != null) { _dest_v = _dest.v; _change_v = true; }
+				if(_dest.a != null) { _dest_a = _dest.a; _change_a = true; }
+
+			}
+
+			var _properties : Dynamic = {};
+
+			if(_change_h) _properties.h = _dest_h;
+			if(_change_s) _properties.s = _dest_s;
+			if(_change_v) _properties.v = _dest_v;
+			if(_change_a) _properties.a = _dest_a;
+
+			return Actuate.tween( this, _time_in_seconds, _properties, _override );
+
+		} else { //dest is null? 
+			throw " Warning: Color.tween passed a null destination ";
+		}
+
+	} //tween
 
 	public function _refresh() {		
 		super.fromColorHSV(this);
