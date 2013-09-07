@@ -258,23 +258,23 @@ class Core {
 
             //Update internal callbacks
         for(_update in _update_handlers) {
-            _update(dt);
+            _update(Luxe.dt);
         }
 
             //Update the default scene first
-        scene.update(dt);
+        scene.update(Luxe.dt);
 
             //Update the game class for them
         if(host.update != null) {
-            host.update(dt);
+            host.update(Luxe.dt);
         }
 
             //work out the last frame time
-        dt = (haxe.Timer.stamp() - end_dt) * Luxe.timescale;
+        dt = (haxe.Timer.stamp() - end_dt);
+            //store the timescaled version for external
+        Luxe.dt = dt * Luxe.timescale;
             //store the latest time frame
         end_dt = haxe.Timer.stamp();
-            //store the value for the framework
-        Luxe.dt = dt;
 
             //finally, process the debug update
         debug.process();    //debug last
