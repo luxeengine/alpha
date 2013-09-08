@@ -56,8 +56,12 @@ you can copy the included shortcut scripts from /setup/ into the same folder as 
 This will be automated in an installer, in the near future.
 
 ## Troubleshooting
-If you are on Windows and you get a message such as "Cannot find haxelib luxe [or lime], are you sure it is installed?"
-Then you will need to open the both haxelib's .dev file (by default, this is found in
-C:\HaxeToolkit\haxe\lib\luxe and C:\HaxeToolkit\haxe\lib\lime), and remove the trailing /.
+
+#### Windows
+- you get a message such as "Cannot find haxelib luxe [or lime], are you sure it is installed?"
+ - check `haxelib list` and see if there is a trailing slash mistake (i.e \/ is invalid). This was a minor haxelib bug.
+ - 1) Start by making sure haxelib itself is up to date, To update haxelib run `haxelib selfupdate`, it will do the rest (and inform you of extra steps if required).
+ - 2) Once updated, try re-adding the libs using the `haxelib dev` command as above. This should fix any \/ issues. Use `haxelib list` to check.
+- By default, haxe and it's libraries will be stored in `C:\HaxeToolkit\haxe\lib\luxe` and `C:\HaxeToolkit\haxe\lib\lime`)
 
 ###That should be it!
