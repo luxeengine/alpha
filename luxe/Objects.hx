@@ -1,13 +1,15 @@
 package luxe;
 
+//@:autoBuild(luxe.components.ObjectsMacro.build()) 
+
 class Objects {
+
 	public var id : String;
     public var name : String;
 
     public function new() {
     	id = luxe.utils.UUID.get();
     } //new
-
 
 //Private helper functions
 

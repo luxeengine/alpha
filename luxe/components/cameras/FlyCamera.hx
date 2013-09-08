@@ -15,8 +15,8 @@ class FlyCamera extends luxe.Camera {
     public var move_back : Bool;
     public var move_left : Bool;
     public var move_right : Bool;
+    
     public var move_speed : Float = 5;
-
     public var sensitivity_x : Float = 0.0025;
     public var sensitivity_y : Float = 0.0025;
 
