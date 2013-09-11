@@ -23,8 +23,8 @@ class Board {
     public var baseleft : Int = 0;
     public var basetop : Int = 0;
     	//the block size of this board
-    public var blockw : Float = 64; 
-    public var blockh : Float = 64; 
+    public var blockw : Float = 80; 
+    public var blockh : Float = 80; 
     	//the space between blocks in this board
     public var spacing : Int = 0;
     	//the actual width

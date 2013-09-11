@@ -66,14 +66,16 @@ class Main extends luxe.Game {
         modes.onkeydown(e);
     } //onkeydown
     public function onmousedown(e) {
+        trace(e);
         mouse.set(e.x,e.y);
         modes.onmousedown(e);
     } //onkeydown    
-    public function onmousemove(e) {
+    public function onmousemove(e) {        
         mouse.set(e.x,e.y);
         modes.onmousemove(e);
     } //onkeydown
     public function onmouseup(e) {
+        trace(e);
         mouse.set(e.x,e.y);
         modes.onmouseup(e);
     } //onkeydown

@@ -220,8 +220,6 @@ class Texture extends Resource {
             //Then we need it to be a BytesInput haxe.io.Input
         var byte_input = new haxe.io.BytesInput(image_bytes,0,image_bytes.length);
 
-        //todo - use nme for the image side.
-
             //NOW we can read the png from it
         var png_data = new format.png.Reader(byte_input).read();
             //Extract the bytes from the png reader

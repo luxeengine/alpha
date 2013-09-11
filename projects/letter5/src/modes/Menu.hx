@@ -21,7 +21,7 @@ class Menu extends Mode {
 			texture : Luxe.loadTexture('assets/menu_play.png'),
 			depth : 2,
 			color : new Color(1,1,1,0)
-		});
+		});		
 
 
 	} //init
