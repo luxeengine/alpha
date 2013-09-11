@@ -8,6 +8,10 @@ class GeometryUtils {
         luxe = _luxe;
     }
 
+    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 10 ) {
+        return _smooth * Math.sqrt( _radius );
+    } //segments_for_smooth_circle
+
     public function random_point_in_unit_circle() : Vector {
         var t = 2*Math.PI*Math.random();
         var u = Math.random()+Math.random();

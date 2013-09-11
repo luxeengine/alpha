@@ -39,6 +39,27 @@ class Main extends luxe.Game {
             color : new Color(0.5,0.2,0.2,0.5)
         });
 
+        var c = Luxe.draw.circle({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 50,
+            color : new Color(0.8,0.3,0.2,1)
+        });
+
+        c = Luxe.draw.ring({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 60,
+            color : new Color(1,1,1,1)
+        });
+
+        c = Luxe.draw.ring({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 70,
+            color : new Color(1,1,1,1)
+        });
+
     } //ready
   
     public function onmousemove(e) {

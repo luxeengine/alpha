@@ -3,7 +3,9 @@ package luxe;
 import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
+import phoenix.geometry.CircleGeometry;
 import phoenix.Batcher;
+import phoenix.geometry.RingGeometry;
 
 class Draw {
 
@@ -70,7 +72,31 @@ class Draw {
         var _text = options.font.draw_text(options);  
 
         return _text;
-    }
+    } //text
+
+
+    public function ring(options:Dynamic) {
+
+        options = default_options(options);
+
+        var _ring = new RingGeometry(options);
+
+            options.batcher.add(_ring);
+
+        return _ring;
+
+    } //ring
+
+    public function circle(options:Dynamic) {
+
+        options = default_options(options);
+
+        var _circle = new CircleGeometry(options);
+
+            options.batcher.add(_circle);
+
+        return _circle;
+    } //circle
 
 }
 
