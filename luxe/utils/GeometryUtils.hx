@@ -8,7 +8,7 @@ class GeometryUtils {
         luxe = _luxe;
     }
 
-    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 10 ) {
+    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 6 ) {
         return _smooth * Math.sqrt( _radius );
     } //segments_for_smooth_circle
 

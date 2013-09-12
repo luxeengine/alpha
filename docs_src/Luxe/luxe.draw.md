@@ -52,6 +52,57 @@ To draw using the draw api :
 	</span>
 </span>      
 
+<a name="box" href="#box">box</a>
+
+	Luxe.draw.box( _options:Dynamic ) : QuadGeometry   
+<span class="small_desc_flat"> Draw a filled rectangle, options are - ( option : Type = default )
+	<span class="indent">
+		`x : Float = 0.0`   
+		`y : Float = 0.0`   
+		`w : Float = 0.0`   
+		`h : Float = 0.0`   
+		`color : Color = new Color()`   
+		`depth : Int = 0`   
+		`group : Int = 0`   
+		`immediate : Bool = false`   
+		`batcher : Batcher = Luxe.renderer.default_batcher`   
+	</span>
+</span>      
+
+<a name="ring" href="#ring">ring</a>
+
+	Luxe.draw.ring( _options:Dynamic ) : RingGeometry   
+<span class="small_desc_flat"> Draw a circle, note geometry is a PrimitiveType.line_loop. options are - ( option : Type = default )
+	<span class="indent">
+		`x : Float = 0.0`   
+		`y : Float = 0.0`   
+		`r : Float = 0.0`   
+		`steps : Int = (calculated internally, or custom)`   
+		`color : Color = new Color()`   
+		`depth : Int = 0`   
+		`group : Int = 0`   
+		`immediate : Bool = false`   
+		`batcher : Batcher = Luxe.renderer.default_batcher`   
+	</span>
+</span>      
+
+<a name="circle" href="#circle">circle</a>
+
+	Luxe.draw.circle( _options:Dynamic ) : CircleGeometry   
+<span class="small_desc_flat"> Draw a filled circle, note geometry is a PrimitiveType.triangle_fan. options are - ( option : Type = default )
+	<span class="indent">
+		`x : Float = 0.0`   
+		`y : Float = 0.0`   
+		`r : Float = 0.0`   
+		`steps : Int = (calculated internally, or custom)`   
+		`color : Color = new Color()`   
+		`depth : Int = 0`   
+		`group : Int = 0`   
+		`immediate : Bool = false`   
+		`batcher : Batcher = Luxe.renderer.default_batcher`   
+	</span>
+</span>      
+
 <a name="DrawingText" ></a>
 
 ###Drawing text
