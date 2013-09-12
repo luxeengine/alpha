@@ -240,8 +240,9 @@ class Renderer {
         var texture : Texture = new Texture( resource_manager );
 
 #if lime_html5
+
         var image: js.html.ImageElement = js.Browser.document.createImageElement();
-            
+        
         image.onload = function(a) {
 
             var width_pot = Luxe.utils.nearest_power_of_two(image.width);

@@ -30,7 +30,9 @@ class Main extends luxe.Game {
 
     public function onmousemove( e:MouseEvent ) {
 
-        sprite_image.pos = e.pos;
+        if(sprite_image.texture.loaded) {
+            sprite_image.pos = e.pos;
+        }
 
     } //onmousemove
   
@@ -41,7 +43,7 @@ class Main extends luxe.Game {
     } //onkeyup
 
     public function update(dt:Float) {
-
+        
     } //update
 
 } //Main
