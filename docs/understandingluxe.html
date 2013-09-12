@@ -11,7 +11,19 @@
         <script src="./jquery-2.0.3.min.js"> </script>
         <script>
             $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
 
+                    _child.css('display', _opp);
+                });
             });
         </script>
     </head>
@@ -19,8 +31,8 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
-<h3><a href="types.html">Back to types</a></h3>
+<h3><a href="guides.html">View all guides</a></h3>
+<h2>What is <a href="api.html">Luxe</a> and how does it work</h2>
 
         </div>
     </body>

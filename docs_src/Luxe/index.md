@@ -12,6 +12,10 @@ Luxe is built on top of open source technologies, like [Haxe](http://haxe.org), 
 
 Luxe uses common patterns and approaches to simplify working with the engine, such as Components/Entity systems, State Machines and Event Driven models. 
 
+## [View the luxe Guide](guide.html)   
+
+&nbsp;
+
 ##Quick look
 &nbsp;
 &nbsp;

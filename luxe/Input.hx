@@ -11,8 +11,11 @@ typedef TouchState = lime.InputHandler.TouchState;
     //event types
 typedef KeyEvent = lime.InputHandler.KeyEvent;
 typedef TouchEvent = lime.InputHandler.TouchEvent;
-typedef MouseEvent = lime.InputHandler.MouseEvent;
 typedef GamepadEvent = lime.InputHandler.GamepadEvent;
+
+typedef MouseEvent = {> lime.InputHandler.MouseEvent,
+    var pos : luxe.Vector;
+}
 
 class Input {
     

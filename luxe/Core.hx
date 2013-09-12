@@ -55,6 +55,9 @@ class Core {
     private var end_dt : Float = 0;
     public var dt : Float = 0;
 
+//Mouse
+    var _mouse_pos : Vector;
+
 //Additional external internal updates
         //the list of internal update handlers, for calling 
     var _update_handlers : Map<String,Float->Void>;
@@ -64,6 +67,7 @@ class Core {
         _update_handlers.set(_uuid,_update); 
         return _uuid;
     }
+
 
 //flags
 	
@@ -79,6 +83,7 @@ class Core {
 
             //Create internal stuff
         _update_handlers = new Map();
+        _mouse_pos = new Vector();
 
             //Set external references
         Luxe.core = this;
@@ -366,8 +371,11 @@ class Core {
 
     }
 //mouse
-    
+
     public function onmousedown(e : MouseEvent) {
+
+        _mouse_pos.set( e.x, e.y );
+        e.pos = _mouse_pos;
 
         if(!shutting_down) {
             input.check_named_mouse(e, true);
@@ -377,6 +385,10 @@ class Core {
     }
     
     public function onmouseup(e : MouseEvent) {
+
+        _mouse_pos.set( e.x, e.y );
+        e.pos = _mouse_pos;
+
         if(!shutting_down) {
             input.check_named_mouse(e);
         }
@@ -385,6 +397,9 @@ class Core {
     }
 
     public function onmousemove(e : MouseEvent) {
+        _mouse_pos.set( e.x, e.y );
+        e.pos = _mouse_pos;
+
         if(host.onmousemove != null) host.onmousemove(e);
     }
 //touch

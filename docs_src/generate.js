@@ -52,6 +52,28 @@ var config = require('./luxe.docs.json');
 
     } //_fetch_file_list
 
+    var _copy_images = function() {
+
+        var _list = [];
+
+        _paths = ['./Luxe/images/*'];
+
+        for(var i = 0; i < _paths.length; ++i) {
+
+            glob( _paths[i] , { sync:true, nonull:true }, function (er, files) {
+                _list = _list.concat( files );
+            })
+
+        } //for each path glob
+
+        for(var i = 0; i < _list.length; ++i) {
+                //copy each file across
+            var _filename = path.basename(_list[i]) ;
+            fs.createReadStream(_list[i]).pipe(fs.createWriteStream( config.output + 'images/' + _filename));
+        }
+
+    }
+
     var _api_replacement = function( _content ) {
         
         var _replacements = [
@@ -129,6 +151,10 @@ var config = require('./luxe.docs.json');
         fs.createReadStream( _style_path + '/font.eot').pipe(fs.createWriteStream( config.output + 'font.eot'));
         fs.createReadStream( _style_path + '/font.woff').pipe(fs.createWriteStream( config.output + 'font.woff'));
         fs.createReadStream( _style_path + '/font.ttf').pipe(fs.createWriteStream( config.output + 'font.ttf'));
+
+            //copy image folder
+
+        _copy_images();
 
 
     } //config != undefined

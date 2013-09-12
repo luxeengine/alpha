@@ -33,7 +33,7 @@ class CircleGeometry extends Geometry {
 		primitive_type = PrimitiveType.triangle_fan;
 
 			//add the center of the circle
-		var center : Vertex = new Vertex( new Vector( _circle.x, _circle.y ) );
+		var center : Vertex = new Vertex( new Vector( 0, 0 ) );
 			center.color = color;	
 
 				//Precompute the value based on segments
@@ -47,8 +47,8 @@ class CircleGeometry extends Geometry {
 		    
 			for( i in 0 ... _steps ) {
 
-				var __x = x + _circle.x;
-				var __y = y + _circle.y;
+				var __x = x;
+				var __y = y;
 
 				var vert = new Vertex(new Vector( __x,__y ));
 					vert.color = color;
@@ -66,6 +66,8 @@ class CircleGeometry extends Geometry {
 
 			} //for
 
+		//and finally, set the position
+		pos.set( _circle.x, _circle.y );
 	}
 
 } //CircleGeometry

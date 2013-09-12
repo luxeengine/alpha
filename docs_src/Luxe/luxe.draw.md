@@ -112,7 +112,8 @@ To draw using the draw api :
 	Luxe.draw.text( _options:Dynamic ) : CompositeGeometry   
 <span class="small_desc_flat"> Draw some text, options are - ( option : Type = default )
 	<span class="indent">
-		`text : String = ''`   
+		`text : String = ''` 
+		`size : Float = 16`  
 		`font : BitmapFont = Luxe.renderer.default_font`   
 		`color : Color = new Color()`   
 		`depth : Int = 0`   
