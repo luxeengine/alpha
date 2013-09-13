@@ -17,8 +17,11 @@ class PlayerKeyInput extends Component {
 	var sprint : Bool = false;
 
 	var move : PlayerMovement;
+    var sprite : Sprite;
 
 	public function init() {
+
+        sprite = cast entity;
 
 		Luxe.input.add('left', KeyValue.left);
 		Luxe.input.add('left', KeyValue.key_A);
@@ -40,13 +43,13 @@ class PlayerKeyInput extends Component {
 			throw "PlayerKeyInput requires a PlayerMovement component attached!";
 		}
 
-		entity.events.listen('input.*', oninput );
+		entity.events.listen('input.*', oninput );        
 
 	} //init
 
 	public function update(dt:Float) {
 
-		var speed = sprint ? move.speed * 1.7 : move.speed;
+		var speed = sprint ? move.speed * 1.5 : move.speed;
 
 		if(left) {
 			move.velocity.x = -speed;
@@ -70,8 +73,10 @@ class PlayerKeyInput extends Component {
 					sprint = true;
 				case "left":
 					left = true;
+                    sprite.flipx = true;
 				case "right":
 					right = true;
+                    sprite.flipx = false;
 				case "up":
 					up = true;
 				case "down":

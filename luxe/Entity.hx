@@ -199,13 +199,13 @@ class Entity extends Objects {
     	return _components.components;
     } //get_components
 
-    public function addChild(child:Entity) {
+    public function add_child(child:Entity) {
 
     	children.push(child);
 
     } //addChild
 
-    public function removeChild(child:Entity) {
+    public function remove_child(child:Entity) {
 
     	children.remove(child);
 
@@ -373,7 +373,7 @@ class Entity extends Objects {
 
     		//if we are parented already, remove ourselves
     	if(parent != null) {
-    		parent.removeChild(this);
+    		parent.remove_child(this);
     	} //remove
 
     	parent = other;
@@ -391,7 +391,7 @@ class Entity extends Objects {
     			//update relative rotation
     		rotation = parent.rotation.clone().add( rotationRelative );
     			//add to parent as a child
-    		parent.addChild(this);
+    		parent.add_child(this);
 
     	} 
 

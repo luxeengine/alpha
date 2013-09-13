@@ -11,7 +11,7 @@ class PlayerMovement extends Component {
     public var velocity : Vector;
 
     public var linear_drag : Float = 0.81;
-    public var speed : Float = 70;
+    public var speed : Float = 90;
 
         //a value used to predict movement, so it can be 
         //cancelled or applied at the end of the physics update

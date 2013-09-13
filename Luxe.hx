@@ -7,11 +7,13 @@ import phoenix.Texture;
 import phoenix.Shader;
 
 import luxe.Rectangle;
+import luxe.Vector;
 
 class Luxe {
 
     public static var dt : Float = 0.016;
     public static var timescale : Float = 1;
+    public static var mouse : Vector;
     
     public static var core : luxe.Core;
     public static var debug : luxe.Debug;

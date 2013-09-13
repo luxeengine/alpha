@@ -153,6 +153,10 @@ class Vector {
 		);
 	} //Cross
 
+	public static function RotationTo(a:Vector,b:Vector) {
+		return a.rotationTo(b);		
+	} //RotationBetween
+
 // Operations
 
 	public function add(other:Vector) {
@@ -293,6 +297,14 @@ class Vector {
 	public function get_inverted() : Vector {
 		return new Vector(-x,-y,-z);
 	} //get_inverted
+
+//Convenience functions
+
+	public function rotationTo( other:Vector ) : Float {
+		var theta =  Math.atan2(  other.x - x , other.y - y );
+		var r = -(180.0 + (theta*180.0/Math.PI));
+		return r;
+	}
 
 //Transforms
 

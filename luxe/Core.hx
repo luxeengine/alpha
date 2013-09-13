@@ -84,6 +84,7 @@ class Core {
             //Create internal stuff
         _update_handlers = new Map();
         _mouse_pos = new Vector();
+        Luxe.mouse = _mouse_pos;
 
             //Set external references
         Luxe.core = this;
@@ -376,6 +377,7 @@ class Core {
 
         _mouse_pos.set( e.x, e.y );
         e.pos = _mouse_pos;
+        Luxe.mouse = _mouse_pos;
 
         if(!shutting_down) {
             input.check_named_mouse(e, true);
@@ -388,6 +390,7 @@ class Core {
 
         _mouse_pos.set( e.x, e.y );
         e.pos = _mouse_pos;
+        Luxe.mouse = _mouse_pos;
 
         if(!shutting_down) {
             input.check_named_mouse(e);
@@ -399,6 +402,7 @@ class Core {
     public function onmousemove(e : MouseEvent) {
         _mouse_pos.set( e.x, e.y );
         e.pos = _mouse_pos;
+        Luxe.mouse = _mouse_pos;
 
         if(host.onmousemove != null) host.onmousemove(e);
     }
