@@ -200,6 +200,9 @@ class Geometry {
 			tcoordlist.push( v.uv[0].u );
 			tcoordlist.push( v.uv[0].v );
 
+			if(v.color == null) {
+				throw id;
+			}
 				//color values per vertex
 			colorlist.push( v.color.r );
 			colorlist.push( v.color.g );

@@ -11,22 +11,16 @@ class LineGeometry extends Geometry {
 	@:isVar public var p1(default,set) : Vector;
 
 	public function new( options : Dynamic ) {
+
+		if(options.color == null)  { options.color  = new Color(); }
+		if(options.color0 == null) { options.color0 = options.color; }
+		if(options.color1 == null) { options.color1 = options.color; }
+
 		super(options);
 	
 			p0 = new Vector();
 			p1 = new Vector();
 
-			if(options.color == null) {
-				options.color = new Color();
-			}
-
-			if(options.color1 == null) {
-				options.color1 = options.color;
-			}
-
-			if(options.color2 == null) {
-				options.color2 = options.color;
-			}
 
 		set(options);
 	}

@@ -39,6 +39,7 @@ class Mesh {
 
         if(geometry != null) {
 
+            geometry.id = _options.file;
                 //add to the batcher
             _batcher.add(geometry);
 
