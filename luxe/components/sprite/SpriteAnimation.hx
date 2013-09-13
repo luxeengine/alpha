@@ -215,8 +215,6 @@ class SpriteAnimation extends Component {
 
 		uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
 
-		trace(image_x + ' ' + image_y);
-
 		sprite.uv = uv_cache;
 
 	} //refresh_sprite
