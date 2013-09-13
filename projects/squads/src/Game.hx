@@ -11,7 +11,6 @@ enum GameMode {
     twovtwo;
 }
 
-
 class Game extends luxe.Game {
 
 	var modes : Modes;
@@ -62,6 +61,14 @@ class Game extends luxe.Game {
     public function onmouseup( e:MouseEvent ) {
     	modes.onmouseup(e);
     } //onmouseup
+
+    public function oninputup( _input:String, _event:Dynamic ) {
+        modes.oninputup(_input,_event);
+    }
+
+    public function oninputdown( _input:String, _event:Dynamic ) {
+        modes.oninputdown(_input, _event);
+    }
 
     public function onkeydown( e:KeyEvent ) {
     	modes.onkeydown(e);

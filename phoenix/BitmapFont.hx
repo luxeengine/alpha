@@ -39,7 +39,7 @@ typedef KerningKey = {
 }
 
 //this is not the best option 
-typedef KeyValue = {
+typedef KeyValuePair = {
     var key : String;
     var value : String;
 }
@@ -83,7 +83,7 @@ class BitmapFont extends Resource {
     }
 
     private function _tokenize_font_line(_line_tokens:Array<String>) {
-        var _item_map : Map<String, KeyValue> = new Map();
+        var _item_map : Map<String, KeyValuePair> = new Map();
         for(_line_token in _line_tokens) {
             var _items = _line_token.split("=");
             _item_map.set( _items[0], { key:_items[0], value:_items[1] } );

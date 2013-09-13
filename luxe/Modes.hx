@@ -123,6 +123,16 @@ class Modes {
 		for (mode in activemodes) {
 			_call(mode, 'onkeyup', [e]);
 		}
+	}
+	public function oninputup( name:String, e:Dynamic ) {
+		for (mode in activemodes) {
+			_call(mode, 'oninputup', [name,e]);
+		}
+	}
+	public function oninputdown( name:String, e:Dynamic ) {
+		for (mode in activemodes) {
+			_call(mode, 'oninputdown', [name,e]);
+		}
 	}	
 	public function onmousedown( e:MouseEvent ) {
 		for (mode in activemodes) {

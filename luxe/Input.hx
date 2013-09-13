@@ -13,7 +13,8 @@ typedef KeyEvent = lime.InputHandler.KeyEvent;
 typedef TouchEvent = lime.InputHandler.TouchEvent;
 typedef GamepadEvent = lime.InputHandler.GamepadEvent;
 
-typedef MouseEvent = {> lime.InputHandler.MouseEvent,
+typedef MouseEvent = {
+    > lime.InputHandler.MouseEvent,
     var pos : luxe.Vector;
 }
 
@@ -49,34 +50,34 @@ class Input {
 
 //Named event handlers
 
-    function add_key_binding( _name:String, _value:KeyValue, _down:Bool=false ) {
+    function add_key_binding( _name:String, _value:KeyValue ) {
         
         if( !key_bindings.exists(_name) ) {
             key_bindings.set(_name, new Map());
         } //if the map doesn't exist yet
 
-        key_bindings.get(_name).set( _value, _down );
+        key_bindings.get(_name).set( _value, true );
 
     } //add_key_binding
 
-    function add_mouse_binding( _name:String, _value:MouseButton, _down:Bool=false ) {
+    function add_mouse_binding( _name:String, _value:MouseButton ) {
         
         if( !mouse_bindings.exists(_name) ) {
             mouse_bindings.set(_name, new Map());   
         } //if the map doesn't exist yet
 
-        mouse_bindings.get(_name).set( _value, _down );
+        mouse_bindings.get(_name).set( _value, true );
 
     } //add_key_binding
 
-    public function add( _name:String, _event:Dynamic, _down:Bool=false ) {
+    public function add( _name:String, _event:Dynamic ) {
             
         if(Std.is(_event, KeyValue)) {
                 //if key value, add it
-            add_key_binding(_name, cast _event, _down);
+            add_key_binding(_name, cast _event);
         } else if(Std.is(_event, MouseButton)) { 
                 //if mouse value, add as mouse value
-            add_mouse_binding(_name, cast _event, _down);
+            add_mouse_binding(_name, cast _event);
         }
     }
 
@@ -87,8 +88,7 @@ class Input {
 
             var _b = key_bindings.get(_name);
             if(_b.exists(e.key)) {
-                var _value = _b.get( e.key );
-                if( !Lambda.has(_fired, _name) && _value == _down ) {
+                if( !Lambda.has(_fired, _name)) {
                     _fired.push(_name);
                 }
             } //if the key fired is stored in a named binding
@@ -96,7 +96,11 @@ class Input {
         } //for each binding
 
         for(_f in _fired) {
-            if(core.host.oninput != null) core.host.oninput(_f,e); 
+            if(_down) {
+                if(core.host.oninputdown != null) core.host.oninputdown(_f,e); 
+            } else {
+                if(core.host.oninputup != null) core.host.oninputup(_f,e); 
+            }
         } //_f in _fired
 
     } //check_named_keys
@@ -108,8 +112,7 @@ class Input {
 
             var _b = mouse_bindings.get(_name);
             if(_b.exists(e.button)) {
-                var _value = _b.get( e.button );
-                if( !Lambda.has(_fired, _name) && _value == _down ) {
+                if( !Lambda.has(_fired, _name)) {
                     _fired.push(_name);
                 }
             } //if the key fired is stored in a named binding
@@ -117,7 +120,11 @@ class Input {
         } //for each binding
 
         for(_f in _fired) {
-            if(core.host.oninput != null) core.host.oninput(_f,e); 
+            if(_down) {
+                if(core.host.oninputdown != null) core.host.oninputdown(_f,e); 
+            } else {
+                if(core.host.oninputup != null) core.host.oninputup(_f,e); 
+            } 
         } //_f in _fired
 
     } //check_named_keys

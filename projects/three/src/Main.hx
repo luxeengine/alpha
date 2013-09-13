@@ -90,25 +90,21 @@ class Main extends luxe.Game {
             p1 : new Vector(0+10, 0, 0-10),
             batcher : batch3d
         });
-        l1.id = 'l1';
         var l2 = Luxe.draw.line({
             p0 : new Vector(0-10, 0, 0-10),
             p1 : new Vector(0-10, 0, 0+10),
             batcher : batch3d
         });
-        l2.id = 'l2';
         var l3 = Luxe.draw.line({
             p0 : new Vector(0-10, 0, 0+10),
             p1 : new Vector(0+10, 0, 0+10),
             batcher : batch3d
         });
-        l3.id = 'l3';
         var l4 = Luxe.draw.line({
             p0 : new Vector(0+10, 0, 0-10),
             p1 : new Vector(0+10, 0, 0+10),
             batcher : batch3d
         });      
-        l4.id = 'l4';  
 
     } //derp
 

@@ -16,7 +16,8 @@ import phoenix.Texture;
 import luxe.components.sprite.SpriteAnimation;
 
 import Game;
-import game.Player;
+import game.PlayerMovement;
+import game.PlayerKeyInput;
 
 class Manager extends Mode {
 	
@@ -37,7 +38,7 @@ class Manager extends Mode {
 	var bar_sprites : Map<String,Sprite>;
 	var bar_borders : Map<String,RectangleGeometry>;
 
-	var players : Map<String,Player>;
+	var players : Map<String,Sprite>;
 
 	var midx : Float;
 
@@ -147,11 +148,15 @@ class Manager extends Mode {
 				player4anim.animation = 'menu';
 				player4anim.play();
 
+//attach PlayerMovement
 
-		players.set('player1', new Player(player1sprite));
-		players.set('player2', new Player(player2sprite));
-		players.set('player3', new Player(player3sprite));
-		players.set('player4', new Player(player4sprite));
+		player1sprite.add(PlayerMovement, 'move');
+		player1sprite.add(PlayerKeyInput, 'keyinput');
+
+		players.set('player1', player1sprite );
+		players.set('player2', player2sprite );
+		players.set('player3', player3sprite );
+		players.set('player4', player4sprite );
 
 	}
 
@@ -393,15 +398,20 @@ class Manager extends Mode {
 
 	
 
+	public function oninputdown(_name:String, _event:Dynamic) {
+		_event.input_type = 'input.down';
+		_event.input_name = _name;
+		players.get('player1').events.fire('input.down.' + _name, _event );
+	}
+
+	public function oninputup(_name:String, _event:Dynamic) {
+		_event.input_type = 'input.up';
+		_event.input_name = _name;
+		players.get('player1').events.fire('input.up.' + _name, _event );
+	}
+
 	public function onkeydown(e:KeyEvent) {
 
-		if(e.key == KeyValue.space) {
-			if(Luxe.timescale == 0) {
-				Luxe.timescale = 1;
-			} else {
-				Luxe.timescale = 0;
-			}
-		}
 	}
 
 	function create_controllers() {
