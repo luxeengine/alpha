@@ -8,7 +8,7 @@
 	},
 	"menu" : {
 		"frame_size":{ "x":"64", "y":"64" },
-		"frameset": ["22"],
+		"frameset": ["6"],
 		"pingpong":"false",
 		"loop": "false",
 		"speed": "60"

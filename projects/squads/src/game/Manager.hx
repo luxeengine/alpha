@@ -1,4 +1,4 @@
-package menu;
+package game;
 
 import luxe.Input.KeyEvent;
 import luxe.Input.KeyValue;
@@ -16,8 +16,9 @@ import phoenix.Texture;
 import luxe.components.sprite.SpriteAnimation;
 
 import Game;
+import game.Player;
 
-class Menu extends Mode {
+class Manager extends Mode {
 	
 	public var game : Game;
 
@@ -36,11 +37,9 @@ class Menu extends Mode {
 	var bar_sprites : Map<String,Sprite>;
 	var bar_borders : Map<String,RectangleGeometry>;
 
-	var player_sprites : Map<String,Sprite>;
+	var players : Map<String,Player>;
 
 	var midx : Float;
-	var anim_list : Array<String>;
-	var currentanim = 0;	
 
 	public function init(_game:Game) {
 
@@ -59,7 +58,7 @@ class Menu extends Mode {
 		bar_borders = new Map();
 		bar_sprites = new Map();
 			//players
-		player_sprites = new Map();
+		players = new Map();
 
 			//the controller image
 		controller_tex = Luxe.loadTexture('assets/menu/controller.png');
@@ -94,44 +93,65 @@ class Menu extends Mode {
 		var yoffset = (Luxe.screen.h * 0.8) - 60;
 		var startframe = new Rectangle(256,0,64,64);
 
-		player_sprites.set('player1', new Sprite({
+		var animdata = Luxe.loadText('assets/game/player.anims.json');
+
+//Player 1
+		var player1sprite = new Sprite({
 			texture : player_tex,
 			pos : new Vector( midx - (smaller_spacing) - spacing, yoffset  ),
 			size : new Vector(64,64),
 			uv : new Rectangle(384,64,64,64)
-		}));
+		});
 
-		player_sprites.set('player2', new Sprite({
+			var player1anim = player1sprite.add( SpriteAnimation, 'anim' );		
+				player1anim.add_from_json( animdata );
+				player1anim.animation = 'idle';
+				player1anim.play();
+
+//Player 2
+		var player2sprite = new Sprite({
 			texture : player_tex,
 			pos : new Vector( midx - (smaller_spacing), yoffset  ),
 			size : new Vector(64,64),
 			uv : startframe
-		}));
+		});
 
-		player_sprites.set('player3', new Sprite({
+			var player2anim = player2sprite.add( SpriteAnimation, 'anim' );		
+				player2anim.add_from_json( animdata );
+				player2anim.animation = 'menu';
+				player2anim.play();
+
+//Player 3
+		var player3sprite = new Sprite({
 			texture : player_tex,
 			pos : new Vector( midx + (smaller_spacing), yoffset  ),
 			size : new Vector(64,64),
 			uv : startframe
-		}));
+		});
 
-		player_sprites.set('player4', new Sprite({
+			var player3anim = player3sprite.add( SpriteAnimation, 'anim' );		
+				player3anim.add_from_json( animdata );
+				player3anim.animation = 'menu';
+				player3anim.play();
+
+//Player 4
+		var player4sprite = new Sprite({
 			texture : player_tex,
 			pos : new Vector( midx + (smaller_spacing) + spacing, yoffset  ),
 			size : new Vector(64,64),
 			uv : startframe
-		}));
+		});
 
-		var spr:Sprite = player_sprites.get('player1');
+			var player4anim = player4sprite.add( SpriteAnimation, 'anim' );		
+				player4anim.add_from_json( animdata );
+				player4anim.animation = 'menu';
+				player4anim.play();
 
-		var anim = spr.add( SpriteAnimation, 'anim' );
 
-		var animdata = Luxe.loadText('assets/game/player.anims.json');
-
-		anim.add_from_json( animdata );
-
-		anim.animation = 'defib';
-		anim.play();
+		players.set('player1', new Player(player1sprite));
+		players.set('player2', new Player(player2sprite));
+		players.set('player3', new Player(player3sprite));
+		players.set('player4', new Player(player4sprite));
 
 	}
 
@@ -369,29 +389,11 @@ class Menu extends Mode {
 			font : game.font
 		}));
 
-		anim_list = ['defib', 'dead', 'downdefib', 'diedie', 'die', 'menu', 'trauma', 'revived', 'idle'];
 	}
 
 	
 
 	public function onkeydown(e:KeyEvent) {
-
-		if(e.key == KeyValue.key_R) {
-			player_sprites.get('player1').get('anim').restart();
-		}
-
-		if(e.key == KeyValue.key_A) {
-
-			currentanim++;
-			if(currentanim > anim_list.length-1) {
-				currentanim = 0;
-			}
-
-			player_sprites.get('player1').get('anim').animation = anim_list[currentanim];
-			player_sprites.get('player1').get('anim').restart();
-
-		} //key_A
-
 
 		if(e.key == KeyValue.space) {
 			if(Luxe.timescale == 0) {

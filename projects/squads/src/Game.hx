@@ -3,7 +3,7 @@ import luxe.Input;
 import luxe.Modes;
 import luxe.Color;
 
-import menu.Menu;
+import game.Manager;
 import phoenix.BitmapFont;
 
 enum GameMode {
@@ -15,7 +15,7 @@ enum GameMode {
 class Game extends luxe.Game {
 
 	var modes : Modes;
-    var menu : Menu;
+    var manager : Manager;
 
         //game shared resources
     public var font : BitmapFont;  
@@ -44,9 +44,9 @@ class Game extends luxe.Game {
         current_game_mode = GameMode.twovtwo;        
 
             //add the menu mode, 
-        menu = modes.add_mode(Menu, 'mainmenu');
+        manager = modes.add_mode(Manager, 'mainmenu');
             //and then init and set it
-        menu.init(this);
+        manager.init(this);
         modes.set('mainmenu');
 
     } //ready
