@@ -12,8 +12,8 @@ import modes.Base;
 
 import luxe.tween.Actuate;
 
-class Main extends luxe.Game {
 
+class Main extends luxe.Game {
 
     public var font : BitmapFont;
     public var modes : Modes;
@@ -38,7 +38,7 @@ class Main extends luxe.Game {
 
         modes = new Modes();
         menu = modes.add_mode(Menu, 'menu');
-        base = modes.add_mode(Base, 'base');        
+        base = modes.add_mode(Base, 'base');
 
         menu.game = base.game = this;
 
@@ -66,7 +66,6 @@ class Main extends luxe.Game {
         modes.onkeydown(e);
     } //onkeydown
     public function onmousedown(e) {
-        trace(e);
         mouse.set(e.x,e.y);
         modes.onmousedown(e);
     } //onkeydown    
@@ -75,7 +74,6 @@ class Main extends luxe.Game {
         modes.onmousemove(e);
     } //onkeydown
     public function onmouseup(e) {
-        trace(e);
         mouse.set(e.x,e.y);
         modes.onmouseup(e);
     } //onkeydown

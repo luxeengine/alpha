@@ -1,11 +1,10 @@
 
-
-import luxe.components.physics.BoxCollider;
-import phoenix.geometry.LineGeometry;
 import phoenix.Matrix4;
 import phoenix.Texture;
 import phoenix.Batcher;
 import phoenix.Camera;
+
+import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.Vertex;
@@ -26,10 +25,12 @@ import phoenix.utils.Maths;
 
 import luxe.components.cameras.FlyCamera;
 import luxe.components.render.MeshComponent;
-import luxe.components.physics.PlaneCollider;
-import luxe.components.physics.SphereCollider;
-import luxe.components.physics.MeshCollider;
-import luxe.components.physics.RigidBody;
+
+import luxe.components.physics.three.BoxCollider;
+import luxe.components.physics.three.PlaneCollider;
+import luxe.components.physics.three.SphereCollider;
+import luxe.components.physics.three.MeshCollider;
+import luxe.components.physics.three.RigidBody;
 
 class Main extends luxe.Game {
 

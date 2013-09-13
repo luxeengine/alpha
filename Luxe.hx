@@ -1,6 +1,7 @@
 package ;
 
 
+import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
 import phoenix.Texture;
 import phoenix.Shader;
@@ -54,12 +55,16 @@ class Luxe {
             core.lime.window.set_cursor_position_in_window( _x,_y );
         }
 
-    public static function loadText(_id:String) {
+    public static function loadText(_id:String) : String {
         return lime.utils.Assets.getText(_id);
     }
 
     public static function loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture {
         return renderer.load_texture(_id, _onloaded);
+    }
+    
+    public static function loadFont( _id:String, ?_path:String, ?_onloaded:Void->Void ) : BitmapFont {
+        return renderer.load_font(_id, _path, _onloaded);
     }
 
     public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:Shader->Void ) : Shader {

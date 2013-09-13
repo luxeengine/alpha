@@ -1,0 +1,2 @@
+	editor.undostack = [];
+	editor.redostack = [];

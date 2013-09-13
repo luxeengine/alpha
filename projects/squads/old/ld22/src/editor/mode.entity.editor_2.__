@@ -1,0 +1,208 @@
+	
+		//To implement a new editor mode, 
+		//simply add a js file to the folder and handle events here.
+		
+			//supported events to handle : 
+				//editor.mode.destroy
+				//editor.mode.save
+				//editor.mode.load
+				//editor.mode.undo
+				//editor.mode.redo
+				//editor.*.mode.activate (* being your mode. Like grid mode, editor.grid.mode.enter 
+				//editor.*.mode.deactivate ( same )
+				
+			
+
+			//First create a class for your editor.
+		var EntityEditor = new Class({
+		
+			initialize: function() {
+			
+				this.mode = 'entity';
+				this.events = [];
+				
+				this.events.push( events.connect('editor.mode.destroy', this.destroy.bind(this)) );
+				this.events.push( events.connect('editor.entity.mode.activate', this.activate.bind(this)) );
+				this.events.push( events.connect('editor.entity.mode.deactivate', this.deactivate.bind(this)) );
+				this.events.push( events.connect('editor.entity.showEntities', this.showEntities.bind(this)) );
+				this.events.push( events.connect('editor.entity.hideEntities', this.hideEntities.bind(this)) );
+				
+				this.init();
+			},
+			
+			init: function() {
+			
+				this.window = new Container('data/ui/window.png', vec2(phoenix.resolution.x - 380, 20), vec2(360, 200), 'Entity Editor', 5000, 902);
+				this.window.hide(true);
+				
+					//add the editor buttons
+				var buttontemplate = {
+					imagename : 'data/ui/button.png',
+					font: gamelab.font,
+					hidden : true,
+					textoffset : vec2(0,16),
+					size: vec2(76,35),
+					centered: false,
+					fontscale : 0.35, 
+					normalAlpha : 0.9,
+					depth: 5001,
+					group: 902,
+					fadeSpeed : 250
+				};
+
+				var colbut = buttontemplate;
+					colbut.text = 'entity';
+					colbut.pos = this.window.pos.add( 20, 60 );
+					colbut.textcolor = color().RGB( 57, 57, 57, 1);
+				
+				this.createButton = new fadeButton( colbut );
+					this.createButton.connect( function() {
+						this.scriptBrowser.show('src/world/entities/', [game.types.json, game.types.js]);
+					}.bind(this));
+				
+						var scnbut = buttontemplate;
+							scnbut.text = 'scene';
+							scnbut.pos = this.window.pos.add( 20, 130 );
+							scnbut.textcolor = color().RGB( 57, 57, 57, 1);
+								
+				this.sceneButton = new fadeButton( scnbut );
+					this.sceneButton.connect(function(){
+						Editor.switchmode('scene', {returning:true});
+					}.bind(this));
+				
+				this.labelEditors = new Text('BACK', this.window.pos.add(20,110), 0.35, color().RGB(182,178,172,1), 5001, 902);
+					this.labelEditors.hide(true);
+					
+				this.labelSpawn = new Text('SPAWN', this.window.pos.add(20,40), 0.35, color().RGB(182,178,172,1), 5001, 902);
+					this.labelSpawn.hide(true);
+
+				this.scriptBrowser = new ItemSelector({ 
+					buttonsize : vec2(64,64),
+					spacing : vec2(85,30),
+					offsets : vec2(65,50),
+					textoffset : vec2(0,62),
+					imagesize : vec2(48,48),
+					types : [game.types.folder, game.types.js, game.types.json, game.types.png, game.types.jpg, game.types.psd],
+					cols :4, rows : 5,
+					selectHandler : this.spawnEntity.bind(this)
+				});
+					
+			},
+			
+			spawnEntity : function(f) {
+				var entity = game.getEntity( f.projectpath );
+					if(entity) {
+
+						var einstance = new entity.classType();
+						
+						var s = new sprite(einstance.icon);
+						s.pos = game.mouse;
+						s.group = game.groups.entity;
+						s.depth = 10;
+						s.flags = {
+							entity : true,
+						};
+						
+						s.entity = einstance;
+						s.entity._onCreate( s, false );
+						s.entity.instance = s.entity.onSave(s);
+						s.entity.base = entity;
+							
+							//Add an editor mesh.
+						editor.enableDebugMesh( s );
+							//Flags for editing a sprite.
+						s.editenabled = true;
+						s.editorUpdate = editor.itemUpdate.bind(s);
+
+							//add it to the list of active sprites.
+						levels.current.sprites.push(s);
+						game.entities.push(s);
+						
+							//store so we can remove this
+						editor.spawning = s;
+						
+							//Call the select item function.
+						var f = editor.selectItem.bind(s); f();
+							//Grab the item so we can move it around.
+						editor.moveitem();	
+					
+					} else {	
+							core.echo('for some reason this entity wasn\'t added to the game. ' + f.filename);
+						return;
+					}
+			},
+			
+			showEntities : function() {
+
+				levels.current.sprites.each(function(item,index) {
+					if(item.flags) {
+						if(item.flags.entity ) {
+							item.visible = true;
+							if(item.entity) {
+								item.entity.onShow(item);
+							}
+						}
+					}
+				});
+				
+			},
+			
+			hideEntities : function() {
+				if(!editor.showingEntities) {
+					levels.current.sprites.each(function(item,index) {
+						if(item.flags) {
+							if(item.flags.entity ) {
+								item.visible = false;
+								if(item.entity) {
+									item.entity.onHide(item);
+								}								
+							}
+						}
+					});	
+				}					
+			},
+			
+			
+			
+			destroy: function() {
+				this.events.each(function(item) {
+					events.disconnect(item);
+				}.bind(this));
+			},
+			
+			activate: function(d) {
+				
+				this.window.show();
+				this.sceneButton.show();
+				this.createButton.show();	
+				this.labelEditors.show();
+				this.labelSpawn.show();
+				
+				editor.attachEntities();
+				this.showEntities();
+
+			},
+			
+			deactivate: function() {
+				this.window.hide();
+				this.sceneButton.hide();
+				this.createButton.hide();		
+				this.labelEditors.hide();
+				this.labelSpawn.hide();
+				
+				editor.detachEntities();
+				this.hideEntities();
+			},
+			
+		});
+		
+		if(Editor) {
+			Editor.modes.push(new EntityEditor());
+		}
+				
+		
+		
+
+	
+	
+	

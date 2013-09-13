@@ -1,0 +1,26 @@
+
+//I have only mapped a 360 controller, but you can map them anyway.
+
+	// axis 0 = LS x
+	// axis 1 = LS y
+	// axis 2 = Triggers (LT 0 ~ 1 ) (RT 0 ~ -1)
+	// axis 3 = RS y
+	// axis 4 = RS x
+	// dpadleft
+	// dpadright
+	// dpadup
+	// dpaddown
+	// button 6 = back
+	// button 7 = start
+	// button 4 = LB
+	// button 5 = RB
+	// button 0 = A
+	// button 1 = B
+	// button 2 = X
+	// button 3 = Y
+	// button 8 = ls in
+	// button 9 = rs in
+
+{
+	
+}

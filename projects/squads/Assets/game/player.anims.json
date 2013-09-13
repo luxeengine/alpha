@@ -1,0 +1,65 @@
+{
+	"idle" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["1"],
+		"pingpong":"false",
+		"loop": "false",
+		"speed": "30"
+	},
+	"menu" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["22"],
+		"pingpong":"false",
+		"loop": "false",
+		"speed": "60"
+	},				
+	"die" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["2","3","4","5","6","7","16","17"],
+		"pingpong":"false",
+		"loop": "false",
+		"speed": "20"					
+	},
+	"diedie" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["2","3","4","5","6","7","16","17","17","17","17","17","17","17","17","17","17","18","19","20",21,"22"],
+		"pingpong":"false",
+		"loop": "false",
+		"speed": "20"					
+	},
+	"dead" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["17","17","18","18","19","19","20","20", "21","21","22","22"],
+		"pingpong":"false",
+		"loop": "false",
+		"speed": "20"					
+	},				
+	"defib" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["13","14","15"],
+		"pingpong":"false",
+		"loop": "true",
+		"speed": "30"					
+	},		
+	"downdefib" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["23","24","25"],
+		"pingpong":"false",
+		"loop": "true",
+		"speed": "30"					
+	},								
+	"revived" : {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["9","10","11","12"],
+		"pingpong":"false",
+		"loop": "true",
+		"speed": "20"			
+	},
+	"trauma": {
+		"frame_size":{ "x":"64", "y":"64" },
+		"frameset": ["16","17","18","19"],
+		"pingpong":"false",
+		"loop": "false",
+		"speed": "20"			
+	}
+}	

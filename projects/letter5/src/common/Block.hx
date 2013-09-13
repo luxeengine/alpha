@@ -40,7 +40,9 @@ class Block {
 		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
 
 		letter = new Text({
-			pos : new Vector( x+board.skin.text.x , y+board.skin.text.y ),
+			bounds : new Rectangle( x , y, board.blockw, board.blockh ),
+			align : TextAlign.center,
+			align_vertical : TextAlign.center,
 			text : get_random_letter(),
 			size : board.skin.text.h,
 			color : new Color(0,0,0,0).rgb(0xa79b97),
@@ -52,10 +54,8 @@ class Block {
 		Actuate.tween(letter.color, 3, {a:0.8}).onUpdate(function(){
 			letter.color = letter.color;
 		}).onComplete(function(){
-			sprite.locked = true;
+			// sprite.locked = true;
 		});
-
-
 
 	}
 
@@ -67,6 +67,7 @@ class Block {
 		} //_g
 
 		_debug_geometry.splice(0,_debug_geometry.length);
+		trace("destroy");
 		letter.destroy();
 		sprite.destroy();
 

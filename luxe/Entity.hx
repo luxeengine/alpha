@@ -3,6 +3,7 @@ package luxe;
 import phoenix.Matrix4;
 
 import luxe.Vector;
+import luxe.Scene;
 import luxe.components.Components;
 
 //Objects -> Entity
@@ -31,6 +32,9 @@ class Entity extends Objects {
     @:isVar public var scale 		    (get,set) : Vector;
     	//relative scale to parent 
     @:isVar public var scaleRelative    (get,set) : Vector;
+        //if the entity is in a scene
+    @:isVar public var scene            (get,set) : Scene;
+
 
     private var _last_scale:Vector;
 
@@ -398,6 +402,9 @@ class Entity extends Objects {
     private function get_pos() { return pos; }                              //get_pos
     private function get_rotation() { return rotation; }                    //get_rotation
     private function get_scale() { return scale; }                          //get_scale
+    
+    private function get_scene() { return scene; }                          //get_scene
+    private function set_scene(_scene:Scene) { return scene = _scene; }     //set_scene
 
     private function get_posRelative() { return posRelative; }              //get_posRelative
     private function get_rotationRelative() { return rotationRelative; }    //get_rotationRelative

@@ -1,5 +1,8 @@
 package luxe;
 
+import luxe.Input.KeyEvent;
+import luxe.Input.MouseEvent;
+
 class Mode {
 
 	public var active : Bool = false;
@@ -111,27 +114,27 @@ class Modes {
 		} //does function exist?
 	}
 
-	public function onkeydown(e) {
+	public function onkeydown( e:KeyEvent ) {
 		for (mode in activemodes) {
 			_call(mode, 'onkeydown', [e]);
 		}
 	}	
-	public function onkeyup(e) {
+	public function onkeyup( e:KeyEvent ) {
 		for (mode in activemodes) {
 			_call(mode, 'onkeyup', [e]);
 		}
 	}	
-	public function onmousedown(e) {
+	public function onmousedown( e:MouseEvent ) {
 		for (mode in activemodes) {
 			_call(mode, 'onmousedown', [e]);
 		}
 	}
-	public function onmouseup(e) {
+	public function onmouseup( e:MouseEvent ) {
 		for (mode in activemodes) {
 			_call(mode, 'onmouseup', [e]);
 		}
 	}
-	public function onmousemove(e) {
+	public function onmousemove( e:MouseEvent ) {
 		for (mode in activemodes) {			
 			_call(mode, 'onmousemove', [e]);
 		}

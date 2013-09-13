@@ -138,6 +138,14 @@ class Renderer {
         //trace(v);
     }
 
+    public function load_font( _fontid:String, ?_path:String = 'assets/', ?_onloaded:Void->Void ) : BitmapFont {
+
+        var new_font = new BitmapFont( resource_manager );        
+        new_font.load_from_string( Luxe.loadText(_path + _fontid), _path, _onloaded );
+        return new_font;
+
+    } //load_font
+
     public function load_shader( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
         
         var _frag_shader = '';

@@ -70,7 +70,7 @@ class Board {
 
 			//calculate the offset positions
         baseleft = Std.int(( Luxe.screen.w / 2) - ( (blockw*w)/2 )) + offsetx;
-        basetop = Std.int(( Luxe.screen.w / 2) - ( (blockh*h)/2 )) + offsety;
+        basetop = Std.int(( Luxe.screen.h / 2) - ( (blockh*h)/2 )) + offsety;
 
         width = Std.int((blockw+spacing) * w);
         height = Std.int((blockw+spacing) * h);

@@ -7,6 +7,9 @@ class Scene {
     public var name : String = 'Untitled Scene';
     
     public var entities : Array<Entity>;
+    public var inited : Bool = false;
+    public var started : Bool = false;
+
     public function new() {
         entities = new Array<Entity>();
     }
@@ -35,9 +38,18 @@ class Scene {
         return _component;
     }
 
-    public function add(entity:Entity) {
+    public function add( entity:Entity ) {
         entities.push( entity );
-    }
+        
+        if(inited) {
+            entity._init();
+        } //inited
+
+        if(started) {
+            entity._start();
+        } //started
+
+    } //add
 
     public function remove(entity:Entity) {
         entity._destroy();
@@ -67,11 +79,13 @@ class Scene {
         for(entity in entities) {
             entity._init();
         }        
+        inited = true;
     } //init
     public function start() {
         for(entity in entities) {
             entity._start();
         }
+        started = true;
     } //start
     public function update(dt:Float) {
         for(entity in entities) {

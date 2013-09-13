@@ -16,6 +16,18 @@ class LineGeometry extends Geometry {
 			p0 = new Vector();
 			p1 = new Vector();
 
+			if(options.color == null) {
+				options.color = new Color();
+			}
+
+			if(options.color1 == null) {
+				options.color1 = options.color;
+			}
+
+			if(options.color2 == null) {
+				options.color2 = options.color;
+			}
+
 		set(options);
 	}
 
@@ -46,11 +58,11 @@ class LineGeometry extends Geometry {
 		//p0
 		var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ) );
 			vert0.uv[0] = new TextureCoord(0,0);
-			vert0.color = options.color;
+			vert0.color = options.color0;
 
 		var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ) );
 			vert1.uv[0] = new TextureCoord(1,0);
-			vert1.color = options.color;
+			vert1.color = options.color1;
 
 		add(vert0);
 		add(vert1);

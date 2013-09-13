@@ -62,9 +62,9 @@ class Component extends Objects {
 		return entity.get(_name,in_children,first_only);
 	} //get
 
-	public function entity_pos_change(_p:Vector) {}
-	public function entity_scale_change(_p:Vector) {}
-	public function entity_rotation_change(_p:Vector) {}
+	@:noCompletion public function entity_pos_change(_p:Vector) {}
+	@:noCompletion public function entity_scale_change(_p:Vector) {}
+	@:noCompletion public function entity_rotation_change(_p:Vector) {}
 
 } //Component
 
@@ -104,6 +104,15 @@ class Components {
 		components.set( _temp_name, _e_component );
 			//debug stuff
 		_debug('adding a component to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
+
+		if(entity.scene != null) {
+			if(entity.scene.inited) {
+				_call(_component, 'init');
+			}
+			if(entity.scene.started) {
+				_call(_component, 'start');
+			}
+		}
 
 			//return the component
 		return _component;
@@ -170,6 +179,15 @@ class Components {
 	public function has(_name:String) : Bool {
 		return components.exists(_name);
 	} //has	
+
+	private function _call(_object:Dynamic, _name : String, ?args:Array<Dynamic> ) {
+		
+		var _func = Reflect.field( _object, _name );
+		if(_func != null) {
+			Reflect.callMethod( _object, _func, args );
+		} //does function exist?
+
+	} //_call	
 
     public static var _show_debug : Bool = false;
     private function _debug(v){ if(_show_debug) { trace(v); } }		

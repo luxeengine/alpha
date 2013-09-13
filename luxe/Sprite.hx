@@ -30,7 +30,6 @@ class Sprite extends Entity {
     @:isVar public var centered     (default,set    )   : Bool = true;    
     @:isVar public var origin       (default,set    )   : Vector;
     @:isVar public var uv           (default,set    )   : Rectangle;
-    @:isVar public var scene        (default,default)   : Scene;
     @:isVar public var clip         (default,set    )   : Bool;
     @:isVar public var clip_rect    (default,set    )   : Rectangle;
     @:isVar public var flipy        (default,set    )   : Bool;

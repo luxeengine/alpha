@@ -13,7 +13,6 @@
 			<!-- This will also only be required on native platforms anyway -->
 		<!-- <haxelib name="haxebullet" /> -->
 
-			
 	<templatePath name="buildfiles" />
 	
 </extension>
