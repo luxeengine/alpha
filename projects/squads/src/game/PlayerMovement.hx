@@ -10,7 +10,7 @@ class PlayerMovement extends Component {
     
     public var velocity : Vector;
 
-    public var linear_drag : Float = 0.81;
+    public var linear_drag : Float = 0.75;
     public var speed : Float = 90;
 
         //a value used to predict movement, so it can be 
@@ -27,7 +27,7 @@ class PlayerMovement extends Component {
 
     } //new
 
-    public function fixed_update() {
+    public function fixed_update(dt:Float) {
 
             //50hz
         var _step:Float = 0.02;

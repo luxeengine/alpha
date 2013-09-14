@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
-	
-		
+
 		<ndll name="std" haxelib="hxcpp" />
 		<ndll name="regexp" haxelib="hxcpp" />
 		<ndll name="zlib" haxelib="hxcpp" />
@@ -14,5 +13,9 @@
 		<!-- <haxelib name="haxebullet" /> -->
 
 	<templatePath name="buildfiles" />
+
+    <haxedef name="DHXCPP_STACK_TRACE" if="profiler" />
+    <haxedef name="HXCPP_STACK_LINE" if="profiler" />
+    <haxedef name="HXCPP_CHECK_POINTER" if="profiler"/>
 	
 </extension>

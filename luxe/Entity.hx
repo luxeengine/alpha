@@ -14,7 +14,9 @@ class Entity extends Objects {
 
     public var events : luxe.Events;
     public var children : Array<Entity>;
-    public var fixed_rate : Float = 0.0167;
+    public var fixed_rate : Float = 0;
+
+    var fixed_rate_timer : haxe.Timer;
 
     var _destroyed : Bool = false;
 
@@ -104,8 +106,9 @@ class Entity extends Objects {
 			//but only top tier objects call this, all their children are fixed under the parent rate
 			//for now, that is.
 		if(fixed_rate != 0 && parent == null && !_destroyed) {
-	    	haxe.Timer.delay( _fixed_update, Std.int(fixed_rate*1000) );
-	    } //fixed_rate		
+	    	fixed_rate_timer = new haxe.Timer( Std.int(fixed_rate*1000) );
+            fixed_rate_timer.run = _fixed_update;
+	    } //fixed_rate
 
 	} //_start
 
@@ -176,10 +179,10 @@ class Entity extends Objects {
 			_call(_child, '_fixed_update');
 		} //for each child
 
-			//only root objects call the fixed update loop
-		if(fixed_rate != 0 && parent == null && !_destroyed) {
-	    	haxe.Timer.delay( _fixed_update, Std.int(fixed_rate*1000) );
-	    } //fixed_rate
+		// 	//only root objects call the fixed update loop
+		// if(fixed_rate != 0 && parent == null && !_destroyed) {
+	 //    	haxe.Timer.delay( _fixed_update, Std.int(fixed_rate*1000) );
+	 //    } //fixed_rate
 
 	} //_fixed_update
 

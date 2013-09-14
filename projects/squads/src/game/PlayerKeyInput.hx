@@ -73,10 +73,20 @@ class PlayerKeyInput extends Component {
 					sprint = true;
 				case "left":
 					left = true;
-                    sprite.flipx = true;
+                    
+                    if(!sprite.flipx) {
+                        sprite.flipx = true;
+                        entity.events.fire('player.flip', {flipx:true});
+                    }
+
 				case "right":
 					right = true;
-                    sprite.flipx = false;
+                    
+                    if(sprite.flipx) {
+                        sprite.flipx = false;
+                        entity.events.fire('player.flip', {flipx:false});
+                    }
+
 				case "up":
 					up = true;
 				case "down":

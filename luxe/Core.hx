@@ -55,6 +55,9 @@ class Core {
     private var end_dt : Float = 0;
     public var dt : Float = 0;
 
+//Profile path
+    public var profile_path : String = "profile.txt";
+    public var profiling : Bool = false;
 //Mouse
     var _mouse_pos : Vector;
 
@@ -346,17 +349,27 @@ class Core {
 
         if(host.onkeydown != null) host.onkeydown(e);
 
-        if(e.value == luxe.Input.Keys.key_1 && console_visible) {
+        if(e.key == KeyValue.key_1 && console_visible) {
             debug.switch_console();
         }
 
-        if(e.value == luxe.Input.Keys.key_2 && console_visible) {
+        if(e.key == KeyValue.key_2 && console_visible) {
             debug.toggle_debug_stats();
         }
 
-        if(e.value == luxe.Input.Keys.tilde) {
+        if(e.key == KeyValue.tilde) {
             show_console( !console_visible );
         }
+
+        #if profiler
+            #if lime_native
+                if(e.key == KeyValue.key_P && e.ctrl_down) {
+                    trace("luxe :: starting profiler ... let go of key to stop profiling.");
+                    cpp.vm.Profiler.start( profile_path );
+                    profiling = true;
+                }
+            #end //lime_native
+        #end //profiler
 
     } //onkeydown
 
@@ -370,7 +383,18 @@ class Core {
         
         if(host.onkeyup != null) host.onkeyup(e);
 
-    }
+        #if profiler
+            #if lime_native
+                if(e.key == KeyValue.key_P && profiling) {
+                    cpp.vm.Profiler.stop();
+                    profiling = false;
+                    trace("luxe :: profiling complete. Look for the results in " + profile_path );
+                }
+            #end //lime_native
+        #end //profiler
+
+    } //onkeyup
+
 //mouse
 
     public function onmousedown(e : MouseEvent) {

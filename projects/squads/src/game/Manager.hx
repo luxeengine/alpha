@@ -1,6 +1,8 @@
 package game;
 
 import game.PlayerAim;
+import game.PlayerTeam;
+import game.PlayerWeapon;
 import luxe.Input.KeyEvent;
 import luxe.Input.KeyValue;
 import luxe.Modes;
@@ -154,6 +156,10 @@ class Manager extends Mode {
         player1sprite.add(PlayerMovement, 'move');
         player1sprite.add(PlayerKeyInput, 'keyinput');
         player1sprite.add(PlayerAim, 'aim');
+        player1sprite.add(PlayerWeapon, 'weapon');
+        
+        var team = player1sprite.add(PlayerTeam, 'team');
+            team.set_team_color(game.team1color);
 
         players.set('player1', player1sprite );
         players.set('player2', player2sprite );

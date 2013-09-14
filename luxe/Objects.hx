@@ -13,11 +13,11 @@ class Objects {
 
 //Private helper functions
 
-	private function _call(_object:Objects, _name : String, ?args:Array<Dynamic> ) {
+	private function _call(_object:Objects, _name : String, ?args:Array<Dynamic> = null ) {
 		
 		var _func = Reflect.field( _object, _name );
 		if(_func != null) {
-			Reflect.callMethod( _object, _func, args );
+			Reflect.callMethod( _object, _func, args == null ? [] : args );
 		} //does function exist?
 
 	} //_call
