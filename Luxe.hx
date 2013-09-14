@@ -73,6 +73,10 @@ class Luxe {
         return renderer.load_shader(_ps_id, _vs_id, _onloaded);
     }
 
+    public static function openURL( _url:String ) {
+        core.lime.window.openURL( _url );
+    } //openURL
+
     public static function addGeometry(_geom:Geometry) {
         renderer.default_batcher.add(_geom);
     } 
