@@ -14,7 +14,8 @@ class Entity extends Objects {
 
     public var events : luxe.Events;
     public var children : Array<Entity>;
-    public var fixed_rate : Float = 0;
+    
+    @:isVar public var fixed_rate (get,set) : Float = 0;
 
     var fixed_rate_timer : haxe.Timer;
 
@@ -102,13 +103,8 @@ class Entity extends Objects {
 			_call(_child, '_start');
 		} //for each child
 
-			//once we have started everything we can create out fixed rate update
-			//but only top tier objects call this, all their children are fixed under the parent rate
-			//for now, that is.
-		if(fixed_rate != 0 && parent == null && !_destroyed) {
-	    	fixed_rate_timer = new haxe.Timer( Std.int(fixed_rate*1000) );
-            fixed_rate_timer.run = _fixed_update;
-	    } //fixed_rate
+            //start the fixed rate timer
+		_start_fixed_rate_timer();
 
 	} //_start
 
@@ -128,6 +124,9 @@ class Entity extends Objects {
 
 			//destroy the parent last
 		_call(this, 'destroy');
+
+            //kill any fixed rate timers
+        _stop_fixed_rate_timer();
 
 			//mark the flag
 		_destroyed = true;
@@ -179,12 +178,36 @@ class Entity extends Objects {
 			_call(_child, '_fixed_update');
 		} //for each child
 
-		// 	//only root objects call the fixed update loop
-		// if(fixed_rate != 0 && parent == null && !_destroyed) {
-	 //    	haxe.Timer.delay( _fixed_update, Std.int(fixed_rate*1000) );
-	 //    } //fixed_rate
-
 	} //_fixed_update
+
+    private function get_fixed_rate() : Float {
+        return fixed_rate;
+    } //get_fixed_rate
+
+    private function set_fixed_rate( _rate:Float ) : Float {
+        fixed_rate = _rate;
+        _stop_fixed_rate_timer();
+        _start_fixed_rate_timer();
+
+        return fixed_rate;
+    } //set_fixed_rate
+
+    private function _stop_fixed_rate_timer() {
+        if(fixed_rate_timer != null) {
+            fixed_rate_timer.stop();
+            fixed_rate_timer = null;
+        }
+    } //_stop_fixed_rate_timer
+
+    private function _start_fixed_rate_timer() {
+            //only top tier entities call this, all their children are fixed under the parent rate
+            //for now, that is.
+        if(fixed_rate != 0 && parent == null && !_destroyed) {
+            fixed_rate_timer = new haxe.Timer( Std.int(fixed_rate*1000) );
+            fixed_rate_timer.run = _fixed_update;
+        } //fixed_rate
+
+    } //_start_fixed_rate_timer
 
     public function add<T>(type:Class<T>, ?_name:String='') : T {
     	return _components.add( type, _name );

@@ -73,17 +73,12 @@ class Game extends luxe.Game {
     public function onkeydown( e:KeyEvent ) {
     	modes.onkeydown(e);
 
-        if(e.key == KeyValue.key_P) {
-            cpp.vm.Profiler.start("/Users/Sven/dev/lab/profile.txt");
+        if(e.key == KeyValue.escape) {
+            Luxe.shutdown();
         }
     } //onkeydown
 
     public function onkeyup( e:KeyEvent ) {		
-        
-        if(e.key == KeyValue.key_P) {
-            cpp.vm.Profiler.stop();
-        }
-
     	modes.onkeyup(e);
     } //onkeyup
 

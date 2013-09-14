@@ -32,6 +32,7 @@ class QuadGeometry extends Geometry {
 		set( new Rectangle(options.x, options.y, options.w, options.h) );
 
         if(options.enabled != null) enabled = options.enabled;
+        if(options.immediate != null) immediate = options.immediate;
 
 	}
 

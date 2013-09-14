@@ -1,8 +1,10 @@
 
 package game;
 
+import game.PlayerWeapon;
 import luxe.Vector;
 import luxe.Sprite;
+import luxe.Color;
 
 import luxe.components.Components.Component;
 
@@ -17,6 +19,7 @@ class PlayerMovement extends Component {
         //cancelled or applied at the end of the physics update
     var next_pos : Vector;
     var skip_physics : Bool = false;
+    var weapon : PlayerWeapon;
 
     public function init() {
 
@@ -25,7 +28,28 @@ class PlayerMovement extends Component {
 
         entity.fixed_rate = 0.02;
 
+        weapon = get('weapon');
+
     } //new
+
+    public function update(dt:Float) {
+        // Luxe.draw.box({
+        //     x:pos.x-1,
+        //     y:pos.y-1,
+        //     w:2, 
+        //     h:2,
+        //     color: new Color(1,0,0,1),
+        //     immediate : true
+        // });
+
+        // Luxe.draw.ring({
+        //     x:pos.x,
+        //     y:pos.y,
+        //     r:weapon.spawn_offset,
+        //     color: new Color(1,0,0,1),
+        //     immediate: true
+        // });
+    }
 
     public function fixed_update(dt:Float) {
 

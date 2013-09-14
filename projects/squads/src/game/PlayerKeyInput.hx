@@ -2,7 +2,10 @@
 package game;
 
 import game.PlayerMovement;
+import game.PlayerShoot;
+import game.PlayerWeapon;
 import luxe.Input.KeyValue;
+import luxe.Input.MouseButton;
 import luxe.Vector;
 import luxe.Sprite;
 
@@ -16,7 +19,10 @@ class PlayerKeyInput extends Component {
 	var down : Bool = false;
 	var sprint : Bool = false;
 
-	var move : PlayerMovement;
+    var move : PlayerMovement;
+    var shoot : PlayerShoot;
+	var weapons : PlayerWeapon;
+
     var sprite : Sprite;
 
 	public function init() {
@@ -35,9 +41,17 @@ class PlayerKeyInput extends Component {
 		Luxe.input.add('down', KeyValue.down);
 		Luxe.input.add('down', KeyValue.key_S);
 		
-		Luxe.input.add('sprint', KeyValue.shift);
+        Luxe.input.add('sprint', KeyValue.shift);
 
-		move = get('move');
+        Luxe.input.add('shoot', KeyValue.key_Z);
+        Luxe.input.add('shoot', MouseButton.left);
+
+        Luxe.input.add('switchweapon_up', MouseButton.wheel_up);
+		Luxe.input.add('switchweapon_down', MouseButton.wheel_down);
+
+        move = get('move');
+        shoot = get('shoot');
+		weapons = get('weapon');
 
 		if(move == null) {
 			throw "PlayerKeyInput requires a PlayerMovement component attached!";
@@ -63,9 +77,11 @@ class PlayerKeyInput extends Component {
 		if(down) {
 			move.velocity.y = speed;
 		}
-	}
+
+	} //update
 
 	public function oninput( _event:Dynamic ) {
+
 		if(_event.input_type == 'input.down') {
 
 			switch(_event.input_name) {
@@ -73,24 +89,21 @@ class PlayerKeyInput extends Component {
 					sprint = true;
 				case "left":
 					left = true;
-                    
-                    if(!sprite.flipx) {
-                        sprite.flipx = true;
-                        entity.events.fire('player.flip', {flipx:true});
-                    }
-
 				case "right":
 					right = true;
-                    
-                    if(sprite.flipx) {
-                        sprite.flipx = false;
-                        entity.events.fire('player.flip', {flipx:false});
-                    }
-
 				case "up":
 					up = true;
-				case "down":
-					down = true;
+                case "down":
+                    down = true;
+
+                case "shoot":
+                    shoot.onfiring();
+
+                case "switchweapon_down":
+                    weapons.cycle(-1);
+				case "switchweapon_up":
+					weapons.cycle(1);
+
 			} //switch input name
 
 		} else {
@@ -106,6 +119,11 @@ class PlayerKeyInput extends Component {
 					up = false;
 				case "down":
 					down = false;
+
+                case "shoot":
+                    shoot.onstopfiring();
+                    
+
 			} //switch input name
 
 		} //!input.down

@@ -64,14 +64,20 @@ class Manager extends Mode {
             //players
         players = new Map();
 
+        midx = Luxe.screen.w/2;        
+
             //the controller image
         controller_tex = Luxe.loadTexture('assets/menu/controller.png');
-            //the player image
-        player_tex = Luxe.loadTexture('assets/game/player.png');
+        var squads_tex = Luxe.loadTexture('assets/menu/squads.png');
 
-            //there are two controllers on the left
-            //two controller on the right
-        midx = Luxe.screen.w/2;
+        var squads_image = new Sprite({
+            texture : squads_tex,
+            pos : new Vector(midx,128)
+        });
+
+            //the player image
+        player_tex = Luxe.loadTexture('assets/game/player.png');        
+
             //create onscreen items
         create_players();
         create_controllers();
@@ -101,6 +107,7 @@ class Manager extends Mode {
 
 //Player 1
         var player1sprite = new Sprite({
+            name : 'player1',
             texture : player_tex,
             pos : new Vector( midx - (smaller_spacing) - spacing, yoffset  ),
             size : new Vector(64,64),
@@ -114,6 +121,7 @@ class Manager extends Mode {
 
 //Player 2
         var player2sprite = new Sprite({
+            name : 'player2',
             texture : player_tex,
             pos : new Vector( midx - (smaller_spacing), yoffset  ),
             size : new Vector(64,64),
@@ -127,6 +135,7 @@ class Manager extends Mode {
 
 //Player 3
         var player3sprite = new Sprite({
+            name : 'player3',
             texture : player_tex,
             pos : new Vector( midx + (smaller_spacing), yoffset  ),
             size : new Vector(64,64),
@@ -140,6 +149,7 @@ class Manager extends Mode {
 
 //Player 4
         var player4sprite = new Sprite({
+            name : 'player4',
             texture : player_tex,
             pos : new Vector( midx + (smaller_spacing) + spacing, yoffset  ),
             size : new Vector(64,64),
@@ -151,15 +161,22 @@ class Manager extends Mode {
                 player4anim.animation = 'menu';
                 player4anim.play();
 
-//attach PlayerMovement
+//attach Player components
 
-        player1sprite.add(PlayerMovement, 'move');
-        player1sprite.add(PlayerKeyInput, 'keyinput');
-        player1sprite.add(PlayerAim, 'aim');
-        player1sprite.add(PlayerWeapon, 'weapon');
+        player1sprite.add(PlayerMovement,   'move');
+        player1sprite.add(PlayerKeyInput,   'keyinput');
+        player1sprite.add(PlayerAim,        'aim');
+        player1sprite.add(PlayerWeapon,     'weapon');
+        player1sprite.add(PlayerShoot,      'shoot');
         
         var team = player1sprite.add(PlayerTeam, 'team');
             team.set_team_color(game.team1color);
+
+//Attach listeners
+        
+        player1sprite.events.listen('player.ui.*', onplayeruievent );
+
+//Store them in the list
 
         players.set('player1', player1sprite );
         players.set('player2', player2sprite );
@@ -167,6 +184,20 @@ class Manager extends Mode {
         players.set('player4', player4sprite );
 
     }
+
+    function onplayeruievent( e:Dynamic ) {
+        
+        var player_emitting = e.player;
+
+        switch(e.type) {
+            case 'weapon':
+                var new_weapon_text = e.value;
+                    //get the resulting text
+                var text = weapon_text.get(player_emitting + '.weapon');
+                    text.text = new_weapon_text;
+        }
+
+    }  //for all player ui events
 
     function create_bars() {
         
