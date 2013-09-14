@@ -56,7 +56,8 @@ class Input {
             key_bindings.set(_name, new Map());
         } //if the map doesn't exist yet
 
-        key_bindings.get(_name).set( _value, true );
+        var kb = key_bindings.get(_name);
+            kb.set( _value, true );
 
     } //add_key_binding
 
@@ -66,7 +67,8 @@ class Input {
             mouse_bindings.set(_name, new Map());   
         } //if the map doesn't exist yet
 
-        mouse_bindings.get(_name).set( _value, true );
+        var mb = mouse_bindings.get(_name);
+            mb.set( _value, true );
 
     } //add_key_binding
 

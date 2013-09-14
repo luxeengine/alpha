@@ -12,7 +12,7 @@ _This tutorial assumes you are familiar with the basics of getting started with 
 
 [Jump to the full code listing](#code)
 
-Assets are loaded via the Luxe api, which offers functions such as `Luxe.loadTexture` and `Luxe.loadText` to fetch assets from your asset folder, and get the in your game. If you need a more in depth look at the assets folder, read the [assets documentation](assets.html)
+Assets are loaded via the Luxe api, which offers functions such as `Luxe.loadTexture` and `Luxe.loadText` to fetch assets from your asset folder, and get them in your game. If you need a more in depth look at the assets folder, read the [assets documentation](guide.assets.html)
 
 Like in the [previous guide](guide.gettingstarted.html), Sprites are imported as luxe.Sprite, and created with the constructor (similar to how we created geometry in the getting started guide).
 

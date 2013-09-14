@@ -30,6 +30,7 @@ class Bullet extends Component {
             
             if(!bounds.point_inside(pos)) {
                 alive = false;
+                entity.fixed_rate = 0;
                 var s:Sprite = cast entity;
                 s.visible = false;
             } //if

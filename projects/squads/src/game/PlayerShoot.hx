@@ -42,7 +42,7 @@ class PlayerShoot extends Component {
                 }); 
 
                     //set the bullet fixed rate
-                bullet.fixed_rate = 0.02;
+                bullet.fixed_rate = 0;
                     //now attach the bullet component
                 bullet.add(Bullet, 'bullet');
                     //store it in the pool
@@ -96,6 +96,7 @@ class PlayerShoot extends Component {
 
             bullet.visible = true;
             bullet.rotation_z = aim.rot+90;
+            bullet.fixed_rate = 0.02;
 
         var comp : Bullet = bullet.get('bullet');
 
