@@ -69,7 +69,7 @@ class PlayerKeyInput extends Component {
 		var speed = sprint ? move.speed * 1.5 : move.speed;
 
 		if(left) {
-			move.velocity.x = -speed;
+			move.velocity.x = -speed;            
 		}
 		if(right) {
 			move.velocity.x = speed;
@@ -109,6 +109,13 @@ class PlayerKeyInput extends Component {
 
 			} //switch input name
 
+            if(left || right || down || up) {
+                if(!move.moving) {
+                    move.moving = true;
+                    entity.events.fire('player.onmoving');
+                }
+            }
+
 		} else {
 
 			switch(_event.input_name) {
@@ -133,6 +140,13 @@ class PlayerKeyInput extends Component {
                     
 
 			} //switch input name
+
+            if(!left && !right && !down && !up) {
+                if(move.moving) {
+                    move.moving = false;
+                    entity.events.fire('player.onstopping');
+                }
+            }
 
 		} //!input.down
 	} //oninput

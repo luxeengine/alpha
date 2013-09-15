@@ -182,6 +182,7 @@ class Manager extends Mode {
         player1sprite.add(PlayerAim,        'aim');
         player1sprite.add(PlayerWeapon,     'weapon');
         player1sprite.add(PlayerShoot,      'shoot');
+        player1sprite.add(PlayerAnimator,   'animator');
         
         var team = player1sprite.add(PlayerTeam, 'team');
             team.set_team_color(game.team1color);

@@ -1,6 +1,7 @@
 
 package game;
 
+import game.PlayerAnimator;
 import game.PlayerTeam;
 import game.PlayerWeapon;
 import luxe.components.sprite.SpriteAnimation;
@@ -12,13 +13,13 @@ import luxe.components.Components.Component;
 class PlayerAim extends Component {
 
         //offset rotation in degrees
-    public var offset : Float = 0;
+    public var facing : Int = 0;
     public var direction : Vector;
     public var reticule : Sprite;
     public var rot : Float = 0;
 
     var sprite : Sprite;
-    var anim : SpriteAnimation;
+    var animator : PlayerAnimator;
     var weapon : PlayerWeapon;
     var team : PlayerTeam;
 
@@ -35,7 +36,7 @@ class PlayerAim extends Component {
 
         sprite = cast entity;
         weapon = get('weapon');
-        anim = get('anim');
+        animator = get('animator');
         team = get('team');
     }
 
@@ -56,8 +57,10 @@ class PlayerAim extends Component {
 
         var _f = 8 - (_frame);
 
+        facing = _f;
+
         if(last_frame != _f) {
-            anim.set_frame( _f );
+            animator.facing(_f);
             last_frame = _f;
         }
 

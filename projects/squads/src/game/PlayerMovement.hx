@@ -12,6 +12,8 @@ class PlayerMovement extends Component {
     
     public var velocity : Vector;
 
+    public var moving : Bool = false;
+
     public var linear_drag : Float = 0.75;
     public var speed : Float = 90;
 
@@ -19,7 +21,6 @@ class PlayerMovement extends Component {
         //cancelled or applied at the end of the physics update
     var next_pos : Vector;
     var skip_physics : Bool = false;
-    var weapon : PlayerWeapon;
 
     public function init() {
 
@@ -27,8 +28,6 @@ class PlayerMovement extends Component {
         next_pos = new Vector();
 
         entity.fixed_rate = 0.02;
-
-        weapon = get('weapon');
 
     } //new
 
@@ -61,8 +60,8 @@ class PlayerMovement extends Component {
         next_pos.set(pos.x, pos.y);
 
 //apply linear drag
-        velocity.x *= linear_drag;
-        velocity.y *= linear_drag;
+        // velocity.x *= linear_drag;
+        // velocity.y *= linear_drag;
 
 //then apply velocity to position
         if(velocity.x != 0) {
@@ -77,6 +76,9 @@ class PlayerMovement extends Component {
         if(!skip_physics) {
             pos = next_pos;
         }
+
+        velocity.x = 0;
+        velocity.y = 0;
         
     } //do_physics
 
