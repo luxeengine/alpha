@@ -1,7 +1,9 @@
 
 package game;
 
+import game.PlayerTeam;
 import game.PlayerWeapon;
+import luxe.components.sprite.SpriteAnimation;
 import luxe.Vector;
 import luxe.Sprite;
 
@@ -16,7 +18,9 @@ class PlayerAim extends Component {
     public var rot : Float = 0;
 
     var sprite : Sprite;
+    var anim : SpriteAnimation;
     var weapon : PlayerWeapon;
+    var team : PlayerTeam;
 
     public function init() {
         direction = new Vector();
@@ -31,7 +35,14 @@ class PlayerAim extends Component {
 
         sprite = cast entity;
         weapon = get('weapon');
+        anim = get('anim');
+        team = get('team');
     }
+
+    var spriteflipx : Bool = false;
+    var last_frame : Int = 1;
+    var last_r : Float = 0;
+    var behind : Bool = false;
 
     public function update() {
         
@@ -40,25 +51,69 @@ class PlayerAim extends Component {
         rot = pos.rotationTo( Luxe.mouse );
 
             //clamp to 8 directions?
-        // rot = Std.int(rot/45) * 45;
+        var wrot = Std.int(rot/45) * 45;
+        var _frame = Std.int((-rot-22.5)/45);
 
-        reticule.rotation_z = rot;        
+        var _f = 8 - (_frame);
+
+        if(last_frame != _f) {
+            anim.set_frame( _f );
+            last_frame = _f;
+        }
+
+        if(last_r != rot) {
+            last_r = rot;
+            reticule.rotation_z = rot;
+        } //
+
+        // trace(-rot);
 
         if(-rot >= 180) {
 
-            if(sprite.flipx) {
-                sprite.flipx = false;
+            if(spriteflipx) {
+                spriteflipx = false;
                 entity.events.fire('player.flip', {flipx:false});                
             }
 
             weapon.image.rotation_z = rot - 90;
+
+             if(-rot >= 292.5 || -rot <= 67.5) {
+                if(!behind){
+                    weapon.image.depth = 4;
+                    team.flag.depth = 6;
+                    behind = true;
+                }
+            } else {
+                if(behind) {
+                    weapon.image.depth = 6;
+                    team.flag.depth = 4;
+                    behind = false;
+                }
+            } //-rot
+            
+
         } else {
-            if(!sprite.flipx) {
-                sprite.flipx = true;
+            if(!spriteflipx) {
+                spriteflipx = true;
                 entity.events.fire('player.flip', {flipx:true});
             }
 
             weapon.image.rotation_z = rot + 90;
+
+            if(-rot >= 292.5 || -rot <= 67.5) {
+                if(!behind){
+                    weapon.image.depth = 4;
+                    team.flag.depth = 6;
+                    behind = true;
+                }
+            } else {
+                if(behind) {
+                    weapon.image.depth = 6;
+                    team.flag.depth = 4;
+                    behind = false;
+                }
+            } //-rot
+
         }
 
     }

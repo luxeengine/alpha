@@ -84,6 +84,7 @@ class Manager extends Mode {
         create_texts();
         create_bars();
 
+
             //draw the mid line
         midline = Luxe.draw.line({ 
             p0:new Vector(midx, 0),
@@ -123,7 +124,7 @@ class Manager extends Mode {
             name : 'player1',
             texture : player_tex1,
             pos : new Vector( midx - (smaller_spacing) - spacing, yoffset  ),
-            size : new Vector(96,96),
+            size : new Vector(64,64),
             depth : 5
         });
 

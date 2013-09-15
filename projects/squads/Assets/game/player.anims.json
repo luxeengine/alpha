@@ -1,6 +1,6 @@
 {
     "idle" : {
-        "frame_size":{ "x":"32", "y":"32" },
+        "frame_size":{ "x":"16", "y":"16" },
         "frameset": ["1"],
         "pingpong":"false",
         "loop": "false",

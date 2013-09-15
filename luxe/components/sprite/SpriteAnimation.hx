@@ -202,6 +202,22 @@ class SpriteAnimation extends Component {
 		playing = false;
 	}
 
+	public function set_frame( _frame:Int ) {
+
+		if(sprite == null) return;
+		if(sprite.texture == null) return;
+
+		var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
+		var image_row = Math.ceil( _frame / frames_per_row );
+		var image_x = ((_frame-1) * current.frame_size.x) % sprite.texture.width;
+		var image_y = ((image_row-1) * current.frame_size.y);
+
+		uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+
+		sprite.uv = uv_cache;
+
+	} //set_frame
+
 		//sync the state to the sprite itself
 	private function refresh_sprite() {
 
