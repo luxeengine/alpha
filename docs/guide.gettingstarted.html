@@ -97,7 +97,14 @@ Make sure you have <a href="install.html">installed luxe and that it is working 
 </code></pre>
 <h3>Moving the ring</h3>
 <p>To move the ring, you can set the <code>.pos</code> value of the geometry that was returned by <a href="api.html">Luxe</a>. To make this simpler, we will use the <code>onmousemove</code> function from luxe, by adding it to our class like below :</p>
-<pre><code></code></pre>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//move the ring to the mouse position</span>
+    <span class="n">ring</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="c1">//onmousemove</span>
+</pre></div>
+</code></pre>
 <h3>What comes next</h3>
 <p>Well, that&#39;s as basic as it gets! 
 Some of the questions you may have, </p>

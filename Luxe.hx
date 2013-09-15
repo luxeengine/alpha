@@ -61,6 +61,10 @@ class Luxe {
         return lime.utils.Assets.getText(_id);
     }
 
+    public static function loadData( _id:String ) : lime.utils.ByteArray {
+        return lime.utils.Assets.getBytes(_id);
+    }
+
     public static function loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture {
         return renderer.load_texture(_id, _onloaded);
     }

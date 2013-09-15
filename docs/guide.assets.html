@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="guide.html">View all guides</a></h3>
+<h3>Assets</h3>
+<p>Currently luxe supports loading assets and resources from the assets paths described in your <a href="guide.projects.html">project file</a>. 
+<strong>Take note</strong> that the id specified for an asset is relative to the <code>&lt;assets /&gt;</code> tag inside your project file. See the section marked <code>the asset tag</code> below.
+The following asset types are supported by the API for convenience :</p>
+<ul>
+<li><strong>textures</strong> ( images, currently png/jpg )</li>
+<li><strong>text assets</strong> ( any format, json, xml, txt )</li>
+<li><strong>bitmap fonts</strong> ( usually a text description + image files )</li>
+<li><strong>shader files</strong> ( currently glsl shaders )</li>
+<li><strong>binary files</strong> ( any binary byte data )</li>
+</ul>
+<p>&nbsp;</p>
+<h3>Loading assets via the luxe API</h3>
+<p>&nbsp;</p>
+<pre><code><div class="highlight"><pre><span class="n">loadText</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p>Loads a text asset by id, and returns the data as string. If you are looking for binary files, see <code>loadData</code>.</p>
+<pre><code><div class="highlight"><pre><span class="n">loadTexture</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:<a href="luxe.Texture.html">Texture</a>-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Texture.html">Texture</a></span>
+</pre></div>
+</code></pre>
+<p>Loads an image file ( png/jpg ) by id, and takes an optional callback for when the loading is complete. <strong>On native platforms loading is synchronous.</strong> The callback is especially helpful for html5.</p>
+<pre><code><div class="highlight"><pre><span class="n">loadFont</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_path</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Void-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">BitmapFont</span>
+
+<span class="kd">var</span> font <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadFont</span><span class="p">(</span><span class="s1">&#39;font.fnt&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/fonts/&#39;</span><span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>Loads a bitmap font file by id, but the path must be specified separately at the moment because fonts store the images separately. Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5.</p>
+<pre><code><div class="highlight"><pre><span class="n">loadShader</span><span class="p">(</span> <span class="err">?</span><span class="n">_ps_id</span><span class="err">:String=&#39;default&#39;</span><span class="p">,</span> <span class="err">?</span><span class="n">_vs_id</span><span class="err">:String=&#39;default&#39;</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Shader-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Shader</span>
+
+<span class="kd">var</span> shader <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;textured&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/shaders/customvert.glsl&#39;</span><span class="p">);</span>
+<span class="kd">var</span> shader <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;assets/shaders/cooleffect.glsl&#39;</span><span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>Loads a shader, with a pixel shader and vertex shader file. If the fragment id (<code>_ps_id</code>) is <code>default</code>, the untextured colored geometry shader is used. If the fragment id is <code>textured</code>, the default internal textured shader is used. If the vertex shader id (<code>_vs_id</code>) is <code>default</code> the default vertex shader is used. Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5.</p>
+
+        </div>
+    </body>
+
+</html>
