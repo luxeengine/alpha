@@ -4,9 +4,9 @@ import luxe.Core;
 
 #if haxebullet
 
-    #if lime_html5
+    #if luxe_html5
     import bullet.AmmoBinding;
-    #end //lime_html
+    #end //luxe_html5
 
     import bullet.bulletCollision.broadphaseCollision.BtDbvtBroadphase;
     import bullet.bulletCollision.collisionDispatch.BtCollisionDispatcher;

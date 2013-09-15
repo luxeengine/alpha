@@ -85,11 +85,11 @@ class Debug {
     }   
 
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos) {
-        #if lime_native 
+        #if luxe_native 
             Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
         #end
 
-        #if lime_html5
+        #if luxe_html5
             untyped console.log(inf.fileName + ':' + inf.lineNumber, v);
         #end
         

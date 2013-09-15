@@ -51,7 +51,7 @@ class Utils {
 
     public function file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int = 2048) {
 
-        #if lime_native
+        #if luxe_native
 
             var file_bytes : haxe.io.Bytes = cast lime.utils.Assets.getBytes(_file);
             var _class = new haxe.io.Path(_file).file;
@@ -77,7 +77,7 @@ class Utils {
             bytes_string = null;
             final_string = null;
 
-        #end //lime_native
+        #end //luxe_native
 
     } // file_bytes_to_class
 

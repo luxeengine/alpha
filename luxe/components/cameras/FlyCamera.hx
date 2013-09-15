@@ -190,7 +190,7 @@ class FlyCamera extends luxe.Camera {
         
         if(!ready) return;
 
-        #if lime_native
+        #if luxe_native
                 //see notes in enable()
             if(hide_cursor) {  
                 hide_cursor = false;
@@ -201,7 +201,7 @@ class FlyCamera extends luxe.Camera {
                 ignore_next_move = false;
                 return;
             }
-        #end //lime_native
+        #end //luxe_native
 
 
         mouse_delta.set(e.deltaX,e.deltaY);

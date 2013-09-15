@@ -362,13 +362,13 @@ class Core {
         }
 
         #if profiler
-            #if lime_native
+            #if luxe_native
                 if(e.key == KeyValue.key_P && e.ctrl_down) {
                     trace("luxe :: starting profiler ... let go of key to stop profiling.");
                     cpp.vm.Profiler.start( profile_path );
                     profiling = true;
                 }
-            #end //lime_native
+            #end //luxe_native
         #end //profiler
 
     } //onkeydown
@@ -384,13 +384,13 @@ class Core {
         if(host.onkeyup != null) host.onkeyup(e);
 
         #if profiler
-            #if lime_native
+            #if luxe_native
                 if(e.key == KeyValue.key_P && profiling) {
                     cpp.vm.Profiler.stop();
                     profiling = false;
                     trace("luxe :: profiling complete. Look for the results in " + profile_path );
                 }
-            #end //lime_native
+            #end //luxe_native
         #end //profiler
 
     } //onkeyup

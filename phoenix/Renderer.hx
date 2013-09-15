@@ -108,9 +108,9 @@ class Renderer {
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
             //Make sure that we aren't premultiplying the backbuffer
-        #if lime_html5
+        #if luxe_html5
             GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
-        #end //html5
+        #end //luxe_html5
         
         // trace(':: phoenix :: renderer starting up');        
     }
@@ -171,9 +171,9 @@ class Renderer {
         if(_frag_shader.length > 0 && _vert_shader.length > 0) {
 
             var prefixes = '';
-            #if lime_html5
+            #if luxe_html5
                 prefixes += "precision mediump float;";
-            #end //lime_html5
+            #end //luxe_html5
             
              _shader = new Shader( resource_manager );
             _shader.load_from_string( _vert_shader , prefixes + _frag_shader, false );
@@ -213,13 +213,13 @@ class Renderer {
         var texture_bytes = Luxe.utils.arrayToBytes( _int_array_data );
         var texture = new Texture(resource_manager);
 
-        #if lime_native 
+        #if luxe_native 
             texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
             _debug("created from bytes");
-        #end
-        #if lime_html5
+        #end //luxe_native
+        #if luxe_html5
             texture.create_from_bytes_using_haxe(_name, texture_bytes );
-        #end 
+        #end //luxe_html5
 
         texture_bytes = null;
         _array_data = null;
@@ -247,7 +247,7 @@ class Renderer {
 
         var texture : Texture = new Texture( resource_manager );
 
-#if lime_html5
+#if luxe_html5
 
         var image: js.html.ImageElement = js.Browser.document.createImageElement();
         
@@ -288,9 +288,9 @@ class Renderer {
             //source comes after the onload being set, for race conditions
         image.src = './' + _name;
 
-#end //lime_html5
+#end //luxe_html5
 
-#if lime_native
+#if luxe_native
 
         var asset_bytes = cast lime.utils.Assets.getBytes( _name );
 
@@ -315,7 +315,7 @@ class Renderer {
 
          asset_bytes = null;
 
-#end //lime_native
+#end //luxe_native
        
             //store a reference so we can check if it exists later
         resource_manager.cache(texture);
