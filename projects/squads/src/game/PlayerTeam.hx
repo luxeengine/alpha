@@ -6,6 +6,7 @@ import luxe.Sprite;
 import luxe.Color;
 
 import luxe.components.Components.Component;
+import phoenix.Texture;
 
 class PlayerTeam extends Component {
 
@@ -21,9 +22,13 @@ class PlayerTeam extends Component {
 
         flag = new Sprite({
             texture : Luxe.loadTexture('assets/game/flag.png'),
-            origin : new Vector(30,45),
-            color : teamcolor
+            // origin : new Vector(0,0),
+            color : teamcolor,
+            size : new Vector(96,96),
+            depth : 5
         });
+
+        flag.texture.filter = FilterType.nearest;
 
         entity.add_child(flag);
 

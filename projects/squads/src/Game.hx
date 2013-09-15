@@ -1,4 +1,5 @@
 
+import game.Level;
 import luxe.Input;
 import luxe.Modes;
 import luxe.Color;
@@ -15,6 +16,7 @@ class Game extends luxe.Game {
 
 	var modes : Modes;
     var manager : Manager;
+    var level : Level;
 
         //game shared resources
     public var font : BitmapFont;  
@@ -44,8 +46,12 @@ class Game extends luxe.Game {
 
             //add the menu mode, 
         manager = modes.add_mode(Manager, 'mainmenu');
+        level = modes.add_mode(Level, 'level');
+
             //and then init and set it
         manager.init(this);
+        level.init();
+
         modes.set('mainmenu');
 
     } //ready
@@ -72,10 +78,6 @@ class Game extends luxe.Game {
 
     public function onkeydown( e:KeyEvent ) {
     	modes.onkeydown(e);
-
-        if(e.key == KeyValue.escape) {
-            Luxe.shutdown();
-        }
     } //onkeydown
 
     public function onkeyup( e:KeyEvent ) {		

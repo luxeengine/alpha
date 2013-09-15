@@ -46,6 +46,9 @@ class PlayerKeyInput extends Component {
         Luxe.input.add('shoot', KeyValue.key_Z);
         Luxe.input.add('shoot', MouseButton.left);
 
+        Luxe.input.add('start', KeyValue.space);
+        Luxe.input.add('quit', KeyValue.escape);
+
         Luxe.input.add('switchweapon_up', MouseButton.wheel_up);
 		Luxe.input.add('switchweapon_down', MouseButton.wheel_down);
 
@@ -122,6 +125,11 @@ class PlayerKeyInput extends Component {
 
                 case "shoot":
                     shoot.onstopfiring();
+                 
+                case "start":
+                    Luxe.events.fire('level.start');
+                case "quit":
+                    Luxe.events.fire('level.end');
                     
 
 			} //switch input name

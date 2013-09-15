@@ -23,7 +23,8 @@ class PlayerAim extends Component {
         reticule = new Sprite({
             texture : Luxe.loadTexture('assets/game/reticule.png'),
                 //custom origin (if centered is desirable, it must be factored in here. so 50 radius + -8 both ways)
-            origin : new Vector(8,58)
+            origin : new Vector(8,58),
+            depth : 5
         });
 
         entity.add_child(reticule);

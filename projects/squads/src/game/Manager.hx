@@ -26,10 +26,11 @@ class Manager extends Mode {
     
     public var game : Game;
 
-    var controller_sprites : Map<String,Sprite>;    
+    var controller_sprites : Map<String,Sprite>;
     
     var controller_tex : Texture;
     var player_tex : Texture;
+    var player_tex1 : Texture;
 
     var midline : LineGeometry;
 
@@ -44,6 +45,8 @@ class Manager extends Mode {
     var players : Map<String,Sprite>;
 
     var midx : Float;
+
+    var level_running : Bool = false;
 
     public function init(_game:Game) {
 
@@ -68,15 +71,11 @@ class Manager extends Mode {
 
             //the controller image
         controller_tex = Luxe.loadTexture('assets/menu/controller.png');
-        var squads_tex = Luxe.loadTexture('assets/menu/squads.png');
-
-        var squads_image = new Sprite({
-            texture : squads_tex,
-            pos : new Vector(midx,128)
-        });
 
             //the player image
-        player_tex = Luxe.loadTexture('assets/game/player.png');        
+        player_tex = Luxe.loadTexture('assets/game/player.png');
+        player_tex1 = Luxe.loadTexture('assets/game/player1.png');
+        player_tex1.filter = FilterType.nearest;
 
             //create onscreen items
         create_players();
@@ -93,6 +92,20 @@ class Manager extends Mode {
             color1: new Color(1,1,1,0),
         });
 
+        Luxe.events.listen('level.start', function(e) {
+            if(!level_running) {
+                modes.enable('level');
+                level_running = true;
+            }
+        });
+
+        Luxe.events.listen('level.end', function(e) {
+            if(level_running) {
+                modes.disable('level');
+                level_running = false;
+            }
+        });
+
     } //init
 
     function create_players() {
@@ -101,17 +114,17 @@ class Manager extends Mode {
         var spacing = midx/4;
         var smaller_spacing = spacing/2;
         var yoffset = (Luxe.screen.h * 0.8) - 60;
-        var startframe = new Rectangle(256,0,64,64);
+        var startframe = new Rectangle(0,0,32,32);
 
         var animdata = Luxe.loadText('assets/game/player.anims.json');
 
 //Player 1
         var player1sprite = new Sprite({
             name : 'player1',
-            texture : player_tex,
+            texture : player_tex1,
             pos : new Vector( midx - (smaller_spacing) - spacing, yoffset  ),
-            size : new Vector(64,64),
-            uv : new Rectangle(384,64,64,64)
+            size : new Vector(96,96),
+            depth : 5
         });
 
             var player1anim = player1sprite.add( SpriteAnimation, 'anim' );     
@@ -212,23 +225,27 @@ class Manager extends Mode {
             pos: new Vector(xspacing - hwidth, spacing+60),
             centered : false,
             size : new Vector(width, height),
-            color : game.team1color
+            depth : 10,
+            color : game.team1color,
         }));
         bar_sprites.set('player2.health', new Sprite({
             pos: new Vector( xspacing - hwidth, Luxe.screen.h - spacing + 20),
             centered : false,
             size : new Vector(width, height),
+            depth : 10,
             color : game.team1color
         }));
         bar_sprites.set('player3.health', new Sprite({
             pos : new Vector(Luxe.screen.w - xspacing - hwidth, spacing + 60),
             size : new Vector(width, height),
+            depth : 10,
             centered : false,
             color : game.team2color,
         }));
         bar_sprites.set('player4.health', new Sprite({
             pos : new Vector(Luxe.screen.w - xspacing - hwidth, Luxe.screen.h - spacing + 20),
             size : new Vector( width, height),
+            depth : 10,
             centered : false,
             color : game.team2color,
         }));
@@ -238,6 +255,7 @@ class Manager extends Mode {
             y: spacing+60,
             w: width,
             h: height,
+            depth : 10,
             color : game.blackcolor,
         }));
         bar_borders.set('player2.border', Luxe.draw.rectangle({
@@ -245,6 +263,7 @@ class Manager extends Mode {
             y: Luxe.screen.h - spacing + 20,
             w: width,
             h: height,
+            depth : 10,
             color : game.blackcolor,
         }));
         bar_borders.set('player3.border', Luxe.draw.rectangle({
@@ -252,6 +271,7 @@ class Manager extends Mode {
             y: spacing + 60,
             w: width,
             h: height,
+            depth : 10,
             color : game.blackcolor,
         }));
         bar_borders.set('player4.border', Luxe.draw.rectangle({
@@ -259,6 +279,7 @@ class Manager extends Mode {
             y: Luxe.screen.h - spacing + 20,
             w: width,
             h: height,
+            depth : 10,
             color : game.blackcolor,
         }));
 
@@ -277,6 +298,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'ENGINEER',
             size : 40,
+            depth : 10,
             color : new Color().rgb(0x505050),
             font : game.font
         }));
@@ -286,6 +308,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'ENGINEER',
             size : 40,
+            depth : 10,
             color : new Color().rgb(0x505050),
             font : game.font
         }));
@@ -295,6 +318,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'RECON',
             size : 40,
+            depth : 10,
             color : new Color().rgb(0x505050),
             font : game.font
         }));
@@ -304,6 +328,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'RECON',
             size : 40,
+            depth : 10,
             color : new Color().rgb(0x505050),
             font : game.font
         }));
@@ -318,6 +343,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'GRENADE\nLAUNCHER',
             size : small_size,
+            depth : 10,
             color : game.team1color,
             font : game.font
         }));
@@ -327,6 +353,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'GRENADE\nLAUNCHER',
             size : small_size,
+            depth : 10,
             color : game.team1color,
             font : game.font
         }));
@@ -336,6 +363,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'SUB\nMACHINE GUN',
             size : small_size,
+            depth : 10,
             color : game.team2color,
             font : game.font
         }));
@@ -345,6 +373,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'SUB\nMACHINE GUN',
             size : small_size,
+            depth : 10,
             color : game.team2color,
             font : game.font
         }));
@@ -356,6 +385,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'CREATE COVER',
             size : small_size,
+            depth : 10,
             color : game.whitecolor,
             font : game.font
         }));
@@ -365,6 +395,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'CREATE COVER',
             size : small_size,
+            depth : 10,
             color : game.whitecolor,
             font : game.font
         }));
@@ -374,6 +405,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'FAST CLIPS',
             size : small_size,
+            depth : 10,
             color : game.whitecolor,
             font : game.font
         }));
@@ -383,6 +415,7 @@ class Manager extends Mode {
             align : TextAlign.center,
             text : 'FAST CLIPS',
             size : small_size,
+            depth : 10,
             color : game.whitecolor,
             font : game.font
         }));
@@ -444,12 +477,16 @@ class Manager extends Mode {
     }
 
     public function oninputup(_name:String, _event:Dynamic) {
+        if(_name == 'quit' && !level_running) {
+             Luxe.shutdown();
+             return;
+        }
         _event.input_type = 'input.up';
         _event.input_name = _name;
         players.get('player1').events.fire('input.up.' + _name, _event );
     }
 
-    public function onkeydown(e:KeyEvent) {
+    public function onkeyup(e:KeyEvent) {
 
     }
 
@@ -495,17 +532,4 @@ class Manager extends Mode {
 
 
 }
-
-
-// --cwd,/Users/Sven/Library/Application Support/Sublime Text 2/Packages,
-// -cp,/Users/Sven/dev/lab/luxe/projects/squads/src,
-// -lib,luxe,
-// -lib,lime,
-// --cwd,/Users/Sven/dev/lab/luxe/projects/squads,
-// -D,st_display,
-// --display,/Users/Sven/dev/lab/luxe/projects/squads/src/menu/Main.hx@203,
-// --no-output,
-// -swf,
-///Users/Sven/dev/lab/luxe/projects/squads/squads
-
 

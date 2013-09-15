@@ -5,6 +5,7 @@ import luxe.Input.MouseEvent;
 
 class Mode {
 
+	public var modes : Modes;
 	public var active : Bool = false;
 	public var name : String = 'none';
 	@:isVar public var next_tick(never,set) :Void->Void;
@@ -25,9 +26,9 @@ class Mode {
 			}
 			ticks.splice(0,ticks.length);
 		}
-	}
+	} //update
 
-}
+} //Mode
 
 class Modes {
 
@@ -58,6 +59,8 @@ class Modes {
 		_mode_instance.name = _temp_name;
 			//store it in the mode list
 		_modes.set(_temp_name, _mode_instance );
+			//store reference of the owner
+		_mode_instance.modes = this;
 			//debug stuff
 		//trace('adding a mode to ' + name + ' called ' + _temp_name + ', now at ' + Lambda.count(_modes) + ' modes');
 
@@ -65,6 +68,18 @@ class Modes {
 		return _mode;
 
 	} //add_mode
+
+	public function enable( _name:String ) {
+		var mode = _modes.get( _name );
+		_call(mode, 'enable',[] );
+		activemodes.push(mode);
+	}
+
+	public function disable( _name:String ) {
+		var mode = _modes.get( _name );
+		_call(mode, 'disable',[] );
+		activemodes.remove( mode );
+	}
 
 	public function set (name:String) {
 

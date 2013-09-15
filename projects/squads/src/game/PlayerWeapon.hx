@@ -57,7 +57,7 @@ class PlayerWeapon extends Component {
             {
                 name : 'sub\nmachine gun',
                 desc : 'A compact and efficient weapon',
-                velocity : 4,
+                velocity : 4.5,
                 rate : 0.1,
                 damage : 15,
                 reloadtime : 1,
@@ -103,7 +103,7 @@ class PlayerWeapon extends Component {
             weapon_names.push(w);
         }
 
-        image = new Sprite({ size:new Vector(64,64) });
+        image = new Sprite({ size:new Vector(64,64), depth : 6 });
 
         set_weapon('pistol');
 

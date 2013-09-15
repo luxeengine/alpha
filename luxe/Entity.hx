@@ -104,7 +104,7 @@ class Entity extends Objects {
 		} //for each child
 
             //start the fixed rate timer
-		_start_fixed_rate_timer();
+		_start_fixed_rate_timer( fixed_rate );
 
 	} //_start
 
@@ -185,9 +185,11 @@ class Entity extends Objects {
     } //get_fixed_rate
 
     private function set_fixed_rate( _rate:Float ) : Float {
+
         fixed_rate = _rate;
+
         _stop_fixed_rate_timer();
-        _start_fixed_rate_timer();
+        _start_fixed_rate_timer( _rate );
 
         return fixed_rate;
     } //set_fixed_rate
@@ -199,13 +201,13 @@ class Entity extends Objects {
         }
     } //_stop_fixed_rate_timer
 
-    private function _start_fixed_rate_timer() {
+    private function _start_fixed_rate_timer( _rate:Float ) {
             //only top tier entities call this, all their children are fixed under the parent rate
             //for now, that is.
-        if(fixed_rate != 0 && parent == null && !_destroyed) {
-            fixed_rate_timer = new haxe.Timer( Std.int(fixed_rate*1000) );
+        if(_rate != 0 && parent == null && !_destroyed) {
+            fixed_rate_timer = new haxe.Timer( Std.int(_rate*1000) );
             fixed_rate_timer.run = _fixed_update;
-        } //fixed_rate
+        } //_rate
 
     } //_start_fixed_rate_timer
 
