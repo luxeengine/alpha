@@ -43,11 +43,15 @@ class Bullet extends Component {
                 //check collision
             collider.x = newx; 
             collider.y = newy;
-        
-            var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.air_collision_shapes );
-            if(results.length > 0) {
-                kill(pos);
-                return;
+
+            if(Game.manager.level_running) {
+            
+                var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.air_collision_shapes );
+                if(results.length > 0) {
+                    kill(pos);
+                    return;
+                }
+
             }
 
             pos = new Vector(newx, newy);

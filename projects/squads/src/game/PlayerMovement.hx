@@ -107,15 +107,20 @@ class PlayerMovement extends Component {
 //then we can perform collision and bounds checking
             //first move the collider into the new position
         collider.x = next_pos.x; collider.y = next_pos.y + 16;
-        
-        var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.ground_collision_shapes );
-        for(_result in results) {
-            var dir = (_result.overlap > 0) ? 1 : -1;
-            next_pos.x += _result.separation.x * dir;
-            next_pos.y += _result.separation.y * dir;
+
+        //only test if we are in the level
+        if(Game.manager.level_running) {
+            
+            var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.ground_collision_shapes );
+            for(_result in results) {
+                var dir = (_result.overlap > 0) ? 1 : -1;
+                next_pos.x += _result.separation.x * dir;
+                next_pos.y += _result.separation.y * dir;
+            }
+            
+            collider.x = next_pos.x; collider.y = next_pos.y + 16;
+
         }
-        
-        collider.x = next_pos.x; collider.y = next_pos.y + 16;
 
 //and finally, if there was an actual change 
         if(!skip_physics) {

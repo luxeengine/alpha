@@ -46,7 +46,7 @@ class Manager extends Mode {
 
     var midx : Float;
 
-    var level_running : Bool = false;
+    public var level_running : Bool = false;
 
     public function init(_game:Game) {
 
