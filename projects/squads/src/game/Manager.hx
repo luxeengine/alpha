@@ -42,7 +42,7 @@ class Manager extends Mode {
     var bar_sprites : Map<String,Sprite>;
     var bar_borders : Map<String,RectangleGeometry>;
 
-    var players : Map<String,Sprite>;
+    public var players : Map<String,Sprite>;
 
     var midx : Float;
 

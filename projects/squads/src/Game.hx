@@ -15,8 +15,8 @@ enum GameMode {
 class Game extends luxe.Game {
 
 	var modes : Modes;
-    var manager : Manager;
-    var level : Level;
+    public static var manager : Manager;
+    public static var level : Level;
 
         //game shared resources
     public var font : BitmapFont;  
@@ -42,7 +42,7 @@ class Game extends luxe.Game {
         team2color = new Color().rgb(0xd01414);
 
             //default to 2v2 team play
-        current_game_mode = GameMode.twovtwo;        
+        current_game_mode = GameMode.twovtwo;   
 
             //add the menu mode, 
         manager = modes.add_mode(Manager, 'mainmenu');
@@ -50,7 +50,7 @@ class Game extends luxe.Game {
 
             //and then init and set it
         manager.init(this);
-        level.init();
+        level.init(manager);
 
         modes.set('mainmenu');
 
