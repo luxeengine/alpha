@@ -1,6 +1,7 @@
 
 package game;
 
+import game.PlayerAim;
 import game.PlayerMovement;
 import game.PlayerShoot;
 import game.PlayerWeapon;
@@ -21,7 +22,8 @@ class PlayerKeyInput extends Component {
 
     var move : PlayerMovement;
     var shoot : PlayerShoot;
-	var weapons : PlayerWeapon;
+    var weapons : PlayerWeapon;
+	var aim : PlayerAim;
 
     var sprite : Sprite;
 
@@ -49,12 +51,15 @@ class PlayerKeyInput extends Component {
         Luxe.input.add('start', KeyValue.space);
         Luxe.input.add('quit', KeyValue.escape);
 
+        Luxe.input.add('switchweapon_up', KeyValue.key_1);
+
         Luxe.input.add('switchweapon_up', MouseButton.wheel_up);
 		Luxe.input.add('switchweapon_down', MouseButton.wheel_down);
 
         move = get('move');
         shoot = get('shoot');
-		weapons = get('weapon');
+        weapons = get('weapon');
+		aim = get('aim');
 
 		if(move == null) {
 			throw "PlayerKeyInput requires a PlayerMovement component attached!";
@@ -92,12 +97,20 @@ class PlayerKeyInput extends Component {
 					sprint = true;
 				case "left":
 					left = true;
+                    aim.direction.set(-1);
+                    if(!up && !down) aim.direction.set(null, 0);
 				case "right":
 					right = true;
+                    aim.direction.set(1);
+                    if(!up && !down) aim.direction.set(null, 0);
 				case "up":
 					up = true;
+                    aim.direction.set(null, -1);
+                    if(!right && !left) aim.direction.set(0);
                 case "down":
                     down = true;
+                    aim.direction.set(null, 1);
+                    if(!right && !left) aim.direction.set(0);
 
                 case "shoot":
                     shoot.onfiring();
@@ -116,6 +129,7 @@ class PlayerKeyInput extends Component {
                 }
             }
 
+
 		} else {
 
 			switch(_event.input_name) {
@@ -123,12 +137,16 @@ class PlayerKeyInput extends Component {
 					sprint = false;
 				case "left":
 					left = false;
+                    if(up || down) aim.direction.set(0);
 				case "right":
 					right = false;
+                    if(up || down) aim.direction.set(0);
 				case "up":
 					up = false;
+                    if(right || left) aim.direction.set(null, 0);
 				case "down":
 					down = false;
+                    if(right || left) aim.direction.set(null, 0);
 
                 case "shoot":
                     shoot.onstopfiring();
@@ -149,6 +167,10 @@ class PlayerKeyInput extends Component {
             }
 
 		} //!input.down
+
+
+
+
 	} //oninput
 
 

@@ -264,37 +264,37 @@ class Vector {
 
 //Properties
 
-	public function set_length(v:Float) : Float {
+	function set_length(v:Float) : Float {
 		return 0;
 	} //set_length
 
-	public function get_length() : Float {
+	function get_length() : Float {
 		return Math.sqrt( x * x + y * y + z * z );
 	} //get_length
 
-	public function get_normalized() {
+	function get_normalized() {
 		return Vector.Divide( this, length );
 	} //get_normalized
 
-	public function set_x(_x:Float) : Float {
+	function set_x(_x:Float) : Float {
 		x = _x;
 		if(listen_x != null) listen_x(_x);
 		return x;
 	} //set_x
 
-	public function set_y(_y:Float) : Float {
+	function set_y(_y:Float) : Float {
 		y = _y;
 		if(listen_y != null) listen_y(_y);
 		return y;
 	} //set_y
 
-	public function set_z(_z:Float) : Float {
+	function set_z(_z:Float) : Float {
 		z = _z;
 		if(listen_z != null) listen_z(_z);
 		return z;
 	} //set_z
 
-	public function get_inverted() : Vector {
+	function get_inverted() : Vector {
 		return new Vector(-x,-y,-z);
 	} //get_inverted
 

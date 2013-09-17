@@ -130,7 +130,7 @@ class Manager extends Mode {
 
             var player1anim = player1sprite.add( SpriteAnimation, 'anim' );     
                 player1anim.add_from_json( animdata );
-                player1anim.animation = 'idle';
+                player1anim.animation = 'idle5';
                 player1anim.play();
 
 //Player 2

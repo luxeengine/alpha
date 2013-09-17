@@ -47,9 +47,12 @@ class PlayerAim extends Component {
 
     public function update() {
         
-        direction.set( Luxe.mouse.x - pos.x, Luxe.mouse.y - pos.y ).normalize();
+        // direction.set( Luxe.mouse.x - pos.x, Luxe.mouse.y - pos.y ).normalize();
 
-        rot = pos.rotationTo( Luxe.mouse );
+        // rot = pos.rotationTo( Luxe.mouse );
+
+            //direction is set by the input component
+        rot = pos.rotationTo( Vector.Add(pos, direction.normalized ) );
 
             //clamp to 8 directions?
         var wrot = Std.int(rot/45) * 45;
