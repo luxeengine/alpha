@@ -104,6 +104,7 @@ class PlayerShoot extends Component {
             comp.alive = true;
             comp.dir.set(aim.direction.x, aim.direction.y);
             comp.speed = weapon.speed;
+            comp.onspawn(bullet.pos);
 
     } //spawn
 

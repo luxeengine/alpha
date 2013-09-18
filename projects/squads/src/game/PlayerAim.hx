@@ -5,6 +5,7 @@ import game.PlayerAnimator;
 import game.PlayerTeam;
 import game.PlayerWeapon;
 import luxe.components.sprite.SpriteAnimation;
+import luxe.Quaternion;
 import luxe.Vector;
 import luxe.Sprite;
 
@@ -49,10 +50,32 @@ class PlayerAim extends Component {
         
         // direction.set( Luxe.mouse.x - pos.x, Luxe.mouse.y - pos.y ).normalize();
 
-        // rot = pos.rotationTo( Luxe.mouse );
+        rot = pos.rotationTo( Luxe.mouse );
+        rot = Std.int(rot/45) * 45;
+
+        switch (rot) {
+            case 0:
+                direction.set(0,-1);
+            case -45:
+                direction.set(-1,-1);
+            case -90:
+                direction.set(-1,0);
+            case -135:
+                direction.set(-1,1);
+            case -180:
+                direction.set(0,1);
+            case -225:
+                direction.set(1,1);
+            case -270:
+                direction.set(1,0);
+            case -315:
+                direction.set(1,-1);
+        }
+
+        direction.normalize();
 
             //direction is set by the input component
-        rot = pos.rotationTo( Vector.Add(pos, direction.normalized ) );
+        // rot = pos.rotationTo( Vector.Add(pos, direction.normalized ) );
 
             //clamp to 8 directions?
         var wrot = Std.int(rot/45) * 45;

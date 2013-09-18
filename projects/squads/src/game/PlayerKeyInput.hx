@@ -97,19 +97,19 @@ class PlayerKeyInput extends Component {
 					sprint = true;
 				case "left":
 					left = true;
-                    aim.direction.set(-1);
+                    // aim.direction.set(-1);
                     if(!up && !down) aim.direction.set(null, 0);
 				case "right":
 					right = true;
-                    aim.direction.set(1);
+                    // aim.direction.set(1);
                     if(!up && !down) aim.direction.set(null, 0);
 				case "up":
 					up = true;
-                    aim.direction.set(null, -1);
+                    // aim.direction.set(null, -1);
                     if(!right && !left) aim.direction.set(0);
                 case "down":
                     down = true;
-                    aim.direction.set(null, 1);
+                    // aim.direction.set(null, 1);
                     if(!right && !left) aim.direction.set(0);
 
                 case "shoot":
@@ -137,16 +137,16 @@ class PlayerKeyInput extends Component {
 					sprint = false;
 				case "left":
 					left = false;
-                    if(up || down) aim.direction.set(0);
+                    // if(up || down) aim.direction.set(0);
 				case "right":
 					right = false;
-                    if(up || down) aim.direction.set(0);
+                    // if(up || down) aim.direction.set(0);
 				case "up":
 					up = false;
-                    if(right || left) aim.direction.set(null, 0);
+                    // if(right || left) aim.direction.set(null, 0);
 				case "down":
 					down = false;
-                    if(right || left) aim.direction.set(null, 0);
+                    // if(right || left) aim.direction.set(null, 0);
 
                 case "shoot":
                     shoot.onstopfiring();
