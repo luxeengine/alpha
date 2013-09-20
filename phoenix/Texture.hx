@@ -289,7 +289,7 @@ class Texture extends Resource {
         }        
     }
 
-    public function set_clamp( _clamp : ClampType ) {
+    private function set_clamp( _clamp : ClampType ) {
         if(loaded == false) {
             onload = function(t) {
                 bind();
@@ -317,7 +317,7 @@ class Texture extends Resource {
 
     }
 
-    public function set_filter( _filter : FilterType ) {
+    private function set_filter( _filter : FilterType ) {
         if(loaded == false) {
             onload = function(t) {
                 bind();

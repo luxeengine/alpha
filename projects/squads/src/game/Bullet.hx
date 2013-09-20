@@ -6,6 +6,7 @@ import hxcollision.CollisionData;
 import hxcollision.shapes.BaseShape;
 import hxcollision.shapes.Circle;
 import hxcollision.math.Vector2D;
+import luxe.Entity;
 import luxe.Vector;
 import luxe.Sprite;
 import luxe.Rectangle;
@@ -33,11 +34,22 @@ class Bullet extends Component {
         collider.name = 'bullet collider';
     }
 
-    public function kill( _pos:Vector ) {
+    public function kill( _pos:Vector, _shape:BaseShape ) {
+        
         alive = false;
         entity.fixed_rate = 0;
+        
         var s:Sprite = cast entity;
-        s.visible = false;
+            s.visible = false;
+
+        if(_shape != null) {
+                //deal with whatever we hit
+            var e:Entity = cast _shape.data;
+            if(e != null) {
+                e.events.fire('impact.bullet', { pos:_pos, bullet:this });
+            }
+        }
+
     }
 
     public function onspawn( _pos:Vector ) {
@@ -60,7 +72,7 @@ class Bullet extends Component {
             var newy = pos.y + (dir.y * speed);
 
                 //check collision
-            collider.x = newx; 
+            collider.x = newx;
             collider.y = newy;
 
                 //check if we have exited the ignored colliders first
@@ -79,6 +91,7 @@ class Bullet extends Component {
                 if(results.length > 0) {
                     
                     var must_kill = true;
+                    var kitem : BaseShape = null;
 
                     for(r in results) {
                         if( Lambda.indexOf(ignored_colliders,r.shape1) != -1 ) {
@@ -87,7 +100,8 @@ class Bullet extends Component {
                     }
 
                     if(must_kill) {
-                        kill(pos);
+
+                        kill(pos, results[0].shape1 );
                         return;
                     }
 
@@ -98,7 +112,7 @@ class Bullet extends Component {
             pos = new Vector(newx, newy);
             
             if(!bounds.point_inside(pos)) {
-               kill(pos);
+               kill(pos, null);
                return;
             } //if
 

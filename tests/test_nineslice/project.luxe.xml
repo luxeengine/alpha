@@ -8,7 +8,7 @@
           company="underscorediscovery" 
 	/>
 
-	<app main="Main" path="bin" file="luxetestnineslice" />
+	<app main="Main" path="bin" file="luxe_test_nineslice" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	

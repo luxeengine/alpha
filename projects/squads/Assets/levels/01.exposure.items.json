@@ -1,0 +1,4 @@
+[
+    { "sx":157 , "sy":60 , "x":162, "y":61,  "w":6, "h":13, "tags":["explosive"], "type":"explosives" },
+    { "sx":57 , "sy":93 , "x":62, "y":94, "w":6, "h":13, "tags":["explosive"], "type":"explosives" },
+]
