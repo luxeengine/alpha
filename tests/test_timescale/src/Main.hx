@@ -58,7 +58,7 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function oninput( name:String ) {
+    public function oninputdown( name:String ) {
         
         if(name == 'jump') {
             if(player.pos.y >= floor_y) {
