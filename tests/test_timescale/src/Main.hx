@@ -49,10 +49,10 @@ class Main extends luxe.Game {
             origin : new Vector( 10, 40 )
         });
 
-        Luxe.input.add('jump', KeyValue.key_W, true );
-        Luxe.input.add('jump', KeyValue.key_Z, true );
-        Luxe.input.add('jump', KeyValue.space, true );
-        Luxe.input.add('jump', KeyValue.up, true );
+        Luxe.input.add('jump', KeyValue.key_W );
+        Luxe.input.add('jump', KeyValue.key_Z );
+        Luxe.input.add('jump', KeyValue.space );
+        Luxe.input.add('jump', KeyValue.up );
 
         vel = new Vector(0,0);
 
