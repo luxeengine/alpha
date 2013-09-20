@@ -3,9 +3,9 @@
 	
 	<meta 
           title="luxe - test - nineslice" 
-          package="com.underscorediscovery.luxetestnineslice" 
+          package="com.luxeengine.luxetestnineslice" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
 	<app main="Main" path="bin" file="luxe_test_nineslice" />

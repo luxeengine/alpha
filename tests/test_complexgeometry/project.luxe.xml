@@ -3,9 +3,9 @@
 	
 	<meta 
           title="luxe - test - complex geometry" 
-          package="com.underscorediscovery.testcomplexgeometry" 
+          package="com.luxeengine.testcomplexgeometry" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
 	<app main="Main" path="bin" file="luxe_test_complexgeometry" />

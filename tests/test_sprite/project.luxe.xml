@@ -2,10 +2,10 @@
 <project>
 	
 	<meta 
-          title="luxe - test - sprite" 
-          package="com.underscorediscovery.luxetestsprites" 
+          title="luxe - test - sprites" 
+          package="com.luxeengine.luxetestsprites" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
 	<app main="Main" path="bin" file="luxe_test_sprites" />
