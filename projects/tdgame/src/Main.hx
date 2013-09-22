@@ -1,4 +1,5 @@
 
+import luxe.Color;
 import luxe.components.cameras.FlyCamera;
 import luxe.components.render.MeshComponent;
 
@@ -120,78 +121,108 @@ class Main extends luxe.Game {
 
     }
 
-    // function rayIntersectTriangle( p1:Vector,p2:Vector,p3:Vector,backfaceCulling:Bool ) {
+    function rayIntersectTriangle( origin:Vector, direction:Vector, a:Vector,b:Vector,c:Vector,backfaceCulling:Bool ) {
 
-    //         // from http://www.geometrictools.com/LibMathematics/Intersection/Wm5IntrRay3Triangle3.cpp
+            // from http://www.geometrictools.com/LibMathematics/Intersection/Wm5IntrRay3Triangle3.cpp
+            var diff = new Vector();
+            var edge1 = new Vector();
+            var edge2 = new Vector();
+            var normal = new Vector();
 
-    //         edge1.subVectors( b, a );
-    //         edge2.subVectors( c, a );
-    //         normal.crossVectors( edge1, edge2 );
+            edge1 = Vector.Subtract( b, a );
+            edge2 = Vector.Subtract( c, a );
+            normal.cross( edge1, edge2 );
 
-    //         // Solve Q + t*D = b1*E1 + b2*E2 (Q = kDiff, D = ray direction,
-    //         // E1 = kEdge1, E2 = kEdge2, N = Cross(E1,E2)) by
-    //         //   |Dot(D,N)|*b1 = sign(Dot(D,N))*Dot(D,Cross(Q,E2))
-    //         //   |Dot(D,N)|*b2 = sign(Dot(D,N))*Dot(D,Cross(E1,Q))
-    //         //   |Dot(D,N)|*t = -sign(Dot(D,N))*Dot(Q,N)
-    //         var DdN = this.direction.dot( normal );
-    //         var sign;
+            // Solve Q + t*D = b1*E1 + b2*E2 (Q = kDiff, D = ray direction,
+            // E1 = kEdge1, E2 = kEdge2, N = Cross(E1,E2)) by
+            //   |Dot(D,N)|*b1 = sign(Dot(D,N))*Dot(D,Cross(Q,E2))
+            //   |Dot(D,N)|*b2 = sign(Dot(D,N))*Dot(D,Cross(E1,Q))
+            //   |Dot(D,N)|*t = -sign(Dot(D,N))*Dot(Q,N)
+            var DdN = direction.dot( normal );
+            var sign : Int = 0;
 
-    //         if ( DdN > 0 ) {
+            if ( DdN > 0 ) {
 
-    //             if ( backfaceCulling ) return null;
-    //             sign = 1;
+                if ( backfaceCulling ) return null;
+                sign = 1;
 
-    //         } else if ( DdN < 0 ) {
+            } else if ( DdN < 0 ) {
 
-    //             sign = - 1;
-    //             DdN = - DdN;
+                sign = - 1;
+                DdN = - DdN;
 
-    //         } else {
+            } else {
 
-    //             return null;
+                return null;
 
-    //         }
+            }
 
-    //         diff.subVectors( this.origin, a );
-    //         var DdQxE2 = sign * this.direction.dot( edge2.crossVectors( diff, edge2 ) );
+            diff = Vector.Subtract( origin, a );
+            var DdQxE2 = sign * direction.dot( edge2.cross( diff, edge2 ) );
 
-    //         // b1 < 0, no intersection
-    //         if ( DdQxE2 < 0 ) {
+            // b1 < 0, no intersection
+            if ( DdQxE2 < 0 ) {
 
-    //             return null;
+                return null;
 
-    //         }
+            }
 
-    //         var DdE1xQ = sign * this.direction.dot( edge1.cross( diff ) );
+            var DdE1xQ = sign * direction.dot( Vector.Cross( edge1, diff ) );
 
-    //         // b2 < 0, no intersection
-    //         if ( DdE1xQ < 0 ) {
+            // b2 < 0, no intersection
+            if ( DdE1xQ < 0 ) {
 
-    //             return null;
+                return null;
 
-    //         }
+            }
 
-    //         // b1+b2 > 1, no intersection
-    //         if ( DdQxE2 + DdE1xQ > DdN ) {
+            // b1+b2 > 1, no intersection
+            if ( DdQxE2 + DdE1xQ > DdN ) {
 
-    //             return null;
+                return null;
 
-    //         }
+            }
 
-    //         // Line intersects triangle, check if ray does.
-    //         var QdN = - sign * diff.dot( normal );
+            // Line intersects triangle, check if ray does.
+            var QdN = - sign * diff.dot( normal );
 
-    //         // t < 0, no intersection
-    //         if ( QdN < 0 ) {
+            // t < 0, no intersection
+            if ( QdN < 0 ) {
 
-    //             return null;
+                return null;
 
-    //         }
+            }
 
-    //         // Ray intersects triangle.
-    //         return this.at( QdN / DdN, optionalTarget );
-    
-    // }
+            // Ray intersects triangle.
+            var t = QdN / DdN;
+            var result = direction.clone();
+
+            return result.multiplyScalar( t ).add( origin );
+    }
+
+    public function get_camera_point(?start:Vector=null) : Vector {
+        if(start == null) start = camera.pos;
+
+        var direction = new Vector(0,0,-1);
+        var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
+            direction.applyMatrix4( rotmat );
+            direction.normalize();
+
+            //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
+            //pointInPlane = rayOrigin + (rayDirection * T);
+            var planeNormal = new Vector(0,-1,0);
+            var pointOnPlane = new Vector();
+            var rayOrigin = start;
+                //for [ ] 
+            var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
+            var part2 = planeNormal.dot( direction );
+            var T = part1 / part2;
+
+            var scaled_direction = direction.multiplyScalar(T);
+            var pointInPlane = Vector.Add(start, scaled_direction);
+
+            return pointInPlane;
+    }
 
     public function oninputdown( name:String, e:Dynamic ) {
         switch(name) {
@@ -247,14 +278,40 @@ class Main extends luxe.Game {
 
     } //onmouseup
   
+    var raystart : Vector;
+    var raydir : Vector;
+
     public function onmousemove( e:MouseEvent ) {
 
         var mdir = mouse_in_world(e.pos);
             unprojectVector(mdir);
-            mdir.subtract(camera.pos);
             mdir.normalize();
+            mdir.add(camera.pos);
+
+            raystart = mdir;
 
         //now mdir is the starting point of the ray
+        var _forward = new Vector(0,0,-1);
+        var _rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
+
+            _forward.applyMatrix4( _rotmat );
+            raydir = _forward.normalized;
+
+        // //now we have the origin and direction,
+        // var mesh:MeshComponent = floor_mesh.get('mesh');
+        // var hit:Vector = null;
+
+        // var t1 = rayIntersectTriangle(mdir, forward, mesh.mesh.geometry.vertices[0].pos,  mesh.mesh.geometry.vertices[1].pos,  mesh.mesh.geometry.vertices[2].pos, true );
+        // if(t1 == null) {
+        //     var t2 = rayIntersectTriangle(mdir,forward, mesh.mesh.geometry.vertices[3].pos,  mesh.mesh.geometry.vertices[4].pos,  mesh.mesh.geometry.vertices[5].pos, true );
+        //     if(t2 != null) {
+        //         hit = t2;
+        //     }
+        // } else {
+        //     hit = t1;
+        // }   
+
+
 
         if(fly) {
             flycam.onmousemove(e);
@@ -281,6 +338,36 @@ class Main extends luxe.Game {
 
     var spd : Float = 2;
     public function update(dt:Float) {
+
+        if(raystart != null && raydir != null) {
+            Luxe.draw.line({
+                immediate:true,
+                p0 : raystart,
+                p1 : get_camera_point(raystart),
+                color : new Color(1,0,1,1)
+            });
+        }
+
+        Luxe.draw.line({
+            immediate:true,
+            p0 : new Vector(0, 100, 0),
+            p1 : new Vector(0, -100, 0),
+            color : new Color(0,0.6,0,0.2)
+        });
+
+        Luxe.draw.line({
+            immediate:true,
+            p0 : new Vector(0, 0, 100),
+            p1 : new Vector(0, 0, -100),
+            color : new Color(0,0,0.6,1)
+        });
+
+        Luxe.draw.line({
+            immediate:true,
+            p0 : new Vector(-100, 0, 0),
+            p1 : new Vector(100, 0, 0),
+            color : new Color(0.6,0,0,1)
+        });
 
         if(!fly) {
             if(forward)     { camera.pos.z -= spd * dt; }
