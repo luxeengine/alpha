@@ -24,7 +24,6 @@ class Camera {
     public var scale: Vector;
     public var size: Vector;
 
-    public var view_matrix : Matrix3D;
     public var projection_matrix : Matrix4;
     public var modelview_matrix : Matrix4;
 

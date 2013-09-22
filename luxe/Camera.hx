@@ -48,7 +48,7 @@ class Camera extends Entity {
 
 	} //
 
-	public override function set_pos(v:Vector) : Vector {
+	@:nocompletion public override function set_pos(v:Vector) : Vector {
 		
 		if(bounds != null) {
         	if(v.x < bounds.x) v.x = bounds.x;
