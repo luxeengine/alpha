@@ -7,6 +7,7 @@ import luxe.Entity;
 import luxe.Mesh;
 import luxe.Vector;
 import luxe.Input;
+import phoenix.Batcher;
 import phoenix.Camera;
 import phoenix.Matrix4;
 import phoenix.Texture;
@@ -29,6 +30,9 @@ class Main extends luxe.Game {
     var floor_texture : Texture;
     var camera : phoenix.Camera;
     var flycam : FlyCamera;
+
+    var hudview : Batcher;
+    var hudcam : luxe.Camera;
 
     var left:Bool = false;
     var right:Bool = false;
@@ -82,10 +86,10 @@ class Main extends luxe.Game {
             aspect:Luxe.screen.w/Luxe.screen.h
         });
 
-        camera.pos = new Vector(0,4,3);
+        camera.pos = new Vector(0,10,8);
         camera.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
 
-        flycam.view.pos = new Vector(0,4,3);
+        flycam.view.pos = new Vector(0,10,8);
         flycam.view.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
 
         Luxe.renderer.default_batcher.view = camera;
@@ -101,6 +105,13 @@ class Main extends luxe.Game {
         
         Luxe.input.add('change_camera', KeyValue.key_C);
 
+        hudcam = new luxe.Camera({name:'hudview'});
+        hudview = new Batcher(Luxe.renderer, 'hudview');
+        hudview.view = hudcam.view;
+        hudview.layer = 2;
+
+        Luxe.renderer.add_batch(hudview);
+
     } //ready
 
     public function zoom(dir:Float) {
@@ -112,42 +123,34 @@ class Main extends luxe.Game {
 
         camera.pos.z += forward.z * dir;
         camera.pos.y += forward.y * dir;
-    }
+    }   
 
-    function unprojectVector( vector:Vector ) {
-
-        var _inverted = new Matrix4().multiplyMatrices( camera.projection_matrix, camera.view_matrix.inverted() );
-            _inverted = _inverted.inverted();
-
-        return vector.applyProjection( _inverted );
-    }
-
+        //ray+plane intersection
     public function get_camera_point(?start:Vector=null, ?dir:Vector=null) : Vector {
 
-            if(start == null) start = camera.pos;
-            if(dir == null) {
-                var _direction = new Vector(0,0,-1);
-                var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
-                    _direction.applyMatrix4( rotmat );
-                    _direction.normalize();
-                dir = _direction;
-            }
+        if(start == null) start = camera.pos;
+        if(dir == null) {
+            var _direction = new Vector(0,0,-1);
+            var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
+                _direction.applyMatrix4( rotmat );
+                _direction.normalize();
+            dir = _direction;
+        }
 
+        //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
+        //pointInPlane = rayOrigin + (rayDirection * T);
+        var planeNormal = new Vector(0,-1,0);
+        var pointOnPlane = new Vector();
+        var rayOrigin = start.clone();
+            //for [ ] 
+        var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
+        var part2 = planeNormal.dot( dir );
+        var T = part1 / part2;
 
-                //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
-                //pointInPlane = rayOrigin + (rayDirection * T);
-                var planeNormal = new Vector(0,-1,0);
-                var pointOnPlane = new Vector();
-                var rayOrigin = start.clone();
-                    //for [ ] 
-                var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
-                var part2 = planeNormal.dot( dir );
-                var T = part1 / part2;
+        var scaled_direction = Vector.Multiply(dir, T);
+        var pointInPlane = Vector.Add(start, scaled_direction);
 
-                var scaled_direction = Vector.Multiply(dir, T);
-                var pointInPlane = Vector.Add(start, scaled_direction);
-
-                return pointInPlane;
+        return pointInPlane;
     }
 
     public function oninputdown( name:String, e:Dynamic ) {
@@ -207,6 +210,7 @@ class Main extends luxe.Game {
     var raystart : Vector;
     var rayend : Vector;
     var raydir : Vector;
+    var textp : Vector;
 
     public function onmousemove( e:MouseEvent ) {
         if(!fly) {
@@ -216,16 +220,17 @@ class Main extends luxe.Game {
         var start_ndc : Vector = new Vector( ndc_x, ndc_y, 0, 1.0 );
         var end_ndc : Vector = new Vector( ndc_x, ndc_y, 1.0, 1.0 );
 
-            var n = unprojectVector(start_ndc);
-            var f = unprojectVector(end_ndc);
+            var n = camera.unprojectVector(start_ndc);
+            var f = camera.unprojectVector(end_ndc);
 
             raystart = n;
             rayend = f;
             raydir = Vector.Subtract(f, n);
             
+                if(textp == null) textp = new Vector();
                 if(raydir == null) raydir = new Vector();
                 if(raystart == null) raystart = new Vector();
-                if(rayend == null) rayend = new Vector();
+                if(rayend == null) rayend = new Vector();            
 
         }
 
@@ -256,19 +261,25 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
         if(raystart != null && raydir != null) {
-            // Luxe.draw.line({
-            //     immediate:true,
-            //     p0 : raystart,
-            //     p1 : rayend,
-            //     color0 : new Color(0,1,1,1),
-            //     color1 : new Color(1,0,1,1)
-            // });
             var tp = get_camera_point(raystart, raydir);
-            tp.x = 0.5+Math.floor(tp.x);
-            tp.z = 0.5+Math.floor(tp.z);
+                tp.x = 0.5+Math.floor(tp.x);
+                tp.z = 0.5+Math.floor(tp.z);
             tower.pos = tp;
         }
+        
+        textp = camera.projectVector(tower.pos.clone());
+        var widthHalf = (Luxe.screen.w/2);
+        var heightHalf = (Luxe.screen.h/2);
+        textp.x = ( textp.x * widthHalf ) + widthHalf;
+        textp.y = - ( textp.y * heightHalf ) + heightHalf;
 
+        Luxe.draw.text({
+            text:'HP: 100/100',
+            immediate : true,
+            color : new Color(0.6,0,0,1),
+            pos: textp,
+            batcher: hudview
+        });
 
         Luxe.draw.line({
             immediate:true,

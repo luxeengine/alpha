@@ -156,6 +156,22 @@ class Camera {
 
     } //set_perspective
 
+        //from 3D to 2D
+    public function projectVector( vector:Vector ) {
+
+        var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
+        return vector.applyProjection( _transform );
+
+    } //projectVector
+
+        //from 2D to 3D 
+    public function unprojectVector( vector:Vector ) {
+
+        var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
+        return vector.applyProjection( _inverted.inverse() );
+
+    } //unprojectVector
+
 
     private function _merge_options( projection_options:Dynamic, options:Dynamic) {
 
