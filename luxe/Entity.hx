@@ -1,5 +1,6 @@
 package luxe;
 
+import luxe.Input.MouseEvent;
 import phoenix.Matrix4;
 
 import luxe.Vector;
@@ -85,6 +86,69 @@ class Entity extends Objects {
 		} //for each child
 
 	} //_init
+
+    public function _onmousedown(e:MouseEvent) {
+
+        _debug('calling _onmousedown on ' + name);
+
+            //init the parent first
+        _call(this, 'onmousedown', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'onmousedown', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _call(_child, '_onmousedown', [e]);
+        } //for each child
+
+    } //_onmousedown
+
+    public function _onmouseup(e:MouseEvent) {
+
+        _debug('calling _onmouseup on ' + name);
+
+            //init the parent first
+        _call(this, 'onmouseup', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'onmouseup', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _call(_child, '_onmouseup', [e]);
+        } //for each child
+
+    } //_onmouseup    
+
+    public function _onmousemove(e:MouseEvent) {
+
+        _debug('calling _onmousemove on ' + name);
+
+            //init the parent first
+        _call(this, 'onmousemove', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'onmousemove', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _call(_child, '_onmousemove', [e]);
+        } //for each child
+
+    } //_onmousemove
 
 	public function _start() {
 

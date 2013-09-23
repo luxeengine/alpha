@@ -42,4 +42,11 @@ Loads a bitmap font file by id, but the path must be specified separately at the
 
 Loads a shader, with a pixel shader and vertex shader file. If the fragment id (`_ps_id`) is `default`, the untextured colored geometry shader is used. If the fragment id is `textured`, the default internal textured shader is used. If the vertex shader id (`_vs_id`) is `default` the default vertex shader is used. Also takes an optional callback for when the loading is complete. _On native platforms loading is synchronous._ The callback is especially helpful for html5.
 
-### Loading assets via the luxe API
+    loadData( _id:String , ?_onloaded:Shader->Void ) : ByteArray
+
+    var file_contents = Luxe.loadData('assets/binary_file.file');    
+
+Loads a binary file from the assets. _(to confirm this works with bytes --> )_ Also takes an optional callback for when the loading is complete. _On native platforms loading is synchronous._ The callback is especially helpful for html5 .
+
+&nbsp;
+&nbsp;

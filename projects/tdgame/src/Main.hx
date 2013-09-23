@@ -22,6 +22,9 @@ class Main extends luxe.Game {
     var tower : Entity;
     var tower_mesh : MeshComponent;
 
+    var camthingy : Entity;
+    var camthingy_mesh : MeshComponent;
+
     var tower_texture : Texture;
     var floor_texture : Texture;
     var camera : phoenix.Camera;
@@ -57,22 +60,30 @@ class Main extends luxe.Game {
         // var mc = floor.add( MeshCollider, 'collider');
         //     mc.mesh = floormesh;
 
+        camthingy = Luxe.scene.create(Entity, 'tower');
+
+        camthingy_mesh = camthingy.add(MeshComponent, 'mesh');
+            camthingy_mesh.file = 'assets/cam.obj';
+            camthingy_mesh.texture = floor_texture;
+
+
         camera = new phoenix.Camera({
             projection: ProjectionType.perspective,
             fov:30, 
-            near:0.01,
+            near:0.1, far:1000,
             aspect:Luxe.screen.w/Luxe.screen.h
         });
 
         flycam = new FlyCamera({
             projection: ProjectionType.perspective,
             fov:60, 
-            near:0.01,
+            near:0.1,
+            far:1000,
             aspect:Luxe.screen.w/Luxe.screen.h
         });
 
         camera.pos = new Vector(0,4,3);
-        camera.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
+        camera.rotation.setFromEuler(new Vector(Maths.degToRad(-90),0,0));
 
         flycam.view.pos = new Vector(0,4,3);
         flycam.view.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
@@ -103,19 +114,13 @@ class Main extends luxe.Game {
         camera.pos.y += forward.y * dir;
     }
 
-    function mouse_in_world(p:Vector) {
-        var x = ( p.x / Luxe.screen.w ) * 2 - 1;
-        var y = -( p.y / Luxe.screen.h ) * 2 + 1;
-        return new Vector(x,y,1);
-    }
-
     function unprojectVector( vector:Vector ) {
 
         var _viewProjectionMatrix = new Matrix4();
         var _projectionMatrixInverse = new Matrix4();
 
         _projectionMatrixInverse.getInverse( camera.projection_matrix );
-        _viewProjectionMatrix.multiplyMatrices( camera.modelview_matrix, _projectionMatrixInverse );
+        _viewProjectionMatrix.multiplyMatrices( camera.view_matrix, _projectionMatrixInverse );
 
         return vector.applyProjection( _viewProjectionMatrix );
 
@@ -201,27 +206,28 @@ class Main extends luxe.Game {
     }
 
     public function get_camera_point(?start:Vector=null) : Vector {
-        if(start == null) start = camera.pos;
 
-        var direction = new Vector(0,0,-1);
-        var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
-            direction.applyMatrix4( rotmat );
-            direction.normalize();
+            return start.clone().set(null,0);
 
-            //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
-            //pointInPlane = rayOrigin + (rayDirection * T);
-            var planeNormal = new Vector(0,-1,0);
-            var pointOnPlane = new Vector();
-            var rayOrigin = start;
-                //for [ ] 
-            var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
-            var part2 = planeNormal.dot( direction );
-            var T = part1 / part2;
+            // var direction = new Vector(0,0,-1);
+            // var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
+            //     direction.applyMatrix4( rotmat );
+            //     direction.normalize();
 
-            var scaled_direction = direction.multiplyScalar(T);
-            var pointInPlane = Vector.Add(start, scaled_direction);
+            //     //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
+            //     //pointInPlane = rayOrigin + (rayDirection * T);
+            //     var planeNormal = new Vector(0,-1,0);
+            //     var pointOnPlane = new Vector();
+            //     var rayOrigin = start.clone();
+            //         //for [ ] 
+            //     var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
+            //     var part2 = planeNormal.dot( direction );
+            //     var T = part1 / part2;
 
-            return pointInPlane;
+            //     var scaled_direction = Vector.Multiply(direction, T);
+            //     var pointInPlane = Vector.Add(start, scaled_direction);
+
+            //     return pointInPlane;
     }
 
     public function oninputdown( name:String, e:Dynamic ) {
@@ -282,20 +288,37 @@ class Main extends luxe.Game {
     var raydir : Vector;
 
     public function onmousemove( e:MouseEvent ) {
+        if(!fly) {
 
-        var mdir = mouse_in_world(e.pos);
-            unprojectVector(mdir);
-            mdir.normalize();
-            mdir.add(camera.pos);
+            var v = new Vector();
+                v.x =  ( ( ( 2.0 * e.pos.x ) / Luxe.screen.w ) - 1 ) / camera.projection_matrix.elements[0]; 
+                v.y = -( ( ( 2.0 * e.pos.y ) / Luxe.screen.h ) - 1 ) / camera.projection_matrix.elements[5];
+                v.z =  -1.0;
 
-            raystart = mdir;
+            var _viewProjectionMatrix = new Matrix4();
+
+                if(raydir == null) raydir = new Vector();
+                if(raystart == null) raystart = new Vector();
+
+                // raydir.x = v.x*inverseview.elements[0] + v.y*inverseview.elements[1] + v.z*inverseview.elements[2];
+                // raydir.y = v.x*inverseview.elements[0] + v.y*inverseview.elements[1] + v.z*inverseview.elements[2];
+                // raydir.z = v.x*inverseview.elements[0] + v.y*inverseview.elements[1] + v.z*inverseview.elements[2];
+
+                // raystart.x = inverseview.elements[3];
+                // raystart.y = inverseview.elements[7];
+                // raystart.z = inverseview.elements[11];
+
+                raystart = unprojectVector(v);
+
+        }
+
 
         //now mdir is the starting point of the ray
-        var _forward = new Vector(0,0,-1);
-        var _rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
+        // var _forward = new Vector(0,0,-1);
+        // var _rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
 
-            _forward.applyMatrix4( _rotmat );
-            raydir = _forward.normalized;
+            // _forward.applyMatrix4( _rotmat );
+            // raydir = _forward.normalized;
 
         // //now we have the origin and direction,
         // var mesh:MeshComponent = floor_mesh.get('mesh');
@@ -346,7 +369,9 @@ class Main extends luxe.Game {
                 p1 : get_camera_point(raystart),
                 color : new Color(1,0,1,1)
             });
+            // tower.pos = get_camera_point(raystart);
         }
+
 
         Luxe.draw.line({
             immediate:true,
@@ -375,6 +400,9 @@ class Main extends luxe.Game {
             if(left)        { camera.pos.x -= spd * dt; }
             if(right)       { camera.pos.x += spd * dt; }
         }
+
+        camthingy.pos = camera.pos;
+        camthingy.rotation = new Vector( Maths.degToRad(-90),0,0);
 
     } //update
 

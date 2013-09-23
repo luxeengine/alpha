@@ -6,10 +6,41 @@ import luxe.Entity;
 import luxe.Vector;
 
 class MouseRotate extends Component {
-		
-	public function init() {
+	
+	var dragging : Bool = false;
+	var mx : Float = 0;
+	var my : Float = 0;
+	var smooth : Float = 130;
+	var mouse : Vector;
+	var reference_rotation : Vector;
 
+	public function init() {
+		mouse = new Vector();
+		reference_rotation = new Vector();
 	}
+		
+	public function onmousedown(e:MouseEvent) {
+		mouse = e.pos;
+		dragging = true;
+		reference_rotation.x = rotation.x;
+		reference_rotation.y = rotation.y;
+	}
+	public function onmouseup(e:MouseEvent) {
+		mouse = e.pos;
+		dragging = false;
+	}
+	public function onmousemove(e:MouseEvent) {
+		mouse = e.pos;
+	}
+
+	public function update(dt:Float) {
+		if(dragging) {
+    		mx = (Luxe.screen.h / 2 - mouse.y) / smooth;
+			my = (Luxe.screen.w / 2 - mouse.x) / smooth;    	
+		    rotation.x = -mx;
+			rotation.y = -my;
+    	}
+	} //update
 
 }
 
@@ -39,23 +70,6 @@ class Main extends luxe.Game {
 
     } //ready
 
-    var dragging = false;
-    var mouse : Vector;
-
-    public function onmousemove(e:MouseEvent) {
-    	mouse = e.pos;
-    }
-
-    public function onmousedown(e:MouseEvent) {
-    	dragging = true;
-    	mouse = e.pos;
-    }
-
-    public function onmouseup(e:MouseEvent) {
-    	dragging = false;
-    	mouse = e.pos;
-    }
-
     public function onkeyup( e:KeyEvent ) {
 
         if(e.key == KeyValue.escape) {
@@ -64,18 +78,7 @@ class Main extends luxe.Game {
         
     } //onkeyup
 
-    var spdx : Float = 0;
-    var spdy : Float = 0;
-    var speed : Float = 120;
-
     public function update(dt:Float) {
-    		
-    	if(dragging) {
-    		spdy = (Luxe.screen.h / 2 - mouse.y) / speed;
-			spdx = (Luxe.screen.w / 2 - mouse.x) / speed;    	
-		    tower.rotation.x = -spdy;
-			tower.rotation.y = -spdx;
-    	}
 
     } //update
 
