@@ -585,6 +585,9 @@ class Matrix4 {
 
 	} //setPosition
 	
+	public function inverted() : Matrix4 {
+		return clone().getInverse(this);
+	}
 	
 	public function getInverse( _m:Matrix4 ) : Matrix4 {
 

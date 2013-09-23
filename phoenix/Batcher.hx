@@ -388,7 +388,7 @@ class Batcher {
 
             //Update the GL Matrices
         GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_matrix.float32array() );
-        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.modelview_matrix.clone().getInverse(view.modelview_matrix).float32array() );
+        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.view_matrix.inverted().float32array() );
 
             //Set shader attributes
         GL.enableVertexAttribArray(vert_attribute);
