@@ -117,10 +117,9 @@ class Main extends luxe.Game {
     function unprojectVector( vector:Vector ) {
 
         var _viewProjectionMatrix = new Matrix4();
-        var _projectionMatrixInverse = new Matrix4();
 
-        _projectionMatrixInverse.getInverse( camera.projection_matrix );
-        _viewProjectionMatrix.multiplyMatrices( camera.view_matrix, _projectionMatrixInverse );
+        var _projectionMatrixInverse = camera.projection_matrix.inverted();
+        _viewProjectionMatrix.multiplyMatrices( camera.view_matrix.inverted(), _projectionMatrixInverse );
 
         return vector.applyProjection( _viewProjectionMatrix );
 
@@ -285,30 +284,45 @@ class Main extends luxe.Game {
     } //onmouseup
   
     var raystart : Vector;
+    var rayend : Vector;
     var raydir : Vector;
 
     public function onmousemove( e:MouseEvent ) {
         if(!fly) {
 
-            var v = new Vector();
-                v.x =  ( ( ( 2.0 * e.pos.x ) / Luxe.screen.w ) - 1 ) / camera.projection_matrix.elements[0]; 
-                v.y = -( ( ( 2.0 * e.pos.y ) / Luxe.screen.h ) - 1 ) / camera.projection_matrix.elements[5];
-                v.z =  -1.0;
+           var lRayStart_NDC : Vector = new Vector(
+                (e.pos.x/Luxe.screen.w  - 0.5) * 2.0, // [0,1024] -> [-1,1]
+                (e.pos.y/Luxe.screen.h - 0.5) * 2.0, // [0, 768] -> [-1,1]
+                -1.0, // The near plane maps to Z=-1 in Normalized Device Coordinates
+                1.0
+            );
+            var lRayEnd_NDC : Vector = new Vector(
+                (e.pos.x/Luxe.screen.w  - 0.5) * 2.0,
+                (e.pos.y/Luxe.screen.h - 0.5) * 2.0,
+                0.0,
+                1.0
+            );
 
-            var _viewProjectionMatrix = new Matrix4();
+            var inverse_projection = camera.projection_matrix.inverted();
+            var inverse_view = camera.view_matrix.inverted();
+
+            var M = camera.projection_matrix.clone().multiplyMatrices(camera.projection_matrix, camera.view_matrix);
+            M = M.inverted();
+            
+            var lRayStart_world = lRayStart_NDC.applyMatrix4(M); 
+                lRayStart_world = lRayStart_world.divideScalar(lRayStart_world.w);
+
+            var lRayEnd_world = lRayEnd_NDC.applyMatrix4(M); 
+                lRayEnd_world = lRayEnd_world.divideScalar(lRayEnd_world.w);
+
+            raydir = Vector.Subtract(lRayEnd_world, lRayStart_world).normalized;
+            raystart = lRayStart_world;
+            rayend = lRayEnd_world;
 
                 if(raydir == null) raydir = new Vector();
                 if(raystart == null) raystart = new Vector();
+                if(rayend == null) rayend = new Vector();
 
-                // raydir.x = v.x*inverseview.elements[0] + v.y*inverseview.elements[1] + v.z*inverseview.elements[2];
-                // raydir.y = v.x*inverseview.elements[0] + v.y*inverseview.elements[1] + v.z*inverseview.elements[2];
-                // raydir.z = v.x*inverseview.elements[0] + v.y*inverseview.elements[1] + v.z*inverseview.elements[2];
-
-                // raystart.x = inverseview.elements[3];
-                // raystart.y = inverseview.elements[7];
-                // raystart.z = inverseview.elements[11];
-
-                raystart = unprojectVector(v);
 
         }
 
@@ -350,7 +364,7 @@ class Main extends luxe.Game {
     public function onkeyup( e:KeyEvent ) {
         
         if(e.key == KeyValue.escape) {
-            Luxe.shutdown();
+            // Luxe.shutdown();
         }
 
         if(fly) {
@@ -366,7 +380,7 @@ class Main extends luxe.Game {
             Luxe.draw.line({
                 immediate:true,
                 p0 : raystart,
-                p1 : get_camera_point(raystart),
+                p1 : rayend,
                 color : new Color(1,0,1,1)
             });
             // tower.pos = get_camera_point(raystart);
