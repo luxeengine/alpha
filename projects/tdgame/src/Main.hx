@@ -83,7 +83,7 @@ class Main extends luxe.Game {
         });
 
         camera.pos = new Vector(0,4,3);
-        camera.rotation.setFromEuler(new Vector(Maths.degToRad(-90),0,0));
+        camera.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
 
         flycam.view.pos = new Vector(0,4,3);
         flycam.view.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
@@ -116,117 +116,38 @@ class Main extends luxe.Game {
 
     function unprojectVector( vector:Vector ) {
 
-        var _viewProjectionMatrix = new Matrix4();
+        var _inverted = new Matrix4().multiplyMatrices( camera.projection_matrix, camera.view_matrix.inverted() );
+            _inverted = _inverted.inverted();
 
-        var _projectionMatrixInverse = camera.projection_matrix.inverted();
-        _viewProjectionMatrix.multiplyMatrices( camera.view_matrix.inverted(), _projectionMatrixInverse );
-
-        return vector.applyProjection( _viewProjectionMatrix );
-
+        return vector.applyProjection( _inverted );
     }
 
-    function rayIntersectTriangle( origin:Vector, direction:Vector, a:Vector,b:Vector,c:Vector,backfaceCulling:Bool ) {
+    public function get_camera_point(?start:Vector=null, ?dir:Vector=null) : Vector {
 
-            // from http://www.geometrictools.com/LibMathematics/Intersection/Wm5IntrRay3Triangle3.cpp
-            var diff = new Vector();
-            var edge1 = new Vector();
-            var edge2 = new Vector();
-            var normal = new Vector();
-
-            edge1 = Vector.Subtract( b, a );
-            edge2 = Vector.Subtract( c, a );
-            normal.cross( edge1, edge2 );
-
-            // Solve Q + t*D = b1*E1 + b2*E2 (Q = kDiff, D = ray direction,
-            // E1 = kEdge1, E2 = kEdge2, N = Cross(E1,E2)) by
-            //   |Dot(D,N)|*b1 = sign(Dot(D,N))*Dot(D,Cross(Q,E2))
-            //   |Dot(D,N)|*b2 = sign(Dot(D,N))*Dot(D,Cross(E1,Q))
-            //   |Dot(D,N)|*t = -sign(Dot(D,N))*Dot(Q,N)
-            var DdN = direction.dot( normal );
-            var sign : Int = 0;
-
-            if ( DdN > 0 ) {
-
-                if ( backfaceCulling ) return null;
-                sign = 1;
-
-            } else if ( DdN < 0 ) {
-
-                sign = - 1;
-                DdN = - DdN;
-
-            } else {
-
-                return null;
-
+            if(start == null) start = camera.pos;
+            if(dir == null) {
+                var _direction = new Vector(0,0,-1);
+                var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
+                    _direction.applyMatrix4( rotmat );
+                    _direction.normalize();
+                dir = _direction;
             }
 
-            diff = Vector.Subtract( origin, a );
-            var DdQxE2 = sign * direction.dot( edge2.cross( diff, edge2 ) );
 
-            // b1 < 0, no intersection
-            if ( DdQxE2 < 0 ) {
+                //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
+                //pointInPlane = rayOrigin + (rayDirection * T);
+                var planeNormal = new Vector(0,-1,0);
+                var pointOnPlane = new Vector();
+                var rayOrigin = start.clone();
+                    //for [ ] 
+                var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
+                var part2 = planeNormal.dot( dir );
+                var T = part1 / part2;
 
-                return null;
+                var scaled_direction = Vector.Multiply(dir, T);
+                var pointInPlane = Vector.Add(start, scaled_direction);
 
-            }
-
-            var DdE1xQ = sign * direction.dot( Vector.Cross( edge1, diff ) );
-
-            // b2 < 0, no intersection
-            if ( DdE1xQ < 0 ) {
-
-                return null;
-
-            }
-
-            // b1+b2 > 1, no intersection
-            if ( DdQxE2 + DdE1xQ > DdN ) {
-
-                return null;
-
-            }
-
-            // Line intersects triangle, check if ray does.
-            var QdN = - sign * diff.dot( normal );
-
-            // t < 0, no intersection
-            if ( QdN < 0 ) {
-
-                return null;
-
-            }
-
-            // Ray intersects triangle.
-            var t = QdN / DdN;
-            var result = direction.clone();
-
-            return result.multiplyScalar( t ).add( origin );
-    }
-
-    public function get_camera_point(?start:Vector=null) : Vector {
-
-            return start.clone().set(null,0);
-
-            // var direction = new Vector(0,0,-1);
-            // var rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
-            //     direction.applyMatrix4( rotmat );
-            //     direction.normalize();
-
-            //     //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
-            //     //pointInPlane = rayOrigin + (rayDirection * T);
-            //     var planeNormal = new Vector(0,-1,0);
-            //     var pointOnPlane = new Vector();
-            //     var rayOrigin = start.clone();
-            //         //for [ ] 
-            //     var part1 = planeNormal.dot( Vector.Subtract(pointOnPlane, rayOrigin) );
-            //     var part2 = planeNormal.dot( direction );
-            //     var T = part1 / part2;
-
-            //     var scaled_direction = Vector.Multiply(direction, T);
-            //     var pointInPlane = Vector.Add(start, scaled_direction);
-
-            //     return pointInPlane;
+                return pointInPlane;
     }
 
     public function oninputdown( name:String, e:Dynamic ) {
@@ -290,65 +211,23 @@ class Main extends luxe.Game {
     public function onmousemove( e:MouseEvent ) {
         if(!fly) {
 
-           var lRayStart_NDC : Vector = new Vector(
-                (e.pos.x/Luxe.screen.w  - 0.5) * 2.0, // [0,1024] -> [-1,1]
-                (e.pos.y/Luxe.screen.h - 0.5) * 2.0, // [0, 768] -> [-1,1]
-                -1.0, // The near plane maps to Z=-1 in Normalized Device Coordinates
-                1.0
-            );
-            var lRayEnd_NDC : Vector = new Vector(
-                (e.pos.x/Luxe.screen.w  - 0.5) * 2.0,
-                (e.pos.y/Luxe.screen.h - 0.5) * 2.0,
-                0.0,
-                1.0
-            );
+        var ndc_x = (e.pos.x/Luxe.screen.w  - 0.5) * 2.0;
+        var ndc_y = ((Luxe.screen.h - e.pos.y)/Luxe.screen.h - 0.5) * 2.0;
+        var start_ndc : Vector = new Vector( ndc_x, ndc_y, 0, 1.0 );
+        var end_ndc : Vector = new Vector( ndc_x, ndc_y, 1.0, 1.0 );
 
-            var inverse_projection = camera.projection_matrix.inverted();
-            var inverse_view = camera.view_matrix.inverted();
+            var n = unprojectVector(start_ndc);
+            var f = unprojectVector(end_ndc);
 
-            var M = camera.projection_matrix.clone().multiplyMatrices(camera.projection_matrix, camera.view_matrix);
-            M = M.inverted();
+            raystart = n;
+            rayend = f;
+            raydir = Vector.Subtract(f, n);
             
-            var lRayStart_world = lRayStart_NDC.applyMatrix4(M); 
-                lRayStart_world = lRayStart_world.divideScalar(lRayStart_world.w);
-
-            var lRayEnd_world = lRayEnd_NDC.applyMatrix4(M); 
-                lRayEnd_world = lRayEnd_world.divideScalar(lRayEnd_world.w);
-
-            raydir = Vector.Subtract(lRayEnd_world, lRayStart_world).normalized;
-            raystart = lRayStart_world;
-            rayend = lRayEnd_world;
-
                 if(raydir == null) raydir = new Vector();
                 if(raystart == null) raystart = new Vector();
                 if(rayend == null) rayend = new Vector();
 
-
         }
-
-
-        //now mdir is the starting point of the ray
-        // var _forward = new Vector(0,0,-1);
-        // var _rotmat = new Matrix4().makeRotationFromQuaternion(camera.rotation);
-
-            // _forward.applyMatrix4( _rotmat );
-            // raydir = _forward.normalized;
-
-        // //now we have the origin and direction,
-        // var mesh:MeshComponent = floor_mesh.get('mesh');
-        // var hit:Vector = null;
-
-        // var t1 = rayIntersectTriangle(mdir, forward, mesh.mesh.geometry.vertices[0].pos,  mesh.mesh.geometry.vertices[1].pos,  mesh.mesh.geometry.vertices[2].pos, true );
-        // if(t1 == null) {
-        //     var t2 = rayIntersectTriangle(mdir,forward, mesh.mesh.geometry.vertices[3].pos,  mesh.mesh.geometry.vertices[4].pos,  mesh.mesh.geometry.vertices[5].pos, true );
-        //     if(t2 != null) {
-        //         hit = t2;
-        //     }
-        // } else {
-        //     hit = t1;
-        // }   
-
-
 
         if(fly) {
             flycam.onmousemove(e);
@@ -363,8 +242,8 @@ class Main extends luxe.Game {
 
     public function onkeyup( e:KeyEvent ) {
         
-        if(e.key == KeyValue.escape) {
-            // Luxe.shutdown();
+        if(e.key == KeyValue.key_Q) {
+            Luxe.shutdown();
         }
 
         if(fly) {
@@ -377,13 +256,17 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
         if(raystart != null && raydir != null) {
-            Luxe.draw.line({
-                immediate:true,
-                p0 : raystart,
-                p1 : rayend,
-                color : new Color(1,0,1,1)
-            });
-            // tower.pos = get_camera_point(raystart);
+            // Luxe.draw.line({
+            //     immediate:true,
+            //     p0 : raystart,
+            //     p1 : rayend,
+            //     color0 : new Color(0,1,1,1),
+            //     color1 : new Color(1,0,1,1)
+            // });
+            var tp = get_camera_point(raystart, raydir);
+            tp.x = 0.5+Math.floor(tp.x);
+            tp.z = 0.5+Math.floor(tp.z);
+            tower.pos = tp;
         }
 
 
