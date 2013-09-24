@@ -23,7 +23,7 @@ To get started :
 ###Get LiME
 
  1) get the [lime](https://github.com/underscorediscovery/LiME) repo from git   
- 2) tell haxelib where to find `lime`, by using `haxelib dev /path/to/lime`   
+ 2) tell haxelib where to find `lime`, by using `haxelib dev lime /path/to/lime`   
  i.e :   
 
  ` cd ~/mydevfolder && mkdir lime `   

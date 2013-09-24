@@ -2,7 +2,7 @@
 <project>
 	
 	<meta 
-          title="luxe - test timescale" 
+          title="luxe - test - timescale" 
           package="com.luxeengine.luxetesttimescale" 
           version="1.0.0" 
           company="luxeengine" 

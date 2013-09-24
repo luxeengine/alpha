@@ -405,6 +405,7 @@ class Core {
 
         if(!shutting_down) {
             input.check_named_mouse(e, true);
+            scene.onmousedown(e);
         }
 
         if(host.onmousedown != null) host.onmousedown(e);
@@ -418,6 +419,7 @@ class Core {
 
         if(!shutting_down) {
             input.check_named_mouse(e);
+            scene.onmouseup(e);
         }
 
         if(host.onmouseup != null) host.onmouseup(e);
@@ -427,6 +429,10 @@ class Core {
         _mouse_pos.set( e.x, e.y );
         e.pos = _mouse_pos;
         Luxe.mouse = _mouse_pos;
+
+        if(!shutting_down) {
+            scene.onmousemove(e);
+        }
 
         if(host.onmousemove != null) host.onmousemove(e);
     }

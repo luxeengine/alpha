@@ -1,6 +1,7 @@
 
 package game;
 
+import game.items.Explosive;
 import game.Manager;
 import hxcollision.math.Vector2D;
 import hxcollision.ShapeDrawer ;
@@ -32,12 +33,16 @@ class Level extends Mode {
 
     public var bg : Sprite;
     public var top : Sprite;
+    public var items : Array<Sprite>;
+
     var ground_collision_rects:Array<Rectangle>;
     var air_collision_rects:Array<Rectangle>;
+    var item_collision_rects:Array<Rectangle>;
     
 
     public var ground_collision_shapes : Array<BaseShape>;
     public var air_collision_shapes : Array<BaseShape>;
+
     public var drawer : LuxeDrawer;
 
     var scale : Float = 4;
@@ -70,8 +75,10 @@ class Level extends Mode {
         air_collision_shapes = [];
         ground_collision_rects = [];
         air_collision_rects = [];
+        item_collision_rects = [];
+        items = [];
 
-            //load the json
+            //load the json for collisions
         var jsontext = Luxe.loadText('assets/levels/01.exposure.collision.json');
         var jsonobj : Dynamic = luxe.utils.JSON.decode(jsontext, false);
             //ground shapes        
@@ -89,6 +96,23 @@ class Level extends Mode {
         create_collision_rectangles(ground_collision_rects, ground_collision_shapes);
         create_collision_rectangles(air_collision_rects, air_collision_shapes);
 
+            //now create the items
+        jsontext = Luxe.loadText('assets/levels/01.exposure.items.json');
+        jsonobj = luxe.utils.JSON.decode(jsontext, false);
+            //item list
+        var _item_list : Array<Dynamic> = cast jsonobj;
+        for(item in _item_list) {
+            var _rect = rect_from_dynamic(item);
+            var _colpoly = create_collision_rectangle(_rect);
+            
+                air_collision_shapes.push(_colpoly);
+                ground_collision_shapes.push(_colpoly);
+
+            var item = create_item( item );
+
+                _colpoly.data = item;
+        }
+
         // for(shape in ground_collision_shapes) {
         //     drawer.drawPolygon( cast shape );
         // }
@@ -97,6 +121,34 @@ class Level extends Mode {
         // }
 
     } //init
+
+    public function create_item( item:Dynamic ) {
+        var type : String = item.type;
+        switch(type) {
+            case 'explosives':
+                var tex = Luxe.loadTexture('assets/items/explosives.png');
+                tex.filter = FilterType.nearest;
+                var sprite = new Sprite({
+                    pos : new Vector(item.sx*scale, item.sy*scale),
+                    centered : false,
+                    texture : tex,
+                    visible : false,
+                    depth : 4
+                });
+
+                var exp = sprite.add( Explosive, 'explosive');
+                    exp.desc = item;
+
+                sprite.scale = new Vector(scale,scale);
+                items.push( sprite );
+                return sprite;
+        }
+        return null;
+    }
+
+    public function create_collision_rectangle( _rect:Rectangle ) {
+        return Polygon.rectangle( _rect.w * scale, _rect.h * scale, new Vector2D(_rect.x * scale, _rect.y * scale) , false ) ;
+    }   
 
     public function create_collision_rectangles( list:Array<Rectangle>, target:Array<BaseShape> ) {
         for(item in list) {
@@ -126,11 +178,17 @@ class Level extends Mode {
     public function enable() {
         bg.visible = true;
         top.visible = true;
+        for(item in items) {
+            item.visible = true;
+        }
     } //enter
 
     public function disable() {
         bg.visible = false;
         top.visible = false;
+        for(item in items) {
+            item.visible = false;
+        }
     } //leave
 
 } //Level

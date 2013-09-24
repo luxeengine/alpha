@@ -61,16 +61,22 @@ class Mesh {
             geometry.pos = _position;
         }
         
-        return pos = _position;
+        pos = _position;
+
+        _attach_listener(pos, _pos_change);
+
+        return pos;
 
     } //set_pos
 
 //Rotation
-
+    
     public function set_rotation( _rotation:Vector ) : Vector {
-        
+
         if(rotation == null) {
-            return rotation = _rotation;
+            rotation = _rotation;
+            _attach_listener(rotation, _rotation_change);
+            return rotation;
         } //rotation is null
 
         if(geometry != null) {
@@ -81,8 +87,13 @@ class Mesh {
             geometry.rotation = _rotation_quat;
 
         } //geometry
-        
-        return rotation = _rotation;
+
+        rotation = _rotation;
+
+            //listen for property changes
+        _attach_listener(rotation, _rotation_change);
+
+        return rotation;
 
     } //set_rotation
 
@@ -94,7 +105,11 @@ class Mesh {
             geometry.scale = _scale;
         }
         
-        return scale = _scale;
+        scale = _scale;
+
+        _attach_listener(scale, _scale_change);
+
+        return scale;
 
     } //set_scale
 
@@ -136,6 +151,22 @@ class Mesh {
         } //for all verts
 
     } // from obj file
+
+
+        //An internal callback for when x y or z on a transform changes
+    private function _pos_change(_v:Float) { this.set_pos(pos); }
+        //An internal callback for when x y or z on a transform changes
+    private function _scale_change(_v:Float) { this.set_scale(scale); }
+        //An internal callback for when x y or z on a transform changes
+    private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
+
+        //An internal function to attach position 
+        //changes to a vector, so we can listen for `pos.x` as well
+    private function _attach_listener( _v : Vector, listener ) {
+        _v.listen_x = listener; 
+        _v.listen_y = listener; 
+        _v.listen_z = listener;
+    } //_attach_listener    
 
 
 } //Mesh

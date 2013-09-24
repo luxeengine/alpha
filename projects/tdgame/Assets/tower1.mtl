@@ -1,0 +1,23 @@
+# MTL written from /Users/Sven/dev/lab/projects/tdgame/Assets/tower1.obj
+newmtl Default
+Kd 0.712025 0.712025 0.712025
+Ns 256
+d 1
+illum 1
+Ka 0 0 0
+Ks 0.6 0.6 0.6
+newmtl floor
+Kd 0.712025 0.712025 0.712025
+Ns 256
+d 1
+illum 1
+Ka 0 0 0
+Ks 0.6 0.6 0.6
+map_Kd /Users/Sven/dev/lab/projects/tdgame/Assets/floor.png
+newmtl ring2
+Kd 0.8 0.8 0.8
+Ns 256
+d 1
+illum 1
+Ka 0 4.99005 10
+Ks 0 0 0

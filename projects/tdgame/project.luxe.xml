@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="luxe - test - sub components" 
-          package="com.underscorediscovery.luxetestsubcomponents" 
+          title="td game" 
+          package="com.luxeengine.tdgame" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
-	<app main="Main" path="bin" file="luxe_test_subcomponents" />
+	<app main="Main" path="bin" file="td_game" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	
@@ -18,6 +18,6 @@
 	
 	<haxelib name="luxe" />
 	<haxelib name="lime" />
-	<haxelib name="haxebullet" />
+	<!-- <haxelib name="haxebullet" /> -->
 	
 </project>

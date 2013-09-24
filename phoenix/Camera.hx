@@ -24,9 +24,8 @@ class Camera {
     public var scale: Vector;
     public var size: Vector;
 
-    public var view_matrix : Matrix3D;
     public var projection_matrix : Matrix4;
-    public var modelview_matrix : Matrix4;
+    public var view_matrix : Matrix4;
 
     public var perspective_options : Dynamic;
     public var ortho_options : Dynamic;
@@ -53,8 +52,8 @@ class Camera {
         projection_matrix = new Matrix4();
         projection_matrix.identity();
 
-        modelview_matrix = new Matrix4();
-        modelview_matrix.identity();
+        view_matrix = new Matrix4();
+        view_matrix.identity();
 
         ortho_options = {
             x1 : 0, y1 : 0,
@@ -114,7 +113,7 @@ class Camera {
             //todo:This doesn't need to be rebuilt every frame
         projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
             //Rebuild the modelview, todo:dirtify this
-        modelview_matrix = modelview_matrix.compose( pos, rotation, scale );        
+        view_matrix = view_matrix.compose( pos, rotation, scale );        
 
     } //apply_ortho
 
@@ -130,7 +129,7 @@ class Camera {
         } //target not null
 
             //Rebuild the modelview, todo:dirtify this
-        modelview_matrix = modelview_matrix.compose( pos, rotation, scale );
+        view_matrix = view_matrix.compose( pos, rotation, scale );
 
             // Cull triangles which normal is not towards the camera
         GL.enable(GL.CULL_FACE);
@@ -156,6 +155,22 @@ class Camera {
         apply_perspective();
 
     } //set_perspective
+
+        //from 3D to 2D
+    public function projectVector( vector:Vector ) {
+
+        var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
+        return vector.applyProjection( _transform );
+
+    } //projectVector
+
+        //from 2D to 3D 
+    public function unprojectVector( vector:Vector ) {
+
+        var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
+        return vector.applyProjection( _inverted.inverse() );
+
+    } //unprojectVector
 
 
     private function _merge_options( projection_options:Dynamic, options:Dynamic) {

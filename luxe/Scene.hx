@@ -1,6 +1,8 @@
 
 package luxe;
 
+import luxe.Input.MouseEvent;
+
 
 class Scene {
 
@@ -69,6 +71,22 @@ class Scene {
     public function shutdown() {
         destroy();
     }
+
+    public function onmousedown(e:MouseEvent) {
+         for(entity in entities) {
+            entity._onmousedown(e);
+        }
+    } //onmousedown
+    public function onmouseup(e:MouseEvent) {
+         for(entity in entities) {
+            entity._onmouseup(e);
+        }
+    } //onmouseup
+    public function onmousemove(e:MouseEvent) {
+         for(entity in entities) {
+            entity._onmousemove(e);
+        }
+    } //onmousemove
 
     public function destroy() {
          for(entity in entities) {

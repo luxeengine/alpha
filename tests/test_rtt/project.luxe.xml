@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="test render textures" 
-          package="com.underscorediscovery.sampleempty" 
+          title="luxe - test - render textures" 
+          package="com.luxeengine.luxetestrendertexture" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
-	<app main="Main" path="bin" file="test_rendertextures" />
+	<app main="Main" path="bin" file="luxe_test_rendertextures" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	
