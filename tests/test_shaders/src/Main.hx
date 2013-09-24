@@ -15,6 +15,8 @@ class Main extends luxe.Game {
 	var shader2 : Shader;
 	var shader3 : Shader;
 
+	var loaded : Bool = false;
+
     public function ready() {
 
     	var tex = Luxe.loadTexture('assets/luxe.png');
@@ -37,34 +39,42 @@ class Main extends luxe.Game {
     		pos : new Vector(480,320)
     	});
 
-    	sprite1.scale = new Vector(0.75,0.75);
-    	sprite2.scale = new Vector(0.75,0.75);
-    	sprite3.scale = new Vector(4,4);	
+    	tex3.onload = function(tt) {
 
-    		//we do this separately so we can set the uniforms
-    	shader1 = Luxe.loadShader('assets/gray_tilt_shift.glsl');
-    	shader2 = Luxe.loadShader('assets/huechange.glsl');
-    	shader3 = Luxe.loadShader('assets/distort.glsl');
+    		sprite1.scale = new Vector(0.5,0.5);
+	    	sprite2.scale = new Vector(0.5,0.5);
+	    	sprite3.scale = new Vector(4,4);
 
-    	sprite3.shader = shader1;
-    	sprite2.shader = shader2;
-    	sprite1.shader = shader3;
+	    		//we do this separately so we can set the uniforms
+	    	shader1 = Luxe.loadShader('assets/gray_tilt_shift.glsl');
+	    	shader2 = Luxe.loadShader('assets/huechange.glsl');
+	    	shader3 = Luxe.loadShader('assets/distort.glsl');
 
-    		//move to second slot
-    	tex3.slot = 1;
-    		//set the uniform
-    	shader3.set_uniform_texture('tex1', tex3);
-    	
+	    	sprite3.shader = shader1;
+	    	sprite2.shader = shader2;
+	    	sprite1.shader = shader3;
+
+	    		//move to second slot
+	    	tex3.slot = 1;
+	    		//set the uniform
+	    	shader3.set_uniform_texture('tex1', tex3);
+
+	    	loaded = true;
+    	}	
+
+
 
     } //ready
 
     public function onmousemove( e:MouseEvent ) {
 
-    	var percent = e.pos.x / Luxe.screen.w;
-    	var hue = (Math.PI*2) * percent;
+    	if(loaded) {
+	    	var percent = e.pos.x / Luxe.screen.w;
+    		var hue = (Math.PI*2) * percent;
 
-    	shader3.set_uniform_float('distortamount', percent);
-    	shader2.set_uniform_float('in_hue', hue);
+    		shader3.set_uniform_float('distortamount', percent);
+    		shader2.set_uniform_float('in_hue', hue);
+    	}
 
     }
 
