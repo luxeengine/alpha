@@ -20,9 +20,9 @@ import Level;
 class Main extends luxe.Game {
 
     public var game_camera : Camera;
-    
-    var hud_view : Batcher;
-    var hud_camera : Camera;
+
+    public var hud_view : Batcher;
+    public var hud_camera : Camera;
 
     var level : Level;
 

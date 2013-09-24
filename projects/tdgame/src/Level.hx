@@ -3,6 +3,8 @@ import luxe.components.Components.Component;
 import luxe.Input.MouseEvent;
 import luxe.Vector;
 import luxe.Entity;
+import luxe.Text;
+import luxe.Color;
 
 import luxe.components.render.MeshComponent;
 import phoenix.Ray;
@@ -12,6 +14,8 @@ class Level extends Component {
     var floor : Entity;
     var tower : Entity;
     var mouse_ray : Ray;
+
+    var text : Text;
 
     public var game : Main;
 
@@ -36,6 +40,13 @@ class Level extends Component {
                 floor_mesh.file = 'assets/tower1.obj';
                 floor_mesh.texture = floor_texture;
 
+        text = new Text({
+            pos : new Vector(0,0),
+            text : 'HP 100/100',
+            color : new Color(0.6,0,0),
+            batcher : game.hud_view
+        });
+
     }
 
     public function get_point_on_ground_plane(_ray_origin:Vector, _ray_dir:Vector) {
@@ -57,7 +68,7 @@ class Level extends Component {
         }
         
             //get the tower world pos on the ground plane
-        var tp = get_point_on_ground_plane( ray.origin, ray.dir );
+        var tp = get_point_on_ground_plane( mouse_ray.origin, mouse_ray.dir );
 
                 //then move it to grid space
             tp.x = 0.5+Math.floor(tp.x);
@@ -65,6 +76,8 @@ class Level extends Component {
 
             //set the tower position
         tower.pos = tp;
+            //set the hp position
+        text.pos = game.game_camera.view.world_point_to_screen(tower.pos);
 
     } //onmousemove
 
