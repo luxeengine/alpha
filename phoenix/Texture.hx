@@ -31,6 +31,8 @@ class Texture extends Resource {
     public var width : Int = -1;
     public var height : Int = -1;   
     public var loaded : Bool = false;
+    
+    public var slot : Int = 0;
 
     public var _onload_handlers : Array<Texture -> Void>;
 
@@ -338,7 +340,8 @@ class Texture extends Resource {
     }
 
     public function bind() {
-        GL.bindTexture(GL.TEXTURE_2D, texture);
+        GL.activeTexture( slot );
+        GL.bindTexture( GL.TEXTURE_2D, texture );
     }
 
     public function activate(att) {

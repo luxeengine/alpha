@@ -9,6 +9,23 @@ import lime.gl.GL;
 import lime.gl.GLShader;
 import lime.gl.GLProgram;
 
+enum UniformValueType {
+    int;
+    float;
+    vector2;
+    vector3;
+    vector4;
+    color;
+    texture;
+    unknown;
+}
+
+typedef UniformValue = {
+    var name : String;
+    var value : Dynamic;
+    var type : UniformValueType;
+}
+
 class Shader extends Resource {
 
     public var errors : String = '';
@@ -19,10 +36,12 @@ class Shader extends Resource {
 	public var program : GLProgram;
 	public var shader : GLShader;
 
+    public var uniforms : Map<String, Dynamic>;
+
 	public function new( _manager : ResourceManager ) {
 		
 		super( _manager, ResourceType.shader );
-        
+        uniforms = new Map<String,Dynamic>();
 	}
 
 	public function activate() {
@@ -38,6 +57,88 @@ class Shader extends Resource {
 	public function deactivate() {
 		//GL.useProgram( null );
 	}
+
+   public function set_uniform_int( _name:String, _value:Int ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+
+            var _uniformvalue : UniformValue = {
+                name : _name,
+                value : _value,
+                type : UniformValueType.int
+            }
+
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_int
+   public function set_uniform_float( _name:String, _value:Float ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+
+            var _uniformvalue : UniformValue = {
+                name : _name,
+                value : _value,
+                type : UniformValueType.float
+            }
+
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_float
+
+    public function set_uniform_vector2( _name:String, _value:Vector ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector2 }
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_vector2
+
+    public function set_uniform_vector3( _name:String, _value:Vector ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector3 }
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_vector3
+
+    public function set_uniform_vector4( _name:String, _value:Vector ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector4 }
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_vector4
+
+    public function set_uniform_color( _name:String, _value:Color ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.color }
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_color
+
+    public function set_uniform_texture( _name:String, _value:Texture ) : Void {
+        if(uniforms.exists(_name)) {
+            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+                _uniformvalue.value = _value;
+        } else {
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.texture }
+            uniforms.set(_name, _uniformvalue);
+        }
+    } //set_uniform_texture
+
 
 		//GL.FRAGMENT_SHADER
 	public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
@@ -153,28 +254,53 @@ class Shader extends Resource {
 	    return true;	
 	}
 
-	public function getUniform( uniform_name : String  ) : lime.gl.GLUniformLocation {
+    @:noCompletion public function apply_uniforms() {
+        for(_uniform in uniforms) {
+            var uniform : UniformValue = cast _uniform;
+            switch(uniform.type) {
+                case UniformValueType.int:
+                    setUniformInt(uniform.name, cast uniform.value);
+                case UniformValueType.float:
+                    setUniformFloat(uniform.name, cast uniform.value);
+                case UniformValueType.vector2:
+                    setUniformVector2(uniform.name, cast uniform.value);
+                case UniformValueType.vector3:
+                    setUniformVector3(uniform.name, cast uniform.value);
+                case UniformValueType.vector4:
+                    setUniformVector4(uniform.name, cast uniform.value);
+                case UniformValueType.color:
+                    setUniformColor(uniform.name, cast uniform.value);
+                case UniformValueType.texture:
+                    setUniformTexture(uniform.name, cast uniform.value);
+                case UniformValueType.unknown:
+            }
+        } //for each uniform
+    }
+
+	@:noCompletion public function getUniform( uniform_name : String  ) : lime.gl.GLUniformLocation {
 		return GL.getUniformLocation( program, uniform_name );
 	}
 
-    public function setUniformInt( uniform_name:String, value:Int ) {
+    @:noCompletion public function setUniformInt( uniform_name:String, value:Int ) {
     	GL.uniform1i( getUniform(uniform_name) , value );
     }
-
-    public function setUniformFloat( uniform_name:String, value:Float ) {
+    @:noCompletion public function setUniformFloat( uniform_name:String, value:Float ) {
 		GL.uniform1f( getUniform(uniform_name) , value );
     }
-
-    public function setUniformVector( uniform_name:String, value:Vector ) {
-		GL.uniform3f( getUniform(uniform_name) , value.x, value.y, value.z );
+    @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector ) {
+        GL.uniform2f( getUniform(uniform_name) , value.x, value.y);
     }
-
-    public function setUniformColor( uniform_name:String, value:Color ) {
+    @:noCompletion public function setUniformVector3( uniform_name:String, value:Vector ) {
+        GL.uniform3f( getUniform(uniform_name) , value.x, value.y, value.z );
+    }
+    @:noCompletion public function setUniformVector4( uniform_name:String, value:Vector ) {
+        GL.uniform4f( getUniform(uniform_name) , value.x, value.y, value.z, value.w );
+    }
+    @:noCompletion public function setUniformColor( uniform_name:String, value:Color ) {
 		GL.uniform4f( getUniform(uniform_name) , value.r, value.g, value.b, value.a );
     }
-
-    public function setUniformTexture( uniform_name:String, value:Int ) {
-    	GL.uniform1i( getUniform(uniform_name) , value );
+    @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture ) {
+    	GL.uniform1i( getUniform(uniform_name) , value.slot );
     }
 
     public function addLog( _log:String ) {

@@ -238,8 +238,13 @@ class Batcher {
         tex0_attribute = GL.getUniformLocation( _shader.program, "tex0" );
 
             //for now todo
-        GL.activeTexture(GL.TEXTURE0);
         GL.uniform1i(tex0_attribute, 0);
+
+            //and any uniforms they defined
+        _shader.apply_uniforms();
+
+            //undo any changes to be sure
+        GL.activeTexture(GL.TEXTURE0);
 
     }
 
