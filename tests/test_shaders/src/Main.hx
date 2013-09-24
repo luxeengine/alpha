@@ -52,8 +52,9 @@ class Main extends luxe.Game {
 
     		//move to second slot
     	tex3.slot = 1;
-    	shader3.set_uniform_texture('distortmap', tex3);
-
+    		//set the uniform
+    	shader3.set_uniform_texture('tex1', tex3);
+    	
 
     } //ready
 
@@ -62,6 +63,7 @@ class Main extends luxe.Game {
     	var percent = e.pos.x / Luxe.screen.w;
     	var hue = (Math.PI*2) * percent;
 
+    	shader3.set_uniform_float('distortamount', percent);
     	shader2.set_uniform_float('in_hue', hue);
 
     }
@@ -75,8 +77,6 @@ class Main extends luxe.Game {
     } //onkeyup
 
     public function update(dt:Float) {
-
-    	shader2.setUniformFloat('in_hue', 1.57);
 
     } //update
 

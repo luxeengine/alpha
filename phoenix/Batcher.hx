@@ -70,7 +70,17 @@ class Batcher {
     public var tcoord_attribute : Dynamic;
     public var color_attribute : Dynamic;
     public var normal_attribute : Dynamic;
+
+        //temporarily doing it old school style
+        //will soon change :todo:
     public var tex0_attribute : Dynamic;
+    public var tex1_attribute : Dynamic;
+    public var tex2_attribute : Dynamic;
+    public var tex3_attribute : Dynamic;
+    public var tex4_attribute : Dynamic;
+    public var tex5_attribute : Dynamic;
+    public var tex6_attribute : Dynamic;
+    public var tex7_attribute : Dynamic;
 
     public var renderer : Renderer;
     public var view : Camera;
@@ -236,9 +246,22 @@ class Batcher {
 
             //Textures
         tex0_attribute = GL.getUniformLocation( _shader.program, "tex0" );
+        tex1_attribute = GL.getUniformLocation( _shader.program, "tex1" );
+        tex2_attribute = GL.getUniformLocation( _shader.program, "tex2" );
+        tex3_attribute = GL.getUniformLocation( _shader.program, "tex3" );
+        tex4_attribute = GL.getUniformLocation( _shader.program, "tex4" );
+        tex5_attribute = GL.getUniformLocation( _shader.program, "tex5" );
+        tex6_attribute = GL.getUniformLocation( _shader.program, "tex6" );
+        tex7_attribute = GL.getUniformLocation( _shader.program, "tex7" );
 
-            //for now todo
         GL.uniform1i(tex0_attribute, 0);
+        GL.uniform1i(tex1_attribute, 1);
+        GL.uniform1i(tex2_attribute, 2);
+        GL.uniform1i(tex3_attribute, 3);
+        GL.uniform1i(tex4_attribute, 4);
+        GL.uniform1i(tex5_attribute, 5);
+        GL.uniform1i(tex6_attribute, 6);
+        GL.uniform1i(tex7_attribute, 7);
 
             //and any uniforms they defined
         _shader.apply_uniforms();

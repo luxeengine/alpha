@@ -37,11 +37,15 @@ class Shader extends Resource {
 	public var shader : GLShader;
 
     public var uniforms : Map<String, Dynamic>;
+    
+    var uniform_textures : Map<String,Texture>;
 
 	public function new( _manager : ResourceManager ) {
 		
 		super( _manager, ResourceType.shader );
         uniforms = new Map<String,Dynamic>();
+        uniform_textures = new Map();
+
 	}
 
 	public function activate() {
@@ -133,9 +137,11 @@ class Shader extends Resource {
         if(uniforms.exists(_name)) {
             var _uniformvalue : UniformValue = cast uniforms.get(_name);
                 _uniformvalue.value = _value;
+                uniform_textures.set(_name, _value);
         } else {
             var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.texture }
             uniforms.set(_name, _uniformvalue);
+            uniform_textures.set(_name, _value);
         }
     } //set_uniform_texture
 
@@ -300,7 +306,9 @@ class Shader extends Resource {
 		GL.uniform4f( getUniform(uniform_name) , value.r, value.g, value.b, value.a );
     }
     @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture ) {
+        value.bind();
     	GL.uniform1i( getUniform(uniform_name) , value.slot );
+        GL.activeTexture(GL.TEXTURE0);
     }
 
     public function addLog( _log:String ) {
