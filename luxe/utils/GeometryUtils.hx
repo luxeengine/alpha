@@ -41,4 +41,22 @@ class GeometryUtils {
 
     } //point_in_polygon
 
- }
+
+        //plane_point is a point on the plane (anywhere) , can be 0,0,0 for infinite plane.
+    public function intersect_ray_plane( _ray_start:Vector, _ray_dir:Vector, _plane_normal:Vector, _plane_point:Vector ) : Vector {
+
+            //T = [planeNormal•(pointOnPlane - rayOrigin)]/planeNormal•rayDirection;
+            //pointInPlane = rayOrigin + (rayDirection * T);
+
+            //for [ ]
+        var part1 = _plane_normal.dot( Vector.Subtract(_plane_point, _ray_start) );
+        var part2 = _plane_normal.dot( _ray_dir );
+
+        var T = part1 / part2;
+
+        return Vector.Add(_ray_start, Vector.Multiply(_ray_dir, T));
+
+    } //intersect_ray_plane
+    
+
+ } //GeometryUtils

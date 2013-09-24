@@ -10,6 +10,7 @@ import phoenix.Matrix4;
 
 import phoenix.Quaternion;
 import phoenix.Vector;
+import phoenix.Ray;
 
 enum ProjectionType {
     ortho;
@@ -157,20 +158,46 @@ class Camera {
     } //set_perspective
 
         //from 3D to 2D
-    public function projectVector( vector:Vector ) {
+    public function projectVector( _vector:Vector ) {
 
         var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
-        return vector.applyProjection( _transform );
+        return _vector.clone().applyProjection( _transform );
 
     } //projectVector
 
         //from 2D to 3D 
-    public function unprojectVector( vector:Vector ) {
+    public function unprojectVector( _vector:Vector ) {
 
         var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
-        return vector.applyProjection( _inverted.inverse() );
+        return _vector.clone().applyProjection( _inverted.inverse() );
 
     } //unprojectVector
+
+
+    public function screen_point_to_ray( _vector:Vector ) : Ray {
+        
+        return new Ray( _vector, this );
+
+    } //screen_point_as_ray
+
+    public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
+
+        if(_viewport == null) {
+            _viewport = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
+        }
+
+        var _projected = projectVector( _vector );
+        
+        var width_half = _viewport.w/2;
+        var height_half = _viewport.h/2;
+
+        return new Vector( 
+             ( _projected.x * width_half ) + width_half, 
+            -( _projected.y * height_half ) + height_half 
+        );
+        
+    } //world_point_to_screen
+
 
 
     private function _merge_options( projection_options:Dynamic, options:Dynamic) {

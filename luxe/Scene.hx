@@ -72,6 +72,16 @@ class Scene {
         destroy();
     }
 
+    public function oninputdown(_name:String, e:Dynamic) {
+         for(entity in entities) {
+            entity._oninputdown(_name, e);
+        }
+    } //oninputdown
+    public function oninputup(_name:String, e:Dynamic) {
+         for(entity in entities) {
+            entity._oninputup(_name, e);
+        }
+    } //oninputup
     public function onmousedown(e:MouseEvent) {
          for(entity in entities) {
             entity._onmousedown(e);

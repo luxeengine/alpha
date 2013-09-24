@@ -98,5 +98,40 @@ class Draw {
         return _circle;
     } //circle
 
+
+    public function axis3D(?options:Dynamic=null) {
+            
+        if(options == null) options = {};
+        var _scale = options.scale == null ? 100 : options.scale;
+        
+        options = default_options(options);
+
+//X axis
+        line({
+            immediate:options.immediate,
+            p0 : new Vector(0, _scale, 0),
+            p1 : new Vector(0, -_scale, 0),
+            color : new Color(0,0.6,0,0.2),
+            batcher : options.batcher,
+        });
+//Z axis
+        line({
+            immediate:options.immediate,
+            p0 : new Vector(0, 0, _scale),
+            p1 : new Vector(0, 0, -_scale),
+            color : new Color(0,0,0.6,1),
+            batcher : options.batcher,
+        });
+//X axis
+        line({
+            immediate:options.immediate,
+            p0 : new Vector(-_scale, 0, 0),
+            p1 : new Vector(_scale, 0, 0),
+            color : new Color(0.6,0,0,1),
+            batcher : options.batcher,
+        });   
+
+    } //axis3D
+
 }
 

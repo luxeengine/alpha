@@ -99,9 +99,9 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
-                if(core.host.oninputdown != null) core.host.oninputdown(_f,e); 
+                core.oninputdown(_f,e);  
             } else {
-                if(core.host.oninputup != null) core.host.oninputup(_f,e); 
+                core.oninputup(_f,e);  
             }
         } //_f in _fired
 
@@ -123,9 +123,9 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
-                if(core.host.oninputdown != null) core.host.oninputdown(_f,e); 
+                core.oninputdown(_f,e);                
             } else {
-                if(core.host.oninputup != null) core.host.oninputup(_f,e); 
+                core.oninputup(_f,e);                
             } 
         } //_f in _fired
 

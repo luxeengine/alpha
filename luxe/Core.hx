@@ -395,6 +395,26 @@ class Core {
 
     } //onkeyup
 
+//input
+
+    public function oninputdown(_name:String, e:Dynamic) {
+
+        if(!shutting_down) {
+            scene.oninputdown(_name,e);
+        }
+
+        if(host.oninputdown != null) host.oninputdown(_name,e); 
+    }
+
+    public function oninputup(_name:String, e:Dynamic) {
+        
+        if(!shutting_down) {
+            scene.oninputup(_name,e);
+        }
+
+        if(host.oninputup != null) host.oninputup(_name,e); 
+    }
+
 //mouse
 
     public function onmousedown(e : MouseEvent) {

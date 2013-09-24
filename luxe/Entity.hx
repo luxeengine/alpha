@@ -150,6 +150,48 @@ class Entity extends Objects {
 
     } //_onmousemove
 
+    public function _oninputdown(_name:String,e:Dynamic) {
+
+        _debug('calling _oninputdown on ' + name);
+
+            //init the parent first
+        _call(this, 'oninputdown', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'oninputdown', [_name, e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _call(_child, '_oninputdown', [_name, e]);
+        } //for each child
+
+    } //_oninputdown
+
+    public function _oninputup(_name:String,e:Dynamic) {
+
+        _debug('calling _oninputup on ' + name);
+
+            //init the parent first
+        _call(this, 'oninputup', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'oninputup', [_name, e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _call(_child, '_oninputup', [_name, e]);
+        } //for each child
+
+    } //_oninputup
+
 	public function _start() {
 
 		_debug('calling start on ' + name);
