@@ -19,6 +19,8 @@ class Level extends Component {
 
     var text : Text;
 
+    var grid : Grid;
+
     public var game : Main;
 
     //internals
@@ -50,6 +52,11 @@ class Level extends Component {
             var floor_mesh = floor.add(MeshComponent, 'mesh');
                 floor_mesh.file = 'assets/tower1.obj';
                 floor_mesh.texture = floor_texture;
+                
+
+        var _grid = Luxe.scene.create(Entity, 'grid');
+            grid = _grid.add(Grid, 'grid');
+
 
         text = new Text({
             pos : new Vector(0,0),
