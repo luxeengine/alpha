@@ -13,7 +13,6 @@ import phoenix.Batcher;
 import phoenix.utils.Maths;
 
     //Game specifics
-
 import TDCamera;
 import Level;
 
@@ -38,7 +37,7 @@ class Main extends luxe.Game {
         });
 
             //Move it up and backward, so we can see the level
-        game_camera.pos = new Vector(0,10,8);
+        game_camera.pos = new Vector(0,22,13);
             //Face downward a bit
         game_camera.view.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
 

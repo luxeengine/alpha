@@ -53,6 +53,10 @@ class Vector {
 		return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
 	} //toString
 
+	public function equals(other:Vector) {
+		return (x == other.x && y == other.y && z == other.z && w == other.w);
+	}
+
 	public function clone() {
 		return new Vector(x,y,z,w);
 	} //clone

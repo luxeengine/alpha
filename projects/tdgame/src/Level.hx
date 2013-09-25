@@ -9,6 +9,7 @@ import luxe.Color;
 import luxe.components.render.MeshComponent;
 import phoenix.Ray;
 import phoenix.Shader;
+import phoenix.Texture;
 
 class Level extends Component {
 
@@ -23,16 +24,31 @@ class Level extends Component {
 
     public var game : Main;
 
+    var start_one:Vector;
+    var start_two:Vector;
+    var end_one:Vector;
+    var end_two:Vector;
+
     //internals
         var _floor_normal : Vector;
         var _floor_center : Vector;
 
         var s : Shader;
 
+        var tower_texture : Texture;
+
     public function init() {
 
-        var floor_texture = Luxe.loadTexture('assets/floor.png');
-        var tower_texture = Luxe.loadTexture('assets/tower.png');
+        mousegrid = new Vector();
+        mousepos = new Vector();
+
+        start_one = new Vector(4,0);
+        start_two = new Vector(5,0);
+        end_one = new Vector(4,9);
+        end_two = new Vector(5,9);
+
+        var floor_texture = Luxe.loadTexture('assets/floor2.png');
+        tower_texture = Luxe.loadTexture('assets/tower.png');
         var tower2_texture = Luxe.loadTexture('assets/tower2.png');
         
         tower = Luxe.scene.create(Entity, 'tower');
@@ -45,14 +61,14 @@ class Level extends Component {
 
             var tower_mesh2 = tower2.add(MeshComponent, 'mesh2');
                 tower_mesh2.file = 'assets/rangetower.obj';
-                tower_mesh2.texture = tower2_texture;
+                tower_mesh2.texture = tower2_texture;        
 
         floor = Luxe.scene.create(Entity, 'floor');
 
             var floor_mesh = floor.add(MeshComponent, 'mesh');
-                floor_mesh.file = 'assets/tower1.obj';
+                floor_mesh.file = 'assets/floor2.obj';
                 floor_mesh.texture = floor_texture;
-                
+
 
         var _grid = Luxe.scene.create(Entity, 'grid');
             grid = _grid.add(Grid, 'grid');
@@ -64,7 +80,7 @@ class Level extends Component {
             size : 12,
             color : new Color(0.98,0.98,1),
             batcher : game.hud_view
-        });
+        });       
 
     }
 
@@ -77,12 +93,57 @@ class Level extends Component {
 
     } //get_point_on_ground_plane
 
-    public function onmousedown(e:MouseEvent) {
-        tower.get('mesh').mesh.geometry.shader = s;
+    public function onmouseup(e:MouseEvent) {
+            
+        update_mouse_pos(e);
+
+        //first of all, when we click down,
+        //we have to check that the tower placement point is not taken already.
+        
+        if(grid.isWalkable(mousegrid.x, mousegrid.y)) {
+
+            // trace('attempting to place a tower at ' + mousegrid.x + ',' + mousegrid.y);
+
+                //first check it isn't on the starts or end blocks
+            if(mousegrid.equals(start_one) || mousegrid.equals(start_two) || mousegrid.equals(end_one) || mousegrid.equals(end_two)) {
+                trace("Cannot place a tower in the entrance or exits of the level!");
+                return;
+            }
+
+
+                //block the grid position, so we can test against it
+            grid.set_blocked(mousegrid.x, mousegrid.y);
+
+                //also, if it is available, check that it won't prohibit the enemy path from closing entirely
+            var _path_one : Array<Vector> = grid.path(start_one, end_one);
+            var _path_two : Array<Vector> = grid.path(start_two, end_two);
+            var _path_three : Array<Vector> = grid.path(start_one, end_two);
+            var _path_four : Array<Vector> = grid.path(start_two, end_one);
+
+            if( (_path_one != null) || (_path_two != null) || (_path_three != null) || (_path_four != null) ) {
+
+                //now that we know there is definitely a way out for the creeps, we can place a tower here.
+                var newtower = Luxe.scene.create(Entity, 'tower' + Math.random());
+
+                var tower_mesh = newtower.add(MeshComponent, 'mesh');
+                    tower_mesh.file = 'assets/tower2.obj';
+                    tower_mesh.texture = tower_texture;
+
+                tower_mesh.init();
+
+                newtower.pos = mousepos;
+
+
+            } else {
+                trace("Cannot place tower that would block the enemy from the exits.");
+                grid.set_unblocked(mousegrid.x, mousegrid.y);
+            }
+
+        } //is even available
+
     }
 
-    public function onmousemove(e:MouseEvent) {
-
+    function update_mouse_pos(e:MouseEvent) {
             //get the screen ray from the mouse
         if(mouse_ray == null) {
             mouse_ray = game.game_camera.view.screen_point_to_ray(e.pos);
@@ -94,12 +155,33 @@ class Level extends Component {
         var tp = get_point_on_ground_plane( mouse_ray.origin, mouse_ray.dir );
 
                 //then move it to grid space
-            tp.x = 0.5+Math.floor(tp.x);
-            tp.z = 0.5+Math.floor(tp.z);
+            tp.x = Math.floor(tp.x);
+            tp.z = Math.floor(tp.z);
 
+        if(tp.x < -5) tp.x = -5;
+        if(tp.z < -5) tp.z = -5;
+        if(tp.x > 4) tp.x = 4;
+        if(tp.z > 4) tp.z = 4;
+
+            //use this for path finding tests
+        mousegrid.set(tp.x+5,tp.z+5);
+
+        tp.x += 0.5;
+        tp.z += 0.5;
+
+        mousepos = tp;
+
+    }
+
+    var mousegrid : Vector;
+    var mousepos : Vector;
+
+    public function onmousemove(e:MouseEvent) {
+
+        update_mouse_pos(e);
             //set the tower position
-        tower.pos = tp;
-        
+        tower.pos = mousepos;        
+        tower2.pos = new Vector(0.5+3,0, 0.5);
 
     } //onmousemove
 
