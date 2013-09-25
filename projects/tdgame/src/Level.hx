@@ -8,11 +8,13 @@ import luxe.Color;
 
 import luxe.components.render.MeshComponent;
 import phoenix.Ray;
+import phoenix.Shader;
 
 class Level extends Component {
 
     var floor : Entity;
     var tower : Entity;
+    var tower2 : Entity;
     var mouse_ray : Ray;
 
     var text : Text;
@@ -23,16 +25,25 @@ class Level extends Component {
         var _floor_normal : Vector;
         var _floor_center : Vector;
 
+        var s : Shader;
+
     public function init() {
 
         var floor_texture = Luxe.loadTexture('assets/floor.png');
         var tower_texture = Luxe.loadTexture('assets/tower.png');
+        var tower2_texture = Luxe.loadTexture('assets/tower2.png');
         
         tower = Luxe.scene.create(Entity, 'tower');
 
             var tower_mesh = tower.add(MeshComponent, 'mesh');
                 tower_mesh.file = 'assets/tower2.obj';
                 tower_mesh.texture = tower_texture;
+
+        tower2 = Luxe.scene.create(Entity, 'tower2');
+
+            var tower_mesh2 = tower2.add(MeshComponent, 'mesh2');
+                tower_mesh2.file = 'assets/rangetower.obj';
+                tower_mesh2.texture = tower2_texture;
 
         floor = Luxe.scene.create(Entity, 'floor');
 
@@ -43,7 +54,8 @@ class Level extends Component {
         text = new Text({
             pos : new Vector(0,0),
             text : 'HP 100/100',
-            color : new Color(0.6,0,0),
+            size : 12,
+            color : new Color(0.98,0.98,1),
             batcher : game.hud_view
         });
 
@@ -57,6 +69,10 @@ class Level extends Component {
         return Luxe.utils.geometry.intersect_ray_plane( _ray_origin, _ray_dir, _floor_normal, _floor_center);
 
     } //get_point_on_ground_plane
+
+    public function onmousedown(e:MouseEvent) {
+        tower.get('mesh').mesh.geometry.shader = s;
+    }
 
     public function onmousemove(e:MouseEvent) {
 
@@ -76,14 +92,14 @@ class Level extends Component {
 
             //set the tower position
         tower.pos = tp;
-            //set the hp position
-        text.pos = game.game_camera.view.world_point_to_screen(tower.pos);
+        
 
     } //onmousemove
 
     public function update(dt:Float) {
 
-
+         //set the hp position
+        text.pos = game.game_camera.view.world_point_to_screen(tower.pos);
 
     } //update
 
