@@ -33,7 +33,7 @@ class Level extends Component {
         var _floor_normal : Vector;
         var _floor_center : Vector;
 
-        var s : Shader;
+        var lighting : Shader;
 
         var tower_texture : Texture;
 
@@ -59,7 +59,7 @@ class Level extends Component {
 
         tower2 = Luxe.scene.create(Entity, 'tower2');
 
-            var tower_mesh2 = tower2.add(MeshComponent, 'mesh2');
+            var tower_mesh2 = tower2.add(MeshComponent, 'mesh');
                 tower_mesh2.file = 'assets/rangetower.obj';
                 tower_mesh2.texture = tower2_texture;        
 
@@ -82,6 +82,9 @@ class Level extends Component {
             batcher : game.hud_view
         });       
 
+        lighting = Luxe.loadShader('assets/simple_lighting_f.glsl','assets/simple_lighting_v.glsl');
+
+
     }
 
     public function get_point_on_ground_plane(_ray_origin:Vector, _ray_dir:Vector) {
@@ -96,6 +99,10 @@ class Level extends Component {
     public function onmouseup(e:MouseEvent) {
             
         update_mouse_pos(e);
+
+        floor.get('mesh').mesh.geometry.shader = lighting;
+        tower.get('mesh').mesh.geometry.shader = lighting;
+        tower2.get('mesh').mesh.geometry.shader = lighting;
 
         //first of all, when we click down,
         //we have to check that the tower placement point is not taken already.

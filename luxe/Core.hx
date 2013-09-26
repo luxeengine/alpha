@@ -144,7 +144,7 @@ class Core {
         draw = new Draw( this );
 		file = new Files( this );
 		time = new Time( this );
-		events = new Events( this );
+		events = new Events();
 		audio = new Audio( this );	
 		input = new Input( this );
 

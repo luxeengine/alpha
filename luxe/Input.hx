@@ -25,8 +25,15 @@ class Input {
     public static var Keys : lime.utils.Keys;
     public static var Gamepad : lime.utils.Gamepad;
 
+#if neko
+    var key_bindings : Map<String, haxe.ds.EnumValueMap<KeyValue,Bool> >;
+    var mouse_bindings : Map<String, haxe.ds.EnumValueMap<MouseButton,Bool> >;
+#else
     var key_bindings : Map<String, Map<KeyValue,Bool> >;
-    var mouse_bindings : Map<String, Map<MouseButton,Bool> >;    
+    var mouse_bindings : Map<String, Map<MouseButton,Bool> >;  
+#end
+
+      
 
     @:noCompletion public function startup() {
         Keys = new lime.utils.Keys();
@@ -53,7 +60,7 @@ class Input {
     function add_key_binding( _name:String, _value:KeyValue ) {
         
         if( !key_bindings.exists(_name) ) {
-            key_bindings.set(_name, new Map());
+            key_bindings.set(_name, new Map<KeyValue,Bool>() );
         } //if the map doesn't exist yet
 
         var kb = key_bindings.get(_name);
@@ -64,7 +71,7 @@ class Input {
     function add_mouse_binding( _name:String, _value:MouseButton ) {
         
         if( !mouse_bindings.exists(_name) ) {
-            mouse_bindings.set(_name, new Map());   
+            mouse_bindings.set(_name, new Map<MouseButton,Bool>());   
         } //if the map doesn't exist yet
 
         var mb = mouse_bindings.get(_name);

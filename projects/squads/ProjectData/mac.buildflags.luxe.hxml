@@ -1,0 +1,15 @@
+-main ApplicationMain 
+-lib luxe
+-lib lime
+-lib format
+-lib lime
+-lib hxcollision
+-cp src
+-D tools=1.1.0
+-D lime_native
+-D luxe_native
+-D mac
+-D desktop
+-cp bin/mac/cpp/haxe
+-cpp bin/mac/cpp/obj/
+--macro allowPackage("flash")

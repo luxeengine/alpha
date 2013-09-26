@@ -8,12 +8,12 @@ class Scene {
 
     public var name : String = 'Untitled Scene';
     
-    public var entities : Array<Entity>;
+    public var entities : Map<String,Entity>;
     public var inited : Bool = false;
     public var started : Bool = false;
 
     public function new() {
-        entities = new Array<Entity>();
+        entities = new Map<String,Entity>();
     }
 
     public function create<T>(type:Class<T>, ?_name:String='') : T {
@@ -27,21 +27,21 @@ class Scene {
         }
 
             //create an instance
-        var _component = Type.createInstance( type, [] );
+        var _entity = Type.createInstance( type, [] );
             //cast to entity so we can set its name
-        var _e_component : Entity = cast _component;
+        var _e_entity : Entity = cast _entity;
             //apply it!
-        _e_component.name = _temp_name;
+        _e_entity.name = _temp_name;
 
             //add it to this scene
-        add(_e_component);
+        add(_e_entity);
 
-            //component
-        return _component;
+            //entity
+        return _entity;
     }
 
     public function add( entity:Entity ) {
-        entities.push( entity );
+        entities.set( entity.id, entity );
         
         if(inited) {
             entity._init();
@@ -55,17 +55,19 @@ class Scene {
 
     public function remove(entity:Entity) {
         entity._destroy();
-        entities.remove( entity );
+        entities.remove( entity.id );
     }
 
     public function empty() {
 
         for(entity in entities) {
+                //destroy
             entity._destroy();
             entity = null;
+                //remove
+            entities.remove(entity.id);
         }
-
-        entities.splice( 0, entities.length );
+        
     }
     
     public function shutdown() {

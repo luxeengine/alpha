@@ -50,7 +50,7 @@ class Entity extends Objects {
     	
     	_components = new Components( this );
     	children = new Array<Entity>();
-		events = new luxe.Events( Luxe.core );
+		events = new luxe.Events();
 
 			//transform
 		pos = new Vector();

@@ -7,18 +7,15 @@ import luxe.utils.UUID;
 
 class Events {
     
-    public var core : Core;
-    public function new( _core:Core ) { core = _core; }
+    
 
     public var event_queue : Map< String, EventObject>;
     public var event_connections : Map< String, EventConnection>; //event id, connect
     public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
     public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
     public var event_schedules : Map< String, haxe.Timer >; //event id, timer
-
-    public function startup() {
-        core._debug(':: luxe :: \t Events Initialized.');
-
+    
+    public function new( ) { 
             //create the queue, lists and map
         event_connections = new Map();
         event_slots = new Map();
@@ -27,8 +24,12 @@ class Events {
         event_schedules = new Map();
     }
 
+    public function startup() {
+        
+    }
+
     public function shutdown() {
-        core._debug(':: luxe :: \t Events shut down.');
+
     }
 
         //exposed for learning/testing api
