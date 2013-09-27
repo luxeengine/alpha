@@ -13,6 +13,9 @@ class Vector {
 	@:isVar public var length(get, set) : Float;
 	@:isVar public var normalized(get, null) : Vector;
 	@:isVar public var inverted(get, null) : Vector;
+	
+	@:isVar public var serialized(get, null) : Dynamic;
+	function get_serialized() : Dynamic { return {x:x,y:y,z:z,w:w} };
 
 	@:isVar public var listen_x(default,default) : Float -> Void;
 	@:isVar public var listen_y(default,default) : Float -> Void;

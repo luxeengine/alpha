@@ -100,4 +100,21 @@ class Camera extends Entity {
         view.pos = final_position;
     }    
 
+    public override function get_serialize_data() : Dynamic {
+
+        var _data : Dynamic = super.get_serialize_data();
+
+        var _extra : Dynamic = {
+            camera_type : view.projection.getName()            
+        };
+        
+        if(bounds != null)                                  _extra.bounds = bounds.serialized;
+        if(view.target != null)                             _extra.target = view.target.serialized;
+        if(view.projection == ProjectionType.ortho)         _extra.camera_options = view.perspective_options;
+        if(view.projection == ProjectionType.perspective)   _extra.camera_options = view.ortho_options;
+
+        return _merge_properties(_data, _extra);
+
+    } //get_serialize_data    
+
 }

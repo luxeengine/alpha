@@ -22,7 +22,7 @@ class Bullet extends Component {
 
     var ignored_colliders : Array<BaseShape>;
 
-    public var collider : Circle;
+    @:hide public var collider : Circle;
 
     var bounds : Rectangle;
 

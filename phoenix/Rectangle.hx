@@ -8,6 +8,10 @@ class Rectangle {
     public var w:Float;
     public var h:Float;
 
+     @:isVar public var serialized(get, null) : Dynamic;
+    function get_serialized() : Dynamic { return {x:x,y:y,w:w,h:h} };
+
+
     public function new(?_x:Float = 0,?_y:Float = 0,?_w:Float = 0,?_h : Float = 0) {
         x = _x; 
         y = _y; 

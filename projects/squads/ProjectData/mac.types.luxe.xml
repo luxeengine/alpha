@@ -1,5 +1,5 @@
 <haxe>
-	<class path="ApplicationMain" params="" file="bin/mac/cpp/haxe/ApplicationMain.hx">
+	<class path="ApplicationMain" params="" file="bin/mac64/cpp/haxe/ApplicationMain.hx">
 		<_main_ public="1" static="1"><c path="Game"/></_main_>
 		<_core public="1" static="1"><c path="luxe.Core"/></_core>
 		<_lime public="1" static="1"><c path="lime.LiME"/></_lime>
@@ -604,11 +604,26 @@
 	<c path="String"/>
 	<x path="Void"/>
 </f></openURL>
-		<addGeometry public="1" set="method" line="84" static="1"><f a="_geom">
+		<fileDialogFolder public="1" set="method" line="84" static="1"><f a="_title:_text">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></fileDialogFolder>
+		<fileDialogOpen public="1" set="method" line="87" static="1"><f a="_title:_text">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></fileDialogOpen>
+		<fileDialogSave public="1" set="method" line="90" static="1"><f a="_title:_text">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></fileDialogSave>
+		<addGeometry public="1" set="method" line="94" static="1"><f a="_geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></addGeometry>
-		<removeGeometry public="1" set="method" line="88" static="1"><f a="_geom">
+		<removeGeometry public="1" set="method" line="98" static="1"><f a="_geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></removeGeometry>
@@ -1959,7 +1974,10 @@
 </f></kill>
 		<init public="1" set="method" line="29"><f a=""><x path="Void"/></f></init>
 		<bounds><t path="luxe.Rectangle"/></bounds>
-		<collider public="1"><c path="hxcollision.shapes.Circle"/></collider>
+		<collider public="1">
+			<c path="hxcollision.shapes.Circle"/>
+			<meta><m n=":hide"/></meta>
+		</collider>
 		<ignored_colliders><c path="Array"><c path="hxcollision.shapes.BaseShape"/></c></ignored_colliders>
 		<spawn_pos public="1"><t path="luxe.Vector"/></spawn_pos>
 		<speed public="1"><x path="Float"/></speed>
@@ -3562,7 +3580,7 @@
 	<x path="Void"/>
 </f></new>
 	</class>
-	<class path="lime.AssetData" params="" file="bin/mac/cpp/haxe/lime/AssetData.hx">
+	<class path="lime.AssetData" params="" file="bin/mac64/cpp/haxe/lime/AssetData.hx">
 		<initialized line="8" static="1"><x path="Bool"/></initialized>
 		<library public="1" line="10" static="1"><x path="Map">
 	<c path="String"/>
@@ -3980,15 +3998,15 @@
 </f></new>
 	</class>
 	<class path="lime.WindowHandler" params="" file="/Users/Sven/dev/lab/lime/lime/WindowHandler.hx">
-		<nme_stage_get_stage_width line="279" static="1"><f a="">
+		<nme_stage_get_stage_width line="313" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></nme_stage_get_stage_width>
-		<nme_stage_get_stage_height line="280" static="1"><f a="">
+		<nme_stage_get_stage_height line="314" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></nme_stage_get_stage_height>
-		<nme_set_stage_handler line="281" static="1"><f a=":::">
+		<nme_set_stage_handler line="315" static="1"><f a=":::">
 	<d/>
 	<f a="_event">
 		<d/>
@@ -3998,11 +4016,11 @@
 	<d/>
 	<unknown/>
 </f></nme_set_stage_handler>
-		<nme_get_frame_stage line="282" static="1"><f a="">
+		<nme_get_frame_stage line="316" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></nme_get_frame_stage>
-		<nme_create_main_frame line="283" static="1"><f a=":::::">
+		<nme_create_main_frame line="317" static="1"><f a=":::::">
 	<f a="handle">
 		<d/>
 		<x path="Void"/>
@@ -4014,83 +4032,126 @@
 	<unknown/>
 	<unknown/>
 </f></nme_create_main_frame>
-		<nme_pause_animation line="284" static="1"><f a=""><unknown/></f></nme_pause_animation>
-		<nme_resume_animation line="285" static="1"><f a=""><unknown/></f></nme_resume_animation>
-		<nme_terminate line="286" static="1"><f a=""><unknown/></f></nme_terminate>
-		<nme_close line="287" static="1"><f a=""><unknown/></f></nme_close>
-		<nme_get_url line="288" static="1"><f a="">
+		<nme_pause_animation line="318" static="1"><f a=""><unknown/></f></nme_pause_animation>
+		<nme_resume_animation line="319" static="1"><f a=""><unknown/></f></nme_resume_animation>
+		<nme_terminate line="320" static="1"><f a=""><unknown/></f></nme_terminate>
+		<nme_close line="321" static="1"><f a=""><unknown/></f></nme_close>
+		<nme_get_url line="322" static="1"><f a="">
 	<c path="String"/>
 	<unknown/>
 </f></nme_get_url>
-		<nme_stage_show_cursor line="291" static="1"><f a=":">
+		<nme_file_dialog_save line="325" static="1"><f a="::">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="Array"><unknown/></c>
+	<c path="String"/>
+</f></nme_file_dialog_save>
+		<nme_file_dialog_open line="326" static="1"><f a="::">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="Array"><unknown/></c>
+	<c path="String"/>
+</f></nme_file_dialog_open>
+		<nme_file_dialog_folder line="327" static="1"><f a=":">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></nme_file_dialog_folder>
+		<nme_stage_set_window_position line="330" static="1"><f a="::">
+	<d/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<unknown/>
+</f></nme_stage_set_window_position>
+		<nme_stage_show_cursor line="332" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></nme_stage_show_cursor>
-		<nme_stage_constrain_cursor_to_window_frame line="292" static="1"><f a=":">
+		<nme_stage_constrain_cursor_to_window_frame line="333" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></nme_stage_constrain_cursor_to_window_frame>
-		<nme_stage_set_cursor_position_in_window line="293" static="1"><f a="::">
+		<nme_stage_set_cursor_position_in_window line="334" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></nme_stage_set_cursor_position_in_window>
-		<nme_stage_get_multitouch_supported line="296" static="1"><f a="">
+		<nme_stage_get_multitouch_supported line="337" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></nme_stage_get_multitouch_supported>
-		<nme_stage_set_multitouch_active line="297" static="1"><f a=":">
+		<nme_stage_set_multitouch_active line="338" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></nme_stage_set_multitouch_active>
-		<openURL public="1" set="method" line="258"><f a="_url">
+		<fileDialogFolder public="1" set="method" line="302"><f a="_title:_text">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></fileDialogFolder>
+		<fileDialogSave public="1" set="method" line="295"><f a="_title:_text">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></fileDialogSave>
+		<fileDialogOpen public="1" set="method" line="288"><f a="_title:_text">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="String"/>
+</f></fileDialogOpen>
+		<openURL public="1" set="method" line="271"><f a="_url">
 	<c path="String"/>
 	<x path="Void"/>
 </f></openURL>
-		<on_force_close public="1" set="method" line="252"><f a=""><x path="Void"/></f></on_force_close>
-		<on_resume public="1" set="method" line="245"><f a=""><x path="Void"/></f></on_resume>
-		<on_pause public="1" set="method" line="238"><f a=""><x path="Void"/></f></on_pause>
-		<on_focus public="1" set="method" line="234"><f a="_event">
+		<on_force_close public="1" set="method" line="265"><f a=""><x path="Void"/></f></on_force_close>
+		<on_resume public="1" set="method" line="258"><f a=""><x path="Void"/></f></on_resume>
+		<on_pause public="1" set="method" line="251"><f a=""><x path="Void"/></f></on_pause>
+		<on_focus public="1" set="method" line="247"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_focus>
-		<on_should_rotate public="1" set="method" line="229"><f a="_event">
+		<on_should_rotate public="1" set="method" line="242"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_should_rotate>
-		<on_resize public="1" set="method" line="217"><f a="_event">
+		<on_resize public="1" set="method" line="230"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_resize>
-		<on_redraw public="1" set="method" line="213"><f a="_event">
+		<on_redraw public="1" set="method" line="226"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_redraw>
-		<set_cursor_position_in_window public="1" set="method" line="203"><f a="?_x:?_y">
+		<set_cursor_position_in_window public="1" set="method" line="216"><f a="?_x:?_y">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></set_cursor_position_in_window>
-		<constrain_cursor_to_window_frame public="1" set="method" line="151"><f a="?val">
+		<set_window_position public="1" set="method" line="173"><f a="x:y">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Void"/>
+</f></set_window_position>
+		<constrain_cursor_to_window_frame public="1" set="method" line="158"><f a="?val">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></constrain_cursor_to_window_frame>
-		<set_cursor_visible public="1" set="method" line="140"><f a="?val">
+		<set_cursor_visible public="1" set="method" line="147"><f a="?val">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></set_cursor_visible>
-		<set_active public="1" set="method" line="123"><f a="_active">
+		<set_active public="1" set="method" line="130"><f a="_active">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></set_active>
-		<invalidate public="1" set="method" line="119"><f a=""><x path="Void"/></f></invalidate>
-		<post_ready public="1" set="method" line="102"><f a=""><x path="Void"/></f></post_ready>
-		<ready public="1" set="method" line="80"><f a=""><x path="Void"/></f></ready>
-		<shutdown public="1" set="method" line="71"><f a=""><x path="Void"/></f></shutdown>
+		<invalidate public="1" set="method" line="126"><f a=""><x path="Void"/></f></invalidate>
+		<post_ready public="1" set="method" line="109"><f a=""><x path="Void"/></f></post_ready>
+		<ready public="1" set="method" line="82"><f a=""><x path="Void"/></f></ready>
+		<shutdown public="1" set="method" line="73"><f a=""><x path="Void"/></f></shutdown>
 		<startup public="1" set="method" line="22"><f a=""><x path="Void"/></f></startup>
 		<cursor_visible public="1"><x path="Bool"/></cursor_visible>
 		<cursor_locked public="1"><x path="Bool"/></cursor_locked>

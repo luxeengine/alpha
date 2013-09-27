@@ -103,7 +103,7 @@ class PlayerWeapon extends Component {
             weapon_names.push(w);
         }
 
-        image = new Sprite({ size:new Vector(64,64), depth : 6 });
+        image = new Sprite({ name:'weapon', serialize:false, size:new Vector(64,64), depth : 6 });
 
         set_weapon('pistol');
 

@@ -37,6 +37,8 @@ class PlayerShoot extends Component {
             for(i in 0 ... poolsize) {
                     //create the sprite
                 var bullet = new Sprite({
+                    name : 'bullet' + i,
+                    serialize : false,
                     texture : bullet_texture,
                     visible : false,
                     depth : 7
@@ -45,12 +47,14 @@ class PlayerShoot extends Component {
                     //set the bullet fixed rate
                 bullet.fixed_rate = 0.02;
                     //now attach the bullet component
-                bullet.add(Bullet, 'bullet');
+                var bcomp = bullet.add(Bullet, 'bullet');
                     //store it in the pool
                 bullet_pool.push(bullet);
 
             } //for
         } //precache
+
+        Luxe.scene.create(luxe.Entity,'testentity');
 
         sprite = cast entity;
         aim = get('aim');
@@ -102,6 +106,7 @@ class PlayerShoot extends Component {
         var comp : Bullet = bullet.get('bullet');
 
             comp.alive = true;
+
             comp.dir.set(aim.direction.x, aim.direction.y);
             comp.speed = weapon.speed;
             comp.onspawn(bullet.pos);

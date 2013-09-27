@@ -53,6 +53,7 @@ class Level extends Mode {
         drawer = new LuxeDrawer();
 
         bg = new Sprite({
+            name:'bg',
             texture : Luxe.loadTexture('assets/levels/01.exposure.png'),
             centered : false,
             size : new Vector(Luxe.screen.w, Luxe.screen.h),
@@ -61,6 +62,7 @@ class Level extends Mode {
         });        
 
         top = new Sprite({
+            name:'bgtop',
             texture : Luxe.loadTexture('assets/levels/01.exposure.top.png'),
             centered : false,
             size : new Vector(Luxe.screen.w, Luxe.screen.h),
@@ -129,6 +131,7 @@ class Level extends Mode {
                 var tex = Luxe.loadTexture('assets/items/explosives.png');
                 tex.filter = FilterType.nearest;
                 var sprite = new Sprite({
+                    name : 'explosives' + items.length,
                     pos : new Vector(item.sx*scale, item.sy*scale),
                     centered : false,
                     texture : tex,

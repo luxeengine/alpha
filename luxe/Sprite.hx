@@ -88,6 +88,10 @@ class Sprite extends Entity {
         } else {
             scene = Luxe.scene;
         }
+//serialize
+        if(options.serialize != null) {
+            serialize = options.serialize;
+        }
 
 //size is interesting, as it's possibly based on texture
     
@@ -455,6 +459,29 @@ class Sprite extends Entity {
     public function set_clip_rect(val : Rectangle) : Rectangle {
         return geometry.clip_rect = val;
     }
+
+    public override function get_serialize_data() : Dynamic {
+        var _data : Dynamic = super.get_serialize_data();
+
+        var _extra : Dynamic = {
+            color : color.serialized,
+            locked : locked,
+            size : size.serialized,
+            centered : centered,
+            visible : visible, 
+            radians : radians
+        };
+        
+        if(texture != null)             _extra.texture = texture.id;
+        if(uv != null)                  _extra.uv = uv.serialized;
+        if(flipx)                       _extra.flipx = true;
+        if(flipy)                       _extra.flipy = true;
+        if(clip && clip_rect!=null)     _extra.clip_rect = clip_rect.serialized;
+        if(origin != null)              _extra.origin = origin.serialized;
+
+        return _merge_properties(_data, _extra);
+
+    } //get_serialize_data
 
 } //Sprite
 

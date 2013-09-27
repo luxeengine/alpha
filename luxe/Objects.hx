@@ -22,6 +22,21 @@ class Objects {
 
 	} //_call
 
+    private function _merge_properties( _properties:Dynamic, _with:Dynamic) : Dynamic {
+
+        if(_with == null) {
+            _with = {};
+        }
+
+        var fields = Reflect.fields(_with);
+        for(field in fields) {
+            Reflect.setField(_properties, field, Reflect.field(_with, field));
+        }
+
+        return _properties;
+
+    } //_merge_properties  
+
     public static var _show_debug : Bool = false;
     private function _debug(v){ if(_show_debug) { trace(v); } }	
 

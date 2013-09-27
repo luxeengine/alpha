@@ -224,6 +224,7 @@ class Manager extends Mode {
 
 
         bar_sprites.set('player1.health', new Sprite({
+            name:'player1health',
             pos: new Vector(xspacing - hwidth, spacing+60),
             centered : false,
             size : new Vector(width, height),
@@ -231,6 +232,7 @@ class Manager extends Mode {
             color : game.team1color,
         }));
         bar_sprites.set('player2.health', new Sprite({
+            name:'player2health',
             pos: new Vector( xspacing - hwidth, Luxe.screen.h - spacing + 20),
             centered : false,
             size : new Vector(width, height),
@@ -238,6 +240,7 @@ class Manager extends Mode {
             color : game.team1color
         }));
         bar_sprites.set('player3.health', new Sprite({
+            name:'player3health',
             pos : new Vector(Luxe.screen.w - xspacing - hwidth, spacing + 60),
             size : new Vector(width, height),
             depth : 10,
@@ -245,6 +248,7 @@ class Manager extends Mode {
             color : game.team2color,
         }));
         bar_sprites.set('player4.health', new Sprite({
+            name:'player4health',
             pos : new Vector(Luxe.screen.w - xspacing - hwidth, Luxe.screen.h - spacing + 20),
             size : new Vector( width, height),
             depth : 10,
@@ -489,7 +493,9 @@ class Manager extends Mode {
     }
 
     public function onkeyup(e:KeyEvent) {
-
+        if(e.key == KeyValue.key_0) {
+            Luxe.scene.serialize_to_disk('/Users/Sven/dev/lab/luxe/projects/squads/ProjectData/scenes/default/');
+        }
     }
 
     function create_controllers() {
@@ -499,24 +505,28 @@ class Manager extends Mode {
         var smaller_spacing = spacing/2;
 
         controller_sprites.set('player1', new Sprite({
+            name:'controllerplayer1',
             texture : controller_tex,
             pos : new Vector( midx - (smaller_spacing) - spacing, Luxe.screen.h * 0.8 ),
             color : new Color(1,1,1,0.2)
         }));
 
         controller_sprites.set('player2', new Sprite({
+            name:'controllerplayer2',
             texture : controller_tex,
             pos : new Vector( midx - (smaller_spacing), Luxe.screen.h * 0.8 ),
             color : new Color(1,1,1,0.2)
         }));
 
         controller_sprites.set('player3', new Sprite({
+            name:'controllerplayer3',
             texture : controller_tex,
             pos : new Vector( midx + (smaller_spacing), Luxe.screen.h * 0.8 ),
             color : new Color(1,1,1,0.2)
         }));
 
         controller_sprites.set('player4', new Sprite({
+            name:'controllerplayer4',
             texture : controller_tex,
             pos : new Vector( midx + (smaller_spacing) + spacing, Luxe.screen.h * 0.8 ),
             color : new Color(1,1,1,0.2)

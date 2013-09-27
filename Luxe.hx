@@ -81,6 +81,16 @@ class Luxe {
         core.lime.window.openURL( _url );
     } //openURL
 
+    public static function fileDialogFolder(_title:String, _text:String) : String {
+        return core.lime.window.fileDialogFolder(_title,_text);
+    }
+    public static function fileDialogOpen(_title:String, _text:String) : String {
+        return core.lime.window.fileDialogOpen(_title,_text);
+    }
+    public static function fileDialogSave(_title:String, _text:String) : String {
+        return core.lime.window.fileDialogSave(_title,_text);
+    }
+
     public static function addGeometry(_geom:Geometry) {
         renderer.default_batcher.add(_geom);
     } 

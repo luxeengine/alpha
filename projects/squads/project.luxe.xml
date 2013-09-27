@@ -10,7 +10,7 @@
 
 	<app main="Game" path="bin" file="squads" />
 
-	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" fullscreen="false" />
+	<window width="850" height="646" borderless="false" orientation="landscape" fps="60" vsync="true" resizable="true" fullscreen="false" />
 	
      <assets path="Assets" rename="assets" include="*"/>
 

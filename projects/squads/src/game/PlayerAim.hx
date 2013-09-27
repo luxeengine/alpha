@@ -27,6 +27,7 @@ class PlayerAim extends Component {
     public function init() {
         direction = new Vector();
         reticule = new Sprite({
+            name:'reticule',
             texture : Luxe.loadTexture('assets/game/reticule.png'),
                 //custom origin (if centered is desirable, it must be factored in here. so 50 radius + -8 both ways)
             origin : new Vector(8,58),

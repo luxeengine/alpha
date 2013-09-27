@@ -21,6 +21,8 @@ class Entity extends Objects {
     var fixed_rate_timer : haxe.Timer;
 
     var _destroyed : Bool = false;
+    public var inited : Bool = false;
+    public var started : Bool = false;
 
     	//The parent entity if any, set to null for no parent
     @:isVar public var parent   		(get,set) : Entity;
@@ -39,6 +41,8 @@ class Entity extends Objects {
         //if the entity is in a scene
     @:isVar public var scene            (get,set) : Scene;
 
+
+    public var serialize : Bool = true;
 
     private var _last_scale:Vector;
 
@@ -84,6 +88,9 @@ class Entity extends Objects {
 		for(_child in children) {
 			_call(_child, '_init');
 		} //for each child
+
+            //flag internally
+        inited = true;
 
 	} //_init
 
@@ -211,6 +218,9 @@ class Entity extends Objects {
 
             //start the fixed rate timer
 		_start_fixed_rate_timer( fixed_rate );
+
+            //flag internally
+        started = true;
 
 	} //_start
 
@@ -551,10 +561,7 @@ class Entity extends Objects {
         //An internal callback for when x y or z on a transform changes
     private function _pos_change(_v:Float) { this.set_pos(pos); }
         //An internal callback for when x y or z on a transform changes
-    private function _scale_change(_v:Float) { this.set_scale(scale); 
-        // trace('changing scale in entity ' + _v); 
-        // untyped __js__('console.log("TTT")');
-    }
+    private function _scale_change(_v:Float) { this.set_scale(scale); }
         //An internal callback for when x y or z on a transform changes
     private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
 
@@ -566,5 +573,37 @@ class Entity extends Objects {
         _v.listen_y = listener; 
         _v.listen_z = listener;
     } //_attach_listener
+
+    public function get_serialize_data() : Dynamic {
+        
+        var _type = Type.getClassName(Type.getClass(this));
+
+        return {
+            entity : id,
+            name : name,
+            type : _type,
+            count_children : children.length,
+            count_components : Lambda.count(components),
+            pos : pos.serialized,
+            rotation : rotation.serialized,
+            scale : scale.serialized
+        };
+    } //get_serialize_data
+
+        //save me and all my children and components to disk
+    public function serialize_to_disk(_destination_path:String) {
+
+        if(!serialize) return;
+        
+        var _type = Type.getClassName(Type.getClass(this));
+        var _destfile = _destination_path + 'entity.' + name + '.' + _type + '.json';
+
+        var _data : Dynamic = get_serialize_data();
+
+        var _file : sys.io.FileOutput = sys.io.File.write( _destfile, false);
+            _file.writeString( luxe.utils.JSON.encode(_data) );
+            _file.close();
+
+    }
 
 } //Entity

@@ -105,11 +105,11 @@ class Components {
 			//debug stuff
 		_debug('adding a component to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
 
-		if(entity.scene != null) {
-			if(entity.scene.inited) {
+		if(entity != null) {
+			if(entity.inited) {
 				_call(_component, 'init');
 			}
-			if(entity.scene.started) {
+			if(entity.started) {
 				_call(_component, 'start');
 			}
 		}

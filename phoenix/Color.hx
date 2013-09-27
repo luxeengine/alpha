@@ -13,6 +13,9 @@ class Color {
 	public var b : Float = 1.0;
 	public var a : Float = 1.0;
 
+	@:isVar public var serialized(get, null) : Dynamic;
+	function get_serialized() : Dynamic { return {r:r,g:g,b:b,a:a} };
+
 	public function new( _r:Float = 1.0, _g:Float = 1.0, _b:Float = 1.0, _a:Float = 1.0 ) {
 		
 		r = _r;

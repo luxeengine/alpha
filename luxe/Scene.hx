@@ -7,6 +7,7 @@ import luxe.Input.MouseEvent;
 class Scene {
 
     public var name : String = 'Untitled Scene';
+    public var id : String = '';
     
     public var entities : Map<String,Entity>;
     public var inited : Bool = false;
@@ -14,6 +15,7 @@ class Scene {
 
     public function new() {
         entities = new Map<String,Entity>();
+        id = Luxe.utils.uuid();
     }
 
     public function create<T>(type:Class<T>, ?_name:String='') : T {
@@ -106,16 +108,22 @@ class Scene {
         }
     } //destroy
     public function init() {
+        
+        inited = true;
+
         for(entity in entities) {
             entity._init();
         }        
-        inited = true;
+        
     } //init
     public function start() {
+        
+        started = true;
+
         for(entity in entities) {
             entity._start();
         }
-        started = true;
+        
     } //start
     public function update(dt:Float) {
         for(entity in entities) {
@@ -127,5 +135,37 @@ class Scene {
             entity._fixed_update();
         }
     } //fixed_update
+
+    public function serialize_to_disk( _destination_path:String ) {
+        #if luxe_native
+
+            trace('Saving scene to ' + _destination_path);
+
+                //write the scene metadata
+            var _metafile = _destination_path + 'scene.meta.luxe.json';
+
+                var meta = {
+                    id : id,
+                    name : name,
+                    count_entities : Lambda.count(entities)
+                }
+
+            var _file : sys.io.FileOutput = sys.io.File.write( _metafile, false);
+                _file.writeString( luxe.utils.JSON.encode(meta) );
+                _file.close();
+
+            var _entity_path = _destination_path + 'entities/';
+
+            sys.FileSystem.createDirectory(_entity_path);
+
+                //write out all the entities in the scene
+            for(entity in entities) {
+                entity.serialize_to_disk( _entity_path );
+            }
+
+            trace('Done saving scene.');
+
+        #end //luxe_native
+    }
 
 }
