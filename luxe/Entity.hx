@@ -347,6 +347,11 @@ class Entity extends Objects {
 
     	children.push(child);
 
+            //and update the parent link
+        if(child.parent != this) {
+            child.parent = this;
+        }
+
     } //addChild
 
     public function remove_child(child:Entity) {
@@ -591,18 +596,45 @@ class Entity extends Objects {
     } //get_serialize_data
 
         //save me and all my children and components to disk
-    public function serialize_to_disk(_destination_path:String) {
+    public function serialize_to_disk(_destination_path:String, _parent_write:Bool=false) {
 
         if(!serialize) return;
+        if(parent != null && !_parent_write) return;
         
         var _type = Type.getClassName(Type.getClass(this));
-        var _destfile = _destination_path + 'entity.' + name + '.' + _type + '.json';
+        var _name_string = name ;//+ '.' +  id.substring(0,8);
+        var _destpath = _destination_path + _name_string;
+
+            //create the path folder
+        sys.FileSystem.createDirectory(_destpath);
+
+            //work out the meta file
+         var _destfile = _destpath + '/' + _name_string + '.' + _type + '.json';
 
         var _data : Dynamic = get_serialize_data();
 
         var _file : sys.io.FileOutput = sys.io.File.write( _destfile, false);
             _file.writeString( luxe.utils.JSON.encode(_data) );
             _file.close();
+
+            //write the children and their components
+        var _children_path = _destpath + '/children/';
+
+        sys.FileSystem.createDirectory(_children_path);
+
+        for(child in children) {
+            child.serialize_to_disk(_children_path, true);
+        }
+
+        var _component_path = _destpath + '/components/';
+
+            //now write the components
+        sys.FileSystem.createDirectory( _component_path );
+
+            //tell the components to write
+        for(component in components) {
+            component.serialize_to_disk(_component_path);
+        }
 
     }
 

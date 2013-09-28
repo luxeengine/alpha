@@ -66,6 +66,28 @@ class Component extends Objects {
 	@:noCompletion public function entity_scale_change(_p:Vector) {}
 	@:noCompletion public function entity_rotation_change(_p:Vector) {}
 
+	public function get_serialize_data() : Dynamic {
+		return {
+			id : id,
+			entity : entity.id
+		};
+	} //get_serialize_data
+
+	public function serialize_to_disk( _destination_path:String ) {
+
+        var _data : Dynamic = get_serialize_data();        
+
+        var _type = Type.getClassName(Type.getClass(this));
+
+        var _destfile = _destination_path + name  + '.' + _type + '.json';
+
+        var _file : sys.io.FileOutput = sys.io.File.write( _destfile, false);
+            _file.writeString( luxe.utils.JSON.encode(_data) );
+            _file.close();
+
+	} //serialize_to_disk
+
+
 } //Component
 
 class Components {
