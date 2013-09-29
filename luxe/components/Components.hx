@@ -64,7 +64,26 @@ class Component extends Objects {
 
 	@:noCompletion public function entity_pos_change(_p:Vector) {}
 	@:noCompletion public function entity_scale_change(_p:Vector) {}
-	@:noCompletion public function entity_rotation_change(_p:Vector) {}
+	@:noCompletion public function entity_rotation_change(_p:Vector) {
+		// _attach_listener(_p, _rotation_change);
+	}
+
+//Spatial transforms
+
+        //An internal callback for when x y or z on a transform changes
+    private function _pos_change(_v:Float) { this.set_pos(pos); }
+        //An internal callback for when x y or z on a transform changes
+    private function _scale_change(_v:Float) { this.set_scale(scale); }
+        //An internal callback for when x y or z on a transform changes
+    private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
+
+        //An internal function to attach position 
+        //changes to a vector, so we can listen for `pos.x` as well
+    private function _attach_listener( _v : Vector, listener ) {
+        _v.listen_x = listener; 
+        _v.listen_y = listener; 
+        _v.listen_z = listener;
+    } //_attach_listener
 
 	public function get_serialize_data() : Dynamic {
 		return {
@@ -89,6 +108,8 @@ class Component extends Objects {
 
 
 } //Component
+
+
 
 class Components {
 		

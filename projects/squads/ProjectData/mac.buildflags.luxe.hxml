@@ -7,7 +7,9 @@
 -cp src
 -D tools=1.1.0
 -D lime_native
+-D HXCPP_M64=1
 -D luxe_native
+-D HXCPP_CLANG=1
 -D mac
 -D desktop
 -cp bin/mac64/cpp/haxe

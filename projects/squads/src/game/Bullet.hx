@@ -17,12 +17,15 @@ class Bullet extends Component {
 
     public var alive : Bool = false;
     public var dir : Vector;
-    public var speed : Float = 1;
+    
     public var spawn_pos : Vector;
 
+    public var speed : Float = 1;
+    @:hide public var collider : Circle;
+    
     var ignored_colliders : Array<BaseShape>;
 
-    @:hide public var collider : Circle;
+    
 
     var bounds : Rectangle;
 

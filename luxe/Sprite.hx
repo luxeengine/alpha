@@ -41,6 +41,10 @@ class Sprite extends Entity {
 
     public function new(options:Dynamic) {
 
+//cached values
+        _rotation_vector = new Vector();
+        _rotation_quat = new Quaternion();
+
         super();
 
             //temp
@@ -51,9 +55,6 @@ class Sprite extends Entity {
             //create the position value so we can exploit it a bit
         origin = new Vector();
         color = new Color();
-//cached values
-        _rotation_vector = new Vector();
-        _rotation_quat = new Quaternion();
 
 //name
         if(options.name != null) {
@@ -396,6 +397,17 @@ class Sprite extends Entity {
 
     } // set_radians
 
+    public override function set_rotation( _r:Vector ) {
+
+        rotation = _r;
+
+        set_rotation_z(_r.z);
+
+        super.set_rotation(_r);
+
+        return _r;
+
+    } //set_rotation
 
 //Scale
 

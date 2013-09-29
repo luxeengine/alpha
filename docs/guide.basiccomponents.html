@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="guide.html">View all guides</a></h3>
+<h2>Understanding Components</h2>
+<h3>What are <a href="luxe.Entity.html">Entity</a> and Components?</h3>
+<p>You have probably heard about about Component/<a href="luxe.Entity.html">Entity</a> system at some point if you have made games, 
+and with good reason as they are quite useful for the way games are usually layed out.</p>
+<p>The terms are quite simple to understand -<br>- An <a href="luxe.Entity.html">Entity</a> is a container for components<br>- A Component adds a behavior to the <a href="luxe.Entity.html">Entity</a> is is attached to   </p>
+<p>Let&#39;s make the terms practical -<br>- A <a href="luxe.Sprite.html">Sprite</a> on screen is an <a href="luxe.Entity.html">Entity</a>, “EnemyTower” sprite<br>- A “ShootEveryThreeSeconds” is a component   </p>
+<p>This means that generally an entity doesn‘t do anything on it’s own, but by attaching components to it, it can become specific.</p>
+<p>Let&#39;s take a look at another example for a game like space invaders : </p>
+<p>Entities :</p>
+<ul>
+<li>Player extends <a href="luxe.Entity.html">Entity</a>   </li>
+<li>Enemy extends <a href="luxe.Entity.html">Entity</a>   </li>
+</ul>
+<p>Now, components :</p>
+<ul>
+<li>TakesDamage extends Component    </li>
+<li>DealsDamage extends Component    </li>
+<li>KeyInput extends Component    </li>
+<li>MouseInput extends Component    </li>
+</ul>
+<p>Here, we can attach the components to the entities. 
+You will notice that the Components are fairly granular, this is because we can share components between entities.</p>
+<p><code>TakesDamage</code> can be shared between anything in the game that has the concept of health. Like the Player, and the Enemy. If you later decided to add an asteroid entity that has health? You already have the functionality you need. Just add the component to the asteroid.</p>
+<p><code>TakesDamage</code> is a simple component that stores a health value, and has a function similar to <code>takeDamage( amount:Float )</code>, which will maybe look something like this : </p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> health <span class="p">:</span> <span class="n">Float</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">takeDamage</span><span class="p">(</span> <span class="n">amount</span><span class="p">:</span><span class="n">Float</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">health</span> <span class="o">-=</span> <span class="n">amount</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">health</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">health</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">IHaveDied</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+<p><code>DealsDamage</code> is the sort of component that will call the above function, from maybe a Bullet entity, when it collides with an enemy.</p>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> damage_to_inflict <span class="p">:</span> <span class="n">Float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+
+<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">dealDamage</span><span class="p">(</span> <span class="n">to</span><span class="p">:</span><span class="n"><a href="luxe.Entity.html">Entity</a></span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> take_damage_component <span class="p">:</span> <span class="n">TakesDamage</span> <span class="o">=</span> <span class="n">to</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;TakesDamage&#39;</span><span class="p">);</span>
+
+        <span class="n">take_damage_component</span><span class="p">.</span><span class="n">takeDamage</span><span class="p">(</span> <span class="n">damage_to_inflict</span> <span class="p">);</span>
+
+<span class="p">}</span> <span class="c1">//dealDamage</span>
+</pre></div>
+</code></pre>
+<p>This code should hopefully help you understand that components are usually focused and simple classes that are added to entities to give them behaviors.
+You can see a more concrete example in the code listing at the end of this guide.</p>
+<h3>Anatomy of a Component class</h3>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn">Component</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="n">MyComponent</span> <span class="kd">extends</span> <span class="n">Component</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//called when initialising the component</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">start</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">//called when the scene starts or restarts</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//called every frame</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</code></pre>
+
+        </div>
+    </body>
+
+</html>
