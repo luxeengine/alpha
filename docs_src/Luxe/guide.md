@@ -14,6 +14,10 @@
 	Drawing images, and looking at how drawing is ordered on screen
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.sprites.html)
 
+### [ Understanding how components work ](guide.basiccomponents.html)
+	Attaching components to a sprite to add different behaviors
+[ ![components guide screenshot](images/guide.basiccomponents.png) ](guide.basiccomponents.html)
+
 
 &nbsp;
 

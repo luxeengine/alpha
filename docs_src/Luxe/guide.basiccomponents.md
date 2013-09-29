@@ -13,13 +13,15 @@ and with good reason as they are quite useful for the way games are usually laye
 
 The terms are quite simple to understand -   
 - An Entity is a container for components   
-- A Component adds a behavior to the Entity is is attached to   
+- A Component adds some behavior to the Entity it is attached to
 
 Let's make the terms practical -    
 - A Sprite on screen is an Entity, "EnemyTower" sprite   
 - A "ShootEveryThreeSeconds" is a component   
 
 This means that generally an entity doesn't do anything on it's own, but by attaching components to it, it can become specific.
+
+
 
 Let's take a look at another example for a game like space invaders : 
 

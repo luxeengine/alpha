@@ -43,7 +43,8 @@ class Scene {
     }
 
     public function add( entity:Entity ) {
-        entities.set( entity.id, entity );
+
+        entities.set( entity.name, entity );
         
         if(inited) {
             entity._init();

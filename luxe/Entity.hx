@@ -50,7 +50,7 @@ class Entity extends Objects {
 
     	super();
 
-    	name = 'Entity';
+    	name = 'entity.' + id;
     	
     	_components = new Components( this );
     	children = new Array<Entity>();
