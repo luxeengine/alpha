@@ -1,14 +1,17 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-
+###[To the prev guide](guide.gettingstarted.html)
+###[To the next guide](guide.basiccomponents.html)
 ###[View all guides](guide.html)
+
+&nbsp;
 
 ## Drawing images and items as sprites
 
 ### Loading images (and other assets)
 
-_This tutorial assumes you are familiar with the basics of getting started with luxe, so if you are not sure what is going on, [start there](guide.gettingstarted.html)._
+_This tutorial assumes you are familiar with the basics of getting started with luxe, so if you are not sure what is going on, ._
 
 [Jump to the full code listing](#code)
 
@@ -51,7 +54,8 @@ Read [understanding geometry in luxe](guide.geometry.html).
 - **Where do I find a list of all the supported `Sprite` values to pass in?**    
 Read Sprite class documentation  
 
-###[To the next guide](guide.sprites.html)
+###[To the prev guide](guide.gettingstarted.html)
+###[To the next guide](guide.basiccomponents.html)
 ###[Back to guides](guide.html)
 
 &nbsp;

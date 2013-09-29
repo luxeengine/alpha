@@ -57,7 +57,17 @@
 <p>&nbsp;
 &nbsp;
 <strong>A simple component example</strong></p>
-<pre><code></code></pre>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Entity.html">Entity</a></span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">MeshComponent</span><span class="p">;</span>
+
+<span class="kd">var</span> cube_mesh <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">,</span> <span class="s1">&#39;sphere&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> cube_mesh_component <span class="o">=</span> <span class="n">cube_mesh</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MeshComponent</span><span class="p">,</span> <span class="s1">&#39;mesh&#39;</span><span class="p">);</span>
+
+    <span class="n">cube_mesh</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">).</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;assets/cube.obj&#39;</span><span class="p">;</span>
+    <span class="n">cube_mesh</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">).</span><span class="n">texture</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/cube.png&#39;</span><span class="p">);</span>
+</pre></div>
+</code></pre>
 <h2>Documentation</h2>
 <!-- [View Full Index](all.html)     -->
 

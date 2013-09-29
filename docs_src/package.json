@@ -10,7 +10,8 @@
     "mustache" : "latest",
     "highlight.js" : "latest",
     "pygmentize-bundled" : "latest",
-    "pygments" : "latest"
+    "pygments" : "latest",
+    "graceful-fs" : "latest"
   },
   "engine": {
     "node": "0.10.x"

@@ -1,8 +1,10 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-
+###[To the next guide](guide.sprites.html)
 ###[View all guides](guide.html)
+
+&nbsp;
 
 ## Getting Started with Luxe
 

@@ -15,14 +15,14 @@ class Main extends luxe.Game {
             texture : Luxe.loadTexture('assets/luxelogo.png'),
         }); 
 
-        //Now the important bit, we attach a component to an entity by calling .add(TypeOfComponent, 'NameOfComponent');
-        //It is important to note that the name of the component must be set if you want to fetch it later using .get('NameOfComponent').
-        //If no name is given, it uses a UUID.
-
+            //Now the important bit, we attach a component to an 
+            //entity by calling .add(TypeOfComponent, 'NameOfComponent');
+            //It is important to note that the name of the component must be set 
+            //if you want to fetch it later using .get('NameOfComponent').
+            //If no name is given, it uses a UUID.
         rotator = logo.add(Rotate, 'rotator');
         
         	//we don't need to reference the bounce component, so we just add it.
-
         logo.add(Bounce, 'bounce');
 
     } //ready
@@ -36,18 +36,5 @@ class Main extends luxe.Game {
 
     		// trace(rotator.rotate_speed);
     }
-
-    public function onkeyup( e:KeyEvent ) {
-
-        if(e.key == KeyValue.escape) {
-            Luxe.shutdown();
-        }
-        
-    } //onkeyup
-
-    public function update(dt:Float) {
-    	
-
-    } //update
 
 } //Main
