@@ -13,7 +13,7 @@ import phoenix.Resource;
 
 import luxe.structures.BalancedBinarySearchTree;
 
-class Debug {
+@:hide class Debug {
 
     public var core : Core;
     public function new( _core:Core ) { core = _core; }

@@ -70,7 +70,7 @@ class Entity extends Objects {
 
     } //new
 
-	public function _init() {
+	@:noCompletion public function _init() {
 
 		_debug('calling init on ' + name);
 
@@ -94,7 +94,7 @@ class Entity extends Objects {
 
 	} //_init
 
-    public function _onmousedown(e:MouseEvent) {
+    @:noCompletion public function _onmousedown(e:MouseEvent) {
 
         _debug('calling _onmousedown on ' + name);
 
@@ -115,7 +115,7 @@ class Entity extends Objects {
 
     } //_onmousedown
 
-    public function _onmouseup(e:MouseEvent) {
+    @:noCompletion public function _onmouseup(e:MouseEvent) {
 
         _debug('calling _onmouseup on ' + name);
 
@@ -136,7 +136,7 @@ class Entity extends Objects {
 
     } //_onmouseup    
 
-    public function _onmousemove(e:MouseEvent) {
+    @:noCompletion public function _onmousemove(e:MouseEvent) {
 
         _debug('calling _onmousemove on ' + name);
 
@@ -157,7 +157,7 @@ class Entity extends Objects {
 
     } //_onmousemove
 
-    public function _oninputdown(_name:String,e:Dynamic) {
+    @:noCompletion public function _oninputdown(_name:String,e:Dynamic) {
 
         _debug('calling _oninputdown on ' + name);
 
@@ -178,7 +178,7 @@ class Entity extends Objects {
 
     } //_oninputdown
 
-    public function _oninputup(_name:String,e:Dynamic) {
+    @:noCompletion public function _oninputup(_name:String,e:Dynamic) {
 
         _debug('calling _oninputup on ' + name);
 
@@ -199,7 +199,7 @@ class Entity extends Objects {
 
     } //_oninputup
 
-	public function _start() {
+	@:noCompletion public function _start() {
 
 		_debug('calling start on ' + name);
 
@@ -224,7 +224,7 @@ class Entity extends Objects {
 
 	} //_start
 
-	public function _destroy() {
+	@:noCompletion public function _destroy() {
 
 			//first destroy children
 		for(_child in children) {
@@ -252,7 +252,7 @@ class Entity extends Objects {
 
 	} //_start
 
-	public function _update(dt:Float) {
+	@:noCompletion public function _update(dt:Float) {
 
 		_debug('calling update on ' + name);
 
@@ -274,7 +274,7 @@ class Entity extends Objects {
 
 	} //_update
 
-	public function _fixed_update() {
+	@:noCompletion public function _fixed_update() {
 
 			//Not allowed post destroy
 		if(_destroyed) return;
@@ -500,19 +500,19 @@ class Entity extends Objects {
 
     } //set_scale
 
-    public function internal_parent_pos_changed(_parent_pos:Vector) {
+    @:hide public function internal_parent_pos_changed(_parent_pos:Vector) {
     		//our position is updated as parent_pos+relativePos
     	pos = _parent_pos.clone().add( posRelative );
 
     }//internal_parent_pos_changed
 
-    public function internal_parent_rotation_changed(_parent_rotation:Vector) {
+    @:hide public function internal_parent_rotation_changed(_parent_rotation:Vector) {
             //our rotation is updated as parent_rotation+relative
         rotation = _parent_rotation.clone().add( rotationRelative );
 
     }//internal_parent_pos_changed
 
-    public function internal_parent_scale_changed(_parent_scale:Vector) {
+    @:hide public function internal_parent_scale_changed(_parent_scale:Vector) {
     		//our scale is updated as parent_scale+relative
     	scale = _parent_scale.clone().add( scaleRelative );
 
@@ -596,7 +596,7 @@ class Entity extends Objects {
     } //get_serialize_data
 
         //save me and all my children and components to disk
-    public function serialize_to_disk(_destination_path:String, _parent_write:Bool=false) {
+    public function serialize_to_disk(_destination_path:String, _parent_write:Bool=false) : Void {
 
         if(!serialize) return;
         if(parent != null && !_parent_write) return;

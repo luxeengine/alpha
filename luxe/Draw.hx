@@ -10,8 +10,8 @@ import phoenix.geometry.PlaneGeometry;
 
 class Draw {
 
-    public var core : Core;
-    public function new( _core:Core ) { core = _core; }
+    @:noCompletion public var core : Core;
+    @:noCompletion public function new( _core:Core ) { core = _core; }
 
     private function default_options(options:Dynamic) {
 
@@ -24,7 +24,7 @@ class Draw {
         options.pos = (options.pos == null)  ? new Vector() : options.pos;
 
             //return
-        return options;
+        return options; 
     }
 
     public function line(options:Dynamic) {

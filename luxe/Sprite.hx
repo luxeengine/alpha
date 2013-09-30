@@ -135,7 +135,7 @@ class Sprite extends Entity {
 
     } //new
 
-    public function _create_geometry(options : Dynamic) {
+    @:noCompletion public function _create_geometry(options : Dynamic) {
 
 
             //if they give a geometry, don't create one
@@ -240,7 +240,7 @@ class Sprite extends Entity {
         return true;
     }
 //Flipping
-    public function set_flipy(_v:Bool) {        
+    private function set_flipy(_v:Bool) {        
 
         if(geometry != null) {
             geometry.flipy = _v;
@@ -250,7 +250,7 @@ class Sprite extends Entity {
 
     } //set_flipy
 
-    public function set_flipx(_v:Bool) {        
+    private function set_flipx(_v:Bool) {        
 
         if(geometry != null) {
             geometry.flipx = _v;
@@ -261,7 +261,7 @@ class Sprite extends Entity {
     } //set_flipv
 
 //Visibility properties
-    public function set_visible(_v:Bool) {
+    private function set_visible(_v:Bool) {
 
         visible = _v;
 
@@ -274,7 +274,7 @@ class Sprite extends Entity {
 
     } //set_visible
 
-    public function set_depth(_v:Float) {
+    private function set_depth(_v:Float) {
         
         if(geometry != null) {
             geometry.depth = _v;
@@ -286,7 +286,7 @@ class Sprite extends Entity {
 
 //Color properties
 
-    public function set_color(_c:Color) {
+    private function set_color(_c:Color) {
             //careful
         if(color == null) {
             return color = _c;
@@ -320,7 +320,7 @@ class Sprite extends Entity {
 
 //Origin
 
-    public function set_origin(_o:Vector) : Vector {
+    private function set_origin(_o:Vector) : Vector {
         
         if(geometry != null) {
             geometry.origin = _o;
@@ -332,7 +332,7 @@ class Sprite extends Entity {
 
 //Centered 
 
-    public function set_centered(_c:Bool) : Bool {
+    private function set_centered(_c:Bool) : Bool {
 
             //centered geometry affects the origin
         if(geometry != null) {
@@ -350,7 +350,7 @@ class Sprite extends Entity {
 
 //Position properties
     
-    public override function set_pos(_p:Vector) : Vector {
+    private override function set_pos(_p:Vector) : Vector {
 
         if(geometry != null) {
             geometry.pos = _p.clone();
@@ -367,13 +367,13 @@ class Sprite extends Entity {
 
 //Rotation 
     
-    public function get_rotation_z() : Float {
+    private function get_rotation_z() : Float {
 
         return Maths.radToDeg(radians);
 
     } //get_rotation
 
-    public function set_rotation_z( _r:Float ) : Float {
+    private function set_rotation_z( _r:Float ) : Float {
 
         radians = Maths.degToRad(_r);
 
@@ -381,7 +381,7 @@ class Sprite extends Entity {
 
     } // set_rotation_z
 
-    public function set_radians(_r:Float) : Float {
+    private function set_radians(_r:Float) : Float {
 
             //Sprite only rotates this way
         _rotation_vector.z = _r;
@@ -397,7 +397,7 @@ class Sprite extends Entity {
 
     } // set_radians
 
-    public override function set_rotation( _r:Vector ) {
+    private override function set_rotation( _r:Vector ) {
 
         rotation = _r;
 
@@ -411,7 +411,7 @@ class Sprite extends Entity {
 
 //Scale
 
-    public override function set_scale( _v:Vector ) : Vector {  
+    private override function set_scale( _v:Vector ) : Vector {  
 
         if(geometry != null) {
             geometry.scale = _v.clone();
@@ -427,7 +427,7 @@ class Sprite extends Entity {
 
 //Size
     
-    public function set_size( _v:Vector ) : Vector {  
+    private function set_size( _v:Vector ) : Vector {  
 
             //resize the mesh vertices themselves, as scale is relative to this size
             //if explicitly set
@@ -444,7 +444,7 @@ class Sprite extends Entity {
 
 //Locked
 
-    public function set_locked(_l:Bool) : Bool {
+    private function set_locked(_l:Bool) : Bool {
 
         if(geometry != null) {
             geometry.locked = _l;
@@ -454,7 +454,7 @@ class Sprite extends Entity {
 
 //UV / source rect
 
-    public function set_uv(_uv:Rectangle) : Rectangle {
+    private function set_uv(_uv:Rectangle) : Rectangle {
 
         if(geometry != null) {
             geometry.uv(_uv);
@@ -464,11 +464,11 @@ class Sprite extends Entity {
 
 //Geometry properties
 //Clip
-    public function set_clip(val : Bool) : Bool {
+    private function set_clip(val : Bool) : Bool {
         return geometry.clip = val;
     }
 //Clip rect
-    public function set_clip_rect(val : Rectangle) : Rectangle {
+    private function set_clip_rect(val : Rectangle) : Rectangle {
         return geometry.clip_rect = val;
     }
 

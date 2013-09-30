@@ -7,7 +7,7 @@ class Objects {
 	public var id : String;
     public var name : String;
 
-    public function new() {
+    @:hide public function new() {
     	id = luxe.utils.UUID.get();
     } //new
 
@@ -37,7 +37,7 @@ class Objects {
 
     } //_merge_properties  
 
-    public static var _show_debug : Bool = false;
+    @:hide public static var _show_debug : Bool = false;
     private function _debug(v){ if(_show_debug) { trace(v); } }	
 
 } //Objects

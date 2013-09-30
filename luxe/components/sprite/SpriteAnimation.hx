@@ -142,7 +142,7 @@ class SpriteAnimation extends Component {
 
 		//the length of a frame for the current frameset
 	public var frame_time : Float = 0;
-	public var next_frame_time : Float = 0;
+	@:noCompletion public var next_frame_time : Float = 0;
 
 	public var loop : Bool = false;
 	public var pingpong : Bool = false;
@@ -254,7 +254,7 @@ class SpriteAnimation extends Component {
 
 	} //refresh_sprite
 
-	public function update( dt:Float ) {
+	@:noCompletion public function update( dt:Float ) {
 
 		if(current == null) return;
 		if(!playing) return;

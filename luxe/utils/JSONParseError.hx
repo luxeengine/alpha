@@ -33,7 +33,7 @@
 
 package luxe.utils;
 
-class JSONParseError {
+@:noCompletion class JSONParseError {
 
 	/** The location in the string where the error occurred */
 	private var _location:Int;	

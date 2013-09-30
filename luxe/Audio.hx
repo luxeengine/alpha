@@ -4,15 +4,15 @@ import luxe.Core;
 
 class Audio {
     
-    public var core : Core;
-    public function new( _core:Core ) { core = _core; }
+    @:hide public var core : Core;
+    @:hide public function new( _core:Core ) { core = _core; }
 
-    public function startup() {
+    @:hide public function startup() {
 
         core._debug(':: luxe :: \t Audio Initialized.');
     }
 
-    public function shutdown() {
+    @:hide public function shutdown() {
         core._debug(':: luxe :: \t Audio shut down.');
     }
 
@@ -47,7 +47,7 @@ class Audio {
         }
     }
 
-    public function process() {
+    @:hide public function process() {
         
     }    
 }

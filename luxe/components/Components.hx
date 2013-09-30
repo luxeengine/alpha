@@ -111,7 +111,7 @@ class Component extends Objects {
 
 
 
-class Components {
+@:noCompletion class Components {
 		
 		//the list of attached components
 	public var components : Map<String, Component>;

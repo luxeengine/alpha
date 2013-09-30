@@ -118,7 +118,7 @@ class UUID
 	}
 }
 
-private class Rule30
+@:noCompletion private class Rule30
 {
 	static public function createWithLength ( length : Int ) : Rule30
 	{

@@ -167,7 +167,7 @@ class ComponentPath implements IComponentPath {
 }
 
 
-interface IComponentPath {
+@:noCompletion interface IComponentPath {
 	
 	
 	var end (get_end, null):Float;

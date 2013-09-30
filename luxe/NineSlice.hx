@@ -24,9 +24,9 @@ typedef Slice = {
 
 class NineSlice extends luxe.Sprite {
 
-    public var slices : Array<Slice>;
-    public var added : Bool = false;
-    public var options : Dynamic;
+    @:hide public var slices : Array<Slice>;
+    @:hide public var added : Bool = false;
+    @:hide public var options : Dynamic;
 
     public var top : Float = 32;
     public var left : Float = 32;
@@ -39,11 +39,11 @@ class NineSlice extends luxe.Sprite {
     public var source_w : Float = 0.0;
     public var source_h : Float = 0.0;
     public var is_set : Bool = false;
-    public var midwidth : Float = 0.0;
-    public var midheight : Float = 0.0;
+    @:hide public var midwidth : Float = 0.0;
+    @:hide public var midheight : Float = 0.0;
 
     private var _batcher : Batcher;
-    public var _geometry : ComplexGeometry;
+    @:hide public var _geometry : ComplexGeometry;
 
     public function new(_options:Dynamic) {
 
@@ -108,7 +108,7 @@ class NineSlice extends luxe.Sprite {
         }
     }
 
-    public function update_size(_width:Float, _height:Float) {
+    @:noCompletion public function update_size(_width:Float, _height:Float) {
 
         width = _width;
         height = _height;
@@ -201,7 +201,7 @@ class NineSlice extends luxe.Sprite {
 
     } //update_size
 
-    public function set(_width:Float, _height:Float) {
+    @:noCompletion public function set(_width:Float, _height:Float) {
 
         if(added) {
             _geometry.drop();
@@ -322,7 +322,7 @@ class NineSlice extends luxe.Sprite {
         is_set = true;
     }
 
-    public override function set_size( _v : Vector ) {
+    override function set_size( _v : Vector ) {
             
         if(!is_set) return _v;
             //update the values
@@ -338,7 +338,7 @@ class NineSlice extends luxe.Sprite {
 
     } //set_size
 
-    public override function set_pos( _v : Vector ) {
+    override function set_pos( _v : Vector ) {
         
         super.set_pos(_v);
 
@@ -362,7 +362,7 @@ class NineSlice extends luxe.Sprite {
         super.destroy();
     }
 
-    public override function set_visible(_v:Bool) {
+    override function set_visible(_v:Bool) {
 
         super.set_visible(_v);
 
@@ -373,7 +373,7 @@ class NineSlice extends luxe.Sprite {
         return visible = _v;
     }
 
-    public override function set_clip(val : Bool) : Bool {
+    override function set_clip(val : Bool) : Bool {
 
         if(is_set) {
             _geometry.clip = val;
@@ -382,7 +382,7 @@ class NineSlice extends luxe.Sprite {
         return clip = val;
     }
 //Clip rect
-    public override function set_clip_rect(val : Rectangle) : Rectangle {
+    override function set_clip_rect(val : Rectangle) : Rectangle {
 
         if(is_set) {
             _geometry.clip_rect = val;
@@ -391,7 +391,7 @@ class NineSlice extends luxe.Sprite {
         return clip_rect = val;
     }   
 //Color
-    public override function set_color(_color : Color) : Color {
+    override function set_color(_color : Color) : Color {
 
         if(is_set) {
             _geometry.color = _color;

@@ -105,7 +105,8 @@ Have a look at the comments in the code below to see them.</p>
 <p>All components should extend from the luxe Components class in order to benefit from the features of the component class. Extend from the class, like in the anatomy above.</p>
 <h3>Adding components to entities</h3>
 <p>Components are added to entities using the <code>add</code> function, and the <code>add</code> function returns the instance if you want to store a typed reference.
-For example, inside of your game init function :</p>
+The second parameter is the name of the entity or component, so you can use them by name later on.</p>
+<p>For example, inside of your game init function :</p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> component <span class="p">:</span> <span class="n">Component</span><span class="p">;</span>
 <span class="kd">var</span> entity <span class="p">:</span> <span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">;</span>
 
@@ -238,12 +239,13 @@ For example, inside of your game init function :</p>
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
 
+            <span class="c1">//Change the sprite speed based on the mouse x position</span>
+
         <span class="kd">var</span> percent <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">;</span>
         <span class="kd">var</span> new_speed <span class="o">=</span> <span class="n">percent</span> <span class="o">*</span> <span class="n">rotator</span><span class="p">.</span><span class="n">max_rotate_speed</span><span class="p">;</span>
 
             <span class="n">rotator</span><span class="p">.</span><span class="n">rotate_speed</span> <span class="o">=</span> <span class="n">new_speed</span><span class="p">;</span>
 
-            <span class="c1">// trace(rotator.rotate_speed);</span>
     <span class="p">}</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>

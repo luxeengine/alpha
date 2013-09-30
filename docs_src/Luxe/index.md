@@ -52,7 +52,8 @@ Luxe uses common patterns and approaches to simplify working with the engine, su
 
 [View API](api.html)   
 [View Types](types.html)   
-[View Classes](classes.html)
+[View luxe Class Index](luxe.Classes.html)   
+[View phoenix Class Index](phoenix.Classes.html)   
 &nbsp;
 &nbsp;
 

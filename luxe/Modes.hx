@@ -14,12 +14,13 @@ class Mode {
 	public function new() {
 		ticks = new Array<Void->Void>();
 	}
-	public function set_next_tick(_f:Void->Void) {
+	
+	private function set_next_tick(_f:Void->Void) {
 		ticks.push(_f);
 		return _f;
 	}
 
-	public function _update(dt:Float) {
+	@:hide public function _update(dt:Float) {
 		if(ticks.length > 0) {
 			for(_f in ticks) {
 				_f();
@@ -32,7 +33,7 @@ class Mode {
 
 class Modes {
 
-	public var _modes: Map<String,Mode>; 
+	@:noCompletion public var _modes: Map<String,Mode>; 
 	public var activemodes: Array<Mode>; 
 	public var currentmode: Mode;
 

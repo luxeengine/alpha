@@ -62,7 +62,7 @@ class Text {
         text = _options.text;
     }
 
-    public function onloaded() {
+    @:noCompletion public function onloaded() {
         ready = true;
         text = text + '';
     }
@@ -74,7 +74,7 @@ class Text {
         }
     }
 
-    public function set_pos(v:Vector) : Vector {
+    function set_pos(v:Vector) : Vector {
         
         pos = v.clone();
         text_options.pos = pos;
@@ -86,14 +86,14 @@ class Text {
         return pos;
     }
 
-    public function set_size(v:Float) : Float {
+    function set_size(v:Float) : Float {
         if(text_options == null) return size = v;
         size = v;        
         text_options.size = size;
         text = text+'';
         return v;
     }
-    public function set_color(c:Color) : Color {
+    function set_color(c:Color) : Color {
         color = c;
 
         if(geometry != null) {
@@ -103,7 +103,7 @@ class Text {
         text_options.color = c;
         return c;
     }
-    public function set_visible(b:Bool) : Bool {
+    function set_visible(b:Bool) : Bool {
         visible = b;
         
         if(geometry != null) {
@@ -114,7 +114,7 @@ class Text {
         return b;
     }
 
-    public function set_text(v:String) {
+    function set_text(v:String) {
 
         if(!ready) return text = v;
         if(text_options == null) return v;  

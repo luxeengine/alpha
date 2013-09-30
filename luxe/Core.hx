@@ -20,7 +20,7 @@ import luxe.Renderer;
 
 import haxe.Timer;
 
-class Core {
+@:hide class Core {
 
 		//core versioning
 	public var version : String = '0.1';

@@ -41,7 +41,7 @@ import php.Utf8;
 
 	//import flash.utils.describeType;
 
-class JSONEncoder {
+@:noCompletion class JSONEncoder {
 
 	/** The string that is going to represent the object we're encoding */
 	private var jsonString:String;

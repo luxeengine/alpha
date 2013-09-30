@@ -35,7 +35,7 @@ package luxe.utils;
 
 import luxe.utils.JSONDecoder;
 
-class JSONToken {
+@:noCompletion class JSONToken {
 	
 	/** type of the token */
 	public var type:JSONTokenType;

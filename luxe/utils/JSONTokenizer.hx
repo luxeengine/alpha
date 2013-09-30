@@ -41,7 +41,7 @@ import neko.Utf8;
 import php.Utf8;
 #end
 
-class JSONTokenizer {	
+@:noCompletion class JSONTokenizer {	
 	/** The object that will get parsed from the JSON string */
 	private var obj:Dynamic;	
 	/** The JSON string to be parsed */

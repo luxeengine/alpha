@@ -20,8 +20,8 @@ typedef MouseEvent = {
 
 class Input {
     
-    public var core : Core;
-    public function new( _core:Core ) { core = _core; }
+    @:noCompletion public var core : Core;
+    @:noCompletion public function new( _core:Core ) { core = _core; }
     public static var Keys : lime.utils.Keys;
     public static var Gamepad : lime.utils.Gamepad;
 

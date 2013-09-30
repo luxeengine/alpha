@@ -49,7 +49,7 @@ enum JSONTokenType {
 	tNAN;
 }
 
-class JSONDecoder {
+@:noCompletion class JSONDecoder {
 	
 	private var strict:Bool;
 

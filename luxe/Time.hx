@@ -5,15 +5,15 @@ import haxe.Timer;
 
 class Time {
     
-    public var core : Core;
-    public function new( _core:Core ) { core = _core; }
+    @:noCompletion public var core : Core;
+    @:noCompletion public function new( _core:Core ) { core = _core; }
 
 
-    public function startup() {
+    @:noCompletion public function startup() {
         core._debug(':: luxe :: \t Time Initialized.');
     }
 
-    public function shutdown() {
+    @:noCompletion public function shutdown() {
         core._debug(':: luxe :: \t Time shut down.');
     }
 
@@ -29,7 +29,7 @@ class Time {
 
     } //schedule
 
-    public function process() {
+    @:noCompletion public function process() {
         
     }
     

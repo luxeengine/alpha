@@ -3,8 +3,8 @@ package luxe.structures;
 
 class BalancedBinarySearchTree<K,T> {
 
-	public static inline var RED : Bool = true;
-	public static inline var BLACK : Bool = false;
+	@:noCompletion @:noCompletion public static inline var RED : Bool = true;
+	@:noCompletion public static inline var BLACK : Bool = false;
 
 	public var root : BalancedBinarySearchTreeNode<K,T>;
 	public var compare : K->K->Int;
@@ -158,7 +158,7 @@ class BalancedBinarySearchTree<K,T> {
 		return _min(root).key;
 	} //min
 
-	public function _min( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+	private function _min( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
 		if(_node.left == null) return _node;
 		return _min( _node.left );
 	} //_min
@@ -366,7 +366,7 @@ class BalancedBinarySearchTree<K,T> {
 		return _node.color == RED;
 	} //is_red
 
-	public function rotate_left( _node:BalancedBinarySearchTreeNode<K,T> ) {
+	@:noCompletion public function rotate_left( _node:BalancedBinarySearchTreeNode<K,T> ) {
 		var _n = _node.right;
 			_node.right = _n.left;
 			_n.left = _node;
@@ -377,7 +377,7 @@ class BalancedBinarySearchTree<K,T> {
 		return _n;
 	} //rotate_left
 
-	public function rotate_right( _node:BalancedBinarySearchTreeNode<K,T> ) {
+	@:noCompletion public function rotate_right( _node:BalancedBinarySearchTreeNode<K,T> ) {
 		var _n = _node.left;
 			_node.left = _n.right;
 			_n.right = _node;
@@ -388,7 +388,7 @@ class BalancedBinarySearchTree<K,T> {
 		return _n;
 	} //rotate_left
 
-	public function flip_colors( _node:BalancedBinarySearchTreeNode<K,T> ) {
+	@:noCompletion public function flip_colors( _node:BalancedBinarySearchTreeNode<K,T> ) {
         _node.color = !_node.color;
         _node.left.color = !_node.left.color;
         _node.right.color = !_node.right.color;

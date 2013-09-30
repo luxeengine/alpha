@@ -128,7 +128,7 @@ class BinarySearchTree<K,T> {
 		return _min(root).key;
 	} //min
 
-	public function _min( _node:BinarySearchTreeNode<K,T> ) : BinarySearchTreeNode<K,T> {
+	private function _min( _node:BinarySearchTreeNode<K,T> ) : BinarySearchTreeNode<K,T> {
 		if(_node.left == null) return _node;
 		return _min( _node.left );
 	} //_min

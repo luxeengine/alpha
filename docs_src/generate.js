@@ -69,7 +69,7 @@ var config = require('./luxe.docs.json');
         for(var i = 0; i < _list.length; ++i) {
                 //copy each file across
             var _filename = path.basename(_list[i]) ;
-            fs.createReadStream(_list[i]).pipe(fs.createWriteStream( config.output + 'images/' + _filename));
+            fs.createReadStream(_list[i], {autoClose:true}).pipe(fs.createWriteStream( config.output + 'images/' + _filename, {autoClose:true}));
         }
 
     }
@@ -142,15 +142,15 @@ var config = require('./luxe.docs.json');
 
             //copy template files
 
-        fs.createReadStream( _style_path + '/more.png').pipe(fs.createWriteStream( config.output + 'more.png'));
-        fs.createReadStream( _style_path + '/favicon.png').pipe(fs.createWriteStream( config.output + 'favicon.png'));
-        fs.createReadStream( _style_path + '/jquery-2.0.3.min.js').pipe(fs.createWriteStream( config.output + 'jquery-2.0.3.min.js'));
-        fs.createReadStream( _style_path + '/style.css').pipe(fs.createWriteStream( config.output + 'style.css'));
-        fs.createReadStream( _style_path + '/code.css').pipe(fs.createWriteStream( config.output + 'code.css'));
-        fs.createReadStream( _style_path + '/font.css').pipe(fs.createWriteStream( config.output + 'font.css'));
-        fs.createReadStream( _style_path + '/font.eot').pipe(fs.createWriteStream( config.output + 'font.eot'));
-        fs.createReadStream( _style_path + '/font.woff').pipe(fs.createWriteStream( config.output + 'font.woff'));
-        fs.createReadStream( _style_path + '/font.ttf').pipe(fs.createWriteStream( config.output + 'font.ttf'));
+        fs.createReadStream( _style_path + '/more.png').pipe(fs.createWriteStream( config.output + 'more.png'), {autoClose:true});
+        fs.createReadStream( _style_path + '/favicon.png').pipe(fs.createWriteStream( config.output + 'favicon.png'), {autoClose:true});
+        fs.createReadStream( _style_path + '/jquery-2.0.3.min.js').pipe(fs.createWriteStream( config.output + 'jquery-2.0.3.min.js'), {autoClose:true});
+        fs.createReadStream( _style_path + '/style.css').pipe(fs.createWriteStream( config.output + 'style.css'), {autoClose:true});
+        fs.createReadStream( _style_path + '/code.css').pipe(fs.createWriteStream( config.output + 'code.css'), {autoClose:true});
+        fs.createReadStream( _style_path + '/font.css').pipe(fs.createWriteStream( config.output + 'font.css'), {autoClose:true});
+        fs.createReadStream( _style_path + '/font.eot').pipe(fs.createWriteStream( config.output + 'font.eot'), {autoClose:true});
+        fs.createReadStream( _style_path + '/font.woff').pipe(fs.createWriteStream( config.output + 'font.woff'), {autoClose:true});
+        fs.createReadStream( _style_path + '/font.ttf').pipe(fs.createWriteStream( config.output + 'font.ttf'), {autoClose:true});
 
             //copy image folder
 

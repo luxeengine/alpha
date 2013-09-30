@@ -6,7 +6,7 @@ import lime.gl.GL;
 //Default base class will just be a weird color clear color
 //use the renderer value to replace the default behavior 
 
-class Renderer {
+@:noCompletion class Renderer {
         
     public var core : Core;
     public function new( _core:Core ) { core = _core; }

@@ -108,6 +108,8 @@ All components should extend from the luxe Components class in order to benefit 
 ### Adding components to entities
 
 Components are added to entities using the `add` function, and the `add` function returns the instance if you want to store a typed reference.
+The second parameter is the name of the entity or component, so you can use them by name later on.
+
 For example, inside of your game init function :
 
 	var component : Component;
@@ -258,13 +260,14 @@ import luxe.components.Components.Component;
 	    } //ready
 
 	    public function onmousemove( e:MouseEvent ) {
+	    		
+	    		//Change the sprite speed based on the mouse x position
 
 	    	var percent = e.pos.x / Luxe.screen.w;
 	    	var new_speed = percent * rotator.max_rotate_speed;
 
 	    		rotator.rotate_speed = new_speed;
 
-	    		// trace(rotator.rotate_speed);
 	    }
 
 	} //Main

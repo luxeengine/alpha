@@ -8,7 +8,7 @@ import phoenix.BitmapFont;
 
 import luxe.defaults.TinyUI;
 
-class Inspector {
+@:noCompletion class Inspector {
 
 	public var title:String;
 	public var font : BitmapFont;

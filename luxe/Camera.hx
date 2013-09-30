@@ -48,7 +48,7 @@ class Camera extends Entity {
 
 	} //
 
-	@:nocompletion public override function set_pos(v:Vector) : Vector {
+	@:noCompletion public override function set_pos(v:Vector) : Vector {
 		
 		if(bounds != null) {
         	if(v.x < bounds.x) v.x = bounds.x;
@@ -71,7 +71,8 @@ class Camera extends Entity {
         shaking = true;
     }
 
-    public function update(dt:Float) {
+        //Called by the scene the camera belongs to
+    @:hide public function update(dt:Float) {
     	
     		//start at our base position
     	var final_position = view_position.clone();
@@ -98,7 +99,8 @@ class Camera extends Entity {
 
         	//finally, assign the position
         view.pos = final_position;
-    }    
+
+    } //update
 
     public override function get_serialize_data() : Dynamic {
 

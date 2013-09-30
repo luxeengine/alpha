@@ -2,7 +2,7 @@ package luxe;
 
 import luxe.Core;
 
-class Files {
+@:noCompletion class Files {
     
     public var core : Core;
     public function new( _core:Core ) { core = _core; }

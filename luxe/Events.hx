@@ -7,13 +7,11 @@ import luxe.utils.UUID;
 
 class Events {
     
-    
-
-    public var event_queue : Map< String, EventObject>;
-    public var event_connections : Map< String, EventConnection>; //event id, connect
-    public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
-    public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
-    public var event_schedules : Map< String, haxe.Timer >; //event id, timer
+    @:noCompletion public var event_queue : Map< String, EventObject>;
+    @:noCompletion public var event_connections : Map< String, EventConnection>; //event id, connect
+    @:noCompletion public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
+    @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
+    @:noCompletion public var event_schedules : Map< String, haxe.Timer >; //event id, timer
     
     public function new( ) { 
             //create the queue, lists and map
@@ -24,11 +22,11 @@ class Events {
         event_schedules = new Map();
     }
 
-    public function startup() {
+    @:noCompletion public function startup() {
         
     }
 
-    public function shutdown() {
+    @:noCompletion public function shutdown() {
 
     }
 
@@ -268,7 +266,7 @@ class Events {
     
 } // Events
 
-class EventConnection {
+@:noCompletion class EventConnection {
     
     public var listener : Dynamic -> Void;
     public var id : String;
@@ -282,7 +280,7 @@ class EventConnection {
 
 }
 
-class EventObject {
+@:noCompletion class EventObject {
 
     public var id : String;
     public var name:String;

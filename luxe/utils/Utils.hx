@@ -8,8 +8,8 @@ class Utils {
 
     private var _byte_levels : Array<String>;
     
-    public var luxe:luxe.Core;
-    public function new(_luxe:luxe.Core) {
+    @:noCompletion public var luxe:luxe.Core;
+    @:noCompletion public function new(_luxe:luxe.Core) {
         luxe = _luxe;
 
             //initialise our helpers

@@ -348,7 +348,7 @@ class Actuate {
 
 
 
-private class TweenTimer {
+@:noCompletion private class TweenTimer {
 
 
 	public var progress:Float;

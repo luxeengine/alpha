@@ -387,7 +387,7 @@ class GenericActuator implements IGenericActuator {
 }
 
 
-interface IGenericActuator {
+@:noCompletion interface IGenericActuator {
 	
 	/**
 	 * Flash performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values
