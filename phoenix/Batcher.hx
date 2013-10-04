@@ -202,7 +202,7 @@ class Batcher {
         if( a.depth == b.depth && a.group > b.group )
             { return 1; }
 
-            sort clipping
+            // sort clipping
         var clip_value : Int = -1;
             
             if(a.clip == true  && b.clip == true)  
