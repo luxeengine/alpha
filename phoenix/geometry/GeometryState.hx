@@ -70,35 +70,6 @@ class GeometryState {
         // trace('cleaned geometry state ');
     }
 
-    public function compare( other:GeometryState ) {
-        
-        if( depth < other.depth ) {
-            // trace('depth < other.depth : ' + depth + ' < ' + other.depth);
-            return -1;
-        }
-
-        if( depth == other.depth && group < other.group ) {
-            // trace('depth == other.depth && group < other.group (' +depth+'=='+other.depth +')--(' + group + ' < ' + other.group + ')');
-            return -1;
-        }
-
-        var textureid : Dynamic = texture != null ? texture.id : 0;
-        var other_textureid : Dynamic = other.texture != null ? other.texture.id : 0;
-
-        var clip_value : Int = -1;
-        
-        if(clip == true && other.clip == true) clip_value = 0;
-        if(clip == false && other.clip == true) clip_value = -1;
-        if(clip == true && other.clip == false) clip_value = 1;
-
-        if( depth == other.depth && group == other.group && textureid < other_textureid ) return -1;
-        
-        if( depth == other.depth && group == other.group && textureid == other_textureid && primitive_type != other.primitive_type) return -1;
-        if( depth == other.depth && group == other.group && textureid == other_textureid && primitive_type == other.primitive_type && (clip_value >= 0)) return -1;
-
-        return 1;
-    }
-
     public function ttrace(v:Dynamic) {
         if(!log) return;
         trace(v);

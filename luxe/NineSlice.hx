@@ -430,6 +430,7 @@ class NineSlice extends luxe.Sprite {
         }
 
         _geometry.pos = _pos;
+        _geometry.id = 'NineSlice';
 
         _batcher.add( _geometry );
 

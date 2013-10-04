@@ -49,7 +49,7 @@ class Batcher {
     public var layer : Int = 0;
     public var enabled : Bool = true;
 
-    public var geometry : BalancedBinarySearchTree<Geometry,Geometry>;
+    public var geometry : BalancedBinarySearchTree< GeometryKey, Geometry >;
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
@@ -97,7 +97,7 @@ class Batcher {
 
         renderer = _r;
 
-        geometry = new BalancedBinarySearchTree<Geometry,Geometry>( geometry_compare );
+        geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
             //Our batch lists
@@ -186,21 +186,62 @@ class Batcher {
         GL.blendFunc(_src, _dest);
     }
 
-    public function geometry_compare( a:Geometry, b:Geometry ) : Int {
-        if(a == b) return 0;
-        return a.compare( b );
-    }
+    public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
+
+            //check equality
+        if(a.uuid == b.uuid) 
+            { return 0; }
+
+            //sort depth and group
+        if( a.depth < b.depth )
+            { return -1; }
+        if( a.depth > b.depth )
+            { return 1; }
+        if( a.depth == b.depth && a.group < b.group )
+            { return -1; }
+        if( a.depth == b.depth && a.group > b.group )
+            { return 1; }
+
+            sort clipping
+        var clip_value : Int = -1;
+            
+            if(a.clip == true  && b.clip == true)  
+                { clip_value =  0; }
+            if(a.clip == false && b.clip == true)  
+                { clip_value = -1; }
+            if(a.clip == true  && b.clip == false) 
+                { clip_value =  1; }
+
+            //sort texture id's
+        var textureid : Dynamic   = a.texture != null ? a.texture.id : 0;
+        var b_textureid : Dynamic = b.texture != null ? b.texture.id : 0;
+
+        if( a.depth == b.depth && a.group == b.group && textureid < b_textureid ) 
+            { return -1; }
+        if( a.depth == b.depth && a.group == b.group && textureid == b_textureid && a.primitive_type != b.primitive_type) 
+            { return -1; }
+        if( a.depth == b.depth && a.group == b.group && textureid == b_textureid && a.primitive_type == b.primitive_type && (clip_value >= 0)) 
+            { return -1; }
+
+            //if all else fails, make sure older values are preferred
+        if( a.timestamp <= b.timestamp ) return -1;
+
+            //otherwise push down the list
+        return 1;
+
+    } //geometry_compare
 
 
     public function add( _geom:Geometry, ?_force_add:Bool = false ) {
         
-        if( geometry.find(_geom) == null || _force_add ) {
+        if( geometry.find(_geom.key) == null || _force_add ) {
                 //Only add if not already there
             if( !Lambda.has(_geom.batchers, this) ) {
                 _geom.batchers.push(this);
             }
+
                 //Insert into our list
-            geometry.insert( _geom, _geom );
+            geometry.insert( _geom.key, _geom );
 
                 //Make sure it is flagged
             _geom.added = true;
@@ -223,7 +264,7 @@ class Batcher {
             }
         } //_remove_batcher_from_geometry
 
-        geometry.remove( _geom );
+        geometry.remove( _geom.key );
 
         tree_changed = true;
 

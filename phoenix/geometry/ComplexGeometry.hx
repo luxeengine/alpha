@@ -37,8 +37,13 @@ class ComplexGeometry extends Geometry {
 
 	}
 
-	public function quad_add( _options:Dynamic ) : String {
+    public function clear() {
+        for(q in quads.keys()) {
+            quad_remove( q );
+        }
+    }
 
+	public function quad_add( _options:Dynamic ) : String {
 
 		var _uuid : String = luxe.utils.UUID.get();
 

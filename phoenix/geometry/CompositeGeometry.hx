@@ -25,6 +25,7 @@ class CompositeGeometry extends Geometry {
 
         //loses the old geometry for new geometry
     public function replace(_geometry:Array<Geometry>) {
+
             //remove references 
         clear();
             //store the new geometry
@@ -49,6 +50,12 @@ class CompositeGeometry extends Geometry {
         geometry.remove(g);
 
     } //remove_geometry
+
+    public function add_to_batcher( _batcher:Batcher ) {
+        for(geom in geometry) {
+            _batcher.add(geom);
+        }
+    }
 
     public override function drop( ?remove:Bool = true ) {
 

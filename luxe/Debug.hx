@@ -11,8 +11,6 @@ import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
 
-import luxe.structures.BalancedBinarySearchTree;
-
 @:hide class Debug {
 
     public var core : Core;
@@ -49,7 +47,7 @@ import luxe.structures.BalancedBinarySearchTree;
     public var dt_average_count : Int = 0;
 
     public var current_view = 0;
-    public var view_count = 3;
+    public var view_count = 2;
 
     public var padding:Vector;
 
@@ -82,9 +80,10 @@ import luxe.structures.BalancedBinarySearchTree;
             group_count : 0
         };
 
-    }   
+    } //startup
 
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos) {
+
         #if luxe_native 
             Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
         #end
@@ -93,8 +92,9 @@ import luxe.structures.BalancedBinarySearchTree;
             untyped console.log(inf.fileName + ':' + inf.lineNumber, v);
         #end
         
-        Luxe.debug.add_line(inf.fileName + ':' + inf.lineNumber + ' ' + v );
-    }
+        Luxe.debug.add_line( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+
+    } //internal_trace
 
     public function create_debug_console() {
 
@@ -120,7 +120,7 @@ import luxe.structures.BalancedBinarySearchTree;
             //add the geometry to the renderer
         debug_batcher.add(debug_overlay);
 
-        //create the scene inspector
+            //create the scene inspector
         padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
         scene_inspector = new Inspector({ 
             title:'default scene', 
@@ -133,25 +133,25 @@ import luxe.structures.BalancedBinarySearchTree;
 
         create_stats_console();
         create_log_console();
-        create_batch_console();
 
             //no need to process this while we are here.
         debug_batcher.enabled = false;
 
-    }
+    } //create_debug_console
 
     public function onresize(e) {
         debug_view.set_ortho({ x2 : Luxe.screen.w, y2 : Luxe.screen.h });
-    } //
+    } //onresize
 
     public function create_log_console() {
+
         logged = new Array<String>();
         lines = new luxe.Text({
             depth : 999.3,
             color : new Color().rgb(0x888888),
             bounds : new luxe.Rectangle( padding.x+20, padding.y+40, Luxe.screen.w-(padding.x*2)-20, Luxe.screen.h-(padding.y*2)-40 ),
             font : Luxe.renderer.default_font,
-            text : get_batcher_list_string(),
+            text : '',
             align_vertical : luxe.Text.TextAlign.bottom,
             size : 15,
             batcher : debug_batcher,
@@ -163,7 +163,8 @@ import luxe.structures.BalancedBinarySearchTree;
         add_line('luxe version 0.0.1 Debug Log');
     }   
 
-    public function add_line(_t:String) {        
+    public function add_line(_t:String) {
+
         if(logged == null) {
             return;
         }
@@ -172,6 +173,8 @@ import luxe.structures.BalancedBinarySearchTree;
         logged.push(_t);
 
             //update the line geometry
+        if(!visible) return;
+
         refresh_lines();
 
     } //add_line
@@ -183,9 +186,9 @@ import luxe.structures.BalancedBinarySearchTree;
             return;
         }
 
-        //we go though each line in the logged list, 
-        //and create a string from them. 
-        //then we set the lines text to that
+            //we go though each line in the logged list, 
+            //and create a string from them. 
+            //then we set the lines text to that
         var _final = '';
 
         if(logged.length <= max_lines) {
@@ -200,7 +203,6 @@ import luxe.structures.BalancedBinarySearchTree;
                 _final += _line + '\n';
             }
         }//
-        
 
         lines.text = _final;
         lines.geometry.locked = true;
@@ -209,21 +211,6 @@ import luxe.structures.BalancedBinarySearchTree;
         _last_logged_length = logged.length;
 
     } //refresh_lines
-
-    public function create_batch_console() {
-
-        batcher_list_text = new luxe.Text({
-            depth : 999.3,
-            color : new Color(0,0,0,0.5).rgb(0xf6007b),
-            pos : new Vector(padding.x*2,padding.y*3),
-            font : Luxe.renderer.default_font,
-            text : get_batcher_list_string(),
-            size : 14,
-            batcher : debug_batcher,
-            enabled : false
-        });
-
-    }
 
     public function create_stats_console() {
 
@@ -259,6 +246,7 @@ import luxe.structures.BalancedBinarySearchTree;
             batcher : debug_batcher,
             enabled : false
         });
+
     } //create_stats_console
 
     public function refresh() {
@@ -290,14 +278,6 @@ import luxe.structures.BalancedBinarySearchTree;
         resource_list_text.text = lists;
     }
 
-    public function get_batcher_list_string() {
-        var _final:String = 'Batcher Items: \n';
-            for(_geom in Luxe.renderer.default_batcher.geometry) {
-                _final += '\t' + _geom.short_id() + ' d:' + _geom.depth + '\tg:' + _geom.group + '\tv:' + _geom.vertices.length + '\tid:' + _geom.id + '\n';
-            }
-        return _final;
-    }
-
     public function get_render_stats_string() {
         return 
             'Renderer Statistics\n' + 
@@ -308,6 +288,7 @@ import luxe.structures.BalancedBinarySearchTree;
             '\tstatic batch count : ' + _render_stats.static_batched_count + '\n' +
             '\ttotal draw calls : ' + _render_stats.draw_calls;  
     }
+
     public function get_resource_stats_string() {        
         return Std.string(Luxe.resources.stats);
     }
@@ -324,15 +305,9 @@ import luxe.structures.BalancedBinarySearchTree;
             case 0:                
                 show_log_console(true);
                 show_stats_console(false);
-                show_batcher_list(false);
             case 1:
                 show_log_console(false);
                 show_stats_console();
-                show_batcher_list(false);
-            case 2:
-                show_log_console(false);
-                show_stats_console(false);
-                show_batcher_list(true);
         }
     }
 
@@ -361,147 +336,15 @@ import luxe.structures.BalancedBinarySearchTree;
         } else {
             show_log_console(false);
             show_stats_console(false);
-            show_batcher_list(false);
             scene_inspector.hide();
             debug_overlay.enabled = false;
         }
     }
 
-
-    var _tree_geom : CompositeGeometry;
-    public function clear_batcher_tree() {
-        if(_tree_geom != null) {
-            _tree_geom.drop();
-            _tree_geom = null;
-        }
-    }   
-
-    public function draw_geom_node(l:Bool, _g:Geometry, _p:Vector ) {
-
-        var _bw:Float = 20;
-        var _bwhalf:Float = 9;
-        var _bh:Float = 13;
-
-        _tree_geom.add_geometry( 
-            Luxe.draw.rectangle({
-                x:_p.x-_bwhalf, y:_p.y,
-                w:_bw, h:_bh,
-                color: new Color(1,1,1,0.4).rgb(0xf6007b),
-                batcher : debug_batcher,
-                depth : 999.4
-            })
-        ); //node square
-        
-        _tree_geom.add_geometry( 
-            Luxe.draw.text({
-                pos : _p,
-                size : 13,
-                color : new Color(1,1,1,0.7).rgb(0xf6007b),
-                batcher : debug_batcher,
-                depth : 999.4,
-                text : _g.depth,
-                align : luxe.Text.TextAlign.center
-            })
-        ); //node text
-
-        var t = _p.clone().set( _p.x+(_bwhalf*1.5), _p.y );
-        var talign = luxe.Text.TextAlign.left;
-        if(l) {
-            t.x = _p.x - (_bwhalf*1.5);
-            talign = luxe.Text.TextAlign.right;
-        }
-
-        _tree_geom.add_geometry( 
-            Luxe.draw.text({
-                pos : t,
-                size : 13,
-                color : new Color(1,1,1,0.7).rgb(0xf6007b),
-                batcher : debug_batcher,
-                depth : 999.4,
-                text : _g.id,
-                align : talign
-            })
-        ); //node text
-    }
-
-    public function draw_geom_leaf( L:Bool, _leaf : BalancedBinarySearchTreeNode<Geometry,Geometry>, _p:Vector ) {
-
-        var _bw:Float = 20;
-        var _bwb:Float = 24;
-        var _bh:Float = 12;
-        var _bh2:Float = 24;
-        var _bwhalf:Float = 10;
-
-        if(_leaf != null) {
-            
-            draw_geom_node(L,_leaf.value, _p);
-
-            if(_leaf.left != null) {
-                
-                var __bwb = _leaf.left.nodecount * _bwb;
-
-                _tree_geom.add_geometry( 
-                    Luxe.draw.line({
-                        p0 : new Vector(_p.x-_bwhalf,_p.y+_bh),
-                        p1 : new Vector(_p.x-__bwb, _p.y+_bh2 ),
-                        color: new Color(1,1,1,0.2).rgb(0xf6007b),
-                        batcher : debug_batcher,
-                        depth : 999.4
-                    })
-                );
-
-                draw_geom_leaf(true, _leaf.left, new Vector(_p.x-__bwb, _p.y+_bh2 ));
-            }
-            if(_leaf.right != null) {
-
-                var __bwb = _leaf.right.nodecount * _bwb;
-                
-                _tree_geom.add_geometry( 
-                    Luxe.draw.line({
-                        p0 : new Vector(_p.x+_bwhalf,_p.y+_bh),
-                        p1 : new Vector(_p.x+__bwb, _p.y+_bh2),
-                        color: new Color(1,1,1,0.2).rgb(0xf6007b),
-                        batcher : debug_batcher,
-                        depth : 999.4
-                    })
-                );
-
-                draw_geom_leaf(false, _leaf.right, new Vector(_p.x+__bwb, _p.y+_bh2));
-            }
-        }
-    }
-
-    public function draw_batcher_tree() {
-
-        _tree_geom = null;
-        _tree_geom = new CompositeGeometry({
-            batcher : debug_batcher,
-            depth : 999.4
-        });
-
-        //draw the root
-        var _p : Vector = new Vector(Luxe.screen.w/2, (padding.y*2)+10);
-
-        var _node = Luxe.renderer.default_batcher.geometry.root;
-            
-            draw_geom_leaf(true, _node, _p);
-
-    }
-
-    public function show_batcher_list(_show:Bool = true) {
-        if(_show) {
-            batcher_list_text.text = get_batcher_list_string();
-            batcher_list_text.visible = true;
-            draw_batcher_tree();
-        } else {            
-            batcher_list_text.visible = false;
-            clear_batcher_tree();
-        }
-    } //show_batcher_list
-
     public function show_log_console(_show:Bool = true) {
         if(_show) {
-            lines.visible = true;            
+            refresh_lines();
+            lines.visible = true;          
         } else {
             lines.visible = false;
         }
@@ -512,7 +355,7 @@ import luxe.structures.BalancedBinarySearchTree;
             render_stats_text.visible = true;
             resource_stats_text.visible = true;
             resource_list_text.visible = true;
-        } else {            
+        } else {
             render_stats_text.visible = false;
             resource_stats_text.visible = false;
             resource_list_text.visible = false;
@@ -544,6 +387,7 @@ import luxe.structures.BalancedBinarySearchTree;
     public function toggle_debug_stats() {
          hide_debug = !hide_debug;
     }
+
     public function update_render_stats() {
 
         debug_geometry_count = debug_batcher.geometry.size();
@@ -560,14 +404,14 @@ import luxe.structures.BalancedBinarySearchTree;
 
             _render_stats.batchers = _render_stats.batchers - 1;
             _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
-            _render_stats.enabled_count = _render_stats.enabled_count - debug_geometry_count + 2;
-            _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - debug_geometry_count + debug_batcher.static_batched_count + 2;
+            _render_stats.enabled_count = _render_stats.enabled_count - _render_stats.enabled_count;
+            _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - debug_batcher.dynamic_batched_count;// - debug_batcher.static_batched_count;
             _render_stats.static_batched_count = _render_stats.static_batched_count - debug_batcher.static_batched_count;
             _render_stats.draw_calls -= debug_draw_call_count;
 
         } //hide debug stats?
         
-    }   
+    } //update_render_stats
 
 	public function process() {
 
@@ -614,17 +458,8 @@ import luxe.structures.BalancedBinarySearchTree;
                 refresh_render_stats();
             } //dirty
 
-        } else if(current_view == 2) {//current_view
-            if(Luxe.renderer.default_batcher.tree_changed) {
-                clear_batcher_tree();
-                draw_batcher_tree();
-                Luxe.renderer.default_batcher.tree_changed = false;
-            }
-        }
-
+        } //view == 1
 
 	} //process
-}
 
-//cpp.vm.Profiler.start("log.txt");
-//cpp.vm.Profiler.stop();
+} //Debug 

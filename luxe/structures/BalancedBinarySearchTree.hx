@@ -86,8 +86,9 @@ class BalancedBinarySearchTree<K,T> {
 	} //_insert
 
 //Contains
-	public function contains( _key:K ) : Bool {
-        return find(_key) != null;
+	public function contains( _key:K ) : Bool {        
+        var _found = find(_key) != null;
+        return _found;
     } //contains
 
 //Find
@@ -102,6 +103,7 @@ class BalancedBinarySearchTree<K,T> {
 		} //_node
 
 		var comparison = compare( _key, _node.key );
+
 		if(comparison < 0) {
 			return _find(_node.left, _key);
 		} else //comparison < 0
@@ -310,7 +312,9 @@ class BalancedBinarySearchTree<K,T> {
 
     } //delete
 
+ 
     private function _remove( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {
+
         if(!contains(_key)) {
             return _node;
         }

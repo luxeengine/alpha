@@ -19,6 +19,17 @@ import lime.utils.IMemoryRange;
 import lime.gl.GL;
 import lime.gl.GLBuffer;
 
+typedef GeometryKey = {
+	var timestamp : Float;
+	var uuid : String;
+	var primitive_type : PrimitiveType;
+	var texture : Texture;
+	var shader : Shader;
+	var group : Int;
+	var depth : Float;
+	var clip : Bool;
+}
+
 class Geometry {
 
 		//The list of vertices
@@ -44,13 +55,13 @@ class Geometry {
 	
 
 		//State properties
-	@:isVar public var primitive_type(get, set) : PrimitiveType;
-	@:isVar public var texture(get, set) : Texture;
-	@:isVar public var shader(get, set) : Shader;
-	@:isVar public var depth(get, set) : Float;
-	@:isVar public var group(get, set) : Int;
-	@:isVar public var clip(get, set) : Bool;
-	@:isVar public var clip_rect(get, set) : Rectangle;
+	@:isVar public var primitive_type (get, set) : PrimitiveType;
+	@:isVar public var texture (get, set) : Texture;
+	@:isVar public var shader (get, set) : Shader;
+	@:isVar public var depth (get, set) : Float;
+	@:isVar public var group (get, set) : Int;
+	@:isVar public var clip (get, set) : Bool;
+	@:isVar public var clip_rect (get, set) : Rectangle;
 
 	private var shadow_primitive_type : PrimitiveType;
 	private var shadow_texture : Texture;
@@ -81,6 +92,7 @@ class Geometry {
 		//Private reuse value
 	var _final_vert_position : Vector;
 
+	public var key : GeometryKey;
 
 	public function new( options:Dynamic ) {
 
@@ -127,7 +139,29 @@ class Geometry {
 			
 		} //options != null
 
+		key = {
+			uuid : uuid,
+			timestamp : haxe.Timer.stamp(),
+			primitive_type : state.primitive_type,
+			texture : state.texture,
+			shader : state.shader,
+			group : state.group,
+			depth : state.depth,
+			clip : state.clip
+		};
+
 	} //new
+
+	public function refresh_key() {
+		key.uuid = uuid;
+		key.timestamp = haxe.Timer.stamp();
+		key.primitive_type = state.primitive_type;
+		key.texture = state.texture;
+		key.shader = state.shader;
+		key.group = state.group;
+		key.depth = state.depth;
+		key.clip = state.clip;
+	}
 
 	public function short_id() {
 
@@ -149,19 +183,13 @@ class Geometry {
 
 		if( remove && added ) {
 			
-			for(b in batchers) {
+			for(b in batchers) {				
 				b.remove( this, true );
 			} //for each batcher
 
-		} //if remove && added
+		} 
 
 	} //drop
-
-	public function compare( other:Geometry ) : Int {
-		
-		return state.compare( other.state );
-
-	} //compare
 
 	public function add( v : Vertex ) {
 
@@ -315,6 +343,9 @@ class Geometry {
 				dirty_clip = false;
 				state.clip = shadow_clip;
 			} //dirty_clip
+
+		    	//make sure the key is updated
+           refresh_key();
 
 		for(b in batchers) {
 			b.add(this,false);

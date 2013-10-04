@@ -279,9 +279,9 @@ class BitmapFont extends Resource {
 
                 //adjust culmative x value
             var x_inc : Float = _x_advance;
-            if( i < _string.length - 1 ){
-                x_inc += get_kerning( glyph.charCodeAt(0), _string.charAt(i+1).charCodeAt(0) );
-            }
+            // if( i < _string.length - 1 ){
+            //     x_inc += get_kerning( glyph.charCodeAt(0), _string.charAt(i).charCodeAt(0) );
+            // }
             
             if( glyph == '\t' ){
                 x_inc += spc.xadvance * 4;
@@ -347,10 +347,13 @@ class BitmapFont extends Resource {
                 immediate : _immediate
             });
 
+            _g.id = 'text.page'+i+'.'+_string;
+
             _g.primitive_type = PrimitiveType.triangles;
             _g.immediate = _immediate;
             _geoms.push( _g );
-            _batcher.add( _g );
+
+            // _batcher.add( _g );
 
         } //for each page
 
@@ -418,9 +421,9 @@ class BitmapFont extends Resource {
                 var _h  : Float = c.height * _scale.y;
 
                 var _x_inc : Float = c.xadvance;
-                if( i < _line.length-1 ){
-                    _x_inc += get_kerning( c.id, _line.charAt(i+1).charCodeAt(0) );
-                }
+                // if( i < _line.length-1 ){
+                //     // _x_inc += get_kerning( c.id, _char.charCodeAt(0) );
+                // }
 
                 if( _char == '\t' ){
                     _x_inc += spc.xadvance * 4; //todo, hardcoded 4 tab size
@@ -470,6 +473,7 @@ class BitmapFont extends Resource {
                 
             //replace the composite with the children geometry we just created
         _final_geom.replace( _geoms );
+        _final_geom.add_to_batcher(_batcher);
 
         if(!_bounds_based) {
 

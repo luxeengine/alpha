@@ -43,5 +43,8 @@
 	},
 	"text" : {
 		"h" : "48"
-	}
+	},
+	"rects" : [
+		{ "x":0, "y":0, "w":"screenw", "h":"half_below_bottom", "color":{"r":0.913,"g":0.294,"b":0.290,"a":1} }
+	]
 }

@@ -28,7 +28,7 @@ class Main extends luxe.Game {
         debug_batcher.layer = 2;
         Luxe.renderer.add_batch(debug_batcher);
 
-        tree = new BalancedBinarySearchTree<Geometry, Geometry>( compare_geometry );
+        tree = new BalancedBinarySearchTree<GeometryKey, Geometry>( compare_geometry );
 
         tex = Luxe.loadTexture('assets/luxe.png');  
 

@@ -68,7 +68,7 @@ class Text {
     }
 
     public function destroy() {
-        if(geometry != null) {            
+        if(geometry != null) {
             geometry.drop();
             geometry = null;
         }

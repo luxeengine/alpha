@@ -29,6 +29,7 @@ class Block {
 	public function init() {
 		
 		sprite = new Sprite({
+			name : 'block' + Math.floor(x/board.blockw) + '-' + Math.floor(y/board.blockh),
 			centered : false,
 			pos : new Vector(x,y),
 			color : new Color(1,1,1,0),
@@ -54,7 +55,7 @@ class Block {
 		Actuate.tween(letter.color, 3, {a:0.8}).onUpdate(function(){
 			letter.color = letter.color;
 		}).onComplete(function(){
-			// sprite.locked = true;
+			sprite.locked = true;
 		});
 
 	}
@@ -67,7 +68,7 @@ class Block {
 		} //_g
 
 		_debug_geometry.splice(0,_debug_geometry.length);
-		trace("destroy");
+		
 		letter.destroy();
 		sprite.destroy();
 

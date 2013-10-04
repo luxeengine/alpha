@@ -47,7 +47,7 @@ import luxe.defaults.TinyUI;
 			if(_options.size != null) size = _options.size;
 			if(_options.batcher != null) _batcher = _options.batcher;
 			
-		} //_options != null		
+		} //_options != null
 
 	} //new
 
@@ -84,9 +84,10 @@ import luxe.defaults.TinyUI;
 		});	
 
 		_window.create( pos, size.x, size.y );
+		_window._geometry.id = 'debug.Inspector';
 
 			//static batch
-		_window.lock();
+		_window.lock();		
 
 		_title_text = new Text({
 			batcher : _batcher,
@@ -98,6 +99,10 @@ import luxe.defaults.TinyUI;
 			text : title,
 			size : 18,
 			enabled : false
+		});
+
+		_title_text.geometry.geometry.map(function(g){
+			g.id = 'debug.title.text';
 		});
 
 	}
