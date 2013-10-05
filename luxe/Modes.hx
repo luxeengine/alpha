@@ -2,6 +2,7 @@ package luxe;
 
 import luxe.Input.KeyEvent;
 import luxe.Input.MouseEvent;
+import luxe.Input.TouchEvent;
 
 class Mode {
 
@@ -161,8 +162,23 @@ class Modes {
 		}
 	}
 	public function onmousemove( e:MouseEvent ) {
-		for (mode in activemodes) {			
+		for (mode in activemodes) {
 			_call(mode, 'onmousemove', [e]);
+		}
+	}
+	public function ontouchmove( e:TouchEvent ) {
+		for (mode in activemodes) {			
+			_call(mode, 'ontouchmove', [e]);
+		}
+	}
+	public function ontouchend( e:TouchEvent ) {
+		for (mode in activemodes) {			
+			_call(mode, 'ontouchend', [e]);
+		}
+	}
+	public function ontouchbegin( e:TouchEvent ) {
+		for (mode in activemodes) {			
+			_call(mode, 'ontouchbegin', [e]);
 		}
 	}
 

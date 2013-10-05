@@ -77,6 +77,15 @@ class Main extends luxe.Game {
         mouse.set(e.x,e.y);
         modes.onmouseup(e);
     } //onkeydown
+    public function ontouchmove(e:TouchEvent) {
+        modes.ontouchmove(e);
+    } //ontouchmove
+    public function ontouchbegin(e:TouchEvent) {
+        modes.ontouchbegin(e);
+    } //ontouchmove
+    public function ontouchend(e:TouchEvent) {
+        modes.ontouchend(e);
+    } //ontouchmove
 
     public function update(dt:Float) {
         modes.update(dt);

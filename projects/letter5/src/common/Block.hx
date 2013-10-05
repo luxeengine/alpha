@@ -24,6 +24,7 @@ class Block {
 		board = _board;
 		_debug_geometry = [];
 		x = _x; y = _y;
+
 	}
 
 	public function init() {
@@ -46,7 +47,7 @@ class Block {
 			align_vertical : TextAlign.center,
 			text : get_random_letter(),
 			size : board.skin.text.h,
-			color : new Color(0,0,0,0).rgb(0xa79b97),
+			color : board.skin.text.normal_color,
 			font : board.game.font,	
 			depth : 3.1,
 		});
@@ -60,6 +61,16 @@ class Block {
 
 	}
 
+	public function select() {
+		sprite.uv = new Rectangle(board.skin.block_selected.x,board.skin.block_selected.y,board.skin.block_selected.w,board.skin.block_selected.h );
+		letter.color = board.skin.text.highlight_color;
+	}
+
+	public function deselect() {
+		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
+		letter.color = board.skin.text.normal_color;
+	}
+
 	public function destroy() {
 
 		for(_g in _debug_geometry) {
@@ -68,7 +79,7 @@ class Block {
 		} //_g
 
 		_debug_geometry.splice(0,_debug_geometry.length);
-		
+
 		letter.destroy();
 		sprite.destroy();
 

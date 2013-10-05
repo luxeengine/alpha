@@ -3,6 +3,8 @@ package common;
 import common.Skin ;
 import common.Skin;
 import luxe.Color;
+import luxe.Input.MouseEvent;
+import luxe.Input.TouchEvent;
 import luxe.Vector;
 
 import phoenix.geometry.Geometry;
@@ -14,8 +16,8 @@ class Board {
 	public var game : Main;
 	public var skin : Skin;	
 		//the grid width and height
-	public var w : Int = 7;
-	public var h : Int = 7;
+	public var w : Int = 6;
+	public var h : Int = 6;
     	//the offset in the main view
     public var offsetx : Int = 0;
     public var offsety : Int = 0;
@@ -23,8 +25,8 @@ class Board {
     public var baseleft : Int = 0;
     public var basetop : Int = 0;
     	//the block size of this board
-    public var blockw : Float = 80; 
-    public var blockh : Float = 80; 
+    public var blockw : Float = 100; 
+    public var blockh : Float = 100; 
     	//the space between blocks in this board
     public var spacing : Int = 0;
     	//the actual width
@@ -45,6 +47,8 @@ class Board {
     public var bottom_ui_bar : NineSlice;
     public var word_ui_bar : NineSlice;
 
+        //any rectangle geometries
+    public var rectboxes : Array<Geometry>;
 
     	//debug stuff
     var _debug_geometry : Array<Geometry>;
@@ -66,16 +70,24 @@ class Board {
 
 		blocks = [];
 		cells = [];
-		selected = [];
+        selected = [];
+		rectboxes = [];
+
+        touchpos = new Vector();
 
 			//calculate the offset positions
-        baseleft = Std.int(( Luxe.screen.w / 2) - ( (blockw*w)/2 )) + offsetx;
-        basetop = Std.int(( Luxe.screen.h / 2) - ( (blockh*h)/2 )) + offsety;
+        baseleft = Std.int(( Luxe.screen.w / 2) - ( ((blockw+spacing)*w)/2 )) + offsetx;
+        basetop = Std.int(( Luxe.screen.h / 2) - ( ((blockh+spacing)*h)/2 )) + offsety;
 
         width = Std.int((blockw+spacing) * w);
         height = Std.int((blockw+spacing) * h);
 
-        	//create cells
+        
+
+	} //new 
+
+    public function create_blocks() {
+            //create cells
         for( _x in 0... w ) {
 
             var cell_column = [];
@@ -88,6 +100,9 @@ class Board {
 
                 var c = new Cell(this, Std.int(__x), Std.int(__y));
                 var b = new Block(this, Std.int(__x), Std.int(__y));
+
+                c.init();
+                b.init();
                 
                 cell_column.push(c);
                 block_column.push(b);
@@ -95,9 +110,9 @@ class Board {
 
             cells.push(cell_column);
             blocks.push(block_column);
-        }        
+        } 
 
-	} //new 
+    } //create_blocks
 
 	public function init() {
 
@@ -110,11 +125,12 @@ class Board {
 			skin.init();
 		} else {
 			throw "can't find skin " + 'default';
-		}
+		} 
 
+       
             //create the UI bars
         top_ui_bar = new NineSlice({
-            depth : 1,
+            depth : skin.top.depth,
             texture : skin.texture,
             top : skin.top.t,
             right : skin.top.r,
@@ -130,7 +146,7 @@ class Board {
 
             //create the UI bars
         bottom_ui_bar = new NineSlice({
-            depth : 1,
+            depth : skin.bottom.depth,
             texture : skin.texture,
             top : skin.bottom.t,
             right : skin.bottom.r,
@@ -144,18 +160,25 @@ class Board {
 
         bottom_ui_bar.create( new Vector(skin.bottom.x, skin.bottom.y), skin.bottom.w, skin.bottom.h );
 
+        for( _rect in skin.rects ) {
+
+            var _rect_geom = Luxe.draw.box({
+                x: _rect.rect.x, y: _rect.rect.y, 
+                w: _rect.rect.w, h: _rect.rect.h,
+                color : _rect.color, depth : _rect.depth
+            });
+
+            rectboxes.push(_rect_geom);
+        }
+
         _debug_geometry.push(Luxe.draw.rectangle({
         	x: baseleft, y : basetop,
         	w : width, h : height,
         	color : new Color(1,1,1,0.1)
         })); //_debug_geometry
 
-        for( _x in 0... w ) {
-            for( _y in 0 ... h ) {    
-            	cells[_x][_y].init();
-            	blocks[_x][_y].init();
-            } //_y
-		} //_x
+
+        create_blocks();
 
 	} //init
 
@@ -171,7 +194,12 @@ class Board {
             } // _y 
 		} //for _x
 
-		for(_g in _debug_geometry) {
+        for(_g in _debug_geometry) {
+            _g.drop();
+            _g = null;
+        } //drop all geometry
+
+		for(_g in rectboxes) {
 			_g.drop();
 			_g = null;
 		} //drop all geometry
@@ -179,5 +207,73 @@ class Board {
         _debug_geometry.splice(0,_debug_geometry.length);
 
 	} //destroy
+
+    var _selected : Block;
+    var mousedown : Bool;
+    var touchpos : Vector;
+
+    public function ontouchbegin(e:TouchEvent) {
+        mousedown = true;
+    }
+    public function ontouchend(e:TouchEvent) {
+        mousedown = false;
+    }
+
+    public function ontouchmove(e:TouchEvent) {
+        touchpos.set(e.x,e.y);
+        ondrag(touchpos);
+    }
+
+    public function onmousemove(e:MouseEvent) {
+        ondrag(e.pos);
+    }
+
+    public function ondrag(pos:Vector) {
+
+        if(mousedown) {
+
+            var gridspacex = pos.x - baseleft;
+            var gridspacey = pos.y - basetop;
+
+            var gridx = Math.floor(gridspacex / (blockw+spacing));
+            var gridy = Math.floor(gridspacey / (blockh+spacing));
+
+            if(gridx > -1 && gridx < w && gridy > -1 && gridy < h && blocks != null && blocks.length != 0) {
+                //get the block
+                var block = blocks[gridx][gridy];
+
+                if(block != _selected) {
+                    
+                    if(_selected != null) {
+                        _selected.deselect();
+                    }
+
+                    _selected = block;
+                    block.select();
+
+                }
+
+            } else {
+                if(_selected != null) {
+                    _selected.deselect();
+                    _selected = null;
+                }
+            }
+
+        } //mousedown
+
+    } //ondrag
+
+    public function onmousedown(e:MouseEvent) {
+        #if !ios
+            mousedown = true;
+        #end
+    }
+
+    public function onmouseup(e:MouseEvent) {
+        #if !ios
+            mousedown = false;
+        #end
+    }
 	
 }

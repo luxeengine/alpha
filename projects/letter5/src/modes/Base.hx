@@ -20,7 +20,6 @@ class Base extends Mode {
     public var current_game_words : Array<String>;
     public var current_long_words : Array<String>;
 
-  
     	//whether or not the mode allows diagonals
     public var allowDiagonal : Bool = true;
 
@@ -55,6 +54,26 @@ class Base extends Mode {
 	public function leave() {
 		board.destroy();
 	} //leave
+
+
+	public function ontouchbegin(e:TouchEvent) {
+		board.ontouchbegin(e);
+	}
+	public function ontouchend(e:TouchEvent) {
+		board.ontouchend(e);
+	}
+	public function ontouchmove(e:TouchEvent) {
+		board.ontouchmove(e);
+	}
+	public function onmousemove(e:MouseEvent) {
+		board.onmousemove(e);
+	}
+	public function onmousedown(e:MouseEvent) {
+		board.onmousedown(e);
+	}
+	public function onmouseup(e:MouseEvent) {
+		board.onmouseup(e);
+	}
 
 	public function onkeydown(e) {		
         if(e.value == Input.Keys.escape) {

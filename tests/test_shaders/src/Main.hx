@@ -57,8 +57,10 @@ class Main extends luxe.Game {
 
     	level_texture.onload = function(tt) {
     		level_sprite.scale = new Vector(4,4);
-    		level_tiltshift = Luxe.loadShader('assets/gray_tilt_shift.glsl');
-	    	level_sprite.shader = level_tiltshift;
+            #if !mobile
+    		  level_tiltshift = Luxe.loadShader('assets/gray_tilt_shift.glsl');
+	    	  level_sprite.shader = level_tiltshift;
+            #end
     	} //level tex on load
 
     	distort_map.onload = function(tt) {
@@ -77,6 +79,19 @@ class Main extends luxe.Game {
 
 
     } //ready
+
+    public function ontouchmove( e:TouchEvent ) {
+        if(loaded && loaded_logo) {
+
+            var percent = e.x / Luxe.screen.w;
+            var hue = (Math.PI*2) * percent;
+
+                //distort based on mouse x
+            distort_shader.set_uniform_float('distortamount', percent);
+                //hue based on mouse x 
+            hue_shader.set_uniform_float('in_hue', hue);
+        }
+    }
 
     public function onmousemove( e:MouseEvent ) {
 

@@ -205,7 +205,7 @@ class Texture extends Resource {
 
             //Set the properties
         _set_filter( FilterType.linear );
-        _set_clamp( ClampType.repeat );
+        _set_clamp( ClampType.edge );
 
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
@@ -265,7 +265,7 @@ class Texture extends Resource {
 
             //Set the properties
         filter = FilterType.linear;
-        clamp = ClampType.repeat;
+        clamp = ClampType.edge;
         
         image_bytes = null;
         byte_input = null;
