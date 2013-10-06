@@ -457,11 +457,32 @@ import haxe.Timer;
         if(host.onmousemove != null) host.onmousemove(e);
     }
 //touch
+    var touches_down : Map<Int, TouchEvent>;
+
     public function ontouchbegin(e : TouchEvent) {
         if(host.ontouchbegin != null) host.ontouchbegin(e);
+
+        if(touches_down == null) touches_down = new Map();
+        touches_down.set(e.ID, e);
+
+            //3 finger tap when console opens will switch tabs
+        if(Lambda.count(touches_down) >= 3) {
+            if(console_visible) {
+                debug.switch_console();
+            }
+        }
+
+            //4 finger tap toggles console
+        if(Lambda.count(touches_down) >= 4) {            
+            show_console( !console_visible );
+        }
+
     }
+
     public function ontouchend(e : TouchEvent) {
         if(host.ontouchend != null) host.ontouchend(e);
+
+        touches_down.remove(e.ID);
     }
     public function ontouchmove(e : TouchEvent) {
         if(host.ontouchmove != null) host.ontouchmove(e);
