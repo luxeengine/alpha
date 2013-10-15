@@ -23,9 +23,7 @@ class ApplicationMain {
 			vsync 			: ::WIN_VSYNC::,
 			width 			: ::WIN_WIDTH::, 
 			height 			: ::WIN_HEIGHT::, 
-			title 			: "::APP_TITLE::",
-			x				: ::WIN_X::,
-			y				: ::WIN_Y::			
+			title 			: "::APP_TITLE::"
 		};
 
 			//Create the lime layer

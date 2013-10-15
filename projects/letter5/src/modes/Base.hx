@@ -45,6 +45,10 @@ class Base extends Mode {
 
 	} //new
 
+	public function update(dt:Float) {	
+		board.update(dt);	
+	}
+
 	public function enter() {				
 		Actuate.tween(Luxe.renderer.clear_color, 0.5, {r:0.9412,g:0.9412,b:0.9412}).onComplete(function(){
 			board.init();

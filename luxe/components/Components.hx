@@ -71,15 +71,15 @@ class Component extends Objects {
 //Spatial transforms
 
         //An internal callback for when x y or z on a transform changes
-    private function _pos_change(_v:Float) { this.set_pos(pos); }
+    @:noCompletion private function _pos_change(_v:Float) { this.set_pos(pos); }
         //An internal callback for when x y or z on a transform changes
-    private function _scale_change(_v:Float) { this.set_scale(scale); }
+    @:noCompletion private function _scale_change(_v:Float) { this.set_scale(scale); }
         //An internal callback for when x y or z on a transform changes
-    private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
+    @:noCompletion private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
 
         //An internal function to attach position 
         //changes to a vector, so we can listen for `pos.x` as well
-    private function _attach_listener( _v : Vector, listener ) {
+    @:noCompletion private function _attach_listener( _v : Vector, listener ) {
         _v.listen_x = listener; 
         _v.listen_y = listener; 
         _v.listen_z = listener;
@@ -91,6 +91,8 @@ class Component extends Objects {
 			entity : entity.id
 		};
 	} //get_serialize_data
+
+#if luxe_native
 
 	public function serialize_to_disk( _destination_path:String ) {
 
@@ -106,6 +108,7 @@ class Component extends Objects {
 
 	} //serialize_to_disk
 
+#end //luxe_native
 
 } //Component
 
@@ -223,7 +226,7 @@ class Component extends Objects {
 		return components.exists(_name);
 	} //has	
 
-	private function _call(_object:Dynamic, _name : String, ?args:Array<Dynamic> ) {
+	@:noCompletion private function _call(_object:Dynamic, _name : String, ?args:Array<Dynamic> ) {
 		
 		var _func = Reflect.field( _object, _name );
 		if(_func != null) {
@@ -232,7 +235,7 @@ class Component extends Objects {
 
 	} //_call	
 
-    public static var _show_debug : Bool = false;
-    private function _debug(v){ if(_show_debug) { trace(v); } }		
+    @:noCompletion public static var _show_debug : Bool = false;
+    @:noCompletion private function _debug(v){ if(_show_debug) { trace(v); } }		
 
 } //AcceptsComponents

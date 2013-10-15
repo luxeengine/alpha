@@ -13,7 +13,7 @@ class Objects {
 
 //Private helper functions
 
-	private function _call(_object:Objects, _name : String, ?args:Array<Dynamic> = null ) {
+	@:noCompletion private function _call(_object:Objects, _name : String, ?args:Array<Dynamic> = null ) {
 		
 		var _func = Reflect.field( _object, _name );
 		if(_func != null) {
@@ -22,7 +22,7 @@ class Objects {
 
 	} //_call
 
-    private function _merge_properties( _properties:Dynamic, _with:Dynamic) : Dynamic {
+    @:noCompletion private function _merge_properties( _properties:Dynamic, _with:Dynamic) : Dynamic {
 
         if(_with == null) {
             _with = {};
@@ -37,7 +37,7 @@ class Objects {
 
     } //_merge_properties  
 
-    @:hide public static var _show_debug : Bool = false;
-    private function _debug(v){ if(_show_debug) { trace(v); } }	
+    @:noCompletion public static var _show_debug : Bool = false;
+    @:noCompletion private function _debug(v){ if(_show_debug) { trace(v); } }	
 
 } //Objects

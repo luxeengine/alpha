@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension>
 
-		<ndll name="std" haxelib="hxcpp" />
-		<ndll name="regexp" haxelib="hxcpp" />
-		<ndll name="zlib" haxelib="hxcpp" />
-
-		<haxelib name="lime" />
-		<haxelib name="format" />
-
-			<!-- Tentatively added here, testing in projects/three first -->
-			<!-- This will also only be required on native platforms anyway -->
-		<!-- <haxelib name="haxebullet" /> -->
+	<haxelib name="format" />
+	<haxelib name="lime" />
 
 	<templatePath name="buildfiles" />
 

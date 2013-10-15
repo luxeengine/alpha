@@ -58,7 +58,15 @@ class Menu extends Mode {
 	public function onmousemove(e) {
 	}
 
+	var toggle:Bool = true;
 	public function onmouseup(e) {		
+		// toggle = !toggle;
+		// 	trace("toggling gc : " + toggle);
+		// cpp.vm.Gc.enable(toggle);
+		// // if(toggle) {
+
+		// // }
+
 		if(play.point_inside(game.mouse)) {
 			game.modes.set('base');
 		}

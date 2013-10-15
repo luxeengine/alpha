@@ -53,10 +53,10 @@ class Batcher {
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
-    public var vert_list : Array<Float>;
-    public var tcoord_list : Array<Float>;
-    public var color_list : Array<Float>;
-    public var normal_list : Array<Float>;
+    public var vertlist : Array<Float>;
+    public var tcoordlist : Array<Float>;
+    public var colorlist : Array<Float>;
+    public var normallist : Array<Float>;
 
     public var vertexBuffer : GLBuffer;
     public var tcoordBuffer : GLBuffer;
@@ -101,10 +101,15 @@ class Batcher {
         groups = new Map();
 
             //Our batch lists
-        vert_list = new Array<Float>();
-        tcoord_list = new Array<Float>();
-        color_list = new Array<Float>();
-        normal_list = new Array<Float>();
+        vertlist = new Array<Float>();
+        tcoordlist = new Array<Float>();
+        colorlist = new Array<Float>();
+        normallist = new Array<Float>();
+
+        staticvertlist = new Array<Float>();
+        statictcoordlist = new Array<Float>();
+        staticcolorlist = new Array<Float>();
+        staticnormallist = new Array<Float>(); 
 
             //The default view so we see stuff
         view = renderer.default_camera;
@@ -325,10 +330,10 @@ class Batcher {
         var state : BatchState = new BatchState(this);
 
             //The batch lists to submit
-        var vertlist : Array<Float> = new Array<Float>();
-        var tcoordlist : Array<Float> = new Array<Float>();
-        var colorlist : Array<Float> = new Array<Float>();
-        var normallist : Array<Float> = new Array<Float>();
+        // var vertlist : Array<Float> = new Array<Float>();
+        // var tcoordlist : Array<Float> = new Array<Float>();
+        // var colorlist : Array<Float> = new Array<Float>();
+        // var normallist : Array<Float> = new Array<Float>();
 
             //The current geometry in the set
         var geom : Geometry = null;
@@ -477,18 +482,18 @@ class Batcher {
 
     }
 
+    var staticvertlist : Array<Float>;
+    var statictcoordlist : Array<Float>;
+    var staticcolorlist : Array<Float>;
+    var staticnormallist : Array<Float>; 
+
     public function submit_static_buffer_object( geom:Geometry ) {        
 
         if( geom.vertices.length == 0 ) {
             return;
         }
 
-        var vertlist : Array<Float> = new Array<Float>();
-        var tcoordlist : Array<Float> = new Array<Float>();
-        var colorlist : Array<Float> = new Array<Float>();
-        var normallist : Array<Float> = new Array<Float>(); 
-
-        geom.batch( vertlist, tcoordlist, colorlist, normallist );
+        geom.batch( staticvertlist, statictcoordlist, staticcolorlist, staticnormallist );
 
             //check if the geometry has buffers
         if(geom.static_vertex_buffer == null) {
@@ -505,7 +510,7 @@ class Batcher {
         GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(vertlist), GL.STATIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(staticvertlist), GL.STATIC_DRAW);
         }
 
             //set the texture coordinates in the shader, but to static buffers
@@ -513,7 +518,7 @@ class Batcher {
         GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(tcoordlist), GL.STATIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(statictcoordlist), GL.STATIC_DRAW);
         }
 
             //set the color values in the shader, but to static buffers
@@ -521,7 +526,7 @@ class Batcher {
         GL.vertexAttribPointer(color_attribute, 4, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(colorlist), GL.STATIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(staticcolorlist), GL.STATIC_DRAW);
         }
 
             //set the normal directions in the shader, but to static buffers
@@ -529,24 +534,20 @@ class Batcher {
         GL.vertexAttribPointer(normal_attribute, 3, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(normallist), GL.STATIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, new Float32Array(staticnormallist), GL.STATIC_DRAW);
         }
 
             //Draw
-        GL.drawArrays( get_opengl_primitive_type(geom.primitive_type) , 0, Std.int(vertlist.length/3) );
+        GL.drawArrays( get_opengl_primitive_type(geom.primitive_type) , 0, Std.int(staticvertlist.length/3) );
 
             //Disable attributes
         _disable_attributes();
         
             //clear the vlist
-        vertlist.splice(0, vertlist.length);    
-        tcoordlist.splice(0, tcoordlist.length);    
-        colorlist.splice(0, colorlist.length);    
-        normallist.splice(0, normallist.length);
-        vertlist = null;
-        tcoordlist = null;
-        colorlist = null;
-        normallist = null;    
+        staticvertlist.splice(0, staticvertlist.length);    
+        statictcoordlist.splice(0, statictcoordlist.length);    
+        staticcolorlist.splice(0, staticcolorlist.length);    
+        staticnormallist.splice(0, staticnormallist.length);
 
         draw_calls++;
 
@@ -566,15 +567,6 @@ class Batcher {
         if( vertlist.length == 0 ) {
             return;
         }
-
-        l("\t\t\t\t\t\t data : vertexBuffer " + vertexBuffer);
-        l("\t\t\t\t\t\t data : tcoordBuffer " + tcoordBuffer);
-        l("\t\t\t\t\t\t data : vcolorBuffer " + vcolorBuffer);
-        l("\t\t\t\t\t\t data : normalBuffer " + normalBuffer);
-        l("\t\t\t\t\t\t data : vert_attribute " + vert_attribute);
-        l("\t\t\t\t\t\t data : tcoord_attribute " + tcoord_attribute);
-        l("\t\t\t\t\t\t data : color_attribute " + color_attribute);
-        l("\t\t\t\t\t\t data : normal_attribute " + normal_attribute);
 
             //Enable atttributes
         _enable_attributes();
@@ -613,7 +605,5 @@ class Batcher {
 
         draw_calls++;
 
-            //temp debug
-        // trace('draw call increase, now at ' + draw_calls);
     }
 }

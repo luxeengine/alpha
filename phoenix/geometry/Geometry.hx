@@ -225,12 +225,9 @@ class Geometry {
 			vertlist.push( _final_vert_position.z );
 
 				//texture coordinates todo:multiple uv sets
-			tcoordlist.push( v.uv[0].u );
-			tcoordlist.push( v.uv[0].v );
+			tcoordlist.push( v.uv.uv0.u );
+			tcoordlist.push( v.uv.uv0.v );
 
-			if(v.color == null) {
-				throw id;
-			}
 				//color values per vertex
 			colorlist.push( v.color.r );
 			colorlist.push( v.color.g );

@@ -39,6 +39,8 @@ class Board {
     	//the selected blocks
     public var selected : Array<Block>;
 
+     public var delta_time_text : luxe.Text;
+
     	//alphabet
 	public var alphabet : String = 'AEIOUSBCDFGHJKLMNPRTVWYXQZ';
 
@@ -83,6 +85,13 @@ class Board {
         height = Std.int((blockw+spacing) * h);
 
         
+        delta_time_text = new luxe.Text({
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(30,30),
+            font : Luxe.renderer.default_font,
+            size : 24,
+             depth : 20,
+        });
 
 	} //new 
 
@@ -214,9 +223,13 @@ class Board {
 
     public function ontouchbegin(e:TouchEvent) {
         mousedown = true;
+        touchpos.set(e.x,e.y);
+        ondrag(touchpos);
     }
     public function ontouchend(e:TouchEvent) {
         mousedown = false;
+        touchpos.set(e.x,e.y);
+        ondrag(touchpos);
     }
 
     public function ontouchmove(e:TouchEvent) {
@@ -228,6 +241,10 @@ class Board {
         ondrag(e.pos);
     }
 
+    public function update(dt:Float) {
+         delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
+    }
+
     public function ondrag(pos:Vector) {
 
         if(mousedown) {
@@ -237,6 +254,11 @@ class Board {
 
             var gridx = Math.floor(gridspacex / (blockw+spacing));
             var gridy = Math.floor(gridspacey / (blockh+spacing));
+
+            if(gridx == 0 && gridy == 0) {
+                game.modes.set('menu');
+                return;
+            }
 
             if(gridx > -1 && gridx < w && gridy > -1 && gridy < h && blocks != null && blocks.length != 0) {
                 //get the block
@@ -265,14 +287,16 @@ class Board {
     } //ondrag
 
     public function onmousedown(e:MouseEvent) {
-        #if !ios
+        #if !ios            
             mousedown = true;
+            ondrag(e.pos);
         #end
     }
 
     public function onmouseup(e:MouseEvent) {
         #if !ios
             mousedown = false;
+            ondrag(e.pos);
         #end
     }
 	

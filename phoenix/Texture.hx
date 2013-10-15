@@ -209,7 +209,7 @@ class Texture extends Resource {
 
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
-        // trace('create_from_bytes took ' + (haxe.Timer.stamp() - start));
+        // trace('texture.create took ' + (haxe.Timer.stamp() - start));
     }
 
         //Only used for memory array fonts on html5 atm (like the default font and ui)

@@ -434,29 +434,29 @@ class BitmapFont extends Resource {
                     //First triangle
 
                var vert0 : Vertex = new Vertex( new Vector( _x, _y ) );
-                   vert0.uv[0] = new TextureCoord(_u,_v);
+                   vert0.uv.uv0.set(_u,_v);
                    vert0.color = _col;
 
                 var vert1 : Vertex = new Vertex( new Vector( _x+_w, _y ) );
-                   vert1.uv[0] = new TextureCoord(_u2, _v);
+                   vert1.uv.uv0.set(_u2, _v);
                    vert1.color = _col;
 
                 var vert2 : Vertex = new Vertex( new Vector( _x+_w, _y+_h ) );
-                    vert2.uv[0] = new TextureCoord(_u2, _v2);
+                    vert2.uv.uv0.set(_u2, _v2);
                     vert2.color = _col;
 
                    //Second triangle
 
                 var vert3 : Vertex = new Vertex( new Vector( _x, _y+_h ) );
-                    vert3.uv[0] = new TextureCoord(_u, _v2);
+                    vert3.uv.uv0.set(_u, _v2);
                     vert3.color = _col;
 
                 var vert4 : Vertex = new Vertex( new Vector( _x, _y ) );
-                    vert4.uv[0] = new TextureCoord(_u, _v);
+                    vert4.uv.uv0.set(_u, _v);
                     vert4.color = _col;
 
                 var vert5 : Vertex = new Vertex( new Vector( _x+_w, _y+_h) );
-                    vert5.uv[0] = new TextureCoord(_u2, _v2);
+                    vert5.uv.uv0.set(_u2, _v2);
                     vert5.color = _col;
                     
                    //Add to the geomery

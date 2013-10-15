@@ -108,13 +108,13 @@ class QuadGeometry extends Geometry {
 
             } //flipx
 
-        vertices[0].uv[0] = new TextureCoord( tl_x , tl_y );
-        vertices[1].uv[0] = new TextureCoord( tr_x , tr_y );
-        vertices[2].uv[0] = new TextureCoord( br_x , br_y );
+        vertices[0].uv.uv0.set( tl_x , tl_y );
+        vertices[1].uv.uv0.set( tr_x , tr_y );
+        vertices[2].uv.uv0.set( br_x , br_y );
 
-        vertices[3].uv[0] = new TextureCoord( bl_x , bl_y );
-        vertices[4].uv[0] = new TextureCoord( tl_x , tl_y );
-        vertices[5].uv[0] = new TextureCoord( br_x , br_y );
+        vertices[3].uv.uv0.set( bl_x , bl_y );
+        vertices[4].uv.uv0.set( tl_x , tl_y );
+        vertices[5].uv.uv0.set( br_x , br_y );
 
             //if it's locked, it needs to be refreshed to the gpu
         dirty = true;

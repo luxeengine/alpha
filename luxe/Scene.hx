@@ -137,8 +137,9 @@ class Scene {
         }
     } //fixed_update
 
+#if luxe_native
+
     public function serialize_to_disk( _destination_path:String ) {
-        #if luxe_native
 
             trace('Saving scene to ' + _destination_path);
 
@@ -166,7 +167,8 @@ class Scene {
 
             trace('Done saving scene.');
 
-        #end //luxe_native
+        
     }
+#end //luxe_native
 
 }

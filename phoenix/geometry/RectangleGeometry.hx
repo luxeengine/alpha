@@ -18,16 +18,16 @@ class RectangleGeometry extends Geometry {
 
 			//tl
 		var vert0 : Vertex = new Vertex( new Vector( 0, 0 ) );
-			vert0.uv[0] = new TextureCoord(0,0);
+			vert0.uv.uv0.set(0,0);
 			//tr
 		var vert1 : Vertex = new Vertex( new Vector( options.w, 0 ) );
-			vert1.uv[0] = new TextureCoord(1,0);
+			vert1.uv.uv0.set(1,0);
 			//br
 		var vert2 : Vertex = new Vertex( new Vector( options.w, options.h ) );
-			vert2.uv[0] = new TextureCoord(1,1);
+			vert2.uv.uv0.set(1,1);
 			//bl
 		var vert3 : Vertex = new Vertex( new Vector( 0, options.h ) );
-			vert3.uv[0] = new TextureCoord(0,1);
+			vert3.uv.uv0.set(0,1);
 
 
 		add(vert0);

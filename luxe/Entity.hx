@@ -595,6 +595,7 @@ class Entity extends Objects {
         };
     } //get_serialize_data
 
+#if luxe_native
         //save me and all my children and components to disk
     public function serialize_to_disk(_destination_path:String, _parent_write:Bool=false) : Void {
 
@@ -637,5 +638,6 @@ class Entity extends Objects {
         }
 
     }
+#end //luxe_native
 
 } //Entity

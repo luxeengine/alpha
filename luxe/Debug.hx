@@ -10,6 +10,7 @@ import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
+import phoenix.utils.Maths;
 
 @:hide class Debug {
 
@@ -286,7 +287,7 @@ import phoenix.Resource;
             '\tenabled geometry : ' + _render_stats.enabled_count + '\n' +
             '\tdynamic batch count : ' + _render_stats.dynamic_batched_count + '\n' +
             '\tstatic batch count : ' + _render_stats.static_batched_count + '\n' +
-            '\ttotal draw calls : ' + _render_stats.draw_calls;  
+            '\ttotal draw calls : ' + _render_stats.draw_calls;            
     }
 
     public function get_resource_stats_string() {        
@@ -413,6 +414,8 @@ import phoenix.Resource;
         
     } //update_render_stats
 
+    var _title_text = '';
+
 	public function process() {
 
         dt_average_accum += Luxe.dt;
@@ -427,7 +430,14 @@ import phoenix.Resource;
         if(!visible) return;
 
             //update the title
-        scene_inspector._title_text.text = "default scene dt : (average) " + (Std.int(dt_average*1000) / 1000) + ' (exact) ' + (Std.int(Luxe.dt*1000) / 1000);
+        _title_text = "default scene dt : (average) " + Maths.fixed(dt_average,3) + ' (exact) ' + Maths.fixed(Luxe.dt,3);        
+        
+        #if luxe_native 
+            _title_text += ' mem:' + Luxe.utils.bytes_to_string(cpp.vm.Gc.memUsage());
+        #end
+
+        scene_inspector._title_text.text = _title_text;
+
 
         if(current_view == 0) {
 

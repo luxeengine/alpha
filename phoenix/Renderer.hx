@@ -112,11 +112,11 @@ class Renderer {
             GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
         #end //luxe_html5
         
-        // trace(':: phoenix :: renderer starting up');        
+        // trace(':: renderer starting up');        
     }
 
     public function shutdown() {
-        // trace(':: phoenix :: renderer shutting down');   
+        // trace(':: renderer shutting down');   
     }
 
     public function add_batch(batch:Batcher) {
@@ -239,11 +239,16 @@ class Renderer {
         var _exists = resource_manager.find_texture(_name);
 
         if(_exists != null) {
+
             if(_name != 'default_ui_button' && _name != 'default_ui_box') {
-                trace(":: phoenix :: Texture loaded (cache) " + _exists.id + ' (' + _exists.width + 'x' + _exists.height + ') real size ('+ _exists.actual_width + 'x' + _exists.actual_height +')') ;
+                // trace(":: Texture loaded (cached) " + _exists.id ) ;
             }
+                
+            if(_onloaded != null) _onloaded(_exists);
+
             return _exists;
-        }
+
+        } //found existing texture in the resource cache
 
         var texture : Texture = new Texture( resource_manager );
 
@@ -268,10 +273,9 @@ class Renderer {
 
             texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
             texture.width = image.width;
-            texture.height = image.height;
-            texture.id = _name; //the full src name is less useful
+            texture.height = image.height;            
 
-            trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
+            trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
 
             tmp_canvas = null;
             tmp_context = null;
@@ -288,6 +292,8 @@ class Renderer {
             //source comes after the onload being set, for race conditions
         image.src = './' + _name;
 
+        texture.id = _name;
+
 #end //luxe_html5
 
 #if luxe_native
@@ -303,11 +309,11 @@ class Renderer {
                 //call all the onload listeners
             texture.do_onload();
 
-            trace(":: phoenix :: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
+            trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
         } else {
 
-            trace(":: phoenix :: Texture not found by asset name. " + _name );      
+            trace(":: Texture not found by asset name. " + _name );      
                 //Set the failed to load flagged
             texture.id = "Failed to load texture : " + _name;    
 
@@ -318,7 +324,7 @@ class Renderer {
 #end //luxe_native
        
             //store a reference so we can check if it exists later
-        resource_manager.cache(texture);
+        resource_manager.cache( texture );
        
         return texture;
 

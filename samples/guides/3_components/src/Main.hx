@@ -1,12 +1,15 @@
 
 import luxe.Input;
 import luxe.Sprite;
+import luxe.Text;
 import luxe.Vector;
+import luxe.Color;
 
 class Main extends luxe.Game {
 
 	var logo : Sprite;
 	var rotator : Rotate;
+    var delta_time_text : Text;
 
     public function ready() {
 
@@ -25,7 +28,21 @@ class Main extends luxe.Game {
         	//we don't need to reference the bounce component, so we just add it.
         logo.add(Bounce, 'bounce');
 
+        delta_time_text = new luxe.Text({
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(60,60),
+            font : Luxe.renderer.default_font,
+            size : 20
+        });
+
+
     } //ready
+
+    public function update(dt:Float) {
+            //Update the text each frame
+        delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
+
+    }
 
     public function onmousemove( e:MouseEvent ) {
 

@@ -140,10 +140,9 @@ class Mesh {
 
            var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), normal );
 
+                    //todo;multiple uv sets
                if(v.uv != null) {                    
-                   _v.uv[0] = new TextureCoord( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space 
-               } else {
-                   _v.uv[0] = new TextureCoord( 0, 0 );
+                   _v.uv.uv0.set( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space 
                }
            
            geometry.add( _v );
