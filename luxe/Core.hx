@@ -58,8 +58,9 @@ import haxe.Timer;
 //Profile path
     public var profile_path : String = "profile.txt";
     public var profiling : Bool = false;
-//Mouse
+//Mouse and fake mouse touch
     var _mouse_pos : Vector;
+    var _touch_pos : Vector;
 
 //Additional external internal updates
         //the list of internal update handlers, for calling 
@@ -87,6 +88,7 @@ import haxe.Timer;
             //Create internal stuff
         _update_handlers = new Map();
         _mouse_pos = new Vector();
+        _touch_pos = new Vector();
         Luxe.mouse = _mouse_pos;
 
             //Set external references
@@ -460,6 +462,10 @@ import haxe.Timer;
     var touches_down : Map<Int, TouchEvent>;
 
     public function ontouchbegin(e : TouchEvent) {
+
+         _touch_pos.set( e.x, e.y );
+        e.pos = _touch_pos;
+
         if(host.ontouchbegin != null) host.ontouchbegin(e);
 
         if(touches_down == null) touches_down = new Map();
@@ -480,12 +486,21 @@ import haxe.Timer;
     }
 
     public function ontouchend(e : TouchEvent) {
+
+         _touch_pos.set( e.x, e.y );
+        e.pos = _touch_pos;
+
         if(host.ontouchend != null) host.ontouchend(e);
 
         touches_down.remove(e.ID);
     }
     public function ontouchmove(e : TouchEvent) {
+        
+        _touch_pos.set( e.x, e.y );
+        e.pos = _touch_pos;
+
         if(host.ontouchmove != null) host.ontouchmove(e);
+        
     }
 //joystick
     public function onjoyaxismove(e) {

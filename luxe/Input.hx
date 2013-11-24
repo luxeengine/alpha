@@ -10,8 +10,12 @@ typedef TouchState = lime.InputHandler.TouchState;
 
     //event types
 typedef KeyEvent = lime.InputHandler.KeyEvent;
-typedef TouchEvent = lime.InputHandler.TouchEvent;
 typedef GamepadEvent = lime.InputHandler.GamepadEvent;
+
+typedef TouchEvent = {
+    > lime.InputHandler.TouchEvent,
+    var pos : luxe.Vector;
+}
 
 typedef MouseEvent = {
     > lime.InputHandler.MouseEvent,
@@ -33,7 +37,6 @@ class Input {
     var mouse_bindings : Map<String, Map<MouseButton,Bool> >;  
 #end
 
-      
 
     @:noCompletion public function startup() {
         Keys = new lime.utils.Keys();
