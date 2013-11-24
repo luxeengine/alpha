@@ -10,7 +10,7 @@ import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.Batcher;
 
-import luxe.structures.BinarySearchTree;
+import luxe.structural.BinarySearchTree;
 
 import lime.utils.ByteArray;
 import lime.utils.Float32Array;
@@ -36,7 +36,6 @@ class Geometry {
 	public var vertices : Array<Vertex>;
 
 		//Statically batched VBO's
-	public var locked : Bool = false;
 	public var submitted : Bool = false;
 	public var dirty : Bool = false;
 	public var static_vertex_buffer : GLBuffer;
@@ -53,7 +52,6 @@ class Geometry {
 	public var uuid : String = '';
 	public var id : String = '';
 	
-
 		//State properties
 	@:isVar public var primitive_type (get, set) : PrimitiveType;
 	@:isVar public var texture (get, set) : Texture;
@@ -79,6 +77,7 @@ class Geometry {
 
 		//Geometry properties	
 	@:isVar public var enabled(default, set) : Bool = true;
+	@:isVar public var locked(get, set) : Bool = false;
 	@:isVar public var immediate(default, default) : Bool;
 	@:isVar public var color(default, set) : Color;
 		//Transform
@@ -187,7 +186,7 @@ class Geometry {
 				b.remove( this, true );
 			} //for each batcher
 
-		} 
+		}
 
 	} //drop
 
@@ -203,14 +202,16 @@ class Geometry {
 
 	} //remove 
 
-	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, 
-						   colorlist : Array<Float>, normallist : Array<Float> ) {
+	public function batch_into_float32array( 
+		vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
+		vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
+		) {
 
 		var origin_x = origin.x;
 		var origin_y = origin.y;
 		var origin_z = origin.z;
 
-		for(v in vertices) {			
+		for(v in vertices) {	
 
 				//the base position of the vert
 			_final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
@@ -220,28 +221,108 @@ class Geometry {
 			_final_vert_position.applyMatrix4( matrix );
 
 				//submit vert positions
-			vertlist.push( _final_vert_position.x );
-			vertlist.push( _final_vert_position.y );
-			vertlist.push( _final_vert_position.z );
+			#if luxe_native
+				vertlist.setFloat32( (vert_index+0)*4, _final_vert_position.x );
+				vertlist.setFloat32( (vert_index+1)*4, _final_vert_position.y );
+				vertlist.setFloat32( (vert_index+2)*4, _final_vert_position.z );
+			#end //luxe_native
+
+			#if luxe_html5
+				vertlist[(vert_index+0)] = _final_vert_position.x;
+				vertlist[(vert_index+1)] = _final_vert_position.y;
+				vertlist[(vert_index+2)] = _final_vert_position.z;
+			#end //luxe_html5
+
+			vert_index += 3;
 
 				//texture coordinates todo:multiple uv sets
-			tcoordlist.push( v.uv.uv0.u );
-			tcoordlist.push( v.uv.uv0.v );
+			#if luxe_native
+				tcoordlist.setFloat32( (tcoord_index+0)*4, v.uv.uv0.u );
+				tcoordlist.setFloat32( (tcoord_index+1)*4, v.uv.uv0.v );
+			#end //luxe_native
+
+			#if luxe_html5
+				tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
+				tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
+			#end //luxe_html5
+
+			tcoord_index += 2;
 
 				//color values per vertex
-			colorlist.push( v.color.r );
-			colorlist.push( v.color.g );
-			colorlist.push( v.color.b );
-			colorlist.push( v.color.a );
+			#if luxe_native
+				colorlist.setFloat32( (color_index+0)*4, v.color.r );
+				colorlist.setFloat32( (color_index+1)*4, v.color.g );
+				colorlist.setFloat32( (color_index+2)*4, v.color.b );
+				colorlist.setFloat32( (color_index+3)*4, v.color.a );
+			#end //luxe_native
+
+			#if luxe_html5
+				colorlist[(color_index+0)] = v.color.r;
+				colorlist[(color_index+1)] = v.color.g;
+				colorlist[(color_index+2)] = v.color.b;
+				colorlist[(color_index+3)] = v.color.a;
+			#end //luxe_html5
+
+			color_index += 4;
 
 				//normal directions
-			normallist.push( v.normal.x );
-			normallist.push( v.normal.y );
-			normallist.push( v.normal.z );
+			#if luxe_native
+				normallist.setFloat32( (normal_index+0)*4, v.normal.x );
+				normallist.setFloat32( (normal_index+1)*4, v.normal.y );
+				normallist.setFloat32( (normal_index+2)*4, v.normal.z );
+			#end //luxe_native
+
+			#if luxe_html5
+				normallist[(normal_index+0)] = v.normal.x;
+				normallist[(normal_index+1)] = v.normal.y;
+				normallist[(normal_index+2)] = v.normal.z;
+			#end //luxe_html5
+
+			normal_index += 3;
 
 		} //each vertex
 
 	} //batch
+
+	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, 
+                           colorlist : Array<Float>, normallist : Array<Float> ) {
+
+        var origin_x = origin.x;
+        var origin_y = origin.y;
+        var origin_z = origin.z;
+
+        for(v in vertices) {            
+
+                //the base position of the vert
+            _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
+                //compose the final position matrix
+            matrix.compose( pos, rotation, scale );
+                //apply the transform to the vert
+            _final_vert_position.applyMatrix4( matrix );
+
+                //submit vert positions
+            vertlist.push( _final_vert_position.x );
+            vertlist.push( _final_vert_position.y );
+            vertlist.push( _final_vert_position.z );
+
+                //texture coordinates todo:multiple uv sets
+            tcoordlist.push( v.uv.uv0.u );
+            tcoordlist.push( v.uv.uv0.v );
+
+                //color values per vertex
+            colorlist.push( v.color.r );
+            colorlist.push( v.color.g );
+            colorlist.push( v.color.b );
+            colorlist.push( v.color.a );
+
+                //normal directions
+            normallist.push( v.normal.x );
+            normallist.push( v.normal.y );
+            normallist.push( v.normal.z );
+
+        } //each vertex
+
+    } //batch
 
 //Transform
 
@@ -268,6 +349,18 @@ class Geometry {
 		return pos;
 
 	} //get_pos
+
+	public function set_locked( _locked:Bool ) : Bool {
+
+		return locked = _locked;
+
+	} //set_pos
+
+	public function get_locked() : Bool {
+		
+		return locked;
+
+	} //get_locked
 
 	public function set_rotation( _rotation:Quaternion ) {
 

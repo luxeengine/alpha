@@ -42,6 +42,11 @@ class Main extends luxe.Game {
 
         menu.game = base.game = this;
 
+        #if luxe_native
+            trace('disabling GC');
+            // cpp.vm.Gc.enable(false);
+        #end
+
             //create the modes
         modes.init();
 

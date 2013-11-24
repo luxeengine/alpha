@@ -19,19 +19,19 @@ class Cell {
 	}
 
 	public function init() {
-		_debug_geometry.push(Luxe.draw.rectangle({
-        	x: x, y : y,
-        	w : board.blockw, h : board.blockh,
-        	color : new Color(0,1,0,0.0)
-        }));
+		// _debug_geometry.push(Luxe.draw.rectangle({
+  //       	x: x, y : y,
+  //       	w : board.blockw, h : board.blockh,
+  //       	color : new Color(0,1,0,0.0)
+  //       }));
 	}
-
+ 
 	public function destroy() {
-		for(_g in _debug_geometry) {
-			_g.drop();
-			_g = null;
-		}
-		_debug_geometry.splice(0,_debug_geometry.length);
+		// for(_g in _debug_geometry) {
+		// 	_g.drop();
+		// 	_g = null;
+		// }
+		// _debug_geometry.splice(0,_debug_geometry.length);
 	}
 	
 }

@@ -242,7 +242,7 @@ class Board {
     }
 
     public function update(dt:Float) {
-         delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
+         // delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
     }
 
     public function ondrag(pos:Vector) {

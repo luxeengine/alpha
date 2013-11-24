@@ -24,6 +24,7 @@ typedef UniformValue = {
     var name : String;
     var value : Dynamic;
     var type : UniformValueType;
+    var location : Dynamic;
 }
 
 class Shader extends Resource {
@@ -36,6 +37,21 @@ class Shader extends Resource {
 	public var program : GLProgram;
 	public var shader : GLShader;
 
+    public var vert_attribute : Dynamic;
+    public var tcoord_attribute : Dynamic;
+    public var color_attribute : Dynamic;
+    public var normal_attribute : Dynamic;
+    public var projectionmatrix_attribute : Dynamic;
+    public var modelviewmatrix_attribute : Dynamic;
+    public var tex0_attribute : Dynamic;
+    public var tex1_attribute : Dynamic;
+    public var tex2_attribute : Dynamic;
+    public var tex3_attribute : Dynamic;
+    public var tex4_attribute : Dynamic;
+    public var tex5_attribute : Dynamic;
+    public var tex6_attribute : Dynamic;
+    public var tex7_attribute : Dynamic;    
+
     public var uniforms : Map<String, Dynamic>;
     
     var uniform_textures : Map<String,Texture>;
@@ -46,21 +62,20 @@ class Shader extends Resource {
         uniforms = new Map<String,Dynamic>();
         uniform_textures = new Map();
 
-	}
+	} //new
 
 	public function activate() {
 		if(program != null) {
             // trace('\t\t activating shader ' + id + ' ' + program);
-            
 			GL.useProgram( program );
 		} else {
 			//GL.useProgram( null );
 		}
-	}
+	} //activate
 
 	public function deactivate() {
 		//GL.useProgram( null );
-	}
+	} //deactivate
 
    public function set_uniform_int( _name:String, _value:Int ) : Void {
         if(uniforms.exists(_name)) {
@@ -71,7 +86,8 @@ class Shader extends Resource {
             var _uniformvalue : UniformValue = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.int
+                type : UniformValueType.int,
+                location : GL.getUniformLocation( program, _name )
             }
 
             uniforms.set(_name, _uniformvalue);
@@ -86,7 +102,8 @@ class Shader extends Resource {
             var _uniformvalue : UniformValue = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.float
+                type : UniformValueType.float,
+                location : GL.getUniformLocation( program, _name )
             }
 
             uniforms.set(_name, _uniformvalue);
@@ -98,7 +115,7 @@ class Shader extends Resource {
             var _uniformvalue : UniformValue = cast uniforms.get(_name);
                 _uniformvalue.value = _value;
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector2 }
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector2, location : GL.getUniformLocation( program, _name ) }
             uniforms.set(_name, _uniformvalue);
         }
     } //set_uniform_vector2
@@ -108,7 +125,7 @@ class Shader extends Resource {
             var _uniformvalue : UniformValue = cast uniforms.get(_name);
                 _uniformvalue.value = _value;
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector3 }
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector3, location : GL.getUniformLocation( program, _name ) }
             uniforms.set(_name, _uniformvalue);
         }
     } //set_uniform_vector3
@@ -118,7 +135,7 @@ class Shader extends Resource {
             var _uniformvalue : UniformValue = cast uniforms.get(_name);
                 _uniformvalue.value = _value;
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector4 }
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector4, location : GL.getUniformLocation( program, _name ) }
             uniforms.set(_name, _uniformvalue);
         }
     } //set_uniform_vector4
@@ -128,8 +145,8 @@ class Shader extends Resource {
             var _uniformvalue : UniformValue = cast uniforms.get(_name);
                 _uniformvalue.value = _value;
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.color }
-            uniforms.set(_name, _uniformvalue);
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.color, location : GL.getUniformLocation( program, _name ) }
+                uniforms.set(_name, _uniformvalue);
         }
     } //set_uniform_color
 
@@ -139,7 +156,7 @@ class Shader extends Resource {
                 _uniformvalue.value = _value;
                 uniform_textures.set(_name, _value);
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.texture }
+            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.texture, location : GL.getUniformLocation( program, _name ) }
             uniforms.set(_name, _uniformvalue);
             uniform_textures.set(_name, _value);
         }
@@ -148,6 +165,7 @@ class Shader extends Resource {
 
 		//GL.FRAGMENT_SHADER
 	public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
+
 		var _shader = GL.createShader( _type );
 		GL.shaderSource( _shader,  _source);
 		GL.compileShader(_shader);
@@ -202,7 +220,30 @@ class Shader extends Resource {
          	GL.deleteProgram(_program);
          	_program = null;
          	return null;
-      	}
+      	}        
+
+            //first bind it
+        activate();
+
+            //if success, store all fixed attributes and uniforms
+        vert_attribute = GL.getAttribLocation( _program , "vertexPosition");
+        tcoord_attribute = GL.getAttribLocation( _program, "vertexTCoord");
+        color_attribute = GL.getAttribLocation( _program, "vertexColor");
+        normal_attribute = GL.getAttribLocation( _program, "vertexNormal");
+
+            //Matrices
+        projectionmatrix_attribute = GL.getUniformLocation( _program, "projectionMatrix");
+        modelviewmatrix_attribute = GL.getUniformLocation( _program, "modelViewMatrix");
+
+            //Textures
+        tex0_attribute = GL.getUniformLocation( _program, "tex0" );
+        tex1_attribute = GL.getUniformLocation( _program, "tex1" );
+        tex2_attribute = GL.getUniformLocation( _program, "tex2" );
+        tex3_attribute = GL.getUniformLocation( _program, "tex3" );
+        tex4_attribute = GL.getUniformLocation( _program, "tex4" );
+        tex5_attribute = GL.getUniformLocation( _program, "tex5" );
+        tex6_attribute = GL.getUniformLocation( _program, "tex6" );
+        tex7_attribute = GL.getUniformLocation( _program, "tex7" );        
 
       	return _program;
 	}
@@ -257,27 +298,39 @@ class Shader extends Resource {
 	    	//if it fails return false
 	    if( program == null ) return false;
 
+
+
 	    return true;	
 	}
 
     @:noCompletion public function apply_uniforms() {
+
+        GL.uniform1i( tex0_attribute, 0);
+        GL.uniform1i( tex1_attribute, 1);
+        GL.uniform1i( tex2_attribute, 2);
+        GL.uniform1i( tex3_attribute, 3);
+        GL.uniform1i( tex4_attribute, 4);
+        GL.uniform1i( tex5_attribute, 5);
+        GL.uniform1i( tex6_attribute, 6);
+        GL.uniform1i( tex7_attribute, 7);
+
         for(_uniform in uniforms) {
             var uniform : UniformValue = cast _uniform;
             switch(uniform.type) {
                 case UniformValueType.int:
-                    setUniformInt(uniform.name, cast uniform.value);
+                    setUniformInt(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.float:
-                    setUniformFloat(uniform.name, cast uniform.value);
+                    setUniformFloat(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.vector2:
-                    setUniformVector2(uniform.name, cast uniform.value);
+                    setUniformVector2(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.vector3:
-                    setUniformVector3(uniform.name, cast uniform.value);
+                    setUniformVector3(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.vector4:
-                    setUniformVector4(uniform.name, cast uniform.value);
+                    setUniformVector4(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.color:
-                    setUniformColor(uniform.name, cast uniform.value);
+                    setUniformColor(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.texture:
-                    setUniformTexture(uniform.name, cast uniform.value);
+                    setUniformTexture(uniform.name, cast uniform.value, uniform.location);
                 case UniformValueType.unknown:
             }
         } //for each uniform
@@ -287,27 +340,27 @@ class Shader extends Resource {
 		return GL.getUniformLocation( program, uniform_name );
 	}
 
-    @:noCompletion public function setUniformInt( uniform_name:String, value:Int ) {
-    	GL.uniform1i( getUniform(uniform_name) , value );
+    @:noCompletion public function setUniformInt( uniform_name:String, value:Int, location:Dynamic = null ) {
+    	GL.uniform1i( location, value );
     }
-    @:noCompletion public function setUniformFloat( uniform_name:String, value:Float ) {
-		GL.uniform1f( getUniform(uniform_name) , value );
+    @:noCompletion public function setUniformFloat( uniform_name:String, value:Float, location:Dynamic = null  ) {
+		GL.uniform1f( location, value );
     }
-    @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector ) {
-        GL.uniform2f( getUniform(uniform_name) , value.x, value.y);
+    @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector, location:Dynamic = null  ) {
+        GL.uniform2f( location, value.x, value.y);
     }
-    @:noCompletion public function setUniformVector3( uniform_name:String, value:Vector ) {
-        GL.uniform3f( getUniform(uniform_name) , value.x, value.y, value.z );
+    @:noCompletion public function setUniformVector3( uniform_name:String, value:Vector, location:Dynamic = null  ) {
+        GL.uniform3f( location, value.x, value.y, value.z );
     }
-    @:noCompletion public function setUniformVector4( uniform_name:String, value:Vector ) {
-        GL.uniform4f( getUniform(uniform_name) , value.x, value.y, value.z, value.w );
+    @:noCompletion public function setUniformVector4( uniform_name:String, value:Vector, location:Dynamic = null  ) {
+        GL.uniform4f( location, value.x, value.y, value.z, value.w );
     }
-    @:noCompletion public function setUniformColor( uniform_name:String, value:Color ) {
-		GL.uniform4f( getUniform(uniform_name) , value.r, value.g, value.b, value.a );
+    @:noCompletion public function setUniformColor( uniform_name:String, value:Color, location:Dynamic = null  ) {
+		GL.uniform4f( location, value.r, value.g, value.b, value.a );
     }
-    @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture ) {
+    @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:Dynamic = null  ) {
         value.bind();
-    	GL.uniform1i( getUniform(uniform_name) , value.slot );
+    	GL.uniform1i( location, value.slot );
         GL.activeTexture(GL.TEXTURE0);
     }
 

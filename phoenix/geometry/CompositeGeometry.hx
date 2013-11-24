@@ -17,6 +17,10 @@ class CompositeGeometry extends Geometry {
 
     } //new
 
+    public function toString() {
+        return "CompositeGeometry " + geometry + ' : ' + Std.string(geometry);
+    }
+
     public function clear() {
             //todo profile these splices vs new assigns in haxe
         geometry.splice(0,geometry.length);
@@ -155,6 +159,15 @@ class CompositeGeometry extends Geometry {
         }
         return clip = val;
     } //set_clip
+
+    public override function set_locked(val : Bool) : Bool {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.locked = val;
+            }
+        }
+        return locked = val;
+    } //set_locked
 
     public override function set_clip_rect(val : Rectangle) : Rectangle {
         if(geometry != null) {

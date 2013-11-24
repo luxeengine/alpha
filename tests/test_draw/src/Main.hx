@@ -1,10 +1,13 @@
 
+import lime.utils.ByteArray;
+import lime.utils.Float32Array;
 import luxe.Vector;
 import luxe.Color;
 import luxe.Input;
+import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.LineGeometry;
+import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
-
 
 
 class Main extends luxe.Game {
@@ -13,7 +16,7 @@ class Main extends luxe.Game {
 
     public var line : LineGeometry; 
     public var rect : RectangleGeometry; 
-    public var rect2 : RectangleGeometry; 
+    public var rect2 : QuadGeometry; 
 
     public function ready() {
 
@@ -32,12 +35,14 @@ class Main extends luxe.Game {
             color : new Color(0.4,0.4,0.4)
         });
 
-        rect2 = Luxe.draw.rectangle({
+        rect2 = Luxe.draw.box({
             x : 40, y : 40,
             w : Luxe.screen.w - 80, 
             h : Luxe.screen.h - 80,
             color : new Color(0.5,0.2,0.2,0.5)
         });
+
+        // rect2.locked = true;     
 
         var c = Luxe.draw.circle({
             x : Luxe.screen.w/2,
@@ -45,6 +50,8 @@ class Main extends luxe.Game {
             r : 50,
             color : new Color(0.8,0.3,0.2,1)
         });
+
+        c.locked = true;
 
         c = Luxe.draw.ring({
             x : Luxe.screen.w/2,
@@ -60,13 +67,28 @@ class Main extends luxe.Game {
             color : new Color(1,1,1,1)
         });
 
+        var n : CompositeGeometry = Luxe.draw.text({
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+            pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
+            text : "// c = Luxe.draw.ring({\n //      x : Luxe.screen.w/2,\n //      y : Luxe.screen.h/2,\n//     r : 70,\n //     color : new Color(1,1,1,1)\n // });\n"
+        });
+        
+        n.locked = true;        
+
     } //ready
   
     public function onmousemove(e) {
         mouse.set(e.x,e.y);
     }
+    public function onmousedown(e) {
+        mouse.set(e.x,e.y);
+    }
+    public function onmouseup(e) {
+        mouse.set(e.x,e.y);
+    }
 
     public function onkeyup(e) {
+
       if(e.value == Input.Keys.escape) {
         Luxe.shutdown();
       }
@@ -76,7 +98,7 @@ class Main extends luxe.Game {
 
         Luxe.draw.rectangle({
             x : mouse.x, y : mouse.y,
-            w : 120, 
+            w : 120,
             h : 120,
             immediate : true,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5)
@@ -86,7 +108,7 @@ class Main extends luxe.Game {
             immediate:true,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5),
             pos : mouse,
-            text : 'mouse!'
+            text : Luxe.dt
         });
 
     } //update

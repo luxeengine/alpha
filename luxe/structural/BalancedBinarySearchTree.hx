@@ -1,4 +1,4 @@
-package luxe.structures;
+package luxe.structural;
 
 
 class BalancedBinarySearchTree<K,T> {

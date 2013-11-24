@@ -40,7 +40,7 @@ class Main extends luxe.Game {
 
     	level_sprite = new Sprite({
     		texture : level_texture,
-    		pos : new Vector(480,320)
+    		pos : new Vector(Luxe.screen.w/2,Luxe.screen.h/2)
     	});
 
     		//for the logo blocks image
@@ -56,7 +56,7 @@ class Main extends luxe.Game {
     	} //luxe_tex on load
 
     	level_texture.onload = function(tt) {
-    		level_sprite.scale = new Vector(4,4);
+    		level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
             #if !mobile
     		  level_tiltshift = Luxe.loadShader('assets/gray_tilt_shift.glsl');
 	    	  level_sprite.shader = level_tiltshift;

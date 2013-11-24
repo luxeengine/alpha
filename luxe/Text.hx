@@ -19,13 +19,13 @@ class Text {
     @:isVar public var size (default,set) : Float = 32;
     @:isVar public var color (default,set) : Color;
     @:isVar public var visible (default,set) : Bool;
+    @:isVar public var locked (default,set) : Bool = false;
 
     public var ready : Bool = false;
     public var text_options : Dynamic;
 
     public function new( _options : Dynamic ) {
                 
-
         var _font : Dynamic = (_options.font == null) ? null : _options.font;
         _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
         size = (_options.size == null) ? 32 : _options.size;
@@ -60,7 +60,8 @@ class Text {
 
             //Apply the setter, which will draw the geometry
         text = _options.text;
-    }
+
+    } //new
 
     @:noCompletion public function onloaded() {
         ready = true;
@@ -114,6 +115,17 @@ class Text {
         return b;
     }
 
+    function set_locked(b:Bool) : Bool {
+        locked = b;
+        
+        if(geometry != null) {
+            geometry.locked = locked;
+        }
+
+        text_options.locked = locked;
+        return b;
+    }
+
     function set_text(v:String) {
 
         if(!ready) return text = v;
@@ -124,6 +136,10 @@ class Text {
         destroy();
 
         geometry = font.draw_text(text_options);
+        
+        if(locked) {
+            locked = text_options.locked;
+        }
 
         return text = v;
     }

@@ -20,7 +20,7 @@ import phoenix.BitmapFont;
 import lime.utils.UInt8Array;
 import lime.utils.ArrayBuffer;
 
-import luxe.structures.BinarySearchTree;
+import luxe.structural.BinarySearchTree;
 
 
 class Renderer {
@@ -181,6 +181,7 @@ class Renderer {
         } //
 
         if(_shader != null) {
+            _shader.id = _psid + '|' + _vsid;
             return _shader;
         } else {
             return null;
