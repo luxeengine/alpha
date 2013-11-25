@@ -30,27 +30,32 @@ class TextureCoord {
 	public var u : Float = 0.0;
 	public var v : Float = 0.0;
 	public var w : Float = 0.0;
+	public var t : Float = 0.0;
 
-	public function new(_u:Float = 0.0, _v:Float = 0.0, _w:Float = 0.0) {
+	public function new(_u:Float = 0.0, _v:Float = 0.0, _w:Float = 0.0, _t:Float = 0.0) {
 		u = _u;
 		v = _v;
 		w = _w;
+		t = _t;
 	}
 
-	public function set( ?_u : Float, ?_v : Float, ?_w : Float ) : TextureCoord {
+	public function set( ?_u : Float, ?_v : Float, ?_w : Float, ?_t:Float ) : TextureCoord {
 
 		var _setu = u;
 		var _setv = v;
 		var _setw = w;
+		var _sett = t;
 			
 			//assign new values
 		if(_u != null) _setu = _u;
 		if(_v != null) _setv = _v;
 		if(_w != null) _setw = _w;
+		if(_t != null) _sett = _t;
 
 		u = _setu;
 		v = _setv;
 		w = _setw;
+		t = _sett;
 
 		return this;
 	}

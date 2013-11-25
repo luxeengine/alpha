@@ -57,10 +57,10 @@ class Main extends luxe.Game {
 
     	level_texture.onload = function(tt) {
     		level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
-            #if !mobile
+            // #if !mobile
     		  level_tiltshift = Luxe.loadShader('assets/gray_tilt_shift.glsl');
 	    	  level_sprite.shader = level_tiltshift;
-            #end
+            // #end
     	} //level tex on load
 
     	distort_map.onload = function(tt) {

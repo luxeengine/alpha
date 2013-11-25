@@ -37,10 +37,11 @@ class Shader extends Resource {
 	public var program : GLProgram;
 	public var shader : GLShader;
 
-    public var vert_attribute : Dynamic;
-    public var tcoord_attribute : Dynamic;
-    public var color_attribute : Dynamic;
-    public var normal_attribute : Dynamic;
+    public var vert_attribute   : Int = 0;
+    public var tcoord_attribute : Int = 1;
+    public var color_attribute  : Int = 2;
+    public var normal_attribute : Int = 3;
+
     public var projectionmatrix_attribute : Dynamic;
     public var modelviewmatrix_attribute : Dynamic;
     public var tex0_attribute : Dynamic;
@@ -67,14 +68,14 @@ class Shader extends Resource {
 	public function activate() {
 		if(program != null) {
             // trace('\t\t activating shader ' + id + ' ' + program);
-			GL.useProgram( program );
+			Luxe.renderer.state.useProgram( program );
 		} else {
 			//GL.useProgram( null );
 		}
 	} //activate
 
 	public function deactivate() {
-		//GL.useProgram( null );
+		Luxe.renderer.state.useProgram( null );
 	} //deactivate
 
    public function set_uniform_int( _name:String, _value:Int ) : Void {
@@ -212,8 +213,15 @@ class Shader extends Resource {
 
 		GL.attachShader(_program, vert_shader);
 	    GL.attachShader(_program, frag_shader);
+
+            //Now we want to ensure that our locations are static
+        GL.bindAttribLocation( _program, vert_attribute,    'vertexPosition');
+        GL.bindAttribLocation( _program, tcoord_attribute,  'vertexTCoord');
+        GL.bindAttribLocation( _program, color_attribute,   'vertexColor');
+        GL.bindAttribLocation( _program, normal_attribute,  'vertexNormal');
+
     	GL.linkProgram(_program);
-      
+
       	if( GL.getProgramParameter(_program, GL.LINK_STATUS) == 0) {
          	addError("\tFailed to link shader program:");
          	addError( "\t\t"+ GL.getProgramInfoLog(_program) );
@@ -226,14 +234,14 @@ class Shader extends Resource {
         activate();
 
             //if success, store all fixed attributes and uniforms
-        vert_attribute = GL.getAttribLocation( _program , "vertexPosition");
-        tcoord_attribute = GL.getAttribLocation( _program, "vertexTCoord");
-        color_attribute = GL.getAttribLocation( _program, "vertexColor");
-        normal_attribute = GL.getAttribLocation( _program, "vertexNormal");
+        // vert_attribute =    GL.getAttribLocation( _program ,   "vertexPosition");
+        // tcoord_attribute =  GL.getAttribLocation( _program,  "vertexTCoord");
+        // color_attribute =   GL.getAttribLocation( _program,   "vertexColor");
+        // normal_attribute =  GL.getAttribLocation( _program,  "vertexNormal");            
 
             //Matrices
-        projectionmatrix_attribute = GL.getUniformLocation( _program, "projectionMatrix");
-        modelviewmatrix_attribute = GL.getUniformLocation( _program, "modelViewMatrix");
+        projectionmatrix_attribute = GL.getUniformLocation( _program,   "projectionMatrix");
+        modelviewmatrix_attribute = GL.getUniformLocation( _program,    "modelViewMatrix");
 
             //Textures
         tex0_attribute = GL.getUniformLocation( _program, "tex0" );
@@ -361,7 +369,7 @@ class Shader extends Resource {
     @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:Dynamic = null  ) {
         value.bind();
     	GL.uniform1i( location, value.slot );
-        GL.activeTexture(GL.TEXTURE0);
+        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
     }
 
     public function addLog( _log:String ) {

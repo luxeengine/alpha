@@ -343,24 +343,24 @@ class Texture extends Resource {
         
         switch(slot) {
             case 0:
-                GL.activeTexture(GL.TEXTURE0);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE0);
             case 1:
-                GL.activeTexture(GL.TEXTURE1);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE1);
             case 2:
-                GL.activeTexture(GL.TEXTURE2);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE2);
             case 3:
-                GL.activeTexture(GL.TEXTURE3);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE3);
             case 4:
-                GL.activeTexture(GL.TEXTURE4);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE4);
             case 5:
-                GL.activeTexture(GL.TEXTURE5);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE5);
             case 6:
-                GL.activeTexture(GL.TEXTURE6);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE6);
             case 7:
-                GL.activeTexture(GL.TEXTURE7);
+                Luxe.renderer.state.activeTexture(GL.TEXTURE7);
         }
 
-        GL.bindTexture( GL.TEXTURE_2D, texture );
+        Luxe.renderer.state.bindTexture2D( texture );
     }
 
     public function activate(att) {
@@ -412,7 +412,7 @@ class Texture extends Resource {
         
         if (data != null) {
 
-            GL.bindTexture(GL.TEXTURE_2D, texture);            
+            Luxe.renderer.state.bindTexture2D(texture);
             GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data);
 
             data = null;

@@ -50,8 +50,8 @@ class BatchState {
                 }
 
             } else {
-
-                GL.bindTexture(GL.TEXTURE_2D, null);
+                
+                Luxe.renderer.state.bindTexture2D(null);
                 last_texture_id = null;
 
             } //geom_state.texture !=null
@@ -148,12 +148,12 @@ class BatchState {
         
         if(last_texture_id != null) {
                 //undo any textures we bound last
-            GL.bindTexture(GL.TEXTURE_2D, null);
+            Luxe.renderer.state.bindTexture2D(null);
         }
 
             //for now we just disable any shader because other 
             //batchers are not aware of us yet.
-        GL.useProgram(null);
+        Luxe.renderer.state.useProgram(null);
 
         var previous = batcher.groups.get(last_group);
         if(previous != null) {

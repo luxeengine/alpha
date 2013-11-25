@@ -54,10 +54,10 @@ class Batcher {
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
-    public var vertlist : Float32Array;
-    public var tcoordlist : Float32Array;
-    public var colorlist : Float32Array;
-    public var normallist : Float32Array;
+    public var vertlist     : Float32Array;
+    public var tcoordlist   : Float32Array;
+    public var colorlist    : Float32Array;
+    public var normallist   : Float32Array;
 
     public var static_vertlist : Float32Array;
     public var static_tcoordlist : Float32Array;
@@ -81,13 +81,20 @@ class Batcher {
     public var vcolorBuffer : GLBuffer;
     public var normalBuffer : GLBuffer;
 
+    public var vertexBuffer0 : GLBuffer;
+    public var tcoordBuffer0 : GLBuffer;
+    public var vcolorBuffer0 : GLBuffer;
+    public var normalBuffer0 : GLBuffer;
+
+    var flop : Bool = true;
+
     public var projectionmatrix_attribute : Dynamic; 
     public var modelviewmatrix_attribute : Dynamic;
 
-    public var vert_attribute : Dynamic;
-    public var tcoord_attribute : Dynamic;
-    public var color_attribute : Dynamic;
-    public var normal_attribute : Dynamic;
+    public var vert_attribute   : Int = 0;
+    public var tcoord_attribute : Int = 1;
+    public var color_attribute  : Int = 2;
+    public var normal_attribute : Int = 3;
 
     public var tex0_attribute : Dynamic;
     public var tex1_attribute : Dynamic;
@@ -116,15 +123,15 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        vertlist = new Float32Array(65536);
-        tcoordlist = new Float32Array(65536);
-        colorlist = new Float32Array(65536);
-        normallist = new Float32Array(65536);
+        vertlist = new Float32Array(32768);
+        tcoordlist = new Float32Array(32768);
+        colorlist = new Float32Array(32768);
+        normallist = new Float32Array(32768);
 
-        static_vertlist = new Float32Array(65536);
-        static_tcoordlist = new Float32Array(65536);
-        static_colorlist = new Float32Array(65536);
-        static_normallist = new Float32Array(65536);
+        static_vertlist = new Float32Array(32768);
+        static_tcoordlist = new Float32Array(32768);
+        static_colorlist = new Float32Array(32768);
+        static_normallist = new Float32Array(32768);
 
             //The default view so we see stuff
         view = renderer.default_camera;
@@ -134,6 +141,37 @@ class Batcher {
         tcoordBuffer = GL.createBuffer();
         vcolorBuffer = GL.createBuffer();
         normalBuffer = GL.createBuffer();
+            //And a double buffer set
+        vertexBuffer0 = GL.createBuffer();
+        tcoordBuffer0 = GL.createBuffer();
+        vcolorBuffer0 = GL.createBuffer();
+        normalBuffer0 = GL.createBuffer();
+
+        GL.enableVertexAttribArray( vert_attribute );
+        GL.enableVertexAttribArray( tcoord_attribute );
+        GL.enableVertexAttribArray( color_attribute ); 
+        GL.enableVertexAttribArray( normal_attribute );
+
+//VERTEX
+        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
+        GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
+        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer0);
+        GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
+//TCOORD
+        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
+        GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);
+        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer0);
+        GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);          
+//COLOR
+        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffer);
+        GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);        
+        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffer0);
+        GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);        
+//NORMALS
+        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer);
+        GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);        
+        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer0);
+        GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);        
 
             //A default name
         if(_name.length == 0) {
@@ -265,14 +303,8 @@ class Batcher {
 
     public function shader_activate( _shader:Shader ) {
             
-        //activate (GL.useProgram) the shader
+            //activate (GL.useProgram) the shader
         _shader.activate(); 
-
-            //Vert, UV, Normals
-        vert_attribute      = _shader.vert_attribute;
-        tcoord_attribute    = _shader.tcoord_attribute;
-        color_attribute     = _shader.color_attribute;
-        normal_attribute    = _shader.normal_attribute;
 
             //Matrices
         projectionmatrix_attribute  = _shader.projectionmatrix_attribute;
@@ -292,7 +324,7 @@ class Batcher {
         _shader.apply_uniforms();
 
             //undo any changes to be sure
-        GL.activeTexture(GL.TEXTURE0);
+        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
 
     } //shader_activate
 
@@ -337,7 +369,7 @@ class Batcher {
 
                         //Only submit if there are vertices in our list to draw
                         //but if there are the batch is dirty and needs to be submitted 
-                    if(verts > 0) {                            
+                    if(verts > 0) {
                         submit_current_vertex_list( state.last_geom_state.primitive_type );
                     } //if vertlist.length > 0
 
@@ -418,10 +450,10 @@ class Batcher {
         draw_calls = 0;
 
             //update camera if it changes anything
-        view.process();
+        view.process(); 
 
             //Set the viewport to the view todo:this x any y should be from the camera?
-        GL.viewport( 0, 0, cast view.size.x, cast view.size.y );
+        renderer.state.viewport( 0, 0, cast view.size.x, cast view.size.y );
 
             //apply geometries
         batch( persist_immediate );
@@ -452,10 +484,10 @@ class Batcher {
 
         } else {
 
-            static_verts = geom.vertices.length * 3;
-            static_tcoords = geom.vertices.length * 2;
-            static_colors = geom.vertices.length * 4;
-            static_normals = geom.vertices.length * 3;
+            static_verts    = geom.vertices.length * 4;
+            static_tcoords  = geom.vertices.length * 4;
+            static_colors   = geom.vertices.length * 4;
+            static_normals  = geom.vertices.length * 4;
 
         }
 
@@ -472,7 +504,7 @@ class Batcher {
 
             //set the vertices positions in the shader, but to static buffers
         GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_vertex_buffer);
-        GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
+        GL.vertexAttribPointer(vert_attribute, 4, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
             GL.bufferData(GL.ARRAY_BUFFER, static_vertlist, GL.STATIC_DRAW);
@@ -480,7 +512,7 @@ class Batcher {
 
             //set the texture coordinates in the shader, but to static buffers
         GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_tcoord_buffer);
-        GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
+        GL.vertexAttribPointer(tcoord_attribute, 4, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
             GL.bufferData(GL.ARRAY_BUFFER, static_tcoordlist, GL.STATIC_DRAW);
@@ -496,14 +528,12 @@ class Batcher {
 
             //set the normal directions in the shader, but to static buffers
         GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_normal_buffer);
-        GL.vertexAttribPointer(normal_attribute, 3, GL.FLOAT, false, 0, 0);
+        GL.vertexAttribPointer(normal_attribute, 4, GL.FLOAT, false, 0, 0);
 
         if(!geom.submitted || geom.dirty) {
             GL.bufferData(GL.ARRAY_BUFFER, static_normallist, GL.STATIC_DRAW);
         }
 
-        // Sys.println(static_verts);
-        // Sys.println(phoenix.utils.Geometry.get_elements_for_type(geom.primitive_type, static_verts));
 
             //Draw
         GL.drawArrays( 
@@ -537,6 +567,7 @@ class Batcher {
 
     } //submit_static_buffer_object
 
+
     public function submit_current_vertex_list( type : PrimitiveType ) {
             
         if( verts == 0 ) {
@@ -544,28 +575,27 @@ class Batcher {
             return;
         }
 
+            //invert which buffer is used
+        flop = !flop;
+
             //Enable atttributes
         _enable_attributes();
 
-            //set the vertices positions in the shader
-        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
-        GL.vertexAttribPointer(vert_attribute, 3, GL.FLOAT, false, 0, 0);
-        GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
+        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? vertexBuffer0 : vertexBuffer );
+        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0);
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, vertlist ); 
 
-            //set the texture coordinates in the shader
-        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
-        GL.vertexAttribPointer(tcoord_attribute, 2, GL.FLOAT, false, 0, 0);
-        GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);        
+        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? tcoordBuffer0 : tcoordBuffer);
+        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0);
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, tcoordlist );
 
-            //set the color values in the shader
-        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffer);
-        GL.vertexAttribPointer(color_attribute, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);        
+        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? vcolorBuffer0 : vcolorBuffer);
+        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0);
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, colorlist );
 
-            //set the normal directions in the shader
-        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer);
-        GL.vertexAttribPointer(normal_attribute, 3, GL.FLOAT, false, 0, 0);
-        GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);
+        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? normalBuffer0 : normalBuffer);
+        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0);
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, normallist );
 
             //Draw
         GL.drawArrays( 
@@ -591,10 +621,10 @@ class Batcher {
             vertlist,   tcoordlist,     colorlist,  normallist
         );
 
-        verts      += geom.vertices.length * 3;
-        tcoords    += geom.vertices.length * 2;
+        verts      += geom.vertices.length * 4;
+        tcoords    += geom.vertices.length * 4;
         colors     += geom.vertices.length * 4;
-        normals    += geom.vertices.length * 3;
+        normals    += geom.vertices.length * 4;
 
     } //geometry_batch
     
@@ -605,10 +635,10 @@ class Batcher {
             static_vertlist,    static_tcoordlist,  static_colorlist,   static_normallist
         );
 
-        static_verts      += geom.vertices.length * 3;
-        static_tcoords    += geom.vertices.length * 2;
+        static_verts      += geom.vertices.length * 4;
+        static_tcoords    += geom.vertices.length * 4;
         static_colors     += geom.vertices.length * 4;
-        static_normals    += geom.vertices.length * 3;
+        static_normals    += geom.vertices.length * 4;
 
     } //geometry_batch_static
 
@@ -620,21 +650,11 @@ class Batcher {
         GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_matrix.float32array() );
         GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.view_matrix.inverse().float32array() );
 
-            //Set shader attributes
-        GL.enableVertexAttribArray(vert_attribute);
-        GL.enableVertexAttribArray(tcoord_attribute);
-        GL.enableVertexAttribArray(color_attribute);
-        GL.enableVertexAttribArray(normal_attribute);
-
     } //_enable_attributes
 
     private function _disable_attributes() {
 
             //Unset
-        GL.disableVertexAttribArray(vert_attribute);
-        GL.disableVertexAttribArray(tcoord_attribute);
-        GL.disableVertexAttribArray(color_attribute);
-        GL.disableVertexAttribArray(normal_attribute);
 
     } //_disable_attributes 
 

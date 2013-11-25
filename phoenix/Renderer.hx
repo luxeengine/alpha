@@ -1,8 +1,13 @@
 package phoenix;
 
 import lime.gl.GL;
+import lime.gl.GLProgram;
+import lime.gl.GLShader;
+import lime.gl.GLTexture;
 import lime.utils.Libs;
 
+import luxe.Rectangle;
+import phoenix.Batcher;
 import phoenix.RenderPath;
 import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
@@ -22,12 +27,93 @@ import lime.utils.ArrayBuffer;
 
 import luxe.structural.BinarySearchTree;
 
+class RenderState {
+
+    var cull_face : Bool = false;
+    var depth_test : Bool = false;
+    var renderer : Renderer;
+    var _viewport : Rectangle;
+
+
+    public function new( _renderer:Renderer ) {
+        renderer = _renderer;
+        _viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
+    }
+
+    public function enable( what:Dynamic ) {
+        switch(what) {
+            case GL.CULL_FACE:
+                if(!cull_face) {
+                    cull_face = true;
+                    GL.enable(GL.CULL_FACE);
+                } //!cull_face
+            case GL.DEPTH_TEST:
+                if(!depth_test && Luxe.core.lime.config.depth_buffer) {
+                    depth_test = true;
+                    GL.enable(GL.DEPTH_TEST);
+                } //!depth_test
+        } //switch
+    } //enable_if_not
+
+    public function disable( what:Dynamic ) {
+        switch(what) {
+            case GL.CULL_FACE:
+                if(cull_face) {
+                    cull_face = false;
+                    GL.disable(GL.CULL_FACE);
+                } //cull_face
+            case GL.DEPTH_TEST:
+                if(depth_test && Luxe.core.lime.config.depth_buffer) {
+                    depth_test = false;
+                    GL.disable(GL.DEPTH_TEST);
+                } //depth_test
+        } //switch
+    } //disable_if_not
+
+    public function viewport( x:Float, y:Float, w:Float, h:Float ) {
+        if( _viewport.x != x && 
+            _viewport.y != y && 
+            _viewport.w != w && 
+            _viewport.h != h) {
+
+                _viewport.x = x; _viewport.y = y; _viewport.w = w; _viewport.h = h;
+                GL.viewport( Std.int(x), Std.int(y), Std.int(w), Std.int(h) );
+
+        }
+    } //viewport
+
+    var _used_program : GLProgram = null;
+    public function useProgram( program:GLProgram ) {
+        if(_used_program != program) {
+            _used_program = program;
+            GL.useProgram( program );
+        }
+    } //useProgram
+
+    var _active_texture = null;
+    public function activeTexture( val:Dynamic ) {
+        if(_active_texture != val) {
+            GL.activeTexture(val);
+            _active_texture = val;
+        }        
+    } //activeTexture
+
+    var _bound_texture_2D : GLTexture = null;
+    public function bindTexture2D( tex:GLTexture ) {
+        if(_bound_texture_2D != tex) {
+            _bound_texture_2D = tex;
+            GL.bindTexture(GL.TEXTURE_2D, tex);
+        }
+    }
+
+} //RenderState
 
 class Renderer {
 
     public var resource_manager : ResourceManager;
     public var batchers : BinarySearchTree<Int,Batcher>;
 
+    public var state : RenderState;
         //Default rendering
     public var default_shader : Shader;
     public var default_shader_textured : Shader;
@@ -47,10 +133,11 @@ class Renderer {
     public var stop_count : Int = 0;
     public var clear_color : Color;
 
-    public var stats : RendererStats;   
+    public var stats : RendererStats;
 
     public function startup() {
 
+        state = new RenderState(this);
         clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();
 
@@ -95,13 +182,15 @@ class Renderer {
         default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
 
         _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
-
-            //enable z buffer use
-        GL.enable(GL.DEPTH_TEST);
-            // Accept fragment if it closer or equal away from the other
-        GL.depthFunc(GL.LEQUAL);
-            //Clear the depth buffer
-        GL.clearDepth(1.0);
+            
+        if(Luxe.core.lime.config.depth_buffer) {
+                // Enable z buffer use
+            GL.enable(GL.DEPTH_TEST);
+                // Accept fragment if it closer or equal away from the other
+            GL.depthFunc(GL.LEQUAL);
+                //Clear the depth buffer
+            GL.clearDepth(1.0);
+        }
 
             //Enable blending
         GL.enable(GL.BLEND);
@@ -131,7 +220,12 @@ class Renderer {
         if(_color == null) _color = clear_color;
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
-        GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+        if(Luxe.core.lime.config.depth_buffer) {
+            GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
+            GL.clearDepth(1.0);
+        } else {
+            GL.clear( GL.COLOR_BUFFER_BIT );
+        }
     }
 
     private function _debug(v:Dynamic) {

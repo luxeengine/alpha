@@ -39,15 +39,15 @@ class Geometry {
             // line_strip || line_loop || triangle_strip || triangle_fan are separated from being batched
         switch( type ) {
             case line_strip:
-                return Std.int(length/3);
+                return Std.int(length/4);
             case line_loop:
-                return Std.int(length/3);
+                return Std.int(length/4);
             case triangle_strip:
-                return Std.int(length/3);
+                return Std.int(length/4);
             case triangle_fan:            
-                return Std.int(length/3);
+                return Std.int(length/4);
             default:
-                return Std.int(length/3);
+                return Std.int(length/4);
         }
     } //get_opengl_type_length
 

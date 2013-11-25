@@ -225,28 +225,34 @@ class Geometry {
 				vertlist.setFloat32( (vert_index+0)*4, _final_vert_position.x );
 				vertlist.setFloat32( (vert_index+1)*4, _final_vert_position.y );
 				vertlist.setFloat32( (vert_index+2)*4, _final_vert_position.z );
+				vertlist.setFloat32( (vert_index+3)*4, _final_vert_position.w );
 			#end //luxe_native
 
 			#if luxe_html5
 				vertlist[(vert_index+0)] = _final_vert_position.x;
 				vertlist[(vert_index+1)] = _final_vert_position.y;
 				vertlist[(vert_index+2)] = _final_vert_position.z;
+				vertlist[(vert_index+3)] = _final_vert_position.w;
 			#end //luxe_html5
 
-			vert_index += 3;
+			vert_index += 4;
 
 				//texture coordinates todo:multiple uv sets
 			#if luxe_native
 				tcoordlist.setFloat32( (tcoord_index+0)*4, v.uv.uv0.u );
 				tcoordlist.setFloat32( (tcoord_index+1)*4, v.uv.uv0.v );
+				tcoordlist.setFloat32( (tcoord_index+2)*4, v.uv.uv0.w );
+				tcoordlist.setFloat32( (tcoord_index+3)*4, v.uv.uv0.t );
 			#end //luxe_native
 
 			#if luxe_html5
 				tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
 				tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
+				tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
+				tcoordlist[(tcoord_index+3)] = v.uv.uv0.t;
 			#end //luxe_html5
 
-			tcoord_index += 2;
+			tcoord_index += 4;
 
 				//color values per vertex
 			#if luxe_native
@@ -270,15 +276,17 @@ class Geometry {
 				normallist.setFloat32( (normal_index+0)*4, v.normal.x );
 				normallist.setFloat32( (normal_index+1)*4, v.normal.y );
 				normallist.setFloat32( (normal_index+2)*4, v.normal.z );
+				normallist.setFloat32( (normal_index+3)*4, v.normal.w );
 			#end //luxe_native
 
 			#if luxe_html5
 				normallist[(normal_index+0)] = v.normal.x;
 				normallist[(normal_index+1)] = v.normal.y;
 				normallist[(normal_index+2)] = v.normal.z;
+				normallist[(normal_index+3)] = v.normal.w;
 			#end //luxe_html5
 
-			normal_index += 3;
+			normal_index += 4;
 
 		} //each vertex
 
