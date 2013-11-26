@@ -2,32 +2,33 @@ package luxe;
 
 import luxe.Core;
 
-    //button and key types
-typedef KeyValue = lime.utils.Keys.KeyValue;
+    //Button and key types
+typedef KeyValue    = lime.helpers.Keys.KeyValue;
 typedef MouseButton = lime.InputHandler.MouseButton;
-typedef MouseState = lime.InputHandler.MouseState;
-typedef TouchState = lime.InputHandler.TouchState;
+typedef MouseState  = lime.InputHandler.MouseState;
+typedef TouchState  = lime.InputHandler.TouchState;
 
-    //event types
+    //Event types
 typedef KeyEvent = lime.InputHandler.KeyEvent;
 typedef GamepadEvent = lime.InputHandler.GamepadEvent;
 
 typedef TouchEvent = {
     > lime.InputHandler.TouchEvent,
     var pos : luxe.Vector;
-}
+} //TouchEvent
 
 typedef MouseEvent = {
     > lime.InputHandler.MouseEvent,
     var pos : luxe.Vector;
-}
+} //MouseEvent
 
 class Input {
     
+    public static var Keys      : lime.helpers.Keys;
+    public static var Gamepad   : lime.helpers.Gamepad;
+
     @:noCompletion public var core : Core;
     @:noCompletion public function new( _core:Core ) { core = _core; }
-    public static var Keys : lime.utils.Keys;
-    public static var Gamepad : lime.utils.Gamepad;
 
 #if neko
     var key_bindings : Map<String, haxe.ds.EnumValueMap<KeyValue,Bool> >;
@@ -39,8 +40,8 @@ class Input {
 
 
     @:noCompletion public function startup() {
-        Keys = new lime.utils.Keys();
-        Gamepad = new lime.utils.Gamepad();
+        Keys = new lime.helpers.Keys();
+        Gamepad = new lime.helpers.Gamepad();
         key_bindings = new Map();
         mouse_bindings = new Map();        
         
