@@ -123,10 +123,10 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        vertlist = new Float32Array(32768);
-        tcoordlist = new Float32Array(32768);
-        colorlist = new Float32Array(32768);
-        normallist = new Float32Array(32768);
+        vertlist = new Float32Array(8096);
+        tcoordlist = new Float32Array(8096);
+        colorlist = new Float32Array(8096);
+        normallist = new Float32Array(8096);
 
         static_vertlist = new Float32Array(32768);
         static_tcoordlist = new Float32Array(32768);
@@ -404,6 +404,11 @@ class Batcher {
                     else {
 
                         geometry_batch( geom );
+
+                            //if we have breached the max per batch, send it now
+                        if(verts > 8096) {
+                            submit_current_vertex_list( geom.primitive_type );
+                        }               
                         
                         dynamic_batched_count++;
 

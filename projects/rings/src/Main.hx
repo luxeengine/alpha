@@ -391,7 +391,6 @@ class Main extends luxe.Game {
     			offset.pos.x = __x( _opp_off );
     			offset.pos.y = __y( _opp_off );
 
-
     		var _final_angle = wrap( _opp_off, 0, 360);
     		
     			set_pos(_final_angle);
