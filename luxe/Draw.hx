@@ -6,6 +6,7 @@ import phoenix.geometry.RectangleGeometry;
 import phoenix.geometry.CircleGeometry;
 import phoenix.Batcher;
 import phoenix.geometry.RingGeometry;
+import phoenix.geometry.ArcGeometry;
 import phoenix.geometry.PlaneGeometry;
 
 class Draw {
@@ -87,6 +88,18 @@ class Draw {
         return _ring;
 
     } //ring
+
+    public function arc(options:Dynamic) {
+
+        options = default_options(options);
+
+        var _arc = new ArcGeometry(options);
+
+            options.batcher.add(_arc);
+
+        return _arc;
+
+    } //arc    
 
     public function circle(options:Dynamic) {
 

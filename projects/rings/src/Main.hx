@@ -1,6 +1,5 @@
 
 import luxe.Color;
-import luxe.components.Components.Component;
 import luxe.Entity;
 import luxe.Sprite;
 import luxe.Input;
@@ -9,212 +8,10 @@ import luxe.Vector;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.LineGeometry;
 
-class Pool<T> {
 
-	public var length : Int = 0;
-	public var items : Array<T>;
-	public var index : Int = 0;
-
-	var precache : Bool = true;
-	var _create : Int -> Int -> T;
-
-	public function new( pool_size:Int, create_callback:Int->Int->T, _precache:Bool = true ){
-
-		length = pool_size;	
-		precache = _precache;
-		items = [];
-		_create = create_callback;
-
-		if(precache) {
-			for(i in 0 ... length) {
-		 		items.push( _create(i, length) );
-			}
-		} //if precache
-
-	} //new
-
-	public function get() : T {		
-		
-		// trace("fetching " + index);
-
-			//we want to make sure that we are creating items that don't exist to the max
-		if(!precache && items.length < length) {
-				//need to add a new one, so request it
-			items.push( _create(index, length) );
-		}
-
-		var _item = items[index];
-			
-			//after, increase the index, so that the index is always
-			//on the next free one. In other words list[index] is the next one, not the last used one
-		index++;
-		if(index > length-1) {
-			index = 0;
-		}
-
-		// trace("now at " + index);
-
-		return _item;
-
-	} //get
-
-
-} //Pool
-
-
-class Enemy extends Component {
-
-	public var alive : Bool = false;
-	public var spawnpos : Float = 0;
-	public var destpos : Float = 0;
-	public var cpos : Float = 0;
-	public var speed : Float = 0;
-	public var main : Main;
-	public var health : Float = 1;
-
-	public function init() {
-		test = new Vector();
-	} 
-
-	public function take_damage(amount:Float) {
-		health -= amount;
-		if(health <= 0) {
-			health = 0;
-			kill();
-		}
-	}
-
-	public function kill() {		
-		var s:Sprite = cast entity;
-			Actuate.tween(s.scale, 0.1, {x:3,y:3});
-			s.color.tween(0.1, {a:0}).onComplete(function(){
-				s.visible = false;
-			});			
-			alive = false;
-			main.enemies.remove(this);
-	}
-
-	public function live() {
-
-		var s:Sprite = cast entity;
-			s.scale.x = 1;
-			s.scale.y = 1;
-			s.color.tween(0.2, {a:1}, true);
-			s.visible = true;
-
-		alive = true;
-
-		var _angle_opp = 45 - Math.round(Math.random() * 90);
-		var _angle_dest = 45 - Math.round(Math.random() * 90);
-		var _opp_side = main.rotation + 180;
-    	var _opp_off = main.wrap(_opp_side + (_angle_opp*2), 0, 360);
-
-		spawnpos = _opp_off; 
-		destpos = main.wrap(_opp_off + _opp_side, 0, 360);
-		speed = 10 + (Math.round(Math.random()*10));
-
-		pos = new Vector( main.__x(spawnpos), main.__y(spawnpos) );
-
-		cpos = spawnpos;
-
-		Actuate.tween(this, (speed), { cpos:destpos }, true).ease(luxe.tween.easing.Linear.easeNone).onUpdate(function(){
-			pos.x = main.__x(cpos);
-			pos.y = main.__y(cpos);
-		}).reflect().repeat();
-
-		main.enemies.push(this);
-
-	}
-
-		//shoot?
-	var test :Vector;
-
-	public function update() {
-
-		if(!alive) return;
-
-		var dx = main.player.pos.x - pos.x;
-		var dy = main.player.pos.y - pos.y;
-			test.set(dx,dy);
-		if(test.length < 48) {
-			main.take_damage(1);
-			kill();
-		}
-	}
-
-}
-
-
-class Projectile extends Component {
-
-	public var vel : Vector;	
-	public var alive : Bool = false;
-	public var main : Main;
-	public var damage : Float = 1;
-	var spawn_protect : Float = 0;
-
-	public function init() {
-		vel = new Vector();
-		test = new Vector();
-	} 
-
-	public function live(_vel:Vector) {
-		alive = true;
-		vel = _vel;
-		var s:Sprite = cast entity;
-			s.visible = true;
-			s.color.a = 1;
-			s.scale.x = 1;
-			s.scale.y = 1;
-
-		spawn_protect = haxe.Timer.stamp() + 1.5;
-	}
-
-	public function kill() {
-		var s:Sprite = cast entity;
-			alive = false;
-			Actuate.tween(s.scale, 0.1, {x:3,y:3}).onComplete(function(){
-				s.visible = false;
-			});
-	}
-
-	var test : Vector;
-
-	public function update(dt:Float) {
-
-		if(!alive) return;
-
-		pos = pos.clone().add( Vector.Multiply(vel,0.0166666666) );
-
-		if( !Luxe.screen.point_inside( pos ) ) {
-			kill();
-		}
-
-		for(enemy in main.enemies) {
-			var s : Sprite = cast enemy.entity;
-			var r = (main.finger_size*0.3);
-				var dx = s.pos.x - pos.x;
-				var dy = s.pos.y - pos.y;
-					test.set(dx,dy);
-			if(test.length < r) {
-				enemy.take_damage(damage);
-				kill();
-			}
-		} //enemy
-
-		if(haxe.Timer.stamp() > spawn_protect) {
-			var dx = main.player.pos.x - pos.x;
-			var dy = main.player.pos.y - pos.y;
-				test.set(dx,dy);
-			if(test.length < 48) {
-				main.take_damage(1);
-				kill();
-			}
-		}
-
-	}
-
-} //Projectile
+import Pool;
+import Enemy;
+import Projectile;
 
 class Main extends luxe.Game {
 
@@ -228,33 +25,51 @@ class Main extends luxe.Game {
 	var dest : Geometry;
 	var offset : Geometry;
 	var power : LineGeometry;
-	var finger : Geometry;
+    var finger : Geometry;
+	var jumper : Geometry;
 
 	public var finger_size : Float = 64;
 
-	var p_bullets : Pool<Sprite>;
+    var p_bullets : Pool<Sprite>;
+	public var e_bullets : Pool<Sprite>;
 	var p_enemies : Pool<Sprite>;
 
 	var healths : Array<Sprite>;
 
-	public var enemies : Array<Enemy>;
+    public var enemies : Array<Enemy>;
+	public var projectiles : Array<Projectile>;
 
     public function ready() {
 
-    	distance = Luxe.screen.h*0.4;
+    	distance = Luxe.screen.h*0.3;
     	finger_size = Luxe.screen.h*0.13;
     	min_length = sqrt2 * distance;
     	center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
 
     	p_bullets = new Pool<Sprite>(20,
-    		function(index,total){
+            function(index,total){
+                var _s = new Sprite({
+                    size : new Vector(finger_size*0.14, finger_size*0.14),
+                    color : new Color(1,1,1,1),
+                });
+                _s.visible = false;
+                var _p = _s.add( Projectile, 'projectile' );
+                    _p.main = this;
+                    _p.bullettype = 'player';
+                return _s;
+            }
+        ); 
+
+        e_bullets = new Pool<Sprite>(30,
+    		function(index,total) {
     			var _s = new Sprite({
-    				size : new Vector(finger_size*0.14, finger_size*0.14),
-    				color : new Color(1,1,1,1),
+    				size : new Vector(finger_size*0.1, finger_size*0.1),
+    				color : new Color(0.8,0.3,0.1,1),
     			});
     			_s.visible = false;
     			var _p = _s.add( Projectile, 'projectile' );
     				_p.main = this;
+                    _p.bullettype = 'enemy';
     			return _s;
     		}
     	); 
@@ -276,7 +91,7 @@ class Main extends luxe.Game {
     	healths = [];
     	for(i in 0 ... 3) {
     		healths.push(new Sprite({
-    			pos : new Vector(20+(i*40), 30),
+    			pos : new Vector(30+(i*40), 30),
     			size : new Vector(26,26),
     			color : new Color(1, 0.3, 0.1, 1)
     		}));
@@ -284,6 +99,7 @@ class Main extends luxe.Game {
     	}
 
     	enemies = [];
+        projectiles = [];
 
     	_range_scale = new Vector();
 
@@ -309,9 +125,16 @@ class Main extends luxe.Game {
     	power.enabled = false;
 
     	var mainring = Luxe.draw.ring({
+            x : center.x, y:center.y,
+            r : distance,
+            color : new Color(1,1,1,0.75)
+        });
+
+        jumper = Luxe.draw.arc({
     		x : center.x, y:center.y,
-    		r : distance,
-    		color : new Color(1,1,1,0.75)
+    		r : distance*0.97,
+    		color : new Color(0.2,0.5,1,0),
+            end_angle : 180
     	});
 
     	mainring.locked = true;
@@ -355,13 +178,17 @@ class Main extends luxe.Game {
     	if(health <= 0) {
     		health = 0;
     		kill();
-    	}
+            Luxe.camera.shake(20);
+    	} else {
+            Luxe.camera.shake(6);
+        }
 
     	//update UI
     	var i =  3 - Math.round(health);
     	for(_i in 0 ... i) {
     		healths[2-_i].visible = false;
     	}
+
 
     } //take_damage
 
@@ -371,9 +198,16 @@ class Main extends luxe.Game {
     	set_pos(90);
 
     		//kill all enemies
-    	for(enemy in enemies) {
-    		enemy.kill();
+        for(enemy in enemies) {
+            enemy.kill(false);
+        }
+
+    	for(proj in projectiles) {
+    		proj.kill(false);
     	}
+
+        enemies = [];
+        projectiles = [];
 
     		//health reset
     	health = 3;
@@ -503,7 +337,8 @@ class Main extends luxe.Game {
     		get_inrange(e.pos);
 
     		dest.color.tween(1, {a:0}, true);
-    		offset.color.tween(1, {a:0}, true);
+            offset.color.tween(1, {a:0}, true);
+    		jumper.color.tween(1, {a:0}, true);
 
     		player.color.r = 1;
 			player.color.g = 1;
@@ -547,7 +382,7 @@ class Main extends luxe.Game {
 
     function move_player( angle_player:Float, angle_opp:Float ) {
 
-    	player.color.tween(0.5, {a:0}, true).onComplete(function(){
+    	player.color.tween(0.1, {a:0}, true).onComplete(function(){
     		
     		var _opp_side = angle_player + 180;
     			dest.pos.x = __x( _opp_side );
@@ -556,14 +391,13 @@ class Main extends luxe.Game {
     			offset.pos.x = __x( _opp_off );
     			offset.pos.y = __y( _opp_off );
 
+
     		var _final_angle = wrap( _opp_off, 0, 360);
     		
     			set_pos(_final_angle);
 
-	    		player.color.tween(0.25, {a:1}, true).onComplete(function(){
-
-
-	    		}); //fade in
+	    		player.color.a = 1;
+                Luxe.camera.shake(2);
 
     	}); //fade out
 
@@ -590,7 +424,8 @@ class Main extends luxe.Game {
     	if(pre_in && !inrange) {
     		dhid = true;
 			dest.color.tween(0.5, {a:0}, true);
-			offset.color.tween(0.5, {a:0}, true);
+            offset.color.tween(0.5, {a:0}, true);
+			jumper.color.tween(0.5, {a:0}, true);
     	}
 
     	if(pre_shoot && !shoot_range) {
@@ -603,7 +438,8 @@ class Main extends luxe.Game {
     		if(dhid) {
     			dhid = false;
     			dest.color.tween(0.2, {a:0.2}, true);
-    			offset.color.tween(0.2, {a:1}, true);
+                offset.color.tween(0.2, {a:1}, true);
+    			jumper.color.tween(0.2, {a:1}, true);
     		}
 
     		var _opp_side = rotation + 180;
@@ -612,6 +448,8 @@ class Main extends luxe.Game {
     		var _opp_off = _opp_side + (range_o_angle*2);
     			offset.pos.x = __x( _opp_off );
     			offset.pos.y = __y( _opp_off );
+
+            jumper.rotation.setFromEuler(new Vector(0,0,phoenix.utils.Maths.degToRad(rotation)));
 
     	} //dragging && in_range
 

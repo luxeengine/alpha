@@ -494,7 +494,7 @@ class Manager extends Mode {
 
     public function onkeyup(e:KeyEvent) {
         if(e.key == KeyValue.key_0) {
-            Luxe.scene.serialize_to_disk('/Users/Sven/dev/lab/luxe/projects/squads/ProjectData/scenes/default/');
+            // Luxe.scene.serialize_to_disk('/Users/Sven/dev/lab/luxe/projects/squads/ProjectData/scenes/default/');
         }
     }
 

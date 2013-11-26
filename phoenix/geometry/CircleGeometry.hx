@@ -15,18 +15,22 @@ class CircleGeometry extends Geometry {
         
         if(options == null) return;
 
+        if(options.end_angle == null) {
+        	options.end_angle = 360;
+        }
+
         if(options.steps == null) {
         	options.steps = Luxe.utils.geometry.segments_for_smooth_circle( options.r );
         }
 
             //Apply the new options rect
-		set( new Circle(options.x, options.y, options.r), options.steps );
+		set( new Circle(options.x, options.y, options.r), options.steps, phoenix.utils.Maths.degToRad(options.end_angle) );
 
         if(options.enabled != null) enabled = options.enabled;
 
 	} //new
 
-	public function set( _circle:Circle, _steps:Int ) {
+	public function set( _circle:Circle, _steps:Int, _end_angle:Float  ) {
 
 			//adapted from
 			//http://slabode.exofire.net/circle_draw.shtml
@@ -37,7 +41,7 @@ class CircleGeometry extends Geometry {
 			center.color = color;	
 
 				//Precompute the value based on segments
-			var theta = 2 * 3.1415926 / _steps;
+			var theta = _end_angle / _steps;
 
 			var tangential_factor = Math.tan( theta );
 			var radial_factor = Math.cos( theta );
