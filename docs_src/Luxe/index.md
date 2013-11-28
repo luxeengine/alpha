@@ -1,18 +1,18 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](./index.html)
 
-A cross platform haxe powered game development engine
+A cross platform haxe powered game development engine.
 
 ##About
 
 Luxe is a cross platform, rapid development, haxe based OpenGL game engine    
 for deploying games on [Mac](mac.html), [Windows](windows.html), [Linux](linux.html), [Android](android.html), [iOS](ios.html) and [WebGL/HTML5](html5.html).
 
-Luxe is built on top of open source technologies, like [Haxe](http://haxe.org), [NME](http://github.com/haxenme/NME) and built with performance and simplicity in mind, without sacrificing much low level access and without unneccessary complexity.
-
-Luxe uses common patterns and approaches to simplify working with the engine, such as Components/Entity systems, State Machines and Event Driven models. 
+Luxe is built on top of open source technologies, like [Haxe](http://haxe.org) and [lime](http://github.com/openfl/lime) and is built with simplicity in mind.
+Luxe uses common patterns for working with the engine, such as Components/Entity systems, State Machines and Event systems. 
 
 ## [View the luxe Guide](guide.html)   
+## [Installing luxe](setup.html)   
 
 &nbsp;
 

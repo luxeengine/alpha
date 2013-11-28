@@ -4,7 +4,7 @@
 	<haxelib name="format" />
 	<haxelib name="lime" />
 
-	<templatePath name="buildfiles" />
+	<templatePath name="templates" />
 
     <haxedef name="DHXCPP_STACK_TRACE" if="profiler" />
     <haxedef name="HXCPP_STACK_LINE" if="profiler" />

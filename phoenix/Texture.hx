@@ -146,11 +146,11 @@ class Texture extends Resource {
 
         var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
 
-        var nme_bitmap_handle = nme_bitmap_data_from_bytes(_asset_bytes, null);
+        var nme_bitmap_handle = lime_bitmap_data_from_bytes(_asset_bytes, null);
         if(nme_bitmap_handle == null) throw "cannot create bitmap " + _asset_name;
 
-        var _width = nme_bitmap_data_width( nme_bitmap_handle );
-        var _height = nme_bitmap_data_height( nme_bitmap_handle );
+        var _width = lime_bitmap_data_width( nme_bitmap_handle );
+        var _height = lime_bitmap_data_height( nme_bitmap_handle );
         
             //The actual padded size (for NPOT strict renderers)
         actual_width = _width;
@@ -162,7 +162,7 @@ class Texture extends Resource {
         var image_bytes : lime.utils.ByteArray;
 
         try {
-            image_bytes = cast nme_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
+            image_bytes = cast lime_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
         } catch(e:Dynamic) {
             trace(e);
             throw " fail!";
@@ -431,9 +431,9 @@ class Texture extends Resource {
     }
 
 
-    private static var nme_bitmap_data_from_bytes = Libs.load("nme", "nme_bitmap_data_from_bytes", 2);
-    private static var nme_bitmap_data_height = Libs.load("nme", "nme_bitmap_data_height", 1);
-    private static var nme_bitmap_data_width = Libs.load("nme", "nme_bitmap_data_width", 1);
-    private static var nme_bitmap_data_get_pixels = Libs.load("nme", "nme_bitmap_data_get_pixels", 2); 
+    private static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
+    private static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
+    private static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
+    private static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2); 
 
 }

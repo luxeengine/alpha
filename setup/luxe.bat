@@ -1,2 +1,2 @@
 @echo off
-haxelib run luxe %*
+haxelib run lime %*

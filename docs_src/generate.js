@@ -312,6 +312,14 @@ var config = require('./documentator.json');
 
         if(_list.length == 0) {
 
+            if(config.force_copy_template) {
+                console.log("Force copy template files!");
+                _verbose("- copying template files. ");
+                _copy_template_files([].concat(_template_files), function(){
+                    console.log("- copied template files. ");
+                }); //copy template files
+            }
+
             console.log('- ok. All files up to date.');
 
         } else {
