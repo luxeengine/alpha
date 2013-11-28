@@ -4,11 +4,12 @@
 ###[To the next guide](guide.sprites.html)
 ###[View all guides](guide.html)
 
-&nbsp;
+----
 
 ## Getting Started with Luxe
 
-### About luxe
+### What is luxe?
+---
 
 Luxe is a game focused framework, which is written in haxe to offer many output platforms sharing the same code.
 It focuses on performance, usability, flexibility and rapid iteration.   
@@ -16,16 +17,22 @@ It focuses on performance, usability, flexibility and rapid iteration.
 Luxe is made so that you can make game jam games quickly, but also in such a way that bigger longer term projects still make sense. 
 For a much deeper look at how luxe is built and why, see this guide [here](understandingluxe.html).
 
+&nbsp;
+
 ### Actually getting started
 
+---
+
 If you are ready to get something on screen, let's dive straight in. For a full code listing [click here](#code).
-Make sure you have [installed luxe and that it is working first](install.html), of course.    
+Make sure you have [installed luxe and that it is working first](setup.html), of course.    
 
 You can create an empty project in a folder by using `luxe create empty project_name`, or by copying the empty folder from the `template_projects/empty` folder yourself.
 
-### Anatomy of an empty project
 &nbsp;
 
+### What the empty project code looks like
+
+---
 
     import luxe.Input;
 
@@ -38,25 +45,32 @@ You can create an empty project in a folder by using `luxe create empty project_
         public function onkeyup( e:KeyEvent ) {
 
         		//called by luxe for you, when a key is released
-
+                //so, when the escape key is pressed, quit!
             if(e.key == KeyValue.escape) {
                 Luxe.shutdown();
             }
         } //onkeyup
 
         public function update(dt:Float) {
-        	//called by luxe for you, each frame, and passes in the delta time (the length in seconds of the last frame).
+        	//called by luxe for you, each frame, and passes in the
+            //delta time (the length in seconds of the last frame).
         } //update
 
     } //Main
 
+&nbsp;
 
 ### Drawing something
+---
 
-The class above shows the basic functions that a game _can_ implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like `ready`, `update` and `onkeydown`.    
+The class above shows the basic functions that a game _can_ implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like `ready`, `update` and `onkeyup`.    
 
-Now you can draw something inside the `ready` function, and it will appear on screen. Let's draw a [box](luxe.draw.html#box), and a [ring](luxe.draw.html#ring) around the box. We store the ring as a class member, because we want to move it later on. **Take note** that the Geometry classes are considered "low level" and later guides show you easier ways of making objects (like [sprites](guide.sprites.html))
+Now you can draw something inside the `ready` function, and it will appear on screen. Let's draw a [box](luxe.draw.html#box), and a [ring](luxe.draw.html#ring) around the box. We store the ring as a class member, because we want to move it later on. 
 
+**Take note** that the Geometry classes are considered "low level" and later guides show you easier ways of making objects (like [sprites](guide.sprites.html))
+
+###Drawing a ring on screen
+---
 	var ring : RingGeometry;
 
     public function ready() {

@@ -32,17 +32,26 @@
         <div class="content">
             <p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
 <p>A cross platform haxe powered game development engine.</p>
+<hr>
 <h2>About</h2>
-<p><a href="api.html">Luxe</a> is a cross platform, rapid development, haxe based OpenGL game engine<br>for deploying games on <a href="mac.html">Mac</a>, <a href="windows.html">Windows</a>, <a href="linux.html">Linux</a>, <a href="android.html">Android</a>, <a href="ios.html">iOS</a> and <a href="html5.html">WebGL/HTML5</a>.</p>
+<p><a href="api.html">Luxe</a> is a cross platform, rapid development, haxe based OpenGL game engine<br>for deploying games on Mac, Windows, Linux, Android, iOS and WebGL/HTML5.</p>
+<p><img title="Mac" alt="Mac" src="images/mac.png" class="platform-icon-64"/>
+<img title="Linux" alt="Linux" src="images/linux.png" class="platform-icon-64"/>
+<img title="Windows" alt="Windows" src="images/windows.png" class="platform-icon-64"/>
+<img title="WebGL/HTML5" alt="WebGL/HTML5" src="images/web.png" class="platform-icon-64"/>
+<img title="iOS" alt="iOS" src="images/ios.png" class="platform-icon-64"/>
+<img title="Android" alt="Android" src="images/android.png" class="platform-icon-64"/></p>
 <p><a href="api.html">Luxe</a> is built on top of open source technologies, like <a href="http://haxe.org">Haxe</a> and <a href="http://github.com/openfl/lime">lime</a> and is built with simplicity in mind.
 <a href="api.html">Luxe</a> uses common patterns for working with the engine, such as Components/<a href="luxe.Entity.html">Entity</a> systems, State Machines and Event systems. </p>
-<h2><a href="guide.html">View the luxe Guide</a></h2>
-<h2><a href="setup.html">Installing luxe</a></h2>
-<p>&nbsp;</p>
+<p>You code once in haxe, and deploy to all available platforms.</p>
+<hr>
+<h2>Guides</h2>
+<h3><a href="setup.html">view the setup guide</a></h3>
+<h3><a href="guide.html">view the luxe guide</a></h3>
+<hr>
 <h2>Quick look</h2>
-<p>&nbsp;
-&nbsp;
-<strong>A simple sprite example</strong></p>
+<p>&nbsp; <a href="quick.html">go here for more</a>   </p>
+<p><strong>A simple sprite example</strong></p>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
 
@@ -55,20 +64,7 @@
 <span class="n">player</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
 </pre></div>
 </code></pre>
-<p>&nbsp;
-&nbsp;
-<strong>A simple component example</strong></p>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Entity.html">Entity</a></span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">MeshComponent</span><span class="p">;</span>
-
-<span class="kd">var</span> cube_mesh <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">,</span> <span class="s1">&#39;sphere&#39;</span><span class="p">);</span>
-
-<span class="kd">var</span> cube_mesh_component <span class="o">=</span> <span class="n">cube_mesh</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MeshComponent</span><span class="p">,</span> <span class="s1">&#39;mesh&#39;</span><span class="p">);</span>
-
-    <span class="n">cube_mesh</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">).</span><span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;assets/cube.obj&#39;</span><span class="p">;</span>
-    <span class="n">cube_mesh</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mesh&#39;</span><span class="p">).</span><span class="n">texture</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/cube.png&#39;</span><span class="p">);</span>
-</pre></div>
-</code></pre>
+<hr>
 <h2>Documentation</h2>
 <!-- [View Full Index](all.html)     -->
 

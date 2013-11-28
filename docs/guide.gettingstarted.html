@@ -33,19 +33,23 @@
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
 <h3><a href="guide.sprites.html">To the next guide</a></h3>
 <h3><a href="guide.html">View all guides</a></h3>
-<p>&nbsp;</p>
+<hr>
 <h2>Getting Started with <a href="api.html">Luxe</a></h2>
-<h3>About luxe</h3>
+<h3>What is luxe?</h3>
+<hr>
 <p><a href="api.html">Luxe</a> is a game focused framework, which is written in haxe to offer many output platforms sharing the same code.
 It focuses on performance, usability, flexibility and rapid iteration.   </p>
 <p><a href="api.html">Luxe</a> is made so that you can make game jam games quickly, but also in such a way that bigger longer term projects still make sense. 
 For a much deeper look at how luxe is built and why, see this guide <a href="understandingluxe.html">here</a>.</p>
-<h3>Actually getting started</h3>
-<p>If you are ready to get something on screen, let&#39;s dive straight in. For a full code listing <a href="#code">click here</a>.
-Make sure you have <a href="install.html">installed luxe and that it is working first</a>, of course.    </p>
-<p>You can create an empty project in a folder by using <code>luxe create empty project_name</code>, or by copying the empty folder from the <code>template_projects/empty</code> folder yourself.</p>
-<h3>Anatomy of an empty project</h3>
 <p>&nbsp;</p>
+<h3>Actually getting started</h3>
+<hr>
+<p>If you are ready to get something on screen, let&#39;s dive straight in. For a full code listing <a href="#code">click here</a>.
+Make sure you have <a href="setup.html">installed luxe and that it is working first</a>, of course.    </p>
+<p>You can create an empty project in a folder by using <code>luxe create empty project_name</code>, or by copying the empty folder from the <code>template_projects/empty</code> folder yourself.</p>
+<p>&nbsp;</p>
+<h3>What the empty project code looks like</h3>
+<hr>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Game</span> <span class="p">{</span>
@@ -57,22 +61,28 @@ Make sure you have <a href="install.html">installed luxe and that it is working 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
 
             <span class="c1">//called by luxe for you, when a key is released</span>
-
+            <span class="c1">//so, when the escape key is pressed, quit!</span>
         <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">KeyValue</span><span class="p">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
             <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span> <span class="c1">//onkeyup</span>
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//called by luxe for you, each frame, and passes in the delta time (the length in seconds of the last frame).</span>
+        <span class="c1">//called by luxe for you, each frame, and passes in the</span>
+        <span class="c1">//delta time (the length in seconds of the last frame).</span>
     <span class="p">}</span> <span class="c1">//update</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>
 </pre></div>
 </code></pre>
+<p>&nbsp;</p>
 <h3>Drawing something</h3>
-<p>The class above shows the basic functions that a game <em>can</em> implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like <code>ready</code>, <code>update</code> and <code>onkeydown</code>.    </p>
-<p>Now you can draw something inside the <code>ready</code> function, and it will appear on screen. Let&#39;s draw a <a href="luxe.draw.html#box">box</a>, and a <a href="luxe.draw.html#ring">ring</a> around the box. We store the ring as a class member, because we want to move it later on. <strong>Take note</strong> that the Geometry classes are considered “low level” and later guides show you easier ways of making objects (like <a href="guide.sprites.html">sprites</a>)</p>
+<hr>
+<p>The class above shows the basic functions that a game <em>can</em> implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like <code>ready</code>, <code>update</code> and <code>onkeyup</code>.    </p>
+<p>Now you can draw something inside the <code>ready</code> function, and it will appear on screen. Let&#39;s draw a <a href="luxe.draw.html#box">box</a>, and a <a href="luxe.draw.html#ring">ring</a> around the box. We store the ring as a class member, because we want to move it later on. </p>
+<p><strong>Take note</strong> that the Geometry classes are considered “low level” and later guides show you easier ways of making objects (like <a href="guide.sprites.html">sprites</a>)</p>
+<h3>Drawing a ring on screen</h3>
+<hr>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> ring <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
 
 <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>

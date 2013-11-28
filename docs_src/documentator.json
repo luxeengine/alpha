@@ -13,7 +13,7 @@
 
     "template_files" : [
         "more.png", "favicon.png", "jquery-2.0.3.min.js", 
-        "style.css", "code.css", "font.css", "font.eot", "font.woff", "font.ttf"
+        "style.css", "code.css", "font.css", "font.eot", "font.woff", "font.ttf", "droidsansmono.eot", "droidsansmono.woff", "droidsansmono.ttf"
     ],
 
     "replacements" : [

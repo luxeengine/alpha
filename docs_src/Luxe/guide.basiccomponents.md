@@ -207,9 +207,8 @@ _(found in samples/guides/3_components/)_
 
 ### Bounce.hx
 
-import luxe.components.Components.Component;
-
-
+	import luxe.components.Components.Component;
+	
 	class Bounce extends Component {
 
 		var dir : Int = 1;
