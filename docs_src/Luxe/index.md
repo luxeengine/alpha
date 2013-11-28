@@ -9,12 +9,12 @@ A cross platform haxe powered game development engine.
 Luxe is a cross platform, rapid development, haxe based OpenGL game engine    
 for deploying games on Mac, Windows, Linux, Android, iOS and WebGL/HTML5.
 
-<img title="Mac" alt="Mac" src="images/mac.png" class="platform-icon-64"/>
-<img title="Linux" alt="Linux" src="images/linux.png" class="platform-icon-64"/>
-<img title="Windows" alt="Windows" src="images/windows.png" class="platform-icon-64"/>
-<img title="WebGL/HTML5" alt="WebGL/HTML5" src="images/web.png" class="platform-icon-64"/>
-<img title="iOS" alt="iOS" src="images/ios.png" class="platform-icon-64"/>
-<img title="Android" alt="Android" src="images/android.png" class="platform-icon-64"/>
+<img title="Mac" alt="Mac" src="images/mac64.png" class="platform-icon-64"/>
+<img title="Linux" alt="Linux" src="images/linux64.png" class="platform-icon-64"/>
+<img title="Windows" alt="Windows" src="images/windows64.png" class="platform-icon-64"/>
+<img title="WebGL/HTML5" alt="WebGL/HTML5" src="images/web64.png" class="platform-icon-64"/>
+<img title="iOS" alt="iOS" src="images/ios64.png" class="platform-icon-64"/>
+<img title="Android" alt="Android" src="images/android64.png" class="platform-icon-64"/>
 
 Luxe is built on top of open source technologies, like [Haxe](http://haxe.org) and [lime](http://github.com/openfl/lime) and is built with simplicity in mind.
 Luxe uses common patterns for working with the engine, such as Components/Entity systems, State Machines and Event systems. 
