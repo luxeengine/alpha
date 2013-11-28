@@ -2,7 +2,10 @@
 
 A cross platform game engine written in haxe.   
 
-To get started : 
+To get started : http://luxeengine.com/docs
+
+
+##See the link above for latest instructions for now ::
 
 ###Setup Haxe
 
