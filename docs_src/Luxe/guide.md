@@ -4,6 +4,19 @@
 <br/>
 <br/>
 
+## How this guide is structured
+	
+The guide is split into the following parts :
+
+- Beginners guide 
+   The beginners guide is a linear guide, following a semi logical progression about understanding how the engine is structured.
+- Feature guide 
+   The feature guide is a piece by piece quick reference for specific features of the engine, designed to explain and teach what the engine can do.
+- Details guide
+   The detail guide is a look at the inner structure and design philosophy behind the engine and it's pieces.
+- Advanced guide
+   The advanced guide is for more experienced developers looking to fully understand and take advantage of squeezing more out of the engine.
+
 ## Beginners guides
 
 ### [ Getting Started with luxe ](guide.gettingstarted.html)

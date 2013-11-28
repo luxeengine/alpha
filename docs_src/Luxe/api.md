@@ -1,6 +1,6 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
-
+  
 ## Luxe API
 
 [Public values](#PublicValues)   
