@@ -21,8 +21,10 @@ To get started :
 ### From github (skip if step 1 was ok!)
 
  1) get the [lime](https://github.com/openfl/lime) repo from git   
- 1) get the [lime-tools](https://github.com/openfl/lime-tools) repo from git   
- 2) tell haxelib where to find `lime` and `lime-tools`, by using `haxelib dev lime /path/to/lime` and `haxelib dev lime-tools /path/to/lime-tools`   
+ 2) get the [lime-tools](https://github.com/openfl/lime-tools) repo from git   
+ 3) tell haxelib where to find `lime` and `lime-tools`,    
+    by using `haxelib dev lime /path/to/lime` and `haxelib dev lime-tools /path/to/lime-tools`   
+    
  i.e :   
 
  ` cd ~/dev `   
