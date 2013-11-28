@@ -1,8 +1,6 @@
 #luxe
 
-A cross platform game engine written in haxe   
-**Note** : If you are using the older haxelab url,    
-use `git remote set-url git@github.com:underscorediscovery/luxe.git` to change it to the new url
+A cross platform game engine written in haxe.   
 
 To get started : 
 
@@ -10,26 +8,30 @@ To get started :
 
  Install [Haxe 3](http://haxe.org/download)
 
-###Setup NME build tools
+### Setup lime tools
 
- run `haxelib install nme` , it should be > 4.0.2   
- run `haxelib install openfl-tools`, it should be > 1.0.2    
+ run `haxelib install lime`    
+ run `haxelib install lime-tools`     
  run `haxelib install format`   
     
  Then, make sure your build environment is setup, this will install xcode/visual studio, etc.
  
- run `haxelib run nme setup <platform>`,  where <platform> is your current os (mac, windows, linux)
+ run `haxelib run lime setup <platform>`,  where <platform> is your current os (mac, windows, linux)
  
-###Get LiME
+### From github (skip if step 1 was ok!)
 
- 1) get the [lime](https://github.com/underscorediscovery/LiME) repo from git   
- 2) tell haxelib where to find `lime`, by using `haxelib dev lime /path/to/lime`   
+ 1) get the [lime](https://github.com/openfl/lime) repo from git   
+ 2) get the [lime-tools](https://github.com/openfl/lime-tools) repo from git   
+ 3) tell haxelib where to find `lime` and `lime-tools`,    
+    by using `haxelib dev lime /path/to/lime` and `haxelib dev lime-tools /path/to/lime-tools`   
+    
  i.e :   
 
- ` cd ~/mydevfolder && mkdir lime `   
- ` git clone git@github.com:underscorediscovery/LiME.git`    
- ` cd lime `   
- ` haxelib dev lime ./ `   
+ ` cd ~/dev `   
+ ` git clone git@github.com:openfl/lime/lime.git `   
+ ` git clone git@github.com:openfl/lime-tools/lime-tools.git `   
+ ` haxelib dev lime ./lime `   
+ ` haxelib dev lime-tools ./lime-tools `   
 
 ###Get luxe   
 
@@ -37,14 +39,13 @@ To get started :
 2) set the haxelib dev folder for luxe, like with lime       
  i.e :
  
- ` cd ~/mydevfolder && mkdir luxe `   
+ ` cd ~/dev`   
  ` git clone git@github.com:underscorediscovery/luxe.git`   
- ` cd luxe `    
- ` haxelib dev luxe ./ `   
+ ` haxelib dev luxe ./luxe `   
  
 ##Build the simplest project, using `haxelib run luxe`
     
- `cd ~/mydevfolder/luxe/samples/simplest`   
+ `cd ~/dev/luxe/samples/simplest`   
  `haxelib run luxe test mac` or `haxelib run luxe test linux` or `haxelib run luxe test windows`
 
 Note : To use the shortcut version of `luxe`,   
