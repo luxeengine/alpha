@@ -383,18 +383,6 @@ class ColorHSL extends Color {
 
 	} //fromColor
 
-
-    public override function toColorHSV() : ColorHSV {
-        _refresh();
-        return super.toColorHSV();
-    } //to hsl
-
-    public override function fromColorHSV( _color_hsv:ColorHSV ) : ColorHSL {
-            //make sure that it it's updated in the parent
-        _color_hsv._refresh();
-        return fromColor( cast _color_hsv );
-    } //from hsl    
-
 	public override function toString() : String {
 		return "{ h:"+h+" , s:"+s+" , l:"+l+" , a:"+a+" }";
 	}
