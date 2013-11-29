@@ -31,21 +31,31 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.sprites.html">To the prev guide</a></h3>
-<h3><a href="guide.html">To the next guide</a></h3>
+<h3><a href="guide.input.html">To the prev guide</a></h3>
 <h3><a href="guide.html">View all guides</a></h3>
-<p>&nbsp;</p>
+<hr>
 <h2>Understanding Components</h2>
+<p><em>This tutorial assumes you are familiar with the basics of <a href="guide.gettingstarted.html">getting started with luxe</a>, and <a href="guide.sprites.html">displaying stuff</a> on screen, or <a href="guide.input.html">handling input</a>.</em></p>
+<p><a href="#code">Jump to the full code listing?</a></p>
 <h3>What are Entities, and what are Components?</h3>
-<p><em>This tutorial assumes you are familiar with the basics of <a href="guide.gettingstarted.html">getting started with luxe</a>, and <a href="guide.sprites.html">displaying stuff</a> on screen.</em></p>
-<p><a href="#code">Jump to the full code listing</a></p>
-<p>You have probably heard about about Component/<a href="luxe.Entity.html">Entity</a> system at some point if you have made games, 
-and with good reason as they are quite useful for the way games are usually layed out.</p>
-<p>The terms are quite simple to understand -<br>- An <a href="luxe.Entity.html">Entity</a> is a container for components<br>- A Component adds some behavior to the <a href="luxe.Entity.html">Entity</a> it is attached to</p>
-<p>Let&#39;s make the terms practical -<br>- A <a href="luxe.Sprite.html">Sprite</a> on screen is an <a href="luxe.Entity.html">Entity</a>, “EnemyTower” sprite<br>- A “ShootEveryThreeSeconds” is a component   </p>
+<hr>
+<p>You have probably heard about about component/entity systems at some point if you have made games, 
+and with good reason as they are quite useful for the way games are often structured.</p>
+<p>The terms are quite simple to understand -   </p>
+<ul>
+<li>An <a href="luxe.Entity.html">Entity</a> is a container for components   </li>
+<li>A Component adds some behavior to the <a href="luxe.Entity.html">Entity</a> it is attached to</li>
+</ul>
+<p><strong> A more useful example </strong></p>
+<ul>
+<li>A <a href="luxe.Sprite.html">Sprite</a> on screen is an <a href="luxe.Entity.html">Entity</a>, “EnemyTower” sprite   </li>
+<li>A “ShootEveryThreeSeconds” is a component   </li>
+<li>A “TakeDamageUntilZeroAndThenDie” is a component   </li>
+</ul>
 <p>This means that generally an entity doesn‘t do anything on it’s own, but by attaching components to it, it can become more specific.</p>
 <p><img src="http://luxeengine.com/docs/images/entitycomponents.png" alt="EntityComponentRelationship"></p>
 <h3>Anatomy of a Component class</h3>
+<hr>
 <p>Component classes have some default functions that are called for you, much like the game class.
 Have a look at the comments in the code below to see them.</p>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn">Component</span><span class="p">;</span>
@@ -68,24 +78,29 @@ Have a look at the comments in the code below to see them.</p>
 </pre></div>
 </code></pre>
 <h3>Understanding the Component transforms</h3>
-<p>Components are directly related to the entity that they are connected to.<br>When you change the transform from inside of a component - it is changing the entity itself.</p>
-<p><code>pos.x = 100</code> changes the entity position. It is the same as saying <code>entity.pos.x = 100</code>.</p>
-<p><code>pos</code> , <code>rotation</code> and <code>scale</code> affect the entity transform directly. Keep this in mind!</p>
+<hr>
+<p>Components are directly tied to the entity they are attached to.   </p>
+<p>When you change the transform from a component class - it is changing the entity itself.   </p>
+<p><code>pos.x = 100</code> changes the <strong><em>entity</em></strong> position. It is the same as saying <code>entity.pos.x = 100</code>.<br><code>pos</code> , <code>rotation</code> and <code>scale</code> affect the entity transform directly. Keep this in mind!</p>
 <p>&nbsp;
 &nbsp;   </p>
 <h2>Creating and accessing entities</h2>
+<hr>
 <h3>Creating entities via the scene class</h3>
+<hr>
 <p>The Scene class has a <code>create</code> function that will return an entity instance.</p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> entity <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">,</span> <span class="s1">&#39;entity_name&#39;</span><span class="p">);</span>
 </pre></div>
 </code></pre>
 <h3>Creating entities from classes</h3>
+<hr>
 <p>Entites can also be created from the constructor but are not added to any scene. This gives you control, but take note of it when something isn&#39;t showing up.</p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> entity <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">();</span>
 </pre></div>
 </code></pre>
 <p>The <code><a href="luxe.Sprite.html">Sprite</a></code> and <code><a href="luxe.Camera.html">Camera</a></code> class in luxe extend from the <a href="luxe.Entity.html">Entity</a> class so that you can add components to them. Sprites are automatically added to the default scene unless you tell it not to, by passing <code>add : false</code> into the constructor of <a href="luxe.Sprite.html">Sprite</a>.</p>
 <h3>Accessing entities from other entities and components</h3>
+<hr>
 <p>Entities are stored in the scene by name, so you can fetch them later. This means that when creating your sprite, or entity, you will want to pass the name as well.<br>You fetch the sprite from the scene by accessing the entities property from the scene.</p>
 <pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
 
@@ -101,9 +116,12 @@ Have a look at the comments in the code below to see them.</p>
 <span class="kd">var</span> sprite <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span> <span class="o">=</span> <span class="k">cast</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">entities</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spritename&#39;</span><span class="p">);</span>
 </pre></div>
 </code></pre>
+<p>&nbsp;   </p>
 <h2>Creating and accessing components</h2>
+<hr>
 <p>All components should extend from the luxe Components class in order to benefit from the features of the component class. Extend from the class, like in the anatomy above.</p>
 <h3>Adding components to entities</h3>
+<hr>
 <p>Components are added to entities using the <code>add</code> function, and the <code>add</code> function returns the instance if you want to store a typed reference.
 The second parameter is the name of the entity or component, so you can use them by name later on.</p>
 <p>For example, inside of your game init function :</p>
@@ -122,6 +140,7 @@ The second parameter is the name of the entity or component, so you can use them
 </pre></div>
 </code></pre>
 <h3>Accessing the entity</h3>
+<hr>
 <p>When you are inside of a component and want to access the entity that the component is connected to,<br>there is a variable called <code>entity</code> that is declared in the Component class as <code>entity : <a href="luxe.Entity.html">Entity</a></code>. </p>
 <p>When the entity is attached to a sub class of <a href="luxe.Entity.html">Entity</a> (like a <a href="luxe.Sprite.html">Sprite</a>, which <code>extends <a href="luxe.Entity.html">Entity</a></code>),<br>you can store a typed reference by using the <code>cast</code> keyword. Like below :</p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> sprite<span class="p">:</span><span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
@@ -133,8 +152,13 @@ The second parameter is the name of the entity or component, so you can use them
 <span class="p">}</span>
 </pre></div>
 </code></pre>
-<h3>Accessing other components attached to the entity</h3>
-<p>When you want to access other components attached to the entity, you can use the <code>get</code> function.<br>The <code>get</code> function is available from inside the component class, or from the entity.<br>The parameter passed into the get function is the name of the component instance (which is set when calling the <code>add</code> function, like above).</p>
+<p>&nbsp;   </p>
+<h2>Accessing other components attached to the entity</h2>
+<hr>
+<p>When you want to access other components attached to the entity, you can use the <code>get</code> function.    </p>
+<p>The <code>get</code> function is available from inside the component class, or from the entity.   </p>
+<p>The parameter passed into the get function is the name of the component instance (which is set when calling the <code>add</code> function, like above).</p>
+<p>&nbsp;   </p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> other_component <span class="p">:</span> <span class="n">Component2</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
@@ -146,7 +170,9 @@ The second parameter is the name of the entity or component, so you can use them
 <span class="p">}</span>
 </pre></div>
 </code></pre>
+<p>&nbsp;   </p>
 <h2>A practical sample</h2>
+<hr>
 <p>To further demonstrate component entity systems, we will do the following : </p>
 <ul>
 <li>Create a sprite (which is an entity)</li>
@@ -154,16 +180,21 @@ The second parameter is the name of the entity or component, so you can use them
 <li>Attach a component that will make the sprite bounce</li>
 </ul>
 <p><img src="http://luxeengine.com/docs/images/entitycomponents2.png" alt="EntityComponentRelationship"></p>
-<h3><a href="guide.sprites.html">To the prev guide</a></h3>
-<h3><a href="guide.html">To the next guide</a></h3>
+<p><a href="#code">Jump to the code for the full example</a></p>
+<hr>
+<p>&nbsp;   </p>
+<p><a name="links"></p>
+<h3><a href="guide.input.html">To the prev guide</a></h3>
 <h3><a href="guide.html">Back to guides</a></h3>
-<p>&nbsp;</p>
+<p></a></p>
+<p>&nbsp;   </p>
+<hr>
 <h4>Output image</h4>
 <p><img src="images/guide.basiccomponents.png" alt="getting started screenshot"></p>
 <p><a name="code"></p>
-<h4>Code listing 3</h4>
+<h4>Code listing 4</h4>
 <p></a></p>
-<p><em>(found in samples/guides/3_components/)</em></p>
+<p><em>(found in samples/guides/4_components/)</em></p>
 <h3>Rotate.hx</h3>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn">Component</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
@@ -181,9 +212,9 @@ The second parameter is the name of the entity or component, so you can use them
             <span class="c1">//changes to the transform inside of components affect the entity directly!</span>
         <span class="n">rotation</span><span class="p">.</span><span class="n">z</span> <span class="o">+=</span> <span class="n">rotate_speed</span> <span class="o">*</span> <span class="n">dt</span><span class="p">;</span>
 
-    <span class="p">}</span>
+    <span class="p">}</span> <span class="c1">//update</span>
 
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">//Rotate</span>
 </pre></div>
 </code></pre>
 <h3>Bounce.hx</h3>
@@ -204,9 +235,9 @@ The second parameter is the name of the entity or component, so you can use them
         <span class="k">if</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">dir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">}</span>
+    <span class="p">}</span> <span class="c1">//update</span>
 
-<span class="p">}</span>
+<span class="p">}</span> <span class="c1">//Bounce</span>
 </pre></div>
 </code></pre>
 <h3>Main.hx</h3>
@@ -247,12 +278,13 @@ The second parameter is the name of the entity or component, so you can use them
 
             <span class="n">rotator</span><span class="p">.</span><span class="n">rotate_speed</span> <span class="o">=</span> <span class="n">new_speed</span><span class="p">;</span>
 
-    <span class="p">}</span>
+    <span class="p">}</span> <span class="c1">//onmousemove</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>
 </pre></div>
 </code></pre>
-<p>&nbsp;</p>
+<p><a href="#links">Jump to the guide links</a></p>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

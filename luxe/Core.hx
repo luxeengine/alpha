@@ -503,20 +503,21 @@ import haxe.Timer;
         
     }
 //joystick
-    public function onjoyaxismove(e) {
-        if(host.onjoyaxismove != null) host.onjoyaxismove(e);
+
+    public function ongamepadaxis(e) {
+        if(host.ongamepadaxis != null) host.ongamepadaxis(e);
     }
-    public function onjoyballmove(e) {
-        if(host.onjoyballmove != null) host.onjoyballmove(e);
+    public function ongamepadball(e) {
+        if(host.ongamepadball != null) host.ongamepadball(e);
     }
-    public function onjoyhatmove(e) {
-        if(host.onjoyhatmove != null) host.onjoyhatmove(e);
+    public function ongamepadhat(e) {
+        if(host.ongamepadhat != null) host.ongamepadhat(e);
     }    
-    public function onjoybuttondown(e) {
-        if(host.onjoybuttondown != null) host.onjoybuttondown(e);
+    public function ongamepadbuttondown(e) {
+        if(host.ongamepadbuttondown != null) host.ongamepadbuttondown(e);
     }    
-    public function onjoybuttonup(e) {
-        if(host.onjoybuttonup != null) host.onjoybuttonup(e);
+    public function ongamepadbuttonup(e) {
+        if(host.ongamepadbuttonup != null) host.ongamepadbuttonup(e);
     }
 
 //Noisy stuff

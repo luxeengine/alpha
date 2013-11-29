@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="guide.sprites.html">To the prev guide</a></h3>
+<h3><a href="guide.basiccomponents.html">To the next guide</a></h3>
+<h3><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2>Handling input in luxe</h2>
+<p><em>This tutorial assumes you are familiar with the basics of <a href="guide.gettingstarted.html">getting started with luxe</a>, and <a href="guide.sprites.html">displaying stuff</a> on screen.</em></p>
+<h3>Different types of input</h3>
+<hr>
+<p><a href="api.html">Luxe</a> supports all common types of input out of the box:</p>
+<ul>
+<li>Touch/Multitouch input (on mobile devices)</li>
+<li>Mouse input</li>
+<li>Gamepad/Joystick input</li>
+<li>Keyboard input</li>
+</ul>
+<h3>Accessing input events</h3>
+<hr>
+<p>Your <a href="luxe.Game.html">game class</a> has a bunch of functions that can (and will) be called when an event happens. The reason that this is a function (and not say, an event) is because a function call is immediate.</p>
+<p>As soon as luxe obtains an input event from the system it will immediately call your code to handle it. This is to avoid unnessary delays in handling touches or key/gamepad press and minimize latency when making games.</p>
+<h3>The specific event types</h3>
+<hr>
+<p>Each type of event have a typed event structure, for the details of the event.<br>For example, here is a touch event :</p>
+<pre><code><div class="highlight"><pre><span class="kd">typedef</span> <span class="n">TouchEvent</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="n">state</span> <span class="p">:</span> <span class="n">TouchState</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">flags</span> <span class="p">:</span> <span class="n">Int</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">ID</span> <span class="p">:</span> <span class="n">Int</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">x</span> <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">y</span> <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">raw</span> <span class="p">:</span> <span class="n">Dynamic</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</code></pre>
+<p>You may also note the <code>raw</code> property.<br>Sometimes you need to know some value from the OS/platform that luxe is not explicitly exposing.</p>
+<p>For this purpose all of the events (MouseEvent, TouchEvent, GamepadEvent, KeyEvent) pass a property through the event object.
+This is the exact event structure, untouched, low level (you can use <code>trace(event)</code> to dump it&#39;s contents.</p>
+<h2>Named input</h2>
+<hr>
+<p>Sometimes it is convenient to bind multiple events to the same piece of code. Sometimes a person playing the game will want to use W/A/S/D and sometimes they would prefer the arrow keys. The combinations of sensible defaults for this can quickly escalate.</p>
+<p>It is always useful to be able to refer to an input binding by name (rather than the exact key) for things like customisable key binding screens.</p>
+<p>For these reasons, luxe offers a named input binding system, where multiple events (even of different types) can be bound to a single spot, so you can handle them accordingly.</p>
+<p>Let&#39;s use a common example where the jump key might be Z, Space, and Right Mouse.</p>
+<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">input</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">,</span> <span class="n">KeyValue</span><span class="p">.</span><span class="n">key_Z</span><span class="p">);</span>
+<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">input</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">,</span> <span class="n">KeyValue</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
+<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">input</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;jump&#39;</span><span class="p">,</span> <span class="n">MouseButton</span><span class="p">.</span><span class="n">right</span><span class="p">);</span>
+</pre></div>
+</code></pre>
+<h3>handling the named input</h3>
+<hr>
+<p>Now that you have the named input bound, you can listen for the event using <code>oninputdown</code> or <code>oninputup</code>.</p>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">oninputup</span><span class="p">(</span> <span class="n">event_name</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">event</span><span class="p">:</span><span class="n">Dynamic</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">switch</span><span class="p">(</span> <span class="n">event_name</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="s1">&#39;jump&#39;</span><span class="p">:</span>
+            <span class="n">player</span><span class="p">.</span><span class="n">jump</span><span class="p">();</span>
+    <span class="p">}</span> <span class="c1">//switch</span>
+
+<span class="p">}</span> 
+</pre></div>
+</code></pre>
+<hr>
+<h2>Additional information</h2>
+<hr>
+<p><a name="handlers"> </a>
+Here is a full list of functions, with commented descriptions :</p>
+<pre><code><div class="highlight"><pre><span class="c1">//Keyboard</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onkeydown</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a key is pushed down</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a key is released</span>
+    <span class="p">}</span>
+
+<span class="c1">//Mouse    </span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousedown</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a mouse button is pushed down</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmouseup</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a mouse button is released</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//every time the mouse moves</span>
+    <span class="p">}</span>
+
+<span class="c1">//Touch    </span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ontouchbegin</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">TouchEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a touch is detected (event contains a unique touch ID)</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ontouchend</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">TouchEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a touch is released (event contains a unique touch ID, to know which)</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ontouchmove</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">TouchEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//as soon as a touch is moved (event contains a unique touch ID, to know which)</span>
+    <span class="p">}</span>
+
+<span class="c1">//Gamepad    </span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ongamepadaxis</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">GamepadEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//when a gamepad axis changes</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ongamepadball</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">GamepadEvent</span>  <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//when a gamepad ball changes</span>
+    <span class="p">}</span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ongamepadhat</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">GamepadEvent</span>  <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//when a gamepad hat is pressed (D-pad)</span>
+    <span class="p">}</span>    
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ongamepadbuttondown</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">GamepadEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//when a gamepad button is pressed down</span>
+    <span class="p">}</span>    
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ongamepadbuttonup</span><span class="p">(</span> <span class="n">event</span><span class="p">:</span><span class="n">GamepadEvent</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//when a gamepad button is released</span>
+    <span class="p">}</span>
+
+<span class="c1">//Input    </span>
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">oninputup</span><span class="p">(</span> <span class="n">named_input</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span><span class="n">Dynamic</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//called when a bound named input event is released  </span>
+    <span class="p">}</span> 
+
+    <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">oninputdown</span><span class="p">(</span> <span class="n">named_input</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span><span class="n">Dynamic</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//called when a bound named input event is pressed</span>
+    <span class="p">}</span>
+</pre></div>
+</code></pre>
+<hr>
+<h3><a href="guide.gettingstarted.html">To the prev guide</a></h3>
+<h3><a href="guide.basiccomponents.html">To the next guide</a></h3>
+<h3><a href="guide.html">Back to guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

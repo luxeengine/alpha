@@ -2,24 +2,29 @@
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
 ###[To the prev guide](guide.gettingstarted.html)
-###[To the next guide](guide.basiccomponents.html)
+###[To the next guide](guide.input.html)
 ###[View all guides](guide.html)
 
-&nbsp;
+---
 
-## Drawing images and items as sprites
-
-### Loading images (and other assets)
+## Drawing images and blocks as sprites
 
 _This tutorial assumes you are familiar with the basics of getting started with luxe, so if you are not sure what is going on, ._
 
-[Jump to the full code listing](#code)
+[Jump to the full code listing?](#code)
 
-Assets are loaded via the Luxe api, which offers functions such as `Luxe.loadTexture` and `Luxe.loadText` to fetch assets from your asset folder, and get them in your game. If you need a more in depth look at the assets folder, read the [assets documentation](guide.assets.html)
 
-Like in the [previous guide](guide.gettingstarted.html), Sprites are imported as luxe.Sprite, and created with the constructor (similar to how we created geometry in the getting started guide).
+### Loading images (and other assets)
+---
 
-Inside your `ready` function, you can create a sprite like this :
+Assets are loaded via the Luxe api, which offers functions such as `Luxe.loadTexture` and `Luxe.loadText` to fetch assets from your asset folder, and get them in your game. If you need a more in depth look at the assets folder, read the [assets documentation](guide.assets.html).
+
+
+Like in the [previous guide](guide.gettingstarted.html), Sprites are imported as `luxe.Sprite`, and created with the `new Sprite( options )` syntax. 
+
+&nbsp;  
+
+Inside your `ready` function, you can create a sprite like this : 
 
 		sprite_image = new Sprite({
 	        pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
@@ -28,7 +33,12 @@ Inside your `ready` function, you can create a sprite like this :
 	    }); //sprite_image
 
 
-You may notice that there is a `texture` property passed in, using the luxe api to load it, and there is also a `depth` value. We set the depth to 1 (higher than 0) because in the next block, we create a full sized sprite as a big colored block, which would cover up our image if we didn't specify the depth.
+&nbsp;    
+
+###A Texture = An Image
+---
+
+You may notice that there is a `texture` property passed in, using the luxe api to load it, and there is also a `depth` value. We set the depth to 1 (higher than 0) because in the next code block, we create a full sized sprite as a big colored block, which would cover up our image if we didn't specify the depth.
 
 	    sprite_block = new Sprite({
 	        pos : new Vector(0,0),
@@ -41,9 +51,10 @@ Now this sprite, by default, will be created at `depth` 0, and will have no text
 
 You can also see another option for sprites - the `centered` property. This will make the sprite position based on the top left corner (not the center, which is default). 
 
-Another new option is `size` - which is set to the size of the screen. You can also set the size of an image sprite, which would affect the underlying geometry.
+The last new option is `size` - which is set to the size of the screen. You can also set the size of an image sprite, which would affect the underlying geometry.
 
 ### What comes next
+---
 
 Hopefully this is more than enough to get you putting your games together.   
 Some of the questions you may have, 
@@ -54,11 +65,13 @@ Read [understanding geometry in luxe](guide.geometry.html).
 - **Where do I find a list of all the supported `Sprite` values to pass in?**    
 Read Sprite class documentation  
 
+---
+
 ###[To the prev guide](guide.gettingstarted.html)
-###[To the next guide](guide.basiccomponents.html)
+###[To the next guide](guide.input.html)
 ###[Back to guides](guide.html)
 
-&nbsp;
+---
 
 #### Output image
 
