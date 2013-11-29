@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="guide.html#color">Back to feature guide</a></h3>
+<h3><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2>Manipulating color in luxe</h2>
+<hr>
+<p><a href="luxe.Color.html">Color</a> is a very useful tool in games, and being able to smoothly transition colors is important.   </p>
+<p>When dealing with <strong>RGB</strong> color as is the default color type, it tends to break when you try and animate between two colors.   </p>
+<p>The solution to this, is different color models, such as <strong>HSV</strong> (Hue, Saturation, Value) and <strong>HSL</strong> (Hue, Saturation, Lightness).</p>
+<p>luxe supports both HSL and HSV interchangeably with the default of RGB (and each support alpha as well).</p>
+<h2>What is the difference?</h2>
+<hr>
+<p>HSV and HSL are cylindrical in nature, that means that they are <em>round</em> and their color value works in degrees(º) rather than separate color components. </p>
+<p>Take a look at the image below, this is the color wheel (Hue only), mapped to degrees.</p>
+<p><img src="images/color_wheel.png" alt="color wheel"></p>
+<h3>How this helps</h3>
+<hr>
+<p>Notice how if we want to transition from red (danger!) to orange (warning) on a flashing UI element, it&#39;s around 30º of movement?    </p>
+<p>To animate that using Hue (the above color wheel) it is simple, we animate the hue value.</p>
+<h3><a href="luxe.Color.html">Color</a> classes have their own convenience tween function</h3>
+<hr>
+<p>One thing you will notice is that the color classes have their own tween function for convenience which acts a lot like the tweening from the <a href="guide.tween.html">tween guide</a>.</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//We create our red color using 0º Hue (red), </span>
+    <span class="c1">//the second and third argument are saturation and value, </span>
+    <span class="c1">//which we set to &quot;maximum&quot; right now.</span>
+
+<span class="kd">var</span> color <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">ColorHSV</a></span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">//Now we want to animate to orange, just change the hue</span>
+    <span class="c1">//over two seconds, to orange</span>
+
+<span class="n">color</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span> <span class="n">h</span><span class="p">:</span><span class="mi">30</span> <span class="p">}</span> <span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>By mapping the colors to a round cylinder it affords much smoother transitions between colors, much smoother than RGB can do.</p>
+<h2>Saturation, Lightness and Value</h2>
+<p><a href="luxe.Color.html">Color</a> can be quite a complex system, and has mathematical properties outside of the scope of this simple guide. If you want to get in depth details into the mechanics of color , <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">this article on wikipedia is quite thorough</a>.</p>
+<p>Now - for simplicity sake - we will define the terms in a less exact way. Take a solid color at hue 30º like above. </p>
+<ul>
+<li>Value - The color approaches black when value is lowest</li>
+<li>Lightness - The color approaches white when the lightness is highest</li>
+<li>Saturation - The amount of color present (like draining the color away)</li>
+</ul>
+<p>Have a look at these graphs <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">from Wikipedia</a> for a clearer view.</p>
+<p><img src="images/color_hsvl.png" alt="HSL/HSV"></p>
+<h2>Creating and using the different types</h2>
+<hr>
+<p>Now that you hopefully understand the purpose and differences, we can look at how to work with them in luxe.</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//defaults for r g b and a are 1 (full white)</span>
+<span class="kd">var</span> color <span class="p">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+
+    <span class="c1">//Defaults for h = 0, s = 0, v = 1, a = 1 (full white)</span>
+<span class="kd">var</span> colorhsv <span class="p">:</span> <span class="n"><a href="luxe.Color.html">ColorHSV</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">ColorHSV</a></span><span class="p">(</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+
+    <span class="c1">//Defaults for h = 0, s = 1, l = 1, a = 1 (full white)</span>
+<span class="kd">var</span> colorhsl <span class="p">:</span> <span class="n"><a href="luxe.Color.html">ColorHSL</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">ColorHSL</a></span><span class="p">(</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>This is for creating, but how about switching between? </p>
+<h2>Changing color type</h2>
+<p>All types are extended from the <code><a href="luxe.Color.html">Color</a></code> class, so they automatically work where <code><a href="luxe.Color.html">Color</a></code> is expected. For example, a sprite color is typed as <code><a href="luxe.Color.html">Color</a></code> but a <code><a href="luxe.Color.html">ColorHSL</a></code> or <code><a href="luxe.Color.html">ColorHSV</a></code> can be given in place - <code>sprite.color = colorhsl;</code></p>
+<p><strong>This makes all types interchangeable automatically</strong>,<br>but the following functions are exposed as well.</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">// helpers on <a href="luxe.Color.html">Color</a></span>
+<span class="n">color</span><span class="p">.</span><span class="n">toColorHSL</span>        <span class="c1">//returns <a href="luxe.Color.html">ColorHSL</a></span>
+<span class="n">color</span><span class="p">.</span><span class="n">toColorHSV</span>        <span class="c1">//returns <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">color</span><span class="p">.</span><span class="n">fromColorHSL</span>      <span class="c1">//changes color</span>
+<span class="n">color</span><span class="p">.</span><span class="n">fromColorHSV</span>      <span class="c1">//changes color</span>
+
+    <span class="c1">//helpers on <a href="luxe.Color.html">ColorHSL</a></span>
+<span class="n">colorhsl</span><span class="p">.</span><span class="n">toColor</span>        <span class="c1">//returns <a href="luxe.Color.html">Color</a></span>
+<span class="n">colorhsl</span><span class="p">.</span><span class="n">toColorHSV</span>     <span class="c1">//returns <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">colorhsl</span><span class="p">.</span><span class="n">fromColor</span>      <span class="c1">//changes colorhsl</span>
+<span class="n">colorhsl</span><span class="p">.</span><span class="n">fromColorHSV</span>   <span class="c1">//changes colorhsv</span>
+
+    <span class="c1">//helpers on <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">colorhsv</span><span class="p">.</span><span class="n">toColor</span>        <span class="c1">//returns <a href="luxe.Color.html">Color</a></span>
+<span class="n">colorhsv</span><span class="p">.</span><span class="n">toColorHSL</span>     <span class="c1">//returns <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">colorhsv</span><span class="p">.</span><span class="n">fromColor</span>      <span class="c1">//changes colorhsv</span>
+<span class="n">colorhsv</span><span class="p">.</span><span class="n">fromColorHSL</span>   <span class="c1">//changes colorhsv</span>
+</pre></div>
+</code></pre>
+<hr>
+<p>&nbsp;   </p>
+<h3><a href="guide.html#color">Back to feature guide</a></h3>
+<h3><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

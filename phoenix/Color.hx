@@ -117,6 +117,10 @@ class Color {
 		return new ColorHSL().fromColor(this);
 	} //toColorHSL
 
+	public function toColorHSV() : ColorHSV { 
+		return new ColorHSV().fromColor(this);
+	} //toColorHSV
+
 	public function fromColorHSV( _color_hsv:ColorHSV ) {
 
 		var d:Float = (_color_hsv.h%360) / 60;
@@ -378,6 +382,18 @@ class ColorHSL extends Color {
         return this;
 
 	} //fromColor
+
+
+    public override function toColorHSV() : ColorHSV {
+        _refresh();
+        return super.toColorHSV();
+    } //to hsl
+
+    public override function fromColorHSV( _color_hsv:ColorHSV ) : ColorHSL {
+            //make sure that it it's updated in the parent
+        _color_hsv._refresh();
+        return fromColor( cast _color_hsv );
+    } //from hsl    
 
 	public override function toString() : String {
 		return "{ h:"+h+" , s:"+s+" , l:"+l+" , a:"+a+" }";

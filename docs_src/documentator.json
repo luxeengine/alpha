@@ -27,6 +27,8 @@
 
         { "key":"Rectangle",      "link":"luxe.Rectangle.html"  },
         { "key":"Color",          "link":"luxe.Color.html"      },
+        { "key":"ColorHSV",       "link":"luxe.Color.html"      },
+        { "key":"ColorHSL",       "link":"luxe.Color.html"      },
         { "key":"Vector",         "link":"luxe.Vector.html"     }
     ]
 
