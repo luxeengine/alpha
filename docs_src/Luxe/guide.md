@@ -85,12 +85,12 @@ By following this guide, you should be able to see at a glance and in detail the
 <a name="tweening"> </a>
 ### [ tween guide ](guide.tween.html)
 - Making things animate smoothly over time using tweening.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.tween.html)
+[ ![tween guide screenshot](images/guide.tween.png) ](guide.tween.html)
 
 <a name="color"> </a>
 ### [ color guide ](guide.color.html)
 - The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.color.html)
+[ ![color guide screenshot](images/guide.color.png) ](guide.color.html)
 
 <a name="camera"> </a>
 ### [ camera guide ](guide.camera2d.html)
@@ -100,7 +100,7 @@ By following this guide, you should be able to see at a glance and in detail the
 <a name="drawing"> </a>
 ### [ drawing guide ](guide.drawing.html)
 - How to draw shapes, text, and to create custom geometry in luxe.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.drawing.html)
+[ ![sprites guide screenshot](images/guide.drawing.png) ](guide.drawing.html)
 
 ---
 <a class="toplink" href="#">back to top</a>
@@ -109,11 +109,6 @@ By following this guide, you should be able to see at a glance and in detail the
 ### [ audio guide ](guide.audio.html)
 - Playing sounds and music in your game
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.audio.html)
-
-<a name="input"> </a>
-### [ input guide ](guide.input_system.html)
-- A much deeper look at all the features of the input system.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.input_system.html)
 
 <a name="fonts"> </a>
 ### [ font guide ](guide.fonts.html)

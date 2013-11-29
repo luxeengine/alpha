@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<h3><a href="guide.html#tweening">Back to feature guide</a></h3>
+<h3><a href="guide.html">View all guides</a></h3>
+<hr>
+<h2>Tweening with Actuate</h2>
+<hr>
+<p><a href="http://lib.haxe.org/p/actuate">Actuate</a> is a motion library created by <a href="http://www.joshuagranick.com/">Joshua Granick</a>.</p>
+<h4>It is <strong> built into luxe </strong> and accessible as <code>luxe.tween.Actuate</code>.</h4>
+<p>&nbsp;</p>
+<h3>What is tweening?</h3>
+<hr>
+<p>Tweening is <a href="http://en.wikipedia.org/wiki/Inbetweening">a shortened version of <em>inbetweening</em></a>, used commonly in digital animation.</p>
+<p>It, in simple terms, is about moving from a start value to an end value (keyframes). This is especially useful in games where things should move smoothly, transition and generally animate over time.</p>
+<h3>Examples</h3>
+<p>Slide the menu in from the top, over 2 seconds</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//assume that y was -menu.height (off screen)</span>
+<span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="n">menu</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span> <span class="n">y</span><span class="p">:</span><span class="mi">10</span> <span class="p">}</span> <span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>Fade in this overlay over half a second</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//assume that alpha is 0 already</span>
+<span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="n">overlay</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span><span class="mi">1</span> <span class="p">}</span> <span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>Fade this enemy quickly to half opaque, then wait 1 second, then fade out slowly</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//Take the tween that Acutate returns, and </span>
+    <span class="c1">// call .onComplete on it with a function</span>
+<span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="n">enemy</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span><span class="mf">0.5</span> <span class="p">}</span> <span class="p">)</span>
+    <span class="p">.</span><span class="n">onComplete</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+            <span class="c1">//Now that the first tween is done, start a second one,</span>
+            <span class="c1">//but by using the tween .delay function we can wait</span>
+        <span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="n">enemy</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span><span class="mi">0</span> <span class="p">}</span> <span class="p">).</span><span class="n">delay</span><span class="p">(</span> <span class="mi">1</span> <span class="p">);</span>
+
+    <span class="p">});</span> <span class="c1">//onComplete</span>
+</pre></div>
+</code></pre>
+<p>Fade up, over and over, starting from 0</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//the value of flashing.color.a should be 0 at first</span>
+    <span class="c1">//then we fade to 1, and say &quot;repeat that&quot;</span>
+<span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span><span class="n">flashing</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span><span class="mi">1</span> <span class="p">}).</span><span class="n">repeat</span><span class="p">();</span>
+</pre></div>
+</code></pre>
+<p>Fade up and down continuously</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//Similar to repeat, you can ping pong the value using reflect</span>
+    <span class="c1">//If flashing.color.a is 0, </span>
+    <span class="c1">//it will go up to 1, and then animate to 0 on a loop</span>
+<span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span><span class="n">flashing</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span><span class="mi">1</span> <span class="p">}).</span><span class="n">repeat</span><span class="p">().</span><span class="n">reflect</span><span class="p">();</span>
+</pre></div>
+</code></pre>
+<h2>Callback functions on the created motion</h2>
+<hr>
+<p>Like the onComplete function above, there are other callbacks you can ask for :</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//Remember, these can be chained like above and function handlers can be a local class member</span>
+    <span class="c1">//or any previously declared function - or an inline function like the above example.</span>
+
+    <span class="c1">//Called when the motion has completed</span>
+<span class="err">.</span><span class="n">onComplete</span><span class="p">(</span> <span class="n">handler</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">parameters</span><span class="err">:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="p">)</span>
+
+    <span class="c1">//When a .repeat() is requested, you will get an onRepeat instead of onComplete</span>
+<span class="p">.</span><span class="n">onRepeat</span><span class="p">(</span> <span class="n">handler</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">parameters</span><span class="err">:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="p">)</span>
+
+    <span class="c1">//Every time the value changes in the animation/motion, your callback will fire</span>
+<span class="p">.</span><span class="n">onUpdate</span><span class="p">(</span> <span class="n">handler</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">parameters</span><span class="err">:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="p">)</span>
+</pre></div>
+</code></pre>
+<h2>Helper functions on the created motion</h2>
+<hr>
+<pre><code><div class="highlight"><pre>    <span class="c1">//If you want float values during motion should be automatically rounded to </span>
+<span class="err">.</span><span class="n">snapping</span><span class="p">(</span> <span class="n">enabled</span><span class="err">:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="p">)</span>
+
+    <span class="c1">//If you want the motion to be performed in reverse</span>
+<span class="p">.</span><span class="n">reverse</span><span class="p">(</span> <span class="n">enabled</span><span class="err">:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="p">)</span>
+
+    <span class="c1">//If you want the motion to repeat</span>
+<span class="p">.</span><span class="n">repeat</span><span class="p">(</span> <span class="n">enabled</span><span class="err">:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="p">)</span>
+
+    <span class="c1">//If you want to motion to reverse the tween on repeat</span>
+    <span class="c1">//this requires .repeat() to be enabled!</span>
+<span class="p">.</span><span class="n">reflect</span><span class="p">(</span> <span class="n">enabled</span><span class="err">:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="p">)</span>    
+
+    <span class="c1">//Helper functions to set tween properties</span>
+
+    <span class="c1">//the curve function to use (curves displayed below)</span>
+<span class="p">.</span><span class="n">ease</span><span class="p">(</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">easing</span><span class="err">.*</span> <span class="p">)</span>
+
+    <span class="c1">//the amount of time to wait in seconds, before doing the tween</span>
+<span class="p">.</span><span class="n">delay</span><span class="p">(</span> <span class="n">duration</span><span class="err">:Bool</span> <span class="p">)</span>
+</pre></div>
+</code></pre>
+<h2>The different types of easing</h2>
+<hr>
+<p>These easing values are accessed via <code>luxe.tween.easing.*</code><br>Each type has one or more variations, such as <code>easeIn</code>, <code>easeOut</code> or <code>easeInOut</code> listed below.<br>This means that the curve is applied at the beginning (ease in) at the end (ease out) or both over the time period.</p>
+<pre><code><div class="highlight"><pre>    <span class="c1">//example usage, this will bounce &quot;at the end&quot; of the animation</span>
+<span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="n">menu</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span> <span class="n">y</span><span class="p">:</span><span class="mi">10</span> <span class="p">}</span> <span class="p">).</span><span class="n">ease</span><span class="p">(</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">easing</span><span class="p">.</span><span class="n">Bounce</span><span class="p">.</span><span class="n">easeOut</span> <span class="p">);</span>
+</pre></div>
+</code></pre>
+<p>The following curve type has only one option (because it is linear!)</p>
+<ul>
+<li>Linear  <code>easeNone</code></li>
+</ul>
+<p>The following curves have <code>easeIn</code>, <code>easeOut</code>, <code>easeInOut</code></p>
+<ul>
+<li>Back</li>
+<li>Bounce</li>
+<li>Cubic </li>
+<li>Elastic</li>
+<li>Expo</li>
+<li>Quad  </li>
+<li>Quart </li>
+<li>Quint </li>
+<li>Sine  </li>
+</ul>
+<h2>Visual Curves</h2>
+<hr>
+<p>This is how these curves look when drawn as graphs.   </p>
+<p><img src="images/tweens.png" alt="tweening curves"></p>
+<hr>
+<h3><a href="guide.html#tweening">Back to feature guide</a></h3>
+<h3><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>
