@@ -1,64 +1,83 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to types](types.html)   
 
-[Properties](#Properties)   
 
 
 &nbsp;   
 
-###luxe.Text   
+<a class="lift" name="Methods" ></a>
+###Methods   
 ---
-<a class="lift" name="new" href="#new">new</a>
-
-```new( _options : Dynamic ) : Text```
-<span class="small_desc_flat"> Available options <br/><br/> `text : String` <br/> `pos : Vector` <br/> `color : Color` <br/> `size : Float` <br/> `font : BitmapFont` or `font : String` asset id<br/> `size : Vector`<br/> `batcher : Batcher` </span>   
-
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
 ```destroy() : Void```
-<span class="small_desc_flat">  </span>   
+<span class="small_desc_flat"> :desc unavailable: </span>   
+
+<a class="lift" name="new" href="#new">new</a>
+
+```new(_options:Dynamic) ```
+<span class="small_desc_flat"> :desc unavailable: </span>   
+
+&nbsp;   
+
+<a class="lift" name="Members" ></a>
+###Members   
+---
+<a class="lift" name="text_options" href="#text_options">text_options</a>
+
+```text_options : Dynamic```
+<span class="small_desc_flat"> :desc unavailable: </span>   
+
+<a class="lift" name="ready" href="#ready">ready</a>
+
+```ready : Bool```
+<span class="small_desc_flat"> :desc unavailable: </span>   
+
+<a class="lift" name="geometry" href="#geometry">geometry</a>
+
+```geometry : phoenix.geometry.CompositeGeometry```
+<span class="small_desc_flat"> :desc unavailable: </span>   
+
+<a class="lift" name="font" href="#font">font</a>
+
+```font : phoenix.BitmapFont```
+<span class="small_desc_flat"> :desc unavailable: </span>   
 
 &nbsp;   
 
 <a class="lift" name="Properties" ></a>
 ###Properties   
 ---
-<a class="lift" name="text" href="#text">text</a>
+<a class="lift" name="locked" href="#locked">locked</a>
 
-```text : String```
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos" href="#pos">pos</a>
-
-```pos : Vector```
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="size" href="#size">size</a>
-
-```size : Float```
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="color" href="#color">color</a>
-
-```color : Color```
-<span class="small_desc_flat">  </span>   
+```locked : Bool```
+<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
 <a class="lift" name="visible" href="#visible">visible</a>
 
 ```visible : Bool```
-<span class="small_desc_flat">  </span>   
+<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="locked" href="#locked">locked</a>
+<a class="lift" name="color" href="#color">color</a>
 
-```locked : Bool```
-<span class="small_desc_flat">  </span>   
+```color : luxe.Color```
+<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="geometry" href="#geometry">geometry</a>
+<a class="lift" name="size" href="#size">size</a>
 
-```geometry : Geometry```
-<span class="small_desc_flat">  </span>   
+```size : Float```
+<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+
+<a class="lift" name="pos" href="#pos">pos</a>
+
+```pos : luxe.Vector```
+<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+
+<a class="lift" name="text" href="#text">text</a>
+
+```text : String```
+<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
 
 
@@ -67,7 +86,6 @@
 &nbsp;
 
 ---  
-###[Back to types](types.html)   
 
 
 &nbsp;   

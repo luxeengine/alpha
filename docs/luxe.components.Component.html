@@ -44,76 +44,49 @@
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
+<p><a class="lift" name="serialize_to_disk" href="#serialize_to_disk">serialize_to_disk</a></p>
+<p><code>serialize_to_disk(_destination_path:String) : Void</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
 <p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
 <p><code>get_serialize_data() : null</code>
 <span class="small_desc_flat"> :desc unavailable: </span>   </p>
-<p><a class="lift" name="point_inside" href="#point_inside">point_inside</a></p>
-<p><code>point_inside(_p:phoenix.<a href="luxe.Vector.html">Vector</a>) : Bool</code>
+<p><a class="lift" name="get" href="#get">get</a></p>
+<p><code>get(_name:String, ?in_children:Bool, ?first_only:Bool) : null</code>
 <span class="small_desc_flat"> :desc unavailable: </span>   </p>
-<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
-<p><code>destroy() : Void</code>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>add(type:Class, ?_name:String) : add.T</code>
 <span class="small_desc_flat"> :desc unavailable: </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(options:Dynamic)</code>
+<p><code>new()</code>
 <span class="small_desc_flat"> :desc unavailable: </span>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
-<p><a class="lift" name="geometry" href="#geometry">geometry</a></p>
-<p><code>geometry : phoenix.geometry.QuadGeometry</code>
+<p><a class="lift" name="entity" href="#entity">entity</a></p>
+<p><code>entity : luxe.<a href="luxe.Entity.html">Entity</a></code>
 <span class="small_desc_flat"> :desc unavailable: </span>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Properties" ></a></p>
 <h3 id="properties">Properties</h3>
 <hr>
-<p><a class="lift" name="flipx" href="#flipx">flipx</a></p>
-<p><code>flipx : Bool</code>
+<p><a class="lift" name="scaleRelative" href="#scaleRelative">scaleRelative</a></p>
+<p><code>scaleRelative : luxe.<a href="luxe.Vector.html">Vector</a></code>
 <span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="flipy" href="#flipy">flipy</a></p>
-<p><code>flipy : Bool</code>
+<p><a class="lift" name="scale" href="#scale">scale</a></p>
+<p><code>scale : luxe.<a href="luxe.Vector.html">Vector</a></code>
 <span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a></p>
-<p><code>clip_rect : luxe.<a href="luxe.Rectangle.html">Rectangle</a></code>
+<p><a class="lift" name="rotationRelative" href="#rotationRelative">rotationRelative</a></p>
+<p><code>rotationRelative : luxe.<a href="luxe.Vector.html">Vector</a></code>
 <span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="clip" href="#clip">clip</a></p>
-<p><code>clip : Bool</code>
+<p><a class="lift" name="rotation" href="#rotation">rotation</a></p>
+<p><code>rotation : luxe.<a href="luxe.Vector.html">Vector</a></code>
 <span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="uv" href="#uv">uv</a></p>
-<p><code>uv : luxe.<a href="luxe.Rectangle.html">Rectangle</a></code>
+<p><a class="lift" name="posRelative" href="#posRelative">posRelative</a></p>
+<p><code>posRelative : luxe.<a href="luxe.Vector.html">Vector</a></code>
 <span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="origin" href="#origin">origin</a></p>
-<p><code>origin : phoenix.<a href="luxe.Vector.html">Vector</a></code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="centered" href="#centered">centered</a></p>
-<p><code>centered : Bool</code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="depth" href="#depth">depth</a></p>
-<p><code>depth : Float</code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="radians" href="#radians">radians</a></p>
-<p><code>radians : Float</code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="rotation_z" href="#rotation_z">rotation_z</a></p>
-<p><code>rotation_z : Float</code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="visible" href="#visible">visible</a></p>
-<p><code>visible : Bool</code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="color" href="#color">color</a></p>
-<p><code>color : phoenix.<a href="luxe.Color.html">Color</a></code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="size" href="#size">size</a></p>
-<p><code>size : phoenix.<a href="luxe.Vector.html">Vector</a></code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="shader" href="#shader">shader</a></p>
-<p><code>shader : phoenix.<a href="phoenix.Shader.html">Shader</a></code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="texture" href="#texture">texture</a></p>
-<p><code>texture : phoenix.<a href="phoenix.Texture.html">Texture</a></code>
-<span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="locked" href="#locked">locked</a></p>
-<p><code>locked : Bool</code>
+<p><a class="lift" name="pos" href="#pos">pos</a></p>
+<p><code>pos : luxe.<a href="luxe.Vector.html">Vector</a></code>
 <span class="small_desc_flat"> <code>(read/write)</code> :desc unavailable: </span>   </p>
 <p>&nbsp;
 &nbsp;

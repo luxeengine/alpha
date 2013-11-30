@@ -21,16 +21,24 @@ Matrix4
 ### luxe Types
 ---
 
-! Camera       
-! Sprite    
+Camera       
+Sprite    
 Text    
-! Events    
-! NineSlice    
+Events    
+NineSlice    
 ! Particles    
-! Entity    
-! Scene    
-! Modes    
+Entity    
+Objects    
+Scene    
+Modes    
+Mode    
 ! Game    
+
+luxe.components.Component   
+luxe.components.sprite.SpriteAnimation   
+luxe.tween.Actuate    
+luxe.utils.GeometryUtils   
+luxe.utils.JSON    
 
 ### luxe Components
 ---
@@ -41,9 +49,9 @@ Text
 ### luxe Utils
 ---
 
-general utils   
-maths utils   
-geometry utils   
+[ general utils ](luxe.utils.Utils.html)  &emsp; &emsp; &emsp; `found at Luxe.utils`   
+[ maths utils ](luxe.utils.Maths.html)  &emsp;&emsp;&emsp; `found at luxe.utils.Maths`      
+[ geometry utils ](luxe.utils.GeometryUtils.html) &emsp;&emsp;&emsp; `found at Luxe.utils.geometry`   
 
 
 ### phoenix Types

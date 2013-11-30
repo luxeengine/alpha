@@ -1,0 +1,112 @@
+{
+	"file":"luxe.components.sprite.SpriteAnimation.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"get_serialize_data", "link":"get_serialize_data", "type":"method", 
+					"code":"get_serialize_data() : null",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"set_frame", "link":"set_frame", "type":"method", 
+					"code":"set_frame(_frame:Int) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"stop", "link":"stop", "type":"method", 
+					"code":"stop() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"play", "link":"play", "type":"method", 
+					"code":"play() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"restart", "link":"restart", "type":"method", 
+					"code":"restart() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"add_from_json", "link":"add_from_json", "type":"method", 
+					"code":"add_from_json(_json_string:String) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"init", "link":"init", "type":"method", 
+					"code":"init() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"playing", "link":"playing", "type":"var", 
+					"code":"playing : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"reverse", "link":"reverse", "type":"var", 
+					"code":"reverse : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"pingpong", "link":"pingpong", "type":"var", 
+					"code":"pingpong : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"loop", "link":"loop", "type":"var", 
+					"code":"loop : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"frame_time", "link":"frame_time", "type":"var", 
+					"code":"frame_time : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"image_frame", "link":"image_frame", "type":"var", 
+					"code":"image_frame : Int",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"frame", "link":"frame", "type":"var", 
+					"code":"frame : Int",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"current", "link":"current", "type":"var", 
+					"code":"current : luxe.components.sprite.SpriteAnimationData",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"animation_list", "link":"animation_list", "type":"var", 
+					"code":"animation_list : Map",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
+				{
+					"name":"animation", "link":"animation", "type":"property", 
+					"code":"animation : String",
+					"desc":"`(read/write)` :desc unavailable:"
+				}
+			]
+		}
+	]
+}

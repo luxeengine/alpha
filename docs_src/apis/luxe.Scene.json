@@ -1,0 +1,127 @@
+{
+	"file":"luxe.Scene.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"serialize_to_disk", "link":"serialize_to_disk", "type":"method", 
+					"code":"serialize_to_disk(_destination_path:String) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"fixed_update", "link":"fixed_update", "type":"method", 
+					"code":"fixed_update() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"update", "link":"update", "type":"method", 
+					"code":"update(dt:Float) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"start", "link":"start", "type":"method", 
+					"code":"start() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"init", "link":"init", "type":"method", 
+					"code":"init() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"destroy", "link":"destroy", "type":"method", 
+					"code":"destroy() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onmousemove", "link":"onmousemove", "type":"method", 
+					"code":"onmousemove(e:luxe.MouseEvent) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onmouseup", "link":"onmouseup", "type":"method", 
+					"code":"onmouseup(e:luxe.MouseEvent) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onmousedown", "link":"onmousedown", "type":"method", 
+					"code":"onmousedown(e:luxe.MouseEvent) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"oninputup", "link":"oninputup", "type":"method", 
+					"code":"oninputup(_name:String, e:Dynamic) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"oninputdown", "link":"oninputdown", "type":"method", 
+					"code":"oninputdown(_name:String, e:Dynamic) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"shutdown", "link":"shutdown", "type":"method", 
+					"code":"shutdown() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"empty", "link":"empty", "type":"method", 
+					"code":"empty() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"remove", "link":"remove", "type":"method", 
+					"code":"remove(entity:luxe.Entity) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"add", "link":"add", "type":"method", 
+					"code":"add(entity:luxe.Entity) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"create", "link":"create", "type":"method", 
+					"code":"create(type:Class, ?_name:String) : create.T",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"started", "link":"started", "type":"var", 
+					"code":"started : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"inited", "link":"inited", "type":"var", 
+					"code":"inited : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"entities", "link":"entities", "type":"var", 
+					"code":"entities : Map",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"id", "link":"id", "type":"var", 
+					"code":"id : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"name", "link":"name", "type":"var", 
+					"code":"name : String",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

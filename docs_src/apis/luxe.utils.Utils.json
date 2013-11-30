@@ -1,0 +1,42 @@
+{
+	"file":"luxe.utils.Utils.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"file_bytes_to_class", "link":"file_bytes_to_class", "type":"method", 
+					"code":"file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"arrayToBytes", "link":"arrayToBytes", "type":"method", 
+					"code":"arrayToBytes(array:Array) : haxe.io.Bytes",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"bytes_to_string", "link":"bytes_to_string", "type":"method", 
+					"code":"bytes_to_string(bytes:Int) : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"uuid", "link":"uuid", "type":"method", 
+					"code":"uuid() : String",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"geometry", "link":"geometry", "type":"var", 
+					"code":"geometry : luxe.utils.GeometryUtils",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

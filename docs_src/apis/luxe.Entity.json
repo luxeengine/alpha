@@ -1,0 +1,137 @@
+{
+	"file":"luxe.Entity.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"serialize_to_disk", "link":"serialize_to_disk", "type":"method", 
+					"code":"serialize_to_disk(_destination_path:String, ?_parent_write:Bool) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"get_serialize_data", "link":"get_serialize_data", "type":"method", 
+					"code":"get_serialize_data() : null",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"remove_child", "link":"remove_child", "type":"method", 
+					"code":"remove_child(child:luxe.Entity) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"add_child", "link":"add_child", "type":"method", 
+					"code":"add_child(child:luxe.Entity) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"has", "link":"has", "type":"method", 
+					"code":"has(_name:String) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"get", "link":"get", "type":"method", 
+					"code":"get(_name:String, ?_in_children:Bool, ?_first_only:Bool) : null",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"add", "link":"add", "type":"method", 
+					"code":"add(type:Class, ?_name:String) : add.T",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"serialize", "link":"serialize", "type":"var", 
+					"code":"serialize : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"started", "link":"started", "type":"var", 
+					"code":"started : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"inited", "link":"inited", "type":"var", 
+					"code":"inited : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"children", "link":"children", "type":"var", 
+					"code":"children : Array",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"events", "link":"events", "type":"var", 
+					"code":"events : luxe.Events",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
+				{
+					"name":"scene", "link":"scene", "type":"property", 
+					"code":"scene : luxe.Scene",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"scaleRelative", "link":"scaleRelative", "type":"property", 
+					"code":"scaleRelative : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"scale", "link":"scale", "type":"property", 
+					"code":"scale : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"rotationRelative", "link":"rotationRelative", "type":"property", 
+					"code":"rotationRelative : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"rotation", "link":"rotation", "type":"property", 
+					"code":"rotation : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"posRelative", "link":"posRelative", "type":"property", 
+					"code":"posRelative : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"pos", "link":"pos", "type":"property", 
+					"code":"pos : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"parent", "link":"parent", "type":"property", 
+					"code":"parent : luxe.Entity",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"fixed_rate", "link":"fixed_rate", "type":"property", 
+					"code":"fixed_rate : Float",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"components", "link":"components", "type":"property", 
+					"code":"components : Map",
+					"desc":"`(read only)` :desc unavailable:"
+				}
+			]
+		}
+	]
+}

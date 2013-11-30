@@ -10,12 +10,12 @@
 	 • function get_serialize_data() : null;
 	 • function get(_name:String, ?in_children:Bool, ?first_only:Bool) : null;
 	 • function add(type:Class, ?_name:String) : add.T;
-	 … var scaleRelative : luxe.Vector ;
-	 … var scale : luxe.Vector ;
-	 … var rotationRelative : luxe.Vector ;
-	 … var rotation : luxe.Vector ;
-	 … var posRelative : luxe.Vector ;
-	 … var pos : luxe.Vector ;
+	 … var scaleRelative : luxe.Vector (read/write);
+	 … var scale : luxe.Vector (read/write);
+	 … var rotationRelative : luxe.Vector (read/write);
+	 … var rotation : luxe.Vector (read/write);
+	 … var posRelative : luxe.Vector (read/write);
+	 … var pos : luxe.Vector (read/write);
 	 … var entity : luxe.Entity;
 	 • function new() ;
 
@@ -44,17 +44,17 @@
 	 • function get(_name:String, ?_in_children:Bool, ?_first_only:Bool) : null;
 	 • function add(type:Class, ?_name:String) : add.T;
 	 … var serialize : Bool;
-	 … var scene : luxe.Scene ;
-	 … var scaleRelative : luxe.Vector ;
-	 … var scale : luxe.Vector ;
-	 … var rotationRelative : luxe.Vector ;
-	 … var rotation : luxe.Vector ;
-	 … var posRelative : luxe.Vector ;
-	 … var pos : luxe.Vector ;
-	 … var parent : luxe.Entity ;
+	 … var scene : luxe.Scene (read/write);
+	 … var scaleRelative : luxe.Vector (read/write);
+	 … var scale : luxe.Vector (read/write);
+	 … var rotationRelative : luxe.Vector (read/write);
+	 … var rotation : luxe.Vector (read/write);
+	 … var posRelative : luxe.Vector (read/write);
+	 … var pos : luxe.Vector (read/write);
+	 … var parent : luxe.Entity (read/write);
 	 … var started : Bool;
 	 … var inited : Bool;
-	 … var fixed_rate : Float ;
+	 … var fixed_rate : Float (read/write);
 	 … var children : Array;
 	 … var events : luxe.Events;
 	 … var components : Map (read only);
@@ -132,22 +132,22 @@
 	 • function get_serialize_data() : null;
 	 • function point_inside(_p:phoenix.Vector) : Bool;
 	 • function destroy() : Void;
-	 … var flipx : Bool ;
-	 … var flipy : Bool ;
-	 … var clip_rect : luxe.Rectangle ;
-	 … var clip : Bool ;
-	 … var uv : luxe.Rectangle ;
-	 … var origin : phoenix.Vector ;
-	 … var centered : Bool ;
-	 … var depth : Float ;
-	 … var radians : Float ;
-	 … var rotation_z : Float ;
-	 … var visible : Bool ;
-	 … var color : phoenix.Color ;
-	 … var size : phoenix.Vector ;
-	 … var shader : phoenix.Shader ;
-	 … var texture : phoenix.Texture ;
-	 … var locked : Bool ;
+	 … var flipx : Bool (read/write);
+	 … var flipy : Bool (read/write);
+	 … var clip_rect : luxe.Rectangle (read/write);
+	 … var clip : Bool (read/write);
+	 … var uv : luxe.Rectangle (read/write);
+	 … var origin : phoenix.Vector (read/write);
+	 … var centered : Bool (read/write);
+	 … var depth : Float (read/write);
+	 … var radians : Float (read/write);
+	 … var rotation_z : Float (read/write);
+	 … var visible : Bool (read/write);
+	 … var color : phoenix.Color (read/write);
+	 … var size : phoenix.Vector (read/write);
+	 … var shader : phoenix.Shader (read/write);
+	 … var texture : phoenix.Texture (read/write);
+	 … var locked : Bool (read/write);
 	 … var geometry : phoenix.geometry.QuadGeometry;
 	 • function new(options:Dynamic) ;
 
@@ -200,12 +200,12 @@
 	 • function destroy() : Void;
 	 … var text_options : Dynamic;
 	 … var ready : Bool;
-	 … var locked : Bool ;
-	 … var visible : Bool ;
-	 … var color : luxe.Color ;
-	 … var size : Float ;
-	 … var pos : luxe.Vector ;
-	 … var text : String ;
+	 … var locked : Bool (read/write);
+	 … var visible : Bool (read/write);
+	 … var color : luxe.Color (read/write);
+	 … var size : Float (read/write);
+	 … var pos : luxe.Vector (read/write);
+	 … var text : String (read/write);
 	 … var geometry : phoenix.geometry.CompositeGeometry;
 	 … var font : phoenix.BitmapFont;
 	 • function new(_options:Dynamic) ;
@@ -244,7 +244,7 @@
 	 … var frame_time : Float;
 	 … var image_frame : Int;
 	 … var frame : Int;
-	 … var animation : String ;
+	 … var animation : String (read/write);
 	 … var current : luxe.components.sprite.SpriteAnimationData;
 	 … var animation_list : Map;
 	 • function new() ;
@@ -369,18 +369,18 @@
 
 	 … var defaultActuator : Class;
 	 … var defaultEase : luxe.tween.easing.IEasing;
-	 • function apply(target:Dynamic, properties:Dynamic, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator;
-	 • function motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator;
-	 • function pause(target:Dynamic) : Void;
-	 • function pauseAll() : Void;
-	 • function reset() : Void;
-	 • function resume(target:Dynamic) : Void;
-	 • function resumeAll() : Void;
-	 • function stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool, ?sendEvent:Bool) : Void;
-	 • function timer(duration:Float, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator;
-	 • function tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator;
-	 • function unload(actuator:luxe.tween.actuators.GenericActuator) : Void;
-	 • function update(target:Dynamic, duration:Float, ?start:Array, ?end:Array, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator;
+	 • static function apply(target:Dynamic, properties:Dynamic, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator;
+	 • static function motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator;
+	 • static function pause(target:Dynamic) : Void;
+	 • static function pauseAll() : Void;
+	 • static function reset() : Void;
+	 • static function resume(target:Dynamic) : Void;
+	 • static function resumeAll() : Void;
+	 • static function stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool, ?sendEvent:Bool) : Void;
+	 • static function timer(duration:Float, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator;
+	 • static function tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator;
+	 • static function unload(actuator:luxe.tween.actuators.GenericActuator) : Void;
+	 • static function update(target:Dynamic, duration:Float, ?start:Array, ?end:Array, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator;
 
 //luxe class : luxe.tween.MotionPath
 
@@ -480,34 +480,34 @@
 
 //luxe class : luxe.utils.JSON
 
-	 … var encode : Dynamic (read only);
-	 … var decode : Dynamic (read only);
-	 … var stringify : Dynamic (read only);
-	 … var parse : Dynamic (read only);
+	 • static function encode(o:Dynamic) : String;
+	 • static function decode(s:String, ?strict:Bool) : null;
+	 • static function stringify(o:Dynamic) : String;
+	 • static function parse(s:String, ?strict:Bool) : null;
 
 //luxe class : luxe.utils.Maths
 
 	 … var DEG2RAD : Float;
 	 … var RAD2DEG : Float;
-	 • function fixed(value:Float, precision:Int) : Float;
-	 • function clamp(value:Float, a:Float, b:Float) : Float;
-	 • function clampBottom(value:Float, a:Float) : Float;
-	 • function nearest_power_of_two(_value:Int) : Int;
-	 • function mapLinear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float;
-	 • function smoothstep(x:Float, min:Float, max:Float) : Float;
-	 • function smootherstep(x:Float, min:Float, max:Float) : Float;
-	 • function random16() : Float;
-	 • function randInt(low:Int, high:Int) : Int;
-	 • function randFloat(low:Float, high:Float) : Float;
-	 • function randFloatSpread(range:Float) : Float;
-	 • function sign(x:Float) : Int;
-	 • function degToRad(deg:Float) : Float;
-	 • function radToDeg(rad:Float) : Float;
+	 • static function fixed(value:Float, precision:Int) : Float;
+	 • static function clamp(value:Float, a:Float, b:Float) : Float;
+	 • static function clampBottom(value:Float, a:Float) : Float;
+	 • static function nearest_power_of_two(_value:Int) : Int;
+	 • static function mapLinear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float;
+	 • static function smoothstep(x:Float, min:Float, max:Float) : Float;
+	 • static function smootherstep(x:Float, min:Float, max:Float) : Float;
+	 • static function random16() : Float;
+	 • static function randInt(low:Int, high:Int) : Int;
+	 • static function randFloat(low:Float, high:Float) : Float;
+	 • static function randFloatSpread(range:Float) : Float;
+	 • static function sign(x:Float) : Int;
+	 • static function degToRad(deg:Float) : Float;
+	 • static function radToDeg(rad:Float) : Float;
 
 //luxe class : luxe.utils.UUID
 
-	 • function generate_undashed() : String;
-	 • function get() : String;
+	 • static function generate_undashed() : String;
+	 • static function get() : String;
 
 //luxe class : luxe.utils.Utils
 

@@ -12,7 +12,8 @@
     "pygmentize-bundled" : "latest",
     "pygments" : "latest",
     "graceful-fs" : "latest",
-    "wrench" : "latest"
+    "wrench" : "latest",
+    "jsonic" : "latest"
   },
   "engine": {
     "node": "0.10.x"

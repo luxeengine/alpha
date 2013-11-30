@@ -1,0 +1,47 @@
+{
+	"file":"luxe.Mode.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"name", "link":"name", "type":"var", 
+					"code":"name : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"active", "link":"active", "type":"var", 
+					"code":"active : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"modes", "link":"modes", "type":"var", 
+					"code":"modes : luxe.Modes",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
+				{
+					"name":"next_tick", "link":"next_tick", "type":"property", 
+					"code":"next_tick : Dynamic",
+					"desc":"`(write only)` :desc unavailable:"
+				}
+			]
+		}
+	]
+}

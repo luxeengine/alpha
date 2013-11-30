@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,8 +40,46 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
-<h3><a href="types.html">Back to types</a></h3>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
+<p><code>get_serialize_data() : null</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="shake" href="#shake">shake</a></p>
+<p><code>shake(amount:Float) : Void</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="center" href="#center">center</a></p>
+<p><code>center(_p:luxe.<a href="luxe.Vector.html">Vector</a>, ?_t:Float, ?oncomplete:Void) : Void</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(?options:Dynamic)</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="shaking" href="#shaking">shaking</a></p>
+<p><code>shaking : Bool</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="shake_amount" href="#shake_amount">shake_amount</a></p>
+<p><code>shake_amount : Float</code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="shake_vector" href="#shake_vector">shake_vector</a></p>
+<p><code>shake_vector : luxe.<a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="bounds" href="#bounds">bounds</a></p>
+<p><code>bounds : luxe.<a href="luxe.Rectangle.html">Rectangle</a></code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p><a class="lift" name="view" href="#view">view</a></p>
+<p><code>view : phoenix.<a href="luxe.Camera.html">Camera</a></code>
+<span class="small_desc_flat"> :desc unavailable: </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

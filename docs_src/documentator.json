@@ -32,6 +32,8 @@
         { "key":"Text",           "link":"luxe.Text.html"                   },
         { "key":"Events",         "link":"luxe.Events.html"                 },
         { "key":"Modes",          "link":"luxe.Modes.html"                  },
+        { "key":"Mode",           "link":"luxe.Mode.html"                   },
+        { "key":"Objects",        "link":"luxe.Objects.html"                },
         { "key":"Scene",          "link":"luxe.Scene.html"                  },
         { "key":"Game",           "link":"luxe.Game.html"                   },
         { "key":"Particles",      "link":"luxe.Particles.html"              },
@@ -45,6 +47,11 @@
         { "key":"Shader",         "link":"phoenix.Shader.html"              },
         { "key":"Ray",            "link":"phoenix.Ray.html"                 },
         { "key":"Renderer",       "link":"phoenix.Renderer.html"            },
+
+        { "key":"luxe.components.Component",                "link":"luxe.components.Component.html"          },
+        { "key":"luxe.components.sprite.SpriteAnimation",   "link":"luxe.components.sprite.SpriteAnimation.html"  },
+        { "key":"luxe.tween.Actuate",                       "link":"luxe.tween.Actuate.html"                 },
+        { "key":"luxe.utils.JSON",                          "link":"luxe.utils.JSON.html"                    },
 
         { "key":"Rectangle",      "link":"luxe.Rectangle.html"              },
         { "key":"Quaternion",     "link":"luxe.Quaternion.html"             },

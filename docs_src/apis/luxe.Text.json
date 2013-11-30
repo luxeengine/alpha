@@ -1,63 +1,80 @@
-{	
-	"file" : "luxe.Text.md",
-	"links" : [
-		{"name":"Properties","link":"#Properties"}
-	],
-	"toplinks" : [{"name":"Back to types","link":"types.html"}],
+{
+	"file":"luxe.Text.md",
+	"links":[],
+	"toplinks":[],
 	"sections":[
-		{ 
-			"name": "luxe.Text",
-			"values" : [
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
 				{
-				    "name":"new", "link":"new", 
-					"code":"new( _options : Dynamic ) : Text",
-					"desc":"Available options <br/><br/> `text : String` <br/> `pos : Vector` <br/> `color : Color` <br/> `size : Float` <br/> `font : BitmapFont` or `font : String` asset id<br/> `size : Vector`<br/> `batcher : Batcher`" 
+					"name":"destroy", "link":"destroy", "type":"method", 
+					"code":"destroy() : Void",
+					"desc":":desc unavailable:"
 				},
 				{
-				    "name":"destroy", "link":"destroy", 
-					"code":"destroy() : Void",
-					"desc":"" 
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new(_options:Dynamic) ",
+					"desc":":desc unavailable:"
 				}
 			]
 		},
 		{
-			"name": "Properties",
-			"link": "Properties",
-			"values" : [
+			"name":"Members", "link":"Members",
+			"values":[
 				{
-				    "name":"text", "link":"text", 
-					"code":"text : String",
-					"desc":"" 
+					"name":"text_options", "link":"text_options", "type":"var", 
+					"code":"text_options : Dynamic",
+					"desc":":desc unavailable:"
 				},
 				{
-				    "name":"pos", "link":"pos", 
-					"code":"pos : Vector",
-					"desc":"" 
+					"name":"ready", "link":"ready", "type":"var", 
+					"code":"ready : Bool",
+					"desc":":desc unavailable:"
 				},
 				{
-				    "name":"size", "link":"size", 
-					"code":"size : Float",
-					"desc":"" 
+					"name":"geometry", "link":"geometry", "type":"var", 
+					"code":"geometry : phoenix.geometry.CompositeGeometry",
+					"desc":":desc unavailable:"
 				},
 				{
-				    "name":"color", "link":"color", 
-					"code":"color : Color",
-					"desc":"" 
-				},
+					"name":"font", "link":"font", "type":"var", 
+					"code":"font : phoenix.BitmapFont",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
 				{
-				    "name":"visible", "link":"visible", 
-					"code":"visible : Bool",
-					"desc":"" 
-				},
-				{
-				    "name":"locked", "link":"locked", 
+					"name":"locked", "link":"locked", "type":"property", 
 					"code":"locked : Bool",
-					"desc":"" 
+					"desc":"`(read/write)` :desc unavailable:"
 				},
 				{
-				    "name":"geometry", "link":"geometry", 
-					"code":"geometry : Geometry",
-					"desc":"" 
+					"name":"visible", "link":"visible", "type":"property", 
+					"code":"visible : Bool",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"color", "link":"color", "type":"property", 
+					"code":"color : luxe.Color",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"size", "link":"size", "type":"property", 
+					"code":"size : Float",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"pos", "link":"pos", "type":"property", 
+					"code":"pos : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"text", "link":"text", "type":"property", 
+					"code":"text : String",
+					"desc":"`(read/write)` :desc unavailable:"
 				}
 			]
 		}

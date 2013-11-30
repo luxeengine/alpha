@@ -8,6 +8,7 @@ var hljs        = require('highlight.js');
 var wrench      = require('wrench');
 var util        = require('util');
 var pygmentize  = require('pygments').colorize;
+var jsonic      = require('jsonic');
 
     //Look for the local config, todo: command line
 var config = require('./documentator.json');
@@ -40,7 +41,10 @@ var config = require('./documentator.json');
             });
 
         for(i = 0; i < _list.length; ++i) {            
-            var _api_details = require(_list[i]);
+            console.log("\t- attempting api file .. " + _list[i]);
+            var _api_details_string = String(fs.readFileSync( _list[i] ));
+            var _api_details = JSON.parse( _api_details_string );
+
             if(_api_details.file && _api_details.sections) {
 
                 var _context = {
@@ -85,7 +89,7 @@ var config = require('./documentator.json');
 
                 var _template_out = mustache.render( _api_template, _context );
                 fs.writeFileSync( config.api_output_path + _api_details.file , _template_out );
-                console.log("\t - output file " + config.api_output_path + _api_details.file);
+                console.log("\t - generating file " + config.api_output_path + _api_details.file);
             } //if valid
         } //list.length
             
