@@ -1,0 +1,207 @@
+{	
+	"file" : "luxe.Matrix4.md",
+	"links" : [
+		{"name":"Transforms", "link":"#Transforms"},
+		{"name":"Composition", "link":"#Composition"},
+		{"name":"Creating Transforms", "link":"#CreateTransforms"},
+		{"name":"Static Methods", "link":"#StaticMethods"}
+	],
+	"toplinks" : [{"name":"Back to types","link":"types.html"}],
+	"sections":[
+		{
+			"name": "luxe.Matrix4",
+			"values" : [
+				{   "name":"new", "link":"new", 
+					"code":"\nnew(\n\t n11:Float = 1, n12:Float = 0, n13:Float = 0, n14:Float = 0,\n\t n21:Float = 0, n22:Float = 1, n23:Float = 0, n24:Float = 0,\n\t n31:Float = 0, n32:Float = 0, n33:Float = 1, n34:Float = 0,\n\t n41:Float = 0, n42:Float = 0, n43:Float = 0, n44:Float = 1\n ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"set", "link":"set", 
+					"code":"\nset(\n\t n11:Float, n12:Float, n13:Float, n14:Float,\n\t n21:Float, n22:Float, n23:Float, n24:Float,\n\t n31:Float, n32:Float, n33:Float, n34:Float,\n\t n41:Float, n42:Float, n43:Float, n44:Float\n) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"copy", "link":"copy", 
+					"code":"copy(m:Matrix4) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"clone", "link":"clone", 
+					"code":"clone() : Matrix4",
+					"desc":"" 
+				},				
+				{   "name":"identity", "link":"identity", 
+					"code":"identity () : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"inverse", "link":"inverse", 
+					"code":"inverse() : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"getInverse", "link":"getInverse", 
+					"code":"getInverse( _m:Matrix4 ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"copyPosition", "link":"copyPosition", 
+					"code":"copyPosition( m:Matrix4 ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"extractRotation", "link":"extractRotation", 
+					"code":"extractRotation( m:Matrix4 ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"determinant", "link":"determinant", 
+					"code":"determinant() : Float",
+					"desc":"" 
+				},
+				{   "name":"getMaxScaleOnAxis", "link":"getMaxScaleOnAxis", 
+					"code":"getMaxScaleOnAxis() : Float",
+					"desc":"" 
+				},
+				{   "name":"fromArray", "link":"fromArray", 
+					"code":"fromArray( _from:Array<Float> )",
+					"desc":"" 
+				},
+				{   "name":"toArray", "link":"toArray", 
+					"code":"toArray() : Array<Float>",
+					"desc":"" 
+				},
+				{   "name":"flattenToArray", "link":"flattenToArray", 
+					"code":"flattenToArray( _flat:Array<Float> = null ) : Array<Float>",
+					"desc":"" 
+				},
+				{   "name":"flattenToArrayOffset", "link":"flattenToArrayOffset", 
+					"code":"flattenToArrayOffset( _flat:Array<Float>, _offset:Int ) : Array<Float>",
+					"desc":"" 
+				}
+			]
+		},
+		{
+			"name" : "Transforms",
+			"link" : "Transforms",
+			"values" : [
+				{   "name":"setPosition", "link":"setPosition", 
+					"code":"setPosition( _v:Vector ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"multiplyScalar", "link":"multiplyScalar", 
+					"code":"multiplyScalar( _s:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"multiply", "link":"multiply", 
+					"code":"multiply( _m:Matrix4 ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"scale", "link":"scale", 
+					"code":"scale( _v:Vector ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"lookAt", "link":"lookAt", 
+					"code":"lookAt( _eye:Vector, _target:Vector, _up:Vector ) : Matrix4",
+					"desc":"" 
+				}				
+			]
+		},			
+		{
+			"name" : "Composition",
+			"link" : "Composition",
+			"values" : [
+				{   "name":"compose", "link":"compose", 
+					"code":"compose( _position:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"decompose", "link":"decompose", 
+					"code":"decompose( _position:Vector = null, _quaternion:Quaternion = null, _scale:Vector = null ) : Array<Dynamic>",
+					"desc":"" 
+				}			
+			]
+		},		
+		{
+			"name" : "Creating Transforms",
+			"link" : "CreateTransforms",
+			"values" : [
+				{   "name":"makeRotationFromEuler", "link":"makeRotationFromEuler", 
+					"code":"makeRotationFromEuler( _v:Vector, _order:String = 'XYZ') : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeRotationFromQuaternion", "link":"makeRotationFromQuaternion", 
+					"code":"makeRotationFromQuaternion( q:Quaternion ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeTranslation", "link":"makeTranslation", 
+					"code":"makeTranslation( _x:Float, _y:Float, _z:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeRotationX", "link":"makeRotationX", 
+					"code":"makeRotationX( _theta:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeRotationY", "link":"makeRotationY", 
+					"code":"makeRotationY( _theta:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeRotationZ", "link":"makeRotationZ", 
+					"code":"makeRotationZ( _theta:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeRotationAxis", "link":"makeRotationAxis", 
+					"code":"makeRotationAxis( _axis:Vector, _angle:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeScale", "link":"makeScale", 
+					"code":"makeScale( _x:Float, _y:Float, _z:Float) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"make2D", "link":"make2D", 
+					"code":"make2D(_x:Float, _y:Float, _scale:Float = 1, _rotation:Float = 0)",
+					"desc":"" 
+				},				
+				{   "name":"makeFrustum", "link":"makeFrustum", 
+					"code":"makeFrustum( _left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makePerspective", "link":"makePerspective", 
+					"code":"makePerspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) : Matrix4",
+					"desc":"" 
+				},
+				{   "name":"makeOrthographic", "link":"makeOrthographic", 
+					"code":"makeOrthographic( _left:Float, _right:Float, _top:Float, _bottom:Float, _near:Float, _far:Float ) : Matrix4",
+					"desc":"" 
+				}
+			]
+		},
+		{
+			"name" : "Static Methods",
+			"link" : "StaticMethods",
+			"values" : [
+				{
+				    "name":"GetLeft", "link":"GetLeft", 
+					"code":"GetLeft( _m:Matrix4 ) : Vector",
+					"desc":"" 
+				},
+				{
+				    "name":"GetRight", "link":"GetRight", 
+					"code":"GetRight( _m:Matrix4 ) : Vector",
+					"desc":"" 
+				},
+				{
+				    "name":"GetUp", "link":"GetUp", 
+					"code":"GetUp( _m:Matrix4 ) : Vector",
+					"desc":"" 
+				},
+				{
+				    "name":"GetDown", "link":"GetDown", 
+					"code":"GetDown( _m:Matrix4 ) : Vector",
+					"desc":"" 
+				},
+				{
+				    "name":"GetForward", "link":"GetForward", 
+					"code":"GetForward( _m:Matrix4 ) : Vector",
+					"desc":"" 
+				},
+				{
+				    "name":"GetBackward", "link":"GetBackward", 
+					"code":"GetBackward( _m:Matrix4 ) : Vector",
+					"desc":"" 
+				}
+			]
+		}
+	]
+}

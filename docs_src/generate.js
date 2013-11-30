@@ -28,7 +28,7 @@ var config = require('./documentator.json');
         smartypants: true
     };
 
-    var _parse_code_api = function(_done) {
+    var _parse_code_api = function() {
 
         console.log('- parsing code api files');
 
@@ -76,7 +76,7 @@ var config = require('./documentator.json');
                         var _value = _section.values[_k];
 
                         _context.content += '<a class="lift" name="'+_value.link+'" href="#'+_value.link+'">'+_value.name+'</a>\n\n';
-                        _context.content += '`' + _value.code + '`\n';
+                        _context.content += '```' + _value.code + '```\n';
                         _context.content += '<span class="small_desc_flat"> ' + _value.desc + ' </span>   \n\n';
 
                     } //each section value
@@ -90,8 +90,6 @@ var config = require('./documentator.json');
         } //list.length
             
         console.log("- generated api files complete");
-
-        _done();
 
     };
 
@@ -356,7 +354,9 @@ var config = require('./documentator.json');
 
     if(config != undefined) {
 
-        console.log('- documentator 0.1 - Reading ' + './luxe.docs.json');
+        console.log('- documentator 0.1 - Reading ' + './documentator.json');
+
+        _parse_code_api();
 
         var _list = _fetch_file_list( config.input_files, config.force_full );
 
@@ -372,36 +372,30 @@ var config = require('./documentator.json');
 
             console.log('- ok. All files up to date.');
 
-        } else {
+        } else {        
 
-            console.log('- parsing code api generation ... ');
+            console.log('- starting generation ... ');
 
-            _parse_code_api(function(){
-
-                console.log('- starting generation ... ');
-
-                _cache_files( [].concat(_list), function(){
-                    console.log("- cached files. ");
-                    console.log("- generating html ... ");
-                    _do_generation( [].concat(_list), function(){
-                        console.log("- generated html.");
-                        _verbose("- saving output : ");
-                        _do_output( [].concat(_list), function(){
-                            console.log("- saved output.");
-                            _verbose("- copying template files. ");
-                            _copy_template_files([].concat(_template_files), function(){
-                                console.log("- copied template files. ");
-                                _verbose("- copying images ");
-                                _copy_images(function() {
-                                    console.log("- copied images.");
-                                    console.log("- ok - generated docs in " + config.output_path );
-                                });
-                            }); //copy template files
-                        }); //do output
-                    } );  //do generation
-                } ); // cache files
-
-            }); //_parse_code_api
+            _cache_files( [].concat(_list), function(){
+                console.log("- cached files. ");
+                console.log("- generating html ... ");
+                _do_generation( [].concat(_list), function(){
+                    console.log("- generated html.");
+                    _verbose("- saving output : ");
+                    _do_output( [].concat(_list), function(){
+                        console.log("- saved output.");
+                        _verbose("- copying template files. ");
+                        _copy_template_files([].concat(_template_files), function(){
+                            console.log("- copied template files. ");
+                            _verbose("- copying images ");
+                            _copy_images(function() {
+                                console.log("- copied images.");
+                                console.log("- ok - generated docs in " + config.output_path );
+                            });
+                        }); //copy template files
+                    }); //do output
+                } );  //do generation
+            } ); // cache files
 
         } //!list.length
 
