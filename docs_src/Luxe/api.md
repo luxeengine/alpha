@@ -1,20 +1,59 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
   
-## Luxe API
+###[Back to index](index.html#docs)
 
-[Public values](#PublicValues)   
-[Public default entities](#PublicDefaultEntities)   
-[Public objects](#PublicObjects)   
-[Public methods](#PublicMethods)   
+## Luxe API
+---
 
 All methods and objects are accessible via the Luxe class. i.e
 
-	var text_file : String = Luxe.loadText('assets/test.txt');   
+`var text_file : String = Luxe.loadText('assets/test.txt');`
+
+&nbsp;   
+
+
+###Public values   
+--- 
+<a class="lift liftsmall" href="#dt">dt</a>
+
+&nbsp;   
+
+###Public default objects   
+---
+<a class="lift liftsmall" href="#scene">scene</a>   
+<a class="lift liftsmall" href="#camera">camera</a>   
+<a class="lift liftsmall" href="#resources">resources</a>   
+
+&nbsp;   
+
+###Public objects  
+---
+<a class="lift liftsmall" href="#core">core</a>   
+<a class="lift liftsmall" href="#audio">audio</a>   
+<a class="lift liftsmall" href="#time">time</a>   
+<a class="lift liftsmall" href="#events">events</a>   
+<a class="lift liftsmall" href="#draw">draw</a>   
+<a class="lift liftsmall" href="#input">input</a>   
+<a class="lift liftsmall" href="#utils">utils</a>   
+<a class="lift liftsmall" href="#screen">screen</a>   
+<a class="lift liftsmall" href="#renderer">renderer</a>   
+
+&nbsp;   
+
+###Public methods   
+---
+<a class="lift liftsmall" href="#LuxeCore">Core</a>   
+<a class="lift liftsmall" href="#Window">Window</a>   
+<a class="lift liftsmall" href="#Assets">Assets</a>   
+<a class="lift liftsmall" href="#DefaultRenderer">Shortcuts to the renderer</a>   
+
+&nbsp;
 
 <a name="PublicValues" ></a>
 
-### Public values
+## Public values
+---
 
 <a name="dt">
 [dt](#dt)
@@ -40,123 +79,128 @@ All methods and objects are accessible via the Luxe class. i.e
 	</span>
 </div>
 
-<a name="PublicDefaultEntities" ></a>
+<a name="PublicDefaultObjects" ></a>
 
-### Public default entities
+## Public default objects
+---
 
 <a class="toplink" href="#">back to top</a>
 
-[scene](luxe.scene.html)   
+<a class="lift" href="luxe.scene.html" name="scene">scene</a>   
 <span class="small_desc"> Access to the default scene </span>   
-[camera](luxe.camera.html)   
+<a class="lift" href="luxe.camera.html" name="camera">camera</a>   
 <span class="small_desc"> Access to the default camera </span>    
-[resources](luxe.resources.html)   
+<a class="lift" href="luxe.resources.html" name="resources">resources</a>   
 <span class="small_desc"> Access to the default resource manager </span>    
 
 <a name="PublicObjects" ></a>
 
-### Public objects
-
+## Public objects
+---
 <a class="toplink" href="#">back to top</a>
 
-[core](luxe.core.html)   
+<a class="lift" href="luxe.core.html" name="core">core</a>   
 <span class="small_desc"> Access to the luxe core object </span>      
-[audio](luxe.audio.html)   
+<a class="lift" href="luxe.audio.html" name="audio">audio</a>   
 <span class="small_desc"> Access to the audio API </span>   
-[time](luxe.time.html)   
+<a class="lift" href="luxe.time.html" name="time">time</a>   
 <span class="small_desc"> Access to the time API </span>   
-[events](luxe.events.html)   
+<a class="lift" href="luxe.events.html" name="events">events</a>   
  <span class="small_desc"> Access to the global events/messaging </span>   
-[draw](luxe.draw.html)   
+<a class="lift" href="luxe.draw.html" name="draw">draw</a>   
  <span class="small_desc"> Access to the drawing API </span>   
-[input](luxe.input.html)   
+<a class="lift" href="luxe.input.html" name="input">input</a>   
  <span class="small_desc"> Access to the input API </span>   
-[utils](luxe.utils.html)   
+<a class="lift" href="luxe.utils.html" name="utils">utils</a>   
  <span class="small_desc"> Access to the common utilities </span>   
-[screen](luxe.screen.html)   
+<a class="lift" href="luxe.screen.html" name="screen">screen</a>   
  <span class="small_desc"> Access to the screen properties and functions</span>   
-[renderer](luxe.renderer.html)   
+<a class="lift" href="luxe.renderer.html" name="renderer">renderer</a>   
 <span class="small_desc"> Access to the rendering system </span> 
 
 <a name="PublicMethods" ></a>
 
-### Public methods
-
+## Public methods
+---
 <a class="toplink" href="#">back to top</a>
 
-<a name="Core" href="#Core">
-#### Core
+<a name="LuxeCore" href="#LuxeCore">
+### Luxe Core Methods
+---
 </a>
 
-<a name="shutdown" href="#shutdown">shutdown</a>
+<a class="lift" name="shutdown" href="#shutdown">shutdown</a>
 
-	Luxe.shutdown() : Void   
+`Luxe.shutdown() : Void   `
 <span class="small_desc_flat"> Quit the game/engine </span>      
 
 <a name="Window" href="#Window">
-#### Window
+### Luxe Window Methods
+---
 </a>
 
 <span class="small_desc warn"> These functions are here temporarily, <br/>will soon be migrated to Luxe.screen.cursor </span> 
 
-<a name="showCursor" href="#showCursor">showCursor</a>
+<a class="lift" name="showCursor" href="#showCursor">showCursor</a>
 
 
-	Luxe.showCursor( _show:Bool ) : Void   
+`Luxe.showCursor( _show:Bool ) : Void   `
 <span class="small_desc_flat"> Show the cursor inside the window </span>      
 
-<a name="lockCursor" href="#lockCursor">lockCursor</a>
+<a class="lift" name="lockCursor" href="#lockCursor">lockCursor</a>
 
-    Luxe.lockCursor( _lock:Bool ) : Void   
+`Luxe.lockCursor( _lock:Bool ) : Void`
 <span class="small_desc_flat"> Lock the cursor inside the edges of the window </span>      
 
-<a name="cursorShown" href="#cursorShown">cursorShown</a>
+<a class="lift" name="cursorShown" href="#cursorShown">cursorShown</a>
 
-    Luxe.cursorShown() : Bool   
+`Luxe.cursorShown() : Bool`
 <span class="small_desc_flat"> If the cursor is visible </span>          
 
-<a name="cursorLocked" href="#cursorLocked">cursorLocked</a>
+<a class="lift" name="cursorLocked" href="#cursorLocked">cursorLocked</a>
 
-    Luxe.cursorLocked() : Bool   
+`Luxe.cursorLocked() : Bool`
 <span class="small_desc_flat"> If the cursor is locked </span>          
 
-<a name="setCursorPosition" href="#setCursorPosition">setCursorPosition</a>
+<a class="lift" name="setCursorPosition" href="#setCursorPosition">setCursorPosition</a>
 
-    Luxe.setCursorPosition( _x:Int , _y:Int ) : Void   
+`Luxe.setCursorPosition( _x:Int , _y:Int ) : Void`
 <span class="small_desc_flat"> Set the position in screen space of the cursor in the window (0,0 top left) </span>              
 
 <a name="Assets" href="#Assets">
-#### Assets
+### Luxe Asset Methods
+---
 </a>
 
-<a name="loadText" href="#loadText">loadText</a>
+<a class="lift" name="loadText" href="#loadText">loadText</a>
 
-	Luxe.loadText( _id:String ) : String   
+`Luxe.loadText( _id:String ) : String`
 <span class="small_desc_flat"> Load a text based asset by id </span>      
 
-<a name="loadTexture" href="#loadTexture">loadTexture</a>
+<a class="lift" name="loadTexture" href="#loadTexture">loadTexture</a>
 
-	Luxe.loadTexture( _id:String, ?_onloaded:Texture->Void ) : Texture    
+`Luxe.loadTexture( _id:String, ?_onloaded:Texture->Void ) : Texture`
 <span class="small_desc_flat"> Load a Texture asset by id </span>      
 
-<a name="loadShader" href="#loadShader">loadShader</a>
+<a class="lift" name="loadShader" href="#loadShader">loadShader</a>
 
-	Luxe.loadShader( ?_pixel_shader_id:String="default", ?_vertex_shader_id : String="default" ) : Shader    
+`Luxe.loadShader( ?_pixel_shader_id:String="default", ?_vertex_shader_id : String="default" ) : Shader`
 <span class="small_desc_flat"> Load a Shader asset by id. If 'default' or '' the default shader code will be used. For the pixel shader, 'textured' is the default textured shader, and default refers to untextured color shader.  </span>      
 
 
 <a name="DefaultRenderer" href="#DefaultRenderer">
-#### Shortcuts for the default Renderer
+### Shortcuts for the default Renderer
+---
 </a>
 
-<a name="addGeometry" href="#addGeometry">addGeometry</a>
+<a class="lift" name="addGeometry" href="#addGeometry">addGeometry</a>
 
-	Luxe.addGeometry( _geom:Geometry ) : Void   
+`Luxe.addGeometry( _geom:Geometry ) : Void`
 <span class="small_desc_flat"> Add some geometry to the default renderer </span>      
 
-<a name="removeGeometry" href="#removeGeometry">removeGeometry</a>
+<a class="lift" name="removeGeometry" href="#removeGeometry">removeGeometry</a>
 
-	Luxe.removeGeometry( _geom:Geometry ) : Void   
+`Luxe.removeGeometry( _geom:Geometry ) : Void`
 <span class="small_desc_flat"> Remove some geometry from the default renderer </span>      
 
 
@@ -164,3 +208,8 @@ All methods and objects are accessible via the Luxe class. i.e
 &nbsp;
 &nbsp;
 
+---  
+###[Back to index](index.html#docs)
+
+&nbsp;   
+&nbsp;   

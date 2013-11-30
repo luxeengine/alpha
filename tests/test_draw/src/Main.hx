@@ -60,17 +60,18 @@ class Main extends luxe.Game {
             color : new Color(1,1,1,1)
         });
 
-        c = Luxe.draw.ring({
+        c = Luxe.draw.arc({
             x : Luxe.screen.w/2,
             y : Luxe.screen.h/2,
             r : 70,
+            end_angle:70,
             color : new Color(1,1,1,1)
         });
 
         var n : CompositeGeometry = Luxe.draw.text({
             color : new Color(Math.random(),Math.random(),Math.random(),0.5),
             pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
-            text : "// c = Luxe.draw.ring({\n //      x : Luxe.screen.w/2,\n //      y : Luxe.screen.h/2,\n//     r : 70,\n //     color : new Color(1,1,1,1)\n // });\n"
+            text : "Luxe.draw.ring({\n\t x : Luxe.screen.w/2,\n\t y : Luxe.screen.h/2,\n\t r : 70,\n\t color : new Color(1,1,1,1)\n});\n"
         });
         
         n.locked = true;        

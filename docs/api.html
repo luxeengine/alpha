@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,14 +40,31 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h2><a href="api.html">Luxe</a> API</h2>
-<p><a href="#PublicValues">Public values</a><br><a href="#PublicDefaultEntities">Public default entities</a><br><a href="#PublicObjects">Public objects</a><br><a href="#PublicMethods">Public methods</a>   </p>
+<h3 id="-back-to-index-index-html-docs-"><a href="index.html#docs">Back to index</a></h3>
+<h2 id="luxe-api"><a href="api.html">Luxe</a> API</h2>
+<hr>
 <p>All methods and objects are accessible via the <a href="api.html">Luxe</a> class. i.e</p>
-<pre><code><div class="highlight"><pre><span class="kd">var</span> text_file <span class="p">:</span> <span class="n">String</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadText</span><span class="p">(</span><span class="s1">&#39;assets/test.txt&#39;</span><span class="p">);</span>   
-</pre></div>
-</code></pre>
+<p><code>var text_file : String = <a href="api.html">Luxe</a>.loadText(&#39;assets/test.txt&#39;);</code></p>
+<p>&nbsp;   </p>
+<h3 id="public-values">Public values</h3>
+<hr>
+<p><a class="lift liftsmall" href="#dt">dt</a></p>
+<p>&nbsp;   </p>
+<h3 id="public-default-objects">Public default objects</h3>
+<hr>
+<p><a class="lift liftsmall" href="#scene">scene</a><br><a class="lift liftsmall" href="#camera">camera</a><br><a class="lift liftsmall" href="#resources">resources</a>   </p>
+<p>&nbsp;   </p>
+<h3 id="public-objects">Public objects</h3>
+<hr>
+<p><a class="lift liftsmall" href="#core">core</a><br><a class="lift liftsmall" href="#audio">audio</a><br><a class="lift liftsmall" href="#time">time</a><br><a class="lift liftsmall" href="#events">events</a><br><a class="lift liftsmall" href="#draw">draw</a><br><a class="lift liftsmall" href="#input">input</a><br><a class="lift liftsmall" href="#utils">utils</a><br><a class="lift liftsmall" href="#screen">screen</a><br><a class="lift liftsmall" href="#renderer">renderer</a>   </p>
+<p>&nbsp;   </p>
+<h3 id="public-methods">Public methods</h3>
+<hr>
+<p><a class="lift liftsmall" href="#LuxeCore">Core</a><br><a class="lift liftsmall" href="#Window">Window</a><br><a class="lift liftsmall" href="#Assets">Assets</a><br><a class="lift liftsmall" href="#DefaultRenderer">Shortcuts to the renderer</a>   </p>
+<p>&nbsp;</p>
 <p><a name="PublicValues" ></a></p>
-<h3>Public values</h3>
+<h2 id="public-values">Public values</h2>
+<hr>
 <p><a name="dt">
 <a href="#dt">dt</a>
 </a> </p>
@@ -60,88 +86,76 @@
     </span>
 </div>
 
-<p><a name="PublicDefaultEntities" ></a></p>
-<h3>Public default entities</h3>
+<p><a name="PublicDefaultObjects" ></a></p>
+<h2 id="public-default-objects">Public default objects</h2>
+<hr>
 <p><a class="toplink" href="#">back to top</a></p>
-<p><a href="luxe.scene.html">scene</a><br><span class="small_desc"> Access to the default scene </span><br><a href="luxe.camera.html">camera</a><br><span class="small_desc"> Access to the default camera </span><br><a href="luxe.resources.html">resources</a><br><span class="small_desc"> Access to the default resource manager </span>    </p>
+<p><a class="lift" href="luxe.scene.html" name="scene">scene</a><br><span class="small_desc"> Access to the default scene </span><br><a class="lift" href="luxe.camera.html" name="camera">camera</a><br><span class="small_desc"> Access to the default camera </span><br><a class="lift" href="luxe.resources.html" name="resources">resources</a><br><span class="small_desc"> Access to the default resource manager </span>    </p>
 <p><a name="PublicObjects" ></a></p>
-<h3>Public objects</h3>
+<h2 id="public-objects">Public objects</h2>
+<hr>
 <p><a class="toplink" href="#">back to top</a></p>
-<p><a href="luxe.core.html">core</a><br><span class="small_desc"> Access to the luxe core object </span><br><a href="luxe.audio.html">audio</a><br><span class="small_desc"> Access to the audio API </span><br><a href="luxe.time.html">time</a><br><span class="small_desc"> Access to the time API </span><br><a href="luxe.events.html">events</a><br> <span class="small_desc"> Access to the global events/messaging </span><br><a href="luxe.draw.html">draw</a><br> <span class="small_desc"> Access to the drawing API </span><br><a href="luxe.input.html">input</a><br> <span class="small_desc"> Access to the input API </span><br><a href="luxe.utils.html">utils</a><br> <span class="small_desc"> Access to the common utilities </span><br><a href="luxe.screen.html">screen</a><br> <span class="small_desc"> Access to the screen properties and functions</span><br><a href="luxe.renderer.html">renderer</a><br><span class="small_desc"> Access to the rendering system </span> </p>
+<p><a class="lift" href="luxe.core.html" name="core">core</a><br><span class="small_desc"> Access to the luxe core object </span><br><a class="lift" href="luxe.audio.html" name="audio">audio</a><br><span class="small_desc"> Access to the audio API </span><br><a class="lift" href="luxe.time.html" name="time">time</a><br><span class="small_desc"> Access to the time API </span><br><a class="lift" href="luxe.events.html" name="events">events</a><br> <span class="small_desc"> Access to the global events/messaging </span><br><a class="lift" href="luxe.draw.html" name="draw">draw</a><br> <span class="small_desc"> Access to the drawing API </span><br><a class="lift" href="luxe.input.html" name="input">input</a><br> <span class="small_desc"> Access to the input API </span><br><a class="lift" href="luxe.utils.html" name="utils">utils</a><br> <span class="small_desc"> Access to the common utilities </span><br><a class="lift" href="luxe.screen.html" name="screen">screen</a><br> <span class="small_desc"> Access to the screen properties and functions</span><br><a class="lift" href="luxe.renderer.html" name="renderer">renderer</a><br><span class="small_desc"> Access to the rendering system </span> </p>
 <p><a name="PublicMethods" ></a></p>
-<h3>Public methods</h3>
+<h2 id="public-methods">Public methods</h2>
+<hr>
 <p><a class="toplink" href="#">back to top</a></p>
-<p><a name="Core" href="#Core"></p>
-<h4>Core</h4>
+<p><a name="LuxeCore" href="#LuxeCore"></p>
+<h3 id="luxe-core-methods"><a href="api.html">Luxe</a> Core Methods</h3>
+<hr>
 <p></a></p>
-<p><a name="shutdown" href="#shutdown">shutdown</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Quit the game/engine </span>      </p>
+<p><a class="lift" name="shutdown" href="#shutdown">shutdown</a></p>
+<p><code><a href="api.html">Luxe</a>.shutdown() : Void</code>
+<span class="small_desc_flat"> Quit the game/engine </span>      </p>
 <p><a name="Window" href="#Window"></p>
-<h4>Window</h4>
+<h3 id="luxe-window-methods"><a href="api.html">Luxe</a> Window Methods</h3>
+<hr>
 <p></a></p>
 <p><span class="small_desc warn"> These functions are here temporarily, <br/>will soon be migrated to <a href="api.html">Luxe</a>.screen.cursor </span> </p>
-<p><a name="showCursor" href="#showCursor">showCursor</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">showCursor</span><span class="p">(</span> <span class="n">_show</span><span class="err">:Bool</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Show the cursor inside the window </span>      </p>
-<p><a name="lockCursor" href="#lockCursor">lockCursor</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">lockCursor</span><span class="p">(</span> <span class="n">_lock</span><span class="err">:Bool</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Lock the cursor inside the edges of the window </span>      </p>
-<p><a name="cursorShown" href="#cursorShown">cursorShown</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">cursorShown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Bool</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> If the cursor is visible </span>          </p>
-<p><a name="cursorLocked" href="#cursorLocked">cursorLocked</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">cursorLocked</span><span class="p">()</span> <span class="err">:</span> <span class="n">Bool</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> If the cursor is locked </span>          </p>
-<p><a name="setCursorPosition" href="#setCursorPosition">setCursorPosition</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">setCursorPosition</span><span class="p">(</span> <span class="n">_x</span><span class="err">:Int</span> <span class="p">,</span> <span class="n">_y</span><span class="err">:Int</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set the position in screen space of the cursor in the window (0,0 top left) </span>              </p>
+<p><a class="lift" name="showCursor" href="#showCursor">showCursor</a></p>
+<p><code><a href="api.html">Luxe</a>.showCursor( _show:Bool ) : Void</code>
+<span class="small_desc_flat"> Show the cursor inside the window </span>      </p>
+<p><a class="lift" name="lockCursor" href="#lockCursor">lockCursor</a></p>
+<p><code><a href="api.html">Luxe</a>.lockCursor( _lock:Bool ) : Void</code>
+<span class="small_desc_flat"> Lock the cursor inside the edges of the window </span>      </p>
+<p><a class="lift" name="cursorShown" href="#cursorShown">cursorShown</a></p>
+<p><code><a href="api.html">Luxe</a>.cursorShown() : Bool</code>
+<span class="small_desc_flat"> If the cursor is visible </span>          </p>
+<p><a class="lift" name="cursorLocked" href="#cursorLocked">cursorLocked</a></p>
+<p><code><a href="api.html">Luxe</a>.cursorLocked() : Bool</code>
+<span class="small_desc_flat"> If the cursor is locked </span>          </p>
+<p><a class="lift" name="setCursorPosition" href="#setCursorPosition">setCursorPosition</a></p>
+<p><code><a href="api.html">Luxe</a>.setCursorPosition( _x:Int , _y:Int ) : Void</code>
+<span class="small_desc_flat"> Set the position in screen space of the cursor in the window (0,0 top left) </span>              </p>
 <p><a name="Assets" href="#Assets"></p>
-<h4>Assets</h4>
+<h3 id="luxe-asset-methods"><a href="api.html">Luxe</a> Asset Methods</h3>
+<hr>
 <p></a></p>
-<p><a name="loadText" href="#loadText">loadText</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadText</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span> <span class="p">)</span> <span class="err">:</span> <span class="n">String</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Load a text based asset by id </span>      </p>
-<p><a name="loadTexture" href="#loadTexture">loadTexture</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:<a href="luxe.Texture.html">Texture</a>-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Texture.html">Texture</a></span>    
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Load a <a href="luxe.Texture.html">Texture</a> asset by id </span>      </p>
-<p><a name="loadShader" href="#loadShader">loadShader</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadShader</span><span class="p">(</span> <span class="err">?</span><span class="n">_pixel_shader_id</span><span class="err">:String=&quot;default&quot;</span><span class="p">,</span> <span class="err">?</span><span class="n">_vertex_shader_id</span> <span class="err">:</span> <span class="err">String=&quot;default&quot;</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Shader</span>    
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Load a Shader asset by id. If ‘default’ or ‘’ the default shader code will be used. For the pixel shader, ‘textured’ is the default textured shader, and default refers to untextured color shader.  </span>      </p>
+<p><a class="lift" name="loadText" href="#loadText">loadText</a></p>
+<p><code><a href="api.html">Luxe</a>.loadText( _id:String ) : String</code>
+<span class="small_desc_flat"> Load a text based asset by id </span>      </p>
+<p><a class="lift" name="loadTexture" href="#loadTexture">loadTexture</a></p>
+<p><code><a href="api.html">Luxe</a>.loadTexture( _id:String, ?_onloaded:<a href="luxe.Texture.html">Texture</a>-&gt;Void ) : <a href="luxe.Texture.html">Texture</a></code>
+<span class="small_desc_flat"> Load a <a href="luxe.Texture.html">Texture</a> asset by id </span>      </p>
+<p><a class="lift" name="loadShader" href="#loadShader">loadShader</a></p>
+<p><code><a href="api.html">Luxe</a>.loadShader( ?_pixel_shader_id:String=&quot;default&quot;, ?_vertex_shader_id : String=&quot;default&quot; ) : Shader</code>
+<span class="small_desc_flat"> Load a Shader asset by id. If ‘default’ or ‘’ the default shader code will be used. For the pixel shader, ‘textured’ is the default textured shader, and default refers to untextured color shader.  </span>      </p>
 <p><a name="DefaultRenderer" href="#DefaultRenderer"></p>
-<h4>Shortcuts for the default Renderer</h4>
+<h3 id="shortcuts-for-the-default-renderer">Shortcuts for the default Renderer</h3>
+<hr>
 <p></a></p>
-<p><a name="addGeometry" href="#addGeometry">addGeometry</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">addGeometry</span><span class="p">(</span> <span class="n">_geom</span><span class="err">:Geometry</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Add some geometry to the default renderer </span>      </p>
-<p><a name="removeGeometry" href="#removeGeometry">removeGeometry</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">removeGeometry</span><span class="p">(</span> <span class="n">_geom</span><span class="err">:Geometry</span> <span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Remove some geometry from the default renderer </span>      </p>
+<p><a class="lift" name="addGeometry" href="#addGeometry">addGeometry</a></p>
+<p><code><a href="api.html">Luxe</a>.addGeometry( _geom:Geometry ) : Void</code>
+<span class="small_desc_flat"> Add some geometry to the default renderer </span>      </p>
+<p><a class="lift" name="removeGeometry" href="#removeGeometry">removeGeometry</a></p>
+<p><code><a href="api.html">Luxe</a>.removeGeometry( _geom:Geometry ) : Void</code>
+<span class="small_desc_flat"> Remove some geometry from the default renderer </span>      </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
+<hr>
+<h3 id="-back-to-index-index-html-docs-"><a href="index.html#docs">Back to index</a></h3>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

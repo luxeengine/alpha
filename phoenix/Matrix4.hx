@@ -1,8 +1,8 @@
 package phoenix;
 
-import phoenix.utils.Maths;
 import phoenix.Vector;
 import phoenix.Quaternion;
+import luxe.utils.Maths;
 	
 	//Ported from Three.js https://github.com/mrdoob/three.js
 

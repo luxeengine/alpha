@@ -31,25 +31,51 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package luxe.utils;
+package luxe.utils.json;
 
-import luxe.utils.JSONDecoder;
+@:noCompletion class JSONParseError {
 
-@:noCompletion class JSONToken {
-	
-	/** type of the token */
-	public var type:JSONTokenType;
-	/** value of the token */
-	public var value:Dynamic;
+	/** The location in the string where the error occurred */
+	private var _location:Int;	
+	/** The string in which the parse error occurred */
+	private var _text:String;	
+	private var name:String;	
+	public var text(get, null):String;
+	public var location(get, null):Int;	
+	private var message:String;
 	
 	/**
-	 * Creates a new JSONToken with a specific token type and value.
+	 * Constructs a new JSONParseError.
 	 *
-	 * @param type The JSONTokenType of the token
-	 * @param value The value of the token
+	 * @param message The error message that occured during parsing
 	 */
-	public function new(?type:JSONTokenType,?value:Dynamic = null) {
-		this.type = type==null?tUNKNOWN:type;
-		this.value = value;
+	public function new(message:String = "",location:Int = 0,text:String = "") {
+		//super( message );
+		name = "JSONParseError";
+		_location = location;
+		_text = text;
+		this.message = message;
+	}
+	
+	/**
+	 * Provides read-only access to the location variable.
+	 *
+	 * @return The location in the string where the error occurred
+	 */
+	public function get_location():Int {
+		return _location;
+	}
+	
+	/**
+	 * Provides read-only access to the text variable.
+	 *
+	 * @return The string in which the error occurred
+	 */
+	public function get_text():String {
+		return _text;
+	}
+	
+	public function toString():String {
+		return name + ": " + message + " at position: " + _location + " near \"" + _text+"\"";
 	}
 }

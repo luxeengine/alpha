@@ -211,8 +211,8 @@ class Batcher {
         if(_src_mode == null) _src_mode = BlendMode.src_alpha;
         if(_dst_mode == null) _dst_mode = BlendMode.one_minus_src_alpha;
 
-        var _src = phoenix.utils.Geometry.gl_blend_mode_from_BlendMode(_src_mode);
-        var _dest = phoenix.utils.Geometry.gl_blend_mode_from_BlendMode(_dst_mode);
+        var _src = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_src_mode);
+        var _dest = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_dst_mode);
 
         GL.blendFunc(_src, _dest);
 
@@ -542,8 +542,8 @@ class Batcher {
 
             //Draw
         GL.drawArrays( 
-            phoenix.utils.Geometry.get_opengl_primitive_type(geom.primitive_type),              0, 
-            phoenix.utils.Geometry.get_elements_for_type(geom.primitive_type, static_verts) 
+            phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type),              0, 
+            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_verts) 
         );
 
             //Disable attributes
@@ -604,8 +604,8 @@ class Batcher {
 
             //Draw
         GL.drawArrays( 
-            phoenix.utils.Geometry.get_opengl_primitive_type(type),     0, 
-            phoenix.utils.Geometry.get_elements_for_type(type, verts) 
+            phoenix.utils.Rendering.get_opengl_primitive_type(type),     0, 
+            phoenix.utils.Rendering.get_elements_for_type(type, verts) 
         );
 
             //Disable attributes

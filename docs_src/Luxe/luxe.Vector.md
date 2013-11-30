@@ -9,200 +9,245 @@
 [Static Methods](#StaticMethods)   
 
 ###luxe.Vector
+---
 
-<a name="new" href="#new">new</a>
+<a class="lift" name="new" href="#new">new</a>
 
-	new Vector( ?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w : Float=0 ) : Vector   
-<span class="small_desc_flat"> Create a new Vector instance </span> `var pos = new Vector(10,10,10)`     
+`new Vector( ?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w : Float=0 ) : Vector`
+<span class="small_desc_flat"> Create a new Vector instance </span>    
 
+<a class="lift" name="set" href="#set">set</a>
 
-<a name="set" href="#set">set</a>
+`set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : Vector`
+<span class="small_desc_flat"> Set components of this vector, if any components is passed in as null (or not passed in) - it will be left as is. </span>  
 
-	set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : Vector
-<span class="small_desc_flat"> Set components of this vector, if any components is passed in as null - it will be left as is. </span> `vector.set( 10, 20 )`   
+<a class="lift" name="clone" href="#clone">clone</a>
 
-	
-
-<a name="clone" href="#clone">clone</a>
-
-	vector.clone() 
+`vector.clone()`
 <span class="small_desc_flat"> Create a copy of this vector </span>      
 
 
-<a name="dot" href="#dot">dot</a>
+<a class="lift" name="dot" href="#dot">dot</a>
 
-	vector.dot( other:Vector ) : Float 
+`vector.dot( other:Vector ) : Float`
 <span class="small_desc_flat"> Return the dot product between this and another vector </span>      
 
-<a name="cross" href="#cross">cross</a>
+<a class="lift" name="cross" href="#cross">cross</a>
 
-	vector.cross( other:Vector ) : Float 
+`vector.cross( other:Vector ) : Float`
 <span class="small_desc_flat"> Return the cross product between this and another vector </span>     
 
-<a name="normalize" href="#normalize">normalize</a>
+<a class="lift" name="normalize" href="#normalize">normalize</a>
 
-	vector.normalize( other:Vector ) : Float 
+`vector.normalize( other:Vector ) : Float`
 <span class="small_desc_flat"> Return the normalize product between this and another vector </span>      
 
-<a name="Properties" ></a>
 
+&nbsp;   
+
+
+<a class="lift" name="Properties" ></a>
 ###Properties
+---
 
 <a class="toplink" href="#top">back to top</a>
 
-<a name="length" href="#length">length</a>
+<a class="lift" name="x" href="#x">x</a>
 
-	vector.length : Float
+`vector.x : Float`
+<span class="small_desc_flat"> The x component of the vector </span>
+
+<a class="lift" name="y" href="#y">y</a>
+
+`vector.y : Float`
+<span class="small_desc_flat"> The y component of the vector </span> 
+
+<a class="lift" name="z" href="#z">z</a>
+
+`vector.z : Float`
+<span class="small_desc_flat"> The z component of the vector </span> 
+
+<a class="lift" name="w" href="#w">w</a>
+
+`vector.w : Float`
+<span class="small_desc_flat"> The w component of the vector </span> 
+
+<a class="lift" name="length" href="#length">length</a>
+
+`vector.length : Float`
 <span class="small_desc_flat"> Return the magnitude/length of this vector </span> 
 
-	vector.normalized : Vector
+<a class="lift" name="length" href="#normalized">normalized</a>
+
+`vector.normalized : Vector`
 <span class="small_desc_flat"> Return a normalized copy of this vector </span> 
 
-	vector.inverted : Vector
+<a class="lift" name="length" href="#inverted">inverted</a>
+
+`vector.inverted : Vector`
 <span class="small_desc_flat"> Return an copy of this vector </span> 
 
-	vector.listen_x : Float->Void
-	vector.listen_y : Float->Void
-	vector.listen_z : Float->Void
+<a class="lift" name="length" href="#listeners">listeners</a>
+
+`vector.listen_x : Float->Void`   
+`vector.listen_y : Float->Void`   
+`vector.listen_z : Float->Void`   
 <span class="small_desc_flat"> Listeners for each component, when a sub component changes, this optional function will be called for you. </span> 
 
-<a name="Transforms" ></a>
 
+&nbsp;   
+
+
+<a class="lift" name="Transforms" ></a>
 ###Transforms
+---
 
 <a class="toplink" href="#top">back to top</a>
 
-<a name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a>
+<a class="lift" name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a>
 
-	vector.setEulerFromQuaternion( q:Quaternion ) : Vector
+`vector.setEulerFromQuaternion( q:Quaternion ) : Vector`
 <span class="small_desc_flat"> Set this vector from a quaternion value </span> 
 
-<a name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a>
+<a class="lift" name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a>
 
-	vector.setEulerFromRotationMatrix( _m:Matrix4 ) : Vector
+`vector.setEulerFromRotationMatrix( _m:Matrix4 ) : Vector`
 <span class="small_desc_flat"> Set this vector from a quaternion value </span>      
 
-<a name="applyMatrix4" href="#applyMatrix4">applyMatrix4</a>
+<a class="lift" name="applyMatrix4" href="#applyMatrix4">applyMatrix4</a>
 
-	vector.applyMatrix4( _m:Matrix4 ) : Vector
+`vector.applyMatrix4( _m:Matrix4 ) : Vector`
 <span class="small_desc_flat"> Apply a matrix to this vector </span>      
 
-<a name="applyProjection" href="#applyProjection">applyProjection</a>
+<a class="lift" name="applyProjection" href="#applyProjection">applyProjection</a>
 
-	vector.applyProjection( _m:Matrix4 ) : Vector
+`vector.applyProjection( _m:Matrix4 ) : Vector`
 <span class="small_desc_flat"> Apply a projection matrix to this vector </span>      
 
-<a name="applyQuaternion" href="#applyQuaternion">applyQuaternion</a>
+<a class="lift" name="applyQuaternion" href="#applyQuaternion">applyQuaternion</a>
 
-	vector.applyQuaternion( _q:Quaternion ) : Vector
+`vector.applyQuaternion( _q:Quaternion ) : Vector`
 <span class="small_desc_flat"> Apply a quaternion value to this vector </span>      
 
-<a name="transformDirection" href="#transformDirection">transformDirection</a>
+<a class="lift" name="transformDirection" href="#transformDirection">transformDirection</a>
 
-	vector.transformDirection( _m:Matrix4 ) : Vector
+`vector.transformDirection( _m:Matrix4 ) : Vector`
 <span class="small_desc_flat"> Apply a direction matrix to this vector </span>      
 
-<a name="Operations" ></a>
+&nbsp;   
 
+<a class="lift" name="Operations" ></a>
 ###Operations
+---
 
 <a class="toplink" href="#top">back to top</a>
 
-<a name="add" href="#add">add</a>
+<a class="lift" name="add" href="#add">add</a>
 
-	vector.add( other:Vector ) : Vector 
+`vector.add( other:Vector ) : Vector`
 <span class="small_desc_flat"> Add another vector to this vector (changes this vector) </span>      
 
-<a name="subtract" href="#subtract">subtract</a>
+<a class="lift" name="subtract" href="#subtract">subtract</a>
 
-	vector.subtract( other:Vector ) : Vector 
+`vector.subtract( other:Vector ) : Vector`
 <span class="small_desc_flat"> Subtract another vector from this vector (changes this vector) </span>      
 
 
-<a name="multiply" href="#multiply">multiply</a>
+<a class="lift" name="multiply" href="#multiply">multiply</a>
 
-	vector.multiply( other:Vector ) : Vector 
+`vector.multiply( other:Vector ) : Vector`
 <span class="small_desc_flat"> Multiply another vector with this vector (changes this vector) </span>      
 
-<a name="divide" href="#divide">divide</a>
+<a class="lift" name="divide" href="#divide">divide</a>
 
-	vector.divide( other:Vector ) : Vector 
+`vector.divide( other:Vector ) : Vector`
 <span class="small_desc_flat"> Divide this vector by another vector (changes this vector) </span>      
 
 
-<a name="addScalar" href="#addScalar">addScalar</a>
+<a class="lift" name="addScalar" href="#addScalar">addScalar</a>
 
-	vector.addScalar( scalar:Float ) : Vector 
+`vector.addScalar( scalar:Float ) : Vector`
 <span class="small_desc_flat"> Add a scalar value (number) with this vector (changes this vector) </span>  
 
 
-<a name="subtractScalar" href="#subtractScalar">subtractScalar</a>
+<a class="lift" name="subtractScalar" href="#subtractScalar">subtractScalar</a>
 
-	vector.subtractScalar( scalar:Float ) : Vector 
+`vector.subtractScalar( scalar:Float ) : Vector`
 <span class="small_desc_flat"> Subtract a scalar value (number) with this vector (changes this vector) </span>      
 
 
-<a name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a>
+<a class="lift" name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a>
 
-	vector.multiplyScalar( scalar:Float ) : Vector 
+`vector.multiplyScalar( scalar:Float ) : Vector`
 <span class="small_desc_flat"> Multiply a scalar value (number) with this vector (changes this vector) </span>      
 
 
-<a name="divideScalar" href="#divideScalar">divideScalar</a>
+<a class="lift" name="divideScalar" href="#divideScalar">divideScalar</a>
 
-	vector.divideScalar( scalar:Float ) : Vector 
+`vector.divideScalar( scalar:Float ) : Vector`
 <span class="small_desc_flat"> Divide this vector by a scalar value (number) (changes this vector) </span>      
 
-<a name="StaticMethods" ></a>
 
+&nbsp;   
+
+
+<a class="lift" name="StaticMethods" ></a>
 ###Static Methods
+---
 
 <a class="toplink" href="#">back to top</a>
 
-<a name="Add" href="#Add">Add</a>
+<a class="lift" name="Add" href="#Add">Add</a>
 
-	luxe.Vector.Add( a:Vector, b:Vector ) : Vector 
+`luxe.Vector.Add( a:Vector, b:Vector ) : Vector`
 <span class="small_desc_flat"> Add `a` and `b` together, returning a new vector </span>      
 
-<a name="AddScale" href="#AddScalar">AddScalar</a>
+<a class="lift" name="AddScale" href="#AddScalar">AddScalar</a>
 
-	luxe.Vector.AddScalar( a:Vector, b:Float ) : Vector 
+`luxe.Vector.AddScalar( a:Vector, b:Float ) : Vector`
 <span class="small_desc_flat"> Add `a` and `b` together, returning a new vector </span>      
 
-<a name="Subtract" href="#Subtract">Subtract</a>
+<a class="lift" name="Subtract" href="#Subtract">Subtract</a>
 
-	luxe.Vector.Subtract( a:Vector, b:Vector ) : Vector 
+`luxe.Vector.Subtract( a:Vector, b:Vector ) : Vector`
 <span class="small_desc_flat"> Subtract `b` from `a` vector , returning a new vector </span>  
 
-<a name="SubtractScalar" href="#SubtractScalar">SubtractScalar</a>
+<a class="lift" name="SubtractScalar" href="#SubtractScalar">SubtractScalar</a>
 
-	luxe.Vector.SubtractScalar( a:Vector, b:Float ) : Vector 
+`luxe.Vector.SubtractScalar( a:Vector, b:Float ) : Vector`
 <span class="small_desc_flat"> Subtract `b` from `a` vector , returning a new vector </span>      
 
-<a name="Multiply" href="#Multiply">Multiply</a>
+<a class="lift" name="Multiply" href="#Multiply">Multiply</a>
 
-	luxe.Vector.Multiply( a:Vector, b:Float ) : Vector 
+`luxe.Vector.Multiply( a:Vector, b:Float ) : Vector`
 <span class="small_desc_flat"> Multiply `a` by `b`, returning a new vector </span>      
 
-<a name="MultiplyVector" href="#MultiplyVector">MultiplyVector</a>
+<a class="lift" name="MultiplyVector" href="#MultiplyVector">MultiplyVector</a>
 
-	luxe.Vector.MultiplyVector( a:Vector, b:Vector ) : Vector 
+`luxe.Vector.MultiplyVector( a:Vector, b:Vector ) : Vector`
 <span class="small_desc_flat"> Multiply `a` by `b`, returning a new vector </span>      
 
-<a name="Divide" href="#Divide">Divide</a>
+<a class="lift" name="Divide" href="#Divide">Divide</a>
 
-	luxe.Vector.Divide( a:Vector, b:Float ) : Vector 
+`luxe.Vector.Divide( a:Vector, b:Float ) : Vector`
 <span class="small_desc_flat"> Divide `a` by `b`, returning a new vector </span>      
 
-<a name="DivideVector" href="#DivideVector">DivideVector</a>
+<a class="lift" name="DivideVector" href="#DivideVector">DivideVector</a>
 
-	luxe.Vector.DivideVector( a:Vector, b:Vector ) : Vector 
+`luxe.Vector.DivideVector( a:Vector, b:Vector ) : Vector`
 <span class="small_desc_flat"> Divide `a` by `b`, returning a new vector </span>      
 
-<a name="Cross" href="#Cross">Cross</a>
+<a class="lift" name="Cross" href="#Cross">Cross</a>
 
-	luxe.Vector.Cross( a:Vector, b:Vector ) : Vector 
+`luxe.Vector.Cross( a:Vector, b:Vector ) : Vector`
 <span class="small_desc_flat"> Cross product between `a` and `b`</span>      
 
+&nbsp;   
 
+---
+###[Back to types](types.html)
+
+
+&nbsp;   
+&nbsp;   
 

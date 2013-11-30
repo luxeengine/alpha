@@ -4,7 +4,7 @@ import luxe.Input;
 import luxe.Sprite;
 import luxe.Color;
 
-import phoenix.utils.Maths;
+import luxe.utils.Maths;
 
 class Main extends luxe.Game {
 

@@ -24,7 +24,7 @@ class CircleGeometry extends Geometry {
         }
 
             //Apply the new options rect
-		set( new Circle(options.x, options.y, options.r), options.steps, phoenix.utils.Maths.degToRad(options.end_angle) );
+		set( new Circle(options.x, options.y, options.r), options.steps, luxe.utils.Maths.degToRad(options.end_angle) );
 
         if(options.enabled != null) enabled = options.enabled;
 

@@ -21,20 +21,6 @@ class Utils {
     	return UUID.get();
     }
 
-    public function clamp(value:Float, min:Float, max:Float) {
-        return Math.min( Math.max(min, value), max);
-    }
-
-    public function nearest_power_of_two(_value:Int) {
-        _value--;
-        _value |= _value >> 1;
-        _value |= _value >> 2;
-        _value |= _value >> 4;
-        _value |= _value >> 8;
-        _value |= _value >> 16;
-        _value++;
-        return _value;
-    }
     
     public function bytes_to_string( bytes:Int ) : String {
         var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );

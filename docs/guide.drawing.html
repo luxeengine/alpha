@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,16 +40,65 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.html#drawing">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-drawing-"><a href="guide.html#drawing">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<h2 id="drawing-shapes-and-geometry-in-luxe">Drawing shapes and geometry in luxe</h2>
 <hr>
-<h2>Drawing shapes and geometry in luxe</h2>
+<p><a href="api.html">Luxe</a> supports drawing a few shapes by default, each with some very similar options available. We can start by defining which functions are available, these functions are accessed via the <a href="api.html">Luxe</a> api under <code><a href="api.html">Luxe</a>.draw</code>.</p>
+<ul>
+<li>line    </li>
+<li>rectangle</li>
+<li>box</li>
+<li>ring</li>
+<li>circle</li>
+<li>arc</li>
+<li>pie</li>
+<li>text</li>
+</ul>
+<p>You should notice a pattern here - a rectangle is an outline, and a box is filled in. A ring is an outline, a circle is filled in. An arc is an outline, a pie is filled in. </p>
+<h2 id="common-options-for-drawing-functions">Common options for drawing functions</h2>
 <hr>
-<p>todo </p>
+<p>Each drawing function takes a single <code>options</code> parameter but there are a couple of shared options:</p>
+<ul>
+<li>color <code><a href="luxe.Color.html">Color</a></code></li>
+<li>depth <code>Float</code></li>
+<li>group <code>Int</code></li>
+<li>immediate <code>Bool</code></li>
+<li>batcher <code>Batcher</code></li>
+<li>pos <code><a href="luxe.Vector.html">Vector</a></code></li>
+</ul>
+<h3 id="unique-options">Unique options</h3>
+<hr>
+<p>Obivously not all functions share all properties, here is the unique properties that are available</p>
+<h4 id="text">text</h4>
+<ul>
+<li>text <code>String</code> The text to draw</li>
+<li>font <code>BitmapFont</code> The font to use when drawing</li>
+</ul>
+<h4 id="line">line</h4>
+<ul>
+<li>p0 <code><a href="luxe.Vector.html">Vector</a></code> The first point on the line</li>
+<li>p1 <code><a href="luxe.Vector.html">Vector</a></code> The second point on the line</li>
+</ul>
+<h4 id="circle-ring">circle / ring</h4>
+<ul>
+<li>r <code>Float</code> The radius of the circle</li>
+</ul>
+<h4 id="arc-pie">arc / pie</h4>
+<ul>
+<li>r <code>Float</code> The radius of the circle</li>
+<li>end_angle <code>Float</code> The ending angle of the arc</li>
+</ul>
+<hr>
+<h3 id="live-demo">Live demo</h3>
+<hr>
+<div data-content="samples/test_draw/index.html" class="sample"> <p>Click to run example</p> </div>
+
 <hr>
 <p>&nbsp;   </p>
-<h3><a href="guide.html#drawing">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<p>&nbsp;   </p>
+<h3 id="-back-to-feature-guide-guide-html-drawing-"><a href="guide.html#drawing">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
 
         </div>

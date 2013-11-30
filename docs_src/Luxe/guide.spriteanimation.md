@@ -8,7 +8,12 @@
 ## Bringing your sprites to life
 ---
 
-todo
+todo 
+
+###Live demo
+---
+
+<div data-content="samples/test_sprite_animation/index.html" class="sample"> <p>Click to run example</p> </div>
 
 ---
 

@@ -19,20 +19,19 @@ The feature guide is a piece by piece quick reference for specific features of t
 
 [ tween guide ](#tweening)    
 [ color guide ](#color)    
-[ camera guide ](#camera)    
-[ drawing guide ](#drawing)    
-[ audio guide ](#audio)    
-[ font guide ](#fonts)    
 [ sprite animation guide ](#spriteanimation)    
-[ component/entity guide ](#components)    
+[ drawing guide ](#drawing)    
 [ texture guide ](#textures)    
-[ depth guide ](#depthsorting)    
+[ particle guide ](#particles)    
 [ shader guide ](#shaders)    
+[ depth guide ](#depthsorting)    
 [ group guide ](#groups)    
+[ audio guide ](#audio)    
+[ camera guide ](#camera)    
+[ font guide ](#fonts)    
 
 ###[ Details guide ](#detailguide)   
 The detail guide is a look at the inner structure and design philosophy behind the engine and it's pieces, as well as elaborate on common questions.
-
 
 ###[ Advanced guide ](#advancedguide)   
 The advanced guide is for more experienced developers looking to fully understand and take advantage of squeezing more out of the engine.
@@ -91,10 +90,10 @@ By following this guide, you should be able to see at a glance and in detail the
 - The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
 [ ![color guide screenshot](images/guide.color.png) ](guide.color.html)
 
-<a name="camera"> </a>
-### [ camera guide ](guide.camera.html)
-- How to use the camera class to pan, zoom, shake or move around your world. 
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.camera.html)
+<a name="spriteanimation"> </a>
+### [ sprite animation guide ](guide.spriteanimation.html)
+- How to bring your sprites to life by importing sprite sheets or using separate images.
+[ ![sprite animation guide screenshot](images/guide.spriteanimation.png) ](guide.spriteanimation.html)
 
 <a name="drawing"> </a>
 ### [ drawing guide ](guide.drawing.html)
@@ -104,49 +103,49 @@ By following this guide, you should be able to see at a glance and in detail the
 ---
 <a class="toplink" href="#">back to top</a>
 
-<a name="audio"> </a>
-### [ audio guide ](guide.audio.html)
-- Playing sounds and music in your game
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.audio.html)
-
-<a name="fonts"> </a>
-### [ font guide ](guide.fonts.html)
-- Understanding how to use fonts in luxe.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.fonts.html)
+<a name="textures"> </a>
+### [ texture guide ](guide.textures.html)
+- Understanding the options and loading of textures and images, including filtering and onload handling on web.
+[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.textures.html)
 
 <a name="particles"> </a>
 ### [ particle guide ](guide.particles.html)
 - How to use the built in particle system for effects
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.particles.html)
 
----
-<a class="toplink" href="#">back to top</a>
-
-<a name="spriteanimation"> </a>
-### [ sprite animation guide ](guide.spriteanimation.html)
-- How to bring your sprites to life by importing sprite sheets or using separate images.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.spriteanimation.html)
-
-<a name="textures"> </a>
-### [ texture guide ](guide.textures.html)
-- Understanding the options and loading of textures and images, including filtering and onload handling on web.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.textures.html)
+<a name="shaders"> </a>
+### [ shader guide ](guide.shaders.html)
+- Understanding how to use shaders on your sprites or geometry.
+[ ![shader guide screenshot](images/guide.shaders.png) ](guide.shaders.html)
 
 <a name="depthsorting"> </a>
 ### [ depth guide ](guide.depth.html)
 - A closer look at how ordering and depth sorting works in luxe.
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.depth.html)
 
-<a name="shaders"> </a>
-### [ shader guide ](guide.shaders.html)
-- Understanding how to use shaders on your sprites or geometry.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.shaders.html)
+---
+<a class="toplink" href="#">back to top</a>
+
 
 <a name="groups"> </a>
 ### [ group guide ](guide.groups.html)
 - A breakdown of geometry groups, how they work, what they are, and how to use them for blending and post/pre render callbacks.
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.groups.html)
 
+<a name="audio"> </a>
+### [ audio guide ](guide.audio.html)
+- Playing sounds and music in your game
+[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.audio.html)
+
+<a name="camera"> </a>
+### [ camera guide ](guide.camera.html)
+- How to use the camera class to pan, zoom, shake or move around your world. 
+[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.camera.html)
+
+<a name="fonts"> </a>
+### [ font guide ](guide.fonts.html)
+- Understanding how to use fonts in luxe.
+[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.fonts.html)
 
 
 ----

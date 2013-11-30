@@ -60,12 +60,14 @@ class Main extends luxe.Game {
             }
         ); 
 
+
         e_bullets = new Pool<Sprite>(30,
     		function(index,total) {
     			var _s = new Sprite({
     				size : new Vector(finger_size*0.1, finger_size*0.1),
     				color : new Color(0.8,0.3,0.1,1),
     			});
+                
     			_s.visible = false;
     			var _p = _s.add( Projectile, 'projectile' );
     				_p.main = this;
@@ -162,8 +164,8 @@ class Main extends luxe.Game {
 
     public function spawn_enemy() {
 			//start spawning enemies
-		var delay = (3 + Math.round(( Math.random() * 4 ))) * 1000;
-		haxe.Timer.delay( spawn_enemy, delay );
+		var delay = (1 + Std.random(4)) ;		
+        Luxe.time.schedule( 1 , spawn_enemy );
 
 		var e = p_enemies.get();
     	if(!e.get('enemy').alive) {	
@@ -230,11 +232,11 @@ class Main extends luxe.Game {
     } //set_pos
 
     public function __x(d:Float) {    	
-		return ( ((-distance)*Math.sin( phoenix.utils.Maths.degToRad(-d) )) + center.x );
+		return ( ((-distance)*Math.sin( luxe.utils.Maths.degToRad(-d) )) + center.x );
     }
 
     public function __y(d:Float) {
-    	return ( ((-distance)*Math.cos( phoenix.utils.Maths.degToRad(-d) )) + center.y );
+    	return ( ((-distance)*Math.cos( luxe.utils.Maths.degToRad(-d) )) + center.y );
     }
 
     var dragging = false;
@@ -256,7 +258,7 @@ class Main extends luxe.Game {
     } //onmousedown
 
     public function wrap(degrees:Float, lower:Float, upper:Float ) {
-    	var _radians:Float = phoenix.utils.Maths.degToRad(degrees);
+    	var _radians:Float = luxe.utils.Maths.degToRad(degrees);
     	var _distance:Float = upper - lower;
       	var _times:Float = Math.floor((degrees - lower) / _distance);
       	return degrees - (_times * _distance);
@@ -306,12 +308,15 @@ class Main extends luxe.Game {
 	    			player.color.b = 1;
 	    			shoot_range = false;
 	    			shoot_power = 0;
+                    Luxe.timescale = 1;
 	    		} else {
     				player.color.r = 0.2;
 	    			player.color.g = 0.5;
 	    			player.color.b = 1;
 	    			shoot_power = p*1.5;    			
 	    			shoot_range = true;
+                    var slowp = 1.0 - (p/200);
+                    Luxe.timescale = slowp;
 	    		}
     		}
     		
@@ -448,7 +453,7 @@ class Main extends luxe.Game {
     			offset.pos.x = __x( _opp_off );
     			offset.pos.y = __y( _opp_off );
 
-            jumper.rotation.setFromEuler(new Vector(0,0,phoenix.utils.Maths.degToRad(rotation)));
+            jumper.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));
 
     	} //dragging && in_range
 

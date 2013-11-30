@@ -19,6 +19,8 @@ _This tutorial assumes you are familiar with the basics of getting started with 
 
 Assets are loaded via the Luxe api, which offers functions such as `Luxe.loadTexture` and `Luxe.loadText` to fetch assets from your asset folder, and get them in your game. If you need a more in depth look at the assets folder, read the [assets documentation](guide.assets.html).
 
+The texture in this example can be found in `/samples/guides/2_sprites/Assets/luxelogo.png`, or you can use your own, and put it inside of your Assets/ folder.
+
 ###Live demo
 ---
 <div data-content="./samples/2_sprites/index.html" class="sample"> <p>Click to run example</p> </div>

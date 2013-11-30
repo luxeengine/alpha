@@ -54,9 +54,9 @@ class Color {
 		return Math.min(r, Math.min(g, b));
 	}
 
-	public function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
+	public function tween( ?_time_in_seconds:Float = 0.5, ?_properties_to_tween:Dynamic = null, _override:Bool = true ) {
 			
-		if(_dest != null) {
+		if(_properties_to_tween != null) {
 
 			var _dest_r = r;
 			var _dest_g = g;
@@ -68,12 +68,12 @@ class Color {
 			var _change_b = false;		
 			var _change_a = false;		
 
-			if(Std.is(_dest, Color)) {
+			if(Std.is(_properties_to_tween, Color)) {
 				
-				_dest_r = _dest.r;
-				_dest_g = _dest.g;
-				_dest_b = _dest.b;
-				_dest_a = _dest.a;
+				_dest_r = _properties_to_tween.r;
+				_dest_g = _properties_to_tween.g;
+				_dest_b = _properties_to_tween.b;
+				_dest_a = _properties_to_tween.a;
 
 				_change_r = true;
 				_change_g = true;
@@ -82,10 +82,10 @@ class Color {
 
 			} else {
 
-				if(_dest.r != null) { _dest_r = _dest.r; _change_r = true; }
-				if(_dest.g != null) { _dest_g = _dest.g; _change_g = true; }
-				if(_dest.b != null) { _dest_b = _dest.b; _change_b = true; }
-				if(_dest.a != null) { _dest_a = _dest.a; _change_a = true; }
+				if(_properties_to_tween.r != null) { _dest_r = _properties_to_tween.r; _change_r = true; }
+				if(_properties_to_tween.g != null) { _dest_g = _properties_to_tween.g; _change_g = true; }
+				if(_properties_to_tween.b != null) { _dest_b = _properties_to_tween.b; _change_b = true; }
+				if(_properties_to_tween.a != null) { _dest_a = _properties_to_tween.a; _change_a = true; }
 
 			}
 
@@ -259,7 +259,7 @@ class ColorHSL extends Color {
 
 	} //new
 
-	public override function set( ?_h : Float, ?_s : Float, ?_l : Float, ?_a : Float ) : Color {
+	public override function set( ?_h : Float, ?_s : Float, ?_l : Float, ?_a : Float ) : ColorHSL {
 
 		var _seth = h;
 		var _sets = s;

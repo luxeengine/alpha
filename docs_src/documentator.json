@@ -20,19 +20,35 @@
     ],
 
     "replacements" : [
-        { "key":"Luxe",           "link":"api.html"             },
-        { "key":"Texture",        "link":"luxe.Texture.html"    },
+        { "key":"Luxe",           "link":"api.html"                         },
 
-        { "key":"Entity",         "link":"luxe.Entity.html"     },
-        { "key":"Sprite",         "link":"luxe.Sprite.html"     },
-        { "key":"Camera",         "link":"luxe.Camera.html"     },
-        { "key":"Text",           "link":"luxe.Text.html"       },
+        { "key":"Entity",         "link":"luxe.Entity.html"                 },
+        { "key":"Sprite",         "link":"luxe.Sprite.html"                 },
+        { "key":"Camera",         "link":"luxe.Camera.html"                 },
+        { "key":"Text",           "link":"luxe.Text.html"                   },
+        { "key":"Events",         "link":"luxe.Events.html"                 },
+        { "key":"Modes",          "link":"luxe.Modes.html"                  },
+        { "key":"Scene",          "link":"luxe.Scene.html"                  },
+        { "key":"Game",           "link":"luxe.Game.html"                   },
+        { "key":"Particles",      "link":"luxe.Particles.html"              },
+        { "key":"NineSlice",      "link":"luxe.NineSlice.html"              },
 
-        { "key":"Rectangle",      "link":"luxe.Rectangle.html"  },
-        { "key":"Color",          "link":"luxe.Color.html"      },
-        { "key":"ColorHSV",       "link":"luxe.Color.html"      },
-        { "key":"ColorHSL",       "link":"luxe.Color.html"      },
-        { "key":"Vector",         "link":"luxe.Vector.html"     }
+        { "key":"Geometry",       "link":"phoenix.Geometry.html"            },
+        { "key":"Batcher",        "link":"phoenix.Batcher.html"             },
+        { "key":"RenderTexture",  "link":"phoenix.RenderTexture.html"       },
+        { "key":"Texture",        "link":"phoenix.Texture.html"             },
+        { "key":"Resource",       "link":"phoenix.Resource.html"            },
+        { "key":"Shader",         "link":"phoenix.Shader.html"              },
+        { "key":"Ray",            "link":"phoenix.Ray.html"                 },
+        { "key":"Renderer",       "link":"phoenix.Renderer.html"            },
+
+        { "key":"Rectangle",      "link":"luxe.Rectangle.html"              },
+        { "key":"Quaternion",     "link":"luxe.Quaternion.html"             },
+        { "key":"Matrix4",        "link":"luxe.Matrix4.html"                },
+        { "key":"Color",          "link":"luxe.Color.html"                  },
+        { "key":"ColorHSV",       "link":"luxe.Color.html#ColorHSVClass"    },
+        { "key":"ColorHSL",       "link":"luxe.Color.html#ColorHSLClass"    },
+        { "key":"Vector",         "link":"luxe.Vector.html"                 }
     ]
 
 }

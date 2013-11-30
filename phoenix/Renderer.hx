@@ -273,8 +273,8 @@ class Renderer {
         
         image.onload = function(a) {
 
-            var width_pot = Luxe.utils.nearest_power_of_two(image.width);
-            var height_pot = Luxe.utils.nearest_power_of_two(image.height);
+            var width_pot = luxe.utils.Maths.nearest_power_of_two(image.width);
+            var height_pot = luxe.utils.Maths.nearest_power_of_two(image.height);
 
             var tmp_canvas = js.Browser.document.createCanvasElement();
             tmp_canvas.width = width_pot; tmp_canvas.height = height_pot;

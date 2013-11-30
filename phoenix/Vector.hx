@@ -1,7 +1,6 @@
 package phoenix;
 
-import phoenix.utils.Maths;
-
+import luxe.utils.Maths;
 
 class Vector {
 	

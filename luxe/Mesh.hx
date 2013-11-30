@@ -7,7 +7,7 @@ import luxe.Quaternion;
 import phoenix.geometry.Vertex;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
-import phoenix.utils.Maths;
+import luxe.utils.Maths;
 
 class Mesh {
 

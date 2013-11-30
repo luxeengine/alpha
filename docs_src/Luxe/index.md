@@ -46,14 +46,17 @@ You code once in haxe, and deploy to all available platforms.
 
 ----
 
+<a name="docs"></a>
+
 ##Documentation
 
-<!-- [View Full Index](all.html)     -->
+###[View API](api.html)   
+###[View All Types](types.html) 
 
-[View API](api.html)   
-[View Types](types.html)   
-[View luxe Class Index](luxe.Classes.html)   
-[View phoenix Class Index](phoenix.Classes.html)   
+---
+
+####[View full luxe Class Index](luxe.Classes.html)   
+####[View full phoenix Class Index](phoenix.Classes.html)   
 &nbsp;
 &nbsp;
 

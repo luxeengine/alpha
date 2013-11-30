@@ -65,7 +65,7 @@
     <span class="c1">//the second and third argument are saturation and value, </span>
     <span class="c1">//which we set to &quot;maximum&quot; right now.</span>
 
-<span class="kd">var</span> color <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">ColorHSV</a></span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="kd">var</span> color <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
     <span class="c1">//Now we want to animate to orange, just change the hue</span>
     <span class="c1">//over two seconds, to orange</span>
@@ -91,31 +91,31 @@
 <span class="kd">var</span> color <span class="p">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
 
     <span class="c1">//Defaults for h = 0, s = 0, v = 1, a = 1 (full white)</span>
-<span class="kd">var</span> colorhsv <span class="p">:</span> <span class="n"><a href="luxe.Color.html">ColorHSV</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">ColorHSV</a></span><span class="p">(</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+<span class="kd">var</span> colorhsv <span class="p">:</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">(</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
 
     <span class="c1">//Defaults for h = 0, s = 1, l = 1, a = 1 (full white)</span>
-<span class="kd">var</span> colorhsl <span class="p">:</span> <span class="n"><a href="luxe.Color.html">ColorHSL</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">ColorHSL</a></span><span class="p">(</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
+<span class="kd">var</span> colorhsl <span class="p">:</span> <span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span><span class="p">(</span> <span class="n">h</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">a</span> <span class="p">);</span>
 </pre></div>
 </code></pre>
 <p>This is for creating, but how about switching between? </p>
 <h2 id="changing-color-type">Changing color type</h2>
-<p>All types are extended from the <code><a href="luxe.Color.html">Color</a></code> class, so they automatically work where <code><a href="luxe.Color.html">Color</a></code> is expected. For example, a sprite color is typed as <code><a href="luxe.Color.html">Color</a></code> but a <code><a href="luxe.Color.html">ColorHSL</a></code> or <code><a href="luxe.Color.html">ColorHSV</a></code> can be given in place - <code>sprite.color = colorhsl;</code></p>
+<p>All types are extended from the <code><a href="luxe.Color.html">Color</a></code> class, so they automatically work where <code><a href="luxe.Color.html">Color</a></code> is expected. For example, a sprite color is typed as <code><a href="luxe.Color.html">Color</a></code> but a <code><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></code> or <code><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></code> can be given in place - <code>sprite.color = colorhsl;</code></p>
 <p><strong>This makes all types interchangeable automatically</strong>,<br>but the following functions are exposed as well.</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">// helpers on <a href="luxe.Color.html">Color</a></span>
-<span class="n">color</span><span class="p">.</span><span class="n">toColorHSL</span>        <span class="c1">//returns <a href="luxe.Color.html">ColorHSL</a></span>
-<span class="n">color</span><span class="p">.</span><span class="n">toColorHSV</span>        <span class="c1">//returns <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">color</span><span class="p">.</span><span class="n">toColorHSL</span>        <span class="c1">//returns <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span>
+<span class="n">color</span><span class="p">.</span><span class="n">toColorHSV</span>        <span class="c1">//returns <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span>
 <span class="n">color</span><span class="p">.</span><span class="n">fromColorHSL</span>      <span class="c1">//changes color</span>
 <span class="n">color</span><span class="p">.</span><span class="n">fromColorHSV</span>      <span class="c1">//changes color</span>
 
-    <span class="c1">//helpers on <a href="luxe.Color.html">ColorHSL</a></span>
+    <span class="c1">//helpers on <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span>
 <span class="n">colorhsl</span><span class="p">.</span><span class="n">toColor</span>        <span class="c1">//returns <a href="luxe.Color.html">Color</a></span>
-<span class="n">colorhsl</span><span class="p">.</span><span class="n">toColorHSV</span>     <span class="c1">//returns <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">colorhsl</span><span class="p">.</span><span class="n">toColorHSV</span>     <span class="c1">//returns <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span>
 <span class="n">colorhsl</span><span class="p">.</span><span class="n">fromColor</span>      <span class="c1">//changes colorhsl</span>
 <span class="n">colorhsl</span><span class="p">.</span><span class="n">fromColorHSV</span>   <span class="c1">//changes colorhsv</span>
 
-    <span class="c1">//helpers on <a href="luxe.Color.html">ColorHSV</a></span>
+    <span class="c1">//helpers on <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span>
 <span class="n">colorhsv</span><span class="p">.</span><span class="n">toColor</span>        <span class="c1">//returns <a href="luxe.Color.html">Color</a></span>
-<span class="n">colorhsv</span><span class="p">.</span><span class="n">toColorHSL</span>     <span class="c1">//returns <a href="luxe.Color.html">ColorHSV</a></span>
+<span class="n">colorhsv</span><span class="p">.</span><span class="n">toColorHSL</span>     <span class="c1">//returns <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span>
 <span class="n">colorhsv</span><span class="p">.</span><span class="n">fromColor</span>      <span class="c1">//changes colorhsv</span>
 <span class="n">colorhsv</span><span class="p">.</span><span class="n">fromColorHSL</span>   <span class="c1">//changes colorhsv</span>
 </pre></div>

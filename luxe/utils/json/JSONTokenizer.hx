@@ -31,9 +31,9 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-package luxe.utils;
+package luxe.utils.json;
 
-import luxe.utils.JSONDecoder;
+import luxe.utils.json.JSONDecoder;
 
 #if neko
 import neko.Utf8;

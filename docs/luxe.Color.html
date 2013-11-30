@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,28 +40,112 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="types.html">Back to types</a></h3>
-<h3>luxe.<a href="luxe.Color.html">Color</a></h3>
-<p><a name="new" href="#new">new</a></p>
-<pre><code><div class="highlight"><pre><span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="n">_r</span><span class="err">:Float=1</span> <span class="p">,</span> <span class="n">_g</span><span class="err">:Float=1</span><span class="p">,</span> <span class="n">_b</span><span class="err">:Float=1</span> <span class="p">,</span> <span class="n">_a</span><span class="err">:Float=1</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Create a new color instance </span> <code>var color = new <a href="luxe.Color.html">Color</a>()</code>     </p>
-<p><a name="set" href="#set">set</a></p>
-<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span> <span class="err">?</span><span class="n">_r</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_g</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_b</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span> <span class="err">:</span> <span class="err">Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set components of this color, if any components is passed in as null - it will be left as is. </span> <code>color.set( null, null, 0.5 )</code>   </p>
-<p><a name="clone" href="#clone">clone</a></p>
-<pre><code><div class="highlight"><pre><span class="n">color</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Create a copy of this color </span>      </p>
-<p><a name="rgb" href="#rgb">rgb</a></p>
-<pre><code><div class="highlight"><pre><span class="n">color</span><span class="p">.</span><span class="n">rgb</span><span class="p">(</span> <span class="n">_rgb</span><span class="err">:Int</span> <span class="err">=</span> <span class="err">0xFFFFFF</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Color.html">Color</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set the color using a hex based Int, like 0xf6007b </span> <code>var color = new <a href="luxe.Color.html">Color</a>(0,0,0,0.4).rgb(0xf6007b);</code> </p>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p><a href="#Properties">Properties</a><br><a href="#Extended">Extends from <a href="luxe.Color.html">Color</a></a>   </p>
+<h3 id="luxe-color">luxe.<a href="luxe.Color.html">Color</a></h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new <a href="luxe.Color.html">Color</a>( _r:Float=1 , _g:Float=1, _b:Float=1 , _a:Float=1 ) : <a href="luxe.Color.html">Color</a></code>
+<span class="small_desc_flat"> Create a new color instance </span></p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : <a href="luxe.Color.html">Color</a></code>
+<span class="small_desc_flat"> Set components of this color, if any components is passed in as null (or not passed in) - it will be left as is. </span> </p>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<p><code>color.clone()</code>
+<span class="small_desc_flat"> Create a copy of this color </span>      </p>
+<p><a class="lift" name="rgb" href="#rgb">rgb</a></p>
+<p><code>color.rgb( _rgb:Int = 0xFFFFFF ) : <a href="luxe.Color.html">Color</a></code>
+<span class="small_desc_flat"> Set the color using a hex based Int, like 0xf6007b </span></p>
+<p><a class="lift" name="tween" href="#tween">tween</a></p>
+<p><code>color.tween( ?_time_in_seconds:Float = 0.5, ?_properties_to_tween:Dynamic = null, _override:Bool = true )</code>
+<span class="small_desc_flat"> Tween properties of this color (r,g,b,a for example) from the current values to the ones specific in <code>properties_to_tween</code>, like <code>{ a:0 }</code> would fade to 0. </span></p>
+<p><a class="lift" name="toColorHSL" href="#toColorHSL">toColorHSL</a></p>
+<p><code>toColorHSL() : <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></code>
+<span class="small_desc_flat"> Return an HSL version of this color, as a <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a> instance </span></p>
+<p><a class="lift" name="toColorHSV" href="#toColorHSV">toColorHSV</a></p>
+<p><code>toColorHSV() : <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></code>
+<span class="small_desc_flat"> Return an HSV version of this color, as a <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a> instance </span></p>
+<p><a class="lift" name="fromColorHSL" href="#fromColorHSL">fromColorHSL</a></p>
+<p><code>fromColorHSL( _color_hsl:<a href="luxe.Color.html#ColorHSLClass">ColorHSL</a> )</code>
+<span class="small_desc_flat"> Set the RGB values from a HSL color instance </span></p>
+<p><a class="lift" name="fromColorHSV" href="#fromColorHSV">fromColorHSV</a></p>
+<p><code>fromColorHSV( _color_hsv:<a href="luxe.Color.html#ColorHSVClass">ColorHSV</a> )</code>
+<span class="small_desc_flat"> Set the RGB values from a HSV color instance </span></p>
+<p><a class="lift" name="maxRGB" href="#maxRGB">maxRGB</a></p>
+<p><code>color.maxRGB() : Float</code>
+<span class="small_desc_flat"> Get the maximum of the rgb values (useful for color calculations) </span></p>
+<p><a class="lift" name="minRGB" href="#minRGB">minRGB</a></p>
+<p><code>color.minRGB() : Float</code>
+<span class="small_desc_flat"> Get the minimum of the rgb values (useful for color calculations) </span></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="toplink" href="#top">back to top</a></p>
+<p><a class="lift" name="r" href="#r">r</a></p>
+<p><code>color.r : Float</code>
+<span class="small_desc_flat"> The red component of this color </span> </p>
+<p><a class="lift" name="g" href="#g">g</a></p>
+<p><code>color.g : Float</code>
+<span class="small_desc_flat"> The green component of this color </span> </p>
+<p><a class="lift" name="b" href="#b">b</a></p>
+<p><code>color.b : Float</code>
+<span class="small_desc_flat"> The blue component of this color </span> </p>
+<p><a class="lift" name="a" href="#a">a</a></p>
+<p><code>color.a : Float</code>
+<span class="small_desc_flat"> The alpha component of this color </span> </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extended" ></a></p>
+<h2 id="extends-from-color">Extends from color</h2>
+<hr>
+<p><a class="toplink" href="#top">back to top</a></p>
+<p>These classes inherit all of the functions and properties from <a href="luxe.Color.html">Color</a>, and add to it.   </p>
+<p><a name="ColorHSLClass"></a></p>
+<h3 id="luxe-colorhsl">luxe.<a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new( _h:Float = 0.0, _s:Float = 1.0, _l:Float = 1.0, _a:Float = 1.0 ) : <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></code>
+<span class="small_desc_flat"> Create a new color instance </span></p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set( ?_h : Float, ?_s : Float, ?_l : Float, ?_a : Float ) : <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></code>
+<span class="small_desc_flat"> Set components of this color, if any components is passed in as null (or not passed in) - it will be left as is. </span> </p>
+<p><a class="lift" name="ColorHSLProperties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="h" href="#colorhslh">h</a></p>
+<p><code>colorhsl.h : Float</code>
+<span class="small_desc_flat"> The red component of this color </span> </p>
+<p><a class="lift" name="s" href="#colorhsls">s</a></p>
+<p><code>colorhsl.s : Float</code>
+<span class="small_desc_flat"> The saturation component of this color </span> </p>
+<p><a class="lift" name="l" href="#colorhsll">l</a></p>
+<p><code>colorhsl.l : Float</code>
+<span class="small_desc_flat"> The lightness component of this color </span> </p>
+<p><a class="lift" name="ColorHSVClass"></a></p>
+<h3 id="luxe-colorhsv">luxe.<a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new( _h:Float = 0.0, _s:Float = 0.0, _v:Float = 1.0, _a:Float = 1.0 ) : <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></code>
+<span class="small_desc_flat"> Create a new color instance </span></p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set( ?_h : Float, ?_s : Float, ?_v : Float, ?_a : Float ) : <a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></code>
+<span class="small_desc_flat"> Set components of this color, if any components is passed in as null (or not passed in) - it will be left as is. </span> </p>
+<p><a class="lift" name="ColorHSVProperties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="h" href="#colorhsvh">h</a></p>
+<p><code>colorhsv.h : Float</code>
+<span class="small_desc_flat"> The red component of this color </span> </p>
+<p><a class="lift" name="s" href="#colorhsvs">s</a></p>
+<p><code>colorhsv.s : Float</code>
+<span class="small_desc_flat"> The saturation component of this color </span> </p>
+<p><a class="lift" name="v" href="#colorhsvv">v</a></p>
+<p><code>colorhsv.v : Float</code>
+<span class="small_desc_flat"> The value component of this color </span> </p>
+<p>&nbsp;   </p>
+<hr>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

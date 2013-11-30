@@ -28,14 +28,19 @@ class Main extends luxe.Game {
     	var distort_map = Luxe.loadTexture('assets/distort.png');
     		
 
+        var _size = Luxe.screen.h * 0.8;
+        if(_size > 512) _size = 512;
+
     	distort_sprite = new Sprite({
     		texture : luxe_tex,
-    		pos : new Vector(150,320)
-    	});
+    		pos : new Vector(_size/2,_size),
+            size : new Vector(_size,_size)
+    	});        
 
     	hue_sprite = new Sprite({
     		texture : luxe_tex,
-    		pos : new Vector(430,320)
+    		pos : new Vector(_size+(_size*0.05),_size),
+            size : new Vector(_size,_size)
     	});
 
     	level_sprite = new Sprite({

@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,16 +40,32 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h2><a href="api.html">Luxe</a> Types</h2>
-<h4>Core Types</h4>
-<p><a href="luxe.Color.html">Color</a><br><a href="luxe.Rectangle.html">Rectangle</a><br><a href="luxe.Vector.html">Vector</a>   </p>
-<h4>Types</h4>
-<p><a href="luxe.Camera.html">Camera</a><br><a href="luxe.Sprite.html">Sprite</a><br><a href="luxe.Text.html">Text</a>   </p>
-<h4>Interfaces</h4>
-<p><a href="luxe.core.html">core</a><br><span class="small_desc"> Access to the luxe core object </span><br><a href="luxe.audio.html">audio</a><br><span class="small_desc"> Access to the audio API </span><br><a href="luxe.time.html">time</a><br><span class="small_desc"> Access to the time API </span><br><a href="luxe.events.html">events</a><br> <span class="small_desc"> Access to the global events/messaging </span><br><a href="luxe.draw.html">draw</a><br> <span class="small_desc"> Access to the drawing API </span><br><a href="luxe.input.html">input</a><br> <span class="small_desc"> Access to the input API </span><br><a href="luxe.utils.html">utils</a><br> <span class="small_desc"> Access to the common utilities </span><br><a href="luxe.screen.html">screen</a><br> <span class="small_desc"> Access to the screen properties and functions</span><br><a href="luxe.renderer.html">renderer</a><br><span class="small_desc"> Access to the rendering system </span> </p>
+<h3 id="-back-to-index-index-html-docs-"><a href="index.html#docs">Back to index</a></h3>
+<h2 id="luxe-types"><a href="api.html">Luxe</a> Types</h2>
+<hr>
+<p>These are types that are built into luxe and phoenix.</p>
+<p>&nbsp;   </p>
+<h3 id="core-types">Core Types</h3>
+<hr>
+<p><a href="luxe.Color.html">Color</a><br><a href="luxe.Rectangle.html">Rectangle</a><br><a href="luxe.Vector.html">Vector</a><br><a href="luxe.Quaternion.html">Quaternion</a><br><a href="luxe.Matrix4.html">Matrix4</a>   </p>
+<h3 id="luxe-types">luxe Types</h3>
+<hr>
+<p><a href="luxe.Camera.html">Camera</a><br><a href="luxe.Sprite.html">Sprite</a><br><a href="luxe.Text.html">Text</a><br><a href="luxe.Events.html">Events</a><br><a href="luxe.NineSlice.html">NineSlice</a><br><a href="luxe.Particles.html">Particles</a><br><a href="luxe.Entity.html">Entity</a><br><a href="luxe.Scene.html">Scene</a><br><a href="luxe.Modes.html">Modes</a><br><a href="luxe.Game.html">Game</a>   </p>
+<h3 id="luxe-components">luxe Components</h3>
+<hr>
+<p><a href="components.html">View the list of built in components</a>   </p>
+<h3 id="luxe-utils">luxe Utils</h3>
+<hr>
+<p>general utils<br>maths utils<br>geometry utils   </p>
+<h3 id="phoenix-types">phoenix Types</h3>
+<hr>
+<p><a href="phoenix.Geometry.html">Geometry</a><br><a href="phoenix.Texture.html">Texture</a><br><a href="phoenix.RenderTexture.html">RenderTexture</a><br><a href="phoenix.Resource.html">Resource</a><br><a href="phoenix.Batcher.html">Batcher</a><br><a href="phoenix.Shader.html">Shader</a><br><a href="phoenix.Renderer.html">Renderer</a><br><a href="luxe.Camera.html">Camera</a><br><a href="phoenix.Ray.html">Ray</a>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
+<hr>
+<h3 id="-back-to-index-index-html-docs-"><a href="index.html#docs">Back to index</a></h3>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

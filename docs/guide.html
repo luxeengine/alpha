@@ -48,7 +48,7 @@
 <p><a href="#gettingstarted"> Getting Started with luxe </a><br><a href="#basicdrawing"> Drawing things on screen </a><br><a href="#interactivity"> Making things interactive </a><br><a href="#basiccomponents"> Using components to create games </a>    </p>
 <h3 id="-feature-guide-featureguide-"><a href="#featureguide"> Feature guide </a></h3>
 <p>The feature guide is a piece by piece quick reference for specific features of the engine, designed to explain and teach what the engine can do.</p>
-<p><a href="#tweening"> tween guide </a><br><a href="#color"> color guide </a><br><a href="#camera"> camera guide </a><br><a href="#drawing"> drawing guide </a><br><a href="#audio"> audio guide </a><br><a href="#fonts"> font guide </a><br><a href="#spriteanimation"> sprite animation guide </a><br><a href="#components"> component/entity guide </a><br><a href="#textures"> texture guide </a><br><a href="#depthsorting"> depth guide </a><br><a href="#shaders"> shader guide </a><br><a href="#groups"> group guide </a>    </p>
+<p><a href="#tweening"> tween guide </a><br><a href="#color"> color guide </a><br><a href="#spriteanimation"> sprite animation guide </a><br><a href="#drawing"> drawing guide </a><br><a href="#textures"> texture guide </a><br><a href="#particles"> particle guide </a><br><a href="#shaders"> shader guide </a><br><a href="#depthsorting"> depth guide </a><br><a href="#groups"> group guide </a><br><a href="#audio"> audio guide </a><br><a href="#camera"> camera guide </a><br><a href="#fonts"> font guide </a>    </p>
 <h3 id="-details-guide-detailguide-"><a href="#detailguide"> Details guide </a></h3>
 <p>The detail guide is a look at the inner structure and design philosophy behind the engine and it’s pieces, as well as elaborate on common questions.</p>
 <h3 id="-advanced-guide-advancedguide-"><a href="#advancedguide"> Advanced guide </a></h3>
@@ -102,11 +102,11 @@
 <li>The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
 <a href="guide.color.html"> <img src="images/guide.color.png" alt="color guide screenshot"> </a></li>
 </ul>
-<p><a name="camera"> </a></p>
-<h3 id="-camera-guide-guide-camera-html-"><a href="guide.camera.html"> camera guide </a></h3>
+<p><a name="spriteanimation"> </a></p>
+<h3 id="-sprite-animation-guide-guide-spriteanimation-html-"><a href="guide.spriteanimation.html"> sprite animation guide </a></h3>
 <ul>
-<li>How to use the camera class to pan, zoom, shake or move around your world. 
-<a href="guide.camera.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
+<li>How to bring your sprites to life by importing sprite sheets or using separate images.
+<a href="guide.spriteanimation.html"> <img src="images/guide.spriteanimation.png" alt="sprite animation guide screenshot"> </a></li>
 </ul>
 <p><a name="drawing"> </a></p>
 <h3 id="-drawing-guide-guide-drawing-html-"><a href="guide.drawing.html"> drawing guide </a></h3>
@@ -116,17 +116,11 @@
 </ul>
 <hr>
 <p><a class="toplink" href="#">back to top</a></p>
-<p><a name="audio"> </a></p>
-<h3 id="-audio-guide-guide-audio-html-"><a href="guide.audio.html"> audio guide </a></h3>
+<p><a name="textures"> </a></p>
+<h3 id="-texture-guide-guide-textures-html-"><a href="guide.textures.html"> texture guide </a></h3>
 <ul>
-<li>Playing sounds and music in your game
-<a href="guide.audio.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
-</ul>
-<p><a name="fonts"> </a></p>
-<h3 id="-font-guide-guide-fonts-html-"><a href="guide.fonts.html"> font guide </a></h3>
-<ul>
-<li>Understanding how to use fonts in luxe.
-<a href="guide.fonts.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
+<li>Understanding the options and loading of textures and images, including filtering and onload handling on web.
+<a href="guide.textures.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
 </ul>
 <p><a name="particles"> </a></p>
 <h3 id="-particle-guide-guide-particles-html-"><a href="guide.particles.html"> particle guide </a></h3>
@@ -134,19 +128,11 @@
 <li>How to use the built in particle system for effects
 <a href="guide.particles.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
 </ul>
-<hr>
-<p><a class="toplink" href="#">back to top</a></p>
-<p><a name="spriteanimation"> </a></p>
-<h3 id="-sprite-animation-guide-guide-spriteanimation-html-"><a href="guide.spriteanimation.html"> sprite animation guide </a></h3>
+<p><a name="shaders"> </a></p>
+<h3 id="-shader-guide-guide-shaders-html-"><a href="guide.shaders.html"> shader guide </a></h3>
 <ul>
-<li>How to bring your sprites to life by importing sprite sheets or using separate images.
-<a href="guide.spriteanimation.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
-</ul>
-<p><a name="textures"> </a></p>
-<h3 id="-texture-guide-guide-textures-html-"><a href="guide.textures.html"> texture guide </a></h3>
-<ul>
-<li>Understanding the options and loading of textures and images, including filtering and onload handling on web.
-<a href="guide.textures.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
+<li>Understanding how to use shaders on your sprites or geometry.
+<a href="guide.shaders.html"> <img src="images/guide.shaders.png" alt="shader guide screenshot"> </a></li>
 </ul>
 <p><a name="depthsorting"> </a></p>
 <h3 id="-depth-guide-guide-depth-html-"><a href="guide.depth.html"> depth guide </a></h3>
@@ -154,17 +140,31 @@
 <li>A closer look at how ordering and depth sorting works in luxe.
 <a href="guide.depth.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
 </ul>
-<p><a name="shaders"> </a></p>
-<h3 id="-shader-guide-guide-shaders-html-"><a href="guide.shaders.html"> shader guide </a></h3>
-<ul>
-<li>Understanding how to use shaders on your sprites or geometry.
-<a href="guide.shaders.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
-</ul>
+<hr>
+<p><a class="toplink" href="#">back to top</a></p>
 <p><a name="groups"> </a></p>
 <h3 id="-group-guide-guide-groups-html-"><a href="guide.groups.html"> group guide </a></h3>
 <ul>
 <li>A breakdown of geometry groups, how they work, what they are, and how to use them for blending and post/pre render callbacks.
 <a href="guide.groups.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
+</ul>
+<p><a name="audio"> </a></p>
+<h3 id="-audio-guide-guide-audio-html-"><a href="guide.audio.html"> audio guide </a></h3>
+<ul>
+<li>Playing sounds and music in your game
+<a href="guide.audio.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
+</ul>
+<p><a name="camera"> </a></p>
+<h3 id="-camera-guide-guide-camera-html-"><a href="guide.camera.html"> camera guide </a></h3>
+<ul>
+<li>How to use the camera class to pan, zoom, shake or move around your world. 
+<a href="guide.camera.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
+</ul>
+<p><a name="fonts"> </a></p>
+<h3 id="-font-guide-guide-fonts-html-"><a href="guide.fonts.html"> font guide </a></h3>
+<ul>
+<li>Understanding how to use fonts in luxe.
+<a href="guide.fonts.html"> <img src="images/guide.sprites.png" alt="sprites guide screenshot"> </a></li>
 </ul>
 <hr>
 <p><a class="toplink" href="#">back to top</a>

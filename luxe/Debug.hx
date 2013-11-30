@@ -10,7 +10,7 @@ import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
-import phoenix.utils.Maths;
+import luxe.utils.Maths;
 
 @:hide class Debug {
 

@@ -3,10 +3,10 @@ package luxe;
 import luxe.Vector;
 import luxe.Rectangle;
 import luxe.Scene;
+import luxe.utils.Maths;
 
 import phoenix.Quaternion;
 import phoenix.Shader;
-import phoenix.utils.Maths;
 import phoenix.geometry.QuadGeometry;
 import phoenix.Resource;
 import phoenix.Texture;

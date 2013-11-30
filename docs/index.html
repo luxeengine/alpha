@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -33,7 +42,7 @@
             <p><a href="./index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
 <p>A cross platform haxe powered game development engine.</p>
 <hr>
-<h2>About</h2>
+<h2 id="about">About</h2>
 <p><a href="api.html">Luxe</a> is a cross platform, rapid development, haxe based OpenGL game engine<br>for deploying games on Mac, Windows, Linux, Android, iOS and WebGL/HTML5.</p>
 <p><img title="Mac" alt="Mac" src="images/mac64.png" class="platform-icon-64"/>
 <img title="Linux" alt="Linux" src="images/linux64.png" class="platform-icon-64"/>
@@ -45,11 +54,11 @@
 <a href="api.html">Luxe</a> uses common patterns for working with the engine, such as Components/<a href="luxe.Entity.html">Entity</a> systems, State Machines and Event systems. </p>
 <p>You code once in haxe, and deploy to all available platforms.</p>
 <hr>
-<h2>Guides</h2>
-<h3><a href="setup.html">view the setup guide</a></h3>
-<h3><a href="guide.html">view the luxe guide</a></h3>
+<h2 id="guides">Guides</h2>
+<h3 id="-view-the-setup-guide-setup-html-"><a href="setup.html">view the setup guide</a></h3>
+<h3 id="-view-the-luxe-guide-guide-html-"><a href="guide.html">view the luxe guide</a></h3>
 <hr>
-<h2>Quick look</h2>
+<h2 id="quick-look">Quick look</h2>
 <p>&nbsp; <a href="quick.html">go here for more</a>   </p>
 <p><strong>A simple sprite example</strong></p>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
@@ -65,10 +74,14 @@
 </pre></div>
 </code></pre>
 <hr>
-<h2>Documentation</h2>
-<!-- [View Full Index](all.html)     -->
-
-<p><a href="api.html">View API</a><br><a href="types.html">View Types</a><br><a href="luxe.Classes.html">View luxe Class Index</a><br><a href="phoenix.Classes.html">View phoenix Class Index</a><br>&nbsp;
+<p><a name="docs"></a></p>
+<h2 id="documentation">Documentation</h2>
+<h3 id="-view-api-api-html-"><a href="api.html">View API</a></h3>
+<h3 id="-view-all-types-types-html-"><a href="types.html">View All Types</a></h3>
+<hr>
+<h4 id="-view-full-luxe-class-index-luxe-classes-html-"><a href="luxe.Classes.html">View full luxe Class Index</a></h4>
+<h4 id="-view-full-phoenix-class-index-phoenix-classes-html-"><a href="phoenix.Classes.html">View full phoenix Class Index</a></h4>
+<p>&nbsp;
 &nbsp;</p>
 <p>&nbsp;</p>
 

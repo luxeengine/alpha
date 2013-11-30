@@ -5,8 +5,8 @@ import luxe.Input;
 
 import phoenix.Matrix4;
 import phoenix.Camera;
-import phoenix.utils.Maths;
 
+import luxe.utils.Maths;
 import luxe.Camera.ProjectionType;
 
 class FlyCamera extends luxe.Camera {

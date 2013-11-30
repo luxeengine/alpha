@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,23 +40,39 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="types.html">Back to types</a></h3>
-<h3>luxe.<a href="luxe.Rectangle.html">Rectangle</a></h3>
-<p><a name="new" href="#new">new</a></p>
-<pre><code><div class="highlight"><pre><span class="k">new</span> <span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">(</span> <span class="err">?</span><span class="n">_x</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_y</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_w</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_h</span> <span class="err">:</span> <span class="err">Float=0</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Create a new rectangle instance </span> <code>var rect = new <a href="luxe.Rectangle.html">Rectangle</a>(10,10,100,100)</code>     </p>
-<p><a name="set" href="#set">set</a></p>
-<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span> <span class="err">?</span><span class="n">_r</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_g</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_b</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span> <span class="err">:</span> <span class="err">Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set components of this rect, if any components is passed in as null - it will be left as is. </span> <code>rect.set( 200,200,20,20 )</code>   </p>
-<p><a name="clone" href="#clone">clone</a></p>
-<pre><code><div class="highlight"><pre><span class="n">rect</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Create a copy of this rectangle </span>      </p>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p><a href="#Properties">Properties</a>   </p>
+<h3 id="luxe-rectangle">luxe.<a href="luxe.Rectangle.html">Rectangle</a></h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new <a href="luxe.Rectangle.html">Rectangle</a>( ?_x:Float=0, ?_y:Float=0, ?_w:Float=0, ?_h : Float=0 ) : <a href="luxe.Rectangle.html">Rectangle</a></code>
+<span class="small_desc_flat"> Create a new rectangle instance </span></p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : <a href="luxe.Rectangle.html">Rectangle</a></code>
+<span class="small_desc_flat"> Set components of this rect, if any components is passed in as null - it will be left as is. </span></p>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<p><code>rect.clone()</code>
+<span class="small_desc_flat"> Create a copy of this rectangle </span>      </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="x" href="#x">x</a></p>
+<p><code>rectangle.x : Float</code>
+<span class="small_desc_flat"> The x component of the rectangle </span></p>
+<p><a class="lift" name="y" href="#y">y</a></p>
+<p><code>rectangle.y : Float</code>
+<span class="small_desc_flat"> The y component of the rectangle </span> </p>
+<p><a class="lift" name="w" href="#w">w</a></p>
+<p><code>rectangle.w : Float</code>
+<span class="small_desc_flat"> The width component of the rectangle </span> </p>
+<p><a class="lift" name="h" href="#h">h</a></p>
+<p><code>rectangle.h : Float</code>
+<span class="small_desc_flat"> The height component of the rectangle </span> </p>
+<p>&nbsp;   </p>
+<hr>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p>&nbsp;<br>&nbsp;  </p>
 
         </div>
     </body>

@@ -4,7 +4,7 @@ import lime.gl.GL;
 import phoenix.Batcher.PrimitiveType;
 import phoenix.Batcher.BlendMode;
 
-class Geometry {
+class Rendering {
 	
 	public static function gl_blend_mode_from_BlendMode(_b:BlendMode) {
 
@@ -68,4 +68,4 @@ class Geometry {
         }
     }    
 
-} //Geometry
+} //Rendering

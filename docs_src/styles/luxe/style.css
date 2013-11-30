@@ -74,14 +74,29 @@ a:hover {
     margin-bottom: 0.6em;    
 }
 
+
+.lift {
+	margin-bottom: -0.5em;
+	display: block;
+	margin-left: -0.5em;
+}
+
+a.lift {
+	font-size: 1.4em;
+}
+a.liftsmall {
+	font-size: 1em;
+}
 .small_desc_flat {
 	color:#999;
+	max-width: 70%;
 	position: relative;
 	display: block;
-    margin-left:1em;
+	margin-left: 2em;
+	margin-right: 0.5em;
     font-size:0.85em;
-    top: -1.8em;
-    margin-bottom: -2em;
+    top:0.4em;
+    margin-bottom: 2.4em;
     opacity:0.8;
 }
 

@@ -17,11 +17,11 @@ import luxe.Text;
 import luxe.Color;
 import luxe.Entity;
 import luxe.Mesh;
+import luxe.utils.Maths;
 
 import lime.gl.GL;
 
 import phoenix.formats.obj.Reader;
-import phoenix.utils.Maths;
 
 import luxe.components.cameras.FlyCamera;
 import luxe.components.render.MeshComponent;

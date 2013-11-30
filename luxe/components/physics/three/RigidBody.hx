@@ -9,7 +9,7 @@ import luxe.components.Components.Component;
 
 import luxe.Quaternion;
 import luxe.Vector;
-import phoenix.utils.Maths;
+import luxe.utils.Maths;
 
 class RigidBody extends Component {
 

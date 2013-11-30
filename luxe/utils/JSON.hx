@@ -33,6 +33,9 @@
 
 package luxe.utils;
 
+import luxe.utils.json.JSONDecoder;
+import luxe.utils.json.JSONEncoder;
+
 class JSON {
 
 	/**

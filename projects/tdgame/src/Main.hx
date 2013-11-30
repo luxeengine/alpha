@@ -10,7 +10,7 @@ import luxe.Input;
 import luxe.Camera;
 
 import phoenix.Batcher;
-import phoenix.utils.Maths;
+import luxe.utils.Maths;
 
     //Game specifics
 import TDCamera;

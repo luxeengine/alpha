@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,185 +40,144 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="types.html">Back to types</a></h3>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
 <p><a href="#Properties">Properties</a><br><a href="#Transforms">Transforms</a><br><a href="#Operations">Operations</a><br><a href="#StaticMethods">Static Methods</a>   </p>
-<h3>luxe.<a href="luxe.Vector.html">Vector</a></h3>
-<p><a name="new" href="#new">new</a></p>
-<pre><code><div class="highlight"><pre><span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span> <span class="err">?</span><span class="n">_x</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_y</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_z</span><span class="err">:Float=0</span><span class="p">,</span> <span class="err">?</span><span class="n">_w</span> <span class="err">:</span> <span class="err">Float=0</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>   
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Create a new <a href="luxe.Vector.html">Vector</a> instance </span> <code>var pos = new <a href="luxe.Vector.html">Vector</a>(10,10,10)</code>     </p>
-<p><a name="set" href="#set">set</a></p>
-<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span> <span class="err">?</span><span class="n">_r</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_g</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_b</span> <span class="err">:</span> <span class="err">Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span> <span class="err">:</span> <span class="err">Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set components of this vector, if any components is passed in as null - it will be left as is. </span> <code>vector.set( 10, 20 )</code>   </p>
-<p><a name="clone" href="#clone">clone</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Create a copy of this vector </span>      </p>
-<p><a name="dot" href="#dot">dot</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n">Float</span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Return the dot product between this and another vector </span>      </p>
-<p><a name="cross" href="#cross">cross</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n">Float</span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Return the cross product between this and another vector </span>     </p>
-<p><a name="normalize" href="#normalize">normalize</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">normalize</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n">Float</span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Return the normalize product between this and another vector </span>      </p>
-<p><a name="Properties" ></a></p>
-<h3>Properties</h3>
+<h3 id="luxe-vector">luxe.<a href="luxe.Vector.html">Vector</a></h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new <a href="luxe.Vector.html">Vector</a>( ?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w : Float=0 ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Create a new <a href="luxe.Vector.html">Vector</a> instance </span>    </p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Set components of this vector, if any components is passed in as null (or not passed in) - it will be left as is. </span>  </p>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<p><code>vector.clone()</code>
+<span class="small_desc_flat"> Create a copy of this vector </span>      </p>
+<p><a class="lift" name="dot" href="#dot">dot</a></p>
+<p><code>vector.dot( other:<a href="luxe.Vector.html">Vector</a> ) : Float</code>
+<span class="small_desc_flat"> Return the dot product between this and another vector </span>      </p>
+<p><a class="lift" name="cross" href="#cross">cross</a></p>
+<p><code>vector.cross( other:<a href="luxe.Vector.html">Vector</a> ) : Float</code>
+<span class="small_desc_flat"> Return the cross product between this and another vector </span>     </p>
+<p><a class="lift" name="normalize" href="#normalize">normalize</a></p>
+<p><code>vector.normalize( other:<a href="luxe.Vector.html">Vector</a> ) : Float</code>
+<span class="small_desc_flat"> Return the normalize product between this and another vector </span>      </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
 <p><a class="toplink" href="#top">back to top</a></p>
-<p><a name="length" href="#length">length</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">length</span> <span class="err">:</span> <span class="n">Float</span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Return the magnitude/length of this vector </span> </p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">normalized</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Return a normalized copy of this vector </span> </p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">inverted</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Return an copy of this vector </span> </p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">listen_x</span> <span class="err">:</span> <span class="n">Float</span><span class="o">-</span><span class="err">&gt;</span><span class="n">Void</span>
-<span class="n">vector</span><span class="p">.</span><span class="n">listen_y</span> <span class="err">:</span> <span class="n">Float</span><span class="o">-</span><span class="err">&gt;</span><span class="n">Void</span>
-<span class="n">vector</span><span class="p">.</span><span class="n">listen_z</span> <span class="err">:</span> <span class="n">Float</span><span class="o">-</span><span class="err">&gt;</span><span class="n">Void</span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Listeners for each component, when a sub component changes, this optional function will be called for you. </span> </p>
-<p><a name="Transforms" ></a></p>
-<h3>Transforms</h3>
+<p><a class="lift" name="x" href="#x">x</a></p>
+<p><code>vector.x : Float</code>
+<span class="small_desc_flat"> The x component of the vector </span></p>
+<p><a class="lift" name="y" href="#y">y</a></p>
+<p><code>vector.y : Float</code>
+<span class="small_desc_flat"> The y component of the vector </span> </p>
+<p><a class="lift" name="z" href="#z">z</a></p>
+<p><code>vector.z : Float</code>
+<span class="small_desc_flat"> The z component of the vector </span> </p>
+<p><a class="lift" name="w" href="#w">w</a></p>
+<p><code>vector.w : Float</code>
+<span class="small_desc_flat"> The w component of the vector </span> </p>
+<p><a class="lift" name="length" href="#length">length</a></p>
+<p><code>vector.length : Float</code>
+<span class="small_desc_flat"> Return the magnitude/length of this vector </span> </p>
+<p><a class="lift" name="length" href="#normalized">normalized</a></p>
+<p><code>vector.normalized : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Return a normalized copy of this vector </span> </p>
+<p><a class="lift" name="length" href="#inverted">inverted</a></p>
+<p><code>vector.inverted : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Return an copy of this vector </span> </p>
+<p><a class="lift" name="length" href="#listeners">listeners</a></p>
+<p><code>vector.listen_x : Float-&gt;Void</code><br><code>vector.listen_y : Float-&gt;Void</code><br><code>vector.listen_z : Float-&gt;Void</code><br><span class="small_desc_flat"> Listeners for each component, when a sub component changes, this optional function will be called for you. </span> </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Transforms" ></a></p>
+<h3 id="transforms">Transforms</h3>
+<hr>
 <p><a class="toplink" href="#top">back to top</a></p>
-<p><a name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">setEulerFromQuaternion</span><span class="p">(</span> <span class="n">q</span><span class="err">:Quaternion</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set this vector from a quaternion value </span> </p>
-<p><a name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">setEulerFromRotationMatrix</span><span class="p">(</span> <span class="n">_m</span><span class="err">:Matrix4</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Set this vector from a quaternion value </span>      </p>
-<p><a name="applyMatrix4" href="#applyMatrix4">applyMatrix4</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">applyMatrix4</span><span class="p">(</span> <span class="n">_m</span><span class="err">:Matrix4</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Apply a matrix to this vector </span>      </p>
-<p><a name="applyProjection" href="#applyProjection">applyProjection</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">applyProjection</span><span class="p">(</span> <span class="n">_m</span><span class="err">:Matrix4</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Apply a projection matrix to this vector </span>      </p>
-<p><a name="applyQuaternion" href="#applyQuaternion">applyQuaternion</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">applyQuaternion</span><span class="p">(</span> <span class="n">_q</span><span class="err">:Quaternion</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Apply a quaternion value to this vector </span>      </p>
-<p><a name="transformDirection" href="#transformDirection">transformDirection</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">transformDirection</span><span class="p">(</span> <span class="n">_m</span><span class="err">:Matrix4</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span>
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Apply a direction matrix to this vector </span>      </p>
-<p><a name="Operations" ></a></p>
-<h3>Operations</h3>
+<p><a class="lift" name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a></p>
+<p><code>vector.setEulerFromQuaternion( q:<a href="luxe.Quaternion.html">Quaternion</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Set this vector from a quaternion value </span> </p>
+<p><a class="lift" name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></p>
+<p><code>vector.setEulerFromRotationMatrix( _m:<a href="luxe.Matrix4.html">Matrix4</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Set this vector from a quaternion value </span>      </p>
+<p><a class="lift" name="applyMatrix4" href="#applyMatrix4">applyMatrix4</a></p>
+<p><code>vector.applyMatrix4( _m:<a href="luxe.Matrix4.html">Matrix4</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Apply a matrix to this vector </span>      </p>
+<p><a class="lift" name="applyProjection" href="#applyProjection">applyProjection</a></p>
+<p><code>vector.applyProjection( _m:<a href="luxe.Matrix4.html">Matrix4</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Apply a projection matrix to this vector </span>      </p>
+<p><a class="lift" name="applyQuaternion" href="#applyQuaternion">applyQuaternion</a></p>
+<p><code>vector.applyQuaternion( _q:<a href="luxe.Quaternion.html">Quaternion</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Apply a quaternion value to this vector </span>      </p>
+<p><a class="lift" name="transformDirection" href="#transformDirection">transformDirection</a></p>
+<p><code>vector.transformDirection( _m:<a href="luxe.Matrix4.html">Matrix4</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Apply a direction matrix to this vector </span>      </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Operations" ></a></p>
+<h3 id="operations">Operations</h3>
+<hr>
 <p><a class="toplink" href="#top">back to top</a></p>
-<p><a name="add" href="#add">add</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">add</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Add another vector to this vector (changes this vector) </span>      </p>
-<p><a name="subtract" href="#subtract">subtract</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">subtract</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Subtract another vector from this vector (changes this vector) </span>      </p>
-<p><a name="multiply" href="#multiply">multiply</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">multiply</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Multiply another vector with this vector (changes this vector) </span>      </p>
-<p><a name="divide" href="#divide">divide</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">divide</span><span class="p">(</span> <span class="n">other</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Divide this vector by another vector (changes this vector) </span>      </p>
-<p><a name="addScalar" href="#addScalar">addScalar</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">addScalar</span><span class="p">(</span> <span class="n">scalar</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Add a scalar value (number) with this vector (changes this vector) </span>  </p>
-<p><a name="subtractScalar" href="#subtractScalar">subtractScalar</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">subtractScalar</span><span class="p">(</span> <span class="n">scalar</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Subtract a scalar value (number) with this vector (changes this vector) </span>      </p>
-<p><a name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">multiplyScalar</span><span class="p">(</span> <span class="n">scalar</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Multiply a scalar value (number) with this vector (changes this vector) </span>      </p>
-<p><a name="divideScalar" href="#divideScalar">divideScalar</a></p>
-<pre><code><div class="highlight"><pre><span class="n">vector</span><span class="p">.</span><span class="n">divideScalar</span><span class="p">(</span> <span class="n">scalar</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Divide this vector by a scalar value (number) (changes this vector) </span>      </p>
-<p><a name="StaticMethods" ></a></p>
-<h3>Static Methods</h3>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>vector.add( other:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Add another vector to this vector (changes this vector) </span>      </p>
+<p><a class="lift" name="subtract" href="#subtract">subtract</a></p>
+<p><code>vector.subtract( other:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Subtract another vector from this vector (changes this vector) </span>      </p>
+<p><a class="lift" name="multiply" href="#multiply">multiply</a></p>
+<p><code>vector.multiply( other:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Multiply another vector with this vector (changes this vector) </span>      </p>
+<p><a class="lift" name="divide" href="#divide">divide</a></p>
+<p><code>vector.divide( other:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Divide this vector by another vector (changes this vector) </span>      </p>
+<p><a class="lift" name="addScalar" href="#addScalar">addScalar</a></p>
+<p><code>vector.addScalar( scalar:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Add a scalar value (number) with this vector (changes this vector) </span>  </p>
+<p><a class="lift" name="subtractScalar" href="#subtractScalar">subtractScalar</a></p>
+<p><code>vector.subtractScalar( scalar:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Subtract a scalar value (number) with this vector (changes this vector) </span>      </p>
+<p><a class="lift" name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a></p>
+<p><code>vector.multiplyScalar( scalar:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Multiply a scalar value (number) with this vector (changes this vector) </span>      </p>
+<p><a class="lift" name="divideScalar" href="#divideScalar">divideScalar</a></p>
+<p><code>vector.divideScalar( scalar:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Divide this vector by a scalar value (number) (changes this vector) </span>      </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="static-methods">Static Methods</h3>
+<hr>
 <p><a class="toplink" href="#">back to top</a></p>
-<p><a name="Add" href="#Add">Add</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">Add</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Add <code>a</code> and <code>b</code> together, returning a new vector </span>      </p>
-<p><a name="AddScale" href="#AddScalar">AddScalar</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">AddScalar</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Add <code>a</code> and <code>b</code> together, returning a new vector </span>      </p>
-<p><a name="Subtract" href="#Subtract">Subtract</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">Subtract</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Subtract <code>b</code> from <code>a</code> vector , returning a new vector </span>  </p>
-<p><a name="SubtractScalar" href="#SubtractScalar">SubtractScalar</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">SubtractScalar</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Subtract <code>b</code> from <code>a</code> vector , returning a new vector </span>      </p>
-<p><a name="Multiply" href="#Multiply">Multiply</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">Multiply</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Multiply <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
-<p><a name="MultiplyVector" href="#MultiplyVector">MultiplyVector</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">MultiplyVector</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Multiply <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
-<p><a name="Divide" href="#Divide">Divide</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">Divide</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:Float</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Divide <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
-<p><a name="DivideVector" href="#DivideVector">DivideVector</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">DivideVector</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Divide <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
-<p><a name="Cross" href="#Cross">Cross</a></p>
-<pre><code><div class="highlight"><pre><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">.</span><span class="n">Cross</span><span class="p">(</span> <span class="n">a</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">b</span><span class="err">:<a href="luxe.Vector.html">Vector</a></span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span> 
-</pre></div>
-</code></pre>
-<p><span class="small_desc_flat"> Cross product between <code>a</code> and <code>b</code></span>      </p>
+<p><a class="lift" name="Add" href="#Add">Add</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.Add( a:<a href="luxe.Vector.html">Vector</a>, b:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Add <code>a</code> and <code>b</code> together, returning a new vector </span>      </p>
+<p><a class="lift" name="AddScale" href="#AddScalar">AddScalar</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.AddScalar( a:<a href="luxe.Vector.html">Vector</a>, b:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Add <code>a</code> and <code>b</code> together, returning a new vector </span>      </p>
+<p><a class="lift" name="Subtract" href="#Subtract">Subtract</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.Subtract( a:<a href="luxe.Vector.html">Vector</a>, b:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Subtract <code>b</code> from <code>a</code> vector , returning a new vector </span>  </p>
+<p><a class="lift" name="SubtractScalar" href="#SubtractScalar">SubtractScalar</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.SubtractScalar( a:<a href="luxe.Vector.html">Vector</a>, b:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Subtract <code>b</code> from <code>a</code> vector , returning a new vector </span>      </p>
+<p><a class="lift" name="Multiply" href="#Multiply">Multiply</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.Multiply( a:<a href="luxe.Vector.html">Vector</a>, b:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Multiply <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
+<p><a class="lift" name="MultiplyVector" href="#MultiplyVector">MultiplyVector</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.MultiplyVector( a:<a href="luxe.Vector.html">Vector</a>, b:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Multiply <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
+<p><a class="lift" name="Divide" href="#Divide">Divide</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.Divide( a:<a href="luxe.Vector.html">Vector</a>, b:Float ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Divide <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
+<p><a class="lift" name="DivideVector" href="#DivideVector">DivideVector</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.DivideVector( a:<a href="luxe.Vector.html">Vector</a>, b:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Divide <code>a</code> by <code>b</code>, returning a new vector </span>      </p>
+<p><a class="lift" name="Cross" href="#Cross">Cross</a></p>
+<p><code>luxe.<a href="luxe.Vector.html">Vector</a>.Cross( a:<a href="luxe.Vector.html">Vector</a>, b:<a href="luxe.Vector.html">Vector</a> ) : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat"> Cross product between <code>a</code> and <code>b</code></span>      </p>
+<p>&nbsp;   </p>
+<hr>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>
