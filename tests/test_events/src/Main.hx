@@ -49,17 +49,15 @@ class Main extends luxe.Game {
 
             //Events class exposes this filter function to test/learn the events
 
-        // trace( Luxe.events.does_filter_event('game.*', 'game.player.test') );
-        // trace( Luxe.events.does_filter_event('game:player:*', 'game:player:health') );
-        // trace( Luxe.events.does_filter_event('game.*.player', 'game.ui.player') );
-        // trace( Luxe.events.does_filter_event('game.*.player', 'game.death.player') );
-        // trace( Luxe.events.does_filter_event('game.*.player', 'game.death.test') );
-        // trace( Luxe.events.does_filter_event('*.player', 'ui.player') );
-        // trace( Luxe.events.does_filter_event('*.player', 'health.player') );
-        // trace( Luxe.events.does_filter_event('*.player', 'derp.plea') );
-        // trace( Luxe.events.does_filter_event('(player)*(house)', 'player inside house') );
-
-        Luxe.core.show_console(true);
+        trace( Luxe.events.does_filter_event('game.*', 'game.player.test') );
+        trace( Luxe.events.does_filter_event('game:player:*', 'game:player:health') );
+        trace( Luxe.events.does_filter_event('game.*.player', 'game.ui.player') );
+        trace( Luxe.events.does_filter_event('game.*.player', 'game.death.player') );
+        trace( Luxe.events.does_filter_event('game.*.player', 'game.death.test') );
+        trace( Luxe.events.does_filter_event('*.player', 'ui.player') );
+        trace( Luxe.events.does_filter_event('*.player', 'health.player') );
+        trace( Luxe.events.does_filter_event('*.player', 'derp.plea') );
+        trace( Luxe.events.does_filter_event('(player)*(house)', 'player inside house') );
 
     } //ready
   
@@ -85,13 +83,6 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    public function update(dt:Float) {
-
-    } //update
-
-    public function shutdown() {
-
-    } //shutdown
 }
 
 
