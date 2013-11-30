@@ -13,7 +13,7 @@ class Quaternion {
 
 	var euler : Vector;
 
-	public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) : Quaternion {
+	public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
 		
 		euler = new Vector();
 
