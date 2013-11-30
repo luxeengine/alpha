@@ -1,0 +1,60 @@
+{	
+	"file" : "luxe.Rectangle.md",
+	"links" : [{"name":"Properties","link":"#Properties"}],
+	"toplinks" : [{"name":"Back to types","link":"types.html"}],
+	"sections":[
+		{ 
+			"name": "luxe.Rectangle",
+			"values" : [
+				{
+				    "name":"new", 
+				    "link":"new", 
+					"code":"new Rectangle( ?_x:Float=0, ?_y:Float=0, ?_w:Float=0, ?_h : Float=0 ) : Rectangle",
+					"desc":"Create a new rectangle instance" 
+				},
+				{
+				    "name":"set", 
+				    "link":"set", 
+					"code":"set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : Rectangle",
+					"desc":"Set components of this rect, if any components is passed in as null - it will be left as is." 
+				},
+				{
+				    "name":"clone", 
+				    "link":"clone", 
+					"code":"rect.clone() : Rectangle",
+					"desc":"Create a copy of this rectangle." 
+				}
+			]
+		},
+		{ 
+			"name": "Properties",
+			"link": "Properties",
+			"values" : [
+				{
+					"name":"x",
+				    "link":"x", 
+					"code":"rectangle.x : Float",
+					"desc":"The x component of the rectangle"
+				},
+				{
+					"name":"y",
+				    "link":"y", 
+					"code":"rectangle.y : Float",
+					"desc":"The y component of the rectangle"
+				},
+				{
+					"name":"w",
+				    "link":"w", 
+					"code":"rectangle.w : Float",
+					"desc":"The width component of the rectangle"
+				},
+				{
+					"name":"h",
+				    "link":"h", 
+					"code":"rectangle.h : Float",
+					"desc":"The height component of the rectangle"
+				}
+			]
+		}
+	]
+}

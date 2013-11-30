@@ -28,6 +28,73 @@ var config = require('./documentator.json');
         smartypants: true
     };
 
+    var _parse_code_api = function(_done) {
+
+        console.log('- parsing code api files');
+
+        var _api_template = String( fs.readFileSync( config.api_template ) );
+
+        var _list = [];
+            glob( config.api_input , { sync:true, nonull:true }, function (er, files) {
+                _list = _list.concat( files );
+            });
+
+        for(i = 0; i < _list.length; ++i) {            
+            var _api_details = require(_list[i]);
+            if(_api_details.file && _api_details.sections) {
+
+                var _context = {
+                    toplinks : '',
+                    links : '',
+                    content : ''
+                }; 
+
+                    //for each top link, add it
+                for(_j = 0; _j < _api_details.toplinks.length; ++_j) {
+                    _link = _api_details.toplinks[_j];
+                    _context.toplinks += '###[' + _link.name + '](' + _link.link + ')   \n';
+                }
+
+                    //for each link, add it
+                for(_j = 0; _j < _api_details.links.length; ++_j) {
+                    _link = _api_details.links[_j];
+                    _context.links += '[' + _link.name + '](' + _link.link + ')   \n';
+                }
+                    
+                    //for each section
+                for(_j = 0; _j < _api_details.sections.length; ++_j) {
+                    var _section = _api_details.sections[_j];     
+
+                    _context.content += '&nbsp;   \n\n';
+                    if(_section.link){
+                        _context.content += '<a class="lift" name="'+_section.link+'" ></a>\n';
+                    }
+                    _context.content += '###' + _section.name + '   \n---\n';
+                    
+                        //now for each section value
+                    for(_k = 0; _k < _section.values.length; ++_k) {
+                        var _value = _section.values[_k];
+
+                        _context.content += '<a class="lift" name="'+_value.link+'" href="#'+_value.link+'">'+_value.name+'</a>\n\n';
+                        _context.content += '`' + _value.code + '`\n';
+                        _context.content += '<span class="small_desc_flat"> ' + _value.desc + ' </span>   \n\n';
+
+                    } //each section value
+
+                } //each section
+
+                var _template_out = mustache.render( _api_template, _context );
+                fs.writeFileSync( config.api_output_path + _api_details.file , _template_out );
+                console.log("\t - output file " + config.api_output_path + _api_details.file);
+            } //if valid
+        } //list.length
+            
+        console.log("- generated api files complete");
+
+        _done();
+
+    };
+
 
     var _style_path = config.style_path + config.style_name + '/';
         //work out where the template is
@@ -307,28 +374,34 @@ var config = require('./documentator.json');
 
         } else {
 
-            console.log('- starting generation ... ');
+            console.log('- parsing code api generation ... ');
 
-            _cache_files( [].concat(_list), function(){
-                console.log("- cached files. ");
-                console.log("- generating html ... ");
-                _do_generation( [].concat(_list), function(){
-                    console.log("- generated html.");
-                    _verbose("- saving output : ");
-                    _do_output( [].concat(_list), function(){
-                        console.log("- saved output.");
-                        _verbose("- copying template files. ");
-                        _copy_template_files([].concat(_template_files), function(){
-                            console.log("- copied template files. ");
-                            _verbose("- copying images ");
-                            _copy_images(function() {
-                                console.log("- copied images.");
-                                console.log("- ok - generated docs in " + config.output_path );
-                            });
-                        }); //copy template files
-                    }); //do output
-                } );  //do generation
-            } ); // cache files
+            _parse_code_api(function(){
+
+                console.log('- starting generation ... ');
+
+                _cache_files( [].concat(_list), function(){
+                    console.log("- cached files. ");
+                    console.log("- generating html ... ");
+                    _do_generation( [].concat(_list), function(){
+                        console.log("- generated html.");
+                        _verbose("- saving output : ");
+                        _do_output( [].concat(_list), function(){
+                            console.log("- saved output.");
+                            _verbose("- copying template files. ");
+                            _copy_template_files([].concat(_template_files), function(){
+                                console.log("- copied template files. ");
+                                _verbose("- copying images ");
+                                _copy_images(function() {
+                                    console.log("- copied images.");
+                                    console.log("- ok - generated docs in " + config.output_path );
+                                });
+                            }); //copy template files
+                        }); //do output
+                    } );  //do generation
+                } ); // cache files
+
+            }); //_parse_code_api
 
         } //!list.length
 

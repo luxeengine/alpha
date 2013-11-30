@@ -13,7 +13,7 @@ class Quaternion {
 
 	var euler : Vector;
 
-	public function new (_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
+	public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) : Quaternion {
 		
 		euler = new Vector();
 
@@ -42,7 +42,7 @@ class Quaternion {
 	} //set
 	
 	
-	public function copy( _quaternion :Quaternion) : Quaternion {
+	public function copy( _quaternion :Quaternion ) : Quaternion {
 
 			x = _quaternion.x;
 			y = _quaternion.y;
@@ -368,7 +368,7 @@ class Quaternion {
 
 	} //clone
 
-	public static function Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) {
+	public static function Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) : Quaternion {
 
 		return _qm.copy( _qa ).slerp( _qb, _t );
 

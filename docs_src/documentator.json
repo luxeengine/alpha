@@ -14,6 +14,10 @@
     "samples_input" : "./Luxe/samples/",
     "samples_output_path" : "samples/",
 
+    "api_input" : "./apis/+(*.json)",
+    "api_output_path" : "./Luxe/",
+    "api_template" : "./apis/_template.html",
+
     "template_files" : [
         "more.png", "favicon.png", "jquery-2.0.3.min.js", 
         "style.css", "code.css", "font.css", "font.eot", "font.woff", "font.ttf", "droidsansmono.eot", "droidsansmono.woff", "droidsansmono.ttf"
