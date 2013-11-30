@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,25 +40,25 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.html#color">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-color-"><a href="guide.html#color">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2>Manipulating color in luxe</h2>
+<h2 id="manipulating-color-in-luxe">Manipulating color in luxe</h2>
 <hr>
 <p><a href="luxe.Color.html">Color</a> is a very useful tool in games, and being able to smoothly transition colors is important.   </p>
 <p>When dealing with <strong>RGB</strong> color as is the default color type, it tends to break when you try and animate between two colors.   </p>
 <p>The solution to this, is different color models, such as <strong>HSV</strong> (Hue, Saturation, Value) and <strong>HSL</strong> (Hue, Saturation, Lightness).</p>
 <p>luxe supports both HSL and HSV interchangeably with the default of RGB (and each support alpha as well).</p>
-<h2>What is the difference?</h2>
+<h2 id="what-is-the-difference-">What is the difference?</h2>
 <hr>
 <p>HSV and HSL are cylindrical in nature, that means that they are <em>round</em> and their color value works in degrees(º) rather than separate color components. </p>
 <p>Take a look at the image below, this is the color wheel (Hue only), mapped to degrees.</p>
 <p><img src="images/color_wheel.png" alt="color wheel"></p>
-<h3>How this helps</h3>
+<h3 id="how-this-helps">How this helps</h3>
 <hr>
-<p>Notice how if we want to transition from red (danger!) to orange (warning) on a flashing UI element, it&#39;s around 30º of movement?    </p>
+<p>Notice how if we want to transition from red (danger!) to orange (warning) on a flashing UI element, it’s around 30º of movement?    </p>
 <p>To animate that using Hue (the above color wheel) it is simple, we animate the hue value.</p>
-<h3><a href="luxe.Color.html">Color</a> classes have their own convenience tween function</h3>
+<h3 id="color-classes-have-their-own-convenience-tween-function"><a href="luxe.Color.html">Color</a> classes have their own convenience tween function</h3>
 <hr>
 <p>One thing you will notice is that the color classes have their own tween function for convenience which acts a lot like the tweening from the <a href="guide.tween.html">tween guide</a>.</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">//We create our red color using 0º Hue (red), </span>
@@ -65,7 +74,7 @@
 </pre></div>
 </code></pre>
 <p>By mapping the colors to a round cylinder it affords much smoother transitions between colors, much smoother than RGB can do.</p>
-<h2>Saturation, Lightness and Value</h2>
+<h2 id="saturation-lightness-and-value">Saturation, Lightness and Value</h2>
 <p><a href="luxe.Color.html">Color</a> can be quite a complex system, and has mathematical properties outside of the scope of this simple guide. If you want to get in depth details into the mechanics of color , <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">this article on wikipedia is quite thorough</a>.</p>
 <p>Now - for simplicity sake - we will define the terms in a less exact way. Take a solid color at hue 30º like above. </p>
 <ul>
@@ -75,7 +84,7 @@
 </ul>
 <p>Have a look at these graphs <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">from Wikipedia</a> for a clearer view.</p>
 <p><img src="images/color_hsvl.png" alt="HSL/HSV"></p>
-<h2>Creating and using the different types</h2>
+<h2 id="creating-and-using-the-different-types">Creating and using the different types</h2>
 <hr>
 <p>Now that you hopefully understand the purpose and differences, we can look at how to work with them in luxe.</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">//defaults for r g b and a are 1 (full white)</span>
@@ -89,7 +98,7 @@
 </pre></div>
 </code></pre>
 <p>This is for creating, but how about switching between? </p>
-<h2>Changing color type</h2>
+<h2 id="changing-color-type">Changing color type</h2>
 <p>All types are extended from the <code><a href="luxe.Color.html">Color</a></code> class, so they automatically work where <code><a href="luxe.Color.html">Color</a></code> is expected. For example, a sprite color is typed as <code><a href="luxe.Color.html">Color</a></code> but a <code><a href="luxe.Color.html">ColorHSL</a></code> or <code><a href="luxe.Color.html">ColorHSV</a></code> can be given in place - <code>sprite.color = colorhsl;</code></p>
 <p><strong>This makes all types interchangeable automatically</strong>,<br>but the following functions are exposed as well.</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">// helpers on <a href="luxe.Color.html">Color</a></span>
@@ -112,9 +121,15 @@
 </pre></div>
 </code></pre>
 <hr>
+<h3 id="live-demo">Live demo</h3>
+<hr>
+<p>Click to tween the box following the mouse randomly.<br>Move the mouse on the x axis to change Hue of the bars.<br>Move the mouse on the y axis to change Value of the bars.<br>The blocks shown with text are from an image editor, the others from luxe.</p>
+<div data-content="samples/test_colors/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<hr>
 <p>&nbsp;   </p>
-<h3><a href="guide.html#color">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-color-"><a href="guide.html#color">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
 
         </div>

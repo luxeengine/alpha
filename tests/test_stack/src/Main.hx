@@ -1,7 +1,7 @@
 
 import luxe.Vector;
 import luxe.Input;
-import luxe.structures.Stack;
+import luxe.structural.Stack;
 
 class Main extends luxe.Game {
 

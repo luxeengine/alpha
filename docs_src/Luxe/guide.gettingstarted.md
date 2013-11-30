@@ -19,10 +19,14 @@ For a much deeper look at how luxe is built and why, see this guide [here](under
 
 &nbsp;
 
+###Live demo
+---
+<div data-content="samples/1_gettingstarted/index.html" class="sample"> <p>Click to run example</p> </div>
+
+
 ### Actually getting started
 
 ---
-
 If you are ready to get something on screen, let's dive straight in. For a full code listing [click here](#code).
 Make sure you have [installed luxe and that it is working first](setup.html), of course.    
 
@@ -175,16 +179,6 @@ _(found in samples/guides/1_gettingstarted/)_
             ring.pos = e.pos;
 
         } //onmousemove
-      
-        public function onkeyup( e:KeyEvent ) {
-            if(e.key == KeyValue.escape) {
-                Luxe.shutdown();
-            }
-        } //onkeyup
-
-        public function update(dt:Float) {
-
-        } //update
 
     } //Main
 

@@ -22,7 +22,6 @@ The feature guide is a piece by piece quick reference for specific features of t
 [ camera guide ](#camera)    
 [ drawing guide ](#drawing)    
 [ audio guide ](#audio)    
-[ input guide ](#input)    
 [ font guide ](#fonts)    
 [ sprite animation guide ](#spriteanimation)    
 [ component/entity guide ](#components)    
@@ -93,9 +92,9 @@ By following this guide, you should be able to see at a glance and in detail the
 [ ![color guide screenshot](images/guide.color.png) ](guide.color.html)
 
 <a name="camera"> </a>
-### [ camera guide ](guide.camera2d.html)
+### [ camera guide ](guide.camera.html)
 - How to use the camera class to pan, zoom, shake or move around your world. 
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.camera2d.html)
+[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.camera.html)
 
 <a name="drawing"> </a>
 ### [ drawing guide ](guide.drawing.html)
@@ -128,23 +127,15 @@ By following this guide, you should be able to see at a glance and in detail the
 - How to bring your sprites to life by importing sprite sheets or using separate images.
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.spriteanimation.html)
 
-<a name="components"> </a>
-### [ component/entity guide ](guide.components.html)
-- A deeper look at all the features and systems behind the component entities.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.components.html)
-
 <a name="textures"> </a>
 ### [ texture guide ](guide.textures.html)
 - Understanding the options and loading of textures and images, including filtering and onload handling on web.
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.textures.html)
 
 <a name="depthsorting"> </a>
-### [ depth guide ](guide.depth2d.html)
-- A closer look at how ordering and depth sorting in 2D works in luxe.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.depth2d.html)
-
----
-<a class="toplink" href="#">back to top</a>
+### [ depth guide ](guide.depth.html)
+- A closer look at how ordering and depth sorting works in luxe.
+[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.depth.html)
 
 <a name="shaders"> </a>
 ### [ shader guide ](guide.shaders.html)

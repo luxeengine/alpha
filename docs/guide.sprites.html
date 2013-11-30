@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,16 +40,21 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.gettingstarted.html">To the prev guide</a></h3>
-<h3><a href="guide.input.html">To the next guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-to-the-prev-guide-guide-gettingstarted-html-"><a href="guide.gettingstarted.html">To the prev guide</a></h3>
+<h3 id="-to-the-next-guide-guide-input-html-"><a href="guide.input.html">To the next guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2>Drawing images and blocks as sprites</h2>
+<h2 id="drawing-images-and-blocks-as-sprites">Drawing images and blocks as sprites</h2>
 <p><em>This tutorial assumes you are familiar with the basics of getting started with luxe, so if you are not sure what is going on, .</em></p>
 <p><a href="#code">Jump to the full code listing?</a></p>
-<h3>Loading images (and other assets)</h3>
+<h3 id="loading-images-and-other-assets-">Loading images (and other assets)</h3>
 <hr>
 <p>Assets are loaded via the <a href="api.html">Luxe</a> api, which offers functions such as <code><a href="api.html">Luxe</a>.loadTexture</code> and <code><a href="api.html">Luxe</a>.loadText</code> to fetch assets from your asset folder, and get them in your game. If you need a more in depth look at the assets folder, read the <a href="guide.assets.html">assets documentation</a>.</p>
+<h3 id="live-demo">Live demo</h3>
+<hr>
+<div data-content="./samples/2_sprites/index.html" class="sample"> <p>Click to run example</p> </div>
+
+<hr>
 <p>Like in the <a href="guide.gettingstarted.html">previous guide</a>, Sprites are imported as <code>luxe.<a href="luxe.Sprite.html">Sprite</a></code>, and created with the <code>new <a href="luxe.Sprite.html">Sprite</a>( options )</code> syntax. </p>
 <p>&nbsp;  </p>
 <p>Inside your <code>ready</code> function, you can create a sprite like this : </p>
@@ -52,9 +66,9 @@
 </pre></div>
 </code></pre>
 <p>&nbsp;    </p>
-<h3>A <a href="luxe.Texture.html">Texture</a> = An Image</h3>
+<h3 id="a-texture-an-image">A <a href="luxe.Texture.html">Texture</a> = An Image</h3>
 <hr>
-<p>You may notice that there is a <code>texture</code> property passed in, using the luxe api to load it, and there is also a <code>depth</code> value. We set the depth to 1 (higher than 0) because in the next code block, we create a full sized sprite as a big colored block, which would cover up our image if we didn&#39;t specify the depth.</p>
+<p>You may notice that there is a <code>texture</code> property passed in, using the luxe api to load it, and there is also a <code>depth</code> value. We set the depth to 1 (higher than 0) because in the next code block, we create a full sized sprite as a big colored block, which would cover up our image if we didn’t specify the depth.</p>
 <pre><code><div class="highlight"><pre>    <span class="n">sprite_block</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
         <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
         <span class="n">size</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="p">),</span>
@@ -66,7 +80,7 @@
 <p>Now this sprite, by default, will be created at <code>depth</code> 0, and will have no texture (just a colored rectangle). The way depth works is that <code>0 is always &lt; 1</code>, so it will draw below the higher depths. The depth value is a floating point value (which makes 0.00001 a valid depth above 0 as well) but for your own clarity using whole round numbers is generally easier.</p>
 <p>You can also see another option for sprites - the <code>centered</code> property. This will make the sprite position based on the top left corner (not the center, which is default). </p>
 <p>The last new option is <code>size</code> - which is set to the size of the screen. You can also set the size of an image sprite, which would affect the underlying geometry.</p>
-<h3>What comes next</h3>
+<h3 id="what-comes-next">What comes next</h3>
 <hr>
 <p>Hopefully this is more than enough to get you putting your games together.<br>Some of the questions you may have, </p>
 <ul>
@@ -76,14 +90,14 @@
 </li>
 </ul>
 <hr>
-<h3><a href="guide.gettingstarted.html">To the prev guide</a></h3>
-<h3><a href="guide.input.html">To the next guide</a></h3>
-<h3><a href="guide.html">Back to guides</a></h3>
+<h3 id="-to-the-prev-guide-guide-gettingstarted-html-"><a href="guide.gettingstarted.html">To the prev guide</a></h3>
+<h3 id="-to-the-next-guide-guide-input-html-"><a href="guide.input.html">To the next guide</a></h3>
+<h3 id="-back-to-guides-guide-html-"><a href="guide.html">Back to guides</a></h3>
 <hr>
-<h4>Output image</h4>
+<h4 id="output-image">Output image</h4>
 <p><img src="images/guide.sprites.png" alt="getting started screenshot"></p>
 <p><a name="code"></p>
-<h4>Code listing 2</h4>
+<h4 id="code-listing-2">Code listing 2</h4>
 <p></a></p>
 <p><em>(found in samples/guides/2_sprites/)</em></p>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>

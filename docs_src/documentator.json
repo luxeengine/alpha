@@ -8,8 +8,11 @@
     "force_full" : false,
     "force_copy_template" : true,
 
-    "images_input" : ["./Luxe/images/*"],
+    "images_input" : "./Luxe/images/",
     "images_output_path" : "images/",
+
+    "samples_input" : "./Luxe/samples/",
+    "samples_output_path" : "samples/",
 
     "template_files" : [
         "more.png", "favicon.png", "jquery-2.0.3.min.js", 

@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,24 +40,29 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.sprites.html">To the next guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-to-the-next-guide-guide-sprites-html-"><a href="guide.sprites.html">To the next guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2>Getting Started with <a href="api.html">Luxe</a></h2>
-<h3>What is luxe?</h3>
+<h2 id="getting-started-with-luxe">Getting Started with <a href="api.html">Luxe</a></h2>
+<h3 id="what-is-luxe-">What is luxe?</h3>
 <hr>
 <p><a href="api.html">Luxe</a> is a game focused framework, which is written in haxe to offer many output platforms sharing the same code.
 It focuses on performance, usability, flexibility and rapid iteration.   </p>
 <p><a href="api.html">Luxe</a> is made so that you can make game jam games quickly, but also in such a way that bigger longer term projects still make sense. 
 For a much deeper look at how luxe is built and why, see this guide <a href="understandingluxe.html">here</a>.</p>
 <p>&nbsp;</p>
-<h3>Actually getting started</h3>
+<h3 id="live-demo">Live demo</h3>
 <hr>
-<p>If you are ready to get something on screen, let&#39;s dive straight in. For a full code listing <a href="#code">click here</a>.
+<div data-content="samples/1_gettingstarted/index.html" class="sample"> <p>Click to run example</p> </div>
+
+
+<h3 id="actually-getting-started">Actually getting started</h3>
+<hr>
+<p>If you are ready to get something on screen, let’s dive straight in. For a full code listing <a href="#code">click here</a>.
 Make sure you have <a href="setup.html">installed luxe and that it is working first</a>, of course.    </p>
 <p>You can create an empty project in a folder by using <code>luxe create empty project_name</code>, or by copying the empty folder from the <code>template_projects/empty</code> folder yourself.</p>
 <p>&nbsp;</p>
-<h3>What the empty project code looks like</h3>
+<h3 id="what-the-empty-project-code-looks-like">What the empty project code looks like</h3>
 <hr>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
 
@@ -76,12 +90,12 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 </pre></div>
 </code></pre>
 <p>&nbsp;</p>
-<h3>Drawing something</h3>
+<h3 id="drawing-something">Drawing something</h3>
 <hr>
 <p>The class above shows the basic functions that a game <em>can</em> implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like <code>ready</code>, <code>update</code> and <code>onkeyup</code>.    </p>
-<p>Now you can draw something inside the <code>ready</code> function, and it will appear on screen. Let&#39;s draw a <a href="luxe.draw.html#box">box</a>, and a <a href="luxe.draw.html#ring">ring</a> around the box. We store the ring as a class member, because we want to move it later on. </p>
+<p>Now you can draw something inside the <code>ready</code> function, and it will appear on screen. Let’s draw a <a href="luxe.draw.html#box">box</a>, and a <a href="luxe.draw.html#ring">ring</a> around the box. We store the ring as a class member, because we want to move it later on. </p>
 <p><strong>Take note</strong> that the Geometry classes are considered “low level” and later guides show you easier ways of making objects (like <a href="guide.sprites.html">sprites</a>)</p>
-<h3>Drawing a ring on screen</h3>
+<h3 id="drawing-a-ring-on-screen">Drawing a ring on screen</h3>
 <hr>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> ring <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
 
@@ -107,7 +121,7 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <span class="p">}</span> <span class="c1">//ready</span>
 </pre></div>
 </code></pre>
-<h3>Moving the ring</h3>
+<h3 id="moving-the-ring">Moving the ring</h3>
 <p>To move the ring, you can set the <code>.pos</code> value of the geometry that was returned by <a href="api.html">Luxe</a>. To make this simpler, we will use the <code>onmousemove</code> function from luxe, by adding it to our class like below :</p>
 <pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
 
@@ -117,8 +131,8 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <span class="p">}</span> <span class="c1">//onmousemove</span>
 </pre></div>
 </code></pre>
-<h3>What comes next</h3>
-<p>Well, that&#39;s as basic as it gets! 
+<h3 id="what-comes-next">What comes next</h3>
+<p>Well, that’s as basic as it gets! 
 Some of the questions you may have, </p>
 <ul>
 <li><p><strong>Do I have to deal with lower level geometry?</strong><br>No! Read the next guide <a href="guide.sprites.html">drawing images as sprites</a>   </p>
@@ -130,13 +144,13 @@ Some of the questions you may have, </p>
 <li><p><strong>Things that were not discussed include</strong><br>the <a href="luxe.Color.html">Color</a> class, <a href="luxe.Input.MouseEvent.html">mouse events</a>, <a href="luxe.Input.KeyEvent.html">key events</a>.</p>
 </li>
 </ul>
-<h3><a href="guide.sprites.html">To the next guide</a></h3>
-<h3><a href="guide.html">Back to guides</a></h3>
+<h3 id="-to-the-next-guide-guide-sprites-html-"><a href="guide.sprites.html">To the next guide</a></h3>
+<h3 id="-back-to-guides-guide-html-"><a href="guide.html">Back to guides</a></h3>
 <p>&nbsp;</p>
-<h4>Output image</h4>
+<h4 id="output-image">Output image</h4>
 <p><img src="images/guide.gettingstarted.png" alt="getting started screenshot"></p>
 <p><a name="code"></p>
-<h4>Code listing 1</h4>
+<h4 id="code-listing-1">Code listing 1</h4>
 <p></a></p>
 <p><em>(found in samples/guides/1_gettingstarted/)</em></p>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
@@ -175,16 +189,6 @@ Some of the questions you may have, </p>
         <span class="n">ring</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
 
     <span class="p">}</span> <span class="c1">//onmousemove</span>
-
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">KeyValue</span><span class="p">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="c1">//onkeyup</span>
-
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">{</span>
-
-    <span class="p">}</span> <span class="c1">//update</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>
 </pre></div>

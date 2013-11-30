@@ -105,6 +105,16 @@ but the following functions are exposed as well.
 
 ---
 
+###Live demo
+---
+Click to tween the box following the mouse randomly.   
+Move the mouse on the x axis to change Hue of the bars.   
+Move the mouse on the y axis to change Value of the bars.   
+The blocks shown with text are from an image editor, the others from luxe.
+
+<div data-content="samples/test_colors/index.html" class="sample"> <p>Click to run example</p> </div>
+
+---
 &nbsp;   
 
 ###[Back to feature guide](guide.html#color)

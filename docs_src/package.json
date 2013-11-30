@@ -11,7 +11,8 @@
     "highlight.js" : "latest",
     "pygmentize-bundled" : "latest",
     "pygments" : "latest",
-    "graceful-fs" : "latest"
+    "graceful-fs" : "latest",
+    "wrench" : "latest"
   },
   "engine": {
     "node": "0.10.x"

@@ -33,6 +33,12 @@ This means that generally an entity doesn't do anything on it's own, but by atta
 
 ![EntityComponentRelationship](http://luxeengine.com/docs/images/entitycomponents.png)
 
+###Live demo
+---
+You mouse x position controls the rotation speed.
+
+<div data-content="samples/4_components/index.html" class="sample"> <p>Click to run example</p> </div>
+
 ### Anatomy of a Component class
 ---
 

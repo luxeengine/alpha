@@ -5,8 +5,9 @@ var mustache    = require('mustache');
 var path        = require('path');
 var fs          = require('graceful-fs');
 var hljs        = require('highlight.js');
-// var pygmentize  = require('pygmentize-bundled');
-var pygmentize   = require('pygments').colorize;
+var wrench      = require('wrench');
+var util        = require('util');
+var pygmentize  = require('pygments').colorize;
 
     //Look for the local config, todo: command line
 var config = require('./documentator.json');
@@ -93,50 +94,32 @@ var config = require('./documentator.json');
 
     } //_fetch_file_list
 
-    var _do_copy_image = function(_the_list, _done) {
 
-        if(_the_list.length > 0) {
-            
-            var _path = _the_list[0];
-            var _filename = path.basename( _path ) ;
+    var _copy_samples = function(_done) {
 
-            _verbose('\t - writing image out ' + _path + ' to ' + config.output_path + config.images_output_path + _filename);
-            fs.createReadStream( _path, {autoClose:true}).pipe( fs.createWriteStream( config.output_path + config.images_output_path + _filename, {autoClose:true}));
+        var _source_path = config.samples_input;
+        var _dest_path = config.output_path + config.samples_output_path;
 
-            _the_list.shift();
+        console.log("copying samples from " + _source_path + ' to ' + _dest_path);
+        
+        wrench.copyDirSyncRecursive(_source_path, _dest_path, {forceDelete: true});
 
-            process.nextTick(function(){
-                _do_copy_image(_the_list, _done);
-            });
-
-        } else {
-            _done();
-        }
-
-    } //_do_copy_image
+    }
 
     var _copy_images = function(_done) {
+        
+        var _source_path = config.images_input;
+        var _dest_path = config.output_path + config.images_output_path;
 
-        var _list = [];
+        wrench.copyDirSyncRecursive(_source_path, _dest_path, {forceDelete: true});
 
-        _paths = config.images_input;
+        console.log("copying images from " + _source_path + ' to ' + _dest_path);
 
-        for(var i = 0; i < _paths.length; ++i) {
+        _copy_samples();
 
-            glob( _paths[i] , { sync:true, nonull:true }, function (er, files) {
-                _list = _list.concat( files );
-            })
+        _done();
+    }
 
-        } //for each path glob
-
-            //check that the image path exists
-        if(!fs.existsSync(config.output_path + config.images_output_path)) {
-            fs.mkdirSync(config.output_path + config.images_output_path);
-        }
-
-        _do_copy_image([].concat(_list), _done);
-
-    } //copy images
 
     var _api_replacement = function( _content ) {
         

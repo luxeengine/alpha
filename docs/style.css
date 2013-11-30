@@ -165,6 +165,27 @@ code {
 	white-space: nowrap;
 }
 
+
+.sample {
+	width:645px; 
+	height:450px; 
+	background:#ff4b03;	
+}
+
+.sample p {
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;	
+	color:#f0f0f0;
+	font-size: 2em;
+	font-family: osp;
+	text-align: center;
+	line-height: 450px;
+}
+
 .platform-icon-64 {
 	width: 5em;
 	margin-right: 0.9em;

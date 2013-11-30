@@ -29,7 +29,7 @@ class Main extends luxe.Game {
         });
 
         hsv_blue = new Sprite({
-            pos : new Vector(100,100),
+            pos : new Vector(60,100),
             size : new Vector(128,128),
             color : new ColorHSV(200, 0.61, 1),
             depth : 0,
@@ -37,7 +37,7 @@ class Main extends luxe.Game {
         });
 
         hsl_pink = new Sprite({
-            pos : new Vector(356,100),
+            pos : new Vector(316,100),
             size : new Vector(128,128),
             color : new ColorHSL(330, 1, 0.48),
             depth : 0,
@@ -62,7 +62,7 @@ class Main extends luxe.Game {
 
         sprite_test_pad = new Sprite({
             centered : false,
-            pos : new Vector(100,100),
+            pos : new Vector(60,100),
             texture : Luxe.loadTexture('assets/test.png'),
             depth : 1
         });
