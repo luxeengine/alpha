@@ -11,74 +11,62 @@
 			"name": "luxe.Quaternion",
 			"values" : [
 				{
-				    "name":"new", 
-				    "link":"new", 
+				    "name":"new", "link":"new", 
 					"code":"new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"set", 
-				    "link":"set", 
+				    "name":"set", "link":"set", 
 					"code":"set( _x:Float, _y:Float, _z:Float, _w:Float ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"copy", 
-				    "link":"copy", 
+				    "name":"copy", "link":"copy", 
 					"code":"copy( _quaternion :Quaternion ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"clone", 
-				    "link":"clone", 
+				    "name":"clone", "link":"clone", 
 					"code":"clone() : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"inverse", 
-				    "link":"inverse", 
+				    "name":"inverse", "link":"inverse", 
 					"code":"inverse() : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"conjugate", 
-				    "link":"conjugate", 
+				    "name":"conjugate", "link":"conjugate", 
 					"code":"conjugate() : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"lengthSq", 
-				    "link":"lengthSq", 
+				    "name":"lengthSq", "link":"lengthSq", 
 					"code":"lengthSq() : Float",
 					"desc":"" 
 				},
 				{
-				    "name":"length", 
-				    "link":"length", 
+				    "name":"length", "link":"length", 
 					"code":"length() : Float",
 					"desc":"" 
 				},
 				{
-				    "name":"normalize", 
-				    "link":"normalize", 
+				    "name":"normalize", "link":"normalize", 
 					"code":"normalize() : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"slerp", 
-				    "link":"slerp", 
+				    "name":"slerp", "link":"slerp", 
 					"code":"slerp( _qb:Quaternion, _t:Float ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"fromArray", 
-				    "link":"fromArray", 
+				    "name":"fromArray", "link":"fromArray", 
 					"code":"fromArray( _a:Array<Float> ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"toArray", 
-				    "link":"toArray", 
+				    "name":"toArray", "link":"toArray", 
 					"code":"toArray() : Array<Float>",
 					"desc":"" 
 				}
@@ -89,32 +77,27 @@
 			"link":"Transforms",
 			"values" : [
 				{
-				    "name":"setFromEuler", 
-				    "link":"setFromEuler", 
+				    "name":"setFromEuler", "link":"setFromEuler", 
 					"code":"setFromEuler( _euler:Vector, _order:String = 'XYZ' ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"setFromAxisAngle", 
-				    "link":"setFromAxisAngle", 
+				    "name":"setFromAxisAngle", "link":"setFromAxisAngle", 
 					"code":"setFromAxisAngle( _axis:Vector, _angle:Float ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"setFromRotationMatrix", 
-				    "link":"setFromRotationMatrix", 
+				    "name":"setFromRotationMatrix", "link":"setFromRotationMatrix", 
 					"code":"setFromRotationMatrix( _m:Matrix4 ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"multiply", 
-				    "link":"multiply", 
+				    "name":"multiply", "link":"multiply", 
 					"code":"multiply( _quaternion:Quaternion ) : Quaternion",
 					"desc":"" 
 				},
 				{
-				    "name":"multiplyQuaternions", 
-				    "link":"multiplyQuaternions", 
+				    "name":"multiplyQuaternions", "link":"multiplyQuaternions", 
 					"code":"multiplyQuaternions( _a:Quaternion, _b:Quaternion ) : Quaternion",
 					"desc":"" 
 				}
@@ -125,26 +108,22 @@
 			"link": "Properties",
 			"values" : [
 				{
-					"name":"x",
-				    "link":"x", 
+					"name":"x", "link":"x", 
 					"code":"quaternion.x : Float",
 					"desc":"The x component of the quaternion"
 				},
 				{
-					"name":"y",
-				    "link":"y", 
+					"name":"y", "link":"y", 
 					"code":"quaternion.y : Float",
 					"desc":"The y component of the quaternion"
 				},
 				{
-					"name":"z",
-				    "link":"z", 
+					"name":"z", "link":"z", 
 					"code":"quaternion.z : Float",
 					"desc":"The z component of the quaternion"
 				},
 				{
-					"name":"w",
-				    "link":"w", 
+					"name":"w", "link":"w", 
 					"code":"quaternion.w : Float",
 					"desc":"The w component of the quaternion"
 				}
@@ -155,8 +134,7 @@
 			"link" : "StaticMethods",
 			"values" : [
 				{
-				    "name":"Slerp", 
-				    "link":"Slerp", 
+				    "name":"Slerp", "link":"Slerp", 
 					"code":"Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) : Quaternion",
 					"desc":"" 
 				}

@@ -9,7 +9,7 @@ These are types that are built into luxe and phoenix.
 
 &nbsp;   
 
-### Core Types
+### core Types
 ---
 
 Color   
@@ -21,16 +21,16 @@ Matrix4
 ### luxe Types
 ---
 
-Camera      
-Sprite   
-Text   
-Events   
-NineSlice   
-Particles   
-Entity   
-Scene   
-Modes   
-Game   
+! Camera       
+! Sprite    
+Text    
+! Events    
+! NineSlice    
+! Particles    
+! Entity    
+! Scene    
+! Modes    
+! Game    
 
 ### luxe Components
 ---
@@ -49,15 +49,15 @@ geometry utils
 ### phoenix Types
 ---
 
-Geometry   
-Texture   
-RenderTexture   
-Resource   
-Batcher   
-Shader   
-Renderer   
-Camera   
-Ray   
+! Geometry    
+! Texture    
+! RenderTexture    
+! Resource    
+! Batcher    
+! Shader    
+! Renderer   
+! phoenix.Camera    
+! Ray    
 
 &nbsp;
 &nbsp;

@@ -1,0 +1,65 @@
+{	
+	"file" : "luxe.Text.md",
+	"links" : [
+		{"name":"Properties","link":"#Properties"}
+	],
+	"toplinks" : [{"name":"Back to types","link":"types.html"}],
+	"sections":[
+		{ 
+			"name": "luxe.Text",
+			"values" : [
+				{
+				    "name":"new", "link":"new", 
+					"code":"new( _options : Dynamic ) : Text",
+					"desc":"Available options <br/><br/> `text : String` <br/> `pos : Vector` <br/> `color : Color` <br/> `size : Float` <br/> `font : BitmapFont` or `font : String` asset id<br/> `size : Vector`<br/> `batcher : Batcher`" 
+				},
+				{
+				    "name":"destroy", "link":"destroy", 
+					"code":"destroy() : Void",
+					"desc":"" 
+				}
+			]
+		},
+		{
+			"name": "Properties",
+			"link": "Properties",
+			"values" : [
+				{
+				    "name":"text", "link":"text", 
+					"code":"text : String",
+					"desc":"" 
+				},
+				{
+				    "name":"pos", "link":"pos", 
+					"code":"pos : Vector",
+					"desc":"" 
+				},
+				{
+				    "name":"size", "link":"size", 
+					"code":"size : Float",
+					"desc":"" 
+				},
+				{
+				    "name":"color", "link":"color", 
+					"code":"color : Color",
+					"desc":"" 
+				},
+				{
+				    "name":"visible", "link":"visible", 
+					"code":"visible : Bool",
+					"desc":"" 
+				},
+				{
+				    "name":"locked", "link":"locked", 
+					"code":"locked : Bool",
+					"desc":"" 
+				},
+				{
+				    "name":"geometry", "link":"geometry", 
+					"code":"geometry : Geometry",
+					"desc":"" 
+				}
+			]
+		}
+	]
+}

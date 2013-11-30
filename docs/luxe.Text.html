@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,8 +40,48 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
-<h3><a href="types.html">Back to types</a></h3>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p><a href="#Properties">Properties</a>   </p>
+<p>&nbsp;   </p>
+<h3 id="luxe-text">luxe.<a href="luxe.Text.html">Text</a></h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new( _options : Dynamic ) : <a href="luxe.Text.html">Text</a></code>
+<span class="small_desc_flat"> Available options <br/><br/> <code>text : String</code> <br/> <code>pos : <a href="luxe.Vector.html">Vector</a></code> <br/> <code>color : <a href="luxe.Color.html">Color</a></code> <br/> <code>size : Float</code> <br/> <code>font : BitmapFont</code> or <code>font : String</code> asset id<br/> <code>size : <a href="luxe.Vector.html">Vector</a></code><br/> <code>batcher : <a href="phoenix.Batcher.html">Batcher</a></code> </span>   </p>
+<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
+<p><code>destroy() : Void</code>
+<span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="text" href="#text">text</a></p>
+<p><code>text : String</code>
+<span class="small_desc_flat">  </span>   </p>
+<p><a class="lift" name="pos" href="#pos">pos</a></p>
+<p><code>pos : <a href="luxe.Vector.html">Vector</a></code>
+<span class="small_desc_flat">  </span>   </p>
+<p><a class="lift" name="size" href="#size">size</a></p>
+<p><code>size : Float</code>
+<span class="small_desc_flat">  </span>   </p>
+<p><a class="lift" name="color" href="#color">color</a></p>
+<p><code>color : <a href="luxe.Color.html">Color</a></code>
+<span class="small_desc_flat">  </span>   </p>
+<p><a class="lift" name="visible" href="#visible">visible</a></p>
+<p><code>visible : Bool</code>
+<span class="small_desc_flat">  </span>   </p>
+<p><a class="lift" name="locked" href="#locked">locked</a></p>
+<p><code>locked : Bool</code>
+<span class="small_desc_flat">  </span>   </p>
+<p><a class="lift" name="geometry" href="#geometry">geometry</a></p>
+<p><code>geometry : <a href="phoenix.Geometry.html">Geometry</a></code>
+<span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

@@ -31,8 +31,7 @@ hr {
 pre,code { font-family:'dsm',monospace; background:#272822; border-radius:0.2em; height:auto; margin: 0.2em; padding: 0; padding-left:1em;  }
 
 li {
-	font-family:'dsm',monospace; 
-	font-size: 0.8em;
+	font-size: 1em;
 	letter-spacing: -0.05em;
 	max-width: 80%;
 	color:#999;
