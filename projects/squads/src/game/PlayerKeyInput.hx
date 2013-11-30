@@ -115,11 +115,6 @@ class PlayerKeyInput extends Component {
                 case "shoot":
                     shoot.onfiring();
 
-                case "switchweapon_down":
-                    weapons.cycle(-1);
-				case "switchweapon_up":
-					weapons.cycle(1);
-
 			} //switch input name
 
             if(left || right || down || up) {
@@ -155,7 +150,11 @@ class PlayerKeyInput extends Component {
                     Luxe.events.fire('level.start');
                 case "quit":
                     Luxe.events.fire('level.end');
-                    
+
+                case "switchweapon_down":
+                    weapons.cycle(-1);
+				case "switchweapon_up":
+					weapons.cycle(1);
 
 			} //switch input name
 
@@ -167,9 +166,6 @@ class PlayerKeyInput extends Component {
             }
 
 		} //!input.down
-
-
-
 
 	} //oninput
 

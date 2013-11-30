@@ -59,7 +59,7 @@ class TDCamera extends Component {
 
     } //zoom
 
-    public function onmousedown( e:MouseEvent ) {
+    public function onmouseup( e:MouseEvent ) {
         if(e.button == MouseButton.wheel_down || e.button == MouseButton.wheel_up) {
             switch(e.button) {
                 case MouseButton.wheel_down:

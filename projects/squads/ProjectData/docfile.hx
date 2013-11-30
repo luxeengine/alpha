@@ -77,8 +77,9 @@
 	 • function axis3D(?options:Dynamic) : Void;
 	 • function plane(options:Dynamic) : phoenix.geometry.PlaneGeometry;
 	 • function circle(options:Dynamic) : phoenix.geometry.CircleGeometry;
+	 • function arc(options:Dynamic) : phoenix.geometry.ArcGeometry;
 	 • function ring(options:Dynamic) : phoenix.geometry.RingGeometry;
-	 • function text(options:Dynamic) : phoenix.geometry.Geometry;
+	 • function text(options:Dynamic) : null;
 	 • function rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry;
 	 • function box(options:Dynamic) : phoenix.geometry.QuadGeometry;
 	 • function line(options:Dynamic) : phoenix.geometry.LineGeometry;
@@ -98,12 +99,15 @@
 
 //luxe class : luxe.Input
 
-	 … var Keys : lime.utils.Keys;
-	 … var Gamepad : lime.utils.Gamepad;
+	 … var Keys : lime.helpers.Keys;
+	 … var Gamepad : lime.helpers.Gamepad;
 	 • function add(_name:String, _event:Dynamic) : Void;
 
 //luxe class : luxe.Modes
 
+	 • function ontouchbegin(e:luxe.TouchEvent) : Void;
+	 • function ontouchend(e:luxe.TouchEvent) : Void;
+	 • function ontouchmove(e:luxe.TouchEvent) : Void;
 	 • function onmousemove(e:luxe.MouseEvent) : Void;
 	 • function onmouseup(e:luxe.MouseEvent) : Void;
 	 • function onmousedown(e:luxe.MouseEvent) : Void;
@@ -196,6 +200,7 @@
 	 • function destroy() : Void;
 	 … var text_options : Dynamic;
 	 … var ready : Bool;
+	 … var locked : Bool ;
 	 … var visible : Bool ;
 	 … var color : luxe.Color ;
 	 … var size : Float ;
@@ -244,74 +249,74 @@
 	 … var animation_list : Map;
 	 • function new() ;
 
-//luxe class : luxe.structures.BalancedBinarySearchTree
+//luxe class : luxe.structural.BalancedBinarySearchTree
 
-	 • function traverse(_node:luxe.structures.BalancedBinarySearchTreeNode, _traverse_method:luxe.structures.BalancedBinarySearchTraverseMethod, _process_node_function:luxe.structures.BalancedBinarySearchTreeNode->Void) : Void;
+	 • function traverse(_node:luxe.structural.BalancedBinarySearchTreeNode, _traverse_method:luxe.structural.BalancedBinarySearchTraverseMethod, _process_node_function:luxe.structural.BalancedBinarySearchTreeNode->Void) : Void;
 	 • function iterator() : Iterator;
 	 • function keys() : Array;
 	 • function toArray() : Array;
-	 • function remove(_key:luxe.structures.BalancedBinarySearchTree.K) : Void;
+	 • function remove(_key:luxe.structural.BalancedBinarySearchTree.K) : Void;
 	 • function deleteMax() : Void;
 	 • function deleteMin() : Void;
-	 • function ceil(_key:luxe.structures.BalancedBinarySearchTree.K) : Null;
-	 • function floor(_key:luxe.structures.BalancedBinarySearchTree.K) : Null;
-	 • function max() : luxe.structures.BalancedBinarySearchTree.K;
-	 • function min() : luxe.structures.BalancedBinarySearchTree.K;
-	 • function select(_rank:Int) : luxe.structures.BalancedBinarySearchTree.K;
-	 • function rank(_key:luxe.structures.BalancedBinarySearchTree.K) : Int;
-	 • function find(_key:luxe.structures.BalancedBinarySearchTree.K) : luxe.structures.BalancedBinarySearchTree.T;
-	 • function contains(_key:luxe.structures.BalancedBinarySearchTree.K) : Bool;
-	 • function insert(_key:luxe.structures.BalancedBinarySearchTree.K, _value:luxe.structures.BalancedBinarySearchTree.T) : Void;
+	 • function ceil(_key:luxe.structural.BalancedBinarySearchTree.K) : Null;
+	 • function floor(_key:luxe.structural.BalancedBinarySearchTree.K) : Null;
+	 • function max() : luxe.structural.BalancedBinarySearchTree.K;
+	 • function min() : luxe.structural.BalancedBinarySearchTree.K;
+	 • function select(_rank:Int) : luxe.structural.BalancedBinarySearchTree.K;
+	 • function rank(_key:luxe.structural.BalancedBinarySearchTree.K) : Int;
+	 • function find(_key:luxe.structural.BalancedBinarySearchTree.K) : luxe.structural.BalancedBinarySearchTree.T;
+	 • function contains(_key:luxe.structural.BalancedBinarySearchTree.K) : Bool;
+	 • function insert(_key:luxe.structural.BalancedBinarySearchTree.K, _value:luxe.structural.BalancedBinarySearchTree.T) : Void;
 	 • function height() : Int;
 	 • function size() : Int;
 	 • function empty() : Bool;
 	 • function toString() : String;
 	 … var compare : Dynamic;
-	 … var root : luxe.structures.BalancedBinarySearchTreeNode;
-	 • function new(compare_function:luxe.structures.BalancedBinarySearchTree.K->luxe.structures.BalancedBinarySearchTree.K->Int) ;
+	 … var root : luxe.structural.BalancedBinarySearchTreeNode;
+	 • function new(compare_function:luxe.structural.BalancedBinarySearchTree.K->luxe.structural.BalancedBinarySearchTree.K->Int) ;
 
-//luxe class : luxe.structures.BalancedBinarySearchTreeNode
+//luxe class : luxe.structural.BalancedBinarySearchTreeNode
 
-	 … var value : luxe.structures.BalancedBinarySearchTreeNode.T;
-	 … var key : luxe.structures.BalancedBinarySearchTreeNode.K;
+	 … var value : luxe.structural.BalancedBinarySearchTreeNode.T;
+	 … var key : luxe.structural.BalancedBinarySearchTreeNode.K;
 	 … var color : Bool;
 	 … var nodecount : Int;
-	 … var right : luxe.structures.BalancedBinarySearchTreeNode;
-	 … var left : luxe.structures.BalancedBinarySearchTreeNode;
-	 • function new(_key:luxe.structures.BalancedBinarySearchTreeNode.K, _value:luxe.structures.BalancedBinarySearchTreeNode.T, _nodecount:Int, _color:Bool) ;
+	 … var right : luxe.structural.BalancedBinarySearchTreeNode;
+	 … var left : luxe.structural.BalancedBinarySearchTreeNode;
+	 • function new(_key:luxe.structural.BalancedBinarySearchTreeNode.K, _value:luxe.structural.BalancedBinarySearchTreeNode.T, _nodecount:Int, _color:Bool) ;
 
-//luxe class : luxe.structures.BinarySearchTree
+//luxe class : luxe.structural.BinarySearchTree
 
-	 • function traverse(_node:luxe.structures.BinarySearchTreeNode, _traverse_method:luxe.structures.BinarySearchTraverseMethod, _process_node_function:luxe.structures.BinarySearchTreeNode->Void) : Void;
+	 • function traverse(_node:luxe.structural.BinarySearchTreeNode, _traverse_method:luxe.structural.BinarySearchTraverseMethod, _process_node_function:luxe.structural.BinarySearchTreeNode->Void) : Void;
 	 • function iterator() : Iterator;
 	 • function keys() : Array;
 	 • function toArray() : Array;
-	 • function remove(_key:luxe.structures.BinarySearchTree.K) : Void;
+	 • function remove(_key:luxe.structural.BinarySearchTree.K) : Void;
 	 • function deleteMax() : Void;
 	 • function deleteMin() : Void;
-	 • function ceil(_key:luxe.structures.BinarySearchTree.K) : Null;
-	 • function floor(_key:luxe.structures.BinarySearchTree.K) : Null;
-	 • function max() : luxe.structures.BinarySearchTree.K;
-	 • function min() : luxe.structures.BinarySearchTree.K;
-	 • function select(_rank:Int) : luxe.structures.BinarySearchTree.K;
-	 • function rank(_key:luxe.structures.BinarySearchTree.K) : Int;
-	 • function find(_key:luxe.structures.BinarySearchTree.K) : luxe.structures.BinarySearchTree.T;
-	 • function contains(_key:luxe.structures.BinarySearchTree.K) : Bool;
-	 • function insert(_key:luxe.structures.BinarySearchTree.K, _value:luxe.structures.BinarySearchTree.T) : Void;
+	 • function ceil(_key:luxe.structural.BinarySearchTree.K) : Null;
+	 • function floor(_key:luxe.structural.BinarySearchTree.K) : Null;
+	 • function max() : luxe.structural.BinarySearchTree.K;
+	 • function min() : luxe.structural.BinarySearchTree.K;
+	 • function select(_rank:Int) : luxe.structural.BinarySearchTree.K;
+	 • function rank(_key:luxe.structural.BinarySearchTree.K) : Int;
+	 • function find(_key:luxe.structural.BinarySearchTree.K) : luxe.structural.BinarySearchTree.T;
+	 • function contains(_key:luxe.structural.BinarySearchTree.K) : Bool;
+	 • function insert(_key:luxe.structural.BinarySearchTree.K, _value:luxe.structural.BinarySearchTree.T) : Void;
 	 • function size() : Int;
 	 • function toString() : String;
 	 … var compare : Dynamic;
-	 … var root : luxe.structures.BinarySearchTreeNode;
-	 • function new(compare_function:luxe.structures.BinarySearchTree.K->luxe.structures.BinarySearchTree.K->Int) ;
+	 … var root : luxe.structural.BinarySearchTreeNode;
+	 • function new(compare_function:luxe.structural.BinarySearchTree.K->luxe.structural.BinarySearchTree.K->Int) ;
 
-//luxe class : luxe.structures.BinarySearchTreeNode
+//luxe class : luxe.structural.BinarySearchTreeNode
 
-	 … var value : luxe.structures.BinarySearchTreeNode.T;
-	 … var key : luxe.structures.BinarySearchTreeNode.K;
+	 … var value : luxe.structural.BinarySearchTreeNode.T;
+	 … var key : luxe.structural.BinarySearchTreeNode.K;
 	 … var nodecount : Int;
-	 … var right : luxe.structures.BinarySearchTreeNode;
-	 … var left : luxe.structures.BinarySearchTreeNode;
-	 • function new(_key:luxe.structures.BinarySearchTreeNode.K, _value:luxe.structures.BinarySearchTreeNode.T, _nodecount:Int) ;
+	 … var right : luxe.structural.BinarySearchTreeNode;
+	 … var left : luxe.structural.BinarySearchTreeNode;
+	 • function new(_key:luxe.structural.BinarySearchTreeNode.K, _value:luxe.structural.BinarySearchTreeNode.T, _nodecount:Int) ;
 
 //luxe class : luxe.tween.actuators.GenericActuator
 
@@ -480,6 +485,25 @@
 	 … var stringify : Dynamic (read only);
 	 … var parse : Dynamic (read only);
 
+//luxe class : luxe.utils.Maths
+
+	 … var DEG2RAD : Float;
+	 … var RAD2DEG : Float;
+	 • function fixed(value:Float, precision:Int) : Float;
+	 • function clamp(value:Float, a:Float, b:Float) : Float;
+	 • function clampBottom(value:Float, a:Float) : Float;
+	 • function nearest_power_of_two(_value:Int) : Int;
+	 • function mapLinear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float;
+	 • function smoothstep(x:Float, min:Float, max:Float) : Float;
+	 • function smootherstep(x:Float, min:Float, max:Float) : Float;
+	 • function random16() : Float;
+	 • function randInt(low:Int, high:Int) : Int;
+	 • function randFloat(low:Float, high:Float) : Float;
+	 • function randFloatSpread(range:Float) : Float;
+	 • function sign(x:Float) : Int;
+	 • function degToRad(deg:Float) : Float;
+	 • function radToDeg(rad:Float) : Float;
+
 //luxe class : luxe.utils.UUID
 
 	 • function generate_undashed() : String;
@@ -490,7 +514,5 @@
 	 • function file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int) : Void;
 	 • function arrayToBytes(array:Array) : haxe.io.Bytes;
 	 • function bytes_to_string(bytes:Int) : String;
-	 • function nearest_power_of_two(_value:Int) : Int;
-	 • function clamp(value:Float, min:Float, max:Float) : Float;
 	 • function uuid() : String;
 	 … var geometry : luxe.utils.GeometryUtils;
