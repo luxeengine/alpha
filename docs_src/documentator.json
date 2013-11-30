@@ -30,7 +30,7 @@
         { "key":"Sprite",         "link":"luxe.Sprite.html"                 },
         { "key":"Camera",         "link":"luxe.Camera.html"                 },
         { "key":"Text",           "link":"luxe.Text.html"                   },
-        { "key":"Events",         "link":"luxe.Events.html"                 },
+        { "key":"Events",         "link":"luxe.events.html"                 },
         { "key":"Modes",          "link":"luxe.Modes.html"                  },
         { "key":"Mode",           "link":"luxe.Mode.html"                   },
         { "key":"Objects",        "link":"luxe.Objects.html"                },

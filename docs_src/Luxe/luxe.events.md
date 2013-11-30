@@ -13,47 +13,47 @@ There are two ways to trigger an event, one which sends the event into a queue t
 _Listen for an event, by connecting a handler_
 
 
-<a name="Listen" ></a>
+<a class="lift" name="Listen" ></a>
 
 ###Listen and connect to events
 
-<a name="listen" href="#listen">listen</a>
+<a class="lift" name="listen" href="#listen">listen</a>
 
-    var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -> Void ) : String
+`var eventid = Luxe.events.listen( event_name : String, listener : Dynamic -> Void ) : String`
 <span class="small_desc_flat"> Listen for an event by name, attaching a function for when the event fires </span>      
 
-<a name="disconnect" href="#disconnect">disconnect</a>
+<a class="lift" name="disconnect" href="#disconnect">disconnect</a>
 
-    var success = Luxe.events.disconnect( event_id : String ) : Bool
+`var success = Luxe.events.disconnect( event_id : String ) : Bool`
 <span class="small_desc_flat"> Disconnect a listener, using the id returned by `listen` </span>      
 
-<a name="Firing" ></a>
+<a class="lift" name="Firing" ></a>
 
 ###Firing and Queuing events
 
-<a name="queue" href="#queue">queue</a>
+<a class="lift" name="queue" href="#queue">queue</a>
 
-    var queueid = Luxe.events.queue( event_name : String, properties : Dynamic = null ) : String
+`var queueid = Luxe.events.queue( event_name : String, properties : Dynamic = null ) : String`
 <span class="small_desc_flat"> Queue an event to be fired for the next frame, , passing the properties object to the handler </span>      
 
-<a name="dequeue" href="#dequeue">dequeue</a>
+<a class="lift" name="dequeue" href="#dequeue">dequeue</a>
 
-    var success = Luxe.events.dequeue( event_id: String ) : Bool
+`var success = Luxe.events.dequeue( event_id: String ) : Bool`
 <span class="small_desc_flat"> Remove an event from the queue, provided it exists and hasn't been fired yet. </span>      
 
-<a name="fire" href="#fire">fire</a>
+<a class="lift" name="fire" href="#fire">fire</a>
 
-    var success = Luxe.events.fire( event_name : String, properties : Dynamic = null ) : Bool
+`var success = Luxe.events.fire( event_name : String, properties : Dynamic = null ) : Bool`
 <span class="small_desc_flat"> Fire the event by name immediately, passing the properties object to the handler </span>      
 
-<a name="schedule" href="#schedule">schedule</a>
+<a class="lift" name="schedule" href="#schedule">schedule</a>
 
-    var eventid = Luxe.events.schedule( time:Float, event_name : String, properties : Dynamic = null) : String
+`var eventid = Luxe.events.schedule( time:Float, event_name : String, properties : Dynamic = null) : String`
 <span class="small_desc_flat"> Fire the event by name some time in the future, passing the properties object to the handler </span>      
 
-<a name="unschedule" href="#unschedule">unschedule</a>
+<a class="lift" name="unschedule" href="#unschedule">unschedule</a>
 
-    var success = Luxe.events.unschedule( schedule_id : String ) : Bool
+`var success = Luxe.events.unschedule( schedule_id : String ) : Bool`
 <span class="small_desc_flat"> Cancel an event by the ID returned from `schedule` </span>      
 
 ### examples
