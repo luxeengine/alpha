@@ -13,7 +13,6 @@ class ApplicationMain {
 
 		var config = {
 			game 			: null,
-			renderer 		: phoenix.Renderer,
 			fullscreen		: ::WIN_FULLSCREEN::,
 			resizable 		: ::WIN_RESIZABLE::,
 			borderless		: ::WIN_BORDERLESS::,

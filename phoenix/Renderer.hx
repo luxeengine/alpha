@@ -55,6 +55,8 @@ class Renderer {
 
     public var stats : RendererStats;
 
+    public function new( _core:luxe.Core ) { }
+
     public function startup() {
 
         state = new RenderState(this);
@@ -367,6 +369,9 @@ class Renderer {
 
     } //process
 
+    public function onresize(e:Dynamic) {
+        
+    }
 
 } //renderer
 

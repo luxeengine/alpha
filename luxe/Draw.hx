@@ -1,5 +1,6 @@
 package luxe;
 
+import phoenix.geometry.Geometry;
 import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
@@ -37,7 +38,7 @@ class Draw {
 
     	var _line = new LineGeometry(options);
 
-    	options.batcher.add(_line);
+    	options.batcher.add(_line, false);
 
     	return _line;
 
@@ -49,7 +50,7 @@ class Draw {
 
         var _box = new QuadGeometry(options);
 
-           options.batcher.add(_box);
+            options.batcher.add(_box, false);
 
         return _box;
 
@@ -61,7 +62,7 @@ class Draw {
 
     	var _rect = new RectangleGeometry(options);
 
-    	   options.batcher.add(_rect);
+    	   options.batcher.add(_rect, false);
 
     	return _rect;
     	
@@ -83,7 +84,7 @@ class Draw {
 
         var _ring = new RingGeometry(options);
 
-            options.batcher.add(_ring);
+            options.batcher.add(_ring, false);
 
         return _ring;
 
@@ -95,7 +96,7 @@ class Draw {
 
         var _arc = new ArcGeometry(options);
 
-            options.batcher.add(_arc);
+            options.batcher.add(_arc, false);
 
         return _arc;
 
@@ -119,7 +120,7 @@ class Draw {
 
         var _plane = new PlaneGeometry(options);
 
-           options.batcher.add(_plane);
+           options.batcher.add(_plane, false);
 
         return _plane;
 

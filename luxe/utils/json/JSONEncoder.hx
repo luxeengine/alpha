@@ -33,10 +33,8 @@
 
 package luxe.utils.json;
 
-#if neko
-import neko.Utf8;
-#elseif php
-import php.Utf8;
+#if (neko || php)
+import haxe.Utf8;
 #end
 
 	//import flash.utils.describeType;

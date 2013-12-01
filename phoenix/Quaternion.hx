@@ -6,10 +6,10 @@ import phoenix.Vector;
 
 class Quaternion {
 	
-	@:isVar public var x(default,set) : Float;
-	@:isVar public var y(default,set) : Float;
-	@:isVar public var z(default,set) : Float;
-	@:isVar public var w(default,set) : Float;
+	@:isVar public var x(default,set) : Float = 0.0;
+	@:isVar public var y(default,set) : Float = 0.0;
+	@:isVar public var z(default,set) : Float = 0.0;
+	@:isVar public var w(default,set) : Float = 0.0;
 
 	var euler : Vector;
 

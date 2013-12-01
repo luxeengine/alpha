@@ -408,10 +408,10 @@ class Vector {
 
 	public function setEulerFromQuaternion (q:Quaternion, order:String = 'XYZ') : Vector {
 
-		var sqx = q.x * q.x;
-		var sqy = q.y * q.y;
-		var sqz = q.z * q.z;
-		var sqw = q.w * q.w;
+		var sqx : Float = q.x * q.x;
+		var sqy : Float = q.y * q.y;
+		var sqz : Float = q.z * q.z;
+		var sqw : Float = q.w * q.w;
 		
 		if (order == 'XYZ') {
 			x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );

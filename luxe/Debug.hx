@@ -432,7 +432,7 @@ import luxe.utils.Maths;
             //update the title
         _title_text = "default scene dt : (average) " + Maths.fixed(dt_average,3) + ' (exact) ' + Maths.fixed(Luxe.dt,3);        
         
-        #if luxe_native 
+        #if cpp 
             _title_text += ' mem:' + Luxe.utils.bytes_to_string(cpp.vm.Gc.memUsage());
         #end
 

@@ -263,9 +263,10 @@ class Batcher {
 
     } //geometry_compare
 
-    public function add( _geom:Geometry, ?_force_add:Bool = false ) {
+    public function add( _geom:Geometry, _force_add:Bool = false ) {
         
         if( geometry.find(_geom.key) == null || _force_add ) {
+
                 //Only add if not already there
             if( !Lambda.has(_geom.batchers, this) ) {
                 _geom.batchers.push(this);

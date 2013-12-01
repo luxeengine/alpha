@@ -12,13 +12,14 @@ import luxe.Files;
 import luxe.Debug;
 import luxe.Time;
 
-import luxe.Renderer;
+import phoenix.Renderer;
 
 #if haxebullet
     import luxe.Physics;
 #end //haxebullet
 
 import haxe.Timer;
+import phoenix.Renderer;
 
 @:hide class Core {
 
@@ -44,7 +45,7 @@ import haxe.Timer;
 	public var input 	: Input;
     public var audio    : Audio;
     public var scene    : Scene;
-	public var renderer : Dynamic;
+	public var renderer : Renderer;
     public var screen   : luxe.Rectangle; //todo
 
 #if haxebullet
@@ -154,12 +155,8 @@ import haxe.Timer;
             physics = new Physics( this );    
         #end //haxebullet
 
-        if(config.renderer == null) {
-            renderer = new Renderer( this );
-        } else {
-            renderer = Type.createInstance(config.renderer, [this]);
-        }
-
+            //create the renderer
+        renderer = new Renderer( this );
             //assign the globals
         Luxe.renderer = renderer;   
             //store the size for access from API
@@ -174,13 +171,12 @@ import haxe.Timer;
 		events.startup();
 		audio.startup();
 		input.startup();
+
         #if haxebullet
             physics.startup();
         #end //haxebullet
-        
-        if(renderer != null && renderer.startup != null) {
-            renderer.startup();
-        } //if we have a renderer
+                
+        renderer.startup();        
 
         Luxe.audio = audio;
         Luxe.draw = draw;     
@@ -335,7 +331,7 @@ import haxe.Timer;
             //update internal render views
         debug.onresize(e);
             //and the defaults
-        if(renderer.onresize != null) renderer.onresize(e);
+        renderer.onresize(e);
             //and then the host
         if(host.onresize != null) host.onresize(e);
 

@@ -35,10 +35,8 @@ package luxe.utils.json;
 
 import luxe.utils.json.JSONDecoder;
 
-#if neko
-import neko.Utf8;
-#elseif php
-import php.Utf8;
+#if (neko || php)
+import haxe.Utf8;
 #end
 
 @:noCompletion class JSONTokenizer {	
