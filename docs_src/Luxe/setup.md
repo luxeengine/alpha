@@ -29,31 +29,40 @@ You can also get luxe from the [git repository](http://github.com/underscoredisc
 
 To install luxe from haxelib, open a Terminal/Command line and type the following : 
 
-`haxelib install lime`   
+`haxelib install format`   
 `haxelib install lime-tools`   
-`haxelib install luxe`   
+`haxelib install lime`   
+`haxelib git luxe https://github.com/underscorediscovery/luxe.git` master   
 
 Now, we tell luxe to setup :
 
-`haxelib run luxe setup`
+`haxelib run lime setup`
 
-This will create a command called `luxe` which you use to build your projects,   
+This will create a command called `lime` which you use to build your projects,   
 and continue the set up process for you.
 
-Finally, you can use luxe to install any other requirements for your platform.   
+Finally, you can use lime to install any other requirements for your platform.   
 _You only need to run the setup for platforms you are on/using_.
 
-`luxe setup windows`   
-`luxe setup mac`   
-`luxe setup linux`   
-`luxe setup android`   
-`luxe setup ios`   
+`lime setup windows`   
+`lime setup mac`   
+`lime setup linux`   
+`lime setup android`   
+`lime setup ios`   
 
 ## What else?
 
 Nothing! 
 
-You can test if everything is setup ok, using a template project :
+To test that everything is working, go to the samples/simplest folder and run something like   
+
+`lime test html5`   
+`lime test windows`   
+`lime test mac`   
+`lime test linux`   
+
+
+<!-- You can test if everything is setup ok, using a template project :
 
 `luxe create empty MyTestProject`   
 `cd MyTestProject`   
@@ -64,7 +73,7 @@ and then once inside the project folder :
 
 You can test native binaries by running : 
 
-`luxe test mac` or `luxe test linux` or `luxe test windows`
+`luxe test mac` or `luxe test linux` or `luxe test windows` -->
 
 --- 
 

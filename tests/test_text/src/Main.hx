@@ -18,6 +18,10 @@ class Main extends luxe.Game {
             size : 24
         });
 
+        Sys.args().filter(function(e){
+
+        });
+
         new Text({
             color : new Color(),
             text : "right && center",

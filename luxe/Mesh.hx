@@ -28,6 +28,7 @@ class Mesh {
         _rotation_quat = new Quaternion();   
 
         if(_options.file != null) {
+            // trace("\t Loading Mesh from file " + _options.file );
             var ext = haxe.io.Path.extension( _options.file );
             switch(ext) {
                 case 'obj':

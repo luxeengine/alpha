@@ -38,6 +38,8 @@ class Rendering {
     public static function get_elements_for_type( type:PrimitiveType, length:Int ) {
             // line_strip || line_loop || triangle_strip || triangle_fan are separated from being batched
         switch( type ) {
+            case points:
+                return Std.int(length/4);
             case line_strip:
                 return Std.int(length/4);
             case line_loop:
@@ -53,6 +55,8 @@ class Rendering {
 
     public static function get_opengl_primitive_type( type:PrimitiveType ) {
         switch( type ) {
+            case points:
+                return GL.POINTS;
             case line_strip:
                 return GL.LINE_STRIP;
             case line_loop:

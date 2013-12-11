@@ -17,11 +17,11 @@ class Audio {
     }
 
     public function create(_name:String,_file:String, ?_forcemusic:Bool = false ) {
-        core.lime.audio.create_sound(_name, _file, _forcemusic);
+        core.lime.audio.create(_name, _file, _forcemusic);
     }
 
     public function play(_name:String) {
-        var s = core.lime.audio.sounds.get(_name);
+        var s = core.lime.audio.get(_name);
         if(s != null) {
             s.play();
         } else {
@@ -30,7 +30,7 @@ class Audio {
     }
 
     public function volume(_name:String, _v:Float) {
-        var s = core.lime.audio.sounds.get(_name);
+        var s = core.lime.audio.get(_name);
         if(s != null) {
             s.volume = _v;
         } else {
@@ -39,7 +39,7 @@ class Audio {
     }
 
     public function pan(_name:String, _p:Float) {
-        var s = core.lime.audio.sounds.get(_name);
+        var s = core.lime.audio.get(_name);
         if(s != null) {
             s.pan = _p;
         } else {

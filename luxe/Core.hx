@@ -1,6 +1,6 @@
 package luxe;
 
-import lime.LiME;
+import lime.Lime;
 
 import Luxe;
 
@@ -21,6 +21,10 @@ import phoenix.Renderer;
 import haxe.Timer;
 import phoenix.Renderer;
 
+#if (luxe_thread_core && luxe_native) 
+    import cpp.vm.Thread;
+#end
+
 @:hide class Core {
 
 		//core versioning
@@ -33,8 +37,8 @@ import phoenix.Renderer;
         //if the console is displayed atm
     public var console_visible : Bool = false;
 
-        //the reference to the underlying LiME system
-    public var lime : LiME;
+        //the reference to the underlying Lime system
+    public var lime : Lime;
 
 //Sub Systems, mostly in order of importance
 	public var debug    : Debug;
@@ -56,9 +60,6 @@ import phoenix.Renderer;
     private var end_dt : Float = 0;
     public var dt : Float = 0;
 
-//Profile path
-    public var profile_path : String = "profile.txt";
-    public var profiling : Bool = false;
 //Mouse and fake mouse touch
     var _mouse_pos : Vector;
     var _touch_pos : Vector;
@@ -72,7 +73,6 @@ import phoenix.Renderer;
         _update_handlers.set(_uuid,_update); 
         return _uuid;
     }
-
 
 //flags
 	
@@ -102,7 +102,7 @@ import phoenix.Renderer;
         //This gets called once the create_main_frame call inside new() 
         //comes back with our window
 
-    private function ready( _lime : LiME ) {
+    private function ready( _lime : Lime ) {
             
             //Keep a reference
         lime = _lime;
@@ -245,7 +245,7 @@ import phoenix.Renderer;
         _debug(':: luxe :: Goodbye.');
     }
 
-    	//Called by LiME
+    	//Called by Lime
     public function update() { 
 
         _debug('on_update ' + Timer.stamp(), true, true); 
@@ -288,7 +288,7 @@ import phoenix.Renderer;
 
     } //update
 
-        //called by LiME
+        //called by Lime
     public function render() {
 
             //Call back to the game class for them
@@ -339,57 +339,33 @@ import phoenix.Renderer;
 //input events
 //keys
     public function onkeydown( e:KeyEvent ) {
-
-            //check for named input 
+            
         if(!shutting_down) {
+                //check for named input 
             input.check_named_keys(e, true);
+                //forward to debug module
+            debug.onkeydown(e);
         }
 
-        if(host.onkeydown != null) host.onkeydown(e);
-
-        if(e.key == KeyValue.key_1 && console_visible) {
-            debug.switch_console();
-        }
-
-        if(e.key == KeyValue.key_2 && console_visible) {
-            debug.toggle_debug_stats();
-        }
+        if(host.onkeydown != null) host.onkeydown(e);        
 
         if(e.key == KeyValue.tilde) {
             show_console( !console_visible );
         }
 
-        #if profiler
-            #if luxe_native
-                if(e.key == KeyValue.key_P && e.ctrl_down) {
-                    trace("luxe :: starting profiler ... let go of key to stop profiling.");
-                    cpp.vm.Profiler.start( profile_path );
-                    profiling = true;
-                }
-            #end //luxe_native
-        #end //profiler
-
     } //onkeydown
 
     public function onkeyup( e:KeyEvent ) {
-
-
-            //check for named input 
+            
         if(!shutting_down) {
+                //check for named input 
             input.check_named_keys(e);
+                //forward to debug module
+            debug.onkeyup(e);
         }
         
         if(host.onkeyup != null) host.onkeyup(e);
 
-        #if profiler
-            #if luxe_native
-                if(e.key == KeyValue.key_P && profiling) {
-                    cpp.vm.Profiler.stop();
-                    profiling = false;
-                    trace("luxe :: profiling complete. Look for the results in " + profile_path );
-                }
-            #end //luxe_native
-        #end //profiler
 
     } //onkeyup
 
@@ -470,7 +446,7 @@ import phoenix.Renderer;
             //3 finger tap when console opens will switch tabs
         if(Lambda.count(touches_down) >= 3) {
             if(console_visible) {
-                debug.switch_console();
+                debug.switch_view();
             }
         }
 

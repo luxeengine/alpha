@@ -74,7 +74,12 @@ Now you can draw something inside the `ready` function, and it will appear on sc
 **Take note** that the Geometry classes are considered "low level" and later guides show you easier ways of making objects (like [sprites](guide.sprites.html))
 
 ###Drawing a ring on screen
----
+--- 
+        //this goes at the top of the file
+    import phoenix.geometry.RingGeometry;
+
+    ... 
+
 	var ring : RingGeometry;
 
     public function ready() {

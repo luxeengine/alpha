@@ -68,7 +68,7 @@ class Main extends luxe.Game {
         Luxe.scene.add(game_camera);
 
             //Draw an axis for debug
-        // Luxe.draw.axis3D();
+        Luxe.draw.axis3D();
 
     } //ready
 

@@ -1,13 +1,13 @@
 import ::APP_MAIN::;
 
 import luxe.Core;
-import lime.LiME;
+import lime.Lime;
 
 class ApplicationMain {
 		
 	public static var _main_ : ::APP_MAIN::;
 	public static var _core : Core;
-	public static var _lime : LiME;
+	public static var _lime : Lime;
 
 	public static function main () {
 
@@ -16,7 +16,7 @@ class ApplicationMain {
 			fullscreen		: ::WIN_FULLSCREEN::,
 			resizable 		: ::WIN_RESIZABLE::,
 			borderless		: ::WIN_BORDERLESS::,
-			aliasing		: ::WIN_ANTIALIASING::,
+			antialiasing	: ::WIN_ANTIALIASING::,
 			stencil_buffer 	: ::WIN_STENCIL_BUFFER::,
 			depth_buffer 	: ::WIN_DEPTH_BUFFER::,
 			vsync 			: ::WIN_VSYNC::,
@@ -26,7 +26,7 @@ class ApplicationMain {
 		};
 
 			//Create the lime layer
-		_lime = new LiME();
+		_lime = new Lime();
 			//Create the game class, give it the runtime
 		_main_ = new ::APP_MAIN::();
 			//Create the haxeluxe runtime, pass it the lime reference

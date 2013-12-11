@@ -4,6 +4,7 @@ import luxe.Input.MouseEvent;
 import luxe.Vector;
 import luxe.Entity;
 import luxe.Text;
+import luxe.Input;
 import luxe.Color;
 
 import luxe.components.render.MeshComponent;
@@ -100,13 +101,16 @@ class Level extends Component {
             
         update_mouse_pos(e);
 
-        floor.get('mesh').mesh.geometry.shader = lighting;
-        tower.get('mesh').mesh.geometry.shader = lighting;
-        tower2.get('mesh').mesh.geometry.shader = lighting;
+        // floor.get('mesh').mesh.geometry.shader = lighting;
+        // tower.get('mesh').mesh.geometry.shader = lighting;
+        // tower2.get('mesh').mesh.geometry.shader = lighting;
 
         //first of all, when we click down,
         //we have to check that the tower placement point is not taken already.
-        
+        if(e.button == MouseButton.wheel_down || e.button == MouseButton.wheel_up) {
+            return;
+        }
+
         if(grid.isWalkable(mousegrid.x, mousegrid.y)) {
 
             // trace('attempting to place a tower at ' + mousegrid.x + ',' + mousegrid.y);
@@ -136,10 +140,7 @@ class Level extends Component {
                     tower_mesh.file = 'assets/tower2.obj';
                     tower_mesh.texture = tower_texture;
 
-                tower_mesh.init();
-
                 newtower.pos = mousepos;
-
 
             } else {
                 trace("Cannot place tower that would block the enemy from the exits.");

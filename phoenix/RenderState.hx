@@ -25,9 +25,11 @@ class RenderState {
                     GL.enable(GL.CULL_FACE);
                 } //!cull_face
             case GL.DEPTH_TEST:
-                if(!depth_test && Luxe.core.lime.config.depth_buffer) {
-                    depth_test = true;
-                    GL.enable(GL.DEPTH_TEST);
+                if(Luxe.core.lime.config.depth_buffer) {
+                    if(!depth_test) {
+                        depth_test = true;
+                        GL.enable(GL.DEPTH_TEST);
+                    }
                 } //!depth_test
         } //switch
     } //enable_if_not
@@ -40,9 +42,11 @@ class RenderState {
                     GL.disable(GL.CULL_FACE);
                 } //cull_face
             case GL.DEPTH_TEST:
-                if(depth_test && Luxe.core.lime.config.depth_buffer) {
-                    depth_test = false;
-                    GL.disable(GL.DEPTH_TEST);
+                if(Luxe.core.lime.config.depth_buffer) {
+                    if(depth_test) {
+                        depth_test = false;
+                        GL.disable(GL.DEPTH_TEST);
+                    }
                 } //depth_test
         } //switch
     } //disable_if_not

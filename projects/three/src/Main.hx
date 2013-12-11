@@ -52,6 +52,8 @@ class Main extends luxe.Game {
         Luxe.lockCursor(false);
         Luxe.showCursor(true);
 
+        Luxe.renderer.clear_color = new Color().rgb(0x990099);
+
         rotation = new Vector(-20, 0, 0);
 
         tex = Luxe.loadTexture('assets/diff.png');

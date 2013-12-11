@@ -151,14 +151,15 @@ class Component extends Objects {
 			//debug stuff
 		_debug('adding a component to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
 
-		if(entity != null) {
-			if(entity.inited) {
-				_call(_component, 'init');
-			}
-			if(entity.started) {
-				_call(_component, 'start');
-			}
-		}
+		// if(entity != null) {
+		// 	trace("adding " + _name + " to entity " + entity.name + '. inited? ' + entity.inited + ' or started? ' + entity.started);
+		// 	if(entity.inited) {
+		// 		_call(_component, 'init');
+		// 	}
+		// 	if(entity.started) {
+		// 		_call(_component, 'start');
+		// 	}
+		// }
 
 			//return the component
 		return _component;

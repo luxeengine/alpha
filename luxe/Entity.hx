@@ -72,7 +72,7 @@ class Entity extends Objects {
 
 	@:noCompletion public function _init() {
 
-		_debug('calling init on ' + name);
+		// trace('calling init on ' + name);
 
 			//init the parent first
 		_call(this, 'init');
@@ -90,6 +90,7 @@ class Entity extends Objects {
 		} //for each child
 
             //flag internally
+        // trace("entity " + name + " is setting inited to true ");
         inited = true;
 
 	} //_init
@@ -427,6 +428,7 @@ class Entity extends Objects {
     		posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
     	}
 
+        trace("entity set pos " + _p);
     		//update the value before we propogate
     	pos = _p; 
 

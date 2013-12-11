@@ -9,13 +9,18 @@ class Scene {
     public var name : String = 'Untitled Scene';
     public var id : String = '';
     
-    public var entities : Map<String,Entity>;
+    public var entities : Map<String,Entity>;    
     public var inited : Bool = false;
     public var started : Bool = false;
+
+    var _delayed_init_entities : Array<Entity>;
+    var _delayed_start_entities : Array<Entity>;
 
     public function new() {
         entities = new Map<String,Entity>();
         id = Luxe.utils.uuid();
+        _delayed_init_entities = [];
+        _delayed_start_entities = [];
     }
 
     public function create<T>(type:Class<T>, ?_name:String='') : T {
@@ -36,7 +41,7 @@ class Scene {
         _e_entity.name = _temp_name;
 
             //add it to this scene
-        add(_e_entity);
+        add(_e_entity);        
 
             //entity
         return _entity;
@@ -44,14 +49,14 @@ class Scene {
 
     public function add( entity:Entity ) {
 
-        entities.set( entity.name, entity );
-        
+        entities.set( entity.name, entity );        
+
         if(inited) {
-            entity._init();
+            _delayed_init_entities.push(entity);            
         } //inited
 
-        if(started) {
-            entity._start();
+        if(started) {            
+            _delayed_start_entities.push(entity);
         } //started
 
     } //add
@@ -108,28 +113,67 @@ class Scene {
             entity._destroy();
         }
     } //destroy
-    public function init() {
-        
-        inited = true;
+
+    function _do_init() : Bool {
+
+        var _before_count = Lambda.count(entities);
 
         for(entity in entities) {
-            entity._init();
-        }        
-        
+            if(!entity.inited) {
+                entity._init();
+            }
+        }
+
+        var _after_count = Lambda.count(entities);
+            
+        return _before_count != _after_count;
+
+    } // _do_init
+
+    public function init() {        
+
+            //Entities themselves can create entities so we have to check that        
+        var keep = true;
+        while(keep) {
+            keep = _do_init();
+        }
+
+        inited = true;
+
     } //init
-    public function start() {
-        
-        started = true;
+
+    public function start() {        
 
         for(entity in entities) {
             entity._start();
         }
+
+        started = true;
         
     } //start
     public function update(dt:Float) {
+
+            //first init these delayed ones
+        if(_delayed_init_entities.length > 0) {
+            for(entity in _delayed_init_entities) {
+                entity._init();
+            }
+            _delayed_init_entities.splice(0, _delayed_init_entities.length);
+        }
+
+            //and then start any delayed ones
+        if(_delayed_start_entities.length > 0) {
+            for(entity in _delayed_start_entities) {
+                entity._start();
+            }
+            _delayed_start_entities.splice(0, _delayed_start_entities.length);
+        }
+
+            //finally update them
         for(entity in entities) {
             entity._update(dt);
         }
+
     } //update
     public function fixed_update() {
         for(entity in entities) {

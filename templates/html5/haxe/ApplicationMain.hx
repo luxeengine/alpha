@@ -176,14 +176,14 @@ class ApplicationMain {
 
 
 import ::APP_MAIN_PACKAGE::::APP_MAIN_CLASS::;
-import lime.LiME;
+import lime.Lime;
 import luxe.Core;
 
 class ApplicationMain {
 	
 	public static var _main_ : ::APP_MAIN::;
 	public static var _core : Core;
-	public static var _lime : LiME;
+	public static var _lime : Lime;
 
 	public static function main () {
 		
@@ -195,7 +195,7 @@ class ApplicationMain {
 			renderer : phoenix.Renderer
 		};
 
-		_lime = new LiME();
+		_lime = new Lime();
 			//Create the game class, give it the runtime
 		 _main_ = Type.createInstance (::APP_MAIN::, []);
 			//Create the luxe runtime, pass it the lime reference

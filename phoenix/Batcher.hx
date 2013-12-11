@@ -20,6 +20,7 @@ enum PrimitiveType {
     triangle_strip;
     triangles;
     triangle_fan;
+    points;
 }
 
 enum BlendMode {
@@ -123,15 +124,15 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        vertlist = new Float32Array(8096);
-        tcoordlist = new Float32Array(8096);
-        colorlist = new Float32Array(8096);
-        normallist = new Float32Array(8096);
+        vertlist = new Float32Array(65536);
+        tcoordlist = new Float32Array(65536);
+        colorlist = new Float32Array(65536);
+        normallist = new Float32Array(65536);
 
-        static_vertlist = new Float32Array(32768);
-        static_tcoordlist = new Float32Array(32768);
-        static_colorlist = new Float32Array(32768);
-        static_normallist = new Float32Array(32768);
+        static_vertlist = new Float32Array(65536);
+        static_tcoordlist = new Float32Array(65536);
+        static_colorlist = new Float32Array(65536);
+        static_normallist = new Float32Array(65536);
 
             //The default view so we see stuff
         view = renderer.default_camera;
@@ -404,10 +405,15 @@ class Batcher {
                         // Accumulate, this is standard geometry 
                     else {
 
+                        // trace((geom.vertices.length*4)+(verts/4) + " / " + ((vertlist.byteLength/4)/2));
+                        // if((geom.vertices.length*4)+(verts/4) > ((vertlist.byteLength/4)/2)) {
+                            // vertlist = new Float32Array((vertlist.byteLength/4) * 2);
+                        // }
+
                         geometry_batch( geom );
 
-                            //if we have breached the max per batch, send it now
-                        if(verts > 8096) {
+                            //if we have breached the max per batch, send it now                        
+                        if((verts/4) > 8192) {
                             submit_current_vertex_list( geom.primitive_type );
                         }               
                         

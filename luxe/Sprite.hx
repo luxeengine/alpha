@@ -7,13 +7,35 @@ import luxe.utils.Maths;
 
 import phoenix.Quaternion;
 import phoenix.Shader;
+import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
+import phoenix.Batcher;
 import phoenix.Resource;
 import phoenix.Texture;
 import phoenix.Vector;
 import phoenix.Color;
 
 import Luxe;
+
+typedef SpriteOptions = {    
+    ?name : String,
+    ?pos : Vector,
+    ?size : Vector,
+    ?origin : Vector,
+    ?centered : Bool,
+    ?uv : Rectangle,
+    ?color : Color,
+    ?batcher : Batcher,
+    ?texture : Texture,
+    ?shader : Shader,
+    ?depth : Float,
+    ?group : Int,
+    ?visible : Bool,
+    ?add : Bool,
+    ?scene : Scene,
+    ?serialize : Bool,
+    ?geometry : Geometry
+}
 
 class Sprite extends Entity {
 
@@ -39,7 +61,7 @@ class Sprite extends Entity {
     var _rotation_vector : Vector;
     var _rotation_quat : Quaternion;
 
-    public function new(options:Dynamic) {
+    public function new( options:SpriteOptions ) {
 
 //cached values
         _rotation_vector = new Vector();
@@ -135,7 +157,7 @@ class Sprite extends Entity {
 
     } //new
 
-    @:noCompletion public function _create_geometry(options : Dynamic) {
+    @:noCompletion public function _create_geometry(options : SpriteOptions) {
 
 
             //if they give a geometry, don't create one
@@ -197,7 +219,8 @@ class Sprite extends Entity {
                 options.batcher.add( geometry );
             }
         }
-
+            
+            //todo: like with add=false, don't add to scene.            
         if(scene != null) {
             Luxe.scene.add(this);
         } 

@@ -115,7 +115,7 @@ class Camera {
             //todo:This doesn't need to be rebuilt every frame
         projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
             //Rebuild the modelview, todo:dirtify this
-        view_matrix = view_matrix.compose( pos, rotation, scale );        
+        view_matrix = view_matrix.compose( pos, rotation, scale );
 
     } //apply_ortho
 

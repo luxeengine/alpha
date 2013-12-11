@@ -66,7 +66,7 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <hr>
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Game</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">//called by luxe for you when the game is starting</span>
@@ -94,10 +94,15 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <hr>
 <p>The class above shows the basic functions that a game <em>can</em> implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like <code>ready</code>, <code>update</code> and <code>onkeyup</code>.    </p>
 <p>Now you can draw something inside the <code>ready</code> function, and it will appear on screen. Let’s draw a <a href="luxe.draw.html#box">box</a>, and a <a href="luxe.draw.html#ring">ring</a> around the box. We store the ring as a class member, because we want to move it later on. </p>
-<p><strong>Take note</strong> that the Geometry classes are considered “low level” and later guides show you easier ways of making objects (like <a href="guide.sprites.html">sprites</a>)</p>
+<p><strong>Take note</strong> that the <a href="phoenix.Geometry.html">Geometry</a> classes are considered “low level” and later guides show you easier ways of making objects (like <a href="guide.sprites.html">sprites</a>)</p>
 <h3 id="drawing-a-ring-on-screen">Drawing a ring on screen</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kd">var</span> ring <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre>    <span class="c1">//this goes at the top of the file</span>
+<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">RingGeometry</span><span class="p">;</span>
+
+<span class="err">...</span> 
+
+<span class="kd">var</span> ring <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
 
 <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
 
@@ -139,7 +144,7 @@ Some of the questions you may have, </p>
 </li>
 <li><p><strong>What made the geometry appear (and stay) on screen?</strong><br>Read <a href="guide.geometry.html">understanding geometry in luxe</a>.   </p>
 </li>
-<li><p><strong>Where do I find a list of all the supported <code>Game</code> class functions?</strong><br>Read <a href="luxe.Game.html">game class documentation</a>.   </p>
+<li><p><strong>Where do I find a list of all the supported <code><a href="luxe.Game.html">Game</a></code> class functions?</strong><br>Read <a href="luxe.<a href="luxe.Game.html">Game</a>.html">game class documentation</a>.   </p>
 </li>
 <li><p><strong>Things that were not discussed include</strong><br>the <a href="luxe.Color.html">Color</a> class, <a href="luxe.Input.MouseEvent.html">mouse events</a>, <a href="luxe.Input.KeyEvent.html">key events</a>.</p>
 </li>
@@ -158,7 +163,7 @@ Some of the questions you may have, </p>
 
 <span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">RingGeometry</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Game</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="n">ring</span> <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
 

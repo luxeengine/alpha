@@ -3,14 +3,19 @@ package luxe;
 import luxe.Core;
 
 import luxe.debug.Inspector;
+import luxe.Input.KeyEvent;
+import luxe.Input;
 import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.Camera;
 import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
-import phoenix.Resource;
 import luxe.utils.Maths;
+
+import luxe.debug.DebugView;
+import luxe.debug.TraceDebugView;
+import luxe.debug.StatsDebugView;
 
 @:hide class Debug {
 
@@ -19,27 +24,14 @@ import luxe.utils.Maths;
 
     public var visible : Bool = false;
 
-    public var scene_inspector : Inspector;
+    public var debug_inspector : Inspector;
+    public var overlay : QuadGeometry;
 
-        //batcher list console
-    public var batcher_list_text : luxe.Text;
-        //stats console
-    public var render_stats_text : luxe.Text;
-    public var resource_stats_text : luxe.Text;
-    public var resource_list_text : luxe.Text;
-        //log console
-    public var logged : Array<String>;
-    public var lines : luxe.Text;
-    public var max_lines : Int = 35;
+    static var trace_callbacks : Map<String, Dynamic->?haxe.PosInfos->Void>;
 
-    public var debug_batcher : Batcher;
-    public var debug_view : Camera;
+    public var batcher : Batcher;
+    public var view : Camera;
     public var debug_font : BitmapFont;
-
-    public var debug_overlay : QuadGeometry;
-
-    public var debug_draw_call_count : Int = 3;
-    public var debug_geometry_count : Int = 13;
 
         //track a 10 frame average
     public var dt_average : Float = 0;
@@ -47,43 +39,45 @@ import luxe.utils.Maths;
     public var dt_average_span : Int = 60;
     public var dt_average_count : Int = 0;
 
-    public var current_view = 0;
-    public var view_count = 2;
+    public var current_view_index = 0;
+    public var last_view_index = 0;
+    public var current_view : DebugView;
+    public var views : Array<DebugView>;
 
-    public var padding:Vector;
+    public var padding : Vector;
 
     public var started = false;
-    public var _last_render_stats : Dynamic;
-    public var _render_stats : Dynamic;
+
+//Profile path
+    public var profile_path : String = "profile.txt";
+    public var profiling : Bool = false;
+
 
     public function startup() {        
+
+        trace_callbacks = new Map();
+
+        views = [
+            new TraceDebugView(),
+            new StatsDebugView()
+        ];
+
+        current_view = views[0];        
 
         haxe.Log.trace = internal_trace;
 
         core._debug(':: luxe :: \t Debug Initialized.');         
-        _last_render_stats = {
-            batchers : 0,
-            geometry_count : 0,
-            dynamic_batched_count : 0,
-            static_batched_count : 0,
-            enabled_count : 0,
-            draw_calls : 0,
-            group_count : 0      
-        };          
-
-        _render_stats = {
-            batchers : 0,
-            geometry_count : 0,
-            dynamic_batched_count : 0,
-            static_batched_count : 0,
-            enabled_count : 0,
-            draw_calls : 0,
-            group_count : 0
-        };
 
     } //startup
 
-    public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos) {
+    public function remove_trace_listener( _name:String ) {
+        trace_callbacks.remove(_name);
+    }
+    public function add_trace_listener( _name:String, _callback: Dynamic->?haxe.PosInfos->Void ) {
+        trace_callbacks.set(_name, _callback);
+    }
+
+    public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
         #if luxe_native 
             Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
@@ -92,24 +86,27 @@ import luxe.utils.Maths;
         #if luxe_html5
             untyped console.log(inf.fileName + ':' + inf.lineNumber, v);
         #end
-        
-        Luxe.debug.add_line( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+            
+            //call listeners
+        for(_callback in trace_callbacks) {
+            _callback(v, inf);
+        }        
 
     } //internal_trace
 
     public function create_debug_console() {
 
             //create the debug renderer and view
-        debug_batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
-        debug_view = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+        batcher = new Batcher( Luxe.renderer, 'batcher' );
+        view = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
             //set the camera of the batcher
-        debug_batcher.view = debug_view;
+        batcher.view = view;
             //Also, set the layer so it renders last
-        debug_batcher.layer = 999;
+        batcher.layer = 999;
 
-        Luxe.renderer.add_batch( debug_batcher );
+        Luxe.renderer.add_batch( batcher );
 
-        debug_overlay = new QuadGeometry({
+        overlay = new QuadGeometry({
             x:0, y:0, 
             w: Luxe.screen.w,  h: Luxe.screen.h,        
             color : new Color(0,0,0,0.8),
@@ -119,198 +116,96 @@ import luxe.utils.Maths;
         });
 
             //add the geometry to the renderer
-        debug_batcher.add(debug_overlay);
+        batcher.add(overlay);
 
             //create the scene inspector
         padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
-        scene_inspector = new Inspector({ 
+        debug_inspector = new Inspector({ 
             title:'default scene', 
             pos : new Vector(padding.x, padding.y),
             size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
-            batcher : debug_batcher
+            batcher : batcher
         });
 
-        scene_inspector.onrefresh = refresh;
-
-        create_stats_console();
-        create_log_console();
+        debug_inspector.onrefresh = refresh;
 
             //no need to process this while we are here.
-        debug_batcher.enabled = false;
+        batcher.enabled = false;
+
+        for(view in views) {
+            view.create();
+        }
 
     } //create_debug_console
 
+    public function onkeyup(e:KeyEvent) {
+
+        for(view in views) {
+            view.onkeyup(e);
+        }
+
+        #if profiler
+            #if luxe_native
+                if(e.key == KeyValue.key_P && profiling) {
+                    cpp.vm.Profiler.stop();
+                    profiling = false;
+                    trace("luxe :: profiling complete. Look for the results in " + profile_path );
+                }
+            #end //luxe_native
+        #end //profiler        
+    }
+    public function onkeydown(e:KeyEvent) {
+        
+        if(e.key == KeyValue.key_1 && core.console_visible) {
+            switch_view();
+        }
+
+        for(view in views) {
+            view.onkeydown(e);
+        }
+
+        #if profiler
+            #if luxe_native
+                if(e.key == KeyValue.key_P && e.ctrl_down) {
+                    trace("luxe :: starting profiler ... let go of key to stop profiling.");
+                    cpp.vm.Profiler.start( profile_path );                    
+                    profiling = true;
+                }
+            #end //luxe_native
+        #end //profiler        
+    }
+
     public function onresize(e) {
-        debug_view.set_ortho({ x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+        view.set_ortho({ x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+        //current_view.onresize(e);
     } //onresize
 
-    public function create_log_console() {
+    function refresh() {
+        current_view.refresh();
+    }
 
-        logged = new Array<String>();
-        lines = new luxe.Text({
-            depth : 999.3,
-            color : new Color().rgb(0x888888),
-            bounds : new luxe.Rectangle( padding.x+20, padding.y+40, Luxe.screen.w-(padding.x*2)-20, Luxe.screen.h-(padding.y*2)-40 ),
-            font : Luxe.renderer.default_font,
-            text : '',
-            align_vertical : luxe.Text.TextAlign.bottom,
-            size : 15,
-            batcher : debug_batcher,
-            enabled : false
-        });
+    public function switch_view() {
 
-        lines.geometry.locked = true;
-
-        add_line('luxe version 0.0.1 Debug Log');
-    }   
-
-    public function add_line(_t:String) {
-
-        if(logged == null) {
-            return;
-        }
+            //keep knowledge of this
+        last_view_index = current_view_index;
+            //then go up one, todo:make easier to jump to specific
+            //or cycle down etc
+        current_view_index++;
             
-            //store in the list of pushed lines
-        logged.push(_t);
-
-            //update the line geometry
-        if(!visible) return;
-
-        refresh_lines();
-
-    } //add_line
-
-    var _last_logged_length : Int = 0;
-    private function refresh_lines() {  
-
-        if(_last_logged_length == logged.length) {
-            return;
+            //handle looping
+        if(current_view_index > views.length-1) {
+            current_view_index = 0;
         }
 
-            //we go though each line in the logged list, 
-            //and create a string from them. 
-            //then we set the lines text to that
-        var _final = '';
+            //now hide the last view
+        views[last_view_index].hide();
+            //store the new one
+        current_view = views[current_view_index];
 
-        if(logged.length <= max_lines) {
-            for(_line in logged) {
-                _final += _line + '\n';
-            }
-        } else {
-            var _start = logged.length - max_lines;
-            var _total = logged.length;
-            for(i in _start ... logged.length) {
-                var _line = logged[i];
-                _final += _line + '\n';
-            }
-        }//
+            //show the new one
+        current_view.show();
 
-        lines.text = _final;
-        lines.geometry.locked = true;
-        lines.geometry.dirty = true;
-
-        _last_logged_length = logged.length;
-
-    } //refresh_lines
-
-    public function create_stats_console() {
-
-        render_stats_text = new luxe.Text({
-            depth : 999.3,
-            color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(padding.x*2,padding.y*3),
-            font : Luxe.renderer.default_font,
-            text : get_render_stats_string(),
-            size : 18,
-            batcher : debug_batcher,
-            enabled : false
-        });
-        
-        resource_stats_text = new luxe.Text({
-            depth : 999.3,
-            color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(padding.x*7,padding.y*3),
-            font : Luxe.renderer.default_font,
-            text : get_resource_stats_string(),
-            size : 18,
-            batcher : debug_batcher,
-            enabled : false
-        });
-        
-        resource_list_text = new luxe.Text({
-            depth : 999.3,
-            color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(padding.x*7,padding.y*7),
-            font : Luxe.renderer.default_font,
-            text : get_resource_stats_string(),
-            size : 14,
-            batcher : debug_batcher,
-            enabled : false
-        });
-
-    } //create_stats_console
-
-    public function refresh() {
-        
-        var texture_lists = '';
-        var shader_lists = '';
-        var font_lists = '';
-        
-        for(res in Luxe.resources.resourcelist) {
-            switch (res.type) {
-                case ResourceType.texture:
-                    var t : phoenix.Texture = cast res;
-                    texture_lists += '\t' + t.id + '    (' +  t.actual_width + 'x' + t.actual_height + '  '+ t.estimated_memory() +' )\n';
-                case ResourceType.font:
-                    font_lists += '\t' + res.id + '\n';
-                case ResourceType.shader:
-                    shader_lists += '\t' + res.id + '\n';
-                default:
-            }
-        }
-
-        var lists = 'Textures\n';
-        lists += texture_lists;
-        lists += 'Fonts\n';
-        lists += font_lists;
-        lists += 'Shader\n';
-        lists += shader_lists;
-
-        resource_list_text.text = lists;
-    }
-
-    public function get_render_stats_string() {
-        return 
-            'Renderer Statistics\n' + 
-            '\tbatcher count : ' + _render_stats.batchers + '\n' +
-            '\ttotal geometry : ' + _render_stats.geometry_count + '\n' +
-            '\tenabled geometry : ' + _render_stats.enabled_count + '\n' +
-            '\tdynamic batch count : ' + _render_stats.dynamic_batched_count + '\n' +
-            '\tstatic batch count : ' + _render_stats.static_batched_count + '\n' +
-            '\ttotal draw calls : ' + _render_stats.draw_calls;            
-    }
-
-    public function get_resource_stats_string() {        
-        return Std.string(Luxe.resources.stats);
-    }
-
-    public function switch_console(?_change:Bool = true) {
-        if(_change) {
-            current_view++;
-            if(current_view > view_count-1) {
-                current_view = 0;
-            }
-        }
-
-        switch (current_view) {
-            case 0:                
-                show_log_console(true);
-                show_stats_console(false);
-            case 1:
-                show_log_console(false);
-                show_stats_console();
-        }
-    }
+    } //switch_console
 
     var last_cursor_shown : Bool = true;
     var last_cursor_locked : Bool = false;
@@ -328,92 +223,24 @@ import luxe.utils.Maths;
         }
 
         visible = _show;
-        debug_batcher.enabled = _show;
+        batcher.enabled = _show;
 
         if(_show) {
-            switch_console(false);
-            debug_overlay.enabled = true;
-            scene_inspector.show();
+            current_view.show();
+            overlay.enabled = true;
+            debug_inspector.show();
         } else {
-            show_log_console(false);
-            show_stats_console(false);
-            scene_inspector.hide();
-            debug_overlay.enabled = false;
+            current_view.hide();
+            debug_inspector.hide();
+            overlay.enabled = false;
         }
     }
-
-    public function show_log_console(_show:Bool = true) {
-        if(_show) {
-            refresh_lines();
-            lines.visible = true;          
-        } else {
-            lines.visible = false;
-        }
-    }
-
-    public function show_stats_console(_show:Bool = true) {
-        if(_show) {
-            render_stats_text.visible = true;
-            resource_stats_text.visible = true;
-            resource_list_text.visible = true;
-        } else {
-            render_stats_text.visible = false;
-            resource_stats_text.visible = false;
-            resource_list_text.visible = false;
-        }
-    } //show_console
 
     public function shutdown() {
         core._debug(':: luxe :: \t Debug shut down.');
     } //shutdown
 
-    public function refresh_render_stats() {
-
-        render_stats_text.text = get_render_stats_string();
-        resource_stats_text.text = get_resource_stats_string();
-
-        for(_g in resource_stats_text.geometry.geometry) {
-            _g.locked = true;
-            _g.dirty = true;
-        }
-        
-        for(_g in render_stats_text.geometry.geometry) {
-            _g.locked = true;
-            _g.dirty = true;
-        }
-        
-    } //refresh_render_stats
-
-    public var hide_debug : Bool = true;
-    public function toggle_debug_stats() {
-         hide_debug = !hide_debug;
-    }
-
-    public function update_render_stats() {
-
-        debug_geometry_count = debug_batcher.geometry.size();
-        debug_draw_call_count = debug_batcher.draw_calls;
-
-        _render_stats.batchers = Luxe.renderer.stats.batchers;
-        _render_stats.geometry_count = Luxe.renderer.stats.geometry_count;
-        _render_stats.enabled_count = Luxe.renderer.stats.enabled_count;
-        _render_stats.dynamic_batched_count = Luxe.renderer.stats.dynamic_batched_count;
-        _render_stats.static_batched_count = Luxe.renderer.stats.static_batched_count;
-        _render_stats.draw_calls = Luxe.renderer.stats.draw_calls;
-
-        if(hide_debug) {
-
-            _render_stats.batchers = _render_stats.batchers - 1;
-            _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
-            _render_stats.enabled_count = _render_stats.enabled_count - _render_stats.enabled_count;
-            _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - debug_batcher.dynamic_batched_count;// - debug_batcher.static_batched_count;
-            _render_stats.static_batched_count = _render_stats.static_batched_count - debug_batcher.static_batched_count;
-            _render_stats.draw_calls -= debug_draw_call_count;
-
-        } //hide debug stats?
-        
-    } //update_render_stats
-
+   
     var _title_text = '';
 
 	public function process() {
@@ -436,39 +263,11 @@ import luxe.utils.Maths;
             _title_text += ' mem:' + Luxe.utils.bytes_to_string(cpp.vm.Gc.memUsage());
         #end
 
-        scene_inspector._title_text.text = _title_text;
+        debug_inspector._title_text.text = _title_text;
 
-
-        if(current_view == 0) {
-
-        } else 
-        if(current_view == 1) {
-
-            var dirty = false;
-        
-                //Update the local statistics
-            update_render_stats();
-
-            if(_last_render_stats.batchers != _render_stats.batchers) 
-                { dirty = true; _last_render_stats.batchers = _render_stats.batchers; }
-            if(_last_render_stats.geometry_count != _render_stats.geometry_count) 
-                { dirty = true; _last_render_stats.geometry_count = _render_stats.geometry_count; }
-            if(_last_render_stats.dynamic_batched_count != _render_stats.dynamic_batched_count) 
-                { dirty = true; _last_render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count; }
-            if(_last_render_stats.static_batched_count != _render_stats.static_batched_count) 
-                { dirty = true; _last_render_stats.static_batched_count = _render_stats.static_batched_count; }
-            if(_last_render_stats.enabled_count != _render_stats.enabled_count) 
-                { dirty = true; _last_render_stats.enabled_count = _render_stats.enabled_count; }
-            if(_last_render_stats.draw_calls != _render_stats.draw_calls) 
-                { dirty = true; _last_render_stats.draw_calls = _render_stats.draw_calls; }
-            if(_last_render_stats.group_count != _render_stats.group_count) 
-                { dirty = true; _last_render_stats.group_count = _render_stats.group_count; }
-
-            if(dirty) {
-                refresh_render_stats();
-            } //dirty
-
-        } //view == 1
+        for(view in views) {
+            view.process();
+        }
 
 	} //process
 

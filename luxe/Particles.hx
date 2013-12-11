@@ -39,7 +39,7 @@ class ParticleSystem extends Entity {
 
     public override function set_pos(_v:Vector) {
         pos = _v;
-        super.set_pos(pos);
+    //     super.set_pos(pos);
         return pos;
     } //set_pos
 
@@ -311,8 +311,9 @@ class ParticleEmitter extends Component {
 
         particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
 
-        particle.position.x = (entity.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
-        particle.position.y = (entity.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
+        trace("init particle at " + pos);
+        particle.position.x = (pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
+        particle.position.y = (pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
 
         if(particle_cache[cache_index] != null) {
 
@@ -392,10 +393,10 @@ class ParticleEmitter extends Component {
 
         //update sprite
         particle.sprite.size = new Vector( particle.start_size.x, particle.start_size.y );
-        particle.sprite.color = particle.color;
+        particle.sprite.color = particle.color;        
         particle.sprite.pos.x = particle.position.x;
         particle.sprite.pos.y = particle.position.y;
-        particle.sprite.rotation_z = particle.rotation;
+        // particle.sprite.rotation_z = particle.rotation;
         
     } //init_particle
 
@@ -488,11 +489,12 @@ class ParticleEmitter extends Component {
 
             // var x = Math.floor( particle.position.x );
             // var y = Math.floor( particle.position.y );
-
+            
             particle.sprite.pos = particle.position;
+
             particle.sprite.size = particle.draw_size;
             particle.sprite.color = particle.draw_color;
-            particle.sprite.rotation_z = particle.rotation;
+            // particle.sprite.rotation_z = particle.rotation;
 
         }     
     }

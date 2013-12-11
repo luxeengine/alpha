@@ -88,7 +88,7 @@ import luxe.Core;
         	if(!paused) {
 
         			//Update the simulation
-    	    	dynamicsWorld.stepSimulation( Luxe.dt, max_iterations );       
+    	    	dynamicsWorld.stepSimulation( rate, max_iterations );       
 
     	    } //paused 
 

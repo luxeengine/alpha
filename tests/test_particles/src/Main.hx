@@ -6,6 +6,7 @@ import luxe.Color;
 import luxe.Input;
 import luxe.Entity;
 import luxe.Particles;
+import luxe.Sprite;
 import phoenix.Batcher;
 
 class Main extends luxe.Game {
@@ -14,6 +15,8 @@ class Main extends luxe.Game {
 
     var particle_system : Entity;
     var particles : ParticleSystem;
+
+    var ss : Sprite ;
 
     public function ready() {
 
@@ -36,7 +39,12 @@ class Main extends luxe.Game {
             life:0.9,
             depth:2,
             group:5,
-            emit_time : 0.04
+            emit_time : 1
+        });
+
+        ss = new Sprite({
+            texture : t1,
+            pos : new Vector()
         });
 
         // particles.add_emitter({
@@ -68,7 +76,7 @@ class Main extends luxe.Game {
             life : 1.2,
             depth:3,
             group:5,
-            emit_time : 0.5
+            emit_time : 1
         });
 
 
@@ -85,6 +93,9 @@ class Main extends luxe.Game {
   
     public function onmousemove(e) {
         mouse.set(e.x,e.y);
+        // particles.pos = mouse; 
+
+        ss.pos = mouse;
     }
     public function onmousedown(e) {
         mouse.set(e.x,e.y);

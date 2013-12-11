@@ -63,7 +63,6 @@ class Grid implements IAStarClient extends Component {
 		astar_cells[5][5] = 1;
 		astar_cells[5][4] = 1;
 		
-
 		draw_astar_cells();
 
 		

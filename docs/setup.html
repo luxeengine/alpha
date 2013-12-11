@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,45 +40,54 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2>Setting up</h2>
-<h3>How do I install luxe?</h3>
+<h2 id="setting-up">Setting up</h2>
+<h3 id="how-do-i-install-luxe-">How do I install luxe?</h3>
 <hr>
 <p><a href="api.html">Luxe</a> is distributed via <code>haxelib</code> - a package manager for haxe libraries that is installed automatically with haxe. There are plans in the roadmap to make the installation process even easier.   </p>
 <p>You can also get luxe from the <a href="http://github.com/underscorediscovery/luxe">git repository</a> ( jump to the <a href="#fromgit">git install guide for luxe?</a> ).</p>
 <p><a name="requirements"> </a></p>
-<h2>What do I need to get started?</h2>
+<h2 id="what-do-i-need-to-get-started-">What do I need to get started?</h2>
 <hr>
-<h3>You need Haxe 3.0 or higher.</h3>
+<h3 id="you-need-haxe-3-0-or-higher-">You need Haxe 3.0 or higher.</h3>
 <p><a href="http://haxe.org/download"> <img src="images/haxe.png" alt="haxe"> </a></p>
-<h4><a href="http://haxe.org/download">Install haxe first</a>.</h4>
+<h4 id="-install-haxe-first-http-haxe-org-download-"><a href="http://haxe.org/download">Install haxe first</a>.</h4>
 <p><a name="install"> </a></p>
-<h2>Installing from haxelib</h2>
+<h2 id="installing-from-haxelib">Installing from haxelib</h2>
 <hr>
 <p>To install luxe from haxelib, open a Terminal/Command line and type the following : </p>
-<p><code>haxelib install lime</code><br><code>haxelib install lime-tools</code><br><code>haxelib install luxe</code>   </p>
+<p><code>haxelib install format</code><br><code>haxelib install lime-tools</code><br><code>haxelib install lime</code><br><code>haxelib git luxe https://github.com/underscorediscovery/luxe.git</code> master   </p>
 <p>Now, we tell luxe to setup :</p>
-<p><code>haxelib run luxe setup</code></p>
-<p>This will create a command called <code>luxe</code> which you use to build your projects,<br>and continue the set up process for you.</p>
-<p>Finally, you can use luxe to install any other requirements for your platform.<br><em>You only need to run the setup for platforms you are on/using</em>.</p>
-<p><code>luxe setup windows</code><br><code>luxe setup mac</code><br><code>luxe setup linux</code><br><code>luxe setup android</code><br><code>luxe setup ios</code>   </p>
-<h2>What else?</h2>
+<p><code>haxelib run lime setup</code></p>
+<p>This will create a command called <code>lime</code> which you use to build your projects,<br>and continue the set up process for you.</p>
+<p>Finally, you can use lime to install any other requirements for your platform.<br><em>You only need to run the setup for platforms you are on/using</em>.</p>
+<p><code>lime setup windows</code><br><code>lime setup mac</code><br><code>lime setup linux</code><br><code>lime setup android</code><br><code>lime setup ios</code>   </p>
+<h2 id="what-else-">What else?</h2>
 <p>Nothing! </p>
-<p>You can test if everything is setup ok, using a template project :</p>
-<p><code>luxe create empty MyTestProject</code><br><code>cd MyTestProject</code>   </p>
-<p>and then once inside the project folder :   </p>
-<p><code>luxe test html5</code> to open the project in your browser.</p>
-<p>You can test native binaries by running : </p>
-<p><code>luxe test mac</code> or <code>luxe test linux</code> or <code>luxe test windows</code></p>
+<p>To test that everything is working, go to the samples/simplest folder and run something like   </p>
+<p><code>lime test html5</code><br><code>lime test windows</code><br><code>lime test mac</code><br><code>lime test linux</code>   </p>
+<!-- You can test if everything is setup ok, using a template project :
+
+`luxe create empty MyTestProject`   
+`cd MyTestProject`   
+
+and then once inside the project folder :   
+
+`luxe test html5` to open the project in your browser.
+
+You can test native binaries by running : 
+
+`luxe test mac` or `luxe test linux` or `luxe test windows` -->
+
 <hr>
-<h2>Get started by reading the guide or viewing more samples</h2>
-<h3><a href="samples.html">View the sample guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
-<h2>&nbsp;   </h2>
+<h2 id="get-started-by-reading-the-guide-or-viewing-more-samples">Get started by reading the guide or viewing more samples</h2>
+<h3 id="-view-the-sample-guide-samples-html-"><a href="samples.html">View the sample guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
+<h2 id="-nbsp-">&nbsp;   </h2>
 <p>&nbsp;   </p>
 <p><a name="fromgit"> </a></p>
-<h3>Additional info - Installing from git</h3>
+<h3 id="additional-info-installing-from-git">Additional info - Installing from git</h3>
 <hr>
 <p>To install from git, you have two options :    </p>
 <ul>
