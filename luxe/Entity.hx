@@ -427,8 +427,7 @@ class Entity extends Objects {
     	if(parent != null) {
     		posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
     	}
-
-        trace("entity set pos " + _p);
+        
     		//update the value before we propogate
     	pos = _p; 
 

@@ -20,18 +20,6 @@ class Main extends luxe.Game {
             size : 20
         });
 
-        trace( (function(ag,ad){}).length );
-
-
-        // var do_test = function(_done:Void->Void) {
-        //     var isasync = false;
-        //     test( _done );
-        // }
-
-        // do_test(function(){
-        //     trace('all complete');
-        // });
-
     } //ready
   
     public function onkeyup(e) {

@@ -37,11 +37,7 @@ class ParticleSystem extends Entity {
 
     } //add
 
-    public override function set_pos(_v:Vector) {
-        pos = _v;
-    //     super.set_pos(pos);
-        return pos;
-    } //set_pos
+
 
     public function emit(duration:Float = -1) {
         active = true;
@@ -304,6 +300,11 @@ class ParticleEmitter extends Component {
 
         return true;
     }
+
+
+    public override function entity_pos_change( _p:Vector ) {
+        trace("_p " + _p);
+    }    
 
     private function random_1_to_1(){ return Math.random() * 2 - 1; }
 
