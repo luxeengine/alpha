@@ -43,7 +43,7 @@ class Main extends luxe.Game {
         });
 
         ss = new Sprite({
-            texture : t1,
+            texture : t2,
             pos : new Vector()
         });
 
@@ -79,6 +79,7 @@ class Main extends luxe.Game {
             emit_time : 1
         });
 
+        
 
         Luxe.renderer.default_batcher.add_group(5, 
             function(b:Batcher){

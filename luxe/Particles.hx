@@ -23,17 +23,17 @@ class ParticleSystem extends Entity {
         } //_template.name != null
             
         if(_name.length == 0) {
-            _name = Luxe.utils.uuid();
+            _name = Luxe.utils.uniqueid();
         } //_name.lengths
 
             //create the emitter instance
         var _emitter = add(ParticleEmitter, _name);
-            //store ourselves in the emitter
-        _emitter.particle_system = this;
-            //store the template to the emitter
-        _emitter.template = _template;
-            //store the reference of the emitter
-        emitters.set(_name, _emitter);
+                //store ourselves in the emitter
+            _emitter.particle_system = this;
+                //store the template to the emitter
+            _emitter.template = _template;
+                //store the reference of the emitter
+            emitters.set(_name, _emitter);
 
     } //add
 
@@ -312,7 +312,6 @@ class ParticleEmitter extends Component {
 
         particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
 
-        trace("init particle at " + pos);
         particle.position.x = (pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
         particle.position.y = (pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
 

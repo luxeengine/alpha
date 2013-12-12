@@ -84,6 +84,11 @@ class Geometry {
 	@:isVar public var pos(get, set) : Vector;
 	@:isVar public var rotation(get, set) : Quaternion;
 	@:isVar public var scale(get, set) : Vector;
+
+	var _pos_dirty : Bool = false;
+	var _rotation_dirty : Bool = false;
+	var _scale_dirty : Bool = false;
+
 		//The origin for the transform
 	@:isVar public var origin(default, set) : Vector;
 		//The transform matrix
@@ -95,7 +100,7 @@ class Geometry {
 
 	public function new( options:Dynamic ) {
 
-		uuid = luxe.utils.UUID.get();
+		uuid = Luxe.utils.uniqueid();
 		vertices = new Array<Vertex>();
 		state = new GeometryState();
 		batchers = new Array<Batcher>();
@@ -206,7 +211,7 @@ class Geometry {
 		vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
 		vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
 		) {
-
+		
 		var origin_x = origin.x;
 		var origin_y = origin.y;
 		var origin_z = origin.z;
@@ -215,8 +220,13 @@ class Geometry {
 
 				//the base position of the vert
 			_final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
+
 				//compose the final position matrix
-			matrix.compose( pos, rotation, scale );
+			matrix.compose( pos, rotation, scale );			
+			// if(_rotation_dirty) { matrix.makeRotationFromQuaternion(rotation); _rotation_dirty = false; }
+			// if(_scale_dirty) { matrix.scale(scale); _scale_dirty = false; }
+			// if(_pos_dirty) { matrix.setPosition(pos); _pos_dirty = false; }
+
 				//apply the transform to the vert
 			_final_vert_position.applyMatrix4( matrix );
 
@@ -348,6 +358,7 @@ class Geometry {
 
 	public function set_pos( _position:Vector ) : Vector {
 
+		_pos_dirty = true;
 		return pos = _position;
 
 	} //set_pos
@@ -372,6 +383,8 @@ class Geometry {
 
 	public function set_rotation( _rotation:Quaternion ) {
 
+		_rotation_dirty = true;
+
 		if(rotation == null) { 
 			return rotation = _rotation;
 		} //rotation == null			
@@ -387,6 +400,8 @@ class Geometry {
 	} //get_rotation
 
 	public function set_scale( _scale:Vector ) {
+
+		_scale_dirty = true;
 
 		if(scale == null) { 
 			return scale = _scale;

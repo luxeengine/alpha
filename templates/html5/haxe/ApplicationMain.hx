@@ -188,11 +188,17 @@ class ApplicationMain {
 	public static function main () {
 		
 		var config = {
-			game : null,
-			width : ::WIN_WIDTH::, 
-			height : ::WIN_HEIGHT::, 
-			title : "::APP_TITLE::",
-			renderer : phoenix.Renderer
+			game 			: null,
+			fullscreen		: ::WIN_FULLSCREEN::,
+			resizable 		: ::WIN_RESIZABLE::,
+			borderless		: ::WIN_BORDERLESS::,
+			antialiasing	: ::WIN_ANTIALIASING::,
+			stencil_buffer 	: ::WIN_STENCIL_BUFFER::,
+			depth_buffer 	: ::WIN_DEPTH_BUFFER::,
+			vsync 			: ::WIN_VSYNC::,
+			width 			: ::WIN_WIDTH::, 
+			height 			: ::WIN_HEIGHT::, 
+			title 			: "::APP_TITLE::"
 		};
 
 		_lime = new Lime();

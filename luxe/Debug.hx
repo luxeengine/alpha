@@ -15,6 +15,7 @@ import luxe.utils.Maths;
 
 import luxe.debug.DebugView;
 import luxe.debug.TraceDebugView;
+import luxe.debug.ProfilerDebugView;
 import luxe.debug.StatsDebugView;
 
 @:hide class Debug {
@@ -23,6 +24,7 @@ import luxe.debug.StatsDebugView;
     public function new( _core:Core ) { core = _core; }
 
     public var visible : Bool = false;
+    public static var shut_down : Bool = false;
 
     public var debug_inspector : Inspector;
     public var overlay : QuadGeometry;
@@ -42,7 +44,7 @@ import luxe.debug.StatsDebugView;
     public var current_view_index = 0;
     public var last_view_index = 0;
     public var current_view : DebugView;
-    public var views : Array<DebugView>;
+    public static var views : Array<DebugView>;
 
     public var padding : Vector;
 
@@ -52,6 +54,10 @@ import luxe.debug.StatsDebugView;
     public var profile_path : String = "profile.txt";
     public var profiling : Bool = false;
 
+#if luxe_native
+    static var thread : cpp.vm.Thread;
+    static var mutex : cpp.vm.Mutex;
+#end 
 
     public function startup() {        
 
@@ -59,16 +65,24 @@ import luxe.debug.StatsDebugView;
 
         views = [
             new TraceDebugView(),
-            new StatsDebugView()
+            new StatsDebugView(),
+            new ProfilerDebugView()
         ];
 
         current_view = views[0];        
 
         haxe.Log.trace = internal_trace;
 
-        core._debug(':: luxe :: \t Debug Initialized.');         
+        core._debug(':: luxe :: \t Debug Initialized.');
 
     } //startup
+
+    public function start(_name:String) {
+        ProfilerDebugView.start(_name);
+    }
+    public function end(_name:String) {
+        ProfilerDebugView.end(_name);
+    }
 
     public function remove_trace_listener( _name:String ) {
         trace_callbacks.remove(_name);
@@ -97,7 +111,7 @@ import luxe.debug.StatsDebugView;
     public function create_debug_console() {
 
             //create the debug renderer and view
-        batcher = new Batcher( Luxe.renderer, 'batcher' );
+        batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
         view = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
             //set the camera of the batcher
         batcher.view = view;
@@ -136,12 +150,43 @@ import luxe.debug.StatsDebugView;
             view.create();
         }
 
+        //start a background thread with the debug process function
+        // #if luxe_native
+        //     mutex = new cpp.vm.Mutex();
+        //     thread = cpp.vm.Thread.create(do_views);            
+        // #end
+
     } //create_debug_console
+
+    public function onmouseup(e:MouseEvent) {
+        if(visible) {
+            for(view in views) {
+                view.onmouseup(e);
+            }
+        }
+    }
+
+    public function onmousedown(e:MouseEvent) {
+        if(visible) {
+            for(view in views) {
+                view.onmousedown(e);
+            }
+        }
+    }
+    public function onmousemove(e:MouseEvent) {
+        if(visible) {
+            for(view in views) {
+                view.onmousemove(e);
+            }
+        }
+    }
 
     public function onkeyup(e:KeyEvent) {
 
-        for(view in views) {
-            view.onkeyup(e);
+        if(visible) {
+            for(view in views) {
+                view.onkeyup(e);
+            }
         }
 
         #if profiler
@@ -155,13 +200,17 @@ import luxe.debug.StatsDebugView;
         #end //profiler        
     }
     public function onkeydown(e:KeyEvent) {
-        
-        if(e.key == KeyValue.key_1 && core.console_visible) {
-            switch_view();
-        }
+    
+        if(visible) {
 
-        for(view in views) {
-            view.onkeydown(e);
+            if(e.key == KeyValue.key_1 && core.console_visible) {
+                switch_view();
+            }
+
+            for(view in views) {
+                view.onkeydown(e);
+            }
+
         }
 
         #if profiler
@@ -237,11 +286,23 @@ import luxe.debug.StatsDebugView;
     }
 
     public function shutdown() {
+        shut_down = true;
         core._debug(':: luxe :: \t Debug shut down.');
     } //shutdown
 
-   
-    var _title_text = '';
+    
+    // public static function do_views() {
+
+    //     while(!shut_down) {
+            
+    //         for(view in views) {
+    //             view.process();
+    //         }
+
+    //         Sys.sleep(0.05);
+    //     }
+
+    // }
 
 	public function process() {
 
@@ -254,21 +315,19 @@ import luxe.debug.StatsDebugView;
             dt_average_count = 0;
         }
 
-        if(!visible) return;
+        if(!visible) return;        
 
             //update the title
-        _title_text = "default scene dt : (average) " + Maths.fixed(dt_average,3) + ' (exact) ' + Maths.fixed(Luxe.dt,3);        
+        debug_inspector._title_text.text = Maths.fixed(dt_average,3) + ' / ' + Maths.fixed(Luxe.dt,3);        
         
-        #if cpp 
-            _title_text += ' mem:' + Luxe.utils.bytes_to_string(cpp.vm.Gc.memUsage());
-        #end
+        // return;
 
-        debug_inspector._title_text.text = _title_text;
-
-        for(view in views) {
-            view.process();
-        }
-
+        // #if !luxe_native
+            for(view in views) {
+                view.process();
+            }
+        // #end
+        
 	} //process
 
 } //Debug 

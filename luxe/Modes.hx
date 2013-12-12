@@ -47,7 +47,7 @@ class Modes {
 
 		var _temp_name = _name;
 		if(_temp_name.length == 0) {
-			_temp_name = Luxe.utils.uuid();
+			_temp_name = Luxe.utils.uniqueid();
 			trace("warning ; Mode being added with no name " + type);
 		} else {
 			_temp_name = _name;

@@ -29,6 +29,7 @@ typedef SpriteOptions = {
     ?texture : Texture,
     ?shader : Shader,
     ?depth : Float,
+    ?rotation_z : Float,
     ?group : Int,
     ?visible : Bool,
     ?add : Bool,
@@ -456,7 +457,7 @@ class Sprite extends Entity {
             //if explicitly set
         if(geometry != null) {
 
-            geometry.resize( new Rectangle( 0, 0, _v.x, _v.y ) );            
+            geometry.resize( new Vector( _v.x, _v.y ) );            
 
         } //if geometry != null
 

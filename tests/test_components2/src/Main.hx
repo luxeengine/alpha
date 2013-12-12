@@ -1,9 +1,10 @@
 
 import luxe.Vector;
 import luxe.Input;
+import luxe.Entity;
+import luxe.components.Components;
 
 
-import Entity;
 import luxe.Color;
 
 class RigidBody extends Components.Component {
@@ -121,12 +122,11 @@ class Main extends luxe.Game {
     }
 
     public function onmousemove(e) {
-        
-        // if(od) {
-        //     root.pos = new Vector(e.x,e.y);
-        // } else {
-        //     child.pos = new Vector(e.x , e.y);
-        // }
+        if(od) {
+            root.pos = new Vector(e.x,e.y);
+        } else {
+            child.pos = new Vector(e.x , e.y);
+        }
     }
   
     public function onkeyup(e) {

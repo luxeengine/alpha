@@ -44,6 +44,8 @@ class Main extends luxe.Game {
             //Set the default renderer to use this camera
         Luxe.renderer.default_batcher.view = game_camera.view;
 
+        Luxe.debug.profile_path = '/Users/Sven/dev/luxe/profile.txt';
+
             //Now create a new camera to handle the HUD/2D elements
         hud_camera = new luxe.Camera({name:'hudview'});
             //And a renderer to handle the geometry for us
@@ -69,6 +71,8 @@ class Main extends luxe.Game {
 
             //Draw an axis for debug
         Luxe.draw.axis3D();
+
+        trace(luxe.utils.Maths.nearest_power_of_two(25));
 
     } //ready
 

@@ -18,17 +18,19 @@ class RenderPath {
 
         for(batch in _batchers) {
 
-            if(batch.enabled) {
+            Luxe.debug.start('batch:' + batch.name);
+            if(batch.enabled) {                
                 batch.draw();
-                    //Update render stats
+                    //Update render stats                    
                 _stats.geometry_count += batch.geometry.size();
                 _stats.dynamic_batched_count += batch.dynamic_batched_count;
                 _stats.static_batched_count += batch.static_batched_count;
                 _stats.enabled_count += batch.enabled_count;
                 _stats.draw_calls += batch.draw_calls;
-                // _stats.group_count += batch.groups.
-
+                // _stats.group_count += batch.groups.                
             } //batcher enabled
+
+            Luxe.debug.end('batch:' + batch.name);
 
         } //each batcher
 

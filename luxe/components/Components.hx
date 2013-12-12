@@ -133,7 +133,7 @@ class Component extends Objects {
 		var _temp_name = _name;
 
 		if(_temp_name.length == 0) {
-			_temp_name = Luxe.utils.uuid();
+			_temp_name = Luxe.utils.uniqueid();
 		} else {
 			_temp_name = _name;
 		}

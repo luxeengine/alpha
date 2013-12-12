@@ -2,9 +2,6 @@ package luxe;
 
 import luxe.Core;
 
-import luxe.utils.UUID;
-
-
 class Events {
     
     @:noCompletion public var event_queue : Map< String, EventObject>;
@@ -48,7 +45,7 @@ class Events {
     public function listen( _event_name : String, _listener : Dynamic -> Void ):String {
 
             //we need an ID and a connection to store
-        var id : String = UUID.get();
+        var id : String = Luxe.utils.uniqueid();
         var connection : EventConnection = new EventConnection( id, _event_name, _listener );
 
             //now we store it in the map       
@@ -124,7 +121,7 @@ class Events {
             //  -- Returns a String, the ID of the event
     public function queue( event_name : String, properties : Dynamic = null ) : String {
 
-        var id : String = UUID.get();
+        var id : String = Luxe.utils.uniqueid();
 
                 //store it in case we want to manipulate it
             var event:EventObject = new EventObject(id, event_name, properties);
@@ -232,7 +229,7 @@ class Events {
             //properties : A dynamic pass-through value to hand off data
             //  -- Returns a String, the ID of the schedule (see unschedule)
     public function schedule( time:Float, event_name : String, properties : Dynamic = null) : String {
-        var id : String = UUID.get();
+        var id : String = Luxe.utils.uniqueid();
 
             var _timer = haxe.Timer.delay(function(){
                 fire( event_name, properties );

@@ -63,7 +63,7 @@ class Grid implements IAStarClient extends Component {
 		astar_cells[5][5] = 1;
 		astar_cells[5][4] = 1;
 		
-		draw_astar_cells();
+		// draw_astar_cells();
 
 		
 		astar = AStar.getAStarInstance(this);
@@ -71,13 +71,14 @@ class Grid implements IAStarClient extends Component {
 	} //init
 
 	public function set_blocked(_x:Float, _y:Float){
+		
 		var __x:Int = Std.int(_x);
 		var __y:Int = Std.int(_y);
 
 		astar_cells[__y][__x] = 1;
 		astar._nodeArray[__x][__y].walkable = false;
 
-		cellgeom[__y][__x].color = new Color(0.8,0,0,0.1);
+		// cellgeom[__y][__x].color = new Color(0.8,0,0,0.1);
 	}
 
 	public function set_unblocked(_x:Float, _y:Float){
@@ -87,7 +88,7 @@ class Grid implements IAStarClient extends Component {
 		astar_cells[__y][__x] = 0;
 		astar._nodeArray[__x][__y].walkable = true;
 
-		cellgeom[__y][__x].color = new Color(1,1,1,0.1);
+		// cellgeom[__y][__x].color = new Color(1,1,1,0.1);
 	}
 
 	public function path(a:Vector, b:Vector) {

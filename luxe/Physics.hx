@@ -24,7 +24,7 @@ import luxe.Core;
 
         public var rate : Float = 0.0167;
         public var step_rate : Float = 0.0167;
-        public var max_iterations : Int = 10;
+        public var max_iterations : Int = 7;
         public var paused : Bool = false;
         public var do_debug_draw : Bool = true;
 
@@ -87,8 +87,11 @@ import luxe.Core;
 
         	if(!paused) {
 
+                Luxe.debug.start('physics');
         			//Update the simulation
-    	    	dynamicsWorld.stepSimulation( rate, max_iterations );       
+    	    	dynamicsWorld.stepSimulation( rate, max_iterations, step_rate );       
+
+                Luxe.debug.end('physics');
 
     	    } //paused 
 

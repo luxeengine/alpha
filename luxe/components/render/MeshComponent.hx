@@ -16,11 +16,14 @@ class MeshComponent extends Component {
     public function init() {
 
         if(mesh == null) {
+            
             mesh = new Mesh({
                 file: file, 
                 texture: texture, 
                 batcher: batcher
             });
+
+            mesh.pos = entity.pos;
         }
 
     } //init

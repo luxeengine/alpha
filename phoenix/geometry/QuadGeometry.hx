@@ -121,15 +121,15 @@ class QuadGeometry extends Geometry {
 
     } //set uv in uv space directly
 
-    public function resize( quad:luxe.Rectangle ) {
+    public function resize( quad:luxe.Vector ) {
 
         vertices[0].pos = new Vector( pos.x,            pos.y );
-        vertices[1].pos = new Vector( pos.x+quad.w,     pos.y );
-        vertices[2].pos = new Vector( pos.x+quad.w,     pos.y+quad.h );
+        vertices[1].pos = new Vector( pos.x+quad.x,     pos.y );
+        vertices[2].pos = new Vector( pos.x+quad.x,     pos.y+quad.y );
 
-        vertices[3].pos = new Vector( pos.x,            pos.y+quad.h );
+        vertices[3].pos = new Vector( pos.x,            pos.y+quad.y );
         vertices[4].pos = new Vector( pos.x,            pos.y );
-        vertices[5].pos = new Vector( pos.x+quad.w,     pos.y+quad.h );
+        vertices[5].pos = new Vector( pos.x+quad.x,     pos.y+quad.y );
 
     }
 

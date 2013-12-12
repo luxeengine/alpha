@@ -17,6 +17,10 @@ class Utils {
         _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
     }  
 
+    public function uniqueid() : String {
+        return haxe.crypto.Md5.encode(Std.string(haxe.Timer.stamp()*Math.random()));
+    }
+
     public function uuid() : String {
     	return UUID.get();
     }

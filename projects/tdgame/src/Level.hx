@@ -121,7 +121,6 @@ class Level extends Component {
                 return;
             }
 
-
                 //block the grid position, so we can test against it
             grid.set_blocked(mousegrid.x, mousegrid.y);
 

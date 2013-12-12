@@ -1,6 +1,7 @@
 package luxe.debug;
 
 import luxe.Input.KeyEvent;
+import luxe.Input.MouseEvent;
 
 
 class DebugView {
@@ -9,6 +10,15 @@ class DebugView {
         
     }
     public function process() {
+        
+    }
+    public function onmousedown(e:MouseEvent) {
+        
+    }
+    public function onmouseup(e:MouseEvent) {
+        
+    }
+    public function onmousemove(e:MouseEvent) {
         
     }
     public function onkeydown(e:KeyEvent) {

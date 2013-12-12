@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="luxe - testcomponents2" 
-          package="com.underscorediscovery.luxetestcomponents2" 
+          title="luxe - uuid performance" 
+          package="com.luxeengine.testuuid" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
-	<app main="Main" path="bin" file="luxe_testcomponents2" />
+	<app main="Main" path="bin" file="luxe_uuid" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	
@@ -17,6 +17,7 @@
 	<source path="src" />
 	
 	<haxelib name="luxe" />
-	<haxelib name="lime" />
+    <haxelib name="lime" />
+	<haxelib name="mohxa" />
 	
 </project>

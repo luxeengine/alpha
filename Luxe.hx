@@ -13,6 +13,7 @@ class Luxe {
 
     public static var dt : Float = 0.016;
     public static var timescale : Float = 1;
+    public static var fixed_timestep : Float = 0;//0.016666666667;
     public static var mouse : Vector;
     
     public static var core : luxe.Core;

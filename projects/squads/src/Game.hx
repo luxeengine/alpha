@@ -54,6 +54,8 @@ class Game extends luxe.Game {
 
         modes.set('mainmenu');
 
+        Luxe.fixed_timestep = 0.0166666666667;
+
     } //ready
 
     public function onmousemove( e:MouseEvent ) {

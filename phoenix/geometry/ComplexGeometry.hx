@@ -45,7 +45,7 @@ class ComplexGeometry extends Geometry {
 
 	public function quad_add( _options:Dynamic ) : String {
 
-		var _uuid : String = luxe.utils.UUID.get();
+		var _uuid : String = Luxe.utils.uniqueid();
 
             //First triangle
         var vert0 : Vertex = new Vertex( new Vector( _options.x,            _options.y ) );

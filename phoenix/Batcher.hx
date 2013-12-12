@@ -124,15 +124,15 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        vertlist = new Float32Array(65536);
-        tcoordlist = new Float32Array(65536);
-        colorlist = new Float32Array(65536);
-        normallist = new Float32Array(65536);
+        vertlist = new Float32Array(65356);
+        tcoordlist = new Float32Array(65356);
+        colorlist = new Float32Array(65356);
+        normallist = new Float32Array(65356);
 
-        static_vertlist = new Float32Array(65536);
-        static_tcoordlist = new Float32Array(65536);
-        static_colorlist = new Float32Array(65536);
-        static_normallist = new Float32Array(65536);
+        static_vertlist = new Float32Array(65356);
+        static_tcoordlist = new Float32Array(65356);
+        static_colorlist = new Float32Array(65356);
+        static_normallist = new Float32Array(65356);
 
             //The default view so we see stuff
         view = renderer.default_camera;
@@ -176,7 +176,7 @@ class Batcher {
 
             //A default name
         if(_name.length == 0) {
-            name = Luxe.utils.uuid();
+            name = Luxe.utils.uniqueid();
         } else {
             name = _name;
         }
@@ -405,18 +405,15 @@ class Batcher {
                         // Accumulate, this is standard geometry 
                     else {
 
-                        // trace((geom.vertices.length*4)+(verts/4) + " / " + ((vertlist.byteLength/4)/2));
-                        // if((geom.vertices.length*4)+(verts/4) > ((vertlist.byteLength/4)/2)) {
+                        // trace((geom.vertices.length*4)+(verts) + " / " + ((vertlist.byteLength/4)));
+                            //if we have breached the max per batch, send it now                        
+                        if((geom.vertices.length*4)+(verts) > ((vertlist.byteLength/4))) {
                             // vertlist = new Float32Array((vertlist.byteLength/4) * 2);
-                        // }
+                            submit_current_vertex_list( geom.primitive_type );
+                        }
 
                         geometry_batch( geom );
 
-                            //if we have breached the max per batch, send it now                        
-                        if((verts/4) > 8192) {
-                            submit_current_vertex_list( geom.primitive_type );
-                        }               
-                        
                         dynamic_batched_count++;
 
                     } //standard geometry
@@ -581,7 +578,7 @@ class Batcher {
 
 
     public function submit_current_vertex_list( type : PrimitiveType ) {
-            
+
         if( verts == 0 ) {
                 //No verts? 
             return;
@@ -593,21 +590,23 @@ class Batcher {
             //Enable atttributes
         _enable_attributes();
 
+        // trace(verts + ' ' + tcoords + ' ' + colors + ' ' + normals);
+
         GL.bindBuffer(GL.ARRAY_BUFFER, flop ? vertexBuffer0 : vertexBuffer );
         GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, vertlist ); 
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, (verts) ) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, flop ? tcoordBuffer0 : tcoordBuffer);
         GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, tcoordlist );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, (tcoords) ) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, flop ? vcolorBuffer0 : vcolorBuffer);
         GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, colorlist );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, (colors) ) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, flop ? normalBuffer0 : normalBuffer);
         GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, normallist );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, (normals) ) );
 
             //Draw
         GL.drawArrays( 

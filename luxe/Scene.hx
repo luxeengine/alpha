@@ -18,7 +18,7 @@ class Scene {
 
     public function new() {
         entities = new Map<String,Entity>();
-        id = Luxe.utils.uuid();
+        id = Luxe.utils.uniqueid();
         _delayed_init_entities = [];
         _delayed_start_entities = [];
     }
@@ -28,7 +28,7 @@ class Scene {
         var _temp_name = _name;
 
         if(_temp_name.length == 0) {
-            _temp_name = Luxe.utils.uuid();
+            _temp_name = Luxe.utils.uniqueid();
         } else {
             _temp_name = _name;
         }

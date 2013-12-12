@@ -10,6 +10,7 @@ import luxe.Input;
 import luxe.Scene;
 import luxe.Files;
 import luxe.Debug;
+import luxe.debug.ProfilerDebugView;
 import luxe.Time;
 
 import phoenix.Renderer;
@@ -69,7 +70,7 @@ import phoenix.Renderer;
     var _update_handlers : Map<String,Float->Void>;
         //add an internal update
     public function add_internal_update( _update:Float->Void ) {    
-        var _uuid = Luxe.utils.uuid();
+        var _uuid = Luxe.utils.uniqueid();
         _update_handlers.set(_uuid,_update); 
         return _uuid;
     }
@@ -248,16 +249,26 @@ import phoenix.Renderer;
     	//Called by Lime
     public function update() { 
 
-        _debug('on_update ' + Timer.stamp(), true, true); 
+        _debug('on_update ' + Timer.stamp(), true, true);         
 
         if(has_shutdown) return;
-
             //Update all the subsystems, again, order important
 
-        time.process();     //Timers first
+        debug.start('core.time');
+            time.process();     //Timers first
+        debug.end('core.time');
+
+        debug.start('core.input');
         input.process();    //Input second
+        debug.end('core.input');
+
+        debug.start('core.audio');
         audio.process();    //Audio
-        events.process();   //events 
+        debug.end('core.audio');
+
+        debug.start('core.events');
+        events.process();   //events
+        debug.end('core.events');
 
         #if haxebullet
             physics.process();   //physics 
@@ -269,7 +280,9 @@ import phoenix.Renderer;
         }
 
             //Update the default scene first
+        debug.start('core.scene');
         scene.update(Luxe.dt);
+        debug.end('core.scene');
 
             //Update the game class for them
         if(host.update != null) {
@@ -277,25 +290,25 @@ import phoenix.Renderer;
         }
 
             //work out the last frame time
-        dt = (haxe.Timer.stamp() - end_dt);
+        dt = (Luxe.fixed_timestep != 0) ? Luxe.fixed_timestep : (haxe.Timer.stamp() - end_dt);
             //store the timescaled version for external
         Luxe.dt = dt * Luxe.timescale;
             //store the latest time frame
         end_dt = haxe.Timer.stamp();
 
             //finally, process the debug update
-        debug.process();    //debug last
+        debug.process(); 
 
     } //update
 
         //called by Lime
-    public function render() {
+    public function render() {        
 
             //Call back to the game class for them
         if(host.prerender != null) {
             host.prerender();
         }
-
+        
         if(renderer != null && renderer.process != null) {
             renderer.process();   
         }
@@ -303,6 +316,7 @@ import phoenix.Renderer;
         if(host.postrender != null) {
             host.postrender();
         }
+
     }
 
 //External overrides
@@ -361,7 +375,7 @@ import phoenix.Renderer;
                 //check for named input 
             input.check_named_keys(e);
                 //forward to debug module
-            debug.onkeyup(e);
+            if(debug!=null)debug.onkeyup(e);
         }
         
         if(host.onkeyup != null) host.onkeyup(e);
@@ -400,6 +414,7 @@ import phoenix.Renderer;
         if(!shutting_down) {
             input.check_named_mouse(e, true);
             scene.onmousedown(e);
+            debug.onmousedown(e);
         }
 
         if(host.onmousedown != null) host.onmousedown(e);
@@ -414,6 +429,7 @@ import phoenix.Renderer;
         if(!shutting_down) {
             input.check_named_mouse(e);
             scene.onmouseup(e);
+            debug.onmouseup(e);
         }
 
         if(host.onmouseup != null) host.onmouseup(e);
@@ -426,6 +442,7 @@ import phoenix.Renderer;
 
         if(!shutting_down) {
             scene.onmousemove(e);
+            debug.onmousemove(e);
         }
 
         if(host.onmousemove != null) host.onmousemove(e);

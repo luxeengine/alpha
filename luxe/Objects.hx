@@ -8,7 +8,7 @@ class Objects {
     public var name : String;
 
     @:hide public function new() {
-    	id = luxe.utils.UUID.get();
+    	id = Luxe.utils.uniqueid();
     } //new
 
 //Private helper functions
