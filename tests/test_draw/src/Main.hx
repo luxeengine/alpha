@@ -12,7 +12,6 @@ import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
 
-
 class Main extends luxe.Game {
 
     public var mouse : Vector;

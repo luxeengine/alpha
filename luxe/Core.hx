@@ -271,13 +271,17 @@ import phoenix.Renderer;
         debug.end('core.events');
 
         #if haxebullet
+            debug.start('core.physics');
             physics.process();   //physics 
+            debug.end('core.physics');
         #end //haxebullet
 
             //Update internal callbacks
+        debug.start('core.updatecallbacks');
         for(_update in _update_handlers) {
             _update(Luxe.dt);
         }
+        debug.end('core.updatecallbacks');
 
             //Update the default scene first
         debug.start('core.scene');
@@ -286,7 +290,9 @@ import phoenix.Renderer;
 
             //Update the game class for them
         if(host.update != null) {
+            debug.start('host.update');
             host.update(Luxe.dt);
+            debug.end('host.update');
         }
 
             //work out the last frame time
@@ -296,13 +302,17 @@ import phoenix.Renderer;
             //store the latest time frame
         end_dt = haxe.Timer.stamp();
 
+        debug.start('core.debug');
             //finally, process the debug update
         debug.process(); 
+        debug.end('core.debug');
 
     } //update
 
         //called by Lime
     public function render() {        
+
+        debug.start('core.render');
 
             //Call back to the game class for them
         if(host.prerender != null) {
@@ -316,6 +326,8 @@ import phoenix.Renderer;
         if(host.postrender != null) {
             host.postrender();
         }
+
+        debug.end('core.render');
 
     }
 
