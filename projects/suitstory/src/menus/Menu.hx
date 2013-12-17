@@ -2,7 +2,7 @@
 package menus;
 
 
-import mode.Mode;
+import mode.State;
 
 import luxe.Color;
 import luxe.Vector;
@@ -28,7 +28,7 @@ import luxe.Particles;
 
 import luxe.tween.Actuate;
 
-class Menu extends Mode {   
+class Menu extends State {   
 
     public var mouse : Vector;
 
@@ -72,7 +72,7 @@ class Menu extends Mode {
     } //start
 
     public function playClicked() {
-        game.modes.set('manager');
+        game.states.set('manager');
     }
 
     public function mouseup(e) {

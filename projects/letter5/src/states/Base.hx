@@ -1,7 +1,7 @@
-package modes;
+package states;
 
 import luxe.Input;
-import luxe.Modes;
+import luxe.States;
 
 import common.Block;
 import common.Cell;
@@ -9,7 +9,7 @@ import common.Board;
 
 import luxe.tween.Actuate;
 
-class Base extends Mode {
+class Base extends State {
 
 	public var game : Main;
 
@@ -81,7 +81,7 @@ class Base extends Mode {
 
 	public function onkeydown(e) {		
         if(e.value == Input.Keys.escape) {
-            game.modes.set('menu');
+            game.states.set('menu');
         } //if escape
 	}	
 }

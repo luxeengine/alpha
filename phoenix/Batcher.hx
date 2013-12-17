@@ -217,7 +217,7 @@ class Batcher {
 
         GL.blendFunc(_src, _dest);
 
-    } //set blend Mode
+    } //set blendmode
 
     public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
 

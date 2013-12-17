@@ -7,7 +7,7 @@ class Objects {
 	public var id : String;
     public var name : String;
 
-    @:hide public function new() {
+    @:noCompletion public function new() {
     	id = Luxe.utils.uniqueid();
     } //new
 

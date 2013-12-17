@@ -2,8 +2,8 @@
     //mode management code
 import luxe.Color;
 import luxe.Vector;
-import mode.Mode;
-import mode.Modes;
+import state.State;
+import state.States;
 
     //the game classes
 import luxe.Input;
@@ -11,7 +11,7 @@ import luxe.Input;
 
 class Game extends luxe.Game {
 
-    public var modes : Modes;
+    public var states : States;
     
     var mainMenu : menus.Menu;
     var manager : systems.Manager;
@@ -20,49 +20,49 @@ class Game extends luxe.Game {
 
         Luxe.renderer.clear_color = new Color();
         
-        modes = new Modes();
+        states = new States();
             //menus
         mainMenu = new menus.Menu(this, 'menu');
             //the game manager
         manager = new systems.Manager(this, 'manager');
 
-            //add the modes 
+            //add the states 
             //to the mode manager
-        modes.add( mainMenu );
-        modes.add( manager );
+        states.add( mainMenu );
+        states.add( manager );
 
             //start up the menu mode
         mainMenu.init();
             //and set to that mode
-        modes.set('menu');
+        states.set('menu');
 
     }   
 
     public function prerender() {
-        modes.prerender();
+        states.prerender();
     }
  
     public function onkeydown(e) {
-        modes.keydown(e);
+        states.keydown(e);
     }
     public function onkeyup(e) {
-        modes.keyup(e);
+        states.keyup(e);
     }
 
     public function onmousedown(e : MouseEvent) {
-        modes.mousedown(e);
+        states.mousedown(e);
     }   
 
     public function onmousemove(e : MouseEvent) {
-        modes.mousemove(e);
+        states.mousemove(e);
     }
 
     public function onmouseup(e : MouseEvent) {
-        modes.mouseup(e);
+        states.mouseup(e);
     }
 
     public function update(dt:Float) {
-        modes.update(dt);
+        states.update(dt);
     }
 
     public function shutdown() {

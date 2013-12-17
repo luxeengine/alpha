@@ -256,7 +256,7 @@ class Board {
             var gridy = Math.floor(gridspacey / (blockh+spacing));
 
             if(gridx == 0 && gridy == 0) {
-                game.modes.set('menu');
+                game.states.set('menu');
                 return;
             }
 

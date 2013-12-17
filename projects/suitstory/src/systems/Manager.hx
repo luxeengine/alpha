@@ -16,7 +16,7 @@ import phoenix.geometry.Geometry;
 import phoenix.Texture;
 import phoenix.BitmapFont;
 
-import mode.Mode;
+import luxe.State;
 
 import luxe.tween.Actuate;
 import phoenix.RenderTexture;
@@ -49,7 +49,7 @@ class Player {
 
 } //Player
 
-class Manager extends Mode {
+class Manager extends State {
 
     public var mouse : Vector;
     public var dragging : Bool = false;
@@ -374,7 +374,7 @@ class Manager extends Mode {
     public function keydown(e) {
         
         if( e.value == Input.Keys.escape ) {
-            game.modes.set('menu');
+            game.states.set('menu');
         }
 
 

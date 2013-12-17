@@ -19,12 +19,12 @@
 	 … var entity : luxe.Entity;
 	 • function new() ;
 
-//luxe class : luxe.Mode
+//luxe class : luxe.State
 
 	 … var next_tick : Dynamic (write only);
 	 … var name : String;
 	 … var active : Bool;
-	 … var modes : luxe.Modes;
+	 … var states : luxe.States;
 	 • function new() ;
 
 //luxe class : luxe.Audio
@@ -103,7 +103,7 @@
 	 … var Gamepad : lime.helpers.Gamepad;
 	 • function add(_name:String, _event:Dynamic) : Void;
 
-//luxe class : luxe.Modes
+//luxe class : luxe.States
 
 	 • function ontouchbegin(e:luxe.TouchEvent) : Void;
 	 • function ontouchend(e:luxe.TouchEvent) : Void;
@@ -122,8 +122,8 @@
 	 • function set(name:String) : Void;
 	 • function disable(_name:String) : Void;
 	 • function enable(_name:String) : Void;
-	 • function add_mode(type:Class, ?_name:String) : add_mode.T;
-	 … var currentmode : luxe.Mode;
+	 • function add_state(type:Class, ?_name:String) : add_state.T;
+	 … var currentmode : luxe.State;
 	 … var activemodes : Array;
 	 • function new() ;
 

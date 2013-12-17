@@ -5,10 +5,10 @@ import luxe.Vector;
 import luxe.Input;
 import phoenix.BitmapFont;
 
-import luxe.Modes;
+import luxe.States;
 
-import modes.Menu;
-import modes.Base;
+import states.Menu;
+import states.Base;
 
 import luxe.tween.Actuate;
 
@@ -16,7 +16,7 @@ import luxe.tween.Actuate;
 class Main extends luxe.Game {
 
     public var font : BitmapFont;
-    public var modes : Modes;
+    public var states : States;
     public var menu : Menu;
     public var base : Base;
     public var fade : Sprite;
@@ -36,9 +36,9 @@ class Main extends luxe.Game {
 
         font.load_from_string( Luxe.loadText('assets/fonts/osb.fnt'), 'assets/fonts/' );
 
-        modes = new Modes();
-        menu = modes.add_mode(Menu, 'menu');
-        base = modes.add_mode(Base, 'base');
+        states = new States();
+        menu = states.add_state(Menu, 'menu');
+        base = states.add_state(Base, 'base');
 
         menu.game = base.game = this;
 
@@ -47,11 +47,11 @@ class Main extends luxe.Game {
             // cpp.vm.Gc.enable(false);
         #end
 
-            //create the modes
-        modes.init();
+            //create the states
+        states.init();
 
             //set to the menu
-        modes.set('menu');
+        states.set('menu');
 
     } //ready
 
@@ -64,40 +64,40 @@ class Main extends luxe.Game {
     }
 
     public function onkeyup(e) {
-        modes.onkeyup(e);
+        states.onkeyup(e);
     } //onkeyup
 
     public function onkeydown(e) {
-        modes.onkeydown(e);
+        states.onkeydown(e);
     } //onkeydown
     public function onmousedown(e) {
         mouse.set(e.x,e.y);
-        modes.onmousedown(e);
+        states.onmousedown(e);
     } //onkeydown    
     public function onmousemove(e) {        
         mouse.set(e.x,e.y);
-        modes.onmousemove(e);
+        states.onmousemove(e);
     } //onkeydown
     public function onmouseup(e) {
         mouse.set(e.x,e.y);
-        modes.onmouseup(e);
+        states.onmouseup(e);
     } //onkeydown
     public function ontouchmove(e:TouchEvent) {
-        modes.ontouchmove(e);
+        states.ontouchmove(e);
     } //ontouchmove
     public function ontouchbegin(e:TouchEvent) {
-        modes.ontouchbegin(e);
+        states.ontouchbegin(e);
     } //ontouchmove
     public function ontouchend(e:TouchEvent) {
-        modes.ontouchend(e);
+        states.ontouchend(e);
     } //ontouchmove
 
     public function update(dt:Float) {
-        modes.update(dt);
+        states.update(dt);
     } //update
 
     public function shutdown() {
-        modes.destroy();
+        states.destroy();
     } //shutdown
 }
 

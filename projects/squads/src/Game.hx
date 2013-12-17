@@ -1,7 +1,7 @@
 
 import game.Level;
 import luxe.Input;
-import luxe.Modes;
+import luxe.States;
 import luxe.Color;
 
 import game.Manager;
@@ -14,7 +14,7 @@ enum GameMode {
 
 class Game extends luxe.Game {
 
-	var modes : Modes;
+	var states : States;
     public static var manager : Manager;
     public static var level : Level;
 
@@ -31,7 +31,7 @@ class Game extends luxe.Game {
 
     public function ready() {
 
-    	modes = new Modes();
+    	states = new States();
 
             //Load the font
         font = Luxe.loadFont('osb.fnt', 'assets/fonts/');
@@ -45,49 +45,49 @@ class Game extends luxe.Game {
         current_game_mode = GameMode.twovtwo;   
 
             //add the menu mode, 
-        manager = modes.add_mode(Manager, 'mainmenu');
-        level = modes.add_mode(Level, 'level');
+        manager = states.add_state(Manager, 'mainmenu');
+        level = states.add_state(Level, 'level');
 
             //and then init and set it
         manager.init(this);
         level.init(manager);
 
-        modes.set('mainmenu');
+        states.set('mainmenu');
 
         Luxe.fixed_timestep = 0.0166666666667;
 
     } //ready
 
     public function onmousemove( e:MouseEvent ) {
-    	modes.onmousemove(e);
+    	states.onmousemove(e);
     } //onmousemove
 
     public function onmousedown( e:MouseEvent ) {
-    	modes.onmousedown(e);
+    	states.onmousedown(e);
     } //onmousedown
 
     public function onmouseup( e:MouseEvent ) {
-    	modes.onmouseup(e);
+    	states.onmouseup(e);
     } //onmouseup
 
     public function oninputup( _input:String, _event:Dynamic ) {
-        modes.oninputup(_input,_event);
+        states.oninputup(_input,_event);
     }
 
     public function oninputdown( _input:String, _event:Dynamic ) {
-        modes.oninputdown(_input, _event);
+        states.oninputdown(_input, _event);
     }
 
     public function onkeydown( e:KeyEvent ) {
-    	modes.onkeydown(e);
+    	states.onkeydown(e);
     } //onkeydown
 
     public function onkeyup( e:KeyEvent ) {		
-    	modes.onkeyup(e);
+    	states.onkeyup(e);
     } //onkeyup
 
     public function update(dt:Float) {
-    	modes.update(dt);
+    	states.update(dt);
     } //update
 
 } //Game

@@ -8,7 +8,7 @@ import hxcollision.ShapeDrawer ;
 import hxcollision.shapes.Polygon;
 import hxcollision.shapes.BaseShape;
 
-import luxe.Modes;
+import luxe.States;
 import luxe.Sprite;
 import luxe.Rectangle;
 import luxe.Vector;
@@ -27,7 +27,7 @@ class LuxeDrawer extends ShapeDrawer {
     }
 }
 
-class Level extends Mode {
+class Level extends State {
 
     var manager : Manager;
 
@@ -115,12 +115,12 @@ class Level extends Mode {
                 _colpoly.data = item;
         }
 
-        // for(shape in ground_collision_shapes) {
-        //     drawer.drawPolygon( cast shape );
-        // }
-        // for(shape in air_collision_shapes) {
-        //     drawer.drawPolygon( cast shape );
-        // }
+        for(shape in ground_collision_shapes) {
+            drawer.drawPolygon( cast shape );
+        }
+        for(shape in air_collision_shapes) {
+            drawer.drawPolygon( cast shape );
+        }        
 
     } //init
 
@@ -170,7 +170,7 @@ class Level extends Mode {
     public function oninputup(_name:String, _event:Dynamic) {
         switch(_name) {
             case 'quit':
-                modes.set('mainmenu');
+                states.set('mainmenu');
         }
     }
 

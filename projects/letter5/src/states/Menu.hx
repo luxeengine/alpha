@@ -1,14 +1,14 @@
-package modes;
+package states;
 
 import luxe.Sprite;
 import luxe.Color;
 import luxe.Vector;
 import luxe.Input;
-import luxe.Modes;
+import luxe.States;
 import luxe.tween.Actuate;
 import phoenix.geometry.LineGeometry;
 
-class Menu extends Mode {
+class Menu extends State {
 	
 	public var game : Main;
 
@@ -68,7 +68,7 @@ class Menu extends Mode {
 		// // }
 
 		if(play.point_inside(game.mouse)) {
-			game.modes.set('base');
+			game.states.set('base');
 		}
 	} //onmousedown
 

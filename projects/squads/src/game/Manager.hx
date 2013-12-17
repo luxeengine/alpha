@@ -5,7 +5,7 @@ import game.PlayerTeam;
 import game.PlayerWeapon;
 import luxe.Input.KeyEvent;
 import luxe.Input.KeyValue;
-import luxe.Modes;
+import luxe.States;
 import luxe.Rectangle;
 import luxe.Sprite;
 import luxe.Vector;
@@ -22,7 +22,7 @@ import Game;
 import game.PlayerMovement;
 import game.PlayerKeyInput;
 
-class Manager extends Mode {
+class Manager extends State {
     
     public var game : Game;
 
@@ -95,14 +95,14 @@ class Manager extends Mode {
 
         Luxe.events.listen('level.start', function(e) {
             if(!level_running) {
-                modes.enable('level');
+                states.enable('level');
                 level_running = true;
             }
         });
 
         Luxe.events.listen('level.end', function(e) {
             if(level_running) {
-                modes.disable('level');
+                states.disable('level');
                 level_running = false;
             }
         });
