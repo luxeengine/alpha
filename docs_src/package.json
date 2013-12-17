@@ -13,7 +13,8 @@
     "pygments" : "latest",
     "graceful-fs" : "latest",
     "wrench" : "latest",
-    "jsonic" : "latest"
+    "jsonic" : "latest",
+    "nodegit" : "latest"
   },
   "engine": {
     "node": "0.10.x"

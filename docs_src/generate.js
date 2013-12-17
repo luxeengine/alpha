@@ -9,6 +9,7 @@ var wrench      = require('wrench');
 var util        = require('util');
 var pygmentize  = require('pygments').colorize;
 var jsonic      = require('jsonic');
+var git         = require('nodegit');
 
     //Look for the local config, todo: command line
 var config = require('./documentator.json');
@@ -349,6 +350,64 @@ var config = require('./documentator.json');
 
     } //_copy_template_files
 
+    var _write_changes_file = function(_done) {
+
+        git.Repo.open(path.resolve(__dirname, '../.git'), function(error, repo) {
+          if (error) throw error;
+
+          repo.getMaster(function(error, branch) {
+            if (error) throw error;
+
+            // History returns an event.
+            var history = branch.history(git.RevWalk.Sort.Time);
+
+                // History emits 'commit' event for each commit in the branch's history
+                // history.on('commit', function(commit) {
+                //   console.log('commit ' + commit.sha());
+                //   console.log('Author:', commit.author().name() + ' <' + commit.author().email() + '>');
+                //   console.log('Date:', commit.date());
+                //   console.log('\n    ' + commit.message());
+                // });
+
+                history.on('end', function(all){
+                    
+                    var _final_log = '';
+
+                    var _count = all.length;
+                    for(i = 0; i < _count; ++i) {
+                        _commit = all[i];
+                        _final_log += '&nbsp;   \n';
+
+                        _final_log += '<div class="commit_info">\n\n';
+                        _final_log += 'commit ['+ String(_commit.sha()).substr(0,10) +'](http://github.com/underscorediscovery/luxe/commit/'+ _commit.sha() +')   \n';
+                        _final_log += 'author: ' + _commit.author().name() + ' <' + _commit.author().email() + '>   \n';
+                        _final_log += 'date: ' + _commit.date() + '   \n';
+                        _final_log += '</div>\n\n';
+                        _final_log += '&nbsp;   \n';                        
+                        _final_log += '<div class="commit_message">\n\n<ul>';
+                            
+                        _items = _commit.message().split('\n');
+                        for(var j = 0; j < _items.length; ++j) {
+                            if(_items[j].length > 0) {
+                                _final_log += '<li>' + _items[j] + '</li>';
+                            }
+                        }                        
+
+                        _final_log += '</ul>\n</div>\n';
+                        _final_log += '&nbsp;   \n';
+                    }
+
+                    fs.writeFileSync( './Luxe/changes.md' , _final_log );
+                    _done();
+                });
+
+            // Don't forget to call `start()`!
+            history.start();
+          });
+        });
+
+    } //_write_log_file
+
     var verbose = false;
     var _verbose = function(s){
         if(verbose) {
@@ -356,52 +415,56 @@ var config = require('./documentator.json');
         }
     }
 
-    if(config != undefined) {
+    if(config != undefined) {        
 
-        console.log('- documentator 0.1 - Reading ' + './documentator.json');
+        _write_changes_file(function() {
 
-        _parse_code_api();
+            console.log('- documentator 0.1 - Reading ' + './documentator.json');
 
-        var _list = _fetch_file_list( config.input_files, config.force_full );
+            _parse_code_api();
 
-        if(_list.length == 0) {
+            var _list = _fetch_file_list( config.input_files, config.force_full );
 
-            if(config.force_copy_template) {
-                console.log("Force copy template files!");
-                _verbose("- copying template files. ");
-                _copy_template_files([].concat(_template_files), function(){
-                    console.log("- copied template files. ");
-                }); //copy template files
-            }
+            if(_list.length == 0) {
 
-            console.log('- ok. All files up to date.');
+                if(config.force_copy_template) {
+                    console.log("Force copy template files!");
+                    _verbose("- copying template files. ");
+                    _copy_template_files([].concat(_template_files), function(){
+                        console.log("- copied template files. ");
+                    }); //copy template files
+                }
 
-        } else {        
+                console.log('- ok. All files up to date.');
 
-            console.log('- starting generation ... ');
+            } else {        
 
-            _cache_files( [].concat(_list), function(){
-                console.log("- cached files. ");
-                console.log("- generating html ... ");
-                _do_generation( [].concat(_list), function(){
-                    console.log("- generated html.");
-                    _verbose("- saving output : ");
-                    _do_output( [].concat(_list), function(){
-                        console.log("- saved output.");
-                        _verbose("- copying template files. ");
-                        _copy_template_files([].concat(_template_files), function(){
-                            console.log("- copied template files. ");
-                            _verbose("- copying images ");
-                            _copy_images(function() {
-                                console.log("- copied images.");
-                                console.log("- ok - generated docs in " + config.output_path );
-                            });
-                        }); //copy template files
-                    }); //do output
-                } );  //do generation
-            } ); // cache files
+                console.log('- starting generation ... ');
 
-        } //!list.length
+                _cache_files( [].concat(_list), function(){
+                    console.log("- cached files. ");
+                    console.log("- generating html ... ");
+                    _do_generation( [].concat(_list), function(){
+                        console.log("- generated html.");
+                        _verbose("- saving output : ");
+                        _do_output( [].concat(_list), function(){
+                            console.log("- saved output.");
+                            _verbose("- copying template files. ");
+                            _copy_template_files([].concat(_template_files), function(){
+                                console.log("- copied template files. ");
+                                _verbose("- copying images ");
+                                _copy_images(function() {
+                                    console.log("- copied images.");
+                                    console.log("- ok - generated docs in " + config.output_path );
+                                });
+                            }); //copy template files
+                        }); //do output
+                    } );  //do generation
+                } ); // cache files
+
+            } //!list.length
+
+        }); //write changes file
 
     } else { //config != undefined
         console.log("- NOT ok - No configuration found. Stopping.");

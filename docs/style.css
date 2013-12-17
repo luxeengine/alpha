@@ -40,6 +40,7 @@ li {
 b {
 	color:#3c3c3c;
 }
+
 .highlight {
 	overflow: hidden;
 }
@@ -54,6 +55,17 @@ a {
 
 a:hover {
 	color:#242424;
+}
+
+.commit_info {
+	font-size: 0.8em;
+	opacity:0.5;
+}
+
+.commit_message li {
+	color:#797979;
+	margin-top: 1em;
+	letter-spacing: 0em;
 }
 
 .section img {
