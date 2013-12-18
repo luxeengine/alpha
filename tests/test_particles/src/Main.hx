@@ -9,14 +9,6 @@ import luxe.Particles;
 import luxe.Sprite;
 import phoenix.Batcher;
 
-class Derp extends luxe.Entity {
-    public function init() {
-        trace("derping init");
-    }
-    public function destroy() {
-        trace("destroying derp instance");
-    }
-}
 
 class Main extends luxe.Game {
 

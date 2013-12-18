@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [d64697c07a](http://github.com/underscorediscovery/luxe/commit/d64697c07a5f011b70a114304c23ff516f37beab)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Dec 18 2013 19:38:55 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; fixing sprite not calling parent destroy, as well as fixing direct calling of entity internal functions</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2272688ec9](http://github.com/underscorediscovery/luxe/commit/2272688ec98af69e29ee6ef25e586e4f056b841f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Dec 17 2013 16:09:33 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Structural; Adding new classe from structural</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9063ec9dbd](http://github.com/underscorediscovery/luxe/commit/9063ec9dbd0bc15394ed9b7073a1fd9b14ec7d2e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Dec 17 2013 14:52:52 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Adding changes list to the docs from git history</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [8d01c4d21f](http://github.com/underscorediscovery/luxe/commit/8d01c4d21fa7a74ff763db1d99d025516f80f94e)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Mon Dec 16 2013 22:08:40 GMT-0330 (NST)   
