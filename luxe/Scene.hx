@@ -49,7 +49,7 @@ class Scene {
 
     public function add( entity:Entity ) {
 
-        entities.set( entity.name, entity );        
+        entities.set( entity.id, entity );        
 
         if(inited) {
             _delayed_init_entities.push(entity);            
@@ -63,19 +63,16 @@ class Scene {
 
     public function remove(entity:Entity) {
         entity._destroy();
-        entities.remove( entity.id );
+        entities.remove( entity.id );        
     }
 
     public function empty() {
-
+        trace("cleaning up entities in scene");
         for(entity in entities) {
-                //destroy
-            entity._destroy();
+            remove(entity);
             entity = null;
-                //remove
-            entities.remove(entity.id);
         }
-        
+        trace("entities left " + Lambda.count(entities));
     }
     
     public function shutdown() {

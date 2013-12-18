@@ -228,8 +228,12 @@ class Sprite extends Entity {
     }
 
 
-    public function destroy() {
-            
+    public function destroy( ?_ignore_internal_destroy:Bool=false ) {
+
+        if(!_ignore_internal_destroy) {
+            _destroy();
+        } //_ignore_internal_destroy
+
             //drop the geometry
         if(geometry != null && geometry.added ) {
             geometry.drop( true );

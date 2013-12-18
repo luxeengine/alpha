@@ -86,7 +86,7 @@ class Entity extends Objects {
 
 			//now init our children, so they do the same
 		for(_child in children) {
-			_call(_child, '_init');
+			_child._init();
 		} //for each child
 
             //flag internally
@@ -111,7 +111,7 @@ class Entity extends Objects {
 
             //now init our children, so they do the same
         for(_child in children) {
-            _call(_child, '_onmousedown', [e]);
+            _child._onmousedown(e);
         } //for each child
 
     } //_onmousedown
@@ -132,7 +132,7 @@ class Entity extends Objects {
 
             //now init our children, so they do the same
         for(_child in children) {
-            _call(_child, '_onmouseup', [e]);
+            _child._onmouseup(e);
         } //for each child
 
     } //_onmouseup    
@@ -153,7 +153,7 @@ class Entity extends Objects {
 
             //now init our children, so they do the same
         for(_child in children) {
-            _call(_child, '_onmousemove', [e]);
+            _child._onmousemove(e);
         } //for each child
 
     } //_onmousemove
@@ -174,7 +174,7 @@ class Entity extends Objects {
 
             //now init our children, so they do the same
         for(_child in children) {
-            _call(_child, '_oninputdown', [_name, e]);
+            _child._oninputdown(_name, e);
         } //for each child
 
     } //_oninputdown
@@ -195,7 +195,7 @@ class Entity extends Objects {
 
             //now init our children, so they do the same
         for(_child in children) {
-            _call(_child, '_oninputup', [_name, e]);
+            _child._oninputup(_name, e);
         } //for each child
 
     } //_oninputup
@@ -214,7 +214,7 @@ class Entity extends Objects {
 
 			//now start our children, so they do the same
 		for(_child in children) {
-			_call(_child, '_start');
+			_child._start();
 		} //for each child
 
             //start the fixed rate timer
@@ -229,7 +229,7 @@ class Entity extends Objects {
 
 			//first destroy children
 		for(_child in children) {
-			_call(_child, '_destroy');
+			_child._destroy();
 		} //for each child
 
 			//destroy all the components attached directly to us
@@ -240,7 +240,7 @@ class Entity extends Objects {
 		_debug('calling destroy on ' + name);
 
 			//destroy the parent last
-		_call(this, 'destroy');
+		_call(this, 'destroy', [true]);
 
             //kill any fixed rate timers
         _stop_fixed_rate_timer();
@@ -270,7 +270,7 @@ class Entity extends Objects {
 
 			//now update our children, so they do the same
 		for(_child in children) {
-			_call(_child, '_update', [dt]);
+			_child._update(dt);
 		} //for each child
 
 	} //_update
@@ -292,7 +292,7 @@ class Entity extends Objects {
 
 			//now fixed_update our children, so they do the same
 		for(_child in children) {
-			_call(_child, '_fixed_update');
+			_child._fixed_update();
 		} //for each child
 
 	} //_fixed_update

@@ -9,6 +9,15 @@ import luxe.Particles;
 import luxe.Sprite;
 import phoenix.Batcher;
 
+class Derp extends luxe.Entity {
+    public function init() {
+        trace("derping init");
+    }
+    public function destroy() {
+        trace("destroying derp instance");
+    }
+}
+
 class Main extends luxe.Game {
 
     public var mouse : Vector;
@@ -21,6 +30,7 @@ class Main extends luxe.Game {
     public function ready() {
 
         mouse = new Vector();
+
 
         var t1 = Luxe.loadTexture('assets/flame.png');
         var t2 = Luxe.loadTexture('assets/smoke.png');
