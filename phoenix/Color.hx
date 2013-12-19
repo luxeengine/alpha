@@ -25,6 +25,10 @@ class Color {
 
 	}
 
+	public static function random(?_include_alpha:Bool=false) : Color {
+		return new Color(Math.random(), Math.random(), Math.random(), _include_alpha ? Math.random() : 1.0 );
+	}
+
 	public function set( ?_r : Float, ?_g : Float, ?_b : Float, ?_a : Float ) : Color {
 
 		var _setr = r;
