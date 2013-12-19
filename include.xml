@@ -11,6 +11,8 @@
     <haxedef name="HXCPP_CHECK_POINTER" if="profiler"/>
 
 	<haxedef name="luxe_html5" if="html5" />
-	<haxedef name="luxe_native" if="native" />    
+	<haxedef name="luxe_native" if="native" />
+
+	<sample path="template_projects" />
 	
 </extension>

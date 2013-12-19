@@ -100,5 +100,10 @@ class Luxe {
         renderer.default_batcher.remove(_geom);
     } 
 
+    public static function addGroup( _group : Int , ?_pre_render : (phoenix.Batcher -> Void) , ?_post_render : (phoenix.Batcher -> Void) ) {
+        return renderer.default_batcher.add_group( _group, _pre_render, _post_render );        
+    } 
+    
+
 }
 

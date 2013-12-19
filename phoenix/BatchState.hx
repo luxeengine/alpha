@@ -88,7 +88,7 @@ class BatchState {
                 if(previous != null) {
                     // trace('\t--post render for ' + last_group );
                     for(_batch_group in previous) {                        
-                        _batch_group.post_render(batcher);
+                        if(_batch_group.post_render != null) _batch_group.post_render(batcher);
                     } //for batch_group in previous
                 } //is there?
                 
@@ -98,7 +98,7 @@ class BatchState {
                 if(current != null) {
                     // trace('\t--pre render for ' + geom_state.group);
                     for(_batch_group in current) {
-                        _batch_group.pre_render(batcher);
+                        if(_batch_group.pre_render != null) _batch_group.pre_render(batcher);
                     }    
                 } //is there?
 
@@ -159,7 +159,7 @@ class BatchState {
         if(previous != null) {
             // trace('\t--post render for '+ last_group);
             for(_batch_group in previous) {                
-                _batch_group.post_render(batcher);
+                if(_batch_group.post_render != null) _batch_group.post_render(batcher);
             }
         }
         // remove clipping

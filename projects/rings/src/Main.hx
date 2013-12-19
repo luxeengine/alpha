@@ -165,7 +165,7 @@ class Main extends luxe.Game {
     public function spawn_enemy() {
 			//start spawning enemies
 		var delay = (1 + Std.random(4)) ;		
-        Luxe.time.schedule( 1 , spawn_enemy );
+        Luxe.time.schedule( delay , spawn_enemy );
 
 		var e = p_enemies.get();
     	if(!e.get('enemy').alive) {	
