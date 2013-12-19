@@ -2,13 +2,13 @@
 <project>
 	
 	<meta 
-          title="luxe - tests - bst2" 
-          package="com.underscorediscovery.luxetestbst2" 
+          title="luxe - test assets" 
+          package="com.luxeengine.luxetestassets" 
           version="1.0.0" 
-          company="underscorediscovery" 
+          company="luxeengine" 
 	/>
 
-	<app main="Main" path="bin" file="luxe_test_bst2" />
+	<app main="Main" path="bin" file="luxe_test_assets" />
 
 	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
 	

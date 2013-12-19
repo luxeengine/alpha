@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [e8706ca41b](http://github.com/underscorediscovery/luxe/commit/e8706ca41ba0ab3268fba21f0425b207de06271c)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 19 2013 00:37:52 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>API; Adding addGroup for default batcher.</li><li>Tests; adding groups and blendmode test</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b4a9d5dc93](http://github.com/underscorediscovery/luxe/commit/b4a9d5dc9306cac00128100bf87c40064ead6936)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Dec 18 2013 19:43:01 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Cleanup; removing Derp class in test_particles. Updating changes docs.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [d64697c07a](http://github.com/underscorediscovery/luxe/commit/d64697c07a5f011b70a114304c23ff516f37beab)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Wed Dec 18 2013 19:38:55 GMT-0330 (NST)   
