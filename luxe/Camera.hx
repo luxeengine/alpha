@@ -44,7 +44,8 @@ class Camera extends Entity {
 		var center_point_x = _p.x - (view.size.x/2);
 		var center_point_y = _p.y - (view.size.y/2);
 
-		Actuate.tween(view_position, _t, { x:center_point_x, y:center_point_y }, true ).onComplete( oncomplete ).ease( Quad.easeInOut );
+		Actuate.tween(view_position, _t, { x:center_point_x, y:center_point_y }, true )
+            .onComplete( oncomplete ).ease( Quad.easeInOut );
 
 	} //
 
@@ -72,8 +73,8 @@ class Camera extends Entity {
     }
 
         //Called by the scene the camera belongs to
-    @:hide public function update(dt:Float) {
-    	
+    @:noCompletion public function update(dt:Float) {    	       
+
     		//start at our base position
     	var final_position = view_position.clone();
     		//add camera shake
@@ -94,11 +95,9 @@ class Camera extends Entity {
         	if(final_position.y > bounds.h-view.size.y) final_position.y = bounds.h-view.size.y;
         }
 
-        	//add other modifiers
-
-
         	//finally, assign the position
         view.pos = final_position;
+        pos.set(final_position.x, final_position.y, final_position.z);
 
     } //update
 
