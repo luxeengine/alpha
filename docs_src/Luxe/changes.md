@@ -1,15 +1,43 @@
 &nbsp;   
 <div class="commit_info">
 
-commit [d10e29180f](http://github.com/underscorediscovery/luxe/commit/d10e29180f65f37496189410ac093593204207ed)   
+commit [9773b11e75](http://github.com/underscorediscovery/luxe/commit/9773b11e756d6e48c45245837336a4114de46709)   
 author: underscorediscovery <sven@underscorediscovery.com>   
-date: Fri Dec 20 2013 17:07:31 GMT-0330 (NST)   
+date: Fri Dec 20 2013 17:11:51 GMT-0330 (NST)   
 </div>
 
 &nbsp;   
 <div class="commit_message">
 
-<ul><li>Clarity; Cleanup; Fix #29, making shutdown -> destroy consistent, and startup is now always named init like it should be on the core</li></ul>
+<ul><li>Clarity; Cleanup; Fix #29, actually committed as 609f096 but mistakes. This commit makes shutdown -> destroy consistent, and startup is now always named init like it should be on the core</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ba2da0ab56](http://github.com/underscorediscovery/luxe/commit/ba2da0ab56859fb62e99f22842d3f0e32f8015d6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 17:10:14 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Updating changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [609f09654e](http://github.com/underscorediscovery/luxe/commit/609f09654e0b2215a25d86d7d3d7346a88f986c4)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 17:08:21 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update changes</li></ul>
 </div>
 &nbsp;   
 &nbsp;   

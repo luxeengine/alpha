@@ -114,15 +114,10 @@ class Main extends luxe.Game {
     }
 
     public function onkeyup( e:KeyEvent ) {
-
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
-        }
-        
+        }        
     } //onkeyup
 
-    public function update(dt:Float) {
-
-    } //update
 
 } //Main
