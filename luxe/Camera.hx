@@ -49,6 +49,10 @@ class Camera extends Entity {
 
 	} //
 
+    @:noCompletion public override function get_pos() : Vector {
+        return view_position;
+    }
+
 	@:noCompletion public override function set_pos(v:Vector) : Vector {
 		
 		if(bounds != null) {
@@ -96,8 +100,7 @@ class Camera extends Entity {
         }
 
         	//finally, assign the position
-        view.pos = final_position;
-        pos.set(final_position.x, final_position.y, final_position.z);
+        view.pos = final_position;        
 
     } //update
 

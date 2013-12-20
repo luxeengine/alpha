@@ -53,23 +53,7 @@ This allows <em>encapsulation</em> and <em>decoupling</em> systems from each oth
 <h2 id="the-player-is-losing-health">The player is losing health</h2>
 <hr>
 <p>Imagine a game where your player can take damage from a projectile, an arrow fired by an enemy. Here is some pseudo code to imagine what would happen, when the player has collided with the arrow.</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//in the arrow update code</span>
-    <span class="c1">//check if we are going to hit something?</span>
-<span class="k">for</span><span class="p">(</span> <span class="n">entity</span> <span class="k">in</span> <span class="n">range_of_collision</span> <span class="p">)</span> <span class="p">{</span>
-
-    <span class="k">if</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="n">collides_with</span><span class="p">(</span> <span class="k">this</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-
-        <span class="c1">//we have hit an entity!</span>
-        <span class="c1">//we can assume this is the player and convert it</span>
-        <span class="kd">var</span> player <span class="p">:</span> <span class="n">Player</span> <span class="o">=</span> <span class="k">cast</span> <span class="n">entity</span><span class="p">;</span>
-        <span class="n">player</span><span class="p">.</span><span class="n">take_damage</span><span class="p">(</span> <span class="n">damage_amount</span> <span class="p">);</span>
-
-        <span class="c1">//... </span>
-    <span class="p">}</span> 
-
-<span class="p">}</span>
-</pre></div>
-</code></pre>
+<pre><code></code></pre>
 <p>Now, what if the entity was another enemy? What if we don’t want to do maximum damage to other enemies?</p>
 <pre><code><div class="highlight"><pre><span class="k">if</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="n">collides_with</span><span class="p">(</span> <span class="k">this</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 
@@ -229,6 +213,19 @@ This single action has ramifications across the entire code base, right down to 
 <h2 id="wrapping-up">Wrapping up</h2>
 <hr>
 <p>As you can see, events are powerful and meaningful and can be used for almost anything. You can always create your own instance of <code>luxe.<a href="luxe.events.html">Events</a></code> and have many local events systems (though, entities already have one built in!).</p>
+<h2 id="advanced-in-depth-details">Advanced in depth details</h2>
+<p>If you are wonder just exactly what happens with the filtering, here is what it is doing,</p>
+<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">does_filter_event</span><span class="p">(</span> <span class="n">_filter</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">_event</span><span class="p">:</span><span class="n">String</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> _replace_stars <span class="p">:</span> <span class="n">EReg</span> <span class="o">=</span> <span class="sr">~/\*/gi</span><span class="p">;</span>
+    <span class="kd">var</span> _final_filter <span class="p">:</span> <span class="n">String</span> <span class="o">=</span> <span class="n">_replace_stars</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span> <span class="n">_filter</span><span class="p">,</span> <span class="s1">&#39;.*?&#39;</span> <span class="p">);</span>
+    <span class="kd">var</span> _final_search <span class="p">:</span> <span class="n">EReg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EReg</span><span class="p">(</span><span class="n">_final_filter</span><span class="p">,</span> <span class="s1">&#39;gi&#39;</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">_final_search</span><span class="p">.</span><span class="n">match</span><span class="p">(</span> <span class="n">_event</span> <span class="p">);</span>
+
+<span class="p">}</span> <span class="c1">//does_filter_event</span>
+</pre></div>
+</code></pre>
 <p>Below are some more examples in a test case to demonstrate more uses of the event system.</p>
 <h3 id="examples">examples</h3>
 <hr>
@@ -236,6 +233,16 @@ This single action has ramifications across the entire code base, right down to 
 <pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Entity.html">Entity</a></span><span class="p">;</span>
+
+<span class="kd">typedef</span> <span class="n">HealthEvent</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">amount</span> <span class="p">:</span> <span class="n">Float</span>
+<span class="p">}</span>
+<span class="kd">typedef</span> <span class="n">DiedEvent</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">attacker</span> <span class="p">:</span> <span class="n">String</span>
+<span class="p">}</span>
+<span class="kd">typedef</span> <span class="n">SpawnEvent</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">spawn_node</span> <span class="p">:</span> <span class="n">String</span>
+<span class="p">}</span>
 
 <span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
 
@@ -255,8 +262,7 @@ This single action has ramifications across the entire code base, right down to 
 
             <span class="c1">//Local to entity event connections</span>
         <span class="n">entity</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">,</span><span class="s1">&#39;temp&#39;</span><span class="p">);</span>
-            <span class="c1">//Add to the scene so it can initialise</span>
-        <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span>
+
 
         <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;local event&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
             <span class="n">trace</span><span class="p">(</span><span class="s2">&quot;Local Event Fired&quot;</span><span class="p">);</span>
@@ -266,16 +272,16 @@ This single action has ramifications across the entire code base, right down to 
             <span class="n">trace</span><span class="p">(</span><span class="s1">&#39;player event happened! it was `&#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">_event_name_</span> <span class="o">+</span> <span class="s1">&#39;` which has &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">_event_connection_count_</span> <span class="o">+</span> <span class="s1">&#39; listeners!&#39;</span><span class="p">);</span>
         <span class="p">});</span>
 
-        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.health.loss&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.health.loss&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">HealthEvent</span> <span class="p">){</span>
             <span class="n">trace</span><span class="p">(</span><span class="s1">&#39; ouch! I lost &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">amount</span> <span class="o">+</span> <span class="s1">&#39; health :(&#39;</span><span class="p">);</span>
         <span class="p">});</span>
-        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.health.gain&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.health.gain&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">HealthEvent</span> <span class="p">){</span>
             <span class="n">trace</span><span class="p">(</span><span class="s1">&#39; woo! I got &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">amount</span> <span class="o">+</span> <span class="s1">&#39; hp&#39;</span><span class="p">);</span>
         <span class="p">});</span>
-        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.died&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.died&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">DiedEvent</span> <span class="p">){</span>
             <span class="n">trace</span><span class="p">(</span><span class="s1">&#39; oh snap! I was killed by &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">attacker</span> <span class="p">);</span>
         <span class="p">});</span>
-        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.spawn&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="n">e</span><span class="p">){</span>
+        <span class="n">entity</span><span class="p">.</span><span class="n">events</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="s1">&#39;player.spawn&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">Main</span><span class="p">.</span><span class="n">SpawnEvent</span> <span class="p">){</span>
             <span class="n">trace</span><span class="p">(</span><span class="s1">&#39; ok, letsdoodis, now at &#39;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="n">spawn_node</span> <span class="p">);</span>
         <span class="p">});</span>
 

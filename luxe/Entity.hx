@@ -65,9 +65,6 @@ class Entity extends Objects {
         scale = new Vector(1,1,1);
 		scaleRelative = new Vector(1,1,1);
 
-			//init events
-		events.startup();
-
     } //new
 
 	@:noCompletion public function _init() {
@@ -81,7 +78,7 @@ class Entity extends Objects {
 
 			//init all the components attached directly to us
 		for(_component in components) {
-			_call(_component, 'init');
+			_call(_component, '_init');
 		} //for each component
 
 			//now init our children, so they do the same
@@ -249,7 +246,8 @@ class Entity extends Objects {
 		_destroyed = true;
 
 			//kill the events
-		events.shutdown();
+        events.destroy();
+		events = null;
 
 	} //_start
 
@@ -328,8 +326,8 @@ class Entity extends Objects {
 
     } //_start_fixed_rate_timer
 
-    public function add<T>(type:Class<T>, ?_name:String='') : T {
-    	return _components.add( type, _name );
+    public function add<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
+    	return _components.add( type, _name, _data );
     } //add
 
     public function get(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Dynamic {

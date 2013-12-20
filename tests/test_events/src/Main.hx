@@ -3,6 +3,16 @@ import luxe.Vector;
 import luxe.Input;
 import luxe.Entity;
 
+typedef HealthEvent = {
+    amount : Float
+}
+typedef DiedEvent = {
+    attacker : String
+}
+typedef SpawnEvent = {
+    spawn_node : String
+}
+
 class Main extends luxe.Game {
 
     var entity : Entity;
@@ -21,8 +31,7 @@ class Main extends luxe.Game {
 
             //Local to entity event connections
         entity = Luxe.scene.create(Entity,'temp');
-            //Add to the scene so it can initialise
-        Luxe.scene.add(entity);
+
 
         entity.events.listen('local event', function(e){
             trace("Local Event Fired");
@@ -32,16 +41,16 @@ class Main extends luxe.Game {
             trace('player event happened! it was `' + e._event_name_ + '` which has ' + e._event_connection_count_ + ' listeners!');
         });
 
-        entity.events.listen('player.health.loss', function(e){
+        entity.events.listen('player.health.loss', function( e:HealthEvent ){
             trace(' ouch! I lost ' + e.amount + ' health :(');
         });
-        entity.events.listen('player.health.gain', function(e){
+        entity.events.listen('player.health.gain', function( e:HealthEvent ){
             trace(' woo! I got ' + e.amount + ' hp');
         });
-        entity.events.listen('player.died', function(e){
+        entity.events.listen('player.died', function( e:DiedEvent ){
             trace(' oh snap! I was killed by ' + e.attacker );
         });
-        entity.events.listen('player.spawn', function(e){
+        entity.events.listen('player.spawn', function( e:Main.SpawnEvent ){
             trace(' ok, letsdoodis, now at ' + e.spawn_node );
         });
 

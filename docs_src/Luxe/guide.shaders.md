@@ -8,7 +8,12 @@
 ## Applying shaders to geometry
 ---
 
-todo
+When you draw something on screen, it is generally submitted as some geometry. That is, a set of vertices describing the geometry, is sent to the graphics card for rendering. A sprite, is a "quad", and generally is sent as two triangles.
+
+When you send geometry to the graphics card to be drawn, you can specify custom shaders to use that will be applied to the geometry.   
+There are two kinds of shaders to understand for now - don't worry, they always sound really complex but in principle they are quite logical.
+
+
 
 ###Live demo
 ---

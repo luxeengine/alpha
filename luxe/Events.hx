@@ -18,17 +18,38 @@ class Events {
         event_queue = new Map();
         event_schedules = new Map();
     }
-
-    @:noCompletion public function startup() {
-        
+    
+    public function destroy() {
+        clear();
     }
 
-    @:noCompletion public function shutdown() {
+    public function clear() {
+
+        for(schedule in event_schedules) {
+            schedule.stop();
+            schedule = null;
+        }
+
+        for(connection in event_connections.keys()) {
+            event_connections.remove(connection);
+        }
+
+        for(filter in event_filters.keys()) {
+            event_filters.remove(filter);
+        }
+
+        for(slot in event_slots.keys()) {
+            event_slots.remove(slot);
+        }
+
+        for(event in event_queue.keys()) {
+            event_queue.remove(event);
+        }
 
     }
 
         //exposed for learning/testing api
-    public function does_filter_event(_filter:String, _event:String) {
+    public function does_filter_event( _filter:String, _event:String ) {
 
         var _replace_stars : EReg = ~/\*/gi;
         var _final_filter : String = _replace_stars.replace( _filter, '.*?' );
@@ -36,13 +57,13 @@ class Events {
 
         return _final_search.match( _event );
     
-    } //
+    } //does_filter_event
 
 
         //Bind a signal (listener) to a slot (event_name)
             //event_name : The event id
             //listener : A function handler that should get called on event firing
-    public function listen( _event_name : String, _listener : Dynamic -> Void ):String {
+    public function listen<T>( _event_name : String, _listener : T -> Void ):String {
 
             //we need an ID and a connection to store
         var id : String = Luxe.utils.uniqueid();
@@ -119,7 +140,7 @@ class Events {
             //event_name : The event (register listeners with connect())
             //properties : A dynamic pass-through value to hand off data
             //  -- Returns a String, the ID of the event
-    public function queue( event_name : String, properties : Dynamic = null ) : String {
+    public function queue<T>( event_name : String, ?properties : T ) : String {
 
         var id : String = Luxe.utils.uniqueid();
 
@@ -181,7 +202,7 @@ class Events {
             //event_name : The event (register listeners with connect())
             //properties : A dynamic pass-through value to hand off data        
             //  -- Returns a Bool, true if event existed, false otherwise
-    public function fire( _event_name : String, ?_properties : Dynamic = null ) : Bool {
+    public function fire<T>( _event_name : String, ?_properties : T ) : Bool {
 
         //we have to check against our filters if this event matches anything
         for(_filter in event_filters) {
@@ -208,11 +229,12 @@ class Events {
             var connections:Array<EventConnection> = event_slots.get(_event_name);
 
                 //store additional info about the events 
-            _properties = tag_properties(_properties, _event_name, connections.length);
+                //todo
+            // _properties = tag_properties(_properties, _event_name, connections.length);
 
                 //call each listener
             for(connection in connections) {
-                connection.listener( _properties );
+                connection.listener( cast _properties );
             }
 
         } else {
@@ -228,7 +250,7 @@ class Events {
             //event_name : The event (register listeners with connect())
             //properties : A dynamic pass-through value to hand off data
             //  -- Returns a String, the ID of the schedule (see unschedule)
-    public function schedule( time:Float, event_name : String, properties : Dynamic = null) : String {
+    public function schedule<T>( time:Float, event_name : String, ?properties : T ) : String {
         var id : String = Luxe.utils.uniqueid();
 
             var _timer = haxe.Timer.delay(function(){
@@ -283,7 +305,7 @@ class Events {
     public var name:String;
     public var properties : Dynamic;
 
-    public function new(_id:String, _event_name:String, _event_properties:Dynamic) {
+    public function new(_id:String, _event_name:String, _event_properties:Dynamic ) {
         id = _id;
         name = _event_name;
         properties = _event_properties;

@@ -29,7 +29,7 @@ class Main extends luxe.Game {
         
 
             //game object is a fake class below just for testing
-        var go = new GameObject();
+        var go = Luxe.scene.create(GameObject, 'go');
         
             //what we want to test is that more than one layer deep affect the parent transform
         var child1 = go.add(Child1,'child1');
@@ -42,8 +42,8 @@ class Main extends luxe.Game {
             pos : new Vector(480,320)
         });
         
-        var child1 = sprite.add(Child1,'child1');
-        var child2 = child1.add(Child2,'child2');
+        var child1 = sprite.add(Child1,'child1', 'Test string');
+        var child2 = child1.add(Child2,'child2', 565);
 
             //default camera is an entity, so give it a component!
         Luxe.camera.add(RandomCameraShaker,'shaker');        
@@ -76,7 +76,7 @@ class Main extends luxe.Game {
     } //shutdown
 }
 
-class RandomCameraShaker extends Components {
+class RandomCameraShaker extends Component {
     public var amount : Float = 20;
     private var next_shake : Float = 0;
     public function init() {
@@ -100,13 +100,6 @@ class RandomCameraShaker extends Components {
 
 class GameObject extends Entity {
     public var oncerun : Bool = false;
-    public function new() {
-        super();
-        name = 'go';
-
-            //add to the default scene
-        Luxe.scene.add(this);
-    }
 
     public function init() {
         trace('\tgameobject init');
@@ -126,11 +119,11 @@ class GameObject extends Entity {
 }
 
 
-class Child1 extends Components {    
+class Child1 extends Component {    
 
     public var oncerun : Bool = false;
-    public function init() {
-        trace('\t\tchild1 init');
+    public function init( init_string:String ) {
+        trace('\t\tchild1 init with string ' + init_string);
     }
     public function start() {
         trace('\t\tchild1 start');
@@ -147,13 +140,15 @@ class Child1 extends Components {
     }
 } //Child1
 
-class Child2 extends Components {
+class Child2 extends Component {
 
     public var dir : Float = 1;
     
     public var oncerun : Bool = false;
-    public function init() {
-        trace('\t\t\tchild2 init');
+    public function init( from_add_value:Int ) {
+        
+        trace('\t\t\tchild2 init with value ' + from_add_value);
+
     }
     public function start() {
         trace('\t\t\tchild2 start');
@@ -183,8 +178,7 @@ class Child2 extends Components {
             dir = -dir;            
             var ns = 1+(Math.random());
             entity.scale = new Vector(ns,ns);
-            Luxe.camera.get('shaker').amount = 1+9*Math.random();
-            Luxe.camera.get('shaker').shake();
+            Luxe.camera.get('shaker').shake( 8+9*Math.random() );
         }
     }
 } //Child2

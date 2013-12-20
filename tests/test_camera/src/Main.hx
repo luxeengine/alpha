@@ -67,12 +67,25 @@ class Main extends luxe.Game {
         	align_vertical : TextAlign.center
         });
 
+        Luxe.draw.line({
+            p0 : new Vector(Luxe.screen.w/2, 0),
+            p1 : new Vector(Luxe.screen.w/2, Luxe.screen.h),
+            color : new Color(1,1,1,0.3),
+            batcher : hud_batcher
+        });
+        Luxe.draw.line({
+            p0 : new Vector(0, Luxe.screen.h/2),
+            p1 : new Vector(Luxe.screen.w, Luxe.screen.h/2),
+            color : new Color(1,1,1,0.3),
+            batcher : hud_batcher
+        });
+
 
     } //ready
 
     public function onmouseup( e:MouseEvent ) {
     	if(e.button == MouseButton.left) {
-    		Luxe.camera.shake( 2+(Std.random(30) ));
+    		Luxe.camera.shake( 2+(Std.random(100) ));
     	} else {
 				//any other button centers the camera on the position we clicked
 			Luxe.camera.center( e.pos.clone().add(Luxe.camera.pos), 0.5+(2*Math.random()) );

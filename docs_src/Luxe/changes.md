@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [f11723041c](http://github.com/underscorediscovery/luxe/commit/f11723041ca6ec6631eca741627b2436aed5806b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 03:17:44 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; adding events guide, adding more guides to the list, polishing other guides etc and fixing the generator timestamp system</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [fc54512b4d](http://github.com/underscorediscovery/luxe/commit/fc54512b4d02a4b2d6cfd2811ff5882558ce3ca1)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Thu Dec 19 2013 03:40:55 GMT-0330 (NST)   

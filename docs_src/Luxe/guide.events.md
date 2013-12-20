@@ -211,6 +211,20 @@ All of the above examples were sending events directly INTO an entity, only that
 
 As you can see, events are powerful and meaningful and can be used for almost anything. You can always create your own instance of `luxe.Events` and have many local events systems (though, entities already have one built in!).
 
+## Advanced in depth details
+
+If you are wonder just exactly what happens with the filtering, here is what it is doing,
+
+	public function does_filter_event( _filter:String, _event:String ) {
+
+        var _replace_stars : EReg = ~/\*/gi;
+        var _final_filter : String = _replace_stars.replace( _filter, '.*?' );
+        var _final_search : EReg = new EReg(_final_filter, 'gi');
+
+        return _final_search.match( _event );
+    
+    } //does_filter_event
+
 Below are some more examples in a test case to demonstrate more uses of the event system.
 
 
@@ -221,91 +235,103 @@ Since event names are string, you can group events by a delimeter,
 i.e `Luxe.events.listen('game.player.*')`, which can be used to filter events by type.
 
 
-    import luxe.Vector;
-    import luxe.Input;
-    import luxe.Entity;
+	import luxe.Vector;
+	import luxe.Input;
+	import luxe.Entity;
 
-    class Main extends luxe.Game {
+	typedef HealthEvent = {
+	    amount : Float
+	}
+	typedef DiedEvent = {
+	    attacker : String
+	}
+	typedef SpawnEvent = {
+	    spawn_node : String
+	}
 
-        var entity : Entity;
+	class Main extends luxe.Game {
 
-        public function ready() {
+	    var entity : Entity;
 
-                //Global events connections
-            Luxe.events.listen( 'global event' , function(e){
-                trace("Global Event Fired");
-            });
+	    public function ready() {
 
-                //Connect global to local event
-            Luxe.events.listen( 'local event' , function(e){
-                trace("Should not print");
-            });
+	            //Global events connections
+	        Luxe.events.listen( 'global event' , function(e){
+	            trace("Global Event Fired");
+	        });
 
-                //Local to entity event connections
-            entity = Luxe.scene.create(Entity,'temp');
-                //Add to the scene so it can initialise
-            Luxe.scene.add(entity);
+	            //Connect global to local event
+	        Luxe.events.listen( 'local event' , function(e){
+	            trace("Should not print");
+	        });
 
-            entity.events.listen('local event', function(e){
-                trace("Local Event Fired");
-            });
+	            //Local to entity event connections
+	        entity = Luxe.scene.create(Entity,'temp');
 
-            entity.events.listen('player.*', function(e){
-                trace('player event happened! it was `' + e._event_name_ + '` which has ' + e._event_connection_count_ + ' listeners!');
-            });
 
-            entity.events.listen('player.health.loss', function(e){
-                trace(' ouch! I lost ' + e.amount + ' health :(');
-            });
-            entity.events.listen('player.health.gain', function(e){
-                trace(' woo! I got ' + e.amount + ' hp');
-            });
-            entity.events.listen('player.died', function(e){
-                trace(' oh snap! I was killed by ' + e.attacker );
-            });
-            entity.events.listen('player.spawn', function(e){
-                trace(' ok, letsdoodis, now at ' + e.spawn_node );
-            });
+	        entity.events.listen('local event', function(e){
+	            trace("Local Event Fired");
+	        });
 
-            trace('PRESS SPACE TO FIRE EVENTS');
+	        entity.events.listen('player.*', function(e){
+	            trace('player event happened! it was `' + e._event_name_ + '` which has ' + e._event_connection_count_ + ' listeners!');
+	        });
 
-                //Events class exposes this filter function to test/learn the events
+	        entity.events.listen('player.health.loss', function( e:HealthEvent ){
+	            trace(' ouch! I lost ' + e.amount + ' health :(');
+	        });
+	        entity.events.listen('player.health.gain', function( e:HealthEvent ){
+	            trace(' woo! I got ' + e.amount + ' hp');
+	        });
+	        entity.events.listen('player.died', function( e:DiedEvent ){
+	            trace(' oh snap! I was killed by ' + e.attacker );
+	        });
+	        entity.events.listen('player.spawn', function( e:Main.SpawnEvent ){
+	            trace(' ok, letsdoodis, now at ' + e.spawn_node );
+	        });
 
-            trace( Luxe.events.does_filter_event('game.*', 'game.player.test') );
-            trace( Luxe.events.does_filter_event('game:player:*', 'game:player:health') );
-            trace( Luxe.events.does_filter_event('game.*.player', 'game.ui.player') );
-            trace( Luxe.events.does_filter_event('game.*.player', 'game.death.player') );
-            trace( Luxe.events.does_filter_event('game.*.player', 'game.death.test') );
-            trace( Luxe.events.does_filter_event('*.player', 'ui.player') );
-            trace( Luxe.events.does_filter_event('*.player', 'health.player') );
-            trace( Luxe.events.does_filter_event('*.player', 'derp.plea') );
-            trace( Luxe.events.does_filter_event('(player)*(house)', 'player inside house') );
+	        trace('PRESS SPACE TO FIRE EVENTS');
 
-        } //ready
-      
-        public function onkeyup(e) {
+	            //Events class exposes this filter function to test/learn the events
 
-            if(e.value == Input.Keys.escape) {
-                Luxe.shutdown();
-            }
+	        trace( Luxe.events.does_filter_event('game.*', 'game.player.test') );
+	        trace( Luxe.events.does_filter_event('game:player:*', 'game:player:health') );
+	        trace( Luxe.events.does_filter_event('game.*.player', 'game.ui.player') );
+	        trace( Luxe.events.does_filter_event('game.*.player', 'game.death.player') );
+	        trace( Luxe.events.does_filter_event('game.*.player', 'game.death.test') );
+	        trace( Luxe.events.does_filter_event('*.player', 'ui.player') );
+	        trace( Luxe.events.does_filter_event('*.player', 'health.player') );
+	        trace( Luxe.events.does_filter_event('*.player', 'derp.plea') );
+	        trace( Luxe.events.does_filter_event('(player)*(house)', 'player inside house') );
 
-            if(e.value == Input.Keys.space) {
-                
-                Luxe.events.fire( 'global event' );
-                entity.events.fire( 'local event' );
+	    } //ready
+	  
+	    public function onkeyup(e) {
 
-                entity.events.fire('player.health.gain', {amount:10});
-                entity.events.fire('player.health.gain', {amount:23});
-                entity.events.fire('player.health.loss', {amount:60});
-                entity.events.fire('player.died', {attacker:'xKillerx'});
-                entity.events.fire('player.spawn', {spawn_node:'spawn12'});
-                entity.events.fire('player.health.gain', {amount:'100'});
+	        if(e.value == Input.Keys.escape) {
+	            Luxe.shutdown();
+	        }
 
-            } //space
+	        if(e.value == Input.Keys.space) {
+	            
+	            Luxe.events.fire( 'global event' );
+	            entity.events.fire( 'local event' );
 
-        } //onkeyup
+	            entity.events.fire('player.health.gain', {amount:10});
+	            entity.events.fire('player.health.gain', {amount:23});
+	            entity.events.fire('player.health.loss', {amount:60});
+	            entity.events.fire('player.died', {attacker:'xKillerx'});
+	            entity.events.fire('player.spawn', {spawn_node:'spawn12'});
+	            entity.events.fire('player.health.gain', {amount:'100'});
 
-    }
+	        } //space
+
+	    } //onkeyup
+
+	}
+
+
+
 
 ### More examples
 ---

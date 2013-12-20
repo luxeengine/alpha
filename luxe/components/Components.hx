@@ -11,9 +11,16 @@ class Component extends Objects {
 	@:isVar public var scale 			(get,set) : Vector;
 	@:isVar public var scaleRelative 	(get,set) : Vector;
 
-	public function new() {
+	@:noCompletion var init_data : Dynamic;
+
+	public function new<T>( ?_init_data:T ) {
 		super();
+		init_data = _init_data;
 	} //new
+
+	@:noCompletion public function _init() {
+		_call(this, 'init', [ cast init_data ]);
+	}
 
 	private function set_pos(_p:Vector) {
 		return entity.pos = _p;
@@ -54,8 +61,8 @@ class Component extends Objects {
 		return entity.scaleRelative;
 	} //get_scaleRelative
 
-	public function add<T>( type:Class<T>, ?_name:String='' ) : T {
-		return entity.add(type,_name);
+	public function add<T1,T2>( type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
+		return entity.add(type,_name,_data);
 	} //add
 
 	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
@@ -128,7 +135,7 @@ class Component extends Objects {
 
 	} //new
 
-	public function add<T>( type:Class<T>, ?_name:String='' ) : T {
+	public function add<T1,T2>( type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
 
 		var _temp_name = _name;
 
@@ -139,7 +146,7 @@ class Component extends Objects {
 		}
 
 			//create an instance
-		var _component = Type.createInstance( type, [] );
+		var _component = Type.createInstance( type, [ _data ] );		
 			//cast to Component so we can set its name
 		var _e_component : Component = cast _component;
 			//apply it!
@@ -150,16 +157,6 @@ class Component extends Objects {
 		components.set( _temp_name, _e_component );
 			//debug stuff
 		_debug('adding a component to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
-
-		// if(entity != null) {
-		// 	trace("adding " + _name + " to entity " + entity.name + '. inited? ' + entity.inited + ' or started? ' + entity.started);
-		// 	if(entity.inited) {
-		// 		_call(_component, 'init');
-		// 	}
-		// 	if(entity.started) {
-		// 		_call(_component, 'start');
-		// 	}
-		// }
 
 			//return the component
 		return _component;

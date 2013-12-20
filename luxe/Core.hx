@@ -169,7 +169,6 @@ import phoenix.Renderer;
 		debug.startup();
 		file.startup();
 		time.startup();
-		events.startup();
 		audio.startup();
 		input.startup();
 
@@ -226,8 +225,8 @@ import phoenix.Renderer;
 
     	input.shutdown();
     	audio.shutdown();
-    	events.shutdown();
     	time.shutdown();
+        events.destroy();
     	file.shutdown();
     	debug.shutdown();        
 
