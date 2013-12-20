@@ -54,7 +54,7 @@ class Input {
 #end
 
 
-    @:noCompletion public function startup() {
+    @:noCompletion public function init() {
         Keys = new lime.helpers.Keys();
         Gamepad = new lime.helpers.Gamepad();
         key_bindings = new Map();
@@ -64,9 +64,9 @@ class Input {
         Gamepad.apply_360_profile();
 
         core._debug(':: luxe :: \t Input Initialized.');
-    }
+    } //init
 
-    @:noCompletion public function shutdown() {
+    @:noCompletion public function destroy() {
         core._debug(':: luxe :: \t Input shut down.');
     }
 

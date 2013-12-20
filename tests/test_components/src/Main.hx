@@ -71,9 +71,9 @@ class Main extends luxe.Game {
         if(spam) trace(dt);
     } //update
 
-    public function shutdown() {
+    public function destroy() {
 
-    } //shutdown
+    } //destroy
 }
 
 class RandomCameraShaker extends Component {

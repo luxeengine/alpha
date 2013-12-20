@@ -57,7 +57,7 @@ class Renderer {
 
     public function new( _core:luxe.Core ) { }
 
-    public function startup() {
+    public function init() {
 
         state = new RenderState(this);
         clear_color = new Color().rgb(0x1a1a1a);
@@ -126,7 +126,7 @@ class Renderer {
         // trace(':: renderer starting up');        
     }
 
-    public function shutdown() {
+    public function destroy() {
         // trace(':: renderer shutting down');   
     }
 

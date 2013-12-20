@@ -65,7 +65,7 @@ class Game extends luxe.Game {
         states.update(dt);
     }
 
-    public function shutdown() {
+    public function destroy() {
 
     }
 

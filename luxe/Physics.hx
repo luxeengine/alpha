@@ -34,7 +34,7 @@ import luxe.Core;
     	var solver:BtSequentialImpulseConstraintSolver;
     	public var dynamicsWorld:BtDiscreteDynamicsWorld;
 
-    	public function startup() {
+    	public function init() {
 
     		    // Build the broadphase
     	    broadphase = new BtDbvtBroadphase();
@@ -51,7 +51,7 @@ import luxe.Core;
 
         	core._debug(':: luxe :: \t Physics Initialized.');
 
-        }  //startup
+        }  //init
 
         public function setGravity( _gravity:luxe.Vector ) {
 
@@ -97,7 +97,7 @@ import luxe.Core;
 
         } //fixedProcess
 
-        public function shutdown() {
+        public function destroy() {
 
         	dynamicsWorld.destroy();
         	solver.destroy();
@@ -106,7 +106,7 @@ import luxe.Core;
         	broadphase.destroy();
 
     		core._debug(':: luxe :: \t Physics shut down.');
-        } //shutdown
+        } //destroy
 
     } //Physics
 

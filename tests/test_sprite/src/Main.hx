@@ -56,9 +56,9 @@ class Main extends luxe.Game {
         test_sprite1.rotation_z += 50 * dt;
     } //update
 
-    public function shutdown() {
+    public function destroy() {
 
-    } //shutdown
+    } //destroy
 }
 
 

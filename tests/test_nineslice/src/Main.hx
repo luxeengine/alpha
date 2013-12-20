@@ -48,9 +48,9 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function shutdown() {
+    public function destroy() {
 
-    } //shutdown
+    } //destroy
 }
 
 

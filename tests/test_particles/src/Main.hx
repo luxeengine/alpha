@@ -108,10 +108,9 @@ class Main extends luxe.Game {
     }
 
     public function onkeyup(e) {
-
-      if(e.value == Input.Keys.escape) {
-        Luxe.shutdown();
-      }
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
     } //onkeyup
 
     public function update(dt:Float) {
@@ -119,9 +118,9 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function shutdown() {
+    public function destroy() {
 
-    } //shutdown
+    } //destroy
 }
 
 

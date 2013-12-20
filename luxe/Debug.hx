@@ -59,7 +59,7 @@ import luxe.debug.StatsDebugView;
     static var mutex : cpp.vm.Mutex;
 #end 
 
-    public function startup() {        
+    public function init() {        
 
         trace_callbacks = new Map();
 
@@ -75,7 +75,7 @@ import luxe.debug.StatsDebugView;
 
         core._debug(':: luxe :: \t Debug Initialized.');
 
-    } //startup
+    } //init
 
     public function start(_name:String) {
         ProfilerDebugView.start(_name);
@@ -285,10 +285,10 @@ import luxe.debug.StatsDebugView;
         }
     }
 
-    public function shutdown() {
+    public function destroy() {
         shut_down = true;
         core._debug(':: luxe :: \t Debug shut down.');
-    } //shutdown
+    } //destroy
 
     
     // public static function do_views() {

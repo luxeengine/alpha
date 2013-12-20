@@ -167,9 +167,9 @@ class Main extends luxe.Game {
         draw_entities_transforms();
     } //update
 
-    public function shutdown() {
+    public function destroy() {
 
-    } //shutdown
+    } //destroy
 }
 
 

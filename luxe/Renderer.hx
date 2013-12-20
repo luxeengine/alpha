@@ -11,12 +11,12 @@ import lime.gl.GL;
     public var core : Core;
     public function new( _core:Core ) { core = _core; }
 
-    public function startup() {
+    public function init() {
             //Done.
         core._debug(':: luxe :: \t Renderer Initialized.');
     }
 
-    public function shutdown() {
+    public function destroy() {
         core._debug(':: luxe :: \t Renderer shut down.');
     }
 

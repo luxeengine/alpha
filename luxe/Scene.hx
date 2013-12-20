@@ -75,10 +75,6 @@ class Scene {
         trace("entities left " + Lambda.count(entities));
     }
     
-    public function shutdown() {
-        destroy();
-    }
-
     public function oninputdown(_name:String, e:Dynamic) {
          for(entity in entities) {
             entity._oninputdown(_name, e);

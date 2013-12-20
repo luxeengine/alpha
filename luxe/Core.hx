@@ -8,7 +8,6 @@ import luxe.Audio;
 import luxe.Events;
 import luxe.Input;
 import luxe.Scene;
-import luxe.Files;
 import luxe.Debug;
 import luxe.debug.ProfilerDebugView;
 import luxe.Time;
@@ -43,7 +42,6 @@ import phoenix.Renderer;
 
 //Sub Systems, mostly in order of importance
 	public var debug    : Debug;
-    public var file     : Files;
 	public var draw 	: Draw;
 	public var time 	: Time;
 	public var events 	: Events;
@@ -112,7 +110,7 @@ import phoenix.Renderer;
 
           	//Create the subsystems
 
-        startup();
+        init();
 
         _debug(':: luxe :: Ready.');
         _debug('');
@@ -134,7 +132,7 @@ import phoenix.Renderer;
 
     } //on_main_frame_created
 
-    public function startup() {
+    public function init() {
 
             //Cache the settings locally
         config = lime.config;
@@ -146,7 +144,6 @@ import phoenix.Renderer;
 		
 		debug = new Debug( this ); Luxe.debug = debug;
         draw = new Draw( this );
-		file = new Files( this );
 		time = new Time( this );
 		events = new Events();
 		audio = new Audio( this );	
@@ -166,17 +163,16 @@ import phoenix.Renderer;
 			//Now make sure 
             //they start up
             
-		debug.startup();
-		file.startup();
-		time.startup();
-		audio.startup();
-		input.startup();
+		debug.init();
+		time.init();
+		audio.init();
+		input.init();
 
         #if haxebullet
-            physics.startup();
+            physics.init();
         #end //haxebullet
                 
-        renderer.startup();        
+        renderer.init();        
 
         Luxe.audio = audio;
         Luxe.draw = draw;     
@@ -210,32 +206,30 @@ import phoenix.Renderer;
         shutting_down = true;
 
             //shutdown the game class
-        if(host.shutdown != null) {
-            host.shutdown();
+        if(host.destroy != null) {
+            host.destroy();
         }
 
             //shutdown the default scene
-        scene.shutdown();        
+        scene.destroy();        
 
     		//Order is imporant here too
 
-        if(renderer != null && renderer.shutdown != null) {
-            renderer.shutdown();
+        if(renderer != null && renderer.destroy != null) {
+            renderer.destroy();
         }        
 
-    	input.shutdown();
-    	audio.shutdown();
-    	time.shutdown();
+    	input.destroy();
+    	audio.destroy();
+    	time.destroy();
         events.destroy();
-    	file.shutdown();
-    	debug.shutdown();        
+    	debug.destroy();        
 
     		//Clear up for GC
     	input = null;
     	audio = null;
     	events = null;
     	time = null;
-    	file = null;
     	debug = null;
         Luxe.utils = null;
 

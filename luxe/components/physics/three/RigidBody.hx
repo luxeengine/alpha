@@ -53,7 +53,7 @@ class RigidBody extends Component {
             if(_collider != null) {
                 collider = _collider;
             }
-        }  //no collider assigned pre startup
+        }  //no collider assigned pre init
 
         construct_info = {
 
