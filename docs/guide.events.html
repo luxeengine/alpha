@@ -53,7 +53,23 @@ This allows <em>encapsulation</em> and <em>decoupling</em> systems from each oth
 <h2 id="the-player-is-losing-health">The player is losing health</h2>
 <hr>
 <p>Imagine a game where your player can take damage from a projectile, an arrow fired by an enemy. Here is some pseudo code to imagine what would happen, when the player has collided with the arrow.</p>
-<pre><code></code></pre>
+<pre><code><div class="highlight"><pre><span class="c1">//in the arrow update code</span>
+<span class="c1">//check if we are going to hit something?</span>
+<span class="k">for</span><span class="p">(</span> <span class="n">entity</span> <span class="k">in</span> <span class="n">range_of_collision</span> <span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="n">collides_with</span><span class="p">(</span> <span class="k">this</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//we have hit an entity!</span>
+        <span class="c1">//we can assume this is the player and convert it</span>
+        <span class="kd">var</span> player <span class="p">:</span> <span class="n">Player</span> <span class="o">=</span> <span class="k">cast</span> <span class="n">entity</span><span class="p">;</span>
+        <span class="n">player</span><span class="p">.</span><span class="n">take_damage</span><span class="p">(</span> <span class="n">damage_amount</span> <span class="p">);</span>
+
+        <span class="c1">//... </span>
+    <span class="p">}</span> 
+
+<span class="p">}</span>
+</pre></div>
+</code></pre>
 <p>Now, what if the entity was another enemy? What if we don’t want to do maximum damage to other enemies?</p>
 <pre><code><div class="highlight"><pre><span class="k">if</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="n">collides_with</span><span class="p">(</span> <span class="k">this</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
 

@@ -21,8 +21,8 @@ This may seem quite complex, but let us look at a simple example instead.
 
 Imagine a game where your player can take damage from a projectile, an arrow fired by an enemy. Here is some pseudo code to imagine what would happen, when the player has collided with the arrow.
 	
-		//in the arrow update code
-		//check if we are going to hit something?
+	//in the arrow update code
+	//check if we are going to hit something?
 	for( entity in range_of_collision ) {
 
 		if( entity.collides_with( this ) ) {

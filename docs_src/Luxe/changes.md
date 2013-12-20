@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [32b6319174](http://github.com/underscorediscovery/luxe/commit/32b63191740bd8ae7fb3a0a8e05bfc86c3d2c3bb)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 18:24:30 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; fixing minor issue with formatting on shader guide</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [95897de2ac](http://github.com/underscorediscovery/luxe/commit/95897de2acb1b49c32022e2bbd0b8f32e01e126d)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Dec 20 2013 18:21:39 GMT-0330 (NST)   
