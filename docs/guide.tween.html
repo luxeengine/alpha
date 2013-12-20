@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,19 +40,19 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.html#tweening">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-tweening-"><a href="guide.html#tweening">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2>Tweening with Actuate</h2>
+<h2 id="tweening-with-actuate">Tweening with Actuate</h2>
 <hr>
 <p><a href="http://lib.haxe.org/p/actuate">Actuate</a> is a motion library created by <a href="http://www.joshuagranick.com/">Joshua Granick</a>.</p>
-<h4>It is <strong> built into luxe </strong> and accessible as <code>luxe.tween.Actuate</code>.</h4>
+<h4 id="it-is-built-into-luxe-and-accessible-as-luxe-tween-actuate-">It is <strong> built into luxe </strong> and accessible as <code><a href="luxe.tween.Actuate.html">luxe.tween.Actuate</a></code>.</h4>
 <p>&nbsp;</p>
-<h3>What is tweening?</h3>
+<h3 id="what-is-tweening-">What is tweening?</h3>
 <hr>
 <p>Tweening is <a href="http://en.wikipedia.org/wiki/Inbetweening">a shortened version of <em>inbetweening</em></a>, used commonly in digital animation.</p>
 <p>It, in simple terms, is about moving from a start value to an end value (keyframes). This is especially useful in games where things should move smoothly, transition and generally animate over time.</p>
-<h3>Examples</h3>
+<h3 id="examples">Examples</h3>
 <p>Slide the menu in from the top, over 2 seconds</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">//assume that y was -menu.height (off screen)</span>
 <span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span> <span class="n">menu</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">{</span> <span class="n">y</span><span class="p">:</span><span class="mi">10</span> <span class="p">}</span> <span class="p">);</span>
@@ -80,7 +89,7 @@
 <span class="n">Actuate</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span><span class="n">flashing</span><span class="p">.</span><span class="n">color</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">{</span> <span class="n">a</span><span class="p">:</span><span class="mi">1</span> <span class="p">}).</span><span class="n">repeat</span><span class="p">().</span><span class="n">reflect</span><span class="p">();</span>
 </pre></div>
 </code></pre>
-<h2>Callback functions on the created motion</h2>
+<h2 id="callback-functions-on-the-created-motion">Callback functions on the created motion</h2>
 <hr>
 <p>Like the onComplete function above, there are other callbacks you can ask for :</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">//Remember, these can be chained like above and function handlers can be a local class member</span>
@@ -96,7 +105,7 @@
 <span class="p">.</span><span class="n">onUpdate</span><span class="p">(</span> <span class="n">handler</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">parameters</span><span class="err">:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="p">)</span>
 </pre></div>
 </code></pre>
-<h2>Helper functions on the created motion</h2>
+<h2 id="helper-functions-on-the-created-motion">Helper functions on the created motion</h2>
 <hr>
 <pre><code><div class="highlight"><pre>    <span class="c1">//If you want float values during motion should be automatically rounded to </span>
 <span class="err">.</span><span class="n">snapping</span><span class="p">(</span> <span class="n">enabled</span><span class="err">:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="p">)</span>
@@ -120,7 +129,7 @@
 <span class="p">.</span><span class="n">delay</span><span class="p">(</span> <span class="n">duration</span><span class="err">:Bool</span> <span class="p">)</span>
 </pre></div>
 </code></pre>
-<h2>The different types of easing</h2>
+<h2 id="the-different-types-of-easing">The different types of easing</h2>
 <hr>
 <p>These easing values are accessed via <code>luxe.tween.easing.*</code><br>Each type has one or more variations, such as <code>easeIn</code>, <code>easeOut</code> or <code>easeInOut</code> listed below.<br>This means that the curve is applied at the beginning (ease in) at the end (ease out) or both over the time period.</p>
 <pre><code><div class="highlight"><pre>    <span class="c1">//example usage, this will bounce &quot;at the end&quot; of the animation</span>
@@ -143,13 +152,13 @@
 <li>Quint </li>
 <li>Sine  </li>
 </ul>
-<h2>Visual Curves</h2>
+<h2 id="visual-curves">Visual Curves</h2>
 <hr>
 <p>This is how these curves look when drawn as graphs.   </p>
 <p><img src="images/tweens.png" alt="tweening curves"></p>
 <hr>
-<h3><a href="guide.html#tweening">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-tweening-"><a href="guide.html#tweening">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
 
         </div>

@@ -71,7 +71,7 @@ The class above shows the basic functions that a game _can_ implement. A full li
 
 Now you can draw something inside the `ready` function, and it will appear on screen. Let's draw a [box](luxe.draw.html#box), and a [ring](luxe.draw.html#ring) around the box. We store the ring as a class member, because we want to move it later on. 
 
-**Take note** that the Geometry classes are considered "low level" and later guides show you easier ways of making objects (like [sprites](guide.sprites.html))
+**Take note** that the Geometry classes are considered "lower level" and the next guide shows you easier ways of making objects on screen (like sprites).
 
 ###Drawing a ring on screen
 --- 
@@ -127,10 +127,10 @@ No! Read the next guide [drawing images as sprites](guide.sprites.html)
 Read [understanding geometry in luxe](guide.geometry.html).   
 
 - **Where do I find a list of all the supported `Game` class functions?**    
-Read [game class documentation](luxe.Game.html).   
+Read the Game class documentation.   
 
 - **Things that were not discussed include**    
-the Color class, [mouse events](luxe.Input.MouseEvent.html), [key events](luxe.Input.KeyEvent.html).
+the [color](guide.color.html) class, [mouse events](guide.input.html), [key events](guide.input.html).
 
 ###[To the next guide](guide.sprites.html)
 ###[Back to guides](guide.html)

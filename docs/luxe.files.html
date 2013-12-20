@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,8 +40,8 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h1><a href="index.html">luxe</a></h1>
-<h3><a href="types.html">Back to types</a></h3>
+<h1 id="-luxe-index-html-"><a href="index.html">luxe</a></h1>
+<h3 id="-back-to-types-types-html-"><a href="types.html">Back to types</a></h3>
 
         </div>
     </body>

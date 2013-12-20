@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,13 +40,13 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="api.html">Back to api</a></h3>
+<h3 id="-back-to-api-api-html-"><a href="api.html">Back to api</a></h3>
 <p>The luxe screen API is in flux and will be documented completely soon :
 You can access the values via </p>
 <pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="n">and</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span>
 </pre></div>
 </code></pre>
-<h3>Public values</h3>
+<h3 id="public-values">Public values</h3>
 <p><a name="w"> w </a>
 <span class="small_desc"> Access to the width of the screen </span>   </p>
 <p><a name="h"> h </a>

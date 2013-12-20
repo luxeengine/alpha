@@ -5,7 +5,6 @@ import hxcollision.Collision;
 import hxcollision.CollisionData;
 import hxcollision.shapes.BaseShape;
 import hxcollision.shapes.Circle;
-import hxcollision.math.Vector2D;
 import luxe.Entity;
 import luxe.Vector;
 import luxe.Sprite;
@@ -33,7 +32,7 @@ class Bullet extends Component {
         ignored_colliders = [];
         bounds = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
         dir = new Vector();
-        collider = new Circle(4, new Vector2D(pos.x,pos.y) );
+        collider = new Circle(pos.x, pos.y, 4);
         collider.name = 'bullet collider';
     }
 

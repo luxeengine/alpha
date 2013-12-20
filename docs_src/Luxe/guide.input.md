@@ -22,7 +22,7 @@ Luxe supports all common types of input out of the box:
 
 ###Accessing input events
 ---
-Your [game class](luxe.Game.html) has a bunch of functions that can (and will) be called when an event happens. The reason that this is a function (and not say, an event) is because a function call is immediate.
+Your Game class has a bunch of functions that can (and will) be called when an event happens. The reason that this is a function (and not say, an event) is because a function call is immediate.
 
 As soon as luxe obtains an input event from the system it will immediately call your code to handle it. This is to avoid unnessary delays in handling touches or key/gamepad press and minimize latency when making games.
 
@@ -45,7 +45,7 @@ You may also note the `raw` property.
 Sometimes you need to know some value from the OS/platform that luxe is not explicitly exposing.
 
 For this purpose all of the events (MouseEvent, TouchEvent, GamepadEvent, KeyEvent) pass a property through the event object.
-This is the exact event structure, untouched, low level (you can use `trace(event)` to dump it's contents.
+This is the exact event structure, untouched, low level (you can use `trace(event.raw)` to dump it's contents.
 
 ## Named input 
 --- 
@@ -66,7 +66,7 @@ Let's use a common example where the jump key might be Z, Space, and Right Mouse
 
 Now that you have the named input bound, you can listen for the event using `oninputdown` or `oninputup`.
 
-    public function oninputup( event_name:String, event:Dynamic ) {
+    public function oninputup( event_name:String, event:InputEvent ) {
 
         switch( event_name ) {
             case 'jump':
@@ -74,6 +74,25 @@ Now that you have the named input bound, you can listen for the event using `oni
         } //switch
 
     } 
+
+You can make the assumption here that all types of input mapped to jump, should call jump directly. But - the even is typed as InputEvent, and contains the following information :
+
+    typedef InputEvent = {
+        type             : InputType,
+        ?touch_event     : TouchEvent,
+        ?mouse_event     : MouseEvent,
+        ?key_event       : KeyEvent,
+        ?gamepad_event   : GamepadEvent
+    } 
+
+When the event originates from a mouse event, the `event.type` will be `InputType.mouse`, and the `event.mouse_event` will be populated with the originating event.
+
+    enum InputType {
+        mouse;
+        touch;
+        keys;
+        gamepad;
+    }
 
 ---
 
@@ -145,11 +164,11 @@ Here is a full list of functions, with commented descriptions :
 
     //Input    
 
-        public function oninputup( named_input:String, e:Dynamic ) {
+        public function oninputup( named_input:String, e:InputEvent ) {
             //called when a bound named input event is released  
         } 
         
-        public function oninputdown( named_input:String, e:Dynamic ) {
+        public function oninputdown( named_input:String, e:InputEvent ) {
             //called when a bound named input event is pressed
         }
 

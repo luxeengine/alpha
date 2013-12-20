@@ -95,14 +95,14 @@ class Manager extends State {
 
         Luxe.events.listen('level.start', function(e) {
             if(!level_running) {
-                states.enable('level');
+                machine.enable('level');
                 level_running = true;
             }
         });
 
         Luxe.events.listen('level.end', function(e) {
             if(level_running) {
-                states.disable('level');
+                machine.disable('level');
                 level_running = false;
             }
         });

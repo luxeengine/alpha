@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,8 +40,8 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guides.html">View all guides</a></h3>
-<h2>What is <a href="api.html">Luxe</a> and how does it work</h2>
+<h3 id="-view-all-guides-guides-html-"><a href="guides.html">View all guides</a></h3>
+<h2 id="what-is-luxe-and-how-does-it-work">What is <a href="api.html">Luxe</a> and how does it work</h2>
 
         </div>
     </body>

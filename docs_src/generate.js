@@ -42,7 +42,7 @@ var config = require('./documentator.json');
             });
 
         for(i = 0; i < _list.length; ++i) {            
-            console.log("\t- attempting api file .. " + _list[i]);
+            _verbose("\t- attempting api file .. " + _list[i]);
             var _api_details_string = String(fs.readFileSync( _list[i] ));
             var _api_details = JSON.parse( _api_details_string );
 
@@ -90,7 +90,7 @@ var config = require('./documentator.json');
 
                 var _template_out = mustache.render( _api_template, _context );
                 fs.writeFileSync( config.api_output_path + _api_details.file , _template_out );
-                console.log("\t - generating file " + config.api_output_path + _api_details.file);
+                _verbose("\t - generating file " + config.api_output_path + _api_details.file);
             } //if valid
         } //list.length
             
@@ -125,7 +125,8 @@ var config = require('./documentator.json');
         var _last = {};
 
         if(fs.existsSync(_last_cache_file)) {
-            _last = require(_last_cache_file);
+            _last = JSON.parse( String( fs.readFileSync( _last_cache_file ) ) );
+            config._last = _last;
         } 
 
         var _final_list = [];       
@@ -136,33 +137,52 @@ var config = require('./documentator.json');
             _final_list = _list;
 
         } else {
+
             for(var i = 0; i < _list.length; ++i) {
                     //first check if this is already in the list, and compare it
-                var _last_changed = _last[_list[i]];
-                var _stat = fs.statSync(_list[i]);
+                var _last_changed_info = _last[_list[i]];
 
-                if(_last_changed) {
-                    if(_stat.mtime.getTime() > _last_changed) {
+                if(_last_changed_info) {
+                    var _last_changed_time = _last_changed_info.time;
+                    var _last_changed_size = _last_changed_info.size;
+                    var _stat = fs.statSync(_list[i]);
+                    
+                    if(_stat.mtime.getTime() >= _last_changed_time && _stat.size != _last_changed_size) {
                         _final_list.push(_list[i]);
-                    } 
+                        _verbose('> added file ' + _list[i] + (_stat.mtime.getTime() ==  _last_changed_time) + ' ' + (_stat.size == _last_changed_size));
+                    } else {
+                        _verbose('> \tskipped file ' + _list[i] + (_stat.mtime.getTime() ==  _last_changed_time) + ' ' + (_stat.size == _last_changed_size));
+                    }
                 } else {
+                    _verbose('> forced file, no history ' + _list[i] );
                     _final_list.push(_list[i]);
                 }            
             }
         } //ignore time cache
-            
+          
+
+        return _final_list;
+
+    } //_fetch_file_list
+
+    var _cache_last_modified = function(_final_list) {
+
+        var _last = config._last;
+        var _last_cache_file = './.last_changed_cache.json';
+
             //now for the final list, make sure we cache it
-        for(var i = 0; i < _final_list.length; ++i) {
-            var _stat = fs.statSync(_list[i]);
-            _last[_final_list[i]] = _stat.mtime.getTime();
+        for(var i = 0; i < _final_list.length; ++i) {            
+            var _stat = fs.statSync(_final_list[i]);
+            var info = {};
+             info.time = _stat.mtime.getTime();
+             info.size = _stat.size;
+             _last[_final_list[i]] = info;
         }
 
             //save the cache
         fs.writeFileSync(_last_cache_file, JSON.stringify(_last) );
 
-        return _final_list;
-
-    } //_fetch_file_list
+    }
 
 
     var _copy_samples = function(_done) {
@@ -455,6 +475,7 @@ var config = require('./documentator.json');
                                 _verbose("- copying images ");
                                 _copy_images(function() {
                                     console.log("- copied images.");
+                                    _cache_last_modified([].concat(_list));
                                     console.log("- ok - generated docs in " + config.output_path );
                                 });
                             }); //copy template files

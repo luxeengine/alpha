@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,16 +40,16 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="guide.html#particles">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-particles-"><a href="guide.html#particles">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2>How the to use Particles for effects</h2>
+<h2 id="how-the-to-use-particles-for-effects">How the to use <a href="luxe.Particles.html">Particles</a> for effects</h2>
 <hr>
 <p>todo</p>
 <hr>
 <p>&nbsp;   </p>
-<h3><a href="guide.html#particles">Back to feature guide</a></h3>
-<h3><a href="guide.html">View all guides</a></h3>
+<h3 id="-back-to-feature-guide-guide-html-particles-"><a href="guide.html#particles">Back to feature guide</a></h3>
+<h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
 
         </div>

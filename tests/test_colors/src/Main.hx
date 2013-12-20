@@ -17,6 +17,7 @@ class Main extends luxe.Game {
 
     var sprite_test_pad : Sprite;
     var mouse : Vector;
+    
     var bar_color : ColorHSV;
 
     public function ready() {
@@ -73,8 +74,10 @@ class Main extends luxe.Game {
     } //ready
     
     
-    public function onmousemove(e) {
+    public function onmousemove( e:MouseEvent ) {
+
         mouse.set(e.x, e.y);
+
         sprite.pos = mouse;
 
         bar_color.h = 360 * (mouse.x/Luxe.screen.w);
@@ -83,7 +86,7 @@ class Main extends luxe.Game {
         hsb_strip_top.color = bar_color;        
         hsb_strip_bottom.color = bar_color;
 
-    }
+    } //onmousemove
 
     public function onmousedown(e) {
         
@@ -94,7 +97,7 @@ class Main extends luxe.Game {
             a: Maths.clamp(0.5+(Math.random()),0,1) 
         }); //tween
 
-    }
+    } //onmousedown
 
     public function onkeyup(e) {
         
@@ -112,13 +115,6 @@ class Main extends luxe.Game {
         }
     } //onkeyup
 
-    public function update(dt:Float) {
-
-    } //update
-
-    public function shutdown() {
-
-    } //shutdown
-}
+} //Main
 
 

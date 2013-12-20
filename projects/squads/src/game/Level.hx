@@ -150,12 +150,12 @@ class Level extends State {
     }
 
     public function create_collision_rectangle( _rect:Rectangle ) {
-        return Polygon.rectangle( _rect.w * scale, _rect.h * scale, new Vector2D(_rect.x * scale, _rect.y * scale) , false ) ;
+        return Polygon.rectangle( _rect.x * scale, _rect.y * scale, _rect.w * scale, _rect.h * scale , false ) ;
     }   
 
     public function create_collision_rectangles( list:Array<Rectangle>, target:Array<BaseShape> ) {
         for(item in list) {
-            target.push( Polygon.rectangle( item.w * scale, item.h * scale, new Vector2D(item.x * scale, item.y * scale) , false ) );
+            target.push( Polygon.rectangle( item.x * scale, item.y * scale, item.w * scale, item.h * scale, false ) );
         }
     }
 
@@ -170,7 +170,7 @@ class Level extends State {
     public function oninputup(_name:String, _event:Dynamic) {
         switch(_name) {
             case 'quit':
-                states.set('mainmenu');
+                machine.set('mainmenu');
         }
     }
 

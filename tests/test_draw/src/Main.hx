@@ -1,96 +1,79 @@
 
-import lime.utils.ByteArray;
-import lime.utils.Float32Array;
 import luxe.Vector;
 import luxe.Color;
 import luxe.Input;
-import phoenix.Batcher;
-import phoenix.geometry.Geometry;
-import phoenix.geometry.Vertex;
-import phoenix.geometry.CompositeGeometry;
+
+import phoenix.geometry.CircleGeometry;
+import phoenix.geometry.RingGeometry;
 import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
 
 class Main extends luxe.Game {
 
-    public var mouse : Vector;
-
-    public var line : LineGeometry; 
-    public var rect : RectangleGeometry; 
-    public var rect2 : QuadGeometry; 
+    public var mouse    : Vector;
+    public var line     : LineGeometry; 
+    public var rect     : RectangleGeometry; 
+    public var box      : QuadGeometry; 
+    public var circle   : CircleGeometry; 
+    public var ring     : RingGeometry; 
 
     public function ready() {
 
         mouse = new Vector();
 
-        // line = Luxe.draw.line({
-        //     p0 : new Vector( 0, Luxe.screen.h/2 ),
-        //     p1 : new Vector( Luxe.screen.w, Luxe.screen.h/2 ),
-        //     color : new Color(0.5,0.2,0.2,1)
-        // });
+        line = Luxe.draw.line({
+            p0 : new Vector( 0, Luxe.screen.h/2 ),
+            p1 : new Vector( Luxe.screen.w, Luxe.screen.h/2 ),
+            color : new Color(0.5,0.2,0.2,1)
+        });
 
-        // rect = Luxe.draw.rectangle({
-        //     x : 10, y : 10,
-        //     w : Luxe.screen.w - 20, 
-        //     h : Luxe.screen.h - 20,
-        //     color : new Color(0.4,0.4,0.4)
-        // });
+        rect = Luxe.draw.rectangle({
+            x : 10, y : 10,
+            w : Luxe.screen.w - 20, 
+            h : Luxe.screen.h - 20,
+            color : new Color(0.4,0.4,0.4)
+        });
 
-        // rect2 = Luxe.draw.box({
-        //     x : 40, y : 40,
-        //     w : Luxe.screen.w - 80, 
-        //     h : Luxe.screen.h - 80,
-        //     color : new Color(0.5,0.2,0.2,0.5)
-        // });
+        box = Luxe.draw.box({
+            x : 40, y : 40,
+            w : Luxe.screen.w - 80, 
+            h : Luxe.screen.h - 80,
+            color : new Color(0.5,0.2,0.2,0.5)
+        });
 
-        // // rect2.locked = true;     
+        circle = Luxe.draw.circle({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 50,
+            color : new Color(0.8,0.3,0.2,1)
+        });
 
-        // var c = Luxe.draw.circle({
-        //     x : Luxe.screen.w/2,
-        //     y : Luxe.screen.h/2,
-        //     r : 50,
-        //     color : new Color(0.8,0.3,0.2,1)
-        // });
+        ring = Luxe.draw.ring({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 60,
+            color : new Color(1,1,1,1)
+        });
 
-        // c.locked = true;
+        Luxe.draw.arc({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 70,
+            end_angle:70,
+            color : new Color(1,1,1,1)
+        });
 
-        // c = Luxe.draw.ring({
-        //     x : Luxe.screen.w/2,
-        //     y : Luxe.screen.h/2,
-        //     r : 60,
-        //     color : new Color(1,1,1,1)
-        // });
-
-        // c = Luxe.draw.arc({
-        //     x : Luxe.screen.w/2,
-        //     y : Luxe.screen.h/2,
-        //     r : 70,
-        //     end_angle:70,
-        //     color : new Color(1,1,1,1)
-        // });
-
-        // var n : CompositeGeometry = Luxe.draw.text({
-        //     color : new Color(Math.random(),Math.random(),Math.random(),0.5),
-        //     pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
-        //     text : "Luxe.draw.ring({\n\t x : Luxe.screen.w/2,\n\t y : Luxe.screen.h/2,\n\t r : 70,\n\t color : new Color(1,1,1,1)\n});\n"
-        // });
-        
-        // n.locked = true;
-
-            //create a point sprite
-        var s = new Geometry({ depth:10 });
-            s.add(new Vertex(new Vector(Luxe.screen.w/2, Luxe.screen.h/2)));
-
-            s.color = new Color(1,1,1,1);
-            s.primitive_type = PrimitiveType.points;
-            s.texture = Luxe.loadTexture('assets/luxe.png');
-
-        Luxe.addGeometry(s);
-
-        lime.gl.GL.enable( lime.gl.GL.VERTEX_PROGRAM_POINT_SIZE );
-        lime.gl.GL.enable( lime.gl.GL.POINT_SPRITE );
-
+        Luxe.draw.text({
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+            pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
+            text : "Luxe.draw.ring({\n
+                        \t x : Luxe.screen.w/2,\n
+                        \t y : Luxe.screen.h/2,\n
+                        \t r : 70,\n
+                        \t color : new Color(1,1,1,1)\n
+                    });\n"
+        });
 
     } //ready
   
@@ -105,23 +88,24 @@ class Main extends luxe.Game {
     }
 
     public function onkeyup(e) {
-
-      if(e.value == Input.Keys.escape) {
-        Luxe.shutdown();
-      }
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
     } //onkeyup
 
     public function update(dt:Float) {
 
         Luxe.draw.rectangle({
+                //this line is important, as each frame it will create new geometry!
+            immediate : true,
             x : mouse.x, y : mouse.y,
             w : 120,
             h : 120,
-            immediate : true,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5)
         });
 
         Luxe.draw.text({
+                //this line is important, as each frame it will create new geometry!
             immediate:true,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5),
             pos : mouse,
@@ -130,9 +114,6 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function shutdown() {
-
-    } //shutdown
-}
+} //Main
 
 

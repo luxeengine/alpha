@@ -17,18 +17,21 @@ The beginners guide is a linear guide, following a semi logical progression abou
 ###[ Feature guide ](#featureguide)   
 The feature guide is a piece by piece quick reference for specific features of the engine, designed to explain and teach what the engine can do.
 
-[ tween guide ](#tweening)    
-[ color guide ](#color)    
-[ sprite animation guide ](#spriteanimation)    
-[ drawing guide ](#drawing)    
-[ texture guide ](#textures)    
-[ particle guide ](#particles)    
-[ shader guide ](#shaders)    
-[ depth guide ](#depthsorting)    
-[ group guide ](#groups)    
-[ audio guide ](#audio)    
-[ camera guide ](#camera)    
-[ font guide ](#fonts)    
+[ sprites ](#sprites) / [ sprite animation ](#spriteanimation)    
+[ events ](#events)   
+[ states ](#states)    
+[ tweening ](#tweening)    
+[ color ](#color)    
+[ drawing ](#drawing)    
+[ particles ](#particles)    
+[ shaders ](#shaders)    
+[ cameras ](#camera)    
+[ audio ](#audio)    
+[ font ](#fonts)    
+[ assets ](#assets)  
+
+[ texture / render textures ](#textures)    
+[ rendering (depth,groups,blending) ](#rendering)    
 
 ###[ Details guide ](#detailguide)   
 The detail guide is a look at the inner structure and design philosophy behind the engine and it's pieces, as well as elaborate on common questions.
@@ -80,8 +83,23 @@ Each one links to the others for you.
 
 By following this guide, you should be able to see at a glance and in detail the features of luxe you can use to make games.
 
+<a name="sprites"> </a>
+### [ sprites ](guide.sprites.html)
+- What sprites are used for, and their features.
+[ ![sprites screenshot](images/guide.spriteanimation.png) ](guide.spriteanimation.html)
+
+<a name="spriteanimation"> </a>
+### [ sprite animation ](guide.spriteanimation.html)
+- How to bring your sprites to life by importing sprite sheets or using separate images.
+[ ![sprite animation guide screenshot](images/guide.spriteanimation.png) ](guide.spriteanimation.html)
+
+<a name="events"> </a>
+### [ events ](guide.events.html)
+- Using the event system to communicate locally and globally.
+[ ![events guide screenshot](images/guide.sprites.png) ](guide.events.html)
+
 <a name="tweening"> </a>
-### [ tween guide ](guide.tween.html)
+### [ tweening ](guide.tween.html)
 - Making things animate smoothly over time using tweening.
 [ ![tween guide screenshot](images/guide.tween.png) ](guide.tween.html)
 
@@ -89,11 +107,6 @@ By following this guide, you should be able to see at a glance and in detail the
 ### [ color guide ](guide.color.html)
 - The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
 [ ![color guide screenshot](images/guide.color.png) ](guide.color.html)
-
-<a name="spriteanimation"> </a>
-### [ sprite animation guide ](guide.spriteanimation.html)
-- How to bring your sprites to life by importing sprite sheets or using separate images.
-[ ![sprite animation guide screenshot](images/guide.spriteanimation.png) ](guide.spriteanimation.html)
 
 <a name="drawing"> </a>
 ### [ drawing guide ](guide.drawing.html)
@@ -118,19 +131,14 @@ By following this guide, you should be able to see at a glance and in detail the
 - Understanding how to use shaders on your sprites or geometry.
 [ ![shader guide screenshot](images/guide.shaders.png) ](guide.shaders.html)
 
-<a name="depthsorting"> </a>
-### [ depth guide ](guide.depth.html)
-- A closer look at how ordering and depth sorting works in luxe.
+<a name="rendering"> </a>
+### [ rendering guide ](guide.rendering.html)
+- A closer look at how ordering and depth sorting works in luxe, as well as a breakdown of geometry groups, how they work, what they are, and how to use them for blending and post/pre render callbacks.
 [ ![sprites guide screenshot](images/guide.sprites.png) ](guide.depth.html)
 
 ---
 <a class="toplink" href="#">back to top</a>
 
-
-<a name="groups"> </a>
-### [ group guide ](guide.groups.html)
-- A breakdown of geometry groups, how they work, what they are, and how to use them for blending and post/pre render callbacks.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.groups.html)
 
 <a name="audio"> </a>
 ### [ audio guide ](guide.audio.html)

@@ -5,7 +5,6 @@ import game.PlayerWeapon;
 import hxcollision.Collision;
 import hxcollision.CollisionData;
 import hxcollision.shapes.Polygon;
-import hxcollision.math.Vector2D;
 import luxe.Vector;
 import luxe.Sprite;
 import luxe.Color;
@@ -34,7 +33,7 @@ class PlayerMovement extends Component {
 
         entity.fixed_rate = 0.02;
 
-        collider = Polygon.create(12, 20, new Vector2D(pos.x,pos.y));
+        collider = Polygon.create(pos.x,pos.y, 12, 20);
 
     } //new
 

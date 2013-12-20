@@ -22,6 +22,21 @@ typedef MouseEvent = {
     var pos : luxe.Vector;
 } //MouseEvent
 
+enum InputType {
+    mouse;
+    touch;
+    keys;
+    gamepad;
+}
+
+typedef InputEvent = {
+    type            : InputType,
+    ?touch_event     : TouchEvent,
+    ?mouse_event     : MouseEvent,
+    ?key_event       : KeyEvent,
+    ?gamepad_event   : GamepadEvent
+}
+
 class Input {
     
     public static var Keys      : lime.helpers.Keys;
@@ -110,9 +125,15 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
-                core.oninputdown(_f,e);  
+                core.oninputdown( _f, {
+                    type : InputType.keys,
+                    key_event : e
+                });  
             } else {
-                core.oninputup(_f,e);  
+                core.oninputup( _f, {
+                    type : InputType.keys,
+                    key_event : e
+                });  
             }
         } //_f in _fired
 
@@ -134,9 +155,15 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
-                core.oninputdown(_f,e);                
+                core.oninputdown( _f, {
+                    type : InputType.mouse,
+                    mouse_event : e
+                });
             } else {
-                core.oninputup(_f,e);                
+                core.oninputup( _f, {
+                    type : InputType.mouse,
+                    mouse_event : e
+                });                
             } 
         } //_f in _fired
 

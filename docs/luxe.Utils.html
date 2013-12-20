@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,17 +40,17 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3><a href="api.html">Back to api</a></h3>
-<h2><a href="api.html">Luxe</a> Utils API</h2>
+<h3 id="-back-to-api-api-html-"><a href="api.html">Back to api</a></h3>
+<h2 id="luxe-utils-api"><a href="api.html">Luxe</a> Utils API</h2>
 <p>The utility class contains various functions that prove useful to the library.</p>
 <p><a name="PublicMethods" ></a></p>
-<h3>Public methods</h3>
+<h3 id="public-methods">Public methods</h3>
 <p><strong>uuid</strong> (returns a Universally Unique Identifier)<br><code>var unique_id = <a href="api.html">Luxe</a>.utils.uuid() : String</code></p>
 <p><a name="PublicProperties" ></a></p>
-<h3>Public properties</h3>
+<h3 id="public-properties">Public properties</h3>
 <p><a class="toplink" href="#">back to top</a></p>
 <p><a name="geometry" href="#geometry"></p>
-<h4>geometry</h4>
+<h4 id="geometry">geometry</h4>
 <p></a></p>
 <p>Accesssed via <code><a href="api.html">Luxe</a>.utils.geometry</code>,</p>
 <p><a name="random_point_in_unit_circle" href="#random_point_in_unit_circle">random_point_in_unit_circle</a></p>

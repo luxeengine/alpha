@@ -24,6 +24,15 @@
 
                     _child.css('display', _opp);
                 });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
             });
         </script>
     </head>
@@ -31,13 +40,13 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h2><a href="api.html">Luxe</a> Class Index</h2>
-<pre><code><div class="highlight"><pre><span class="c1">//luxe class : luxe.Objects</span>
+<h2 id="luxe-class-index"><a href="api.html">Luxe</a> Class Index</h2>
+<pre><code><div class="highlight"><pre><span class="c1">//luxe class : luxe.<a href="luxe.Objects.html">Objects</a></span>
 
      <span class="err">…</span> <span class="kd">var</span> name <span class="p">:</span> <span class="n">String</span><span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> id <span class="p">:</span> <span class="n">String</span><span class="p">;</span>
 
-<span class="c1">//luxe class : luxe.components.Component</span>
+<span class="c1">//luxe class : <a href="luxe.components.Component.html">luxe.components.Component</a></span>
 
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">serialize_to_disk</span><span class="p">(</span><span class="n">_destination_path</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">get_serialize_data</span><span class="p">()</span> <span class="p">:</span> <span class="n">null</span><span class="err">;</span>
@@ -52,12 +61,12 @@
      <span class="err">…</span> <span class="kd">var</span> entity <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">()</span> <span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.Mode</span>
+<span class="c1">//luxe class : luxe.<a href="luxe.Mode.html">Mode</a></span>
 
      <span class="err">…</span> <span class="kd">var</span> next_tick <span class="p">:</span> <span class="n">Dynamic</span> <span class="p">(</span><span class="n">write</span> <span class="err">only</span><span class="p">);</span>
      <span class="err">…</span> <span class="kd">var</span> name <span class="p">:</span> <span class="n">String</span><span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> active <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
-     <span class="err">…</span> <span class="kd">var</span> modes <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Modes</span><span class="p">;</span>
+     <span class="err">…</span> <span class="kd">var</span> modes <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Modes.html">Modes</a></span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">()</span> <span class="err">;</span>
 
 <span class="c1">//luxe class : luxe.Audio</span>
@@ -77,7 +86,7 @@
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">get</span><span class="p">(</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="p">?</span><span class="n">_in_children</span><span class="p">:</span><span class="n">Bool</span><span class="p">,</span> <span class="p">?</span><span class="n">_first_only</span><span class="p">:</span><span class="n">Bool</span><span class="p">)</span> <span class="p">:</span> <span class="n">null</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">add</span><span class="p">(</span><span class="n">type</span><span class="p">:</span><span class="n">Class</span><span class="p">,</span> <span class="p">?</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">add</span><span class="p">.</span><span class="n">T</span><span class="err">;</span>
      <span class="err">…</span> <span class="kd">var</span> serialize <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
-     <span class="err">…</span> <span class="kd">var</span> scene <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Scene</span> <span class="p">;</span>
+     <span class="err">…</span> <span class="kd">var</span> scene <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Scene.html">Scene</a></span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> scaleRelative <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> scale <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> rotationRelative <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span> <span class="p">;</span>
@@ -89,7 +98,7 @@
      <span class="err">…</span> <span class="kd">var</span> inited <span class="p">:</span> <span class="n">Bool</span><span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> fixed_rate <span class="p">:</span> <span class="n">Float</span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> children <span class="p">:</span> <span class="n">Array</span><span class="p">;</span>
-     <span class="err">…</span> <span class="kd">var</span> events <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Events</span><span class="p">;</span>
+     <span class="err">…</span> <span class="kd">var</span> events <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.events.html">Events</a></span><span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> components <span class="p">:</span> <span class="n">Map</span> <span class="p">(</span><span class="n">read</span> <span class="err">only</span><span class="p">);</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">()</span> <span class="err">;</span>
 
@@ -111,12 +120,12 @@
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">plane</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">PlaneGeometry</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">circle</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">CircleGeometry</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">ring</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">RingGeometry</span><span class="err">;</span>
-     <span class="err">•</span> <span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">Geometry</span><span class="err">;</span>
+     <span class="err">•</span> <span class="kd">function</span> <span class="nf">text</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n"><a href="phoenix.Geometry.html">Geometry</a></span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">rectangle</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">RectangleGeometry</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">box</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">QuadGeometry</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">line</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">LineGeometry</span><span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.Events</span>
+<span class="c1">//luxe class : luxe.<a href="luxe.events.html">Events</a></span>
 
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">unschedule</span><span class="p">(</span><span class="n">schedule_id</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">Bool</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">schedule</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">Float</span><span class="p">,</span> <span class="n">event_name</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="p">?</span><span class="n">properties</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">String</span><span class="err">;</span>
@@ -135,7 +144,7 @@
      <span class="err">…</span> <span class="kd">var</span> Gamepad <span class="p">:</span> <span class="n">lime</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">Gamepad</span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">add</span><span class="p">(</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">,</span> <span class="n">_event</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.Modes</span>
+<span class="c1">//luxe class : luxe.<a href="luxe.Modes.html">Modes</a></span>
 
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="n">luxe</span><span class="p">.</span><span class="n">MouseEvent</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">onmouseup</span><span class="p">(</span><span class="n">e</span><span class="p">:</span><span class="n">luxe</span><span class="p">.</span><span class="n">MouseEvent</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
@@ -152,7 +161,7 @@
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">disable</span><span class="p">(</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">enable</span><span class="p">(</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">add_mode</span><span class="p">(</span><span class="n">type</span><span class="p">:</span><span class="n">Class</span><span class="p">,</span> <span class="p">?</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">add_mode</span><span class="p">.</span><span class="n">T</span><span class="err">;</span>
-     <span class="err">…</span> <span class="kd">var</span> currentmode <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Mode</span><span class="p">;</span>
+     <span class="err">…</span> <span class="kd">var</span> currentmode <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Mode.html">Mode</a></span><span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> activemodes <span class="p">:</span> <span class="n">Array</span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">()</span> <span class="err">;</span>
 
@@ -174,13 +183,13 @@
      <span class="err">…</span> <span class="kd">var</span> visible <span class="p">:</span> <span class="n">Bool</span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> color <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html">Color</a></span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> size <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span> <span class="p">;</span>
-     <span class="err">…</span> <span class="kd">var</span> shader <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">Shader</span> <span class="p">;</span>
-     <span class="err">…</span> <span class="kd">var</span> texture <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Texture.html">Texture</a></span> <span class="p">;</span>
+     <span class="err">…</span> <span class="kd">var</span> shader <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span> <span class="p">;</span>
+     <span class="err">…</span> <span class="kd">var</span> texture <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Texture.html">Texture</a></span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> locked <span class="p">:</span> <span class="n">Bool</span> <span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> geometry <span class="p">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">QuadGeometry</span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">(</span><span class="n">options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.NineSlice</span>
+<span class="c1">//luxe class : luxe.<a href="luxe.NineSlice.html">NineSlice</a></span>
 
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">create</span><span class="p">(</span><span class="n">_pos</span><span class="p">:</span><span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">,</span> <span class="n">_w</span><span class="p">:</span><span class="n">Float</span><span class="p">,</span> <span class="n">_h</span><span class="p">:</span><span class="n">Float</span><span class="p">,</span> <span class="p">?</span><span class="n">_reset</span><span class="p">:</span><span class="n">Bool</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">destroy</span><span class="p">()</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
@@ -199,7 +208,7 @@
      <span class="err">…</span> <span class="kd">var</span> top <span class="p">:</span> <span class="n">Float</span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">(</span><span class="n">_options</span><span class="p">:</span><span class="n">Dynamic</span><span class="p">)</span> <span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.Scene</span>
+<span class="c1">//luxe class : luxe.<a href="luxe.Scene.html">Scene</a></span>
 
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">serialize_to_disk</span><span class="p">(</span><span class="n">_destination_path</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">fixed_update</span><span class="p">()</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
@@ -256,7 +265,7 @@
      <span class="err">…</span> <span class="kd">var</span> name <span class="p">:</span> <span class="n">String</span><span class="p">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">(?</span><span class="n">_name</span><span class="p">:</span><span class="n">String</span><span class="p">)</span> <span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.components.sprite.SpriteAnimation</span>
+<span class="c1">//luxe class : <a href="luxe.components.sprite.SpriteAnimation.html">luxe.components.sprite.SpriteAnimation</a></span>
 
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">get_serialize_data</span><span class="p">()</span> <span class="p">:</span> <span class="n">null</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">set_frame</span><span class="p">(</span><span class="n">_frame</span><span class="p">:</span><span class="n">Int</span><span class="p">)</span> <span class="p">:</span> <span class="n">Void</span><span class="err">;</span>
@@ -393,7 +402,7 @@
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">:</span> <span class="n">Float</span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="err">new</span><span class="p">()</span> <span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.tween.Actuate</span>
+<span class="c1">//luxe class : <a href="luxe.tween.Actuate.html">luxe.tween.Actuate</a></span>
 
      <span class="err">…</span> <span class="kd">var</span> defaultActuator <span class="p">:</span> <span class="n">Class</span><span class="p">;</span>
      <span class="err">…</span> <span class="kd">var</span> defaultEase <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">easing</span><span class="p">.</span><span class="n">IEasing</span><span class="p">;</span>
@@ -506,7 +515,7 @@
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">random_point_in_unit_circle</span><span class="p">()</span> <span class="p">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="err">;</span>
      <span class="err">•</span> <span class="kd">function</span> <span class="nf">segments_for_smooth_circle</span><span class="p">(</span><span class="n">_radius</span><span class="p">:</span><span class="n">Float</span><span class="p">,</span> <span class="p">?</span><span class="n">_smooth</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">:</span> <span class="n">Float</span><span class="err">;</span>
 
-<span class="c1">//luxe class : luxe.utils.JSON</span>
+<span class="c1">//luxe class : <a href="luxe.utils.JSON.html">luxe.utils.JSON</a></span>
 
      <span class="err">…</span> <span class="kd">var</span> encode <span class="p">:</span> <span class="n">Dynamic</span> <span class="p">(</span><span class="n">read</span> <span class="err">only</span><span class="p">);</span>
      <span class="err">…</span> <span class="kd">var</span> decode <span class="p">:</span> <span class="n">Dynamic</span> <span class="p">(</span><span class="n">read</span> <span class="err">only</span><span class="p">);</span>

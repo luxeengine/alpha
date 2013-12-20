@@ -127,6 +127,111 @@
 <div data-content="samples/test_colors/index.html" class="sample"> <p>Click to run example</p> </div>
 
 <hr>
+<h3 id="code-from-the-live-demo">Code from the live demo</h3>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Color.html">Color</a></span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">utils</span><span class="p">.</span><span class="nn">Maths</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="n">sprite</span> <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">hsv_blue</span> <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">hsl_pink</span> <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="n">hsb_strip_top</span> <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">hsb_strip_bottom</span> <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="n">sprite_test_pad</span> <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
+    <span class="kd">var</span> <span class="n">mouse</span> <span class="p">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="n">bar_color</span> <span class="p">:</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+
+        <span class="n">sprite</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">480</span><span class="p">,</span><span class="mi">320</span><span class="p">),</span>
+            <span class="n">size</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(),</span>
+            <span class="n">depth</span> <span class="p">:</span> <span class="mi">2</span>
+        <span class="p">});</span>
+
+        <span class="n">hsv_blue</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>
+            <span class="n">size</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mf">0.61</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">depth</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">centered</span> <span class="p">:</span> <span class="kc">false</span>
+        <span class="p">});</span>
+
+        <span class="n">hsl_pink</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">316</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>
+            <span class="n">size</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span><span class="p">(</span><span class="mi">330</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.48</span><span class="p">),</span>
+            <span class="n">depth</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">centered</span> <span class="p">:</span> <span class="kc">false</span>
+        <span class="p">});</span>
+
+        <span class="n">hsb_strip_top</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">size</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">*</span><span class="mf">0.1</span><span class="p">),</span>
+            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">depth</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">centered</span> <span class="p">:</span> <span class="kc">false</span>
+        <span class="p">});</span>        
+
+        <span class="n">hsb_strip_bottom</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">-</span><span class="p">(</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">*</span><span class="mf">0.1</span><span class="p">)),</span>
+            <span class="n">size</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">*</span><span class="mf">0.1</span><span class="p">),</span>
+            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="n">depth</span> <span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">centered</span> <span class="p">:</span> <span class="kc">false</span>
+        <span class="p">});</span>
+
+        <span class="n">sprite_test_pad</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
+            <span class="n">centered</span> <span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">60</span><span class="p">,</span><span class="mi">100</span><span class="p">),</span>
+            <span class="n">texture</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/test.png&#39;</span><span class="p">),</span>
+            <span class="n">depth</span> <span class="p">:</span> <span class="mi">1</span>
+        <span class="p">});</span>
+
+        <span class="n">mouse</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="mi">480</span><span class="p">,</span><span class="mi">320</span><span class="p">);</span>
+        <span class="n">bar_color</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html#ColorHSVClass">ColorHSV</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="p">}</span> <span class="c1">//ready</span>
+
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">mouse</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+
+        <span class="n">sprite</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">mouse</span><span class="p">;</span>
+
+        <span class="n">bar_color</span><span class="p">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">*</span> <span class="p">(</span><span class="n">mouse</span><span class="p">.</span><span class="n">x</span><span class="o">/</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
+        <span class="n">bar_color</span><span class="p">.</span><span class="n">v</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="p">(</span><span class="n">mouse</span><span class="p">.</span><span class="n">y</span><span class="o">/</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="p">);</span>
+
+        <span class="n">hsb_strip_top</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">bar_color</span><span class="p">;</span>        
+        <span class="n">hsb_strip_bottom</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">bar_color</span><span class="p">;</span>
+
+    <span class="p">}</span> <span class="c1">//onmousemove</span>
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousedown</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="n">sprite</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">tween</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="p">{</span> 
+            <span class="n">r</span><span class="p">:</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> 
+            <span class="n">g</span><span class="p">:</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> 
+            <span class="n">b</span><span class="p">:</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> 
+            <span class="n">a</span><span class="p">:</span> <span class="n">Maths</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="mf">0.5</span><span class="o">+</span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">()),</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+        <span class="p">});</span> <span class="c1">//tween</span>
+
+    <span class="p">}</span> <span class="c1">//onmousedown</span>
+
+<span class="p">}</span> <span class="c1">//Main</span>
+</pre></div>
+</code></pre>
+<hr>
 <p>&nbsp;   </p>
 <h3 id="-back-to-feature-guide-guide-html-color-"><a href="guide.html#color">Back to feature guide</a></h3>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>

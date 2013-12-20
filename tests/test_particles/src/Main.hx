@@ -29,24 +29,24 @@ class Main extends luxe.Game {
         var t3 = Luxe.loadTexture('assets/embers.png');
 
         particles = Luxe.scene.create( ParticleSystem,'particles');
-        
-        particles.pos = new Vector(Luxe.screen.w/2,Luxe.screen.h/2);
+                
         particles.add_emitter({
             name : 'flames', 
             particle_image:t1,
-            pos : particles.pos,
+            pos : new Vector(0,0),
             start_size:new Vector(96,64),
             end_size:new Vector(20,20),
             gravity : new Vector(0,-6),
             life:0.9,
             depth:2,
             group:5,
-            emit_time : 1
+            emit_time : 0.05
         });
 
         ss = new Sprite({
-            texture : t2,
-            pos : new Vector()
+            texture : t1,
+            pos : new Vector(),
+            size : new Vector(32,32)
         });
 
         // particles.add_emitter({
@@ -78,7 +78,7 @@ class Main extends luxe.Game {
             life : 1.2,
             depth:3,
             group:5,
-            emit_time : 1
+            emit_time : 0.1
         });
 
         
@@ -90,13 +90,13 @@ class Main extends luxe.Game {
             function(b:Batcher){
                 b.blend_mode();
             }
-        );   
+        );
 
     } //ready
   
     public function onmousemove(e) {
         mouse.set(e.x,e.y);
-        // particles.pos = mouse; 
+        particles.pos = mouse; 
 
         ss.pos = mouse;
     }

@@ -397,7 +397,7 @@ import phoenix.Renderer;
 
 //input
 
-    public function oninputdown(_name:String, e:Dynamic) {
+    public function oninputdown( _name:String, e:InputEvent ) {
 
         if(!shutting_down) {
             scene.oninputdown(_name,e);
@@ -406,7 +406,7 @@ import phoenix.Renderer;
         if(host.oninputdown != null) host.oninputdown(_name,e); 
     }
 
-    public function oninputup(_name:String, e:Dynamic) {
+    public function oninputup( _name:String, e:InputEvent ) {
         
         if(!shutting_down) {
             scene.oninputup(_name,e);
