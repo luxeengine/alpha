@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [adb7522b55](http://github.com/underscorediscovery/luxe/commit/adb7522b5570faa9686eb0f16e198f422ebafbe1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 16:50:09 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Events; Components; Fix #32 - typed data for init when using .add( Type, name, data )</li><li>Docs; Updating event guide code and descriptions</li><li>Camera; Fixing bug introduced yesterday where screenshake would change/move the camera position, instead of affecting it</li><li>Events; Tidying up the shutdown / startup confusion</li><li>Events; Added a clear() command, fixes #31 but needs to be added to the tests</li><li>Tests; Camera; Added visual info to camera test</li><li>Tests; Components; Fixed and renamed the two component tests, still more to go</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [f11723041c](http://github.com/underscorediscovery/luxe/commit/f11723041ca6ec6631eca741627b2436aed5806b)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Dec 20 2013 03:17:44 GMT-0330 (NST)   
