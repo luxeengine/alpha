@@ -193,7 +193,7 @@ import phoenix.Renderer;
         scene.add(Luxe.camera);
 
             //finally, create the debug console
-        debug.create_debug_console();
+        debug.create_debug_console(); 
     }
 
     public function shutdown() {        
