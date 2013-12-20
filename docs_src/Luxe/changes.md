@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [d10e29180f](http://github.com/underscorediscovery/luxe/commit/d10e29180f65f37496189410ac093593204207ed)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 17:07:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Clarity; Cleanup; Fix #29, making shutdown -> destroy consistent, and startup is now always named init like it should be on the core</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e37a4cb45e](http://github.com/underscorediscovery/luxe/commit/e37a4cb45e15a5b59fec9534442b2903bdba52e8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 16:50:32 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; updated changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [adb7522b55](http://github.com/underscorediscovery/luxe/commit/adb7522b5570faa9686eb0f16e198f422ebafbe1)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Dec 20 2013 16:50:09 GMT-0330 (NST)   
