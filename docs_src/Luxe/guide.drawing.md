@@ -220,14 +220,14 @@ Each drawing function takes an `options` parameter that can have the following v
 	            color : new Color(1,1,1,1)
 	        });
 
-	 		Luxe.draw.text({
+	        Luxe.draw.text({
 	            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
 	            pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
-	            text : "Luxe.draw.ring({\n
-	                        \t x : Luxe.screen.w/2,\n
-	                        \t y : Luxe.screen.h/2,\n
-	                        \t r : 70,\n
-	                        \t color : new Color(1,1,1,1)\n
+	            text : "Luxe.draw.ring({
+	                        \t x : Luxe.screen.w/2,
+	                        \t y : Luxe.screen.h/2,
+	                        \t r : 70,
+	                        \t color : new Color(1,1,1,1)
 	                    });\n"
 	        });
 

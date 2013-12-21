@@ -20,6 +20,9 @@ class Main extends luxe.Game {
 	var center : Vector;
 	var sqrt2 : Float = 1.414213562373095;
 	var min_length : Float = 0;
+
+    
+
 	public var rotation : Float = 0;
 
 	var dest : Geometry;

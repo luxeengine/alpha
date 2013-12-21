@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [4023c5c95a](http://github.com/underscorediscovery/luxe/commit/4023c5c95a03432a8a1cd0aeeb6b4b5cc1cec217)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Dec 21 2013 07:01:36 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Performance; fixes to mobile performance being thrashed by profiler views, as well as various code fixes that were costing on mobile.</li><li>Tween; Making tweens have a .timescale( trueorfalse ) flag so they obey Luxe.timescale. This let's you use global timescale to slow down tweens as well.</li><li>Rings; Making enemies, projectiles and player all obey timescale. Making player drag slow time down, making the input way better for desktop/mobile.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [2d19fc8fa9](http://github.com/underscorediscovery/luxe/commit/2d19fc8fa9f69a7e8ab4eeb039f4737c3223e9f0)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Dec 21 2013 01:32:09 GMT-0330 (NST)   
