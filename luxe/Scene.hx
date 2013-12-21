@@ -4,11 +4,8 @@ package luxe;
 import luxe.Input.MouseEvent;
 
 
-class Scene {
+class Scene extends Objects {
 
-    public var name : String = 'Untitled Scene';
-    public var id : String = '';
-    
     public var entities : Map<String,Entity>;    
     public var inited : Bool = false;
     public var started : Bool = false;
@@ -17,8 +14,9 @@ class Scene {
     var _delayed_start_entities : Array<Entity>;
 
     public function new() {
-        entities = new Map<String,Entity>();
-        id = Luxe.utils.uniqueid();
+        super();
+        name = 'Untitled Scene';
+        entities = new Map<String,Entity>();        
         _delayed_init_entities = [];
         _delayed_start_entities = [];
     }
@@ -49,7 +47,9 @@ class Scene {
 
     public function add( entity:Entity ) {
 
-        entities.set( entity.id, entity );        
+        entities.set( entity.id, entity );
+
+        entity.scene = this;
 
         if(inited) {
             _delayed_init_entities.push(entity);            
@@ -61,15 +61,16 @@ class Scene {
 
     } //add
 
-    public function remove(entity:Entity) {
-        entity._destroy();
-        entities.remove( entity.id );        
+    public function remove( entity:Entity ) {        
+        entities.remove( entity.id );
+        entity.scene = null;
     }
 
     public function empty() {
         trace("cleaning up entities in scene");
         for(entity in entities) {
             remove(entity);
+            entity._destroy();
             entity = null;
         }
         trace("entities left " + Lambda.count(entities));
@@ -113,6 +114,7 @@ class Scene {
 
         for(entity in entities) {
             if(!entity.inited) {
+                _debug('calling init on ' + entity.name);
                 entity._init();
             }
         }

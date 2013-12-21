@@ -223,7 +223,7 @@ class Sprite extends Entity {
             
             //todo: like with add=false, don't add to scene.            
         if(scene != null) {
-            Luxe.scene.add(this);
+            Luxe.scene.add(this);            
         } 
     }
 

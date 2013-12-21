@@ -67,9 +67,7 @@ class Entity extends Objects {
 
     } //new
 
-	@:noCompletion public function _init() {
-
-		// trace('calling init on ' + name);
+	@:noCompletion public function _init() {		
 
 			//init the parent first
 		_call(this, 'init');
@@ -78,11 +76,14 @@ class Entity extends Objects {
 
 			//init all the components attached directly to us
 		for(_component in components) {
+            _debug("\t entity " + name + " calling init on component " + _component.name );
 			_call(_component, '_init');
+            _debug('\t- ');
 		} //for each component
 
 			//now init our children, so they do the same
 		for(_child in children) {
+            _debug("\t parent " + name + " calling init on child " + _child.name );
 			_child._init();
 		} //for each child
 
@@ -94,7 +95,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousedown(e:MouseEvent) {
 
-        _debug('calling _onmousedown on ' + name);
+        _debug('calling _onmousedown on ' + name, true );
 
             //init the parent first
         _call(this, 'onmousedown', [e]);
@@ -115,7 +116,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmouseup(e:MouseEvent) {
 
-        _debug('calling _onmouseup on ' + name);
+        _debug('calling _onmouseup on ' + name, true);
 
             //init the parent first
         _call(this, 'onmouseup', [e]);
@@ -136,7 +137,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousemove(e:MouseEvent) {
 
-        _debug('calling _onmousemove on ' + name);
+        _debug('calling _onmousemove on ' + name, true);
 
             //init the parent first
         _call(this, 'onmousemove', [e]);
@@ -157,7 +158,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputdown(_name:String,e:Dynamic) {
 
-        _debug('calling _oninputdown on ' + name);
+        _debug('calling _oninputdown on ' + name, true);
 
             //init the parent first
         _call(this, 'oninputdown', [e]);
@@ -178,7 +179,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputup(_name:String,e:Dynamic) {
 
-        _debug('calling _oninputup on ' + name);
+        _debug('calling _oninputup on ' + name, true);
 
             //init the parent first
         _call(this, 'oninputup', [e]);
@@ -199,7 +200,7 @@ class Entity extends Objects {
 
 	@:noCompletion public function _start() {
 
-		_debug('calling start on ' + name);
+		_debug('calling start on ' + name, true);
 
 			//start the parent first
 		_call(this, 'start');
@@ -224,17 +225,22 @@ class Entity extends Objects {
 
 	@:noCompletion public function _destroy() {
 
+        _debug('calling destroy on ' + name + ' with ' + children.length + ' children');
+
 			//first destroy children
+        for(_child in children) {
+            _debug('\t child: ' + _child.name);
+        }
+
 		for(_child in children) {
+            _debug('\t calling destroy on child ' + _child.name);
 			_child._destroy();
 		} //for each child
 
 			//destroy all the components attached directly to us
 		for(_component in components) {
 			_call(_component, 'destroy');
-		} //for each component
-
-		_debug('calling destroy on ' + name);
+		} //for each component		
 
 			//destroy the parent last
 		_call(this, 'destroy', [true]);
@@ -246,14 +252,16 @@ class Entity extends Objects {
 		_destroyed = true;
 
 			//kill the events
-        events.destroy();
-		events = null;
+        if(events != null) {
+            events.destroy();
+            events = null;
+        }
 
 	} //_start
 
 	@:noCompletion public function _update(dt:Float) {
 
-		_debug('calling update on ' + name);
+		_debug('calling update on ' + name, true);
 
 			//update the parent first
 		_call(this, 'update', [dt]);
@@ -278,7 +286,7 @@ class Entity extends Objects {
 			//Not allowed post destroy
 		if(_destroyed) return;
 
-		_debug('calling fixed_update on ' + name);
+		_debug('calling fixed_update on ' + name, true);
 
 			//fixed_update the parent first
 		_call(this, 'fixed_update');
@@ -342,9 +350,23 @@ class Entity extends Objects {
     	return _components.components;
     } //get_components
 
-    public function add_child(child:Entity) {
+    private function _add_child( child:Entity ) {
+        
+        children.push(child);
 
-    	children.push(child);
+        _debug( name + " : add child : " + child.name );
+
+            //children inherit the updates and such from the parent, so they shouldn't be in the root of the scene
+        if(child.scene != null) {
+            _debug( name + " add child " + child.name + " being parented, removing from scene root of " + child.scene.name);
+            child.scene.remove(child);
+        } else {
+            _debug(name + " add child " + child.name + " being parented, but no scene");
+        }
+
+    }
+
+    public function add_child( child:Entity ) {
 
             //and update the parent link
         if(child.parent != this) {
@@ -517,9 +539,10 @@ class Entity extends Objects {
 
     }//internal_parent_pos_changed
 
-    private function set_parent(other:Entity) {
+    private function set_parent( other:Entity ) {
 
-    		//if we are parented already, remove ourselves
+        _debug('>>  ' + name + ' calling set parent to ' + other.name );
+    		//if we are parented already, remove ourselves from that parent
     	if(parent != null) {
     		parent.remove_child(this);
     	} //remove
@@ -539,7 +562,7 @@ class Entity extends Objects {
     			//update relative rotation
     		rotation = parent.rotation.clone().add( rotationRelative );
     			//add to parent as a child
-    		parent.add_child(this);
+    		parent._add_child(this);
 
     	} 
 

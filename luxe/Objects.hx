@@ -38,6 +38,17 @@ class Objects {
     } //_merge_properties  
 
     @:noCompletion public static var _show_debug : Bool = false;
-    @:noCompletion private function _debug(v){ if(_show_debug) { trace(v); } }	
+    @:noCompletion public static var _show_debug_verbose : Bool = false;
+    @:noCompletion private function _debug(v,?verbose=false){ 
+        if(_show_debug) { 
+            if(!verbose) { 
+                trace(v); 
+            } else {
+                if(_show_debug_verbose) {
+                    trace(v); 
+                } 
+            }
+        } 
+    }	
 
 } //Objects
