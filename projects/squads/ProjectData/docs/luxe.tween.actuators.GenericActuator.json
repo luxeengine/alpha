@@ -1,0 +1,122 @@
+{
+	"file":"luxe.tween.actuators.GenericActuator.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"stop", "link":"stop", "type":"method", 
+					"code":"stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"snapping", "link":"snapping", "type":"method", 
+					"code":"snapping(?value:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"smartRotation", "link":"smartRotation", "type":"method", 
+					"code":"smartRotation(?value:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"reverse", "link":"reverse", "type":"method", 
+					"code":"reverse(?value:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"resume", "link":"resume", "type":"method", 
+					"code":"resume() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"repeat", "link":"repeat", "type":"method", 
+					"code":"repeat(?times:Int) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"reflect", "link":"reflect", "type":"method", 
+					"code":"reflect(?value:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"pause", "link":"pause", "type":"method", 
+					"code":"pause() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onUpdate", "link":"onUpdate", "type":"method", 
+					"code":"onUpdate(handler:Dynamic, ?parameters:Array) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onRepeat", "link":"onRepeat", "type":"method", 
+					"code":"onRepeat(handler:Dynamic, ?parameters:Array) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onComplete", "link":"onComplete", "type":"method", 
+					"code":"onComplete(handler:Dynamic, ?parameters:Array) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"move", "link":"move", "type":"method", 
+					"code":"move() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"ease", "link":"ease", "type":"method", 
+					"code":"ease(easing:luxe.tween.easing.IEasing) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"delay", "link":"delay", "type":"method", 
+					"code":"delay(duration:Float) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"autoVisible", "link":"autoVisible", "type":"method", 
+					"code":"autoVisible(?value:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"apply", "link":"apply", "type":"method", 
+					"code":"apply() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new(target:Dynamic, duration:Float, properties:Dynamic) ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"target", "link":"target", "type":"var", 
+					"code":"target : Dynamic",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"properties", "link":"properties", "type":"var", 
+					"code":"properties : Dynamic",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"id", "link":"id", "type":"var", 
+					"code":"id : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"duration", "link":"duration", "type":"var", 
+					"code":"duration : Float",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

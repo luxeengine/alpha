@@ -107,7 +107,7 @@ class PlayerWeapon extends Component {
 
         set_weapon('pistol');
 
-        entity.add_child(image);
+        image.parent = entity;
 
         entity.events.listen('player.flip', onflip);
 

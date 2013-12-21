@@ -1,0 +1,87 @@
+{
+	"file":"luxe.tween.Actuate.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Static Methods", "link":"StaticMethods",
+			"values":[
+				{
+					"name":"apply", "link":"apply", "type":"static method", 
+					"code":"apply(target:Dynamic, properties:Dynamic, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"motionPath", "link":"motionPath", "type":"static method", 
+					"code":"motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"pause", "link":"pause", "type":"static method", 
+					"code":"pause(target:Dynamic) : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"pauseAll", "link":"pauseAll", "type":"static method", 
+					"code":"pauseAll() : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"reset", "link":"reset", "type":"static method", 
+					"code":"reset() : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"resume", "link":"resume", "type":"static method", 
+					"code":"resume(target:Dynamic) : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"resumeAll", "link":"resumeAll", "type":"static method", 
+					"code":"resumeAll() : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"stop", "link":"stop", "type":"static method", 
+					"code":"stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool, ?sendEvent:Bool) : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"timer", "link":"timer", "type":"static method", 
+					"code":"timer(duration:Float, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"tween", "link":"tween", "type":"static method", 
+					"code":"tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"unload", "link":"unload", "type":"static method", 
+					"code":"unload(actuator:luxe.tween.actuators.GenericActuator) : Void",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"update", "link":"update", "type":"static method", 
+					"code":"update(target:Dynamic, duration:Float, ?start:Array, ?end:Array, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":"`static` :desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"defaultActuator", "link":"defaultActuator", "type":"var", 
+					"code":"defaultActuator : Class",
+					"desc":"`static`:desc unavailable:"
+				},
+				{
+					"name":"defaultEase", "link":"defaultEase", "type":"var", 
+					"code":"defaultEase : luxe.tween.easing.IEasing",
+					"desc":"`static`:desc unavailable:"
+				}
+			]
+		}
+	]
+}

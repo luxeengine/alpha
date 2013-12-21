@@ -1,10 +1,11 @@
 
 package game;
 
-import hxcollision.Collision;
-import hxcollision.CollisionData;
-import hxcollision.shapes.BaseShape;
-import hxcollision.shapes.Circle;
+import luxe.collision.Collision;
+import luxe.collision.CollisionData;
+import luxe.collision.shapes.Shape;
+import luxe.collision.shapes.Circle;
+
 import luxe.Entity;
 import luxe.Vector;
 import luxe.Sprite;
@@ -22,7 +23,7 @@ class Bullet extends Component {
     public var speed : Float = 1;
     @:hide public var collider : Circle;
     
-    var ignored_colliders : Array<BaseShape>;
+    var ignored_colliders : Array<Shape>;
 
     
 
@@ -36,7 +37,7 @@ class Bullet extends Component {
         collider.name = 'bullet collider';
     }
 
-    public function kill( _pos:Vector, _shape:BaseShape ) {
+    public function kill( _pos:Vector, _shape:Shape ) {
         
         alive = false;
         entity.fixed_rate = 0;
@@ -93,7 +94,7 @@ class Bullet extends Component {
                 if(results.length > 0) {
                     
                     var must_kill = true;
-                    var kitem : BaseShape = null;
+                    var kitem : Shape = null;
 
                     for(r in results) {
                         if( Lambda.indexOf(ignored_colliders,r.shape1) != -1 ) {

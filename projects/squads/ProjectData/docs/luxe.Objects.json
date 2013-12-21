@@ -1,0 +1,22 @@
+{
+	"file":"luxe.Objects.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"name", "link":"name", "type":"var", 
+					"code":"name : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"id", "link":"id", "type":"var", 
+					"code":"id : String",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,112 @@
+{
+	"file":"luxe.debug._ProfilerDebugView.ProfilerBar.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"show", "link":"show", "type":"method", 
+					"code":"show() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"hide", "link":"hide", "type":"method", 
+					"code":"hide() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new(_name:String, _color:luxe.Color) ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"history", "link":"history", "type":"var", 
+					"code":"history : Int",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"max", "link":"max", "type":"var", 
+					"code":"max : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"height2", "link":"height2", "type":"var", 
+					"code":"height2 : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"height", "link":"height", "type":"var", 
+					"code":"height : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"width", "link":"width", "type":"var", 
+					"code":"width : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"name", "link":"name", "type":"var", 
+					"code":"name : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"text_item", "link":"text_item", "type":"var", 
+					"code":"text_item : luxe.Text",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"graph_geometry", "link":"graph_geometry", "type":"var", 
+					"code":"graph_geometry : phoenix.geometry.Geometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"graphbg_geometry", "link":"graphbg_geometry", "type":"var", 
+					"code":"graphbg_geometry : phoenix.geometry.QuadGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"bg_geometry", "link":"bg_geometry", "type":"var", 
+					"code":"bg_geometry : phoenix.geometry.QuadGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"bar_geometry", "link":"bar_geometry", "type":"var", 
+					"code":"bar_geometry : phoenix.geometry.QuadGeometry",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
+				{
+					"name":"ping", "link":"ping", "type":"property", 
+					"code":"ping : Float",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"value", "link":"value", "type":"property", 
+					"code":"value : Float",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"pos", "link":"pos", "type":"property", 
+					"code":"pos : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"text", "link":"text", "type":"property", 
+					"code":"text : String",
+					"desc":"`(read/write)` :desc unavailable:"
+				}
+			]
+		}
+	]
+}

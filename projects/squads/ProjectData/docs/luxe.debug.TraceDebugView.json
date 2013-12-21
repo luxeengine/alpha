@@ -1,0 +1,72 @@
+{
+	"file":"luxe.debug.TraceDebugView.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"hide", "link":"hide", "type":"method", 
+					"code":"hide() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"show", "link":"show", "type":"method", 
+					"code":"show() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"process", "link":"process", "type":"method", 
+					"code":"process() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"refresh", "link":"refresh", "type":"method", 
+					"code":"refresh() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"add_line", "link":"add_line", "type":"method", 
+					"code":"add_line(_t:String) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"create", "link":"create", "type":"method", 
+					"code":"create() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"on_trace", "link":"on_trace", "type":"method", 
+					"code":"on_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"max_lines", "link":"max_lines", "type":"var", 
+					"code":"max_lines : Int",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"lines", "link":"lines", "type":"var", 
+					"code":"lines : luxe.Text",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"logged", "link":"logged", "type":"var", 
+					"code":"logged : Array",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

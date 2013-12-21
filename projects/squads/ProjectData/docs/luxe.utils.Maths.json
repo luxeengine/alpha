@@ -1,0 +1,97 @@
+{
+	"file":"luxe.utils.Maths.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Static Methods", "link":"StaticMethods",
+			"values":[
+				{
+					"name":"fixed", "link":"fixed", "type":"static method", 
+					"code":"fixed(value:Float, precision:Int) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"clamp", "link":"clamp", "type":"static method", 
+					"code":"clamp(value:Float, a:Float, b:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"clampBottom", "link":"clampBottom", "type":"static method", 
+					"code":"clampBottom(value:Float, a:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"nearest_power_of_two", "link":"nearest_power_of_two", "type":"static method", 
+					"code":"nearest_power_of_two(_value:Int) : Int",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"mapLinear", "link":"mapLinear", "type":"static method", 
+					"code":"mapLinear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"smoothstep", "link":"smoothstep", "type":"static method", 
+					"code":"smoothstep(x:Float, min:Float, max:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"smootherstep", "link":"smootherstep", "type":"static method", 
+					"code":"smootherstep(x:Float, min:Float, max:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"random16", "link":"random16", "type":"static method", 
+					"code":"random16() : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"randInt", "link":"randInt", "type":"static method", 
+					"code":"randInt(low:Int, high:Int) : Int",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"randFloat", "link":"randFloat", "type":"static method", 
+					"code":"randFloat(low:Float, high:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"randFloatSpread", "link":"randFloatSpread", "type":"static method", 
+					"code":"randFloatSpread(range:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"sign", "link":"sign", "type":"static method", 
+					"code":"sign(x:Float) : Int",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"degToRad", "link":"degToRad", "type":"static method", 
+					"code":"degToRad(deg:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				},
+				{
+					"name":"radToDeg", "link":"radToDeg", "type":"static method", 
+					"code":"radToDeg(rad:Float) : Float",
+					"desc":"`static` :desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"DEG2RAD", "link":"DEG2RAD", "type":"var", 
+					"code":"DEG2RAD : Float",
+					"desc":"`static`:desc unavailable:"
+				},
+				{
+					"name":"RAD2DEG", "link":"RAD2DEG", "type":"var", 
+					"code":"RAD2DEG : Float",
+					"desc":"`static`:desc unavailable:"
+				}
+			]
+		}
+	]
+}

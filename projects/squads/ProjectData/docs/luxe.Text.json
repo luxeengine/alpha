@@ -1,0 +1,82 @@
+{
+	"file":"luxe.Text.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"destroy", "link":"destroy", "type":"method", 
+					"code":"destroy() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new(_options:Dynamic) ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"text_options", "link":"text_options", "type":"var", 
+					"code":"text_options : Dynamic",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"ready", "link":"ready", "type":"var", 
+					"code":"ready : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"geometry", "link":"geometry", "type":"var", 
+					"code":"geometry : phoenix.geometry.CompositeGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"font", "link":"font", "type":"var", 
+					"code":"font : phoenix.BitmapFont",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
+				{
+					"name":"locked", "link":"locked", "type":"property", 
+					"code":"locked : Bool",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"visible", "link":"visible", "type":"property", 
+					"code":"visible : Bool",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"color", "link":"color", "type":"property", 
+					"code":"color : luxe.Color",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"size", "link":"size", "type":"property", 
+					"code":"size : Float",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"pos", "link":"pos", "type":"property", 
+					"code":"pos : luxe.Vector",
+					"desc":"`(read/write)` :desc unavailable:"
+				},
+				{
+					"name":"text", "link":"text", "type":"property", 
+					"code":"text : String",
+					"desc":"`(read/write)` :desc unavailable:"
+				}
+			]
+		}
+	]
+}

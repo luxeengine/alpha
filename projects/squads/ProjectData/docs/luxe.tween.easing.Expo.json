@@ -1,0 +1,27 @@
+{
+	"file":"luxe.tween.easing.Expo.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Properties", "link":"Properties",
+			"values":[
+				{
+					"name":"easeIn", "link":"easeIn", "type":"property", 
+					"code":"easeIn : luxe.tween.easing.IEasing",
+					"desc":"`(read only)` :desc unavailable:"
+				},
+				{
+					"name":"easeInOut", "link":"easeInOut", "type":"property", 
+					"code":"easeInOut : luxe.tween.easing.IEasing",
+					"desc":"`(read only)` :desc unavailable:"
+				},
+				{
+					"name":"easeOut", "link":"easeOut", "type":"property", 
+					"code":"easeOut : luxe.tween.easing.IEasing",
+					"desc":"`(read only)` :desc unavailable:"
+				}
+			]
+		}
+	]
+}

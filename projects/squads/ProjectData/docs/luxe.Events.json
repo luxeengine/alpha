@@ -1,0 +1,72 @@
+{
+	"file":"luxe.Events.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"unschedule", "link":"unschedule", "type":"method", 
+					"code":"unschedule(schedule_id:String) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"schedule", "link":"schedule", "type":"method", 
+					"code":"schedule(time:Float, event_name:String, ?properties:schedule.T) : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"fire", "link":"fire", "type":"method", 
+					"code":"fire(_event_name:String, ?_properties:fire.T) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"process", "link":"process", "type":"method", 
+					"code":"process() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"dequeue", "link":"dequeue", "type":"method", 
+					"code":"dequeue(event_id:String) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"queue", "link":"queue", "type":"method", 
+					"code":"queue(event_name:String, ?properties:queue.T) : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"disconnect", "link":"disconnect", "type":"method", 
+					"code":"disconnect(event_id:String) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"listen", "link":"listen", "type":"method", 
+					"code":"listen(_event_name:String, _listener:listen.T->Void) : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"does_filter_event", "link":"does_filter_event", "type":"method", 
+					"code":"does_filter_event(_filter:String, _event:String) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"clear", "link":"clear", "type":"method", 
+					"code":"clear() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"destroy", "link":"destroy", "type":"method", 
+					"code":"destroy() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

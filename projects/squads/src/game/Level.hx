@@ -3,10 +3,12 @@ package game;
 
 import game.items.Explosive;
 import game.Manager;
-import hxcollision.math.Vector2D;
-import hxcollision.ShapeDrawer ;
-import hxcollision.shapes.Polygon;
-import hxcollision.shapes.BaseShape;
+
+import luxe.collision.math.Vector2D;
+import luxe.collision.ShapeDrawer;
+import luxe.collision.shapes.Polygon;
+import luxe.collision.shapes.Shape;
+import luxe.collision.ShapeDrawerLuxe;
 
 import luxe.States;
 import luxe.Sprite;
@@ -14,18 +16,6 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Color;
 import phoenix.Texture;
-
-class LuxeDrawer extends ShapeDrawer {
-    override public function drawLine( start:Vector2D, end:Vector2D ) {
-        Luxe.draw.line({
-            p0 : new Vector(start.x, start.y),
-            p1 : new Vector(end.x, end.y),
-            color : new Color().rgb(0xff4b03),
-            depth : 20,
-            immediate : false
-        });
-    }
-}
 
 class Level extends State {
 
@@ -39,18 +29,17 @@ class Level extends State {
     var air_collision_rects:Array<Rectangle>;
     var item_collision_rects:Array<Rectangle>;
     
+    public var ground_collision_shapes : Array<Shape>;
+    public var air_collision_shapes : Array<Shape>;
 
-    public var ground_collision_shapes : Array<BaseShape>;
-    public var air_collision_shapes : Array<BaseShape>;
-
-    public var drawer : LuxeDrawer;
+    public var drawer : ShapeDrawerLuxe;
 
     var scale : Float = 4;
 
     public function init(_manager:Manager) {
 
         manager = _manager;
-        drawer = new LuxeDrawer();
+        drawer = new ShapeDrawerLuxe();
 
         bg = new Sprite({
             name:'bg',
@@ -153,7 +142,7 @@ class Level extends State {
         return Polygon.rectangle( _rect.x * scale, _rect.y * scale, _rect.w * scale, _rect.h * scale , false ) ;
     }   
 
-    public function create_collision_rectangles( list:Array<Rectangle>, target:Array<BaseShape> ) {
+    public function create_collision_rectangles( list:Array<Rectangle>, target:Array<Shape> ) {
         for(item in list) {
             target.push( Polygon.rectangle( item.x * scale, item.y * scale, item.w * scale, item.h * scale, false ) );
         }

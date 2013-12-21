@@ -1,0 +1,57 @@
+{
+	"file":"luxe.Draw.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"axis3D", "link":"axis3D", "type":"method", 
+					"code":"axis3D(?options:Dynamic) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"plane", "link":"plane", "type":"method", 
+					"code":"plane(options:Dynamic) : phoenix.geometry.PlaneGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"circle", "link":"circle", "type":"method", 
+					"code":"circle(options:Dynamic) : phoenix.geometry.CircleGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"arc", "link":"arc", "type":"method", 
+					"code":"arc(options:Dynamic) : phoenix.geometry.ArcGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"ring", "link":"ring", "type":"method", 
+					"code":"ring(options:Dynamic) : phoenix.geometry.RingGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"text", "link":"text", "type":"method", 
+					"code":"text(options:Dynamic) : null",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"rectangle", "link":"rectangle", "type":"method", 
+					"code":"rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"box", "link":"box", "type":"method", 
+					"code":"box(options:Dynamic) : phoenix.geometry.QuadGeometry",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"line", "link":"line", "type":"method", 
+					"code":"line(options:Dynamic) : phoenix.geometry.LineGeometry",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

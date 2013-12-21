@@ -21,6 +21,7 @@ class PlayerTeam extends Component {
         }
 
         flag = new Sprite({
+            name : 'flag',
             texture : Luxe.loadTexture('assets/game/flag.png'),
             // origin : new Vector(0,0),
             color : teamcolor,
@@ -30,7 +31,7 @@ class PlayerTeam extends Component {
 
         flag.texture.filter = FilterType.nearest;
 
-        entity.add_child(flag);
+        flag.parent = entity;
 
         entity.events.listen('player.flip', onflip);
     }

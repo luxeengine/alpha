@@ -1,0 +1,117 @@
+{
+	"file":"luxe.debug.StatsDebugView.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"update_render_stats", "link":"update_render_stats", "type":"method", 
+					"code":"update_render_stats() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"toggle_debug_stats", "link":"toggle_debug_stats", "type":"method", 
+					"code":"toggle_debug_stats() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"refresh_render_stats", "link":"refresh_render_stats", "type":"method", 
+					"code":"refresh_render_stats() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"hide", "link":"hide", "type":"method", 
+					"code":"hide() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"show", "link":"show", "type":"method", 
+					"code":"show() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onkeydown", "link":"onkeydown", "type":"method", 
+					"code":"onkeydown(e:luxe.KeyEvent) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"process", "link":"process", "type":"method", 
+					"code":"process() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"refresh", "link":"refresh", "type":"method", 
+					"code":"refresh() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"create", "link":"create", "type":"method", 
+					"code":"create() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"get_render_stats_string", "link":"get_render_stats_string", "type":"method", 
+					"code":"get_render_stats_string() : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"get_resource_stats_string", "link":"get_resource_stats_string", "type":"method", 
+					"code":"get_resource_stats_string() : String",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"hide_debug", "link":"hide_debug", "type":"var", 
+					"code":"hide_debug : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"resource_list_text", "link":"resource_list_text", "type":"var", 
+					"code":"resource_list_text : luxe.Text",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"resource_stats_text", "link":"resource_stats_text", "type":"var", 
+					"code":"resource_stats_text : luxe.Text",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"render_stats_text", "link":"render_stats_text", "type":"var", 
+					"code":"render_stats_text : luxe.Text",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"debug_geometry_count", "link":"debug_geometry_count", "type":"var", 
+					"code":"debug_geometry_count : Int",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"debug_draw_call_count", "link":"debug_draw_call_count", "type":"var", 
+					"code":"debug_draw_call_count : Int",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"_render_stats", "link":"_render_stats", "type":"var", 
+					"code":"_render_stats : Dynamic",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"_last_render_stats", "link":"_last_render_stats", "type":"var", 
+					"code":"_last_render_stats : Dynamic",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

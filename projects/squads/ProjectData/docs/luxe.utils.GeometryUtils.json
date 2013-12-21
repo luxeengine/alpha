@@ -1,0 +1,32 @@
+{
+	"file":"luxe.utils.GeometryUtils.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"intersect_ray_plane", "link":"intersect_ray_plane", "type":"method", 
+					"code":"intersect_ray_plane(_ray_start:luxe.Vector, _ray_dir:luxe.Vector, _plane_normal:luxe.Vector, _plane_point:luxe.Vector) : luxe.Vector",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"point_in_polygon", "link":"point_in_polygon", "type":"method", 
+					"code":"point_in_polygon(_point:luxe.Vector, _offset:luxe.Vector, _verts:Array) : Bool",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"random_point_in_unit_circle", "link":"random_point_in_unit_circle", "type":"method", 
+					"code":"random_point_in_unit_circle() : luxe.Vector",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"segments_for_smooth_circle", "link":"segments_for_smooth_circle", "type":"method", 
+					"code":"segments_for_smooth_circle(_radius:Float, ?_smooth:Float) : Float",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,27 @@
+{
+	"file":"luxe.tween.easing.ExpoEaseIn.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"ease", "link":"ease", "type":"method", 
+					"code":"ease(t:Float, b:Float, c:Float, d:Float) : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"calculate", "link":"calculate", "type":"method", 
+					"code":"calculate(k:Float) : Float",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new() ",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

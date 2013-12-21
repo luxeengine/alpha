@@ -25,6 +25,7 @@ class PlayerAim extends Component {
     var team : PlayerTeam;
 
     public function init() {
+
         direction = new Vector();
         reticule = new Sprite({
             name:'reticule',

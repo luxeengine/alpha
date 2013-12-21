@@ -1,0 +1,27 @@
+{
+	"file":"luxe.tween.actuators.PropertyPathDetails.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new(target:Dynamic, propertyName:String, path:luxe.tween.IComponentPath, ?isField:Bool) ",
+					"desc":":desc unavailable:"
+				}
+			]
+		},
+		{
+			"name":"Members", "link":"Members",
+			"values":[
+				{
+					"name":"path", "link":"path", "type":"var", 
+					"code":"path : luxe.tween.IComponentPath",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}

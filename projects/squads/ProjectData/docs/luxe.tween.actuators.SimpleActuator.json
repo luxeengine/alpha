@@ -1,0 +1,52 @@
+{
+	"file":"luxe.tween.actuators.SimpleActuator.md",
+	"links":[],
+	"toplinks":[],
+	"sections":[
+		{
+			"name":"Methods", "link":"Methods",
+			"values":[
+				{
+					"name":"stop", "link":"stop", "type":"method", 
+					"code":"stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"resume", "link":"resume", "type":"method", 
+					"code":"resume() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"pause", "link":"pause", "type":"method", 
+					"code":"pause() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"onUpdate", "link":"onUpdate", "type":"method", 
+					"code":"onUpdate(handler:Dynamic, ?parameters:Array) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"move", "link":"move", "type":"method", 
+					"code":"move() : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"delay", "link":"delay", "type":"method", 
+					"code":"delay(duration:Float) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"autoVisible", "link":"autoVisible", "type":"method", 
+					"code":"autoVisible(?value:Bool) : luxe.tween.actuators.IGenericActuator",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"new", "link":"new", "type":"method", 
+					"code":"new(target:Dynamic, duration:Float, properties:Dynamic) ",
+					"desc":":desc unavailable:"
+				}
+			]
+		}
+	]
+}
