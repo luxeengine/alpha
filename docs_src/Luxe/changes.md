@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [e462c155b3](http://github.com/underscorediscovery/luxe/commit/e462c155b3939fd1845840e251b92b0be444baea)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Dec 21 2013 17:47:20 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; Fixing draw test from double new lines</li><li>Docs; Updating docs to match test</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [4023c5c95a](http://github.com/underscorediscovery/luxe/commit/4023c5c95a03432a8a1cd0aeeb6b4b5cc1cec217)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Dec 21 2013 07:01:36 GMT-0330 (NST)   
