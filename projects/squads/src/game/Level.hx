@@ -4,11 +4,11 @@ package game;
 import game.items.Explosive;
 import game.Manager;
 
-import luxe.collision.math.Vector2D;
-import luxe.collision.ShapeDrawer;
-import luxe.collision.shapes.Polygon;
-import luxe.collision.shapes.Shape;
-import luxe.collision.ShapeDrawerLuxe;
+import hxcollision.math.Vector2D;
+import hxcollision.ShapeDrawer;
+import hxcollision.shapes.Polygon;
+import hxcollision.shapes.Shape;
+
 
 import luxe.States;
 import luxe.Sprite;
@@ -16,6 +16,18 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Color;
 import phoenix.Texture;
+
+class ShapeDrawerLuxe extends ShapeDrawer {
+    override public function drawLine( start:Vector2D, end:Vector2D ) {
+        Luxe.draw.line({
+            p0 : new Vector(start.x,start.y),
+            p1 : new Vector(end.x, end.y),
+            color : new Color().rgb(0xff4b03),
+            depth : 20,
+            immediate : false
+        });
+    }
+}
 
 class Level extends State {
 

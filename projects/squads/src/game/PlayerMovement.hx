@@ -3,9 +3,9 @@ package game;
 
 import game.PlayerWeapon;
 
-import luxe.collision.Collision;
-import luxe.collision.CollisionData;
-import luxe.collision.shapes.Polygon;
+import hxcollision.Collision;
+import hxcollision.CollisionData;
+import hxcollision.shapes.Polygon;
 
 import luxe.Vector;
 import luxe.Sprite;
@@ -111,7 +111,7 @@ class PlayerMovement extends Component {
 
         //only test if we are in the level
         if(Game.manager.level_running) {
-            
+
             var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.ground_collision_shapes );
             for(_result in results) {
                 var dir = (_result.overlap > 0) ? 1 : -1;

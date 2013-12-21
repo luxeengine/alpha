@@ -136,43 +136,43 @@ class Manager extends State {
 //Player 2
         var player2sprite = new Sprite({
             name : 'player2',
-            texture : player_tex,
+            texture : player_tex1,
             pos : new Vector( midx - (smaller_spacing), yoffset  ),
             size : new Vector(64,64),
-            uv : startframe
+            depth : 5
         });
 
             var player2anim = player2sprite.add( SpriteAnimation, 'anim' );     
                 player2anim.add_from_json( animdata );
-                player2anim.animation = 'menu';
+                player2anim.animation = 'idle5';
                 player2anim.play();
 
 //Player 3
         var player3sprite = new Sprite({
             name : 'player3',
-            texture : player_tex,
+            texture : player_tex1,
             pos : new Vector( midx + (smaller_spacing), yoffset  ),
             size : new Vector(64,64),
-            uv : startframe
+            depth : 5
         });
 
             var player3anim = player3sprite.add( SpriteAnimation, 'anim' );     
                 player3anim.add_from_json( animdata );
-                player3anim.animation = 'menu';
+                player3anim.animation = 'idle5';
                 player3anim.play();
 
 //Player 4
         var player4sprite = new Sprite({
             name : 'player4',
-            texture : player_tex,
+            texture : player_tex1,
             pos : new Vector( midx + (smaller_spacing) + spacing, yoffset  ),
             size : new Vector(64,64),
-            uv : startframe
+            depth : 5
         });
 
             var player4anim = player4sprite.add( SpriteAnimation, 'anim' );     
                 player4anim.add_from_json( animdata );
-                player4anim.animation = 'menu';
+                player4anim.animation = 'idle5';
                 player4anim.play();
 
 //attach Player components
