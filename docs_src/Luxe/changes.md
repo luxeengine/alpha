@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [f39ddf2559](http://github.com/underscorediscovery/luxe/commit/f39ddf2559ef16d083cd04d665c7a317cd055b51)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 18:25:38 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; fixing minor issue with formatting on events guide</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [32b6319174](http://github.com/underscorediscovery/luxe/commit/32b63191740bd8ae7fb3a0a8e05bfc86c3d2c3bb)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Dec 20 2013 18:24:30 GMT-0330 (NST)   

@@ -30,15 +30,13 @@ NineSlice
 Entity    
 Objects    
 Scene    
-Modes    
-Mode    
+States    
+State    
 ! Game    
 
 luxe.components.Component   
 luxe.components.sprite.SpriteAnimation   
 luxe.tween.Actuate    
-luxe.utils.GeometryUtils   
-luxe.utils.JSON    
 
 ### luxe Components
 ---

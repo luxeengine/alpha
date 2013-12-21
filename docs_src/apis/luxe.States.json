@@ -1,5 +1,5 @@
 {
-	"file":"luxe.Modes.md",
+	"file":"luxe.States.md",
 	"links":[],
 	"toplinks":[],
 	"sections":[
@@ -78,22 +78,22 @@
 				},
 				{
 					"name":"set", "link":"set", "type":"method", 
-					"code":"set(name:String) : Void",
+					"code":"set(name:String, ?_enter_data:set.T1, ?_leave_data:set.T2) : Void",
 					"desc":":desc unavailable:"
 				},
 				{
 					"name":"disable", "link":"disable", "type":"method", 
-					"code":"disable(_name:String) : Void",
+					"code":"disable(_name:String, ?_data:disable.T) : Void",
 					"desc":":desc unavailable:"
 				},
 				{
 					"name":"enable", "link":"enable", "type":"method", 
-					"code":"enable(_name:String) : Void",
+					"code":"enable(_name:String, ?_data:enable.T) : Void",
 					"desc":":desc unavailable:"
 				},
 				{
-					"name":"add_mode", "link":"add_mode", "type":"method", 
-					"code":"add_mode(type:Class, ?_name:String) : add_mode.T",
+					"name":"add_state", "link":"add_state", "type":"method", 
+					"code":"add_state(type:Class, ?_name:String, ?_data:add_state.T2) : add_state.T1",
 					"desc":":desc unavailable:"
 				},
 				{
@@ -107,13 +107,13 @@
 			"name":"Members", "link":"Members",
 			"values":[
 				{
-					"name":"currentmode", "link":"currentmode", "type":"var", 
-					"code":"currentmode : luxe.Mode",
+					"name":"current_state", "link":"current_state", "type":"var", 
+					"code":"current_state : luxe.State",
 					"desc":":desc unavailable:"
 				},
 				{
-					"name":"activemodes", "link":"activemodes", "type":"var", 
-					"code":"activemodes : Array",
+					"name":"active_states", "link":"active_states", "type":"var", 
+					"code":"active_states : Array",
 					"desc":":desc unavailable:"
 				}
 			]

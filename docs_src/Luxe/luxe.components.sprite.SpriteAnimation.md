@@ -46,7 +46,7 @@
 
 <a class="lift" name="new" href="#new">new</a>
 
-```new() ```
+```new(?_init_data:new.T) ```
 <span class="small_desc_flat"> :desc unavailable: </span>   
 
 &nbsp;   

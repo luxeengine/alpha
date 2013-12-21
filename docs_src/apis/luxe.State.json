@@ -1,5 +1,5 @@
 {
-	"file":"luxe.Mode.md",
+	"file":"luxe.State.md",
 	"links":[],
 	"toplinks":[],
 	"sections":[
@@ -7,8 +7,18 @@
 			"name":"Methods", "link":"Methods",
 			"values":[
 				{
+					"name":"do_disable", "link":"do_disable", "type":"method", 
+					"code":"do_disable(?_data:do_disable.T) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
+					"name":"do_enable", "link":"do_enable", "type":"method", 
+					"code":"do_enable(?_data:do_enable.T) : Void",
+					"desc":":desc unavailable:"
+				},
+				{
 					"name":"new", "link":"new", "type":"method", 
-					"code":"new() ",
+					"code":"new(?_init_data:new.T) ",
 					"desc":":desc unavailable:"
 				}
 			]
@@ -17,18 +27,13 @@
 			"name":"Members", "link":"Members",
 			"values":[
 				{
-					"name":"name", "link":"name", "type":"var", 
-					"code":"name : String",
-					"desc":":desc unavailable:"
-				},
-				{
 					"name":"active", "link":"active", "type":"var", 
 					"code":"active : Bool",
 					"desc":":desc unavailable:"
 				},
 				{
-					"name":"modes", "link":"modes", "type":"var", 
-					"code":"modes : luxe.Modes",
+					"name":"machine", "link":"machine", "type":"var", 
+					"code":"machine : luxe.States",
 					"desc":":desc unavailable:"
 				}
 			]

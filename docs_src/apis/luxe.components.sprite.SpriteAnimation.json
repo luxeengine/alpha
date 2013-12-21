@@ -43,7 +43,7 @@
 				},
 				{
 					"name":"new", "link":"new", "type":"method", 
-					"code":"new() ",
+					"code":"new(?_init_data:new.T) ",
 					"desc":":desc unavailable:"
 				}
 			]
