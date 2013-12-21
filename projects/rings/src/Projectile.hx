@@ -11,6 +11,7 @@ class Projectile extends Component {
 	public var main : Main;
 	public var damage : Float = 1;
 	var spawn_protect : Float = 0;
+	var alive_time : Float = 0;
 
 	public var bullettype : String = '';
 
@@ -28,22 +29,21 @@ class Projectile extends Component {
 			s.scale.x = 1;
 			s.scale.y = 1;
 
-		spawn_protect = haxe.Timer.stamp() + 1.5;
+		spawn_protect = 1.5;
+		alive_time = 0;
 		main.projectiles.push(this);
 
-		if(bullettype == 'enemy') {
-			haxe.Timer.delay(function(){
-				kill();
-			}, 13000);
-		}
 	}
 
 	public function kill(remove:Bool = true) {
+
 		var s:Sprite = cast entity;
 			alive = false;
-			Actuate.tween(s.scale, 0.1, {x:3,y:3}).onComplete(function(){
+
+			Actuate.tween(s.scale, 0.1, {x:3,y:3}).timescale().onComplete(function(){
 				s.visible = false;
 			});
+			s.color.tween(0.1, {a:0}).timescale();
 
 		if(remove) {
 			main.projectiles.remove(this);
@@ -52,11 +52,13 @@ class Projectile extends Component {
 
 	var test : Vector;
 
-	public function update(dt:Float) {
+	public function update( dt:Float ) {
 
 		if(!alive) return;
 
-		pos = pos.clone().add( Vector.Multiply(vel,0.0166666666) );
+		alive_time += dt;
+
+		pos = pos.clone().add( Vector.Multiply(vel,dt) );
 
 		if( !Luxe.screen.point_inside( pos ) ) {
 			kill();
@@ -77,7 +79,13 @@ class Projectile extends Component {
 			} //enemy
 		} //player
 
-		if(haxe.Timer.stamp() > spawn_protect) {
+		if(bullettype == 'enemy') {
+			if(alive_time > 13) {
+				kill();
+			}
+		}
+
+		if(alive_time > spawn_protect) {
 			var dx = main.player.pos.x - pos.x;
 			var dy = main.player.pos.y - pos.y;
 				test.set(dx,dy);

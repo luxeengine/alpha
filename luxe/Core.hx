@@ -49,7 +49,7 @@ import phoenix.Renderer;
     public var audio    : Audio;
     public var scene    : Scene;
 	public var renderer : Renderer;
-    public var screen   : luxe.Rectangle; //todo
+    public var screen   : luxe.Screen;
 
 #if haxebullet
     public var physics  : Physics;
@@ -157,8 +157,8 @@ import phoenix.Renderer;
         renderer = new Renderer( this );
             //assign the globals
         Luxe.renderer = renderer;   
-            //store the size for access from API
-        screen = new luxe.Rectangle( 0,0, config.width, config.height );
+            //store the size for access from API, todo:Window position should go here.
+        screen = new luxe.Screen( 0, 0, config.width, config.height );
 
 			//Now make sure 
             //they start up

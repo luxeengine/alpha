@@ -36,7 +36,8 @@ class SimpleActuator extends GenericActuator {
 	private var setVisible:Bool;
 	private var startTime:Float;
 	private var toggleVisible:Bool;
-	
+
+	var has_timescaled_starttime : Bool = false;
 	
 	public function new (target:Dynamic, duration:Float, properties:Dynamic) {
 		
@@ -141,7 +142,7 @@ class SimpleActuator extends GenericActuator {
 		
 		detailsLength = propertyDetails.length;
 		initialized = true;
-		
+
 	}
 	
 	
@@ -182,7 +183,7 @@ class SimpleActuator extends GenericActuator {
 		
 		paused = true;
 		
-		pauseTime = haxe.Timer.stamp ();
+		pauseTime = timescaled ? update_timer : current_time;//haxe.Timer.stamp ();
 		
 	}
 	
@@ -193,7 +194,8 @@ class SimpleActuator extends GenericActuator {
 			
 			paused = false;
 			
-			timeOffset += (haxe.Timer.stamp () - pauseTime) / 1000;
+			timeOffset += ( (timescaled ? update_timer : current_time) - pauseTime) / 1000;
+			// timeOffset += (haxe.Timer.stamp () - pauseTime) / 1000;
 			
 		}
 		
@@ -266,7 +268,8 @@ class SimpleActuator extends GenericActuator {
 	}
 	
 	
-	private function update (currentTime:Float):Void {
+	private function update( currentTime:Float ):Void {
+		
 		
 		if (!paused) {
 			
@@ -419,10 +422,14 @@ class SimpleActuator extends GenericActuator {
 	
 	// Event Handlers
 	
-	
+	private static var update_timer : Float = 0;
+	private static var current_time : Float = 0;
 	private static function on_internal_update( dt : Float) : Void {
 		
-		var currentTime = haxe.Timer.stamp ();
+		update_timer += dt;
+		current_time = haxe.Timer.stamp();
+
+		var currentTime = current_time;
 		
 		var actuator:SimpleActuator;
 		
@@ -434,11 +441,17 @@ class SimpleActuator extends GenericActuator {
 			actuator = actuators[j];
 			
 			if (actuator.active) {
-				
-				if (currentTime > actuator.timeOffset) {
-					
-					actuator.update (currentTime);
-					
+
+				currentTime = actuator.timescaled ? update_timer : current_time;
+
+				if(actuator.timescaled && !actuator.has_timescaled_starttime) {
+					actuator.has_timescaled_starttime = true;
+					actuator.startTime = update_timer;
+					actuator.timeOffset = actuator.startTime;
+				}
+
+				if(currentTime > actuator.timeOffset) {
+					actuator.update( currentTime );
 				}
 				
 				j++;

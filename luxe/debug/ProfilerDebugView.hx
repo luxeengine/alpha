@@ -87,8 +87,11 @@ private class ProfilerValue {
             count = 0;
         }
 
-        bar.text = Std.string(luxe.utils.Maths.fixed(_t*1000,4));
         accum += _t;
+
+        if(bar.visible) {
+            bar.text = Std.string(luxe.utils.Maths.fixed(_t*1000,4));
+        }
 
     }
 
@@ -109,6 +112,7 @@ private class ProfilerBar {
     public var height2 : Float = 8;
     public var max : Float = 16.6;
     public var history:Int = 33;
+    public var visible:Bool = false;
     var segment : Float;
 
     var color_red : Color;
@@ -180,6 +184,7 @@ private class ProfilerBar {
     }
 
     public function hide() {
+        visible = false;
         bar_geometry.enabled = false;
         bg_geometry.enabled = false;
         graph_geometry.enabled = false;
@@ -187,6 +192,7 @@ private class ProfilerBar {
         text_item.visible = false;
     }
     public function show() {
+        visible = true;
         bar_geometry.enabled = true;
         bg_geometry.enabled = true;
         graph_geometry.enabled = true;

@@ -46,6 +46,8 @@ class Main extends luxe.Game {
     	min_length = sqrt2 * distance;
     	center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
 
+        Luxe.fixed_timestep = 0.01666667;
+
     	p_bullets = new Pool<Sprite>(20,
             function(index,total){
                 var _s = new Sprite({
@@ -139,7 +141,7 @@ class Main extends luxe.Game {
             end_angle : 180
     	});
 
-    	mainring.locked = true;
+    	// mainring.locked = true;
 
     	var centering = Luxe.draw.ring({
     		x : center.x, y:center.y,
@@ -147,7 +149,7 @@ class Main extends luxe.Game {
     		color : new Color(0.5,0,0,0.4)
     	});	
 
-    	centering.locked = true;
+    	// centering.locked = true;
 
 		player = new Sprite({
 			pos: new Vector(0,0),
@@ -164,7 +166,7 @@ class Main extends luxe.Game {
 
     public function spawn_enemy() {
 			//start spawning enemies
-		var delay = (1 + Std.random(4)) ;		
+		var delay = (1 + Std.random(6));	
         Luxe.time.schedule( delay , spawn_enemy );
 
 		var e = p_enemies.get();
@@ -244,12 +246,13 @@ class Main extends luxe.Game {
     var shid = true;
 
     public function onmousedown( e:MouseEvent ) {
+
     	var dx = e.pos.x - player.pos.x;
     	var dy = e.pos.y - player.pos.y;
 		var scale = new Vector(dx,dy);
-		if(scale.length < finger_size) {
+		// if(scale.length < finger_size) {
 			dragging = true;			
-		}
+		// }
 
 		power.p1 = e.pos;
     		p1.x = e.pos.x;
@@ -296,7 +299,7 @@ class Main extends luxe.Game {
 
 		if(range_angle >= 90 && range_angle <= 270) {
 			
-			if(dragging) {
+			// if(dragging) {
 				var d = Vector.Subtract(p1,player.pos);
     			var p = d.length;
 
@@ -315,10 +318,16 @@ class Main extends luxe.Game {
 	    			player.color.b = 1;
 	    			shoot_power = p*1.5;    			
 	    			shoot_range = true;
-                    var slowp = 1.0 - (p/200);
-                    Luxe.timescale = slowp;
+                    if(dragging) {
+                        var slowp = 1.0 - (p/250);
+                        if(slowp < 0.05) slowp = 0.05;
+                        Luxe.timescale = slowp;
+                        // trace("dragging " + Luxe.timescale);
+                    } else {
+                        if(Luxe.timescale != 1) { Luxe.timescale = 1; }
+                    }
 	    		}
-    		}
+    		// }
     		
     		
 
@@ -336,8 +345,9 @@ class Main extends luxe.Game {
     public function onmouseup( e:MouseEvent ) {
 
     	if(dragging) {
-    		
-    		dragging = false;    		
+    		dragging = false;
+            if(Luxe.timescale != 1) { Luxe.timescale = 1; }
+        } 		
     		
     		get_inrange(e.pos);
 
@@ -364,7 +374,7 @@ class Main extends luxe.Game {
     			shoot();
     		}
 
-    	} //dragging
+    	// } //dragging
 
     	power.p1 = e.pos;
     		p1.x = e.pos.x;
@@ -437,7 +447,7 @@ class Main extends luxe.Game {
     		power.enabled = false;
     	}
 
-    	if(dragging && inrange) {
+    	if(inrange) {
 
     		if(dhid) {
     			dhid = false;
@@ -458,7 +468,7 @@ class Main extends luxe.Game {
     	} //dragging && in_range
 
 
-    	if(dragging && shoot_range) {
+    	if(shoot_range) {
     		
     		if(shid) {
     		    shid = false;
@@ -473,7 +483,11 @@ class Main extends luxe.Game {
     public function onkeyup( e:KeyEvent ) {
 
         if(e.key == KeyValue.space) {
-        	
+        	if(Luxe.timescale == 1) {
+                Luxe.timescale = 0.1;
+            } else {
+                Luxe.timescale = 1;
+            }
         }
 
         if(e.key == KeyValue.escape) {

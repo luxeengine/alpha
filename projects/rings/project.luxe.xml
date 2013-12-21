@@ -10,7 +10,7 @@
 
 	<app main="Main" path="bin" file="rings" />
 
-	<window width="960" height="640" orientation="landscape" fps="60" vsync="false" resizable="false" antialiasing="4"/>
+	<window width="960" height="640" orientation="landscape" fps="9990" vsync="false" resizable="false" antialiasing="4"/>
 	
      <assets path="Assets" rename="assets" include="*"/>
 
@@ -33,5 +33,7 @@
 <icon width="120" height="120" path="iOS/icon120.png"/>
 <icon width="144" height="144" path="iOS/icon144.png"/>
 <icon width="152" height="152" path="iOS/icon152.png"/>
+
+<ios prerendered-icon="true" />
 	
 </project>

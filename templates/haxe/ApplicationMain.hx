@@ -17,6 +17,7 @@ class ApplicationMain {
 			resizable 		: ::WIN_RESIZABLE::,
 			borderless		: ::WIN_BORDERLESS::,
 			antialiasing	: ::WIN_ANTIALIASING::,
+			orientation     : "::WIN_ORIENTATION::",
 			stencil_buffer 	: ::WIN_STENCIL_BUFFER::,
 			depth_buffer 	: ::WIN_DEPTH_BUFFER::,
 			vsync 			: ::WIN_VSYNC::,

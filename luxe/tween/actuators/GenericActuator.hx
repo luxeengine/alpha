@@ -179,6 +179,18 @@ class GenericActuator implements IGenericActuator {
 	
 	
 	/**
+	 * Specify whether this should be scaled by the global timescale
+	 * @param	_value		Whether or not it should be
+	 * @return		The current actuator instance
+	 */
+
+	public var timescaled : Bool = false;
+	public function timescale( _value:Bool = true ):IGenericActuator {
+		timescaled = _value;
+		return this;
+	}
+	
+	/**
 	 * Defines a function which will be called when the tween finishes
 	 * @param	handler		The function you would like to be called
 	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
@@ -455,6 +467,13 @@ class GenericActuator implements IGenericActuator {
 	 */
 	public function reverse (?value:Null<Bool>):IGenericActuator;
 	
+	/**
+	 * Specify whether this should be scaled by the global timescale
+	 * @param	_value		Whether or not it should be
+	 * @return		The current actuator instance
+	 */
+
+	public function timescale( _value:Bool = true ):IGenericActuator;
 	/**
 	 * Enabling smartRotation can prevent undesired results when tweening rotation values
 	 * @param	value		Whether smart rotation should be enabled (Default is true)

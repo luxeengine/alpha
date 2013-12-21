@@ -29,6 +29,19 @@ class Vector {
 
 	} //new
 	
+	public function copy_from( _other:Vector ) {
+		x = _other.x;
+		y = _other.y;
+		z = _other.z;
+		w = _other.w;
+	}
+
+	public function set_xyz( _x:Float, _y:Float, _z:Float ) {
+		x = _x; 
+		y = _y;
+		z = _z;
+	}
+
 	public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
 		
 		var _setx = x;

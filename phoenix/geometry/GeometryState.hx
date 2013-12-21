@@ -33,19 +33,17 @@ class GeometryState {
 
     }
 
-    public function clone() : GeometryState {
-        var new_state = new GeometryState();
+    public function clone_onto( _other:GeometryState )  {
         
-            new_state.dirty = dirty;
-            new_state.texture = texture;
-            new_state.shader = shader;
-            new_state.group = group;
-            new_state.depth = depth;
-            new_state.primitive_type = primitive_type;
-            new_state.clip = clip;
-            new_state.clip_rect = clip_rect.clone();
+            _other.dirty = dirty;
+            _other.texture = texture;
+            _other.shader = shader;
+            _other.group = group;
+            _other.depth = depth;
+            _other.primitive_type = primitive_type;
+            _other.clip = clip;
+            _other.clip_rect.copy_from( clip_rect );
 
-        return new_state;
     }
 
     public function str() {
@@ -70,65 +68,35 @@ class GeometryState {
         // trace('cleaned geometry state ');
     }
 
-    public function ttrace(v:Dynamic) {
-        if(!log) return;
-        trace(v);
-    }
-
     public function update( other : GeometryState ) {
 
         if(depth != other.depth) {
-            ttrace("\t\tDepth change from " + depth + " to " + other.depth);
             depth = other.depth;
-        } else {
-            ttrace("\t\tNo change in depth");
-        }
+        } 
 
         if(group != other.group) {
-            ttrace("\t\tGroup change from " + group + " to " + other.group);
             group = other.group;
-        } else {
-            ttrace("\t\tNo change in group");
-        }
+        } 
 
         if(texture != other.texture) {
-            ttrace("\t\tTexture change from " + texture + " to " + other.texture);
             texture = other.texture;
-        } else {
-            ttrace("\t\tNo change in texture");
-        }
+        } 
         
         if(shader != other.shader) {
-            var shadername = shader == null ? 'null' : shader.id;
-            var othershadername = other.shader == null ? 'null' : other.shader.id;
-            
-            ttrace("\t\tShader change from " + shadername + " to " + othershadername);
-
             shader = other.shader;
-        } else {
-            ttrace("\t\tNo change in shader");
-        }
+        } 
         
         if(primitive_type != other.primitive_type) {
-            ttrace("\t\tType change from " + primitive_type + " to " + other.primitive_type);
             primitive_type = other.primitive_type;
-        } else {
-            ttrace("\t\tNo change in Type");
-        }
+        } 
         
         if(clip != other.clip) {
-            ttrace("\t\tclip change from " + clip + " to " + other.clip);
             clip = other.clip;
-        } else {
-            ttrace("\t\tNo change in clip");
         }   
 
         if(clip_rect != null) {
             if(!clip_rect.equal(other.clip_rect)) {
-                ttrace("\t\tcliprect change from " + clip_rect + " to " + other.clip_rect);
                 clip_rect.set(other.clip_rect.x,other.clip_rect.y, other.clip_rect.w, other.clip_rect.h);
-            } else {
-                ttrace("\t\tNo change in clip rec");
             }
         } //clip_rect
         

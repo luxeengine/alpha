@@ -212,14 +212,14 @@ class Geometry {
 		vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
 		) {
 		
-		var origin_x = origin.x;
-		var origin_y = origin.y;
-		var origin_z = origin.z;
+		var origin_x : Float = origin.x;
+		var origin_y : Float = origin.y;
+		var origin_z : Float = origin.z;
 
 		for(v in vertices) {	
 
 				//the base position of the vert
-			_final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
+			_final_vert_position.set_xyz( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
 
 				//compose the final position matrix
 			matrix.compose( pos, rotation, scale );			

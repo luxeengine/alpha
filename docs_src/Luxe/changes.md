@@ -1,6 +1,104 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [2d19fc8fa9](http://github.com/underscorediscovery/luxe/commit/2d19fc8fa9f69a7e8ab4eeb039f4737c3223e9f0)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Dec 21 2013 01:32:09 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Haxelib; fixing bug by giving haxelib what it wants (derp)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a0556bfaec](http://github.com/underscorediscovery/luxe/commit/a0556bfaec99939998ebe1873ba1cf895e255adc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 23:25:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Squads; tidying up the code to use hxcollision still...</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ccaaf6c876](http://github.com/underscorediscovery/luxe/commit/ccaaf6c8769c14db7e7e58ff78489e430e6cd58a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 21:15:15 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Squads; Updating projectdata out of the way for now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2c9350029d](http://github.com/underscorediscovery/luxe/commit/2c9350029d3cf2b30bdde464e76b70baedd7ee98)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 21:13:48 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Squads; updating project data for now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [eae10498b8](http://github.com/underscorediscovery/luxe/commit/eae10498b8d35d32abb456efb8f659b4ba604963)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 21:13:04 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; fixing bugs with how set parent was calling add_child and vice versa</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [cf3357c157](http://github.com/underscorediscovery/luxe/commit/cf3357c157efadba7a139d89231866aaf88d1e51)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 21:08:24 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; removing excess files and adding some api's</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1e3eb9609b](http://github.com/underscorediscovery/luxe/commit/1e3eb9609b3789a4a27e0ae156b5b64c2f4d25a0)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 20 2013 21:08:04 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; removing excess files and adding some api's</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [f39ddf2559](http://github.com/underscorediscovery/luxe/commit/f39ddf2559ef16d083cd04d665c7a317cd055b51)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Dec 20 2013 18:25:38 GMT-0330 (NST)   

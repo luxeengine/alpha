@@ -41,6 +41,13 @@ class Rectangle {
         return x == other.x && y == other.y && w == other.w && h == other.h;
     }
 
+    public function copy_from( _rect:Rectangle ) {
+        x = _rect.x; 
+        y = _rect.y; 
+        w = _rect.w; 
+        h = _rect.h;
+    }
+
     public function set(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) {
         var _setx = x;
         var _sety = y;

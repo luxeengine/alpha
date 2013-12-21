@@ -30,7 +30,7 @@ For a much deeper look at how luxe is built and why, see this guide [here](under
 If you are ready to get something on screen, let's dive straight in. For a full code listing [click here](#code).
 Make sure you have [installed luxe and that it is working first](setup.html), of course.    
 
-You can create an empty project in a folder by using `luxe create empty project_name`, or by copying the empty folder from the `template_projects/empty` folder yourself.
+You can create an empty project in a folder by using `lime create luxe:empty project_name`, or by copying the empty folder from the `template_projects/empty` folder yourself.
 
 &nbsp;
 

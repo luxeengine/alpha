@@ -12,18 +12,22 @@ class Enemy extends Component {
 	public var alive : Bool = false;
 	public var spawnpos : Float = 0;
 	public var destpos : Float = 0;
+	public var curr_dest : Float = 0;
+	public var destdir : Int = 1;
 	public var cpos : Float = 0;
 	public var speed : Float = 0;
 	public var main : Main;
 	public var health : Float = 1;
 	public var shoot_speed : Float = 100;
 	public var fire_rate : Float = 10;
+	public var alive_time : Float = 0;
+	public var next_fire : Float = 0;
 
 	public function init() {
 
 		test = new Vector();
 
-    	shoot_speed = 20 + (Math.random() * 30);
+    	shoot_speed = 10 + (Math.random() * 20);
     	fire_rate = 1.5 + (Math.random() * 2);
 
 	} //init
@@ -36,11 +40,11 @@ class Enemy extends Component {
 		}
 	}
 
-	public function start_shooting() {
+	public function do_fire() {
 
 		if(alive) {
-			fire();	
-			haxe.Timer.delay(start_shooting, Std.int(fire_rate*1000) );
+			fire();
+			next_fire = alive_time + fire_rate;
 		}
 
 	}
@@ -58,7 +62,7 @@ class Enemy extends Component {
 			Actuate.tween(s.scale, 0.1, {x:3,y:3});
 			s.color.tween(0.1, {a:0}).onComplete(function(){
 				s.visible = false;
-			});			
+			});
 			alive = false;
 			if(remove) {
 				main.enemies.remove(this);
@@ -82,27 +86,60 @@ class Enemy extends Component {
 
 		spawnpos = _opp_off; 
 		destpos = main.wrap(_opp_off + _opp_side, 0, 360);
+		curr_dest = destpos;
+		destdir = ((destpos - spawnpos) > 0) ? 1 : -1;
+
 		speed = 10 + (Math.round(Math.random()*10));
 
 		pos = new Vector( main.__x(spawnpos), main.__y(spawnpos) );
 
 		cpos = spawnpos;
 
-		Actuate.tween(this, (speed), { cpos:destpos }, true).ease(luxe.tween.easing.Linear.easeNone).onUpdate(function(){
-			pos.x = main.__x(cpos);
-			pos.y = main.__y(cpos);
-		}).reflect().repeat();
+		// Actuate.tween(this, (speed), { cpos:destpos }, true).ease(luxe.tween.easing.Linear.easeNone).onUpdate(function(){
+		// 	pos.x = main.__x(cpos);
+		// 	pos.y = main.__y(cpos);
+		// }).reflect().repeat();
 
 		main.enemies.push(this);
-		haxe.Timer.delay(start_shooting, Std.int((1+fire_rate)*1000) );
+		haxe.Timer.delay(do_fire, Std.int((1+fire_rate)*1000) );
 	}
 
 		//shoot?
 	var test :Vector;
 
-	public function update() {
+	function toggle_dest() {
+		if(curr_dest == spawnpos) {
+			curr_dest = destpos;
+		} else {
+			curr_dest = spawnpos;
+		}	
+	}
+	function update_movement(dt:Float) {
+
+		cpos += dt * speed * destdir;
+		if(cpos < curr_dest && destdir < 0) {
+			destdir = 1;
+			toggle_dest();
+		} 
+		if(cpos > curr_dest && destdir > 0) {
+			destdir = -1;
+			toggle_dest();
+		}
+
+		pos.x = main.__x(cpos);
+		pos.y = main.__y(cpos);
+	}
+
+	public function update( dt:Float ) {
 
 		if(!alive) return;
+
+		alive_time += dt;
+		if(alive_time > next_fire) {
+			do_fire();
+		}
+
+		update_movement(dt);
 
 		var dx = main.player.pos.x - pos.x;
 		var dy = main.player.pos.y - pos.y;

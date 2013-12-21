@@ -8,6 +8,7 @@ import phoenix.Shader;
 
 import luxe.Rectangle;
 import luxe.Vector;
+import luxe.Screen;
 
 class Luxe {
 
@@ -34,7 +35,7 @@ class Luxe {
     public static var renderer : phoenix.Renderer;
     public static var resources : phoenix.ResourceManager;    
 
-    @:isVar public static var screen(get, never) : Rectangle;
+    @:isVar public static var screen(get, never) : Screen;
     public static function get_screen() { return core.screen; }
 
     public static function shutdown() {

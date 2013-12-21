@@ -168,10 +168,8 @@ class BatchState {
 
     public function update( geom:Geometry ) : Bool {
 
-        last_geom_state = geom_state.clone();
+        geom_state.clone_onto( last_geom_state );
         geom_state.update(geom.state);
-
-        // str();
 
         if(geom_state.clip){
             last_clip_rect = clip_rect;

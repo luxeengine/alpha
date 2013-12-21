@@ -77,17 +77,16 @@ class Batcher {
     public var static_colors   : Int = 0;
     public var static_normals  : Int = 0;
 
-    public var vertexBuffer : GLBuffer;
-    public var tcoordBuffer : GLBuffer;
-    public var vcolorBuffer : GLBuffer;
-    public var normalBuffer : GLBuffer;
+        //the current number of active buffers in the ring
+    public var buffer_count : Int = 8;
 
-    public var vertexBuffer0 : GLBuffer;
-    public var tcoordBuffer0 : GLBuffer;
-    public var vcolorBuffer0 : GLBuffer;
-    public var normalBuffer0 : GLBuffer;
+        //the index we are on
+    public var buffer_index : Int = 0;
 
-    var flop : Bool = true;
+    public var vertexBuffers : Array<GLBuffer>;
+    public var tcoordBuffers : Array<GLBuffer>;
+    public var vcolorBuffers : Array<GLBuffer>;
+    public var normalBuffers : Array<GLBuffer>;
 
     public var projectionmatrix_attribute : Dynamic; 
     public var modelviewmatrix_attribute : Dynamic;
@@ -138,41 +137,44 @@ class Batcher {
         view = renderer.default_camera;
 
             //Create the attribute buffers
-        vertexBuffer = GL.createBuffer();
-        tcoordBuffer = GL.createBuffer();
-        vcolorBuffer = GL.createBuffer();
-        normalBuffer = GL.createBuffer();
-            //And a double buffer set
-        vertexBuffer0 = GL.createBuffer();
-        tcoordBuffer0 = GL.createBuffer();
-        vcolorBuffer0 = GL.createBuffer();
-        normalBuffer0 = GL.createBuffer();
+        vertexBuffers = [];
+        tcoordBuffers = [];
+        vcolorBuffers = [];
+        normalBuffers = [];
+
+        for(i in 0 ... buffer_count) {
+
+            var _vb = GL.createBuffer();
+            var _tb = GL.createBuffer();
+            var _cb = GL.createBuffer();
+            var _nb = GL.createBuffer();
+
+    //VERTEX
+            GL.bindBuffer(GL.ARRAY_BUFFER, _vb);
+            GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
+    //TCOORD
+            GL.bindBuffer(GL.ARRAY_BUFFER, _tb);
+            GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);
+    //COLOR
+            GL.bindBuffer(GL.ARRAY_BUFFER, _cb);
+            GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);        
+    //NORMALS
+            GL.bindBuffer(GL.ARRAY_BUFFER, _nb);
+            GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);        
+
+            vertexBuffers.push(_vb);
+            tcoordBuffers.push(_tb);
+            vcolorBuffers.push(_cb);
+            normalBuffers.push(_nb);
+
+        } //for the total buffer count
+       
 
         GL.enableVertexAttribArray( vert_attribute );
         GL.enableVertexAttribArray( tcoord_attribute );
         GL.enableVertexAttribArray( color_attribute ); 
         GL.enableVertexAttribArray( normal_attribute );
 
-//VERTEX
-        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer);
-        GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
-        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffer0);
-        GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
-//TCOORD
-        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer);
-        GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);
-        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffer0);
-        GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);          
-//COLOR
-        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffer);
-        GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);        
-        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffer0);
-        GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);        
-//NORMALS
-        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer);
-        GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);        
-        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffer0);
-        GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);        
 
             //A default name
         if(_name.length == 0) {
@@ -584,28 +586,23 @@ class Batcher {
             return;
         }
 
-            //invert which buffer is used
-        flop = !flop;
-
             //Enable atttributes
         _enable_attributes();
 
-        // trace(verts + ' ' + tcoords + ' ' + colors + ' ' + normals);
-
-        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? vertexBuffer0 : vertexBuffer );
-        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0);
+        GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffers[buffer_index] );
+        GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, (verts) ) );
 
-        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? tcoordBuffer0 : tcoordBuffer);
-        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0);
+        GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffers[buffer_index] );
+        GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, (tcoords) ) );
 
-        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? vcolorBuffer0 : vcolorBuffer);
-        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0);
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, (colors) ) );
+        GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffers[buffer_index] );
+        GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, (colors) ) );        
 
-        GL.bindBuffer(GL.ARRAY_BUFFER, flop ? normalBuffer0 : normalBuffer);
-        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0);
+        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffers[buffer_index] );
+        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, (normals) ) );
 
             //Draw
@@ -616,6 +613,13 @@ class Batcher {
 
             //Disable attributes
         _disable_attributes();
+
+        // cycle the buffers in use
+        buffer_index++;    
+        if(buffer_index >= buffer_count) {
+            buffer_index = 0;            
+        }
+
             //Reset counts
         verts = 0; tcoords = 0; colors = 0; normals = 0;
             //Increase stats
