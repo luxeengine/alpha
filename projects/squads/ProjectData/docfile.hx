@@ -9,7 +9,7 @@
 	 • function serialize_to_disk(_destination_path:String) : Void;
 	 • function get_serialize_data() : null;
 	 • function get(_name:String, ?in_children:Bool, ?first_only:Bool) : null;
-	 • function add(type:Class, ?_name:String) : add.T;
+	 • function add(type:Class, ?_name:String, ?_data:add.T2) : add.T1;
 	 … var scaleRelative : luxe.Vector (read/write);
 	 … var scale : luxe.Vector (read/write);
 	 … var rotationRelative : luxe.Vector (read/write);
@@ -17,15 +17,16 @@
 	 … var posRelative : luxe.Vector (read/write);
 	 … var pos : luxe.Vector (read/write);
 	 … var entity : luxe.Entity;
-	 • function new() ;
+	 • function new(?_init_data:new.T) ;
 
 //luxe class : luxe.State
 
+	 • function do_disable(?_data:do_disable.T) : Void;
+	 • function do_enable(?_data:do_enable.T) : Void;
 	 … var next_tick : Dynamic (write only);
-	 … var name : String;
 	 … var active : Bool;
-	 … var states : luxe.States;
-	 • function new() ;
+	 … var machine : luxe.States;
+	 • function new(?_init_data:new.T) ;
 
 //luxe class : luxe.Audio
 
@@ -42,7 +43,7 @@
 	 • function add_child(child:luxe.Entity) : Void;
 	 • function has(_name:String) : Bool;
 	 • function get(_name:String, ?_in_children:Bool, ?_first_only:Bool) : null;
-	 • function add(type:Class, ?_name:String) : add.T;
+	 • function add(type:Class, ?_name:String, ?_data:add.T2) : add.T1;
 	 … var serialize : Bool;
 	 … var scene : luxe.Scene (read/write);
 	 … var scaleRelative : luxe.Vector (read/write);
@@ -87,14 +88,16 @@
 //luxe class : luxe.Events
 
 	 • function unschedule(schedule_id:String) : Bool;
-	 • function schedule(time:Float, event_name:String, ?properties:Dynamic) : String;
-	 • function fire(_event_name:String, ?_properties:Dynamic) : Bool;
+	 • function schedule(time:Float, event_name:String, ?properties:schedule.T) : String;
+	 • function fire(_event_name:String, ?_properties:fire.T) : Bool;
 	 • function process() : Void;
 	 • function dequeue(event_id:String) : Bool;
-	 • function queue(event_name:String, ?properties:Dynamic) : String;
+	 • function queue(event_name:String, ?properties:queue.T) : String;
 	 • function disconnect(event_id:String) : Bool;
-	 • function listen(_event_name:String, _listener:null->Void) : String;
+	 • function listen(_event_name:String, _listener:listen.T->Void) : String;
 	 • function does_filter_event(_filter:String, _event:String) : Bool;
+	 • function clear() : Void;
+	 • function destroy() : Void;
 	 • function new() ;
 
 //luxe class : luxe.Input
@@ -103,35 +106,11 @@
 	 … var Gamepad : lime.helpers.Gamepad;
 	 • function add(_name:String, _event:Dynamic) : Void;
 
-//luxe class : luxe.States
-
-	 • function ontouchbegin(e:luxe.TouchEvent) : Void;
-	 • function ontouchend(e:luxe.TouchEvent) : Void;
-	 • function ontouchmove(e:luxe.TouchEvent) : Void;
-	 • function onmousemove(e:luxe.MouseEvent) : Void;
-	 • function onmouseup(e:luxe.MouseEvent) : Void;
-	 • function onmousedown(e:luxe.MouseEvent) : Void;
-	 • function oninputdown(name:String, e:Dynamic) : Void;
-	 • function oninputup(name:String, e:Dynamic) : Void;
-	 • function onkeyup(e:luxe.KeyEvent) : Void;
-	 • function onkeydown(e:luxe.KeyEvent) : Void;
-	 • function destroy() : Void;
-	 • function update(dt:Float) : Void;
-	 • function start() : Void;
-	 • function init() : Void;
-	 • function set(name:String) : Void;
-	 • function disable(_name:String) : Void;
-	 • function enable(_name:String) : Void;
-	 • function add_state(type:Class, ?_name:String) : add_state.T;
-	 … var currentmode : luxe.State;
-	 … var activemodes : Array;
-	 • function new() ;
-
 //luxe class : luxe.Sprite
 
 	 • function get_serialize_data() : null;
 	 • function point_inside(_p:phoenix.Vector) : Bool;
-	 • function destroy() : Void;
+	 • function destroy(?_ignore_internal_destroy:Bool) : Void;
 	 … var flipx : Bool (read/write);
 	 … var flipy : Bool (read/write);
 	 … var clip_rect : luxe.Rectangle (read/write);
@@ -149,12 +128,12 @@
 	 … var texture : phoenix.Texture (read/write);
 	 … var locked : Bool (read/write);
 	 … var geometry : phoenix.geometry.QuadGeometry;
-	 • function new(options:Dynamic) ;
+	 • function new(options:luxe.SpriteOptions) ;
 
 //luxe class : luxe.NineSlice
 
 	 • function create(_pos:luxe.Vector, _w:Float, _h:Float, ?_reset:Bool) : Void;
-	 • function destroy() : Void;
+	 • function destroy(?_ignore_internal_destroy:Bool) : Void;
 	 • function dirty() : Void;
 	 • function lock() : Void;
 	 … var is_set : Bool;
@@ -183,7 +162,6 @@
 	 • function onmousedown(e:luxe.MouseEvent) : Void;
 	 • function oninputup(_name:String, e:Dynamic) : Void;
 	 • function oninputdown(_name:String, e:Dynamic) : Void;
-	 • function shutdown() : Void;
 	 • function empty() : Void;
 	 • function remove(entity:luxe.Entity) : Void;
 	 • function add(entity:luxe.Entity) : Void;
@@ -193,6 +171,30 @@
 	 … var entities : Map;
 	 … var id : String;
 	 … var name : String;
+	 • function new() ;
+
+//luxe class : luxe.States
+
+	 • function ontouchbegin(e:luxe.TouchEvent) : Void;
+	 • function ontouchend(e:luxe.TouchEvent) : Void;
+	 • function ontouchmove(e:luxe.TouchEvent) : Void;
+	 • function onmousemove(e:luxe.MouseEvent) : Void;
+	 • function onmouseup(e:luxe.MouseEvent) : Void;
+	 • function onmousedown(e:luxe.MouseEvent) : Void;
+	 • function oninputdown(name:String, e:Dynamic) : Void;
+	 • function oninputup(name:String, e:Dynamic) : Void;
+	 • function onkeyup(e:luxe.KeyEvent) : Void;
+	 • function onkeydown(e:luxe.KeyEvent) : Void;
+	 • function destroy() : Void;
+	 • function update(dt:Float) : Void;
+	 • function start() : Void;
+	 • function init() : Void;
+	 • function set(name:String, ?_enter_data:set.T1, ?_leave_data:set.T2) : Void;
+	 • function disable(_name:String, ?_data:disable.T) : Void;
+	 • function enable(_name:String, ?_data:enable.T) : Void;
+	 • function add_state(type:Class, ?_name:String, ?_data:add_state.T2) : add_state.T1;
+	 … var current_state : luxe.State;
+	 … var active_states : Array;
 	 • function new() ;
 
 //luxe class : luxe.Text
@@ -247,6 +249,97 @@
 	 … var animation : String (read/write);
 	 … var current : luxe.components.sprite.SpriteAnimationData;
 	 … var animation_list : Map;
+	 • function new(?_init_data:new.T) ;
+
+//luxe class : luxe.debug.DebugView
+
+	 • function hide() : Void;
+	 • function show() : Void;
+	 • function create() : Void;
+	 • function onkeyup(e:luxe.KeyEvent) : Void;
+	 • function onkeydown(e:luxe.KeyEvent) : Void;
+	 • function onmousemove(e:luxe.MouseEvent) : Void;
+	 • function onmouseup(e:luxe.MouseEvent) : Void;
+	 • function onmousedown(e:luxe.MouseEvent) : Void;
+	 • function process() : Void;
+	 • function refresh() : Void;
+
+//luxe class : luxe.debug.ProfilerDebugView
+
+	 … var lists : Map;
+	 • static function start(_id:String) : Void;
+	 • static function end(_id:String) : Void;
+	 • function hide() : Void;
+	 • function show() : Void;
+	 … var core : luxe.debug._ProfilerDebugView.ProfilerValue;
+	 • function new() ;
+
+//luxe class : luxe.debug._ProfilerDebugView.ProfilerValue
+
+	 • function set() : Void;
+	 … var avg : Int;
+	 … var history : Array;
+	 … var start : Float;
+	 … var name : String;
+	 … var bar : luxe.debug._ProfilerDebugView.ProfilerBar;
+	 • function new(_name:String, _bar:luxe.debug._ProfilerDebugView.ProfilerBar) ;
+
+//luxe class : luxe.debug._ProfilerDebugView.ProfilerBar
+
+	 • function show() : Void;
+	 • function hide() : Void;
+	 … var ping : Float (read/write);
+	 … var value : Float (read/write);
+	 … var pos : luxe.Vector (read/write);
+	 … var text : String (read/write);
+	 … var history : Int;
+	 … var max : Float;
+	 … var height2 : Float;
+	 … var height : Float;
+	 … var width : Float;
+	 … var name : String;
+	 … var text_item : luxe.Text;
+	 … var graph_geometry : phoenix.geometry.Geometry;
+	 … var graphbg_geometry : phoenix.geometry.QuadGeometry;
+	 … var bg_geometry : phoenix.geometry.QuadGeometry;
+	 … var bar_geometry : phoenix.geometry.QuadGeometry;
+	 • function new(_name:String, _color:luxe.Color) ;
+
+//luxe class : luxe.debug.StatsDebugView
+
+	 • function update_render_stats() : Void;
+	 • function toggle_debug_stats() : Void;
+	 … var hide_debug : Bool;
+	 • function refresh_render_stats() : Void;
+	 • function hide() : Void;
+	 • function show() : Void;
+	 • function onkeydown(e:luxe.KeyEvent) : Void;
+	 • function process() : Void;
+	 • function refresh() : Void;
+	 • function create() : Void;
+	 • function get_render_stats_string() : String;
+	 • function get_resource_stats_string() : String;
+	 … var resource_list_text : luxe.Text;
+	 … var resource_stats_text : luxe.Text;
+	 … var render_stats_text : luxe.Text;
+	 … var debug_geometry_count : Int;
+	 … var debug_draw_call_count : Int;
+	 … var _render_stats : Dynamic;
+	 … var _last_render_stats : Dynamic;
+	 • function new() ;
+
+//luxe class : luxe.debug.TraceDebugView
+
+	 • function hide() : Void;
+	 • function show() : Void;
+	 • function process() : Void;
+	 • function refresh() : Void;
+	 • function add_line(_t:String) : Void;
+	 • function create() : Void;
+	 • function on_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void;
+	 … var max_lines : Int;
+	 … var lines : luxe.Text;
+	 … var logged : Array;
 	 • function new() ;
 
 //luxe class : luxe.structural.BalancedBinarySearchTree
@@ -515,4 +608,5 @@
 	 • function arrayToBytes(array:Array) : haxe.io.Bytes;
 	 • function bytes_to_string(bytes:Int) : String;
 	 • function uuid() : String;
+	 • function uniqueid() : String;
 	 … var geometry : luxe.utils.GeometryUtils;

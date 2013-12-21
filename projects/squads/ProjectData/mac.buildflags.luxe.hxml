@@ -5,7 +5,7 @@
 -lib lime
 -lib hxcollision
 -cp src
--D tools=1.1.6
+-D tools=1.2.3
 -D lime_native
 -D no-compilation
 -D luxe_native

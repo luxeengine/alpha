@@ -2,7 +2,7 @@
 	<class path="ApplicationMain" params="" file="bin/mac64/cpp/haxe/ApplicationMain.hx">
 		<_main_ public="1" static="1"><c path="Game"/></_main_>
 		<_core public="1" static="1"><c path="luxe.Core"/></_core>
-		<_lime public="1" static="1"><c path="lime.LiME"/></_lime>
+		<_lime public="1" static="1"><c path="lime.Lime"/></_lime>
 		<main public="1" set="method" line="12" static="1">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":keep"/></meta>
@@ -399,37 +399,37 @@
 		<extends path="luxe.Game"/>
 		<manager public="1" static="1"><c path="game.Manager"/></manager>
 		<level public="1" static="1"><c path="game.Level"/></level>
-		<update public="1" set="method" line="87"><f a="dt">
+		<update public="1" set="method" line="89"><f a="dt">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></update>
-		<onkeyup public="1" set="method" line="83"><f a="e">
+		<onkeyup public="1" set="method" line="85"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></onkeyup>
-		<onkeydown public="1" set="method" line="79"><f a="e">
+		<onkeydown public="1" set="method" line="81"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></onkeydown>
-		<oninputdown public="1" set="method" line="75"><f a="_input:_event">
+		<oninputdown public="1" set="method" line="77"><f a="_input:_event">
 	<c path="String"/>
 	<d/>
 	<x path="Void"/>
 </f></oninputdown>
-		<oninputup public="1" set="method" line="71"><f a="_input:_event">
+		<oninputup public="1" set="method" line="73"><f a="_input:_event">
 	<c path="String"/>
 	<d/>
 	<x path="Void"/>
 </f></oninputup>
-		<onmouseup public="1" set="method" line="67"><f a="e">
+		<onmouseup public="1" set="method" line="69"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmouseup>
-		<onmousedown public="1" set="method" line="63"><f a="e">
+		<onmousedown public="1" set="method" line="65"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmousedown>
-		<onmousemove public="1" set="method" line="59"><f a="e">
+		<onmousemove public="1" set="method" line="61"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmousemove>
@@ -440,7 +440,7 @@
 		<team2color public="1"><t path="luxe.Color"/></team2color>
 		<team1color public="1"><t path="luxe.Color"/></team1color>
 		<font public="1"><c path="phoenix.BitmapFont"/></font>
-		<modes><c path="luxe.Modes"/></modes>
+		<states><c path="luxe.States"/></states>
 		<new public="1" set="method" line="15"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="Lambda" params="" file="/usr/lib/haxe/std/Lambda.hx">
@@ -536,6 +536,7 @@
 	<class path="Luxe" params="" file="/Users/Sven/dev/luxe/luxe/Luxe.hx">
 		<dt public="1" line="14" static="1"><x path="Float"/></dt>
 		<timescale public="1" line="15" static="1"><x path="Float"/></timescale>
+		<fixed_timestep public="1" line="16" static="1"><x path="Float"/></fixed_timestep>
 		<mouse public="1" static="1"><t path="luxe.Vector"/></mouse>
 		<core public="1" static="1"><c path="luxe.Core"/></core>
 		<debug public="1" static="1"><c path="luxe.Debug"/></debug>
@@ -553,32 +554,32 @@
 			<t path="luxe.Rectangle"/>
 			<meta><m n=":isVar"/></meta>
 		</screen>
-		<get_screen public="1" set="method" line="37" static="1"><f a=""><t path="luxe.Rectangle"/></f></get_screen>
-		<shutdown public="1" set="method" line="39" static="1"><f a=""><x path="Void"/></f></shutdown>
-		<showCursor public="1" set="method" line="44" static="1"><f a="_show">
+		<get_screen public="1" set="method" line="38" static="1"><f a=""><t path="luxe.Rectangle"/></f></get_screen>
+		<shutdown public="1" set="method" line="40" static="1"><f a=""><x path="Void"/></f></shutdown>
+		<showCursor public="1" set="method" line="45" static="1"><f a="_show">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></showCursor>
-		<lockCursor public="1" set="method" line="47" static="1"><f a="_lock">
+		<lockCursor public="1" set="method" line="48" static="1"><f a="_lock">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></lockCursor>
-		<cursorShown public="1" set="method" line="50" static="1"><f a=""><x path="Bool"/></f></cursorShown>
-		<cursorLocked public="1" set="method" line="53" static="1"><f a=""><x path="Bool"/></f></cursorLocked>
-		<setCursorPosition public="1" set="method" line="56" static="1"><f a="_x:_y">
+		<cursorShown public="1" set="method" line="51" static="1"><f a=""><x path="Bool"/></f></cursorShown>
+		<cursorLocked public="1" set="method" line="54" static="1"><f a=""><x path="Bool"/></f></cursorLocked>
+		<setCursorPosition public="1" set="method" line="57" static="1"><f a="_x:_y">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></setCursorPosition>
-		<loadText public="1" set="method" line="60" static="1"><f a="_id">
+		<loadText public="1" set="method" line="61" static="1"><f a="_id">
 	<c path="String"/>
 	<c path="String"/>
 </f></loadText>
-		<loadData public="1" set="method" line="64" static="1"><f a="_id">
+		<loadData public="1" set="method" line="65" static="1"><f a="_id">
 	<c path="String"/>
 	<t path="lime.utils.ByteArray"/>
 </f></loadData>
-		<loadTexture public="1" set="method" line="68" static="1"><f a="_id:?_onloaded">
+		<loadTexture public="1" set="method" line="69" static="1"><f a="_id:?_onloaded">
 	<c path="String"/>
 	<f a="">
 		<c path="phoenix.Texture"/>
@@ -586,13 +587,13 @@
 	</f>
 	<c path="phoenix.Texture"/>
 </f></loadTexture>
-		<loadFont public="1" set="method" line="72" static="1"><f a="_id:?_path:?_onloaded">
+		<loadFont public="1" set="method" line="73" static="1"><f a="_id:?_path:?_onloaded">
 	<c path="String"/>
 	<c path="String"/>
 	<f a=""><x path="Void"/></f>
 	<c path="phoenix.BitmapFont"/>
 </f></loadFont>
-		<loadShader public="1" set="method" line="76" static="1"><f a="?_ps_id:?_vs_id:?_onloaded">
+		<loadShader public="1" set="method" line="77" static="1"><f a="?_ps_id:?_vs_id:?_onloaded">
 	<c path="String"/>
 	<c path="String"/>
 	<f a="">
@@ -601,33 +602,45 @@
 	</f>
 	<c path="phoenix.Shader"/>
 </f></loadShader>
-		<openURL public="1" set="method" line="80" static="1"><f a="_url">
+		<openURL public="1" set="method" line="81" static="1"><f a="_url">
 	<c path="String"/>
 	<x path="Void"/>
 </f></openURL>
-		<fileDialogFolder public="1" set="method" line="84" static="1"><f a="_title:_text">
+		<fileDialogFolder public="1" set="method" line="85" static="1"><f a="_title:_text">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></fileDialogFolder>
-		<fileDialogOpen public="1" set="method" line="87" static="1"><f a="_title:_text">
+		<fileDialogOpen public="1" set="method" line="88" static="1"><f a="_title:_text">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></fileDialogOpen>
-		<fileDialogSave public="1" set="method" line="90" static="1"><f a="_title:_text">
+		<fileDialogSave public="1" set="method" line="91" static="1"><f a="_title:_text">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></fileDialogSave>
-		<addGeometry public="1" set="method" line="94" static="1"><f a="_geom">
+		<addGeometry public="1" set="method" line="95" static="1"><f a="_geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></addGeometry>
-		<removeGeometry public="1" set="method" line="98" static="1"><f a="_geom">
+		<removeGeometry public="1" set="method" line="99" static="1"><f a="_geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></removeGeometry>
+		<addGroup public="1" set="method" line="103" static="1"><f a="_group:?_pre_render:?_post_render">
+	<x path="Int"/>
+	<f a="">
+		<c path="phoenix.Batcher"/>
+		<x path="Void"/>
+	</f>
+	<f a="">
+		<c path="phoenix.Batcher"/>
+		<x path="Void"/>
+	</f>
+	<x path="Void"/>
+</f></addGroup>
 	</class>
 	<abstract path="Map" params="K:V" file="/usr/lib/haxe/std/Map.hx">
 		<from>
@@ -1471,6 +1484,17 @@
 			</f>
 			<haxe_doc>Print any value on the standard output, followed by a newline</haxe_doc>
 		</println>
+		<sleep public="1" set="method" line="64" static="1">
+			<f a="seconds">
+				<x path="Float"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Suspend the current execution for the given time (in seconds).</haxe_doc>
+		</sleep>
+		<_sleep line="136" static="1"><f a="">
+	<x path="Float"/>
+	<unknown/>
+</f></_sleep>
 		<haxe_doc>This class gives you access to many base functionalities of system platforms. Looks in [sys] sub packages for more system APIs.</haxe_doc>
 		<meta>
 			<m n=":keep"/>
@@ -1633,8 +1657,47 @@
 	allows fast numeric access to fields by integer id.  This should speed up the CFFI.</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<class path="cpp.vm.Gc" params="" file="/usr/lib/haxe/std/cpp/vm/Gc.hx">
-		<memUsage public="1" set="method" line="41" static="1"><f a=""><x path="Int"/></f></memUsage>
+	<class path="cpp.vm.Mutex" params="" file="/usr/lib/haxe/std/cpp/vm/Mutex.hx">
+		<release public="1" set="method" line="36"><f a=""><x path="Void"/></f></release>
+		<acquire public="1" set="method" line="30"><f a=""><x path="Void"/></f></acquire>
+		<m><d/></m>
+		<new public="1" set="method" line="27"><f a=""><x path="Void"/></f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<typedef path="cpp.vm.ThreadHandle" params="" file="/usr/lib/haxe/std/cpp/vm/Thread.hx" module="cpp.vm.Thread"><d/></typedef>
+	<class path="cpp.vm.Thread" params="" file="/usr/lib/haxe/std/cpp/vm/Thread.hx">
+		<current public="1" set="method" line="45" static="1">
+			<f a=""><c path="cpp.vm.Thread"/></f>
+			<haxe_doc>Returns the current thread.</haxe_doc>
+		</current>
+		<create public="1" set="method" line="52" static="1">
+			<f a="callb">
+				<f a=""><x path="Void"/></f>
+				<c path="cpp.vm.Thread"/>
+			</f>
+			<haxe_doc>Creates a new thread that will execute the [callb] function, then exit.</haxe_doc>
+		</create>
+		<readMessage public="1" set="method" line="61" static="1">
+			<f a="block">
+				<x path="Bool"/>
+				<d/>
+			</f>
+			<haxe_doc>Reads a message from the thread queue. If [block] is true, the function
+		blocks until a message is available. If [block] is false, the function
+		returns [null] if no message is available.</haxe_doc>
+		</readMessage>
+		<sendMessage public="1" set="method" line="37">
+			<f a="msg">
+				<d/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Send a message to the thread queue. This message can be readed by using [readMessage].</haxe_doc>
+		</sendMessage>
+		<handle public="1" set="null"><t path="cpp.vm.ThreadHandle"/></handle>
+		<new set="method" line="30"><f a="h">
+	<t path="cpp.vm.ThreadHandle"/>
+	<x path="Void"/>
+</f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="cpp.zip.Compress" params="" file="/usr/lib/haxe/std/cpp/zip/Compress.hx">
@@ -1921,17 +1984,17 @@
 		<id public="1"><c path="String"/></id>
 		<new public="1" set="method" line="10">
 			<f a=""><x path="Void"/></f>
-			<meta><m n=":hide"/></meta>
+			<meta><m n=":noCompletion"/></meta>
 		</new>
 	</class>
 	<class path="luxe.components.Component" params="" file="/Users/Sven/dev/luxe/luxe/luxe/components/Components.hx" module="luxe.components.Components">
 		<extends path="luxe.Objects"/>
-		<serialize_to_disk public="1" set="method" line="97"><f a="_destination_path">
+		<serialize_to_disk public="1" set="method" line="104"><f a="_destination_path">
 	<c path="String"/>
 	<x path="Void"/>
 </f></serialize_to_disk>
-		<get_serialize_data public="1" set="method" line="88"><f a=""><d/></f></get_serialize_data>
-		<_attach_listener set="method" line="82">
+		<get_serialize_data public="1" set="method" line="95"><f a=""><d/></f></get_serialize_data>
+		<_attach_listener set="method" line="89">
 			<f a="_v:listener">
 				<t path="luxe.Vector"/>
 				<f a="">
@@ -1942,89 +2005,98 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_attach_listener>
-		<_rotation_change set="method" line="78">
+		<_rotation_change set="method" line="85">
 			<f a="_v">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_rotation_change>
-		<_scale_change set="method" line="76">
+		<_scale_change set="method" line="83">
 			<f a="_v">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_scale_change>
-		<_pos_change set="method" line="74">
+		<_pos_change set="method" line="81">
 			<f a="_v">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_pos_change>
-		<entity_rotation_change public="1" set="method" line="67">
+		<entity_rotation_change public="1" set="method" line="74">
 			<f a="_p">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_rotation_change>
-		<entity_scale_change public="1" set="method" line="66">
+		<entity_scale_change public="1" set="method" line="73">
 			<f a="_p">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_scale_change>
-		<entity_pos_change public="1" set="method" line="65">
+		<entity_pos_change public="1" set="method" line="72">
 			<f a="_p">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_pos_change>
-		<get public="1" set="method" line="61"><f a="_name:?in_children:?first_only">
+		<get public="1" set="method" line="68"><f a="_name:?in_children:?first_only">
 	<c path="String"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<d/>
 </f></get>
-		<add public="1" params="T" set="method" line="57"><f a="type:?_name">
-	<x path="Class"><c path="add.T"/></x>
+		<add public="1" params="T1:T2" set="method" line="64"><f a="type:?_name:?_data">
+	<x path="Class"><c path="add.T1"/></x>
 	<c path="String"/>
-	<c path="add.T"/>
+	<c path="add.T2"/>
+	<c path="add.T1"/>
 </f></add>
-		<get_scaleRelative set="method" line="53"><f a=""><t path="luxe.Vector"/></f></get_scaleRelative>
-		<get_scale set="method" line="50"><f a=""><t path="luxe.Vector"/></f></get_scale>
-		<set_scaleRelative set="method" line="47"><f a="_s">
+		<get_scaleRelative set="method" line="60"><f a=""><t path="luxe.Vector"/></f></get_scaleRelative>
+		<get_scale set="method" line="57"><f a=""><t path="luxe.Vector"/></f></get_scale>
+		<set_scaleRelative set="method" line="54"><f a="_s">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_scaleRelative>
-		<set_scale set="method" line="44"><f a="_s">
+		<set_scale set="method" line="51"><f a="_s">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_scale>
-		<get_rotationRelative set="method" line="40"><f a=""><t path="luxe.Vector"/></f></get_rotationRelative>
-		<get_rotation set="method" line="37"><f a=""><t path="luxe.Vector"/></f></get_rotation>
-		<set_rotationRelative set="method" line="34"><f a="_r">
+		<get_rotationRelative set="method" line="47"><f a=""><t path="luxe.Vector"/></f></get_rotationRelative>
+		<get_rotation set="method" line="44"><f a=""><t path="luxe.Vector"/></f></get_rotation>
+		<set_rotationRelative set="method" line="41"><f a="_r">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_rotationRelative>
-		<set_rotation set="method" line="31"><f a="_r">
+		<set_rotation set="method" line="38"><f a="_r">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_rotation>
-		<get_posRelative set="method" line="27"><f a=""><t path="luxe.Vector"/></f></get_posRelative>
-		<get_pos set="method" line="24"><f a=""><t path="luxe.Vector"/></f></get_pos>
-		<set_posRelative set="method" line="21"><f a="_p">
+		<get_posRelative set="method" line="34"><f a=""><t path="luxe.Vector"/></f></get_posRelative>
+		<get_pos set="method" line="31"><f a=""><t path="luxe.Vector"/></f></get_pos>
+		<set_posRelative set="method" line="28"><f a="_p">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_posRelative>
-		<set_pos set="method" line="18"><f a="_p">
+		<set_pos set="method" line="25"><f a="_p">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_pos>
+		<_init public="1" set="method" line="21">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</_init>
+		<init_data>
+			<d/>
+			<meta><m n=":noCompletion"/></meta>
+		</init_data>
 		<scaleRelative public="1" get="accessor" set="accessor">
 			<t path="luxe.Vector"/>
 			<meta><m n=":isVar"/></meta>
@@ -2050,21 +2122,24 @@
 			<meta><m n=":isVar"/></meta>
 		</pos>
 		<entity public="1"><c path="luxe.Entity"/></entity>
-		<new public="1" set="method" line="14"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="16"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.Bullet" params="" file="src/game/Bullet.hx">
 		<extends path="luxe.components.Component"/>
-		<fixed_update public="1" set="method" line="71"><f a=""><x path="Void"/></f></fixed_update>
-		<onspawn public="1" set="method" line="58"><f a="_pos">
+		<fixed_update public="1" set="method" line="70"><f a=""><x path="Void"/></f></fixed_update>
+		<onspawn public="1" set="method" line="57"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></onspawn>
-		<kill public="1" set="method" line="40"><f a="_pos:_shape">
+		<kill public="1" set="method" line="39"><f a="_pos:_shape">
 	<t path="luxe.Vector"/>
 	<c path="hxcollision.shapes.BaseShape"/>
 	<x path="Void"/>
 </f></kill>
-		<init public="1" set="method" line="32"><f a=""><x path="Void"/></f></init>
+		<init public="1" set="method" line="31"><f a=""><x path="Void"/></f></init>
 		<bounds><t path="luxe.Rectangle"/></bounds>
 		<ignored_colliders><c path="Array"><c path="hxcollision.shapes.BaseShape"/></c></ignored_colliders>
 		<collider public="1">
@@ -2075,9 +2150,12 @@
 		<spawn_pos public="1"><t path="luxe.Vector"/></spawn_pos>
 		<dir public="1"><t path="luxe.Vector"/></dir>
 		<alive public="1"><x path="Bool"/></alive>
-		<new public="1" set="method" line="16"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="15"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
-	<class path="hxcollision.ShapeDrawer" params="" file="/Users/Sven/dev/hxcollision/hxcollision/ShapeDrawer.hx">
+	<class path="hxcollision.ShapeDrawer" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/ShapeDrawer.hx">
 		<drawCircle public="1" set="method" line="48"><f a="circle">
 	<c path="hxcollision.shapes.Circle"/>
 	<x path="Void"/>
@@ -2111,30 +2189,46 @@
 </f></drawLine>
 		<new public="1" set="method" line="18"><f a=""><x path="Void"/></f></new>
 	</class>
-	<class path="luxe.Mode" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Modes.hx" module="luxe.Modes">
-		<_update public="1" set="method" line="24">
+	<class path="luxe.State" params="" file="/Users/Sven/dev/luxe/luxe/luxe/States.hx" module="luxe.States">
+		<extends path="luxe.Objects"/>
+		<_update public="1" set="method" line="42">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":hide"/></meta>
+			<meta><m n=":noCompletion"/></meta>
 		</_update>
-		<set_next_tick set="method" line="19"><f a="_f">
+		<_init public="1" set="method" line="38">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</_init>
+		<do_disable public="1" params="T" set="method" line="34"><f a="?_data">
+	<c path="do_disable.T"/>
+	<x path="Void"/>
+</f></do_disable>
+		<do_enable public="1" params="T" set="method" line="30"><f a="?_data">
+	<c path="do_enable.T"/>
+	<x path="Void"/>
+</f></do_enable>
+		<set_next_tick set="method" line="25"><f a="_f">
 	<f a=""><x path="Void"/></f>
 	<f a=""><x path="Void"/></f>
 </f></set_next_tick>
+		<init_data><d/></init_data>
 		<ticks><c path="Array"><f a=""><x path="Void"/></f></c></ticks>
 		<next_tick public="1" get="null" set="accessor">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":isVar"/></meta>
 		</next_tick>
-		<name public="1"><c path="String"/></name>
 		<active public="1"><x path="Bool"/></active>
-		<modes public="1"><c path="luxe.Modes"/></modes>
-		<new public="1" set="method" line="15"><f a=""><x path="Void"/></f></new>
+		<machine public="1"><c path="luxe.States"/></machine>
+		<new public="1" params="T" set="method" line="16"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.Level" params="" file="src/game/Level.hx">
-		<extends path="luxe.Mode"/>
+		<extends path="luxe.State"/>
 		<disable public="1" set="method" line="189"><f a=""><x path="Void"/></f></disable>
 		<enable public="1" set="method" line="181"><f a=""><x path="Void"/></f></enable>
 		<update public="1" set="method" line="177"><f a="dt">
@@ -2178,10 +2272,13 @@
 		<top public="1"><c path="luxe.Sprite"/></top>
 		<bg public="1"><c path="luxe.Sprite"/></bg>
 		<manager><c path="game.Manager"/></manager>
-		<new public="1" set="method" line="30"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="30"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.Manager" params="" file="src/game/Manager.hx">
-		<extends path="luxe.Mode"/>
+		<extends path="luxe.State"/>
 		<leave public="1" set="method" line="541"><f a=""><x path="Void"/></f></leave>
 		<enter public="1" set="method" line="537"><f a=""><x path="Void"/></f></enter>
 		<create_controllers set="method" line="501"><f a=""><x path="Void"/></f></create_controllers>
@@ -2250,7 +2347,10 @@
 	<c path="luxe.Sprite"/>
 </x></controller_sprites>
 		<game public="1"><c path="Game"/></game>
-		<new public="1" set="method" line="25"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="25"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.PlayerAim" params="" file="src/game/PlayerAim.hx">
 		<extends path="luxe.components.Component"/>
@@ -2268,7 +2368,10 @@
 		<reticule public="1"><c path="luxe.Sprite"/></reticule>
 		<direction public="1"><t path="luxe.Vector"/></direction>
 		<facing public="1"><x path="Int"/></facing>
-		<new public="1" set="method" line="14"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="14"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.PlayerAnimator" params="" file="src/game/PlayerAnimator.hx">
 		<extends path="luxe.components.Component"/>
@@ -2289,7 +2392,10 @@
 		<moving><x path="Bool"/></moving>
 		<anim><c path="luxe.components.sprite.SpriteAnimation"/></anim>
 		<aim><c path="game.PlayerAim"/></aim>
-		<new public="1" set="method" line="13"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="13"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.PlayerKeyInput" params="" file="src/game/PlayerKeyInput.hx">
 		<extends path="luxe.components.Component"/>
@@ -2312,19 +2418,22 @@
 		<up><x path="Bool"/></up>
 		<right><x path="Bool"/></right>
 		<left><x path="Bool"/></left>
-		<new public="1" set="method" line="15"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="15"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.PlayerMovement" params="" file="src/game/PlayerMovement.hx">
 		<extends path="luxe.components.Component"/>
-		<fixed_update public="1" set="method" line="87"><f a="dt">
+		<fixed_update public="1" set="method" line="86"><f a="dt">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></fixed_update>
-		<update public="1" set="method" line="41"><f a="dt">
+		<update public="1" set="method" line="40"><f a="dt">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></update>
-		<init public="1" set="method" line="30"><f a=""><x path="Void"/></f></init>
+		<init public="1" set="method" line="29"><f a=""><x path="Void"/></f></init>
 		<skip_physics><x path="Bool"/></skip_physics>
 		<next_pos><t path="luxe.Vector"/></next_pos>
 		<collider public="1"><c path="hxcollision.shapes.Polygon"/></collider>
@@ -2332,7 +2441,10 @@
 		<linear_drag public="1"><x path="Float"/></linear_drag>
 		<moving public="1"><x path="Bool"/></moving>
 		<velocity public="1"><t path="luxe.Vector"/></velocity>
-		<new public="1" set="method" line="15"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="14"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.PlayerShoot" params="" file="src/game/PlayerShoot.hx">
 		<extends path="luxe.components.Component"/>
@@ -2352,7 +2464,10 @@
 		<precache public="1"><x path="Bool"/></precache>
 		<poolsize public="1"><x path="Int"/></poolsize>
 		<bullet_pool><c path="Array"><c path="luxe.Sprite"/></c></bullet_pool>
-		<new public="1" set="method" line="14"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="14"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.PlayerTeam" params="" file="src/game/PlayerTeam.hx">
 		<extends path="luxe.components.Component"/>
@@ -2368,7 +2483,10 @@
 		<init public="1" set="method" line="17"><f a=""><x path="Void"/></f></init>
 		<teamcolor><t path="luxe.Color"/></teamcolor>
 		<flag public="1"><c path="luxe.Sprite"/></flag>
-		<new public="1" set="method" line="11"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="11"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<typedef path="game.WeaponDesc" params="" file="src/game/PlayerWeapon.hx" module="game.PlayerWeapon"><a>
 	<velocity><x path="Float"/></velocity>
@@ -2408,7 +2526,10 @@
 		<rate public="1"><x path="Float"/></rate>
 		<speed public="1"><x path="Float"/></speed>
 		<image public="1"><c path="luxe.Sprite"/></image>
-		<new public="1" set="method" line="23"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="23"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="game.items.Explosive" params="" file="src/game/items/Explosive.hx">
 		<extends path="luxe.components.Component"/>
@@ -2418,7 +2539,10 @@
 </f></on_impact_from_bullet>
 		<init public="1" set="method" line="15"><f a=""><x path="Void"/></f></init>
 		<desc public="1"><d/></desc>
-		<new public="1" set="method" line="11"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="11"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="haxe.EnumTools" params="" file="/usr/lib/haxe/std/haxe/EnumTools.hx" extern="1">
 		<getName public="1" params="T" get="inline" set="null" line="41" static="1">
@@ -2898,6 +3022,101 @@
 		<new public="1" set="method" line="28"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
+	<class path="haxe.crypto.Md5" params="" file="/usr/lib/haxe/std/haxe/crypto/Md5.hx">
+		<encode public="1" set="method" line="29" static="1"><f a="s">
+	<c path="String"/>
+	<c path="String"/>
+</f></encode>
+		<str2blks set="method" line="139" static="1"><f a="str">
+	<c path="String"/>
+	<c path="Array"><x path="Int"/></c>
+</f></str2blks>
+		<doEncode set="method" line="192"><f a="x">
+	<c path="Array"><x path="Int"/></c>
+	<c path="Array"><x path="Int"/></c>
+</f></doEncode>
+		<ii set="method" line="188"><f a="a:b:c:d:x:s:t">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></ii>
+		<hh set="method" line="184"><f a="a:b:c:d:x:s:t">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></hh>
+		<gg set="method" line="180"><f a="a:b:c:d:x:s:t">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></gg>
+		<ff set="method" line="176"><f a="a:b:c:d:x:s:t">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></ff>
+		<cmn set="method" line="172"><f a="q:a:b:x:s:t">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></cmn>
+		<rol set="method" line="168"><f a="num:cnt">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></rol>
+		<hex set="method" line="100"><f a="a">
+	<c path="Array"><x path="Int"/></c>
+	<c path="String"/>
+</f></hex>
+		<addme set="method" line="94"><f a="x:y">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></addme>
+		<bitAND set="method" line="88"><f a="a:b">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></bitAND>
+		<bitXOR set="method" line="82"><f a="a:b">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></bitXOR>
+		<bitOR set="method" line="76"><f a="a:b">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Int"/>
+</f></bitOR>
+		<new set="method" line="73"><f a=""><x path="Void"/></f></new>
+		<haxe_doc>Creates a MD5 of a String.</haxe_doc>
+		<meta><m n=":keep"/></meta>
+	</class>
 	<class path="haxe.ds.BalancedTree" params="K:V" file="/usr/lib/haxe/std/haxe/ds/BalancedTree.hx">
 		<compare set="method" line="147"><f a="k1:k2">
 	<c path="haxe.ds.BalancedTree.K"/>
@@ -3058,6 +3277,7 @@
 			<c path="haxe.ds.ObjectMap.V"/>
 		</implements>
 		<iterator public="1" set="method" line="57"><f a=""><t path="Iterator"><c path="haxe.ds.ObjectMap.V"/></t></f></iterator>
+		<keys public="1" set="method" line="49"><f a=""><t path="Iterator"><c path="haxe.ds.ObjectMap.K"/></t></f></keys>
 		<get public="1" set="method" line="37"><f a="key">
 	<c path="haxe.ds.ObjectMap.K"/>
 	<t path="Null"><c path="haxe.ds.ObjectMap.V"/></t>
@@ -3255,7 +3475,7 @@
 		directory1\directory2\filename.excention</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<class path="hxcollision.Collision" params="" file="/Users/Sven/dev/hxcollision/hxcollision/Collision.hx">
+	<class path="hxcollision.Collision" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/Collision.hx">
 		<testShapeList public="1" set="method" line="18" static="1"><f a="shape1:shapes">
 	<c path="hxcollision.shapes.BaseShape"/>
 	<c path="Array"><c path="hxcollision.shapes.BaseShape"/></c>
@@ -3315,7 +3535,7 @@
 </f></findNormalAxis>
 		<new public="1" set="method" line="13"><f a=""><x path="Void"/></f></new>
 	</class>
-	<class path="hxcollision.CollisionData" params="" file="/Users/Sven/dev/hxcollision/hxcollision/CollisionData.hx">
+	<class path="hxcollision.CollisionData" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/CollisionData.hx">
 		<unitVector public="1"><c path="hxcollision.math.Vector2D"/></unitVector>
 		<shape2 public="1"><c path="hxcollision.shapes.BaseShape"/></shape2>
 		<shape1 public="1"><c path="hxcollision.shapes.BaseShape"/></shape1>
@@ -3323,7 +3543,7 @@
 		<overlap public="1"><x path="Float"/></overlap>
 		<new public="1" set="method" line="22"><f a=""><x path="Void"/></f></new>
 	</class>
-	<class path="hxcollision.math.Matrix" params="" file="/Users/Sven/dev/hxcollision/hxcollision/math/Matrix.hx">
+	<class path="hxcollision.math.Matrix" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/math/Matrix.hx">
 		<implements path="cpp.rtti.FieldNumericIntegerLookup"/>
 		<toString public="1" set="method" line="66"><f a=""><c path="String"/></f></toString>
 		<scale public="1" set="method" line="53"><f a="x:y">
@@ -3356,7 +3576,7 @@
 	<x path="Void"/>
 </f></new>
 	</class>
-	<class path="hxcollision.math.Vector2D" params="" file="/Users/Sven/dev/hxcollision/hxcollision/math/Vector2D.hx">
+	<class path="hxcollision.math.Vector2D" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/math/Vector2D.hx">
 		<angleBetween public="1" set="method" line="193" static="1">
 			<f a="vector1:vector2">
 				<c path="hxcollision.math.Vector2D"/>
@@ -3594,7 +3814,7 @@
 		</new>
 		<haxe_doc>* 2D vector class</haxe_doc>
 	</class>
-	<class path="hxcollision.shapes.BaseShape" params="" file="/Users/Sven/dev/hxcollision/hxcollision/shapes/BaseShape.hx">
+	<class path="hxcollision.shapes.BaseShape" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/shapes/BaseShape.hx">
 		<destroy public="1" set="method" line="160"><f a=""><x path="Void"/></f></destroy>
 		<get_vertices set="method" line="154"><f a=""><c path="Array"><c path="hxcollision.math.Vector2D"/></c></f></get_vertices>
 		<get_transformedVertices set="method" line="136"><f a=""><c path="Array"><c path="hxcollision.math.Vector2D"/></c></f></get_transformedVertices>
@@ -3646,48 +3866,55 @@
 		<_scaleX><x path="Float"/></_scaleX>
 		<_rotation><x path="Float"/></_rotation>
 		<_position><c path="hxcollision.math.Vector2D"/></_position>
-		<new public="1" set="method" line="25"><f a="_pos">
-	<c path="hxcollision.math.Vector2D"/>
+		<new public="1" set="method" line="25"><f a="_x:_y">
+	<x path="Float"/>
+	<x path="Float"/>
 	<x path="Void"/>
 </f></new>
 	</class>
-	<class path="hxcollision.shapes.Circle" params="" file="/Users/Sven/dev/hxcollision/hxcollision/shapes/Circle.hx">
+	<class path="hxcollision.shapes.Circle" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/shapes/Circle.hx">
 		<extends path="hxcollision.shapes.BaseShape"/>
 		<get_transformedRadius set="method" line="17"><f a=""><x path="Float"/></f></get_transformedRadius>
 		<get_radius set="method" line="13"><f a=""><x path="Float"/></f></get_radius>
 		<transformedRadius public="1" get="accessor" set="null"><x path="Float"/></transformedRadius>
 		<radius public="1" get="accessor" set="null"><x path="Float"/></radius>
 		<_radius><x path="Float"/></_radius>
-		<new public="1" set="method" line="21"><f a="radius:position">
+		<new public="1" set="method" line="21"><f a="x:y:radius">
 	<x path="Float"/>
-	<c path="hxcollision.math.Vector2D"/>
+	<x path="Float"/>
+	<x path="Float"/>
 	<x path="Void"/>
 </f></new>
 	</class>
-	<class path="hxcollision.shapes.Polygon" params="" file="/Users/Sven/dev/hxcollision/hxcollision/shapes/Polygon.hx">
+	<class path="hxcollision.shapes.Polygon" params="" file="/usr/lib/haxe/lib/hxcollision/1,0,4/hxcollision/shapes/Polygon.hx">
 		<extends path="hxcollision.shapes.BaseShape"/>
-		<create public="1" set="method" line="30" static="1"><f a="sides:?radius:?position">
+		<create public="1" set="method" line="30" static="1"><f a="x:y:sides:?radius">
+	<x path="Float"/>
+	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Float"/>
-	<c path="hxcollision.math.Vector2D"/>
 	<c path="hxcollision.shapes.Polygon"/>
 </f></create>
-		<rectangle public="1" set="method" line="54" static="1"><f a="width:height:position:?centered">
+		<rectangle public="1" set="method" line="50" static="1"><f a="x:y:width:height:?centered">
 	<x path="Float"/>
 	<x path="Float"/>
-	<c path="hxcollision.math.Vector2D"/>
+	<x path="Float"/>
+	<x path="Float"/>
 	<x path="Bool"/>
 	<c path="hxcollision.shapes.Polygon"/>
 </f></rectangle>
-		<square public="1" set="method" line="77" static="1"><f a="width:position">
+		<square public="1" set="method" line="73" static="1"><f a="x:y:width:?centered">
 	<x path="Float"/>
-	<c path="hxcollision.math.Vector2D"/>
+	<x path="Float"/>
+	<x path="Float"/>
+	<x path="Bool"/>
 	<c path="hxcollision.shapes.Polygon"/>
 </f></square>
 		<destroy public="1" set="method" line="17" override="1"><f a=""><x path="Void"/></f></destroy>
-		<new public="1" set="method" line="8"><f a="vertices:position">
+		<new public="1" set="method" line="8"><f a="x:y:vertices">
+	<x path="Float"/>
+	<x path="Float"/>
 	<c path="Array"><c path="hxcollision.math.Vector2D"/></c>
-	<c path="hxcollision.math.Vector2D"/>
 	<x path="Void"/>
 </f></new>
 	</class>
@@ -3707,48 +3934,132 @@
 </x></type>
 		<initialize public="1" set="method" line="14" static="1"><f a=""><x path="Void"/></f></initialize>
 	</class>
-	<class path="lime.SoundTransform" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/AudioHandler.hx" module="lime.AudioHandler">
-		<clone public="1" set="method" line="15"><f a=""><c path="lime.SoundTransform"/></f></clone>
-		<volume public="1"><x path="Float"/></volume>
-		<pan public="1"><x path="Float"/></pan>
-		<new public="1" set="method" line="10"><f a="?vol:?panning">
-	<x path="Float"/>
-	<x path="Float"/>
+	<class path="lime.AudioHandler" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/AudioHandler.hx">
+		<audio_state public="1" static="1">
+			<c path="lime.AudioThreadState"/>
+			<meta><m n=":noCompletion"/></meta>
+		</audio_state>
+		<audio_message_check_complete public="1" line="26" static="1">
+			<x path="Int"/>
+			<meta><m n=":noCompletion"/></meta>
+		</audio_message_check_complete>
+		<audio_thread_is_idle public="1" line="27" static="1">
+			<x path="Bool"/>
+			<meta><m n=":noCompletion"/></meta>
+		</audio_thread_is_idle>
+		<audio_thread_running public="1" line="28" static="1">
+			<x path="Bool"/>
+			<meta><m n=":noCompletion"/></meta>
+		</audio_thread_running>
+		<lime_sound_from_file line="105" static="1"><f a=":">
+	<t path="Null"><c path="String"/></t>
+	<t path="Null"><x path="Bool"/></t>
+	<unknown/>
+</f></lime_sound_from_file>
+		<lime_sound_from_data line="106" static="1"><unknown/></lime_sound_from_data>
+		<audio_thread_handler public="1" set="method" line="77"><f a=""><x path="Void"/></f></audio_thread_handler>
+		<get public="1" set="method" line="71"><f a="_name">
+	<c path="String"/>
+	<c path="lime.Sound"/>
+</f></get>
+		<create public="1" set="method" line="55"><f a="_name:_file:?_music">
+	<c path="String"/>
+	<c path="String"/>
+	<x path="Bool"/>
+	<x path="Void"/>
+</f></create>
+		<update public="1" set="method" line="47">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</update>
+		<startup public="1" set="method" line="33"><f a=""><x path="Void"/></f></startup>
+		<sounds public="1"><x path="Map">
+	<c path="String"/>
+	<c path="lime.Sound"/>
+</x></sounds>
+		<lib public="1"><c path="lime.Lime"/></lib>
+		<new public="1" set="method" line="20"><f a="_lib">
+	<c path="lime.Lime"/>
 	<x path="Void"/>
 </f></new>
 	</class>
 	<class path="lime.Sound" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/AudioHandler.hx" module="lime.AudioHandler">
-		<lime_sound_channel_create line="75" static="1"><f a=":::">
+		<lime_sound_channel_is_complete line="261" static="1"><f a="">
+	<d/>
+	<x path="Bool"/>
+</f></lime_sound_channel_is_complete>
+		<lime_sound_channel_create line="262" static="1"><f a=":::">
 	<d/>
 	<t path="Null"><x path="Float"/></t>
 	<t path="Null"><x path="Int"/></t>
 	<c path="lime.SoundTransform"/>
 	<unknown/>
 </f></lime_sound_channel_create>
-		<lime_sound_channel_stop line="76" static="1"><f a="">
+		<lime_sound_channel_stop line="263" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lime_sound_channel_stop>
-		<lime_sound_channel_set_transform line="77" static="1"><f a=":">
+		<lime_sound_channel_set_transform line="264" static="1"><f a=":">
 	<d/>
 	<c path="lime.SoundTransform"/>
 	<unknown/>
 </f></lime_sound_channel_set_transform>
-		<set_pan public="1" set="method" line="64"><f a="_p">
+		<lime_sound_channel_get_position line="265" static="1"><f a="">
+	<d/>
+	<x path="Float"/>
+</f></lime_sound_channel_get_position>
+		<lime_sound_channel_set_position line="266" static="1"><f a=":">
+	<d/>
+	<x path="Float"/>
+	<unknown/>
+</f></lime_sound_channel_set_position>
+		<get_position set="method" line="251"><f a=""><x path="Float"/></f></get_position>
+		<set_position set="method" line="242"><f a="_p">
+	<x path="Float"/>
+	<x path="Float"/>
+</f></set_position>
+		<set_pan set="method" line="232"><f a="_p">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_pan>
-		<set_volume public="1" set="method" line="55"><f a="_v">
+		<set_volume set="method" line="223"><f a="_v">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_volume>
-		<stop public="1" set="method" line="44"><f a=""><x path="Void"/></f></stop>
-		<play public="1" set="method" line="36"><f a="?_loops:?_start">
+		<check_complete public="1" set="method" line="194">
+			<f a=""><x path="Bool"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</check_complete>
+		<do_check_complete public="1" set="method" line="180">
+			<f a=""><x path="Bool"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</do_check_complete>
+		<on_complete public="1" set="method" line="175"><f a="_function">
+	<f a="">
+		<c path="lime.Sound"/>
+		<x path="Void"/>
+	</f>
+	<x path="Void"/>
+</f></on_complete>
+		<do_on_complete public="1" set="method" line="169">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</do_on_complete>
+		<stop public="1" set="method" line="151"><f a=""><x path="Void"/></f></stop>
+		<play public="1" set="method" line="142"><f a="?_loops:?_start">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></play>
 		<_transform><c path="lime.SoundTransform"/></_transform>
+		<added_to_thread>
+			<x path="Bool"/>
+			<meta><m n=":noCompletion"/></meta>
+		</added_to_thread>
+		<position public="1" get="accessor" set="accessor">
+			<x path="Float"/>
+			<meta><m n=":isVar"/></meta>
+		</position>
 		<pan public="1" set="accessor">
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
@@ -3757,37 +4068,51 @@
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
 		</volume>
-		<sound public="1"><d/></sound>
+		<on_complete_handler><f a="">
+	<c path="lime.Sound"/>
+	<x path="Void"/>
+</f></on_complete_handler>
+		<ismusic public="1"><x path="Bool"/></ismusic>
+		<channel public="1"><d/></channel>
 		<handle public="1"><d/></handle>
-		<new public="1" set="method" line="29"><f a="_handle:?_sound">
+		<name public="1"><c path="String"/></name>
+		<new public="1" set="method" line="131"><f a="_name:_handle:?_music:?_sound">
+	<c path="String"/>
 	<d/>
+	<x path="Bool"/>
 	<d/>
 	<x path="Void"/>
 </f></new>
 	</class>
-	<class path="lime.AudioHandler" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/AudioHandler.hx">
-		<lime_sound_from_file line="108" static="1"><f a=":">
-	<t path="Null"><c path="String"/></t>
-	<t path="Null"><x path="Bool"/></t>
-	<unknown/>
-</f></lime_sound_from_file>
-		<lime_sound_from_data line="109" static="1"><unknown/></lime_sound_from_data>
-		<create_sound public="1" set="method" line="94"><f a="_name:_file:?_music">
-	<c path="String"/>
-	<c path="String"/>
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></create_sound>
-		<startup public="1" set="method" line="88"><f a=""><x path="Void"/></f></startup>
-		<sounds public="1"><x path="Map">
-	<c path="String"/>
-	<c path="lime.Sound"/>
-</x></sounds>
-		<lib public="1"><c path="lime.LiME"/></lib>
-		<new public="1" set="method" line="85"><f a="_lib">
-	<c path="lime.LiME"/>
+	<class path="lime.SoundTransform" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/AudioHandler.hx" module="lime.AudioHandler">
+		<clone public="1" set="method" line="282"><f a=""><c path="lime.SoundTransform"/></f></clone>
+		<volume public="1"><x path="Float"/></volume>
+		<pan public="1"><x path="Float"/></pan>
+		<new public="1" set="method" line="277"><f a="?vol:?panning">
+	<x path="Float"/>
+	<x path="Float"/>
 	<x path="Void"/>
 </f></new>
+	</class>
+	<class path="lime.AudioThreadState" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/AudioHandler.hx" module="lime.AudioHandler">
+		<update public="1" set="method" line="349"><f a=""><x path="Void"/></f></update>
+		<remove public="1" set="method" line="334"><f a="sound">
+	<c path="lime.Sound"/>
+	<x path="Void"/>
+</f></remove>
+		<check public="1" set="method" line="317"><f a=""><x path="Void"/></f></check>
+		<add public="1" set="method" line="304"><f a="sound">
+	<c path="lime.Sound"/>
+	<x path="Void"/>
+</f></add>
+		<mutex public="1"><c path="cpp.vm.Mutex"/></mutex>
+		<main_thread public="1"><c path="cpp.vm.Thread"/></main_thread>
+		<sound_list public="1"><x path="Map">
+	<c path="lime.Sound"/>
+	<x path="Bool"/>
+</x></sound_list>
+		<audio_thread public="1"><c path="cpp.vm.Thread"/></audio_thread>
+		<new public="1" set="method" line="299"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="lime.Window" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/Constants.hx" module="lime.Constants">
 		<FULLSCREEN public="1" line="6" static="1"><x path="Int"/></FULLSCREEN>
@@ -3833,59 +4158,59 @@
 		<syswm public="1" line="50" static="1"><x path="Int"/></syswm>
 	</class>
 	<class path="lime.InputHandler" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/InputHandler.hx">
-		<efLeftDown line="383" static="1"><x path="Int"/></efLeftDown>
-		<efShiftDown line="384" static="1"><x path="Int"/></efShiftDown>
-		<efCtrlDown line="385" static="1"><x path="Int"/></efCtrlDown>
-		<efAltDown line="386" static="1"><x path="Int"/></efAltDown>
-		<efCommandDown line="387" static="1"><x path="Int"/></efCommandDown>
-		<lime_apply_input_listeners set="method" line="389"><f a=""><x path="Void"/></f></lime_apply_input_listeners>
-		<lime_gamepadbuttonup public="1" set="method" line="376"><f a="_event">
+		<efLeftDown line="382" static="1"><x path="Int"/></efLeftDown>
+		<efShiftDown line="383" static="1"><x path="Int"/></efShiftDown>
+		<efCtrlDown line="384" static="1"><x path="Int"/></efCtrlDown>
+		<efAltDown line="385" static="1"><x path="Int"/></efAltDown>
+		<efCommandDown line="386" static="1"><x path="Int"/></efCommandDown>
+		<lime_apply_input_listeners set="method" line="388"><f a=""><x path="Void"/></f></lime_apply_input_listeners>
+		<lime_gamepadbuttonup public="1" set="method" line="375"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_gamepadbuttonup>
-		<lime_gamepadbuttondown public="1" set="method" line="370"><f a="_event">
+		<lime_gamepadbuttondown public="1" set="method" line="369"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_gamepadbuttondown>
-		<lime_gamepadhat public="1" set="method" line="364"><f a="_event">
+		<lime_gamepadhat public="1" set="method" line="363"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_gamepadhat>
-		<lime_gamepadball public="1" set="method" line="358"><f a="_event">
+		<lime_gamepadball public="1" set="method" line="357"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_gamepadball>
-		<lime_gamepadaxis public="1" set="method" line="352"><f a="_event">
+		<lime_gamepadaxis public="1" set="method" line="351"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_gamepadaxis>
-		<lime_touchtap public="1" set="method" line="344"><f a="_event">
+		<lime_touchtap public="1" set="method" line="343"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_touchtap>
-		<lime_touchend public="1" set="method" line="320"><f a="_event">
+		<lime_touchend public="1" set="method" line="319"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_touchend>
-		<lime_touchmove public="1" set="method" line="303"><f a="_event">
+		<lime_touchmove public="1" set="method" line="302"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_touchmove>
-		<lime_touchbegin public="1" set="method" line="278"><f a="_event">
+		<lime_touchbegin public="1" set="method" line="277"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></lime_touchbegin>
-		<lime_mouseup public="1" set="method" line="247"><f a="_event:?_pass_through">
+		<lime_mouseup public="1" set="method" line="246"><f a="_event:?_pass_through">
 	<d/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></lime_mouseup>
-		<lime_mouseclick public="1" set="method" line="218"><f a="_event:?_pass_through">
+		<lime_mouseclick public="1" set="method" line="217"><f a="_event:?_pass_through">
 	<d/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></lime_mouseclick>
-		<lime_mousedown public="1" set="method" line="189"><f a="_event:?_pass_through">
+		<lime_mousedown public="1" set="method" line="188"><f a="_event:?_pass_through">
 	<d/>
 	<x path="Bool"/>
 	<x path="Void"/>
@@ -3932,9 +4257,9 @@
 	<x path="Int"/>
 	<d/>
 </x></touch_map>
-		<lib public="1"><c path="lime.LiME"/></lib>
+		<lib public="1"><c path="lime.Lime"/></lib>
 		<new public="1" set="method" line="10"><f a="_lib">
-	<c path="lime.LiME"/>
+	<c path="lime.Lime"/>
 	<x path="Void"/>
 </f></new>
 	</class>
@@ -3991,18 +4316,18 @@
 	<alt_down><x path="Bool"/></alt_down>
 </a></typedef>
 	<typedef path="lime.GamepadEvent" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/InputHandler.hx" module="lime.InputHandler"><a><raw><d/></raw></a></typedef>
-	<class path="lime.LiME" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/LiME.hx">
+	<class path="lime.Lime" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/Lime.hx">
 		<early_wakeup public="1" line="40" static="1">
 			<x path="Float"/>
 			<meta><m n=":noCompletion"/></meta>
 		</early_wakeup>
-		<lime_stage_request_render line="437" static="1"><unknown/></lime_stage_request_render>
-		<lime_stage_set_next_wake line="438" static="1"><f a=":">
+		<lime_stage_request_render line="444" static="1"><unknown/></lime_stage_request_render>
+		<lime_stage_set_next_wake line="445" static="1"><f a=":">
 	<d/>
 	<x path="Float"/>
 	<unknown/>
 </f></lime_stage_set_next_wake>
-		<_debug public="1" set="method" line="421"><f a="value:?_verbose:?_more_verbose">
+		<_debug public="1" set="method" line="428"><f a="value:?_verbose:?_more_verbose">
 	<d/>
 	<x path="Bool"/>
 	<x path="Bool"/>
@@ -4011,41 +4336,41 @@
 		<more_verbose public="1"><x path="Bool"/></more_verbose>
 		<verbose public="1"><x path="Bool"/></verbose>
 		<log public="1"><x path="Bool"/></log>
-		<__nextFrameDue set="method" line="391">
+		<__nextFrameDue set="method" line="398">
 			<f a="_otherTimers">
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</__nextFrameDue>
-		<__updateNextWake public="1" set="method" line="373">
+		<__updateNextWake public="1" set="method" line="380">
 			<f a=""><x path="Float"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</__updateNextWake>
-		<__checkRender set="method" line="344">
+		<__checkRender set="method" line="351">
 			<f a=""><x path="Bool"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</__checkRender>
-		<perform_render public="1" set="method" line="334"><f a=""><x path="Void"/></f></perform_render>
-		<on_update public="1" set="method" line="301"><f a="_event">
+		<perform_render public="1" set="method" line="341"><f a=""><x path="Void"/></f></perform_render>
+		<on_update public="1" set="method" line="305"><f a="_event">
 	<unknown/>
 	<x path="Bool"/>
 </f></on_update>
-		<on_change public="1" set="method" line="295"><f a="ev">
+		<on_change public="1" set="method" line="299"><f a="ev">
 	<d/>
 	<x path="Void"/>
 </f></on_change>
-		<on_syswm public="1" set="method" line="291"><f a="ev">
+		<on_syswm public="1" set="method" line="295"><f a="ev">
 	<d/>
 	<x path="Void"/>
 </f></on_syswm>
-		<on_lime_event public="1" set="method" line="163"><f a="_event">
+		<on_lime_event public="1" set="method" line="167"><f a="_event">
 	<d/>
 	<d/>
 </f></on_lime_event>
-		<cleanup public="1" set="method" line="157"><f a=""><x path="Void"/></f></cleanup>
-		<shutdown public="1" set="method" line="133"><f a=""><x path="Void"/></f></shutdown>
-		<on_window_ready public="1" set="method" line="94"><f a="handle">
+		<cleanup public="1" set="method" line="161"><f a=""><x path="Void"/></f></cleanup>
+		<shutdown public="1" set="method" line="137"><f a=""><x path="Void"/></f></shutdown>
+		<on_window_ready public="1" set="method" line="98"><f a="handle">
 	<d/>
 	<x path="Void"/>
 </f></on_window_ready>
@@ -4075,49 +4400,67 @@
 		<new public="1" set="method" line="59"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="lime.RenderHandler" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/RenderHandler.hx">
-		<lime_stage_request_render line="252" static="1"><f a=""><unknown/></f></lime_stage_request_render>
-		<lime_render_stage line="253" static="1"><f a="">
+		<lime_get_frame_stage line="255" static="1"><f a="">
+	<d/>
+	<unknown/>
+</f></lime_get_frame_stage>
+		<lime_stage_request_render line="256" static="1"><f a=""><unknown/></f></lime_stage_request_render>
+		<lime_render_stage line="257" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lime_render_stage>
-		<lime_doc_add_child line="254" static="1"><f a=":">
+		<lime_doc_add_child line="258" static="1"><f a=":">
 	<d/>
 	<d/>
 	<unknown/>
 </f></lime_doc_add_child>
-		<lime_direct_renderer_create line="255" static="1"><f a=""><unknown/></f></lime_direct_renderer_create>
-		<lime_direct_renderer_set line="256" static="1"><f a=":">
+		<lime_direct_renderer_create line="259" static="1"><f a=""><unknown/></f></lime_direct_renderer_create>
+		<lime_direct_renderer_set line="260" static="1"><f a=":">
 	<d/>
-	<f a=""><x path="Void"/></f>
+	<f a="rect">
+		<d/>
+		<x path="Void"/>
+	</f>
 	<unknown/>
 </f></lime_direct_renderer_set>
-		<lime_stage_set_next_wake line="257" static="1"><unknown/></lime_stage_set_next_wake>
-		<on_render public="1" set="method" line="241"><f a=""><x path="Void"/></f></on_render>
-		<render public="1" set="method" line="213"><f a=""><x path="Bool"/></f></render>
-		<request_render public="1" set="method" line="206"><f a=""><x path="Void"/></f></request_render>
-		<on_resize public="1" set="method" line="115"><f a="_event">
+		<lime_stage_set_next_wake line="261" static="1"><unknown/></lime_stage_set_next_wake>
+		<on_render public="1" set="method" line="244"><f a="rect">
+	<d/>
+	<x path="Void"/>
+</f></on_render>
+		<render public="1" set="method" line="223"><f a=""><x path="Bool"/></f></render>
+		<request_render public="1" set="method" line="216"><f a=""><x path="Void"/></f></request_render>
+		<on_resize public="1" set="method" line="125"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_resize>
-		<shutdown public="1" set="method" line="111"><f a=""><x path="Void"/></f></shutdown>
-		<startup public="1" set="method" line="50"><f a=""><x path="Void"/></f></startup>
+		<shutdown public="1" set="method" line="121"><f a=""><x path="Void"/></f></shutdown>
+		<startup public="1" set="method" line="58"><f a=""><x path="Void"/></f></startup>
+		<__onRender set="method" line="53">
+			<f a="rect">
+				<d/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</__onRender>
 		<direct_renderer_handle public="1"><d/></direct_renderer_handle>
-		<lib public="1"><c path="lime.LiME"/></lib>
+		<__handle public="1"><d/></__handle>
+		<lib public="1"><c path="lime.Lime"/></lib>
 		<new public="1" set="method" line="39"><f a="_lib">
-	<c path="lime.LiME"/>
+	<c path="lime.Lime"/>
 	<x path="Void"/>
 </f></new>
 	</class>
 	<class path="lime.WindowHandler" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/WindowHandler.hx">
-		<lime_stage_get_stage_width line="315" static="1"><f a="">
+		<lime_stage_get_stage_width line="316" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lime_stage_get_stage_width>
-		<lime_stage_get_stage_height line="316" static="1"><f a="">
+		<lime_stage_get_stage_height line="317" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lime_stage_get_stage_height>
-		<lime_set_stage_handler line="317" static="1"><f a=":::">
+		<lime_set_stage_handler line="318" static="1"><f a=":::">
 	<d/>
 	<f a="_event">
 		<d/>
@@ -4127,11 +4470,11 @@
 	<d/>
 	<unknown/>
 </f></lime_set_stage_handler>
-		<lime_get_frame_stage line="318" static="1"><f a="">
+		<lime_get_frame_stage line="319" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lime_get_frame_stage>
-		<lime_create_main_frame line="319" static="1"><f a=":::::">
+		<lime_create_main_frame line="320" static="1"><f a=":::::">
 	<f a="handle">
 		<d/>
 		<x path="Void"/>
@@ -4143,93 +4486,93 @@
 	<unknown/>
 	<unknown/>
 </f></lime_create_main_frame>
-		<lime_pause_animation line="320" static="1"><f a=""><unknown/></f></lime_pause_animation>
-		<lime_resume_animation line="321" static="1"><f a=""><unknown/></f></lime_resume_animation>
-		<lime_terminate line="322" static="1"><f a=""><unknown/></f></lime_terminate>
-		<lime_close line="323" static="1"><f a=""><unknown/></f></lime_close>
-		<lime_get_url line="324" static="1"><f a="">
+		<lime_pause_animation line="321" static="1"><f a=""><unknown/></f></lime_pause_animation>
+		<lime_resume_animation line="322" static="1"><f a=""><unknown/></f></lime_resume_animation>
+		<lime_terminate line="323" static="1"><f a=""><unknown/></f></lime_terminate>
+		<lime_close line="324" static="1"><f a=""><unknown/></f></lime_close>
+		<lime_get_url line="325" static="1"><f a="">
 	<c path="String"/>
 	<unknown/>
 </f></lime_get_url>
-		<lime_file_dialog_save line="327" static="1"><f a="::">
+		<lime_file_dialog_save line="328" static="1"><f a="::">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="Array"><unknown/></c>
 	<c path="String"/>
 </f></lime_file_dialog_save>
-		<lime_file_dialog_open line="328" static="1"><f a="::">
+		<lime_file_dialog_open line="329" static="1"><f a="::">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="Array"><unknown/></c>
 	<c path="String"/>
 </f></lime_file_dialog_open>
-		<lime_file_dialog_folder line="329" static="1"><f a=":">
+		<lime_file_dialog_folder line="330" static="1"><f a=":">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></lime_file_dialog_folder>
-		<lime_stage_set_window_position line="332" static="1"><f a="::">
+		<lime_stage_set_window_position line="333" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lime_stage_set_window_position>
-		<lime_stage_show_cursor line="333" static="1"><f a=":">
+		<lime_stage_show_cursor line="334" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></lime_stage_show_cursor>
-		<lime_stage_constrain_cursor_to_window_frame line="334" static="1"><f a=":">
+		<lime_stage_constrain_cursor_to_window_frame line="335" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></lime_stage_constrain_cursor_to_window_frame>
-		<lime_stage_set_cursor_position_in_window line="335" static="1"><f a="::">
+		<lime_stage_set_cursor_position_in_window line="336" static="1"><f a="::">
 	<d/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<unknown/>
 </f></lime_stage_set_cursor_position_in_window>
-		<lime_stage_get_multitouch_supported line="338" static="1"><f a="">
+		<lime_stage_get_multitouch_supported line="339" static="1"><f a="">
 	<d/>
 	<unknown/>
 </f></lime_stage_get_multitouch_supported>
-		<lime_stage_set_multitouch_active line="339" static="1"><f a=":">
+		<lime_stage_set_multitouch_active line="340" static="1"><f a=":">
 	<d/>
 	<x path="Bool"/>
 	<unknown/>
 </f></lime_stage_set_multitouch_active>
-		<fileDialogFolder public="1" set="method" line="304"><f a="_title:_text">
+		<fileDialogFolder public="1" set="method" line="305"><f a="_title:_text">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></fileDialogFolder>
-		<fileDialogSave public="1" set="method" line="297"><f a="_title:_text">
+		<fileDialogSave public="1" set="method" line="298"><f a="_title:_text">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></fileDialogSave>
-		<fileDialogOpen public="1" set="method" line="290"><f a="_title:_text">
+		<fileDialogOpen public="1" set="method" line="291"><f a="_title:_text">
 	<c path="String"/>
 	<c path="String"/>
 	<c path="String"/>
 </f></fileDialogOpen>
-		<openURL public="1" set="method" line="273"><f a="_url">
+		<openURL public="1" set="method" line="274"><f a="_url">
 	<c path="String"/>
 	<x path="Void"/>
 </f></openURL>
-		<on_force_close public="1" set="method" line="267"><f a=""><x path="Void"/></f></on_force_close>
-		<on_resume public="1" set="method" line="260"><f a=""><x path="Void"/></f></on_resume>
-		<on_pause public="1" set="method" line="253"><f a=""><x path="Void"/></f></on_pause>
-		<on_focus public="1" set="method" line="247"><f a="_event">
+		<on_force_close public="1" set="method" line="268"><f a=""><x path="Void"/></f></on_force_close>
+		<on_resume public="1" set="method" line="261"><f a=""><x path="Void"/></f></on_resume>
+		<on_pause public="1" set="method" line="254"><f a=""><x path="Void"/></f></on_pause>
+		<on_focus public="1" set="method" line="248"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_focus>
-		<on_should_rotate public="1" set="method" line="242"><f a="_event">
+		<on_should_rotate public="1" set="method" line="243"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_should_rotate>
-		<on_resize public="1" set="method" line="230"><f a="_event">
+		<on_resize public="1" set="method" line="231"><f a="_event">
 	<d/>
 	<x path="Void"/>
 </f></on_resize>
@@ -4268,9 +4611,9 @@
 		<cursor_locked public="1"><x path="Bool"/></cursor_locked>
 		<invalidated public="1"><x path="Bool"/></invalidated>
 		<active public="1"><x path="Bool"/></active>
-		<lib public="1"><c path="lime.LiME"/></lib>
+		<lib public="1"><c path="lime.Lime"/></lib>
 		<new public="1" set="method" line="11"><f a="_lib">
-	<c path="lime.LiME"/>
+	<c path="lime.Lime"/>
 	<x path="Void"/>
 </f></new>
 	</class>
@@ -6365,12 +6708,14 @@
 		<tilde/>
 		<tab/>
 		<space/>
+		<single_quote/>
 		<shift/>
+		<semicolon/>
 		<right/>
+		<period/>
+		<open_square_brace/>
 		<minus/>
 		<meta/>
-		<leftctrl/>
-		<leftalt/>
 		<left/>
 		<key_Z/>
 		<key_Y/>
@@ -6408,71 +6753,138 @@
 		<key_2/>
 		<key_1/>
 		<key_0/>
+		<forward_slash/>
+		<f9/>
+		<f8/>
+		<f7/>
+		<f6/>
+		<f5/>
+		<f4/>
+		<f3/>
+		<f2/>
+		<f15/>
+		<f14/>
+		<f13/>
+		<f12/>
+		<f11/>
+		<f10/>
+		<f1/>
 		<escape/>
 		<equals/>
 		<enter/>
 		<down/>
+		<ctrl/>
+		<comma/>
+		<close_square_brace/>
 		<capslock/>
 		<backspace/>
+		<back_slash/>
+		<alt/>
 	</enum>
 	<class path="lime.helpers.Keys" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/helpers/Keys.hx">
-		<_backspace get="inline" set="null" line="66" static="1"><x path="Int"/></_backspace>
-		<_tab get="inline" set="null" line="67" static="1"><x path="Int"/></_tab>
-		<_enter get="inline" set="null" line="68" static="1"><x path="Int"/></_enter>
-		<_meta get="inline" set="null" line="69" static="1"><x path="Int"/></_meta>
-		<_shift get="inline" set="null" line="70" static="1"><x path="Int"/></_shift>
-		<_leftctrl get="inline" set="null" line="71" static="1"><x path="Int"/></_leftctrl>
-		<_leftalt get="inline" set="null" line="72" static="1"><x path="Int"/></_leftalt>
-		<_capslock get="inline" set="null" line="73" static="1"><x path="Int"/></_capslock>
-		<_escape get="inline" set="null" line="74" static="1"><x path="Int"/></_escape>
-		<_space get="inline" set="null" line="75" static="1"><x path="Int"/></_space>
-		<_left get="inline" set="null" line="77" static="1"><x path="Int"/></_left>
-		<_up get="inline" set="null" line="78" static="1"><x path="Int"/></_up>
-		<_right get="inline" set="null" line="79" static="1"><x path="Int"/></_right>
-		<_down get="inline" set="null" line="80" static="1"><x path="Int"/></_down>
-		<_key_0 get="inline" set="null" line="82" static="1"><x path="Int"/></_key_0>
-		<_key_1 get="inline" set="null" line="83" static="1"><x path="Int"/></_key_1>
-		<_key_2 get="inline" set="null" line="84" static="1"><x path="Int"/></_key_2>
-		<_key_3 get="inline" set="null" line="85" static="1"><x path="Int"/></_key_3>
-		<_key_4 get="inline" set="null" line="86" static="1"><x path="Int"/></_key_4>
-		<_key_5 get="inline" set="null" line="87" static="1"><x path="Int"/></_key_5>
-		<_key_6 get="inline" set="null" line="88" static="1"><x path="Int"/></_key_6>
-		<_key_7 get="inline" set="null" line="89" static="1"><x path="Int"/></_key_7>
-		<_key_8 get="inline" set="null" line="90" static="1"><x path="Int"/></_key_8>
-		<_key_9 get="inline" set="null" line="91" static="1"><x path="Int"/></_key_9>
-		<_key_A get="inline" set="null" line="93" static="1"><x path="Int"/></_key_A>
-		<_key_B get="inline" set="null" line="94" static="1"><x path="Int"/></_key_B>
-		<_key_C get="inline" set="null" line="95" static="1"><x path="Int"/></_key_C>
-		<_key_D get="inline" set="null" line="96" static="1"><x path="Int"/></_key_D>
-		<_key_E get="inline" set="null" line="97" static="1"><x path="Int"/></_key_E>
-		<_key_F get="inline" set="null" line="98" static="1"><x path="Int"/></_key_F>
-		<_key_G get="inline" set="null" line="99" static="1"><x path="Int"/></_key_G>
-		<_key_H get="inline" set="null" line="100" static="1"><x path="Int"/></_key_H>
-		<_key_I get="inline" set="null" line="101" static="1"><x path="Int"/></_key_I>
-		<_key_J get="inline" set="null" line="102" static="1"><x path="Int"/></_key_J>
-		<_key_K get="inline" set="null" line="103" static="1"><x path="Int"/></_key_K>
-		<_key_L get="inline" set="null" line="104" static="1"><x path="Int"/></_key_L>
-		<_key_M get="inline" set="null" line="105" static="1"><x path="Int"/></_key_M>
-		<_key_N get="inline" set="null" line="106" static="1"><x path="Int"/></_key_N>
-		<_key_O get="inline" set="null" line="107" static="1"><x path="Int"/></_key_O>
-		<_key_P get="inline" set="null" line="108" static="1"><x path="Int"/></_key_P>
-		<_key_Q get="inline" set="null" line="109" static="1"><x path="Int"/></_key_Q>
-		<_key_R get="inline" set="null" line="110" static="1"><x path="Int"/></_key_R>
-		<_key_S get="inline" set="null" line="111" static="1"><x path="Int"/></_key_S>
-		<_key_T get="inline" set="null" line="112" static="1"><x path="Int"/></_key_T>
-		<_key_U get="inline" set="null" line="113" static="1"><x path="Int"/></_key_U>
-		<_key_V get="inline" set="null" line="114" static="1"><x path="Int"/></_key_V>
-		<_key_W get="inline" set="null" line="115" static="1"><x path="Int"/></_key_W>
-		<_key_X get="inline" set="null" line="116" static="1"><x path="Int"/></_key_X>
-		<_key_Y get="inline" set="null" line="117" static="1"><x path="Int"/></_key_Y>
-		<_key_Z get="inline" set="null" line="118" static="1"><x path="Int"/></_key_Z>
-		<_equals get="inline" set="null" line="120" static="1"><x path="Int"/></_equals>
-		<_minus get="inline" set="null" line="121" static="1"><x path="Int"/></_minus>
-		<_tilde get="inline" set="null" line="122" static="1"><x path="Int"/></_tilde>
-		<toKeyValue public="1" set="method" line="182" static="1"><f a="_value">
-	<x path="Int"/>
+		<_backspace get="inline" set="null" line="90" static="1"><x path="Int"/></_backspace>
+		<_tab get="inline" set="null" line="91" static="1"><x path="Int"/></_tab>
+		<_enter get="inline" set="null" line="92" static="1"><x path="Int"/></_enter>
+		<_meta get="inline" set="null" line="93" static="1"><x path="Int"/></_meta>
+		<_shift get="inline" set="null" line="94" static="1"><x path="Int"/></_shift>
+		<_ctrl get="inline" set="null" line="95" static="1"><x path="Int"/></_ctrl>
+		<_alt get="inline" set="null" line="96" static="1"><x path="Int"/></_alt>
+		<_capslock get="inline" set="null" line="97" static="1"><x path="Int"/></_capslock>
+		<_escape get="inline" set="null" line="98" static="1"><x path="Int"/></_escape>
+		<_space get="inline" set="null" line="99" static="1"><x path="Int"/></_space>
+		<_left get="inline" set="null" line="101" static="1"><x path="Int"/></_left>
+		<_up get="inline" set="null" line="102" static="1"><x path="Int"/></_up>
+		<_right get="inline" set="null" line="103" static="1"><x path="Int"/></_right>
+		<_down get="inline" set="null" line="104" static="1"><x path="Int"/></_down>
+		<_key_0 get="inline" set="null" line="106" static="1"><x path="Int"/></_key_0>
+		<_key_1 get="inline" set="null" line="107" static="1"><x path="Int"/></_key_1>
+		<_key_2 get="inline" set="null" line="108" static="1"><x path="Int"/></_key_2>
+		<_key_3 get="inline" set="null" line="109" static="1"><x path="Int"/></_key_3>
+		<_key_4 get="inline" set="null" line="110" static="1"><x path="Int"/></_key_4>
+		<_key_5 get="inline" set="null" line="111" static="1"><x path="Int"/></_key_5>
+		<_key_6 get="inline" set="null" line="112" static="1"><x path="Int"/></_key_6>
+		<_key_7 get="inline" set="null" line="113" static="1"><x path="Int"/></_key_7>
+		<_key_8 get="inline" set="null" line="114" static="1"><x path="Int"/></_key_8>
+		<_key_9 get="inline" set="null" line="115" static="1"><x path="Int"/></_key_9>
+		<_key_A get="inline" set="null" line="117" static="1"><x path="Int"/></_key_A>
+		<_key_B get="inline" set="null" line="118" static="1"><x path="Int"/></_key_B>
+		<_key_C get="inline" set="null" line="119" static="1"><x path="Int"/></_key_C>
+		<_key_D get="inline" set="null" line="120" static="1"><x path="Int"/></_key_D>
+		<_key_E get="inline" set="null" line="121" static="1"><x path="Int"/></_key_E>
+		<_key_F get="inline" set="null" line="122" static="1"><x path="Int"/></_key_F>
+		<_key_G get="inline" set="null" line="123" static="1"><x path="Int"/></_key_G>
+		<_key_H get="inline" set="null" line="124" static="1"><x path="Int"/></_key_H>
+		<_key_I get="inline" set="null" line="125" static="1"><x path="Int"/></_key_I>
+		<_key_J get="inline" set="null" line="126" static="1"><x path="Int"/></_key_J>
+		<_key_K get="inline" set="null" line="127" static="1"><x path="Int"/></_key_K>
+		<_key_L get="inline" set="null" line="128" static="1"><x path="Int"/></_key_L>
+		<_key_M get="inline" set="null" line="129" static="1"><x path="Int"/></_key_M>
+		<_key_N get="inline" set="null" line="130" static="1"><x path="Int"/></_key_N>
+		<_key_O get="inline" set="null" line="131" static="1"><x path="Int"/></_key_O>
+		<_key_P get="inline" set="null" line="132" static="1"><x path="Int"/></_key_P>
+		<_key_Q get="inline" set="null" line="133" static="1"><x path="Int"/></_key_Q>
+		<_key_R get="inline" set="null" line="134" static="1"><x path="Int"/></_key_R>
+		<_key_S get="inline" set="null" line="135" static="1"><x path="Int"/></_key_S>
+		<_key_T get="inline" set="null" line="136" static="1"><x path="Int"/></_key_T>
+		<_key_U get="inline" set="null" line="137" static="1"><x path="Int"/></_key_U>
+		<_key_V get="inline" set="null" line="138" static="1"><x path="Int"/></_key_V>
+		<_key_W get="inline" set="null" line="139" static="1"><x path="Int"/></_key_W>
+		<_key_X get="inline" set="null" line="140" static="1"><x path="Int"/></_key_X>
+		<_key_Y get="inline" set="null" line="141" static="1"><x path="Int"/></_key_Y>
+		<_key_Z get="inline" set="null" line="142" static="1"><x path="Int"/></_key_Z>
+		<_equals get="inline" set="null" line="144" static="1"><x path="Int"/></_equals>
+		<_minus get="inline" set="null" line="145" static="1"><x path="Int"/></_minus>
+		<_tilde get="inline" set="null" line="146" static="1"><x path="Int"/></_tilde>
+		<_forward_slash get="inline" set="null" line="147" static="1"><x path="Int"/></_forward_slash>
+		<_back_slash get="inline" set="null" line="148" static="1"><x path="Int"/></_back_slash>
+		<_semicolon get="inline" set="null" line="149" static="1"><x path="Int"/></_semicolon>
+		<_single_quote get="inline" set="null" line="150" static="1"><x path="Int"/></_single_quote>
+		<_comma get="inline" set="null" line="151" static="1"><x path="Int"/></_comma>
+		<_period get="inline" set="null" line="152" static="1"><x path="Int"/></_period>
+		<_open_square_brace get="inline" set="null" line="153" static="1"><x path="Int"/></_open_square_brace>
+		<_close_square_brace get="inline" set="null" line="154" static="1"><x path="Int"/></_close_square_brace>
+		<_f1 get="inline" set="null" line="156" static="1"><x path="Int"/></_f1>
+		<_f2 get="inline" set="null" line="157" static="1"><x path="Int"/></_f2>
+		<_f3 get="inline" set="null" line="158" static="1"><x path="Int"/></_f3>
+		<_f4 get="inline" set="null" line="159" static="1"><x path="Int"/></_f4>
+		<_f5 get="inline" set="null" line="160" static="1"><x path="Int"/></_f5>
+		<_f6 get="inline" set="null" line="161" static="1"><x path="Int"/></_f6>
+		<_f7 get="inline" set="null" line="162" static="1"><x path="Int"/></_f7>
+		<_f8 get="inline" set="null" line="163" static="1"><x path="Int"/></_f8>
+		<_f9 get="inline" set="null" line="164" static="1"><x path="Int"/></_f9>
+		<_f10 get="inline" set="null" line="165" static="1"><x path="Int"/></_f10>
+		<_f11 get="inline" set="null" line="166" static="1"><x path="Int"/></_f11>
+		<_f12 get="inline" set="null" line="167" static="1"><x path="Int"/></_f12>
+		<_f13 get="inline" set="null" line="168" static="1"><x path="Int"/></_f13>
+		<_f14 get="inline" set="null" line="169" static="1"><x path="Int"/></_f14>
+		<_f15 get="inline" set="null" line="170" static="1"><x path="Int"/></_f15>
+		<toKeyValue public="1" set="method" line="254" static="1"><f a="_event">
+	<d/>
 	<e path="lime.helpers.KeyValue"/>
 </f></toKeyValue>
+		<f15 public="1"><x path="Int"/></f15>
+		<f14 public="1"><x path="Int"/></f14>
+		<f13 public="1"><x path="Int"/></f13>
+		<f12 public="1"><x path="Int"/></f12>
+		<f11 public="1"><x path="Int"/></f11>
+		<f10 public="1"><x path="Int"/></f10>
+		<f9 public="1"><x path="Int"/></f9>
+		<f8 public="1"><x path="Int"/></f8>
+		<f7 public="1"><x path="Int"/></f7>
+		<f6 public="1"><x path="Int"/></f6>
+		<f5 public="1"><x path="Int"/></f5>
+		<f4 public="1"><x path="Int"/></f4>
+		<f3 public="1"><x path="Int"/></f3>
+		<f2 public="1"><x path="Int"/></f2>
+		<f1 public="1"><x path="Int"/></f1>
+		<close_square_brace public="1"><x path="Int"/></close_square_brace>
+		<open_square_brace public="1"><x path="Int"/></open_square_brace>
+		<period public="1"><x path="Int"/></period>
+		<comma public="1"><x path="Int"/></comma>
+		<single_quote public="1"><x path="Int"/></single_quote>
+		<semicolon public="1"><x path="Int"/></semicolon>
+		<back_slash public="1"><x path="Int"/></back_slash>
+		<forward_slash public="1"><x path="Int"/></forward_slash>
 		<tilde public="1"><x path="Int"/></tilde>
 		<minus public="1"><x path="Int"/></minus>
 		<equals public="1"><x path="Int"/></equals>
@@ -6519,13 +6931,13 @@
 		<space public="1"><x path="Int"/></space>
 		<escape public="1"><x path="Int"/></escape>
 		<capslock public="1"><x path="Int"/></capslock>
-		<leftalt public="1"><x path="Int"/></leftalt>
-		<leftctrl public="1"><x path="Int"/></leftctrl>
+		<alt public="1"><x path="Int"/></alt>
+		<ctrl public="1"><x path="Int"/></ctrl>
 		<shift public="1"><x path="Int"/></shift>
 		<meta public="1"><x path="Int"/></meta>
 		<enter public="1"><x path="Int"/></enter>
 		<tab public="1"><x path="Int"/></tab>
-		<new public="1" set="method" line="181"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="253"><f a=""><x path="Void"/></f></new>
 	</class>
 	<typedef path="lime.utils.ArrayBuffer" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/utils/ArrayBuffer.hx"><t path="lime.utils.ByteArray"/></typedef>
 	<class path="lime.utils.IMemoryRange" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/utils/IMemoryRange.hx" interface="1">
@@ -6536,45 +6948,45 @@
 	<class path="lime.utils.ArrayBufferView" params="" file="/Users/Sven/dev/luxe/deps/lime/lime/utils/ArrayBufferView.hx">
 		<implements path="lime.utils.IMemoryRange"/>
 		<invalidDataIndex line="22" static="1"><c path="String"/></invalidDataIndex>
-		<setUInt8 public="1" get="inline" set="null" line="186"><f a="position:value">
+		<setUInt8 public="1" get="inline" set="null" line="185"><f a="position:value">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></setUInt8>
-		<setInt32 public="1" get="inline" set="null" line="174"><f a="position:value">
+		<setInt32 public="1" get="inline" set="null" line="173"><f a="position:value">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></setInt32>
-		<setInt16 public="1" get="inline" set="null" line="162"><f a="position:value">
+		<setInt16 public="1" get="inline" set="null" line="161"><f a="position:value">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></setInt16>
-		<setFloat32 public="1" get="inline" set="null" line="150"><f a="position:value">
+		<setFloat32 public="1" get="inline" set="null" line="149"><f a="position:value">
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></setFloat32>
-		<getUInt8 public="1" get="inline" set="null" line="138"><f a="position">
+		<getUInt8 public="1" get="inline" set="null" line="137"><f a="position">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></getUInt8>
-		<getStart public="1" set="method" line="131"><f a=""><x path="Int"/></f></getStart>
-		<getLength public="1" set="method" line="124"><f a=""><x path="Int"/></f></getLength>
-		<getInt32 public="1" get="inline" set="null" line="112"><f a="position">
+		<getStart public="1" set="method" line="130"><f a=""><x path="Int"/></f></getStart>
+		<getLength public="1" set="method" line="123"><f a=""><x path="Int"/></f></getLength>
+		<getInt32 public="1" get="inline" set="null" line="111"><f a="position">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></getInt32>
-		<getInt16 public="1" get="inline" set="null" line="100"><f a="position">
+		<getInt16 public="1" get="inline" set="null" line="99"><f a="position">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></getInt16>
-		<getFloat32 public="1" get="inline" set="null" line="88"><f a="position">
+		<getFloat32 public="1" get="inline" set="null" line="87"><f a="position">
 	<x path="Int"/>
 	<x path="Float"/>
 </f></getFloat32>
-		<getByteBuffer public="1" set="method" line="81"><f a=""><t path="lime.utils.ByteArray"/></f></getByteBuffer>
+		<getByteBuffer public="1" set="method" line="80"><f a=""><t path="lime.utils.ByteArray"/></f></getByteBuffer>
 		<bytes><t path="haxe.io.BytesData"/></bytes>
 		<byteLength public="1" set="null"><x path="Int"/></byteLength>
 		<byteOffset public="1" set="null"><x path="Int"/></byteOffset>
@@ -7185,7 +7597,7 @@
 	<class path="luxe.Audio" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Audio.hx">
 		<process public="1" set="method" line="50">
 			<f a=""><x path="Void"/></f>
-			<meta><m n=":hide"/></meta>
+			<meta><m n=":noCompletion"/></meta>
 		</process>
 		<pan public="1" set="method" line="41"><f a="_name:_p">
 	<c path="String"/>
@@ -7207,36 +7619,36 @@
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></create>
-		<shutdown public="1" set="method" line="15">
+		<destroy public="1" set="method" line="15">
 			<f a=""><x path="Void"/></f>
-			<meta><m n=":hide"/></meta>
-		</shutdown>
-		<startup public="1" set="method" line="10">
+			<meta><m n=":noCompletion"/></meta>
+		</destroy>
+		<init public="1" set="method" line="10">
 			<f a=""><x path="Void"/></f>
-			<meta><m n=":hide"/></meta>
-		</startup>
+			<meta><m n=":noCompletion"/></meta>
+		</init>
 		<core public="1">
 			<c path="luxe.Core"/>
-			<meta><m n=":hide"/></meta>
+			<meta><m n=":noCompletion"/></meta>
 		</core>
 		<new public="1" set="method" line="8">
 			<f a="_core">
 				<c path="luxe.Core"/>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":hide"/></meta>
+			<meta><m n=":noCompletion"/></meta>
 		</new>
 	</class>
 	<typedef path="luxe.ProjectionType" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Camera.hx" module="luxe.Camera"><e path="phoenix.ProjectionType"/></typedef>
 	<class path="luxe.Entity" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Entity.hx">
 		<extends path="luxe.Objects"/>
-		<serialize_to_disk public="1" set="method" line="600"><f a="_destination_path:?_parent_write">
+		<serialize_to_disk public="1" set="method" line="599"><f a="_destination_path:?_parent_write">
 	<c path="String"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></serialize_to_disk>
-		<get_serialize_data public="1" set="method" line="582"><f a=""><d/></f></get_serialize_data>
-		<_attach_listener set="method" line="575"><f a="_v:listener">
+		<get_serialize_data public="1" set="method" line="581"><f a=""><d/></f></get_serialize_data>
+		<_attach_listener set="method" line="574"><f a="_v:listener">
 	<t path="luxe.Vector"/>
 	<f a="">
 		<x path="Float"/>
@@ -7244,136 +7656,137 @@
 	</f>
 	<x path="Void"/>
 </f></_attach_listener>
-		<_rotation_change set="method" line="571"><f a="_v">
+		<_rotation_change set="method" line="570"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_rotation_change>
-		<_scale_change set="method" line="569"><f a="_v">
+		<_scale_change set="method" line="568"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_scale_change>
-		<_pos_change set="method" line="567"><f a="_v">
+		<_pos_change set="method" line="566"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_pos_change>
-		<get_parent set="method" line="562"><f a=""><c path="luxe.Entity"/></f></get_parent>
-		<get_scaleRelative set="method" line="560"><f a=""><t path="luxe.Vector"/></f></get_scaleRelative>
-		<get_rotationRelative set="method" line="559"><f a=""><t path="luxe.Vector"/></f></get_rotationRelative>
-		<get_posRelative set="method" line="558"><f a=""><t path="luxe.Vector"/></f></get_posRelative>
-		<set_scene set="method" line="556"><f a="_scene">
+		<get_parent set="method" line="561"><f a=""><c path="luxe.Entity"/></f></get_parent>
+		<get_scaleRelative set="method" line="559"><f a=""><t path="luxe.Vector"/></f></get_scaleRelative>
+		<get_rotationRelative set="method" line="558"><f a=""><t path="luxe.Vector"/></f></get_rotationRelative>
+		<get_posRelative set="method" line="557"><f a=""><t path="luxe.Vector"/></f></get_posRelative>
+		<set_scene set="method" line="555"><f a="_scene">
 	<c path="luxe.Scene"/>
 	<c path="luxe.Scene"/>
 </f></set_scene>
-		<get_scene set="method" line="555"><f a=""><c path="luxe.Scene"/></f></get_scene>
-		<get_scale set="method" line="553"><f a=""><t path="luxe.Vector"/></f></get_scale>
-		<get_rotation set="method" line="552"><f a=""><t path="luxe.Vector"/></f></get_rotation>
-		<get_pos set="method" line="551"><f a=""><t path="luxe.Vector"/></f></get_pos>
-		<set_parent set="method" line="521"><f a="other">
+		<get_scene set="method" line="554"><f a=""><c path="luxe.Scene"/></f></get_scene>
+		<get_scale set="method" line="552"><f a=""><t path="luxe.Vector"/></f></get_scale>
+		<get_rotation set="method" line="551"><f a=""><t path="luxe.Vector"/></f></get_rotation>
+		<get_pos set="method" line="550"><f a=""><t path="luxe.Vector"/></f></get_pos>
+		<set_parent set="method" line="520"><f a="other">
 	<c path="luxe.Entity"/>
 	<c path="luxe.Entity"/>
 </f></set_parent>
-		<internal_parent_scale_changed public="1" set="method" line="515">
+		<internal_parent_scale_changed public="1" set="method" line="514">
 			<f a="_parent_scale">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":hide"/></meta>
 		</internal_parent_scale_changed>
-		<internal_parent_rotation_changed public="1" set="method" line="509">
+		<internal_parent_rotation_changed public="1" set="method" line="508">
 			<f a="_parent_rotation">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":hide"/></meta>
 		</internal_parent_rotation_changed>
-		<internal_parent_pos_changed public="1" set="method" line="503">
+		<internal_parent_pos_changed public="1" set="method" line="502">
 			<f a="_parent_pos">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":hide"/></meta>
 		</internal_parent_pos_changed>
-		<set_scale set="method" line="475"><f a="_s">
+		<set_scale set="method" line="474"><f a="_s">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_scale>
-		<set_rotation set="method" line="448"><f a="_r">
+		<set_rotation set="method" line="447"><f a="_r">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_rotation>
-		<set_pos set="method" line="423"><f a="_p">
+		<set_pos set="method" line="422"><f a="_p">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_pos>
-		<set_scaleRelative set="method" line="403"><f a="_s">
+		<set_scaleRelative set="method" line="402"><f a="_s">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_scaleRelative>
-		<set_rotationRelative set="method" line="383"><f a="_r">
+		<set_rotationRelative set="method" line="382"><f a="_r">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_rotationRelative>
-		<set_posRelative set="method" line="363"><f a="_p">
+		<set_posRelative set="method" line="362"><f a="_p">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_posRelative>
-		<remove_child public="1" set="method" line="357"><f a="child">
+		<remove_child public="1" set="method" line="356"><f a="child">
 	<c path="luxe.Entity"/>
 	<x path="Void"/>
 </f></remove_child>
-		<add_child public="1" set="method" line="346"><f a="child">
+		<add_child public="1" set="method" line="345"><f a="child">
 	<c path="luxe.Entity"/>
 	<x path="Void"/>
 </f></add_child>
-		<get_components set="method" line="342"><f a=""><x path="Map">
+		<get_components set="method" line="341"><f a=""><x path="Map">
 	<c path="String"/>
 	<c path="luxe.components.Component"/>
 </x></f></get_components>
-		<has public="1" set="method" line="338"><f a="_name">
+		<has public="1" set="method" line="337"><f a="_name">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></has>
-		<get public="1" set="method" line="334"><f a="_name:?_in_children:?_first_only">
+		<get public="1" set="method" line="333"><f a="_name:?_in_children:?_first_only">
 	<c path="String"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<d/>
 </f></get>
-		<add public="1" params="T" set="method" line="330"><f a="type:?_name">
-	<x path="Class"><c path="add.T"/></x>
+		<add public="1" params="T1:T2" set="method" line="329"><f a="type:?_name:?_data">
+	<x path="Class"><c path="add.T1"/></x>
 	<c path="String"/>
-	<c path="add.T"/>
+	<c path="add.T2"/>
+	<c path="add.T1"/>
 </f></add>
-		<_start_fixed_rate_timer set="method" line="320"><f a="_rate">
+		<_start_fixed_rate_timer set="method" line="319"><f a="_rate">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_start_fixed_rate_timer>
-		<_stop_fixed_rate_timer set="method" line="313"><f a=""><x path="Void"/></f></_stop_fixed_rate_timer>
-		<set_fixed_rate set="method" line="303"><f a="_rate">
+		<_stop_fixed_rate_timer set="method" line="312"><f a=""><x path="Void"/></f></_stop_fixed_rate_timer>
+		<set_fixed_rate set="method" line="302"><f a="_rate">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_fixed_rate>
-		<get_fixed_rate set="method" line="299"><f a=""><x path="Float"/></f></get_fixed_rate>
-		<_fixed_update public="1" set="method" line="277">
+		<get_fixed_rate set="method" line="298"><f a=""><x path="Float"/></f></get_fixed_rate>
+		<_fixed_update public="1" set="method" line="276">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_fixed_update>
-		<_update public="1" set="method" line="255">
+		<_update public="1" set="method" line="254">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_update>
-		<_destroy public="1" set="method" line="227">
+		<_destroy public="1" set="method" line="225">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_destroy>
-		<_start public="1" set="method" line="202">
+		<_start public="1" set="method" line="200">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_start>
-		<_oninputup public="1" set="method" line="181">
+		<_oninputup public="1" set="method" line="179">
 			<f a="_name:e">
 				<c path="String"/>
 				<d/>
@@ -7381,7 +7794,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_oninputup>
-		<_oninputdown public="1" set="method" line="160">
+		<_oninputdown public="1" set="method" line="158">
 			<f a="_name:e">
 				<c path="String"/>
 				<d/>
@@ -7389,28 +7802,28 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_oninputdown>
-		<_onmousemove public="1" set="method" line="139">
+		<_onmousemove public="1" set="method" line="137">
 			<f a="e">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_onmousemove>
-		<_onmouseup public="1" set="method" line="118">
+		<_onmouseup public="1" set="method" line="116">
 			<f a="e">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_onmouseup>
-		<_onmousedown public="1" set="method" line="97">
+		<_onmousedown public="1" set="method" line="95">
 			<f a="e">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_onmousedown>
-		<_init public="1" set="method" line="73">
+		<_init public="1" set="method" line="70">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_init>
@@ -7467,25 +7880,29 @@
 	</class>
 	<class path="luxe.Camera" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Camera.hx">
 		<extends path="luxe.Entity"/>
-		<get_serialize_data public="1" set="method" line="105" override="1"><f a=""><d/></f></get_serialize_data>
-		<update public="1" set="method" line="75">
+		<get_serialize_data public="1" set="method" line="107" override="1"><f a=""><d/></f></get_serialize_data>
+		<update public="1" set="method" line="80">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":hide"/></meta>
+			<meta><m n=":noCompletion"/></meta>
 		</update>
-		<shake public="1" set="method" line="69"><f a="amount">
+		<shake public="1" set="method" line="74"><f a="amount">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></shake>
-		<set_pos public="1" set="method" line="51" override="1">
+		<set_pos public="1" set="method" line="56" override="1">
 			<f a="v">
 				<t path="luxe.Vector"/>
 				<t path="luxe.Vector"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</set_pos>
+		<get_pos public="1" set="method" line="52" override="1">
+			<f a=""><t path="luxe.Vector"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</get_pos>
 		<center public="1" set="method" line="42"><f a="_p:?_t:?oncomplete">
 	<t path="luxe.Vector"/>
 	<x path="Float"/>
@@ -7507,13 +7924,13 @@
 	<typedef path="luxe.ColorHSV" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Color.hx" module="luxe.Color"><c path="phoenix.ColorHSV"/></typedef>
 	<typedef path="luxe.ColorHSL" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Color.hx" module="luxe.Color"><c path="phoenix.ColorHSL"/></typedef>
 	<class path="luxe.Core" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Core.hx">
-		<load public="1" set="method" line="320" static="1"><f a="library:method:?args">
+		<load public="1" set="method" line="335" static="1"><f a="library:method:?args">
 	<c path="String"/>
 	<c path="String"/>
 	<x path="Int"/>
 	<d/>
 </f></load>
-		<_debug public="1" set="method" line="530"><f a="value:?_verbose:?_more_verbose">
+		<_debug public="1" set="method" line="524"><f a="value:?_verbose:?_more_verbose">
 	<d/>
 	<x path="Bool"/>
 	<x path="Bool"/>
@@ -7522,35 +7939,35 @@
 		<more_verbose public="1"><x path="Bool"/></more_verbose>
 		<verbose public="1"><x path="Bool"/></verbose>
 		<log public="1"><x path="Bool"/></log>
-		<ongamepadbuttonup public="1" set="method" line="519"><f a="e">
+		<ongamepadbuttonup public="1" set="method" line="513"><f a="e">
 	<unknown/>
 	<x path="Void"/>
 </f></ongamepadbuttonup>
-		<ongamepadbuttondown public="1" set="method" line="516"><f a="e">
+		<ongamepadbuttondown public="1" set="method" line="510"><f a="e">
 	<unknown/>
 	<x path="Void"/>
 </f></ongamepadbuttondown>
-		<ongamepadhat public="1" set="method" line="513"><f a="e">
+		<ongamepadhat public="1" set="method" line="507"><f a="e">
 	<unknown/>
 	<x path="Void"/>
 </f></ongamepadhat>
-		<ongamepadball public="1" set="method" line="510"><f a="e">
+		<ongamepadball public="1" set="method" line="504"><f a="e">
 	<unknown/>
 	<x path="Void"/>
 </f></ongamepadball>
-		<ongamepadaxis public="1" set="method" line="507"><f a="e">
+		<ongamepadaxis public="1" set="method" line="501"><f a="e">
 	<unknown/>
 	<x path="Void"/>
 </f></ongamepadaxis>
-		<ontouchmove public="1" set="method" line="497"><f a="e">
+		<ontouchmove public="1" set="method" line="491"><f a="e">
 	<t path="luxe.TouchEvent"/>
 	<x path="Void"/>
 </f></ontouchmove>
-		<ontouchend public="1" set="method" line="488"><f a="e">
+		<ontouchend public="1" set="method" line="482"><f a="e">
 	<t path="luxe.TouchEvent"/>
 	<x path="Void"/>
 </f></ontouchend>
-		<ontouchbegin public="1" set="method" line="464"><f a="e">
+		<ontouchbegin public="1" set="method" line="458"><f a="e">
 	<t path="luxe.TouchEvent"/>
 	<x path="Void"/>
 </f></ontouchbegin>
@@ -7558,62 +7975,62 @@
 	<x path="Int"/>
 	<t path="luxe.TouchEvent"/>
 </x></touches_down>
-		<onmousemove public="1" set="method" line="450"><f a="e">
+		<onmousemove public="1" set="method" line="443"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmousemove>
-		<onmouseup public="1" set="method" line="436"><f a="e">
+		<onmouseup public="1" set="method" line="428"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmouseup>
-		<onmousedown public="1" set="method" line="422"><f a="e">
+		<onmousedown public="1" set="method" line="413"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmousedown>
-		<oninputup public="1" set="method" line="411"><f a="_name:e">
+		<oninputup public="1" set="method" line="402"><f a="_name:e">
 	<c path="String"/>
-	<d/>
+	<t path="luxe.InputEvent"/>
 	<x path="Void"/>
 </f></oninputup>
-		<oninputdown public="1" set="method" line="402"><f a="_name:e">
+		<oninputdown public="1" set="method" line="393"><f a="_name:e">
 	<c path="String"/>
-	<d/>
+	<t path="luxe.InputEvent"/>
 	<x path="Void"/>
 </f></oninputdown>
-		<onkeyup public="1" set="method" line="378"><f a="e">
+		<onkeyup public="1" set="method" line="377"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></onkeyup>
-		<onkeydown public="1" set="method" line="345"><f a="e">
+		<onkeydown public="1" set="method" line="360"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></onkeydown>
-		<onresize public="1" set="method" line="330"><f a="e">
+		<onresize public="1" set="method" line="345"><f a="e">
 	<a>
 		<y set="null"><x path="Float"/></y>
 		<x set="null"><x path="Float"/></x>
 	</a>
 	<x path="Void"/>
 </f></onresize>
-		<show_console public="1" set="method" line="324"><f a="?_show">
+		<show_console public="1" set="method" line="339"><f a="?_show">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></show_console>
-		<set_renderer public="1" set="method" line="313"><f a="_renderer">
-	<c path="luxe.Renderer"/>
+		<set_renderer public="1" set="method" line="328"><f a="_renderer">
+	<c path="phoenix.Renderer"/>
 	<x path="Void"/>
 </f></set_renderer>
-		<render public="1" set="method" line="296"><f a=""><x path="Void"/></f></render>
-		<update public="1" set="method" line="253"><f a=""><x path="Void"/></f></update>
-		<shutdown public="1" set="method" line="207"><f a=""><x path="Void"/></f></shutdown>
-		<startup public="1" set="method" line="135"><f a=""><x path="Void"/></f></startup>
+		<render public="1" set="method" line="306"><f a=""><x path="Void"/></f></render>
+		<update public="1" set="method" line="243"><f a=""><x path="Void"/></f></update>
+		<shutdown public="1" set="method" line="199"><f a=""><x path="Void"/></f></shutdown>
+		<init public="1" set="method" line="135"><f a=""><x path="Void"/></f></init>
 		<ready set="method" line="104"><f a="_lime">
-	<c path="lime.LiME"/>
+	<c path="lime.Lime"/>
 	<x path="Void"/>
 </f></ready>
 		<has_shutdown public="1"><x path="Bool"/></has_shutdown>
 		<shutting_down public="1"><x path="Bool"/></shutting_down>
-		<add_internal_update public="1" set="method" line="69"><f a="_update">
+		<add_internal_update public="1" set="method" line="70"><f a="_update">
 	<f a="">
 		<x path="Float"/>
 		<x path="Void"/>
@@ -7629,21 +8046,18 @@
 </x></_update_handlers>
 		<_touch_pos><t path="luxe.Vector"/></_touch_pos>
 		<_mouse_pos><t path="luxe.Vector"/></_mouse_pos>
-		<profiling public="1"><x path="Bool"/></profiling>
-		<profile_path public="1"><c path="String"/></profile_path>
 		<dt public="1"><x path="Float"/></dt>
 		<end_dt><x path="Float"/></end_dt>
 		<screen public="1"><t path="luxe.Rectangle"/></screen>
-		<renderer public="1"><d/></renderer>
+		<renderer public="1"><c path="phoenix.Renderer"/></renderer>
 		<scene public="1"><c path="luxe.Scene"/></scene>
 		<audio public="1"><c path="luxe.Audio"/></audio>
 		<input public="1"><c path="luxe.Input"/></input>
 		<events public="1"><c path="luxe.Events"/></events>
 		<time public="1"><c path="luxe.Time"/></time>
 		<draw public="1"><c path="luxe.Draw"/></draw>
-		<file public="1"><c path="luxe.Files"/></file>
 		<debug public="1"><c path="luxe.Debug"/></debug>
-		<lime public="1"><c path="lime.LiME"/></lime>
+		<lime public="1"><c path="lime.Lime"/></lime>
 		<console_visible public="1"><x path="Bool"/></console_visible>
 		<config public="1"><d/></config>
 		<host public="1"><d/></host>
@@ -7655,126 +8069,145 @@
 		<meta><m n=":hide"/></meta>
 	</class>
 	<class path="luxe.Debug" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Debug.hx">
-		<internal_trace public="1" set="method" line="86" static="1"><f a="v:?inf">
+		<shut_down public="1" line="27" static="1"><x path="Bool"/></shut_down>
+		<trace_callbacks static="1"><x path="Map">
+	<c path="String"/>
+	<f a=":?">
+		<d/>
+		<t path="haxe.PosInfos"/>
+		<x path="Void"/>
+	</f>
+</x></trace_callbacks>
+		<views public="1" static="1"><c path="Array"><c path="luxe.debug.DebugView"/></c></views>
+		<thread static="1"><c path="cpp.vm.Thread"/></thread>
+		<mutex static="1"><c path="cpp.vm.Mutex"/></mutex>
+		<internal_trace public="1" set="method" line="94" static="1"><f a="v:?inf">
 	<d/>
 	<t path="haxe.PosInfos"/>
 	<x path="Void"/>
 </f></internal_trace>
-		<process public="1" set="method" line="419"><f a=""><x path="Void"/></f></process>
-		<_title_text><c path="String"/></_title_text>
-		<update_render_stats public="1" set="method" line="392"><f a=""><x path="Void"/></f></update_render_stats>
-		<toggle_debug_stats public="1" set="method" line="388"><f a=""><x path="Void"/></f></toggle_debug_stats>
-		<hide_debug public="1"><x path="Bool"/></hide_debug>
-		<refresh_render_stats public="1" set="method" line="370"><f a=""><x path="Void"/></f></refresh_render_stats>
-		<shutdown public="1" set="method" line="366"><f a=""><x path="Void"/></f></shutdown>
-		<show_stats_console public="1" set="method" line="354"><f a="?_show">
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></show_stats_console>
-		<show_log_console public="1" set="method" line="345"><f a="?_show">
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></show_log_console>
-		<show_console public="1" set="method" line="317"><f a="?_show">
+		<process public="1" set="method" line="307"><f a=""><x path="Void"/></f></process>
+		<destroy public="1" set="method" line="288"><f a=""><x path="Void"/></f></destroy>
+		<show_console public="1" set="method" line="261"><f a="?_show">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></show_console>
 		<last_cursor_locked><x path="Bool"/></last_cursor_locked>
 		<last_cursor_shown><x path="Bool"/></last_cursor_shown>
-		<switch_console public="1" set="method" line="297"><f a="?_change">
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></switch_console>
-		<get_resource_stats_string public="1" set="method" line="293"><f a=""><c path="String"/></f></get_resource_stats_string>
-		<get_render_stats_string public="1" set="method" line="282"><f a=""><c path="String"/></f></get_render_stats_string>
-		<refresh public="1" set="method" line="253"><f a=""><x path="Void"/></f></refresh>
-		<create_stats_console public="1" set="method" line="216"><f a=""><x path="Void"/></f></create_stats_console>
-		<refresh_lines set="method" line="184"><f a=""><x path="Void"/></f></refresh_lines>
-		<_last_logged_length><x path="Int"/></_last_logged_length>
-		<add_line public="1" set="method" line="167"><f a="_t">
-	<c path="String"/>
-	<x path="Void"/>
-</f></add_line>
-		<create_log_console public="1" set="method" line="147"><f a=""><x path="Void"/></f></create_log_console>
-		<onresize public="1" set="method" line="143"><f a="e">
+		<switch_view public="1" set="method" line="236"><f a=""><x path="Void"/></f></switch_view>
+		<refresh set="method" line="232"><f a=""><x path="Void"/></f></refresh>
+		<onresize public="1" set="method" line="227"><f a="e">
 	<a>
 		<y set="null"><x path="Float"/></y>
 		<x set="null"><x path="Float"/></x>
 	</a>
 	<x path="Void"/>
 </f></onresize>
-		<create_debug_console public="1" set="method" line="100"><f a=""><x path="Void"/></f></create_debug_console>
-		<startup public="1" set="method" line="59"><f a=""><x path="Void"/></f></startup>
-		<_render_stats public="1"><d/></_render_stats>
-		<_last_render_stats public="1"><d/></_last_render_stats>
+		<onkeydown public="1" set="method" line="202"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeydown>
+		<onkeyup public="1" set="method" line="184"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeyup>
+		<onmousemove public="1" set="method" line="176"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmousemove>
+		<onmousedown public="1" set="method" line="169"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmousedown>
+		<onmouseup public="1" set="method" line="161"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmouseup>
+		<create_debug_console public="1" set="method" line="111"><f a=""><x path="Void"/></f></create_debug_console>
+		<add_trace_listener public="1" set="method" line="90"><f a="_name:_callback">
+	<c path="String"/>
+	<f a=":?">
+		<d/>
+		<t path="haxe.PosInfos"/>
+		<x path="Void"/>
+	</f>
+	<x path="Void"/>
+</f></add_trace_listener>
+		<remove_trace_listener public="1" set="method" line="87"><f a="_name">
+	<c path="String"/>
+	<x path="Void"/>
+</f></remove_trace_listener>
+		<end public="1" set="method" line="83"><f a="_name">
+	<c path="String"/>
+	<x path="Void"/>
+</f></end>
+		<start public="1" set="method" line="80"><f a="_name">
+	<c path="String"/>
+	<x path="Void"/>
+</f></start>
+		<init public="1" set="method" line="62"><f a=""><x path="Void"/></f></init>
+		<profiling public="1"><x path="Bool"/></profiling>
+		<profile_path public="1"><c path="String"/></profile_path>
 		<started public="1"><x path="Bool"/></started>
 		<padding public="1"><t path="luxe.Vector"/></padding>
-		<view_count public="1"><x path="Int"/></view_count>
-		<current_view public="1"><x path="Int"/></current_view>
+		<current_view public="1"><c path="luxe.debug.DebugView"/></current_view>
+		<last_view_index public="1"><x path="Int"/></last_view_index>
+		<current_view_index public="1"><x path="Int"/></current_view_index>
 		<dt_average_count public="1"><x path="Int"/></dt_average_count>
 		<dt_average_span public="1"><x path="Int"/></dt_average_span>
 		<dt_average_accum public="1"><x path="Float"/></dt_average_accum>
 		<dt_average public="1"><x path="Float"/></dt_average>
-		<debug_geometry_count public="1"><x path="Int"/></debug_geometry_count>
-		<debug_draw_call_count public="1"><x path="Int"/></debug_draw_call_count>
-		<debug_overlay public="1"><c path="phoenix.geometry.QuadGeometry"/></debug_overlay>
 		<debug_font public="1"><c path="phoenix.BitmapFont"/></debug_font>
-		<debug_view public="1"><c path="phoenix.Camera"/></debug_view>
-		<debug_batcher public="1"><c path="phoenix.Batcher"/></debug_batcher>
-		<max_lines public="1"><x path="Int"/></max_lines>
-		<lines public="1"><c path="luxe.Text"/></lines>
-		<logged public="1"><c path="Array"><c path="String"/></c></logged>
-		<resource_list_text public="1"><c path="luxe.Text"/></resource_list_text>
-		<resource_stats_text public="1"><c path="luxe.Text"/></resource_stats_text>
-		<render_stats_text public="1"><c path="luxe.Text"/></render_stats_text>
-		<batcher_list_text public="1"><c path="luxe.Text"/></batcher_list_text>
-		<scene_inspector public="1"><c path="luxe.debug.Inspector"/></scene_inspector>
+		<view public="1"><c path="phoenix.Camera"/></view>
+		<batcher public="1"><c path="phoenix.Batcher"/></batcher>
+		<overlay public="1"><c path="phoenix.geometry.QuadGeometry"/></overlay>
+		<debug_inspector public="1"><c path="luxe.debug.Inspector"/></debug_inspector>
 		<visible public="1"><x path="Bool"/></visible>
 		<core public="1"><c path="luxe.Core"/></core>
-		<new public="1" set="method" line="18"><f a="_core">
+		<new public="1" set="method" line="24"><f a="_core">
 	<c path="luxe.Core"/>
 	<x path="Void"/>
 </f></new>
 		<meta><m n=":hide"/></meta>
 	</class>
 	<class path="luxe.Draw" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Draw.hx">
-		<axis3D public="1" set="method" line="128"><f a="?options">
+		<axis3D public="1" set="method" line="129"><f a="?options">
 	<d/>
 	<x path="Void"/>
 </f></axis3D>
-		<plane public="1" set="method" line="116"><f a="options">
+		<plane public="1" set="method" line="117"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.PlaneGeometry"/>
 </f></plane>
-		<circle public="1" set="method" line="104"><f a="options">
+		<circle public="1" set="method" line="105"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.CircleGeometry"/>
 </f></circle>
-		<arc public="1" set="method" line="92"><f a="options">
+		<arc public="1" set="method" line="93"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.ArcGeometry"/>
 </f></arc>
-		<ring public="1" set="method" line="80"><f a="options">
+		<ring public="1" set="method" line="81"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.RingGeometry"/>
 </f></ring>
-		<text public="1" set="method" line="70"><f a="options">
+		<text public="1" set="method" line="71"><f a="options">
 	<d/>
 	<unknown/>
 </f></text>
-		<rectangle public="1" set="method" line="58"><f a="options">
+		<rectangle public="1" set="method" line="59"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.RectangleGeometry"/>
 </f></rectangle>
-		<box public="1" set="method" line="46"><f a="options">
+		<box public="1" set="method" line="47"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.QuadGeometry"/>
 </f></box>
-		<line public="1" set="method" line="31"><f a="options">
+		<line public="1" set="method" line="32"><f a="options">
 	<d/>
 	<c path="phoenix.geometry.LineGeometry"/>
 </f></line>
-		<default_options set="method" line="17"><f a="options">
+		<default_options set="method" line="18"><f a="options">
 	<d/>
 	<unknown/>
 </f></default_options>
@@ -7782,7 +8215,7 @@
 			<c path="luxe.Core"/>
 			<meta><m n=":noCompletion"/></meta>
 		</core>
-		<new public="1" set="method" line="15">
+		<new public="1" set="method" line="16">
 			<f a="_core">
 				<c path="luxe.Core"/>
 				<x path="Void"/>
@@ -7791,62 +8224,56 @@
 		</new>
 	</class>
 	<class path="luxe.Events" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Events.hx">
-		<unschedule public="1" set="method" line="250"><f a="schedule_id">
+		<unschedule public="1" set="method" line="269"><f a="schedule_id">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></unschedule>
-		<schedule public="1" set="method" line="234"><f a="time:event_name:?properties">
+		<schedule public="1" params="T" set="method" line="253"><f a="time:event_name:?properties">
 	<x path="Float"/>
 	<c path="String"/>
-	<d/>
+	<c path="schedule.T"/>
 	<c path="String"/>
 </f></schedule>
-		<fire public="1" set="method" line="187"><f a="_event_name:?_properties">
+		<fire public="1" params="T" set="method" line="205"><f a="_event_name:?_properties">
 	<c path="String"/>
-	<d/>
+	<c path="fire.T"/>
 	<x path="Bool"/>
 </f></fire>
-		<tag_properties set="method" line="169"><f a="_properties:_name:_count">
+		<tag_properties set="method" line="187"><f a="_properties:_name:_count">
 	<d/>
 	<c path="String"/>
 	<x path="Int"/>
-	<unknown/>
+	<c path="fire.T"/>
 </f></tag_properties>
-		<process public="1" set="method" line="152"><f a=""><x path="Void"/></f></process>
-		<dequeue public="1" set="method" line="139"><f a="event_id">
+		<process public="1" set="method" line="170"><f a=""><x path="Void"/></f></process>
+		<dequeue public="1" set="method" line="157"><f a="event_id">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></dequeue>
-		<queue public="1" set="method" line="125"><f a="event_name:?properties">
+		<queue public="1" params="T" set="method" line="143"><f a="event_name:?properties">
 	<c path="String"/>
-	<d/>
+	<c path="queue.T"/>
 	<c path="String"/>
 </f></queue>
-		<disconnect public="1" set="method" line="93"><f a="event_id">
+		<disconnect public="1" set="method" line="111"><f a="event_id">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></disconnect>
-		<listen public="1" set="method" line="48"><f a="_event_name:_listener">
+		<listen public="1" params="T" set="method" line="66"><f a="_event_name:_listener">
 	<c path="String"/>
 	<f a="">
-		<d/>
+		<c path="listen.T"/>
 		<x path="Void"/>
 	</f>
 	<c path="String"/>
 </f></listen>
-		<does_filter_event public="1" set="method" line="34"><f a="_filter:_event">
+		<does_filter_event public="1" set="method" line="52"><f a="_filter:_event">
 	<c path="String"/>
 	<c path="String"/>
 	<x path="Bool"/>
 </f></does_filter_event>
-		<shutdown public="1" set="method" line="29">
-			<f a=""><x path="Void"/></f>
-			<meta><m n=":noCompletion"/></meta>
-		</shutdown>
-		<startup public="1" set="method" line="25">
-			<f a=""><x path="Void"/></f>
-			<meta><m n=":noCompletion"/></meta>
-		</startup>
+		<clear public="1" set="method" line="26"><f a=""><x path="Void"/></f></clear>
+		<destroy public="1" set="method" line="22"><f a=""><x path="Void"/></f></destroy>
 		<event_schedules public="1">
 			<x path="Map">
 				<c path="String"/>
@@ -7882,7 +8309,7 @@
 			</x>
 			<meta><m n=":noCompletion"/></meta>
 		</event_queue>
-		<new public="1" set="method" line="16"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="13"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="luxe.EventConnection" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Events.hx" module="luxe.Events">
 		<event_name public="1"><c path="String"/></event_name>
@@ -7891,7 +8318,7 @@
 	<d/>
 	<x path="Void"/>
 </f></listener>
-		<new public="1" set="method" line="275"><f a="_id:_event_name:_listener">
+		<new public="1" set="method" line="294"><f a="_id:_event_name:_listener">
 	<c path="String"/>
 	<c path="String"/>
 	<f a="">
@@ -7906,21 +8333,10 @@
 		<properties public="1"><d/></properties>
 		<name public="1"><c path="String"/></name>
 		<id public="1"><c path="String"/></id>
-		<new public="1" set="method" line="289"><f a="_id:_event_name:_event_properties">
+		<new public="1" set="method" line="308"><f a="_id:_event_name:_event_properties">
 	<c path="String"/>
 	<c path="String"/>
 	<d/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":noCompletion"/></meta>
-	</class>
-	<class path="luxe.Files" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Files.hx">
-		<process public="1" set="method" line="19"><f a=""><x path="Void"/></f></process>
-		<shutdown public="1" set="method" line="15"><f a=""><x path="Void"/></f></shutdown>
-		<startup public="1" set="method" line="11"><f a=""><x path="Void"/></f></startup>
-		<core public="1"><c path="luxe.Core"/></core>
-		<new public="1" set="method" line="8"><f a="_core">
-	<c path="luxe.Core"/>
 	<x path="Void"/>
 </f></new>
 		<meta><m n=":noCompletion"/></meta>
@@ -7955,136 +8371,161 @@
 	<button><e path="lime.MouseButton"/></button>
 	<alt_down><x path="Bool"/></alt_down>
 </a></typedef>
+	<enum path="luxe.InputType" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<touch/>
+		<mouse/>
+		<keys/>
+		<gamepad/>
+	</enum>
+	<typedef path="luxe.InputEvent" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input"><a>
+	<type><e path="luxe.InputType"/></type>
+	<touch_event>
+		<t path="Null"><t path="luxe.TouchEvent"/></t>
+		<meta><m n=":optional"/></meta>
+	</touch_event>
+	<mouse_event>
+		<t path="Null"><t path="luxe.MouseEvent"/></t>
+		<meta><m n=":optional"/></meta>
+	</mouse_event>
+	<key_event>
+		<t path="Null"><t path="luxe.KeyEvent"/></t>
+		<meta><m n=":optional"/></meta>
+	</key_event>
+	<gamepad_event>
+		<t path="Null"><t path="luxe.GamepadEvent"/></t>
+		<meta><m n=":optional"/></meta>
+	</gamepad_event>
+</a></typedef>
 	<class path="luxe.Input" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Input.hx">
 		<Keys public="1" static="1"><c path="lime.helpers.Keys"/></Keys>
 		<Gamepad public="1" static="1"><c path="lime.helpers.Gamepad"/></Gamepad>
-		<joybuttonup public="1" set="method" line="206">
+		<joybuttonup public="1" set="method" line="233">
 			<f a="_event">
 				<d/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</joybuttonup>
-		<joybuttondown public="1" set="method" line="203">
+		<joybuttondown public="1" set="method" line="230">
 			<f a="_event">
 				<d/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</joybuttondown>
-		<joyhatmove public="1" set="method" line="200">
+		<joyhatmove public="1" set="method" line="227">
 			<f a="_event">
 				<d/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</joyhatmove>
-		<joyballmove public="1" set="method" line="197">
+		<joyballmove public="1" set="method" line="224">
 			<f a="_event">
 				<d/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</joyballmove>
-		<joyaxismove public="1" set="method" line="194">
+		<joyaxismove public="1" set="method" line="221">
 			<f a="_event">
 				<d/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</joyaxismove>
-		<touchtap public="1" set="method" line="189">
+		<touchtap public="1" set="method" line="216">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</touchtap>
-		<touchend public="1" set="method" line="186">
+		<touchend public="1" set="method" line="213">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</touchend>
-		<touchmove public="1" set="method" line="183">
+		<touchmove public="1" set="method" line="210">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</touchmove>
-		<touchbegin public="1" set="method" line="180">
+		<touchbegin public="1" set="method" line="207">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</touchbegin>
-		<mouseup public="1" set="method" line="174">
+		<mouseup public="1" set="method" line="201">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</mouseup>
-		<mouseclick public="1" set="method" line="171">
+		<mouseclick public="1" set="method" line="198">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</mouseclick>
-		<mousedown public="1" set="method" line="168">
+		<mousedown public="1" set="method" line="195">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</mousedown>
-		<mousemove public="1" set="method" line="165">
+		<mousemove public="1" set="method" line="192">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</mousemove>
-		<lostinputfocus public="1" set="method" line="160">
+		<lostinputfocus public="1" set="method" line="187">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</lostinputfocus>
-		<gotinputfocus public="1" set="method" line="157">
+		<gotinputfocus public="1" set="method" line="184">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</gotinputfocus>
-		<onkeyup public="1" set="method" line="154">
+		<onkeyup public="1" set="method" line="181">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</onkeyup>
-		<onkeydown public="1" set="method" line="151">
+		<onkeydown public="1" set="method" line="178">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</onkeydown>
-		<onchar public="1" set="method" line="148">
+		<onchar public="1" set="method" line="175">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</onchar>
-		<check_named_mouse public="1" set="method" line="121">
+		<check_named_mouse public="1" set="method" line="142">
 			<f a="e:?_down">
 				<t path="luxe.MouseEvent"/>
 				<x path="Bool"/>
@@ -8092,7 +8533,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</check_named_mouse>
-		<check_named_keys public="1" set="method" line="97">
+		<check_named_keys public="1" set="method" line="112">
 			<f a="e:?_down">
 				<t path="luxe.KeyEvent"/>
 				<x path="Bool"/>
@@ -8100,33 +8541,33 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</check_named_keys>
-		<add public="1" set="method" line="86"><f a="_name:_event">
+		<add public="1" set="method" line="101"><f a="_name:_event">
 	<c path="String"/>
 	<d/>
 	<x path="Void"/>
 </f></add>
-		<add_mouse_binding set="method" line="75"><f a="_name:_value">
+		<add_mouse_binding set="method" line="90"><f a="_name:_value">
 	<c path="String"/>
 	<t path="luxe.MouseButton"/>
 	<x path="Void"/>
 </f></add_mouse_binding>
-		<add_key_binding set="method" line="64"><f a="_name:_value">
+		<add_key_binding set="method" line="79"><f a="_name:_value">
 	<c path="String"/>
 	<t path="luxe.KeyValue"/>
 	<x path="Void"/>
 </f></add_key_binding>
-		<process public="1" set="method" line="58">
+		<process public="1" set="method" line="73">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</process>
-		<shutdown public="1" set="method" line="54">
+		<destroy public="1" set="method" line="69">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
-		</shutdown>
-		<startup public="1" set="method" line="42">
+		</destroy>
+		<init public="1" set="method" line="57">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
-		</startup>
+		</init>
 		<mouse_bindings><x path="Map">
 	<c path="String"/>
 	<x path="Map">
@@ -8145,97 +8586,13 @@
 			<c path="luxe.Core"/>
 			<meta><m n=":noCompletion"/></meta>
 		</core>
-		<new public="1" set="method" line="31">
+		<new public="1" set="method" line="46">
 			<f a="_core">
 				<c path="luxe.Core"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</new>
-	</class>
-	<class path="luxe.Modes" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Modes.hx">
-		<ontouchbegin public="1" set="method" line="179"><f a="e">
-	<t path="luxe.TouchEvent"/>
-	<x path="Void"/>
-</f></ontouchbegin>
-		<ontouchend public="1" set="method" line="174"><f a="e">
-	<t path="luxe.TouchEvent"/>
-	<x path="Void"/>
-</f></ontouchend>
-		<ontouchmove public="1" set="method" line="169"><f a="e">
-	<t path="luxe.TouchEvent"/>
-	<x path="Void"/>
-</f></ontouchmove>
-		<onmousemove public="1" set="method" line="164"><f a="e">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmousemove>
-		<onmouseup public="1" set="method" line="159"><f a="e">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmouseup>
-		<onmousedown public="1" set="method" line="154"><f a="e">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmousedown>
-		<oninputdown public="1" set="method" line="149"><f a="name:e">
-	<c path="String"/>
-	<d/>
-	<x path="Void"/>
-</f></oninputdown>
-		<oninputup public="1" set="method" line="144"><f a="name:e">
-	<c path="String"/>
-	<d/>
-	<x path="Void"/>
-</f></oninputup>
-		<onkeyup public="1" set="method" line="139"><f a="e">
-	<t path="luxe.KeyEvent"/>
-	<x path="Void"/>
-</f></onkeyup>
-		<onkeydown public="1" set="method" line="134"><f a="e">
-	<t path="luxe.KeyEvent"/>
-	<x path="Void"/>
-</f></onkeydown>
-		<_call set="method" line="127"><f a="_object:_name:?args">
-	<c path="luxe.Mode"/>
-	<c path="String"/>
-	<c path="Array"><d/></c>
-	<x path="Void"/>
-</f></_call>
-		<destroy public="1" set="method" line="119"><f a=""><x path="Void"/></f></destroy>
-		<update public="1" set="method" line="113"><f a="dt">
-	<x path="Float"/>
-	<x path="Void"/>
-</f></update>
-		<start public="1" set="method" line="108"><f a=""><x path="Void"/></f></start>
-		<init public="1" set="method" line="103"><f a=""><x path="Void"/></f></init>
-		<set public="1" set="method" line="86"><f a="name">
-	<c path="String"/>
-	<x path="Void"/>
-</f></set>
-		<disable public="1" set="method" line="80"><f a="_name">
-	<c path="String"/>
-	<x path="Void"/>
-</f></disable>
-		<enable public="1" set="method" line="74"><f a="_name">
-	<c path="String"/>
-	<x path="Void"/>
-</f></enable>
-		<add_mode public="1" params="T" set="method" line="46"><f a="type:?_name">
-	<x path="Class"><c path="add_mode.T"/></x>
-	<c path="String"/>
-	<c path="add_mode.T"/>
-</f></add_mode>
-		<currentmode public="1"><c path="luxe.Mode"/></currentmode>
-		<activemodes public="1"><c path="Array"><c path="luxe.Mode"/></c></activemodes>
-		<_modes public="1">
-			<x path="Map">
-				<c path="String"/>
-				<c path="luxe.Mode"/>
-			</x>
-			<meta><m n=":noCompletion"/></meta>
-		</_modes>
-		<new public="1" set="method" line="41"><f a=""><x path="Void"/></f></new>
 	</class>
 	<typedef path="luxe.Slice" params="" file="/Users/Sven/dev/luxe/luxe/luxe/NineSlice.hx" module="luxe.NineSlice"><a>
 	<width><x path="Float"/></width>
@@ -8249,92 +8606,95 @@
 </a></typedef>
 	<class path="luxe.Sprite" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Sprite.hx">
 		<extends path="luxe.Entity"/>
-		<get_serialize_data public="1" set="method" line="475" override="1"><f a=""><d/></f></get_serialize_data>
-		<set_clip_rect set="method" line="471"><f a="val">
+		<get_serialize_data public="1" set="method" line="503" override="1"><f a=""><d/></f></get_serialize_data>
+		<set_clip_rect set="method" line="499"><f a="val">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_clip_rect>
-		<set_clip set="method" line="467"><f a="val">
+		<set_clip set="method" line="495"><f a="val">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_clip>
-		<set_uv set="method" line="457"><f a="_uv">
+		<set_uv set="method" line="485"><f a="_uv">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_uv>
-		<set_locked set="method" line="447"><f a="_l">
+		<set_locked set="method" line="475"><f a="_l">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_locked>
-		<set_size set="method" line="430"><f a="_v">
+		<set_size set="method" line="458"><f a="_v">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_size>
-		<set_scale set="method" line="414" override="1"><f a="_v">
+		<set_scale set="method" line="442" override="1"><f a="_v">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_scale>
-		<set_rotation set="method" line="400" override="1"><f a="_r">
+		<set_rotation set="method" line="428" override="1"><f a="_r">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_rotation>
-		<set_radians set="method" line="384"><f a="_r">
+		<set_radians set="method" line="412"><f a="_r">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_radians>
-		<set_rotation_z set="method" line="376"><f a="_r">
+		<set_rotation_z set="method" line="404"><f a="_r">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_rotation_z>
-		<get_rotation_z set="method" line="370"><f a=""><x path="Float"/></f></get_rotation_z>
-		<set_pos set="method" line="353" override="1"><f a="_p">
+		<get_rotation_z set="method" line="398"><f a=""><x path="Float"/></f></get_rotation_z>
+		<set_pos set="method" line="381" override="1"><f a="_p">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_pos>
-		<set_centered set="method" line="335"><f a="_c">
+		<set_centered set="method" line="363"><f a="_c">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_centered>
-		<set_origin set="method" line="323"><f a="_o">
+		<set_origin set="method" line="351"><f a="_o">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_origin>
-		<set_shader set="method" line="312"><f a="_s">
+		<set_shader set="method" line="340"><f a="_s">
 	<c path="phoenix.Shader"/>
 	<c path="phoenix.Shader"/>
 </f></set_shader>
-		<set_texture set="method" line="303"><f a="_t">
+		<set_texture set="method" line="331"><f a="_t">
 	<c path="phoenix.Texture"/>
 	<c path="phoenix.Texture"/>
 </f></set_texture>
-		<set_color set="method" line="289"><f a="_c">
+		<set_color set="method" line="317"><f a="_c">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.Color"/>
 </f></set_color>
-		<set_depth set="method" line="277"><f a="_v">
+		<set_depth set="method" line="305"><f a="_v">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_depth>
-		<set_visible set="method" line="264"><f a="_v">
+		<set_visible set="method" line="292"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_visible>
-		<set_flipx set="method" line="253"><f a="_v">
+		<set_flipx set="method" line="281"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_flipx>
-		<set_flipy set="method" line="243"><f a="_v">
+		<set_flipy set="method" line="271"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_flipy>
-		<point_inside public="1" set="method" line="224"><f a="_p">
+		<point_inside public="1" set="method" line="252"><f a="_p">
 	<c path="phoenix.Vector"/>
 	<x path="Bool"/>
 </f></point_inside>
-		<destroy public="1" set="method" line="207"><f a=""><x path="Void"/></f></destroy>
-		<_create_geometry public="1" set="method" line="138">
+		<destroy public="1" set="method" line="231"><f a="?_ignore_internal_destroy">
+	<x path="Bool"/>
+	<x path="Void"/>
+</f></destroy>
+		<_create_geometry public="1" set="method" line="161">
 			<f a="options">
-				<d/>
+				<t path="luxe.SpriteOptions"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
@@ -8409,8 +8769,8 @@
 			<c path="phoenix.geometry.QuadGeometry"/>
 			<meta><m n=":isVar"/></meta>
 		</geometry>
-		<new public="1" set="method" line="42"><f a="options">
-	<d/>
+		<new public="1" set="method" line="65"><f a="options">
+	<t path="luxe.SpriteOptions"/>
 	<x path="Void"/>
 </f></new>
 	</class>
@@ -8446,7 +8806,10 @@
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_visible>
-		<destroy public="1" set="method" line="355" override="1"><f a=""><x path="Void"/></f></destroy>
+		<destroy public="1" set="method" line="355" override="1"><f a="?_ignore_internal_destroy">
+	<x path="Bool"/>
+	<x path="Void"/>
+</f></destroy>
 		<set_pos set="method" line="341" override="1"><f a="_v">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
@@ -8516,67 +8879,58 @@
 	</class>
 	<typedef path="luxe.Quaternion" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Quaternion.hx"><c path="phoenix.Quaternion"/></typedef>
 	<typedef path="luxe.Rectangle" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Rectangle.hx"><c path="phoenix.Rectangle"/></typedef>
-	<class path="luxe.Renderer" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Renderer.hx">
-		<process public="1" set="method" line="23"><f a=""><x path="Void"/></f></process>
-		<shutdown public="1" set="method" line="19"><f a=""><x path="Void"/></f></shutdown>
-		<startup public="1" set="method" line="14"><f a=""><x path="Void"/></f></startup>
-		<core public="1"><c path="luxe.Core"/></core>
-		<new public="1" set="method" line="12"><f a="_core">
-	<c path="luxe.Core"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":noCompletion"/></meta>
-	</class>
 	<class path="luxe.Scene" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Scene.hx">
-		<serialize_to_disk public="1" set="method" line="142"><f a="_destination_path">
+		<serialize_to_disk public="1" set="method" line="179"><f a="_destination_path">
 	<c path="String"/>
 	<x path="Void"/>
 </f></serialize_to_disk>
-		<fixed_update public="1" set="method" line="134"><f a=""><x path="Void"/></f></fixed_update>
-		<update public="1" set="method" line="129"><f a="dt">
+		<fixed_update public="1" set="method" line="171"><f a=""><x path="Void"/></f></fixed_update>
+		<update public="1" set="method" line="147"><f a="dt">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></update>
-		<start public="1" set="method" line="120"><f a=""><x path="Void"/></f></start>
-		<init public="1" set="method" line="111"><f a=""><x path="Void"/></f></init>
-		<destroy public="1" set="method" line="106"><f a=""><x path="Void"/></f></destroy>
-		<onmousemove public="1" set="method" line="100"><f a="e">
+		<start public="1" set="method" line="138"><f a=""><x path="Void"/></f></start>
+		<init public="1" set="method" line="126"><f a=""><x path="Void"/></f></init>
+		<_do_init set="method" line="110"><f a=""><x path="Bool"/></f></_do_init>
+		<destroy public="1" set="method" line="104"><f a=""><x path="Void"/></f></destroy>
+		<onmousemove public="1" set="method" line="98"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmousemove>
-		<onmouseup public="1" set="method" line="95"><f a="e">
+		<onmouseup public="1" set="method" line="93"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmouseup>
-		<onmousedown public="1" set="method" line="90"><f a="e">
+		<onmousedown public="1" set="method" line="88"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></onmousedown>
-		<oninputup public="1" set="method" line="85"><f a="_name:e">
+		<oninputup public="1" set="method" line="83"><f a="_name:e">
 	<c path="String"/>
 	<d/>
 	<x path="Void"/>
 </f></oninputup>
-		<oninputdown public="1" set="method" line="80"><f a="_name:e">
+		<oninputdown public="1" set="method" line="78"><f a="_name:e">
 	<c path="String"/>
 	<d/>
 	<x path="Void"/>
 </f></oninputdown>
-		<shutdown public="1" set="method" line="76"><f a=""><x path="Void"/></f></shutdown>
-		<empty public="1" set="method" line="64"><f a=""><x path="Void"/></f></empty>
-		<remove public="1" set="method" line="59"><f a="entity">
+		<empty public="1" set="method" line="69"><f a=""><x path="Void"/></f></empty>
+		<remove public="1" set="method" line="64"><f a="entity">
 	<c path="luxe.Entity"/>
 	<x path="Void"/>
 </f></remove>
-		<add public="1" set="method" line="45"><f a="entity">
+		<add public="1" set="method" line="50"><f a="entity">
 	<c path="luxe.Entity"/>
 	<x path="Void"/>
 </f></add>
-		<create public="1" params="T" set="method" line="21"><f a="type:?_name">
+		<create public="1" params="T" set="method" line="26"><f a="type:?_name">
 	<x path="Class"><c path="create.T"/></x>
 	<c path="String"/>
 	<c path="create.T"/>
 </f></create>
+		<_delayed_start_entities><c path="Array"><c path="luxe.Entity"/></c></_delayed_start_entities>
+		<_delayed_init_entities><c path="Array"><c path="luxe.Entity"/></c></_delayed_init_entities>
 		<started public="1"><x path="Bool"/></started>
 		<inited public="1"><x path="Bool"/></inited>
 		<entities public="1"><x path="Map">
@@ -8585,7 +8939,170 @@
 </x></entities>
 		<id public="1"><c path="String"/></id>
 		<name public="1"><c path="String"/></name>
-		<new public="1" set="method" line="16"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="19"><f a=""><x path="Void"/></f></new>
+	</class>
+	<typedef path="luxe.SpriteOptions" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Sprite.hx" module="luxe.Sprite"><a>
+	<visible>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</visible>
+	<uv>
+		<t path="Null"><t path="luxe.Rectangle"/></t>
+		<meta><m n=":optional"/></meta>
+	</uv>
+	<texture>
+		<t path="Null"><c path="phoenix.Texture"/></t>
+		<meta><m n=":optional"/></meta>
+	</texture>
+	<size>
+		<t path="Null"><c path="phoenix.Vector"/></t>
+		<meta><m n=":optional"/></meta>
+	</size>
+	<shader>
+		<t path="Null"><c path="phoenix.Shader"/></t>
+		<meta><m n=":optional"/></meta>
+	</shader>
+	<serialize>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</serialize>
+	<scene>
+		<t path="Null"><c path="luxe.Scene"/></t>
+		<meta><m n=":optional"/></meta>
+	</scene>
+	<rotation_z>
+		<t path="Null"><x path="Float"/></t>
+		<meta><m n=":optional"/></meta>
+	</rotation_z>
+	<pos>
+		<t path="Null"><c path="phoenix.Vector"/></t>
+		<meta><m n=":optional"/></meta>
+	</pos>
+	<origin>
+		<t path="Null"><c path="phoenix.Vector"/></t>
+		<meta><m n=":optional"/></meta>
+	</origin>
+	<name>
+		<t path="Null"><c path="String"/></t>
+		<meta><m n=":optional"/></meta>
+	</name>
+	<group>
+		<t path="Null"><x path="Int"/></t>
+		<meta><m n=":optional"/></meta>
+	</group>
+	<geometry>
+		<t path="Null"><c path="phoenix.geometry.Geometry"/></t>
+		<meta><m n=":optional"/></meta>
+	</geometry>
+	<depth>
+		<t path="Null"><x path="Float"/></t>
+		<meta><m n=":optional"/></meta>
+	</depth>
+	<color>
+		<t path="Null"><c path="phoenix.Color"/></t>
+		<meta><m n=":optional"/></meta>
+	</color>
+	<centered>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</centered>
+	<batcher>
+		<t path="Null"><c path="phoenix.Batcher"/></t>
+		<meta><m n=":optional"/></meta>
+	</batcher>
+	<add>
+		<t path="Null"><x path="Bool"/></t>
+		<meta><m n=":optional"/></meta>
+	</add>
+</a></typedef>
+	<class path="luxe.States" params="" file="/Users/Sven/dev/luxe/luxe/luxe/States.hx">
+		<ontouchbegin public="1" set="method" line="204"><f a="e">
+	<t path="luxe.TouchEvent"/>
+	<x path="Void"/>
+</f></ontouchbegin>
+		<ontouchend public="1" set="method" line="199"><f a="e">
+	<t path="luxe.TouchEvent"/>
+	<x path="Void"/>
+</f></ontouchend>
+		<ontouchmove public="1" set="method" line="194"><f a="e">
+	<t path="luxe.TouchEvent"/>
+	<x path="Void"/>
+</f></ontouchmove>
+		<onmousemove public="1" set="method" line="189"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmousemove>
+		<onmouseup public="1" set="method" line="184"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmouseup>
+		<onmousedown public="1" set="method" line="179"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmousedown>
+		<oninputdown public="1" set="method" line="174"><f a="name:e">
+	<c path="String"/>
+	<d/>
+	<x path="Void"/>
+</f></oninputdown>
+		<oninputup public="1" set="method" line="169"><f a="name:e">
+	<c path="String"/>
+	<d/>
+	<x path="Void"/>
+</f></oninputup>
+		<onkeyup public="1" set="method" line="164"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeyup>
+		<onkeydown public="1" set="method" line="159"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeydown>
+		<_call set="method" line="152"><f a="_object:_name:?_args">
+	<c path="luxe.State"/>
+	<c path="String"/>
+	<c path="Array"><d/></c>
+	<x path="Void"/>
+</f></_call>
+		<destroy public="1" set="method" line="144"><f a=""><x path="Void"/></f></destroy>
+		<update public="1" set="method" line="139"><f a="dt">
+	<x path="Float"/>
+	<x path="Void"/>
+</f></update>
+		<start public="1" set="method" line="134"><f a=""><x path="Void"/></f></start>
+		<init public="1" set="method" line="129"><f a=""><x path="Void"/></f></init>
+		<set public="1" params="T1:T2" set="method" line="112"><f a="name:?_enter_data:?_leave_data">
+	<c path="String"/>
+	<c path="set.T1"/>
+	<c path="set.T2"/>
+	<x path="Void"/>
+</f></set>
+		<disable public="1" params="T" set="method" line="104"><f a="_name:?_data">
+	<c path="String"/>
+	<c path="disable.T"/>
+	<x path="Void"/>
+</f></disable>
+		<enable public="1" params="T" set="method" line="96"><f a="_name:?_data">
+	<c path="String"/>
+	<c path="enable.T"/>
+	<x path="Void"/>
+</f></enable>
+		<add_state public="1" params="T1:T2" set="method" line="68"><f a="type:?_name:?_data">
+	<x path="Class"><c path="add_state.T1"/></x>
+	<c path="String"/>
+	<c path="add_state.T2"/>
+	<c path="add_state.T1"/>
+</f></add_state>
+		<current_state public="1"><c path="luxe.State"/></current_state>
+		<active_states public="1"><c path="Array"><c path="luxe.State"/></c></active_states>
+		<_states public="1">
+			<x path="Map">
+				<c path="String"/>
+				<c path="luxe.State"/>
+			</x>
+			<meta><m n=":noCompletion"/></meta>
+		</_states>
+		<new public="1" set="method" line="63"><f a=""><x path="Void"/></f></new>
 	</class>
 	<typedef path="luxe.TextAlign" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Text.hx" module="luxe.Text"><e path="phoenix.TextAlign"/></typedef>
 	<class path="luxe.Text" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Text.hx">
@@ -8663,14 +9180,14 @@
 	<x path="Bool"/>
 	<c path="haxe.Timer"/>
 </f></schedule>
-		<shutdown public="1" set="method" line="16">
+		<destroy public="1" set="method" line="16">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
-		</shutdown>
-		<startup public="1" set="method" line="12">
+		</destroy>
+		<init public="1" set="method" line="12">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
-		</startup>
+		</init>
 		<core public="1">
 			<c path="luxe.Core"/>
 			<meta><m n=":noCompletion"/></meta>
@@ -8686,18 +9203,18 @@
 	<typedef path="luxe.Vector" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Vector.hx"><c path="phoenix.Vector"/></typedef>
 	<typedef path="luxe.Vec" params="" file="/Users/Sven/dev/luxe/luxe/luxe/Vector.hx" module="luxe.Vector"><x path="phoenix.Vec"/></typedef>
 	<class path="luxe.components.Components" params="" file="/Users/Sven/dev/luxe/luxe/luxe/components/Components.hx">
-		<_show_debug public="1" line="238" static="1">
+		<_show_debug public="1" line="236" static="1">
 			<x path="Bool"/>
 			<meta><m n=":noCompletion"/></meta>
 		</_show_debug>
-		<_debug set="method" line="239">
+		<_debug set="method" line="237">
 			<f a="v">
 				<c path="String"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_debug>
-		<_call set="method" line="229">
+		<_call set="method" line="227">
 			<f a="_object:_name:?args">
 				<d/>
 				<c path="String"/>
@@ -8706,27 +9223,28 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_call>
-		<has public="1" set="method" line="225"><f a="_name">
+		<has public="1" set="method" line="223"><f a="_name">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></has>
-		<get public="1" set="method" line="168"><f a="_name:?in_children:?first_only">
+		<get public="1" set="method" line="166"><f a="_name:?in_children:?first_only">
 	<c path="String"/>
 	<x path="Bool"/>
 	<x path="Bool"/>
 	<d/>
 </f></get>
-		<add public="1" params="T" set="method" line="131"><f a="type:?_name">
-	<x path="Class"><c path="add.T"/></x>
+		<add public="1" params="T1:T2" set="method" line="138"><f a="type:?_name:?_data">
+	<x path="Class"><c path="add.T1"/></x>
 	<c path="String"/>
-	<c path="add.T"/>
+	<c path="add.T2"/>
+	<c path="add.T1"/>
 </f></add>
 		<entity public="1"><c path="luxe.Entity"/></entity>
 		<components public="1"><x path="Map">
 	<c path="String"/>
 	<c path="luxe.components.Component"/>
 </x></components>
-		<new public="1" set="method" line="124"><f a="_entity">
+		<new public="1" set="method" line="131"><f a="_entity">
 	<c path="luxe.Entity"/>
 	<x path="Void"/>
 </f></new>
@@ -8810,7 +9328,37 @@
 	<c path="luxe.components.sprite.SpriteAnimationData"/>
 </x></animation_list>
 		<sprite><c path="luxe.Sprite"/></sprite>
-		<new public="1" set="method" line="129"><f a=""><x path="Void"/></f></new>
+		<new public="1" params="T" set="method" line="129"><f a="?_init_data">
+	<c path="new.T"/>
+	<x path="Void"/>
+</f></new>
+	</class>
+	<class path="luxe.debug.DebugView" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/DebugView.hx">
+		<hide public="1" set="method" line="38"><f a=""><x path="Void"/></f></hide>
+		<show public="1" set="method" line="35"><f a=""><x path="Void"/></f></show>
+		<create public="1" set="method" line="32"><f a=""><x path="Void"/></f></create>
+		<onkeyup public="1" set="method" line="28"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeyup>
+		<onkeydown public="1" set="method" line="24"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeydown>
+		<onmousemove public="1" set="method" line="21"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmousemove>
+		<onmouseup public="1" set="method" line="18"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmouseup>
+		<onmousedown public="1" set="method" line="15"><f a="e">
+	<t path="luxe.MouseEvent"/>
+	<x path="Void"/>
+</f></onmousedown>
+		<process public="1" set="method" line="12"><f a=""><x path="Void"/></f></process>
+		<refresh public="1" set="method" line="9"><f a=""><x path="Void"/></f></refresh>
 	</class>
 	<class path="luxe.debug.Inspector" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/Inspector.hx">
 		<_create_window set="method" line="74"><f a=""><x path="Void"/></f></_create_window>
@@ -8832,6 +9380,145 @@
 	<x path="Void"/>
 </f></new>
 		<meta><m n=":noCompletion"/></meta>
+	</class>
+	<class path="luxe.debug.ProfilerDebugView" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/ProfilerDebugView.hx">
+		<extends path="luxe.debug.DebugView"/>
+		<lists public="1" static="1"><x path="Map">
+	<c path="String"/>
+	<c path="luxe.debug._ProfilerDebugView.ProfilerValue"/>
+</x></lists>
+		<start public="1" set="method" line="21" static="1"><f a="_id">
+	<c path="String"/>
+	<x path="Void"/>
+</f></start>
+		<end public="1" set="method" line="33" static="1"><f a="_id">
+	<c path="String"/>
+	<x path="Void"/>
+</f></end>
+		<hide public="1" set="method" line="47" override="1"><f a=""><x path="Void"/></f></hide>
+		<show public="1" set="method" line="42" override="1"><f a=""><x path="Void"/></f></show>
+		<core public="1"><c path="luxe.debug._ProfilerDebugView.ProfilerValue"/></core>
+		<new public="1" set="method" line="17"><f a=""><x path="Void"/></f></new>
+	</class>
+	<class path="luxe.debug._ProfilerDebugView.ProfilerValue" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/ProfilerDebugView.hx" private="1" module="luxe.debug.ProfilerDebugView">
+		<set public="1" set="method" line="70"><f a=""><x path="Void"/></f></set>
+		<accum><x path="Float"/></accum>
+		<count><x path="Int"/></count>
+		<avg public="1"><x path="Int"/></avg>
+		<history public="1"><c path="Array"><x path="Float"/></c></history>
+		<start public="1"><x path="Float"/></start>
+		<name public="1"><c path="String"/></name>
+		<bar public="1"><c path="luxe.debug._ProfilerDebugView.ProfilerBar"/></bar>
+		<new public="1" set="method" line="65"><f a="_name:_bar">
+	<c path="String"/>
+	<c path="luxe.debug._ProfilerDebugView.ProfilerBar"/>
+	<x path="Void"/>
+</f></new>
+	</class>
+	<class path="luxe.debug._ProfilerDebugView.ProfilerBar" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/ProfilerDebugView.hx" private="1" module="luxe.debug.ProfilerDebugView">
+		<set_text set="method" line="266"><f a="_t">
+	<c path="String"/>
+	<c path="String"/>
+</f></set_text>
+		<set_pos set="method" line="257"><f a="_p">
+	<t path="luxe.Vector"/>
+	<t path="luxe.Vector"/>
+</f></set_pos>
+		<set_value set="method" line="233"><f a="_v">
+	<x path="Float"/>
+	<x path="Float"/>
+</f></set_value>
+		<set_ping set="method" line="197"><f a="_v">
+	<x path="Float"/>
+	<x path="Float"/>
+</f></set_ping>
+		<show public="1" set="method" line="189"><f a=""><x path="Void"/></f></show>
+		<hide public="1" set="method" line="182"><f a=""><x path="Void"/></f></hide>
+		<ping public="1" set="accessor">
+			<x path="Float"/>
+			<meta><m n=":isVar"/></meta>
+		</ping>
+		<value public="1" set="accessor">
+			<x path="Float"/>
+			<meta><m n=":isVar"/></meta>
+		</value>
+		<pos public="1" set="accessor">
+			<t path="luxe.Vector"/>
+			<meta><m n=":isVar"/></meta>
+		</pos>
+		<text public="1" set="accessor">
+			<c path="String"/>
+			<meta><m n=":isVar"/></meta>
+		</text>
+		<color_normal><t path="luxe.Color"/></color_normal>
+		<color_green><t path="luxe.Color"/></color_green>
+		<color_red><t path="luxe.Color"/></color_red>
+		<segment><x path="Float"/></segment>
+		<history public="1"><x path="Int"/></history>
+		<max public="1"><x path="Float"/></max>
+		<height2 public="1"><x path="Float"/></height2>
+		<height public="1"><x path="Float"/></height>
+		<width public="1"><x path="Float"/></width>
+		<name public="1"><c path="String"/></name>
+		<text_item public="1"><c path="luxe.Text"/></text_item>
+		<graph_geometry public="1"><c path="phoenix.geometry.Geometry"/></graph_geometry>
+		<graphbg_geometry public="1"><c path="phoenix.geometry.QuadGeometry"/></graphbg_geometry>
+		<bg_geometry public="1"><c path="phoenix.geometry.QuadGeometry"/></bg_geometry>
+		<bar_geometry public="1"><c path="phoenix.geometry.QuadGeometry"/></bar_geometry>
+		<new public="1" set="method" line="123"><f a="_name:_color">
+	<c path="String"/>
+	<t path="luxe.Color"/>
+	<x path="Void"/>
+</f></new>
+	</class>
+	<class path="luxe.debug.StatsDebugView" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/StatsDebugView.hx">
+		<extends path="luxe.debug.DebugView"/>
+		<update_render_stats public="1" set="method" line="201"><f a=""><x path="Void"/></f></update_render_stats>
+		<toggle_debug_stats public="1" set="method" line="197"><f a=""><x path="Void"/></f></toggle_debug_stats>
+		<hide_debug public="1"><x path="Bool"/></hide_debug>
+		<refresh_render_stats public="1" set="method" line="179"><f a=""><x path="Void"/></f></refresh_render_stats>
+		<hide public="1" set="method" line="173" override="1"><f a=""><x path="Void"/></f></hide>
+		<show public="1" set="method" line="166" override="1"><f a=""><x path="Void"/></f></show>
+		<onkeydown public="1" set="method" line="160" override="1"><f a="e">
+	<t path="luxe.KeyEvent"/>
+	<x path="Void"/>
+</f></onkeydown>
+		<process public="1" set="method" line="134" override="1"><f a=""><x path="Void"/></f></process>
+		<refresh public="1" set="method" line="102" override="1"><f a=""><x path="Void"/></f></refresh>
+		<create public="1" set="method" line="59" override="1"><f a=""><x path="Void"/></f></create>
+		<get_render_stats_string public="1" set="method" line="48"><f a=""><c path="String"/></f></get_render_stats_string>
+		<get_resource_stats_string public="1" set="method" line="44"><f a=""><c path="String"/></f></get_resource_stats_string>
+		<resource_list_text public="1"><c path="luxe.Text"/></resource_list_text>
+		<resource_stats_text public="1"><c path="luxe.Text"/></resource_stats_text>
+		<render_stats_text public="1"><c path="luxe.Text"/></render_stats_text>
+		<debug_geometry_count public="1"><x path="Int"/></debug_geometry_count>
+		<debug_draw_call_count public="1"><x path="Int"/></debug_draw_call_count>
+		<_render_stats public="1"><d/></_render_stats>
+		<_last_render_stats public="1"><d/></_last_render_stats>
+		<new public="1" set="method" line="20"><f a=""><x path="Void"/></f></new>
+	</class>
+	<class path="luxe.debug.TraceDebugView" params="" file="/Users/Sven/dev/luxe/luxe/luxe/debug/TraceDebugView.hx">
+		<extends path="luxe.debug.DebugView"/>
+		<hide public="1" set="method" line="106" override="1"><f a=""><x path="Void"/></f></hide>
+		<show public="1" set="method" line="101" override="1"><f a=""><x path="Void"/></f></show>
+		<process public="1" set="method" line="97" override="1"><f a=""><x path="Void"/></f></process>
+		<refresh public="1" set="method" line="93" override="1"><f a=""><x path="Void"/></f></refresh>
+		<refresh_lines set="method" line="60"><f a=""><x path="Void"/></f></refresh_lines>
+		<_last_logged_length><x path="Int"/></_last_logged_length>
+		<add_line public="1" set="method" line="43"><f a="_t">
+	<c path="String"/>
+	<x path="Void"/>
+</f></add_line>
+		<create public="1" set="method" line="24" override="1"><f a=""><x path="Void"/></f></create>
+		<on_trace public="1" set="method" line="20"><f a="v:?inf">
+	<d/>
+	<t path="haxe.PosInfos"/>
+	<x path="Void"/>
+</f></on_trace>
+		<max_lines public="1"><x path="Int"/></max_lines>
+		<lines public="1"><c path="luxe.Text"/></lines>
+		<logged public="1"><c path="Array"><c path="String"/></c></logged>
+		<new public="1" set="method" line="10"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="luxe.defaults.TinyBox" params="" file="/Users/Sven/dev/luxe/luxe/luxe/defaults/TinyUI.hx" module="luxe.defaults.TinyUI">
 		<data public="1" set="method" line="5" static="1"><f a=""><c path="String"/></f></data>
@@ -10307,21 +10994,22 @@
 </f></hex>
 	</class>
 	<class path="luxe.utils.Utils" params="" file="/Users/Sven/dev/luxe/luxe/luxe/utils/Utils.hx">
-		<file_bytes_to_class public="1" set="method" line="38"><f a="_file:_outfile:?_string_length">
+		<file_bytes_to_class public="1" set="method" line="42"><f a="_file:_outfile:?_string_length">
 	<c path="String"/>
 	<c path="String"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></file_bytes_to_class>
-		<arrayToBytes public="1" set="method" line="31"><f a="array">
+		<arrayToBytes public="1" set="method" line="35"><f a="array">
 	<c path="Array"><x path="Int"/></c>
 	<c path="haxe.io.Bytes"/>
 </f></arrayToBytes>
-		<bytes_to_string public="1" set="method" line="25"><f a="bytes">
+		<bytes_to_string public="1" set="method" line="29"><f a="bytes">
 	<x path="Int"/>
 	<c path="String"/>
 </f></bytes_to_string>
-		<uuid public="1" set="method" line="20"><f a=""><c path="String"/></f></uuid>
+		<uuid public="1" set="method" line="24"><f a=""><c path="String"/></f></uuid>
+		<uniqueid public="1" set="method" line="20"><f a=""><c path="String"/></f></uniqueid>
 		<luxe public="1">
 			<c path="luxe.Core"/>
 			<meta><m n=":noCompletion"/></meta>
@@ -10404,7 +11092,7 @@
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="luxe.utils.json.JSONEncoder" params="" file="/Users/Sven/dev/luxe/luxe/luxe/utils/json/JSONEncoder.hx">
-		<instanceToString set="method" line="299">
+		<instanceToString set="method" line="297">
 			<f a="o:cls">
 				<d/>
 				<x path="Class"><d/></x>
@@ -10416,7 +11104,7 @@
    * @param cls The class of instance object
    * @return The JSON string representation of <code>o</code>]]></haxe_doc>
 		</instanceToString>
-		<objectToString set="method" line="267">
+		<objectToString set="method" line="265">
 			<f a="o">
 				<d/>
 				<c path="String"/>
@@ -10426,7 +11114,7 @@
 	 * @param o The object to convert
 	 * @return The JSON string representation of <code>o</code>]]></haxe_doc>
 		</objectToString>
-		<arrayToString set="method" line="224">
+		<arrayToString set="method" line="222">
 			<f a="a">
 				<c path="Array"><d/></c>
 				<c path="String"/>
@@ -10436,7 +11124,7 @@
 	 * @param a The array to convert
 	 * @return The JSON string representation of <code>a</code>]]></haxe_doc>
 		</arrayToString>
-		<escapeString set="method" line="139">
+		<escapeString set="method" line="137">
 			<f a="str">
 				<c path="String"/>
 				<c path="String"/>
@@ -10447,14 +11135,14 @@
 	 * @return The string with escaped special characters
 	 * 		according to the JSON specification</haxe_doc>
 		</escapeString>
-		<mapHash set="method" line="125"><f a="value">
+		<mapHash set="method" line="123"><f a="value">
 	<x path="Map">
 		<c path="String"/>
 		<d/>
 	</x>
 	<d/>
 </f></mapHash>
-		<convertToString set="method" line="77">
+		<convertToString set="method" line="75">
 			<f a="value">
 				<d/>
 				<c path="String"/>
@@ -10464,12 +11152,12 @@
 	 * @param value The value to convert.  Could be any 
 	 *		type (object, number, array, etc)</haxe_doc>
 		</convertToString>
-		<_trace public="1" set="method" line="69"><f a="e">
+		<_trace public="1" set="method" line="67"><f a="e">
 	<c path="String"/>
 	<x path="Void"/>
 </f></_trace>
 		<debug public="1"><x path="Bool"/></debug>
-		<getString public="1" set="method" line="64">
+		<getString public="1" set="method" line="62">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>* Gets the JSON string from the encoder.
 	 *
@@ -10480,7 +11168,7 @@
 			<c path="String"/>
 			<haxe_doc>The string that is going to represent the object we're encoding</haxe_doc>
 		</jsonString>
-		<new public="1" set="method" line="54">
+		<new public="1" set="method" line="52">
 			<f a="value">
 				<d/>
 				<x path="Void"/>
@@ -10553,7 +11241,7 @@
 		<meta><m n=":noCompletion"/></meta>
 	</class>
 	<class path="luxe.utils.json.JSONTokenizer" params="" file="/Users/Sven/dev/luxe/luxe/luxe/utils/json/JSONTokenizer.hx">
-		<parseError public="1" set="method" line="551">
+		<parseError public="1" set="method" line="549">
 			<f a="message">
 				<c path="String"/>
 				<x path="Void"/>
@@ -10563,7 +11251,7 @@
 	 *
 	 * @param message The message indicating why the error occurred</haxe_doc>
 		</parseError>
-		<isHexDigit set="method" line="536">
+		<isHexDigit set="method" line="534">
 			<f a="ch">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -10572,7 +11260,7 @@
 	 *
 	 * @return True if the character passed in is a digit</haxe_doc>
 		</isHexDigit>
-		<isDigit set="method" line="523">
+		<isDigit set="method" line="521">
 			<f a="ch">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -10581,7 +11269,7 @@
 	 *
 	 * @return True if the character passed in is a digit</haxe_doc>
 		</isDigit>
-		<isWhiteSpace set="method" line="514">
+		<isWhiteSpace set="method" line="512">
 			<f a="ch">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -10591,24 +11279,24 @@
 	 * @return True if the character passed in is a whitespace
 	 *	character</haxe_doc>
 		</isWhiteSpace>
-		<skipWhite set="method" line="499">
+		<skipWhite set="method" line="497">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>* Skip any whitespace in the input string and advances
 	 * the character to the first character after any possible
 	 * whitespace.</haxe_doc>
 		</skipWhite>
-		<skipComments set="method" line="450">
+		<skipComments set="method" line="448">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>* Skips comments in the input string, either
 	 * single-line or multi-line.  Advances the character
 	 * to the first position after the end of the comment.</haxe_doc>
 		</skipComments>
-		<skipIgnored set="method" line="434">
+		<skipIgnored set="method" line="432">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>* Advances the character location past any
 	 * sort of white space and comments</haxe_doc>
 		</skipIgnored>
-		<nextChar set="method" line="426">
+		<nextChar set="method" line="424">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>* Reads the next character in the input
 	 * string and advances the character location.
@@ -10616,7 +11304,7 @@
 	 * @return The next character in the input string, or
 	 *		null if we've read past the end.</haxe_doc>
 		</nextChar>
-		<readNumber set="method" line="317">
+		<readNumber set="method" line="315">
 			<f a=""><c path="luxe.utils.json.JSONToken"/></f>
 			<haxe_doc>* Attempts to read a number from the input string.  Places
 	 * the character location at the first character after the
@@ -10625,11 +11313,11 @@
 	 * @return The JSONToken with the number value if a number could
 	 * 		be read.  Throws an error otherwise.</haxe_doc>
 		</readNumber>
-		<hexValToInt get="inline" set="null" line="284"><f a="hexVal">
+		<hexValToInt get="inline" set="null" line="282"><f a="hexVal">
 	<c path="String"/>
 	<x path="Int"/>
 </f></hexValToInt>
-		<readString set="method" line="197">
+		<readString set="method" line="195">
 			<f a=""><c path="luxe.utils.json.JSONToken"/></f>
 			<haxe_doc>* Attempts to read a string from the input string.  Places
 	 * the character location at the first character after the
@@ -10638,7 +11326,7 @@
 	 * @return the JSONToken with the string value if a string could
 	 *		be read.  Throws an error otherwise.</haxe_doc>
 		</readString>
-		<getNextToken public="1" set="method" line="75">
+		<getNextToken public="1" set="method" line="73">
 			<f a=""><c path="luxe.utils.json.JSONToken"/></f>
 			<haxe_doc>* Gets the next token in the input sting and advances
 	* the character to the next character after the token</haxe_doc>
@@ -10660,7 +11348,7 @@
 			<d/>
 			<haxe_doc>The object that will get parsed from the JSON string</haxe_doc>
 		</obj>
-		<new public="1" set="method" line="63">
+		<new public="1" set="method" line="61">
 			<f a="s:strict">
 				<c path="String"/>
 				<x path="Bool"/>
@@ -10707,6 +11395,7 @@
 		<triangles/>
 		<triangle_strip/>
 		<triangle_fan/>
+		<points/>
 		<none/>
 		<line_strip/>
 		<line_loop/>
@@ -10733,7 +11422,7 @@
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></pre_render>
-		<new public="1" set="method" line="40"><f a="_pre:_post">
+		<new public="1" set="method" line="41"><f a="_pre:_post">
 	<f a="">
 		<c path="phoenix.Batcher"/>
 		<x path="Void"/>
@@ -10746,57 +11435,57 @@
 </f></new>
 	</class>
 	<class path="phoenix.Batcher" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Batcher.hx">
-		<_disable_attributes set="method" line="660"><f a=""><x path="Void"/></f></_disable_attributes>
-		<_enable_attributes set="method" line="652"><f a=""><x path="Void"/></f></_enable_attributes>
-		<geometry_batch_static set="method" line="636"><f a="geom">
+		<_disable_attributes set="method" line="666"><f a=""><x path="Void"/></f></_disable_attributes>
+		<_enable_attributes set="method" line="658"><f a=""><x path="Void"/></f></_enable_attributes>
+		<geometry_batch_static set="method" line="642"><f a="geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></geometry_batch_static>
-		<geometry_batch set="method" line="622"><f a="geom">
+		<geometry_batch set="method" line="628"><f a="geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></geometry_batch>
-		<submit_current_vertex_list public="1" set="method" line="576"><f a="type">
+		<submit_current_vertex_list public="1" set="method" line="580"><f a="type">
 	<e path="phoenix.PrimitiveType"/>
 	<x path="Void"/>
 </f></submit_current_vertex_list>
-		<submit_static_geometry public="1" set="method" line="468"><f a="geom">
+		<submit_static_geometry public="1" set="method" line="472"><f a="geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></submit_static_geometry>
-		<draw public="1" set="method" line="452"><f a="?persist_immediate">
+		<draw public="1" set="method" line="456"><f a="?persist_immediate">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></draw>
-		<batch public="1" set="method" line="334"><f a="?persist_immediate">
+		<batch public="1" set="method" line="336"><f a="?persist_immediate">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></batch>
-		<shader_activate public="1" set="method" line="304"><f a="_shader">
+		<shader_activate public="1" set="method" line="306"><f a="_shader">
 	<c path="phoenix.Shader"/>
 	<x path="Void"/>
 </f></shader_activate>
-		<remove public="1" set="method" line="289"><f a="_geom:?_remove_batcher_from_geometry">
+		<remove public="1" set="method" line="291"><f a="_geom:?_remove_batcher_from_geometry">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></remove>
-		<add public="1" set="method" line="266"><f a="_geom:?_force_add">
+		<add public="1" set="method" line="267"><f a="_geom:?_force_add">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></add>
-		<geometry_compare public="1" set="method" line="221"><f a="a:b">
+		<geometry_compare public="1" set="method" line="222"><f a="a:b">
 	<t path="phoenix.geometry.GeometryKey"/>
 	<t path="phoenix.geometry.GeometryKey"/>
 	<x path="Int"/>
 </f></geometry_compare>
-		<blend_mode public="1" set="method" line="209"><f a="?_src_mode:?_dst_mode">
+		<blend_mode public="1" set="method" line="210"><f a="?_src_mode:?_dst_mode">
 	<e path="phoenix.BlendMode"/>
 	<e path="phoenix.BlendMode"/>
 	<x path="Void"/>
 </f></blend_mode>
-		<add_group public="1" set="method" line="199"><f a="_group:_pre_render:_post_render">
+		<add_group public="1" set="method" line="200"><f a="_group:_pre_render:_post_render">
 	<x path="Int"/>
 	<f a="">
 		<c path="phoenix.Batcher"/>
@@ -10808,11 +11497,11 @@
 	</f>
 	<x path="Void"/>
 </f></add_group>
-		<compare public="1" set="method" line="190"><f a="other">
+		<compare public="1" set="method" line="191"><f a="other">
 	<c path="phoenix.Batcher"/>
 	<x path="Int"/>
 </f></compare>
-		<toString public="1" set="method" line="185"><f a=""><c path="String"/></f></toString>
+		<toString public="1" set="method" line="186"><f a=""><c path="String"/></f></toString>
 		<name public="1"><c path="String"/></name>
 		<log public="1"><x path="Bool"/></log>
 		<enabled_count public="1"><x path="Int"/></enabled_count>
@@ -10871,7 +11560,7 @@
 </c></geometry>
 		<enabled public="1"><x path="Bool"/></enabled>
 		<layer public="1"><x path="Int"/></layer>
-		<new public="1" set="method" line="119"><f a="_r:?_name">
+		<new public="1" set="method" line="120"><f a="_r:?_name">
 	<c path="phoenix.Renderer"/>
 	<c path="String"/>
 	<x path="Void"/>
@@ -11077,35 +11766,39 @@
 </f></new>
 	</class>
 	<class path="phoenix.Color" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Color.hx">
-		<from_int set="method" line="208"><f a="_i">
+		<random public="1" set="method" line="28" static="1"><f a="?_include_alpha">
+	<x path="Bool"/>
+	<c path="phoenix.Color"/>
+</f></random>
+		<from_int set="method" line="212"><f a="_i">
 	<x path="Int"/>
 	<x path="Void"/>
 </f></from_int>
-		<toString public="1" set="method" line="204"><f a=""><c path="String"/></f></toString>
-		<fromColorHSL public="1" set="method" line="154"><f a="_color_hsl">
+		<toString public="1" set="method" line="208"><f a=""><c path="String"/></f></toString>
+		<fromColorHSL public="1" set="method" line="158"><f a="_color_hsl">
 	<c path="phoenix.ColorHSL"/>
 	<c path="phoenix.Color"/>
 </f></fromColorHSL>
-		<fromColorHSV public="1" set="method" line="124"><f a="_color_hsv">
+		<fromColorHSV public="1" set="method" line="128"><f a="_color_hsv">
 	<c path="phoenix.ColorHSV"/>
 	<x path="Void"/>
 </f></fromColorHSV>
-		<toColorHSV public="1" set="method" line="120"><f a=""><c path="phoenix.ColorHSV"/></f></toColorHSV>
-		<toColorHSL public="1" set="method" line="116"><f a=""><c path="phoenix.ColorHSL"/></f></toColorHSL>
-		<rgb public="1" set="method" line="111"><f a="?_rgb">
+		<toColorHSV public="1" set="method" line="124"><f a=""><c path="phoenix.ColorHSV"/></f></toColorHSV>
+		<toColorHSL public="1" set="method" line="120"><f a=""><c path="phoenix.ColorHSL"/></f></toColorHSL>
+		<rgb public="1" set="method" line="115"><f a="?_rgb">
 	<x path="Int"/>
 	<c path="phoenix.Color"/>
 </f></rgb>
-		<clone public="1" set="method" line="107"><f a=""><c path="phoenix.Color"/></f></clone>
-		<tween public="1" set="method" line="57"><f a="?_time_in_seconds:?_properties_to_tween:?_override">
+		<clone public="1" set="method" line="111"><f a=""><c path="phoenix.Color"/></f></clone>
+		<tween public="1" set="method" line="61"><f a="?_time_in_seconds:?_properties_to_tween:?_override">
 	<x path="Float"/>
 	<d/>
 	<x path="Bool"/>
 	<c path="luxe.tween.actuators.IGenericActuator"/>
 </f></tween>
-		<minRGB public="1" set="method" line="53"><f a=""><x path="Float"/></f></minRGB>
-		<maxRGB public="1" set="method" line="49"><f a=""><x path="Float"/></f></maxRGB>
-		<set public="1" set="method" line="28"><f a="?_r:?_g:?_b:?_a">
+		<minRGB public="1" set="method" line="57"><f a=""><x path="Float"/></f></minRGB>
+		<maxRGB public="1" set="method" line="53"><f a=""><x path="Float"/></f></maxRGB>
+		<set public="1" set="method" line="32"><f a="?_r:?_g:?_b:?_a">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -11131,36 +11824,36 @@
 	</class>
 	<class path="phoenix.ColorHSL" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Color.hx" module="phoenix.Color">
 		<extends path="phoenix.Color"/>
-		<toString public="1" set="method" line="386" override="1"><f a=""><c path="String"/></f></toString>
-		<fromColor public="1" set="method" line="349"><f a="_color">
+		<toString public="1" set="method" line="390" override="1"><f a=""><c path="String"/></f></toString>
+		<fromColor public="1" set="method" line="353"><f a="_color">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.ColorHSL"/>
 </f></fromColor>
-		<toColor public="1" set="method" line="345"><f a=""><c path="phoenix.Color"/></f></toColor>
-		<clone public="1" set="method" line="341" override="1"><f a=""><c path="phoenix.ColorHSL"/></f></clone>
-		<_refresh public="1" set="method" line="336"><f a=""><c path="phoenix.ColorHSL"/></f></_refresh>
-		<tween public="1" set="method" line="286" override="1"><f a="?_time_in_seconds:?_dest:?_override">
+		<toColor public="1" set="method" line="349"><f a=""><c path="phoenix.Color"/></f></toColor>
+		<clone public="1" set="method" line="345" override="1"><f a=""><c path="phoenix.ColorHSL"/></f></clone>
+		<_refresh public="1" set="method" line="340"><f a=""><c path="phoenix.ColorHSL"/></f></_refresh>
+		<tween public="1" set="method" line="290" override="1"><f a="?_time_in_seconds:?_dest:?_override">
 	<x path="Float"/>
 	<d/>
 	<x path="Bool"/>
 	<c path="luxe.tween.actuators.IGenericActuator"/>
 </f></tween>
-		<set public="1" set="method" line="262" override="1"><f a="?_h:?_s:?_l:?_a">
+		<set public="1" set="method" line="266" override="1"><f a="?_h:?_s:?_l:?_a">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<c path="phoenix.ColorHSL"/>
 </f></set>
-		<set_l set="method" line="243"><f a="_l">
+		<set_l set="method" line="247"><f a="_l">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_l>
-		<set_s set="method" line="238"><f a="_s">
+		<set_s set="method" line="242"><f a="_s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_s>
-		<set_h set="method" line="233"><f a="_h">
+		<set_h set="method" line="237"><f a="_h">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_h>
@@ -11176,7 +11869,7 @@
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
 		</h>
-		<new public="1" set="method" line="249"><f a="?_h:?_s:?_l:?_a">
+		<new public="1" set="method" line="253"><f a="?_h:?_s:?_l:?_a">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -11186,41 +11879,41 @@
 	</class>
 	<class path="phoenix.ColorHSV" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Color.hx" module="phoenix.Color">
 		<extends path="phoenix.Color"/>
-		<toString public="1" set="method" line="563" override="1"><f a=""><c path="String"/></f></toString>
-		<fromColor public="1" set="method" line="529"><f a="_color">
+		<toString public="1" set="method" line="567" override="1"><f a=""><c path="String"/></f></toString>
+		<fromColor public="1" set="method" line="533"><f a="_color">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.ColorHSV"/>
 </f></fromColor>
-		<fromColorHSL public="1" set="method" line="523" override="1"><f a="_color_hsl">
+		<fromColorHSL public="1" set="method" line="527" override="1"><f a="_color_hsl">
 	<c path="phoenix.ColorHSL"/>
 	<c path="phoenix.ColorHSV"/>
 </f></fromColorHSL>
-		<toColorHSL public="1" set="method" line="518" override="1"><f a=""><c path="phoenix.ColorHSL"/></f></toColorHSL>
-		<toColor public="1" set="method" line="513"><f a=""><c path="phoenix.Color"/></f></toColor>
-		<clone public="1" set="method" line="509" override="1"><f a=""><c path="phoenix.ColorHSV"/></f></clone>
-		<_refresh public="1" set="method" line="504"><f a=""><c path="phoenix.ColorHSV"/></f></_refresh>
-		<tween public="1" set="method" line="454" override="1"><f a="?_time_in_seconds:?_dest:?_override">
+		<toColorHSL public="1" set="method" line="522" override="1"><f a=""><c path="phoenix.ColorHSL"/></f></toColorHSL>
+		<toColor public="1" set="method" line="517"><f a=""><c path="phoenix.Color"/></f></toColor>
+		<clone public="1" set="method" line="513" override="1"><f a=""><c path="phoenix.ColorHSV"/></f></clone>
+		<_refresh public="1" set="method" line="508"><f a=""><c path="phoenix.ColorHSV"/></f></_refresh>
+		<tween public="1" set="method" line="458" override="1"><f a="?_time_in_seconds:?_dest:?_override">
 	<x path="Float"/>
 	<d/>
 	<x path="Bool"/>
 	<c path="luxe.tween.actuators.IGenericActuator"/>
 </f></tween>
-		<set public="1" set="method" line="429" override="1"><f a="?_h:?_s:?_v:?_a">
+		<set public="1" set="method" line="433" override="1"><f a="?_h:?_s:?_v:?_a">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<c path="phoenix.Color"/>
 </f></set>
-		<set_v set="method" line="410"><f a="_v">
+		<set_v set="method" line="414"><f a="_v">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_v>
-		<set_s set="method" line="405"><f a="_s">
+		<set_s set="method" line="409"><f a="_s">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_s>
-		<set_h set="method" line="400"><f a="_h">
+		<set_h set="method" line="404"><f a="_h">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_h>
@@ -11236,7 +11929,7 @@
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
 		</h>
-		<new public="1" set="method" line="416"><f a="?_h:?_s:?_v:?_a">
+		<new public="1" set="method" line="420"><f a="?_h:?_s:?_v:?_a">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -11639,29 +12332,29 @@
 </f></new>
 	</class>
 	<class path="phoenix.RenderState" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/RenderState.hx">
-		<bindTexture2D public="1" set="method" line="79"><f a="tex">
+		<bindTexture2D public="1" set="method" line="83"><f a="tex">
 	<c path="lime.gl.GLTexture"/>
 	<x path="Void"/>
 </f></bindTexture2D>
 		<_bound_texture_2D><c path="lime.gl.GLTexture"/></_bound_texture_2D>
-		<activeTexture public="1" set="method" line="71"><f a="val">
+		<activeTexture public="1" set="method" line="75"><f a="val">
 	<d/>
 	<x path="Void"/>
 </f></activeTexture>
 		<_active_texture><unknown/></_active_texture>
-		<useProgram public="1" set="method" line="63"><f a="program">
+		<useProgram public="1" set="method" line="67"><f a="program">
 	<c path="lime.gl.GLProgram"/>
 	<x path="Void"/>
 </f></useProgram>
 		<_used_program><c path="lime.gl.GLProgram"/></_used_program>
-		<viewport public="1" set="method" line="50"><f a="x:y:w:h">
+		<viewport public="1" set="method" line="54"><f a="x:y:w:h">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></viewport>
-		<disable public="1" set="method" line="35"><f a="what">
+		<disable public="1" set="method" line="37"><f a="what">
 	<d/>
 	<x path="Void"/>
 </f></disable>
@@ -11838,8 +12531,12 @@
 </f></new>
 	</class>
 	<class path="phoenix.Renderer" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Renderer.hx">
-		<process public="1" set="method" line="349"><f a=""><x path="Void"/></f></process>
-		<load_texture public="1" set="method" line="252"><f a="_name:?_onloaded">
+		<onresize public="1" set="method" line="372"><f a="e">
+	<d/>
+	<x path="Void"/>
+</f></onresize>
+		<process public="1" set="method" line="351"><f a=""><x path="Void"/></f></process>
+		<load_texture public="1" set="method" line="254"><f a="_name:?_onloaded">
 	<c path="String"/>
 	<f a="">
 		<c path="phoenix.Texture"/>
@@ -11847,14 +12544,14 @@
 	</f>
 	<c path="phoenix.Texture"/>
 </f></load_texture>
-		<load_texture_from_string_byte_array public="1" set="method" line="207"><f a="?_name:_string_byte_array:_width:_height">
+		<load_texture_from_string_byte_array public="1" set="method" line="209"><f a="?_name:_string_byte_array:_width:_height">
 	<c path="String"/>
 	<c path="String"/>
 	<x path="Int"/>
 	<x path="Int"/>
 	<c path="phoenix.Texture"/>
 </f></load_texture_from_string_byte_array>
-		<load_shader public="1" set="method" line="163"><f a="_psid:?_vsid:?_onloaded">
+		<load_shader public="1" set="method" line="165"><f a="_psid:?_vsid:?_onloaded">
 	<c path="String"/>
 	<c path="String"/>
 	<f a="">
@@ -11863,30 +12560,30 @@
 	</f>
 	<c path="phoenix.Shader"/>
 </f></load_shader>
-		<load_font public="1" set="method" line="155"><f a="_fontid:?_path:?_onloaded">
+		<load_font public="1" set="method" line="157"><f a="_fontid:?_path:?_onloaded">
 	<c path="String"/>
 	<c path="String"/>
 	<f a=""><x path="Void"/></f>
 	<c path="phoenix.BitmapFont"/>
 </f></load_font>
-		<_debug set="method" line="151"><f a="v">
+		<_debug set="method" line="153"><f a="v">
 	<d/>
 	<x path="Void"/>
 </f></_debug>
-		<clear public="1" set="method" line="139"><f a="_color">
+		<clear public="1" set="method" line="141"><f a="_color">
 	<c path="phoenix.Color"/>
 	<x path="Void"/>
 </f></clear>
-		<remove_batch public="1" set="method" line="135"><f a="batch">
+		<remove_batch public="1" set="method" line="137"><f a="batch">
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></remove_batch>
-		<add_batch public="1" set="method" line="131"><f a="batch">
+		<add_batch public="1" set="method" line="133"><f a="batch">
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></add_batch>
-		<shutdown public="1" set="method" line="127"><f a=""><x path="Void"/></f></shutdown>
-		<startup public="1" set="method" line="58"><f a=""><x path="Void"/></f></startup>
+		<destroy public="1" set="method" line="129"><f a=""><x path="Void"/></f></destroy>
+		<init public="1" set="method" line="60"><f a=""><x path="Void"/></f></init>
 		<stats public="1"><c path="phoenix.RendererStats"/></stats>
 		<clear_color public="1"><c path="phoenix.Color"/></clear_color>
 		<stop_count public="1"><x path="Int"/></stop_count>
@@ -11905,11 +12602,14 @@
 	<c path="phoenix.Batcher"/>
 </c></batchers>
 		<resource_manager public="1"><c path="phoenix.ResourceManager"/></resource_manager>
-		<new public="1" set="method" line="31"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="58"><f a="_core">
+	<c path="luxe.Core"/>
+	<x path="Void"/>
+</f></new>
 	</class>
 	<class path="phoenix.RendererStats" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Renderer.hx" module="phoenix.Renderer">
-		<toString public="1" set="method" line="393"><f a=""><c path="String"/></f></toString>
-		<reset public="1" set="method" line="385"><f a=""><x path="Void"/></f></reset>
+		<toString public="1" set="method" line="398"><f a=""><c path="String"/></f></toString>
+		<reset public="1" set="method" line="390"><f a=""><x path="Void"/></f></reset>
 		<group_count public="1"><x path="Int"/></group_count>
 		<draw_calls public="1"><x path="Int"/></draw_calls>
 		<enabled_count public="1"><x path="Int"/></enabled_count>
@@ -11917,7 +12617,7 @@
 		<dynamic_batched_count public="1"><x path="Int"/></dynamic_batched_count>
 		<geometry_count public="1"><x path="Int"/></geometry_count>
 		<batchers public="1"><x path="Int"/></batchers>
-		<new public="1" set="method" line="376"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="381"><f a=""><x path="Void"/></f></new>
 	</class>
 	<enum path="phoenix.ResourceType" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/Resource.hx" module="phoenix.Resource">
 		<unknown/>
@@ -12561,90 +13261,90 @@
 	<class path="phoenix.defaults.FontString" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/defaults/FontString.hx"><data public="1" set="method" line="5" static="1"><f a=""><c path="String"/></f></data></class>
 	<class path="phoenix.defaults.Shaders" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/defaults/Shaders.hx">
 		<vertex_shader public="1" set="method" line="5" static="1"><f a=""><c path="String"/></f></vertex_shader>
-		<fragment_textured public="1" set="method" line="32" static="1"><f a=""><c path="String"/></f></fragment_textured>
-		<fragment_untextured public="1" set="method" line="61" static="1"><f a=""><c path="String"/></f></fragment_untextured>
+		<fragment_textured public="1" set="method" line="36" static="1"><f a=""><c path="String"/></f></fragment_textured>
+		<fragment_untextured public="1" set="method" line="66" static="1"><f a=""><c path="String"/></f></fragment_untextured>
 	</class>
 	<class path="phoenix.geometry.Geometry" params="" file="/Users/Sven/dev/luxe/luxe/phoenix/geometry/Geometry.hx">
-		<set_clip_rect public="1" set="method" line="603"><f a="val">
+		<set_clip_rect public="1" set="method" line="618"><f a="val">
 	<c path="phoenix.Rectangle"/>
 	<c path="phoenix.Rectangle"/>
 </f></set_clip_rect>
-		<get_clip_rect public="1" set="method" line="597"><f a=""><c path="phoenix.Rectangle"/></f></get_clip_rect>
-		<set_clip public="1" set="method" line="583"><f a="val">
+		<get_clip_rect public="1" set="method" line="612"><f a=""><c path="phoenix.Rectangle"/></f></get_clip_rect>
+		<set_clip public="1" set="method" line="598"><f a="val">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_clip>
-		<get_clip public="1" set="method" line="577"><f a=""><x path="Bool"/></f></get_clip>
-		<set_group public="1" set="method" line="563"><f a="val">
+		<get_clip public="1" set="method" line="592"><f a=""><x path="Bool"/></f></get_clip>
+		<set_group public="1" set="method" line="578"><f a="val">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_group>
-		<get_group public="1" set="method" line="557"><f a=""><x path="Int"/></f></get_group>
-		<set_depth public="1" set="method" line="543"><f a="val">
+		<get_group public="1" set="method" line="572"><f a=""><x path="Int"/></f></get_group>
+		<set_depth public="1" set="method" line="558"><f a="val">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_depth>
-		<get_depth public="1" set="method" line="536"><f a=""><x path="Float"/></f></get_depth>
-		<set_shader public="1" set="method" line="522"><f a="val">
+		<get_depth public="1" set="method" line="551"><f a=""><x path="Float"/></f></get_depth>
+		<set_shader public="1" set="method" line="537"><f a="val">
 	<c path="phoenix.Shader"/>
 	<c path="phoenix.Shader"/>
 </f></set_shader>
-		<get_shader public="1" set="method" line="516"><f a=""><c path="phoenix.Shader"/></f></get_shader>
-		<set_color public="1" set="method" line="504"><f a="val">
+		<get_shader public="1" set="method" line="531"><f a=""><c path="phoenix.Shader"/></f></get_shader>
+		<set_color public="1" set="method" line="519"><f a="val">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.Color"/>
 </f></set_color>
-		<set_enabled public="1" set="method" line="496"><f a="val">
+		<set_enabled public="1" set="method" line="511"><f a="val">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_enabled>
-		<set_texture public="1" set="method" line="482"><f a="val">
+		<set_texture public="1" set="method" line="497"><f a="val">
 	<c path="phoenix.Texture"/>
 	<c path="phoenix.Texture"/>
 </f></set_texture>
-		<get_texture public="1" set="method" line="476"><f a=""><c path="phoenix.Texture"/></f></get_texture>
-		<set_primitive_type set="method" line="462"><f a="val">
+		<get_texture public="1" set="method" line="491"><f a=""><c path="phoenix.Texture"/></f></get_texture>
+		<set_primitive_type set="method" line="477"><f a="val">
 	<e path="phoenix.PrimitiveType"/>
 	<e path="phoenix.PrimitiveType"/>
 </f></set_primitive_type>
-		<get_primitive_type set="method" line="456"><f a=""><e path="phoenix.PrimitiveType"/></f></get_primitive_type>
-		<refresh set="method" line="407"><f a=""><x path="Void"/></f></refresh>
-		<get_scale public="1" set="method" line="399"><f a=""><c path="phoenix.Vector"/></f></get_scale>
-		<set_scale public="1" set="method" line="389"><f a="_scale">
+		<get_primitive_type set="method" line="471"><f a=""><e path="phoenix.PrimitiveType"/></f></get_primitive_type>
+		<refresh set="method" line="422"><f a=""><x path="Void"/></f></refresh>
+		<get_scale public="1" set="method" line="414"><f a=""><c path="phoenix.Vector"/></f></get_scale>
+		<set_scale public="1" set="method" line="402"><f a="_scale">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_scale>
-		<get_rotation public="1" set="method" line="383"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
-		<set_rotation public="1" set="method" line="373"><f a="_rotation">
+		<get_rotation public="1" set="method" line="396"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
+		<set_rotation public="1" set="method" line="384"><f a="_rotation">
 	<c path="phoenix.Quaternion"/>
 	<c path="phoenix.Quaternion"/>
 </f></set_rotation>
-		<get_locked public="1" set="method" line="367"><f a=""><x path="Bool"/></f></get_locked>
-		<set_locked public="1" set="method" line="361"><f a="_locked">
+		<get_locked public="1" set="method" line="378"><f a=""><x path="Bool"/></f></get_locked>
+		<set_locked public="1" set="method" line="372"><f a="_locked">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_locked>
-		<get_pos public="1" set="method" line="355"><f a=""><c path="phoenix.Vector"/></f></get_pos>
-		<set_pos public="1" set="method" line="349"><f a="_position">
+		<get_pos public="1" set="method" line="366"><f a=""><c path="phoenix.Vector"/></f></get_pos>
+		<set_pos public="1" set="method" line="359"><f a="_position">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_pos>
-		<set_origin public="1" set="method" line="343"><f a="_origin">
+		<set_origin public="1" set="method" line="353"><f a="_origin">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_origin>
-		<translate public="1" set="method" line="337"><f a="_offset">
+		<translate public="1" set="method" line="347"><f a="_offset">
 	<c path="phoenix.Vector"/>
 	<x path="Void"/>
 </f></translate>
-		<batch public="1" set="method" line="295"><f a="vertlist:tcoordlist:colorlist:normallist">
+		<batch public="1" set="method" line="305"><f a="vertlist:tcoordlist:colorlist:normallist">
 	<c path="Array"><x path="Float"/></c>
 	<c path="Array"><x path="Float"/></c>
 	<c path="Array"><x path="Float"/></c>
 	<c path="Array"><x path="Float"/></c>
 	<x path="Void"/>
 </f></batch>
-		<batch_into_float32array public="1" set="method" line="205"><f a="vert_index:tcoord_index:color_index:normal_index:vertlist:tcoordlist:colorlist:normallist">
+		<batch_into_float32array public="1" set="method" line="210"><f a="vert_index:tcoord_index:color_index:normal_index:vertlist:tcoordlist:colorlist:normallist">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -12655,21 +13355,21 @@
 	<c path="lime.utils.Float32Array"/>
 	<x path="Void"/>
 </f></batch_into_float32array>
-		<remove public="1" set="method" line="199"><f a="v">
+		<remove public="1" set="method" line="204"><f a="v">
 	<c path="phoenix.geometry.Vertex"/>
 	<x path="Void"/>
 </f></remove>
-		<add public="1" set="method" line="193"><f a="v">
+		<add public="1" set="method" line="198"><f a="v">
 	<c path="phoenix.geometry.Vertex"/>
 	<x path="Void"/>
 </f></add>
-		<drop public="1" set="method" line="179"><f a="?remove">
+		<drop public="1" set="method" line="184"><f a="?remove">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></drop>
-		<str public="1" set="method" line="171"><f a=""><x path="Void"/></f></str>
-		<short_id public="1" set="method" line="165"><f a=""><c path="String"/></f></short_id>
-		<refresh_key public="1" set="method" line="154"><f a=""><x path="Void"/></f></refresh_key>
+		<str public="1" set="method" line="176"><f a=""><x path="Void"/></f></str>
+		<short_id public="1" set="method" line="170"><f a=""><c path="String"/></f></short_id>
+		<refresh_key public="1" set="method" line="159"><f a=""><x path="Void"/></f></refresh_key>
 		<key public="1"><t path="phoenix.geometry.GeometryKey"/></key>
 		<_final_vert_position><c path="phoenix.Vector"/></_final_vert_position>
 		<matrix public="1"><c path="phoenix.Matrix4"/></matrix>
@@ -12677,6 +13377,9 @@
 			<c path="phoenix.Vector"/>
 			<meta><m n=":isVar"/></meta>
 		</origin>
+		<_scale_dirty><x path="Bool"/></_scale_dirty>
+		<_rotation_dirty><x path="Bool"/></_rotation_dirty>
+		<_pos_dirty><x path="Bool"/></_pos_dirty>
 		<scale public="1" get="accessor" set="accessor">
 			<c path="phoenix.Vector"/>
 			<meta><m n=":isVar"/></meta>
@@ -12758,7 +13461,7 @@
 		<dirty public="1"><x path="Bool"/></dirty>
 		<submitted public="1"><x path="Bool"/></submitted>
 		<vertices public="1"><c path="Array"><c path="phoenix.geometry.Vertex"/></c></vertices>
-		<new public="1" set="method" line="96"><f a="options">
+		<new public="1" set="method" line="101"><f a="options">
 	<d/>
 	<x path="Void"/>
 </f></new>
@@ -13106,7 +13809,7 @@
 	<x path="Void"/>
 </f></set>
 		<resize public="1" set="method" line="124"><f a="quad">
-	<t path="luxe.Rectangle"/>
+	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></resize>
 		<uv_space public="1" set="method" line="55"><f a="_rect">
@@ -13204,7 +13907,7 @@
 	<x path="Int"/>
 	<x path="Int"/>
 </f></get_elements_for_type>
-		<get_opengl_primitive_type public="1" set="method" line="54" static="1"><f a="type">
+		<get_opengl_primitive_type public="1" set="method" line="56" static="1"><f a="type">
 	<e path="phoenix.PrimitiveType"/>
 	<x path="Int"/>
 </f></get_opengl_primitive_type>
