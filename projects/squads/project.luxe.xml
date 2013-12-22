@@ -18,7 +18,5 @@
 	
 	<haxelib name="luxe" />
     <haxelib name="lime" />
-	<haxelib name="hxcollision" />
-
 
 </project>

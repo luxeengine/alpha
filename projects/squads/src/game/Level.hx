@@ -4,11 +4,10 @@ package game;
 import game.items.Explosive;
 import game.Manager;
 
-import hxcollision.math.Vector2D;
-import hxcollision.ShapeDrawer;
-import hxcollision.shapes.Polygon;
-import hxcollision.shapes.Shape;
-
+import luxe.collision.math.Vector2D;
+import luxe.collision.ShapeDrawer;
+import luxe.collision.shapes.Polygon;
+import luxe.collision.shapes.Shape;
 
 import luxe.States;
 import luxe.Sprite;

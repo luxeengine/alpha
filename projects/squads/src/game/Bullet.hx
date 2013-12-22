@@ -1,10 +1,10 @@
 
 package game;
 
-import hxcollision.Collision;
-import hxcollision.CollisionData;
-import hxcollision.shapes.Shape;
-import hxcollision.shapes.Circle;
+import luxe.collision.Collision;
+import luxe.collision.CollisionData;
+import luxe.collision.shapes.Shape;
+import luxe.collision.shapes.Circle;
 
 import luxe.Entity;
 import luxe.Vector;

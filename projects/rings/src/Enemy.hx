@@ -27,7 +27,7 @@ class Enemy extends Component {
 
 		test = new Vector();
 
-    	shoot_speed = 10 + (Math.random() * 20);
+    	shoot_speed = 40 + (Math.random() * 30);
     	fire_rate = 1.5 + (Math.random() * 2);
 
 	} //init

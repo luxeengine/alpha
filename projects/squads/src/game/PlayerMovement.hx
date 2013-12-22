@@ -3,9 +3,9 @@ package game;
 
 import game.PlayerWeapon;
 
-import hxcollision.Collision;
-import hxcollision.CollisionData;
-import hxcollision.shapes.Polygon;
+import luxe.collision.Collision;
+import luxe.collision.CollisionData;
+import luxe.collision.shapes.Polygon;
 
 import luxe.Vector;
 import luxe.Sprite;
