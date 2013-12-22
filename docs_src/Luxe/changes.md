@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [ad78910e7c](http://github.com/underscorediscovery/luxe/commit/ad78910e7ce2f985a1747dd737f6b01769cbdb84)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 22 2013 02:24:35 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Vector; Adding set_xyzw, set_xy, and set_xyz for optimized setting when you know what will be set.</li><li>QuadGeometry; Fixing bugs where resize would increment the position based on newer methods of rendering</li><li>Tests; sprite test adding resize tests for seeing that resizing is behaving as expected</li><li>Tests; particle test updated to match latest particle class</li><li>Sprite; making it so that when size is called, if centered, and no custom origin has been specified, it will adjust the origin for you</li><li>Particles; fixing bugs and starting to cleanup some more. Added end_speed for slow down impact particle types</li><li>Geometry; fixing matrix.compose being per vertex instead of once. Updating to parity with html5 api (which existed all along, I just wasn't aware)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [29295cfc43](http://github.com/underscorediscovery/luxe/commit/29295cfc43ba7584021757795bc2cf375491d47a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Dec 21 2013 21:37:51 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Collision; cleaning up tests and shapedrawer class</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c2587824ad](http://github.com/underscorediscovery/luxe/commit/c2587824adfd4f25870957b8991b5dc649dc2743)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Dec 21 2013 21:33:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Collision; moving the collision library into the luxe core, resolves #16</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [52b2920f6e](http://github.com/underscorediscovery/luxe/commit/52b2920f6e159ef49a1e6c69847cc816b6876d36)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Dec 21 2013 17:47:46 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; updating changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [e462c155b3](http://github.com/underscorediscovery/luxe/commit/e462c155b3939fd1845840e251b92b0be444baea)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Dec 21 2013 17:47:20 GMT-0330 (NST)   
