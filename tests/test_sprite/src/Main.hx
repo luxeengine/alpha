@@ -24,8 +24,30 @@ class Main extends luxe.Game {
 
 
     var _next : Int = 0;
+    var _next2 : Int = 0;
     var _scales : Array<Vector>;
+    var _sizes : Array<Vector>;
     public function onkeyup(e) {
+
+        if(e.value == Input.Keys.key_R) {
+            if(_sizes == null) {
+                _sizes = [                    
+                    new Vector(128,128),
+                    new Vector(64,64),
+                    new Vector(32,32),
+                    new Vector(512,512), 
+                    new Vector(256,256),
+                    new Vector(196,196)
+                ];
+            }
+            _next2++; 
+            if(_next2 > _sizes.length-1) {
+                _next2 = 0;
+            }
+
+            var _size = _sizes[_next2];
+            test_sprite1.size = _size;
+        }
 
         if(e.value == Input.Keys.key_S) {
             if(_scales == null) {

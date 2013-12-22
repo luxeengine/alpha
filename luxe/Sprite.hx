@@ -62,6 +62,8 @@ class Sprite extends Entity {
     var _rotation_vector : Vector;
     var _rotation_quat : Quaternion;
 
+    var _has_custom_origin : Bool = false;
+
     public function new( options:SpriteOptions ) {
 
 //cached values
@@ -211,7 +213,10 @@ class Sprite extends Entity {
         centered = _c;
 
             //after we set centered the origin will override it
-        if(options.origin != null) origin = options.origin;
+        if(options.origin != null) {
+            _has_custom_origin = true;
+            origin = options.origin;
+        }
 
         if(options.add == null || options.add != false) {
             if(options.batcher == null) {
@@ -380,7 +385,7 @@ class Sprite extends Entity {
     
     private override function set_pos(_p:Vector) : Vector {
 
-        if(geometry != null) {
+        if(geometry != null) {            
             geometry.pos = _p.clone();
         } //geometry ! null
 
@@ -462,6 +467,14 @@ class Sprite extends Entity {
         if(geometry != null) {
 
             geometry.resize( new Vector( _v.x, _v.y ) );            
+                
+                //If the user doesn't specify a custom origin, we try and work with the center
+            if(!_has_custom_origin) {
+                if(centered) {
+                        //half of the new size
+                    origin = _v.clone().divideScalar(2);
+                }
+            }
 
         } //if geometry != null
 

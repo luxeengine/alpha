@@ -8,7 +8,7 @@ class ParticleSystem extends Entity {
     public var active : Bool = true;
     public var emitters : Map<String, ParticleEmitter>;
 
-    public function init() {
+    public function init( ) {
         if(emitters == null) new Map<String, ParticleEmitter>();
     } //init
 
@@ -27,18 +27,12 @@ class ParticleSystem extends Entity {
         } //_name.lengths
 
             //create the emitter instance
-        // var _emitter = add(ParticleEmitter, _name);
-                //store ourselves in the emitter
-            // _emitter.particle_system = this;
-                //store the template to the emitter
-            // _emitter.template = _template;
-        var _emitter = new ParticleEmitter(_name, this, _template);
+        var _emitter = add(ParticleEmitter, _name, { system:this, template:_template });
+        // var _emitter = new ParticleEmitter(_name, this, _template);
                 //store the reference of the emitter
             emitters.set(_name, _emitter);
 
     } //add
-
-
 
     public function emit(duration:Float = -1) {
         active = true;
@@ -68,12 +62,18 @@ class ParticleSystem extends Entity {
         }
     } //update
 
+    
+} //Particle System
+
+
+typedef ParticleEmitterInitData = {
+    system : ParticleSystem, 
+    template : Dynamic
 }
 
-class ParticleEmitter {
+class ParticleEmitter extends Component {
 
     public var particle_system : ParticleSystem;
-    public var name : String = '';
 
     public var active : Bool = true;
     public var emit_count : Int = 1;
@@ -118,6 +118,7 @@ class ParticleEmitter {
     public var end_size:Vector;
     public var end_size_random:Vector;
     public var speed : Float;
+    public var end_speed : Float;
     public var speed_random : Float;
     public var life : Float;
     public var life_random : Float;
@@ -142,7 +143,8 @@ class ParticleEmitter {
     var _temp_speed : Vector;
     var _to_remove : Array<Particle>;
 
-    public function new( _name:String, _system:ParticleSystem, _template:Dynamic ) {
+    // public function new( _name:String, _system:ParticleSystem, _template:Dynamic ) {
+    public function init( _data:ParticleEmitterInitData ) {
 
         active_particles = new Array<Particle>();
         particle_cache = new Array<Sprite>();
@@ -155,9 +157,9 @@ class ParticleEmitter {
 
         _to_remove = [];
 
-        name = _name;
-        particle_system = _system;
-        template = _template;
+        // name = _name;
+        particle_system = _data.system;
+        template = _data.template;
 
             //apply defaults 
         apply(template);
@@ -206,6 +208,10 @@ class ParticleEmitter {
         (_template.speed_random != null) ?
             speed_random = _template.speed_random : 
             speed_random = 0;
+
+        (_template.end_speed != null) ?
+            end_speed = _template.end_speed : 
+            end_speed = 0;
 
         (_template.life != null) ?
             life = _template.life : life = 1;
@@ -333,16 +339,11 @@ class ParticleEmitter {
 
     }
 
-
-    // public override function entity_pos_change( _p:Vector ) {
-        // trace("_p " + _p);
-    // }
-
     private function random_1_to_1(){ return Math.random() * 2 - 1; }
 
     private function init_particle( particle:Particle ) {
 
-        particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;
+        particle.rotation = (zrotation + rotation_random * random_1_to_1()) + rotation_offset;        
 
         particle.position.x = (particle_system.pos.x + pos_random.x * random_1_to_1()) + pos_offset.x;
         particle.position.y = (particle_system.pos.y + pos_random.y * random_1_to_1()) + pos_offset.y;
@@ -353,7 +354,7 @@ class ParticleEmitter {
             particle.sprite.visible = true;
 
                 //kill the oldest sprite, as we are now reworking our way up the cache
-            active_particles.shift().sprite.visible = false;
+            // active_particles.shift().sprite.visible = false;
 
         } else {
 
@@ -362,7 +363,7 @@ class ParticleEmitter {
                 depth : depth,
                 group : group,
                 texture : particle_image,
-                pos : new Vector()
+                pos : new Vector()                
             });
 
             particle_cache[cache_index] = particle.sprite;
@@ -382,18 +383,15 @@ class ParticleEmitter {
             // particle.sprite.srcrect = rect(0,0,particle.sprite.texture.width,particle.sprite.texture.height);           
         // } 
         
-        if(direction != 0) {
-            var new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
+        var new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
             direction_vector.set( Math.cos( new_dir ), Math.sin( new_dir ) ); 
-        } else {
-            direction_vector.set(0,0,0);
-        }
 
         var _point_speed = speed + speed_random * random_1_to_1();
             particle.speed.set(_point_speed, _point_speed);
 
-        particle.direction.x = direction_vector.x * particle.speed.x;
-        particle.direction.y = direction_vector.y * particle.speed.y;
+
+        particle.direction.x = direction_vector.x;// * particle.speed.x;
+        particle.direction.y = direction_vector.y;// * particle.speed.y;
 
         particle.start_size.x = start_size.x + (start_size_random.x * random_1_to_1());
         particle.start_size.y = start_size.y + (start_size_random.y * random_1_to_1());
@@ -405,6 +403,12 @@ class ParticleEmitter {
         particle.size.y = particle.start_size.y < 0 ? 0 : Math.floor(particle.start_size.y);
 
         particle.time_to_live = (life + life_random * random_1_to_1());
+
+
+        particle.speed_delta = (end_speed - _point_speed);
+        if(particle.speed_delta != 0) {            
+            particle.speed_delta /= particle.time_to_live;
+        }        
 
         particle.size_delta.x = ( end_size.x - start_size.x ) / particle.time_to_live;
         particle.size_delta.y = ( end_size.y - start_size.y ) / particle.time_to_live;
@@ -436,7 +440,6 @@ class ParticleEmitter {
         particle.sprite.size = new Vector( particle.start_size.x, particle.start_size.y );
         particle.sprite.color = particle.color;  
         particle.sprite.pos = new Vector();
-        trace('>>> init particle position '+particle.sprite.pos + ' / ' + particle.position);
         particle.sprite.rotation_z = particle.rotation;
         
     } //init_particle
@@ -461,8 +464,8 @@ class ParticleEmitter {
 
         } //if active and still emitting   
 
-        var gravity_x = gravity.x * dt;
-        var gravity_y = gravity.y * dt;
+        var gravity_x = gravity.x;
+        var gravity_y = gravity.y;
 
             //update all active particles
         for(current_particle in active_particles) {
@@ -474,11 +477,15 @@ class ParticleEmitter {
             if( current_particle.time_to_live > 0 ) {
 
                     //start with gravity direction
-                current_particle.move_direction.x = gravity_x + current_particle.direction.x;
-                current_particle.move_direction.y = gravity_y + current_particle.direction.y;
+                current_particle.speed.x += current_particle.speed_delta;
+                current_particle.speed.y += current_particle.speed_delta;
+
+                current_particle.move_direction.x = gravity_x + (current_particle.direction.x * current_particle.speed.x);
+                current_particle.move_direction.y = gravity_y + (current_particle.direction.y * current_particle.speed.y);
+
                     //then add that to the position
-                current_particle.position.x = current_particle.position.x + current_particle.move_direction.x;
-                current_particle.position.y = current_particle.position.y + current_particle.move_direction.y;
+                current_particle.position.x += current_particle.move_direction.x * dt;
+                current_particle.position.y += current_particle.move_direction.y * dt;
 
                     // update colours based on delta
                 var r = current_particle.color.r += ( current_particle.color_delta.r * dt );
@@ -506,7 +513,6 @@ class ParticleEmitter {
 
                 //now transfer the updated info to the visuals
             current_particle.sprite.pos = current_particle.position;
-            // trace('>>> emitter update current particle ' + current_particle.sprite.pos + ' / ' + current_particle.position);
             current_particle.sprite.size = current_particle.draw_size;
             current_particle.sprite.rotation_z = current_particle.rotation;
             current_particle.sprite.color = current_particle.draw_color;
@@ -523,7 +529,7 @@ class ParticleEmitter {
 
     }
 
-}
+} //ParticleEmitter
 
 class Particle {
 
@@ -545,9 +551,9 @@ class Particle {
     public var end_color : Color;
     public var color_delta : Color;
     public var size_delta : Vector;
+    public var speed_delta : Float;
     public var rotation_delta : Float = 0;
     
-    public var draw_position : Vector;
     public var draw_size : Vector;
     public var draw_color : Color;
 
@@ -558,8 +564,9 @@ class Particle {
         direction = new Vector();
         move_direction = new Vector();
         speed = new Vector();
+        speed_delta = 0.0;
         size = new Vector();
-        position = new Vector();
+        position = new Vector();        
         start_size = new Vector();
         end_size = new Vector();
         size_delta = new Vector();
@@ -570,7 +577,7 @@ class Particle {
         end_color = new Color();
         draw_color = new Color();
         draw_size = new Vector();
-        draw_position = new Vector();
 
-    }
-}
+    } //new
+
+}  //Particle

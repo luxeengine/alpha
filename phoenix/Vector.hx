@@ -41,6 +41,17 @@ class Vector {
 		y = _y;
 		z = _z;
 	}
+	public function set_xyzw( _x:Float, _y:Float, _z:Float, _w:Float ) {
+		x = _x; 
+		y = _y;
+		z = _z;
+		w = _w;
+	}
+
+	public function set_xy( _x:Float, _y:Float ) {
+		x = _x; 
+		y = _y;
+	}
 
 	public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
 		

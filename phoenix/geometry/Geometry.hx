@@ -215,86 +215,47 @@ class Geometry {
 		var origin_x : Float = origin.x;
 		var origin_y : Float = origin.y;
 		var origin_z : Float = origin.z;
+		var origin_w : Float = origin.w;
+
+			//compose the final position matrix
+		matrix.compose( pos, rotation, scale );	
 
 		for(v in vertices) {	
 
 				//the base position of the vert
-			_final_vert_position.set_xyz( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
-
-				//compose the final position matrix
-			matrix.compose( pos, rotation, scale );			
-			// if(_rotation_dirty) { matrix.makeRotationFromQuaternion(rotation); _rotation_dirty = false; }
-			// if(_scale_dirty) { matrix.scale(scale); _scale_dirty = false; }
-			// if(_pos_dirty) { matrix.setPosition(pos); _pos_dirty = false; }
-
+			_final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
 				//apply the transform to the vert
 			_final_vert_position.applyMatrix4( matrix );
 
-				//submit vert positions
-			#if luxe_native
-				vertlist.setFloat32( (vert_index+0)*4, _final_vert_position.x );
-				vertlist.setFloat32( (vert_index+1)*4, _final_vert_position.y );
-				vertlist.setFloat32( (vert_index+2)*4, _final_vert_position.z );
-				vertlist.setFloat32( (vert_index+3)*4, _final_vert_position.w );
-			#end //luxe_native
-
-			#if luxe_html5
+					//submit vertex positions
 				vertlist[(vert_index+0)] = _final_vert_position.x;
 				vertlist[(vert_index+1)] = _final_vert_position.y;
 				vertlist[(vert_index+2)] = _final_vert_position.z;
 				vertlist[(vert_index+3)] = _final_vert_position.w;
-			#end //luxe_html5
 
 			vert_index += 4;
 
-				//texture coordinates todo:multiple uv sets
-			#if luxe_native
-				tcoordlist.setFloat32( (tcoord_index+0)*4, v.uv.uv0.u );
-				tcoordlist.setFloat32( (tcoord_index+1)*4, v.uv.uv0.v );
-				tcoordlist.setFloat32( (tcoord_index+2)*4, v.uv.uv0.w );
-				tcoordlist.setFloat32( (tcoord_index+3)*4, v.uv.uv0.t );
-			#end //luxe_native
-
-			#if luxe_html5
+					//texture coordinates todo:multiple uv sets
 				tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
 				tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
 				tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
 				tcoordlist[(tcoord_index+3)] = v.uv.uv0.t;
-			#end //luxe_html5
 
 			tcoord_index += 4;
 
-				//color values per vertex
-			#if luxe_native
-				colorlist.setFloat32( (color_index+0)*4, v.color.r );
-				colorlist.setFloat32( (color_index+1)*4, v.color.g );
-				colorlist.setFloat32( (color_index+2)*4, v.color.b );
-				colorlist.setFloat32( (color_index+3)*4, v.color.a );
-			#end //luxe_native
-
-			#if luxe_html5
+					//color values per vertex
 				colorlist[(color_index+0)] = v.color.r;
 				colorlist[(color_index+1)] = v.color.g;
 				colorlist[(color_index+2)] = v.color.b;
 				colorlist[(color_index+3)] = v.color.a;
-			#end //luxe_html5
 
 			color_index += 4;
 
-				//normal directions
-			#if luxe_native
-				normallist.setFloat32( (normal_index+0)*4, v.normal.x );
-				normallist.setFloat32( (normal_index+1)*4, v.normal.y );
-				normallist.setFloat32( (normal_index+2)*4, v.normal.z );
-				normallist.setFloat32( (normal_index+3)*4, v.normal.w );
-			#end //luxe_native
-
-			#if luxe_html5
+					//normal directions
 				normallist[(normal_index+0)] = v.normal.x;
 				normallist[(normal_index+1)] = v.normal.y;
 				normallist[(normal_index+2)] = v.normal.z;
 				normallist[(normal_index+3)] = v.normal.w;
-			#end //luxe_html5
 
 			normal_index += 4;
 
