@@ -67,8 +67,12 @@ class Luxe {
         return lime.utils.Assets.getBytes(_id);
     }
 
-    public static function loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture {
-        return renderer.load_texture(_id, _onloaded);
+    public static function loadTexture(_id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
+        return renderer.load_texture( _id, _onloaded, _silent );
+    }
+    
+    public static function loadTextures(_ids:Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
+        renderer.load_textures( _ids, _onloaded, _silent );
     }
     
     public static function loadFont( _id:String, ?_path:String, ?_onloaded:Void->Void ) : BitmapFont {

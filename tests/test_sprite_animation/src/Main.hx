@@ -14,6 +14,7 @@ import phoenix.Texture.FilterType;
 class Main extends luxe.Game {
 
     var sprite : Sprite;
+    var sprite2 : Sprite;
 	var text : Text;
     var textbounds : Rectangle;
 
@@ -52,7 +53,7 @@ class Main extends luxe.Game {
 
 			texture.filter = FilterType.nearest;
 
-			sprite = new Sprite({	
+			sprite = new Sprite({
 				texture : texture,
 				pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
 				size : new Vector(192,192)
@@ -64,6 +65,13 @@ class Main extends luxe.Game {
 			var animation_json = '
 				{
 					"walk" : {
+                        "frame_size":{ "x":"48", "y":"48" },
+                        "frameset": ["1-12"],
+                        "pingpong":"false",
+                        "loop": "true",
+                        "speed": "18"
+                    },
+                    "walk_glitch" : {
 						"frame_size":{ "x":"48", "y":"48" },
 						"frameset": ["1-8","9","10","hold 10","11 hold 5", "12"],
 						"pingpong":"false",
@@ -82,6 +90,35 @@ class Main extends luxe.Game {
 			anim.play();
 
 		} //onload
+
+            sprite2 = new Sprite({
+                pos : new Vector( Luxe.screen.w/2, Luxe.screen.h-32 ),
+                size : new Vector(64,64)
+            });
+
+                //add a sprite animation component
+            var anim2 = sprite2.add( SpriteAnimation, 'anim' );
+            var animation_json2 = '
+                {
+                    "idle" : {
+                        "frame_size":{ "x":"16", "y":"16" },
+                        "frameset": ["1-2","3 hold 5","4","1 hold 7"], 
+                        "image_sequence" : "assets/idle/swat_idle",
+                        "loop": "true",
+                        "filter_type" : "nearest",
+                        "speed": "8"
+                    }
+                }
+            ';
+
+                //We can create the animation from a json string
+            anim2.add_from_json( animation_json2 );
+
+                //Or we can add them manually, using the anim.animation_list.push(new SpriteAnimationData)
+
+            anim2.animation = 'idle';
+            anim2.play();
+                        
 
     } //ready
 

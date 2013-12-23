@@ -251,7 +251,26 @@ class Renderer {
     }
 
 
-    public function load_texture( _name : String, ?_onloaded:Texture->Void ) : Texture {
+    public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
+        
+        var total_count : Int = _names.length;
+        var loaded_count : Int = 0;
+        var loaded : Array<Texture> = [];
+        var on_single_texture_complete = function(texture) {
+            loaded.push( texture );
+            loaded_count++;
+            if(loaded_count == total_count) {
+                _onloaded(loaded);
+            }
+        }
+
+        for(_name in _names) {
+            load_texture( _name, on_single_texture_complete, _silent );
+        }
+
+    } //load_textures
+
+    public function load_texture( _name : String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
 
         var _exists = resource_manager.find_texture(_name);
 
@@ -292,7 +311,7 @@ class Renderer {
             texture.width = image.width;
             texture.height = image.height;            
 
-            trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
+            if(!_silent) trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
 
             tmp_canvas = null;
             tmp_context = null;
@@ -326,7 +345,7 @@ class Renderer {
                 //call all the onload listeners
             texture.do_onload();
 
-            trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
+            if(!_silent) trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
         } else {
 

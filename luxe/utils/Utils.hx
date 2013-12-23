@@ -25,6 +25,48 @@ class Utils {
     	return UUID.get();
     }
 
+    public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
+        
+        var _final : Array<String> = [];
+
+            var _sequence_type = '';
+            var _pattern_regex : EReg = null;
+
+            var _type0 = _name + _start + _ext;
+            var _type0_re : EReg = new EReg('('+_name+')(\\d\\b)', 'gi');
+            var _type1 = _name + '_' + _start + _ext;
+            var _type1_re : EReg  = new EReg('('+_name+')(_\\d\\b)', 'gi');
+            var _type2 = _name + '-' + _start + _ext;            
+            var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
+
+                //check name0 -> 
+            if(Lambda.indexOf(lime.utils.Assets.id, _type0) != -1) {
+                _sequence_type = _type0;
+                _pattern_regex = _type0_re;
+            } else if(Lambda.indexOf(lime.utils.Assets.id, _type1) != -1) {
+                _sequence_type = _type1;
+                _pattern_regex = _type1_re;
+            } else if(Lambda.indexOf(lime.utils.Assets.id, _type2) != -1) {
+                _sequence_type = _type2;
+                _pattern_regex = _type2_re;
+            } else {
+                trace("Sequence requested from " + _name + " but no assets found like `" + _type0 + "` or `" + _type1 + "` or `" + _type2 + "`" );
+            }
+
+        if(_sequence_type != '') {   
+            for(_asset in lime.utils.Assets.id) {
+                //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
+                if(_pattern_regex.match(_asset)) {
+                    _final.push( _asset );
+                }
+            }
+            
+            _final.sort(function(a:String,b:String):Int { if(a == b) return 0; if(a < b) return -1; return 1; });            
+        }
+
+        return _final;
+
+    } //find_assets_image_sequence
     
     public function bytes_to_string( bytes:Int ) : String {
         var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );

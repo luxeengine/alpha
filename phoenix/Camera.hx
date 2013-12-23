@@ -72,12 +72,12 @@ class Camera {
 
         switch (projection) {
             case ProjectionType.ortho:
-                set_ortho( options );                
-            case ProjectionType.perspective:                
-                set_perspective( options );                
+                set_ortho( options );
+            case ProjectionType.perspective:
+                set_perspective( options );
             case ProjectionType.custom:
                 //nothing yet
-        }        
+        }
         
     } //new 
 

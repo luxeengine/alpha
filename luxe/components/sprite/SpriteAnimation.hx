@@ -5,10 +5,18 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Sprite;
 
+import phoenix.Texture;
+
 
 typedef SpriteAnimationFrame = {
-	var image_frame : Int;
-	var events : Array<String>;
+	image_frame : Int,
+	?image_source : Texture,
+	events : Array<String>
+}
+
+enum SpriteAnimationType {
+	animated_texture;
+	animated_uv;
 }
 
 
@@ -20,7 +28,11 @@ class SpriteAnimationData {
 	public static var frame_regex : EReg = ~/(\d*)/gi;
 
 	public var name : String; 
+	public var type : SpriteAnimationType;
+	public var filter_type : FilterType;
 	public var frameset : Array<SpriteAnimationFrame>;
+	public var image_set_list : Array<String>;
+	public var image_set : Array<Texture>;
 	public var frame_size : Vector;
 	public var frame_time : Float = 0.05;
 	public var loop : Bool = false;
@@ -57,6 +69,20 @@ class SpriteAnimationData {
 		frame_size = new Vector();
 	}
 
+	function on_image_sequence_loaded( _textures:Array<Texture> ) {
+
+		image_set = _textures;
+
+			//run over the frame sets, store their texture in the frame
+		for(_frame in frameset) {
+			if(_frame.image_frame <= image_set.length - 1) {
+				_frame.image_source = image_set[_frame.image_frame-1];
+				_frame.image_source.filter = filter_type;
+			}
+		}
+
+	} //on_image_sequence_loaded
+
 	public function from_json( _animdata:Dynamic ) {
 
 		if(_animdata == null) throw "Null animation object passed to from_json in SpriteAnimation";
@@ -67,18 +93,35 @@ class SpriteAnimationData {
 		var _json_loop : Dynamic = _animdata.loop;
 		var _json_reverse : Dynamic = _animdata.reverse;
 		var _json_speed : Dynamic = _animdata.speed;		
-//frameset
+		var _json_image_sequence : String = cast _animdata.image_sequence;		
+		var _json_filter_type : String = cast _animdata.filter_type;		
+		
+		//frameset
 		if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset. In anim : " + name; }
 
 		var _frameset : Array<Int> = parse_frameset( _json_frameset );
-//frame_size
+
+		type = SpriteAnimationType.animated_uv;
+		
+		//filter type
+        if(_json_filter_type != null) {
+        	switch (_json_filter_type) {
+        		case 'nearest':
+        			filter_type = FilterType.nearest;
+        		case 'linear':
+        			filter_type = FilterType.linear;
+        	}
+        }
+
+		//frame_size
 		var _frame_size = new Vector();
 			if(_json_frame_size != null) {
 				var _x : Float = Std.parseFloat(_json_frame_size.x);
 				var _y : Float = Std.parseFloat(_json_frame_size.y);
 				_frame_size.set(_x, _y);
 			}
-//pingpong					
+		
+		//pingpong					
 		var _pingpong : Bool = false;
 			if(_json_pingpong != null) {
 				if(_json_pingpong == 'true') {
@@ -88,7 +131,7 @@ class SpriteAnimationData {
 				}
 			} //_json_pingpong
 
-//loop					
+		//loop					
 		var _loop : Bool = false;
 			if(_json_loop != null) {
 				if(_json_loop == 'true') {
@@ -97,7 +140,8 @@ class SpriteAnimationData {
 					_loop = false;
 				}
 			} //_json_loop
-//_reverse					
+		
+		//_reverse					
 		var _reverse : Bool = false;
 			if(_json_reverse != null) {
 				if(_json_reverse == 'true') {
@@ -106,16 +150,32 @@ class SpriteAnimationData {
 					_reverse = false;
 				}
 			} //_json_loop
-//speed
+		
+		//speed
 		var speed : Float = 2;
 			if(_json_speed != null) {
 				speed = Std.parseFloat(_json_speed);
 			}
 
-//create from the animation data
+		//create from the animation data
 		for( _frame in _frameset ) {
 			frameset.push({ image_frame:_frame, events:[] });
 		}
+
+		//image sequence		
+        if(_json_image_sequence != null) {
+
+        		//ask for the textures
+        	var _images_list = Luxe.utils.find_assets_image_sequence( _json_image_sequence );
+        	if(_images_list.length > 0) {
+        		image_set_list = _images_list;
+        		Luxe.loadTextures( _images_list, on_image_sequence_loaded, true);
+        	}
+
+        		//set the type
+        	type = SpriteAnimationType.animated_texture;
+
+        } //_json_image_sequence		
 
 		frame_size = _frame_size;
 		pingpong = _pingpong;
@@ -168,7 +228,6 @@ class SpriteAnimationData {
 	function parse_frameset_prev_hold( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
 			
 		if(_frameset.length < 1) {
-			trace(_frameset);
 			throw " Animation frames given a hold with no prior frame, if you want to do that you can use '1 hold 10` where 1 is the frame index, 10 is the amount. ";
 		}
 
@@ -257,7 +316,7 @@ class SpriteAnimation extends Component {
 		sprite = cast entity;
 
 		if(sprite == null) {
-			throw "SpriteAnimation belongs on a Sprite";
+			throw "SpriteAnimation belongs on a Sprite instance";
 		} //sprite test
 
 	} //init
@@ -286,12 +345,12 @@ class SpriteAnimation extends Component {
 
 	} //add_from_json
 
-
 	function get_animation() {
 		return animation;
 	}
 
 	function set_animation( _name:String ) {
+
 		if(animation_list.exists(_name)) {
 			current = animation_list.get(_name);
 			loop = current.loop;
@@ -301,6 +360,7 @@ class SpriteAnimation extends Component {
 		}
 
 		return animation;
+
 	} //set_animation
 
 	public function restart() {
@@ -318,34 +378,55 @@ class SpriteAnimation extends Component {
 
 	public function set_frame( _frame:Int ) {
 
-		if(sprite == null) return;
-		if(sprite.texture == null) return;
+		if(sprite == null) return;		
+		if(current.type == SpriteAnimationType.animated_uv) {
 
-		var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
-		var image_row = Math.ceil( _frame / frames_per_row );
-		var image_x = ((_frame-1) * current.frame_size.x) % sprite.texture.width;
-		var image_y = ((image_row-1) * current.frame_size.y);
+			if(sprite.texture == null) return;
 
-		uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+			var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
+			var image_row = Math.ceil( _frame / frames_per_row );
+			var image_x = ((_frame-1) * current.frame_size.x) % sprite.texture.width;
+			var image_y = ((image_row-1) * current.frame_size.y);
 
-		sprite.uv = uv_cache;
+			uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+
+			sprite.uv = uv_cache;
+
+		} else if(current.type == SpriteAnimationType.animated_texture) {
+
+			if(_frame <= current.image_set.length-1 ) {
+				sprite.texture = current.image_set[_frame-1];
+			}
+
+		} //SpriteAnimationType.animated_texture
 
 	} //set_frame
 
 		//sync the state to the sprite itself
 	private function refresh_sprite() {
 
-		if(sprite == null) return;
-		if(sprite.texture == null) return;
+		if(sprite == null) return;		
 
-		var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
-		var image_row = Math.ceil( image_frame / frames_per_row );
-		var image_x = ((image_frame-1) * current.frame_size.x) % sprite.texture.width;
-		var image_y = ((image_row-1) * current.frame_size.y);
+		if(current.type == SpriteAnimationType.animated_uv) {
 
-		uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+			if(sprite.texture == null) return;
 
-		sprite.uv = uv_cache;
+			var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
+			var image_row = Math.ceil( image_frame / frames_per_row );
+			var image_x = ((image_frame-1) * current.frame_size.x) % sprite.texture.width;
+			var image_y = ((image_row-1) * current.frame_size.y);
+
+			uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+
+			sprite.uv = uv_cache;
+		
+		} else if(current.type == SpriteAnimationType.animated_texture) {
+
+			if( image_frame <= current.image_set.length-1 ) {
+				sprite.texture = current.image_set[image_frame-1];
+			}
+
+		}
 
 	} //refresh_sprite
 
@@ -358,7 +439,7 @@ class SpriteAnimation extends Component {
 		var end = false;
 
 			//update the local time
-		time += dt;
+		time += dt;		
 
 			//time for a frame update?
 		if(time >= next_frame_time) {
