@@ -14,8 +14,10 @@ typedef SpriteAnimationFrame = {
 
 class SpriteAnimationData {
 
-	public static var frame_range_regex : EReg = new EReg("(\\d*)-(\\d*)",'gi');
-	public static var frame_regex : EReg = new EReg("(\\d*)",'gi');
+	public static var frame_range_regex : EReg = ~/(\d*)-(\d*)/gi;
+	public static var frame_hold_regex : EReg = ~/(\d*)(\shold\s)(\d*)/gi;
+	public static var frame_hold_prev_regex : EReg = ~/(\bhold\s)(\d*)/gi;
+	public static var frame_regex : EReg = ~/(\d*)/gi;
 
 	public var name : String; 
 	public var frameset : Array<SpriteAnimationFrame>;
@@ -130,7 +132,6 @@ class SpriteAnimationData {
 		
 		var _start : Int = Std.parseInt( regex.matched(1) );
 		var _end : Int = Std.parseInt( regex.matched(2) );
-		var _results : Array<Int> = [];			
 		var _count : Int = Std.int(Math.abs( _start - _end ));
 		
 			//If they are the same, that's a silly range but allow it		
@@ -153,6 +154,33 @@ class SpriteAnimationData {
 
 	} //parse_frameset_range
 
+	function parse_frameset_hold( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
+		
+		var _frame_index : Int = Std.parseInt( regex.matched(1) );
+		var _amount : Int = Std.parseInt( regex.matched(3) );		
+
+		for( _i in 0 ... _amount ) {
+			_frameset.push( _frame_index );
+		}
+
+	} //parse_frameset_range
+
+	function parse_frameset_prev_hold( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
+			
+		if(_frameset.length < 1) {
+			trace(_frameset);
+			throw " Animation frames given a hold with no prior frame, if you want to do that you can use '1 hold 10` where 1 is the frame index, 10 is the amount. ";
+		}
+
+		var _frame : Int = _frameset[ _frameset.length - 1 ];
+		var _amount : Int = Std.parseInt( regex.matched(2) );
+
+		for( _i in 0 ... _amount ) {
+			_frameset.push( _frame );
+		}
+
+	} //parse_frameset_range
+
 	function parse_frameset_frame( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
 
 		var _frame : Int = Std.parseInt( regex.matched(1) );
@@ -165,16 +193,28 @@ class SpriteAnimationData {
 
 		var _final_frameset = [];
 		for(_frame in _json_frameset) {
+
 				//match a range (frame)-(frame)
 			if( frame_range_regex.match( _frame ) ) {
 				parse_frameset_range( _final_frameset, frame_range_regex, _frame );
-			} else if( frame_regex.match( _frame ) ) {
+			} else 
+
+				//match the (frame) hold (amount)
+			if( frame_hold_regex.match( _frame ) ) {
+				parse_frameset_hold( _final_frameset, frame_hold_regex, _frame );
+			} else 
+
+				//match the hold (amount) from previous frame
+			if( frame_hold_prev_regex.match( _frame ) ) {
+				parse_frameset_prev_hold( _final_frameset, frame_hold_prev_regex, _frame );
+			} else 
+
+				//match the single value frames
+			if( frame_regex.match( _frame ) ) {
 				parse_frameset_frame( _final_frameset, frame_regex, _frame );
 			}
 
 		} //for each frame
-
-		trace(_final_frameset);
 
 		return _final_frameset;
 	}
