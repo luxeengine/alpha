@@ -2,6 +2,7 @@
 import luxe.Vector;
 import luxe.Input;
 import luxe.Sprite;
+import luxe.Color;
 
 import phoenix.Batcher;
 import phoenix.Camera;
@@ -17,15 +18,20 @@ class Main extends luxe.Game {
 
     public function ready() {
         
-        rtt = new RenderTexture( Luxe.resources, new Vector( 512,512 ) );
+        rtt = new RenderTexture( Luxe.resources, new Vector( 1024, 1024 ) );
 
         batcher = new Batcher( Luxe.renderer, 'test_rtt_batcher' );
+        camera = new phoenix.Camera({ projection :ProjectionType.ortho, x2 : 512, y2 : 512 });
+        camera.pos.x = 0;
+        camera.pos.y = 0;
+        batcher.view = camera;
 
             //Create a sprite, but don't add it to the batcher
         sprite = new Sprite({
             add : false, //dont add to the main renderer
             texture : Luxe.loadTexture('assets/image.jpg'),
-            size : new Vector(1024,1024)
+            size : new Vector(256,256),
+            centered :false
         });
         
             //doing this lets you work with html5 late loading textures,
@@ -34,12 +40,11 @@ class Main extends luxe.Game {
         sprite.texture.onload = function(t) {
 
             batcher.add( sprite.geometry );
-            
             sprite2 = new Sprite({
                 texture : rtt,
-                size : new Vector(512,512),
-                centered:false,
-                pos:new Vector(50,50),
+                size : new Vector(Luxe.screen.w,Luxe.screen.h),
+                centered : false,
+                pos:new Vector(0,0)
             });
         }
 
@@ -53,12 +58,13 @@ class Main extends luxe.Game {
 
     public function prerender() {
         rtt.bindBuffer();
+        batcher.renderer.clear(new Color().rgb(0xff4b03));
         batcher.draw( false );
         rtt.unbindBuffer();
     }
 
     public function update(dt:Float) {
-        sprite.rotation_z += 20 * dt;
+        // sprite.rotation_z += 40 * dt;
     } //update
 
     public function destroy() {
