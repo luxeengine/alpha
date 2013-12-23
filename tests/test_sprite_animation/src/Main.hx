@@ -65,7 +65,7 @@ class Main extends luxe.Game {
 				{
 					"walk" : {
 						"frame_size":{ "x":"48", "y":"48" },
-						"frameset": ["1","2","3","4","5","6","7","8","9","10","11","12"],
+						"frameset": ["1-8","9","10-12"],
 						"pingpong":"false",
 						"loop": "true",
 						"speed": "18"

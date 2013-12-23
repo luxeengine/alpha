@@ -11,7 +11,11 @@ typedef SpriteAnimationFrame = {
 	var events : Array<String>;
 }
 
+
 class SpriteAnimationData {
+
+	public static var frame_range_regex : EReg = new EReg("(\\d*)-(\\d*)",'gi');
+	public static var frame_regex : EReg = new EReg("(\\d*)",'gi');
 
 	public var name : String; 
 	public var frameset : Array<SpriteAnimationFrame>;
@@ -64,10 +68,7 @@ class SpriteAnimationData {
 //frameset
 		if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset. In anim : " + name; }
 
-		var _frameset : Array<Int> = [];
-			for(_frame in _json_frameset) {
-				_frameset.push( Std.parseInt(_frame) );
-			}
+		var _frameset : Array<Int> = parse_frameset( _json_frameset );
 //frame_size
 		var _frame_size = new Vector();
 			if(_json_frame_size != null) {
@@ -123,6 +124,60 @@ class SpriteAnimationData {
 		return this;
 
 	} //from_json
+
+	
+	function parse_frameset_range( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
+		
+		var _start : Int = Std.parseInt( regex.matched(1) );
+		var _end : Int = Std.parseInt( regex.matched(2) );
+		var _results : Array<Int> = [];			
+		var _count : Int = Std.int(Math.abs( _start - _end ));
+		
+			//If they are the same, that's a silly range but allow it		
+		if(_count == 0) {
+			_frameset.push( _start );
+		} else {
+
+				//if reversed, count backward from the end instead
+			if(_start > _end) {
+				for( _i in 0 ... _count+1 ) {
+					_frameset.push( _start - _i );
+				}
+			} else {
+				for( i in _start ... _end+1 ) {
+					_frameset.push( i );
+				}
+			} //_start < _end
+
+		} //_count == 0
+
+	} //parse_frameset_range
+
+	function parse_frameset_frame( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
+
+		var _frame : Int = Std.parseInt( regex.matched(1) );
+
+			_frameset.push( _frame );
+
+	} //parse_frameset_frame
+
+	function parse_frameset( _json_frameset:Array<String> ) : Array<Int> {
+
+		var _final_frameset = [];
+		for(_frame in _json_frameset) {
+				//match a range (frame)-(frame)
+			if( frame_range_regex.match( _frame ) ) {
+				parse_frameset_range( _final_frameset, frame_range_regex, _frame );
+			} else if( frame_regex.match( _frame ) ) {
+				parse_frameset_frame( _final_frameset, frame_regex, _frame );
+			}
+
+		} //for each frame
+
+		trace(_final_frameset);
+
+		return _final_frameset;
+	}
 
 } //SpriteAnimationData
 
