@@ -14,6 +14,8 @@ class Camera extends Entity {
 	public var view : phoenix.Camera;
 	private var view_position : Vector;
 
+    @:isVar public var size (get,set) : Vector;
+
 	public var bounds : Rectangle;
 
 	public var shake_vector : Vector;
@@ -37,6 +39,93 @@ class Camera extends Entity {
 		view_position = view.pos;
 
 	}
+
+    public var zoom_amount : Float = 1;
+    public var minimum_zoom_scale : Float = 0.1;
+    var zoom_scale : Float = 1;
+
+    var ring : phoenix.geometry.RingGeometry;
+
+    public function zoom( _scale:Float, ?adjust_pos:Bool=true ) {
+        
+    //     trace( '\n -' );
+    //     trace( "_scale " + zoom_amount + " vs new " + _scale );
+
+    //         //center of the screen
+    //     var mid_x = Luxe.screen.w/2;
+    //     var mid_y = Luxe.screen.h/2;
+    //     var _ratio = (zoom_amount/_scale);
+    //     var _invratio = 1/_ratio;
+
+    //     trace( 'ratio '+ _ratio );
+    //     trace( '1/ratio '+ _invratio );
+
+    //     // if(_ratio == 1) return;
+
+    //         //limit the scale
+    //     if(_scale < minimum_zoom_scale) _scale = minimum_zoom_scale;
+
+    //         //find the vector between mid and top left corner
+    //     var line_x = (mid_x - pos.x);
+    //     var line_y = (mid_y - pos.y);
+
+    //         //now find the center of that line
+    //     line_x /= _ratio;
+    //     line_y /= _ratio;
+
+    //     var top_left_x = mid_x - pos.x;
+    //     var top_left_y = mid_y - pos.y;
+
+    //         //now, work out the difference between the old pos, and the new pos
+    //     var diff_x = line_x - top_left_x;
+    //     var diff_y = line_y - top_left_y;        
+
+    //     trace( 'z/o '+ _scale + ', ' + zoom_amount );
+    //     trace( 'line '+ line_x + ', ' + line_y );
+    //     trace( 'pos '+ pos.x + ', ' + pos.y );
+    //     trace( 'diff '+ diff_x + ', ' + diff_y );        
+
+    // //draw the point for debug
+    //     Luxe.debug.batcher.enabled = true;
+    //     if(ring != null) {
+    //         ring.drop();
+    //     }
+        
+    //     ring = Luxe.draw.ring({      
+    //         x : line_x, y : line_y, 
+    //         r : 4, color : new Color().rgb(0xff4b03),
+    //         depth : 20,
+    //         batcher : Luxe.debug.batcher
+    //     }); 
+
+    //         //adjust the zoom amount
+    //     var _last_zoom = zoom_amount;
+    //         zoom_amount = _scale;
+    
+            //scale the view
+        view.scale.x = 1/_scale;
+        view.scale.y = 1/_scale;
+
+        // pos = pos.add(new Vector(diff_x, diff_y));
+
+            //measure the difference from the position
+
+    } //zoom
+
+    function set_size( _p:Vector ) : Vector {
+
+            view.size = _p;
+
+        return size = _p;
+
+    } //set_size
+
+    function get_size() : Vector {
+
+        return view.size;
+
+    } //get_size
+
 
 		///Focus the camera on a specific point, for Ortho atm
 	public function center( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {	
@@ -62,8 +151,9 @@ class Camera extends Entity {
         	if(v.y > bounds.h-view.size.y) v.y = bounds.h-view.size.y;
         }
 
-		view_position = v;
-		pos = v;
+        var _newp = v.clone().divideScalar(zoom_amount);
+		view_position = _newp;
+		pos = _newp;
 
 			//listen for sub changes on properties
 		_attach_listener( pos, _pos_change );

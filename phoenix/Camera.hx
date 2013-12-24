@@ -9,6 +9,7 @@ import lime.utils.Float32Array;
 import phoenix.Matrix4;
 
 import phoenix.Quaternion;
+import phoenix.Rectangle;
 import phoenix.Vector;
 import phoenix.Ray;
 
@@ -23,7 +24,10 @@ class Camera {
     public var pos : Vector;
     public var rotation : Quaternion;
     public var scale: Vector;
-    public var size: Vector;
+
+    public var viewport : Rectangle;
+
+    @:isVar public var size (default,set) : Vector;
 
     public var projection_matrix : Matrix4;
     public var view_matrix : Matrix4;
@@ -46,7 +50,13 @@ class Camera {
         pos = new Vector(0,0,0);
         rotation = new Quaternion(0,0,0,0);
         scale = new Vector(1,1,1);
-        size = new Vector(Luxe.screen.w, Luxe.screen.h);
+        size = new Vector( Luxe.screen.w, Luxe.screen.h );
+
+        if(options.viewport == null) {
+            viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
+        } else {
+            viewport = options.viewport;
+        }
 
         up = new Vector(0,1,0);
         
@@ -80,6 +90,24 @@ class Camera {
         }
         
     } //new 
+
+    function set_size( _p:Vector ) {
+
+        if(ortho_options == null) {
+            return size = _p;
+        }
+        
+        switch (projection) {
+            case ProjectionType.ortho:
+                ortho_options.x2 = _p.x;
+                ortho_options.y2 = _p.y;
+                set_ortho();
+            default:
+        }
+
+        return size = _p;
+
+    } //set_size
 
     public function process() {
 

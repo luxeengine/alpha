@@ -31,7 +31,7 @@ class Main extends luxe.Game {
         var midx = Luxe.screen.w/4;
         var midy = Luxe.screen.h/4;
 
-        Luxe.camera.bounds = new Rectangle(-midx, -midy, Luxe.screen.w + midx, Luxe.screen.h+midy);
+        // Luxe.camera.bounds = new Rectangle(-midx, -midy, Luxe.screen.w + midx, Luxe.screen.h+midy);
 
         //To demonstrate multiple camera views, 
         //first we create a second batcher, as this will use a new camera
@@ -86,13 +86,29 @@ class Main extends luxe.Game {
     public function onmouseup( e:MouseEvent ) {
     	if(e.button == MouseButton.left) {
     		Luxe.camera.shake( 2+(Std.random(100) ));
-    	} else {
+    	} else if(e.button == MouseButton.right) {
 				//any other button centers the camera on the position we clicked
 			Luxe.camera.center( e.pos.clone().add(Luxe.camera.pos), 0.5+(2*Math.random()) );
-    	}
+    	} else if(e.button == MouseButton.wheel_up ) {
+                //wheel_up
+           
+        } else if(e.button == MouseButton.wheel_down ) {
+                //wheel_down
+            
+        }
     }
 
     public function onkeyup( e:KeyEvent ) {
+
+        if(e.key == KeyValue.key_1) {
+            Luxe.camera.zoom( 1, false );
+        }
+        if(e.key == KeyValue.key_2) {            
+            Luxe.camera.zoom( 2, false );
+        }
+        if(e.key == KeyValue.key_3) {
+            Luxe.camera.zoom( 0.5, false );
+        }
 
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
@@ -101,7 +117,7 @@ class Main extends luxe.Game {
     } //onkeyup
 
     public function update(dt:Float) {
-
+        // Luxe.camera.view.rotation.z += luxe.utils.Maths.degToRad(10 * dt);
     } //update
 
 } //Main

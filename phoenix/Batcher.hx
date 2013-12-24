@@ -463,8 +463,8 @@ class Batcher {
             //update camera if it changes anything
         view.process(); 
 
-            //Set the viewport to the view todo:this x any y should be from the camera?
-        renderer.state.viewport( 0, 0, cast view.size.x, cast view.size.y );
+            //Set the viewport to the view
+        renderer.state.viewport( cast view.viewport.x, cast view.viewport.y, cast view.viewport.w, cast view.viewport.h );
 
             //apply geometries
         batch( persist_immediate );
