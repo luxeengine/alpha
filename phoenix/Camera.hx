@@ -21,14 +21,22 @@ enum ProjectionType {
 
 class Camera {
     
-    public var pos : Vector;
+    public var name : String = 'camera';    
+    public var view_pos : Vector;
     public var rotation : Quaternion;
     public var scale: Vector;
+    public var _unscale: Vector;
 
     public var viewport : Rectangle;
+    public var scaled_viewport : Rectangle;
+    public var size : Vector;
 
-    @:isVar public var size (default,set) : Vector;
+    @:isVar public var pos (get,set) : Vector;
+    @:isVar public var center (get,set) : Vector;
+    @:isVar public var zoom (default,set) : Float = 1.0;
+    // @:isVar public var size (default,set) : Vector;
 
+    public var minimum_zoom : Float = 0.01;
     public var projection_matrix : Matrix4;
     public var view_matrix : Matrix4;
 
@@ -48,8 +56,11 @@ class Camera {
         projection = options.projection == null ? ProjectionType.ortho : options.projection;
         
         pos = new Vector(0,0,0);
+        view_pos = new Vector(0,0,0);
+
         rotation = new Quaternion(0,0,0,0);
         scale = new Vector(1,1,1);
+        _unscale = new Vector(1,1,1);
         size = new Vector( Luxe.screen.w, Luxe.screen.h );
 
         if(options.viewport == null) {
@@ -58,6 +69,7 @@ class Camera {
             viewport = options.viewport;
         }
 
+        center = new Vector( viewport.w/2, viewport.h/2 );
         up = new Vector(0,1,0);
         
         projection_matrix = new Matrix4();
@@ -91,23 +103,77 @@ class Camera {
         
     } //new 
 
-    function set_size( _p:Vector ) {
+        //0.5 = smaller , 2 = bigger
+    function set_zoom( _p:Float ) : Float {
+            
+            //a temp value to manipulate
+        var _new_zoom = _p;
 
-        if(ortho_options == null) {
-            return size = _p;
-        }
-        
-        switch (projection) {
-            case ProjectionType.ortho:
-                ortho_options.x2 = _p.x;
-                ortho_options.y2 = _p.y;
-                set_ortho();
-            default:
+            //new zoom value shouldn't be allowed beyond a minimum
+            //but maybe this should be optional if you want negative zoom?
+        if(_new_zoom < minimum_zoom) {
+            _new_zoom = minimum_zoom;
         }
 
-        return size = _p;
+            //scale the visual view based on the value
+        scale.x = 1/_new_zoom; 
+        scale.y = 1/_new_zoom;
 
-    } //set_size
+            //reset positional offset for the actual view,
+            //leaving the world position alone
+        view_pos.x = center.x - ((viewport.w/2) * scale.x);
+        view_pos.y = center.y - ((viewport.h/2) * scale.y);
+
+            //return the real value
+        return zoom = _new_zoom;
+
+    } //set_zoom
+
+    function set_center( _p:Vector ) : Vector {
+
+        if(center == null) return center = _p;
+
+            //adjust the center for the actual view
+        view_pos.x = (_p.x - ((viewport.w/2) * scale.x));
+        view_pos.y = (_p.y - ((viewport.h/2) * scale.y));
+
+        pos.ignore_listeners = true;
+
+                //and adjust the position for the new center, in world space
+            pos.x = _p.x - (viewport.w/2);
+            pos.y = _p.y - (viewport.h/2);
+
+        pos.ignore_listeners = false;
+
+        return center = _p;
+    }
+
+    function get_center() : Vector {
+        return center;
+    }
+
+    function get_pos() : Vector {
+        return pos;
+    }
+
+    function set_pos( _p:Vector ) : Vector {        
+
+        if(pos != null) {
+                //update the center accordingly               
+            center.x = ((viewport.w/2) + _p.x);
+            center.y = ((viewport.h/2) + _p.y);
+                //and base the view on the new center position in world space, adjusted for zoom
+            view_pos.x = (center.x - ((viewport.w/2) * scale.x));
+            view_pos.y = (center.y - ((viewport.h/2) * scale.y));
+        }
+
+        pos = _p;
+
+        _attach_listener(pos, _pos_change);
+
+        return pos;
+
+    } //set_pos
 
     public function process() {
 
@@ -141,9 +207,9 @@ class Camera {
         Luxe.renderer.state.disable(GL.DEPTH_TEST);
         
             //todo:This doesn't need to be rebuilt every frame
-        projection_matrix = projection_matrix.makeOrthographic( ortho_options.x1, ortho_options.x2, ortho_options.y1, ortho_options.y2, ortho_options.near, ortho_options.far);
+        projection_matrix = projection_matrix.makeOrthographic( viewport.x , viewport.w, viewport.y, viewport.h, ortho_options.near, ortho_options.far);
             //Rebuild the modelview, todo:dirtify this
-        view_matrix = view_matrix.compose( pos, rotation, scale );
+        view_matrix = view_matrix.compose( view_pos, rotation, scale );
 
     } //apply_ortho
 
@@ -241,5 +307,21 @@ class Camera {
         }
 
     } //_merge_options    
+
+        //An internal callback for when x y or z on a transform changes
+    private function _pos_change(_v:Float) { this.set_pos(pos); }
+        //An internal callback for when x y or z on a transform changes
+    // private function _scale_change(_v:Float) { this.set_scale(scale); }
+        //An internal callback for when x y or z on a transform changes
+    // private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
+
+        //An internal function to attach position 
+        //changes to a vector, so we can listen for `pos.x` as well
+    private function _attach_listener( _v : Vector, listener ) {
+        _v.listen_x = listener; 
+        _v.listen_y = listener; 
+        _v.listen_z = listener;
+    } //_attach_listener
+
 
 } //Camera
