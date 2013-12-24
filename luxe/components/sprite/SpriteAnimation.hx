@@ -22,7 +22,7 @@ enum SpriteAnimationType {
 
 class SpriteAnimationData {
 
-	public static var frame_range_regex : EReg = ~/(\d*)-(\d*)/gi;
+	public static var frame_range_regex : EReg = ~/(\d*)(\b\s*?-\s*?\b)(\d*)/gi;
 	public static var frame_hold_regex : EReg = ~/(\d*)(\shold\s)(\d*)/gi;
 	public static var frame_hold_prev_regex : EReg = ~/(\bhold\s)(\d*)/gi;
 	public static var frame_regex : EReg = ~/(\d*)/gi;
@@ -191,9 +191,9 @@ class SpriteAnimationData {
 	function parse_frameset_range( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
 		
 		var _start : Int = Std.parseInt( regex.matched(1) );
-		var _end : Int = Std.parseInt( regex.matched(2) );
+		var _end : Int = Std.parseInt( regex.matched(3) );
 		var _count : Int = Std.int(Math.abs( _start - _end ));
-		
+
 			//If they are the same, that's a silly range but allow it		
 		if(_count == 0) {
 			_frameset.push( _start );
@@ -238,7 +238,7 @@ class SpriteAnimationData {
 			_frameset.push( _frame );
 		}
 
-	} //parse_frameset_range
+	} //parse_frameset_prev_hold
 
 	function parse_frameset_frame( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
 
@@ -356,8 +356,13 @@ class SpriteAnimation extends Component {
 			loop = current.loop;
 			pingpong = current.pingpong;
 			reverse = current.reverse;
+			frame_time = current.frame_time;
+			next_frame_time = time;
+
 			return animation = _name;
 		}
+
+		trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' but it is not found in the component. ');
 
 		return animation;
 
