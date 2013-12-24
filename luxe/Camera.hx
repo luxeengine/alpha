@@ -151,9 +151,9 @@ class Camera extends Entity {
         	if(v.y > bounds.h-view.size.y) v.y = bounds.h-view.size.y;
         }
 
-        var _newp = v.clone().divideScalar(zoom_amount);
-		view_position = _newp;
-		pos = _newp;
+        // var _newp = v.clone().divideScalar(zoom_amount);
+		view_position = v;
+		pos = v;
 
 			//listen for sub changes on properties
 		_attach_listener( pos, _pos_change );
