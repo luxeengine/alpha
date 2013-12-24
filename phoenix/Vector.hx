@@ -16,6 +16,7 @@ class Vector {
 	@:isVar public var serialized(get, null) : Dynamic;
 	function get_serialized() : Dynamic { return {x:x,y:y,z:z,w:w} };
 
+	public var ignore_listeners : Bool = false;
 	@:isVar public var listen_x(default,default) : Float -> Void;
 	@:isVar public var listen_y(default,default) : Float -> Void;
 	@:isVar public var listen_z(default,default) : Float -> Void;
@@ -308,19 +309,19 @@ class Vector {
 
 	function set_x(_x:Float) : Float {
 		x = _x;
-		if(listen_x != null) listen_x(_x);
+		if(listen_x != null && !ignore_listeners) listen_x(_x);
 		return x;
 	} //set_x
 
 	function set_y(_y:Float) : Float {
 		y = _y;
-		if(listen_y != null) listen_y(_y);
+		if(listen_y != null && !ignore_listeners) listen_y(_y);
 		return y;
 	} //set_y
 
 	function set_z(_z:Float) : Float {
 		z = _z;
-		if(listen_z != null) listen_z(_z);
+		if(listen_z != null && !ignore_listeners) listen_z(_z);
 		return z;
 	} //set_z
 
