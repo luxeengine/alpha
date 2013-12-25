@@ -123,7 +123,7 @@ class BatchState {
                     if(!clip_rect.equal(last_clip_rect)) {
 
                             // translate from top-left coords to bottom-left cords
-                        var _y = batcher.view.size.y - (clip_rect.y + clip_rect.h);
+                        var _y = batcher.view.viewport.h - (clip_rect.y + clip_rect.h);
                             // set the scissor rect
                         GL.scissor( Std.int(clip_rect.x) , Std.int(_y), Std.int(clip_rect.w), Std.int(clip_rect.h) );
 

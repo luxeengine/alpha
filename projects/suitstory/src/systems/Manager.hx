@@ -417,7 +417,7 @@ class Manager extends State {
         if(dragging) {
             dragging = false;
         } else {
-            Luxe.camera.center( Vector.Add( mouse, Luxe.camera.pos ), 0.6 );
+            Luxe.camera.focus( Vector.Add( mouse, Luxe.camera.pos ), 0.6 );
             add_beacon( 'beacon' + Math.random(), Vector.Add( mouse, Luxe.camera.pos ), 0.5 );
         }
     }

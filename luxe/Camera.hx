@@ -10,17 +10,22 @@ import phoenix.Camera.ProjectionType;
 typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
-	
-	public var view : phoenix.Camera;
-	private var view_position : Vector;
 
-    @:isVar public var size (get,set) : Vector;
+	public var view : phoenix.Camera;
+
+    @:isVar public var viewport (get,set) : Rectangle;
+    @:isVar public var center (get,set) : Vector;
+    @:isVar public var zoom (get,set) : Float = 1.0;
+    @:isVar public var minimum_zoom (get,set) : Float = 0.01;
 
 	public var bounds : Rectangle;
 
 	public var shake_vector : Vector;
     public var shake_amount : Float;
     public var shaking : Bool = false;
+    public var minimum_shake : Float = 0.1;
+
+    var _final_pos : Vector;
 
 	public function new(?options:Dynamic = null) {
 			
@@ -36,123 +41,79 @@ class Camera extends Entity {
 			view = options.view == null ? new phoenix.Camera(options) : options.view;
 
 			//Update
-		view_position = view.pos;
+        _final_pos = view.pos;
 
 	}
 
-    public var zoom_amount : Float = 1;
-    public var minimum_zoom_scale : Float = 0.1;
-    var zoom_scale : Float = 1;
+    function get_viewport() : Rectangle {
+        return view.viewport;
+    }
 
-    var ring : phoenix.geometry.RingGeometry;
+    function set_viewport( _v:Rectangle ) : Rectangle {
+        return view.viewport = _v;
+    }
 
-    public function zoom( _scale:Float, ?adjust_pos:Bool=true ) {
-        
-    //     trace( '\n -' );
-    //     trace( "_scale " + zoom_amount + " vs new " + _scale );
+    function get_center() : Vector {
+        return view.center;
+    }
 
-    //         //center of the screen
-    //     var mid_x = Luxe.screen.w/2;
-    //     var mid_y = Luxe.screen.h/2;
-    //     var _ratio = (zoom_amount/_scale);
-    //     var _invratio = 1/_ratio;
+    function set_center( _c:Vector ) : Vector {
+        return view.center = _c;
+    }
 
-    //     trace( 'ratio '+ _ratio );
-    //     trace( '1/ratio '+ _invratio );
+    override function get_scale() : Vector {
+        return view == null ? scale : view.scale;
+    }
 
-    //     // if(_ratio == 1) return;
+    override function set_scale( _c:Vector ) : Vector {
+        return view == null ? scale = _c : view.scale = _c;
+    }
 
-    //         //limit the scale
-    //     if(_scale < minimum_zoom_scale) _scale = minimum_zoom_scale;
+    function get_minimum_zoom() : Float {
+        return view.minimum_zoom;
+    }
 
-    //         //find the vector between mid and top left corner
-    //     var line_x = (mid_x - pos.x);
-    //     var line_y = (mid_y - pos.y);
+    function set_minimum_zoom( _m:Float ) : Float {
+        return view.minimum_zoom = _m;
+    }
 
-    //         //now find the center of that line
-    //     line_x /= _ratio;
-    //     line_y /= _ratio;
+    function get_zoom() : Float {
+        return view.zoom;
+    }
 
-    //     var top_left_x = mid_x - pos.x;
-    //     var top_left_y = mid_y - pos.y;
-
-    //         //now, work out the difference between the old pos, and the new pos
-    //     var diff_x = line_x - top_left_x;
-    //     var diff_y = line_y - top_left_y;        
-
-    //     trace( 'z/o '+ _scale + ', ' + zoom_amount );
-    //     trace( 'line '+ line_x + ', ' + line_y );
-    //     trace( 'pos '+ pos.x + ', ' + pos.y );
-    //     trace( 'diff '+ diff_x + ', ' + diff_y );        
-
-    // //draw the point for debug
-    //     Luxe.debug.batcher.enabled = true;
-    //     if(ring != null) {
-    //         ring.drop();
-    //     }
-        
-    //     ring = Luxe.draw.ring({      
-    //         x : line_x, y : line_y, 
-    //         r : 4, color : new Color().rgb(0xff4b03),
-    //         depth : 20,
-    //         batcher : Luxe.debug.batcher
-    //     }); 
-
-    //         //adjust the zoom amount
-    //     var _last_zoom = zoom_amount;
-    //         zoom_amount = _scale;
-    
-            //scale the view
-        view.scale.x = 1/_scale;
-        view.scale.y = 1/_scale;
-
-        // pos = pos.add(new Vector(diff_x, diff_y));
-
-            //measure the difference from the position
-
-    } //zoom
-
-    function set_size( _p:Vector ) : Vector {
-
-            view.size = _p;
-
-        return size = _p;
-
-    } //set_size
-
-    function get_size() : Vector {
-
-        return view.size;
-
-    } //get_size
-
+    function set_zoom( _z:Float ) : Float {
+        return view.zoom = _z;
+    }
 
 		///Focus the camera on a specific point, for Ortho atm
-	public function center( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {	
+	public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {	
 
-		var center_point_x = _p.x - (view.size.x/2);
-		var center_point_y = _p.y - (view.size.y/2);
+		var center_point_x = (_p.x/view.scale.x) - (viewport.w/2);
+		var center_point_y = (_p.y/view.scale.y) - (viewport.h/2);
 
-		Actuate.tween(view_position, _t, { x:center_point_x, y:center_point_y }, true )
+		Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut );
 
-	} //
+	}
 
     @:noCompletion public override function get_pos() : Vector {
-        return view_position;
+        return pos;
     }
 
 	@:noCompletion public override function set_pos(v:Vector) : Vector {
 		
-		if(bounds != null) {
-        	if(v.x < bounds.x) v.x = bounds.x;
-        	if(v.y < bounds.y) v.y = bounds.y;
-        	if(v.x > bounds.w-view.size.x) v.x = bounds.w-view.size.x;
-        	if(v.y > bounds.h-view.size.y) v.y = bounds.h-view.size.y;
+        if(view != null) {
+
+            if(bounds != null) {
+                if(v.x < bounds.x) v.x = bounds.x;
+                if(v.y < bounds.y) v.y = bounds.y;
+                if(v.x > bounds.w-view.viewport.x) v.x = bounds.w-view.viewport.x;
+                if(v.y > bounds.h-view.viewport.y) v.y = bounds.h-view.viewport.y;
+            }
+
+            view.pos = v;
         }
 
-        // var _newp = v.clone().divideScalar(zoom_amount);
-		view_position = v;
 		pos = v;
 
 			//listen for sub changes on properties
@@ -166,31 +127,39 @@ class Camera extends Entity {
         shaking = true;
     }
 
-        //Called by the scene the camera belongs to
+        //Called by the scene the camera belongs to, or manually if you want    
     @:noCompletion public function update(dt:Float) {    	       
 
-    		//start at our base position
-    	var final_position = view_position.clone();
     		//add camera shake
         if(shaking) {
+
+                //start at our base position
+            _final_pos.set_xyz( pos.x, pos.y, pos.z );
+
+                //get a random direction
             shake_vector = Luxe.utils.geometry.random_point_in_unit_circle();
+
+                //apply the shake amount scale
             shake_vector.x *= shake_amount;
             shake_vector.y *= shake_amount; 
-            shake_vector.z *= shake_amount;         
+            shake_vector.z *= shake_amount;
+
+                //fade the shake down
             shake_amount *= 0.9;
-            final_position = Vector.Add(final_position, shake_vector);
-        } 
 
-        	//check that we are within the given bounds
-        if(bounds != null) {
-        	if(final_position.x < bounds.x) final_position.x = bounds.x;
-        	if(final_position.y < bounds.y) final_position.y = bounds.y;
-        	if(final_position.x > bounds.w-view.size.x) final_position.x = bounds.w-view.size.x;
-        	if(final_position.y > bounds.h-view.size.y) final_position.y = bounds.h-view.size.y;
-        }
+                //stop when it's too low
+            if(shake_amount <= minimum_shake) {
+                shake_amount = 0;
+                shaking = false;
+            }
 
-        	//finally, assign the position
-        view.pos = final_position;        
+                //add the shake to the final position and apply it to the view
+            _final_pos.set_xyz(_final_pos.x+shake_vector.x, _final_pos.y+shake_vector.y, _final_pos.z+shake_vector.z);
+
+                //finally set the position to the camera
+            view.pos = _final_pos;
+
+        } //shaking
 
     } //update
 
@@ -212,3 +181,13 @@ class Camera extends Entity {
     } //get_serialize_data    
 
 }
+
+
+
+//     //check that we are within the given bounds
+// if(bounds != null) {
+//     if(final_pos.x < bounds.x) final_pos.x = bounds.x;
+//     if(final_pos.y < bounds.y) final_pos.y = bounds.y;
+//     if(final_pos.x > bounds.w-view.size.x) final_pos.x = bounds.w-view.size.x;
+//     if(final_pos.y > bounds.h-view.size.y) final_pos.y = bounds.h-view.size.y;
+// }

@@ -25,16 +25,12 @@ class Camera {
     public var view_pos : Vector;
     public var rotation : Quaternion;
     public var scale: Vector;
-    public var _unscale: Vector;
 
     public var viewport : Rectangle;
-    public var scaled_viewport : Rectangle;
-    public var size : Vector;
 
     @:isVar public var pos (get,set) : Vector;
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (default,set) : Float = 1.0;
-    // @:isVar public var size (default,set) : Vector;
 
     public var minimum_zoom : Float = 0.01;
     public var projection_matrix : Matrix4;
@@ -60,8 +56,6 @@ class Camera {
 
         rotation = new Quaternion(0,0,0,0);
         scale = new Vector(1,1,1);
-        _unscale = new Vector(1,1,1);
-        size = new Vector( Luxe.screen.w, Luxe.screen.h );
 
         if(options.viewport == null) {
             viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
@@ -80,7 +74,7 @@ class Camera {
 
         ortho_options = {
             x1 : 0, y1 : 0,
-            x2 : size.x, y2 : size.y,
+            x2 : viewport.w, y2 : viewport.h,
             near : 1000, 
             far: -1000
         };        
