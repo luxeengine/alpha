@@ -109,7 +109,7 @@ class Camera {
         }
 
             //scale the visual view based on the value
-        scale.x = 1/_new_zoom; 
+        scale.x = 1/_new_zoom;
         scale.y = 1/_new_zoom;
 
             //reset positional offset for the actual view,

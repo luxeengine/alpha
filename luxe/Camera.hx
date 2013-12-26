@@ -71,9 +71,10 @@ class Camera extends Entity {
 
     override function get_rotation() : Vector {
 
-            rotation.setEulerFromQuaternion( view.rotation ); 
+        if(view != null) rotation.setEulerFromQuaternion( view.rotation ); 
 
         return rotation;
+        
     } //get_rotation
 
     override function set_rotation( _r:Vector ) : Vector {

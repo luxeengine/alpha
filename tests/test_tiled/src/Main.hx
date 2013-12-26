@@ -72,7 +72,9 @@ class TiledDisplay {
                     });
                         
                     var _pos = tiledmap.getTilesetByGID(gidCounter).getTexturePositionByGID(nextGID);
-                    _geometry.quad_uv( _quadid, new Rectangle( _pos.x*tiledmap.tileWidth,_pos.y*tiledmap.tileHeight,tiledmap.tileWidth,tiledmap.tileHeight) );
+                    texture.onload = function( t:Texture ){
+                        _geometry.quad_uv( _quadid, new Rectangle( _pos.x*tiledmap.tileWidth,_pos.y*tiledmap.tileHeight,tiledmap.tileWidth,tiledmap.tileHeight) );
+                    }
 
                 } //nextGID
 
@@ -108,7 +110,7 @@ class Main extends luxe.Game {
         map.create( 0, _map_scale, FilterType.nearest );
 
             //bounds is set to the tilemap size in pixels * scale
-        Luxe.camera.bounds = new Rectangle( 0, 0, map.tiledmap.totalWidth*_map_scale, map.tiledmap.totalHeight*_map_scale );
+        Luxe.camera.bounds = new Rectangle( 0, 0, (map.tiledmap.totalWidth*_map_scale)-Luxe.screen.w, (map.tiledmap.totalHeight*_map_scale) );
 
     } //ready
   
