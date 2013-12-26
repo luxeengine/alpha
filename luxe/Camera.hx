@@ -69,6 +69,28 @@ class Camera extends Entity {
         return view == null ? scale = _c : view.scale = _c;
     }
 
+    override function get_rotation() : Vector {
+
+            rotation.setEulerFromQuaternion( view.rotation ); 
+
+        return rotation;
+    } //get_rotation
+
+    override function set_rotation( _r:Vector ) : Vector {
+
+        if(view != null) {
+            view.rotation.setFromEuler( _r );
+        }
+        
+        rotation = _r;
+
+            //listen for sub changes on properties
+        _attach_listener( rotation, _rotation_change );
+
+        return rotation;
+
+    } //set_rotation
+
     function get_minimum_zoom() : Float {
         return view.minimum_zoom;
     }
@@ -94,7 +116,16 @@ class Camera extends Entity {
 		Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut );
 
-	}
+	} //focus
+
+    public function screen_point_to_world( _vector:Vector ) : Vector {
+        return view.screen_point_to_world( _vector );
+    } //screen_point_to_world
+
+    public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
+        return view.world_point_to_screen( _vector, _viewport );
+    } //world_point_to_screen
+
 
     @:noCompletion public override function get_pos() : Vector {
         return pos;

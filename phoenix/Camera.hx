@@ -41,20 +41,19 @@ class Camera {
     public var projection : ProjectionType;
 
     public var target:Vector;
-    public var up:Vector;   
+    public var up:Vector;      
 
         //A phoenix camera will default to ortho set to screen size        
-
     public function new( ?options:Dynamic = null ) {
 
         if(options == null) options = {};
 
         projection = options.projection == null ? ProjectionType.ortho : options.projection;
-        
-        pos = new Vector(0,0,0);
-        view_pos = new Vector(0,0,0);
+            
+        pos = new Vector();
+        view_pos = new Vector();
 
-        rotation = new Quaternion(0,0,0,0);
+        rotation = new Quaternion();
         scale = new Vector(1,1,1);
 
         if(options.viewport == null) {
@@ -269,11 +268,27 @@ class Camera {
 
     } //screen_point_as_ray
 
-    public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
+    function ortho_screen_to_world( _vector:Vector ) : Vector {
 
-        if(_viewport == null) {
-            _viewport = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
-        }
+        var _world_x = ( _vector.x * scale.x ) + view_pos.x;
+        var _world_y = ( _vector.y * scale.y ) + view_pos.y;
+
+        return new Vector( _world_x, _world_y );
+
+    } //ortho_screen_to_world
+
+    function ortho_world_to_screen( _vector:Vector ) : Vector {
+
+        var _screen_x = ( _vector.x - view_pos.x ) / scale.x;
+        var _screen_y = ( _vector.y - view_pos.y ) / scale.y;
+
+        return new Vector( _screen_x, _screen_y );
+
+    } //ortho_world_to_screen
+
+    function persepective_world_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) {
+
+        if(_viewport == null) { _viewport = viewport; }
 
         var _projected = projectVector( _vector );
         
@@ -284,10 +299,34 @@ class Camera {
              ( _projected.x * width_half ) + width_half, 
             -( _projected.y * height_half ) + height_half 
         );
-        
+
+    } //persepective_world_point_to_screen
+
+    public function screen_point_to_world( _vector:Vector ) : Vector {
+
+        if( projection == ProjectionType.ortho ) {
+            return ortho_screen_to_world(_vector);
+        } else if( projection == ProjectionType.perspective ){
+            return screen_point_to_ray( _vector ).end;
+        }
+
+            //given the default is ortho, for now
+        return ortho_screen_to_world(_vector);
+
+    } //screen_point_to_world
+
+    public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
+
+        if( projection == ProjectionType.ortho ) {
+            return ortho_world_to_screen( _vector );
+        } else if( projection == ProjectionType.perspective ) {
+            return persepective_world_to_screen(_vector, _viewport);            
+        }
+
+            //given the default is ortho, for now
+        return ortho_world_to_screen( _vector );
+
     } //world_point_to_screen
-
-
 
     private function _merge_options( projection_options:Dynamic, options:Dynamic) {
 

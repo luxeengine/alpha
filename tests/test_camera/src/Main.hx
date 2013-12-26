@@ -34,6 +34,7 @@ class Main extends luxe.Game {
         var midx = Luxe.screen.w/4;
         var midy = Luxe.screen.h/4;
         
+        screen_mouse = new Vector();
         view_mouse = new Vector();
         world_mouse = new Vector();
 
@@ -88,14 +89,56 @@ class Main extends luxe.Game {
     } //ready
 
     public function onmousemove( e:MouseEvent ) {
-        view_mouse = Vector.Add( e.pos, Luxe.camera.pos );
-        world_mouse = Vector.DivideVector( view_mouse, Luxe.camera.scale ).add(Luxe.camera.pos);
+
+        screen_mouse = e.pos;
+        world_mouse = Luxe.camera.screen_point_to_world( e.pos );
+        view_mouse = Luxe.camera.world_point_to_screen( world_mouse );
+
+        if( mouse_down && !dragging && haxe.Timer.stamp() > drag_time ) {
+            dragging = true;
+            drag_start = e.pos;
+            drag_start_rotation = e.pos.rotationTo(Luxe.camera.center);
+            camera_start_rotation = Luxe.camera.rotation.z;
+        }
+
+        if(dragging) {
+                //get the rotation to the mouse 
+            var r_to_mouse = e.pos.rotationTo(Luxe.camera.center);
+                //and the difference between them
+            var r_diff = (r_to_mouse - drag_start_rotation) * 0.05;
+                //now add to the original
+            var new_r = camera_start_rotation - r_diff;
+                //and set the rotation on camera
+            Luxe.camera.rotation.z = new_r;
+        }
+    }
+
+    var drag_time : Float = 0;
+    var drag_allowance : Float = 0.2;
+    var mouse_down : Bool = false;
+    var dragging : Bool = false;
+    var drag_start : Vector;
+    var drag_start_rotation : Float;
+    var camera_start_rotation : Float;
+
+    public function onmousedown( e:MouseEvent ) {
+        if(e.button == MouseButton.left) {
+            mouse_down = true;
+            drag_time = haxe.Timer.stamp() + drag_allowance;
+        }
     }
 
     public function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
-    		Luxe.camera.shake( 2+(Std.random(100) ));
+            mouse_down = false;
+            dragging = false;
+                //did dragging time happen?
+            if(haxe.Timer.stamp() < drag_time) {
+                Luxe.camera.shake( 2+(Std.random(100) ));
+            } else {
+                //do nothing
+            }
     	} else if(e.button == MouseButton.right) {
             Luxe.camera.focus( Vector.Add( e.pos, Luxe.camera.pos ) );
     	} else if(e.button == MouseButton.wheel_up ) {
@@ -145,10 +188,11 @@ class Main extends luxe.Game {
             Luxe.shutdown();
         }
 
-        world_mouse = Vector.Add( view_mouse, Luxe.camera.pos );
+        world_mouse = Luxe.camera.screen_point_to_world( screen_mouse );
         
     } //onkeyup
 
+    var screen_mouse : Vector;
     var view_mouse : Vector;
     var world_mouse : Vector;
     public function update(dt:Float) {
@@ -158,7 +202,7 @@ class Main extends luxe.Game {
             immediate : true,
             pos:new Vector(10,10),
             color:new Color().rgb(0xff4b03),
-            text : 'world mouse : ' + world_mouse.x + ',' + world_mouse.y
+            text : 'world mouse : ' + world_mouse.x + ',' + world_mouse.y + '\n' + 'view mouse : ' + view_mouse.x + ',' + view_mouse.y
         });
     } //update
 
