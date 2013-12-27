@@ -26,8 +26,7 @@ class Camera {
     public var rotation : Quaternion;
     public var scale: Vector;
 
-    public var viewport : Rectangle;
-
+    @:isVar public var viewport (get,set) : Rectangle;
     @:isVar public var pos (get,set) : Vector;
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (default,set) : Float = 1.0;
@@ -149,10 +148,25 @@ class Camera {
         return pos;
     }
 
+    function get_viewport() : Rectangle {
+        return viewport;
+    }
+
+    function set_viewport(_r:Rectangle) : Rectangle {
+
+            //rework out the center
+        if(center != null) {
+            center.x = ((_r.w/2) + pos.x);
+            center.y = ((_r.h/2) + pos.y);
+        }
+
+        return viewport = _r;
+    }
+
     function set_pos( _p:Vector ) : Vector {        
 
         if(pos != null) {
-                //update the center accordingly               
+                //update the center accordingly 
             center.x = ((viewport.w/2) + _p.x);
             center.y = ((viewport.h/2) + _p.y);
                 //and base the view on the new center position in world space, adjusted for zoom
@@ -200,7 +214,7 @@ class Camera {
         Luxe.renderer.state.disable(GL.DEPTH_TEST);
         
             //todo:This doesn't need to be rebuilt every frame
-        projection_matrix = projection_matrix.makeOrthographic( viewport.x , viewport.w, viewport.y, viewport.h, ortho_options.near, ortho_options.far);
+        projection_matrix = projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, ortho_options.near, ortho_options.far);
             //Rebuild the modelview, todo:dirtify this
         view_matrix = view_matrix.compose( view_pos, rotation, scale );
 

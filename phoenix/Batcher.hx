@@ -48,7 +48,8 @@ class BatchGroup {
 
 class Batcher {
 
-    public var layer : Int = 0;
+    public var id : String;
+    @:isVar public var layer (default, set) : Int = 0;
     public var enabled : Bool = true;
 
     public var geometry : BalancedBinarySearchTree< GeometryKey, Geometry >;
@@ -118,6 +119,7 @@ class Batcher {
 
     public function new( _r : Renderer, ?_name:String = '' ) {
 
+        id = Luxe.utils.uniqueid();
         renderer = _r;
 
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
@@ -184,6 +186,18 @@ class Batcher {
         }
 
     }
+
+    public function set_layer( _layer:Int ) : Int {
+        
+            //set the value
+        layer = _layer;
+            //re-sort the list
+        renderer.batchers.sort( renderer.sort_batchers );
+
+            //return value
+        return layer;
+
+    } //set_layer
 
     public function toString() {
         return "Batcher(" + name + ")";
@@ -461,10 +475,12 @@ class Batcher {
         draw_calls = 0;
 
             //update camera if it changes anything
-        view.process(); 
+        view.process();
+
+        // trace("batcher " + name + " " + view.viewport );
 
             //Set the viewport to the view
-        renderer.state.viewport( cast view.viewport.x, cast view.viewport.y, cast view.viewport.w, cast view.viewport.h );
+        renderer.state.viewport( view.viewport.x, view.viewport.y, view.viewport.w, view.viewport.h );
 
             //apply geometries
         batch( persist_immediate );
@@ -545,10 +561,9 @@ class Batcher {
             GL.bufferData(GL.ARRAY_BUFFER, static_normallist, GL.STATIC_DRAW);
         }
 
-
             //Draw
         GL.drawArrays( 
-            phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type),              0, 
+            phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type), 0, 
             phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_verts) 
         );
 

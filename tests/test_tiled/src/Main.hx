@@ -31,7 +31,7 @@ class TiledDisplay {
         var __depth = _depth;
         for(_layer in tiledmap.layers) {            
             Luxe.addGeometry ( createGeometryFromLayer( _layer, _scale, __depth, _filter ) );
-            __depth+= 0.001;
+            __depth += 0.001;
         } //_layer
 
     } //create

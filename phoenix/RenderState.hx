@@ -52,15 +52,21 @@ class RenderState {
     } //disable_if_not
 
     public function viewport( x:Float, y:Float, w:Float, h:Float ) {
-        if( _viewport.x != x && 
-            _viewport.y != y && 
-            _viewport.w != w && 
-            _viewport.h != h) {
 
-                _viewport.x = x; _viewport.y = y; _viewport.w = w; _viewport.h = h;
-                GL.viewport( Std.int(x), Std.int(y), Std.int(w), Std.int(h) );
+        if( 
+            _viewport.x != x || 
+            _viewport.y != y || 
+            _viewport.w != w || 
+            _viewport.h != h
+          ) {
 
-        }
+                // trace("set viewport " + _viewport);
+
+            _viewport.x = x; _viewport.y = y; _viewport.w = w; _viewport.h = h;
+            GL.viewport( Std.int(x), Std.int((Luxe.screen.h - y)-h), Std.int(w), Std.int(h) );
+
+        }  //if it's changed
+
     } //viewport
 
     var _used_program : GLProgram = null;

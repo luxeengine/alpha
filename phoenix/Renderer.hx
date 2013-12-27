@@ -25,13 +25,19 @@ import phoenix.BitmapFont;
 import lime.utils.UInt8Array;
 import lime.utils.ArrayBuffer;
 
-import luxe.structural.BinarySearchTree;
+import luxe.structural.BalancedBinarySearchTree;
 
+
+typedef BatcherKey = {
+    uuid : String,
+    layer : Int
+}
 
 class Renderer {
 
     public var resource_manager : ResourceManager;
-    public var batchers : BinarySearchTree<Int,Batcher>;
+    public var batchers : Array<Batcher>;
+    // public var batchers : BalancedBinarySearchTree<BatcherKey,Batcher>;
 
     public var state : RenderState;
         //Default rendering
@@ -64,11 +70,14 @@ class Renderer {
         stats = new RendererStats();
 
         resource_manager = new ResourceManager();
-        batchers = new BinarySearchTree<Int,Batcher>( function(a:Int,b:Int){
-            if(a < b) return -1;
-            if(a == b) return 0;
-            return 1;
-        } );
+        batchers = [];
+        // batchers = new BalancedBinarySearchTree<BatcherKey,Batcher>( function(a:BatcherKey,b:BatcherKey){
+        //     trace("comparing " + a.uuid + '/' + b.uuid + " with layers " + a.layer + '/' + b.layer);
+        //     if(a.uuid == b.uuid) return 0;
+        //     if(a.layer < b.layer) return -1;
+        //     if(a.layer > b.layer) return 1;
+        //     return 1;
+        // } );
 
             //The default view
         default_camera = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
@@ -128,27 +137,39 @@ class Renderer {
 
     public function destroy() {
         // trace(':: renderer shutting down');   
-    }
+    } //destroy
 
-    public function add_batch(batch:Batcher) {
-        batchers.insert( batch.layer, batch );
-    }
+    @:noCompletion public function sort_batchers( a:Batcher, b:Batcher ) {
+        if(a.layer < b.layer) return -1;
+        if(a.layer >= b.layer) return 1;
+        return 1;
+    } //sort_batchers
 
-    public function remove_batch(batch:Batcher) {
-        batchers.remove( batch.layer );
-    }
+    public function add_batch( batch:Batcher ) {
+        // batchers.insert( { layer:batch.layer, uuid:batch.id }, batch );
+        batchers.push( batch );
+        batchers.sort( sort_batchers );
+    } //add_batch
+
+    public function remove_batch( batch:Batcher ) {
+        // batchers.remove({ layer:batch.layer, uuid:batch.id });
+        batchers.remove( batch );
+    } //remove_batch
 
     public function clear( _color:Color ) {
+
         if(_color == null) _color = clear_color;
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
-        if(Luxe.core.lime.config.depth_buffer) {
+
+        if( Luxe.core.lime.config.depth_buffer ) {
             GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
             GL.clearDepth(1.0);
         } else {
             GL.clear( GL.COLOR_BUFFER_BIT );
         }
-    }
+        
+    } //clear
 
     private function _debug(v:Dynamic) {
         //trace(v);
@@ -375,7 +396,7 @@ class Renderer {
             clear( clear_color );
         }
 
-        stats.batchers = batchers.size();
+        stats.batchers = batchers.length;
         stats.reset();
 
             //render 

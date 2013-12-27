@@ -5,6 +5,7 @@ import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
 import phoenix.Texture;
 import phoenix.Shader;
+import phoenix.Batcher;
 
 import luxe.Rectangle;
 import luxe.Vector;
@@ -96,6 +97,22 @@ class Luxe {
     public static function fileDialogSave(_title:String, _text:String) : String {
         return core.lime.window.fileDialogSave(_title,_text);
     }
+
+    public static function createBatcher( ?_name:String = 'batcher', ?_camera:luxe.Camera, ?_add:Bool=true ) {
+        
+        var _batcher = new Batcher( renderer, _name );
+            _batcher.view = (_camera == null ? renderer.default_camera : _camera.view );
+                //above the default layer
+            _batcher.layer = 2;
+
+            //the add it to the renderer
+        if( _add ) {
+            renderer.add_batch( _batcher );
+        }
+
+        return _batcher;
+
+    } //createBatcher
 
     public static function addGeometry(_geom:Geometry) {
         renderer.default_batcher.add(_geom);
