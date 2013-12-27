@@ -81,6 +81,10 @@ class Main extends luxe.Game {
         camera_3.pos.y = 640;
         camera_4.pos.y = 960;
 
+        camera_2.zoom = 0.9;
+        camera_3.zoom = 0.2;
+        camera_4.zoom = 0.5;
+
         level_texture.onload = function(tt) {
                 //set it 
             level_texture.filter = phoenix.Texture.FilterType.nearest;
