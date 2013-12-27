@@ -71,12 +71,16 @@ class Main extends luxe.Game {
 
         }); //level_sprite
 
-        // camera_1.pos.x = 0;
+            //add the cameras to the scene so they get updated
+        Luxe.scene.add( camera_1 );
+        Luxe.scene.add( camera_2 );
+        Luxe.scene.add( camera_3 );
+        Luxe.scene.add( camera_4 );
+
         camera_2.pos.x = 480;
         camera_3.pos.x = 960;
         camera_4.pos.x = 1440;
 
-        // camera_1.pos.y = 0;
         camera_2.pos.y = 320;
         camera_3.pos.y = 640;
         camera_4.pos.y = 960;
@@ -161,8 +165,8 @@ class Main extends luxe.Game {
     public function onmousemove( e:MouseEvent ) {
 
         if(view_move) {
-            current_camera.viewport.x = e.pos.x;
-            current_camera.viewport.y = e.pos.y;
+            camera_1.viewport.x = e.pos.x;
+            camera_1.viewport.y = e.pos.y;
         }
 
         screen_mouse = e.pos;
@@ -177,6 +181,7 @@ class Main extends luxe.Game {
         }
 
         if(dragging) {
+
                 //get the rotation to the mouse 
             var r_to_mouse = e.pos.rotationTo(current_camera.center);
                 //and the difference between them
@@ -185,7 +190,9 @@ class Main extends luxe.Game {
             var new_r = camera_start_rotation - r_diff;
                 //and set the rotation on camera
             current_camera.rotation.z = new_r;
+
         } else {
+            
                 //work out which quadrant we are in
             var quadx = Math.floor( e.pos.x / 480 );
             var quady = Math.floor( e.pos.y / 320 );
@@ -242,9 +249,9 @@ class Main extends luxe.Game {
     public function onkeyup( e:KeyEvent ) {
 
         if(e.key == KeyValue.space) {
-            view_move = false;
-            current_camera.viewport.x = 0;
-            current_camera.viewport.y = 0;
+            view_move = false;            
+            camera_1.viewport.x = 0;
+            camera_1.viewport.y = 0;
         }
 
 
