@@ -1,6 +1,286 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [c169e54ef6](http://github.com/underscorediscovery/luxe/commit/c169e54ef62143aae23f134a329260e85f24c448)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 27 2013 01:31:39 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; removing temporary rotation bug for test</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e1fa7b0a1c](http://github.com/underscorediscovery/luxe/commit/e1fa7b0a1c7e87b19e4009c6e8601157090b3c45)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 27 2013 00:32:35 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; fixing endless loop in rotation setter.</li><li>Tests; camera views - Adding cameras to scene so their shake gets updated.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [76292f4524](http://github.com/underscorediscovery/luxe/commit/76292f4524172ee2022b0c6580b094f5629e09bb)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 26 2013 21:58:46 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; Camera views, making each view have their own zoom at start</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [dee203a87f](http://github.com/underscorediscovery/luxe/commit/dee203a87f0464de8252066bc09d19937fd119d0)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 26 2013 21:42:22 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; Adding multi viewport test case for example</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2c0227b6a0](http://github.com/underscorediscovery/luxe/commit/2c0227b6a0847d811774e7677bc273ffd7f664f2)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 26 2013 21:42:06 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; Adding multi viewport test case for example</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [019603e3e7](http://github.com/underscorediscovery/luxe/commit/019603e3e76e7c1235a9b6f1960dad3e76b3a7ff)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 26 2013 21:41:45 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Batcher; Changing how batchers are stored, just simple arrays and sort on insert for simplicity.</li><li>Camera; fixing how viewport doesn't adjust center, fixing how viewport is applied in the rendering and all other viewport related junk.</li><li>API; adding create batcher function which helps in setting up a batcher and camera for you</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [785c75fa1b](http://github.com/underscorediscovery/luxe/commit/785c75fa1b68edea07efee188b98e18b1194ca98)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 26 2013 18:17:38 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; fixing rotation breaking on not ready view.</li><li>Tests; Tiled - fixing html5 late load textures, and camera bounds</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b65c1fa952](http://github.com/underscorediscovery/luxe/commit/b65c1fa952652c22f1574befb6878b24bebeb063)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Dec 26 2013 17:35:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; luxe - adding get / set rotation to pass the rotation to the view as quat instead of euler</li><li>Camera; luxe/phoenix - screen_point_to_world / world_point_to_screen conversions</li><li>Tests; camera; world conversion example and stuff, adding drag to rotate (still not complete)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9d9e1059da](http://github.com/underscorediscovery/luxe/commit/9d9e1059da578c4394ce304945d7d80742805469)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Dec 25 2013 05:52:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Cameras; fixing bunches of stuff related to positions, and scale, adding zoom and making position always interact in world coordinates for ortho. Still work in prograss as the focus function needs to account for scale as does the mouse in the example. Also needs wrapping based on 3d/2d, but much better already.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [04a20a7590](http://github.com/underscorediscovery/luxe/commit/04a20a759082ad51965d4c962fa534a582c988a1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Dec 24 2013 13:39:11 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Vector; adding ignore listeners flag for updating the position without a call to set_pos</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a2cab96bfa](http://github.com/underscorediscovery/luxe/commit/a2cab96bfa2afa4a95ed5796f321ccd3f7dba36f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Dec 24 2013 13:38:47 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; phoenix camera features working properly now, but needs to be shielded for ortho vs perspective</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [842fc51736](http://github.com/underscorediscovery/luxe/commit/842fc51736fd011929f148b8276927c9eb120bea)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Dec 23 2013 23:32:26 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; pushing preliminary fixes for redoing the views</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3efafc4573](http://github.com/underscorediscovery/luxe/commit/3efafc45737e6ab9ca8ac17317780d21efc6919a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Dec 23 2013 23:30:06 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; pushing preliminary fixes for redoing the views</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9f1f09aeab](http://github.com/underscorediscovery/luxe/commit/9f1f09aeabb73797333e923f698b7feaa48d1243)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Dec 23 2013 22:23:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; Fixing timing bugs not switching over when switching animations</li><li>SpriteAnimation; Fixing regex for framesets allowing whitespace, like 1 - 12 vs 1-12,</li><li>Found thanks to @korvgubben31</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [8de635ddfb](http://github.com/underscorediscovery/luxe/commit/8de635ddfb05023fb8a8d1d34135df0e91977c2e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Dec 23 2013 05:36:56 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Utils; Adding a find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ), for the animation system</li><li>SpriteAnimation; Adding image from image_sequences, as well as filter_type for the image sequences.</li><li>API; Adding Luxe.loadTextures( _ids:Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false )</li><li>API; Adding a silent flag to loadTexture and loadTextures to keep from printing when needed.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [154657eae5](http://github.com/underscorediscovery/luxe/commit/154657eae5ffb691d4ad27cd7014305014163d42)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Dec 23 2013 00:33:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Sprite Animation; adding hold frame parser, syntax is ['10','hold 5','11 hold 5'], where 'hold (count)' will hold on the previous frame in the set (count) times, and '(frame) hold (count)' will use the frame specified. Solves #24</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [01b1e07216](http://github.com/underscorediscovery/luxe/commit/01b1e0721649de2189ed890615ddb47f5ec60d71)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 22 2013 23:39:01 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; RTT cleaning the test beds a bit.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [95d274a2da](http://github.com/underscorediscovery/luxe/commit/95d274a2da31edb4da63d07e18746d64529edb27)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 22 2013 23:39:01 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Sprite Animation; Resolve #23, Adding frameset ranges, forward and reverse, works in groups (see tests/test_sprite_animation)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [605057fec7](http://github.com/underscorediscovery/luxe/commit/605057fec709eb3ebda6537b337f46b494c2549c)   
+author: Sven Bergström <sven@underscorediscovery.com>   
+date: Sun Dec 22 2013 18:19:40 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update haxelib.json</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [8f72a85f88](http://github.com/underscorediscovery/luxe/commit/8f72a85f88eb6c674803ae7e97bae2c0403baa22)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 22 2013 02:25:11 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Updating changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [ad78910e7c](http://github.com/underscorediscovery/luxe/commit/ad78910e7ce2f985a1747dd737f6b01769cbdb84)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Dec 22 2013 02:24:35 GMT-0330 (NST)   
