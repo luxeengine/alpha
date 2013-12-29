@@ -21,7 +21,18 @@ class Maths {
 	}
 	
 
+ 	public static function wrap_angle( degrees:Float, lower:Float, upper:Float ) {
+    	
+    	var _radians:Float = degToRad(degrees);
+    	var _distance:Float = upper - lower;
+      	var _times:Float = Math.floor((degrees - lower) / _distance);
+      	
+      	return degrees - (_times * _distance);
+
+    } //wrap_angle
+
     public static function nearest_power_of_two(_value:Int) {
+        
         _value--;
         _value |= _value >> 1;
         _value |= _value >> 2;
@@ -29,8 +40,10 @@ class Maths {
         _value |= _value >> 8;
         _value |= _value >> 16;
         _value++;
+        
         return _value;
-    }
+
+    } //nearest_power_of_two
 	
 	static public function mapLinear (value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float {
 		return b1 + ( value - a1 ) * ( b2 - b1 ) / ( a2 - a1 );

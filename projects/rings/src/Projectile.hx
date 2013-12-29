@@ -4,23 +4,27 @@ import luxe.Color;
 import luxe.tween.Actuate;
 import luxe.components.Components.Component;
 
+import levels.Stage1Level1;
+
 class Projectile extends Component {
 
 	public var vel : Vector;	
 	public var alive : Bool = false;
-	public var main : Main;
+	public var stage : Stage1Level1;
 	public var damage : Float = 1;
 	var spawn_protect : Float = 0;
 	var alive_time : Float = 0;
 
 	public var bullettype : String = '';
 
-	public function init() {
+	public function init( _stage:Stage1Level1 ) {
+		stage = _stage;
 		vel = new Vector();
 		test = new Vector();
 	} 
 
 	public function live(_vel:Vector) {
+
 		alive = true;
 		vel = _vel;
 		var s:Sprite = cast entity;
@@ -31,7 +35,7 @@ class Projectile extends Component {
 
 		spawn_protect = 1.5;
 		alive_time = 0;
-		main.projectiles.push(this);
+		stage.projectiles.push(this);
 
 	}
 
@@ -46,7 +50,7 @@ class Projectile extends Component {
 			s.color.tween(0.1, {a:0}).timescale();
 
 		if(remove) {
-			main.projectiles.remove(this);
+			stage.projectiles.remove(this);
 		}
 	}
 
@@ -60,14 +64,17 @@ class Projectile extends Component {
 
 		pos = pos.clone().add( Vector.Multiply(vel,dt) );
 
-		if( !Luxe.screen.point_inside( pos ) ) {
+		if( !Luxe.screen.point_inside( pos ) ) {			
 			kill();
+			if(bullettype == 'player') {
+				stage.reset_progress();
+			}			
 		}
 		
 		if(bullettype == 'player') {
-			for(enemy in main.enemies) {
+			for(enemy in stage.enemies) {
 				var s : Sprite = cast enemy.entity;
-				var r = (main.finger_size*0.3);
+				var r = (stage.finger_size*0.3);
 					var dx = s.pos.x - pos.x;
 					var dy = s.pos.y - pos.y;
 						test.set(dx,dy);
@@ -86,11 +93,11 @@ class Projectile extends Component {
 		}
 
 		if(alive_time > spawn_protect) {
-			var dx = main.player.pos.x - pos.x;
-			var dy = main.player.pos.y - pos.y;
+			var dx = stage.player.pos.x - pos.x;
+			var dy = stage.player.pos.y - pos.y;
 				test.set(dx,dy);
 			if(test.length < 48) {
-				main.take_damage(1);				
+				stage.take_damage(1);				
 				kill();
 			}
 		}

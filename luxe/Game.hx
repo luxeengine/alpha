@@ -2,7 +2,7 @@ package luxe;
 
 import luxe.Core;
 
-@:hide class Game {
+@:noCompletion class Game {
 
         //local handle to the core engine
     public var luxecore : Core;

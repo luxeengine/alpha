@@ -8,14 +8,14 @@ import luxe.tween.actuators.GenericActuator;
 import luxe.tween.actuators.MethodActuator;
 import luxe.tween.actuators.MotionPathActuator;
 import luxe.tween.actuators.SimpleActuator;
-import luxe.tween.easing.Expo;
 import luxe.tween.easing.IEasing;
+import luxe.tween.easing.Quad;
 
 class Actuate {
 	
 	
 	public static var defaultActuator:Class <GenericActuator> = SimpleActuator;
-	public static var defaultEase:IEasing = Expo.easeOut;
+	public static var defaultEase:IEasing = Quad.easeOut;
 	private static var targetLibraries:ObjectHash <Array <GenericActuator>> = new ObjectHash <Array <GenericActuator>> ();
 	
 	

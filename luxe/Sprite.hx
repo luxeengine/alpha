@@ -33,6 +33,7 @@ typedef SpriteOptions = {
     ?group : Int,
     ?visible : Bool,
     ?add : Bool,
+    ?no_scene : Bool,
     ?scene : Scene,
     ?serialize : Bool,
     ?geometry : Geometry
@@ -110,7 +111,7 @@ class Sprite extends Entity {
         }   
 //scene
         if(options.scene != null) {
-            scene = options.scene;
+            scene = options.scene;            
         } else {
             scene = Luxe.scene;
         }
@@ -152,7 +153,7 @@ class Sprite extends Entity {
             } else {
                     //default to a value big enough to see
                 size = new Vector(64,64); 
-                trace('\t\tWarning : null texture handed to sprite constructor');
+                trace('\t\tWarning : no texture, or size, handed to sprite constructor so going with a default size.');
                 _create_geometry(options);
             } //texture !=null
 
@@ -218,6 +219,11 @@ class Sprite extends Entity {
             origin = options.origin;
         }
 
+            //and apply the rotation
+        if(options.rotation_z != null) {
+            rotation_z = options.rotation_z;
+        }
+
         if(options.add == null || options.add != false) {
             if(options.batcher == null) {
                 Luxe.addGeometry( geometry );
@@ -227,9 +233,9 @@ class Sprite extends Entity {
         }
             
             //todo: like with add=false, don't add to scene.            
-        if(scene != null) {
+        if(scene != null && options.no_scene != true) {
             Luxe.scene.add(this);            
-        } 
+        }
     }
 
 

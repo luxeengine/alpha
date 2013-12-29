@@ -2,6 +2,7 @@ package phoenix.geometry;
 
 import phoenix.geometry.Geometry;
 import phoenix.Batcher;
+import phoenix.Quaternion;
 import phoenix.Shader;
 import phoenix.Texture;
 
@@ -96,6 +97,15 @@ class CompositeGeometry extends Geometry {
         }
         return pos = _position;
     } //set_pos
+
+    public override function set_rotation( _rotation:Quaternion ) : Quaternion {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.rotation = _rotation;
+            }
+        }
+        return rotation = _rotation;
+    } //set_rotation
 
     public override function set_color( _color:Color ) : Color {
         if(geometry != null) {

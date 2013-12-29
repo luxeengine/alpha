@@ -1,4 +1,4 @@
-
+package luxe.structural;
 
 class Pool<T> {
 

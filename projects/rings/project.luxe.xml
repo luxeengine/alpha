@@ -10,7 +10,8 @@
 
 	<app main="Main" path="bin" file="rings" />
 
-	<window width="960" height="640" orientation="landscape" fps="9990" vsync="false" resizable="false" antialiasing="4"/>
+	<window width="960" height="640" orientation="landscape" fps="60" fullscreen="false" vsync="true" resizable="false" antialiasing="4"/>
+	<window vsync="false" if="ios" />
 	
      <assets path="Assets" rename="assets" include="*"/>
 
