@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [016a4b10f7](http://github.com/underscorediscovery/luxe/commit/016a4b10f77b3cd390b64d1ef270ca5a477bfdee)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 29 2013 04:23:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Sprite; fixing rotation_z on creation, adding no_scene flag for not added to scene, clearer warning.</li><li>Tween; changing default tween to something more sensible and not the most expensive, slowest one</li><li>Utils; maths wrap_angle function from rings</li><li>Rings; adding states so that levels can be implemented, added first completable challenge level with progress indicator, intro image, end image, fixing window flags</li><li>CompositeGeometry; adding set_rotation because it was missing</li><li>Structural; Pool class added to core, still needs some tweaks and functions but useful</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9fcf396aa7](http://github.com/underscorediscovery/luxe/commit/9fcf396aa734c5b09b5fe2a633b847571b7b0578)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Dec 27 2013 21:55:33 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Changes update</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [c169e54ef6](http://github.com/underscorediscovery/luxe/commit/c169e54ef62143aae23f134a329260e85f24c448)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Dec 27 2013 01:31:39 GMT-0330 (NST)   
