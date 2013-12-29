@@ -201,7 +201,16 @@ class Stage1Level1 extends State {
     }
 
         //enter
-    public function enter() {
+    public function enter( _from_success:Bool=false ) {
+
+        if(_from_success) {            
+            kill();
+            success = false;
+            reset_progress();
+            power.p1 = player.pos;
+        }        
+
+        dragging = false;
         spawn_enemy();
         
         for(_h in healths) {

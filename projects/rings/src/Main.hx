@@ -87,7 +87,7 @@ class Main extends luxe.Game {
         Actuate.tween( right_geom.pos, 0.4, { y:0 } ).onComplete(function(){
             text.color.tween(0.2, {a:1}, true);
             next_tap = function(){ 
-                hide_start(function(){
+                hide_start(50, function(){
                     states.set('stage1.level1');
                 });            
             }
@@ -112,20 +112,20 @@ class Main extends luxe.Game {
         Actuate.tween( right_geom.pos, 0.4, { y:0 } ).onComplete(function(){
             text.color.tween(0.2, {a:1}, true);
             next_tap = function() {
-                if(_next != '') {
-                    hide_start(function(){
-                        states.set(_next);                    
+                // if(_next != '') {
+                    hide_start(0, function(){
+                        states.set('stage1.level1', true); 
                     });
-                }
+                // }
             }
         });
 
     } //show_start
 
-    public function hide_start( _complete ) {
+    public function hide_start( t:Int, _complete ) {
         text.color.tween(0.2, {a:0}, true).onComplete(function(){
             Actuate.tween( left_geom.pos, 0.4, { y:-Luxe.screen.h } , true).onComplete(function(){
-                haxe.Timer.delay(_complete, 1000);
+                haxe.Timer.delay(_complete, t);
             });
             Actuate.tween( right_geom.pos, 0.3, { y:Luxe.screen.h*2 }, true );
         });
