@@ -55,8 +55,13 @@ import luxe.debug.StatsDebugView;
     public var profiling : Bool = false;
 
 #if luxe_native
-    static var thread : cpp.vm.Thread;
-    static var mutex : cpp.vm.Mutex;
+    #if neko
+        static var thread : neko.vm.Thread;
+        static var mutex : neko.vm.Mutex;
+    #else    
+        static var thread : cpp.vm.Thread;
+        static var mutex : cpp.vm.Mutex;
+    #end 
 #end 
 
     public function init() {        

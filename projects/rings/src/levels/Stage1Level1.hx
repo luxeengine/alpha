@@ -451,6 +451,14 @@ class Stage1Level1 extends State {
     } //onmousedown
 
 
+    function set_shoot_inrange() {
+        
+    }
+
+    function unset_shoot_inrange() {
+        
+    }
+
     function update_mode_common( pos:Vector ) {
 
         if(success) return;
@@ -706,6 +714,8 @@ class Stage1Level1 extends State {
         player.color.g = 0.3;
         player.color.b = 0.1;
 
+        // aim.color.tween(0.2, {a:1}, true );
+
     }
 
     function unset_mode_shoot() {
@@ -721,6 +731,8 @@ class Stage1Level1 extends State {
 
             //in range for moving    
         var range_spread : Float = 44;
+
+        // trace("in range to move: " + range_angle + " / range_o_angle: " + range_o_angle);        
 
         var _opp_side = rotation + 180;
         var _opp_off = _opp_side + (range_o_angle * 2);
@@ -825,6 +837,71 @@ class Stage1Level1 extends State {
         }
 
     } //ondrag
+
+    public function ondrags( pos:Vector ) {
+
+        if(success) return;
+    	
+    	// power.p1 = pos;
+        // aim.pos = pos;
+        // aim.pos = pos.clone().add(Vector.Subtract(pos,player.pos).normalized.multiply(new Vector(finger_offset, finger_offset)));
+        // aim.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad((aim.pos.rotationTo(player.pos)+90)) ));
+    		p1.x = pos.x; p1.y = pos.y;
+
+        // check_drag(pos);
+
+    	var pre_in = inrange;
+    	var pre_shoot = shoot_range;
+
+    	// get_inrange(pos);
+
+    	if(pre_in && !inrange) {
+    		dhid = true;
+            // dest.color.tween(0.5, {a:0}, true);
+			jumper.color.tween(0.5, {a:1}, true);
+
+            dragger.color.r = 1;
+            dragger.color.g = 1;
+
+    	}
+
+    	if(pre_shoot && !shoot_range) {
+    		shid = true;
+    		// power.enabled = false;
+            // aim.enabled = false;
+    	}
+
+    	if(inrange) {
+
+            dragger.color.r = 0.2;
+            dragger.color.g = 0.5;
+
+    		if(dhid) {
+    			dhid = false;
+                // dest.color.tween(0.2, {a:1}, true);
+    			jumper.color.tween(0.2, {a:1}, true);
+    		}
+
+    		var _opp_side = rotation + 180;
+    		var _opp_off = _opp_side + (range_o_angle*2);
+    			dest.pos.x = __x( _opp_off );
+    			dest.pos.y = __y( _opp_off );            
+
+    	} //dragging && in_range
+
+
+    	if(shoot_range) {
+    		
+    		if(shid) {
+    		    shid = false;
+    			// aim.enabled = true;
+    		}
+    		
+    	}
+
+    } //ondrag
+
+  
 
     public function update(dt:Float) {
     } //update
