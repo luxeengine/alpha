@@ -13,30 +13,44 @@ import luxe.Vector;
 
 import luxe.structural.Pool;
 
+import phoenix.Batcher;
+import phoenix.geometry.ArcGeometry;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.LineGeometry;
 
 import Enemy;
 import phoenix.geometry.RingGeometry;
+import phoenix.geometry.CircleGeometry;
 import Projectile;
+
+enum PlayMode {
+    none;
+    move;
+    shoot;    
+}
 
 class Stage1Level1 extends State {
 
 	public var player : Sprite;
-	public var distance : Float = 0;
+    public var distance : Float = 0;
+	public var field_distance : Float = 0;
 	var center : Vector;
 	var sqrt2 : Float = 1.414213562373095;
 	var min_length : Float = 0;
 
+    var default_timescale : Float = 1;
+
 	public var rotation : Float = 0;
 
 	var dest : Geometry;
-	var offset : Geometry;
-	var power : LineGeometry;
+    var power : LineGeometry;
+    var aim : ArcGeometry;
+	var dragger : CircleGeometry;
     var finger : Geometry;
 	var jumper : Geometry;
 
-	public var finger_size : Float = 64;
+    public var finger_size : Float = 64;
+	public var timesize : Float = 64;
 
     var player_bullets : Pool<Sprite>;
 	public var enemy_bullets : Pool<Sprite>;
@@ -56,10 +70,13 @@ class Stage1Level1 extends State {
     var range_o_angle : Float = 0;
     var range_length : Float = 0;
     var _range_scale : Vector;
-    var dhid  = false;
+    var dhid : Bool = false;
 
-    var shoot_range = false;
-    var shoot_power = 0.0;
+    var shoot_range : Bool = false;
+    var shoot_power : Float= 100.0;
+    var finger_offset : Float= 0.0;
+    var drag_center_size : Float= 0.0;
+    var shoot_time : Float = 0.0;
 
     var main:Main;
     var inited : Bool = false;
@@ -68,12 +85,22 @@ class Stage1Level1 extends State {
 
     public function init( _main:Main ) {
 
+        lime.gl.GL.lineWidth( finger_size*0.02 );
+
         main = _main;
 
     	distance = Luxe.screen.h*0.3;
+        field_distance = distance+(distance*0.2);        
+
     	finger_size = Luxe.screen.h*0.13;
+        finger_offset = finger_size*0.6;
+        drag_center_size = distance*0.18;
+
+        shoot_power = distance*2.5;
+
+        timesize = distance*2.5;
     	min_length = sqrt2 * distance;
-    	center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);        
+    	center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
 
         player_bullets = new Pool<Sprite>(20,
             function(index,total){
@@ -81,7 +108,16 @@ class Stage1Level1 extends State {
                     size : new Vector(finger_size*0.14, finger_size*0.14),
                     color : new Color(1,1,1,1),
                 });
+
+                var old_geom =  _s.geometry;
+                _s.geometry = Luxe.draw.circle({
+                    r: finger_size*0.09,
+                    x:0, y:0, depth:0.5
+                });
+
+                _s.color = _s.geometry.color = new Color(1,1,1,1);
                 _s.visible = false;
+
                 var _p = _s.add( Projectile, 'projectile', this );
                     _p.bullettype = 'player';
                 return _s;
@@ -92,7 +128,8 @@ class Stage1Level1 extends State {
             function(index,total){
                 var _s = Luxe.draw.ring({
                     x : center.x, y : center.y,
-                    r : (distance / (total+1)) * (index+1),
+                    r : ((distance / (total+3)) * (index+3)),
+                    depth:0.5,
                     color : new Color(0,0,0,0.1).rgb(0xf6007b)
                 });
                 return _s;
@@ -117,11 +154,21 @@ class Stage1Level1 extends State {
     	player_enemies = new Pool<Sprite>(10,
     		function(index,total){
     			var _s = new Sprite({
+                    name:"enemy" + index,
     				size : new Vector(finger_size*0.6, finger_size*0.6),
     				color : new Color(0.6,0.1,0,1),
     			});
-    			// _s.rotation_z = Math.round(360*Math.random());
+    			var old_geom =  _s.geometry;
+                _s.geometry = Luxe.draw.circle({
+                    r: finger_size*0.3,
+                    x:0, y:0,
+                    depth:6
+                });
+
+                _s.color = _s.geometry.color = new Color(0.6,0.1,0,1);
     			_s.visible = false;
+
+                old_geom.drop();
     			var _e = _s.add( Enemy, 'enemy', this );
     			return _s;
     		}
@@ -134,7 +181,8 @@ class Stage1Level1 extends State {
     			pos : new Vector(30+(i*40), 30),
     			size : new Vector(26,26),
     			color : new Color(1, 0.3, 0.1, 1),
-                rotation_z : _main.rot
+                rotation_z : _main.rot,
+                depth:0.5
     		}));
 
     	} //for 3 health blobs
@@ -146,50 +194,97 @@ class Stage1Level1 extends State {
 
     	dest = Luxe.draw.ring({
     		x : center.x, y:center.y,
-    		r : 10,
-    		color : new Color(0.3,0.5,0.8,0)
+    		r : finger_size*0.1,
+    		color : new Color(0.3,0.5,0.8,0),
+            depth:0.5
     	});
-    	offset = Luxe.draw.ring({
+    	dest = Luxe.draw.ring({
     		x : center.x, y:center.y,
-    		r : 8,
-    		color : new Color(0.8,0.5,0.2,0)
+    		r : finger_size*0.2,
+    		color : new Color(0.2,0.5,1,0),
+            depth:0.5
     	});
     	power = Luxe.draw.line({
     		p0 : new Vector(), p1: new Vector(),
-    		color : new Color(0.1,0.5,1,1)
+    		color : new Color(0.1,0.5,1,0),
+            depth:0.5
     	});
     	finger = Luxe.draw.ring({
-    		x : 0, y: 0, r : finger_size,
-    		color : new Color(1,1,1,0.1)
-    	});
-
-    	power.enabled = false;
+            x : 0, y: 0, r : finger_size,
+            color : new Color(1,1,1,0.1),
+            depth:0.5
+        });
 
     	var mainring = Luxe.draw.ring({
             x : center.x, y:center.y,
             r : distance,
-            color : new Color(1,1,1,0.75)
+            color : new Color(1,1,1,0.75),
+            depth : 2,
         });
 
+        var field = Luxe.draw.circle({
+            x:center.x, y:center.y, 
+            r: field_distance,
+            color : new Color().rgb(0x121212),
+            depth:0
+        });
+        
+        dragger = Luxe.draw.circle({
+            x:center.x, y:center.y, 
+            r: drag_center_size,
+            color : new Color().rgb(0x242424),
+            depth:0
+        });
+
+        dragger.color.a = 1;
+
         jumper = Luxe.draw.arc({
+            x : center.x, y:center.y,
+            r : distance*0.97,
+            color : new Color(0.2,0.5,1,1),
+            end_angle : 180, 
+            depth : 5, group : 2
+        });
+
+        aim = Luxe.draw.arc({
     		x : center.x, y:center.y,
-    		r : distance*0.97,
-    		color : new Color(0.2,0.5,1,0.5),
-            end_angle : 180
+    		r : field_distance,
+    		color : new Color(1,0.3,0.1,1),
+            end_angle : 15, 
+            depth : 5, group : 2
     	});
+
+        aim.enabled = false;
+
+        Luxe.addGroup(2, 
+            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.05 ); },
+            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.02 ); }
+        );
 
     	mainring.locked = true;
 
 		player = new Sprite({
 			pos: new Vector(0,0),
-			size: new Vector(64,48)
+			size: new Vector(64,48),
+            depth:6
 		});
+
+        var old_geom = player.geometry;
+        player.geometry = Luxe.draw.circle({
+            r: finger_size*0.2,
+            x:0, y:0,
+            depth:8
+        });
+
+        old_geom.drop();
+
+        player.color = player.geometry.color = new Color(1,1,1,1);
 
 		set_pos(90);
 
         jumper.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));
 
-		p1 = new Vector();		
+		p1 = new Vector();
 
         inited = true;
 
@@ -207,10 +302,13 @@ class Stage1Level1 extends State {
             kill();
             success = false;
             reset_progress();
-            power.p1 = player.pos;
-        }        
+        } else {
+            Luxe.audio.play('music', 999999);
+        }
 
-        dragging = false;
+        power.p1 = player.pos;     
+
+        unset_dragging();
         spawn_enemy();
         
         for(_h in healths) {
@@ -235,7 +333,7 @@ class Stage1Level1 extends State {
         if(success) return;
 
 		//start spawning enemies
-		var delay = (1 + Std.random(6));	
+		var delay = (3 + Std.random(3));
         Luxe.time.schedule( delay , spawn_enemy );
 
         if(!inited) return;
@@ -249,9 +347,19 @@ class Stage1Level1 extends State {
 
     public var health : Float = 3;
     public function take_damage(amount:Float) {
-
+    
         if(success) return;
-    	
+
+        Luxe.audio.play('take_damage');
+
+        player.color.tween(0.2, {r:1,g:0,b:0}).onComplete(function(){
+            player.color.tween(0.1, {r:0.2,g:0.5,b:1});
+        });
+
+        Actuate.tween(player.scale, 0.2, {x:1.3, y:1.3}).onComplete(function(){
+            Actuate.tween(player.scale, 0.1, {x:1, y:1});
+        });
+
         health -= amount;
     	if(health <= 0) {
     		health = 0;
@@ -302,6 +410,10 @@ class Stage1Level1 extends State {
 
         } //_from_win
 
+        Luxe.audio.play('die');
+        Luxe.audio.play('distant_explode');
+        Luxe.audio.play('enemy_explode');
+
     } //kill
 
     function set_pos(r) {
@@ -326,22 +438,22 @@ class Stage1Level1 extends State {
 
     public function onmousedown( e:MouseEvent ) {
         
-        if(success) return;
+        if(success) return;  
 
-		dragging = true;
+        #if !mobile
+            holding = true;
+        #end
 
-		power.p1 = e.pos;
-    		p1.x = e.pos.x;
-    		p1.y = e.pos.y;
+    	p1.x = e.pos.x; p1.y = e.pos.y;
+
+        ondrag(e.pos);
 
     } //onmousedown
 
 
-    function get_inrange(pos:Vector) {
+    function update_mode_common( pos:Vector ) {
 
         if(success) return;
-
-    	inrange = false;
 
     	var dx = pos.x - player.pos.x;
 		var dy = pos.y - player.pos.y;
@@ -351,53 +463,9 @@ class Stage1Level1 extends State {
 		range_length = _range_scale.length;
 		range_p_angle = Math.abs(player.pos.rotationTo(center));
 		range_angle = luxe.utils.Maths.wrap_angle( player.pos.rotationTo(pos) + range_p_angle, 0, 360);
+        range_o_angle = luxe.utils.Maths.wrap_angle(range_angle-45,0,90) - 45;
 
-		if((range_angle <= 45 && range_angle >=0) || (range_angle >= 315 && range_angle <= 360)) {				
-			if(range_length > min_length) {
-				range_o_angle = luxe.utils.Maths.wrap_angle(range_angle-45,0,90) - 45;
-				inrange = true;
-			} //if far enough away
-		} //if within angle
-
-		if(range_angle >= 90 && range_angle <= 270) {
-			
-    		var d = Vector.Subtract(p1,player.pos);
-    		var p = d.length;
-    		
-    		if(p < (finger_size*0.7)) {
-    			p = (finger_size*0.7);
-    			player.color.r = 1;
-    			player.color.g = 1;
-    			player.color.b = 1;
-    			shoot_range = false;
-    			shoot_power = 0;
-                Luxe.timescale = 1;
-    		} else {
-    			player.color.r = 0.2;
-    			player.color.g = 0.5;
-    			player.color.b = 1;
-    			shoot_power = p * 1.5;
-    			shoot_range = true;
-                if(dragging) {
-
-                    var slowp = 1.0 - (p/(finger_size*4));
-                    if(slowp < 0.06) slowp = 0.06;
-                    
-                        Luxe.timescale = slowp;
-
-                } else {
-                    if(Luxe.timescale != 1) { Luxe.timescale = 1; }
-                }
-    		} //else
-
-		} else {
-			if(shoot_range) {
-				player.color.tween(0.3, {a:1});
-			}
-			shoot_range = false;
-		}
-
-    } //get_inrange
+    } //update_mode_common
 
     var p1 : Vector;
 
@@ -405,51 +473,53 @@ class Stage1Level1 extends State {
         
         if(success) return;
 
-    	if(dragging) {
-    		dragging = false;
-            if(Luxe.timescale != 1) { Luxe.timescale = 1; }
-        } 		
+        holding = false;
+        p1.x = e.pos.x; p1.y = e.pos.y;        
+
+        var last_play_mode = playmode;
+
+    	unset_dragging();            
+
+        if(Luxe.timescale != default_timescale) { Luxe.timescale = default_timescale; }
+
+        switch(last_play_mode) {
+            case PlayMode.move: 
+                move_player( rotation, range_o_angle );
+            case PlayMode.shoot:
+                shoot();
+            default:
+        }
+
+        return;
     		
-    		get_inrange(e.pos);
-
-    		dest.color.tween(1, {a:0}, true);
-            offset.color.tween(1, {a:0}, true);
-    		jumper.color.tween(1, {a:0.5}, true);
-
-    		player.color.r = 1;
-			player.color.g = 1;
-			player.color.b = 1;
-
-    		power.enabled = false;
-    		dhid = true;
-    		shid = true;
-
-    		if(inrange) {
-    			inrange = false;
-    				//make directly opposite 0 and far left -45 and far right 45
-				move_player( rotation, range_o_angle );
-    		}
-
-    		if(shoot_range) {
-    			shoot_range = false;
-    			shoot();
-    		}
-
-    	power.p1 = e.pos;
-    		p1.x = e.pos.x;
-    		p1.y = e.pos.y;
-
     } //onmouseup
 
+    
     function shoot() {
     	// trace("shooting at " + range_angle + ' with power ' + Vector.Subtract(p1,player.pos).length );
-        if(success) return;
+        if(success) return; 
+
+        var now = haxe.Timer.stamp();            
+        if(now >= shoot_time) {
+            shoot_time = now + 0.4;                
+        } else {
+            return;
+        }
+
     	if(shoot_power > 0) {
-    		var b = player_bullets.get();
+
+            Luxe.audio.play('shoot2');
+
+            var b = player_bullets.get();
+
 	    		b.pos.x = player.pos.x;
 	    		b.pos.y = player.pos.y;
-	    		var d = Vector.Subtract(p1,player.pos);    		
+
+	    		// var d = Vector.Subtract(p1,player.pos);
+                //if shooting inverted, its other way around
+                var d = Vector.Subtract(player.pos, p1);
 	    		b.get('projectile').live( d.inverted.normalized.multiplyScalar(shoot_power) );
+
 	    }
 
     }
@@ -458,18 +528,25 @@ class Stage1Level1 extends State {
 
         if(success) return;
 
+        Luxe.audio.play('jump');
+
     	player.color.tween(0.1, {a:0}, true).onComplete(function(){
-    		
+
+            power.color.tween(0.1, {a:1}, true).onComplete(function(){
+                power.color.tween(0.1, {a:0.2}, true).onComplete(function(){
+                    power.color.tween(0.6, {a:0}, true);
+                });
+            });
+
     		var _opp_side = angle_player + 180;
-    			dest.pos.x = __x( _opp_side );
-    			dest.pos.y = __y( _opp_side );
     		var _opp_off = _opp_side + (angle_opp*2);
-    			offset.pos.x = __x( _opp_off );
-    			offset.pos.y = __y( _opp_off );
+    			dest.pos.x = __x( _opp_off );
+    			dest.pos.y = __y( _opp_off );
 
     		var _final_angle = luxe.utils.Maths.wrap_angle( _opp_off, 0, 360);
-    		
-    			set_pos(_final_angle);
+    		  
+                power.p1 = player.pos.clone();
+    			set_pos(_final_angle);                   
 
 	    		player.color.a = 1;
                 Luxe.camera.shake(1.4);
@@ -480,20 +557,42 @@ class Stage1Level1 extends State {
 
     } //move_player
 
+    public function ontouchbegin( e:TouchEvent ) {
+        holding = true;
+    }
+    public function ontouchend( e:TouchEvent ) {
+        holding = false;
+    }
+
     public function ontouchmove( e:TouchEvent ) {
         if(!inited) return;
-        if(success) return;
+        if(success) return;        
     	ondrag( e.pos );
     }
 
     public function onmousemove( e:TouchEvent ) {
         if(!inited) return;
-        if(success) return;
+        if(success) return;        
     	ondrag( e.pos );
     }
 
     var progress : Int = 0;
     var success : Bool = false;
+
+    public function lose_progress() {
+        
+        if(progress == 0) {
+            return;
+        }
+
+        progress--;
+        progress_bars.index--;
+        var b = progress_bars.get();
+        b.color.tween( 0.2, {a:0.1}, true );
+
+        progress_bars.index--;
+
+    }
 
     public function kill_enemy() {
 
@@ -506,71 +605,228 @@ class Stage1Level1 extends State {
 
         if(progress == 10) {
             success = true;
+            Luxe.timescale = 0.1;
             kill(true);
-            main.show_end('stage1.level1');
+            Luxe.time.schedule(0.5, function(){                
+                Luxe.timescale = 1;                
+                Luxe.time.schedule(0.5, function(){
+                    main.show_end('stage1.level1');
+                });                
+            });
         }
 
     } //kill_enemy
 
-    public function ondrag( pos:Vector ) {
+    var draggable : Bool = false;
+    var holding : Bool = false;
 
-        if(success) return;
-    	
-    	power.p1 = pos;
-    		p1.x = pos.x;
-    		p1.y = pos.y;
+    function check_draggable(p:Float) {
+        if(p <= (finger_size*2) && holding) {
+            draggable = true;            
+        } else {
+            draggable = false;
+        }
+    }
 
-    	var pre_in = inrange;
-    	var pre_shoot = shoot_range;
+    function set_dragging() {
+        dragger.color.a = 1;
+        dragging = true;
+    }
 
-    	get_inrange(pos);
+    function unset_dragging() {
 
-    	if(pre_in && !inrange) {
-    		dhid = true;
-			dest.color.tween(0.5, {a:0}, true);
-            offset.color.tween(0.5, {a:0}, true);
-			jumper.color.tween(0.5, {a:0.5}, true);
-    	}
+        // dragger.color.a = 0.5;
+        dragging = false;
 
-    	if(pre_shoot && !shoot_range) {
-    		shid = true;
-    		power.enabled = false;
-    	}
+        unset_mode_all();
+    }
 
-    	if(inrange) {
+    function set_mode_move() {
+        
+        if(playmode == PlayMode.move) return;
 
-    		if(dhid) {
-    			dhid = false;
-    			dest.color.tween(0.2, {a:0.2}, true);
-                offset.color.tween(0.2, {a:1}, true);
-    			jumper.color.tween(0.2, {a:1}, true);
-    		}
+        unset_mode_shoot();
 
-    		var _opp_side = rotation + 180;
-    			dest.pos.x = __x( _opp_side );
-    			dest.pos.y = __y( _opp_side );
-    		var _opp_off = _opp_side + (range_o_angle*2);
-    			offset.pos.x = __x( _opp_off );
-    			offset.pos.y = __y( _opp_off );            
+        playmode = PlayMode.move;
+        
+        dragger.color.r = 0.2; 
+        dragger.color.g = 0.5; 
+        dragger.color.b = 1;
 
-    	} //dragging && in_range
+        player.color.r = 0.2;
+        player.color.g = 0.5;
+        player.color.b = 1;
 
+        dest.color.tween(0.2, {a:1}, true);
+        jumper.color.tween(0.2, {a:1}, true);
+    }
+    
+    function unset_mode_move() {
+        
+        if(playmode != PlayMode.move) return;
 
-    	if(shoot_range) {
-    		
-    		if(shid) {
-    		    shid = false;
-    			power.enabled = true;
-    		}
-    		
-    	}
+        set_mode_none();
+
+        dest.color.tween(0.5, {a:0}, true);
+        jumper.color.tween(0.5, {a:0.4}, true);
+
+    }
+
+    function unset_mode_all() {
+        unset_mode_move();
+        unset_mode_shoot();
+        set_mode_none();       
+    }
+
+    function set_mode_none() {    
+        playmode = PlayMode.none; 
+
+        dragger.color.r = 0.1411; 
+        dragger.color.g = 0.1411; 
+        dragger.color.b = 0.1411;
+        
+        player.color.r = 1;
+        player.color.g = 1;
+        player.color.b = 1;
+    }
+
+    function set_mode_shoot() {
+
+        if(playmode == PlayMode.shoot) return;
+
+        unset_mode_move();
+
+        playmode = PlayMode.shoot;
+
+        dragger.color.r = 1;
+        dragger.color.g = 0.3;
+        dragger.color.b = 0.1;
+
+        player.color.r = 1;
+        player.color.g = 0.3;
+        player.color.b = 0.1;
+
+    }
+
+    function unset_mode_shoot() {
+
+        if(playmode != PlayMode.shoot) return;
+
+        set_mode_none();
+
+        // aim.color.tween(0.3, {a:0}, true );
+    }
+
+    function update_mode_move(pos:Vector) {
+
+            //in range for moving    
+        var range_spread : Float = 44;
+
+        var _opp_side = rotation + 180;
+        var _opp_off = _opp_side + (range_o_angle * 2);
+            dest.pos.x = __x( _opp_off );
+            dest.pos.y = __y( _opp_off );
+
+    }
+
+    function update_mode_shoot(pos:Vector) {
+
+        // aim.pos = pos.clone().add(Vector.Subtract(pos,player.pos).normalized.multiply(new Vector(finger_offset, finger_offset)));
+        // aim.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad((aim.pos.rotationTo(player.pos)+90)) ));        
+            //get the point on the circle the player is aiming at
+        // aim.rotation.setFromEuler( new Vector(0,0,luxe.utils.Maths.degToRad( p1.rotationTo(player.pos)+90 )) );
+
+        var range_spread : Float = 90;
+
+        if((range_angle <= range_spread && range_angle >=0) || (range_angle >= (360-range_spread) && range_angle <= 360)) {             
+            set_shoot_inrange();
+        } else { //if within angle
+            unset_shoot_inrange();
+        }
+    }
+
+    var playmode : PlayMode;
+
+    public function ondrag( pos:Vector ) {        
+
+            //update the target
+        p1.x = pos.x; p1.y = pos.y;
+            //know where the mouse is in relation to the center
+        var d = Vector.Subtract(pos,center);
+        var d1 = Vector.Subtract(pos,player.pos);
+
+        var drag_distance = d.length;
+        var drag_distance_from_player = d1.length;
+
+        var inside_field = drag_distance <= field_distance;
+
+            //not already dragging?
+        if(!dragging) {            
+
+            check_draggable(drag_distance_from_player);
+
+                //now if we have since changed to draggable
+            if(draggable) {
+                set_dragging();
+            } 
+
+        } else { //!dragging
+            
+            //if we are dragging?
+
+                //update the colors on the center piece
+            if(inside_field) {
+
+                // trace(range_angle);
+
+                    //inside the ring = moving
+                var range_spread : Float = 44;
+                var _moveable = false;
+                if((range_angle <= range_spread && range_angle >=0) || (range_angle >= (360-range_spread) && range_angle <= 360)) {  
+                    _moveable = true;
+                }
+
+                if(drag_distance_from_player > (finger_size) && _moveable) {
+                    set_mode_move();
+                } else {
+                    unset_mode_move();
+                }
+
+            } //inside_field            
+
+        } //dragging
+
+        if(!inside_field && holding) {
+                //outside the ring = shooting
+            set_mode_shoot();
+        } else {
+            unset_mode_shoot();
+        }
+
+        if(playmode != PlayMode.none) {
+
+            var slowp = 1.0 - (drag_distance_from_player/(timesize));
+            if(slowp < 0.06) slowp = 0.06;
+            
+                Luxe.timescale = slowp;
+
+        } else {
+            if(Luxe.timescale != default_timescale) { Luxe.timescale = default_timescale; }
+        }
+
+        update_mode_common( pos );
+
+        switch(playmode) {
+            case move:
+                update_mode_move( pos );
+            case shoot:
+                update_mode_shoot( pos );
+            default:
+        }
 
     } //ondrag
 
-  
-
     public function update(dt:Float) {
-        
     } //update
 
 } //Stage1Level1

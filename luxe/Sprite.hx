@@ -41,7 +41,7 @@ typedef SpriteOptions = {
 
 class Sprite extends Entity {
 
-    @:isVar public var geometry     (default,default)   : QuadGeometry;
+    @:isVar public var geometry     (default,default)   : Geometry;
     @:isVar public var locked       (default,set    )   : Bool = false;
     @:isVar public var texture      (default,set    )   : Texture;
     @:isVar public var shader       (default,set    )   : Shader;
@@ -282,7 +282,8 @@ class Sprite extends Entity {
     private function set_flipy(_v:Bool) {        
 
         if(geometry != null) {
-            geometry.flipy = _v;
+            var _geometry:QuadGeometry = cast geometry;
+                _geometry.flipy = _v;
         }
 
         return flipy = _v;
@@ -292,7 +293,8 @@ class Sprite extends Entity {
     private function set_flipx(_v:Bool) {        
 
         if(geometry != null) {
-            geometry.flipx = _v;
+            var _geometry:QuadGeometry = cast geometry;
+                _geometry.flipx = _v;
         }
 
         return flipx = _v;
@@ -326,14 +328,10 @@ class Sprite extends Entity {
 //Color properties
 
     private function set_color(_c:Color) {
-            //careful
-        if(color == null) {
-            return color = _c;
-        }
-            //careful
-        if(geometry != null) {
+
+        if(color != null && geometry != null) {
             geometry.color = _c;
-        } //geometry != null
+        } 
 
         return color = _c;
 
@@ -472,7 +470,8 @@ class Sprite extends Entity {
             //if explicitly set
         if(geometry != null) {
 
-            geometry.resize( new Vector( _v.x, _v.y ) );            
+            var _geometry:QuadGeometry = cast geometry;
+                _geometry.resize( new Vector( _v.x, _v.y ) );            
                 
                 //If the user doesn't specify a custom origin, we try and work with the center
             if(!_has_custom_origin) {
@@ -504,7 +503,8 @@ class Sprite extends Entity {
     private function set_uv(_uv:Rectangle) : Rectangle {
 
         if(geometry != null) {
-            geometry.uv(_uv);
+            var _geometry:QuadGeometry = cast geometry;
+                _geometry.uv(_uv);
         }
         return uv = _uv;
     } 

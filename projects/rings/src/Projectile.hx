@@ -33,13 +33,16 @@ class Projectile extends Component {
 			s.scale.x = 1;
 			s.scale.y = 1;
 
-		spawn_protect = 1.5;
+		spawn_protect = 0.8;
 		alive_time = 0;
 		stage.projectiles.push(this);
 
 	}
 
 	public function kill(remove:Bool = true) {
+
+
+		Luxe.audio.play('distant_explode');	
 
 		var s:Sprite = cast entity;
 			alive = false;
@@ -65,16 +68,18 @@ class Projectile extends Component {
 		pos = pos.clone().add( Vector.Multiply(vel,dt) );
 
 		if( !Luxe.screen.point_inside( pos ) ) {			
-			kill();
+			kill();			
 			if(bullettype == 'player') {
-				stage.reset_progress();
+				stage.lose_progress();
+				stage.lose_progress();
+				stage.lose_progress();
 			}			
 		}
 		
 		if(bullettype == 'player') {
 			for(enemy in stage.enemies) {
 				var s : Sprite = cast enemy.entity;
-				var r = (stage.finger_size*0.3);
+				var r = (stage.finger_size*0.39);
 					var dx = s.pos.x - pos.x;
 					var dy = s.pos.y - pos.y;
 						test.set(dx,dy);
@@ -87,7 +92,7 @@ class Projectile extends Component {
 		} //player
 
 		if(bullettype == 'enemy') {
-			if(alive_time > 13) {
+			if(alive_time > 15) {
 				kill();
 			}
 		}
@@ -96,7 +101,9 @@ class Projectile extends Component {
 			var dx = stage.player.pos.x - pos.x;
 			var dy = stage.player.pos.y - pos.y;
 				test.set(dx,dy);
-			if(test.length < 48) {
+			var _fs : Float = (bullettype == 'enemy') ? 0.27 : 0.32;
+			var s = stage.finger_size * _fs;
+			if(test.length < (s)) {
 				stage.take_damage(1);				
 				kill();
 			}

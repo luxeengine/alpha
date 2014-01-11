@@ -30,8 +30,9 @@ class Enemy extends Component {
 
 		test = new Vector();
 
-    	shoot_speed = 40 + (Math.random() * 30);
-    	fire_rate = 1.5 + (Math.random() * 2);
+    	shoot_speed = 30 + (Math.random() * 40);
+    	fire_rate = 0.4 + (Math.random() * 2);
+    	next_fire = 0.5;
 
 	} //init
 
@@ -54,6 +55,7 @@ class Enemy extends Component {
 	}
 
 	public function fire() {
+		Luxe.audio.play('shoot');
 		var b = stage.enemy_bullets.get();
 			b.pos.x = pos.x;
 	    	b.pos.y = pos.y;
@@ -61,12 +63,18 @@ class Enemy extends Component {
 	    	b.get('projectile').live( d.inverted.normalized.multiplyScalar(shoot_speed) );
 	}
 
-	public function kill(remove:Bool = true) {		
+	public function kill(remove:Bool = true) {	
+
+		Luxe.audio.play('enemy_explode');	
+
 		var s:Sprite = cast entity;
-			Actuate.tween(s.scale, 0.1, {x:3,y:3});
-			s.color.tween(0.1, {a:0}).onComplete(function(){
+			
+			Actuate.tween(s.scale, 0.2, {x:3,y:3});
+
+			s.color.tween( 0.1, { a:0 }).timescale().onComplete(function(){
 				s.visible = false;
 			});
+
 			alive = false;
 			if(remove) {
 				stage.enemies.remove(this);
@@ -105,7 +113,10 @@ class Enemy extends Component {
 		// }).reflect().repeat();
 
 		stage.enemies.push(this);
-		haxe.Timer.delay(do_fire, Std.int((1+fire_rate)*1000) );
+		next_fire = 0.5;
+		alive_time = 0;
+
+		// haxe.Timer.delay(do_fire, Std.int((3+fire_rate)*1000) );
 	}
 
 		//shoot?
@@ -139,6 +150,7 @@ class Enemy extends Component {
 		if(!alive) return;
 
 		alive_time += dt;
+
 		if(alive_time > next_fire) {
 			do_fire();
 		}
@@ -148,7 +160,7 @@ class Enemy extends Component {
 		var dx = stage.player.pos.x - pos.x;
 		var dy = stage.player.pos.y - pos.y;
 			test.set(dx,dy);
-		if(test.length < 48) {
+		if(test.length < (stage.finger_size*0.3) ) {
 			stage.take_damage(1);
 			kill();
 		}

@@ -32,17 +32,28 @@ class Main extends luxe.Game {
 
         states.init();
 
+        Luxe.audio.create('music', 'assets/UMBRA_ANDRIO.ogg', true);
+        Luxe.audio.create('distant_explode', 'assets/distant_explode.ogg');
+        Luxe.audio.create('enemy_explode', 'assets/enemy_explode.ogg');
+        Luxe.audio.create('take_damage', 'assets/take_damage.ogg');        
+        Luxe.audio.create('die', 'assets/die.ogg');      
+        Luxe.audio.create('jump', 'assets/jump.ogg');      
+        Luxe.audio.create('shoot', 'assets/shoot.ogg');
+        Luxe.audio.create('shoot2', 'assets/shoot2.ogg');
+
             //create the geometries
         left_geom = Luxe.draw.box({
             x:0,               y:-Luxe.screen.h, 
             w:Luxe.screen.w/4, h:Luxe.screen.h,
-            color: new Color(0,0,0,1).rgb(0x141615)
+            color: new Color(0,0,0,1).rgb(0x141615),
+            depth:10
         });
 
         right_geom = Luxe.draw.box({
             x:Luxe.screen.w*0.75, y:Luxe.screen.h*2, 
             w:Luxe.screen.w/4, h:Luxe.screen.h,
-            color: new Color(0,0,0,1).rgb(0xfafeff)
+            color: new Color(0,0,0,1).rgb(0xfafeff),
+            depth:10
         });
 
 
@@ -63,7 +74,8 @@ class Main extends luxe.Game {
             size : new Vector(),
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
             rotation_z : -(90-rot),
-            color : new Color(1,1,1,0)
+            color : new Color(1,1,1,0),
+            depth:10
         });
 
         show_start('stage1.level1');
@@ -80,7 +92,8 @@ class Main extends luxe.Game {
             texture : Luxe.loadTexture('assets/stage_text/'+_level+'.png'),
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
             rotation_z : -(90-rot),
-            color : new Color(1,1,1,0)
+            color : new Color(1,1,1,0),
+            depth:10
         });
 
         Actuate.tween( left_geom.pos, 0.3, { y:0 } );
@@ -89,7 +102,7 @@ class Main extends luxe.Game {
             next_tap = function(){ 
                 hide_start(50, function(){
                     states.set('stage1.level1');
-                });            
+                });      
             }
         });
 
@@ -105,7 +118,8 @@ class Main extends luxe.Game {
             texture : Luxe.loadTexture('assets/stage_text/'+_level+'.end.png'),
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
             rotation_z : -(90-rot),
-            color : new Color(1,1,1,0)
+            color : new Color(1,1,1,0),
+            depth:10
         });
 
         Actuate.tween( left_geom.pos, 0.3, { y:0 } );
@@ -129,6 +143,14 @@ class Main extends luxe.Game {
             });
             Actuate.tween( right_geom.pos, 0.3, { y:Luxe.screen.h*2 }, true );
         });
+    }
+
+    public function ontouchend(e:TouchEvent) {
+        states.ontouchend(e);
+    }
+    
+    public function ontouchbegin(e:TouchEvent) {
+        states.ontouchbegin(e);
     }
 
     public function ontouchmove(e:TouchEvent) {

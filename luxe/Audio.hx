@@ -20,10 +20,10 @@ class Audio {
         core.lime.audio.create(_name, _file, _forcemusic);
     }
 
-    public function play(_name:String) {
+    public function play(_name:String, ?_loops:Int=0, ?_start:Float = 0) {
         var s = core.lime.audio.get(_name);
         if(s != null) {
-            s.play();
+            s.play( _loops , _start );
         } else {
             trace('Audio :: Sound does not exist, use Luxe.audio.create() first : ' + _name);
         }

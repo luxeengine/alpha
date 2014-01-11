@@ -480,7 +480,7 @@ class Geometry {
 	public function set_color(val : Color) : Color {
 
 		for(v in vertices) {
-			v.color = val.clone();
+			v.color = val;
 		} //for each vertex
 
 		return color = val;
