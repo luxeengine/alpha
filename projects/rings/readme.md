@@ -1,9 +1,9 @@
 Controls:
 
-Drag from the player to move (can only move to the blue arc!)
-Drag outside the dark circle to shoot
+Drag from the player to move (can only move to the blue arc!)   
+Drag outside the dark circle to shoot   
 
-Dragging slows down time based on how far away you are from the player
+Dragging slows down time based on how far away you are from the player   
 
 &nbsp;
 
