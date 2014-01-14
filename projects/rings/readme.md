@@ -5,10 +5,11 @@ Drag outside the dark circle to shoot
 
 Dragging slows down time based on how far away you are from the player
 
+&nbsp;
 
-Win by killing 10 enemies
-Hit enemy = +1 score
-Miss enemy = -3 score
+Win by killing 10 enemies   
+Hit enemy = +1 score   
+Miss enemy = -3 score   
 
 0.1.17 -
 - Adding angle based direction modifier
