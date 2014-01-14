@@ -45,6 +45,7 @@ class Stage1Level1 extends State {
 	var dest : Geometry;
     var power : LineGeometry;
     var aim : ArcGeometry;
+    var aim_point : CircleGeometry;
 	var dragger : CircleGeometry;
     var finger : Geometry;
 	var jumper : Geometry;
@@ -90,7 +91,7 @@ class Stage1Level1 extends State {
         main = _main;
 
     	distance = Luxe.screen.h*0.3;
-        field_distance = distance+(distance*0.2);        
+        field_distance = distance+(distance*0.15);        
 
     	finger_size = Luxe.screen.h*0.13;
         finger_offset = finger_size*0.6;
@@ -101,6 +102,8 @@ class Stage1Level1 extends State {
         timesize = distance*2.5;
     	min_length = sqrt2 * distance;
     	center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
+
+        endpos = new Vector();
 
         player_bullets = new Pool<Sprite>(20,
             function(index,total){
@@ -155,12 +158,12 @@ class Stage1Level1 extends State {
     		function(index,total){
     			var _s = new Sprite({
                     name:"enemy" + index,
-    				size : new Vector(finger_size*0.6, finger_size*0.6),
+    				size : new Vector(finger_size*0.4, finger_size*0.4),
     				color : new Color(0.6,0.1,0,1),
     			});
     			var old_geom =  _s.geometry;
                 _s.geometry = Luxe.draw.circle({
-                    r: finger_size*0.3,
+                    r: finger_size*0.25,
                     x:0, y:0,
                     depth:6
                 });
@@ -249,15 +252,26 @@ class Stage1Level1 extends State {
         aim = Luxe.draw.arc({
     		x : center.x, y:center.y,
     		r : field_distance,
-    		color : new Color(1,0.3,0.1,1),
-            end_angle : 15, 
-            depth : 5, group : 2
+    		color : new Color(1,0.3,0.1,0),
+            start_angle : -5,
+            end_angle : 5,
+            depth : 5, group : 4
     	});
 
-        aim.enabled = false;
+        aim_point = Luxe.draw.circle({
+            x:center.x, y:center.y,
+            r : finger_size*0.05, 
+            color : new Color(1,0.3,0.1,0)
+        }); 
+
+        // aim.enabled = false;
 
         Luxe.addGroup(2, 
             function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.05 ); },
+            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.02 ); }
+        );
+        Luxe.addGroup(4, 
+            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.03 ); },
             function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.02 ); }
         );
 
@@ -442,6 +456,7 @@ class Stage1Level1 extends State {
 
         #if !mobile
             holding = true;
+            on_down(e.pos);
         #end
 
     	p1.x = e.pos.x; p1.y = e.pos.y;
@@ -482,6 +497,8 @@ class Stage1Level1 extends State {
         if(success) return;
 
         holding = false;
+        downmode = PlayMode.none;
+
         p1.x = e.pos.x; p1.y = e.pos.y;        
 
         var last_play_mode = playmode;
@@ -567,9 +584,11 @@ class Stage1Level1 extends State {
 
     public function ontouchbegin( e:TouchEvent ) {
         holding = true;
+        on_down(e.pos);
     }
     public function ontouchend( e:TouchEvent ) {
         holding = false;
+        downmode = PlayMode.none;
     }
 
     public function ontouchmove( e:TouchEvent ) {
@@ -629,15 +648,17 @@ class Stage1Level1 extends State {
     var holding : Bool = false;
 
     function check_draggable(p:Float) {
-        if(p <= (finger_size*2) && holding) {
+        if(p <= (finger_size) && holding) {
             draggable = true;            
         } else {
             draggable = false;
         }
+
+        return draggable;
     }
 
     function set_dragging() {
-        dragger.color.a = 1;
+        // dragger.color.a = 1;
         dragging = true;
     }
 
@@ -676,7 +697,7 @@ class Stage1Level1 extends State {
         set_mode_none();
 
         dest.color.tween(0.5, {a:0}, true);
-        jumper.color.tween(0.5, {a:0.4}, true);
+        // jumper.color.tween(0.5, {a:0.4}, true);
 
     }
 
@@ -714,7 +735,8 @@ class Stage1Level1 extends State {
         player.color.g = 0.3;
         player.color.b = 0.1;
 
-        // aim.color.tween(0.2, {a:1}, true );
+        aim.color.tween(0.2, {a:1}, true );
+        aim_point.color.tween(0.2, {a:1}, true );
 
     }
 
@@ -724,7 +746,9 @@ class Stage1Level1 extends State {
 
         set_mode_none();
 
-        // aim.color.tween(0.3, {a:0}, true );
+        aim.color.tween(0.5, {a:0}, true );
+        aim_point.color.tween(0.5, {a:0}, true );
+
     }
 
     function update_mode_move(pos:Vector) {
@@ -741,12 +765,40 @@ class Stage1Level1 extends State {
 
     }
 
+    var endpos : Vector;
+
+    function get_linepoint_on_arc(pos:Vector) {
+
+        var lineend = pos.clone();
+        var linestart = player.pos.clone();
+            //Calculate terms of the linear and quadratic equations
+        var M = (lineend.y - linestart.y) / (lineend.x - linestart.x);
+        var B = linestart.y - M * linestart.x;
+        var a = 1 + M*M;
+        var b = 2 * (M*B - M*center.y - center.x);
+        var c = center.x * center.x + B * B +  center.y * center.y -
+                field_distance * field_distance - 2 * B * center.y;
+
+        // solve quadratic equation
+        var sqRtTerm = Math.sqrt(b * b - 4 * a * c);
+        var __x = ((-b) + sqRtTerm)/(2*a);
+        // make sure we have the correct root for our line segment
+        if ((__x < linestart.x) || (__x > lineend.x)){ __x = ((-b) - sqRtTerm)/(2*a); }
+        //solve for the y-component
+        var __y = M * __x + B;
+        // Intersection Calculated
+        endpos.x = __x;
+        endpos.y = __y;
+    }
+
     function update_mode_shoot(pos:Vector) {
 
         // aim.pos = pos.clone().add(Vector.Subtract(pos,player.pos).normalized.multiply(new Vector(finger_offset, finger_offset)));
+        get_linepoint_on_arc(pos);
         // aim.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad((aim.pos.rotationTo(player.pos)+90)) ));        
             //get the point on the circle the player is aiming at
-        // aim.rotation.setFromEuler( new Vector(0,0,luxe.utils.Maths.degToRad( p1.rotationTo(player.pos)+90 )) );
+        aim.rotation.setFromEuler( new Vector(0,0,luxe.utils.Maths.degToRad( endpos.rotationTo(center)+90 )) );
+        aim_point.pos = endpos;
 
         var range_spread : Float = 90;
 
@@ -758,43 +810,57 @@ class Stage1Level1 extends State {
     }
 
     var playmode : PlayMode;
+    var downmode : PlayMode;
+
+    public function on_down( pos:Vector ) {
+
+        var d = Vector.Subtract(pos,center);
+        var d1 = Vector.Subtract(pos,player.pos);
+
+        var down_distance = d.length;
+        var down_distance_from_player = d1.length;
+        var inside_field = down_distance <= field_distance;
+        var inside_player = down_distance_from_player <= finger_size;
+
+        downmode = PlayMode.none;
+
+        if(inside_player) {
+            downmode = PlayMode.move;
+        } else if(!inside_field) {
+            downmode = PlayMode.shoot;
+        }
+
+    } //on_down
+
+    var move_spread : Float = 44;
 
     public function ondrag( pos:Vector ) {        
 
             //update the target
         p1.x = pos.x; p1.y = pos.y;
             //know where the mouse is in relation to the center
-        var d = Vector.Subtract(pos,center);
-        var d1 = Vector.Subtract(pos,player.pos);
+        var d = Vector.Subtract(pos,player.pos);
+        var drag_distance_from_player = d.length;
 
-        var drag_distance = d.length;
-        var drag_distance_from_player = d1.length;
 
-        var inside_field = drag_distance <= field_distance;
+            //only care about changes to modes we are in, dragging is true when moving the player
+        if(!dragging) {
 
-            //not already dragging?
-        if(!dragging) {            
+            if(downmode == PlayMode.move) {
 
-            check_draggable(drag_distance_from_player);
+                if(check_draggable(drag_distance_from_player)) {
+                    set_dragging();
+                }
 
-                //now if we have since changed to draggable
-            if(draggable) {
-                set_dragging();
-            } 
+            } //move
 
-        } else { //!dragging
-            
-            //if we are dragging?
+        } else { //not/w dragging
 
-                //update the colors on the center piece
-            if(inside_field) {
+                //if we are not dragging, we update the modes
+            if(downmode == PlayMode.move) {
 
-                // trace(range_angle);
-
-                    //inside the ring = moving
-                var range_spread : Float = 44;
                 var _moveable = false;
-                if((range_angle <= range_spread && range_angle >=0) || (range_angle >= (360-range_spread) && range_angle <= 360)) {  
+                if((range_angle <= move_spread && range_angle >=0) || (range_angle >= (360-move_spread) && range_angle <= 360)) {  
                     _moveable = true;
                 }
 
@@ -804,16 +870,20 @@ class Stage1Level1 extends State {
                     unset_mode_move();
                 }
 
-            } //inside_field            
+            } //move
 
-        } //dragging
+        } //!dragging
 
-        if(!inside_field && holding) {
+        if(downmode == PlayMode.shoot) {
+
                 //outside the ring = shooting
-            set_mode_shoot();
-        } else {
-            unset_mode_shoot();
-        }
+            if(holding) {                        
+                set_mode_shoot();
+            } else {
+                unset_mode_shoot();
+            }
+
+        } //shoot
 
         if(playmode != PlayMode.none) {
 
@@ -904,6 +974,7 @@ class Stage1Level1 extends State {
   
 
     public function update(dt:Float) {
+
     } //update
 
 } //Stage1Level1

@@ -87,6 +87,8 @@ class Main extends luxe.Game {
         text.destroy();
         text = null;
 
+        trace("_level : " + _level);
+
         text = new Sprite({
             no_scene : true,
             texture : Luxe.loadTexture('assets/stage_text/'+_level+'.png'),

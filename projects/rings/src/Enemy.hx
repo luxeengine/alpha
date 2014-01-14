@@ -96,12 +96,12 @@ class Enemy extends Component {
 		var _opp_side = stage.rotation + 180;
     	var _opp_off = luxe.utils.Maths.wrap_angle(_opp_side + (_angle_opp*2), 0, 360);
 
-		spawnpos = _opp_off; 
+		spawnpos = _opp_off;
 		destpos = luxe.utils.Maths.wrap_angle(_opp_off + _opp_side, 0, 360);
 		curr_dest = destpos;
 		destdir = ((destpos - spawnpos) > 0) ? 1 : -1;
 
-		speed = 10 + (Math.round(Math.random()*10));
+		speed = 15 + (Math.round(Math.random()*10));
 
 		pos = new Vector( stage.__x(spawnpos), stage.__y(spawnpos) );
 

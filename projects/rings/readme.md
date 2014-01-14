@@ -1,13 +1,22 @@
 Controls:
 
-Drag/tap inside the dark circle, to move (blue arc only)
-Drag/tap outside the dark circle to shoot
+Drag from the player to move (can only move to the blue arc!)
+Drag outside the dark circle to shoot
 
-Drag to slow down time
+Dragging slows down time based on how far away you are from the player
+
 
 Win by killing 10 enemies
 Hit enemy = +1 score
 Miss enemy = -3 score
+
+0.1.17 -
+- Adding angle based direction modifier
+- Fixing logic flaw where move could be initiated from a shoot start
+- Tweaked enemy size and speed a bit for no reason
+
+0.1.16 -
+- Fixing accidental shooting when moving. When you initiate a move that's the only option because it's explicit
 
 0.1.15 -
 - Changed controls around AGAIN!!
