@@ -102,11 +102,13 @@ class Skin {
 		texture = Luxe.loadTexture(_texture);
 
 		if(template.board != null) {
+
 			offset.x = parse_value(template.board.offsetx);
 			offset.y = parse_value(template.board.offsety);
 
  			board.baseleft += Std.int(offset.x);
-        	board.basetop += Std.int(offset.y);        
+        	board.basetop += Std.int(offset.y);
+        	       
 		}
 
 

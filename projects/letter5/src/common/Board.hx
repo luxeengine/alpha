@@ -16,8 +16,8 @@ class Board {
 	public var game : Main;
 	public var skin : Skin;	
 		//the grid width and height
-	public var w : Int = 6;
-	public var h : Int = 6;
+	public var w : Int = 2;
+	public var h : Int = 2;
     	//the offset in the main view
     public var offsetx : Int = 0;
     public var offsety : Int = 0;
@@ -29,6 +29,7 @@ class Board {
     public var blockh : Float = 100; 
     	//the space between blocks in this board
     public var spacing : Int = 0;
+    public var padding : Int = 8;
     	//the actual width
     public var width : Int = 0;
     public var height : Int = 0;
@@ -59,8 +60,6 @@ class Board {
 		
 		game = _game;
 
-		_debug_geometry = [];
-
 		if(options == null) options = {};
 		if(options.w != null) w = options.w;
 		if(options.h != null) h = options.h;
@@ -70,20 +69,7 @@ class Board {
 		if(options.offsetx != null) offsetx = options.offsetx;
 		if(options.offsety != null) offsety = options.offsety;
 
-		blocks = [];
-		cells = [];
-        selected = [];
-		rectboxes = [];
-
         touchpos = new Vector();
-
-			//calculate the offset positions
-        baseleft = Std.int(( Luxe.screen.w / 2) - ( ((blockw+spacing)*w)/2 )) + offsetx;
-        basetop = Std.int(( Luxe.screen.h / 2) - ( ((blockh+spacing)*h)/2 )) + offsety;
-
-        width = Std.int((blockw+spacing) * w);
-        height = Std.int((blockw+spacing) * h);
-
         
         delta_time_text = new luxe.Text({
             color : new Color(0,0,0,1).rgb(0xf6007b),
@@ -96,6 +82,7 @@ class Board {
 	} //new 
 
     public function create_blocks() {
+
             //create cells
         for( _x in 0... w ) {
 
@@ -107,7 +94,7 @@ class Board {
                 var __x = baseleft+((_x * (blockw+spacing)));
                 var __y = basetop+((_y * (blockh+spacing)));
 
-                var c = new Cell(this, Std.int(__x), Std.int(__y));
+                var c = new Cell(this, Std.int(__x), Std.int(__y), _x, _y);
                 var b = new Block(this, Std.int(__x), Std.int(__y));
 
                 c.init();
@@ -125,6 +112,30 @@ class Board {
 
 	public function init() {
 
+        _debug_geometry = [];
+        
+        blocks = [];
+        cells = [];
+        selected = [];
+        rectboxes = [];
+        
+        var mid_s_x = Luxe.screen.w / 2;
+        var mid_s_y = Luxe.screen.h / 2;
+
+        padding = Std.int(mid_s_x * 0.02);
+
+            //calculate the best blockw and blockh
+            //take the width of the screen, fit the number of blocks in + spacing
+        blockw = Std.int( (Luxe.screen.w - (padding*2) - (w*spacing))/w );
+        blockh = blockw;
+
+            //calculate the offset positions
+        baseleft = Std.int((mid_s_x) - ( ((blockw+spacing)*w)/2 )) + offsetx;
+        basetop = Std.int((mid_s_y) - ( ((blockh+spacing)*h)/2 )) + offsety;
+
+        width = Std.int((blockw+spacing) * w);
+        height = Std.int((blockw+spacing) * h);
+
             //Load json skin file
 		var template_text = Luxe.loadText('assets/skins/default/skin.json');
             //if it's valid
@@ -136,9 +147,9 @@ class Board {
 			throw "can't find skin " + 'default';
 		} 
 
-       
             //create the UI bars
         top_ui_bar = new NineSlice({
+            name : 'top_ui_bar',
             depth : skin.top.depth,
             texture : skin.texture,
             top : skin.top.t,
@@ -155,6 +166,7 @@ class Board {
 
             //create the UI bars
         bottom_ui_bar = new NineSlice({
+            name : 'bottom_ui_bar',
             depth : skin.bottom.depth,
             texture : skin.texture,
             top : skin.bottom.t,
@@ -180,10 +192,11 @@ class Board {
             rectboxes.push(_rect_geom);
         }
 
+
         _debug_geometry.push(Luxe.draw.rectangle({
         	x: baseleft, y : basetop,
         	w : width, h : height,
-        	color : new Color(1,1,1,0.1)
+        	color : new Color(1,0.3,0.1,1)
         })); //_debug_geometry
 
 
@@ -214,6 +227,10 @@ class Board {
 		} //drop all geometry
 		
         _debug_geometry.splice(0,_debug_geometry.length);
+        rectboxes.splice(0,rectboxes.length);
+
+        cells = null;
+        blocks = null;
 
 	} //destroy
 

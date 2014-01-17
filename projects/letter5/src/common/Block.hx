@@ -21,22 +21,23 @@ class Block {
 	public var y : Int = 0;
 
 	public function new( _board:Board, _x:Int, _y:Int ) {
-		board = _board;
-		_debug_geometry = [];
+		board = _board;		
 		x = _x; y = _y;
-
 	}
 
 	public function init() {
+		
+		_debug_geometry = [];
 		
 		sprite = new Sprite({
 			name : 'block' + Math.floor(x/board.blockw) + '-' + Math.floor(y/board.blockh),
 			centered : false,
 			pos : new Vector(x,y),
-			color : new Color(1,1,1,0),
+			color : new Color(1,1,1,1),
 			size : new Vector(board.blockw, board.blockh),			
 			texture : board.skin.texture,
-			depth : 3
+			depth : 3, 
+			no_scene : true
 		});
 
 		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
@@ -49,15 +50,15 @@ class Block {
 			size : board.skin.text.h,
 			color : board.skin.text.normal_color,
 			font : board.game.font,	
-			depth : 3.1,
+			depth : 3.1
 		});
 
-		Actuate.tween(sprite.color, 2, {a:1});
-		Actuate.tween(letter.color, 3, {a:0.8}).onUpdate(function(){
-			letter.color = letter.color;
-		}).onComplete(function(){
-			// sprite.locked = true;
-		});
+		// Actuate.tween(sprite.color, 2, {a:1});
+		// Actuate.tween(letter.color, 3, {a:0.8}).onUpdate(function(){
+			// letter.color = letter.color;
+		// }).onComplete(function(){
+		// 	// sprite.locked = true;
+		// });
 
 	}
 
