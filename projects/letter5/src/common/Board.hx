@@ -16,8 +16,8 @@ class Board {
 	public var game : Main;
 	public var skin : Skin;	
 		//the grid width and height
-	public var w : Int = 2;
-	public var h : Int = 2;
+	public var w : Int = 7;
+	public var h : Int = 7;
     	//the offset in the main view
     public var offsetx : Int = 0;
     public var offsety : Int = 0;
@@ -193,11 +193,11 @@ class Board {
         }
 
 
-        _debug_geometry.push(Luxe.draw.rectangle({
-        	x: baseleft, y : basetop,
-        	w : width, h : height,
-        	color : new Color(1,0.3,0.1,1)
-        })); //_debug_geometry
+        // _debug_geometry.push(Luxe.draw.rectangle({
+        // 	x: baseleft, y : basetop,
+        // 	w : width, h : height,
+        // 	color : new Color(1,0.3,0.1,1)
+        // })); //_debug_geometry
 
 
         create_blocks();
