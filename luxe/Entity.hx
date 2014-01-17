@@ -88,7 +88,6 @@ class Entity extends Objects {
 		} //for each child
 
             //flag internally
-        // trace("entity " + name + " is setting inited to true ");
         inited = true;
 
 	} //_init
@@ -250,6 +249,11 @@ class Entity extends Objects {
 
 			//mark the flag
 		_destroyed = true;
+
+            //remove from the scene it's in if any
+        if(scene != null) {
+            scene.remove(this);
+        } 
 
 			//kill the events
         if(events != null) {
@@ -595,7 +599,6 @@ class Entity extends Objects {
         //An internal function to attach position 
         //changes to a vector, so we can listen for `pos.x` as well
     private function _attach_listener( _v : Vector, listener ) {
-        // trace('attaching listener');
         _v.listen_x = listener; 
         _v.listen_y = listener; 
         _v.listen_z = listener;

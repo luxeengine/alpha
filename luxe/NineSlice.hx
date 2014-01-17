@@ -57,11 +57,11 @@ class NineSlice extends luxe.Sprite {
         if(_options == null) {
             _options = {
                 geometry : false,
-                scene : false
+                no_scene : true
             }
         } else {
             _options.geometry = false;
-            _options.scene = false;
+            _options.no_scene = true;
         }
 
         options = _options;
@@ -352,14 +352,18 @@ class NineSlice extends luxe.Sprite {
 
     } //set_pos
 
+    var tmpd = false;
     public override function destroy( ?_ignore_internal_destroy:Bool=false ) {
 
-        if(is_set) {
+        if(!_ignore_internal_destroy) {
+            super.destroy( _ignore_internal_destroy );
+            return;
+        }
+
+        if(is_set) {            
             _geometry.drop();
         }
 
-            //clear our references to these
-        super.destroy();
     }
 
     override function set_visible(_v:Bool) {

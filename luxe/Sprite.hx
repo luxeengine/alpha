@@ -243,6 +243,7 @@ class Sprite extends Entity {
 
         if(!_ignore_internal_destroy) {
             _destroy();
+            return;
         } //_ignore_internal_destroy
 
             //drop the geometry
