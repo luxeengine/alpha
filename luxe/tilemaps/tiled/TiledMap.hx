@@ -9,6 +9,9 @@ import luxe.tilemaps.Tilemap;
 
 class TiledMap {
 
+    public var version : String = '';
+    public var background_color : String = '';
+
         //The map width in tiles
     public var width:Int;
         //The map height in tiles
@@ -70,6 +73,8 @@ class TiledMap {
 
         var root = xml.firstElement();
         
+        version = root.get("version");
+        background_color = root.get("backgroundcolor");
         width = Std.parseInt(root.get("width"));
         height = Std.parseInt(root.get("height"));
         orientation = orientation_from_string( root.get("orientation") );
@@ -134,6 +139,8 @@ class TiledMap {
 
     public function parseFromJSON( json:Dynamic ) {
 
+        version = Reflect.field(json, "version");
+        background_color = Reflect.field(json, "backgroundcolor");
         width = Std.parseInt( Reflect.field(json, "width") );
         height = Std.parseInt( Reflect.field(json, "height"));
         orientation = orientation_from_string( Reflect.field(json, "orientation") );
