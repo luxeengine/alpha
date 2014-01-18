@@ -3,111 +3,56 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
-import phoenix.Texture;
 
-
-typedef Tile = {
-    id : String,
-    row : Int,
-    col : Int
-}
-
-typedef TileArray = Array<Tile>;
-
-class Tilemap {
-
-        //array of array of tiles = 2d tiles
-    public var tiles : Array<TileArray>;
-
-    public function new() {
-        tiles = [[]];
-    } //new
-
-    public function inside( x:Int, y:Int ) : Bool {
-        
-        if(tiles.length == 0) {
-            return false;
-        }
-
-        if( y > (tiles.length-1) ) {
-            return false;
-        }
-
-        if( x > ( tiles[0].length-1 )) {
-            return false;
-        }
-
-        return true;
-
-    } //inside
-
-    public function tile_at( x:Int, y:Int ) {
-
-        if( inside(x,y) ) {
-            return tiles[y][x];          
-        } else { //if inside
-            return null;
-        }
-
-    } //tile_at
-
-} // Tilemap
-
-class Ortho extends Tilemap {
-
-    public function new( _width:Int, _height:Int ) {
-
-        super();
-
-        for(y in 0 ... _height) {
-
-            var _tilerow = [];
-
-            for(x in 0 ... _width) {
-                _tilerow.push({ 
-                    id : Luxe.utils.uniqueid(),
-                    row : y, col : x
-                });
-            } //for each column
-
-            tiles.push( _tilerow );
-
-        } //for each row
-
-    } //new
-
-} //Ortho
+import luxe.tilemaps.Ortho;
+import luxe.tilemaps.TiledOrtho;
+import luxe.tilemaps.Tilemap;
+import luxe.tilemaps.tiled.TiledMap;
 
 class Main extends luxe.Game {
-
-    // var map : TiledDisplay;
 
     public function ready() {
         
         Luxe.renderer.clear_color = new Color().rgb(0xaf663a);
 
+        var small_tiles_grid = [
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+            [29,29,29,29,29,29,29,29],
+        ];
 
-        var ortho = new Ortho(5,5); 
+            //manually create ourselves an ortho tilemap
+        var ortho = new Ortho({
+            x:0, y:20, 
+            w:8,  h:8, 
+            tile_width:16, 
+            tile_height:16
+        });
 
-        for(row in ortho.tiles) {
-            for(tile in row) {
-                trace(tile);
-            }
-        }
+            //create a tileset for the map
+        ortho.add_tileset('tiles', Luxe.loadTexture('assets/tileset.png'));
 
+            //create a layer for some tiles
+        var layer1 = ortho.add_layer('fg', 1);
+        var layer0 = ortho.add_layer('bg', 0);
 
-        // map = new TiledDisplay('assets/tiles.tmx');
+            //create some tiles from a grid
+        ortho.add_tiles_from_grid( 'bg', small_tiles_grid );
+        ortho.add_tiles_fill_by_id( 'fg', 38 );
 
-        // var _map_scale = 4;
+        new OrthoDisplay(ortho, { scale:1 });
 
-        // map.create( 0, _map_scale, FilterType.nearest );
-
-        //     //bounds is set to the tilemap size in pixels * scale
-        // Luxe.camera.bounds = new Rectangle( 0, 0, (map.tiledmap.totalWidth*_map_scale)-Luxe.screen.w, (map.tiledmap.totalHeight*_map_scale) );
+        new TiledOrtho( 'assets/tiles.tmx' );
 
     } //ready
   
     public function onkeyup(e) {
+
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
