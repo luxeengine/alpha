@@ -25,6 +25,14 @@ class Utils {
     	return UUID.get();
     }
 
+    public function base64_encode(_string:String) {
+        return Base64.encode(_string);
+    }
+
+    public function base64_decode(_string:String) {
+        return Base64.decode(_string);
+    }
+
     public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
         
         var _final : Array<String> = [];

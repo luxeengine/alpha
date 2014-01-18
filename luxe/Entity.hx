@@ -1,6 +1,9 @@
 package luxe;
 
 import luxe.Input.MouseEvent;
+import luxe.Input.KeyEvent;
+import luxe.Input.TouchEvent;
+
 import phoenix.Matrix4;
 
 import luxe.Vector;
@@ -92,6 +95,53 @@ class Entity extends Objects {
 
 	} //_init
 
+
+//Keys
+
+    @:noCompletion public function _onkeyup(e:KeyEvent) {
+
+        _debug('calling _onkeyup on ' + name, true);
+
+            //init the parent first
+        _call(this, 'onkeyup', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'onkeyup', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._onkeyup(e);
+        } //for each child
+
+    } //_onkeyup
+
+    @:noCompletion public function _onkeydown(e:KeyEvent) {
+
+        _debug('calling _onkeydown on ' + name, true);
+
+            //init the parent first
+        _call(this, 'onkeydown', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'onkeydown', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._onkeydown(e);
+        } //for each child
+
+    } //_onkeydown
+
+//Mouse
+
     @:noCompletion public function _onmousedown(e:MouseEvent) {
 
         _debug('calling _onmousedown on ' + name, true );
@@ -112,6 +162,7 @@ class Entity extends Objects {
         } //for each child
 
     } //_onmousedown
+
 
     @:noCompletion public function _onmouseup(e:MouseEvent) {
 
@@ -154,6 +205,178 @@ class Entity extends Objects {
         } //for each child
 
     } //_onmousemove
+
+//Touch
+    @:noCompletion public function _ontouchbegin(e:TouchEvent) {
+
+        _debug('calling _ontouchbegin on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ontouchbegin', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ontouchbegin', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ontouchbegin(e);
+        } //for each child
+
+    } //_ontouchbegin    
+    
+    @:noCompletion public function _ontouchend(e:TouchEvent) {
+
+        _debug('calling _ontouchend on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ontouchend', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ontouchend', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ontouchend(e);
+        } //for each child
+
+    } //_ontouchend    
+   
+    @:noCompletion public function _ontouchmove(e:TouchEvent) {
+
+        _debug('calling _ontouchmove on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ontouchmove', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ontouchmove', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ontouchmove(e);
+        } //for each child
+
+    } //_ontouchmove    
+
+//Gamepad
+    @:noCompletion public function _ongamepadaxis(e) {
+
+        _debug('calling _ongamepadaxis on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ongamepadaxis', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ongamepadaxis', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ongamepadaxis(e);
+        } //for each child
+
+    } //_ongamepadaxis   
+
+    @:noCompletion public function _ongamepadball(e) {
+
+        _debug('calling _ongamepadball on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ongamepadball', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ongamepadball', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ongamepadball(e);
+        } //for each child
+
+    } //_ongamepadball
+
+    @:noCompletion public function _ongamepadhat(e) {
+
+        _debug('calling _ongamepadhat on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ongamepadhat', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ongamepadhat', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ongamepadhat(e);
+        } //for each child
+
+    } //_ongamepadhat 
+
+    @:noCompletion public function _ongamepadbuttondown(e) {
+
+        _debug('calling _ongamepadbuttondown on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ongamepadbuttondown', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ongamepadbuttondown', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ongamepadbuttondown(e);
+        } //for each child
+
+    } //_ongamepadbuttondown    
+
+    @:noCompletion public function _ongamepadbuttonup(e) {
+
+        _debug('calling _ongamepadbuttonup on ' + name, true);
+
+            //init the parent first
+        _call(this, 'ongamepadbuttonup', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'ongamepadbuttonup', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._ongamepadbuttonup(e);
+        } //for each child
+
+    } //_ongamepadbuttonup    
+
+//Input
 
     @:noCompletion public function _oninputdown(_name:String,e:Dynamic) {
 

@@ -362,6 +362,8 @@ import phoenix.Renderer;
         if(!shutting_down) {
                 //check for named input 
             input.check_named_keys(e, true);
+                //pass to scene
+            scene.onkeydown(e);
                 //forward to debug module
             debug.onkeydown(e);
         }
@@ -379,6 +381,8 @@ import phoenix.Renderer;
         if(!shutting_down) {
                 //check for named input 
             input.check_named_keys(e);
+                //pass to scene
+            scene.onkeydown(e);            
                 //forward to debug module
             if(debug!=null)debug.onkeyup(e);
         }
@@ -460,9 +464,15 @@ import phoenix.Renderer;
          _touch_pos.set( e.x, e.y );
         e.pos = _touch_pos;
 
+        if(!shutting_down) {
+                //pass to scene
+            scene.ontouchbegin(e);
+        }
+
         if(host.ontouchbegin != null) host.ontouchbegin(e);
 
         if(touches_down == null) touches_down = new Map();
+        
         touches_down.set(e.ID, e);
 
             //3 finger tap when console opens will switch tabs
@@ -484,6 +494,11 @@ import phoenix.Renderer;
          _touch_pos.set( e.x, e.y );
         e.pos = _touch_pos;
 
+        if(!shutting_down) {
+                //pass to scene
+            scene.ontouchend(e);
+        }        
+
         if(host.ontouchend != null) host.ontouchend(e);
 
         touches_down.remove(e.ID);
@@ -493,24 +508,54 @@ import phoenix.Renderer;
         _touch_pos.set( e.x, e.y );
         e.pos = _touch_pos;
 
+        if(!shutting_down) {
+                //pass to scene
+            scene.ontouchmove(e);
+        }
+
         if(host.ontouchmove != null) host.ontouchmove(e);
         
     }
 //joystick
 
     public function ongamepadaxis(e) {
+
+        if(!shutting_down) {
+            scene.ongamepadaxis(e);
+        }
+
         if(host.ongamepadaxis != null) host.ongamepadaxis(e);
     }
     public function ongamepadball(e) {
+
+        if(!shutting_down) {
+            scene.ongamepadball(e);
+        }
+
         if(host.ongamepadball != null) host.ongamepadball(e);
     }
     public function ongamepadhat(e) {
+
+        if(!shutting_down) {
+            scene.ongamepadhat(e);
+        }
+
         if(host.ongamepadhat != null) host.ongamepadhat(e);
     }    
     public function ongamepadbuttondown(e) {
+
+        if(!shutting_down) {
+            scene.ongamepadbuttondown(e);
+        }
+
         if(host.ongamepadbuttondown != null) host.ongamepadbuttondown(e);
     }    
     public function ongamepadbuttonup(e) {
+
+        if(!shutting_down) {
+            scene.ongamepadbuttonup(e);
+        }
+        
         if(host.ongamepadbuttonup != null) host.ongamepadbuttonup(e);
     }
 

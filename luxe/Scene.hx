@@ -2,7 +2,8 @@
 package luxe;
 
 import luxe.Input.MouseEvent;
-
+import luxe.Input.KeyEvent;
+import luxe.Input.TouchEvent;
 
 class Scene extends Objects {
 
@@ -75,32 +76,87 @@ class Scene extends Objects {
         }
         trace("entities left " + Lambda.count(entities));
     }
-    
-    public function oninputdown(_name:String, e:Dynamic) {
-         for(entity in entities) {
-            entity._oninputdown(_name, e);
+
+//Keys
+    public function onkeydown(e:KeyEvent) {
+        for(entity in entities) {
+            entity._onkeydown(e);
         }
-    } //oninputdown
-    public function oninputup(_name:String, e:Dynamic) {
-         for(entity in entities) {
-            entity._oninputup(_name, e);
+    } //onkeydown
+    public function onkeyup(e:KeyEvent) {
+        for(entity in entities) {
+            entity._onkeyup(e);
         }
-    } //oninputup
+    } //onkeyup
+//Mouse
     public function onmousedown(e:MouseEvent) {
-         for(entity in entities) {
+        for(entity in entities) {
             entity._onmousedown(e);
         }
     } //onmousedown
     public function onmouseup(e:MouseEvent) {
-         for(entity in entities) {
+        for(entity in entities) {
             entity._onmouseup(e);
         }
     } //onmouseup
     public function onmousemove(e:MouseEvent) {
-         for(entity in entities) {
+        for(entity in entities) {
             entity._onmousemove(e);
         }
     } //onmousemove
+//Touch
+    public function ontouchbegin(e : TouchEvent) {
+        for(entity in entities) {
+            entity._ontouchbegin(e);
+        }
+    } //ontouchbegin
+    public function ontouchend(e : TouchEvent) {
+        for(entity in entities) {
+            entity._ontouchend(e);
+        }
+    } //ontouchend
+    public function ontouchmove(e : TouchEvent) {
+        for(entity in entities) {
+            entity._ontouchmove(e);
+        }
+    } //ontouchmove
+//Gamepad
+    public function ongamepadaxis(e) {
+        for(entity in entities) {
+            entity._ongamepadaxis(e);
+        }
+    }
+    public function ongamepadball(e) {
+        for(entity in entities) {
+            entity._ongamepadball(e);
+        }
+    }
+    public function ongamepadhat(e) {
+        for(entity in entities) {
+            entity._ongamepadhat(e);
+        }
+    }
+    public function ongamepadbuttonup(e) {
+        for(entity in entities) {
+            entity._ongamepadbuttonup(e);
+        }
+    }
+    public function ongamepadbuttondown(e) {
+        for(entity in entities) {
+            entity._ongamepadbuttondown(e);
+        }
+    }
+//Input    
+    public function oninputdown(_name:String, e:Dynamic) {
+        for(entity in entities) {
+            entity._oninputdown(_name, e);
+        }
+    } //oninputdown
+    public function oninputup(_name:String, e:Dynamic) {
+        for(entity in entities) {
+            entity._oninputup(_name, e);
+        }
+    } //oninputup
 
     public function destroy() {
          for(entity in entities) {

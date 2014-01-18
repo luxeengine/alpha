@@ -13,8 +13,7 @@ class Base64 {
 	private static inline var BASE_64_PADDING = "=";
 		
 	public static function decode( _string:String ) {
-		var _bytedata = decodeBytesData( _string );
-		return _bytedata.toString();
+		return decodeBytesData( _string ).toString();
 	}
 
 	public static function encode( _string:String ) {
