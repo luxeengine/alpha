@@ -1,6 +1,90 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [61d97f4f9a](http://github.com/underscorediscovery/luxe/commit/61d97f4f9a141c0744329eb4491afd3143cc3622)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 19:14:33 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; base64 using the api instead</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [760ba6b9e1](http://github.com/underscorediscovery/luxe/commit/760ba6b9e1edcefd5a47381bd72bc86ac2c2954f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 19:11:40 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; Propogating all event types (gamepad, touch, keys, mouse) to the entities in the default scene, and propogating them to all entity children and components.</li><li>Utils; adding Base64 accessor on the utils wrapper as well</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2e0fc098de](http://github.com/underscorediscovery/luxe/commit/2e0fc098de5becc693da0ace1143ca1d98ae6b54)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 17:41:44 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>API; Screen; Adding Luxe.screen.mid for easy access to that</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [de45a0b23e](http://github.com/underscorediscovery/luxe/commit/de45a0b23e952aba70bc7a6d24c9ccb217ed2e31)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 17:38:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Base64; Utils; Adding base64 as it's quite useful for many things</li><li>mend</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [77e8c5a992](http://github.com/underscorediscovery/luxe/commit/77e8c5a9922d70892209b594804d8ff2aa582e80)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 17:38:27 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Base64; Utils; Adding base64 as it's quite useful for many things</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d19ca74afa](http://github.com/underscorediscovery/luxe/commit/d19ca74afa4a194f64f381522ffd1afd97f585b8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 15:13:13 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rings; spaces wtf</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [41d85e4dc1](http://github.com/underscorediscovery/luxe/commit/41d85e4dc1fcdae2fccccd4e7bf724747145b690)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Jan 18 2014 02:43:26 GMT-0330 (NST)   

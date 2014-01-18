@@ -83,15 +83,13 @@ All methods and objects are accessible via the Luxe class. i.e
 
 ## Public default objects
 ---
-
+ 
 <a class="toplink" href="#">back to top</a>
 
-<a class="lift" href="luxe.scene.html" name="scene">scene</a>   
+<a class="lift" href="luxe.Scene.html" name="scene">scene</a>   
 <span class="small_desc"> Access to the default scene </span>   
-<a class="lift" href="luxe.camera.html" name="camera">camera</a>   
+<a class="lift" href="luxe.Camera.html" name="camera">camera</a>   
 <span class="small_desc"> Access to the default camera </span>    
-<a class="lift" href="luxe.resources.html" name="resources">resources</a>   
-<span class="small_desc"> Access to the default resource manager </span>    
 
 <a name="PublicObjects" ></a>
 
