@@ -28,6 +28,8 @@ class TiledObject {
 	public var name:String;
 		//The type of this object
 	public var type:String;
+		//if it's visible
+	public var visible:Bool = true;
 		//The x coordinate of this object (in pixels!)
 	public var pos:Vector;
 		//The width of this object in pixels
@@ -66,11 +68,28 @@ class TiledObject {
 
     } //polyobject_from_xml
 
+    function polyobject_from_json( json:Dynamic ) {
+
+    		//json gives us the object as an array of objects with x,y properties
+
+		var points:Array<Vector> = new Array<Vector>();
+		var point_list : Array<Dynamic> = cast json;
+		for(point in point_list) {
+			var _x = Std.parseInt(Reflect.field(point,"x"));
+			var _y = Std.parseInt(Reflect.field(point,"y"));
+			points.push(new Vector(_x,_y));
+		}
+		
+		return new TiledPolyObject( pos.clone(), points );
+
+    } //polyobject_from_json
+
 	public function from_xml( xml:Xml ) {
 
 		gid = xml.get("gid") != null ? Std.parseInt(xml.get("gid")) : 0;
 		name = xml.get("name");
 		type = xml.get("type");
+		visible = xml.get("visible") != "0";
 		pos.x = Std.parseInt(xml.get("x"));
 		pos.y = Std.parseInt(xml.get("y"));
 		width = Std.parseInt(xml.get("width"));
@@ -118,6 +137,58 @@ class TiledObject {
 
 	} //from_xml
 
+	public function from_json( json:Dynamic ) {
+
+		gid = Reflect.field(json, "gid") != null ? Std.parseInt(Reflect.field(json, "gid")) : 0;
+		name = Reflect.field(json, "name");
+		type = Reflect.field(json, "type");
+		visible = cast Reflect.field(json, "visible");
+		pos.x = Std.parseInt(Reflect.field(json, "x"));
+		pos.y = Std.parseInt(Reflect.field(json, "y"));
+		width = Std.parseInt(Reflect.field(json, "width"));
+		height = Std.parseInt(Reflect.field(json, "height"));
+		
+		//default to rectangle
+		object_type = TiledObjectType.rectangle;
+
+        var fields = Reflect.fields(json);
+        for( nodename in fields ) {
+            var child = Reflect.field(json, nodename);
+                switch( nodename ) {
+
+					case "polygon": {
+						object_type = TiledObjectType.polygon;
+						polyobject = polyobject_from_json(child);
+					} //polygon
+
+					case "polyline": {
+						object_type = TiledObjectType.polyline;
+						polyobject = polyobject_from_json(child);
+					} //polyline
+
+					case "ellipse": {
+						object_type = TiledObjectType.ellipse;
+							//ellipse makes more sense as a centered object
+						var _mid_x : Int = Std.int(width/2);
+						var _mid_y : Int = Std.int(height/2);
+
+						pos.x += _mid_x;
+						pos.y += _mid_y;
+
+					} //ellipse
+
+					case "properties" : {
+						var child_fields = Reflect.fields(child);
+	                    for (property_name in child_fields) {
+	                        properties.set(property_name, Reflect.field(child, property_name));
+	                    } //for each property
+					} //properties
+
+				} //switch child nodename
+		} //for each child node
+
+	} //from_xml
+
 } //TiledObject
 
 class TiledObjectGroup {
@@ -127,6 +198,8 @@ class TiledObjectGroup {
 
 	public var width : Int;
 	public var height : Int;
+	public var visible : Bool;
+	public var opacity : Float;
 	public var color:String;
 	public var properties:Map<String, String>;
 	public var objects : Array<TiledObject>;	
@@ -151,6 +224,8 @@ class TiledObjectGroup {
 		
 		name = xml.get("name");
 		color = xml.get("color");
+		visible = xml.get("visible") != "0";
+		opacity = xml.get("opacity") == null ? 1 : Std.parseFloat(xml.get("opacity"));
 		width = Std.parseInt(xml.get("width"));
 		height = Std.parseInt(xml.get("height"));
 		
@@ -168,10 +243,48 @@ class TiledObjectGroup {
 				if (child.nodeName == "object") {
 					var object:TiledObject = new TiledObject( this );
 						object.from_xml( child );
-					objects.push( object);
+					objects.push( object );
 				}
 			}
 		} //for each child
 	} //from_xml
+
+	public function from_json( json:Dynamic ) {
+		
+		name = Reflect.field(json, "name");
+		color = Reflect.field(json, "color");
+		visible = cast Reflect.field(json, "visible");
+		opacity = Reflect.field(json, "opacity");
+		width = Std.parseInt(Reflect.field(json, "width"));
+		height = Std.parseInt(Reflect.field(json, "height"));
+			
+        var fields = Reflect.fields(json);
+        for( nodename in fields ) {
+            var child = Reflect.field(json, nodename);
+                switch( nodename ) {
+				
+					case "objects": {
+						var list : Array<Dynamic> = cast child;
+						for(_object_json in list) {
+							
+							var object:TiledObject = new TiledObject( this );
+								object.from_json( _object_json );
+							objects.push( object );
+						
+						} //object_json in list
+
+					} //object
+
+					case "properties" : {
+						var child_fields = Reflect.fields(child);
+	                    for (property_name in child_fields) {
+	                        properties.set(property_name, Reflect.field(child, property_name));
+	                    } //for each property
+					} //properties
+
+				} //switch
+		} //for each field
+	} //from_json
+
 
 } //TiledObjectGroup

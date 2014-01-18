@@ -71,7 +71,7 @@ class TiledTileset {
 												continue;
 											} //?not valid
 											
-											properties.set(property.get("name"), property.get("value"));
+											_tile_props.set(property.get("name"), property.get("value"));
 
 										} //for each property element
 
@@ -89,4 +89,54 @@ class TiledTileset {
 		
 	} //from_xml
 
+	
+	public function from_json( json:Dynamic ) {
+
+		name = Reflect.field(json, "name");
+		tile_width = Std.parseInt(Reflect.field(json, "tilewidth"));
+		tile_height = Std.parseInt(Reflect.field(json, "tileheight"));
+
+		var fields = Reflect.fields(json);
+		for(nodename in fields) {
+
+			var child = Reflect.field(json, nodename);
+				switch(nodename) {								
+
+					case "properties" : {
+						var child_fields = Reflect.fields(child);
+	                    for (property_name in child_fields) {
+	                        properties.set(property_name, Reflect.field(child, property_name));
+	                    } //for each property
+					} //properties
+
+					case "image" : {
+						// var width = Std.parseInt(Reflect.field(child, "width"));
+						// var height = Std.parseInt(Reflect.field(child, "height"));
+						texture_name = child;
+					} //image
+
+					case "tile" : {
+						var _tile_id:Int = Std.parseInt(Reflect.field(child, "id"));
+						var _tile_props:Map<String, String> = new Map<String, String>();
+
+							var tile_fields = Reflect.fields(child);
+							for(tile_node in tile_fields) {
+								if(tile_node == "properties") {
+									var tile_item = Reflect.field(child, tile_node);
+									var child_fields = Reflect.fields(tile_item);
+				                    for (property_name in child_fields) {
+				                    	properties.set(property_name, Reflect.field(tile_item, property_name));
+				                    } //for each property
+								} //if it's a properties node
+							} //for each tile node
+
+						property_tiles.set(_tile_id, new TiledPropertyTile(_tile_id, _tile_props));
+
+					} //tile
+
+				} //switch child nodename
+					
+		} //for each child
+		
+	} //from_xml
 } //TiledTileset

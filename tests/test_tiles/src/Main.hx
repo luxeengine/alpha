@@ -29,7 +29,7 @@ class Main extends luxe.Game {
     function load_tiledmap() {
         
             //create from xml file        
-        tiledmap = new TiledOrtho( 'assets/tiles.tmx' );
+        tiledmap = new TiledOrtho( { file:'assets/tiles.json', format:'json' } );
 
             //now we can look at the objects layers in the tilemap and draw them
         for(group in tiledmap.tiledmap.object_groups) {

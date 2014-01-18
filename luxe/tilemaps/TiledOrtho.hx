@@ -6,26 +6,55 @@ import luxe.tilemaps.tiled.TiledMap;
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Ortho;
 
+typedef TiledMapOptions = {
+    file : String,
+    ?pos : Vector,    
+    ?format : String,
+    ?asset_path : String,
+}
+
 class TiledOrtho extends Ortho {
 
     public var display : OrthoDisplay;
     public var tiledmap : TiledMap;
 
-    public function new( _tmx_asset_name:String ) {
+    public function new( options:TiledMapOptions ) {
+
+        var format : String = 'xml';
+
+        if(options.format == 'json') {
+            format = 'json';
+        }
 
         tiledmap = new TiledMap();
-        tiledmap.parseFromXML( Xml.parse(Luxe.loadText(_tmx_asset_name)) );
+        if(format == 'json') {
+            tiledmap.parseFromJSON( haxe.Json.parse(Luxe.loadText(options.file)) );
+        } else {
+            tiledmap.parseFromXML( Xml.parse(Luxe.loadText(options.file)) );
+        }
+
+        var _pos_x : Int = 0;
+        var _pos_y : Int = 0;
+
+        if(options.pos != null) {
+            _pos_x = Std.int(options.pos.x);
+            _pos_y = Std.int(options.pos.y);
+        }
 
         super({
-            x:128, y:0, 
+            x:_pos_x, y:_pos_y, 
             w:tiledmap.width,  h:tiledmap.height, 
             tile_width:tiledmap.tile_width, 
             tile_height:tiledmap.tile_height
         }); 
 
+        if(options.asset_path == null) {
+            options.asset_path = 'assets/';
+        }
+
             //load the tilesets
         for(_tileset in tiledmap.tilesets) {
-            var new_tileset = add_tileset( _tileset.name, Luxe.loadTexture('assets/' + _tileset.texture_name) );
+            var new_tileset = add_tileset( _tileset.name, Luxe.loadTexture(options.asset_path + _tileset.texture_name) );
                 new_tileset.first_id = _tileset.first_id;
                 new_tileset.tile_width = tiledmap.tile_width;
                 new_tileset.tile_height = tiledmap.tile_height;

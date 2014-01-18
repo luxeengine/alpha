@@ -129,10 +129,76 @@ class TiledMap {
                 } //switch child nodename
             } //if valid element
         } //for each child in root
-    }
+    
+    } //from_xml
 
-    public function parseFromJSON( xml:Xml ) {
+    public function parseFromJSON( json:Dynamic ) {
 
+        width = Std.parseInt( Reflect.field(json, "width") );
+        height = Std.parseInt( Reflect.field(json, "height"));
+        orientation = orientation_from_string( Reflect.field(json, "orientation") );
+        tile_width = Std.parseInt( Reflect.field(json, "tilewidth"));
+        tile_height = Std.parseInt( Reflect.field(json, "tileheight"));
+
+        var fields = Reflect.fields(json);
+        for( nodename in fields ) {
+            
+            var child = Reflect.field(json, nodename);
+
+            switch( nodename ) {
+
+                case "tilesets" : {
+                    
+                    var list:Array<Dynamic> = cast child;
+                    for(_tileset_json in list) {
+
+                        var tileset:TiledTileset = new TiledTileset();
+                            
+                            tileset.from_json( _tileset_json );
+                            tileset.first_id = Std.parseInt(Reflect.field(_tileset_json, "firstgid"));
+
+                        tilesets.push(tileset);
+                    
+                    } //each tileset json
+
+                } //tileset
+
+                case "properties" : {
+                    var child_fields = Reflect.fields(child);
+                    for (property_name in child_fields) {
+                        properties.set(property_name, Reflect.field(child, property_name));
+                    } //for each property
+                } //properties
+
+                case "layers" : {
+
+                    var list:Array<Dynamic> = cast child;
+                    for(_layer_json in list) {
+
+                        var type : String = Reflect.field(_layer_json, "type");
+                        switch(type) {
+
+                            case "tilelayer" : {
+                                var layer : TiledLayer = new TiledLayer( this );
+                                    layer.from_json( _layer_json );
+
+                                layers.push(layer);
+                            }
+
+                            case "objectgroup" : {
+                                var object_group : TiledObjectGroup = new TiledObjectGroup( this );
+                                    object_group.from_json( _layer_json );
+
+                                object_groups.push( object_group );
+                            }
+
+                        } //switch type
+                    } //each layer json
+
+                } //layer
+
+            } //switch child nodename
+        } //for each child in root
     }
 
 } // TiledMap
