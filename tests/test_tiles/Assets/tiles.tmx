@@ -417,7 +417,7 @@
    <tile gid="0"/>
   </data>
  </layer>
- <objectgroup name="objlayer" width="20" height="10" visible="0" opacity="0.25">
+ <objectgroup name="objlayer" width="20" height="10">
   <object name="obj1" type="collect" x="160" y="48" width="21" height="21">
    <properties>
     <property name="objprop1" value="objprop1val"/>

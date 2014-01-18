@@ -1,6 +1,258 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [41d85e4dc1](http://github.com/underscorediscovery/luxe/commit/41d85e4dc1fcdae2fccccd4e7bf724747145b690)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 02:43:26 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; adding more import flags, backgroundcolor and version</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c5f8ad918a](http://github.com/underscorediscovery/luxe/commit/c5f8ad918a912804a839aa8adc8a0f6c9cbbbea6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 02:39:17 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Adding JSON importing and fixes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [caf9e0c7dc](http://github.com/underscorediscovery/luxe/commit/caf9e0c7dc6dea62fd1e2ea9d7e4c0814a777b78)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 01:01:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Tiled; Adding object groups and shape imports, drawing some of them in the test_tiles demo as well.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3749171b58](http://github.com/underscorediscovery/luxe/commit/3749171b58d6bc3a7f84a77636b88153a914cc7a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 23:17:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; renamed test_tiled to test_tiles because it covers more</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ab0b1d9146](http://github.com/underscorediscovery/luxe/commit/ab0b1d9146f517314a1f66c0f417c7b7211a7980)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 23:15:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Adding tile map base class for luxe, demonstrated in the test_tiles example atm</li><li>mend</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ea4139ce8b](http://github.com/underscorediscovery/luxe/commit/ea4139ce8b216d33055b226a5c9b0db1dfb4953a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 23:15:03 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Adding tile map base class for luxe, demonstrated in the test_tiles example atm</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [29c93cdcf6](http://github.com/underscorediscovery/luxe/commit/29c93cdcf6ff15fd697e9115ec557a7b05f7038d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 13:07:41 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Letter5; fixing defaults for now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [25afd1c51b](http://github.com/underscorediscovery/luxe/commit/25afd1c51b7bde616747eef860cecb9d81a6b598)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tiled; Adding prelim tilemap classes and getting started on proper tilemap support</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [322e455b10](http://github.com/underscorediscovery/luxe/commit/322e455b104904d77563d6311728d69679993a20)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Letter5; Fixing bugs in restarting the game and making the board size more flexible</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2bd7c6a27d](http://github.com/underscorediscovery/luxe/commit/2bd7c6a27d8a62e906bee381be61ef1a80107123)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Sprite; Fixing weird condition where calling .destroy directly calls itself twice, now it defers the first to allow the internal destroy to do it's job.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6c6a9e268c](http://github.com/underscorediscovery/luxe/commit/6c6a9e268cbc2f7ddeae8f21718670181472c85a)   
+author: Sven Bergström <sven@underscorediscovery.com>   
+date: Tue Jan 14 2014 19:13:08 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update readme.md</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6ab1cc961d](http://github.com/underscorediscovery/luxe/commit/6ab1cc961db1ea7ad86ff3636ffcde7017884f02)   
+author: Sven Bergström <sven@underscorediscovery.com>   
+date: Tue Jan 14 2014 19:12:30 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update readme.md</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [65a5d8eb08](http://github.com/underscorediscovery/luxe/commit/65a5d8eb082520b62fb9cb7b314fd9716010bf04)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 13 2014 22:39:34 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>CircleGeometry; Adding start_angle and end_angle so better arcs can be drawn.</li><li>Rings; fixing accidental shoot stuff and refactoring input to work better (see readme also)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a8b7b9b39a](http://github.com/underscorediscovery/luxe/commit/a8b7b9b39a7cb7f2e9f907c90bd29329da9e3e66)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 11 2014 02:46:49 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rings; Fixing bugs in rings</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2fc9c286c8](http://github.com/underscorediscovery/luxe/commit/2fc9c286c8221cb72de3828888723ced00f6d604)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 11 2014 02:37:22 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Cleanup; Removing weird code</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e4de3ba2bd](http://github.com/underscorediscovery/luxe/commit/e4de3ba2bda3e5e133d17494e4f9ac4442863067)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 11 2014 02:34:28 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Audio; play was missing loop, and start functions</li><li>Sprite; refactored to use Geometry instead of QuadGeometry, temporary fixes required for casting though</li><li>Rings; Tons of refactoring and new input model, adding audio and music</li><li>Pathing; adding a test path function, broken cos of heap implementation</li><li>Structural; temp Heap class</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d077f0615c](http://github.com/underscorediscovery/luxe/commit/d077f0615cad0e9bc1e4bfcf2f2d5505d7b797ba)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 29 2013 05:15:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rings; Adding reset on end</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f8cac39c78](http://github.com/underscorediscovery/luxe/commit/f8cac39c789ca42fdcd24979faa18184963e15c4)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Dec 29 2013 04:24:23 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Updating changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [016a4b10f7](http://github.com/underscorediscovery/luxe/commit/016a4b10f77b3cd390b64d1ef270ca5a477bfdee)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Dec 29 2013 04:23:54 GMT-0330 (NST)   
