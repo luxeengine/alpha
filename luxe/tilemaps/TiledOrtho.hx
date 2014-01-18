@@ -9,11 +9,12 @@ import luxe.tilemaps.Ortho;
 class TiledOrtho extends Ortho {
 
     public var display : OrthoDisplay;
+    public var tiledmap : TiledMap;
 
-    public function new( _tmx_file:String ) {
+    public function new( _tmx_asset_name:String ) {
 
-        var tiledmap = new TiledMap();
-            tiledmap.parseFromXML( Xml.parse(Luxe.loadText(_tmx_file)) );
+        tiledmap = new TiledMap();
+        tiledmap.parseFromXML( Xml.parse(Luxe.loadText(_tmx_asset_name)) );
 
         super({
             x:128, y:0, 
@@ -63,8 +64,5 @@ class TiledOrtho extends Ortho {
 
     }
 
-    public function on_loaded( _textures ) {
-
-    }
 
 }

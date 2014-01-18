@@ -119,10 +119,10 @@ class TiledMap {
 
                     case "objectgroup" : {
 
-                        // var object_group : TiledObjectGroup = new TiledObjectGroup( this );
-                        //     object_group.from_xml( child );
+                        var object_group : TiledObjectGroup = new TiledObjectGroup( this );
+                            object_group.from_xml( child );
 
-                        // object_groups.push( object_group );
+                        object_groups.push( object_group );
 
                     } //objectgroup
 

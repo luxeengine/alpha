@@ -423,5 +423,23 @@
     <property name="objprop1" value="objprop1val"/>
    </properties>
   </object>
+  <object name="circle1" type="eat" x="196" y="52" width="39" height="38">
+   <properties>
+    <property name="circleprop1" value="circleprop1val"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="poly1" type="nothing" x="70" y="40">
+   <properties>
+    <property name="polyprop1" value="polyprop1val"/>
+   </properties>
+   <polygon points="0,0 -19,7 -12,39 36,28 34,-20 -1,-31 -26,-31 -27,-20"/>
+  </object>
+  <object name="line1" type="zone" x="280" y="11">
+   <properties>
+    <property name="zonetype" value="zonevalue"/>
+   </properties>
+   <polyline points="0,0 20,11 21,37 5,52"/>
+  </object>
  </objectgroup>
 </map>
