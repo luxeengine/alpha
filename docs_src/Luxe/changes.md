@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [be97f9bf35](http://github.com/underscorediscovery/luxe/commit/be97f9bf35b922888429ba2e90296e195d4971de)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 02:41:32 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Adding Isometric rendering and a Tiled isometric example. Still needs coord conversions for the API for Iso stuff</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [31093c35f7](http://github.com/underscorediscovery/luxe/commit/31093c35f700c05509770e68adb31ba95c5aafa6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 01:05:42 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [c945ec019f](http://github.com/underscorediscovery/luxe/commit/c945ec019f3d10a6f8c972ecdc96126b6c8a35de)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Jan 19 2014 01:05:14 GMT-0330 (NST)   
