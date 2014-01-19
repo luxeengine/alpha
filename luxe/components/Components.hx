@@ -1,7 +1,7 @@
 package luxe.components;
 
 class Component extends Objects {
-		//the root entity
+
 	public var entity : Entity;	
 		//the transfrom the parent entity
 	@:isVar public var pos 				(get,set) : Vector;
@@ -62,8 +62,12 @@ class Component extends Objects {
 	} //get_scaleRelative
 
 	public function add<T1,T2>( type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
-		return entity.add(type,_name,_data);
+		return entity.add( type,_name,_data );
 	} //add
+
+    public function remove<T>(?_name:String='', ?_data:T ) : Bool {
+    	return entity.remove( _name, _data );
+    } //add
 
 	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
 		return entity.get(_name,in_children,first_only);
@@ -75,7 +79,7 @@ class Component extends Objects {
 		// _attach_listener(_p, _rotation_change);
 	}
 
-//Spatial transforms
+ //Spatial transforms
 
         //An internal callback for when x y or z on a transform changes
     @:noCompletion private function _pos_change(_v:Float) { this.set_pos(pos); }
@@ -99,9 +103,9 @@ class Component extends Objects {
 		};
 	} //get_serialize_data
 
-#if luxe_native
+ #if luxe_native
 
-	public function serialize_to_disk( _destination_path:String ) {
+	@:noCompletion public function serialize_to_disk( _destination_path:String ) {
 
         var _data : Dynamic = get_serialize_data();        
 
@@ -115,7 +119,7 @@ class Component extends Objects {
 
 	} //serialize_to_disk
 
-#end //luxe_native
+ #end //luxe_native
 
 } //Component
 
@@ -152,16 +156,47 @@ class Component extends Objects {
 			//apply it!
 		_e_component.name = _temp_name;
 			//store the entity
-		_e_component.entity = this.entity;
+		_e_component.entity = entity;
 			//store it in the component list
 		components.set( _temp_name, _e_component );
 			//debug stuff
 		_debug('adding a component to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
 
+			//now check against the entity already being init'ed and start'ed 
+			//and if so, call them manually
+		if(entity.inited) {
+			_debug("\t entity " + entity.name + " adding component after init, so doing init on " + _e_component.name );
+			_call(_component, '_init');
+		}
+
+		if(entity.started) {
+			_debug("\t entity " + entity.name + " adding component after start, so doing start on " + _e_component.name );
+			_call(_component, 'start');
+		}
+
 			//return the component
 		return _component;
 
 	} //add component
+
+	public function remove<T>( ?_name:String='', ?_data:T ) : Bool {
+		
+			//doesn't exist? 
+    	if(!components.exists(_name)) {
+    		trace("attempt to remove " + _name + " from " + entity.name + " failed because that component was not attached to this entity");
+    		return false;
+    	}
+
+    		//now, when removing a component we call destroy
+    	var _component = components.get( _name );
+
+		_debug("\t entity " + entity.name + " remove component " + _component.name );
+			
+			_call(_component, 'removed', [ cast _data ]);
+
+		return components.remove(_name);
+
+    } //remove
 
 	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
 			

@@ -562,8 +562,12 @@ class Entity extends Objects {
     } //_start_fixed_rate_timer
 
     public function add<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
-    	return _components.add( type, _name, _data );
+        return _components.add( type, _name, _data );
     } //add
+
+    public function remove<T>(?_name:String='', ?_data:T ) : Bool {
+    	return _components.remove( _name, _data );
+    } //remove
 
     public function get(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Dynamic {
     	return _components.get( _name, _in_children, _first_only );

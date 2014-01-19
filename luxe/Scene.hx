@@ -68,13 +68,13 @@ class Scene extends Objects {
     }
 
     public function empty() {
-        trace("cleaning up entities in scene");
+        trace("Scene : cleaning up entities in scene");
         for(entity in entities) {
             remove(entity);
             entity._destroy();
             entity = null;
         }
-        trace("entities left " + Lambda.count(entities));
+        trace("\tentities left " + Lambda.count(entities));
     }
 
 //Keys
@@ -181,18 +181,21 @@ class Scene extends Objects {
 
     } // _do_init
 
+        //Entities themselves can create entities
+        //inside of their init so we have to keep checking
     public function init() {        
 
-            //Entities themselves can create entities so we have to check that        
-        var keep = true;
-        while(keep) {
-            keep = _do_init();
+        var keep_going : Bool = true;
+        while(keep_going) {
+            keep_going = _do_init();
         }
 
         inited = true;
 
     } //init
 
+        //If entities are created during start they will
+        // be inited and started in the next available frame 
     public function start() {        
 
         for(entity in entities) {
@@ -204,21 +207,8 @@ class Scene extends Objects {
     } //start
     public function update(dt:Float) {
 
-            //first init these delayed ones
-        if(_delayed_init_entities.length > 0) {
-            for(entity in _delayed_init_entities) {
-                entity._init();
-            }
-            _delayed_init_entities.splice(0, _delayed_init_entities.length);
-        }
-
-            //and then start any delayed ones
-        if(_delayed_start_entities.length > 0) {
-            for(entity in _delayed_start_entities) {
-                entity._start();
-            }
-            _delayed_start_entities.splice(0, _delayed_start_entities.length);
-        }
+            //late scene additions get init'ed and start'ed
+        handle_delayed_additions();
 
             //finally update them
         for(entity in entities) {
@@ -231,6 +221,24 @@ class Scene extends Objects {
             entity._fixed_update();
         }
     } //fixed_update
+
+    function handle_delayed_additions() {
+            
+        if(_delayed_init_entities.length > 0) {
+            for(entity in _delayed_init_entities) {
+                entity._init();
+            }
+            _delayed_init_entities.splice(0, _delayed_init_entities.length);
+        }
+
+        if(_delayed_start_entities.length > 0) {
+            for(entity in _delayed_start_entities) {
+                entity._start();
+            }
+            _delayed_start_entities.splice(0, _delayed_start_entities.length);
+        } 
+
+    } //handle_delayed_additions
 
 #if luxe_native
 
