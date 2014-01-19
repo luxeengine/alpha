@@ -1,6 +1,6 @@
 package luxe.tilemaps.tiled;
 
-import luxe.tilemaps.tiled.TiledMap;
+import luxe.tilemaps.tiled.TiledMapData;
 import phoenix.Texture;
 
 class TiledTileset {

@@ -3,8 +3,17 @@ package luxe.tilemaps;
 import luxe.Rectangle;
 import luxe.Vector;
 import phoenix.Texture;
+import phoenix.geometry.Geometry;
 
-typedef TileArray = Array<Tile>;
+import luxe.tilemaps.Ortho.OrthoVisuals;
+import luxe.tilemaps.Isometric.IsometricVisuals;
+
+
+enum TilemapOrientation {
+    ortho;
+    isometric;
+    none;
+}
 
 typedef TilemapOptions = {
     ?x : Int,
@@ -12,14 +21,54 @@ typedef TilemapOptions = {
     w : Int,
     h : Int,
     tile_width : Int,
-    tile_height : Int
+    tile_height : Int,
+    ?orientation : TilemapOrientation
 }
 
-enum TilemapOrientation {
-    ortho;
-    isometric;
-    none;
+
+enum TileOffset {
+    center;
+    top;
+    bottom;
+    left;
+    right;
 }
+
+typedef TileArray = Array<Tile>;
+
+class TilemapVisuals {
+
+    public var geometry : Array<Array<Geometry> >;
+    
+    public function new() {
+        geometry = [];
+    }
+
+    public function create( options:Dynamic ) {
+
+        if(options.no_destroy == null) {
+            destroy();
+        }
+
+        //implemented in children
+
+    } //create
+
+    public function destroy( ) {
+
+        if(geometry != null) {
+            for(row in geometry) {
+                for(tile in row) {
+                    tile.drop();
+                } //tile
+            } //row
+        } //!null
+
+        geometry = [];
+
+    } //destroy
+
+} //TilemapVisuals
 
 class Tile {
 
@@ -56,7 +105,7 @@ class Tile {
 
 class TileLayer {
 
-        //the depth/ordering value 
+    //the depth/ordering value 
     public var layer : Int;
         //the name of the layer
     public var name : String;
@@ -124,7 +173,7 @@ class Tileset {
 
 class Tilemap {
 
-        //the layers the map consists of
+    //the layers the map consists of
     public var layers : Map<String,TileLayer>;
     public var layers_ordered : Array<TileLayer>;
 
@@ -135,6 +184,9 @@ class Tilemap {
 
         //the orientation if any of this map
     public var orientation : TilemapOrientation;
+        //the visual representation if any of this map
+    public var visuals : TilemapVisuals;
+
         //the position of the tilemap in world space
     public var pos : Vector;
         //the size of the tiles in this map
@@ -164,7 +216,7 @@ class Tilemap {
             if(options.y != null) { pos.y = options.y; }
         }
 
-        orientation = TilemapOrientation.none;
+        orientation = (options.orientation == null) ? TilemapOrientation.none : options.orientation;
 
         properties = new Map<String,String>();        
         tilesets = new Map<String,Tileset>();
@@ -172,6 +224,21 @@ class Tilemap {
         layers_ordered = [];
 
     } //new
+
+    public function display( options:Dynamic ) {
+
+        trace("drawing tilemap with options " + options);
+        trace(orientation);
+
+        switch(orientation) {
+            case TilemapOrientation.ortho :
+                visuals = new OrthoVisuals( this, options );
+            case TilemapOrientation.isometric :
+                visuals = new IsometricVisuals( this, options );
+            case TilemapOrientation.none :
+        } //orientation
+
+    } //display
 
         //If the position is inside the map or not
     public function inside( x:Int, y:Int ) : Bool {
@@ -192,10 +259,61 @@ class Tilemap {
 
     } //inside
 
+    public function tile_pos( layer_name:String, x:Int, y:Int, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
+        
+        if(inside(x,y)) {
+           
+            switch(orientation) {
+
+                case TilemapOrientation.ortho: {
+                    var _worldpos = Ortho.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    return _worldpos.add( pos );
+                }
+
+                case TilemapOrientation.isometric: {
+                    // var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    // return _worldpos.add( pos );
+                }
+
+                default: {
+                    
+                }
+
+            } //switch orientation
+
+        } //inside
+
+        return new Vector();
+
+    } //tile_pos
+
     public function tile_at_pos( layer_name:String, worldpos:Vector ) {
-        trace("base Tilemap has no way of calculating the tile position");
+        
+        switch(orientation) {
+
+            case TilemapOrientation.ortho: {
+
+                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+                return tile_at( layer_name, Std.int(_tile_pos.x), Std.int(_tile_pos.y) );
+
+            } //ortho
+
+            case TilemapOrientation.isometric: {
+                
+                // var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );                
+                return null;
+
+            } //isometric
+
+            default: {
+
+            }
+
+        } //switch orientation
+
         return null;
-    }
+
+    } //tile_at_pos
 
     public function layer( layer_name:String ) {
         return layers.get( layer_name );

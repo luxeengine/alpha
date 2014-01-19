@@ -1,6 +1,6 @@
 package luxe.tilemaps.tiled;
 
-import luxe.tilemaps.tiled.TiledMap;
+import luxe.tilemaps.tiled.TiledMapData;
 import luxe.Vector;
 
 enum TiledObjectType {
@@ -193,7 +193,7 @@ class TiledObject {
 
 class TiledObjectGroup {
 	
-	public var map : TiledMap;
+	public var map : TiledMapData;
 	public var name : String;
 
 	public var width : Int;
@@ -204,7 +204,7 @@ class TiledObjectGroup {
 	public var properties:Map<String, String>;
 	public var objects : Array<TiledObject>;	
 
-	public function new( _map:TiledMap ) {
+	public function new( _map:TiledMapData ) {
 		map = _map;
 
 		name = '';

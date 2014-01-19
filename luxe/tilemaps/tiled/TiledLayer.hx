@@ -1,6 +1,7 @@
 package luxe.tilemaps.tiled;
 
 import luxe.tilemaps.tiled.TiledTile;
+import luxe.tilemaps.tiled.TiledMapData;
 
 import lime.utils.ByteArray;
 import lime.utils.Endian;
@@ -10,11 +11,11 @@ class TiledLayer {
     public var name : String;
     public var width : Int;
     public var height : Int;
-    public var map : TiledMap;
+    public var map : TiledMapData;
     public var properties : Map<String,String>;
     public var tiles : Array<TiledTile>;
 
-    public function new( _map:TiledMap ) {
+    public function new( _map:TiledMapData ) {
         map = _map;
         properties = new Map();
         tiles = [];

@@ -8,7 +8,7 @@ import luxe.tilemaps.tiled.TiledObjectGroup;
 import luxe.tilemaps.Tilemap;
 
 
-class TiledMap {
+class TiledMapData {
 
     public var version : String = '';
     public var background_color : String = '';

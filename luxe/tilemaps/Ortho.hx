@@ -8,46 +8,68 @@ import luxe.Vector;
 
 import phoenix.geometry.Geometry;
 
-class Ortho extends Tilemap {
+class Ortho {
 
-    public function new( options:TilemapOptions ) {
-
-        super( options );
-
-            //update the type
-        orientation = TilemapOrientation.ortho;
-
-    } //new
-
-        //return a tile from a layer, in world coordinates
-    public override function tile_at_pos( layer_name:String, worldpos:Vector ) {
+    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
         
-        var _world_x = worldpos.x - pos.x;
-        var _world_y = worldpos.y - pos.y;
-        var _tile_x = Math.floor(_world_x / tile_width);
-        var _tile_y = Math.floor(_world_y / tile_height);
+        var _tile_x = Math.floor(world_x / tile_width);
+        var _tile_y = Math.floor(world_y / tile_height);
 
-        return tile_at( layer_name, _tile_x, _tile_y );
+        return new Vector( _tile_x, _tile_y );
 
-    } //tile_at_pos
+    } //worldpos_to_tile_coord
+
+    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int, 
+                                                   ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
+
+            //top left by default
+        if(offset_x == null) { offset_x = TileOffset.left; };
+        if(offset_y == null) { offset_y = TileOffset.top; };
+
+        var _world_x : Float = tile_x * tile_width;
+        var _world_y : Float = tile_y * tile_height;
+
+        switch(offset_x) {
+            case TileOffset.center:    { _world_x += (tile_width/2); }            
+            case TileOffset.right:     { _world_x += tile_width; }
+            default:
+        }
+
+        switch(offset_y) {
+            case TileOffset.center:    { _world_y += (tile_height/2); }            
+            case TileOffset.bottom:    { _world_y += tile_height; }
+            default:
+        }
+
+        return new Vector( _world_x, _world_y );
+        
+    } //tile_coord_to_worldpos
+
 
 } //Ortho
 
+class OrthoVisuals extends TilemapVisuals {
 
-class OrthoDisplay {
+    public var map : Tilemap;
 
-    public var geometry : Array<Array<Geometry> >;
+    public function new( _map:Tilemap, options:Dynamic ) {
+            
+        map = _map;
 
-    public function new( _map:Ortho, options:Dynamic ) {
+        super();
+        create(options);
 
-        geometry = [];
+    } //new
+
+    public override function create( options:Dynamic ) {
+
         var _scale = (options.scale != null) ? options.scale : 1;
         var _filter = (options.filter != null) ? options.filter : FilterType.nearest;
 
-        var _scaled_tilewidth = _map.tile_width*_scale;
-        var _scaled_tileheight = _map.tile_height*_scale;
+        var _scaled_tilewidth = map.tile_width*_scale;
+        var _scaled_tileheight = map.tile_height*_scale;
 
-        for( layer in _map ) {
+        for( layer in map ) {
             for( row in layer.tiles ) {
 
                 var _geom_row = [];
@@ -57,12 +79,12 @@ class OrthoDisplay {
                         continue;
                     }
 
-                    var tileset = _map.tileset_from_id( tile.id );        
+                    var tileset = map.tileset_from_id( tile.id );        
 
                         //create the tile to the geometry
                     var _tile_geom = Luxe.draw.box({
-                        x: _map.pos.x + (tile.x * _scaled_tilewidth), 
-                        y: _map.pos.y + (tile.y * _scaled_tileheight),
+                        x: map.pos.x + (tile.x * _scaled_tilewidth), 
+                        y: map.pos.y + (tile.y * _scaled_tileheight),
                         w: _scaled_tilewidth, 
                         h: _scaled_tileheight,
                         texture : (tileset != null) ? tileset.texture : null
@@ -72,7 +94,7 @@ class OrthoDisplay {
                         if(tileset.texture != null) {
                             tileset.texture.onload = function(t) {
                                 var image_coord = tileset.pos_in_texture( tile.id );
-                                _tile_geom.uv(new Rectangle(image_coord.x*_map.tile_width,image_coord.y*_map.tile_height,_map.tile_width,_map.tile_height));
+                                _tile_geom.uv(new Rectangle(image_coord.x*map.tile_width,image_coord.y*map.tile_height,map.tile_width,map.tile_height));
                                 tileset.texture.filter = _filter;
                             }
                         }
@@ -84,8 +106,7 @@ class OrthoDisplay {
                 geometry.push(_geom_row);
 
             } //for each row
-        } //for each _map
+        } //for each map        
+    }
 
-    } //new
-
-} //OrthoDisplay
+} //OrhtoVisuals
