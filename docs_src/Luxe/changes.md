@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [c945ec019f](http://github.com/underscorediscovery/luxe/commit/c945ec019f3d10a6f8c972ecdc96126b6c8a35de)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 01:05:14 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Massive refactor to be more logical, Tilemap and TiledMap handles all the details of tilemaps internally, with Ortho and Isometric being implementation detail deferred from the Tilemap now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [15cee3b0aa](http://github.com/underscorediscovery/luxe/commit/15cee3b0aad785e1368dec05dda9b8d118ab8a19)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 21:14:37 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>TiledMaps; adding tiled maps csv, zlib, base64 import formats, fixes to example and including more tmx files</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1680c7f1bd](http://github.com/underscorediscovery/luxe/commit/1680c7f1bd854f775b944b417e36570105f5b290)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 20:22:13 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs;</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5ba7a98ed0](http://github.com/underscorediscovery/luxe/commit/5ba7a98ed08ed06f5959e5981f942b8c24816b88)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 18 2014 20:21:44 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; fixing generator to leave links to existing stuff alone</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [61d97f4f9a](http://github.com/underscorediscovery/luxe/commit/61d97f4f9a141c0744329eb4491afd3143cc3622)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Jan 18 2014 19:14:33 GMT-0330 (NST)   
