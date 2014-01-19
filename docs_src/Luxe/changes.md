@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [841e97de72](http://github.com/underscorediscovery/luxe/commit/841e97de72d62e99d992ccbf4828ece1536e849c)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 16:26:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Sprite; deal with custom geometry via  as well as via  in the construct options.</li><li>Sprite; added no_geometry flag for better handling of flexibility</li><li>Sprite; fixing missing flags not set on the sprite itself, but only on geometry (like depth, group etc)</li><li>Sprite; adding missing group flag as well</li><li>NineSlice; using no_geometry flag instead of weird old code</li><li>Rings; using new geometry fixes for sprite to pass geometry in constructor</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [76e6250676](http://github.com/underscorediscovery/luxe/commit/76e6250676c19981fde43517e52ebd8a69418060)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 15:17:25 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Components; Adding component state test</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [973824bef0](http://github.com/underscorediscovery/luxe/commit/973824bef0428cb092edcab120fcbdf681b6d983)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 15:04:55 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Components; Fixing late init/start on components, adding .remove(component_name) but it has some gotchas to resolve, see tests/test_component_state for a toggle example (the one gotcha being no cleanup, and needing better names)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [086eb3aec4](http://github.com/underscorediscovery/luxe/commit/086eb3aec4016ac9244ee551ef0f17e03060591f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 02:42:03 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Updating changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [be97f9bf35](http://github.com/underscorediscovery/luxe/commit/be97f9bf35b922888429ba2e90296e195d4971de)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Jan 19 2014 02:41:32 GMT-0330 (NST)   
