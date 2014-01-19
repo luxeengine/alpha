@@ -28,12 +28,14 @@ class Main extends luxe.Game {
 
     function load_tiledmap() {
         
-            //create from xml file        
+            //create from xml file, with various encodings, or from JSON
         tiledmap = new TiledOrtho( { file:'assets/tiles.json', format:'json' } );
+        // tiledmap = new TiledOrtho( { file:'assets/tiles_base64_zlib.tmx'} );
+        // tiledmap = new TiledOrtho( { file:'assets/tiles_base64.tmx'} );
+        // tiledmap = new TiledOrtho( { file:'assets/tiles_csv.tmx'} );
 
             //now we can look at the objects layers in the tilemap and draw them
         for(group in tiledmap.tiledmap.object_groups) {
-            trace('inspecting group ' + group.name + ' / ' + group.color );
             
             for(object in group.objects) {
                 Luxe.draw.text({ text:object.name, size:14, pos:object.pos.clone().multiplyScalar(4).add(tiledmap.pos) });

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="10" tilewidth="16" tileheight="16" backgroundcolor="#e6c587">
+ <tileset firstgid="1" name="tileset1" tilewidth="16" tileheight="16">
+  <image source="tileset.png" width="224" height="80"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="20" height="10">
+  <properties>
+   <property name="layer1" value="prop1"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,51,36,36,36,36,36,35,36,36,36,43,0,0,0,0,
+0,0,0,0,0,58,36,36,36,36,36,36,36,36,36,36,33,0,0,0,
+0,0,0,0,0,0,28,28,28,28,28,28,28,28,28,28,28,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6,6,3,6,6,9,6,45,6,44,6,6,6,6,6,6,49,50,15,15,
+15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15,36,36,36,36,
+36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,
+36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,
+36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,
+36,36,36,35,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36,36
+</data>
+ </layer>
+ <layer name="Tile Layer 2" width="20" height="10">
+  <properties>
+   <property name="layer2" value="prop2"/>
+  </properties>
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,29,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,39,39,39,39,39,39,39,39,39,39,39,0,0,0,
+0,0,0,0,0,0,0,0,7,0,0,0,0,7,0,0,0,0,0,0,
+0,52,14,0,0,0,4,0,52,0,13,0,0,52,7,8,0,0,0,0,
+21,21,21,24,24,25,25,25,25,25,24,24,24,25,25,24,46,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,30,0,0,0,0,0,0,0,
+0,0,0,0,38,0,0,0,0,0,29,0,30,30,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="objlayer" width="20" height="10">
+  <object name="obj1" type="collect" x="160" y="48" width="21" height="21">
+   <properties>
+    <property name="objprop1" value="objprop1val"/>
+   </properties>
+  </object>
+  <object name="circle1" type="eat" x="196" y="52" width="39" height="38">
+   <properties>
+    <property name="circleprop1" value="circleprop1val"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object name="poly1" type="nothing" x="70" y="40">
+   <properties>
+    <property name="polyprop1" value="polyprop1val"/>
+   </properties>
+   <polygon points="0,0 -19,7 -12,39 36,28 34,-20 -1,-31 -26,-31 -27,-20"/>
+  </object>
+  <object name="line1" type="zone" x="280" y="11">
+   <properties>
+    <property name="zonetype" value="zonevalue"/>
+   </properties>
+   <polyline points="0,0 20,11 21,37 5,52"/>
+  </object>
+ </objectgroup>
+</map>
