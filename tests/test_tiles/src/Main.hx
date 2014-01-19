@@ -21,8 +21,6 @@ class Main extends luxe.Game {
         
         Luxe.renderer.clear_color = new Color().rgb(0xaf663a);
 
-        Luxe.camera.zoom = 0.5;
-
             //we create a custom tilemap 
         create_small_handmade_tilemap();        
 
@@ -34,7 +32,7 @@ class Main extends luxe.Game {
 
     function load_isometric_tiledmap() {
         
-        tiled_iso = new TiledMap( { file:'assets/isotiles.tmx' } );
+        tiled_iso = new TiledMap( { file:'assets/isotiles.tmx', pos : new Vector(224,0) } );
         tiled_iso.display({scale:1});
 
     }
@@ -47,35 +45,36 @@ class Main extends luxe.Game {
         // tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx'} );
         // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx'} );
 
+        var scale = 2;
+
             //tell the map to display 
-        tiled_ortho.display({ scale:4 });
+        tiled_ortho.display({ scale:scale });
 
             //draw the additional objects
-        draw_tiled_object_groups();
+        draw_tiled_object_groups( scale );
 
     }
 
     function create_small_handmade_tilemap() {
 
+            //random tile grid for foreground layer
         var small_tiles_grid = [
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
-            [29,29,29,29,29,29,29,29],
+            [1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70)],
+            [1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70)],
+            [1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70)],
+            [1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70)],
+            [1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70)],
+            [1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70), 1+Std.random(70)],
         ];
 
             //manually create ourselves an ortho tilemap
         small_tiles = new Tilemap({
                 //world x/y position
-            x           : 0, 
-            y           : 10, 
+            x           : 512, 
+            y           : 0, 
                 //tilemap width/height
-            w           : 8,  
-            h           : 8, 
+            w           : 6,  
+            h           : 6, 
                 //tiles width/height
             tile_width  : 16, 
             tile_height : 16,   
@@ -89,15 +88,15 @@ class Main extends luxe.Game {
             //create some layers to add tiles in
             //note we add them out of order with the index, just for testing that
         small_tiles.add_layer('fg', 1);
-        small_tiles.add_layer('bg', 0);
+        small_tiles.add_layer('bg', 0);        
 
+            //create them by filling the layer with a fixed id, in this case 21
+        small_tiles.add_tiles_fill_by_id( 'bg', 21 );
             //create some tiles from a grid specified above
-        small_tiles.add_tiles_from_grid( 'bg', small_tiles_grid );
-            //create them by filling the layer with a fixed id, in this case 38
-        small_tiles.add_tiles_fill_by_id( 'fg', 38 );
+        small_tiles.add_tiles_from_grid( 'fg', small_tiles_grid );
 
             //finally, tell it to display
-        small_tiles.display({ scale:3 });
+        small_tiles.display({ scale:1 });
 
     }
   
@@ -148,13 +147,13 @@ class Main extends luxe.Game {
 
     } //update
 
-    function draw_tiled_object_groups() {
+    function draw_tiled_object_groups( _scale:Float = 1) {
 
             //now we can look at the objects layers in the tilemap and draw them
         for(group in tiled_ortho.tiledmap_data.object_groups) {
             
             for(object in group.objects) {
-                Luxe.draw.text({ text:object.name, size:14, pos:object.pos.clone().multiplyScalar(4).add(tiled_ortho.pos) });
+                Luxe.draw.text({ text:object.name, size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
                 switch(object.object_type) {
 
                     case TiledObjectType.polyline: {
@@ -162,8 +161,8 @@ class Main extends luxe.Game {
                         var last = new Vector(0,0);
                         for(p in object.polyobject.points) {
                             Luxe.draw.line({
-                                p0 : last.clone().add(object.pos).multiplyScalar(4).add(tiled_ortho.pos),
-                                p1 : p.clone().add(object.pos).multiplyScalar(4).add(tiled_ortho.pos),
+                                p0 : last.clone().add(object.pos).multiplyScalar(_scale).add(tiled_ortho.pos),
+                                p1 : p.clone().add(object.pos).multiplyScalar(_scale).add(tiled_ortho.pos),
                                 depth : 2
                             });
                             last = p.clone();
@@ -176,16 +175,16 @@ class Main extends luxe.Game {
                         var last = new Vector(0,0);
                         for(p in object.polyobject.points) {
                             Luxe.draw.line({
-                                p0 : last.clone().add(object.pos).multiplyScalar(4).add(tiled_ortho.pos),
-                                p1 : p.clone().add(object.pos).multiplyScalar(4).add(tiled_ortho.pos),
+                                p0 : last.clone().add(object.pos).multiplyScalar(_scale).add(tiled_ortho.pos),
+                                p1 : p.clone().add(object.pos).multiplyScalar(_scale).add(tiled_ortho.pos),
                                 depth : 2
                             });
                             last = p.clone();
                         } //each point
 
                         Luxe.draw.line({
-                            p0 : last.clone().add(object.pos).multiplyScalar(4).add(tiled_ortho.pos),
-                            p1 : new Vector().clone().add(object.pos).multiplyScalar(4).add(tiled_ortho.pos),
+                            p0 : last.clone().add(object.pos).multiplyScalar(_scale).add(tiled_ortho.pos),
+                            p1 : new Vector().clone().add(object.pos).multiplyScalar(_scale).add(tiled_ortho.pos),
                             depth : 2
                         });
 
@@ -194,10 +193,10 @@ class Main extends luxe.Game {
                     case TiledObjectType.ellipse:{
 
                             //cirle is top left for some reason
-                        var _r = (object.width/2)*4;
+                        var _r = (object.width/2)*_scale;
                         Luxe.draw.ring({
-                            x : (object.pos.x*4) + tiled_ortho.pos.x,
-                            y : (object.pos.y*4) + tiled_ortho.pos.y, 
+                            x : (object.pos.x*_scale) + tiled_ortho.pos.x,
+                            y : (object.pos.y*_scale) + tiled_ortho.pos.y, 
                             r : _r, 
                             depth : 2  
                         });
@@ -208,8 +207,8 @@ class Main extends luxe.Game {
 
 
                         Luxe.draw.rectangle({
-                            x : (object.pos.x*4) + tiled_ortho.pos.x, y : (object.pos.y*4) + tiled_ortho.pos.y, 
-                            w : object.width*4, h:object.height*4, 
+                            x : (object.pos.x*_scale) + tiled_ortho.pos.x, y : (object.pos.y*_scale) + tiled_ortho.pos.y, 
+                            w : object.width*_scale, h:object.height*_scale, 
                             depth : 2
                         });
 

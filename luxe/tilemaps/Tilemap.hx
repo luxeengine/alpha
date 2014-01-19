@@ -39,9 +39,14 @@ typedef TileArray = Array<Tile>;
 class TilemapVisuals {
 
     public var geometry : Array<Array<Geometry> >;
+    public var map : Tilemap;
     
-    public function new() {
+    public function new( _map:Tilemap, options:Dynamic ) {
+        
         geometry = [];
+        map = _map;
+
+        create( options );
     }
 
     public function create( options:Dynamic ) {
@@ -226,9 +231,6 @@ class Tilemap {
     } //new
 
     public function display( options:Dynamic ) {
-
-        trace("drawing tilemap with options " + options);
-        trace(orientation);
 
         switch(orientation) {
             case TilemapOrientation.ortho :

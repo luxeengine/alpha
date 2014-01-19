@@ -48,18 +48,7 @@ class Ortho {
 
 } //Ortho
 
-class OrthoVisuals extends TilemapVisuals {
-
-    public var map : Tilemap;
-
-    public function new( _map:Tilemap, options:Dynamic ) {
-            
-        map = _map;
-
-        super();
-        create(options);
-
-    } //new
+class OrthoVisuals extends TilemapVisuals {    
 
     public override function create( options:Dynamic ) {
 
@@ -79,7 +68,7 @@ class OrthoVisuals extends TilemapVisuals {
                         continue;
                     }
 
-                    var tileset = map.tileset_from_id( tile.id );        
+                    var tileset = map.tileset_from_id( tile.id );
 
                         //create the tile to the geometry
                     var _tile_geom = Luxe.draw.box({
@@ -94,7 +83,14 @@ class OrthoVisuals extends TilemapVisuals {
                         if(tileset.texture != null) {
                             tileset.texture.onload = function(t) {
                                 var image_coord = tileset.pos_in_texture( tile.id );
-                                _tile_geom.uv(new Rectangle(image_coord.x*map.tile_width,image_coord.y*map.tile_height,map.tile_width,map.tile_height));
+                                _tile_geom.uv(
+                                    new Rectangle(
+                                        image_coord.x * map.tile_width,
+                                        image_coord.y * map.tile_height,
+                                        map.tile_width,
+                                        map.tile_height
+                                    ) //Rectangle
+                                ); //uv
                                 tileset.texture.filter = _filter;
                             }
                         }
