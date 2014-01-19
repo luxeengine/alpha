@@ -24,9 +24,9 @@ typedef Slice = {
 
 class NineSlice extends luxe.Sprite {
 
-    @:hide public var slices : Array<Slice>;
-    @:hide public var added : Bool = false;
-    @:hide public var options : Dynamic;
+    @:noCompletion public var slices : Array<Slice>;
+    @:noCompletion public var added : Bool = false;
+    @:noCompletion public var options : Dynamic;
 
     public var top : Float = 32;
     public var left : Float = 32;
@@ -39,11 +39,11 @@ class NineSlice extends luxe.Sprite {
     public var source_w : Float = 0.0;
     public var source_h : Float = 0.0;
     public var is_set : Bool = false;
-    @:hide public var midwidth : Float = 0.0;
-    @:hide public var midheight : Float = 0.0;
+    @:noCompletion public var midwidth : Float = 0.0;
+    @:noCompletion public var midheight : Float = 0.0;
 
     private var _batcher : Batcher;
-    @:hide public var _geometry : ComplexGeometry;
+    @:noCompletion public var _geometry : ComplexGeometry;
 
     public function new(_options:Dynamic) {
 
@@ -56,22 +56,22 @@ class NineSlice extends luxe.Sprite {
             //and not to add us to any scenes or anything
         if(_options == null) {
             _options = {
-                geometry : false,
+                no_geometry : true,
                 no_scene : true
             }
         } else {
-            _options.geometry = false;
+            _options.no_geometry = true;
             _options.no_scene = true;
         }
 
         options = _options;
         
-        if(_options.depth != null) options.depth = _options.depth;
-        if(_options.group != null) options.group = _options.group;
-        if(_options.batcher != null) _batcher = _options.batcher;
+        if(_options.depth != null)      options.depth = _options.depth;
+        if(_options.group != null)      options.group = _options.group;
+        if(_options.batcher != null)    _batcher = _options.batcher;
         
             //sprite options to parent
-        super(_options);        
+        super(_options);
 
             //now local options
         if(_options.top != null) top = _options.top;

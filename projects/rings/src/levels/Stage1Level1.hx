@@ -107,18 +107,16 @@ class Stage1Level1 extends State {
 
         player_bullets = new Pool<Sprite>(20,
             function(index,total){
+
                 var _s = new Sprite({
                     size : new Vector(finger_size*0.14, finger_size*0.14),
                     color : new Color(1,1,1,1),
+                    depth:0.5,
+                    geometry: Luxe.draw.circle({
+                        r: finger_size*0.09,
+                    })
                 });
 
-                var old_geom =  _s.geometry;
-                _s.geometry = Luxe.draw.circle({
-                    r: finger_size*0.09,
-                    x:0, y:0, depth:0.5
-                });
-
-                _s.color = _s.geometry.color = new Color(1,1,1,1);
                 _s.visible = false;
 
                 var _p = _s.add( Projectile, 'projectile', this );
@@ -160,18 +158,14 @@ class Stage1Level1 extends State {
                     name:"enemy" + index,
                     size : new Vector(finger_size*0.4, finger_size*0.4),
                     color : new Color(0.6,0.1,0,1),
-                });
-                var old_geom =  _s.geometry;
-                _s.geometry = Luxe.draw.circle({
-                    r: finger_size*0.25,
-                    x:0, y:0,
-                    depth:6
+                    depth:6,
+                    geometry : Luxe.draw.circle({
+                        r: finger_size*0.25,
+                    })
                 });
 
-                _s.color = _s.geometry.color = new Color(0.6,0.1,0,1);
                 _s.visible = false;
 
-                old_geom.drop();
                 var _e = _s.add( Enemy, 'enemy', this );
                 return _s;
             }
@@ -280,19 +274,11 @@ class Stage1Level1 extends State {
         player = new Sprite({
             pos: new Vector(0,0),
             size: new Vector(64,48),
-            depth:6
+            depth : 8, 
+            geometry : Luxe.draw.circle({
+                r: finger_size*0.2,
+            })
         });
-
-        var old_geom = player.geometry;
-        player.geometry = Luxe.draw.circle({
-            r: finger_size*0.2,
-            x:0, y:0,
-            depth:8
-        });
-
-        old_geom.drop();
-
-        player.color = player.geometry.color = new Color(1,1,1,1);
 
         set_pos(90);
 

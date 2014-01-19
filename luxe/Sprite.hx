@@ -29,35 +29,38 @@ typedef SpriteOptions = {
     ?texture : Texture,
     ?shader : Shader,
     ?depth : Float,
-    ?rotation_z : Float,
     ?group : Int,
+    ?rotation_z : Float,
     ?visible : Bool,
-    ?add : Bool,
-    ?no_scene : Bool,
+    ?add : Bool,    
     ?scene : Scene,
     ?serialize : Bool,
-    ?geometry : Geometry
+    ?geometry : Geometry,
+
+    ?no_scene : Bool,
+    ?no_geometry : Bool
 }
 
 class Sprite extends Entity {
 
-    @:isVar public var geometry     (default,default)   : Geometry;
+    @:isVar public var geometry     (default,set    )   : Geometry;
     @:isVar public var locked       (default,set    )   : Bool = false;
     @:isVar public var texture      (default,set    )   : Texture;
     @:isVar public var shader       (default,set    )   : Shader;
     @:isVar public var size         (default,set    )   : Vector;
     @:isVar public var color        (default,set    )   : Color;
-    @:isVar public var visible      (default,set    )   : Bool;
+    @:isVar public var visible      (default,set    )   : Bool = true;
     @:isVar public var rotation_z   (default,set    )   : Float = 0.0;
     @:isVar public var radians      (default,set    )   : Float = 0.0;
     @:isVar public var depth        (default,set    )   : Float = 0.0;
+    @:isVar public var group        (default,set    )   : Int = 0;
     @:isVar public var centered     (default,set    )   : Bool = true;    
     @:isVar public var origin       (default,set    )   : Vector;
     @:isVar public var uv           (default,set    )   : Rectangle;
-    @:isVar public var clip         (default,set    )   : Bool;
+    @:isVar public var clip         (default,set    )   : Bool = false;
     @:isVar public var clip_rect    (default,set    )   : Rectangle;
-    @:isVar public var flipy        (default,set    )   : Bool;
-    @:isVar public var flipx        (default,set    )   : Bool;
+    @:isVar public var flipy        (default,set    )   : Bool = false;
+    @:isVar public var flipx        (default,set    )   : Bool = false;
 
 
     var _rotation_vector : Vector;
@@ -108,7 +111,19 @@ class Sprite extends Entity {
 //color
         if(options.color != null) {
             color = options.color;
-        }   
+        }
+//depth        
+        if(options.depth != null) {
+            depth = options.depth;
+        }
+//group
+        if(options.group != null) {
+            group = options.group;
+        }
+//visible
+        if(options.visible != null) {
+            visible = options.visible;
+        }        
 //scene
         if(options.scene != null) {
             scene = options.scene;            
@@ -161,27 +176,51 @@ class Sprite extends Entity {
 
     } //new
 
+    var _creating_geometry : Bool = false;
     @:noCompletion public function _create_geometry(options : SpriteOptions) {
 
-
             //if they give a geometry, don't create one
-        if(options.geometry != null) {
-            return;
-        }        
+        if(options.geometry == null) {
+            
+            if(options.no_geometry == null || options.no_geometry == false) {
+                
+                _creating_geometry = true;
 
-        geometry = new QuadGeometry({
-            x:pos.x, 
-            y:pos.y, 
-            w:size.x, 
-            h:size.y,
-            texture : texture,
-            color : color,
-            shader : shader,
-            depth : (options.depth == null) ? 0 : options.depth,
-            group : (options.group == null) ? 0 : options.group,
-            enabled : (options.visible == null) ? true : options.visible
-        });
+                    geometry = new QuadGeometry({
+                        x:pos.x, 
+                        y:pos.y, 
+                        w:size.x, 
+                        h:size.y,
+                        texture : texture,
+                        color : color,
+                        shader : shader,
+                        depth : (options.depth == null) ? 0 : options.depth,
+                        group : (options.group == null) ? 0 : options.group,
+                        enabled : (options.visible == null) ? true : options.visible
+                    });
 
+                _creating_geometry = false;
+
+                    //set the origin and centered once created
+                var _c = centered;
+                    centered = _c;
+
+                    //Only add to the batcher if requested
+                if(options.add == null || options.add != false) {
+                    if(options.batcher == null) {
+                        Luxe.addGeometry( geometry );
+                    } else {
+                        options.batcher.add( geometry );
+                    }
+                }
+
+            } //no_geometry is not present
+
+        } else {
+            
+            geometry = options.geometry;
+
+        }
 
         if(texture != null && texture.loaded) {
             
@@ -197,7 +236,6 @@ class Sprite extends Entity {
                 uv = options.uv;
             }
 
-
                 //if texture is render target, flipy
             if(texture.type == ResourceType.render_texture) {
                 flipy = true;
@@ -205,38 +243,28 @@ class Sprite extends Entity {
 
         }
 
-
             //default to the sprite name
-        geometry.id = name;
+        if(geometry != null) {
+            geometry.id = name;
+        }
 
-            //set the origin and centered once created
-        var _c = centered;
-        centered = _c;
-
-            //after we set centered the origin will override it
+            //custom provided origin will override any until now
         if(options.origin != null) {
             _has_custom_origin = true;
             origin = options.origin;
         }
 
-            //and apply the rotation
+            //apply the rotation if any
         if(options.rotation_z != null) {
             rotation_z = options.rotation_z;
         }
-
-        if(options.add == null || options.add != false) {
-            if(options.batcher == null) {
-                Luxe.addGeometry( geometry );
-            } else {
-                options.batcher.add( geometry );
-            }
-        }
             
-            //todo: like with add=false, don't add to scene.            
+            //add to the scene unless requested not to
         if(scene != null && options.no_scene != true) {
             Luxe.scene.add(this);            
         }
-    }
+
+    } //create_geometry
 
 
     public function destroy( ?_ignore_internal_destroy:Bool=false ) {
@@ -324,7 +352,17 @@ class Sprite extends Entity {
 
         return depth = _v;
 
-    } //set_visible
+    } //set_depth
+
+    private function set_group(_v:Int) {
+        
+        if(geometry != null) {
+            geometry.group = _v;
+        } //geometry
+
+        return group = _v;
+
+    } //set_group
 
 //Color properties
 
@@ -365,6 +403,36 @@ class Sprite extends Entity {
         }
 
         return origin = _o;
+        
+    } //set_origin
+
+//Geometry
+
+    private function set_geometry(_g:Geometry) : Geometry {
+        
+        if(geometry != null) {
+                //kill the existing geometry first
+            geometry.drop();            
+        }
+
+            //store the new one
+        geometry = _g;
+
+        if(geometry != null && _creating_geometry == false) {
+            //rebind it's colors and whatever else
+            
+            geometry.color = color;
+            geometry.pos = pos;
+            geometry.group = group;
+            geometry.depth = depth;
+            geometry.shader = shader;
+            geometry.texture = texture;
+            geometry.origin = origin;
+            geometry.enabled = visible;
+
+        }        
+
+        return geometry;
         
     } //set_origin
 
