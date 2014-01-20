@@ -1,5 +1,5 @@
 
-import luxe.Sprite;
+import luxe.Visual;
 import luxe.Vector;
 import luxe.Color;
 import luxe.tween.Actuate;
@@ -67,7 +67,7 @@ class Enemy extends Component {
 
 		Luxe.audio.play('enemy_explode');	
 
-		var s:Sprite = cast entity;
+		var s:Visual = cast entity;
 			
 			Actuate.tween(s.scale, 0.2, {x:3,y:3});
 
@@ -83,7 +83,7 @@ class Enemy extends Component {
 
 	public function live() {
 
-		var s:Sprite = cast entity;
+		var s:Visual = cast entity;
 			s.scale.x = 1;
 			s.scale.y = 1;
 			s.color.tween(0.2, {a:1}, true);

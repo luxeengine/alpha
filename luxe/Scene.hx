@@ -62,7 +62,7 @@ class Scene extends Objects {
 
     } //add
 
-    public function remove( entity:Entity ) {        
+    public function remove( entity:Entity ) {
         entities.remove( entity.id );
         entity.scene = null;
     }
@@ -161,7 +161,9 @@ class Scene extends Objects {
     public function destroy() {
         
         for(entity in entities) {
-            entity.destroy();
+            if(entity != null) {
+                entity.destroy();
+            }
         }
 
     } //destroy

@@ -323,7 +323,7 @@ import luxe.debug.StatsDebugView;
         if(!visible) return;        
 
             //update the title
-        debug_inspector._title_text.text = Maths.fixed(dt_average,3) + ' / ' + Maths.fixed(Luxe.dt,3);
+        debug_inspector._title_text.text = Maths.fixed(Luxe.dt,3) + ' / ' + Maths.fixed(dt_average,3);
         
         // return;
 

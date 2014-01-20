@@ -1,4 +1,4 @@
-import luxe.Sprite;
+import luxe.Visual;
 import luxe.Vector;
 import luxe.Color;
 import luxe.tween.Actuate;
@@ -27,7 +27,7 @@ class Projectile extends Component {
 
 		alive = true;
 		vel = _vel;
-		var s:Sprite = cast entity;
+		var s:Visual = cast entity;
 			s.visible = true;
 			s.color.a = 1;
 			s.scale.x = 1;
@@ -44,7 +44,7 @@ class Projectile extends Component {
 
 		Luxe.audio.play('distant_explode');	
 
-		var s:Sprite = cast entity;
+		var s:Visual = cast entity;
 			alive = false;
 
 			Actuate.tween(s.scale, 0.1, {x:3,y:3}).timescale().onComplete(function(){
@@ -78,7 +78,7 @@ class Projectile extends Component {
 		
 		if(bullettype == 'player') {
 			for(enemy in stage.enemies) {
-				var s : Sprite = cast enemy.entity;
+				var s : Visual = cast enemy.entity;
 				var r = (stage.finger_size*0.39);
 					var dx = s.pos.x - pos.x;
 					var dy = s.pos.y - pos.y;

@@ -2,14 +2,13 @@ package levels;
 
 
 import luxe.Input;
-import luxe.Sprite;
 import luxe.Vector;
 import luxe.States;
 import luxe.Color;
 import luxe.Entity;
-import luxe.Sprite;
 import luxe.tween.Actuate;
 import luxe.Vector;
+import luxe.Visual;
 
 import luxe.structural.Pool;
 
@@ -31,7 +30,7 @@ enum PlayMode {
 
 class Stage1Level1 extends State {
 
-    public var player : Sprite;
+    public var player : Visual;
     public var distance : Float = 0;
     public var field_distance : Float = 0;
     var center : Vector;
@@ -53,11 +52,11 @@ class Stage1Level1 extends State {
     public var finger_size : Float = 64;
     public var timesize : Float = 64;
 
-    var player_bullets : Pool<Sprite>;
-    public var enemy_bullets : Pool<Sprite>;
-    var player_enemies : Pool<Sprite>;
+    var player_bullets : Pool<Visual>;
+    public var enemy_bullets : Pool<Visual>;
+    var player_enemies : Pool<Visual>;
 
-    var healths : Array<Sprite>;
+    var healths : Array<Visual>;
 
     public var enemies : Array<Enemy>;
     public var projectiles : Array<Projectile>;
@@ -105,10 +104,10 @@ class Stage1Level1 extends State {
 
         endpos = new Vector();
 
-        player_bullets = new Pool<Sprite>(20,
+        player_bullets = new Pool<Visual>(20,
             function(index,total){
 
-                var _s = new Sprite({
+                var _s = new Visual({
                     size : new Vector(finger_size*0.14, finger_size*0.14),
                     color : new Color(1,1,1,1),
                     depth:0.5,
@@ -138,9 +137,9 @@ class Stage1Level1 extends State {
         );
 
 
-        enemy_bullets = new Pool<Sprite>(30,
+        enemy_bullets = new Pool<Visual>(30,
             function(index,total) {
-                var _s = new Sprite({
+                var _s = new Visual({
                     size : new Vector(finger_size*0.1, finger_size*0.1),
                     color : new Color(0.8,0.3,0.1,1),
                 });
@@ -152,9 +151,9 @@ class Stage1Level1 extends State {
             }
         ); 
 
-        player_enemies = new Pool<Sprite>(10,
+        player_enemies = new Pool<Visual>(10,
             function(index,total){
-                var _s = new Sprite({
+                var _s = new Visual({
                     name:"enemy" + index,
                     size : new Vector(finger_size*0.4, finger_size*0.4),
                     color : new Color(0.6,0.1,0,1),
@@ -174,7 +173,7 @@ class Stage1Level1 extends State {
         healths = [];
         for(i in 0 ... 3) {
 
-            healths.push(new Sprite({
+            healths.push(new Visual({
                 pos : new Vector(30+(i*40), 30),
                 size : new Vector(26,26),
                 color : new Color(1, 0.3, 0.1, 1),
@@ -271,7 +270,7 @@ class Stage1Level1 extends State {
 
         mainring.locked = true;
 
-        player = new Sprite({
+        player = new Visual({
             pos: new Vector(0,0),
             size: new Vector(64,48),
             depth : 8, 

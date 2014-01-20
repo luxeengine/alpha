@@ -304,7 +304,6 @@ class ParticleEmitter extends Component {
                 if(p != null) {
                     p.destroy();
                 }
-                p = null;
             }
         }
 
