@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [a2d9718264](http://github.com/underscorediscovery/luxe/commit/a2d97182640fcc02c6187de779af147d618d7dea)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 18:07:47 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Visual; removing size warning for now, this is meant to be a component of the image sprites without images but that's changed with visual/sprite separation.</li><li>Entity; fix bug where destroying an entity didn't remove it from it's parent, so it tried to update past being destroyed. Should Fix #44 (again).</li><li>Scene; some shielding against null entities existing in the scene, and trying to remove entities that don't belong to the scene in question, and a toString() to be more interesting to trace()</li><li>Visual; changed from default luxe scene to the given scene, so that it would work as intended when more scenes are layered on each other</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a8762a80ff](http://github.com/underscorediscovery/luxe/commit/a8762a80ff6d0c919e8c48e023f5c4756c280d1d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 08:54:01 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [f5ca4fb48e](http://github.com/underscorediscovery/luxe/commit/f5ca4fb48ed64652c292af6486658c4e557807f2)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Mon Jan 20 2014 08:52:27 GMT-0330 (NST)   
