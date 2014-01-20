@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [f5ca4fb48e](http://github.com/underscorediscovery/luxe/commit/f5ca4fb48ed64652c292af6486658c4e557807f2)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 08:52:27 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; Switching avg/current to current/avg, makes more sense</li><li>Particles; removing null setter causing null entities in scene (particles need a touch of work still anyway)</li><li>Scene; adding a gaurd against null entities on destroy</li><li>Sprite; Large important refactor, sprite is now inherited from Visual, visual will handle the geometry wrapping, sprite will handle the "image sprite" logistics (encapsulated better)</li><li>Visual; First pass of visual, still has a touch of sprite stuff (size specifically and some odd timing things to resolve without it). This will also allow more defaults than just quad to exist as a flag type, like new Visual({ geometry_type:GeometryType.ring }) or circle etc.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0cb07e5eae](http://github.com/underscorediscovery/luxe/commit/0cb07e5eaeefe3fe3c3489f0ddead755abbaf6f8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 07:46:39 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; Fix #50 , update position to the view when tweening</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c0346184ea](http://github.com/underscorediscovery/luxe/commit/c0346184eafcbed532d1a8fe2b6668c4ebdd7804)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 05:52:41 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Updating docs</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [c5c5be16b7](http://github.com/underscorediscovery/luxe/commit/c5c5be16b78da3f0d0e68ee015490f17ad5dfc4d)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Mon Jan 20 2014 05:50:58 GMT-0330 (NST)   
