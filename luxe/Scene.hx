@@ -22,6 +22,10 @@ class Scene extends Objects {
         _delayed_start_entities = [];
     }
 
+    public function toString() {
+        return "Luxe Scene: " + name + " entities:" + Lambda.count(entities) + " (" + id + ")"; 
+    }
+
     public function create<T>(type:Class<T>, ?_name:String='') : T {
 
         var _temp_name = _name;
@@ -40,13 +44,21 @@ class Scene extends Objects {
         _e_entity.name = _temp_name;
 
             //add it to this scene
-        add(_e_entity);        
+        add(_e_entity);
+
+        _debug("scene: created and added entity to scene " + type + "/" + _temp_name );
 
             //entity
         return _entity;
     }
 
     public function add( entity:Entity ) {
+
+        if(entity == null) {
+            throw "scene: can't put entity in a scene if the entity is null.";
+        }
+
+        _debug("scene: adding entity to scene " + name + " called " + entity.name + " with id " + entity.id );
 
         entities.set( entity.id, entity );
 
@@ -62,13 +74,34 @@ class Scene extends Objects {
 
     } //add
 
-    public function remove( entity:Entity ) {
-        entities.remove( entity.id );
-        entity.scene = null;
+    function list_entities() {
+        for(entity in entities) {
+            trace("\tentity : " + entity.name + " / " + entity.id);
+        }
     }
 
+    public function remove( entity:Entity ) : Bool {
+
+        if(entity == null) {
+            throw "scene: can't remove entity from a scene if the entity is null.";
+        }
+
+        if(entity.scene == this) {
+            
+            entity.scene = null;
+            return entities.remove( entity.id );
+            
+        } else {
+            _debug("scene: can't remove the entity from this scene, it is not mine (entity.scene != this)");
+            return false;
+        }
+
+        return false;
+
+    } //remove
+
     public function empty() {
-        trace("Scene : cleaning up entities in scene");
+        trace("scene : cleaning up entities in scene");
         for(entity in entities) {
             remove(entity);
             entity.destroy();

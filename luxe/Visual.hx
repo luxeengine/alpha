@@ -152,8 +152,9 @@ class Visual extends Entity {
             } else {
                     //default to a value big enough to see
                 size = new Vector(64,64); 
-                trace('\t\tWarning : no texture, or size, handed to visual constructor so going with a default size.');
+                // trace('\t\tWarning : no texture, or size, handed to visual constructor so going with a default size.');
                 _create_geometry(options);
+                
             } //texture !=null
 
         } //
@@ -224,7 +225,7 @@ class Visual extends Entity {
             
             //add to the scene unless requested not to
         if(scene != null && options.no_scene != true) {
-            Luxe.scene.add(this);            
+            scene.add(this);
         }
 
     } //create_geometry

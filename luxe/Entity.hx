@@ -13,7 +13,7 @@ import luxe.components.Components;
 //Objects -> Entity
 class Entity extends Objects {
 
-	public var components(get,never) : Map<String, Component>;
+	public var components (get,never) : Map<String, Component>;
 	private var _components : Components;
 
     public var events : luxe.Events;
@@ -122,25 +122,27 @@ class Entity extends Objects {
 
 	public function destroy() {
 
-        _debug('calling destroy on ' + name + ' with ' + children.length + ' children');
+        _debug('calling destroy on ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
 			//first destroy children
-        for(_child in children) {
-            _debug('\t child: ' + _child.name);
-        }
-
 		for(_child in children) {
             _debug('\t calling destroy on child ' + _child.name);
 			_child.destroy();
 		} //for each child
-
+        
 			//destroy all the components attached directly to us
 		for(_component in components) {
 			_call(_component, 'destroyed');
 		} //for each component
 
-			//destroy the parent last
+			//destroy the actual one last
 		_call(this, 'destroyed');
+
+            //remove it from it's parent if any
+        if(parent != null) {
+            _debug("\t removing " + name + "/" + id + " from parent " + parent.name + " / " + parent.id );
+            parent.remove_child(this);
+        }
 
             //kill any fixed rate timers
         _stop_fixed_rate_timer();
@@ -149,6 +151,8 @@ class Entity extends Objects {
 		_destroyed = true;
 
             //remove from the scene it's in if any
+        _debug( "removing " + name + " / " + id + " from scene " + scene );
+
         if(scene != null) {
             scene.remove(this);
         } 
@@ -487,14 +491,21 @@ class Entity extends Objects {
 
 
 	@:noCompletion public function _update(dt:Float) {
+		
+        if(_destroyed) {
+            _debug("calling update AFTER DESTROYED on " + name + " / " + id );
+            return;
+        }
 
-		_debug('calling update on ' + name, true);
+        _debug('calling update on ' + name, true);
 
 			//update the parent first
 		_call(this, 'update', [dt]);
 
-			//update the events
-		events.process();
+        if(events != null) {
+                //update the events
+            events.process();
+        }
 
 			//update all the components attached directly to us
 		for(_component in components) {
@@ -590,9 +601,9 @@ class Entity extends Objects {
             //children inherit the updates and such from the parent, so they shouldn't be in the root of the scene
         if(child.scene != null) {
             _debug( name + " add child " + child.name + " being parented, removing from scene root of " + child.scene.name);
-            child.scene.remove(child);
+            var removed = child.scene.remove( child );
         } else {
-            _debug(name + " add child " + child.name + " being parented, but no scene");
+            _debug(name + " add child " + child.name + " being parented, but not from a scene");
         }
 
     }
