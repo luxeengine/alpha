@@ -16,7 +16,7 @@ import phoenix.geometry.Geometry;
 import phoenix.Texture;
 import phoenix.BitmapFont;
 
-import luxe.State;
+import luxe.States;
 
 import luxe.tween.Actuate;
 import phoenix.RenderTexture;
@@ -95,9 +95,14 @@ class Manager extends State {
         //the camera for the hud static view
     public var hud_view : Camera;
 
+    public var game : Game;
 
-    public function init() {
-            
+    public function init( _game:Game ) {
+        game = _game;
+    }
+
+    public function create() {
+        
         start_drag = new Vector();
         start_camera_drag = new Vector();
 
@@ -336,7 +341,7 @@ class Manager extends State {
 
     } // hide_dialog
 
-    public function destroy() {
+    public function cleanup() {
 
         trace('destroying manager');
         
@@ -369,9 +374,9 @@ class Manager extends State {
 
         Luxe.camera.bounds = null;
 
-    } //destroy
+    } //destroyed
 
-    public function keydown(e) {
+    public function onkeydown(e) {
         
         if( e.value == Input.Keys.escape ) {
             game.states.set('menu');
@@ -384,7 +389,7 @@ class Manager extends State {
 
     } //keydown
 
-    public function mousedown(e) {
+    public function onmousedown(e) {
         mouse = new Vector(e.x,e.y);        
 
         if(showing_dialog) return;
@@ -404,7 +409,7 @@ class Manager extends State {
     } //mousedown
 
 
-    public function mouseup(e) {
+    public function onmouseup(e) {
         
         mouse = new Vector(e.x,e.y);
             //before the early outs, to undo any mouse downs
@@ -422,7 +427,7 @@ class Manager extends State {
         }
     }
 
-    public function mousemove(e) {
+    public function onmousemove(e) {
 
         mouse = new Vector(e.x,e.y);
 
@@ -436,11 +441,11 @@ class Manager extends State {
     }
 
     public function enter() {
-       init();
+       create();
     }
 
     public function leave() {
         Luxe.camera.pos = new Vector();
-        destroy();
+        cleanup();
     }
 }

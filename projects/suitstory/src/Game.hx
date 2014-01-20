@@ -2,8 +2,7 @@
     //mode management code
 import luxe.Color;
 import luxe.Vector;
-import state.State;
-import state.States;
+import luxe.States;
 
     //the game classes
 import luxe.Input;
@@ -22,17 +21,12 @@ class Game extends luxe.Game {
         
         states = new States();
             //menus
-        mainMenu = new menus.Menu(this, 'menu');
+        mainMenu = states.add_state(menus.Menu, 'menu', this);
             //the game manager
-        manager = new systems.Manager(this, 'manager');
-
-            //add the states 
-            //to the mode manager
-        states.add( mainMenu );
-        states.add( manager );
+        manager = states.add_state(systems.Manager, 'manager', this);
 
             //start up the menu mode
-        mainMenu.init();
+        states.init();
             //and set to that mode
         states.set('menu');
 
@@ -43,29 +37,29 @@ class Game extends luxe.Game {
     }
  
     public function onkeydown(e) {
-        states.keydown(e);
+        states.onkeydown(e);
     }
     public function onkeyup(e) {
-        states.keyup(e);
+        states.onkeyup(e);
     }
 
     public function onmousedown(e : MouseEvent) {
-        states.mousedown(e);
+        states.onmousedown(e);
     }   
 
     public function onmousemove(e : MouseEvent) {
-        states.mousemove(e);
+        states.onmousemove(e);
     }
 
     public function onmouseup(e : MouseEvent) {
-        states.mouseup(e);
+        states.onmouseup(e);
     }
 
     public function update(dt:Float) {
         states.update(dt);
     }
 
-    public function destroy() {
+    public function destroyed() {
 
     }
 

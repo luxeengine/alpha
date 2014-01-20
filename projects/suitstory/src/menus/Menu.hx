@@ -2,7 +2,7 @@
 package menus;
 
 
-import mode.State;
+import luxe.States;
 
 import luxe.Color;
 import luxe.Vector;
@@ -30,6 +30,7 @@ import luxe.tween.Actuate;
 
 class Menu extends State {   
 
+    public var game : Game;
     public var mouse : Vector;
 
     public var play : Sprite;
@@ -40,8 +41,11 @@ class Menu extends State {
 
     public var dttext : Text;
 
-    public function init() {    
+    public function init( _game:Game ) {    
 
+        trace("init menu");
+
+        game = _game;
         mouse = new Vector();        
 
         back = new Sprite({
@@ -67,15 +71,15 @@ class Menu extends State {
 
     }
 
-    public function start() {
+    public function reset() {
         
-    } //start
+    } //reset
 
     public function playClicked() {
         game.states.set('manager');
     }
 
-    public function mouseup(e) {
+    public function onmouseup(e) {
 
         mouse = new Vector(e.x, e.y);
 
@@ -85,7 +89,7 @@ class Menu extends State {
 
     }
 
-    public function mousemove(e) {    
+    public function onmousemove(e) {    
         mouse = new Vector(e.x, e.y);
     }
 
@@ -93,11 +97,11 @@ class Menu extends State {
         
     }
    
-    public function keyup(e:Dynamic) {
+    public function onkeyup(e:Dynamic) {
         
     }
 
-    public function keydown(e:Dynamic) {
+    public function onkeydown(e:Dynamic) {
         
         if(e.value == 27) {
             Luxe.shutdown();
