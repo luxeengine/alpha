@@ -119,7 +119,11 @@ class Camera extends Entity {
 		var center_point_y = (_p.y/view.scale.y) - (viewport.h/2);
 
 		Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
-            .onComplete( oncomplete ).ease( Quad.easeInOut );
+            .onComplete( oncomplete ).ease( Quad.easeInOut )
+            .onUpdate( function() {
+                _final_pos.set_xyz( pos.x, pos.y, pos.z );
+                view.pos = _final_pos;
+            });
 
 	} //focus
 
