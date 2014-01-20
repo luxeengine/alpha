@@ -1,6 +1,146 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [c5c5be16b7](http://github.com/underscorediscovery/luxe/commit/c5c5be16b78da3f0d0e68ee015490f17ad5dfc4d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 05:50:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>RingGeometry; Tightening up circle implementation for reuse as ellipse and making it more flexible</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5b6f1312f9](http://github.com/underscorediscovery/luxe/commit/5b6f1312f9dfc332375eea7798e3f542569f6cde)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 05:49:26 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; `entity.destroy` handles proper destruction, implement `destroyed` for the handler of when that happens in your own components.</li><li>Refactor; Entity; Component; `destroyed` instead of `destroy` for the handlers, `start` is renamed to `reset` because start is vague and unclear.</li><li>Component; `removed` event for when a component is being removed. This still needs some consistency, like remove vs destroy</li><li>Refactor; States; `enable` is now `enabled`, `disable` is now `disabled` and do_disable is called disable.</li><li>Tests; builder; For generating builds of projects and tests. See builds.json, used for building html5 tests and keeping builds running with latest code.</li><li>Builder.hx:138: completed 78 / 78</li><li>Builder.hx:147:  successes:</li><li>Builder.hx:149:    html5 | test_assets</li><li>Builder.hx:149:    html5 | test_astar</li><li>Builder.hx:149:    html5 | test_audio</li><li>Builder.hx:149:    html5 | test_base64</li><li>Builder.hx:149:    html5 | test_camera</li><li>Builder.hx:149:    html5 | test_camera_views</li><li>Builder.hx:149:    html5 | test_colors</li><li>Builder.hx:149:    html5 | test_complexgeometry</li><li>Builder.hx:149:    html5 | test_component_state</li><li>Builder.hx:149:    html5 | test_component_transforms</li><li>Builder.hx:149:    html5 | test_components</li><li>Builder.hx:149:    html5 | test_depth</li><li>Builder.hx:149:    html5 | test_draw</li><li>Builder.hx:149:    html5 | test_events</li><li>Builder.hx:149:    html5 | test_fonts</li><li>Builder.hx:149:    html5 | test_groups_and_blendmodes</li><li>Builder.hx:149:    html5 | test_luxemark</li><li>Builder.hx:149:    html5 | test_named_bindings</li><li>Builder.hx:149:    html5 | test_nineslice</li><li>Builder.hx:149:    html5 | test_particles</li><li>Builder.hx:149:    html5 | test_rtt</li><li>Builder.hx:149:    html5 | test_shaders</li><li>Builder.hx:149:    html5 | test_sprite</li><li>Builder.hx:149:    html5 | test_sprite_animation</li><li>Builder.hx:149:    html5 | test_states</li><li>Builder.hx:149:    html5 | test_text</li><li>Builder.hx:149:    html5 | test_tiles</li><li>Builder.hx:149:    html5 | test_timescale</li><li>Builder.hx:149:    html5 | test_tween</li><li>Builder.hx:149:    html5 | test_uuid</li><li>Builder.hx:149:    html5 | test_mesh</li><li>Builder.hx:149:    html5 | test_mesh_component</li><li>Builder.hx:149:    html5 | test_mesh_mouse_rotate</li><li>Builder.hx:149:    html5 | letter5</li><li>Builder.hx:149:    html5 | rings</li><li>Builder.hx:149:    html5 | squads</li><li>Builder.hx:149:    html5 | suitstory</li><li>Builder.hx:149:    html5 | tdgame</li><li>Builder.hx:149:    html5 | three</li><li>Builder.hx:149:    mac | test_assets</li><li>Builder.hx:149:    mac | test_astar</li><li>Builder.hx:149:    mac | test_audio</li><li>Builder.hx:149:    mac | test_base64</li><li>Builder.hx:149:    mac | test_camera</li><li>Builder.hx:149:    mac | test_camera_views</li><li>Builder.hx:149:    mac | test_colors</li><li>Builder.hx:149:    mac | test_complexgeometry</li><li>Builder.hx:149:    mac | test_component_state</li><li>Builder.hx:149:    mac | test_component_transforms</li><li>Builder.hx:149:    mac | test_components</li><li>Builder.hx:149:    mac | test_depth</li><li>Builder.hx:149:    mac | test_draw</li><li>Builder.hx:149:    mac | test_events</li><li>Builder.hx:149:    mac | test_fonts</li><li>Builder.hx:149:    mac | test_groups_and_blendmodes</li><li>Builder.hx:149:    mac | test_luxemark</li><li>Builder.hx:149:    mac | test_named_bindings</li><li>Builder.hx:149:    mac | test_nineslice</li><li>Builder.hx:149:    mac | test_particles</li><li>Builder.hx:149:    mac | test_rtt</li><li>Builder.hx:149:    mac | test_shaders</li><li>Builder.hx:149:    mac | test_sprite</li><li>Builder.hx:149:    mac | test_sprite_animation</li><li>Builder.hx:149:    mac | test_states</li><li>Builder.hx:149:    mac | test_text</li><li>Builder.hx:149:    mac | test_tiles</li><li>Builder.hx:149:    mac | test_timescale</li><li>Builder.hx:149:    mac | test_tween</li><li>Builder.hx:149:    mac | test_uuid</li><li>Builder.hx:149:    mac | test_mesh</li><li>Builder.hx:149:    mac | test_mesh_component</li><li>Builder.hx:149:    mac | test_mesh_mouse_rotate</li><li>Builder.hx:149:    mac | letter5</li><li>Builder.hx:149:    mac | rings</li><li>Builder.hx:149:    mac | squads</li><li>Builder.hx:149:    mac | suitstory</li><li>Builder.hx:149:    mac | tdgame</li><li>Builder.hx:149:    mac | three</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [49491e5aa8](http://github.com/underscorediscovery/luxe/commit/49491e5aa800d044d50bda776d3b1b205a9989df)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 04:59:24 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>suistory; fixing builds for latest luxe stuff</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [776b48d808](http://github.com/underscorediscovery/luxe/commit/776b48d808156f9d2eff2824a70ce749736ac4ae)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 04:38:48 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; text fixing html5 build</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ae6633d841](http://github.com/underscorediscovery/luxe/commit/ae6633d8414d4fc735b2da3627c056fdfc32108c)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 04:33:15 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; fixing test states for latest enabled/disable flags</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0e2db64624](http://github.com/underscorediscovery/luxe/commit/0e2db6462470a361705aef3e6fae8d7e2dacfbd3)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 04:30:11 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; luxemark better named</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0ca4c8ca61](http://github.com/underscorediscovery/luxe/commit/0ca4c8ca61d1f062663292f3e8d868782e97caa9)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 04:29:55 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Test; Luxemark; fixing html5 build</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f64f107e06](http://github.com/underscorediscovery/luxe/commit/f64f107e0644026cf68f399e9d870b8fa631d4ef)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 02:47:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; Adding test builder to run html5/cpp builds automatically</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [402a1427a0](http://github.com/underscorediscovery/luxe/commit/402a1427a0f24062f3e7edaa15f44e0f861658de)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 02:47:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; Removing superfluous test from structural</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [109c799819](http://github.com/underscorediscovery/luxe/commit/109c79981992bfbbb3e43469ba97eaf273f5637f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 19 2014 16:27:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [841e97de72](http://github.com/underscorediscovery/luxe/commit/841e97de72d62e99d992ccbf4828ece1536e849c)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Jan 19 2014 16:26:58 GMT-0330 (NST)   
