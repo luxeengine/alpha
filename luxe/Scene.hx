@@ -71,7 +71,7 @@ class Scene extends Objects {
         trace("Scene : cleaning up entities in scene");
         for(entity in entities) {
             remove(entity);
-            entity._destroy();
+            entity.destroy();
             entity = null;
         }
         trace("\tentities left " + Lambda.count(entities));
@@ -159,9 +159,11 @@ class Scene extends Objects {
     } //oninputup
 
     public function destroy() {
-         for(entity in entities) {
-            entity._destroy();
+        
+        for(entity in entities) {
+            entity.destroy();
         }
+
     } //destroy
 
     function _do_init() : Bool {
@@ -199,7 +201,7 @@ class Scene extends Objects {
     public function start() {        
 
         for(entity in entities) {
-            entity._start();
+            entity._reset();
         }
 
         started = true;
@@ -233,7 +235,7 @@ class Scene extends Objects {
 
         if(_delayed_start_entities.length > 0) {
             for(entity in _delayed_start_entities) {
-                entity._start();
+                entity._reset();
             }
             _delayed_start_entities.splice(0, _delayed_start_entities.length);
         } 

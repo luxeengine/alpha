@@ -27,12 +27,12 @@ import phoenix.Renderer;
 
 @:hide class Core {
 
-		//core versioning
-	public var version : String = '0.1';
-		//the game object running the core
+        //core versioning
+    public var version : String = '0.1';
+        //the game object running the core
     public var host : Dynamic;  
         //the config passed to us on creation
-	public var config : Dynamic;
+    public var config : Dynamic;
 
         //if the console is displayed atm
     public var console_visible : Bool = false;
@@ -41,14 +41,14 @@ import phoenix.Renderer;
     public var lime : Lime;
 
 //Sub Systems, mostly in order of importance
-	public var debug    : Debug;
-	public var draw 	: Draw;
-	public var time 	: Time;
-	public var events 	: Events;
-	public var input 	: Input;
+    public var debug    : Debug;
+    public var draw     : Draw;
+    public var time     : Time;
+    public var events   : Events;
+    public var input    : Input;
     public var audio    : Audio;
     public var scene    : Scene;
-	public var renderer : Renderer;
+    public var renderer : Renderer;
     public var screen   : luxe.Screen;
 
 #if haxebullet
@@ -74,12 +74,12 @@ import phoenix.Renderer;
     }
 
 //flags
-	
-	   //if we have started a shutdown
+    
+       //if we have started a shutdown
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
 
-    	//constructor
+        //constructor
     public function new( _host:Dynamic ) {
             
             //Keep a reference for use
@@ -108,15 +108,15 @@ import phoenix.Renderer;
 
         _debug(':: luxe :: Version ' + version);
 
-          	//Create the subsystems
+            //Create the subsystems
 
         init();
 
         _debug(':: luxe :: Ready.');
         _debug('');
 
-        	//Call the main ready function 
-        	//and send the ready event to the host
+            //Call the main ready function 
+            //and send the ready event to the host
         if(host.ready != null) {
             host.ready();
         }
@@ -138,16 +138,16 @@ import phoenix.Renderer;
         config = lime.config;
 
             //Create the subsystems
-		_debug(':: luxe :: Creating subsystems.');
+        _debug(':: luxe :: Creating subsystems.');
 
-			//Order is important here
-		
-		debug = new Debug( this ); Luxe.debug = debug;
+            //Order is important here
+        
+        debug = new Debug( this ); Luxe.debug = debug;
         draw = new Draw( this );
-		time = new Time( this );
-		events = new Events();
-		audio = new Audio( this );	
-		input = new Input( this );
+        time = new Time( this );
+        events = new Events();
+        audio = new Audio( this );  
+        input = new Input( this );
 
         #if haxebullet
             physics = new Physics( this );    
@@ -160,13 +160,13 @@ import phoenix.Renderer;
             //store the size for access from API, todo:Window position should go here.
         screen = new luxe.Screen( 0, 0, config.width, config.height );
 
-			//Now make sure 
+            //Now make sure 
             //they start up
             
-		debug.init();
-		time.init();
-		audio.init();
-		input.init();
+        debug.init();
+        time.init();
+        audio.init();
+        input.init();
 
         #if haxebullet
             physics.init();
@@ -198,39 +198,39 @@ import phoenix.Renderer;
 
     public function shutdown() {        
 
-		_debug('');
-		_debug(':: luxe :: Shutting down...');
+        _debug('');
+        _debug(':: luxe :: Shutting down...');
 
             //Make sure all systems know we are going down
 
         shutting_down = true;
 
             //shutdown the game class
-        if(host.destroy != null) {
-            host.destroy();
+        if(host.destroyed != null) {
+            host.destroyed();
         }
 
             //shutdown the default scene
         scene.destroy();        
 
-    		//Order is imporant here too
+            //Order is imporant here too
 
         if(renderer != null && renderer.destroy != null) {
             renderer.destroy();
         }        
 
-    	input.destroy();
-    	audio.destroy();
-    	time.destroy();
+        input.destroy();
+        audio.destroy();
+        time.destroy();
         events.destroy();
-    	debug.destroy();        
+        debug.destroy();        
 
-    		//Clear up for GC
-    	input = null;
-    	audio = null;
-    	events = null;
-    	time = null;
-    	debug = null;
+            //Clear up for GC
+        input = null;
+        audio = null;
+        events = null;
+        time = null;
+        debug = null;
         Luxe.utils = null;
 
             //Flag it
@@ -239,7 +239,7 @@ import phoenix.Renderer;
         _debug(':: luxe :: Goodbye.');
     }
 
-    	//Called by Lime
+        //Called by Lime
     public function update() { 
 
         _debug('on_update ' + Timer.stamp(), true, true);         
@@ -561,9 +561,9 @@ import phoenix.Renderer;
 
 //Noisy stuff
 
-   		//temporary debugging with verbosity options
+        //temporary debugging with verbosity options
 
-	public var log : Bool = false;
+    public var log : Bool = false;
     public var verbose : Bool = true;
     public var more_verbose : Bool = false;
     public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) { 

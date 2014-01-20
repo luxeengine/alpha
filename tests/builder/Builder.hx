@@ -1,13 +1,6 @@
 
 import sys.io.Process;
 
-typedef Result = {
-    stdout:String,
-    stderr:String,
-    returncode:Int,
-    processID:Int
-}
-
 class Builder {
 
     var failures:Array<String>;
@@ -18,11 +11,9 @@ class Builder {
     var succeeded = 0;
     var failed = 0;
     var current = 0;
+    var config : Dynamic;
 
-    function run_build(path:String, target:String='cpp') {
-
-            failures = [];
-            successes = [];
+    function run_build(path:String, target:String='cpp') {            
 
             trace("\t      setting path " + path);
             
@@ -47,14 +38,44 @@ class Builder {
                 var stdout      = p.stdout.readAll().toString();
                                   p.close();
 
-            trace("\t      done:"+returncode);
+            var cwd = Sys.getCwd();
+            var last = cwd.charAt(cwd.length-1);
+            if(last == '/') { cwd = cwd.substring(0, cwd.length - 1); }
+            var endpos = cwd.lastIndexOf('/');
+            
+            var short_name = cwd.substr( endpos+1, cwd.length - endpos );
+
+            trace("\t    done : " + short_name);
 
             if(returncode == 0) { 
                 succeeded++;
-                successes.push(path);
+                successes.push(target + " | " + short_name);
             } else {
                 failed++;
-                failures.push(path);
+                failures.push(target + " | " + short_name);
+            }
+
+            
+            var target_path = '';
+            var source_path = '';
+
+                //now do a copy, if requested
+            if(config.copyoutput != null && config.copyoutput == true) {
+                // recursiveCopy
+                if(config.outputpath != null && config.outputpath != '') {
+                    var bits = 64;
+                    var out = (target == 'html5') ? target : target + bits;
+                    var bin_dir = (target == 'html5') ? 'bin/' + out + '/bin' : 'bin/' + out + '/cpp/bin/';
+                    var out_path = config.outputpath + out + '/' + short_name;
+
+                    source_path = bin_dir;
+                    target_path = out_path;
+                }
+            }
+
+            if(target_path != '' && source_path != '') {
+                Utils.recursiveCopy( source_path, target_path );
+                trace("\t   copied " + source_path + " to " + target_path );
             }
 
             Sys.setCwd(wd);
@@ -82,9 +103,14 @@ class Builder {
 
         wd = Sys.getCwd();
 
+
+        failures = [];
+        successes = [];
+
         trace('working dir ' + wd);
 
-        var config : Dynamic = haxe.Json.parse( Utils.read_file( 'builds.json' ) );
+        config = haxe.Json.parse( Utils.read_file( 'builds.json' ) );
+
         var build_list : Array<Dynamic> = cast config.builds;
         var build_targets : Array<String> = cast config.targets;
 
@@ -112,15 +138,15 @@ class Builder {
         trace("completed " + succeeded + ' / ' + total);
 
         if(succeeded != total) {
-            trace("failures:");
+            trace(" failures:");
             for(failure in failures) {
-                trace("\t" + failure);
+                trace("   " + failure);
             }
         }
 
-        trace("successes: ");
+        trace(" successes: ");
         for(success in successes) {
-            trace("\t" + success);
+            trace("   " + success);
         }
     }   
 

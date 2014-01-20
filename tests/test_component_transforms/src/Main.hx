@@ -11,11 +11,11 @@ class RigidBody extends Components.Component {
     public function init() {
         trace('init rigidbody');
     } //init
-    public function start() {
-        trace('start rigidbody');
+    public function reset() {
+        trace('reset rigidbody');
         trace('getting collider' + entity.get('collider'));
-    } //start
-    public function destroy() {
+    } //reset
+    public function destroyed() {
         trace('destroy rigidbody');
     } //destroy
 }
@@ -24,10 +24,10 @@ class MeshComponent extends Components.Component {
     public function init() {
         trace('init MeshComponent');
     } //init
-    public function start() {
-        trace('start MeshComponent');
-    } //start
-    public function destroy() {
+    public function reset() {
+        trace('reset MeshComponent');
+    } //reset
+    public function destroyed() {
         trace('destroy MeshComponent');
     } //destroy
 }
@@ -36,10 +36,10 @@ class Collider extends Components.Component {
     public function init() {
         trace('init Collider');
     } //init
-    public function start() {
-        trace('start Collider');        
-    } //start
-    public function destroy() {
+    public function reset() {
+        trace('reset Collider');        
+    } //reset
+    public function destroyed() {
         trace('destroy Collider');
     } //destroy
 }
@@ -91,8 +91,8 @@ class Main extends luxe.Game {
 
             //test
         spherething._init();
-        spherething._start();
-        spherething._destroy();
+        spherething._reset();
+        spherething.destroy();
 
     } //ready
 
@@ -167,9 +167,9 @@ class Main extends luxe.Game {
         draw_entities_transforms();
     } //update
 
-    public function destroy() {
+    public function destroyed() {
 
-    } //destroy
+    } //destroyed
 }
 
 

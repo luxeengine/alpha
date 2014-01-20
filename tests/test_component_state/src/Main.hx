@@ -7,7 +7,7 @@ import luxe.components.Components.Component;
 import luxe.Vector;
 
 //
-//  The point of this test is to test the state of a component, like init, start, remove, destroy etc
+//  The point of this test is to test the state of a component, like init, reset, remove, destroyed etc
 //
 
 class Toggler extends Component {
@@ -16,8 +16,8 @@ class Toggler extends Component {
         trace('init toggler');
         sprite = cast entity;
     }
-    public function start() {
-        trace('start toggler');
+    public function reset() {
+        trace('reset toggler');
         sprite.color = new Color().rgb(0xcc0000);
     }
     public function removed() {

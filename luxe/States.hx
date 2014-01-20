@@ -27,11 +27,11 @@ class State extends Objects {
 		return _f;
 	}
 
-	public function do_enable<T>( ?_data:T ) {
+	public function enable<T>( ?_data:T ) {
 		machine.enable( name, _data );
 	}
 
-	public function do_disable<T>( ?_data:T ) {
+	public function disable<T>( ?_data:T ) {
 		machine.disable( name, _data );
 	}
 
@@ -96,7 +96,7 @@ class States {
 	public function enable<T>( _name:String, ?_data:T ) {
 		var state = _states.get( _name );
 		if(state != null) {
-			_call(state, 'enable',[_data] );
+			_call(state, 'enabled',[_data] );
 			active_states.push(state);
 		}
 	}
@@ -104,7 +104,7 @@ class States {
 	public function disable<T>( _name:String, ?_data:T  ) {
 		var state = _states.get( _name );
 		if(state != null) {
-			_call(state, 'disable',[_data] );
+			_call(state, 'disabled',[_data] );
 			active_states.remove( state );
 		}
 	}
@@ -131,19 +131,29 @@ class States {
 			state._init();
 		}
 	}	
-	public function start() {
+	public function reset() {
 		for (state in active_states) {
-			_call(state, 'start', []);
+			_call(state, 'reset', []);
 		}
 	}
 	public function update(dt:Float) {
 		for (state in active_states) {
-			_call(state, '_update', [dt]);
+			state._update(dt);
 		}
 	}
 	public function destroy() {
 		for (state in _states) {
-			_call(state, 'destroy', []);
+			_call(state, 'destroyed', []);
+		}
+	}
+	public function prerender() {
+		for (state in active_states) {
+			_call(state, 'prerender', []);
+		}
+	}
+	public function postrender() {
+		for (state in active_states) {
+			_call(state, 'postrender', []);
 		}
 	}
 

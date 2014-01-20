@@ -91,7 +91,7 @@ class Main extends luxe.Game {
         states.update(dt);
     } //update
 
-    public function destroy() {
+    public function destroyed() {
         states.destroy();
     } //destroy
 }

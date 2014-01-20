@@ -9,7 +9,7 @@ import luxe.Sprite;
     /*
         Things we want to test in components         
 
-        1) components having parents successfully bootstraps the children functions (init, destroy, start, update)
+        1) components having parents successfully bootstraps the children functions (init, destroyed, reset, update)
         2) components having a root transform aliases to the parent transform (pos,rotation,scale affect the root entity, not the child)
         3) nested components affect the root transform as well  : see Child2 class changes rotation, pos and scale on the root sprite but its a child1 child
         4) The default scene propogates events properly (Sprite will add itself)
@@ -104,11 +104,11 @@ class GameObject extends Entity {
     public function init() {
         trace('\tgameobject init');
     }
-    public function start() {
-        trace('\tgameobject start');
+    public function reset() {
+        trace('\tgameobject reset');
     }
-    public function destroy() {
-        trace('\tgameobject destroy');
+    public function destroyed() {
+        trace('\tgameobject destroyed');
     }
     public function update(dt:Float) {
         if(!oncerun){
@@ -125,11 +125,11 @@ class Child1 extends Component {
     public function init( init_string:String ) {
         trace('\t\tchild1 init with string ' + init_string);
     }
-    public function start() {
-        trace('\t\tchild1 start');
+    public function reset() {
+        trace('\t\tchild1 reset');
     }
-    public function destroy() {
-        trace('\t\tchild1 destroy');
+    public function destroyed() {
+        trace('\t\tchild1 destroyed');
     }
     public function update(dt:Float) {
         if(!oncerun){
@@ -150,11 +150,11 @@ class Child2 extends Component {
         trace('\t\t\tchild2 init with value ' + from_add_value);
 
     }
-    public function start() {
-        trace('\t\t\tchild2 start');
+    public function reset() {
+        trace('\t\t\tchild2 reset');
     }
-    public function destroy() {
-        trace('\t\t\tchild2 destroy');
+    public function destroyed() {
+        trace('\t\t\tchild2 destroyed');
     }
     public function update(dt:Float) {
         if(!oncerun){

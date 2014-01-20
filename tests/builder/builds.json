@@ -1,7 +1,9 @@
 {
     "targets" : [
-        "html5", "cpp"
+        "html5", "mac"
     ],
+    "copyoutput" : true,
+    "outputpath" : "../builds/",
     "builds" : [
         {
             "name" : "tests",
@@ -22,6 +24,7 @@
                 "../test_events",
                 "../test_fonts",
                 "../test_groups_and_blendmodes",
+                "../test_luxemark",
                 "../test_named_bindings",
                 "../test_nineslice",
                 "../test_particles",

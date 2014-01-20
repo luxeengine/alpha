@@ -267,12 +267,7 @@ class Sprite extends Entity {
     } //create_geometry
 
 
-    public function destroy( ?_ignore_internal_destroy:Bool=false ) {
-
-        if(!_ignore_internal_destroy) {
-            _destroy();
-            return;
-        } //_ignore_internal_destroy
+    function destroyed() {
 
             //drop the geometry
         if(geometry != null && geometry.added ) {

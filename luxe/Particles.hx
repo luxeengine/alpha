@@ -48,7 +48,7 @@ class ParticleSystem extends Entity {
         }        
     } //stop
 
-    public function destroy() {
+    function destroyed() {
         for(emitter in emitters) {
             emitter.destroy();
         }        

@@ -122,9 +122,9 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function destroy() {
+    public function destroyed() {
 
-    } //destroy
+    } //destroyed
 }
 
 

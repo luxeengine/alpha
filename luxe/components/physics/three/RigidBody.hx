@@ -76,14 +76,14 @@ class RigidBody extends Component {
 
     } //init
 
-    public function start() {
+    public function reset() {
 
         rigid_body = new BtRigidBody( collider.shape, mass, pos, _rotation, construct_info );
 
             //Add to the world for updates
         Luxe.physics.addRigidBody( rigid_body );
 
-    } //start
+    } //reset
 
     
 
@@ -101,8 +101,8 @@ class RigidBody extends Component {
 
     } //update
 
-    public function destroy() {
+    public function destroyed() {
 
-    } //destroy
+    } //destroyed
 
 } //RigidBody

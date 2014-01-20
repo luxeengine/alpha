@@ -49,11 +49,6 @@ class Main extends luxe.Game {
         Luxe.shutdown();
       }
 
-      if(e.value == Input.Keys.key_R) {
-            if(sprites[2]!=null) {
-                trace( Luxe.renderer.default_batcher.geometry.find( sprites[2].geometry ) );
-            }
-      }
 
       if(e.value == Input.Keys.space) {
         var d= sprites[0].depth;
@@ -75,9 +70,9 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function destroy() {
+    public function destroyed() {
 
-    } //destroy
+    } //destroyed
 }
 
 

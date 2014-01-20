@@ -166,7 +166,7 @@ class Level extends State {
         
     }
 
-    public function enable() {
+    public function enabled() {
         bg.visible = true;
         top.visible = true;
         for(item in items) {
@@ -174,7 +174,7 @@ class Level extends State {
         }
     } //enter
 
-    public function disable() {
+    public function disabled() {
         bg.visible = false;
         top.visible = false;
         for(item in items) {

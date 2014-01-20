@@ -23,7 +23,7 @@ class Entity extends Objects {
 
     var fixed_rate_timer : haxe.Timer;
 
-    var _destroyed : Bool = false;
+    public var _destroyed : Bool = false;
     public var inited : Bool = false;
     public var started : Bool = false;
 
@@ -95,6 +95,71 @@ class Entity extends Objects {
 
 	} //_init
 
+	@:noCompletion public function _reset() {
+
+		_debug('calling reset on ' + name, true);
+
+			//reset the parent first
+		_call(this, 'reset');
+
+			//reset all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'reset');
+		} //for each component
+
+			//now reset our children, so they do the same
+		for(_child in children) {
+			_child._reset();
+		} //for each child
+
+            //start the fixed rate timer
+		_start_fixed_rate_timer( fixed_rate );
+
+            //flag internally
+        started = true;
+
+	} //_reset
+
+	public function destroy() {
+
+        _debug('calling destroy on ' + name + ' with ' + children.length + ' children');
+
+			//first destroy children
+        for(_child in children) {
+            _debug('\t child: ' + _child.name);
+        }
+
+		for(_child in children) {
+            _debug('\t calling destroy on child ' + _child.name);
+			_child.destroy();
+		} //for each child
+
+			//destroy all the components attached directly to us
+		for(_component in components) {
+			_call(_component, 'destroyed');
+		} //for each component
+
+			//destroy the parent last
+		_call(this, 'destroyed');
+
+            //kill any fixed rate timers
+        _stop_fixed_rate_timer();
+
+			//mark the flag
+		_destroyed = true;
+
+            //remove from the scene it's in if any
+        if(scene != null) {
+            scene.remove(this);
+        } 
+
+			//kill the events
+        if(events != null) {
+            events.destroy();
+            events = null;
+        }
+
+	} //destroy
 
 //Keys
 
@@ -420,71 +485,6 @@ class Entity extends Objects {
 
     } //_oninputup
 
-	@:noCompletion public function _start() {
-
-		_debug('calling start on ' + name, true);
-
-			//start the parent first
-		_call(this, 'start');
-
-			//start all the components attached directly to us
-		for(_component in components) {
-			_call(_component, 'start');
-		} //for each component
-
-			//now start our children, so they do the same
-		for(_child in children) {
-			_child._start();
-		} //for each child
-
-            //start the fixed rate timer
-		_start_fixed_rate_timer( fixed_rate );
-
-            //flag internally
-        started = true;
-
-	} //_start
-
-	@:noCompletion public function _destroy() {
-
-        _debug('calling destroy on ' + name + ' with ' + children.length + ' children');
-
-			//first destroy children
-        for(_child in children) {
-            _debug('\t child: ' + _child.name);
-        }
-
-		for(_child in children) {
-            _debug('\t calling destroy on child ' + _child.name);
-			_child._destroy();
-		} //for each child
-
-			//destroy all the components attached directly to us
-		for(_component in components) {
-			_call(_component, 'destroy');
-		} //for each component		
-
-			//destroy the parent last
-		_call(this, 'destroy', [true]);
-
-            //kill any fixed rate timers
-        _stop_fixed_rate_timer();
-
-			//mark the flag
-		_destroyed = true;
-
-            //remove from the scene it's in if any
-        if(scene != null) {
-            scene.remove(this);
-        } 
-
-			//kill the events
-        if(events != null) {
-            events.destroy();
-            events = null;
-        }
-
-	} //_start
 
 	@:noCompletion public function _update(dt:Float) {
 

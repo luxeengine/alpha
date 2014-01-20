@@ -21,6 +21,9 @@ class Component extends Objects {
 	@:noCompletion public function _init() {
 		_call(this, 'init', [ cast init_data ]);
 	}
+	@:noCompletion public function _reset() {
+		_call(this, 'reset');
+	}
 
 	private function set_pos(_p:Vector) {
 		return entity.pos = _p;
@@ -170,8 +173,8 @@ class Component extends Objects {
 		}
 
 		if(entity.started) {
-			_debug("\t entity " + entity.name + " adding component after start, so doing start on " + _e_component.name );
-			_call(_component, 'start');
+			_debug("\t entity " + entity.name + " adding component after start, so doing reset on " + _e_component.name );
+			_call(_component, '_reset');
 		}
 
 			//return the component
@@ -187,7 +190,7 @@ class Component extends Objects {
     		return false;
     	}
 
-    		//now, when removing a component we call destroy
+    		//now, when removing a component we call "removed" on it, in case they care
     	var _component = components.get( _name );
 
 		_debug("\t entity " + entity.name + " remove component " + _component.name );

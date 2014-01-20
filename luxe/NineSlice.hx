@@ -352,14 +352,10 @@ class NineSlice extends luxe.Sprite {
 
     } //set_pos
 
-    var tmpd = false;
-    public override function destroy( ?_ignore_internal_destroy:Bool=false ) {
+    override function destroyed() {
 
-        if(!_ignore_internal_destroy) {
-            super.destroy( _ignore_internal_destroy );
-            return;
-        }
-
+        super.destroyed();
+        
         if(is_set) {            
             _geometry.drop();
         }
