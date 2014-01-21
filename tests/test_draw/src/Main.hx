@@ -97,6 +97,22 @@ class Main extends luxe.Game {
             color : new Color(1,1,1,1)
         });
 
+        Luxe.draw.ring({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            rx : 200,
+            ry : 100,
+            color : new Color(1,1,1,0.1)
+        });
+
+        Luxe.draw.ring({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            rx : 100,
+            ry : 200,
+            color : new Color(1,1,1,0.1)
+        });
+
         Luxe.draw.arc({
             x : Luxe.screen.w/2,
             y : Luxe.screen.h/2,

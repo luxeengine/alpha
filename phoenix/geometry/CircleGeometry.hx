@@ -16,7 +16,8 @@ class CircleGeometry extends Geometry {
         if(options == null) return;
 
             //some default values so that the circle is visible with no values
-        var _radius = 16;
+        var _radius_x : Float = 32;
+        var _radius_y : Float = 32;
 
         if(options.end_angle == null) {
         	options.end_angle = 360;
@@ -27,26 +28,37 @@ class CircleGeometry extends Geometry {
         }
 
         if(options.r != null) {
-            _radius = options.r;
+            _radius_x = options.r;
+            _radius_y = options.r;
+        }
+
+        if(options.rx != null) {
+            _radius_x = options.rx;
+        }
+
+        if(options.ry != null) {
+            _radius_y = options.ry;
         }
 
         if(options.steps == null) {
             if(options.smooth == null) {
-                options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _radius );
+                var _max = Math.max(_radius_x, _radius_y);
+                options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max );
             } else {
                 var _smooth : Float = options.smooth;
-                options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _radius, _smooth );
+                var _max = Math.max(_radius_x, _radius_y);
+                options.steps = Luxe.utils.geometry.segments_for_smooth_circle( _max, _smooth );
             }
         }
 
             //Apply the new options 
-		set( options.x, options.y, _radius, options.steps, options.start_angle, options.end_angle );
+		set( options.x, options.y, _radius_x, _radius_y, options.steps, options.start_angle, options.end_angle );
 
         if(options.enabled != null) enabled = options.enabled;
 
 	} //new
 
-	public function set( _x:Float, _y:Float, _r:Float, _steps:Int, _start_angle:Float=0, _end_angle:Float=360 ) {
+	public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle:Float=0, _end_angle:Float=360 ) {
 
 			//adapted from
 			//http://slabode.exofire.net/circle_draw.shtml
@@ -67,13 +79,17 @@ class CircleGeometry extends Geometry {
 			var tangential_factor = Math.tan( theta );
 			var radial_factor = Math.cos( theta );
 			
-			var x : Float = _r * Math.cos(_start_angle_rad); 
-			var y : Float = _r * Math.sin(_start_angle_rad);
+			var x : Float = _rx * Math.cos(_start_angle_rad); 
+			var y : Float = _rx * Math.sin(_start_angle_rad);
+
+            //now work out the ratio between _x and _y 
+            var radial_ratio : Float = _rx / _ry;
+            if(radial_ratio == 0) radial_ratio = 0.000000001;
 		    
 			for( i in 0 ... _steps ) {
 
 				var __x = x;
-				var __y = y;
+				var __y = y / radial_ratio;
 
 				var vert = new Vertex(new Vector( __x,__y ));
 					vert.color = color;
