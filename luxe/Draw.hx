@@ -1,5 +1,6 @@
 package luxe;
 
+import luxe.Color;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
@@ -9,6 +10,7 @@ import phoenix.Batcher;
 import phoenix.geometry.RingGeometry;
 import phoenix.geometry.ArcGeometry;
 import phoenix.geometry.PlaneGeometry;
+import phoenix.geometry.Vertex;
 
 class Draw {
 
@@ -127,6 +129,74 @@ class Draw {
         return _circle;
     } //circle
 
+    public function ngon(options:Dynamic) {
+
+        options = default_options(options);
+
+        if(options.id == null) { options.id = 'ngon.geometry'; };
+
+        var _sides : Int = 3;
+        var _radius : Float = 64;
+        var _solid : Bool = false;
+        var _x : Float = 0;
+        var _y : Float = 0;
+        var _angle : Float = 0;
+
+        if(options.sides != null) {
+            _sides = options.sides;
+        }
+
+        if(options.r != null) { _radius = options.r; }
+        if(options.x != null) { _x = options.x; }
+        if(options.y != null) { _y = options.y; }
+        if(options.angle != null) { _angle = options.angle; }
+        if(options.solid != null) { _solid = options.solid; }
+
+        var _geometry = new Geometry(options);
+
+        if(!_solid) {
+            _geometry.primitive_type = PrimitiveType.line_loop;
+        } else {
+            _geometry.primitive_type = PrimitiveType.triangle_fan;
+        }
+
+        var _two_pi : Float = 2 * Math.PI;
+        var _sides_over_pi : Float = Math.PI / _sides;
+        var _sides_over_twopi : Float = _two_pi / _sides;
+        var _angle_rad : Float = luxe.utils.Maths.degToRad(_angle);
+
+        if(_solid) {
+                //add the center vertex
+            _geometry.add(
+                new Vertex(
+                    new Vector( _x, _y, 0 ), 
+                    new Vector(),
+                    options.color
+                )
+            ); //add
+        }
+
+        var _count : Int = _sides+1;
+        var _start : Int = (_solid == false) ? 1 : 0;
+
+        for(i in _start ... _count ) {
+
+            var __x = (_radius * Math.sin(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
+            var __y = (_radius * Math.cos(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
+
+            _geometry.add(
+                new Vertex(
+                    new Vector( _x + __x, _y + __y, 0 ), 
+                    new Vector(),
+                    options.color
+                )
+            ); //add
+
+        } //for all sides
+
+        options.batcher.add(_geometry);
+
+    }
 
     public function plane(options:Dynamic) {
         

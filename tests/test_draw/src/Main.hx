@@ -36,6 +36,46 @@ class Main extends luxe.Game {
             color : new Color(0.4,0.4,0.4)
         });
 
+        
+        Luxe.draw.ngon({
+            r:200, sides : 3,
+            solid : true,
+            color: new Color(1,1,1,0.1),
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+        Luxe.draw.ngon({
+            r:120, sides : 3,
+            color: new Color(1,1,1,0.3),
+            angle: 90,
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+        Luxe.draw.ngon({
+            r:120, sides : 3,
+            color: new Color(1,1,1,0.3),
+            angle: 180,
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+        Luxe.draw.ngon({
+            r:200, sides : 5,
+            color: new Color(1,1,1,0.1),
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+        Luxe.draw.ngon({
+            r:200, sides : 6,
+            color: new Color(1,1,1,0.1),
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+        Luxe.draw.ngon({
+            r:200, sides : 7,
+            color: new Color(1,1,1,0.1),
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+        Luxe.draw.ngon({
+            r:200, sides : 8,
+            color: new Color(1,1,1,0.1),
+            x:Luxe.screen.mid.x, y:Luxe.screen.mid.y
+        });
+
         box = Luxe.draw.box({
             x : 40, y : 40,
             w : Luxe.screen.w - 80, 
