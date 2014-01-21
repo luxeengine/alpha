@@ -212,7 +212,7 @@
 	 … var font : phoenix.BitmapFont;
 	 • function new(_options:Dynamic) ;
 
-//luxe class : luxe.Time
+//luxe class : luxe.Timer
 
 	 • function schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool) : haxe.Timer;
 

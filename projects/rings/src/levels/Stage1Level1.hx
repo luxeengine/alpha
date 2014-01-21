@@ -333,7 +333,7 @@ class Stage1Level1 extends State {
 
         //start spawning enemies
         var delay = (3 + Std.random(3));
-        Luxe.time.schedule( delay , spawn_enemy );
+        Luxe.timer.schedule( delay , spawn_enemy );
 
         if(!inited) return;
 
@@ -619,9 +619,9 @@ class Stage1Level1 extends State {
             success = true;
             Luxe.timescale = 0.1;
             kill(true);
-            Luxe.time.schedule(0.5, function(){                
+            Luxe.timer.schedule(0.5, function(){                
                 Luxe.timescale = 1;                
-                Luxe.time.schedule(0.5, function(){
+                Luxe.timer.schedule(0.5, function(){
                     main.show_end('stage1.level1');
                 });                
             });

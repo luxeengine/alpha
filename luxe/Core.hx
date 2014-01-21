@@ -10,7 +10,7 @@ import luxe.Input;
 import luxe.Scene;
 import luxe.Debug;
 import luxe.debug.ProfilerDebugView;
-import luxe.Time;
+import luxe.Timer;
 
 import phoenix.Renderer;
 
@@ -18,7 +18,6 @@ import phoenix.Renderer;
     import luxe.Physics;
 #end //haxebullet
 
-import haxe.Timer;
 import phoenix.Renderer;
 
 #if (luxe_thread_core && luxe_native) 
@@ -43,7 +42,7 @@ import phoenix.Renderer;
 //Sub Systems, mostly in order of importance
     public var debug    : Debug;
     public var draw     : Draw;
-    public var time     : Time;
+    public var time     : Timer;
     public var events   : Events;
     public var input    : Input;
     public var audio    : Audio;
@@ -144,7 +143,7 @@ import phoenix.Renderer;
         
         debug = new Debug( this ); Luxe.debug = debug;
         draw = new Draw( this );
-        time = new Time( this );
+        time = new Timer( this );
         events = new Events();
         audio = new Audio( this );  
         input = new Input( this );
@@ -177,7 +176,7 @@ import phoenix.Renderer;
         Luxe.audio = audio;
         Luxe.draw = draw;     
         Luxe.events = events;
-        Luxe.time = time;
+        Luxe.timer = time;
         Luxe.input = input;
         Luxe.camera = new luxe.Camera({ name:'default_camera', view:renderer.default_camera });
         Luxe.resources = renderer.resource_manager;
@@ -242,7 +241,7 @@ import phoenix.Renderer;
         //Called by Lime
     public function update() { 
 
-        _debug('on_update ' + Timer.stamp(), true, true);         
+        _debug('on_update ' + haxe.Timer.stamp(), true, true);         
 
         if(has_shutdown) return;
             //Update all the subsystems, again, order important

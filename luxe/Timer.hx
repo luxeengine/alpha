@@ -3,18 +3,18 @@ package luxe;
 import luxe.Core;
 import haxe.Timer;
 
-class Time {
+class Timer {
     
     @:noCompletion public var core : Core;
     @:noCompletion public function new( _core:Core ) { core = _core; }
 
 
     @:noCompletion public function init() {
-        core._debug(':: luxe :: \t Time Initialized.');
+        core._debug(':: luxe :: \t Timer Initialized.');
     }
 
     @:noCompletion public function destroy() {
-        core._debug(':: luxe :: \t Time shut down.');
+        core._debug(':: luxe :: \t Timer shut down.');
     } //destroy
 
     public function schedule( _time_in_seconds:Float, _on_time:Void->Void, ?repeat:Bool = false ) : haxe.Timer {

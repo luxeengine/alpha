@@ -22,7 +22,7 @@ class Luxe {
     public static var debug : luxe.Debug;
     public static var draw : luxe.Draw;
     public static var audio : luxe.Audio;
-    public static var time : luxe.Time;
+    public static var timer : luxe.Timer;
     public static var events : luxe.Events;
     public static var input : luxe.Input;
     public static var scene : luxe.Scene;    
@@ -36,8 +36,11 @@ class Luxe {
     public static var renderer : phoenix.Renderer;
     public static var resources : phoenix.ResourceManager;    
 
+    @:isVar public static var time(get, never) : Float;
     @:isVar public static var screen(get, never) : Screen;
+
     public static function get_screen() { return core.screen; }
+    public static function get_time() : Float { return haxe.Timer.stamp(); }
 
     public static function shutdown() {
         core.lime.shutdown();
