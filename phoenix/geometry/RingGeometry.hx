@@ -13,8 +13,6 @@ class RingGeometry extends CircleGeometry {
 
 		super(options);
 
-			//remove the first center point from the geometry because it is a line_loop
-		vertices.shift();
 			//set to line type
 		primitive_type = PrimitiveType.line_loop;
 
