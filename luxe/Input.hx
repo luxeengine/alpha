@@ -74,6 +74,18 @@ class Input {
         //todo, poll for gamepad disconnects and reconnects
     }    
 
+    // public function keypressed( _value:KeyValue ) {
+    //     return core.lime.input.keypressed(_value);
+    // }
+
+    // public function keyreleased( _value:KeyValue ) {
+    //     return core.lime.input.keyreleased(_value);
+    // }
+
+    // public function keydown( _value:KeyValue ) {
+    //     return core.lime.input.keydown(_value);
+    // }
+
 //Named event handlers
 
     function add_key_binding( _name:String, _value:KeyValue ) {
