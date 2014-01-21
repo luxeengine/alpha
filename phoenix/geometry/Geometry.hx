@@ -20,250 +20,253 @@ import lime.gl.GL;
 import lime.gl.GLBuffer;
 
 typedef GeometryKey = {
-	var timestamp : Float;
-	var uuid : String;
-	var primitive_type : PrimitiveType;
-	var texture : Texture;
-	var shader : Shader;
-	var group : Int;
-	var depth : Float;
-	var clip : Bool;
+    var timestamp : Float;
+    var uuid : String;
+    var primitive_type : PrimitiveType;
+    var texture : Texture;
+    var shader : Shader;
+    var group : Int;
+    var depth : Float;
+    var clip : Bool;
 }
 
 class Geometry {
 
-		//The list of vertices
-	public var vertices : Array<Vertex>;
+        //The list of vertices
+    public var vertices : Array<Vertex>;
 
-		//Statically batched VBO's
-	public var submitted : Bool = false;
-	public var dirty : Bool = false;
-	public var static_vertex_buffer : GLBuffer;
+        //Statically batched VBO's
+    public var submitted : Bool = false;
+    public var dirty : Bool = false;
+    public var static_vertex_buffer : GLBuffer;
     public var static_tcoord_buffer : GLBuffer;
     public var static_vcolor_buffer : GLBuffer;
-    public var static_normal_buffer : GLBuffer;	
+    public var static_normal_buffer : GLBuffer; 
 
-		//Batcher information
-	public var added : Bool = false;
-	public var batchers : Array<Batcher>;
+        //Batcher information
+    public var added : Bool = false;
+    public var batchers : Array<Batcher>;
 
-	public var state : GeometryState;
-	public var dropped : Bool = false;
-	public var uuid : String = '';
-	public var id : String = '';
-	
-		//State properties
-	@:isVar public var primitive_type (get, set) : PrimitiveType;
-	@:isVar public var texture (get, set) : Texture;
-	@:isVar public var shader (get, set) : Shader;
-	@:isVar public var depth (get, set) : Float;
-	@:isVar public var group (get, set) : Int;
-	@:isVar public var clip (get, set) : Bool;
-	@:isVar public var clip_rect (get, set) : Rectangle;
+    public var state : GeometryState;
+    public var dropped : Bool = false;
+    public var uuid : String = '';
+    public var id : String = '';
+    
+        //State properties
+    @:isVar public var primitive_type (get, set) : PrimitiveType;
+    @:isVar public var texture (get, set) : Texture;
+    @:isVar public var shader (get, set) : Shader;
+    @:isVar public var depth (get, set) : Float;
+    @:isVar public var group (get, set) : Int;
+    @:isVar public var clip (get, set) : Bool;
+    @:isVar public var clip_rect (get, set) : Rectangle;
 
-	private var shadow_primitive_type : PrimitiveType;
-	private var shadow_texture : Texture;
-	private var shadow_shader : Shader;
-	private var shadow_group : Int = 0;
-	private var shadow_depth : Float = 0.0;
-	private var shadow_clip : Bool = false;
+    private var shadow_primitive_type : PrimitiveType;
+    private var shadow_texture : Texture;
+    private var shadow_shader : Shader;
+    private var shadow_group : Int = 0;
+    private var shadow_depth : Float = 0.0;
+    private var shadow_clip : Bool = false;
 
-	private var dirty_primitive_type : Bool = false;
-	private var dirty_texture : Bool = false;
-	private var dirty_shader : Bool = false;
-	private var dirty_group : Bool = false;
-	private var dirty_depth : Bool = false;
-	private var dirty_clip : Bool = false;
+    private var dirty_primitive_type : Bool = false;
+    private var dirty_texture : Bool = false;
+    private var dirty_shader : Bool = false;
+    private var dirty_group : Bool = false;
+    private var dirty_depth : Bool = false;
+    private var dirty_clip : Bool = false;
 
-		//Geometry properties	
-	@:isVar public var enabled(default, set) : Bool = true;
-	@:isVar public var locked(get, set) : Bool = false;
-	@:isVar public var immediate(default, default) : Bool;
-	@:isVar public var color(default, set) : Color;
-		//Transform
-	@:isVar public var pos(get, set) : Vector;
-	@:isVar public var rotation(get, set) : Quaternion;
-	@:isVar public var scale(get, set) : Vector;
+        //Geometry properties   
+    @:isVar public var enabled(default, set) : Bool = true;
+    @:isVar public var locked(get, set) : Bool = false;
+    @:isVar public var immediate(default, default) : Bool;
+    @:isVar public var color(default, set) : Color;
+        //Transform
+    @:isVar public var pos(get, set) : Vector;
+    @:isVar public var rotation(get, set) : Quaternion;
+    @:isVar public var scale(get, set) : Vector;
 
-	var _pos_dirty : Bool = false;
-	var _rotation_dirty : Bool = false;
-	var _scale_dirty : Bool = false;
+    var _pos_dirty : Bool = false;
+    var _rotation_dirty : Bool = false;
+    var _scale_dirty : Bool = false;
 
-		//The origin for the transform
-	@:isVar public var origin(default, set) : Vector;
-		//The transform matrix
-	public var matrix : Matrix4;
-		//Private reuse value
-	var _final_vert_position : Vector;
+        //The origin for the transform
+    @:isVar public var origin(default, set) : Vector;
+        //The transform matrix
+    public var matrix : Matrix4;
+        //Private reuse value
+    var _final_vert_position : Vector;
 
-	public var key : GeometryKey;
+    public var key : GeometryKey;
 
-	public function new( options:Dynamic ) {
+    public function new( options:Dynamic ) {
 
-		uuid = Luxe.utils.uniqueid();
-		vertices = new Array<Vertex>();
-		state = new GeometryState();
-		batchers = new Array<Batcher>();
-			
-			//default transform properties
-		pos = new Vector();
-		rotation = new Quaternion();
-		scale = new Vector(1,1,1);
-			//offset for transform
-		origin = new Vector();
-			//default matrix for transform
-		matrix = new Matrix4();
-		matrix = matrix.identity();
-			//init the empty vertex reuse
-		_final_vert_position = new Vector();
+        uuid = Luxe.utils.uniqueid();
+        id = uuid;
+        vertices = new Array<Vertex>();
+        state = new GeometryState();
+        batchers = new Array<Batcher>();
+            
+            //default transform properties
+        pos = new Vector();
+        rotation = new Quaternion();
+        scale = new Vector(1,1,1);
+            //offset for transform
+        origin = new Vector();
+            //default matrix for transform
+        matrix = new Matrix4();
+        matrix = matrix.identity();
+            //init the empty vertex reuse
+        _final_vert_position = new Vector();
 
-			//geometry clipping
-		clip = false;
-		clip_rect = new Rectangle();		
+            //geometry clipping
+        clip = false;
+        clip_rect = new Rectangle();        
 
-		if(options != null) {
-			
-			state.depth 			= options.depth == null 	? state.depth 			: options.depth;
-			state.group 			= options.group == null 	? state.group 			: options.group;
-			state.texture 			= options.texture == null 	? state.texture 		: options.texture;			
-			state.clip 				= options.clip == null 		? state.clip 			: options.clip;
-			state.clip_rect 		= options.clip_rect == null ? state.clip_rect 		: options.clip_rect;
-			state.primitive_type 	= options.type == null 		? state.primitive_type 	: options.type;
-			state.shader 			= options.shader == null 	? state.shader 			: options.shader;
+        if(options != null) {
+            
+            state.depth             = options.depth == null     ? state.depth           : options.depth;
+            state.group             = options.group == null     ? state.group           : options.group;
+            state.texture           = options.texture == null   ? state.texture         : options.texture;          
+            state.clip              = options.clip == null      ? state.clip            : options.clip;
+            state.clip_rect         = options.clip_rect == null ? state.clip_rect       : options.clip_rect;
+            state.primitive_type    = options.type == null      ? state.primitive_type  : options.type;
+            state.shader            = options.shader == null    ? state.shader          : options.shader;
 
-			pos 		= (options.pos == null) 		? pos 		: options.pos;
-			rotation 	= (options.rotation == null) 	? rotation 	: options.rotation;
-			scale 		= (options.scale == null) 		? scale 	: options.scale;
 
-			origin 		= (options.origin == null) 		? origin 	: options.origin;
-			immediate 	= (options.immediate == null) 	? false 	: options.immediate;
-			enabled 	= (options.enabled == null) 	? true 		: options.enabled;
+            id          = (options.id == null)          ? uuid      : options.id;
+            pos         = (options.pos == null)         ? pos       : options.pos;
+            rotation    = (options.rotation == null)    ? rotation  : options.rotation;
+            scale       = (options.scale == null)       ? scale     : options.scale;
 
-			color 		= (options.color == null) 		? new Color() : options.color;
-			
-		} //options != null
+            origin      = (options.origin == null)      ? origin    : options.origin;
+            immediate   = (options.immediate == null)   ? false     : options.immediate;
+            enabled     = (options.enabled == null)     ? true      : options.enabled;
 
-		key = {
-			uuid : uuid,
-			timestamp : haxe.Timer.stamp(),
-			primitive_type : state.primitive_type,
-			texture : state.texture,
-			shader : state.shader,
-			group : state.group,
-			depth : state.depth,
-			clip : state.clip
-		};
+            color       = (options.color == null)       ? new Color() : options.color;
+            
+        } //options != null
 
-	} //new
+        key = {
+            uuid : uuid,
+            timestamp : haxe.Timer.stamp(),
+            primitive_type : state.primitive_type,
+            texture : state.texture,
+            shader : state.shader,
+            group : state.group,
+            depth : state.depth,
+            clip : state.clip
+        };
 
-	public function refresh_key() {
-		key.uuid = uuid;
-		key.timestamp = haxe.Timer.stamp();
-		key.primitive_type = state.primitive_type;
-		key.texture = state.texture;
-		key.shader = state.shader;
-		key.group = state.group;
-		key.depth = state.depth;
-		key.clip = state.clip;
-	}
+    } //new
 
-	public function short_id() {
+    public function refresh_key() {
+        key.uuid = uuid;
+        key.timestamp = haxe.Timer.stamp();
+        key.primitive_type = state.primitive_type;
+        key.texture = state.texture;
+        key.shader = state.shader;
+        key.group = state.group;
+        key.depth = state.depth;
+        key.clip = state.clip;
+    }
 
-		return uuid.substr(0, uuid.indexOf('-'));
+    public function short_id() {
 
-	} //a shorthand id for easier identification
+        return uuid.substr(0, uuid.indexOf('-'));
 
-	public function str() {
-		if(!state.log) return;
-		trace('\t\tgeometry ; ' + short_id());
-		state.log = true;
-		state.str();
-		state.log = false;
-	}
+    } //a shorthand id for easier identification
 
-	public function drop( ?remove:Bool = true ) {
-		
-		dropped = true;
+    public function str() {
+        if(!state.log) return;
+        trace('\t\tgeometry ; ' + short_id());
+        state.log = true;
+        state.str();
+        state.log = false;
+    }
 
-		if( remove && added ) {
-			
-			for(b in batchers) {				
-				b.remove( this, true );
-			} //for each batcher
+    public function drop( ?remove:Bool = true ) {
+        
+        dropped = true;
 
-		}
+        if( remove && added ) {
+            
+            for(b in batchers) {                
+                b.remove( this, true );
+            } //for each batcher
 
-	} //drop
+        }
 
-	public function add( v : Vertex ) {
+    } //drop
 
-		vertices.push( v );
+    public function add( v : Vertex ) {
 
-	} //add
+        vertices.push( v );
 
-	public function remove( v : Vertex ) {
+    } //add
 
-		vertices.remove(v);
+    public function remove( v : Vertex ) {
 
-	} //remove 
+        vertices.remove(v);
 
-	public function batch_into_float32array( 
-		vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
-		vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
-		) {
-		
-		var origin_x : Float = origin.x;
-		var origin_y : Float = origin.y;
-		var origin_z : Float = origin.z;
-		var origin_w : Float = origin.w;
+    } //remove 
 
-			//compose the final position matrix
-		matrix.compose( pos, rotation, scale );	
+    public function batch_into_float32array( 
+        vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
+        vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
+        ) {
+        
+        var origin_x : Float = origin.x;
+        var origin_y : Float = origin.y;
+        var origin_z : Float = origin.z;
+        var origin_w : Float = origin.w;
 
-		for(v in vertices) {	
+            //compose the final position matrix
+        matrix.compose( pos, rotation, scale ); 
 
-				//the base position of the vert
-			_final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
-				//apply the transform to the vert
-			_final_vert_position.applyMatrix4( matrix );
+        for(v in vertices) {    
 
-					//submit vertex positions
-				vertlist[(vert_index+0)] = _final_vert_position.x;
-				vertlist[(vert_index+1)] = _final_vert_position.y;
-				vertlist[(vert_index+2)] = _final_vert_position.z;
-				vertlist[(vert_index+3)] = _final_vert_position.w;
+                //the base position of the vert
+            _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
+                //apply the transform to the vert
+            _final_vert_position.applyMatrix4( matrix );
 
-			vert_index += 4;
+                    //submit vertex positions
+                vertlist[(vert_index+0)] = _final_vert_position.x;
+                vertlist[(vert_index+1)] = _final_vert_position.y;
+                vertlist[(vert_index+2)] = _final_vert_position.z;
+                vertlist[(vert_index+3)] = _final_vert_position.w;
 
-					//texture coordinates todo:multiple uv sets
-				tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
-				tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
-				tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
-				tcoordlist[(tcoord_index+3)] = v.uv.uv0.t;
+            vert_index += 4;
 
-			tcoord_index += 4;
+                    //texture coordinates todo:multiple uv sets
+                tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
+                tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
+                tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
+                tcoordlist[(tcoord_index+3)] = v.uv.uv0.t;
 
-					//color values per vertex
-				colorlist[(color_index+0)] = v.color.r;
-				colorlist[(color_index+1)] = v.color.g;
-				colorlist[(color_index+2)] = v.color.b;
-				colorlist[(color_index+3)] = v.color.a;
+            tcoord_index += 4;
 
-			color_index += 4;
+                    //color values per vertex
+                colorlist[(color_index+0)] = v.color.r;
+                colorlist[(color_index+1)] = v.color.g;
+                colorlist[(color_index+2)] = v.color.b;
+                colorlist[(color_index+3)] = v.color.a;
 
-					//normal directions
-				normallist[(normal_index+0)] = v.normal.x;
-				normallist[(normal_index+1)] = v.normal.y;
-				normallist[(normal_index+2)] = v.normal.z;
-				normallist[(normal_index+3)] = v.normal.w;
+            color_index += 4;
 
-			normal_index += 4;
+                    //normal directions
+                normallist[(normal_index+0)] = v.normal.x;
+                normallist[(normal_index+1)] = v.normal.y;
+                normallist[(normal_index+2)] = v.normal.z;
+                normallist[(normal_index+3)] = v.normal.w;
 
-		} //each vertex
+            normal_index += 4;
 
-	} //batch
+        } //each vertex
 
-	public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, 
+    } //batch
+
+    public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, 
                            colorlist : Array<Float>, normallist : Array<Float> ) {
 
         var origin_x = origin.x;
@@ -305,282 +308,282 @@ class Geometry {
 
 //Transform
 
-	public function translate( _offset:Vector ) {
+    public function translate( _offset:Vector ) {
 
-		pos.set( pos.x+_offset.x, pos.y+_offset.y, pos.x+_offset.z );
+        pos.set( pos.x+_offset.x, pos.y+_offset.y, pos.x+_offset.z );
 
-	} // translate
+    } // translate
 
-	public function set_origin( _origin:Vector ) : Vector {
+    public function set_origin( _origin:Vector ) : Vector {
 
-		return origin = _origin;
+        return origin = _origin;
 
-	} //set_origin
+    } //set_origin
 
-	public function set_pos( _position:Vector ) : Vector {
+    public function set_pos( _position:Vector ) : Vector {
 
-		_pos_dirty = true;
-		return pos = _position;
+        _pos_dirty = true;
+        return pos = _position;
 
-	} //set_pos
+    } //set_pos
 
-	public function get_pos() : Vector {
-		
-		return pos;
+    public function get_pos() : Vector {
+        
+        return pos;
 
-	} //get_pos
+    } //get_pos
 
-	public function set_locked( _locked:Bool ) : Bool {
+    public function set_locked( _locked:Bool ) : Bool {
 
-		return locked = _locked;
+        return locked = _locked;
 
-	} //set_pos
+    } //set_pos
 
-	public function get_locked() : Bool {
-		
-		return locked;
+    public function get_locked() : Bool {
+        
+        return locked;
 
-	} //get_locked
+    } //get_locked
 
-	public function set_rotation( _rotation:Quaternion ) {
+    public function set_rotation( _rotation:Quaternion ) {
 
-		_rotation_dirty = true;
+        _rotation_dirty = true;
 
-		if(rotation == null) { 
-			return rotation = _rotation;
-		} //rotation == null			
-		
-		return rotation = _rotation;
+        if(rotation == null) { 
+            return rotation = _rotation;
+        } //rotation == null            
+        
+        return rotation = _rotation;
 
-	} //set_rotation
+    } //set_rotation
 
-	public function get_rotation() : Quaternion {
-		
-		return rotation;
-		
-	} //get_rotation
+    public function get_rotation() : Quaternion {
+        
+        return rotation;
+        
+    } //get_rotation
 
-	public function set_scale( _scale:Vector ) {
+    public function set_scale( _scale:Vector ) {
 
-		_scale_dirty = true;
+        _scale_dirty = true;
 
-		if(scale == null) { 
-			return scale = _scale;
-		} //rotation == null			
-		
-		return scale = _scale;
+        if(scale == null) { 
+            return scale = _scale;
+        } //rotation == null            
+        
+        return scale = _scale;
 
-	} //set_rotation
+    } //set_rotation
 
-	public function get_scale() : Vector {
+    public function get_scale() : Vector {
 
-		return scale;
+        return scale;
 
-	} //get_scale
+    } //get_scale
 
 //Invariants that cause a shift in the geometry tree
 
-	function refresh() {
+    function refresh() {
 
-			//remove from all batchers
-		for(b in batchers) {
-			b.remove( this, false );
-		} //for each batcher
+            //remove from all batchers
+        for(b in batchers) {
+            b.remove( this, false );
+        } //for each batcher
 
-				//update the values from the shadow values, if needed
-			if(dirty_primitive_type) {
-				dirty_primitive_type = false;
-				state.primitive_type = shadow_primitive_type;
-			} //dirty_primitive_type
+                //update the values from the shadow values, if needed
+            if(dirty_primitive_type) {
+                dirty_primitive_type = false;
+                state.primitive_type = shadow_primitive_type;
+            } //dirty_primitive_type
 
-			if(dirty_texture) {
-				dirty_texture = false;
-				state.texture = shadow_texture;
-			} //dirty_texture
+            if(dirty_texture) {
+                dirty_texture = false;
+                state.texture = shadow_texture;
+            } //dirty_texture
 
-			if(dirty_shader) {
-				dirty_shader = false;
-				state.shader = shadow_shader;
-			} //dirty_shader
+            if(dirty_shader) {
+                dirty_shader = false;
+                state.shader = shadow_shader;
+            } //dirty_shader
 
-			if(dirty_group) {
-				dirty_group = false;
-				state.group = shadow_group;
-			} //dirty_group
+            if(dirty_group) {
+                dirty_group = false;
+                state.group = shadow_group;
+            } //dirty_group
 
-			if(dirty_depth) {
-				dirty_depth = false;
-				state.depth = shadow_depth;
-			} //dirty_depth
+            if(dirty_depth) {
+                dirty_depth = false;
+                state.depth = shadow_depth;
+            } //dirty_depth
 
-			if(dirty_clip) {
-				dirty_clip = false;
-				state.clip = shadow_clip;
-			} //dirty_clip
+            if(dirty_clip) {
+                dirty_clip = false;
+                state.clip = shadow_clip;
+            } //dirty_clip
 
-		    	//make sure the key is updated
+                //make sure the key is updated
            refresh_key();
 
-		for(b in batchers) {
-			b.add(this,false);
-		} //for each batcher
+        for(b in batchers) {
+            b.add(this,false);
+        } //for each batcher
 
-	} //refresh
+    } //refresh
 
 //Primitive Type
 
-	private function get_primitive_type() : PrimitiveType {
+    private function get_primitive_type() : PrimitiveType {
 
-		return state.primitive_type;
+        return state.primitive_type;
 
-	} //get_primitive_type
+    } //get_primitive_type
 
-	private function set_primitive_type( val : PrimitiveType ) : PrimitiveType {	
+    private function set_primitive_type( val : PrimitiveType ) : PrimitiveType {    
 
-		if(state.primitive_type != val) {
-			shadow_primitive_type = val;
-			dirty_primitive_type = true;
-			refresh();		
-		}
-		
-		return primitive_type = val;
+        if(state.primitive_type != val) {
+            shadow_primitive_type = val;
+            dirty_primitive_type = true;
+            refresh();      
+        }
+        
+        return primitive_type = val;
 
-	} //set_primitive_type
+    } //set_primitive_type
 
 //Texture
 
-	public function get_texture() : Texture {
+    public function get_texture() : Texture {
 
-		return state.texture;
+        return state.texture;
 
-	} //get_texture
+    } //get_texture
 
-	public function set_texture(val : Texture) : Texture {
-		
-		if(state.texture != val) {
-			shadow_texture = val;
-			dirty_texture = true;
-			refresh();		
-		}
-		
-		return texture = val;
+    public function set_texture(val : Texture) : Texture {
+        
+        if(state.texture != val) {
+            shadow_texture = val;
+            dirty_texture = true;
+            refresh();      
+        }
+        
+        return texture = val;
 
-	} //set_texture
+    } //set_texture
 
 //Visibility
 
-	public function set_enabled(val : Bool) : Bool {
+    public function set_enabled(val : Bool) : Bool {
 
-		return enabled = val;
+        return enabled = val;
 
-	} //set_enabled
+    } //set_enabled
 
 //Color
 
-	public function set_color(val : Color) : Color {
+    public function set_color(val : Color) : Color {
 
-		for(v in vertices) {
-			v.color = val;
-		} //for each vertex
+        for(v in vertices) {
+            v.color = val;
+        } //for each vertex
 
-		return color = val;
+        return color = val;
 
-	} //set_color
-	
+    } //set_color
+    
 //Shader
 
-	public function get_shader() : Shader {
+    public function get_shader() : Shader {
 
-		return state.shader;
+        return state.shader;
 
-	} //get_shader
+    } //get_shader
 
-	public function set_shader(val : Shader) : Shader {
+    public function set_shader(val : Shader) : Shader {
 
-		if(state.shader != val) {
-			shadow_shader = val;
-			dirty_shader = true;
-			refresh();
-		}
-		
-		return shader = val;
+        if(state.shader != val) {
+            shadow_shader = val;
+            dirty_shader = true;
+            refresh();
+        }
+        
+        return shader = val;
 
-	} //set_shader
+    } //set_shader
 
 //Depth
 
-	public function get_depth() : Float {
+    public function get_depth() : Float {
 
-		return state.depth;
+        return state.depth;
 
-	} //get_depth
+    } //get_depth
 
 
-	public function set_depth(val : Float) : Float {
+    public function set_depth(val : Float) : Float {
 
-		if(state.depth != val) {
-			shadow_depth = val;
-			dirty_depth = true;
-			refresh();
-		}
+        if(state.depth != val) {
+            shadow_depth = val;
+            dirty_depth = true;
+            refresh();
+        }
 
-		return depth = val;
+        return depth = val;
 
-	} //set_depth
+    } //set_depth
 
 //Group
 
-	public function get_group() : Int {
+    public function get_group() : Int {
 
-		return state.group;
+        return state.group;
 
-	} //get_group
+    } //get_group
 
-	public function set_group(val : Int) : Int {		
+    public function set_group(val : Int) : Int {        
 
-		if(state.group != val) {
-			shadow_group = val;
-			dirty_group = true;
-			refresh();
-		}
-		
-		return group = val;
+        if(state.group != val) {
+            shadow_group = val;
+            dirty_group = true;
+            refresh();
+        }
+        
+        return group = val;
 
-	} //set_group
+    } //set_group
 
 //Clip
 
-	public function get_clip() : Bool {
+    public function get_clip() : Bool {
 
-		return state.clip;
+        return state.clip;
 
-	} //get_clip
+    } //get_clip
 
-	public function set_clip(val : Bool) : Bool {		
+    public function set_clip(val : Bool) : Bool {       
 
-		if(state.clip != val) {
-			shadow_clip = val;
-			dirty_clip = true;
-			refresh();		
-		}
-		
-		return clip = val;
+        if(state.clip != val) {
+            shadow_clip = val;
+            dirty_clip = true;
+            refresh();      
+        }
+        
+        return clip = val;
 
-	} //set_clip
+    } //set_clip
 
 //Clip rect
 
-	public function get_clip_rect() : Rectangle {
+    public function get_clip_rect() : Rectangle {
 
-		return state.clip_rect;
+        return state.clip_rect;
 
-	} //get_clip_rect
+    } //get_clip_rect
 
-	public function set_clip_rect(val : Rectangle) : Rectangle {
+    public function set_clip_rect(val : Rectangle) : Rectangle {
 
-		return state.clip_rect = val;
+        return state.clip_rect = val;
 
-	} //set_clip_rect
+    } //set_clip_rect
 
 
 } //Geometry

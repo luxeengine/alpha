@@ -172,6 +172,7 @@ class Visual extends Entity {
                 _creating_geometry = true;
 
                     geometry = new QuadGeometry({
+                        id:name + '.visual',
                         x:pos.x, 
                         y:pos.y, 
                         w:size.x, 
@@ -209,7 +210,7 @@ class Visual extends Entity {
 
             //default to the visual name
         if(geometry != null) {
-            geometry.id = name;
+            geometry.id = name + ".visual";
         }
 
             //custom provided origin will override any until now
@@ -337,8 +338,8 @@ class Visual extends Entity {
             //store the new one
         geometry = _g;
 
-        if(geometry != null && _creating_geometry == false) {
             //rebind it's colors and whatever else
+        if(geometry != null && _creating_geometry == false) {            
             
             geometry.color = color;
             geometry.pos = pos;

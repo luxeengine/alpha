@@ -26,7 +26,7 @@ class Scene extends Objects {
         return "Luxe Scene: " + name + " entities:" + Lambda.count(entities) + " (" + id + ")"; 
     }
 
-    public function create<T>(type:Class<T>, ?_name:String='') : T {
+    public function create<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
 
         var _temp_name = _name;
 
@@ -37,11 +37,11 @@ class Scene extends Objects {
         }
 
             //create an instance
-        var _entity = Type.createInstance( type, [] );
+        var _entity = Type.createInstance( type, [ _data ] );
             //cast to entity so we can set its name
         var _e_entity : Entity = cast _entity;
             //apply it!
-        _e_entity.name = _temp_name;
+        _e_entity.name = _temp_name;        
 
             //add it to this scene
         add(_e_entity);

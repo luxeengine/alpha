@@ -36,6 +36,8 @@ class Draw {
     	
     	options = default_options(options);
 
+        if(options.id == null) { options.id = 'line.geometry'; };
+
     	var _line = new LineGeometry(options);
 
     	options.batcher.add(_line, false);
@@ -47,6 +49,8 @@ class Draw {
     public function box(options:Dynamic) {
         
         options = default_options(options);
+
+        if(options.id == null) { options.id = 'quad.geometry'; };
 
         var _box = new QuadGeometry(options);
 
@@ -60,6 +64,8 @@ class Draw {
 
         options = default_options(options);
 
+        if(options.id == null) { options.id = 'rectangle.geometry'; };
+
     	var _rect = new RectangleGeometry(options);
 
     	   options.batcher.add(_rect, false);
@@ -72,6 +78,8 @@ class Draw {
 
         options = default_options(options);
 
+        if(options.id == null) { options.id = 'text.geometry'; };
+
         var _text = options.font.draw_text(options);  
 
         return _text;
@@ -81,6 +89,8 @@ class Draw {
     public function ring(options:Dynamic) {
 
         options = default_options(options);
+
+        if(options.id == null) { options.id = 'ring.geometry'; };
 
         var _ring = new RingGeometry(options);
 
@@ -94,6 +104,8 @@ class Draw {
 
         options = default_options(options);
 
+        if(options.id == null) { options.id = 'arc.geometry'; };
+
         var _arc = new ArcGeometry(options);
 
             options.batcher.add(_arc, false);
@@ -106,6 +118,8 @@ class Draw {
 
         options = default_options(options);
 
+        if(options.id == null) { options.id = 'circle.geometry'; };
+
         var _circle = new CircleGeometry(options);
 
             options.batcher.add(_circle);
@@ -117,6 +131,8 @@ class Draw {
     public function plane(options:Dynamic) {
         
         options = default_options(options);
+
+        if(options.id == null) { options.id = 'plane.geometry'; };
 
         var _plane = new PlaneGeometry(options);
 

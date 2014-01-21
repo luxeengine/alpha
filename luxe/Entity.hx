@@ -27,6 +27,9 @@ class Entity extends Objects {
     public var inited : Bool = false;
     public var started : Bool = false;
 
+        //for when the init function is handed data from the creation methods
+    @:noCompletion var init_data : Dynamic;
+
     	//The parent entity if any, set to null for no parent
     @:isVar public var parent   		(get,set) : Entity;
     	//absolute position in world space
@@ -49,9 +52,11 @@ class Entity extends Objects {
 
     private var _last_scale:Vector;
 
-    public function new() {
+    public function new<T>( ?_init_data:T ) {        
 
     	super();
+
+        init_data = _init_data;
 
     	name = 'entity.' + id;
     	
@@ -73,7 +78,7 @@ class Entity extends Objects {
 	@:noCompletion public function _init() {		
 
 			//init the parent first
-		_call(this, 'init');
+		_call(this, 'init', [ cast init_data ]);
 
 		if(name == null) throw "name on entity is null? " + this;
 
