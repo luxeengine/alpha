@@ -235,6 +235,12 @@ class Batcher {
 
     } //set blendmode
 
+    function _debug(v) {
+        if(name == "default_batcher") {
+            trace(v);
+        }
+    }
+
     public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
 
         //check equality
@@ -268,20 +274,32 @@ class Batcher {
         if( a.depth == b.depth && a.group == b.group && textureid < b_textureid ) 
             { return -1; }
         if( a.depth == b.depth && a.group == b.group && textureid == b_textureid && a.primitive_type != b.primitive_type) 
-            { return -1; }
+            { return 1; }
         if( a.depth == b.depth && a.group == b.group && textureid == b_textureid && a.primitive_type == b.primitive_type && (clip_value >= 0)) 
-            { return -1; }
+            { return 1; }
 
             //if all else fails, make sure older values are preferred
-        if( a.timestamp <= b.timestamp ) return -1;
+        if( a.timestamp <= b.timestamp ) 
+            { return -1; }
 
             //otherwise push down the list
         return 1;
 
     } //geometry_compare
 
+    function list_geometry() {
+        for(geom in geometry) {
+            _debug('\t   geometry: ' + geom.id + ' / ' + geom.group + ' / ' + geom.depth + ' / ' + geom.uuid );
+            _debug('\t\t' + geom.key);
+        }
+    }
+
     public function add( _geom:Geometry, _force_add:Bool = false ) {
         
+        // _debug("adding geom to batcher " + _geom.id + " at " + _geom.depth);
+        // _debug("\t list before: ");
+            // list_geometry();
+
         if( geometry.find(_geom.key) == null || _force_add ) {
 
                 //Only add if not already there
@@ -297,6 +315,9 @@ class Batcher {
 
                 //and this local test flag
             tree_changed = true;
+
+            // _debug("\t list after: ");
+            //     list_geometry();            
 
         } else {
             // trace("Warning : Attempting to add geometry to the same batcher twice. " + _geom);
