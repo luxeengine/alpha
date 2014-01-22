@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [446075cbce](http://github.com/underscorediscovery/luxe/commit/446075cbced294b64da0471ccbf8037cc2b234a3)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 21:35:37 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Visual; Sprite; Collapsing the init options into a better structure, such that options can be stored, and init data can be passed to the base entity as well as descendants using { init_with:data } (and this is typed on both sides)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d308e9e6b3](http://github.com/underscorediscovery/luxe/commit/d308e9e6b32804e83b8308357a56b661ef11f74a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 21:32:14 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; first attempt at a more complex regex for parsing the Class names to Links but it's gonna need a whole different approach..</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ec9ee1701a](http://github.com/underscorediscovery/luxe/commit/ec9ee1701a51d03fee9f2a648996602953c1aa14)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 21:30:32 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Scene; create function printing more useful debug info</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [be059a10c2](http://github.com/underscorediscovery/luxe/commit/be059a10c24c29a85f5d8b836c73349183182020)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 21:30:00 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rings; fix depth of enemy bullets</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [a5d8fe8b20](http://github.com/underscorediscovery/luxe/commit/a5d8fe8b20ced394f9edfd4d8272aa2c31e5cf15)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Tue Jan 21 2014 04:02:52 GMT-0330 (NST)   
