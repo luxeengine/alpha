@@ -37,6 +37,7 @@ class Scene extends Objects {
         }
 
             //create an instance
+        _debug("creating entity with " + type + " and data " + _data);
         var _entity = Type.createInstance( type, [ _data ] );
             //cast to entity so we can set its name
         var _e_entity : Entity = cast _entity;
@@ -46,7 +47,7 @@ class Scene extends Objects {
             //add it to this scene
         add(_e_entity);
 
-        _debug("scene: created and added entity to scene " + type + "/" + _temp_name );
+        _debug("scene: created and added entity to scene " + type + " named " + _temp_name + " with " + _data );
 
             //entity
         return _entity;
