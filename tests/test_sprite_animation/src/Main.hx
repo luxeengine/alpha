@@ -98,14 +98,21 @@ class Main extends luxe.Game {
                 //create an event manually
             anim.add_event('walk', 7, 'frame7');
             anim.add_event('walk', 8 );
+            anim.add_event('walk', 6, '6.1' );
+            anim.add_event('walk', 6, '6.2' );
+            anim.add_event('walk', 6, '6.3' );
             anim.add_event('walk', 10, 'test_dupe' );
             anim.add_event('walk', 10, 'test_dupe' );
+            anim.add_event('walk', 10, 'test_multi' );
+
+            anim.remove_event('walk', 8);
+            anim.remove_events('walk', 6);
 
             sprite.events.listen('foot.1', function(e){ Luxe.audio.play('step1'); });
             sprite.events.listen('foot.2', function(e){ Luxe.audio.play('step2'); });
             sprite.events.listen('*', function(e){ 
-                //uncomment to see all the events listed
-                // trace( e.event + " fired on animation " + e.animation );
+                //uncomment to see all the events remaining after the above messing 
+                // trace( e.event + " fired on " + e.animation + ":" + e.image_frame );
             });
 
 		} //onload

@@ -229,7 +229,7 @@ class SpriteAnimationData {
                 }
 
                 resulting_events.push(_event);
-                
+
             } //frame != null
         } //each event in json events
 
@@ -394,6 +394,45 @@ class SpriteAnimation extends Component {
         } //anims.length > 0
 
     } //add_from_json
+
+        //remove specific event from frame
+    public function remove_event( _animation:String, _image_frame:Int, _event:String='' ) {
+
+        if( animation_list.exists(_animation) ) {
+            var _anim = animation_list.get(_animation);
+            for(_anim_frame in _anim.frameset) {
+                if( _anim_frame.image_frame == _image_frame ) {
+                    for(_frame_event in _anim_frame.events) {       
+                            //found an event for this frame, is it the same one?
+                        if(_frame_event.frame == _image_frame && _frame_event.event == _event) {
+                            _anim_frame.events.remove(_frame_event);
+                            _debug("anim event being removed " + _image_frame + ":" + _event + " to " + _animation);
+                        } //matched frame and event match
+                    } //each event
+                } //matched frame number
+            } //each frame in the set
+        } else {
+            trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' to add an event but it is not found in the component. ');
+        }
+
+    } //remove_event
+
+        //remove all events from a frame
+    public function remove_events( _animation:String, _image_frame:Int) {
+
+        if( animation_list.exists(_animation) ) {
+            var _anim = animation_list.get(_animation);
+            for(_anim_frame in _anim.frameset) {
+                if( _anim_frame.image_frame == _image_frame ) {
+                        //clear the events
+                    _anim_frame.events = [];
+                } //matched frame index
+            } //each frame in the set
+        } else {
+            trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' to add an event but it is not found in the component. ');
+        }
+
+    } //remove_events
 
     public function add_event( _animation:String, _image_frame:Int, _event:String='' ) {
 
