@@ -42,8 +42,8 @@ class Main extends luxe.Game {
             pos : new Vector(480,320)
         });
         
-        var child1 = sprite.add(Child1,'child1', 'Test string');
-        var child2 = child1.add(Child2,'child2', 565);
+        var child1 = sprite.add(Child1,'child1', { init_with:'Test string' });
+        var child2 = child1.add(Child2,'child2', { init_with:565 });
 
             //default camera is an entity, so give it a component!
         Luxe.camera.add(RandomCameraShaker,'shaker');        

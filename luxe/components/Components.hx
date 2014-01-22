@@ -1,9 +1,13 @@
 package luxe.components;
 
+import luxe.options.ComponentOptions;
+
 class Component extends Objects {
 
-	public var entity : Entity;	
-		//the transfrom the parent entity
+		//the entity this component is attached to
+	public var entity : Entity;
+
+		//the transfrom that affect the parent entity
 	@:isVar public var pos 				(get,set) : Vector;
 	@:isVar public var posRelative 		(get,set) : Vector;
 	@:isVar public var rotation 		(get,set) : Vector;
@@ -11,15 +15,19 @@ class Component extends Objects {
 	@:isVar public var scale 			(get,set) : Vector;
 	@:isVar public var scaleRelative 	(get,set) : Vector;
 
-	@:noCompletion var init_data : Dynamic;
+		//the options
+	@:noCompletion var options : Dynamic;
 
-	public function new<T>( ?_init_data:T ) {
+	public function new<T>( ?_options:ComponentOptions<T> ) {
+		
 		super();
-		init_data = _init_data;
+			
+		options = _options;
+
 	} //new
 
 	@:noCompletion public function _init() {
-		_call(this, 'init', [ cast init_data ]);
+		_call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
 	}
 	@:noCompletion public function _reset() {
 		_call(this, 'reset');
