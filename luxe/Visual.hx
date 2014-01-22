@@ -3,6 +3,7 @@ package luxe;
 import luxe.Vector;
 import luxe.Rectangle;
 import luxe.Scene;
+import luxe.Entity;
 import luxe.utils.Maths;
 
 import phoenix.Quaternion;
@@ -15,9 +16,8 @@ import phoenix.Texture;
 import phoenix.Vector;
 import phoenix.Color;
 
-typedef VisualOptions = {    
-    ?name : String,
-    ?pos : Vector,
+typedef VisualOptions<T1> = { 
+  > EntityOptions<T1>,   
     ?size : Vector,
     ?origin : Vector,
     ?color : Color,
@@ -28,12 +28,9 @@ typedef VisualOptions = {
     ?group : Int,
     ?rotation_z : Float,
     ?visible : Bool,
-    ?add : Bool,    
-    ?scene : Scene,
+    ?add : Bool,        
     ?serialize : Bool,
     ?geometry : Geometry,
-
-    ?no_scene : Bool,
     ?no_geometry : Bool
 }
 
@@ -59,18 +56,21 @@ class Visual extends Entity {
 
     var _has_custom_origin : Bool = false;
 
-    public function new( options:VisualOptions ) {
+    public function new<T>( _options:VisualOptions<T> ) {
+
+//safe
+        if(_options == null) {
+            throw "Visual needs not-null options at the moment";
+        }
 
 //cached values
+            //these need to be before super as it calls into the set_pos etc 
+            //and that makes it crash if these are not there yet
         _rotation_vector = new Vector();
         _rotation_quat = new Quaternion();
 
-        super();
-
-            //temp
-        if(options == null) {
-            throw "Visual needs a non null options atm";
-        }
+            //call the entity constructor        
+        super( _options );
 
             //create the position value so we can exploit it a bit
         origin = new Vector();
@@ -129,7 +129,7 @@ class Visual extends Entity {
 
             size = options.size;
                 //the size is explicit, so make the geometry
-            _create_geometry(options);
+            _create_geometry();
 
         } else {    
 
@@ -139,13 +139,13 @@ class Visual extends Entity {
                 if(texture.loaded) {
 
                     size = new Vector(texture.width, texture.height);
-                    _create_geometry(options);
+                    _create_geometry();
 
                 } else {
 
                     texture.onload = function(_texture) {                        
                         size = new Vector(texture.width, texture.height);
-                        _create_geometry(options);
+                        _create_geometry();
                     }
                 } //texture is not loaded
 
@@ -153,7 +153,7 @@ class Visual extends Entity {
                     //default to a value big enough to see
                 size = new Vector(64,64); 
                 // trace('\t\tWarning : no texture, or size, handed to visual constructor so going with a default size.');
-                _create_geometry(options);
+                _create_geometry();
                 
             } //texture !=null
 
@@ -162,7 +162,7 @@ class Visual extends Entity {
     } //new
 
     var _creating_geometry : Bool = false;
-    @:noCompletion public function _create_geometry(options : VisualOptions) {
+    @:noCompletion public function _create_geometry() {
 
             //if they give a geometry, don't create one
         if(options.geometry == null) {
@@ -198,7 +198,7 @@ class Visual extends Entity {
 
 
                     //call the geometry create listener
-                on_geometry_created( options );
+                on_geometry_created();
 
             } //no_geometry is not present
 
@@ -245,7 +245,7 @@ class Visual extends Entity {
         
     }
 
-    function on_geometry_created( options:VisualOptions ) {
+    function on_geometry_created() {
         //nothing here for now
     } //on_geometry_created
 

@@ -10,6 +10,14 @@ import luxe.Vector;
 import luxe.Scene;
 import luxe.components.Components;
 
+typedef EntityOptions<T> = {
+    ?name : String,
+    ?pos : Vector,
+    ?init_with:T,
+    ?scene : Scene,
+    ?no_scene : Bool
+}
+
 //Objects -> Entity
 class Entity extends Objects {
 
@@ -26,9 +34,8 @@ class Entity extends Objects {
     public var _destroyed : Bool = false;
     public var inited : Bool = false;
     public var started : Bool = false;
-
-        //for when the init function is handed data from the creation methods
-    @:noCompletion var init_data : Dynamic;
+        //previous scale cache
+    private var _last_scale:Vector;
 
     	//The parent entity if any, set to null for no parent
     @:isVar public var parent   		(get,set) : Entity;
@@ -46,17 +53,17 @@ class Entity extends Objects {
     @:isVar public var scaleRelative    (get,set) : Vector;
         //if the entity is in a scene
     @:isVar public var scene            (get,set) : Scene;
-
-
+        //whether or not this should be serialized
     public var serialize : Bool = true;
+        //the options passed into the constructor
+    @:noCompletion var options : Dynamic;
 
-    private var _last_scale:Vector;
-
-    public function new<T>( ?_init_data:T ) {        
+    public function new<T>( ?_options:EntityOptions<T> ) {
 
     	super();
 
-        init_data = _init_data;
+        _debug('new entity with ' + _options, true);
+        options = _options;
 
     	name = 'entity.' + id;
     	
@@ -77,8 +84,11 @@ class Entity extends Objects {
 
 	@:noCompletion public function _init() {		
 
+            //verbose debugging 
+        _debug(this + ' inside _init with options as ' + options, true );
+
 			//init the parent first
-		_call(this, 'init', [ cast init_data ]);
+		_call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
 
 		if(name == null) throw "name on entity is null? " + this;
 

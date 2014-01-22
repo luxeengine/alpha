@@ -26,7 +26,7 @@ class NineSlice extends luxe.Sprite {
 
     @:noCompletion public var slices : Array<Slice>;
     @:noCompletion public var added : Bool = false;
-    @:noCompletion public var options : Dynamic;
+    @:noCompletion public var nineslice_options : Dynamic;
 
     public var top : Float = 32;
     public var left : Float = 32;
@@ -47,7 +47,7 @@ class NineSlice extends luxe.Sprite {
 
     public function new(_options:Dynamic) {
 
-        options = {};   
+        nineslice_options = {};   
             //default to internal batcher
         _batcher = Luxe.renderer.default_batcher;
         slices = new Array<Slice>();
@@ -64,10 +64,10 @@ class NineSlice extends luxe.Sprite {
             _options.no_scene = true;
         }
 
-        options = _options;
+        nineslice_options = _options;
         
-        if(_options.depth != null)      options.depth = _options.depth;
-        if(_options.group != null)      options.group = _options.group;
+        if(_options.depth != null)      nineslice_options.depth = _options.depth;
+        if(_options.group != null)      nineslice_options.group = _options.group;
         if(_options.batcher != null)    _batcher = _options.batcher;
         
             //sprite options to parent
@@ -410,9 +410,9 @@ class NineSlice extends luxe.Sprite {
         _geometry = new ComplexGeometry({
             texture : texture,
             color : _color,
-            depth : options.depth,
-            group : options.group,
-            enabled : options.enabled            
+            depth : nineslice_options.depth,
+            group : nineslice_options.group,
+            enabled : nineslice_options.enabled            
         });
 
         for(slice in slices) {

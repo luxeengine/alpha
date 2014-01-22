@@ -10,8 +10,8 @@ import phoenix.geometry.QuadGeometry;
 
 import luxe.Visual.VisualOptions;
 
-typedef SpriteOptions = {
-  > VisualOptions,
+typedef SpriteOptions<T> = {
+  > VisualOptions<T>,
     ?centered : Bool,
     ?uv : Rectangle    
 }
@@ -25,12 +25,11 @@ class Sprite extends Visual {
 
     public var geometry_quad : QuadGeometry; 
 
-    var _options : SpriteOptions;
+    public function new<T>( options:SpriteOptions<T> ) {
 
-    public function new( options:SpriteOptions ) {
-
-            //store for late load access
-        _options = options;
+        if(options == null) {
+            throw "Sprite needs not-null options at the moment";
+        }
 
             //centered
         if(options.centered != null) {
@@ -43,20 +42,20 @@ class Sprite extends Visual {
 
     }
 
-    override function on_geometry_created( options : VisualOptions ) {        
+    override function on_geometry_created() {
 
         if(texture != null && texture.loaded) {
             
                 //because the default is 0,0,1,1 uv for the quad, we don't want that when
                 //textures are padded (like on html5)
-            if(_options.uv == null) {
+            if(options.uv == null) {
 
                 if(texture.actual_width != texture.width || texture.actual_height != texture.height) {
                     uv = new Rectangle(0,0,texture.width,texture.height);
                 }
 
             } else {
-                uv = _options.uv;
+                uv = options.uv;
             }
 
                 //if texture is render target, flipy
