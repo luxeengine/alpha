@@ -1,6 +1,76 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [e7238f365d](http://github.com/underscorediscovery/luxe/commit/e7238f365df5b5520fd0fbcdf87e9bf6e515ae45)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 16:29:39 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; remove_event and remove_events added for control over frame events from the api</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [88d01d71f7](http://github.com/underscorediscovery/luxe/commit/88d01d71f7ac4440e70c8130571466794662a157)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 16:06:29 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; adding event api for adding events after the fact (still need remove)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [479ecc53fb](http://github.com/underscorediscovery/luxe/commit/479ecc53fbf8bcf87da06d3b02d88a0de605f5aa)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 14:42:53 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; Parsing events from specified json, and firing them on frame contact. Right now it hooks directly to image frame, so an image frame on hold will fire every tick of the animation fps (which makes sense) but maybe other options other than image frame should be considered, like an id:tag in the frame set or something.</li><li>Tests; SpriteAnimation; adding footstep sound on walk frames to test events</li><li>Fix #37</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [553d45646f](http://github.com/underscorediscovery/luxe/commit/553d45646f27e4c72003c686d74670b5c91bbd4b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 14:17:30 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Fixing silly logic for adding to scene in _init, where _init is called from the scene.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [cd1938697a](http://github.com/underscorediscovery/luxe/commit/cd1938697a2154e0ce7518c4a29e36256a8ddd28)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 02:32:37 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [0a12a32946](http://github.com/underscorediscovery/luxe/commit/0a12a32946f3694daa8393f058f35da979bbad3a)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Wed Jan 22 2014 02:32:08 GMT-0330 (NST)   
