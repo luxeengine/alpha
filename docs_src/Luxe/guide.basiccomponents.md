@@ -11,7 +11,7 @@
 _This tutorial assumes you are familiar with the basics of [getting started with luxe](guide.gettingstarted.html), and [displaying stuff](guide.sprites.html) on screen, or [handling input](guide.input.html)._
 
 [Jump to the full code listing?](#code)
-
+  
 
 ### What are Entities, and what are Components?
 ---
@@ -22,7 +22,7 @@ The terms are quite simple to understand -
 
 - An Entity is a container for components   
 - A Component adds some behavior to the Entity it is attached to
-
+ 
 ** A more useful example **
 
 - A Sprite on screen is an Entity, "EnemyTower" sprite   

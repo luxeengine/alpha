@@ -1,6 +1,146 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [a5d8fe8b20](http://github.com/underscorediscovery/luxe/commit/a5d8fe8b20ced394f9edfd4d8272aa2c31e5cf15)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 04:02:52 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>API; Luxe; Luxe.time is now a shortcut for haxe.Timer.stamp()</li><li>Timer; Luxe.time was renamed to Luxe.timer, for schedules</li><li>Fix #52</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [044dc67d70](http://github.com/underscorediscovery/luxe/commit/044dc67d70860890f3e78baf574da6a3c5a10f5e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 03:46:02 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>CircleGeometry; Adding rx and ry options to draw ellipses, makes ring/circle able to be ellipses</li><li>Tests; draw; adding some ellipses</li><li>Fix #43</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [39e46813c5](http://github.com/underscorediscovery/luxe/commit/39e46813c51f895e1b0dfda5b4af0d4dce4a77d7)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 03:32:00 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>RingGeometry; Fixing removal of a needed vertex, it makes the side flat, didn't notice.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [578ac1bb1e](http://github.com/underscorediscovery/luxe/commit/578ac1bb1e2bc9ba6695c85154c94c4b903ef37a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 03:16:20 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Draw; Adding ngon drawing routine with solid, angle, sides, radius options. See test_draw.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [87c32a0535](http://github.com/underscorediscovery/luxe/commit/87c32a0535c8db25ffd632fb0f8769e9ae5e93a3)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 02:11:45 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; Prelim code for pressed/released/down bools</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [99210a17ce](http://github.com/underscorediscovery/luxe/commit/99210a17ce9a1da928f62bf9cecec5dff250a66a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 22:39:57 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>html5; Texture cross policy fallback is neater for now (not sure that the texture is even needed to taint cross origin... but whatever)</li><li>html5; shutdown clears the screen to luxe orange as a clear indicator. This will need to be an event you can handle yourself somehow...</li><li>html5; fix #48</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [8197c305a0](http://github.com/underscorediscovery/luxe/commit/8197c305a0c4672752763f816f381adf57e7d5c5)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 21:59:41 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Batcher; Fixing sorting being incorrect when two different types of primitive types are being sorted weirdly, Fix #54</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d33223b271](http://github.com/underscorediscovery/luxe/commit/d33223b2719f4329c08dbd58e8fa8aceadfb0810)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 21:55:25 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Draw; Some useful debug info on the .id value of geometry</li><li>Entity; Adding the init functionality like Component, such that Luxe.scene.create can pass typed init data</li><li>Scene; adding create(type,name, initdata)</li><li>Visual; name based on name + visual</li><li>Geometry; id assign on passed in</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [7656655fbf](http://github.com/underscorediscovery/luxe/commit/7656655fbfcc8ba0e36e33efd8291e583d512ad9)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 19:40:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; depth; Adding colors to make it clearer that they are ordered</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [be902ad0de](http://github.com/underscorediscovery/luxe/commit/be902ad0de27581691ca30ffee52c61216e4d426)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 20 2014 18:11:05 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [a2d9718264](http://github.com/underscorediscovery/luxe/commit/a2d97182640fcc02c6187de779af147d618d7dea)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Mon Jan 20 2014 18:07:47 GMT-0330 (NST)   

@@ -11,8 +11,15 @@ The beginners guide is a linear guide, following a semi logical progression abou
 
 [ Getting Started with luxe ](#gettingstarted)    
 [ Drawing things on screen ](#basicdrawing)    
-[ Making things interactive ](#interactivity)    
-[ Using components to create games ](#basiccomponents)    
+[ Making things interactive ](#interactivity)
+  
+###[ Component/Entity guide ](#componentguide)
+
+A guide about how Component and Entity systems work, and how they specifically work in Luxe    
+
+[ What are entities and components? ](#basiccomponents)    
+[ Creating and using custom components ](#createcomponents)    
+[ Creating and using custom entities ](#basiccomponents)    
 
 ###[ Feature guide ](#featureguide)   
 The feature guide is a piece by piece quick reference for specific features of the engine, designed to explain and teach what the engine can do.

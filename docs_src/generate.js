@@ -221,8 +221,7 @@ var config = require('./documentator.json');
         for(var i = 0; i < _count; i++) {
 
             var _item = _replacements[i];
-            // \bScene(?!\.html)\b
-            var _replace = new RegExp( "\\b("+_item.key+")(?!\\.html)\\b", 'gm');
+            var _replace = new RegExp( "(\\b" + _item.key + "\\b)(?!.*</a>)", 'g');
 
             _output = _output.replace( _replace, '<a href="'+_item.link+'">'+_item.key+'</a>' );
 

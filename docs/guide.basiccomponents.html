@@ -57,7 +57,7 @@ and with good reason as they are quite useful for the way games are often struct
 </ul>
 <p><strong> A more useful example </strong></p>
 <ul>
-<li>A <a href="luxe.Sprite.html">Sprite</a> on screen is an <a href="luxe.Entity.html">Entity</a>, “EnemyTower” sprite   </li>
+<li>A Sprite on screen is an <a href="luxe.Entity.html">Entity</a>, “EnemyTower” sprite   </li>
 <li>A “ShootEveryThreeSeconds” is a component   </li>
 <li>A “TakeDamageUntilZeroAndThenDie” is a component   </li>
 </ul>
@@ -68,13 +68,13 @@ and with good reason as they are quite useful for the way games are often struct
 <p>You mouse x position controls the rotation speed.</p>
 <div data-content="samples/4_components/index.html" class="sample"> <p>Click to run example</p> </div>
 
-<h3 id="anatomy-of-a-component-class">Anatomy of a Component class</h3>
+<h3 id="anatomy-of-a-component-class">Anatomy of a <a href="luxe.components.Component.html">Component</a> class</h3>
 <hr>
-<p>Component classes have some default functions that are called for you, much like the game class.
+<p><a href="luxe.components.Component.html">Component</a> classes have some default functions that are called for you, much like the game class.
 Have a look at the comments in the code below to see them.</p>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn">Component</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn"><a href="luxe.components.Component.html">Component</a></span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">MyComponent</span> <span class="kd">extends</span> <span class="n">Component</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="n">MyComponent</span> <span class="kd">extends</span> <span class="n"><a href="luxe.components.Component.html">Component</a></span> <span class="p">{</span>
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">//called when initialising the component</span>
@@ -91,7 +91,7 @@ Have a look at the comments in the code below to see them.</p>
 <span class="p">}</span>
 </pre></div>
 </code></pre>
-<h3 id="understanding-the-component-transforms">Understanding the Component transforms</h3>
+<h3 id="understanding-the-component-transforms">Understanding the <a href="luxe.components.Component.html">Component</a> transforms</h3>
 <hr>
 <p>Components are directly tied to the entity they are attached to.   </p>
 <p>When you change the transform from a component class - it is changing the entity itself.   </p>
@@ -112,7 +112,7 @@ Have a look at the comments in the code below to see them.</p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> entity <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">();</span>
 </pre></div>
 </code></pre>
-<p>The <code><a href="luxe.Sprite.html">Sprite</a></code> and <code><a href="luxe.Camera.html">Camera</a></code> class in luxe extend from the <a href="luxe.Entity.html">Entity</a> class so that you can add components to them. Sprites are automatically added to the default scene unless you tell it not to, by passing <code>add : false</code> into the constructor of <a href="luxe.Sprite.html">Sprite</a>.</p>
+<p>The <code>Sprite</code> and <code>Camera</code> class in luxe extend from the <a href="luxe.Entity.html">Entity</a> class so that you can add components to them. Sprites are automatically added to the default scene unless you tell it not to, by passing <code>add : false</code> into the constructor of <a href="luxe.Sprite.html">Sprite</a>.</p>
 <h3 id="accessing-entities-from-other-entities-and-components">Accessing entities from other entities and components</h3>
 <hr>
 <p>Entities are stored in the scene by name, so you can fetch them later. This means that when creating your sprite, or entity, you will want to pass the name as well.<br>You fetch the sprite from the scene by accessing the entities property from the scene.</p>
@@ -127,7 +127,7 @@ Have a look at the comments in the code below to see them.</p>
 <span class="o">...</span>
 
     <span class="c1">//at a later time</span>
-<span class="kd">var</span> sprite <span class="p">:</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span> <span class="o">=</span> <span class="k">cast</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">entities</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spritename&#39;</span><span class="p">);</span>
+<span class="kd">var</span> sprite <span class="p">:</span> <span class="n">Sprite</span> <span class="o">=</span> <span class="k">cast</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">entities</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;spritename&#39;</span><span class="p">);</span>
 </pre></div>
 </code></pre>
 <p>&nbsp;   </p>
@@ -139,7 +139,7 @@ Have a look at the comments in the code below to see them.</p>
 <p>Components are added to entities using the <code>add</code> function, and the <code>add</code> function returns the instance if you want to store a typed reference.
 The second parameter is the name of the entity or component, so you can use them by name later on.</p>
 <p>For example, inside of your game init function :</p>
-<pre><code><div class="highlight"><pre><span class="kd">var</span> component <span class="p">:</span> <span class="n">Component</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kd">var</span> component <span class="p">:</span> <span class="n"><a href="luxe.components.Component.html">Component</a></span><span class="p">;</span>
 <span class="kd">var</span> entity <span class="p">:</span> <span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">;</span>
 
 <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
@@ -148,7 +148,7 @@ The second parameter is the name of the entity or component, so you can use them
     <span class="n">entity</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">,</span> <span class="s1">&#39;some_entity&#39;</span><span class="p">);</span>
 
         <span class="c1">// add/attach a component to the entity.</span>
-    <span class="n">component</span> <span class="o">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Component</span><span class="p">,</span> <span class="s1">&#39;some_component&#39;</span><span class="p">);</span>
+    <span class="n">component</span> <span class="o">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n"><a href="luxe.components.Component.html">Component</a></span><span class="p">,</span> <span class="s1">&#39;some_component&#39;</span><span class="p">);</span>
 
 <span class="p">}</span>
 </pre></div>
@@ -156,7 +156,7 @@ The second parameter is the name of the entity or component, so you can use them
 <h3 id="accessing-the-entity">Accessing the entity</h3>
 <hr>
 <p>When you are inside of a component and want to access the entity that the component is connected to,<br>there is a variable called <code>entity</code> that is declared in the Component class as <code>entity : <a href="luxe.Entity.html">Entity</a></code>. </p>
-<p>When the entity is attached to a sub class of <a href="luxe.Entity.html">Entity</a> (like a <a href="luxe.Sprite.html">Sprite</a>, which <code>extends <a href="luxe.Entity.html">Entity</a></code>),<br>you can store a typed reference by using the <code>cast</code> keyword. Like below :</p>
+<p>When the entity is attached to a sub class of <a href="luxe.Entity.html">Entity</a> (like a Sprite, which <code>extends <a href="luxe.Entity.html">Entity</a></code>),<br>you can store a typed reference by using the <code>cast</code> keyword. Like below :</p>
 <pre><code><div class="highlight"><pre><span class="kd">var</span> sprite<span class="p">:</span><span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
 
 <span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
@@ -210,13 +210,13 @@ The second parameter is the name of the entity or component, so you can use them
 <p></a></p>
 <p><em>(found in samples/guides/4_components/)</em></p>
 <h3 id="rotate-hx">Rotate.hx</h3>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn">Component</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn"><a href="luxe.components.Component.html">Component</a></span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
 
 <span class="c1">//This component will rotate the entity that it is attached to a small amount each frame.</span>
 <span class="c1">//It is assumed that the entity is a <a href="luxe.Sprite.html">Sprite</a>! </span>
 
-<span class="kd">class</span> <span class="n">Rotate</span> <span class="kd">extends</span> <span class="n">Component</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="n">Rotate</span> <span class="kd">extends</span> <span class="n"><a href="luxe.components.Component.html">Component</a></span> <span class="p">{</span>
 
     <span class="kd">public</span> <span class="kd">var</span> <span class="n">rotate_speed</span> <span class="p">:</span> <span class="n">Float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
     <span class="kd">public</span> <span class="kd">var</span> <span class="n">max_rotate_speed</span> <span class="p">:</span> <span class="n">Float</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
@@ -232,9 +232,9 @@ The second parameter is the name of the entity or component, so you can use them
 </pre></div>
 </code></pre>
 <h3 id="bounce-hx">Bounce.hx</h3>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn">Component</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">components</span><span class="p">.</span><span class="nn">Components</span><span class="p">.</span><span class="nn"><a href="luxe.components.Component.html">Component</a></span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">Bounce</span> <span class="kd">extends</span> <span class="n">Component</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="n">Bounce</span> <span class="kd">extends</span> <span class="n"><a href="luxe.components.Component.html">Component</a></span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="n">dir</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="kd">var</span> <span class="n">speed</span> <span class="p">:</span> <span class="n">Int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
@@ -267,7 +267,7 @@ The second parameter is the name of the entity or component, so you can use them
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
 
         <span class="n">logo</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
-            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
             <span class="n">texture</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/luxelogo.png&#39;</span><span class="p">),</span>
         <span class="p">});</span> 
 

@@ -27,6 +27,7 @@
         { "key":"Luxe",           "link":"api.html"                         },
 
         { "key":"Entity",         "link":"luxe.Entity.html"                 },
+        { "key":"Component",      "link":"luxe.components.Component.html"   },
         { "key":"Sprite",         "link":"luxe.Sprite.html"                 },
         { "key":"Camera",         "link":"luxe.Camera.html"                 },
         { "key":"Text",           "link":"luxe.Text.html"                   },
