@@ -68,7 +68,7 @@ class Main extends luxe.Game {
 					"walk" : {
                         "frame_size":{ "x":"48", "y":"48" },
                         "frameset": ["1-12"],
-                        "events" : [{"frame":8, "event":"foot.1"}, {"frame":1, "event":"foot.2"}],
+                        "events" : [{"frame":8, "event":"foot.1"}, {"frame":1, "event":"foot.2"}, { "frame": 6 }],
                         "pingpong":"false",
                         "loop": "true",
                         "speed": "18"
@@ -95,8 +95,18 @@ class Main extends luxe.Game {
             Luxe.audio.create('step1', 'assets/samulis_footstep_on_stone_2.ogg');
             Luxe.audio.create('step2', 'assets/samulis_footstep_on_stone_1.ogg');
 
+                //create an event manually
+            anim.add_event('walk', 7, 'frame7');
+            anim.add_event('walk', 8 );
+            anim.add_event('walk', 10, 'test_dupe' );
+            anim.add_event('walk', 10, 'test_dupe' );
+
             sprite.events.listen('foot.1', function(e){ Luxe.audio.play('step1'); });
             sprite.events.listen('foot.2', function(e){ Luxe.audio.play('step2'); });
+            sprite.events.listen('*', function(e){ 
+                //uncomment to see all the events listed
+                // trace( e.event + " fired on animation " + e.animation );
+            });
 
 		} //onload
 
