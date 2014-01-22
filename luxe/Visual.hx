@@ -1,6 +1,5 @@
 package luxe;
 
-import luxe.Scene;
 import luxe.Color;
 import luxe.Entity;
 import luxe.Vector;
@@ -95,12 +94,7 @@ class Visual extends Entity {
         if(options.visible != null) {
             visible = options.visible;
         }        
-//scene
-        if(options.scene != null) {
-            scene = options.scene;            
-        } else {
-            scene = Luxe.scene;
-        }
+
 //serialize
         if(options.serialize != null) {
             serialize = options.serialize;
@@ -206,11 +200,6 @@ class Visual extends Entity {
             //apply the rotation if any
         if(options.rotation_z != null) {
             rotation_z = options.rotation_z;
-        }
-            
-            //add to the scene unless requested not to
-        if(scene != null && options.no_scene != true) {
-            scene.add(this);
         }
 
     } //create_geometry

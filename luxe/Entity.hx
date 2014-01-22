@@ -15,8 +15,8 @@ import luxe.options.EntityOptions;
 //Objects -> Entity
 class Entity extends Objects {
 
-	public var components (get,never) : Map<String, Component>;
-	private var _components : Components;
+    public var components (get,never) : Map<String, Component>;
+    private var _components : Components;
 
     public var events : luxe.Events;
     public var children : Array<Entity>;
@@ -31,19 +31,19 @@ class Entity extends Objects {
         //previous scale cache
     private var _last_scale:Vector;
 
-    	//The parent entity if any, set to null for no parent
-    @:isVar public var parent   		(get,set) : Entity;
-    	//absolute position in world space
-    @:isVar public var pos      		(get,set) : Vector;
-    	//relative position to parent 
-    @:isVar public var posRelative  	(get,set) : Vector;
+        //The parent entity if any, set to null for no parent
+    @:isVar public var parent           (get,set) : Entity;
+        //absolute position in world space
+    @:isVar public var pos              (get,set) : Vector;
+        //relative position to parent 
+    @:isVar public var posRelative      (get,set) : Vector;
         //absolute rotation in world space
     @:isVar public var rotation         (get,set) : Vector;
         //relative rotation to parent 
     @:isVar public var rotationRelative (get,set) : Vector;
-    	//absolute scale in world space
-    @:isVar public var scale 		    (get,set) : Vector;
-    	//relative scale to parent 
+        //absolute scale in world space
+    @:isVar public var scale            (get,set) : Vector;
+        //relative scale to parent 
     @:isVar public var scaleRelative    (get,set) : Vector;
         //if the entity is in a scene
     @:isVar public var scene            (get,set) : Scene;
@@ -54,98 +54,117 @@ class Entity extends Objects {
 
     public function new<T>( ?_options:EntityOptions<T> ) {
 
-    	super();
+        super();
 
         _debug('new entity with ' + _options, true);
         options = _options;
 
-    	name = 'entity.' + id;
-    	
-    	_components = new Components( this );
-    	children = new Array<Entity>();
-		events = new luxe.Events();
+        name = 'entity.' + id;
+        
+        _components = new Components( this );
+        children = new Array<Entity>();
+        events = new luxe.Events();
 
-			//transform
-		pos = new Vector();
-		posRelative = new Vector();
+            //transform
+        pos = new Vector();
+        posRelative = new Vector();
         rotation = new Vector();
         rotationRelative = new Vector();
         _last_scale = new Vector(1,1,1);
         scale = new Vector(1,1,1);
-		scaleRelative = new Vector(1,1,1);
+        scaleRelative = new Vector(1,1,1);
+
+//scene
+        if(options != null) {
+                //if they haven't explicitly said "no scene management"
+                //we add to the scene they requested, or the default scene otherwise
+            if(options.no_scene != null && options.no_scene != true) {                    
+                if(options.scene != null) {
+                    scene = options.scene;
+                } else {
+                    scene = Luxe.scene;
+                }
+            } //no_scene is not specified or is false
+        
+        }  //options ! null
 
     } //new
 
-	@:noCompletion public function _init() {		
+    @:noCompletion public function _init() {        
 
             //verbose debugging 
         _debug(this + ' inside _init with options as ' + options, true );
 
-			//init the parent first
-		_call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
+            //init the parent first
+        _call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
 
-		if(name == null) throw "name on entity is null? " + this;
+        if(name == null) throw "name on entity is null? " + this;
 
-			//init all the components attached directly to us
-		for(_component in components) {
+            //init all the components attached directly to us
+        for(_component in components) {
             _debug("\t entity " + name + " calling init on component " + _component.name );
-			_call(_component, '_init');
+            _call(_component, '_init');
             _debug('\t- ');
-		} //for each component
+        } //for each component
 
-			//now init our children, so they do the same
-		for(_child in children) {
+            //now init our children, so they do the same
+        for(_child in children) {
             _debug("\t parent " + name + " calling init on child " + _child.name );
-			_child._init();
-		} //for each child
+            _child._init();
+        } //for each child
+
+            //add to the scene unless requested not to
+        if(scene != null) {
+            scene.add( this );
+        }
 
             //flag internally
         inited = true;
 
-	} //_init
+    } //_init
 
-	@:noCompletion public function _reset() {
+    @:noCompletion public function _reset() {
 
-		_debug('calling reset on ' + name, true);
+        _debug('calling reset on ' + name, true);
 
-			//reset the parent first
-		_call(this, 'reset');
+            //reset the parent first
+        _call(this, 'reset');
 
-			//reset all the components attached directly to us
-		for(_component in components) {
-			_call(_component, 'reset');
-		} //for each component
+            //reset all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'reset');
+        } //for each component
 
-			//now reset our children, so they do the same
-		for(_child in children) {
-			_child._reset();
-		} //for each child
+            //now reset our children, so they do the same
+        for(_child in children) {
+            _child._reset();
+        } //for each child
 
             //start the fixed rate timer
-		_start_fixed_rate_timer( fixed_rate );
+        _start_fixed_rate_timer( fixed_rate );
 
             //flag internally
         started = true;
 
-	} //_reset
+    } //_reset
 
-	public function destroy() {
+    public function destroy() {
 
         _debug('calling destroy on ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
-			//first destroy children
-		for(_child in children) {
+            //first destroy children
+        for(_child in children) {
             _debug('\t calling destroy on child ' + _child.name);
-			_child.destroy();
-		} //for each child
+            _child.destroy();
+        } //for each child
         
-			//destroy all the components attached directly to us
-		for(_component in components) {
-			_call(_component, 'destroyed');
-		} //for each component
+            //destroy all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'destroyed');
+        } //for each component
 
-			//destroy the actual one last
-		_call(this, 'destroyed');
+            //destroy the actual one last
+        _call(this, 'destroyed');
 
             //remove it from it's parent if any
         if(parent != null) {
@@ -156,8 +175,8 @@ class Entity extends Objects {
             //kill any fixed rate timers
         _stop_fixed_rate_timer();
 
-			//mark the flag
-		_destroyed = true;
+            //mark the flag
+        _destroyed = true;
 
             //remove from the scene it's in if any
         _debug( "removing " + name + " / " + id + " from scene " + scene );
@@ -166,13 +185,13 @@ class Entity extends Objects {
             scene.remove(this);
         } 
 
-			//kill the events
+            //kill the events
         if(events != null) {
             events.destroy();
             events = null;
         }
 
-	} //destroy
+    } //destroy
 
 //Keys
 
@@ -499,8 +518,8 @@ class Entity extends Objects {
     } //_oninputup
 
 
-	@:noCompletion public function _update(dt:Float) {
-		
+    @:noCompletion public function _update(dt:Float) {
+        
         if(_destroyed) {
             _debug("calling update AFTER DESTROYED on " + name + " / " + id );
             return;
@@ -508,47 +527,47 @@ class Entity extends Objects {
 
         _debug('calling update on ' + name, true);
 
-			//update the parent first
-		_call(this, 'update', [dt]);
+            //update the parent first
+        _call(this, 'update', [dt]);
 
         if(events != null) {
                 //update the events
             events.process();
         }
 
-			//update all the components attached directly to us
-		for(_component in components) {
-			_call(_component, 'update', [dt]);
-		} //for each component
+            //update all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'update', [dt]);
+        } //for each component
 
-			//now update our children, so they do the same
-		for(_child in children) {
-			_child._update(dt);
-		} //for each child
+            //now update our children, so they do the same
+        for(_child in children) {
+            _child._update(dt);
+        } //for each child
 
-	} //_update
+    } //_update
 
-	@:noCompletion public function _fixed_update() {
+    @:noCompletion public function _fixed_update() {
 
-			//Not allowed post destroy
-		if(_destroyed) return;
+            //Not allowed post destroy
+        if(_destroyed) return;
 
-		_debug('calling fixed_update on ' + name, true);
+        _debug('calling fixed_update on ' + name, true);
 
-			//fixed_update the parent first
-		_call(this, 'fixed_update');
+            //fixed_update the parent first
+        _call(this, 'fixed_update');
 
-			//fixed_update all the components attached directly to us
-		for(_component in components) {
-			_call(_component, 'fixed_update');
-		} //for each component
+            //fixed_update all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'fixed_update');
+        } //for each component
 
-			//now fixed_update our children, so they do the same
-		for(_child in children) {
-			_child._fixed_update();
-		} //for each child
+            //now fixed_update our children, so they do the same
+        for(_child in children) {
+            _child._fixed_update();
+        } //for each child
 
-	} //_fixed_update
+    } //_fixed_update
 
     private function get_fixed_rate() : Float {
         return fixed_rate;
@@ -586,19 +605,19 @@ class Entity extends Objects {
     } //add
 
     public function remove<T>(?_name:String='', ?_data:T ) : Bool {
-    	return _components.remove( _name, _data );
+        return _components.remove( _name, _data );
     } //remove
 
     public function get(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Dynamic {
-    	return _components.get( _name, _in_children, _first_only );
+        return _components.get( _name, _in_children, _first_only );
     } //get
 
     public function has( _name:String ) : Bool {
-    	return _components.has( _name );
+        return _components.has( _name );
     } //has
 
     private function get_components() {
-    	return _components.components;
+        return _components.components;
     } //get_components
 
     private function _add_child( child:Entity ) {
@@ -628,27 +647,27 @@ class Entity extends Objects {
 
     public function remove_child(child:Entity) {
 
-    	children.remove(child);
+        children.remove(child);
 
     } //removeChild
 
     private function set_posRelative(_p:Vector) { 
 
-    	if(parent == null) {
-    			//when setting the relative position and we have no parent,
-    			//it will instead just change our absolute position
-    		pos = _p.clone();
+        if(parent == null) {
+                //when setting the relative position and we have no parent,
+                //it will instead just change our absolute position
+            pos = _p.clone();
 
-    			//apply
-    		return posRelative = _p;
+                //apply
+            return posRelative = _p;
 
-    	} else {
-    			//if we do have a parent, it needs to affect our position
-    			//based on where the parent is sitting
-    		pos = Vector.Add( parent.pos, _p );
-    			//apply
-    		return posRelative = _p; 
-    	}
+        } else {
+                //if we do have a parent, it needs to affect our position
+                //based on where the parent is sitting
+            pos = Vector.Add( parent.pos, _p );
+                //apply
+            return posRelative = _p; 
+        }
 
     } //set_posRelative
 
@@ -674,38 +693,38 @@ class Entity extends Objects {
 
     private function set_scaleRelative( _s:Vector ) { 
 
-    	if(parent == null) {
-    			//when setting the relative scale and we have no parent,
-    			//it will instead just change our absolute scale
-    		scale = _s.clone();
+        if(parent == null) {
+                //when setting the relative scale and we have no parent,
+                //it will instead just change our absolute scale
+            scale = _s.clone();
 
-    			//apply
-    		return scaleRelative = _s;
+                //apply
+            return scaleRelative = _s;
 
-    	} else {
-    			//if we do have a parent, it needs to affect our scale
-    			//based on where the parent is sitting
-    		scale = Vector.Add( parent.scale, _s );
-    			//apply
-    		return scaleRelative = _s; 
-    	}
+        } else {
+                //if we do have a parent, it needs to affect our scale
+                //based on where the parent is sitting
+            scale = Vector.Add( parent.scale, _s );
+                //apply
+            return scaleRelative = _s; 
+        }
 
     } //set_posRelative    
 
     private function set_pos(_p:Vector) { 
         
-    		//if we have a parent, we adjust our relative position to match
-    	if(parent != null) {
-    		posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
-    	}
+            //if we have a parent, we adjust our relative position to match
+        if(parent != null) {
+            posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
+        }
         
-    		//update the value before we propogate
-    	pos = _p; 
+            //update the value before we propogate
+        pos = _p; 
 
-    		//if we have children we must propogate the change to them
-    	for(child in children) {
-    		child.internal_parent_pos_changed( pos );
-    	}
+            //if we have children we must propogate the change to them
+        for(child in children) {
+            child.internal_parent_pos_changed( pos );
+        }
 
             //and we have to propogate the values to the components
         for(_component in components) {
@@ -714,23 +733,23 @@ class Entity extends Objects {
 
         _attach_listener( pos, _pos_change );
 
-    	return pos; 
+        return pos; 
     } //set_pos
 
     private function set_rotation( _r:Vector ) { 
 
-    		//if we have a parent, we adjust our relative rotation to match
-    	if(parent != null) {
-    		rotationRelative.set( _r.x - parent.rotation.x, _r.y - parent.rotation.y, _r.z - parent.rotation.z );
-    	}
+            //if we have a parent, we adjust our relative rotation to match
+        if(parent != null) {
+            rotationRelative.set( _r.x - parent.rotation.x, _r.y - parent.rotation.y, _r.z - parent.rotation.z );
+        }
 
-    		//update the value before we propogate
-    	rotation = _r; 
+            //update the value before we propogate
+        rotation = _r; 
 
-    		//if we have children we must propogate the change to them
-    	for(child in children) {
-    		child.internal_parent_rotation_changed( rotation );
-    	} //child
+            //if we have children we must propogate the change to them
+        for(child in children) {
+            child.internal_parent_rotation_changed( rotation );
+        } //child
 
             //and we have to propogate the values to the components
         for(_component in components) {
@@ -740,7 +759,7 @@ class Entity extends Objects {
             //attach each component
         _attach_listener( rotation, _rotation_change );
 
-    	return rotation; 
+        return rotation; 
 
     } //set_rotation
 
@@ -773,8 +792,8 @@ class Entity extends Objects {
     } //set_scale
 
     @:hide public function internal_parent_pos_changed(_parent_pos:Vector) {
-    		//our position is updated as parent_pos+relativePos
-    	pos = _parent_pos.clone().add( posRelative );
+            //our position is updated as parent_pos+relativePos
+        pos = _parent_pos.clone().add( posRelative );
 
     }//internal_parent_pos_changed
 
@@ -785,39 +804,39 @@ class Entity extends Objects {
     }//internal_parent_pos_changed
 
     @:hide public function internal_parent_scale_changed(_parent_scale:Vector) {
-    		//our scale is updated as parent_scale+relative
-    	scale = _parent_scale.clone().add( scaleRelative );
+            //our scale is updated as parent_scale+relative
+        scale = _parent_scale.clone().add( scaleRelative );
 
     }//internal_parent_pos_changed
 
     private function set_parent( other:Entity ) {
 
         _debug('>>  ' + name + ' calling set parent to ' + other.name );
-    		//if we are parented already, remove ourselves from that parent
-    	if(parent != null) {
-    		parent.remove_child(this);
-    	} //remove
+            //if we are parented already, remove ourselves from that parent
+        if(parent != null) {
+            parent.remove_child(this);
+        } //remove
 
-    	parent = other;
+        parent = other;
 
-    		//detaching parent
-    	if(parent == null) {
+            //detaching parent
+        if(parent == null) {
 
-    		pos = pos.clone();
-    		rotation = rotation.clone();
+            pos = pos.clone();
+            rotation = rotation.clone();
 
-    	} else {
+        } else {
 
-    			//update absolute position
-    		pos = parent.pos.clone().add( posRelative );
-    			//update relative rotation
-    		rotation = parent.rotation.clone().add( rotationRelative );
-    			//add to parent as a child
-    		parent._add_child(this);
+                //update absolute position
+            pos = parent.pos.clone().add( posRelative );
+                //update relative rotation
+            rotation = parent.rotation.clone().add( rotationRelative );
+                //add to parent as a child
+            parent._add_child(this);
 
-    	} 
+        } 
 
-    	return parent;
+        return parent;
 
     } //set_parent
 
