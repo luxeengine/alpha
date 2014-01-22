@@ -56,7 +56,8 @@ class Entity extends Objects {
 
         super();
 
-        _debug('new entity with ' + _options, true);
+        _debug('new entity with ' + _options );
+
         options = _options;
 
         name = 'entity.' + id;
@@ -76,17 +77,47 @@ class Entity extends Objects {
 
 //scene
         if(options != null) {
+            
+            _debug('entity: non null options, checking for scene placement no_scene:' + options.no_scene + ' scene:' + options.scene);
                 //if they haven't explicitly said "no scene management"
                 //we add to the scene they requested, or the default scene otherwise
-            if(options.no_scene != null && options.no_scene != true) {                    
-                if(options.scene != null) {
+            var _should_add:Bool = true;
+
+            if(options.no_scene != null) {
+                if(options.no_scene == true) {
+                    _should_add = false;
+                    _debug("entity: no_scene flag requested, not adding to scene");
+                }
+            }
+
+            if(_should_add) {
+
+                if(options.scene != null) {                        
                     scene = options.scene;
+                    _debug("entity: scene specified, storing in " + options.scene.name );
                 } else {
                     scene = Luxe.scene;
+                    _debug("entity: no scene specified, adding to default scene");
                 }
-            } //no_scene is not specified or is false
+
+            } //_should_add
         
-        }  //options ! null
+        } else {
+
+            scene = Luxe.scene;
+            
+            _debug("entity : adding to default scene because no options were specified.");
+
+        } //options ! null
+
+
+            //finally, add to the requested scene
+        if(scene != null) {
+            _debug("entity: adding to scene " + scene.name);
+            scene.add( this );
+        } else {
+            _debug("entity: not adding to any scene.");
+        }
 
     } //new
 
@@ -112,11 +143,6 @@ class Entity extends Objects {
             _debug("\t parent " + name + " calling init on child " + _child.name );
             _child._init();
         } //for each child
-
-            //add to the scene unless requested not to
-        if(scene != null) {
-            scene.add( this );
-        }
 
             //flag internally
         inited = true;

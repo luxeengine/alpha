@@ -32,7 +32,6 @@ class Sprite extends Visual {
 
             //create visual
         super( options );
-   
 
     }
 
