@@ -1,6 +1,90 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [0a12a32946](http://github.com/underscorediscovery/luxe/commit/0a12a32946f3694daa8393f058f35da979bbad3a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 02:32:08 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Moving scene management flags into entity level and not in visual, and making sure that scene remains unspecified if no scene is set or requested</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f92b4202d3](http://github.com/underscorediscovery/luxe/commit/f92b4202d3557c01b87c6dee918b148e2ce443a1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 01:29:51 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Components; Parity with States and Entity and so on with the data -> becoming { init_with : data } for consistency</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5ef13172b8](http://github.com/underscorediscovery/luxe/commit/5ef13172b842c1e6f91721f51a527d264145c488)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 01:08:55 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>States; Consistency with Entity and options for { init_with:data } instead of data</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [96bf65cdbd](http://github.com/underscorediscovery/luxe/commit/96bf65cdbdc007b97ba7a7b5f0b98e8fc99c0192)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 00:31:57 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Sprite; Visual; moving options to unique files to avoid "Loop found in cascading signatures definitions. Please change order/import" errors on import orders</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b53b506d4b](http://github.com/underscorediscovery/luxe/commit/b53b506d4b350bf4780ae14a21a42338d260a6db)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 00:26:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Squads; tidying up code a bit</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [8906e9e020](http://github.com/underscorediscovery/luxe/commit/8906e9e020c3b14dae131a4d46af3b6cec4ab40f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 21 2014 21:36:16 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [446075cbce](http://github.com/underscorediscovery/luxe/commit/446075cbced294b64da0471ccbf8037cc2b234a3)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Tue Jan 21 2014 21:35:37 GMT-0330 (NST)   
