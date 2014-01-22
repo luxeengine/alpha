@@ -1,38 +1,22 @@
 package luxe;
 
+import luxe.Scene;
+import luxe.Color;
+import luxe.Entity;
 import luxe.Vector;
 import luxe.Rectangle;
-import luxe.Scene;
-import luxe.Entity;
 import luxe.utils.Maths;
 
-import phoenix.Quaternion;
-import phoenix.Shader;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
+
+import phoenix.Shader;
 import phoenix.Batcher;
 import phoenix.Resource;
+import phoenix.Quaternion;
 import phoenix.Texture;
-import phoenix.Vector;
-import phoenix.Color;
 
-typedef VisualOptions<T1> = { 
-  > EntityOptions<T1>,   
-    ?size : Vector,
-    ?origin : Vector,
-    ?color : Color,
-    ?batcher : Batcher,
-    ?texture : Texture,
-    ?shader : Shader,
-    ?depth : Float,
-    ?group : Int,
-    ?rotation_z : Float,
-    ?visible : Bool,
-    ?add : Bool,        
-    ?serialize : Bool,
-    ?geometry : Geometry,
-    ?no_geometry : Bool
-}
+import luxe.options.VisualOptions;
 
 class Visual extends Entity {
 

@@ -10,13 +10,7 @@ import luxe.Vector;
 import luxe.Scene;
 import luxe.components.Components;
 
-typedef EntityOptions<T> = {
-    ?name : String,
-    ?pos : Vector,
-    ?init_with:T,
-    ?scene : Scene,
-    ?no_scene : Bool
-}
+import luxe.options.EntityOptions;
 
 //Objects -> Entity
 class Entity extends Objects {

@@ -1,20 +1,14 @@
 package luxe;
 
+import luxe.Visual;
 import luxe.Vector;
 import luxe.Rectangle;
-import luxe.Visual;
 
 import phoenix.Resource;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 
-import luxe.Visual.VisualOptions;
-
-typedef SpriteOptions<T> = {
-  > VisualOptions<T>,
-    ?centered : Bool,
-    ?uv : Rectangle    
-}
+import luxe.options.SpriteOptions;
 
 class Sprite extends Visual {
     
