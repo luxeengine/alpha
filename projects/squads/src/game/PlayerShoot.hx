@@ -54,8 +54,6 @@ class PlayerShoot extends Component {
             } //for
         } //precache
 
-        Luxe.scene.create(luxe.Entity,'testentity');
-
         sprite = cast entity;
         aim = get('aim');
         weapon = get('weapon');

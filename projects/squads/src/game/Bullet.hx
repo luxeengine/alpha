@@ -6,11 +6,11 @@ import luxe.collision.CollisionData;
 import luxe.collision.shapes.Shape;
 import luxe.collision.shapes.Circle;
 
-import luxe.Entity;
-import luxe.Vector;
 import luxe.Sprite;
-import luxe.Rectangle;
+import luxe.Entity;
 
+import luxe.Vector;
+import luxe.Rectangle;
 import luxe.components.Components.Component;
 
 class Bullet extends Component {
@@ -24,9 +24,6 @@ class Bullet extends Component {
     @:hide public var collider : Circle;
     
     var ignored_colliders : Array<Shape>;
-
-    
-
     var bounds : Rectangle;
 
     public function init() {
