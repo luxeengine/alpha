@@ -21,9 +21,9 @@ class Game extends luxe.Game {
         
         states = new States();
             //menus
-        mainMenu = states.add_state(menus.Menu, 'menu', this);
+        mainMenu = states.add_state(menus.Menu, 'menu', { init_with:this });
             //the game manager
-        manager = states.add_state(systems.Manager, 'manager', this);
+        manager = states.add_state(systems.Manager, 'manager', { init_with:this });
 
             //start up the menu mode
         states.init();

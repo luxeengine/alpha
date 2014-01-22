@@ -62,8 +62,8 @@ class Main extends luxe.Game {
     public function ready() {
 
     	machine = new States();
-        machine.add_state(State1, 'state1', 5 );
-        machine.add_state(State2, 'state2', { name:"state2init", int:24, game:this } );
+        machine.add_state(State1, 'state1', { init_with:5} );
+        machine.add_state(State2, 'state2', { init_with:{ name:"state2init", int:24, game:this } } );
         machine.add_state(TransientState, 'transient');
 
         machine.init();

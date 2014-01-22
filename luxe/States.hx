@@ -3,7 +3,10 @@ package luxe;
 import luxe.Input.KeyEvent;
 import luxe.Input.MouseEvent;
 import luxe.Input.TouchEvent;
+
 import luxe.Objects;
+
+import luxe.options.StateOptions;
 
 class State extends Objects {
 
@@ -11,14 +14,15 @@ class State extends Objects {
 	public var active : Bool = false;
 	@:isVar public var next_tick(never,set) :Void->Void;
 	private var ticks : Array< Void->Void >;
-	private var init_data : Dynamic;
+	
+	private var options : Dynamic;
 
-	public override function new<T>(?_init_data:T) {
+	public override function new<T>( ?_options:StateOptions<T> ) {
 
 		super();
 
 		ticks = new Array<Void->Void>();
-		init_data = _init_data;
+		options = _options;
 
 	}
 	
@@ -36,7 +40,7 @@ class State extends Objects {
 	}
 
 	@:noCompletion public function _init() {
-		_call(this, 'init', [ cast init_data ]);
+		_call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
 	}
 
 	@:noCompletion public function _update(dt:Float) {
@@ -133,7 +137,7 @@ class States {
 	}	
 	public function reset() {
 		for (state in active_states) {
-			_call(state, 'reset', []);
+			_call(state, 'reset');
 		}
 	}
 	public function update(dt:Float) {

@@ -26,7 +26,7 @@ class Main extends luxe.Game {
     public function ready() {
 
         states = new States();
-        states.add_state(Stage1Level1, 'stage1.level1', this);        
+        states.add_state(Stage1Level1, 'stage1.level1', { init_with:this });
 
         Luxe.fixed_timestep = 0.01666667;
 
