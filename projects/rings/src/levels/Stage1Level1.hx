@@ -140,6 +140,7 @@ class Stage1Level1 extends State {
         enemy_bullets = new Pool<Visual>(30,
             function(index,total) {
                 var _s = new Visual({
+                    depth:6,
                     size : new Vector(finger_size*0.1, finger_size*0.1),
                     color : new Color(0.8,0.3,0.1,1),
                 });
