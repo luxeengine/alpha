@@ -54,6 +54,7 @@ class Main extends luxe.Game {
 			texture.filter = FilterType.nearest;
 
 			sprite = new Sprite({
+                name : "walker",
 				texture : texture,
 				pos : new Vector( Luxe.screen.w/2, Luxe.screen.h/2 ),
 				size : new Vector(192,192)
@@ -67,6 +68,7 @@ class Main extends luxe.Game {
 					"walk" : {
                         "frame_size":{ "x":"48", "y":"48" },
                         "frameset": ["1-12"],
+                        "events" : [{"frame":8, "event":"foot.1"}, {"frame":1, "event":"foot.2"}],
                         "pingpong":"false",
                         "loop": "true",
                         "speed": "18"
@@ -89,9 +91,17 @@ class Main extends luxe.Game {
 			anim.animation = 'walk';
 			anim.play();
 
+                //create the sound to use
+            Luxe.audio.create('step1', 'assets/samulis_footstep_on_stone_2.ogg');
+            Luxe.audio.create('step2', 'assets/samulis_footstep_on_stone_1.ogg');
+
+            sprite.events.listen('foot.1', function(e){ Luxe.audio.play('step1'); });
+            sprite.events.listen('foot.2', function(e){ Luxe.audio.play('step2'); });
+
 		} //onload
 
             sprite2 = new Sprite({
+                name : "squad_guy",
                 pos : new Vector( Luxe.screen.w/2, Luxe.screen.h-32 ),
                 size : new Vector(64,64)
             });
@@ -114,11 +124,8 @@ class Main extends luxe.Game {
                 //We can create the animation from a json string
             anim2.add_from_json( animation_json2 );
 
-                //Or we can add them manually, using the anim.animation_list.push(new SpriteAnimationData)
-
             anim2.animation = 'idle';
             anim2.play();
-                        
 
     } //ready
 

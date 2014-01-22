@@ -7,11 +7,15 @@ import luxe.Sprite;
 
 import phoenix.Texture;
 
+typedef SpriteAnimationFrameEvent = {
+	frame : Int,
+	event : String
+}
 
 typedef SpriteAnimationFrame = {
 	image_frame : Int,
 	?image_source : Texture,
-	events : Array<String>
+	events : Array<SpriteAnimationFrameEvent>
 }
 
 enum SpriteAnimationType {
@@ -94,7 +98,8 @@ class SpriteAnimationData {
 		var _json_reverse : Dynamic = _animdata.reverse;
 		var _json_speed : Dynamic = _animdata.speed;		
 		var _json_image_sequence : String = cast _animdata.image_sequence;		
-		var _json_filter_type : String = cast _animdata.filter_type;		
+		var _json_filter_type : String = cast _animdata.filter_type;
+		var _json_events_list : Array<Dynamic> = cast _animdata.events;	
 		
 		//frameset
 		if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset. In anim : " + name; }
@@ -152,14 +157,20 @@ class SpriteAnimationData {
 			} //_json_loop
 		
 		//speed
-		var speed : Float = 2;
+		var _speed : Float = 2;
 			if(_json_speed != null) {
-				speed = Std.parseFloat(_json_speed);
+				_speed = Std.parseFloat(_json_speed);
+			}
+
+		//events
+		var _events : Array<SpriteAnimationFrameEvent> = null;
+			if(_json_events_list != null) {
+				_events = parse_event_set(_json_events_list);
 			}
 
 		//create from the animation data
 		for( _frame in _frameset ) {
-			frameset.push({ image_frame:_frame, events:[] });
+			frameset.push({ image_frame:_frame, events:parse_event_for_frame(_events,_frame) });
 		}
 
 		//image sequence		
@@ -181,12 +192,49 @@ class SpriteAnimationData {
 		pingpong = _pingpong;
 		loop = _loop;
 		reverse = _reverse;
-		frame_time = 1 / speed;
+		frame_time = 1 / _speed;
 
 		return this;
 
 	} //from_json
 
+	function parse_event_for_frame( _events:Array<SpriteAnimationFrameEvent>, _frame:Int ) : Array<SpriteAnimationFrameEvent> {
+
+		if(_events == null) return [];
+		if(_events.length == 0) return [];
+
+		var _resulting_events = [];
+		for(_event in _events) {
+			if(_event.frame == _frame) {
+				_resulting_events.push(_event);
+			}
+		}
+
+		return _resulting_events;
+		
+	} //parse_event_for_frame
+
+	function parse_event_set( _events:Array<Dynamic> ) : Array<SpriteAnimationFrameEvent> {
+
+		if(_events == null) return [];
+
+		var resulting_events = [];
+		for(_json_event in _events) {
+				//frames can have empty events, in which case it will assume the animationname.event.frame
+			if(_json_event.frame != null) {
+
+				var _event : SpriteAnimationFrameEvent = {
+					frame : Std.parseInt(_json_event.frame),
+					event : (_json_event.event == null) ? '' : (_json_event.event)
+				}
+
+				resulting_events.push(_event);
+			} //frame != null
+		} //each event in json events
+
+		return resulting_events;
+
+	} //parse_event_set
 	
 	function parse_frameset_range( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
 		
@@ -307,8 +355,9 @@ class SpriteAnimation extends Component {
 	var uv_cache : Rectangle;
 
 	public function init() {
-		
+
 		uv_cache = new Rectangle();
+
 		if(animation_list == null) {
 			animation_list = new Map();
 		}
@@ -492,8 +541,14 @@ class SpriteAnimation extends Component {
 					stop();
 				}
 			} //if end
-		
-			image_frame = current.frameset[frame-1].image_frame;
+			
+			var _anim_frame = current.frameset[frame-1];
+			image_frame = _anim_frame.image_frame;
+
+				//handle any frame events
+			for(_event in _anim_frame.events) {
+				entity.events.fire( _event.event, { event:_event, frame:_anim_frame } );
+			}
 
 				//finally, update the sprite
 			refresh_sprite();
