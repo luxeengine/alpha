@@ -15,6 +15,7 @@ typedef SpriteAnimationFrameEvent = {
 typedef SpriteAnimationFrame = {
     image_frame : Int,
     ?image_source : Texture,
+    frame_size : Vector,
     events : Array<SpriteAnimationFrameEvent>
 }
 
@@ -49,6 +50,7 @@ class SpriteAnimationData {
     }
 
     public function get_serialize_data() : Dynamic {
+        
         var _frameset = [];
 
         for(_set in frameset) {
@@ -170,7 +172,11 @@ class SpriteAnimationData {
 
         //create from the animation data
         for( _frame in _frameset ) {
-            frameset.push({ image_frame:_frame, events:parse_event_for_frame(_events,_frame) });
+            frameset.push({ 
+                image_frame : _frame, 
+                events : parse_event_for_frame(_events,_frame),
+                frame_size : _frame_size
+            });
         }
 
         //image sequence        
