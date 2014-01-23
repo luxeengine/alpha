@@ -7,10 +7,14 @@ import luxe.Text;
 import luxe.Rectangle;
 import phoenix.Batcher;
 import phoenix.Camera;
+import phoenix.geometry.LineGeometry;
 
 class Main extends luxe.Game {
 
     var hud_batcher:Batcher;
+
+    var line_one : LineGeometry;
+    var line_two : LineGeometry;
 
     public function ready() {
 
@@ -86,6 +90,20 @@ class Main extends luxe.Game {
             batcher : hud_batcher
         });
 
+        line_one = Luxe.draw.line({
+            p0 : new Vector(Luxe.screen.w/2, 0),
+            p1 : new Vector(Luxe.screen.w/2, Luxe.screen.h),
+            color : new Color(1,1,1,0.5).rgb(0xff440b),
+            batcher : hud_batcher
+        });
+
+        line_two = Luxe.draw.line({
+            p0 : new Vector(0, Luxe.screen.h/2),
+            p1 : new Vector(Luxe.screen.w, Luxe.screen.h/2),
+            color : new Color(1,1,1,0.5).rgb(0xff440b),
+            batcher : hud_batcher
+        });
+
     } //ready
 
     public function onmousemove( e:MouseEvent ) {
@@ -97,17 +115,26 @@ class Main extends luxe.Game {
         if( mouse_down && !dragging && haxe.Timer.stamp() > drag_time ) {
             dragging = true;
             drag_start = e.pos;
-            drag_start_rotation = e.pos.rotationTo(Luxe.camera.center);
+            drag_start_rotation = e.pos.rotationTo(Luxe.screen.mid);
             camera_start_rotation = Luxe.camera.rotation.z;
         }
 
+            //change lines crosshair
+        line_one.p0 = new Vector( 0, screen_mouse.y );
+        line_one.p1 = new Vector( Luxe.screen.w, screen_mouse.y );
+
+        line_two.p0 = new Vector( screen_mouse.x, 0 );
+        line_two.p1 = new Vector( screen_mouse.x, Luxe.screen.h );
+
         if(dragging) {
                 //get the rotation to the mouse 
-            var r_to_mouse = e.pos.rotationTo(Luxe.camera.center);
+            var r_to_mouse = e.pos.rotationTo(Luxe.screen.mid);
+                //wrap it to 0, 360
+            r_to_mouse = luxe.utils.Maths.wrap_angle(r_to_mouse, -720, 720);
                 //and the difference between them
-            var r_diff = (r_to_mouse - drag_start_rotation) * 0.05;
+            var r_diff = (r_to_mouse - drag_start_rotation) * 0.5;
                 //now add to the original
-            var new_r = camera_start_rotation - r_diff;
+            var new_r = camera_start_rotation - r_diff;            
                 //and set the rotation on camera
             Luxe.camera.rotation.z = new_r;
         }
@@ -181,7 +208,16 @@ class Main extends luxe.Game {
             Luxe.camera.center = new Vector(480,320);
         }
         if(e.key == KeyValue.key_6) {
-            trace(Luxe.camera.pos + " / " + Luxe.camera.view.view_pos);            
+            Luxe.camera.rotation.z = 0;
+        }
+        if(e.key == KeyValue.key_7) {
+            Luxe.camera.rotation.z = 45;
+        }
+        if(e.key == KeyValue.key_8) {
+            Luxe.camera.rotation.z = 90;
+        }
+        if(e.key == KeyValue.key_9) {
+            Luxe.camera.rotation.z = 180;
         }
 
         if(e.key == KeyValue.escape) {
@@ -196,7 +232,6 @@ class Main extends luxe.Game {
     var view_mouse : Vector;
     var world_mouse : Vector;
     public function update(dt:Float) {
-        // Luxe.camera.view.rotation.z += luxe.utils.Maths.degToRad(10 * dt);
         Luxe.draw.text({
             batcher : hud_batcher,
             immediate : true,

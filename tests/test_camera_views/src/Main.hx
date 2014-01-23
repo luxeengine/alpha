@@ -40,10 +40,10 @@ class Main extends luxe.Game {
         create_hud();
 
             //create unique cameras
-        camera_1 = new Camera();
-        camera_2 = new Camera();
-        camera_3 = new Camera();
-        camera_4 = new Camera();
+        camera_1 = new Camera({name : 'camera1'});
+        camera_2 = new Camera({name : 'camera2'});
+        camera_3 = new Camera({name : 'camera3'});
+        camera_4 = new Camera({name : 'camera4'});
 
         current_camera = camera_1;
 
@@ -84,6 +84,10 @@ class Main extends luxe.Game {
         camera_2.pos.y = 320;
         camera_3.pos.y = 640;
         camera_4.pos.y = 960;
+
+        camera_2.rotation.z = 12;
+        camera_3.rotation.z = 45;
+        camera_4.rotation.z = 30;
 
         camera_2.zoom = 0.9;
         camera_3.zoom = 0.2;
@@ -176,16 +180,18 @@ class Main extends luxe.Game {
         if( mouse_down && !dragging && haxe.Timer.stamp() > drag_time ) {
             dragging = true;
             drag_start = e.pos;
-            drag_start_rotation = e.pos.rotationTo(current_camera.center);
+            drag_start_rotation = world_mouse.rotationTo(current_camera.center);
             camera_start_rotation = current_camera.rotation.z;
         }
 
         if(dragging) {
 
                 //get the rotation to the mouse 
-            var r_to_mouse = e.pos.rotationTo(current_camera.center);
+            var r_to_mouse = world_mouse.rotationTo(current_camera.center);
+                //wrap it to 0, 360
+            r_to_mouse = luxe.utils.Maths.wrap_angle(r_to_mouse, -720, 720);            
                 //and the difference between them
-            var r_diff = (r_to_mouse - drag_start_rotation) * 0.05;
+            var r_diff = (r_to_mouse - drag_start_rotation) * 0.5;
                 //now add to the original
             var new_r = camera_start_rotation - r_diff;
                 //and set the rotation on camera
@@ -284,7 +290,16 @@ class Main extends luxe.Game {
             current_camera.center = new Vector(240,160);
         }
         if(e.key == KeyValue.key_6) {
-            trace(current_camera.pos + " / " + current_camera.view.view_pos);            
+            current_camera.rotation.z = 0;
+        }
+        if(e.key == KeyValue.key_7) {
+            current_camera.rotation.z = 45;
+        }
+        if(e.key == KeyValue.key_8) {
+            current_camera.rotation.z = 90;
+        }
+        if(e.key == KeyValue.key_9) {
+            current_camera.rotation.z = 180;
         }
 
         if(e.key == KeyValue.escape) {
