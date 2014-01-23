@@ -12,10 +12,15 @@ typedef SpriteAnimationFrameEvent = {
     event : String
 }
 
+typedef SpriteAnimationFrameSource = {
+    frame : Int,
+    source : Rectangle
+}
+
 typedef SpriteAnimationFrame = {
     image_frame : Int,
     ?image_source : Texture,
-    frame_size : Vector,
+    frame_source : Rectangle,
     events : Array<SpriteAnimationFrameEvent>
 }
 
@@ -39,10 +44,13 @@ class SpriteAnimationData {
     public var image_set_list : Array<String>;
     public var image_set : Array<Texture>;
     public var frame_size : Vector;
+    public var frame_sources : Array<SpriteAnimationFrameSource>;
     public var frame_time : Float = 0.05;
     public var loop : Bool = false;
     public var pingpong : Bool = false;
     public var reverse : Bool = false;
+
+    var sprite : Sprite;
 
     @:isVar public var frame_count (get,never) : Int = 0;
     function get_frame_count() {
@@ -69,9 +77,11 @@ class SpriteAnimationData {
 
     } //get_serialize_data
 
-    public function new( ?_name:String = 'anim' ) {
+    public function new( _sprite:Sprite, ?_name:String = 'anim' ) {
         name = _name;
+        sprite = _sprite;
         frameset = [];
+        frame_sources = [];
         frame_size = new Vector();
     }
 
@@ -102,6 +112,7 @@ class SpriteAnimationData {
         var _json_image_sequence : String = cast _animdata.image_sequence;      
         var _json_filter_type : String = cast _animdata.filter_type;
         var _json_events_list : Array<Dynamic> = cast _animdata.events; 
+        var _json_framesource_list : Array<Dynamic> = cast _animdata.frame_sources; 
         
         //frameset
         if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset. In anim : " + name; }
@@ -170,13 +181,25 @@ class SpriteAnimationData {
                 _events = parse_event_set(_json_events_list);
             }
 
+        //frame_sources
+        
+            //store the default frame size here so we can fill in blanks
+            //after we pares the sources
+        frame_size = _frame_size;
+
+        var _frame_sources : Array<SpriteAnimationFrameSource> = null;
+            if(_json_framesource_list != null) {
+                _frame_sources = parse_frame_sources_set(_json_framesource_list);
+            }
+
         //create from the animation data
         for( _frame in _frameset ) {
             frameset.push({ 
                 image_frame : _frame, 
                 events : parse_event_for_frame(_events,_frame),
-                frame_size : _frame_size
+                frame_source : parse_source_for_frame(_frame_sources,_frame)
             });
+            // trace("add frame : " + frameset[frameset.length-1]);
         }
 
         //image sequence        
@@ -192,9 +215,8 @@ class SpriteAnimationData {
                 //set the type
             type = SpriteAnimationType.animated_texture;
 
-        } //_json_image_sequence        
+        } //_json_image_sequence
 
-        frame_size = _frame_size;
         pingpong = _pingpong;
         loop = _loop;
         reverse = _reverse;
@@ -219,6 +241,79 @@ class SpriteAnimationData {
         return _resulting_events;
 
     } //parse_event_for_frame
+
+    function parse_source_for_frame( _sources:Array<SpriteAnimationFrameSource>, _frame:Int ) : Rectangle {
+
+        var _explicit_source : Rectangle = null;
+        if(_sources != null) {
+            for(_source in _sources) {
+                if(_source.frame == _frame) {
+                    _explicit_source = _source.source;
+                } //matching frame
+            } //each source
+        } //sources != null
+
+            //here is where we try the best guess for the frame given
+            //unless an explicit frame source was given
+        if(_explicit_source == null) {
+
+            var result = new Rectangle();
+
+            if(sprite.texture != null) {
+                switch(type) {
+                    
+                    case SpriteAnimationType.animated_uv: {
+
+                        sprite.texture.onload = function(t) {
+
+                            var frames_per_row = ( sprite.texture.width - (sprite.texture.width % frame_size.x) ) / frame_size.x;
+                            var image_row = Math.ceil( _frame / frames_per_row );
+                            var image_x = ((_frame-1) * frame_size.x) % sprite.texture.width;
+                            var image_y = ((image_row-1) * frame_size.y);            
+
+                            result = new Rectangle( image_x, image_y, frame_size.x, frame_size.y );
+
+                        } //onload
+
+                    } //animated_uv
+
+                    default : {}
+
+                } //type
+            } //sprite.texture
+
+            return result;
+
+        } else {
+            return _explicit_source;
+        }
+
+    } //parse_source_for_frame
+
+    function parse_frame_sources_set( _sources:Array<Dynamic> ) : Array<SpriteAnimationFrameSource> {
+
+        if(_sources == null) return [];
+
+        var resulting_sources = [];
+        for(_json_source in _sources) {
+
+            var _x : Float = Std.parseFloat(_json_source.x);
+            var _y : Float = Std.parseFloat(_json_source.y);
+            var _w : Float = Std.parseFloat(_json_source.w);
+            var _h : Float = Std.parseFloat(_json_source.h);
+
+            var _source : SpriteAnimationFrameSource = {
+                frame : Std.parseInt(_json_source.frame),
+                source : new Rectangle(_x, _y, _w, _h)
+            }
+
+            resulting_sources.push(_source);
+
+        } //each size in the list
+
+        return resulting_sources;
+
+    } //parse_frame_sources_set
 
     function parse_event_set( _events:Array<Dynamic> ) : Array<SpriteAnimationFrameEvent> {
 
@@ -341,6 +436,7 @@ class SpriteAnimation extends Component {
 
     public var animation_list : Map<String,SpriteAnimationData>;
     public var current : SpriteAnimationData;
+    public var current_frame : SpriteAnimationFrame;
 
     @:isVar public var animation (get,set):String;
 
@@ -390,7 +486,7 @@ class SpriteAnimation extends Component {
             for(anim in anims) {
                 
                 var animdata : Dynamic = Reflect.field(anim_items, anim);
-                var _anim = new SpriteAnimationData(anim);
+                var _anim = new SpriteAnimationData( cast entity, anim );
                     
                     _anim.from_json( animdata );
 
@@ -516,6 +612,8 @@ class SpriteAnimation extends Component {
     }
 
     public function set_frame( _frame:Int ) {
+            
+            //todo:this doesn't update the image_frame or current_frame values
 
         if(sprite == null) return;      
         if(current.type == SpriteAnimationType.animated_uv) {
@@ -549,12 +647,14 @@ class SpriteAnimation extends Component {
 
             if(sprite.texture == null) return;
 
-            var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
-            var image_row = Math.ceil( image_frame / frames_per_row );
-            var image_x = ((image_frame-1) * current.frame_size.x) % sprite.texture.width;
-            var image_y = ((image_row-1) * current.frame_size.y);
+            // var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
+            // var image_row = Math.ceil( image_frame / frames_per_row );
+            // var image_x = ((image_frame-1) * current.frame_size.x) % sprite.texture.width;
+            // var image_y = ((image_row-1) * current.frame_size.y);
 
-            uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+            // uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
+            uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
+            // sprite.size = new Vector(current_frame.frame_source.w, current_frame.frame_source.h);
 
             sprite.uv = uv_cache;
         
@@ -631,6 +731,9 @@ class SpriteAnimation extends Component {
 
                 //set the image frame from the current frameset
             image_frame = _anim_frame.image_frame;
+
+                //set the current frame frame
+            current_frame = _anim_frame;
 
                 //handle any frame events
             for(_event in _anim_frame.events) {

@@ -66,7 +66,7 @@ class Main extends luxe.Game {
 			var animation_json = '
 				{
 					"walk" : {
-                        "frame_size":{ "x":"48", "y":"48" },
+                        "frame_size":{ "x":"48", "y":"48" },                        
                         "frameset": ["1-12"],
                         "events" : [{"frame":8, "event":"foot.1"}, {"frame":1, "event":"foot.2"}, { "frame": 6 }],
                         "pingpong":"false",
@@ -74,6 +74,9 @@ class Main extends luxe.Game {
                         "speed": "18"
                     },
                     "walk_glitch" : {
+                        "frame_sources":[{
+                            "frame":8, "x":0, "y":0, "w":96, "h":96
+                        }],
 						"frame_size":{ "x":"48", "y":"48" },
 						"frameset": ["1-8","9","10","hold 10","11 hold 5", "12"],
 						"pingpong":"false",
