@@ -746,6 +746,25 @@ class Matrix4 {
     } //makeScale
     
     
+    public function compose_with_origin( _position:Vector, _origin:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix4 {
+        
+        //translate to origin -> scale -> rotate -> translate -origin -> apply position
+
+            //origin ->
+        makeTranslation(_origin.x, _origin.y, _origin.z);
+            //scale ->
+        scale(_scale);
+            //rotation 
+        multiply( new Matrix4().makeRotationFromQuaternion(_quaternion) );
+            //translate -origin
+        multiply( new Matrix4().makeTranslation(-_origin.x, -_origin.y, -_origin.z) );
+            //apply position
+        multiply( new Matrix4().makeTranslation(_position.x, _position.y, _position.z) );
+
+        return this;
+
+    }
+
     public function compose( _position:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix4 {
 
             makeRotationFromQuaternion( _quaternion );
