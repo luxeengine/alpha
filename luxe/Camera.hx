@@ -1,11 +1,13 @@
 package luxe;
 
 import luxe.Rectangle;
+import luxe.utils.Maths;
 import luxe.Vector;
 import luxe.Entity;
 import luxe.tween.Actuate;
 import luxe.tween.easing.Quad;
 import phoenix.Camera.ProjectionType;
+import phoenix.Quaternion;
 
 typedef ProjectionType = phoenix.Camera.ProjectionType;
 
@@ -26,10 +28,16 @@ class Camera extends Entity {
     public var minimum_shake : Float = 0.1;
 
     var _final_pos : Vector;
+    var _rotation_radian : Vector;
+    var _rotation_cache : Quaternion;
 
 	public function new(?options:Dynamic = null) {
 			
 		if(options == null) options = {};		
+
+            //cache for later
+        _rotation_radian = new Vector();
+        _rotation_cache = new Quaternion();
 
 			//Init the entity part
 		super();
@@ -43,7 +51,7 @@ class Camera extends Entity {
 			//Update
         _final_pos = view.pos;
 
-	}
+	} //new
 
     function get_viewport() : Rectangle {
         return view.viewport;
@@ -83,10 +91,15 @@ class Camera extends Entity {
 
     override function set_rotation( _r:Vector ) : Vector {
 
+        _rotation_radian.set( Maths.degToRad(_r.x), Maths.degToRad(_r.y), Maths.degToRad(_r.z) );
+        _rotation_cache.setFromEuler( _rotation_radian );
+
+            //set only if the view exists
         if(view != null) {
-            view.rotation.setFromEuler( _r );
+            view.rotation = _rotation_cache;
         }
-        
+            
+            //store 
         rotation = _r;
 
             //listen for sub changes on properties
