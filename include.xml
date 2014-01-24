@@ -14,5 +14,11 @@
 	<haxedef name="luxe_native" if="native" />
 
 	<sample path="template_projects" />
+
+    <section if="setup">
+        
+        <haxelib name="format" />
+            
+    </section>
 	
 </extension>
