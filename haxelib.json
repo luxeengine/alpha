@@ -2,10 +2,10 @@
 	"name": "luxe",
 	"url": "https://github.com/underscorediscovery/luxe",
 	"license": "MIT",
-	"tags": ["games"],
-	"description": "A cross platform haxe based game development engine ",
+	"tags": [],
+	"description": "A cross platform haxe based game development engine",
 	"version": "0.9.0",
-	"releasenote": " Unreleased ",
+	"releasenote": " Unreleased",
 	"contributors": [ "underscorediscovery" ],
 	"dependencies": {}
 }
