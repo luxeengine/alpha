@@ -58,6 +58,7 @@ class Visual extends Entity {
             //create the position value so we can exploit it a bit
         origin = new Vector();
         color = new Color();
+        size = new Vector();
 
 //texture
         if(options.texture != null) {
@@ -102,7 +103,6 @@ class Visual extends Entity {
 
                 //if the texture isn't invalid entirely
             if(texture != null) {
-
                 if(texture.loaded) {
 
                     size = new Vector(texture.width, texture.height);
