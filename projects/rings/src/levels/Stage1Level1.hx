@@ -118,7 +118,7 @@ class Stage1Level1 extends State {
 
                 _s.visible = false;
 
-                var _p = _s.add( Projectile, 'projectile', this );
+                var _p = _s.add( Projectile, 'projectile', { init_with:this } );
                     _p.bullettype = 'player';
                 return _s;
             }
@@ -146,7 +146,7 @@ class Stage1Level1 extends State {
                 });
                 
                 _s.visible = false;
-                var _p = _s.add( Projectile, 'projectile', this );
+                var _p = _s.add( Projectile, 'projectile', { init_with:this } );
                     _p.bullettype = 'enemy';
                 return _s;
             }
@@ -166,7 +166,7 @@ class Stage1Level1 extends State {
 
                 _s.visible = false;
 
-                var _e = _s.add( Enemy, 'enemy', this );
+                var _e = _s.add( Enemy, 'enemy', { init_with:this } );
                 return _s;
             }
         ); 

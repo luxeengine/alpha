@@ -14,12 +14,12 @@ class Toggler extends Component {
     var sprite : Sprite;
     public function init() {
         sprite = cast entity;
-        trace('init toggler ' + sprite.size);        
+        trace('init toggler ' + sprite.size.x);
     }
     public function reset() {
         trace('reset toggler');
         sprite.color = new Color().rgb(0xcc0000);
-        sprite.size = new Vector(64+(Math.random()*128), 64+(Math.random()*128));
+        sprite.size.x = 64+(Math.random()*128);
     }
     public function removed() {
         sprite.color = new Color();
