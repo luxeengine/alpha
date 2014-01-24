@@ -59,13 +59,6 @@ class Visual extends Entity {
         origin = new Vector();
         color = new Color();
 
-//name
-        if(options.name != null) {
-            name = options.name;
-        } else {
-            name = id; //default to the entity id
-        }
-
 //texture
         if(options.texture != null) {
             texture = options.texture;
@@ -73,10 +66,6 @@ class Visual extends Entity {
 //shader
         if(options.shader != null) {
             shader = options.shader;
-        }
-//position
-        if(options.pos != null) {
-            pos = options.pos;
         }
 //color
         if(options.color != null) {
@@ -155,6 +144,7 @@ class Visual extends Entity {
                         y:pos.y, 
                         w:size.x, 
                         h:size.y,
+                        scale: scale.clone(),
                         texture : texture,
                         color : color,
                         shader : shader,
@@ -292,7 +282,7 @@ class Visual extends Entity {
     private function set_origin(_o:Vector) : Vector {
         
         if(geometry != null) {
-            geometry.origin = _o;
+            geometry.origin = _o.clone();
         }
 
         return origin = _o;
@@ -315,12 +305,13 @@ class Visual extends Entity {
         if(geometry != null && _creating_geometry == false) {            
             
             geometry.color = color;
-            geometry.pos = pos;
+            geometry.pos = pos.clone();
+            geometry.scale = scale.clone();
             geometry.group = group;
             geometry.depth = depth;
             geometry.shader = shader;
             geometry.texture = texture;
-            geometry.origin = origin;
+            geometry.origin = origin.clone();
             geometry.enabled = visible;
 
         }        
@@ -404,16 +395,13 @@ class Visual extends Entity {
 
     private override function set_scale( _v:Vector ) : Vector {  
 
-        if(geometry != null) {
-            geometry.scale = _v.clone();
-        } //geometry != null
-
-        scale = _v;
-
-            //update the parent
         super.set_scale(_v);
 
-        return _v;
+        if(geometry != null) {
+            geometry.scale = scale.clone();
+        } //geometry != null
+
+        return scale;
 
     } //set_scale
 
@@ -424,8 +412,10 @@ class Visual extends Entity {
         if(geometry != null) {
             geometry.locked = _l;
         }
+
         return locked = _l;
-    } 
+
+    } //set_locked
 
 
 //Geometry properties

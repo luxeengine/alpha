@@ -166,9 +166,9 @@ class Sprite extends Visual {
         if(geometry != null) {
             if(size != null) {
                 if(centered) {
-                    geometry.origin = new Vector(size.x/2, size.y/2);
+                    origin = new Vector(size.x/2, size.y/2);
                 } else {
-                    geometry.origin = new Vector();
+                    origin = new Vector();
                 }
             } //size != null
         } //geometry != null

@@ -12,7 +12,9 @@ import phoenix.geometry.Geometry;
 import luxe.options.EntityOptions;
 
 typedef VisualOptions<T> = { 
+
   > EntityOptions<T>,
+  
     ?size : Vector,
     ?origin : Vector,
     ?color : Color,

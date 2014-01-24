@@ -65,19 +65,38 @@ class Entity extends Objects {
         _components = new Components( this );
         children = new Array<Entity>();
         events = new luxe.Events();
-
-            //transform
+        
         pos = new Vector();
         posRelative = new Vector();
-        rotation = new Vector();
-        rotationRelative = new Vector();
         _last_scale = new Vector(1,1,1);
         scale = new Vector(1,1,1);
-        scaleRelative = new Vector(1,1,1);
+        scaleRelative = new Vector(1,1,1);        
+        rotation = new Vector();
+        rotationRelative = new Vector();
 
-//scene
+
         if(options != null) {
-            
+    
+    //name
+            if(options.name != null) {
+                name = options.name;
+            } else {
+                name = id; //default to the entity id
+            }
+
+    //position
+            if(options.pos != null) {
+                pos = options.pos.clone();
+                posRelative = pos.clone();
+            }
+    //scale
+            if(options.scale != null) {
+                scale = options.scale.clone();
+                _last_scale = scale.clone();
+                scaleRelative = scale.clone();
+            }
+
+    //scene
             _debug('entity: non null options, checking for scene placement no_scene:' + options.no_scene + ' scene:' + options.scene);
                 //if they haven't explicitly said "no scene management"
                 //we add to the scene they requested, or the default scene otherwise
@@ -797,7 +816,7 @@ class Entity extends Objects {
         }
 
             //update the value before we propogate
-        scale = _s;
+        scale = _s.clone();
         _last_scale = scale.clone();        
 
             //if we have children we must propogate the change to them
@@ -866,9 +885,9 @@ class Entity extends Objects {
 
     } //set_parent
 
-    private function get_pos() { return pos; }                              //get_pos
+    private function get_pos()      { return pos; }                         //get_pos
     private function get_rotation() { return rotation; }                    //get_rotation
-    private function get_scale() { return scale; }                          //get_scale
+    private function get_scale()    { return scale; }                       //get_scale
     
     private function get_scene() { return scene; }                          //get_scene
     private function set_scene(_scene:Scene) { return scene = _scene; }     //set_scene
