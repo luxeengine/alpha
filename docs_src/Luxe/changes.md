@@ -1,6 +1,202 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [1a76012244](http://github.com/underscorediscovery/luxe/commit/1a76012244f04c7480dbc0151d20b602feb2265b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 13:51:19 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; cleaning up rogue changes to test</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [eb58e384a9](http://github.com/underscorediscovery/luxe/commit/eb58e384a9edfc92ce7bd52cb84917dcc7e8d3d4)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 13:48:43 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Visual; fixing bug where size only became non-null on texture load, which causes crashes when accessing it before then (thanks @shockham)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [03258cda88](http://github.com/underscorediscovery/luxe/commit/03258cda88c205236020284a4e73cb04a1429dd5)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 12:48:04 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Adding thumbs.db to ignore</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6344531728](http://github.com/underscorediscovery/luxe/commit/6344531728289ca90993ab6179e9a68d076047a6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 12:45:10 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rings; update components with init_with changes to match latest code</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ad9b503bd1](http://github.com/underscorediscovery/luxe/commit/ad9b503bd191695dd5558670446df39249c9cd1e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 12:16:29 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; component state, testing size of sprite</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1f61361807](http://github.com/underscorediscovery/luxe/commit/1f61361807c92c788c226ba8e4f9dd8752a32d99)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 12:01:47 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Setup; Adding setup requirement libraries</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d113797358](http://github.com/underscorediscovery/luxe/commit/d113797358a8f1a4e7da333a4c7bffde0b87b2b0)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 12:01:47 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Visual; Sprite; moving pos and scale setting to the root type, and fixing inconsistency issues with scale and origin being a reference</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c17734b58b](http://github.com/underscorediscovery/luxe/commit/c17734b58bbb952fbc00d2050a765ab503bd1a77)   
+author: Sven Bergström <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 11:58:14 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Update haxelib.json</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [455a57fc53](http://github.com/underscorediscovery/luxe/commit/455a57fc53f400e4a48fdc83ecb02befe224d01e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 23 2014 04:41:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; per frame image source position first pass, maintains parity with previous implementation but there is a question of how to handle the actual sprite size changes when the source size changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [4e0e0f1098](http://github.com/underscorediscovery/luxe/commit/4e0e0f1098f42f03d12a110ec87113cae73ccfcc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 23 2014 03:08:32 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; adding cached matrices for generating the viewmatrix, which completes rotation, scale, zoom and centre and position to be correct, see the tests for complete examples.</li><li>Tests; camera adding crosshairs to the mouse position, updating for latest camera code and making drag to rotate a little more consistent (still a bit stupid though, it works to test)</li><li>Fix #40 https://github.com/underscorediscovery/luxe/issues/40</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a264117ae1](http://github.com/underscorediscovery/luxe/commit/a264117ae1543c18ae78cb5d440fc0cee911769d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 23 2014 03:03:46 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Matrix; compose_with_origin added but note it allocates new matrices, best to cache these like phoenix.Camera does</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2ea9c0cfe9](http://github.com/underscorediscovery/luxe/commit/2ea9c0cfe954b5d10c7e2fc1e600029a902a11cc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 23 2014 03:02:28 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; adding rotation cache and converting to radians before passing to camera for correct values</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [112e7fcbfb](http://github.com/underscorediscovery/luxe/commit/112e7fcbfb92e326a9c0008253287d7d759ca86c)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 22:29:33 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>TexturePacker; import data from both JSON formats, still need to wrap it to luxe but per-frame sizes are not supported in luxe animation system just yet so.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [25e03b627a](http://github.com/underscorediscovery/luxe/commit/25e03b627a92a8bdd7850d2cdaabaaaed6d1e9a8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 22 2014 16:29:53 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [e7238f365d](http://github.com/underscorediscovery/luxe/commit/e7238f365df5b5520fd0fbcdf87e9bf6e515ae45)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Wed Jan 22 2014 16:29:39 GMT-0330 (NST)   
