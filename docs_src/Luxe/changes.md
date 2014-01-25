@@ -1,6 +1,90 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [f6dde1d121](http://github.com/underscorediscovery/luxe/commit/f6dde1d1219f7df5950a033480352a9b78338568)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 18:02:36 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; pressed/released/down lazy input methods added - fix #41 - REQUIRES an update to lime repo, or wait till next lime update</li><li>Tests; test_keystate for the above input</li><li>Api; Added Luxe.showConsole(true/false) as a shortcut for Luxe.core.show_console</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [49953ec13a](http://github.com/underscorediscovery/luxe/commit/49953ec13ae99cf5ec3250e748a9444c330c4441)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 01:16:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Animation; add public setter for speed, so speed can be changed from outside</li><li>Animation; added add_from_json_object for already parsed json (like the importers)</li><li>Animation; texture packer importer -> luxe sprite animation is complete, but lacks a feature to split frames into unique animations (something Animation needs on it's own... such that it's a separate issue)</li><li>Animation; Fix #55</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [4375030ea2](http://github.com/underscorediscovery/luxe/commit/4375030ea2706e8f4fe979934c5376d5cade1174)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 00:41:50 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; Fix view_matrix being out of date in between frame updates (i.e input events), Fix #56 thanks @BigZaphod</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [fb3869b3bf](http://github.com/underscorediscovery/luxe/commit/fb3869b3bf73b99a91b30d81085652e7999b4709)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 23:16:56 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Guide; shader guide had weird formatting on the numbers</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [fbc0204e96](http://github.com/underscorediscovery/luxe/commit/fbc0204e96ff224f6f42d3c7f24c644bfff66dd8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 23:16:39 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Animation; Sub frame animations complete! Now animations needn't be full frame size, they can be sourced from different sizes and the sprite will work out the details</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6b1e51206a](http://github.com/underscorediscovery/luxe/commit/6b1e51206adcd95633ac04d90bb12d97b2108ec5)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Jan 24 2014 14:24:26 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [1a76012244](http://github.com/underscorediscovery/luxe/commit/1a76012244f04c7480dbc0151d20b602feb2265b)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Fri Jan 24 2014 13:51:19 GMT-0330 (NST)   
