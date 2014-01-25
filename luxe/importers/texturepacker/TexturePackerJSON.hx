@@ -16,7 +16,7 @@ class TexturePackerJSON {
         var _has_meta = Reflect.field( json, 'meta' ) != null;
 
         if(!_has_frames) {
-            trace("TexturePacker : No frames property on the json object given (kinda needed!).");
+            trace("TexturePacker : No frames property on the json object given (kinda needed!)");
             return null;
         }
             

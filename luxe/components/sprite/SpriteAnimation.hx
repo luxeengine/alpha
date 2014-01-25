@@ -500,7 +500,8 @@ class SpriteAnimation extends Component {
     public var current : SpriteAnimationData;
     public var current_frame : SpriteAnimationFrame;
 
-    @:isVar public var animation (get,set):String;
+    @:isVar public var animation (get,set) : String;
+    @:isVar public var speed (get,set) : Float;
 
     public var frame : Int = 0;
     public var image_frame : Int = 0;
@@ -535,13 +536,12 @@ class SpriteAnimation extends Component {
 
     } //init
 
-    public function add_from_json( _json_string : String ) {
-
+    public function add_from_json_object( _json_object : Dynamic ) {
         if(animation_list == null) {
             animation_list = new Map();
         }
         
-        var anim_items = luxe.utils.JSON.decode(_json_string,false);
+        var anim_items = _json_object;
         var anims = Reflect.fields(anim_items);
 
         if(anims.length > 0) {
@@ -556,6 +556,14 @@ class SpriteAnimation extends Component {
 
             } //anim in anims
         } //anims.length > 0
+    }
+
+    public function add_from_json( _json_string : String ) {
+
+            //parse json first
+        var _json_object = luxe.utils.JSON.decode(_json_string,false);
+            //and add directly
+        add_from_json_object( _json_object );
 
     } //add_from_json
 
@@ -636,6 +644,18 @@ class SpriteAnimation extends Component {
         }        
 
     } //add_event
+
+    function get_speed() {
+        return speed;
+    }
+
+    function set_speed( _speed:Float ) { 
+        if(current != null) {
+            current.frame_time = 1 / _speed;
+        }
+
+        return speed = _speed;
+    }
 
     function get_animation() {
         return animation;
