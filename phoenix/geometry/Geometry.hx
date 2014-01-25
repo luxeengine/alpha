@@ -76,14 +76,14 @@ class Geometry {
     private var dirty_clip : Bool = false;
 
         //Geometry properties   
-    @:isVar public var enabled(default, set) : Bool = true;
-    @:isVar public var locked(get, set) : Bool = false;
-    @:isVar public var immediate(default, default) : Bool;
-    @:isVar public var color(default, set) : Color;
+    @:isVar public var enabled      (default, set) : Bool = true;
+    @:isVar public var locked       (get, set) : Bool = false;
+    @:isVar public var immediate    (default, default) : Bool;
+    @:isVar public var color        (default, set) : Color;
         //Transform
-    @:isVar public var pos(get, set) : Vector;
-    @:isVar public var rotation(get, set) : Quaternion;
-    @:isVar public var scale(get, set) : Vector;
+    @:isVar public var pos      (get, set) : Vector;
+    @:isVar public var rotation (get, set) : Quaternion;
+    @:isVar public var scale    (get, set) : Vector;
 
     var _pos_dirty : Bool = false;
     var _rotation_dirty : Bool = false;
@@ -273,13 +273,26 @@ class Geometry {
         var origin_y = origin.y;
         var origin_z = origin.z;
 
-        for(v in vertices) {            
+        for(v in vertices) {
 
-                //the base position of the vert
+            // consider using cached matrices ?
+            //     //translate to the origin first
+            // matrix.makeTranslation( -origin_x, -origin_y, -origin_z );
+            //     //scale first
+            // matrix.scale( scale );
+            //     //then rotate
+            // matrix.multiply( new Matrix4().makeRotationFromQuaternion(rotation) );
+            //     //then translate back 
+            // matrix.multiply( new Matrix4().makeTranslation(origin_x, origin_y, origin_z) );
+            //     //then translate the position
+            // _final_vert_position.set(pos.x, pos.y, pos.z, pos.w);
+            // _final_vert_position.applyMatrix4( matrix );
+
+                // the base position of the vert
             _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
-                //compose the final position matrix
+                // compose the final position matrix
             matrix.compose( pos, rotation, scale );
-                //apply the transform to the vert
+                // apply the transform to the vert
             _final_vert_position.applyMatrix4( matrix );
 
                 //submit vert positions

@@ -14,13 +14,17 @@ typedef SpriteAnimationFrameEvent = {
 
 typedef SpriteAnimationFrameSource = {
     frame : Int,
-    source : Rectangle
+    source : Rectangle,
+    size : Vector,
+    pos : Vector
 }
 
 typedef SpriteAnimationFrame = {
     image_frame : Int,
     ?image_source : Texture,
     frame_source : Rectangle,
+    frame_size : Vector,
+    frame_pos : Vector,
     events : Array<SpriteAnimationFrameEvent>
 }
 
@@ -197,7 +201,9 @@ class SpriteAnimationData {
             frameset.push({ 
                 image_frame : _frame, 
                 events : parse_event_for_frame(_events,_frame),
-                frame_source : parse_source_for_frame(_frame_sources,_frame)
+                frame_source : parse_source_for_frame(_frame_sources,_frame),
+                frame_size : parse_source_size_for_frame(_frame_sources, _frame),
+                frame_pos : parse_source_pos_for_frame(_frame_sources, _frame)
             });
             // trace("add frame : " + frameset[frameset.length-1]);
         }
@@ -241,6 +247,34 @@ class SpriteAnimationData {
         return _resulting_events;
 
     } //parse_event_for_frame
+
+    function parse_source_size_for_frame( _sources:Array<SpriteAnimationFrameSource>, _frame:Int ) : Vector {
+        
+        if(_sources != null) {
+            for(_source in _sources) {
+                if(_source.frame == _frame) {
+                    return _source.size;
+                } //matching frame
+            } //each source
+        } //sources != null
+
+        return frame_size;
+
+    } //parse_source_size_for_frame
+
+    function parse_source_pos_for_frame( _sources:Array<SpriteAnimationFrameSource>, _frame:Int ) : Vector {
+        
+        if(_sources != null) {
+            for(_source in _sources) {
+                if(_source.frame == _frame) {
+                    return _source.pos;
+                } //matching frame
+            } //each source
+        } //sources != null
+
+        return new Vector();
+
+    } //parse_source_pos_for_frame
 
     function parse_source_for_frame( _sources:Array<SpriteAnimationFrameSource>, _frame:Int ) : Rectangle {
 
@@ -297,14 +331,42 @@ class SpriteAnimationData {
         var resulting_sources = [];
         for(_json_source in _sources) {
 
-            var _x : Float = Std.parseFloat(_json_source.x);
-            var _y : Float = Std.parseFloat(_json_source.y);
-            var _w : Float = Std.parseFloat(_json_source.w);
-            var _h : Float = Std.parseFloat(_json_source.h);
+            var _json_size : Dynamic = _json_source.size;
+            var _json_source_rect : Dynamic = _json_source.source;
+            var _json_pos : Dynamic = _json_source.pos;
+
+            var _x : Float = 0;
+            var _y : Float = 0;
+            var _w : Float = 0;
+            var _h : Float = 0;
+
+            var _sx : Float = 0;
+            var _sy : Float = 0;
+            var _px : Float = 0;
+            var _py : Float = 0;
+
+            if(_json_source_rect != null) {
+                _x = Std.parseFloat(_json_source_rect.x);
+                _y = Std.parseFloat(_json_source_rect.y);
+                _w = Std.parseFloat(_json_source_rect.w);
+                _h = Std.parseFloat(_json_source_rect.h);
+            }
+
+            if(_json_size != null) {
+                _sx = Std.parseFloat(_json_size.x);
+                _sy = Std.parseFloat(_json_size.y);
+            }
+
+            if(_json_pos != null) {
+                _px = Std.parseFloat(_json_pos.x);
+                _py = Std.parseFloat(_json_pos.y);
+            }
 
             var _source : SpriteAnimationFrameSource = {
                 frame : Std.parseInt(_json_source.frame),
-                source : new Rectangle(_x, _y, _w, _h)
+                source : new Rectangle(_x, _y, _w, _h),
+                size : new Vector( _sx, _sy ),
+                pos : new Vector( _px, _py )
             }
 
             resulting_sources.push(_source);
@@ -646,17 +708,20 @@ class SpriteAnimation extends Component {
         if(current.type == SpriteAnimationType.animated_uv) {
 
             if(sprite.texture == null) return;
-
-            // var frames_per_row = ( sprite.texture.width - (sprite.texture.width % current.frame_size.x) ) / current.frame_size.x;
-            // var image_row = Math.ceil( image_frame / frames_per_row );
-            // var image_x = ((image_frame-1) * current.frame_size.x) % sprite.texture.width;
-            // var image_y = ((image_row-1) * current.frame_size.y);
-
-            // uv_cache.set( image_x, image_y, current.frame_size.x, current.frame_size.y );
-            uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
-            // sprite.size = new Vector(current_frame.frame_source.w, current_frame.frame_source.h);
-
-            sprite.uv = uv_cache;
+                    
+                    //cache the uv so we don't allocate for no good reason            
+                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
+                    //ratio of scale between sprite size and frame size
+                var _ratio_x = current_frame.frame_size.x / sprite.size.x;
+                var _ratio_y = current_frame.frame_size.y / sprite.size.y;
+                    //resize the sprite non destructively, to fit the new frame size
+                sprite.geometry.scale.x = (current_frame.frame_source.w / (current_frame.frame_size.x)) * sprite.scale.x;
+                sprite.geometry.scale.y = (current_frame.frame_source.h / (current_frame.frame_size.y)) * sprite.scale.y;
+                    //realign the sprite to match the new frame size, but also adjust for the new scale! otherwise it won't match
+                sprite.geometry.origin.x = ((sprite.origin.x - (current_frame.frame_pos.x / _ratio_x)) * sprite.scale.x) / sprite.geometry.scale.x;
+                sprite.geometry.origin.y = ((sprite.origin.y - (current_frame.frame_pos.y / _ratio_y)) * sprite.scale.y) / sprite.geometry.scale.y;
+                    //and finally assign it to the sprite
+                sprite.uv = uv_cache;
         
         } else if(current.type == SpriteAnimationType.animated_texture) {
 
