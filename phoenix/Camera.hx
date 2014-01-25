@@ -248,6 +248,28 @@ class Camera {
 
     } //update_look_at
 
+    function update_view_matrix() {
+
+        switch(projection) {
+            case ProjectionType.perspective:
+                
+                view_matrix = view_matrix.compose( pos, rotation, scale );
+
+            case ProjectionType.ortho:
+
+                view_matrix
+                    .makeTranslation( center.x, center.y, center.z )
+                    .scale( scale )
+                    .multiply( _rot_matrix )
+                    .multiply( _origin_matrix_inv )
+                    .multiply( _pos_matrix );
+
+            case ProjectionType.custom:
+                //todo: nothing yet
+        }
+        
+    }
+
     public function apply_ortho() {
 
         Luxe.renderer.state.disable(GL.CULL_FACE);
@@ -259,13 +281,7 @@ class Camera {
         projection_matrix = projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, ortho_options.near, ortho_options.far);
             //Rebuild the modelview, todo:dirtify this
         // view_matrix = view_matrix.compose_with_origin( pos, center, rotation, scale );
-
-        view_matrix
-            .makeTranslation( center.x, center.y, center.z )
-            .scale( scale )
-            .multiply( _rot_matrix )
-            .multiply( _origin_matrix_inv )
-            .multiply( _pos_matrix );
+        update_view_matrix();
 
     } //apply_ortho
 
@@ -281,7 +297,8 @@ class Camera {
         } //target not null
 
             //Rebuild the modelview, todo:dirtify this
-        view_matrix = view_matrix.compose( pos, rotation, scale );
+        // view_matrix = view_matrix.compose( pos, rotation, scale );
+        update_view_matrix();
 
             // Cull triangles which normal is not towards the camera
         Luxe.renderer.state.enable(GL.CULL_FACE);
@@ -313,6 +330,8 @@ class Camera {
         //from 3D to 2D
     public function projectVector( _vector:Vector ) {
 
+        update_view_matrix();
+
         var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
         return _vector.clone().applyProjection( _transform );
 
@@ -321,6 +340,8 @@ class Camera {
         //from 2D to 3D 
     public function unprojectVector( _vector:Vector ) {
 
+        update_view_matrix();
+        
         var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
         return _vector.clone().applyProjection( _inverted.inverse() );
 
@@ -334,11 +355,15 @@ class Camera {
 
     function ortho_screen_to_world( _vector:Vector ) : Vector {
 
+        update_view_matrix();
+
         return _vector.clone().applyMatrix4(view_matrix);
 
     } //ortho_screen_to_world
 
     function ortho_world_to_screen( _vector:Vector ) : Vector {
+
+        update_view_matrix();
 
         return _vector.clone().applyMatrix4( view_matrix.inverse() );
 
