@@ -46,7 +46,11 @@ class Luxe {
         core.lime.shutdown();
     }
 
-            //todo , move into screen.cursor, Lab.screen.cursor.visible etc.
+        public static function showConsole(_show:Bool) {
+            core.show_console( _show );
+        }
+
+        //todo , move into screen.cursor, Lab.screen.cursor.visible etc.
         public static function showCursor(_show:Bool) {
             core.lime.window.set_cursor_visible( _show );
         }
