@@ -53,8 +53,8 @@ The fragment shader only cares about what the resulting color of the fragment be
 
 ![fragment shader](images/fragment_shader.png)
 
-**note on numbers**
-A game renderered at 1080p, a resolution of 1920x1080 pixels, would be 1920 * 1080 = 2,073,600 pixels. That is per frame - usually games run at 30 or 60 frames per second. That means (1920 * 1080) * 60 for one second of time, that's a total of 124,416,000 pixels, per second. For a *single* buffer, usually games have multiple buffers as well.
+**note on numbers**   
+A game renderered at 1080p, a resolution of 1920x1080 pixels, would be 1920 x 1080 = 2,073,600 pixels. That is per frame - usually games run at 30 or 60 frames per second. That means (1920 x 1080) x 60 for one second of time, that's a total of 124,416,000 pixels, per second. For a *single* frame buffer, usually games have multiple buffers as well.
 
 ## Endless possibilities
 ---
