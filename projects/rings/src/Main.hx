@@ -31,8 +31,7 @@ class Main extends luxe.Game {
         Luxe.fixed_timestep = 0.01666667;
 
         states.init();
-
-        Luxe.audio.create('music', 'assets/UMBRA_ANDRIO.ogg', true);
+        
         Luxe.audio.create('distant_explode', 'assets/distant_explode.ogg');
         Luxe.audio.create('enemy_explode', 'assets/enemy_explode.ogg');
         Luxe.audio.create('take_damage', 'assets/take_damage.ogg');        
@@ -40,6 +39,7 @@ class Main extends luxe.Game {
         Luxe.audio.create('jump', 'assets/jump.ogg');      
         Luxe.audio.create('shoot', 'assets/shoot.ogg');
         Luxe.audio.create('shoot2', 'assets/shoot2.ogg');
+        Luxe.audio.create('music', 'assets/UMBRA_ANDRIO.ogg', true);
 
             //create the geometries
         left_geom = Luxe.draw.box({
