@@ -428,6 +428,12 @@ import phoenix.Renderer;
         if(host.onmousedown != null) host.onmousedown(e);
     }
     
+    public function onmousewheel(e : MouseEvent) {
+
+        if(host.onmousewheel != null) host.onmousewheel(e);
+
+    }
+
     public function onmouseup(e : MouseEvent) {
 
         _mouse_pos.set( e.x, e.y );
@@ -444,6 +450,7 @@ import phoenix.Renderer;
     }
 
     public function onmousemove(e : MouseEvent) {
+
         _mouse_pos.set( e.x, e.y );
         e.pos = _mouse_pos;
         Luxe.mouse = _mouse_pos;
@@ -454,7 +461,9 @@ import phoenix.Renderer;
         }
 
         if(host.onmousemove != null) host.onmousemove(e);
+
     }
+    
 //touch
     var touches_down : Map<Int, TouchEvent>;
 
