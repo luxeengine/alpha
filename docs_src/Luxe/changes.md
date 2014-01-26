@@ -1,6 +1,76 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [86053b236a](http://github.com/underscorediscovery/luxe/commit/86053b236a7d1bb2afd72c8c8b6de0763dcad943)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 06:13:46 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>html5; cleaning up build output, moving ammo to haxebullet repo and removing this random debug stuff</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [da0bac6aa8](http://github.com/underscorediscovery/luxe/commit/da0bac6aa8381b50daeaf1ec819c873581be2dff)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 03:34:25 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; shield unusable input for now from lime repo</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5eb4902e61](http://github.com/underscorediscovery/luxe/commit/5eb4902e616d36bd696c0a11323fcb9c7b812b24)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 23:11:17 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; audio switching to different assets for now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1b36f7515e](http://github.com/underscorediscovery/luxe/commit/1b36f7515e6a42ba01e2e25302dddc5cad9ba7f2)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 23:04:06 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>html5; templates; cleanup of the output folders putting the libs in lib/</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a944e36e9d](http://github.com/underscorediscovery/luxe/commit/a944e36e9d0936b2f125dd9c6977af5efe6a1f3f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 21:43:07 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [bdfb5a58e8](http://github.com/underscorediscovery/luxe/commit/bdfb5a58e8be53dc6457007b08330045467b6314)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Jan 25 2014 21:38:31 GMT-0330 (NST)   
