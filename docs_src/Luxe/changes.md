@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [bdfb5a58e8](http://github.com/underscorediscovery/luxe/commit/bdfb5a58e8be53dc6457007b08330045467b6314)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 21:38:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; spacing / margin loading and display is working as expected.</li><li>Tilemaps; changed all type constructors to options method, for consistency</li><li>Tilemaps; TiledMaps, visiblity / opacity options for layers</li><li>Tiledmap; Ortho, adding grid display for debugging</li><li>More info : https://github.com/underscorediscovery/luxe/issues/39</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [cbeb39f996](http://github.com/underscorediscovery/luxe/commit/cbeb39f99635d48d8ad015edcf3435489d1eee25)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Jan 25 2014 18:03:11 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [f6dde1d121](http://github.com/underscorediscovery/luxe/commit/f6dde1d1219f7df5950a033480352a9b78338568)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sat Jan 25 2014 18:02:36 GMT-0330 (NST)   
