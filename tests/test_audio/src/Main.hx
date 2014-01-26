@@ -23,7 +23,6 @@ class Main extends luxe.Game {
             //
         }
 
-
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }

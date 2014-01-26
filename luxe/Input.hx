@@ -74,6 +74,8 @@ class Input {
         //todo, poll for gamepad disconnects and reconnects
     }    
 
+#if input_lazy
+
     public function keypressed( _value:KeyValue ) : Bool {
         return core.lime.input.keypressed(_value);
     }
@@ -85,6 +87,8 @@ class Input {
     public function keydown( _value:KeyValue ) : Bool{
         return core.lime.input.keydown(_value);
     }
+
+#end
 
 //Named event handlers
 
