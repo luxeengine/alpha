@@ -5,22 +5,20 @@ import phoenix.Texture;
 
 class TiledTileset {
 
-	public var name : String;	
-	public var tile_width : Int;
-	public var tile_height : Int;
-	public var texture_name : String;
-	public var first_id : Int;
+	public var name : String = '';	
+	public var texture_name : String = '';
+
+	public var first_id : Int = 1;
+	public var tile_width : Int = 0;
+	public var tile_height : Int = 0;
+	public var margin : Int = 0;
+	public var spacing : Int = 0;
 
 	public var properties : Map<String,String>;
     public var property_tiles:Map<Int, TiledPropertyTile>;
 
 	public function new(  ) {
 		
-		name = '';
-		tile_width = 0;
-		tile_height = 0;
-		texture_name = '';
-
 		properties = new Map();
 		property_tiles = new Map();
 
@@ -37,6 +35,8 @@ class TiledTileset {
 		name = root.get("name");
 		tile_width = Std.parseInt(root.get("tilewidth"));
 		tile_height = Std.parseInt(root.get("tileheight"));
+		spacing = Std.parseInt(root.get("spacing"));
+		margin = Std.parseInt(root.get("margin"));
 
 		for(child in root.elements()) {
 			if(is_valid_xml_element(child)) {
@@ -95,6 +95,8 @@ class TiledTileset {
 		name = Reflect.field(json, "name");
 		tile_width = Std.parseInt(Reflect.field(json, "tilewidth"));
 		tile_height = Std.parseInt(Reflect.field(json, "tileheight"));
+		spacing = Std.parseInt(Reflect.field(json, "spacing"));
+		margin = Std.parseInt(Reflect.field(json, "margin"));
 
 		var fields = Reflect.fields(json);
 		for(nodename in fields) {

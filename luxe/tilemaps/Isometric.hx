@@ -1,5 +1,6 @@
 package luxe.tilemaps;
 
+import luxe.Color;
 import luxe.Rectangle;
 import luxe.Vector;
 
@@ -63,6 +64,7 @@ class IsometricVisuals extends TilemapVisuals {
         var _scaled_tileheight = map.tile_height*_scale;
 
         for( layer in map ) {
+            
             for( y in 0 ... map.height ) {
                     
                     //the geometry row
@@ -94,7 +96,9 @@ class IsometricVisuals extends TilemapVisuals {
                             //the geometry size is based on the texture/tileset size, not the map size
                         w : _scaled_tileset_tilewidth, 
                         h : _scaled_tileset_tileheight,
-                        texture : (tileset != null) ? tileset.texture : null
+                        texture : (tileset != null) ? tileset.texture : null,
+                        enabled : layer.visible,
+                        color : new Color(1,1,1,layer.opacity)
                     });
 
                     if(tileset != null) {

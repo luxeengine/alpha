@@ -8,6 +8,9 @@ import lime.utils.Endian;
 
 class TiledLayer {
     
+    public var opacity : Float = 1.0;
+    public var visible : Bool = true;
+
     public var name : String;
     public var width : Int;
     public var height : Int;
@@ -34,6 +37,8 @@ class TiledLayer {
             name = root.get("name");
             width = Std.parseInt(root.get("width"));
             height = Std.parseInt(root.get("height"));
+            opacity = Std.parseFloat(root.get("opacity"));
+            visible = root.get("visible") == "0" ? false : true;
             
         for (child in root) {
 
@@ -108,6 +113,8 @@ class TiledLayer {
             name = Reflect.field(json, "name");
             width = Std.parseInt(Reflect.field(json, "width"));
             height = Std.parseInt(Reflect.field(json, "height"));
+            opacity = Std.parseFloat(Reflect.field(json, "opacity"));
+            visible = Reflect.field(json, "visible") == "false" ? false : true;
             
         var fields = Reflect.fields(json);
         for( nodename in fields ) {

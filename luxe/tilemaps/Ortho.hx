@@ -1,5 +1,6 @@
 package luxe.tilemaps;
 
+import luxe.Color;
 import luxe.Rectangle;
 import phoenix.Texture.FilterType;
 import luxe.tilemaps.Tilemap;
@@ -55,10 +56,11 @@ class OrthoVisuals extends TilemapVisuals {
         var _scale = (options.scale != null) ? options.scale : 1;
         var _filter = (options.filter != null) ? options.filter : FilterType.nearest;
 
-        var _scaled_tilewidth = map.tile_width*_scale;
-        var _scaled_tileheight = map.tile_height*_scale;
+        var _map_scaled_tw = map.tile_width*_scale;
+        var _map_scaled_th = map.tile_height*_scale;
 
         for( layer in map ) {
+
             for( row in layer.tiles ) {
 
                 var _geom_row = [];
@@ -70,13 +72,21 @@ class OrthoVisuals extends TilemapVisuals {
 
                     var tileset = map.tileset_from_id( tile.id );
 
-                        //create the tile to the geometry
+                    var _scaled_tilewidth = tileset.tile_width*_scale;
+                    var _scaled_tileheight = tileset.tile_height*_scale;
+
+                    var _offset_x = 0;
+                    var _offset_y = _scaled_tileheight - _map_scaled_th;
+
+                        //create the tile geometry
                     var _tile_geom = Luxe.draw.box({
-                        x: map.pos.x + (tile.x * _scaled_tilewidth), 
-                        y: map.pos.y + (tile.y * _scaled_tileheight),
-                        w: _scaled_tilewidth, 
+                        x: map.pos.x + (tile.x * _map_scaled_tw) - (_offset_x), 
+                        y: map.pos.y + (tile.y * _map_scaled_th) - (_offset_y),
+                        w: _scaled_tilewidth,
                         h: _scaled_tileheight,
-                        texture : (tileset != null) ? tileset.texture : null
+                        enabled : layer.visible,
+                        texture : (tileset != null) ? tileset.texture : null,
+                        color : new Color(1,1,1, layer.opacity)
                     });
 
                     if(tileset != null) {
@@ -85,10 +95,10 @@ class OrthoVisuals extends TilemapVisuals {
                                 var image_coord = tileset.pos_in_texture( tile.id );
                                 _tile_geom.uv(
                                     new Rectangle(
-                                        image_coord.x * map.tile_width,
-                                        image_coord.y * map.tile_height,
-                                        map.tile_width,
-                                        map.tile_height
+                                        tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                                        tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                                        tileset.tile_width,
+                                        tileset.tile_height
                                     ) //Rectangle
                                 ); //uv
                                 tileset.texture.filter = _filter;
@@ -102,7 +112,31 @@ class OrthoVisuals extends TilemapVisuals {
                 geometry.push(_geom_row);
 
             } //for each row
-        } //for each map        
-    }
+        } //for each map
+
+
+        if(options.grid != null && options.grid == true) {
+
+            var color = new Color(1,1,1,0.8).rgb(0xcc0000);
+
+            for(x in 0 ... map.width+1) {
+                Luxe.draw.line({ 
+                    p0 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + 0 ),
+                    p1 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + (map.height * _map_scaled_th)),
+                    color : color
+                });
+            }
+
+            for(y in 0 ... map.height+1) {
+                Luxe.draw.line({ 
+                    p0 : new Vector(map.pos.x + (0), map.pos.y + (y * _map_scaled_th)),
+                    p1 : new Vector(map.pos.x + (map.width * _map_scaled_tw), map.pos.y + (y * _map_scaled_th)),
+                    color : color
+                });
+            }
+
+        }
+
+    } //create
 
 } //OrhtoVisuals

@@ -8,33 +8,8 @@ import phoenix.geometry.Geometry;
 import luxe.tilemaps.Ortho.OrthoVisuals;
 import luxe.tilemaps.Isometric.IsometricVisuals;
 
+import luxe.options.TilemapOptions;
 
-enum TilemapOrientation {
-    ortho;
-    isometric;
-    none;
-}
-
-typedef TilemapOptions = {
-    ?x : Int,
-    ?y : Int,
-    w : Int,
-    h : Int,
-    tile_width : Int,
-    tile_height : Int,
-    ?orientation : TilemapOrientation
-}
-
-
-enum TileOffset {
-    center;
-    top;
-    bottom;
-    left;
-    right;
-}
-
-typedef TileArray = Array<Tile>;
 
 class TilemapVisuals {
 
@@ -72,7 +47,6 @@ class TilemapVisuals {
         geometry = [];
 
     } //destroy
-
 } //TilemapVisuals
 
 class Tile {
@@ -87,22 +61,31 @@ class Tile {
     public var map : Tilemap;
     public var id : Int;
 
-    public function new( _layer:TileLayer, _id:Int, _x:Int, _y:Int ) {
+    public function new( options : TileOptions ) {
 
         uuid = Luxe.utils.uniqueid(); 
-        id = _id;
-        layer = _layer;
-        map = _layer.map;
-        y = _y;
-        x = _x;
+        id = options.id;
+        layer = options.layer;
+        map = options.layer.map;        
+        
+        x = options.x;
+        y = options.y;
 
-        size = new Vector( map.tile_width, map.tile_height );
+            //size is dependent on the tileset
+        var _tileset = map.tileset_from_id( id );
+            //but only if it can find it (i.e 0 tile id)
+        if(_tileset != null) {
+            size = new Vector( _tileset.tile_width, _tileset.tile_height );
+        } else {
+            size = new Vector( map.tile_width, map.tile_height );
+        }
+
         pos = new Vector( map.pos.x + (size.x * x), map.pos.y + (size.y * y) );
 
-    }
+    } //new
 
     public function toString() {
-        return "Tile: id:"+id+" layer(" + layer.name + ") coord("+x+","+y+") pos("+pos.x+","+pos.y+") size("+size.x+","+size.y+")";
+        return "Tile: id:"+id+" x,y:" + x + "," + y + " layer(" + layer.name + ") coord("+x+","+y+") pos("+pos.x+","+pos.y+") size("+size.x+","+size.y+")";
     }
 
 } //Tile
@@ -114,6 +97,10 @@ class TileLayer {
     public var layer : Int;
         //the name of the layer
     public var name : String;
+        //the name of the layer
+    public var opacity : Float = 1.0;
+        //the name of the layer
+    public var visible : Bool = true;
         //the map this tilemap belongs to
     public var map : Tilemap;
         //array of array of tiles
@@ -121,11 +108,20 @@ class TileLayer {
         //layer properties
     public var properties : Map<String,String>;
 
-    public function new( _map:Tilemap, _name:String, _layer:Int = 0 ) {
+    public function new( options:TileLayerOptions ) {
+        
+        if(options.map == null) {
+            throw "TileLayer requires a Tilemap passed into the options, as map:Tilemap";
+        }
 
-        layer = _layer;
-        name = _name;
-        map = _map;
+            //required options 
+        name = options.name;
+        map = options.map;
+            //optional layer index
+        layer = (options.layer == null) ? 0 : options.layer;
+        opacity = (options.opacity == null) ? 1.0 : options.opacity;
+        visible = (options.visible == null) ? true : options.visible;
+
         tiles = [];
         properties = new Map();
 
@@ -133,33 +129,49 @@ class TileLayer {
 
 } //TileLayer
 
+
 class Tileset {
     
     public var texture : Texture;
     public var name : String;
-    public var first_id : Int;
-    public var tile_width : Int;
-    public var tile_height : Int;
+    public var first_id : Int = 1;
+    public var tile_width : Int = 0;
+    public var tile_height : Int = 0;   
+        //the image margin 
+    public var margin : Int = 0;
+        //the tile spacing
+    public var spacing : Int = 0;
 
-    public function new( _name:String = '', _texture:Texture, _tile_width:Int, _tile_height:Int, _first_id : Int = 1 ) {        
+    public function new( options:TilesetOptions ) {
 
-        if(_texture == null) {
+        if(options == null) {
+            throw "Tileset requires a non-null options on new()";
+        }
+
+        if(options.texture == null) {
             throw "Tileset requires a texture that is not null";
         }
 
-        name = _name;
-        texture = _texture;
-        first_id = _first_id;
-        tile_width = _tile_width;
-        tile_height = _tile_height;
+        name = options.name;
+        texture = options.texture;
+        tile_width = options.tile_width;
+        tile_height = options.tile_height;
+
+        first_id    = (options.first_id == null) ? 1 : options.first_id; 
+        margin      = (options.margin   == null) ? 0 : options.margin; 
+        spacing     = (options.spacing  == null) ? 0 : options.spacing; 
 
     } //new
 
-        //Returns a Point which specifies the position of the gid in this tileset (Not in pixels!)
+    public function toString() : String {
+        return "Tileset; " + name + " tw(" + tile_width + ") th(" + tile_height + ") first_id(" + first_id + ") margin(" + margin + ") spacing(" + spacing + ")";
+    }
+
+        //Returns a Vector which specifies the position of the gid in this tileset (Not in pixels!)
     public function pos_in_texture(_id:Int):Vector {
 
         var tileid = _id - first_id;
-        return new Vector(texture_x(tileid), texture_y(tileid));
+        return new Vector( texture_x(tileid), texture_y(tileid) );
 
     } //pos_in_texture
 
@@ -171,7 +183,9 @@ class Tileset {
         //Returns the inner y-position of a texture with given _id
         //todo : Is this making an assumption about the height of a tile?
     public function texture_y(_id):Int {
+
         return Std.int(_id / Std.int(texture.width / tile_width));
+
     } //texture_y
 
 } //Tileset
@@ -340,13 +354,16 @@ class Tilemap {
     } //tile_at
 
     public function iterator() : Iterator<TileLayer> {
+        
         return layers_ordered.iterator();
+
     } //iterator
 
-    public function add_tileset( name:String, texture:Texture, first_id:Int=0 ) {
+    public function add_tileset( options:TilesetOptions ) {
 
-        var tileset = new Tileset( name, texture, tile_width, tile_height, first_id );
-            tilesets.set( name, tileset );
+        var tileset = new Tileset( options );
+
+           tilesets.set( tileset.name, tileset );
 
         return tileset;
 
@@ -363,24 +380,32 @@ class Tilemap {
     } //sort_layers
 
     public function tileset_from_id( _id:Int ) {
+
         var tileset:Tileset = null;
 
+        var max : Int = 0;
         for(t in this.tilesets) {
-            if(_id >= t.first_id) {
-                tileset = t;
+            if(_id >= t.first_id && t.first_id >= max) {
+                max = t.first_id;
+                tileset = t;                
             }
         }
 
         return tileset;
+
     } //tileset_from_id
 
-    public function add_layer( _name:String, _layer:Int=0 ) {
-        
-        var new_layer = new TileLayer( this, _name, _layer );
+    public function add_layer( options:TileLayerOptions ) {
+            
+        if(options.map == null) options.map = this;
 
-            layers.set(_name, new_layer);
+        var new_layer = new TileLayer( options );
 
+                //store in the named layer map
+            layers.set( new_layer.name, new_layer );
+                //store in the ordered list as well
             layers_ordered.push( new_layer );
+                //and sort the list
             sort_layers();
 
         return new_layer;
@@ -401,7 +426,12 @@ class Tilemap {
                 var _tile_row = [];
                 for(x in 0 ... width) {
 
-                    var _tile = new Tile( _layer, _tileid, x, y );
+                    var _tile = new Tile({
+                        layer : _layer, 
+                        id : _tileid,
+                        x : x,
+                        y : y
+                    });
 
                     _tile_row.push(_tile);
 
@@ -442,7 +472,12 @@ class Tilemap {
                 for(x in 0 ... width) {
 
                     var tileid = grid[y][x];
-                    var _tile = new Tile( _layer, tileid, x, y );
+                    var _tile = new Tile({
+                        layer : _layer, 
+                        id : tileid,
+                        x : x,
+                        y : y
+                    });
 
                     _tile_row.push(_tile);
 
@@ -471,3 +506,24 @@ class Tilemap {
     } //get_bounds
 
 } // Tilemap
+
+
+ //Additional defines
+
+enum TilemapOrientation {
+    ortho;
+    isometric;
+    none;
+}
+
+
+enum TileOffset {
+    center;
+    top;
+    bottom;
+    left;
+    right;
+}
+
+typedef TileArray = Array<Tile>;
+

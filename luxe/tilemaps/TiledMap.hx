@@ -61,10 +61,19 @@ class TiledMap extends Tilemap {
     function _load_tilesets( options:TiledMapOptions ) {
 
         for(_tileset in tiledmap_data.tilesets) {
-            var new_tileset = add_tileset( _tileset.name, Luxe.loadTexture(options.asset_path + _tileset.texture_name) );
-                new_tileset.first_id = _tileset.first_id;
-                new_tileset.tile_width = _tileset.tile_width;
-                new_tileset.tile_height = _tileset.tile_height;
+            
+            add_tileset({
+
+                name : _tileset.name, 
+                texture : Luxe.loadTexture( options.asset_path + _tileset.texture_name),
+                first_id : _tileset.first_id,
+                tile_width : _tileset.tile_width,
+                tile_height : _tileset.tile_height,
+                spacing : _tileset.spacing,
+                margin : _tileset.margin
+
+            });
+
         } //for all tilesets  
 
     } //load_tilesets
@@ -75,7 +84,13 @@ class TiledMap extends Tilemap {
         for(_layer in tiledmap_data.layers) {
                 
                 //add the layer
-            add_layer(_layer.name, layer_index );            
+            add_layer({
+                name : _layer.name, 
+                layer : layer_index,
+                opacity : _layer.opacity,  
+                visible : _layer.visible
+            });
+
                 //create the tiles
             add_tiles_fill_by_id( _layer.name, 0 );
 

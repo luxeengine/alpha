@@ -32,7 +32,7 @@
   <tile id="22" terrain="1,1,1,1"/>
   <tile id="23" terrain="1,1,1,1"/>
  </tileset>
- <layer name="Tile Layer 2" width="7" height="7">
+ <layer name="Tile Layer 2" width="7" height="7" visible="1">
   <data>
    <tile gid="23"/>
    <tile gid="24"/>

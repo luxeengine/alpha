@@ -48,7 +48,7 @@ class Main extends luxe.Game {
         var scale = 2;
 
             //tell the map to display 
-        tiled_ortho.display({ scale:scale });
+        tiled_ortho.display({ scale:scale, grid:true });
 
             //draw the additional objects
         draw_tiled_object_groups( scale );
@@ -83,12 +83,16 @@ class Main extends luxe.Game {
         });
 
             //create a tileset for the map
-        small_tiles.add_tileset('tiles', Luxe.loadTexture('assets/tileset.png'));
+        small_tiles.add_tileset({ 
+            name:'tiles', 
+            texture:Luxe.loadTexture('assets/tileset.png'),
+            tile_width: 16, tile_height: 16
+        });
 
             //create some layers to add tiles in
             //note we add them out of order with the index, just for testing that
-        small_tiles.add_layer('fg', 1);
-        small_tiles.add_layer('bg', 0);        
+        small_tiles.add_layer({ name:'fg', layer:1, opacity:1, visible:true });
+        small_tiles.add_layer({ name:'bg', layer:0, opacity:1, visible:true });        
 
             //create them by filling the layer with a fixed id, in this case 21
         small_tiles.add_tiles_fill_by_id( 'bg', 21 );
