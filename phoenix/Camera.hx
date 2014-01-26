@@ -3,7 +3,6 @@ package phoenix;
 
 import lime.gl.GL;
 import lime.gl.GLBuffer;
-import lime.geometry.Matrix3D;
 import lime.utils.Float32Array;
 
 import phoenix.Matrix4;
