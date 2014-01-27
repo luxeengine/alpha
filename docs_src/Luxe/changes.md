@@ -1,6 +1,76 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [3eb3e42b61](http://github.com/underscorediscovery/luxe/commit/3eb3e42b610e6a9b52d8145eb3f2abc3dc4ba7a6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 22:04:53 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests;  timescale; adding gamepad support for html5/native tests. working good so far</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [09f4f20322](http://github.com/underscorediscovery/luxe/commit/09f4f203223495ba9c3ae5b535e9262642c234d2)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 21:53:47 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; better gamepad support from SDL and for the new html5 gamepad code in lime</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [df9c7367da](http://github.com/underscorediscovery/luxe/commit/df9c7367da153d820da533484179b44a143dfffb)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 19:42:21 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Core; mouse wheel changes to onmousewheel -> instead of mouse up</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2ca51cbfaf](http://github.com/underscorediscovery/luxe/commit/2ca51cbfafb40b354c07b4fd5360d13fd1bec7ae)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 19:41:00 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; cleaning up old references</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [dba6a37960](http://github.com/underscorediscovery/luxe/commit/dba6a37960a02fd244e039ea38de530614f87576)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 06:14:08 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [86053b236a](http://github.com/underscorediscovery/luxe/commit/86053b236a7d1bb2afd72c8c8b6de0763dcad943)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Jan 26 2014 06:13:46 GMT-0330 (NST)   
