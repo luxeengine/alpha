@@ -107,7 +107,6 @@ class Main extends luxe.Game {
     }
 
     public function ongamepadbuttondown( e:GamepadButtonEvent ) {
-        trace( e.state + " " + e.value + " " +  e );
     }
 
     public function onkeydown(e) {
