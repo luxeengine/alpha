@@ -7,10 +7,13 @@ typedef KeyValue    = lime.helpers.Keys.KeyValue;
 typedef MouseButton = lime.InputHandler.MouseButton;
 typedef MouseState  = lime.InputHandler.MouseState;
 typedef TouchState  = lime.InputHandler.TouchState;
+typedef ButtonState  = lime.InputHandler.ButtonState;
 
     //Event types
 typedef KeyEvent = lime.InputHandler.KeyEvent;
 typedef GamepadEvent = lime.InputHandler.GamepadEvent;
+typedef GamepadButtonEvent = lime.InputHandler.GamepadButtonEvent;
+typedef GamepadAxisEvent = lime.InputHandler.GamepadAxisEvent;
 
 typedef TouchEvent = {
     > lime.InputHandler.TouchEvent,

@@ -61,12 +61,16 @@ class Main extends luxe.Game {
     public function oninputdown( name:String ) {
         
         if(name == 'jump') {
-            if(player.pos.y >= floor_y) {
-                vel.y = -jump_vel;
-            } //player is on the ground
+            jump();
         } //jump pressed
 
     } //oninput
+
+    function jump() {
+        if(player.pos.y >= floor_y) {
+            vel.y = -jump_vel;
+        } //player is on the ground
+    }
 
     public function onmousemove( e:MouseEvent ) {
         
@@ -76,6 +80,35 @@ class Main extends luxe.Game {
         }
 
     } //onmousemove
+
+    public function ongamepadaxis( e:GamepadAxisEvent ) {
+
+        var dead = 0.21;
+        
+        if((e.value > dead && e.value > 0) || (e.value < 0 && e.value < -dead) ) {
+                //left
+            if(e.axis == 0) {
+                if(e.value < 0) left = true;
+                if(e.value > 0) right = true;
+            }
+
+        } else {
+            if(e.axis == 0) {
+                left = false;
+                right = false;
+            }
+        }
+    }
+
+    public function ongamepadbuttonup( e:GamepadButtonEvent ) {
+        if(e.button == 0) {
+            jump();
+        }
+    }
+
+    public function ongamepadbuttondown( e:GamepadButtonEvent ) {
+        trace( e.state + " " + e.value + " " +  e );
+    }
 
     public function onkeydown(e) {
         if(e.value == Input.Keys.left || e.value == Input.Keys.key_A) { left = true; }
