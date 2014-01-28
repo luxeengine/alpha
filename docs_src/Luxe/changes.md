@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [1b136ee9f7](http://github.com/underscorediscovery/luxe/commit/1b136ee9f7779db0f243f0b877ca368b1f55a5fa)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 28 2014 03:56:24 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Templates; fixing html5 templates for latest lime/luxe</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [933539a1e8](http://github.com/underscorediscovery/luxe/commit/933539a1e8586e33dbf7f0ced7d6bd10677f9722)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 28 2014 03:14:53 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Template; Lime; LimeConfig is now typed for better clarity and such.</li><li>Base64; shielding for neko builds to fix neko stuff for now. :tofix:</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [63ce2b93c6](http://github.com/underscorediscovery/luxe/commit/63ce2b93c67d24cf438b80b939dad2bae81b188a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 28 2014 03:13:41 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [1d9eead67e](http://github.com/underscorediscovery/luxe/commit/1d9eead67eb2fc1a18f4b5183006a44cdbff302c)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Mon Jan 27 2014 23:28:53 GMT-0330 (NST)   
