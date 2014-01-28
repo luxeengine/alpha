@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [1d9eead67e](http://github.com/underscorediscovery/luxe/commit/1d9eead67eb2fc1a18f4b5183006a44cdbff302c)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Jan 27 2014 23:28:53 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rectangle; Adding change listeners for sub components</li><li>Sprite; making sure uv isn't null, and making sure it gets the correct values from the texture on load</li><li>Sprite; adding sub texture uv listeners so sprite.uv.x += 5 can work in pixels</li><li>Tests; sprite uv test</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c2e8bbddbf](http://github.com/underscorediscovery/luxe/commit/c2e8bbddbf1b0a2760ca3f37285db32f6d0c716a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Jan 26 2014 22:05:13 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [3eb3e42b61](http://github.com/underscorediscovery/luxe/commit/3eb3e42b610e6a9b52d8145eb3f2abc3dc4ba7a6)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Jan 26 2014 22:04:53 GMT-0330 (NST)   
