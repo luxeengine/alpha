@@ -21,6 +21,8 @@ class Sprite extends Visual {
 
     public function new<T>( options:SpriteOptions<T> ) {
 
+        uv = new Rectangle();
+
         if(options == null) {
             throw "Sprite needs not-null options at the moment";
         }
@@ -37,30 +39,35 @@ class Sprite extends Visual {
 
     override function on_geometry_created() {
 
-        if(texture != null && texture.loaded) {
-            
-                //because the default is 0,0,1,1 uv for the quad, we don't want that when
-                //textures are padded (like on html5)
-            if(options.uv == null) {
+        if(texture != null) {
 
-                if(texture.actual_width != texture.width || texture.actual_height != texture.height) {
-                    uv = new Rectangle(0,0,texture.width,texture.height);
+            texture.onload = function(t) {
+
+                    //because the default is 0,0,1,1 uv for the quad, we don't want that when
+                    //textures are padded (like on html5)
+                if(options.uv == null) {
+
+                    // if(texture.actual_width != texture.width || texture.actual_height != texture.height) {
+                        uv = new Rectangle(0,0,texture.width,texture.height);
+                    // }
+
+                } else {
+
+                    uv = options.uv;
+
                 }
 
-            } else {
-                uv = options.uv;
-            }
+                    //if texture is render target, flipy
+                if(texture.type == ResourceType.render_texture) {
+                    flipy = true;
+                }
+                
+            } //onload
 
-                //if texture is render target, flipy
-            if(texture.type == ResourceType.render_texture) {
-                flipy = true;
-            }
-
-        } //texture !null && texture.loaded
+        } //texture !null 
 
             //set the origin and centered once created
-        var _c = centered;
-            centered = _c;        
+        centered = !!centered;
 
     } //on_geometry_created
 
@@ -108,7 +115,11 @@ class Sprite extends Visual {
             geometry_quad.uv(_uv);
         }
 
-        return uv = _uv;
+        uv = _uv;
+
+        _attach_rect_listener( uv, _uv_change );
+
+        return uv;
     } 
 
 //Flipping
@@ -195,6 +206,17 @@ class Sprite extends Visual {
         return _merge_properties(_data, _extra);
 
     } //get_serialize_data
+
+
+        //An internal callback for when x y or w or h on a transform changes
+    private function _uv_change(_v:Float) { this.set_uv(uv); }
+
+    private function _attach_rect_listener( _v : Rectangle, listener ) {
+        _v.listen_x = listener;
+        _v.listen_y = listener;
+        _v.listen_w = listener;
+        _v.listen_h = listener;
+    }
 
 } //Sprite
 
