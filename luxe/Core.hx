@@ -31,7 +31,7 @@ import phoenix.Renderer;
         //the game object running the core
     public var host : Dynamic;  
         //the config passed to us on creation
-    public var config : Dynamic;
+    public var config : LimeConfig;
 
         //if the console is displayed atm
     public var console_visible : Bool = false;

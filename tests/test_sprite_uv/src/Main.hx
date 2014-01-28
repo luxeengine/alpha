@@ -1,12 +1,15 @@
 
 import luxe.Input;
 import luxe.Sprite;
+import luxe.Text;
+import luxe.Color;
 import luxe.Vector;
 
 class Main extends luxe.Game {
 
     var stars : Sprite;
     var sky : Sprite;
+    var mousetext : Text;
 
     public function ready() {
 
@@ -24,10 +27,21 @@ class Main extends luxe.Game {
             texture: Luxe.loadTexture('assets/bg_stars.png')
         });
 
+        mousetext = new Text({
+            pos : new Vector(20,20),
+            size : 20,
+            color : new Color().rgb(0xff440b),
+            text : "mouse pos :"
+        });
+
         stars.texture.filter = phoenix.Texture.FilterType.nearest;
         stars.texture.clamp = phoenix.Texture.ClampType.repeat;
 
     } //ready
+
+    public function onmousemove( e:MouseEvent ) {
+        mousetext.text = 'mouse pos' + e.pos;
+    }
 
     public function onkeyup( e:KeyEvent ) {
 
