@@ -56,9 +56,11 @@ class Main extends luxe.Game {
 
         vel = new Vector(0,0);
 
+        Luxe.fixed_timestep = 1/Luxe.core.config.fps;
+
     } //ready
   
-    public function oninputdown( name:String ) {
+    public function oninputdown( name:String, e:InputEvent ) {
         
         if(name == 'jump') {
             jump();
