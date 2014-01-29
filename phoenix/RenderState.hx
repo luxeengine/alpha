@@ -93,4 +93,12 @@ class RenderState {
         }
     }
 
+    var _last_line_width:Float = 1;
+    public function lineWidth( _width:Float ) {
+        if(_last_line_width != _width) {
+            _last_line_width = _width;
+            lime.gl.GL.lineWidth( _width );
+        }
+    }
+
 } //RenderState

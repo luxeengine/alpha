@@ -21,7 +21,13 @@ class Builder {
 
             trace("\t      start build on " + path);
 
-                var p = new Process("lime", [ "build", target ]);
+                var args = [ "build", target ];
+                
+                if( target == "html5" ) {
+                    args.push("-minify");
+                }
+
+                var p = new Process("lime", args );
 
                 var running = true;
                 while(running) {

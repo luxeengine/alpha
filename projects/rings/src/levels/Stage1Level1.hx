@@ -85,7 +85,7 @@ class Stage1Level1 extends State {
 
     public function init( _main:Main ) {
 
-        lime.gl.GL.lineWidth( finger_size*0.02 );
+        Luxe.renderer.state.lineWidth( finger_size*0.02 );
 
         main = _main;
 
@@ -261,12 +261,12 @@ class Stage1Level1 extends State {
         // aim.enabled = false;
 
         Luxe.addGroup(2, 
-            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.05 ); },
-            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.02 ); }
+            function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.05 ); },
+            function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.02 ); }
         );
         Luxe.addGroup(4, 
-            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.03 ); },
-            function(b:Batcher){ lime.gl.GL.lineWidth( finger_size*0.02 ); }
+            function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.03 ); },
+            function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.02 ); }
         );
 
         mainring.locked = true;

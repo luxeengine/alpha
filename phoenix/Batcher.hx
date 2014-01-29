@@ -79,7 +79,7 @@ class Batcher {
     public var static_normals  : Int = 0;
 
         //the current number of active buffers in the ring
-    public var buffer_count : Int = 8;
+    public var buffer_count : Int = 16;
 
         //the index we are on
     public var buffer_index : Int = 0;
