@@ -8,6 +8,8 @@ typedef SpriteOptions<T> = {
   > VisualOptions<T>,
 
     ?centered : Bool,
+    ?flipx : Bool,
+    ?flipy : Bool,
     ?uv : Rectangle
 
 }

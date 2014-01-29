@@ -836,19 +836,19 @@ class Entity extends Objects {
 
     } //set_scale
 
-    @:hide public function internal_parent_pos_changed(_parent_pos:Vector) {
+    @:noCompletion  public function internal_parent_pos_changed(_parent_pos:Vector) {
             //our position is updated as parent_pos+relativePos
         pos = _parent_pos.clone().add( posRelative );
 
     }//internal_parent_pos_changed
 
-    @:hide public function internal_parent_rotation_changed(_parent_rotation:Vector) {
+    @:noCompletion  public function internal_parent_rotation_changed(_parent_rotation:Vector) {
             //our rotation is updated as parent_rotation+relative
         rotation = _parent_rotation.clone().add( rotationRelative );
 
     }//internal_parent_pos_changed
 
-    @:hide public function internal_parent_scale_changed(_parent_scale:Vector) {
+    @:noCompletion  public function internal_parent_scale_changed(_parent_scale:Vector) {
             //our scale is updated as parent_scale+relative
         scale = _parent_scale.clone().add( scaleRelative );
 

@@ -12,14 +12,21 @@ class Main extends luxe.Game {
         
         test_sprite1 = new Sprite({
             texture : Luxe.loadTexture('assets/luxe.png'),
-            pos : new Vector(0,0)
+            pos : Luxe.screen.mid,
+            centered : false,
+            flipx:true,
+            flipy:true
         });
+
+        test_sprite1.centered = true;
+        test_sprite1.flipx = false;
+        test_sprite1.flipy = false;
 
     } //ready
   
-    public function onmousemove(e) {
+    public function onmouseup(e) {
         var m = new Vector(e.x,e.y);
-        test_sprite1.pos = m;
+            test_sprite1.pos = m;
     }
 
 

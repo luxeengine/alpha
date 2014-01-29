@@ -21,7 +21,7 @@ class Bullet extends Component {
     public var spawn_pos : Vector;
 
     public var speed : Float = 1;
-    @:hide public var collider : Circle;
+    public var collider : Circle;
     
     var ignored_colliders : Array<Shape>;
     var bounds : Rectangle;

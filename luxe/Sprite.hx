@@ -13,9 +13,9 @@ import luxe.options.SpriteOptions;
 class Sprite extends Visual {
     
     @:isVar public var centered     (default,set    )   : Bool = true;    
-    @:isVar public var uv           (default,set    )   : Rectangle;
-    @:isVar public var flipy        (default,set    )   : Bool = false;
     @:isVar public var flipx        (default,set    )   : Bool = false;
+    @:isVar public var flipy        (default,set    )   : Bool = false;
+    @:isVar public var uv           (default,set    )   : Rectangle;
 
     public var geometry_quad : QuadGeometry; 
 
@@ -30,6 +30,16 @@ class Sprite extends Visual {
             //centered
         if(options.centered != null) {
             centered = options.centered;
+        }
+
+            //flipx
+        if(options.flipx != null) {
+            flipx = options.flipx;
+        }
+
+            //flipy
+        if(options.flipy != null) {
+            flipy = options.flipy;
         }
 
             //create visual
@@ -68,6 +78,9 @@ class Sprite extends Visual {
 
             //set the origin and centered once created
         centered = !!centered;
+            //and re assign the flip values
+        flipx = !!flipx;
+        flipy = !!flipy;
 
     } //on_geometry_created
 
@@ -173,16 +186,14 @@ class Sprite extends Visual {
 
     private function set_centered(_c:Bool) : Bool {
 
-            //centered geometry affects the origin
-        if(geometry != null) {
-            if(size != null) {
-                if(centered) {
-                    origin = new Vector(size.x/2, size.y/2);
-                } else {
-                    origin = new Vector();
-                }
-            } //size != null
-        } //geometry != null
+            //centered geometry affects the origin directly
+        if(size != null) {
+            if(_c) {
+                origin = new Vector(size.x/2, size.y/2);
+            } else {
+                origin = new Vector();
+            }
+        } //size != null
 
         return centered = _c;
     
@@ -191,7 +202,7 @@ class Sprite extends Visual {
 
 //Serialize
 
-    public override function get_serialize_data() : Dynamic {
+    @:noCompletion public override function get_serialize_data() : Dynamic {
         
         var _data : Dynamic = super.get_serialize_data();
 
