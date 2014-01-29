@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [6887d8ef79](http://github.com/underscorediscovery/luxe/commit/6887d8ef79343dd48fa15dec33397406afdcbc9f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 29 2014 16:48:32 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>RenderState; adding lineWidth to reduce redundant calls</li><li>Builder; html5 minify flag added</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a35854756b](http://github.com/underscorediscovery/luxe/commit/a35854756bf193414ee2e09599a51e53fdda0ed1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 29 2014 16:40:57 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Sprite; adding flipx, flipy to the constructor options</li><li>Sprite; making centered, flipx and flipy consistent whether you set it in the constructor or after</li><li>Sprite; Fix #59</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [66dedb203d](http://github.com/underscorediscovery/luxe/commit/66dedb203d2feb7ba8ff7d854d79979241435531)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Jan 28 2014 03:56:40 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [1b136ee9f7](http://github.com/underscorediscovery/luxe/commit/1b136ee9f7779db0f243f0b877ca368b1f55a5fa)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Tue Jan 28 2014 03:56:24 GMT-0330 (NST)   
