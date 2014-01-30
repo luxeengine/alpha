@@ -7,6 +7,7 @@ import luxe.Color;
 
 import luxe.tilemaps.TiledMap;
 import luxe.tilemaps.Tilemap;
+import luxe.tilemaps.Isometric;
 
 class Main extends luxe.Game {
 
@@ -148,7 +149,11 @@ class Main extends luxe.Game {
         if(right_down) {
             Luxe.camera.pos.x += 150 / Luxe.camera.zoom * dt;
         } //right_down
-
+		
+		// Get the tile position that the mouse is hovering.
+		var mouse_pos = Luxe.camera.screen_point_to_world(new Vector(Luxe.mouse.x , Luxe.mouse.y ));
+		var tile_pos = Isometric.worldpos_to_tile_coord(mouse_pos.x - tiled_iso.pos.x, mouse_pos.y - tiled_iso.pos.y, tiled_iso.tile_width, tiled_iso.tile_height);
+		trace(tile_pos.toString());
     } //update
 
     function draw_tiled_object_groups( _scale:Float = 1) {

@@ -9,17 +9,17 @@ import luxe.tilemaps.Isometric;
 
 import phoenix.Texture.FilterType;
 import phoenix.geometry.Geometry;
+import phoenix.Vector;
 
 class Isometric {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
         
-        // var _tile_x = Math.floor(world_x / tile_width);
-        // var _tile_y = Math.floor(world_y / tile_height);
+        var tilePos = new Vector(0, 0);
+        tilePos.x = (world_x / (tile_width * 0.5) + world_y / (tile_height * 0.5)) * 0.5;
+        tilePos.y = (world_y / (tile_height * 0.5) - world_x / (tile_width * 0.5)) * 0.5;
 
-        // return new Vector( _tile_x, _tile_y );
-
-        return new Vector();
+        return tilePos;
 
     } //worldpos_to_tile_coord
 
@@ -29,9 +29,6 @@ class Isometric {
             //top left by default
         if(offset_x == null) {  offset_x = TileOffset.left;  };
         if(offset_y == null) {  offset_y = TileOffset.top;   };
-
-        // var _world_x = tile_x * tile_width;
-        // var _world_y = tile_y * tile_height;
 
         // switch(offset_x) {
         //     case TileOffset.center:    { _world_x += (tile_width/2) }            
@@ -45,7 +42,11 @@ class Isometric {
         //     case TileOffset.top:       { }
         // }
 
-        return new Vector( 0, 0 );
+        var worldPos = new Vector(0, 0);
+        worldPos.x = (tile_x - tile_y) * tile_width * 0.5;
+        worldPos.y = (tile_x + tile_y) * tile_height * 0.5;
+
+        return worldPos;
         
     } //tile_coord_to_worldpos
 
@@ -86,13 +87,15 @@ class IsometricVisuals extends TilemapVisuals {
 
                         //the half tile size in world space, not tile space
                     var _half_world_tile_width = _scaled_tilewidth/2;
-                    var _half_world_tile_height = _scaled_tileheight/2;
-
+                    var _half_world_tile_height = _scaled_tileheight / 2;
+					
+					
+					var _iso_pos = Isometric.tile_coord_to_worldpos(x, y, cast(_scaled_tilewidth, Int), cast(_scaled_tileheight, Int));
                         //create the tile to the geometry
                     var _tile_geom = Luxe.draw.box({
                             //the positions are based on the map tile width, not the texture tilesize
-                        x : (map.pos.x + ((x - y) * _half_world_tile_width)) - _half_world_tile_width,
-                        y : (map.pos.y + ((x + y) * _half_world_tile_height)) - _half_world_tile_height,
+                        x : _iso_pos.x + map.pos.x,
+                        y : _iso_pos.y + map.pos.y,
                             //the geometry size is based on the texture/tileset size, not the map size
                         w : _scaled_tileset_tilewidth, 
                         h : _scaled_tileset_tileheight,
