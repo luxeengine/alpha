@@ -17,6 +17,8 @@ class Main extends luxe.Game {
     var tiled_ortho : TiledMap;
         //A tiled iso map from a tmx
     var tiled_iso : TiledMap;
+        //text to display a position
+    public var tile_text : luxe.Text;
 
     public function ready() {
         
@@ -29,12 +31,20 @@ class Main extends luxe.Game {
         load_ortho_tiledmap();
         load_isometric_tiledmap();
 
+         tile_text = new luxe.Text({
+            color : new Color(1,1,1,1),
+            pos : new Vector(10,10),
+            font : Luxe.renderer.default_font,
+            size : 24, 
+            text : "move the mouse"
+        });
+
     } //ready
 
     function load_isometric_tiledmap() {
         
-        tiled_iso = new TiledMap( { file:'assets/isotiles.tmx', pos : new Vector(224,0) } );
-        tiled_iso.display({scale:1});
+        tiled_iso = new TiledMap( { file:'assets/isotiles.tmx', pos : new Vector(256,128) } );
+        tiled_iso.display({ scale:1, grid:true});
 
     }
 
@@ -140,6 +150,19 @@ class Main extends luxe.Game {
 
     } //onkeydown
 
+
+
+    public function onmousemove(e:MouseEvent) {
+                // Get the tile position that the mouse is hovering.
+        var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
+        
+        var tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos );
+        var world = tiled_iso.worldpos_to_map( mouse_pos );
+        
+        tile_text.text = world + "\n" + tile;
+
+    }
+
     public function update(dt:Float) {
 
         if(left_down) {
@@ -150,10 +173,6 @@ class Main extends luxe.Game {
             Luxe.camera.pos.x += 150 / Luxe.camera.zoom * dt;
         } //right_down
 		
-		// Get the tile position that the mouse is hovering.
-		var mouse_pos = Luxe.camera.screen_point_to_world(new Vector(Luxe.mouse.x , Luxe.mouse.y ));
-		var tile_pos = Isometric.worldpos_to_tile_coord(mouse_pos.x - tiled_iso.pos.x, mouse_pos.y - tiled_iso.pos.y, tiled_iso.tile_width, tiled_iso.tile_height);
-		trace(tile_pos.toString());
     } //update
 
     function draw_tiled_object_groups( _scale:Float = 1) {

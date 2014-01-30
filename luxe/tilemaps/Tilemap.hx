@@ -263,6 +263,14 @@ class Tilemap {
             return false;
         }
 
+        if( x < 0) {
+            return false;
+        }
+
+        if( y < 0 ) {
+            return false;
+        }
+
         if( y > height-1 ) {
             return false;
         }
@@ -287,8 +295,8 @@ class Tilemap {
                 }
 
                 case TilemapOrientation.isometric: {
-                    // var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
-                    // return _worldpos.add( pos );
+                    var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    return _worldpos.add( pos );
                 }
 
                 default: {
@@ -310,14 +318,14 @@ class Tilemap {
             case TilemapOrientation.ortho: {
 
                 var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
-                return tile_at( layer_name, Std.int(_tile_pos.x), Std.int(_tile_pos.y) );
+                return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //ortho
 
             case TilemapOrientation.isometric: {
                 
-                // var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );                
-                return null;
+                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+                return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //isometric
 
@@ -331,13 +339,29 @@ class Tilemap {
 
     } //tile_at_pos
 
+    public function worldpos_to_map( worldpos:Vector ) {
+        
+         switch(orientation) {
+
+            case TilemapOrientation.ortho: {
+                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+            }
+
+            case TilemapOrientation.isometric {
+                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+            }
+
+        } //switch orientation
+
+    } //worldpos_to_map
+
     public function layer( layer_name:String ) {
         return layers.get( layer_name );
     }
 
         //return a tile from a layer, in tile coordinates
     public function tile_at( layer_name:String, x:Int, y:Int ) {
-
+        
         if( inside(x,y) ) {
             var _layer = layers.get(layer_name);
             if(_layer != null) {
