@@ -2,6 +2,8 @@ package luxe;
 
 import luxe.Core;
 
+import lime.helpers.AudioHelper.Sound;
+
 class Audio {
     
     @:noCompletion public var core : Core;
@@ -20,11 +22,11 @@ class Audio {
         core._debug(':: luxe :: \t Audio shut down.');
     } //destroy
 
-    public function create(_name:String,_file:String, ?_forcemusic:Bool = false ) {
-        return core.lime.audio.create( _name, _file, _forcemusic );
+    public function create(_name:String,_file:String, ?_is_music:Bool = false ) : Sound {
+        return core.lime.audio.create( _name, _file, _is_music );
     } //create
 
-    public function sound( _name:String ) {
+    public function sound( _name:String ) : Sound {
         return core.lime.audio.sound(_name);
     } //sound
 
@@ -32,7 +34,7 @@ class Audio {
         return core.lime.audio.exists(_name);
     } //exists
 
-    public function playing( _name:String ) {
+    public function playing( _name:String ) : Bool {
         return core.lime.audio.playing( _name );
     } //playing
 
