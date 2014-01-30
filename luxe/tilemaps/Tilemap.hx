@@ -340,18 +340,22 @@ class Tilemap {
     } //tile_at_pos
 
     public function worldpos_to_map( worldpos:Vector ) {
-        
+
          switch(orientation) {
 
             case TilemapOrientation.ortho: {
                 return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
             }
 
-            case TilemapOrientation.isometric {
+            case TilemapOrientation.isometric: {
                 return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
             }
 
+            default:{}
+
         } //switch orientation
+
+        return null;
 
     } //worldpos_to_map
 
