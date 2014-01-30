@@ -1,6 +1,90 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [52f9197aa5](http://github.com/underscorediscovery/luxe/commit/52f9197aa5a5987c3d0c94937cc26f005370e868)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 30 2014 00:32:23 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Audio; cleanup return types and clarity in the api flags</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6e1c4dfcfb](http://github.com/underscorediscovery/luxe/commit/6e1c4dfcfb81acc23357e35ff0fac7a7c4f8a90b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 29 2014 23:38:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Audio; remap api to latest lime. REQUIRES latest lime repo code for now...</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [71ef9fdb4e](http://github.com/underscorediscovery/luxe/commit/71ef9fdb4e85d0122cc59bc5eda74f469d09be3a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 29 2014 23:33:50 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; making ortho code consistent with code from whuop</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [99f42878f0](http://github.com/underscorediscovery/luxe/commit/99f42878f063cdb9a433b0e5ca85cad91d13f5b7)   
+author: Kristian Brodal <kristianbrodal@gmail.com>   
+date: Wed Jan 29 2014 23:17:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Added conversion for tile -> isometric and isometric -> tile. Should work, after offset has been accounted for.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [4943f4165d](http://github.com/underscorediscovery/luxe/commit/4943f4165dccced21e77a878c72a13f4978c15a8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 29 2014 22:26:24 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemap; fixing html5 loading of json types, and fixing isometric being broken by layer / opacity being non existent in the tiles descriptions</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [04cdf39752](http://github.com/underscorediscovery/luxe/commit/04cdf39752ff58ee2e236520347ad61b20232b38)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Jan 29 2014 16:48:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [6887d8ef79](http://github.com/underscorediscovery/luxe/commit/6887d8ef79343dd48fa15dec33397406afdcbc9f)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Wed Jan 29 2014 16:48:32 GMT-0330 (NST)   
