@@ -38,6 +38,10 @@ class Audio {
         return core.lime.audio.playing( _name );
     } //playing
 
+    public function on_complete( _name:String, handler:Sound->Void ) : Void {
+        return core.lime.audio.sound( _name ).on_complete( handler );
+    } //playing
+
         //will loop a sound indefinitely until stop is called
     public function loop( _name:String ) {
         return core.lime.audio.loop(_name);
