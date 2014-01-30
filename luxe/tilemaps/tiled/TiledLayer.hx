@@ -37,8 +37,11 @@ class TiledLayer {
             name = root.get("name");
             width = Std.parseInt(root.get("width"));
             height = Std.parseInt(root.get("height"));
-            opacity = Std.parseFloat(root.get("opacity"));
-            visible = root.get("visible") == "0" ? false : true;
+
+            var _opacity = root.get("opacity");
+            var _visible = root.get("visible");
+            opacity = (_opacity == null) ? 1.0 : Std.parseFloat(_opacity);
+            visible = (_visible == "0") ? false : true;
             
         for (child in root) {
 

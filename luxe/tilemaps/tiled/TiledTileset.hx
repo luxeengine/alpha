@@ -93,10 +93,10 @@ class TiledTileset {
 	public function from_json( json:Dynamic ) {
 
 		name = Reflect.field(json, "name");
-		tile_width = Std.parseInt(Reflect.field(json, "tilewidth"));
-		tile_height = Std.parseInt(Reflect.field(json, "tileheight"));
-		spacing = Std.parseInt(Reflect.field(json, "spacing"));
-		margin = Std.parseInt(Reflect.field(json, "margin"));
+		tile_width = cast Reflect.field(json, "tilewidth");
+		tile_height = cast Reflect.field(json, "tileheight");
+		spacing = cast Reflect.field(json, "spacing");
+		margin = cast Reflect.field(json, "margin");
 
 		var fields = Reflect.fields(json);
 		for(nodename in fields) {
@@ -112,13 +112,13 @@ class TiledTileset {
 					} //properties
 
 					case "image" : {
-						// var width = Std.parseInt(Reflect.field(child, "width"));
-						// var height = Std.parseInt(Reflect.field(child, "height"));
+						// var width = cast Reflect.field(child, "width");
+						// var height = cast Reflect.field(child, "height");
 						texture_name = child;
 					} //image
 
 					case "tile" : {
-						var _tile_id:Int = Std.parseInt(Reflect.field(child, "id"));
+						var _tile_id:Int = cast Reflect.field(child, "id");
 						var _tile_props:Map<String, String> = new Map<String, String>();
 
 							var tile_fields = Reflect.fields(child);

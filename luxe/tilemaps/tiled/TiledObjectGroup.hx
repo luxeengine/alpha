@@ -75,8 +75,8 @@ class TiledObject {
 		var points:Array<Vector> = new Array<Vector>();
 		var point_list : Array<Dynamic> = cast json;
 		for(point in point_list) {
-			var _x = Std.parseInt(Reflect.field(point,"x"));
-			var _y = Std.parseInt(Reflect.field(point,"y"));
+			var _x = cast Reflect.field(point,"x");
+			var _y = cast Reflect.field(point,"y");
 			points.push(new Vector(_x,_y));
 		}
 		
@@ -139,14 +139,16 @@ class TiledObject {
 
 	public function from_json( json:Dynamic ) {
 
-		gid = Reflect.field(json, "gid") != null ? Std.parseInt(Reflect.field(json, "gid")) : 0;
+		var _gid = Reflect.field(json, "gid");
+		gid = _gid != null ? cast _gid : 0;
+
 		name = Reflect.field(json, "name");
 		type = Reflect.field(json, "type");
 		visible = cast Reflect.field(json, "visible");
-		pos.x = Std.parseInt(Reflect.field(json, "x"));
-		pos.y = Std.parseInt(Reflect.field(json, "y"));
-		width = Std.parseInt(Reflect.field(json, "width"));
-		height = Std.parseInt(Reflect.field(json, "height"));
+		pos.x = cast Reflect.field(json, "x");
+		pos.y = cast Reflect.field(json, "y");
+		width = cast Reflect.field(json, "width");
+		height = cast Reflect.field(json, "height");
 		
 		//default to rectangle
 		object_type = TiledObjectType.rectangle;
@@ -255,8 +257,8 @@ class TiledObjectGroup {
 		color = Reflect.field(json, "color");
 		visible = cast Reflect.field(json, "visible");
 		opacity = Reflect.field(json, "opacity");
-		width = Std.parseInt(Reflect.field(json, "width"));
-		height = Std.parseInt(Reflect.field(json, "height"));
+		width = cast Reflect.field(json, "width");
+		height = cast Reflect.field(json, "height");
 			
         var fields = Reflect.fields(json);
         for( nodename in fields ) {
