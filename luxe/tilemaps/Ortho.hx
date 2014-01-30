@@ -13,36 +13,40 @@ class Ortho {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
         
-        var _tile_x = Math.floor(world_x / tile_width);
-        var _tile_y = Math.floor(world_y / tile_height);
+        var tile_coord = new Vector();
 
-        return new Vector( _tile_x, _tile_y );
+            tile_coord.x = Math.floor(world_x / tile_width);
+            tile_coord.y = Math.floor(world_y / tile_height);
+
+        return tile_coord;
 
     } //worldpos_to_tile_coord
 
     public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int, 
                                                    ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
+            
+        var world_pos = new Vector();
+
+            world_pos.x = tile_x * tile_width;
+            world_pos.y = tile_y * tile_height;
 
             //top left by default
         if(offset_x == null) { offset_x = TileOffset.left; };
         if(offset_y == null) { offset_y = TileOffset.top; };
 
-        var _world_x : Float = tile_x * tile_width;
-        var _world_y : Float = tile_y * tile_height;
+            switch(offset_x) {
+                case TileOffset.center:    { world_pos.x += (tile_width/2); }            
+                case TileOffset.right:     { world_pos.x += tile_width; }
+                default:
+            }
 
-        switch(offset_x) {
-            case TileOffset.center:    { _world_x += (tile_width/2); }            
-            case TileOffset.right:     { _world_x += tile_width; }
-            default:
-        }
+            switch(offset_y) {
+                case TileOffset.center:    { world_pos.y += (tile_height/2); }            
+                case TileOffset.bottom:    { world_pos.y += tile_height; }
+                default:
+            }
 
-        switch(offset_y) {
-            case TileOffset.center:    { _world_y += (tile_height/2); }            
-            case TileOffset.bottom:    { _world_y += tile_height; }
-            default:
-        }
-
-        return new Vector( _world_x, _world_y );
+        return world_pos;
         
     } //tile_coord_to_worldpos
 

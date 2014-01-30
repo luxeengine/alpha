@@ -15,38 +15,39 @@ class Isometric {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
         
-        var tilePos = new Vector(0, 0);
-        tilePos.x = (world_x / (tile_width * 0.5) + world_y / (tile_height * 0.5)) * 0.5;
-        tilePos.y = (world_y / (tile_height * 0.5) - world_x / (tile_width * 0.5)) * 0.5;
+        var tile_pos = new Vector();
 
-        return tilePos;
+            tile_pos.x = (world_x / (tile_width * 0.5) + world_y / (tile_height * 0.5)) * 0.5;
+            tile_pos.y = (world_y / (tile_height * 0.5) - world_x / (tile_width * 0.5)) * 0.5;
+
+        return tile_pos;
 
     } //worldpos_to_tile_coord
 
     public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int, 
                                                    ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
+        var world_pos = new Vector();
         
+            world_pos.x = (tile_x - tile_y) * tile_width * 0.5;
+            world_pos.y = (tile_x + tile_y) * tile_height * 0.5;
+
             //top left by default
         if(offset_x == null) {  offset_x = TileOffset.left;  };
         if(offset_y == null) {  offset_y = TileOffset.top;   };
 
-        // switch(offset_x) {
-        //     case TileOffset.center:    { _world_x += (tile_width/2) }            
-        //     case TileOffset.right:     { _world_x += tile_width; }
-        //     case TileOffset.left:      { }
-        // }
+            // switch(offset_x) {
+            //     case TileOffset.center:    { _world_x += (tile_width/2) }            
+            //     case TileOffset.right:     { _world_x += tile_width; }
+            //     case TileOffset.left:      { }
+            // }
 
-        // switch(offset_y) {
-        //     case TileOffset.center:    { _world_y += (tile_height/2) }            
-        //     case TileOffset.bottom:    { _world_y += tile_height; }
-        //     case TileOffset.top:       { }
-        // }
+            // switch(offset_y) {
+            //     case TileOffset.center:    { _world_y += (tile_height/2) }            
+            //     case TileOffset.bottom:    { _world_y += tile_height; }
+            //     case TileOffset.top:       { }
+            // }
 
-        var worldPos = new Vector(0, 0);
-        worldPos.x = (tile_x - tile_y) * tile_width * 0.5;
-        worldPos.y = (tile_x + tile_y) * tile_height * 0.5;
-
-        return worldPos;
+        return world_pos;
         
     } //tile_coord_to_worldpos
 
