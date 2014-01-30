@@ -104,12 +104,18 @@ class Main extends luxe.Game {
             //note we add them out of order with the index, just for testing that
         small_tiles.add_layer({ name:'fg', layer:1, opacity:1, visible:true });
         small_tiles.add_layer({ name:'bg', layer:0, opacity:1, visible:true });        
+        small_tiles.add_layer({ name:'removed', layer:2, opacity:1, visible:true });        
 
             //create them by filling the layer with a fixed id, in this case 21
         small_tiles.add_tiles_fill_by_id( 'bg', 21 );
+        small_tiles.add_tiles_fill_by_id( 'removed', 2 );
+
             //create some tiles from a grid specified above
         small_tiles.add_tiles_from_grid( 'fg', small_tiles_grid );
 
+            //before we display it, remove the "removed" layer so it's not there
+        small_tiles.remove_layer('removed');
+        
             //finally, tell it to display
         small_tiles.display({ scale:1 });
 

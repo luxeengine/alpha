@@ -363,6 +363,10 @@ class Tilemap {
         return layers.get( layer_name );
     }
 
+    public function tileset( layer_name:String ) {
+        return tilesets.get( layer_name );
+    }
+
         //return a tile from a layer, in tile coordinates
     public function tile_at( layer_name:String, x:Int, y:Int ) {
         
@@ -422,6 +426,30 @@ class Tilemap {
         return tileset;
 
     } //tileset_from_id
+
+    public function remove_tileset( name:String, _destroy_textures:Bool = false ) : Bool {
+        
+        var _tileset = tileset(name);
+
+            if(_tileset != null && _destroy_textures) {
+                _tileset.texture.destroy();
+            }
+
+        return tilesets.remove( name );
+    
+    } //remove_tileset
+
+    public function remove_layer( name:String ) : Bool {
+        
+        var _layer = layer(name);
+
+            if(_layer != null) {
+                layers_ordered.remove( _layer );
+            }
+
+        return layers.remove( name );
+
+    } //remove_layer
 
     public function add_layer( options:TileLayerOptions ) {
             
