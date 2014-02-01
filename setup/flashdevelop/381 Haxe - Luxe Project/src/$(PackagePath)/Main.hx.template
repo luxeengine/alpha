@@ -1,0 +1,49 @@
+package $(PackageName);
+
+import luxe.Rectangle;
+import luxe.Vector;
+import luxe.Input;
+import luxe.Color;
+import luxe.Text;
+
+class Main extends luxe.Game {
+
+    public var delta_time_text : luxe.Text;
+
+    public function ready() {
+
+            //Create some text!
+        delta_time_text = new Text({
+			align : TextAlign.center,
+			align_vertical : TextAlign.center,
+            bounds : new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h),
+            color : new Color(0,0,0,1).rgb(0xff440b),
+            size : 26
+        });
+
+    } //ready
+  
+    public function onkeyup(e:KeyEvent) {
+        
+            //quit when we press escapes
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
+
+    } //onkeyup
+
+    public function update(dt:Float) {
+
+            //Update the text each frame
+        delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
+
+    } //update
+
+    public function destroyed() {
+    
+        //called when the engine is shutting down, you can cleanup in here
+
+    } //destroyed
+}
+
+
