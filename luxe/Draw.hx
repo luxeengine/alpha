@@ -129,7 +129,7 @@ class Draw {
         return _circle;
     } //circle
 
-    public function ngon(options:Dynamic) {
+    public function ngon(options:Dynamic) : Geometry {
 
         options = default_options(options);
 
@@ -195,6 +195,8 @@ class Draw {
         } //for all sides
 
         options.batcher.add(_geometry);
+
+        return _geometry;
 
     }
 
