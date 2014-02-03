@@ -18,10 +18,15 @@ class Resource extends Droppable {
 	public var type : ResourceType;
 	public var id : String;
 	public var persistent : Bool = false;
+	public var time_to_load : Float = 0;
+	public var time_created : Float = 0;
 
-	public function new( _manager : ResourceManager, _type:ResourceType ) {
+	public function new( _manager : ResourceManager, _type:ResourceType, ?_load_time:Float ) {
 		manager = _manager == null ? Luxe.resources : _manager;
 		type = _type;
+		
+		time_to_load = _load_time;
+		time_created = haxe.Timer.stamp();
 
 		manager.add( this );
 	}

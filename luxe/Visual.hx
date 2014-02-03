@@ -156,13 +156,15 @@ class Visual extends Entity {
                 _creating_geometry = false;
 
                     //Only add to the batcher if requested
-                if(options.add == null || options.add != false) {
+                if(options.no_batcher_add == null || options.no_batcher_add != true) {
+
                     if(options.batcher == null) {
                         Luxe.addGeometry( geometry );
                     } else {
                         options.batcher.add( geometry );
                     }
-                }
+
+                } //no_batcher_add
 
 
                     //call the geometry create listener
@@ -342,8 +344,12 @@ class Visual extends Entity {
     
     private function set_size( _v:Vector ) : Vector {  
 
+        size = _v;
+
+            _attach_listener( size, _size_change );
+
             //done
-        return size = _v;
+        return size;
 
     } //set_size
 
@@ -427,6 +433,11 @@ class Visual extends Entity {
     private function set_clip_rect(val : Rectangle) : Rectangle {
         return geometry.clip_rect = val;
     }
+
+//Size
+
+        //An internal callback for when x y or z on a size changes
+    private function _size_change( _v:Float ) { this.set_size( size ); }
 
     public override function get_serialize_data() : Dynamic {
 

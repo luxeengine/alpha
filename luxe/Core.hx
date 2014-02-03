@@ -20,7 +20,7 @@ import phoenix.Renderer;
 
 import phoenix.Renderer;
 
-#if (luxe_thread_core && luxe_native) 
+#if (luxe_core_thread && luxe_native) 
     import cpp.vm.Thread;
 #end
 
@@ -241,51 +241,67 @@ import phoenix.Renderer;
         //Called by Lime
     public function update() { 
 
-        _debug('on_update ' + haxe.Timer.stamp(), true, true);         
+        #if luxe_fullprofile 
+            _debug('on_update ' + haxe.Timer.stamp(), true, true);
+        #end //luxe_fullprofile
 
         if(has_shutdown) return;
+
             //Update all the subsystems, again, order important
+//Timers first
+            #if luxe_fullprofile debug.start(core_tag_time); #end
+        time.process();     
+            #if luxe_fullprofile debug.end(core_tag_time); #end
+//Input second
+            #if luxe_fullprofile debug.start(core_tag_input); #end
+        input.process();    
+            #if luxe_fullprofile debug.end(core_tag_input); #end
+//Audio
+            #if luxe_fullprofile debug.start(core_tag_audio); #end
+        audio.process();    
+            #if luxe_fullprofile debug.end(core_tag_audio); #end
+//Events
+            #if luxe_fullprofile debug.start(core_tag_events); #end
+        events.process();   
+            #if luxe_fullprofile debug.end(core_tag_events); #end
 
-        debug.start('core.time');
-            time.process();     //Timers first
-        debug.end('core.time');
-
-        debug.start('core.input');
-        input.process();    //Input second
-        debug.end('core.input');
-
-        debug.start('core.audio');
-        audio.process();    //Audio
-        debug.end('core.audio');
-
-        debug.start('core.events');
-        events.process();   //events
-        debug.end('core.events');
-
+//Physics
         #if haxebullet
-            debug.start('core.physics');
+            debug.start(core_tag_physics);
             physics.process();   //physics 
-            debug.end('core.physics');
+            debug.end(core_tag_physics);
         #end //haxebullet
 
-            //Update internal callbacks
-        debug.start('core.updatecallbacks');
+//Run update callbacks
+            #if luxe_fullprofile debug.start(core_tag_updates); #end
+        
         for(_update in _update_handlers) {
             _update(Luxe.dt);
         }
-        debug.end('core.updatecallbacks');
+            #if luxe_fullprofile debug.end(core_tag_updates); #end
 
-            //Update the default scene first
-        debug.start('core.scene');
+//Update the default scene            
+            debug.start(core_tag_scene);
         scene.update(Luxe.dt);
-        debug.end('core.scene');
+            debug.end(core_tag_scene);
 
-            //Update the game class for them
+//Update the game class for the host
         if(host.update != null) {
-            debug.start('host.update');
+
+            debug.start( host_tag_update );
+
             host.update(Luxe.dt);
-            debug.end('host.update');
-        }
+            
+            debug.end( host_tag_update );
+
+        } //host.update
+
+//And finally the debug stuff
+            debug.start(core_tag_debug);
+        debug.process(); 
+            debug.end(core_tag_debug);
+
+//Update delta time
 
             //work out the last frame time
         dt = (Luxe.fixed_timestep != 0) ? Luxe.fixed_timestep : (haxe.Timer.stamp() - end_dt);
@@ -294,17 +310,12 @@ import phoenix.Renderer;
             //store the latest time frame
         end_dt = haxe.Timer.stamp();
 
-        debug.start('core.debug');
-            //finally, process the debug update
-        debug.process(); 
-        debug.end('core.debug');
-
     } //update
 
         //called by Lime
     public function render() {        
 
-        debug.start('core.render');
+        debug.start(core_tag_render);
 
             //Call back to the game class for them
         if(host.prerender != null) {
@@ -319,7 +330,7 @@ import phoenix.Renderer;
             host.postrender();
         }
 
-        debug.end('core.render');
+        debug.end(core_tag_render);
 
     }
 
@@ -569,7 +580,18 @@ import phoenix.Renderer;
 
 //Noisy stuff
 
-        //temporary debugging with verbosity options
+    private static inline var host_tag_update : String = 'host.update';
+    private static inline var core_tag_render : String = 'core.render';
+    private static inline var core_tag_debug : String = 'core.debug';
+    private static inline var core_tag_physics : String = 'core.physics';
+    private static inline var core_tag_updates : String = 'core.update_callbacks';
+    private static inline var core_tag_events : String = 'core.events';
+    private static inline var core_tag_audio : String = 'core.audio';
+    private static inline var core_tag_input : String = 'core.input';
+    private static inline var core_tag_time : String = 'core.time';
+    private static inline var core_tag_scene : String = 'core.scene';
+
+//temporary debugging with verbosity options
 
     public var log : Bool = false;
     public var verbose : Bool = true;

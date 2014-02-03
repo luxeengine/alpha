@@ -24,9 +24,9 @@ typedef VisualOptions<T> = {
     ?depth : Float,
     ?group : Int,
     ?rotation_z : Float,
-    ?visible : Bool,
-    ?add : Bool,        
+    ?visible : Bool,    
     ?serialize : Bool,
     ?geometry : Geometry,
-    ?no_geometry : Bool
+    ?no_geometry : Bool,
+    ?no_batcher_add : Bool
 }

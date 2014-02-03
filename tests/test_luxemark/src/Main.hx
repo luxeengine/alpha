@@ -17,17 +17,18 @@ class Item {
 		var s = Math.random();
 		sprite = new Sprite({
 			texture:t,
+            no_scene : true,
 			pos : new Vector(Math.random()*Luxe.screen.w,Math.random()*Luxe.screen.h),
 			color : new Color(Math.random(),Math.random(),Math.random(),1),
 			rotation_z : Math.random() * 360,
-			size : new Vector(20+(s*60), 25+(s*75))
+			size : new Vector(26, 37)
 		});
 	}
 }
 
 class Main extends luxe.Game {
 
-	var num : Int = 500;
+	var num : Int = 100;
 
     var list : Array<Item>;
     var list2 : Array<Item>;
@@ -59,7 +60,7 @@ class Main extends luxe.Game {
     		list4.push(new Item(tex));    		
     	}  
 
-        #if luxe_native
+        #if (luxe_native && luxemark_threads)
             cpp.vm.Thread.create(_update);
             cpp.vm.Thread.create(_update2);
             cpp.vm.Thread.create(_update3);
@@ -69,10 +70,12 @@ class Main extends luxe.Game {
     } //ready
 
     public function update(dt:Float) {
-        _update();
-        _update2();
-        _update3();
-        _update4();
+        #if (!luxemark_threads)
+            _update();
+            _update2();
+            _update3();
+            _update4();
+        #end
     }
 
     public function onkeyup( e:KeyEvent ) {
@@ -85,7 +88,7 @@ class Main extends luxe.Game {
 
     var continued : Bool = true;
     public function _update() {
-        #if luxe_native while(continued) { #end
+        #if (luxe_native && luxemark_threads) while(continued) { #end
             for(i in 0 ... num) {
                 var _i:Item = list[i];
                 _i.sprite.pos.x += _i.dirx * speed;
@@ -96,12 +99,12 @@ class Main extends luxe.Game {
                 if(_i.sprite.pos.y >= Luxe.screen.h) _i.diry = -1;
                 if(_i.sprite.pos.y <= 0) _i.diry = 1;
             }
-            #if luxe_native Sys.sleep(0.016); #end
-       #if luxe_native } #end
+            #if (luxe_native && luxemark_threads) Sys.sleep(0.016); #end
+       #if (luxe_native && luxemark_threads) } #end
     } //update
     var continued2 : Bool = true;
     public function _update2() {
-        #if luxe_native while(continued2) { #end
+        #if (luxe_native && luxemark_threads) while(continued2) { #end
             for(i in 0 ... num) {
                 var _i:Item = list2[i];
                 _i.sprite.pos.x += _i.dirx * speed;
@@ -112,13 +115,13 @@ class Main extends luxe.Game {
                 if(_i.sprite.pos.y >= Luxe.screen.h) _i.diry = -1;
                 if(_i.sprite.pos.y <= 0) _i.diry = 1;
             }
-            #if luxe_native Sys.sleep(0.016); #end
-        #if luxe_native } #end
+            #if (luxe_native && luxemark_threads) Sys.sleep(0.016); #end
+        #if (luxe_native && luxemark_threads) } #end
     } //update
 
     var continued3 : Bool = true;
     public function _update3() {
-        #if luxe_native while(continued3) { #end
+        #if (luxe_native && luxemark_threads) while(continued3) { #end
             for(i in 0 ... num) {
                 var _i:Item = list3[i];
                 _i.sprite.pos.x += _i.dirx * speed;
@@ -129,13 +132,13 @@ class Main extends luxe.Game {
                 if(_i.sprite.pos.y >= Luxe.screen.h) _i.diry = -1;
                 if(_i.sprite.pos.y <= 0) _i.diry = 1;
             }
-            #if luxe_native Sys.sleep(0.016); #end
-        #if luxe_native } #end
+            #if (luxe_native && luxemark_threads) Sys.sleep(0.016); #end
+        #if (luxe_native && luxemark_threads) } #end
     } //update
 
     var continued4 : Bool = true;
     public function _update4() {
-        #if luxe_native while(continued4) { #end
+        #if (luxe_native && luxemark_threads) while(continued4) { #end
         	for(i in 0 ... num) {
         		var _i:Item = list4[i];
         		_i.sprite.pos.x += _i.dirx * speed;
@@ -146,8 +149,8 @@ class Main extends luxe.Game {
         		if(_i.sprite.pos.y >= Luxe.screen.h) _i.diry = -1;
         		if(_i.sprite.pos.y <= 0) _i.diry = 1;
         	}
-            #if luxe_native Sys.sleep(0.016); #end
-        #if luxe_native } #end
+            #if (luxe_native && luxemark_threads) Sys.sleep(0.016); #end
+        #if (luxe_native && luxemark_threads) } #end
     } //update
 
 } //Main
