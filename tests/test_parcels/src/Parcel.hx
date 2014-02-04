@@ -1,6 +1,18 @@
 
 import phoenix.Resource;
 
+
+#if (!parcel_thread_disabled)
+    #if neko
+        import neko.vm.Thread;
+        import neko.vm.Mutex;
+    #else
+        import cpp.vm.Thread;
+        import cpp.vm.Mutex;
+    #end 
+#end //parcel_thread_disabled
+
+
 class Parcel extends phoenix.ResourceManager {
 
     public var oncomplete : Parcel->Void;
@@ -26,30 +38,83 @@ class Parcel extends phoenix.ResourceManager {
         font_list = [];
         shader_list = [];
 
-    }
+    } //new
 
 //Load the parcel up
 
-    public function load() {
+    var index : Int = 0;
 
-        // #if (luxe_native && !luxe_no_parcel_threads)
+    #if (luxe_native && !parcel_thread_disabled)
+    #end 
 
-        // #end 
-
-        do_load();
-    }   
-
-    function do_load() {
+    public function load( ?sequential:Bool = false ) {
 
         time_start_load = haxe.Timer.stamp();
 
         total_items = texture_list.length + shader_list.length + font_list.length;
 
-        for(tex in texture_list) {
-            load_texture( tex );
-        }
+        if(texture_list.length > 0) {
+
+            index = 0;
+
+            if(sequential) {
+
+                    //load recursive so that it is sequential
+                recursive_load_textures( null );
+            
+            } else {
+
+                    //load each texture immediately, 
+                    //so they complete whenever they are done and aren't 
+                    //waiting for the next one
+                #if (luxe_native && !parcel_thread_disabled)
+
+                        //threaded loading will create a loading thread, 
+                        //and then go ahead and fire the loop into it
+                    // Thread.create(function(){
+                        // trace(" background thread starting ");
+                            load_textures();
+                        // trace(" background thread ending ");
+                    // });
+
+                #else                    
+                    load_textures();
+                #end //native+threading
+
+            } //sequential
+
+        } //texture_list
              
+    } //do_load
+
+    function load_textures() {
+        for(tex in texture_list) {
+            load_texture( tex, single_item_complete );
+        }
     }
+
+    function recursive_load_textures( item:Resource ) {
+
+        if(item != null) {
+            single_item_complete( item );
+        }
+
+            //if you are debugging progress, change this line and it's closing brace
+        // Luxe.timer.schedule(1, function(){
+
+            if( index < texture_list.length ) {
+                    //hold current so we can skip
+                var current = index;
+                    //increase count for complete around
+                index++;
+                    //send off
+                load_texture( texture_list[current], recursive_load_textures );
+
+            } //not past max length
+
+        // });  //schedule closing brace      
+
+    } //recursive_load_textures
 
 //Public api for preparing a parcel
 
@@ -62,6 +127,7 @@ class Parcel extends phoenix.ResourceManager {
             texture_list.push(texture);
         }
     }
+
     public function add_shader( _id:String ) {
         shader_list.push(_id);
     }
@@ -70,8 +136,8 @@ class Parcel extends phoenix.ResourceManager {
         for(shader in list) {
             shader_list.push(shader);
         }
-
     }
+
     public function add_font( _id:String ) {
         font_list.push(_id);
     }
@@ -85,13 +151,13 @@ class Parcel extends phoenix.ResourceManager {
 
 //Per item handlers
 
-    function load_texture( _tex:String ) {
-        Luxe.loadTexture( _tex, single_item_complete, true );
-    }
+    function load_texture( _tex:String, _complete ) {
+        Luxe.loadTexture( _tex, _complete, true );
+    } //load_texture
 
     function load_shader( _shader:String ) {
 
-    }
+    } //load_shader
     function load_font( _font:String ) {
 
     }
@@ -122,13 +188,18 @@ class Parcel extends phoenix.ResourceManager {
 
         item.time_to_load = haxe.Timer.stamp() - item.time_created;
 
+        current_count++;
+
         if(onprogress != null) {
             onprogress( item );
         }
 
-        current_count++;
+            //There will always be a 0.1 second delay before 
+            //oncomplete to allow for progress bar renders to complete
         if(current_count >= total_items) {
-            do_complete();
+            Luxe.timer.schedule(0.1, function(){
+                do_complete();
+            });
         }
 
     } //single_item_complete

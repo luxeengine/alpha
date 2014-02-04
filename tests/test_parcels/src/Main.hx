@@ -8,7 +8,7 @@ import luxe.Vector;
 import phoenix.Resource;
 import phoenix.Texture;
 
-typedef ParcelOptions = {
+typedef ParcelProgressOptions = {
 
     oncomplete : Parcel -> Void,
     parcel : Parcel,
@@ -34,13 +34,13 @@ class ParcelProgress {
     var background          : Sprite;
 
     var image_logo          : Sprite;
-    var options             : ParcelOptions;
+    var options             : ParcelProgressOptions;
 
         //for now, 
     var width : Float = 0;
     var height : Float = 0;
 
-    public function new( _options:ParcelOptions ) {
+    public function new( _options:ParcelProgressOptions ) {
 
         options = _options;
 
@@ -85,6 +85,7 @@ class ParcelProgress {
 
         width = Luxe.screen.w * 0.75;
         height = Luxe.screen.h * 0.002;
+        var ypos = Luxe.screen.h * 0.60; 
 
         background = new Sprite({
             pos : new Vector(),
@@ -95,8 +96,8 @@ class ParcelProgress {
         });
 
         progress_bar = new Sprite({
-            pos : new Vector(Luxe.screen.mid.x - (width/2), Luxe.screen.mid.y - (height/2)),
-            size : new Vector( width, height ),
+            pos : new Vector(Luxe.screen.mid.x - (width/2), ypos - (height/2)),
+            size : new Vector( 2, height ),
             no_scene : true,
             centered : false,
             color : options.bar
@@ -107,7 +108,7 @@ class ParcelProgress {
             color : options.bar,
             no_scene : true,
             centered : false,
-            pos : new Vector(Luxe.screen.mid.x - (width/2) - 1, Luxe.screen.mid.y - (height/2) - 1),
+            pos : new Vector(Luxe.screen.mid.x - (width/2) - 1, ypos - (height/2) - 1),
             geometry : Luxe.draw.rectangle({
                 w : width + 2,
                 h : height + 2
@@ -139,8 +140,10 @@ class ParcelProgress {
     } //set_progress
 
     public function onprogress( r:Resource ) {
+
             //work out where we are out
         var amount = options.parcel.current_count / options.parcel.total_items;
+        
             //update the progress bar
         set_progress( amount );
 
