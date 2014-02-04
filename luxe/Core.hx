@@ -20,8 +20,14 @@ import phoenix.Renderer;
 
 import phoenix.Renderer;
 
-#if (luxe_core_thread && luxe_native) 
-    import cpp.vm.Thread;
+#if (!luxe_threading_disabled && luxe_native) 
+    #if neko
+        import neko.vm.Thread;
+        import neko.vm.Mutex;
+    #else
+        import cpp.vm.Thread;
+        import cpp.vm.Mutex;
+    #end 
 #end
 
 @:hide class Core {
@@ -32,6 +38,10 @@ import phoenix.Renderer;
     public var host : Dynamic;  
         //the config passed to us on creation
     public var config : LimeConfig;
+
+#if (luxe_native && !luxe_threading_disabled) 
+    public var main_thread : Thread;
+#end //luxe_native
 
         //if the console is displayed atm
     public var console_visible : Bool = false;
@@ -83,6 +93,11 @@ import phoenix.Renderer;
             
             //Keep a reference for use
         host = _host;
+
+            //make sure we know what thread we start in
+        #if (luxe_native && !luxe_threading_disabled) 
+            main_thread = Thread.current();
+        #end //luxe_native
 
             //Create internal stuff
         _update_handlers = new Map();
@@ -392,7 +407,7 @@ import phoenix.Renderer;
                 //check for named input 
             input.check_named_keys(e);
                 //pass to scene
-            scene.onkeydown(e);            
+            scene.onkeyup(e);            
                 //forward to debug module
             if(debug!=null)debug.onkeyup(e);
         }
