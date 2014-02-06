@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	
-	<meta 
+    
+    <meta 
           title="td game" 
           package="com.luxeengine.tdgame" 
           version="1.0.0" 
           company="luxeengine" 
-	/>
+    />
 
-	<app main="Main" path="bin" file="td_game" />
+    <app main="Main" path="bin" file="td_game" />
 
-	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" depth-buffer="true" stencil-buffer="true" antialiasing="4" />
-	
+    <window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" depth-buffer="true" stencil-buffer="true" antialiasing="4" />
+    
      <assets path="Assets" rename="assets" include="*"/>
 
-	<source path="src" />
-	
-	<haxelib name="luxe" />
-	<haxelib name="lime" />
-	<!-- <haxelib name="haxebullet" /> -->
-	
+    <source path="src" />
+    
+    <haxelib name="lime" />
+    <haxelib name="luxe" />
+    <!-- <haxelib name="haxebullet" /> -->
+    
 </project>

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	
-	<meta 
+    
+    <meta 
           title="luxe - uuid performance" 
           package="com.luxeengine.testuuid" 
           version="1.0.0" 
           company="luxeengine" 
-	/>
+    />
 
-	<app main="Main" path="bin" file="luxe_uuid" />
+    <app main="Main" path="bin" file="luxe_uuid" />
 
-	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
-	
+    <window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
+    
      <assets path="Assets" rename="assets" include="*"/>
 
-	<source path="src" />
-	
-	<haxelib name="luxe" />
+    <source path="src" />
+    
     <haxelib name="lime" />
-	<haxelib name="mohxa" />
-	
+    <haxelib name="luxe" />
+    <haxelib name="mohxa" />
+    
 </project>

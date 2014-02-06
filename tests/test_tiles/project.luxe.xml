@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	
-	<meta 
+    
+    <meta 
           title="luxe - test - Tilemaps" 
           package="com.luxeengine.luxetesttiles" 
           version="1.0.0" 
           company="luxeengine" 
-	/>
+    />
 
-	<app main="Main" path="bin" file="luxe_test_tiles" />
+    <app main="Main" path="bin" file="luxe_test_tiles" />
 
-	<window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
-	
+    <window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="true" />
+    
      <assets path="Assets" rename="assets" include="*"/>
 
-	<source path="src" />
-	
-	<haxelib name="luxe" />
-	<haxelib name="lime" />
-	
+    <source path="src" />
+    
+    <haxelib name="lime" />
+    <haxelib name="luxe" />
+    
 </project>

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	
-	<meta 
+    
+    <meta 
           title="LETTER5" 
           package="com.underscorediscovery.letterfive" 
           version="1.0.0" 
           company="underscorediscovery" 
-	/>
+    />
 
-	<app main="Main" path="bin" file="LETTER5" />
+    <app main="Main" path="bin" file="LETTER5" />
 
-	<window width="640" height="960" orientation="portrait" fps="6000" vsync="false" resizable="false" />
-	<window fullscreen="true" if="ios" />
-	
+    <window width="640" height="960" orientation="portrait" fps="6000" vsync="false" resizable="false" />
+    <window fullscreen="true" if="ios" />
+    
      <assets path="Assets" rename="assets" include="*"/>
 
-	<source path="src" />
-	
-	<haxelib name="luxe" />
-	<haxelib name="lime" />
+    <source path="src" />
+    
+    <haxelib name="lime" />
+    <haxelib name="luxe" />
 
 <architecture name="armv7" if="ios" />
 
@@ -27,7 +27,7 @@
 <launchImage path="iOS/Default-Portrait~ipad.png" width="768" height="1024" if="ios"/>
 <launchImage path="iOS/Default-Portrait@2x~ipad.png" width="1536" height="2048" if="ios"/>
 <launchImage path="iOS/Default-Landscape~ipad.png" width="1024" height="768" if="ios"/>
-<launchImage path="iOS/Default-Landscape@2x~ipad.png" width="2048" height="1536" if="ios"/>	
+<launchImage path="iOS/Default-Landscape@2x~ipad.png" width="2048" height="1536" if="ios"/> 
 
 <icon width="57" height="57" path="iOS/icon57.png"/>
 <icon width="72" height="72" path="iOS/icon72.png"/>
@@ -36,5 +36,5 @@
 <icon width="120" height="120" path="iOS/icon120.png"/>
 <icon width="144" height="144" path="iOS/icon144.png"/>
 <icon width="152" height="152" path="iOS/icon152.png"/>
-	
+    
 </project>

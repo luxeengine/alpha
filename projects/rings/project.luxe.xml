@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-	
-	<meta 
+    
+    <meta 
           title="RING" 
           package="com.luxeengine.rings" 
           version="1.0.0" 
           company="luxeengine" 
-	/>
+    />
 
-	<app main="Main" path="bin" file="rings" />
+    <app main="Main" path="bin" file="rings" />
 
-	<window width="960" height="640" orientation="landscape" fps="60" fullscreen="false" vsync="true" resizable="false" antialiasing="4"/>
-	<window vsync="false" if="ios" />
-	<window fullscreen="true" if="mobile" />
-	
+    <window width="960" height="640" orientation="landscape" fps="60" fullscreen="false" vsync="true" resizable="false" antialiasing="4"/>
+    <window vsync="false" if="ios" />
+    <window fullscreen="true" if="mobile" />
+    
      <assets path="Assets" rename="assets" include="*"/>
 
-	<source path="src" />
-	
-	<haxelib name="luxe" />
-	<haxelib name="lime" />
+    <source path="src" />
+    
+    <haxelib name="lime" />
+    <haxelib name="luxe" />
 
 <launchImage path="iOS/Default.png" width="320" height="480" if="ios"/>
 <launchImage path="iOS/Default@2x.png" width="640" height="960" if="ios"/>
 <launchImage path="iOS/Default-Portrait~ipad.png" width="768" height="1024" if="ios"/>
 <launchImage path="iOS/Default-Portrait@2x~ipad.png" width="1536" height="2048" if="ios"/>
 <launchImage path="iOS/Default-Landscape~ipad.png" width="1024" height="768" if="ios"/>
-<launchImage path="iOS/Default-Landscape@2x~ipad.png" width="2048" height="1536" if="ios"/>	
+<launchImage path="iOS/Default-Landscape@2x~ipad.png" width="2048" height="1536" if="ios"/> 
 
 <icon width="57" height="57" path="iOS/icon57.png"/>
 <icon width="72" height="72" path="iOS/icon72.png"/>
@@ -37,5 +37,5 @@
 <icon width="152" height="152" path="iOS/icon152.png"/>
 
 <ios prerendered-icon="true" />
-	
+    
 </project>
