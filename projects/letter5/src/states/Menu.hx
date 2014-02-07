@@ -49,27 +49,21 @@ class Menu extends State {
 
 	} //init
 
-	public function onkeydown(e) {
+	public function onkeydown(e:KeyEvent) {
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
 	} //onkeyup
 
-	public function onmousemove(e) {
+	public function onmousemove( e:MouseEvent ) {
 	}
 
-	var toggle:Bool = true;
-	public function onmouseup(e) {		
-		// toggle = !toggle;
-		// 	trace("toggling gc : " + toggle);
-		// cpp.vm.Gc.enable(toggle);
-		// // if(toggle) {
-
-		// // }
-
+	public function onmouseup( e:MouseEvent ) {		
+	
 		if(play.point_inside(game.mouse)) {
 			game.states.set('base');
 		}
+		
 	} //onmousedown
 
 	public function enter() {

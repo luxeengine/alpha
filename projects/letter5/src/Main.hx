@@ -58,22 +58,22 @@ class Main extends luxe.Game {
         Actuate.tween(fade.color, time, {a:1}).onComplete(complete).delay(delay);
     }
 
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
         states.onkeyup(e);
     } //onkeyup
 
-    public function onkeydown(e) {
+    public function onkeydown( e:KeyEvent ) {
         states.onkeydown(e);
     } //onkeydown
-    public function onmousedown(e) {
+    public function onmousedown( e:MouseEvent ) {
         mouse.set(e.x,e.y);
         states.onmousedown(e);
     } //onkeydown    
-    public function onmousemove(e) {        
+    public function onmousemove( e:MouseEvent ) {        
         mouse.set(e.x,e.y);
         states.onmousemove(e);
     } //onkeydown
-    public function onmouseup(e) {
+    public function onmouseup( e:MouseEvent ) {
         mouse.set(e.x,e.y);
         states.onmouseup(e);
     } //onkeydown
