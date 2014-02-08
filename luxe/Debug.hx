@@ -266,14 +266,22 @@ import luxe.debug.StatsDebugView;
     public function show_console(_show:Bool = true) {
 
         if(_show) {
-            // still in flux for sdl2 support.
-            // last_cursor_shown = Luxe.cursorShown();
-            // last_cursor_locked = Luxe.cursorLocked();
-            // Luxe.showCursor(true);
-            // Luxe.lockCursor(false);
+            
+            last_cursor_shown = Luxe.cursorShown();
+            last_cursor_locked = Luxe.cursorLocked();
+            
+            Luxe.showCursor(true);
+            Luxe.lockCursor(false);
+
         } else {
-            // if(last_cursor_shown!=true) Luxe.showCursor(last_cursor_shown);
-            // if(last_cursor_locked!=false) Luxe.lockCursor(last_cursor_locked);
+
+            if(last_cursor_shown!=true) {
+                Luxe.showCursor(last_cursor_shown);
+            }
+            
+            if(last_cursor_locked!=false) {
+                Luxe.lockCursor(last_cursor_locked);
+            }
         }
 
         visible = _show;

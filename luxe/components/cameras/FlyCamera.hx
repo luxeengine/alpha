@@ -172,7 +172,7 @@ class FlyCamera extends luxe.Camera {
     public function enable() {
 
         Luxe.setCursorPosition( Std.int(Luxe.screen.w/2), Std.int(Luxe.screen.h/2) );
-        mouse_delta.set( 0,0 );            
+        mouse_delta.set( 0,0 );
 
         Luxe.lockCursor(true);
         Luxe.showCursor(false);
@@ -189,6 +189,10 @@ class FlyCamera extends luxe.Camera {
     public function onmousemove(e:MouseEvent) {
         
         if(!ready) return;
+        if(Luxe.core.console_visible) {
+            mouse_delta.set(0,0);
+            return;
+        }
 
         #if luxe_native
                 //see notes in enable()
@@ -203,12 +207,17 @@ class FlyCamera extends luxe.Camera {
             }
         #end //luxe_native
 
-
         mouse_delta.set(e.deltaX,e.deltaY);
 
     } //onmousemove
 
     public function onkeydown(e) {
+
+        if(e.value == Input.Keys.tilde && Luxe.core.console_visible == true) {
+            ignore_next_move = true;
+            Luxe.setCursorPosition( Std.int(Luxe.screen.w/2), Std.int(Luxe.screen.h/2) );            
+            mouse_delta.set(0,0);
+        }
 
         if(e.value == Input.Keys.up || e.value == Input.Keys.key_W) {
             move_forward = true;
