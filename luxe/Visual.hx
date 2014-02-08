@@ -308,12 +308,12 @@ class Visual extends Entity {
             
             geometry.color = color;
             geometry.pos = pos.clone();
-            geometry.scale = scale.clone();
+            geometry.scale = scale;
             geometry.group = group;
             geometry.depth = depth;
             geometry.shader = shader;
             geometry.texture = texture;
-            geometry.origin = origin.clone();
+            geometry.origin = origin;
             geometry.enabled = visible;
 
         }        
@@ -404,7 +404,9 @@ class Visual extends Entity {
         super.set_scale(_v);
 
         if(geometry != null) {
-            geometry.scale = scale.clone();
+
+            geometry.scale = scale;
+
         } //geometry != null
 
         return scale;

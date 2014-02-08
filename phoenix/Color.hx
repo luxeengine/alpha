@@ -8,10 +8,15 @@ import luxe.tween.actuators.SimpleActuator;
 
 class Color {
 
-	public var r : Float = 1.0;
-	public var g : Float = 1.0;
-	public var b : Float = 1.0;
+	@:isVar public var r (default, set) : Float = 1.0;
+	@:isVar public var g (default, set) : Float = 1.0;
+	@:isVar public var b (default, set) : Float = 1.0;
+	
 	public var a : Float = 1.0;
+
+	var is_hsl : Bool = false;
+	var is_hsv : Bool = false;
+	var refreshing : Bool = false;
 
 	@:isVar public var serialized(get, null) : Dynamic;
 	function get_serialized() : Dynamic { return {r:r,g:g,b:b,a:a} };
@@ -24,6 +29,53 @@ class Color {
 		a = _a;
 
 	}
+
+	function set_r(_r:Float) {
+		r = _r;
+		
+		if(!refreshing) {
+			if(is_hsl) {
+				var colorhsl : ColorHSL = cast this;
+				colorhsl.fromColor(this);
+			} else if(is_hsv) {
+				var colorhsv : ColorHSV = cast this;
+				colorhsv.fromColor(this);			
+			}
+		} //refreshing
+
+		return r;
+	}
+	function set_g(_g:Float) {
+		g = _g;
+
+		if(!refreshing) {
+			if(is_hsl) {
+				var colorhsl : ColorHSL = cast this;
+				colorhsl.fromColor(this);
+			} else if(is_hsv) {
+				var colorhsv : ColorHSV = cast this;
+				colorhsv.fromColor(this);			
+			}
+		} //!refreshing
+		
+		return g;
+	}
+	function set_b(_b:Float) {
+		b = _b;
+
+		if(!refreshing) {
+			if(is_hsl) {
+				var colorhsl : ColorHSL = cast this;
+				colorhsl.fromColor(this);
+			} else if(is_hsv) {
+				var colorhsv : ColorHSV = cast this;
+				colorhsv.fromColor(this);			
+			}
+		} //refreshing
+		
+		return b;
+	}
+	
 
 	public static function random(?_include_alpha:Bool=false) : Color {
 		return new Color(Math.random(), Math.random(), Math.random(), _include_alpha ? Math.random() : 1.0 );
@@ -254,6 +306,8 @@ class ColorHSL extends Color {
 			
 		super();
 
+		is_hsl = true;
+
 		h = _h;
 		s = _s;
 		l = _l;
@@ -288,7 +342,9 @@ class ColorHSL extends Color {
 	} //set
 
 	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
-			
+		
+		super.tween(_time_in_seconds, _dest, _override);
+
 		if(_dest != null) {
 
 			var _dest_h = h;
@@ -338,7 +394,11 @@ class ColorHSL extends Color {
 	} //tween
 
 	public function _refresh() : ColorHSL {
-		super.fromColorHSL(this);
+		
+		refreshing = true;
+			super.fromColorHSL(this);
+		refreshing = false;
+
 		return this; 
 	} //_refresh
 
@@ -421,6 +481,8 @@ class ColorHSV extends Color {
 			
 		super();
 
+		is_hsv = true;
+
 		h = _h;
 		s = _s;
 		v = _v;
@@ -457,6 +519,8 @@ class ColorHSV extends Color {
 
 	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
 			
+		super.tween(_time_in_seconds, _dest, _override);
+		
 		if(_dest != null) {
 
 			var _dest_h = h;
@@ -505,8 +569,12 @@ class ColorHSV extends Color {
 
 	} //tween
 
-	public function _refresh() {		
-		super.fromColorHSV(this);
+	public function _refresh() {
+		
+		refreshing = true;
+			super.fromColorHSV(this);
+		refreshing = false;
+
 		return this;
 	}
 

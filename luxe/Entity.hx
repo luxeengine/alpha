@@ -816,7 +816,7 @@ class Entity extends Objects {
         }
 
             //update the value before we propogate
-        scale = _s.clone();
+        scale = _s;
         _last_scale = scale.clone();        
 
             //if we have children we must propogate the change to them
