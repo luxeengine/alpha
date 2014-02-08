@@ -4,7 +4,7 @@
 	"image" : "assets/skins/default/default.png",
 
 	"board" : {
-		"offsety" : -64
+		"offsety" : 0
 	},
 
 	"top_bar" : {
@@ -58,11 +58,11 @@
 		"depth" : "3",
 	},
 	"text" : {
-		"h" : "48",
+		"h" : "20",
 		"normal_color" : {"r":0.655,"g":0.608,"b":0.592,"a":1},
 		"highlight_color" : {"r":0.941,"g":0.941,"b":0.941,"a":1}
 	},
 	"rects" : [
-		{ "x":"0", "y":"bottom2", "w":"screenw", "h":"bottom_area", "depth":1, "color":{"r":0.913,"g":0.294,"b":0.290,"a":1} }
+		
 	]
 }

@@ -5,8 +5,13 @@ import common.Skin;
 import luxe.Color;
 import luxe.Input.MouseEvent;
 import luxe.Input.TouchEvent;
+import luxe.Rectangle;
+import luxe.Text;
+import luxe.tween.Actuate;
 import luxe.Vector;
 
+import luxe.Visual;
+import phoenix.Color.ColorHSV;
 import phoenix.geometry.Geometry;
 
 import luxe.NineSlice;
@@ -16,8 +21,8 @@ class Board {
 	public var game : Main;
 	public var skin : Skin;	
 		//the grid width and height
-	public var w : Int = 7;
-	public var h : Int = 7;
+	public var w : Int = 6;
+	public var h : Int = 6;
     	//the offset in the main view
     public var offsetx : Int = 0;
     public var offsety : Int = 0;
@@ -28,7 +33,7 @@ class Board {
     public var blockw : Float = 100; 
     public var blockh : Float = 100; 
     	//the space between blocks in this board
-    public var spacing : Int = 0;
+    public var spacing : Int = 8;
     public var padding : Int = 8;
     	//the actual width
     public var width : Int = 0;
@@ -42,19 +47,33 @@ class Board {
 
      public var delta_time_text : luxe.Text;
 
+     public var desc_created    : luxe.Text;
+     public var desc_words      : luxe.Text;
+     public var desc_destroyed  : luxe.Text;
+     public var desc_swapped    : luxe.Text;
+     
+     public var score_created    : luxe.Text;
+     public var score_words      : luxe.Text;
+     public var score_destroyed  : luxe.Text;
+     public var score_swapped    : luxe.Text;
+     
+     public var combo_score    : luxe.Text;
+     public var combo_ring     : Visual;
+
     	//alphabet
 	public var alphabet : String = 'AEIOUSBCDFGHJKLMNPRTVWYXQZ';
 
         //top ui bar
-    public var top_ui_bar : NineSlice;
     public var bottom_ui_bar : NineSlice;
-    public var word_ui_bar : NineSlice;
 
         //any rectangle geometries
     public var rectboxes : Array<Geometry>;
 
     	//debug stuff
     var _debug_geometry : Array<Geometry>;
+
+    var red : Color;
+    var black : Color;
 
 	public function new( _game:Main, ?options:Dynamic ) {
 		
@@ -79,6 +98,9 @@ class Board {
              depth : 20,
         });
 
+        red = new ColorHSV(0,1,0.82,1).toColor();
+        black = new ColorHSV(132,0.16,0.12,1).toColor();
+
 	} //new 
 
     public function create_blocks() {
@@ -91,8 +113,8 @@ class Board {
 
             for( _y in 0 ... h ) {                
 
-                var __x = baseleft+((_x * (blockw+spacing)));
-                var __y = basetop+((_y * (blockh+spacing)));
+                var __x = baseleft+(Math.round(spacing/2)+(_x * (blockw+spacing)));
+                var __y = basetop+(Math.round(spacing/2)+(_y * (blockh+spacing)));
 
                 var c = new Cell(this, Std.int(__x), Std.int(__y), _x, _y);
                 var b = new Block(this, Std.int(__x), Std.int(__y));
@@ -110,6 +132,133 @@ class Board {
 
     } //create_blocks
 
+    function create_ui() {
+
+        var ring_radius : Float = Luxe.screen.h * 0.05;
+
+        combo_ring = new Visual({
+            geometry : Luxe.draw.circle({ r: ring_radius }),
+            pos : new Vector(Luxe.screen.mid.x, basetop / 2),
+            color : black.clone(),
+            depth : 6
+        });
+
+        combo_score = new Text({
+            size : 24,
+            font : game.font,
+            text : 'x1',
+            align : TextAlign.center,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( Luxe.screen.mid.x-(ring_radius), (basetop/2)-(ring_radius), ring_radius*1.9, ring_radius*1.75 )
+        });
+
+        var bottom_mid = (basetop+height) + ((Luxe.screen.h-(basetop+height))/2);
+        var textheight = (ring_radius*0.25);
+
+        desc_created = new Text({
+            size : 12,
+            font : game.font,
+            color : red.clone(),
+            text : 'CREATED',
+            align : TextAlign.right,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( 0, bottom_mid-(textheight*3), Luxe.screen.mid.x, textheight )
+        });        
+
+        desc_destroyed = new Text({
+            size : 12,
+            font : game.font,
+            color : red.clone(),
+            text : 'DESTROYED',
+            align : TextAlign.right,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( 0, bottom_mid-(textheight), Luxe.screen.mid.x, textheight )
+        });
+
+        desc_swapped = new Text({
+            size : 12,
+            font : game.font,
+            color : red.clone(),
+            text : 'SWAPPED',
+            align : TextAlign.right,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( 0, bottom_mid+(textheight), Luxe.screen.mid.x, textheight )
+        });
+
+        desc_words = new Text({
+            size : 12,
+            font : game.font,
+            color : red.clone(),
+            text : 'WORDS',
+            align : TextAlign.right,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( 0, bottom_mid+(textheight*3), Luxe.screen.mid.x, textheight )
+        });
+
+        score_created = new Text({
+            size : 12,
+            font : game.font,
+            color : black.clone(),
+            text : '0',
+            align : TextAlign.left,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( Luxe.screen.mid.x+textheight, bottom_mid-(textheight*3), Luxe.screen.mid.x-textheight, textheight )
+        });
+
+        score_destroyed = new Text({
+            size : 12,
+            font : game.font,
+            color : black.clone(),
+            text : '0',
+            align : TextAlign.left,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( Luxe.screen.mid.x+textheight, bottom_mid-(textheight), Luxe.screen.mid.x-textheight, textheight )
+        });
+
+        score_swapped = new Text({
+            size : 12,
+            font : game.font,
+            color : black.clone(),
+            text : '0',
+            align : TextAlign.left,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( Luxe.screen.mid.x+textheight, bottom_mid+(textheight), Luxe.screen.mid.x-textheight, textheight )
+        });
+
+        score_words = new Text({
+            size : 12,
+            font : game.font,
+            color : black.clone(),
+            text : '0',
+            align : TextAlign.left,
+            align_vertical : TextAlign.center,
+            depth : 6,
+            bounds : new Rectangle( Luxe.screen.mid.x+textheight, bottom_mid+(textheight*3), Luxe.screen.mid.x-textheight, textheight )
+        });
+
+
+    }
+
+    function refresh_combo() {
+
+        combo_ring.color.tween(0.2, {r:red.r,g:red.g,b:red.b}).onComplete(function(){
+            combo_ring.color.tween(0.1, {r:black.r,g:black.g,b:black.b});
+        });
+
+        Actuate.tween( combo_ring.scale, 0.2, { x:1.1, y:1.1 }).onComplete(function(){
+            Actuate.tween( combo_ring.scale, 0.1, { x:1, y:1 } );
+        });
+
+    }
+
 	public function init() {
 
         _debug_geometry = [];
@@ -122,7 +271,7 @@ class Board {
         var mid_s_x = Luxe.screen.w / 2;
         var mid_s_y = Luxe.screen.h / 2;
 
-        padding = Std.int(mid_s_x * 0.02);
+        padding = Std.int(mid_s_x * 0.1);
 
             //calculate the best blockw and blockh
             //take the width of the screen, fit the number of blocks in + spacing
@@ -134,7 +283,7 @@ class Board {
         basetop = Std.int((mid_s_y) - ( ((blockh+spacing)*h)/2 )) + offsety;
 
         width = Std.int((blockw+spacing) * w);
-        height = Std.int((blockw+spacing) * h);
+        height = Std.int((blockh+spacing) * h);
 
             //Load json skin file
 		var template_text = Luxe.loadText('assets/skins/default/skin.json');
@@ -146,23 +295,6 @@ class Board {
 		} else {
 			throw "can't find skin " + 'default';
 		} 
-
-            //create the UI bars
-        top_ui_bar = new NineSlice({
-            name : 'top_ui_bar',
-            depth : skin.top.depth,
-            texture : skin.texture,
-            top : skin.top.t,
-            right : skin.top.r,
-            bottom : skin.top.b,
-            left : skin.top.l,
-            source_x : skin.top.sx,
-            source_y : skin.top.sy,
-            source_w : skin.top.sw,
-            source_h : skin.top.sh,
-        });
-
-        top_ui_bar.create( new Vector(skin.top.x, skin.top.y), skin.top.w, skin.top.h );
 
             //create the UI bars
         bottom_ui_bar = new NineSlice({
@@ -179,8 +311,6 @@ class Board {
             source_h : skin.bottom.sh,
         });
 
-        bottom_ui_bar.create( new Vector(skin.bottom.x, skin.bottom.y), skin.bottom.w, skin.bottom.h );
-
         for( _rect in skin.rects ) {
 
             var _rect_geom = Luxe.draw.box({
@@ -193,20 +323,30 @@ class Board {
         }
 
 
-        // _debug_geometry.push(Luxe.draw.rectangle({
-        // 	x: baseleft, y : basetop,
-        // 	w : width, h : height,
-        // 	color : new Color(1,0.3,0.1,1)
-        // })); //_debug_geometry
+        // _debug_geometry.push(
+        //     Luxe.draw.line({
+        //         p0: new Vector(Luxe.screen.mid.x, 0),
+        //         p1: new Vector(Luxe.screen.mid.x, Luxe.screen.h),
+        //         color : new Color(1,0.3,0.1,1)
+        //     })
+        // ); //_debug_geometry
+
+        // _debug_geometry.push(
+        //     Luxe.draw.rectangle({
+        //         x: baseleft, y:basetop,
+        //     	w : width, h:height,
+        //     	color : new Color(1,0.3,0.1,1)
+        //     })
+        // ); //_debug_geometry
 
 
         create_blocks();
+        create_ui();
 
 	} //init
 
 	public function destroy() {
         
-        top_ui_bar.destroy();
         bottom_ui_bar.destroy();
 
         for( _x in 0 ... w ) {
@@ -228,6 +368,19 @@ class Board {
 		
         _debug_geometry.splice(0,_debug_geometry.length);
         rectboxes.splice(0,rectboxes.length);
+
+        combo_ring.destroy();
+        combo_score.destroy();
+
+        desc_created.destroy();
+        desc_destroyed.destroy();
+        desc_swapped.destroy();
+        desc_words.destroy();
+
+        score_created.destroy();
+        score_destroyed.destroy();
+        score_swapped.destroy();
+        score_words.destroy();
 
         cells = null;
         blocks = null;
@@ -303,8 +456,14 @@ class Board {
 
     } //ondrag
 
+    var score : Int = 1;
     public function onmousedown(e:MouseEvent) {
-        #if !ios            
+        score++;
+        if(score > 5) score = 1;
+        combo_score.text = 'x'+score;        
+        refresh_combo();
+
+        #if !ios
             mousedown = true;
             ondrag(e.pos);
         #end

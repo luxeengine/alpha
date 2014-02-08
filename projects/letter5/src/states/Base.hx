@@ -50,7 +50,7 @@ class Base extends State {
 	}
 
 	public function enter() {				
-		Actuate.tween(Luxe.renderer.clear_color, 0.5, {r:0.9412,g:0.9412,b:0.9412}).onComplete(function(){
+		Actuate.tween(Luxe.renderer.clear_color, 1.8, {r:0.995,g:0.995,b:0.995}).onComplete(function(){
 			board.init();
 		});
 	} //enter

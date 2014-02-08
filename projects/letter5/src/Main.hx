@@ -26,7 +26,6 @@ class Main extends luxe.Game {
     public function ready() {
 
         mouse = new Vector();
-        font = new BitmapFont();
         fade = new Sprite({
             centered : false,
             size : new Vector(Luxe.screen.w, Luxe.screen.h),
@@ -34,7 +33,7 @@ class Main extends luxe.Game {
             depth : 100,
         });
 
-        font.load_from_string( Luxe.loadText('assets/fonts/osb.fnt'), 'assets/fonts/' );
+        font = Luxe.loadFont( 'font.fnt', 'assets/fonts/' );
 
         states = new States();
         menu = states.add_state(Menu, 'menu');

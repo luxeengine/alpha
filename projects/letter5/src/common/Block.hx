@@ -33,7 +33,7 @@ class Block {
 			name : 'block' + Math.floor(x/board.blockw) + '-' + Math.floor(y/board.blockh),
 			centered : false,
 			pos : new Vector(x,y),
-			color : new Color(1,1,1,1),
+			color : new Color(1,1,1,0),
 			size : new Vector(board.blockw, board.blockh),			
 			texture : board.skin.texture,
 			depth : 3, 
@@ -43,7 +43,7 @@ class Block {
 		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
 
 		letter = new Text({
-			bounds : new Rectangle( x , y, board.blockw, board.blockh ),
+			bounds : new Rectangle( x+0.5 , y+0.5, Math.round(board.blockw*1.05), Math.round(board.blockh*0.9) ),
 			align : TextAlign.center,
 			align_vertical : TextAlign.center,
 			text : get_random_letter(),
@@ -53,12 +53,10 @@ class Block {
 			depth : 3.1
 		});
 
-		// Actuate.tween(sprite.color, 2, {a:1});
-		// Actuate.tween(letter.color, 3, {a:0.8}).onUpdate(function(){
-			// letter.color = letter.color;
-		// }).onComplete(function(){
-		// 	// sprite.locked = true;
-		// });
+		Actuate.tween(sprite.color, 0.5, {a:1});
+		letter.color.tween(0.4, {a:0.8}).onComplete(function(){
+
+		}).delay(0.2);
 
 	}
 

@@ -2,7 +2,7 @@
 <project>
     
     <meta 
-          title="LETTER5" 
+          title="LETTERFIVE" 
           package="com.underscorediscovery.letterfive" 
           version="1.0.0" 
           company="underscorediscovery" 
@@ -10,7 +10,7 @@
 
     <app main="Main" path="bin" file="LETTER5" />
 
-    <window width="640" height="960" orientation="portrait" fps="6000" vsync="false" resizable="false" />
+    <window width="640" height="960" orientation="portrait" fps="6000" vsync="false" resizable="false" antialiasing="4" />
     <window fullscreen="true" if="ios" />
     
      <assets path="Assets" rename="assets" include="*"/>
@@ -36,5 +36,5 @@
 <icon width="120" height="120" path="iOS/icon120.png"/>
 <icon width="144" height="144" path="iOS/icon144.png"/>
 <icon width="152" height="152" path="iOS/icon152.png"/>
-    
+
 </project>
