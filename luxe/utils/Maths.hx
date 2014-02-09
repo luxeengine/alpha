@@ -20,6 +20,9 @@ class Maths {
 		return value < a ? a : value;
 	}
 	
+	static public function within_range(value:Float, start_range:Float, end_range:Float ) {
+		return value >= start_range && value <= end_range;
+	}
 
  	public static function wrap_angle( degrees:Float, lower:Float, upper:Float ) {
     	
