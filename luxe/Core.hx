@@ -172,7 +172,7 @@ import phoenix.Renderer;
             //assign the globals
         Luxe.renderer = renderer;   
             //store the size for access from API, todo:Window position should go here.
-        screen = new luxe.Screen( 0, 0, config.width, config.height );
+        screen = new luxe.Screen( this, 0, 0, config.width, config.height );
 
             //Now make sure 
             //they start up

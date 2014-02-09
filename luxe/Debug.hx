@@ -267,20 +267,20 @@ import luxe.debug.StatsDebugView;
 
         if(_show) {
             
-            last_cursor_shown = Luxe.cursorShown();
-            last_cursor_locked = Luxe.cursorLocked();
+            last_cursor_shown = Luxe.screen.cursor.visible;
+            last_cursor_locked = Luxe.screen.cursor.locked;
             
-            Luxe.showCursor(true);
-            Luxe.lockCursor(false);
+            Luxe.screen.cursor.visible = true;
+            Luxe.screen.cursor.locked = false;
 
         } else {
 
             if(last_cursor_shown!=true) {
-                Luxe.showCursor(last_cursor_shown);
+                Luxe.screen.cursor.visible = last_cursor_shown;
             }
             
             if(last_cursor_locked!=false) {
-                Luxe.lockCursor(last_cursor_locked);
+                Luxe.screen.cursor.locked = last_cursor_locked;
             }
         }
 
@@ -317,7 +317,7 @@ import luxe.debug.StatsDebugView;
 
     // }
 
-	public function process() {
+    public function process() {
 
         dt_average_accum += Luxe.dt;
         dt_average_count++;
@@ -341,6 +341,6 @@ import luxe.debug.StatsDebugView;
             }
         // #end
         
-	} //process
+    } //process
 
 } //Debug 

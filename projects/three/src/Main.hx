@@ -46,11 +46,10 @@ class Main extends luxe.Game {
     var info : Text;
 
     public function ready() {
-
-        trace("game ready"); 
-
-        Luxe.lockCursor(false);
-        Luxe.showCursor(true);
+        
+        Luxe.screen.cursor.locked = false;
+        Luxe.screen.cursor.visible = true;
+        Luxe.screen.cursor.visible = true;
 
         Luxe.renderer.clear_color = new Color().rgb(0x990099);
 
