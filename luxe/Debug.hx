@@ -263,6 +263,7 @@ import luxe.debug.StatsDebugView;
 
     var last_cursor_shown : Bool = true;
     var last_cursor_locked : Bool = false;
+    
     public function show_console(_show:Bool = true) {
 
         if(_show) {
