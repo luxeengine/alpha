@@ -362,6 +362,7 @@ class BitmapFont extends Resource {
 
             //so, the font is a %
         var point_size = _size/font_size;
+        point_size = luxe.utils.Maths.fixed(point_size, 3);
         var _scale : Vector = new Vector(point_size,point_size);
 
         var _cumulative_x : Float = 0.0;
