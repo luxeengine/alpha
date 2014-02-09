@@ -12,7 +12,8 @@ class Cursor {
 
     public function new( _screen:Screen ) {
 
-        screen = _screen;        
+        screen = _screen;
+        pos = new Vector();
 
     } //new
 
@@ -46,7 +47,9 @@ class Cursor {
 
     function get_pos() : Vector {
 
-        pos.set( Luxe.mouse.x, Luxe.mouse.y );
+        if(pos != null) {
+            pos.set( Luxe.mouse.x, Luxe.mouse.y );
+        }
 
         return pos;
 
@@ -54,7 +57,11 @@ class Cursor {
 
     function set_pos( _p:Vector ) : Vector {
 
-        screen.core.lime.window.set_cursor_position_in_window( Std.int(_p.x), Std.int(_p.y) );
+        if(pos != null) {
+
+            screen.core.lime.window.set_cursor_position_in_window( Std.int(_p.x), Std.int(_p.y) );
+
+        }
 
         return pos = _p;
 

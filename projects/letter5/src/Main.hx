@@ -26,10 +26,6 @@ class Main extends luxe.Game {
     public var ratio : Float = 1;
 
     public function ready() {
-        
-    }
-
-    public function onready() {
 
         ratio = Luxe.screen.h / 960;
 
