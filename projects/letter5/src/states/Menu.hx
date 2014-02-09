@@ -39,7 +39,7 @@ class Menu extends State {
         partition = Math.round(Luxe.screen.h * 0.1);
 
         var font_size = game.font.get_text_dimensions('M', new Vector(1,1));
-        item_height = Std.int(font_size.y * 1.1);
+        item_height = Std.int(font_size.y * 1.1 * game.ratio);
 
         bar = new Visual({
             pos : new Vector(Luxe.screen.w - (partition * 2), 0),
@@ -59,7 +59,7 @@ class Menu extends State {
             bounds : new Rectangle(0,0, sizew, partition),
             font : game.font,
             text : "ONE",
-            size : 32,
+            size : 32 * game.ratio,
             align : TextAlign.right,
         });
 
@@ -67,7 +67,7 @@ class Menu extends State {
             bounds : new Rectangle(0,0, sizew, partition),
             font : game.font,
             text : "TWO",
-            size : 32,
+            size : 32 * game.ratio,
             align : TextAlign.right,
         });
 
@@ -75,7 +75,7 @@ class Menu extends State {
             bounds : new Rectangle(0,0, sizew, partition),
             font : game.font,
             text : "THREE",
-            size : 32,
+            size : 32 * game.ratio,
             align : TextAlign.right,
         });
 
@@ -83,7 +83,7 @@ class Menu extends State {
             bounds : new Rectangle(0,0, sizew, partition),
             font : game.font,
             text : "FOUR",
-            size : 32,
+            size : 32 * game.ratio,
             align : TextAlign.right,
         });
 
@@ -91,7 +91,7 @@ class Menu extends State {
             bounds : new Rectangle(0,0, sizew, partition),
             font : game.font,
             text : "_______",
-            size : 32,
+            size : 32 * game.ratio,
             align : TextAlign.right,
         });
 
@@ -140,8 +140,8 @@ class Menu extends State {
     }
 
     function text_pos(string:String) : Int {
-        var size = game.font.get_text_dimensions(string, new Vector(1,1));
-        return Math.round(Luxe.screen.w - (partition*2.2) - size.x);
+        var size = game.font.get_text_dimensions(string, new Vector(game.ratio,game.ratio));
+        return Math.round(Luxe.screen.w - (partition*2.2) - (size.x));
     }
 
     public function onkeydown(e:KeyEvent) {

@@ -23,7 +23,15 @@ class Main extends luxe.Game {
 
     public var mouse : Vector;
 
+    public var ratio : Float = 1;
+
     public function ready() {
+        
+    }
+
+    public function onready() {
+
+        ratio = Luxe.screen.h / 960;
 
         mouse = new Vector();
         fade = new Sprite({
@@ -46,6 +54,9 @@ class Main extends luxe.Game {
 
             //set to the menu
         states.set('menu');
+
+        // Luxe.audio.create('song','assets/song.ogg', true);
+        // Luxe.audio.loop('song');
 
     } //ready
 

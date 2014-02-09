@@ -10,8 +10,9 @@
 
     <app main="Main" path="bin" file="LETTER5" />
 
-    <window width="640" height="960" orientation="portrait" fps="6000" vsync="false" resizable="false" antialiasing="4" />
-    <window fullscreen="true" if="ios" />
+    <window width="640" height="960" orientation="portrait" vsync="true" resizable="false" antialiasing="4" />
+    <window fullscreen="true" fps="30" if="mobile" />
+    <window vsync="false" if="ios" />
     
      <assets path="Assets" rename="assets" include="*"/>
 

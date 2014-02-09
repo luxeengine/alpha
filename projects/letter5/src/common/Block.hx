@@ -17,8 +17,12 @@ class Block {
 	public var board : Board;
 	public var sprite : Sprite;
 	public var letter : Text;
-	public var x : Int = 0;
-	public var y : Int = 0;
+	public var x : Float = 0;
+	public var y : Float = 0;
+
+	public var selected : Bool = false;
+	public var highlighted : Bool = false;
+	public var locked : Bool = false;
 
 	public function new( _board:Board, _x:Int, _y:Int ) {
 		board = _board;		
@@ -43,11 +47,11 @@ class Block {
 		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
 
 		letter = new Text({
-			bounds : new Rectangle( x+0.5 , y+0.5, Math.round(board.blockw*1.05), Math.round(board.blockh*0.9) ),
+			bounds : new Rectangle( x , y, Math.round(board.blockw*1.05), Math.round(board.blockh*0.9) ),
 			align : TextAlign.center,
 			align_vertical : TextAlign.center,
 			text : get_random_letter(),
-			size : board.skin.text.h,
+			size : board.skin.text.h * board.game.ratio,
 			color : board.skin.text.normal_color,
 			font : board.game.font,	
 			depth : 3.1
@@ -55,17 +59,44 @@ class Block {
 
 		Actuate.tween(sprite.color, 0.5, {a:1});
 		letter.color.tween(0.4, {a:0.8}).onComplete(function(){
-
+			// sprite.locked = true;
+			// letter.locked = true;
 		}).delay(0.2);
 
 	}
 
 	public function select() {
+		selected = true;
 		sprite.uv = new Rectangle(board.skin.block_selected.x,board.skin.block_selected.y,board.skin.block_selected.w,board.skin.block_selected.h );
 		letter.color = board.skin.text.highlight_color;
 	}
 
-	public function deselect() {
+	public function unselect() {
+		selected = false;
+		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
+		letter.color = board.skin.text.normal_color;
+	}
+
+	public function highlight() {
+		highlighted = true;
+		sprite.uv = new Rectangle(board.skin.block_highlighted.x,board.skin.block_highlighted.y,board.skin.block_highlighted.w,board.skin.block_highlighted.h );
+		letter.color = board.skin.text.highlight_color;
+	}
+
+	public function unhighlight() {
+		highlighted = false;
+		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
+		letter.color = board.skin.text.normal_color;
+	}
+
+	public function lock() {
+		locked = true;
+		sprite.uv = new Rectangle(board.skin.block_locked.x,board.skin.block_locked.y,board.skin.block_locked.w,board.skin.block_locked.h );
+		letter.color = board.skin.text.highlight_color;
+	}
+
+	public function unlock() {
+		locked = false;
 		sprite.uv = new Rectangle(board.skin.block.x,board.skin.block.y,board.skin.block.w,board.skin.block.h );
 		letter.color = board.skin.text.normal_color;
 	}

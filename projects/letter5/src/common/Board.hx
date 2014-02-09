@@ -16,6 +16,12 @@ import phoenix.geometry.Geometry;
 
 import luxe.NineSlice;
 
+enum ActionType {
+    move;
+    down;
+    up;
+}
+
 class Board {
 
 	public var game : Main;
@@ -38,6 +44,8 @@ class Board {
     	//the actual width
     public var width : Int = 0;
     public var height : Int = 0;
+
+    var ready : Bool = false;
 
     	//the blocks and cells of the board
     public var blocks : Array< Array<Block> >;
@@ -74,6 +82,7 @@ class Board {
 
     var red : Color;
     var black : Color;
+    var lit : Color;
 
 	public function new( _game:Main, ?options:Dynamic ) {
 		
@@ -94,12 +103,13 @@ class Board {
             color : new Color(0,0,0,1).rgb(0xf6007b),
             pos : new Vector(30,30),
             font : Luxe.renderer.default_font,
-            size : 24,
-             depth : 20,
+            size : 16 * game.ratio,
+            depth : 20,
         });
 
         red = new ColorHSV(0,1,0.82,1).toColor();
         black = new ColorHSV(132,0.16,0.12,1).toColor();
+        lit = new Color().rgb(0xA29595);
 
 	} //new 
 
@@ -113,8 +123,8 @@ class Board {
 
             for( _y in 0 ... h ) {                
 
-                var __x = baseleft+(Math.round(spacing/2)+(_x * (blockw+spacing)));
-                var __y = basetop+(Math.round(spacing/2)+(_y * (blockh+spacing)));
+                var __x = baseleft+(Math.floor(spacing/2)+(_x * (blockw+spacing)));
+                var __y = basetop+(Math.floor(spacing/2)+(_y * (blockh+spacing)));
 
                 var c = new Cell(this, Std.int(__x), Std.int(__y), _x, _y);
                 var b = new Block(this, Std.int(__x), Std.int(__y));
@@ -144,20 +154,20 @@ class Board {
         });
 
         combo_score = new Text({
-            size : 24,
+            size : 24 * game.ratio,
             font : game.font,
             text : 'x1',
             align : TextAlign.center,
             align_vertical : TextAlign.center,
             depth : 6,
-            bounds : new Rectangle( Luxe.screen.mid.x-(ring_radius), (basetop/2)-(ring_radius), ring_radius*1.9, ring_radius*1.75 )
+            bounds : new Rectangle( Luxe.screen.mid.x-(ring_radius), (basetop/2)-(ring_radius), ring_radius*2, ring_radius*1.75 )
         });
 
         var bottom_mid = (basetop+height) + ((Luxe.screen.h-(basetop+height))/2);
         var textheight = (ring_radius*0.25);
 
         desc_created = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : red.clone(),
             text : 'CREATED',
@@ -168,7 +178,7 @@ class Board {
         });        
 
         desc_destroyed = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : red.clone(),
             text : 'DESTROYED',
@@ -179,7 +189,7 @@ class Board {
         });
 
         desc_swapped = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : red.clone(),
             text : 'SWAPPED',
@@ -190,7 +200,7 @@ class Board {
         });
 
         desc_words = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : red.clone(),
             text : 'WORDS',
@@ -201,7 +211,7 @@ class Board {
         });
 
         score_created = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : black.clone(),
             text : '0',
@@ -212,7 +222,7 @@ class Board {
         });
 
         score_destroyed = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : black.clone(),
             text : '0',
@@ -223,7 +233,7 @@ class Board {
         });
 
         score_swapped = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : black.clone(),
             text : '0',
@@ -234,7 +244,7 @@ class Board {
         });
 
         score_words = new Text({
-            size : 12,
+            size : 12 * game.ratio,
             font : game.font,
             color : black.clone(),
             text : '0',
@@ -259,6 +269,47 @@ class Board {
 
     }
 
+    function start_select() {
+
+        combo_ring.color.tween(0.5, {r:lit.r,g:lit.g,b:lit.b}, true);
+        Actuate.tween( combo_ring.scale, 0.5, { x:1.1, y:1.1 }).onComplete(function(){
+            combo_ring.scale.x = 1;
+            combo_ring.scale.y = 1;
+        });
+
+    }
+
+    function start_target() {
+        combo_ring.color.tween(0.5, {r:red.r,g:red.g,b:red.b}, true);
+        Actuate.tween( combo_ring.scale, 0.5, { x:1.1, y:1.1 }).onComplete(function(){
+            combo_ring.scale.x = 1;
+            combo_ring.scale.y = 1;
+        });
+    }
+
+    function stop_target() {
+        combo_ring.color.tween(0.001, {r:lit.r,g:lit.g,b:lit.b}, true);
+        Actuate.tween( combo_ring.scale, 0.001, { x:1, y:1 }, true);
+    }
+
+    function stop_select() {
+        
+        if(!highlighting) {
+            combo_ring.color.tween(0.001, {r:black.r,g:black.g,b:black.b}, true);
+        }
+
+        Actuate.tween( combo_ring.scale, 0.001, { x:1, y:1 }, true);
+
+    }
+
+    function highlight_current() {
+        if(_selected != null) {
+            _highlighted = _selected;
+            _highlighted.highlight();
+            highlighting = true;
+        }
+    }
+
 	public function init() {
 
         _debug_geometry = [];
@@ -271,19 +322,19 @@ class Board {
         var mid_s_x = Luxe.screen.w / 2;
         var mid_s_y = Luxe.screen.h / 2;
 
-        padding = Std.int(mid_s_x * 0.1);
+        padding = Math.floor(mid_s_x * 0.1);
 
             //calculate the best blockw and blockh
             //take the width of the screen, fit the number of blocks in + spacing
-        blockw = Std.int( (Luxe.screen.w - (padding*2) - (w*spacing))/w );
+        blockw = Math.round( (Luxe.screen.w - (padding*2) - (w*spacing)) / w );
         blockh = blockw;
 
             //calculate the offset positions
-        baseleft = Std.int((mid_s_x) - ( ((blockw+spacing)*w)/2 )) + offsetx;
-        basetop = Std.int((mid_s_y) - ( ((blockh+spacing)*h)/2 )) + offsety;
+        baseleft = Math.floor((mid_s_x) - ( ((blockw+spacing)*w)/2 )) + offsetx;
+        basetop = Math.floor((mid_s_y) - ( ((blockh+spacing)*h)/2 )) + offsety;
 
-        width = Std.int((blockw+spacing) * w);
-        height = Std.int((blockh+spacing) * h);
+        width = Math.floor((blockw+spacing) * w);
+        height = Math.floor((blockh+spacing) * h);
 
             //Load json skin file
 		var template_text = Luxe.loadText('assets/skins/default/skin.json');
@@ -327,7 +378,7 @@ class Board {
         //     Luxe.draw.line({
         //         p0: new Vector(Luxe.screen.mid.x, 0),
         //         p1: new Vector(Luxe.screen.mid.x, Luxe.screen.h),
-        //         color : new Color(1,0.3,0.1,1)
+        //         color : new Color(1,0.3,0.1,1), depth:50
         //     })
         // ); //_debug_geometry
 
@@ -338,10 +389,15 @@ class Board {
         //     	color : new Color(1,0.3,0.1,1)
         //     })
         // ); //_debug_geometry
-
+        
+        _selected = null;
+        _highlighted = null;
+        highlighting = false;
 
         create_blocks();
         create_ui();
+
+        ready = true;
 
 	} //init
 
@@ -388,92 +444,234 @@ class Board {
 	} //destroy
 
     var _selected : Block;
+    var _highlighted : Block;
+    var _targeted : Block;
     var mousedown : Bool;
     var touchpos : Vector;
 
     public function ontouchbegin(e:TouchEvent) {
+        
+        if(mousedown == false) {
+            released = false;
+        }
+
         mousedown = true;
         touchpos.set(e.x,e.y);
-        ondrag(touchpos);
+
+        ondrag( touchpos, ActionType.down );
     }
     public function ontouchend(e:TouchEvent) {
+
+        released = true;
         mousedown = false;
+
         touchpos.set(e.x,e.y);
-        ondrag(touchpos);
+        
+        ondrag( touchpos, ActionType.up );
     }
 
     public function ontouchmove(e:TouchEvent) {
+        
         touchpos.set(e.x,e.y);
-        ondrag(touchpos);
+        ondrag( touchpos, ActionType.move );
+
     }
 
     public function onmousemove(e:MouseEvent) {
-        ondrag(e.pos);
+        ondrag( e.pos, ActionType.move );
     }
 
     public function update(dt:Float) {
-         // delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
-    }
-
-    public function ondrag(pos:Vector) {
+        
+        if(_selected != null && _highlighted == null) {
+            if(Luxe.time - current_block_time >= 0.5) {
+                highlight_current();
+            }
+        }
 
         if(mousedown) {
+            // delta_time_text.text = ''+(Luxe.time - current_block_time) ;
+        } else {
+            // delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
+        }
 
-            var gridspacex = pos.x - baseleft;
-            var gridspacey = pos.y - basetop;
+         // if( current_block_time )
+    }
 
-            var gridx = Math.floor(gridspacex / (blockw+spacing));
-            var gridy = Math.floor(gridspacey / (blockh+spacing));
+    var highlighting : Bool = false;
+    var released : Bool = true;
+    var block_margin : Float = 0.20;
+
+    public function ondrag( pos:Vector, _type:ActionType ) {
+
+        if(!ready) return;
+
+        var gridspacex = pos.x - baseleft;
+        var gridspacey = pos.y - basetop;
+
+        var subx = (gridspacex / (blockw+spacing));
+        var suby = (gridspacey / (blockh+spacing));
+        var gridx = Math.floor(subx);
+        var gridy = Math.floor(suby);
+
+        var inside_grid = (gridx > -1 && gridx < w && gridy > -1 && gridy < h && blocks != null && blocks.length != 0);
+        
+        var subx_n = subx - gridx;
+        var suby_n = suby - gridy;
+        
+        var in_block_x = luxe.utils.Maths.within_range(subx_n, block_margin, 1.0 - block_margin);
+        var in_block_y = luxe.utils.Maths.within_range(suby_n, block_margin, 1.0 - block_margin);
+
+        if( mousedown ) {
+
+            if( inside_grid && in_block_x && in_block_y ) {
+                
+                if(current_block_x != gridx && current_block_y != gridy) {
+                    current_block_time = Luxe.time;                    
+                    current_block_x = gridx;
+                    current_block_y = gridy;
+                    if(!highlighting) {
+                        start_select(); 
+                    } else {
+                        start_target();
+                    }
+                } 
+
+                var block = blocks[gridx][gridy];
+
+                if(!highlighting) {
+
+                    if(block != _selected) {
+                        
+                        if(_selected != null) {
+                            _selected.unselect();
+                        }
+
+                        _selected = block;
+                        block.select();
+
+                    } //block != selected
+
+                } else { //highlighting?
+
+                    if(block == _highlighted) {
+
+                        if(_type == ActionType.up || _type == ActionType.down) {                        
+                            unhighlight();
+                            unset_current();
+                        } //tap/click
+
+                    } else { //block == _highlighted
+
+                        if(_targeted != null) {
+                            _targeted.unhighlight();
+                            _targeted = null;
+                        }
+
+                            //store the new target
+                        _targeted = block;
+                        _targeted.select();
+
+                    } //not highlighting same block?
+
+                }
+
+            } else {
+
+                if(!highlighting) {
+                    unset_current();
+                    unhighlight();
+                }
+
+            } //mouse inside block
+
+        }
+
+        if(_type == ActionType.down) {
+
+        }
+
+        if(_type == ActionType.up) {
+
+            unset_current();
 
             if(gridx == 0 && gridy == 0) {
                 game.states.set('menu');
                 return;
             }
 
-            if(gridx > -1 && gridx < w && gridy > -1 && gridy < h && blocks != null && blocks.length != 0) {
-                //get the block
-                var block = blocks[gridx][gridy];
-
-                if(block != _selected) {
-                    
-                    if(_selected != null) {
-                        _selected.deselect();
-                    }
-
-                    _selected = block;
-                    block.select();
-
-                }
-
-            } else {
-                if(_selected != null) {
-                    _selected.deselect();
-                    _selected = null;
-                }
-            }
-
-        } //mousedown
+        }
 
     } //ondrag
 
+    function unhighlight() {
+
+        highlighting = false;
+        
+        if(_highlighted != null) {
+            _highlighted.unhighlight();
+        }
+
+        _highlighted = null;
+    }
+
+    function unset_current() {
+        
+        if(!ready) return;
+
+        current_block_x = -1;
+        current_block_y = -1;
+        current_block_time = 0.0;
+
+        if(!highlighting) {
+            stop_select();
+        } else {
+            stop_target();
+        }        
+
+        if(_selected != null) {
+            
+            if(_selected != _highlighted){
+                _selected.unselect();
+            }
+
+            _selected = null;            
+        } //selected != null
+
+    } //unset_current
+
     var score : Int = 1;
+    var current_block_time : Float = 0.0;
+
+    var current_block_x : Int = -1;
+    var current_block_y : Int = -1;
+
     public function onmousedown(e:MouseEvent) {
-        score++;
-        if(score > 5) score = 1;
-        combo_score.text = 'x'+score;        
-        refresh_combo();
+        
+        // score++;
+        // if(score > 5) score = 1;
+        // combo_score.text = 'x'+score;
+
+        // refresh_combo();
 
         #if !ios
+            if(mousedown == false) {
+                released = false;
+            }
             mousedown = true;
-            ondrag(e.pos);
+            ondrag( e.pos, ActionType.down );
         #end
-    }
+
+    } //onmousedown
 
     public function onmouseup(e:MouseEvent) {
+
         #if !ios
+            released = true;
             mousedown = false;
-            ondrag(e.pos);
+            ondrag( e.pos, ActionType.up );
         #end
-    }
+
+    } //onmouseup
 	
 }

@@ -4,7 +4,8 @@
 	"image" : "assets/skins/default/default.png",
 
 	"board" : {
-		"offsety" : 0
+		"offsetx" : "0",
+		"offsety" : "0"
 	},
 
 	"top_bar" : {
@@ -57,10 +58,24 @@
 		"h" : "128",
 		"depth" : "3",
 	},
+	"block_highlighted" : {
+		"x" : "0",
+		"y" : "128",
+		"w" : "128",
+		"h" : "128",
+		"depth" : "3",
+	},
+	"block_locked" : {
+		"x" : "128",
+		"y" : "128",
+		"w" : "128",
+		"h" : "128",
+		"depth" : "3",
+	},
 	"text" : {
 		"h" : "20",
-		"normal_color" : {"r":0.655,"g":0.608,"b":0.592,"a":1},
-		"highlight_color" : {"r":0.941,"g":0.941,"b":0.941,"a":1}
+		"normal_color" : {"r":"0.655","g":"0.608","b":"0.592","a":"1"},
+		"highlight_color" : {"r":"1","g":"1","b":"1","a":"1"}
 	},
 	"rects" : [
 		

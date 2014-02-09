@@ -54,6 +54,8 @@ class Skin {
 	public var texture : Texture;
 	public var block : SkinBlock;
 	public var block_selected : SkinBlock;
+	public var block_highlighted : SkinBlock;
+	public var block_locked : SkinBlock;
 	public var text : SkinText;
 
 	public var top : Bar;
@@ -71,6 +73,8 @@ class Skin {
 
 		block = { x:0, y:0, w:0, h:0, depth:0 };
 		block_selected = { x:0, y:0, w:0, h:0, depth:0 };
+		block_highlighted = { x:0, y:0, w:0, h:0, depth:0 };
+		block_locked = { x:0, y:0, w:0, h:0, depth:0 };
 		top = { x:0, y:0, w:0, h:0, depth:1, sx:0, sy:0, sw:0, sh:0, t:0, r:0, b:0, l:0 };
 		bottom = { x:0, y:0, w:0, h:0, depth:1, sx:0, sy:0, sw:0, sh:0, t:0, r:0, b:0, l:0 };
 		rects = [];
@@ -126,7 +130,23 @@ class Skin {
 			block_selected.w = Std.parseInt(template.block_selected.w);
 			block_selected.h = Std.parseInt(template.block_selected.h);
 			block_selected.depth = Std.parseFloat(template.block_selected.depth);
-		} //block
+		} //block_selected
+
+		if(template.block_highlighted != null) {
+			block_highlighted.x = Std.parseInt(template.block_highlighted.x);
+			block_highlighted.y = Std.parseInt(template.block_highlighted.y);
+			block_highlighted.w = Std.parseInt(template.block_highlighted.w);
+			block_highlighted.h = Std.parseInt(template.block_highlighted.h);
+			block_highlighted.depth = Std.parseFloat(template.block_highlighted.depth);
+		} //block_selected
+
+		if(template.block_locked != null) {
+			block_locked.x = Std.parseInt(template.block_locked.x);
+			block_locked.y = Std.parseInt(template.block_locked.y);
+			block_locked.w = Std.parseInt(template.block_locked.w);
+			block_locked.h = Std.parseInt(template.block_locked.h);
+			block_locked.depth = Std.parseFloat(template.block_locked.depth);
+		} //block_selected
 
 		if(template.text != null) {
 			text.x = Std.parseInt(template.text.x);
