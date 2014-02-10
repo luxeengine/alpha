@@ -12,8 +12,8 @@ class Main extends luxe.Game {
     	// loadShader - test_shaders
     	// loadTexture - test_sprite, etc
 
-    	trace("bytes: " + bytes );
-    	trace("text: " + text);
+    	trace("bytes: " + bytes.data );
+    	trace("text: " + text.text );
 
     	Luxe.core.show_console(true);
 

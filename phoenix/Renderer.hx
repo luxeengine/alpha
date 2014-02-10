@@ -175,10 +175,13 @@ class Renderer {
         //trace(v);
     }
 
-    public function load_font( _fontid:String, ?_path:String = 'assets/', ?_onloaded:Void->Void ) : BitmapFont {
+    public function load_font( _fontid:String, ?_path:String = 'assets/', ?_onloaded:BitmapFont->Void ) : BitmapFont {
 
         var new_font = new BitmapFont( resource_manager );        
-        new_font.load_from_string( Luxe.loadText(_path + _fontid), _path, _onloaded );
+        var font_data = Luxe.loadText(_path + _fontid);
+        
+            new_font.load_from_string( font_data.text, _path, _onloaded );
+
         return new_font;
 
     } //load_font

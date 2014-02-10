@@ -3,6 +3,9 @@ package ;
 
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
+import phoenix.Resource.DataResource;
+import phoenix.Resource.TextResource;
+import phoenix.Resource.SoundResource;
 import phoenix.Texture;
 import phoenix.Shader;
 import phoenix.Batcher;
@@ -39,76 +42,138 @@ class Luxe {
     @:isVar public static var time(get, never) : Float;
     @:isVar public static var screen(get, never) : Screen;
 
-    public static function get_screen() { 
+    public static function get_screen() {
+
         return core.screen; 
+
     } //get_screen
 
     public static function get_time() : Float { 
+
         return haxe.Timer.stamp();
+
     } //get_time
 
     public static function shutdown() {
+
         core.lime.shutdown();
+
     } //shutdown
 
     public static function showConsole(_show:Bool) {
+
         core.show_console( _show );
+
     } //showConsole
 
-    public static function loadText( _id:String ) : String {
-        return lime.utils.Assets.getText(_id);
+    public static function loadText( _id:String, ?_onloaded:TextResource->Void ) : TextResource {
+        
+        var string = lime.utils.Assets.getText(_id);
+        var res = new TextResource( _id, string, Luxe.resources );
+
+            if(_onloaded != null) {
+                _onloaded( res );
+            } //_onloaded
+
+        return res;
+
     } //loadText
 
-    public static function loadData( _id:String ) : lime.utils.ByteArray {
-        return lime.utils.Assets.getBytes(_id);
+    public static function loadData( _id:String, ?_onloaded:DataResource->Void ) : DataResource {
+        
+        var bytes = lime.utils.Assets.getBytes(_id);
+        var res = new DataResource( _id, bytes, Luxe.resources);
+
+            if(_onloaded != null) {
+                _onloaded( res );
+            } //_onloaded
+
+        return res;
+
+    } //loadData
+
+    public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onloaded:SoundResource->Void ) : SoundResource {
+        
+        Luxe.audio.create( _name, _id, _is_music );
+
+        var res = new SoundResource( _name, _id, Luxe.resources );
+
+            if(_onloaded != null) {
+                _onloaded( res );
+            } //_onloaded
+
+        return res;
+
     } //loadData
 
     public static function loadTexture( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
+
         return renderer.load_texture( _id, _onloaded, _silent );
+
     } //loadTexture
     
     public static function loadTextures( _ids:Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
+
         renderer.load_textures( _ids, _onloaded, _silent );
+
     } //loadTextures
     
-    public static function loadFont( _id:String, ?_path:String, ?_onloaded:Void->Void ) : BitmapFont {
+    public static function loadFont( _id:String, ?_path:String, ?_onloaded : BitmapFont->Void ) : BitmapFont {
+
         return renderer.load_font(_id, _path, _onloaded);
+
     } //loadFont
 
     public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:Shader->Void ) : Shader {
+
         return renderer.load_shader(_ps_id, _vs_id, _onloaded);
+
     } //loadShader
 
 //Utility features
 
     public static function openURL( _url:String ) {
+
         core.lime.window.openURL( _url );
+
     } //openURL
 
     public static function fileDialogFolder(_title:String, _text:String) : String {
+
         return core.lime.window.fileDialogFolder(_title,_text);
+
     } //fileDialogFolder
 
     public static function fileDialogOpen(_title:String, _text:String) : String {
+
         return core.lime.window.fileDialogOpen(_title,_text);
+
     } //fileDialogOpen
 
     public static function fileDialogSave(_title:String, _text:String) : String {
+
         return core.lime.window.fileDialogSave(_title,_text);
+
     } //fileDialogSave
 
 //Batcher / Geometry managing    
 
     public static function addGeometry(_geom:Geometry) {
+
         renderer.default_batcher.add(_geom);
+
     } //addGeometry
     
     public static function removeGeometry(_geom:Geometry) {
+
         renderer.default_batcher.remove(_geom);
+
     } //removeGeometry
 
     public static function addGroup( _group : Int , ?_pre_render : (phoenix.Batcher -> Void) , ?_post_render : (phoenix.Batcher -> Void) ) {
-        return renderer.default_batcher.add_group( _group, _pre_render, _post_render );        
+
+        return renderer.default_batcher.add_group( _group, _pre_render, _post_render );
+
     } //addGroup
 
     public static function createBatcher( ?_name:String = 'batcher', ?_camera:luxe.Camera, ?_add:Bool=true ) {

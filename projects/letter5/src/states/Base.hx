@@ -34,7 +34,8 @@ class Base extends State {
 		board = new Board(game);
 
 			//create the words map
-        var wordstring = Luxe.loadText('assets/words.txt');
+        var wordres = Luxe.loadText('assets/words.txt');
+        var wordstring = wordres.text;
         var wordarray = wordstring.split('\n');
         for(word in wordarray) {
             words.set(word, word);

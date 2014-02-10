@@ -1,169 +1,256 @@
 package phoenix;
 
+import lime.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.Resource;
 import phoenix.Shader;
 import phoenix.Texture;
 
-class ResourceStats {
-    public function new(){}
+class ResourceStats {    
+
     public var resources : Int = 0;
     public var fonts : Int = 0;
     public var textures : Int = 0;
     public var render_textures : Int = 0;
     public var shaders : Int = 0;
+    public var texts : Int = 0;
+    public var datas : Int = 0;
+    public var sounds : Int = 0;
     public var unknown : Int = 0;
+
+    public function new() {
+
+    } //new
+
     public function toString() {
         return 
-        	'Resource Statistics\n' + 
+            'Resource Statistics\n' + 
             '\ttotal resources : ' + resources + '\n' +
             '\ttextures : ' + textures + ' \n' + '' +
-            '\trender textures : ' + render_textures + ' \n' + '' +
+            '\trender textures : ' + render_textures + ' \n' +
             '\tfonts : ' + fonts + '\n' +
             '\tshaders : ' + shaders + '\n' +
+            '\tsounds : ' + sounds + '\n' +
+            '\ttext : ' + texts + '\n' +
+            '\tdata : ' + datas + '\n' +
             '\tunknown : ' + unknown;
-    }
+    } //toString
 
     public function reset() {
-		resources = 0;
-    	fonts = 0;
-    	textures = 0;
-    	render_textures = 0;
-    	shaders = 0;
-    	unknown = 0;
-    }
-}
+
+        resources = 0;
+        fonts = 0;
+        textures = 0;
+        render_textures = 0;
+        shaders = 0;
+        texts = 0;
+        datas = 0;
+        sounds = 0;
+        unknown = 0;
+
+    } //reset
+
+} //ResourceStats
 
 class ResourceManager {
-	
-	public var resourcelist : Array<Resource>;
-		//cache lists for creating
-	public var render_textures : Map<String,RenderTexture>;
-	public var textures : Map<String,Texture>;
-	public var shaders : Map<String,Shader>;
-	public var fonts : Map<String,BitmapFont>;
+    
+    public var resourcelist : Array<Resource>;
+        //cache lists for creating
+    public var render_textures : Map<String,RenderTexture>;
+    public var textures : Map<String,Texture>;
+    public var shaders : Map<String,Shader>;
+    public var fonts : Map<String,BitmapFont>;
+    public var data : Map<String,ByteArray>;
+    public var text : Map<String,String>;
+    public var sounds : Map<String,String>;
 
-	public var stats : ResourceStats;
+    public var stats : ResourceStats;
 
-	public function new() {
-		resourcelist = new Array<Resource>();
-		textures = new Map();
-		render_textures = new Map();
-		fonts = new Map();
-		shaders = new Map();
-		stats = new ResourceStats();
-	}
+    public function new() {
 
-	public function add( res:Resource ) {
-		resourcelist.push(res);
-		switch (res.type) {
-			case ResourceType.texture:
-				stats.textures++;				
-			case ResourceType.render_texture:
-				stats.render_textures++;				
-			case ResourceType.font:
-				stats.fonts++;
-			case ResourceType.shader:
-				stats.shaders++;
-			case ResourceType.unknown:
-				stats.unknown++;
-		}
-		stats.resources++;
-	}
+        resourcelist = new Array<Resource>();
+        textures = new Map();
+        render_textures = new Map();
+        fonts = new Map();
+        shaders = new Map();
+        sounds = new Map();
+        data = new Map();
+        text = new Map();        
+        stats = new ResourceStats();
 
-	public function remove( res:Resource ) {
-		resourcelist.remove(res);
-		uncache(res);
+    } //new
 
-		switch (res.type) {
-			case ResourceType.texture:
-				stats.textures--;
-			case ResourceType.render_texture:
-				stats.render_textures--;
-			case ResourceType.font:
-				stats.fonts--;
-			case ResourceType.shader:
-				stats.shaders--;
-			case ResourceType.unknown:
-				stats.unknown--;
-		}
-		stats.resources--;
-	}
+    public function add( res:Resource ) {
+        
+        resourcelist.push(res);
 
-	public function uncache(res:Resource) {
-		switch (res.type) {
-			case ResourceType.texture:
-				textures.remove(res.id);
-			case ResourceType.render_texture:
-				render_textures.remove(res.id);
-			case ResourceType.font:
-				fonts.remove(res.id);
-			case ResourceType.shader:
-				shaders.remove(res.id);
-			case ResourceType.unknown:
-		}		
-	}
+        switch (res.type) {
 
-	public function cache(res:Resource) {
-		switch (res.type) {
-			case ResourceType.texture:
-				textures.set(res.id, cast res);
-			case ResourceType.render_texture:
-				render_textures.set(res.id, cast res);
-			case ResourceType.font:
-				fonts.set(res.id, cast res);
-			case ResourceType.shader:
-				shaders.set(res.id, cast res);
-			case ResourceType.unknown:
-		}
-	}
+            case ResourceType.texture:
+                stats.textures++;               
+            case ResourceType.render_texture:
+                stats.render_textures++;                
+            case ResourceType.font:
+                stats.fonts++;
+            case ResourceType.shader:
+                stats.shaders++;
+            case ResourceType.sound:
+                stats.sounds++;                
+            case ResourceType.text:
+                stats.texts++;
+            case ResourceType.data:
+                stats.datas++;
+            case ResourceType.unknown:
+                stats.unknown++;
+        
+        } //switch
 
-	public function find_render_texture( _name:String ) {
+        stats.resources++;
+
+    } //add
+
+    public function remove( res:Resource ) {
+
+        resourcelist.remove(res);
+        uncache(res);
+
+        switch (res.type) {
+
+            case ResourceType.texture:
+                stats.textures--;
+            case ResourceType.render_texture:
+                stats.render_textures--;
+            case ResourceType.font:
+                stats.fonts--;
+            case ResourceType.shader:
+                stats.shaders--;
+            case ResourceType.sound:
+                stats.sounds--;                
+            case ResourceType.text:
+                stats.texts--;
+            case ResourceType.data:
+                stats.datas--;
+            case ResourceType.unknown:
+                stats.unknown--;
+        }
+
+        stats.resources--;
+
+    } //remove
+
+    public function uncache(res:Resource) {
+
+        switch (res.type) {
+
+            case ResourceType.texture:
+                textures.remove(res.id);
+            case ResourceType.render_texture:
+                render_textures.remove(res.id);
+            case ResourceType.font:
+                fonts.remove(res.id);
+            case ResourceType.shader:
+                shaders.remove(res.id);
+            case ResourceType.sound:
+                sounds.remove(res.id);
+            case ResourceType.data:
+                data.remove(res.id);
+            case ResourceType.text:
+                text.remove(res.id);
+            case ResourceType.unknown:{}
+
+        } //switch
+
+    } //uncache
+
+    public function cache( res:Resource ) {
+
+        switch (res.type) {
+
+            case ResourceType.texture:
+                textures.set(res.id, cast res);
+            case ResourceType.render_texture:
+                render_textures.set(res.id, cast res);
+            case ResourceType.font:
+                fonts.set(res.id, cast res);
+            case ResourceType.shader:
+                shaders.set(res.id, cast res);
+            case ResourceType.sound:
+                sounds.set(res.id, cast res);
+            case ResourceType.text:
+                text.set(res.id, cast res);
+            case ResourceType.data:
+                data.set(res.id, cast res);
+            case ResourceType.unknown:
+
+        } //switch
+
+    } //cache
+
+    public function find_render_texture( _name:String ) {
         return render_textures.get(_name);
-    }
-	public function find_texture( _name:String ) {
+    } //find_render_texture
+
+    public function find_texture( _name:String ) {
         return textures.get(_name);
-    }
-	public function find_shader( _name:String ) {
+    } //find_texture
+
+    public function find_shader( _name:String ) {
         return shaders.get(_name);
-    }
-	public function find_font( _name:String ) {
+    } //find_shader
+
+    public function find_font( _name:String ) {
         return fonts.get(_name);
-    }
+    } //find_font
 
-	public function clear( ?and_persistent : Bool = false ) {
-		
-		var keep = [];
-		for(res in resourcelist) {
-			if(!res.persistent || and_persistent) {
-				res.drop();		
-			} else {
-				keep.push(res);
-			}
-		}
+    public function find_sound( _name:String ) {
+        return sounds.get(_name);
+    } //find_sound
 
-			//kill everything, and readd them
-			//will reset the counters for internal data
-		resourcelist.splice(0,resourcelist.length);
-		resourcelist = new Array<Resource>();
-		stats.reset();
+    public function find_text( _name:String ) {
+        return text.get(_name);
+    } //find_text
 
-			//readd
-		for(res in keep) {
-			add(res);
-		}
+    public function find_data( _name:String ) {
+        return data.get(_name);
+    } //find_data
 
-		keep = null;
-	}
+    public function clear( ?and_persistent : Bool = false ) {
+        
+        var keep = [];
+        for(res in resourcelist) {
+            if(!res.persistent || and_persistent) {
+                res.drop();     
+            } else {
+                keep.push(res);
+            }
+        }
 
-	public function find( id : String ) : Resource {
-		for(resource in resourcelist) {
-			if(resource.id == id) {
-				return resource;
-			}
-		}
-		return null;
-	}
+            //kill everything, and readd them
+            //will reset the counters for internal data
+        resourcelist.splice(0,resourcelist.length);
+        resourcelist = new Array<Resource>();
+        stats.reset();
 
-	
+            //readd
+        for(res in keep) {
+            add(res);
+        }
+
+        keep = null;
+
+    } //clear
+
+    public function find( id : String ) : Resource {
+        
+        for(resource in resourcelist) {
+            if(resource.id == id) {
+                return resource;
+            }
+        }
+
+        return null;
+
+    } //find
+
+    
 }

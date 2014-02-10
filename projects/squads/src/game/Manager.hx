@@ -117,7 +117,8 @@ class Manager extends State {
         var yoffset = (Luxe.screen.h * 0.8) - 60;
         var startframe = new Rectangle(0,0,32,32);
 
-        var animdata = Luxe.loadText('assets/game/player.anims.json');
+        var animres = Luxe.loadText('assets/game/player.anims.json');
+        var animdata = animres.text;
 
 //Player 1
         var player1sprite = new Sprite({

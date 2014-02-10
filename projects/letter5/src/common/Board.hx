@@ -337,7 +337,7 @@ class Board {
         height = Math.floor((blockh+spacing) * h);
 
             //Load json skin file
-		var template_text = Luxe.loadText('assets/skins/default/skin.json');
+		var template_text = Luxe.loadText('assets/skins/default/skin.json').text;
             //if it's valid
 		if(template_text != null) {
 			var template = luxe.utils.JSON.parse(template_text);

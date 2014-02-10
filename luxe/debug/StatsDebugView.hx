@@ -85,7 +85,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         resource_list_text = new luxe.Text({
             depth : 999.3,
             color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(debug.padding.x*7,debug.padding.y*7),
+            pos : new Vector(debug.padding.x*7,debug.padding.y*9),
             font : Luxe.renderer.default_font,
             text : '',
             size : 14,

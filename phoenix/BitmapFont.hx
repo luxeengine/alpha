@@ -59,7 +59,7 @@ class BitmapFont extends Resource {
     private var line_widths : Array<Float>;
     public var on_pages_loaded : Void -> Void;
     public var pages_loaded : Int = 0;
-    public var onload : Void -> Void;
+    public var onload : BitmapFont -> Void;
 
     public function new( ?_resource_manager : ResourceManager = null ) {
         
@@ -93,7 +93,7 @@ class BitmapFont extends Resource {
 
     public function on_all_pages_loaded() {
         if(onload != null) {
-            onload();
+            onload( this );
         }
     }
 
@@ -106,7 +106,7 @@ class BitmapFont extends Resource {
 
     public function load_from_string( _bitmap_file : String = '', 
                                       _folder : String = 'assets/', 
-                                      ?onloaded : Void->Void = null, 
+                                      ?onloaded : BitmapFont->Void = null, 
                                       ?custom_pages:Array<Texture> = null ) {
 
         var lines : Array<String> = _bitmap_file.split("\n");

@@ -69,7 +69,8 @@ class Level extends State {
         items = [];
 
             //load the json for collisions
-        var jsontext = Luxe.loadText('assets/levels/01.exposure.collision.json');
+        var jsondata = Luxe.loadText('assets/levels/01.exposure.collision.json');
+        var jsontext = jsondata.text;
         var jsonobj : Dynamic = luxe.utils.JSON.decode(jsontext, false);
             //ground shapes        
         var _ground_list : Array<Dynamic> = cast jsonobj.ground_collisions;

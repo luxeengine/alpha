@@ -37,7 +37,8 @@ class Text {
             font = new BitmapFont(Luxe.resources);
                 //fetch font
             var _folder = haxe.io.Path.directory(_font) + '/';
-            font.load_from_string( Luxe.loadText(_font), _folder, onloaded );
+            var _text = Luxe.loadText(_font);
+            font.load_from_string( _text.text , _folder, onloaded );
 
         } else {
                 //supplied a precreated font?            
@@ -63,7 +64,7 @@ class Text {
 
     } //new
 
-    @:noCompletion public function onloaded() {
+    @:noCompletion public function onloaded( font:BitmapFont ) {
         ready = true;
         text = text + '';
     }

@@ -5,174 +5,9 @@ import luxe.Sprite;
 import luxe.Color;
 import luxe.Vector;
 
-import phoenix.Resource;
-import phoenix.Texture;
 
-typedef ParcelProgressOptions = {
-
-    oncomplete : Parcel -> Void,
-    parcel : Parcel,
-
-    ?fade_in : Bool,
-    ?fade_out : Bool,
-    ?fade_time : Float,
-    ?bar : Color,
-    ?bar_border : Color,
-    ?background : Color,    
-    ?texture : Texture
-
-}
-
-class ParcelProgress { 
-    
-    var parcel : Parcel;
-
-        //Parcle progress will create a fullscreen overlay
-        //color background, logo image, and a progress bar
-    var progress_bar        : Sprite;
-    var progress_border     : Sprite;
-    var background          : Sprite;
-
-    var image_logo          : Sprite;
-    var options             : ParcelProgressOptions;
-
-        //for now, 
-    var width : Float = 0;
-    var height : Float = 0;
-
-    public function new( _options:ParcelProgressOptions ) {
-
-        options = _options;
-
-        if(options.bar == null) {
-            options.bar = new Color().rgb(0x343434);
-        }
-
-        if(options.bar_border == null) {
-            options.bar_border = new Color().rgb(0x161616);
-        }
-
-        if(options.background == null) {
-            options.background = new Color().rgb(0x090909);
-        }
-
-        if(options.fade_in == null) {
-            options.fade_in = true;
-        }
-
-        if(options.fade_out == null) {
-            options.fade_out = true;
-        }
-
-        if(options.fade_time == null) {
-            options.fade_time = 0.3;
-        }
-
-        // if(options.texture != null) {
-        //     image_logo = new Sprite({
-        //         texture : options.texture, 
-        //         pos : Luxe.screen.mid
-        //     });
-        // }
-
-        if(options.fade_in) {
-
-            options.background.a = 0;
-            options.bar.a = 0;
-            options.bar_border.a = 0;
-
-        } //fade in
-
-        width = Luxe.screen.w * 0.75;
-        height = Luxe.screen.h * 0.002;
-        var ypos = Luxe.screen.h * 0.60; 
-
-        background = new Sprite({
-            pos : new Vector(),
-            no_scene : true,
-            size : new Vector( Luxe.screen.w, Luxe.screen.h ),
-            centered : false,
-            color : options.background
-        });
-
-        progress_bar = new Sprite({
-            pos : new Vector(Luxe.screen.mid.x - (width/2), ypos - (height/2)),
-            size : new Vector( 2, height ),
-            no_scene : true,
-            centered : false,
-            color : options.bar
-        });
-
-        progress_border = new Sprite({
-            size : new Vector( width, height ),
-            color : options.bar,
-            no_scene : true,
-            centered : false,
-            pos : new Vector(Luxe.screen.mid.x - (width/2) - 1, ypos - (height/2) - 1),
-            geometry : Luxe.draw.rectangle({
-                w : width + 2,
-                h : height + 2
-            })
-        });
-
-            //we intercept the onprogress and oncomplete of the parcel
-        options.parcel.oncomplete = oncomplete;
-        options.parcel.onprogress = onprogress;
-
-        if(options.fade_in) {
-
-                //fade in the progress bar
-            background.color.tween(options.fade_time,{a:1},true);
-            progress_bar.color.tween(options.fade_time,{a:1},true);
-            progress_border.color.tween(options.fade_time,{a:1},true);
-
-        } //fade_in
-
-    } //new
-
-    public function set_progress( amount : Float ) {
-
-        if(amount < 0) amount = 0;
-        if(amount > 1) amount = 1;
-
-        progress_bar.size.x = width * amount;
-
-    } //set_progress
-
-    public function onprogress( r:Resource ) {
-
-            //work out where we are out
-        var amount = options.parcel.current_count / options.parcel.total_items;
-        
-            //update the progress bar
-        set_progress( amount );
-
-    } //onprogress
-
-    public function oncomplete( p:Parcel ) {
-
-        if(options.fade_out) {
-
-            background.color.tween( options.fade_time, {a:0}, true);
-            progress_bar.color.tween( options.fade_time, {a:0}, true);
-            progress_border.color.tween( options.fade_time, {a:0}, true)
-                .onComplete( do_complete );
-
-        } else {
-
-            do_complete();
-
-        } //fade out
-
-    } //oncomplete
-
-    function do_complete() {
-        if(options.oncomplete != null) {
-            options.oncomplete( options.parcel );
-        }
-    } //do_complete
-
-} //Parcel Progress
+import luxe.Parcel;
+import luxe.ParcelProgress;
 
 class Main extends luxe.Game {
 
@@ -188,9 +23,33 @@ class Main extends luxe.Game {
             parcel1.add_texture('assets/texture4.png');
             parcel1.add_texture('assets/texture5.png');
 
+            parcel1.add_text('assets/text1.txt');
+            parcel1.add_text('assets/text2.txt');
+            parcel1.add_text('assets/text3.txt');
+            parcel1.add_text('assets/text4.txt');
+            parcel1.add_text('assets/text5.txt');
+
+            parcel1.add_data('assets/bytes1');
+            parcel1.add_data('assets/bytes2');
+            parcel1.add_data('assets/bytes3');
+            parcel1.add_data('assets/bytes4');
+            parcel1.add_data('assets/bytes5');
+
+            parcel1.add_font('font1.fnt', 'assets/fonts/');
+            parcel1.add_font('font2.fnt', 'assets/fonts/');
+            parcel1.add_font('font3.fnt', 'assets/fonts/');
+            parcel1.add_font('font4.fnt', 'assets/fonts/');
+            parcel1.add_font('font5.fnt', 'assets/fonts/');
+
+            parcel1.add_sound( 'assets/sound1.ogg', 'sound1', false );
+            parcel1.add_sound( 'assets/sound2.ogg', 'sound2', false );
+            parcel1.add_sound( 'assets/sound3.ogg', 'sound3', false );
+            parcel1.add_sound( 'assets/sound4.ogg', 'sound4', false );
+            parcel1.add_sound( 'assets/sound5.ogg', 'sound5', false );
+
         var progress = new ParcelProgress({
-            parcel : parcel1, 
-            oncomplete : onloaded
+            parcel      : parcel1, 
+            oncomplete  : onloaded
         });
 
         parcel1.load();

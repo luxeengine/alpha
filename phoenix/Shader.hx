@@ -30,12 +30,12 @@ typedef UniformValue = {
 class Shader extends Resource {
 
     public var errors : String = '';
-	public var log : String = '';
+    public var log : String = '';
 
-	public var vert_shader : Dynamic;
-	public var frag_shader : Dynamic;
-	public var program : GLProgram;
-	public var shader : GLShader;
+    public var vert_shader : Dynamic;
+    public var frag_shader : Dynamic;
+    public var program : GLProgram;
+    public var shader : GLShader;
 
     public var vert_attribute   : Int = 0;
     public var tcoord_attribute : Int = 1;
@@ -57,26 +57,26 @@ class Shader extends Resource {
     
     var uniform_textures : Map<String,Texture>;
 
-	public function new( _manager : ResourceManager ) {
-		
-		super( _manager, ResourceType.shader );
+    public function new( _manager : ResourceManager ) {
+        
+        super( _manager, ResourceType.shader );
         uniforms = new Map<String,Dynamic>();
         uniform_textures = new Map();
 
-	} //new
+    } //new
 
-	public function activate() {
-		if(program != null) {
+    public function activate() {
+        if(program != null) {
             // trace('\t\t activating shader ' + id + ' ' + program);
-			Luxe.renderer.state.useProgram( program );
-		} else {
-			//GL.useProgram( null );
-		}
-	} //activate
+            Luxe.renderer.state.useProgram( program );
+        } else {
+            //GL.useProgram( null );
+        }
+    } //activate
 
-	public function deactivate() {
-		Luxe.renderer.state.useProgram( null );
-	} //deactivate
+    public function deactivate() {
+        Luxe.renderer.state.useProgram( null );
+    } //deactivate
 
    public function set_uniform_int( _name:String, _value:Int ) : Void {
         if(uniforms.exists(_name)) {
@@ -164,12 +164,12 @@ class Shader extends Resource {
     } //set_uniform_texture
 
 
-		//GL.FRAGMENT_SHADER
-	public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
+        //GL.FRAGMENT_SHADER
+    public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
 
-		var _shader = GL.createShader( _type );
-		GL.shaderSource( _shader,  _source);
-		GL.compileShader(_shader);
+        var _shader = GL.createShader( _type );
+        GL.shaderSource( _shader,  _source);
+        GL.compileShader(_shader);
 
         var shader_log = '';
         if(_verbose) {
@@ -186,9 +186,9 @@ class Shader extends Resource {
 
         } //_verbose
 
-		if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
+        if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
 
-			addError("\tFailed to compile shader (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
+            addError("\tFailed to compile shader (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
                 
                 //only fetch if we haven't already above
             if(!_verbose) {
@@ -205,14 +205,14 @@ class Shader extends Resource {
         } //compile_status
 
         return _shader;
-	}
+    }
 
-	public function link() {
+    public function link() {
 
-		var _program = GL.createProgram();
+        var _program = GL.createProgram();
 
-		GL.attachShader(_program, vert_shader);
-	    GL.attachShader(_program, frag_shader);
+        GL.attachShader(_program, vert_shader);
+        GL.attachShader(_program, frag_shader);
 
             //Now we want to ensure that our locations are static
         GL.bindAttribLocation( _program, vert_attribute,    'vertexPosition');
@@ -220,15 +220,15 @@ class Shader extends Resource {
         GL.bindAttribLocation( _program, color_attribute,   'vertexColor');
         GL.bindAttribLocation( _program, normal_attribute,  'vertexNormal');
 
-    	GL.linkProgram(_program);
+        GL.linkProgram(_program);
 
-      	if( GL.getProgramParameter(_program, GL.LINK_STATUS) == 0) {
-         	addError("\tFailed to link shader program:");
-         	addError( "\t\t"+ GL.getProgramInfoLog(_program) );
-         	GL.deleteProgram(_program);
-         	_program = null;
-         	return null;
-      	}        
+        if( GL.getProgramParameter(_program, GL.LINK_STATUS) == 0) {
+            addError("\tFailed to link shader program:");
+            addError( "\t\t"+ GL.getProgramInfoLog(_program) );
+            GL.deleteProgram(_program);
+            _program = null;
+            return null;
+        }        
 
             //first bind it
         activate();
@@ -253,32 +253,32 @@ class Shader extends Resource {
         tex6_attribute = GL.getUniformLocation( _program, "tex6" );
         tex7_attribute = GL.getUniformLocation( _program, "tex7" );        
 
-      	return _program;
-	}
+        return _program;
+    }
 
     public override function drop() {
         super.drop();
         destroy();
     }
 
-	public function destroy() {
-		if( vert_shader != null ) GL.deleteShader( vert_shader );
-		if( frag_shader != null ) GL.deleteShader( frag_shader );
-		if( program != null ) GL.deleteProgram( program );		
-	}
+    public function destroy() {
+        if( vert_shader != null ) GL.deleteShader( vert_shader );
+        if( frag_shader != null ) GL.deleteShader( frag_shader );
+        if( program != null ) GL.deleteProgram( program );      
+    }
 
-	//! Loads shaders from a string, compiles, and links them */
-	public function load_from_string( _vertex_source:String, _fragment_source:String, _verbose:Bool = false ) {
-			
-			//First clean up
-		destroy();  		
+    //! Loads shaders from a string, compiles, and links them */
+    public function load_from_string( _vertex_source:String, _fragment_source:String, _verbose:Bool = false ) {
+            
+            //First clean up
+        destroy();          
 
-			//compile the sources
-	    vert_shader = compile( GL.VERTEX_SHADER, _vertex_source, _verbose );
-	    frag_shader = compile( GL.FRAGMENT_SHADER, _fragment_source, _verbose );
+            //compile the sources
+        vert_shader = compile( GL.VERTEX_SHADER, _vertex_source, _verbose );
+        frag_shader = compile( GL.FRAGMENT_SHADER, _fragment_source, _verbose );
 
-	    	//Any errors? fail
-	    if( vert_shader == null || frag_shader == null ) {
+            //Any errors? fail
+        if( vert_shader == null || frag_shader == null ) {
             if(_verbose) {
                 throw "SHADER : " + id + " \n\n " + log + '\n' + errors;
             } else {
@@ -287,8 +287,8 @@ class Shader extends Resource {
             return false;
         }
 
-	    	//Link shader
-	    program = link();
+            //Link shader
+        program = link();
 
             //Check compile status and throw errors if there are any
         if(program == null) {
@@ -303,13 +303,13 @@ class Shader extends Resource {
             }
         }
 
-	    	//if it fails return false
-	    if( program == null ) return false;
+            //if it fails return false
+        if( program == null ) return false;
 
 
 
-	    return true;	
-	}
+        return true;    
+    }
 
     @:noCompletion public function apply_uniforms() {
 
@@ -344,15 +344,15 @@ class Shader extends Resource {
         } //for each uniform
     }
 
-	@:noCompletion public function getUniform( uniform_name : String  ) : lime.gl.GLUniformLocation {
-		return GL.getUniformLocation( program, uniform_name );
-	}
+    @:noCompletion public function getUniform( uniform_name : String  ) : lime.gl.GLUniformLocation {
+        return GL.getUniformLocation( program, uniform_name );
+    }
 
     @:noCompletion public function setUniformInt( uniform_name:String, value:Int, location:Dynamic = null ) {
-    	GL.uniform1i( location, value );
+        GL.uniform1i( location, value );
     }
     @:noCompletion public function setUniformFloat( uniform_name:String, value:Float, location:Dynamic = null  ) {
-		GL.uniform1f( location, value );
+        GL.uniform1f( location, value );
     }
     @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector, location:Dynamic = null  ) {
         GL.uniform2f( location, value.x, value.y);
@@ -364,11 +364,11 @@ class Shader extends Resource {
         GL.uniform4f( location, value.x, value.y, value.z, value.w );
     }
     @:noCompletion public function setUniformColor( uniform_name:String, value:Color, location:Dynamic = null  ) {
-		GL.uniform4f( location, value.r, value.g, value.b, value.a );
+        GL.uniform4f( location, value.r, value.g, value.b, value.a );
     }
     @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:Dynamic = null  ) {
         value.bind();
-    	GL.uniform1i( location, value.slot );
+        GL.uniform1i( location, value.slot );
         Luxe.renderer.state.activeTexture(GL.TEXTURE0);
     }
 
@@ -377,7 +377,7 @@ class Shader extends Resource {
     }
 
     public function addError( _error:String ) {
-    	errors += _error;
+        errors += _error;
     }
 
-}	
+}   
