@@ -1,6 +1,328 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [3cbe1a6a4f](http://github.com/underscorediscovery/luxe/commit/3cbe1a6a4f02708f8383e671b8426a0574f7dd76)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Feb 09 2014 23:55:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Resources; adding TextResource, SoundResource, DataResource, and adjusting the API toward consistency</li><li>Parcels; adding parcel api to Luxe, see test_parcels, still some other things to do</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [69bf0a7fcc](http://github.com/underscorediscovery/luxe/commit/69bf0a7fcc7d3efbe73eb82e609dce193b83ad2f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Feb 09 2014 17:01:15 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>BitmapFont; adding some fixed precision for the scaling for now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [fffce05530](http://github.com/underscorediscovery/luxe/commit/fffce055308ea0d8dd4b759b98879450bff66a13)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Feb 09 2014 17:00:57 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Letter5; fixing dumb crash</li><li>Screen; guard against null</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9d04f15fb8](http://github.com/underscorediscovery/luxe/commit/9d04f15fb874378379fdfa4b0979c9835dc9e873)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Feb 09 2014 16:47:43 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Letter5; continuing port and update</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3b36f124dc](http://github.com/underscorediscovery/luxe/commit/3b36f124dc4744f787bac59515c67f67f78b75dc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Feb 09 2014 16:42:37 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; cleanup</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9161dcf1d7](http://github.com/underscorediscovery/luxe/commit/9161dcf1d718fde70ce301b34f3b88d87f1ddd54)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sun Feb 09 2014 16:34:23 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>API; cleanup of api functions</li><li>Screen; Cursor; moved the cursor functionality into Luxe.screen.cursor</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [7bda3560c8](http://github.com/underscorediscovery/luxe/commit/7bda3560c8ddde2e01d12016a8e16498b3dffd74)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Feb 08 2014 22:38:02 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Utils; Maths; adding a within_range( value, start, end ) function for convenience</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6e824b7fd5](http://github.com/underscorediscovery/luxe/commit/6e824b7fd59520f60cfd7b09f4b63fe40c47c49b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Feb 08 2014 07:32:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Letter5; working on finishing this up, cleaning up states and adding new UI and stuff.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [be8ad8f79b](http://github.com/underscorediscovery/luxe/commit/be8ad8f79bdaaac5ad5a0bf22d54105b72e501bc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Feb 08 2014 07:02:09 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; FlyCamera; fixing mouse lock on native after testing against latest SDL, still some things to resolve but this code is fine here.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0709daba7c](http://github.com/underscorediscovery/luxe/commit/0709daba7c6e9a6baa27734668d499f9a82c2300)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Feb 08 2014 05:29:03 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; Visual; commit d113797358 made changes to origin and scale, but that broke scaling , so reverting the change because otherwise things wont apply well elsewhere.</li><li>Color; Adding flags to refresh hsv/hsl when changing rgb on a ColorHSL/ColorHSV, such that a ColorHSV/HSL can be tweened using rgb as well.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [2dd61c9ea4](http://github.com/underscorediscovery/luxe/commit/2dd61c9ea428d38b9dd8644c58c3a0f81b9a5ee1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Fri Feb 07 2014 03:42:00 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>BitmapFont; fix bugs in parsing .fnt files that don't have a newline in pages.. used a smarter approach, working great with shoebox</li><li>Tests; font updated font to a new one from ShoeBox http://renderhjs.net/shoebox/, working well</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3ac234ffe7](http://github.com/underscorediscovery/luxe/commit/3ac234ffe79214500b12a6b0b103bec997198227)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 06 2014 17:50:37 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>tools bug; related to how the template system works in lime-tools, this allows luxe projects to work with current sublime plugin, as well as with the latest tools. If you have a project, make sure luxe include in project.luxe.xml is after the lime one, this mitigates the inclusion order errors</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [dc2ac48f84](http://github.com/underscorediscovery/luxe/commit/dc2ac48f84b2be4d71c10b1b13db532706dd9d4a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Wed Feb 05 2014 12:53:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Scene; shielding all entity access with null checks so the game doesn't crash, because this shouldn't happen - but still digging into how this came about using a test case from @bennuk</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [21c7bbf72a](http://github.com/underscorediscovery/luxe/commit/21c7bbf72aa1588b96facda76702ceee342d6c7b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 03 2014 20:41:23 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Parcel; cleaning up more and committing so i can push</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ac859df664](http://github.com/underscorediscovery/luxe/commit/ac859df664b8fa381b843e24cb81b643e1e11b0d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 03 2014 20:40:58 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; fixing bug where onkeydown was called in place of keyup, thanks @bennuk</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f2113bf580](http://github.com/underscorediscovery/luxe/commit/f2113bf580b127c66b5de10e53d4fbad317a5c93)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 03 2014 02:36:10 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Core; Cleanup of string allocations every frame for hidden _debug</li><li>values, and removed a bunch of less useful profiles (build with</li><li>-Dluxe_fullprofile if you need these for core debugging)</li><li>Visual; options add changed to no_batcher_add, to match all no_*</li><li>options across luxe.</li><li>Visual; size listeners for sub components</li><li>Tests; luxemark tweaking values and fixing endless loops on native</li><li>without threads.</li><li>Parcles; adding initial parcel implementation for textures, along with</li><li>a progress bar helper, still wip but saving the work for the day.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [20876edd7e](http://github.com/underscorediscovery/luxe/commit/20876edd7e4d2e044b06430aebe57e842ad3f69d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Sat Feb 01 2014 19:09:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Draw; fixed missing return on ngon</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5e10223154](http://github.com/underscorediscovery/luxe/commit/5e10223154c6e7f5283d605c5e73afbbf4f7be7d)   
+author: underscorediscovery <fuzzyspoon@gmail.com>   
+date: Sat Feb 01 2014 05:47:06 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Setup; Adding FlashDevelop editor Project Template for windows users that want to use FD with luxe. see instructions.txt</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [56dca6e2dd](http://github.com/underscorediscovery/luxe/commit/56dca6e2dd61b836e0abb2a0f157612786b4bb6c)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 30 2014 04:16:43 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; added remove_tileset and remove_layer , as well as tileset(name) functions, for editing tilemaps. This should fix #39.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [50ae1c0fb5](http://github.com/underscorediscovery/luxe/commit/50ae1c0fb55476638b2e30628f0acb8cfdac8711)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 30 2014 04:09:46 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Fixing stupid undo mistakes in Tilemap class.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [51607ac700](http://github.com/underscorediscovery/luxe/commit/51607ac7008666d21efe8b46d9fcf32fd3df6af6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 30 2014 04:02:52 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; Isometric; added conversion to and from world tile coords inside the Tilemap class directly</li><li>Tilemaps; Added worldpos_to_map conversion helper in Tilemap, and fixing rounding for cell numbers</li><li>Tilemaps; Fixed inside() function being dumb about negative values...</li><li>Tilemaps; Isometric; visual grid display added for debug purposes etc. Lots toward #39</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [95f0ec57f3](http://github.com/underscorediscovery/luxe/commit/95f0ec57f31cc6d650831b3efd25a3aa08f9084e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 30 2014 00:34:38 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Audio; api missing on_complete, adding it</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ed3797702d](http://github.com/underscorediscovery/luxe/commit/ed3797702deb290927a9920db6601239add89402)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Jan 30 2014 00:32:39 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [52f9197aa5](http://github.com/underscorediscovery/luxe/commit/52f9197aa5a5987c3d0c94937cc26f005370e868)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Thu Jan 30 2014 00:32:23 GMT-0330 (NST)   
