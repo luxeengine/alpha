@@ -1,6 +1,7 @@
 package ;
 
 
+import lime.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
 import phoenix.Resource.DataResource;
@@ -106,9 +107,9 @@ class Luxe {
 
     } //loadData
 
-    public static function loadTexture( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
+    public static function loadTexture( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false, ?_asset_bytes:ByteArray ) : Texture {
 
-        return renderer.load_texture( _id, _onloaded, _silent );
+        return renderer.load_texture( _id, _onloaded, _silent, _asset_bytes );
 
     } //loadTexture
     

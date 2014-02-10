@@ -2,6 +2,7 @@ package luxe;
 
 import lime.Lime;
 
+import lime.utils.ByteArray;
 import Luxe;
 
 import luxe.Audio;
@@ -13,6 +14,8 @@ import luxe.debug.ProfilerDebugView;
 import luxe.Timer;
 
 import phoenix.Renderer;
+import phoenix.Texture;
+import phoenix.Shader;
 
 #if haxebullet
     import luxe.Physics;
@@ -21,6 +24,7 @@ import phoenix.Renderer;
 import phoenix.Renderer;
 
 #if (!luxe_threading_disabled && luxe_native) 
+
     #if neko
         import neko.vm.Thread;
         import neko.vm.Mutex;
@@ -28,9 +32,27 @@ import phoenix.Renderer;
         import cpp.vm.Thread;
         import cpp.vm.Mutex;
     #end 
-#end
 
-@:hide class Core {
+    typedef LoadTextureInfo = {
+        onloaded : Texture->Void,
+        bytes : ByteArray,
+        id : String
+    } 
+
+    typedef LoadShaderInfo = {
+        onloaded:Shader->Void,
+        ps_id : String,
+        vs_id : String
+    } 
+
+    enum CoreThreadRequest {
+        load_texture;
+        load_shader;
+    }
+
+#end //!luxe_threading_disabled && luxe_native
+
+@:noCompletion class Core {
 
         //core versioning
     public var version : String = '0.1';
@@ -40,7 +62,10 @@ import phoenix.Renderer;
     public var config : LimeConfig;
 
 #if (luxe_native && !luxe_threading_disabled) 
-    public var main_thread : Thread;
+    
+    public var core_thread : Thread;
+    public var thread_message : Dynamic;
+
 #end //luxe_native
 
         //if the console is displayed atm
@@ -96,7 +121,7 @@ import phoenix.Renderer;
 
             //make sure we know what thread we start in
         #if (luxe_native && !luxe_threading_disabled) 
-            main_thread = Thread.current();
+            core_thread = Thread.current();
         #end //luxe_native
 
             //Create internal stuff
@@ -286,6 +311,31 @@ import phoenix.Renderer;
             physics.process();   //physics 
             debug.end(core_tag_physics);
         #end //haxebullet
+
+        #if (luxe_native && !luxe_threading_disabled) 
+//Background threads sending requests our way
+            
+            thread_message = Thread.readMessage(false);
+
+            if(thread_message != null) {
+
+                var type : CoreThreadRequest = thread_message.type;
+                switch( type ) {
+                    case CoreThreadRequest.load_texture: {
+                        var info : LoadTextureInfo = cast thread_message.info;
+                        Luxe.loadTexture( info.id, info.onloaded, false, info.bytes );
+                    } //load_texture
+
+                    case CoreThreadRequest.load_shader: {
+                        var info : LoadShaderInfo = cast thread_message.info;
+                        Luxe.loadShader( info.ps_id, info.vs_id, info.onloaded );
+                    } //load_shader
+
+                } //switch type
+
+            } //thread_message
+
+        #end //(luxe_native && !luxe_threading_disabled) 
 
 //Run update callbacks
             #if luxe_fullprofile debug.start(core_tag_updates); #end

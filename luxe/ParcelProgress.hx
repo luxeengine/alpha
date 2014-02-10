@@ -59,6 +59,8 @@ class ParcelProgress {
         //     });
         // }
 
+        var fade_alpha : Float = options.background.a;
+        
         if(options.fade_in) {
 
             options.background.a = 0;
@@ -106,7 +108,7 @@ class ParcelProgress {
         if(options.fade_in) {
 
                 //fade in the progress bar
-            background.color.tween(options.fade_time,{a:1},true);
+            background.color.tween(options.fade_time,{a:fade_alpha},true);
             progress_bar.color.tween(options.fade_time,{a:1},true);
             progress_border.color.tween(options.fade_time,{a:1},true);
 

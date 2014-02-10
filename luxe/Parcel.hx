@@ -84,8 +84,6 @@ class Parcel extends phoenix.ResourceManager {
     var index_datas     : Int = 0;
     var index_texts     : Int = 0;
 
-    #if (luxe_native && !parcel_thread_disabled)
-    #end 
 
     public function load() {
 
@@ -101,24 +99,127 @@ class Parcel extends phoenix.ResourceManager {
 
         Luxe.timer.schedule(options.start_spacing, function(){
 
-            if( !options.sequential ) {
+        #if (luxe_native && !parcel_thread_disabled)
+            Thread.create(function(){
+                Sys.println('background thread loading ' + options);
+        #end                
+                if( !options.sequential ) {
 
-                start_textures_load();
-                start_fonts_load();
-                start_shaders_load();
-                start_sounds_load();
-                start_texts_load();
-                start_datas_load();
+                    start_textures_load();
+                    start_fonts_load();
+                    start_shaders_load();
+                    start_sounds_load();
+                    start_texts_load();
+                    start_datas_load();
 
-            } else {
+                } else {
 
-                start_textures_load();
+                    start_textures_load();
 
-            }
+                }
 
-        });
+        #if (luxe_native && !parcel_thread_disabled)
+                Sys.println('background thread end');
+            }); //Thread
+        #end 
+
+        }); //timer schedule
              
-    } //do_load
+    } //load
+
+    public function from_json( _json_object:Dynamic ) {
+
+        if(_json_object != null) {
+
+            if(_json_object.textures != null) {
+                var _textures : Array<Dynamic> = cast _json_object.textures;
+                for(item in _textures) {
+                    if(item != null) {
+                        var id : String = item.id == null ? '' : cast item.id;
+                        if(id != '') {
+                            add_texture( id );
+                        } else {
+                            trace("parcel: texture not added due to incomplete info: " + item);
+                        }
+                    } //item != null
+                } //item in textures
+            } //json object textures
+
+            if(_json_object.shaders != null) {
+                var _shaders : Array<Dynamic> = cast _json_object.shaders;
+                for(item in _shaders) {
+                    if(item != null) {
+                        var ps_id : String = item.ps_id == null ? 'default' : cast item.ps_id;
+                        var vs_id : String = item.vs_id == null ? 'default' : cast item.vs_id;
+                            
+                        add_shader(ps_id, vs_id);
+
+                    } //item != null
+                } //item in shaders
+            } //json object shaders
+
+            if(_json_object.fonts != null) {
+                var _fonts : Array<Dynamic> = cast _json_object.fonts;
+                for(item in _fonts) {
+                    if(item != null) {
+                        var id : String = item.id == null ? '' : cast item.id;
+                        var path : String = item.path == null ? '' : cast item.path;
+                        if(id != '' && path != '') {
+                            add_font(id, path);
+                        } else {
+                            trace("parcel: font not added due to incomplete info: " + item);
+                        }
+                    } //item != null
+                } //item in fonts
+            } //json object fonts
+
+            if(_json_object.sounds != null) {
+                var _sounds : Array<Dynamic> = cast _json_object.sounds;
+                for(item in _sounds) {
+                    if(item != null) {
+                        var id : String = item.id == null ? '' : cast item.id;
+                        var name : String = item.name == null ? '' : cast item.name;
+                        var is_music : Bool = item.is_music == null ? false : cast item.is_music;
+                        if(id != '' && name != '') {
+                            add_sound( id, name, is_music);
+                        } else {
+                            trace("parcel: sounds not added due to incomplete info: " + item);
+                        }
+                    } //item != null
+                } //each sounds
+            } //json object sounds
+
+            if(_json_object.text != null) {
+                var _texts : Array<Dynamic> = cast _json_object.text;
+                for(item in _texts) {
+                    if(item != null) {
+                        var id : String = item.id == null ? '' : cast item.id;
+                        if(id != '') {
+                            add_text( id );
+                        }  else {
+                            trace("parcel: text not added due to incomplete info: " + item);
+                        }//id != ''
+                    } //item != null
+                } //each text
+            } //json object text
+
+            if(_json_object.data != null) {
+                var _datas : Array<Dynamic> = cast _json_object.data;
+                for(item in _datas) {
+                    if(item != null) {
+                        var id : String = item.id == null ? '' : cast item.id;
+                        if(id != '') {
+                            add_data( id );
+                        } else {
+                            trace("parcel: data not added due to incomplete info: " + item);
+                        }
+                    }
+                }
+            } //json object data
+
+        } //json_object
+
+    } //from_json
 
 //Texture
 
@@ -139,22 +240,6 @@ class Parcel extends phoenix.ResourceManager {
                     //whether that's sequential or not
                 load_textures();
 
-                    //load each texture immediately, 
-                    //so they complete whenever they are done and aren't 
-                    //waiting for the next one
-                // #if (luxe_native && !parcel_thread_disabled)
-
-                        //threaded loading will create a loading thread, 
-                        //and then go ahead and fire the loop into it
-                    // Thread.create(function(){
-                        // trace(" background thread starting ");
-                            // load_textures();
-                        // trace(" background thread ending ");
-                    // });
-
-                // #else                    
-                    //load_textures();
-                // #end //native+threading
 
             } //sequential
 
@@ -619,22 +704,61 @@ class Parcel extends phoenix.ResourceManager {
 
 
 //Per item handlers
-
+    
     function load_texture( _tex:String, _complete ) {
         #if luxe_parcel_logging trace("\t parcel: loading texture " + _tex ); #end 
         
-        Luxe.timer.schedule( options.load_spacing, function(){ 
-            Luxe.loadTexture( _tex, _complete );
-        });
+        #if (luxe_native && !parcel_thread_disabled)
+            
+            Sys.println("loading from thread?");
+            var now = Luxe.time;
+
+            var asset_bytes = lime.utils.Assets.getBytes( _tex );
+
+            Sys.println('done in ' + (Luxe.time - now) + '  ' + asset_bytes.length);
+
+                //textures require being uploaded to GL on the main thread
+            Luxe.core.core_thread.sendMessage({
+                type : luxe.Core.CoreThreadRequest.load_texture,
+                info : {
+                    id : _tex,
+                    bytes : asset_bytes,
+                    onloaded : _complete
+                }
+            });
+
+        #else 
+
+            Luxe.timer.schedule( options.load_spacing, function(){ 
+                Luxe.loadTexture( _tex, _complete );
+            });
+
+        #end
 
     } //load_texture
 
     function load_shader( _shader:ShaderInfo, _complete ) {
         #if luxe_parcel_logging trace("\t parcel: loading shader " + _shader.ps_id + _shader.vs_id ); #end 
 
-        Luxe.timer.schedule( options.load_spacing, function(){ 
-            Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete );
-        });
+        #if (luxe_native && !parcel_thread_disabled)
+
+                //textures require being uploaded to GL on the main thread
+            Luxe.core.core_thread.sendMessage({
+                type : luxe.Core.CoreThreadRequest.load_shader,
+                info : {
+                    ps_id : _shader.ps_id,
+                    vs_id : _shader.vs_id,
+                    onloaded : _complete
+                }
+            });
+
+        #else 
+
+            Luxe.timer.schedule( options.load_spacing, function(){ 
+                Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete );
+            });
+
+        #end //end
 
     } //load_shader
 
@@ -692,13 +816,13 @@ class Parcel extends phoenix.ResourceManager {
 
     function single_item_complete( item:Resource ) {
 
-        #if luxe_parcel_logging
-            trace( "\t parcel: item finished " + item.id ); 
-        #end //luxe_parcel_logging
-
         item.time_to_load = haxe.Timer.stamp() - item.time_created;
 
         current_count++;
+
+        #if luxe_parcel_logging
+            trace( "\t parcel: item finished " + item.id + "( " + current_count + "/" + total_items + " )"); 
+        #end //luxe_parcel_logging
 
         if(options.onprogress != null) {
             options.onprogress( item );

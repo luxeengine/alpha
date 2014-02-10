@@ -4,6 +4,7 @@ import lime.gl.GL;
 import lime.gl.GLProgram;
 import lime.gl.GLShader;
 import lime.gl.GLTexture;
+import lime.utils.ByteArray;
 import lime.utils.Libs;
 
 import luxe.Rectangle;
@@ -221,7 +222,15 @@ class Renderer {
         } //
 
         if(_shader != null) {
+
             _shader.id = _psid + '|' + _vsid;
+
+            if(_onloaded != null) {
+                _onloaded( _shader );
+            }
+
+            trace(":: Shader loaded " + _shader.id );
+
             return _shader;
         } else {
             return null;
@@ -294,7 +303,7 @@ class Renderer {
 
     } //load_textures
 
-    public function load_texture( _name : String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
+    public function load_texture( _name : String, ?_onloaded:Texture->Void, ?_silent:Bool=false, ?asset_bytes:ByteArray ) : Texture {
 
         var _exists = resource_manager.find_texture(_name);
 
@@ -303,7 +312,7 @@ class Renderer {
             if(_name != 'default_ui_button' && _name != 'default_ui_box') {
                 // trace(":: Texture loaded (cached) " + _exists.id ) ;
             }
-                
+
             if(_onloaded != null) _onloaded(_exists);
 
             return _exists;
@@ -374,8 +383,10 @@ class Renderer {
 #end //luxe_html5
 
 #if luxe_native
-
-        var asset_bytes = cast lime.utils.Assets.getBytes( _name );
+        
+        if(asset_bytes == null) {
+            asset_bytes = lime.utils.Assets.getBytes( _name );
+        }
 
         if(asset_bytes != null) {
 
