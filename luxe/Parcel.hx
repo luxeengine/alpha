@@ -3,7 +3,7 @@ package luxe;
 import phoenix.Resource;
 
 
-#if (!parcel_thread_disabled)
+#if (!parcel_thread_disabled && luxe_native)
     #if neko
         import neko.vm.Thread;
         import neko.vm.Mutex;
