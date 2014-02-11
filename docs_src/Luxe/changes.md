@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [a624545768](http://github.com/underscorediscovery/luxe/commit/a62454576850aebdb6b45a21bd72eb6d3f6c5977)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 15:57:35 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Parcel; shielding html5 throwing cpp errors in Parcel.hx</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [eb71077bb6](http://github.com/underscorediscovery/luxe/commit/eb71077bb6c3a43b3626004a20ec81758456dd99)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 10 2014 06:31:38 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>API : loadTexture, adding flag for bytes api</li><li>Parcel : Adding threaded loading but texture uploads to the GPU will still be main thread and way more blocking than the loading itself... but its smoother, loads a bit quicker etc</li><li>Parcel : fix #69</li><li>ParcelProgress : Allowing custom alpha for the background</li><li>Parcel; adding from json loading fix #68</li><li>Core; adding main thread requests but again, textures submitted to the cpu are the delay not the loading.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9fe9429bef](http://github.com/underscorediscovery/luxe/commit/9fe9429bef52c77ef32d707748d87ad29e9d26b6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 10 2014 00:05:13 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [3cbe1a6a4f](http://github.com/underscorediscovery/luxe/commit/3cbe1a6a4f02708f8383e671b8426a0574f7dd76)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Sun Feb 09 2014 23:55:58 GMT-0330 (NST)   

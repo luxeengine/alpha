@@ -16,10 +16,12 @@ for deploying games on Mac, Windows, Linux, Android, iOS and WebGL/HTML5.
 <img title="iOS" alt="iOS" src="images/ios64.png" class="platform-icon-64"/>
 <img title="Android" alt="Android" src="images/android64.png" class="platform-icon-64"/>
 
-Luxe is built on top of open source technologies, like [Haxe](http://haxe.org) and [lime](http://github.com/openfl/lime) and is built with simplicity in mind.
-Luxe uses common patterns for working with the engine, such as Components/Entity systems, State Machines and Event systems. 
+Luxe is produly built on top of open source technologies, like [Haxe](http://haxe.org) and [lime](http://limeframework.com/) and is built with simplicity in mind.
+Luxe uses common patterns for working with the engine, such as Components/Entity systems, State Machines and Event systems but does not stop you from bypassing those in favour of your own specific methodology. 
 
 You code once in haxe, and deploy to all available platforms.
+
+[ ![haxe](images/haxe.png) ](http://haxe.org)
 
 ----
 ## Guides
@@ -55,8 +57,8 @@ You code once in haxe, and deploy to all available platforms.
 
 ---
 
-####[View full luxe Class Index](luxe.Classes.html)   
-####[View full phoenix Class Index](phoenix.Classes.html)   
+####!! [ View full luxe Class Index](luxe.Classes.html)   
+####!! [View full phoenix Class Index](phoenix.Classes.html)   
 &nbsp;
 &nbsp;
 
