@@ -28,7 +28,7 @@ class Main extends luxe.Game {
 
             //Create a sprite, but don't add it to the batcher
         sprite = new Sprite({
-            add : false, //dont add to the main renderer
+            no_batcher_add : true, //dont add to the main renderer
             texture : Luxe.loadTexture('assets/image.jpg'),
             size : new Vector(256,256),
             centered :false
