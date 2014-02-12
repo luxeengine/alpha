@@ -220,6 +220,7 @@ class SpriteAnimationData {
 
                 //set the type
             type = SpriteAnimationType.animated_texture;
+            image_set = [];
 
         } //_json_image_sequence
 
