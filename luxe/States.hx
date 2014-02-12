@@ -195,6 +195,11 @@ class States {
 			_call(state, 'onmousedown', [e]);
 		}
 	}
+	public function onmousewheel( e:MouseEvent ) {
+		for (state in active_states) {
+			_call(state, 'onmousewheel', [e]);
+		}
+	}
 	public function onmouseup( e:MouseEvent ) {
 		for (state in active_states) {
 			_call(state, 'onmouseup', [e]);

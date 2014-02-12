@@ -177,7 +177,16 @@ import luxe.debug.StatsDebugView;
                 view.onmousedown(e);
             }
         }
+    }  
+
+    public function onmousewheel(e:MouseEvent) {
+        if(visible) {
+            for(view in views) {
+                view.onmousewheel(e);
+            }
+        }
     }
+    
     public function onmousemove(e:MouseEvent) {
         if(visible) {
             for(view in views) {

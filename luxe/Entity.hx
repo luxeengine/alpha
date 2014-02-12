@@ -327,6 +327,27 @@ class Entity extends Objects {
 
     } //_onmouseup    
 
+    @:noCompletion public function _onmousewheel(e:MouseEvent) {
+
+        _debug('calling _onmousewheel on ' + name, true);
+
+            //init the parent first
+        _call(this, 'onmousewheel', [e]);
+
+        if(name == null) throw "name on entity is null? " + this;
+
+            //init all the components attached directly to us
+        for(_component in components) {
+            _call(_component, 'onmousewheel', [e]);
+        } //for each component
+
+            //now init our children, so they do the same
+        for(_child in children) {
+            _child._onmousewheel(e);
+        } //for each child
+
+    } //_onmousewheel    
+
     @:noCompletion public function _onmousemove(e:MouseEvent) {
 
         _debug('calling _onmousemove on ' + name, true);

@@ -63,7 +63,11 @@ class Game extends luxe.Game {
     } //onmousemove
 
     public function onmousedown( e:MouseEvent ) {
-    	states.onmousedown(e);
+        states.onmousedown(e);
+    } //onmousedown
+
+    public function onmousewheel( e:MouseEvent ) {
+    	states.onmousewheel(e);
     } //onmousedown
 
     public function onmouseup( e:MouseEvent ) {

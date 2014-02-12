@@ -223,6 +223,18 @@ class Main extends luxe.Game {
         }
     }
 
+    public function onmousewheel( e:MouseEvent ) {
+
+        if(e.button == MouseButton.wheel_up ) {
+                //wheel_up
+            current_camera.zoom += 0.1;
+        } else if(e.button == MouseButton.wheel_down ) {
+                //wheel_down
+            current_camera.zoom -= 0.1;
+        }
+        
+    } //onmousewheel
+
     public function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
@@ -236,13 +248,7 @@ class Main extends luxe.Game {
             }
     	} else if(e.button == MouseButton.right) {
             current_camera.focus( Vector.Add( e.pos, current_camera.pos ) );
-    	} else if(e.button == MouseButton.wheel_up ) {
-                //wheel_up
-            current_camera.zoom += 0.1;
-        } else if(e.button == MouseButton.wheel_down ) {
-                //wheel_down
-            current_camera.zoom -= 0.1;
-        }
+    	} 
 
     } //onmouseup
 

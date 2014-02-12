@@ -59,16 +59,14 @@ class TDCamera extends Component {
 
     } //zoom
 
-    public function onmouseup( e:MouseEvent ) {
-        if(e.button == MouseButton.wheel_down || e.button == MouseButton.wheel_up) {
-            switch(e.button) {
-                case MouseButton.wheel_down:
-                    zoom(-1);
-                case MouseButton.wheel_up:
-                    zoom(1);
-                default:
-            } //switch
-        } //if scroll wheel
+    public function onmousewheel( e:MouseEvent ) {
+        switch(e.button) {
+            case MouseButton.wheel_down:
+                zoom(-1);
+            case MouseButton.wheel_up:
+                zoom(1);
+            default:
+        } //switch
     } //onmousedown
 
     public function oninputdown( name:String, e:Dynamic ) {

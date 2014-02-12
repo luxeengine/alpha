@@ -506,9 +506,15 @@ import phoenix.Renderer;
     
     public function onmousewheel(e : MouseEvent) {
 
+        if(!shutting_down) {
+            input.check_named_mouse(e, false);
+            scene.onmousewheel(e);
+            debug.onmousewheel(e);
+        }
+        
         if(host.onmousewheel != null) host.onmousewheel(e);
 
-    }
+    } //onmousewheel
 
     public function onmouseup(e : MouseEvent) {
 

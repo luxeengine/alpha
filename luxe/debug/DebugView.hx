@@ -15,6 +15,9 @@ class DebugView {
     public function onmousedown(e:MouseEvent) {
         
     }
+      public function onmousewheel(e:MouseEvent) {
+        
+    }
     public function onmouseup(e:MouseEvent) {
         
     }

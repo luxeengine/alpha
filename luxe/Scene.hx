@@ -135,7 +135,14 @@ class Scene extends Objects {
                 entity._onmousedown(e);
             }
         }
-    } //onmousedown
+    } //onmousedown    
+    public function onmousewheel(e:MouseEvent) {
+        for(entity in entities) {
+            if(entity != null) {
+                entity._onmousewheel(e);
+            }
+        }
+    } //onmousewheel
     public function onmouseup(e:MouseEvent) {
         for(entity in entities) {
             if(entity != null) {

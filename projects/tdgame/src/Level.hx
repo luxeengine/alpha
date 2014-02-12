@@ -107,9 +107,6 @@ class Level extends Component {
 
         //first of all, when we click down,
         //we have to check that the tower placement point is not taken already.
-        if(e.button == MouseButton.wheel_down || e.button == MouseButton.wheel_up) {
-            return;
-        }
 
         if(grid.isWalkable(mousegrid.x, mousegrid.y)) {
 

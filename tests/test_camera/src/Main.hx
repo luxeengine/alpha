@@ -155,6 +155,16 @@ class Main extends luxe.Game {
         }
     }
 
+    public function onmousewheel( e:MouseEvent ) {
+        if(e.button == MouseButton.wheel_up ) {
+                //wheel_up
+            Luxe.camera.zoom += 0.1;
+        } else if(e.button == MouseButton.wheel_down ) {
+                //wheel_down
+            Luxe.camera.zoom -= 0.1;
+        }
+    }
+
     public function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
@@ -168,13 +178,7 @@ class Main extends luxe.Game {
             }
     	} else if(e.button == MouseButton.right) {
             Luxe.camera.focus( Vector.Add( e.pos, Luxe.camera.pos ) );
-    	} else if(e.button == MouseButton.wheel_up ) {
-                //wheel_up
-            Luxe.camera.zoom += 0.1;
-        } else if(e.button == MouseButton.wheel_down ) {
-                //wheel_down
-            Luxe.camera.zoom -= 0.1;
-        }
+    	}  
     }
 
     public function onkeyup( e:KeyEvent ) {
