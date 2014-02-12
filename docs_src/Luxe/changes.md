@@ -1,6 +1,104 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [7cb6454a0c](http://github.com/underscorediscovery/luxe/commit/7cb6454a0c847e9c8f880569ff8daa5c7369b283)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 23:49:31 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Particles; fixing bug where init_with wasn't used for emitter components</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0b2336b676](http://github.com/underscorediscovery/luxe/commit/0b2336b676b282a9455d84be02a100dac0545219)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 23:49:11 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; fixing crash on image frame sets in html5, not having an image set yet</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [06b8b57ed4](http://github.com/underscorediscovery/luxe/commit/06b8b57ed4b94a7965ec86ca7baa76c10fc4fd2e)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 23:48:56 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Mouse; Updating all tests and projects and features to use onmousewheel</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [dc21a437df](http://github.com/underscorediscovery/luxe/commit/dc21a437df4290f1396f8436934f9d11ebef57d5)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 21:31:07 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; build file change for html5 build only atm</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [adbe46fb2a](http://github.com/underscorediscovery/luxe/commit/adbe46fb2abee530fe44ce9346d32e3a2404b7f1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 21:30:20 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tests; making sure all builds stay running</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e65a98d882](http://github.com/underscorediscovery/luxe/commit/e65a98d882c4acd24d14f622172e303025805b12)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 21:29:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemap; Squads; fixing loadText new text resources stuff</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1e891ea862](http://github.com/underscorediscovery/luxe/commit/1e891ea862893c772e044cc85b343f07a8ac9806)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 15:58:20 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes, setup guide, and index page</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [a624545768](http://github.com/underscorediscovery/luxe/commit/a62454576850aebdb6b45a21bd72eb6d3f6c5977)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Tue Feb 11 2014 15:57:35 GMT-0330 (NST)   
