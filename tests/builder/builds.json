@@ -1,6 +1,6 @@
 {
     "targets" : [
-        "html5", "mac"
+        "html5"
     ],
     "copyoutput" : true,
     "outputpath" : "../builds/",
