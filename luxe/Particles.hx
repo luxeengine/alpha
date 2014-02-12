@@ -27,7 +27,7 @@ class ParticleSystem extends Entity {
         } //_name.lengths
 
             //create the emitter instance
-        var _emitter = add(ParticleEmitter, _name, { system:this, template:_template });
+        var _emitter = add(ParticleEmitter, _name, { init_with : { system:this, template:_template } } );
         // var _emitter = new ParticleEmitter(_name, this, _template);
                 //store the reference of the emitter
             emitters.set(_name, _emitter);
