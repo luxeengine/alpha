@@ -88,7 +88,8 @@ class Level extends State {
         create_collision_rectangles(air_collision_rects, air_collision_shapes);
 
             //now create the items
-        jsontext = Luxe.loadText('assets/levels/01.exposure.items.json');
+        jsondata = Luxe.loadText('assets/levels/01.exposure.items.json');
+        jsontext = jsondata.text;
         jsonobj = luxe.utils.JSON.decode(jsontext, false);
             //item list
         var _item_list : Array<Dynamic> = cast jsonobj;

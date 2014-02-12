@@ -32,8 +32,9 @@ class TiledMap extends Tilemap {
             tiledmap_data.parseFromJSON( haxe.Json.parse( text_data.text ) );
         } else {
             var map_data = Luxe.loadText(options.file);
-            if(map_data.length > 0) {
-                tiledmap_data.parseFromXML( Xml.parse( map_data.text ) );
+            var map_text = map_data.text;
+            if(map_text.length > 0) {
+                tiledmap_data.parseFromXML( Xml.parse( map_text ) );
             } else {
                 throw(options.file + " file contains no data?" );                
             }
