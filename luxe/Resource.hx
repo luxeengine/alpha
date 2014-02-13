@@ -1,8 +1,8 @@
-package phoenix;
+package luxe;
 
 import lime.utils.ByteArray;
-import phoenix.Droppable;
-import phoenix.ResourceManager;
+
+import luxe.ResourceManager;
     
 
 enum ResourceType {
@@ -14,6 +14,15 @@ enum ResourceType {
     render_texture;
     font;
     shader;
+}
+
+class Droppable {
+    public var references : Int = 0;
+    public var dropped : Bool = false;
+
+    public function drop() {
+        dropped = true;
+    }
 }
 
 class Resource extends Droppable {

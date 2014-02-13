@@ -1,6 +1,9 @@
 package phoenix;
 
 import luxe.Vector;
+import luxe.Resource;
+import luxe.ResourceManager;
+
 import phoenix.Batcher;
 import phoenix.BitmapFont.TextAlign;
 import phoenix.geometry.CompositeGeometry;
@@ -9,8 +12,6 @@ import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.geometry.Vertex;
 import phoenix.Rectangle;
-import phoenix.Resource;
-import phoenix.ResourceManager;
 import phoenix.Texture;
 
 enum TextAlign {

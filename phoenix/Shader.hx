@@ -1,7 +1,8 @@
 package phoenix;
 
-import phoenix.Resource;
-import phoenix.ResourceManager;
+import luxe.Resource;
+import luxe.ResourceManager;
+
 import phoenix.Vector;
 import phoenix.Texture;
 

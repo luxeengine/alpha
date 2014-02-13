@@ -5,13 +5,13 @@ import luxe.Entity;
 import luxe.Vector;
 import luxe.Rectangle;
 import luxe.utils.Maths;
+import luxe.Resource;
 
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 
 import phoenix.Shader;
 import phoenix.Batcher;
-import phoenix.Resource;
 import phoenix.Quaternion;
 import phoenix.Texture;
 

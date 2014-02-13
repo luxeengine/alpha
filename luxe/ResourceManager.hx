@@ -1,10 +1,13 @@
-package phoenix;
+package luxe;
 
 import lime.utils.ByteArray;
+
 import phoenix.BitmapFont;
-import phoenix.Resource;
 import phoenix.Shader;
 import phoenix.Texture;
+import phoenix.RenderTexture;
+
+import luxe.Resource;
 
 class ResourceStats {    
 

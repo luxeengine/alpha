@@ -18,7 +18,7 @@ import luxe.debug.TraceDebugView;
 import luxe.debug.ProfilerDebugView;
 import luxe.debug.StatsDebugView;
 
-@:hide class Debug {
+class Debug {
 
     public var core : Core;
     public function new( _core:Core ) { core = _core; }

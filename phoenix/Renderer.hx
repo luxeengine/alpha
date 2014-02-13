@@ -8,9 +8,10 @@ import lime.utils.ByteArray;
 import lime.utils.Libs;
 
 import luxe.Rectangle;
+import luxe.ResourceManager;
+
 import phoenix.Batcher;
 import phoenix.RenderPath;
-import phoenix.ResourceManager;
 import phoenix.geometry.Geometry;
     //default resources
 import phoenix.defaults.Shaders;

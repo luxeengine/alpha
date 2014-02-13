@@ -2,9 +2,10 @@ package phoenix;
 
 import lime.gl.GLFramebuffer;
 import phoenix.Batcher;
-import phoenix.Resource;
-import phoenix.ResourceManager;
 import phoenix.Texture;
+
+import luxe.Resource;
+import luxe.ResourceManager;
 
 import lime.gl.GL;
 

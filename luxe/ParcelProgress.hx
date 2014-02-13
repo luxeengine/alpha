@@ -1,6 +1,6 @@
 package luxe;
 
-import phoenix.Resource;
+import luxe.Resource;
 
 import luxe.Parcel;
 import luxe.Sprite;

@@ -4,7 +4,7 @@ import luxe.Visual;
 import luxe.Vector;
 import luxe.Rectangle;
 
-import phoenix.Resource;
+import luxe.Resource;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 

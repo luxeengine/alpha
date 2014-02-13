@@ -1,6 +1,6 @@
 package luxe;
 
-import phoenix.Resource;
+import luxe.Resource;
 
 
 #if (!parcel_thread_disabled && luxe_native)
@@ -39,7 +39,7 @@ typedef ParcelOptions = {
     ? onprogress : Resource->Void
 }
 
-class Parcel extends phoenix.ResourceManager {
+class Parcel extends luxe.ResourceManager {
 
     public var time_to_load : Float = 0;
     var time_start_load : Float = 0;

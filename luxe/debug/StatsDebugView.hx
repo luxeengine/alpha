@@ -2,7 +2,7 @@ package luxe.debug;
 
 import luxe.Input.KeyEvent;
 import luxe.Input;
-import phoenix.Resource;
+import luxe.Resource;
 
 class StatsDebugView extends luxe.debug.DebugView  {
 

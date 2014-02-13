@@ -1,7 +1,5 @@
 package phoenix;
 
-import phoenix.Resource;
-
 import lime.gl.GL;
 import lime.gl.GLTexture;
 
@@ -9,12 +7,17 @@ import lime.utils.UInt8Array;
 
 import lime.utils.Libs;
 import lime.utils.ArrayBuffer;
+
 import phoenix.Vector;
+
+import luxe.Resource;
+import luxe.ResourceManager;
 
 enum FilterType {
     nearest;
     linear;    
 }
+
 enum ClampType {
     edge;
     repeat;    
