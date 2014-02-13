@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [55a55a0457](http://github.com/underscorediscovery/luxe/commit/55a55a0457cd710382278b2f0f370ed0dc0d4ec7)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 13 2014 04:36:02 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Resource; moving to luxe package, and cleaning up core types like droppable (not really used atm)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3d2fc454d2](http://github.com/underscorediscovery/luxe/commit/3d2fc454d2873f26a1b63fe53a8261075cb24e9a)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 13 2014 04:35:29 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; updating implementation to include generated output directly from scribe, and read descriptions from code etc.</li><li>Still quite a bit to do, like I want all inherited class data embedded</li><li>in the page not hidden on a click away etc.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [b55d7f50a6](http://github.com/underscorediscovery/luxe/commit/b55d7f50a6d75c11fea69e579832165967333013)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Tue Feb 11 2014 23:50:08 GMT-0330 (NST)   
