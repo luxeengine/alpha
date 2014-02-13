@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="last_group" href="#last_group">last_group</a></p>
+<pre><code><div class="highlight"><pre><span class="n">last_group</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="log" href="#log">log</a></p>
+<pre><code><div class="highlight"><pre><span class="n">log</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="last_shader_id" href="#last_shader_id">last_shader_id</a></p>
+<pre><code><div class="highlight"><pre><span class="n">last_shader_id</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="is_clipping" href="#is_clipping">is_clipping</a></p>
+<pre><code><div class="highlight"><pre><span class="n">is_clipping</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="last_geom_state" href="#last_geom_state">last_geom_state</a></p>
+<pre><code><div class="highlight"><pre><span class="n">last_geom_state</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">GeometryState</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clip_rect</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="last_texture_id" href="#last_texture_id">last_texture_id</a></p>
+<pre><code><div class="highlight"><pre><span class="n">last_texture_id</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="geom_state" href="#geom_state">geom_state</a></p>
+<pre><code><div class="highlight"><pre><span class="n">geom_state</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">GeometryState</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="last_clip_rect" href="#last_clip_rect">last_clip_rect</a></p>
+<pre><code><div class="highlight"><pre><span class="n">last_clip_rect</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="batcher" href="#batcher">batcher</a></p>
+<pre><code><div class="highlight"><pre><span class="n">batcher</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Batcher.html">Batcher</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="n">_r</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a></span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="str" href="#str">str</a></p>
+<pre><code><div class="highlight"><pre><span class="n">str</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="update" href="#update">update</a></p>
+<pre><code><div class="highlight"><pre><span class="n">update</span><span class="p">(</span><span class="n">geom</span><span class="err">:phoenix.geometry.<a href="phoenix.Geometry.html">Geometry</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deactivate" href="#deactivate">deactivate</a></p>
+<pre><code><div class="highlight"><pre><span class="n">deactivate</span><span class="p">(</span><span class="n">batcher</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="activate" href="#activate">activate</a></p>
+<pre><code><div class="highlight"><pre><span class="n">activate</span><span class="p">(</span><span class="n">batcher</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

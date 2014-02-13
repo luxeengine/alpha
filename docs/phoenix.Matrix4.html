@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="elements" href="#elements">elements</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="flattenToArrayOffset" href="#flattenToArrayOffset">flattenToArrayOffset</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeRotationFromEuler" href="#makeRotationFromEuler">makeRotationFromEuler</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makePerspective" href="#makePerspective">makePerspective</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makePerspective</span><span class="p">(</span><span class="n">_fov</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_aspect</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_near</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_far</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getInverse" href="#getInverse">getInverse</a></p>
+<pre><code><div class="highlight"><pre><span class="n">getInverse</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="copyPosition" href="#copyPosition">copyPosition</a></p>
+<pre><code><div class="highlight"><pre><span class="n">copyPosition</span><span class="p">(</span><span class="n">m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="GetBackward" href="#GetBackward">GetBackward</a></p>
+<pre><code><div class="highlight"><pre><span class="n">GetBackward</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeRotationY" href="#makeRotationY">makeRotationY</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeRotationY</span><span class="p">(</span><span class="n">_theta</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="getMaxScaleOnAxis" href="#getMaxScaleOnAxis">getMaxScaleOnAxis</a></p>
+<pre><code><div class="highlight"><pre><span class="n">getMaxScaleOnAxis</span><span class="p">()</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeRotationAxis" href="#makeRotationAxis">makeRotationAxis</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeRotationAxis</span><span class="p">(</span><span class="n">_axis</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="n">_angle</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiplyVector3Array" href="#multiplyVector3Array">multiplyVector3Array</a></p>
+<pre><code><div class="highlight"><pre><span class="n">multiplyVector3Array</span><span class="p">(</span><span class="n">_a</span><span class="err">:Array&lt;Float&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">Array</span><span class="o">&lt;</span><span class="n">Float</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="extractRotation" href="#extractRotation">extractRotation</a></p>
+<pre><code><div class="highlight"><pre><span class="n">extractRotation</span><span class="p">(</span><span class="n">m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="flattenToArray" href="#flattenToArray">flattenToArray</a></p>
+<pre><code><div class="highlight"><pre><span class="n">flattenToArray</span><span class="p">(</span><span class="err">?</span><span class="n">_flat</span><span class="err">:Array&lt;Float&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">Array</span><span class="o">&lt;</span><span class="n">Float</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="lookAt" href="#lookAt">lookAt</a></p>
+<pre><code><div class="highlight"><pre><span class="n">lookAt</span><span class="p">(</span><span class="n">_eye</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="n">_target</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="n">_up</span><span class="err">:phoenix.Vector</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeScale" href="#makeScale">makeScale</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeScale</span><span class="p">(</span><span class="n">_x</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_y</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_z</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a></p>
+<pre><code><div class="highlight"><pre><span class="n">multiplyScalar</span><span class="p">(</span><span class="n">_s</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(?</span><span class="n">n11</span><span class="err">:Float,</span> <span class="err">?n12:Float,</span> <span class="err">?n13:Float,</span> <span class="err">?n14:Float,</span> <span class="err">?n21:Float,</span> <span class="err">?n22:Float,</span> <span class="err">?n23:Float,</span> <span class="err">?n24:Float,</span> <span class="err">?n31:Float,</span> <span class="err">?n32:Float,</span> <span class="err">?n33:Float,</span> <span class="err">?n34:Float,</span> <span class="err">?n41:Float,</span> <span class="err">?n42:Float,</span> <span class="err">?n43:Float,</span> <span class="err">?n44:Float</span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="compose" href="#compose">compose</a></p>
+<pre><code><div class="highlight"><pre><span class="n">compose</span><span class="p">(</span><span class="n">_position</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="n">_quaternion</span><span class="err">:phoenix.<a href="luxe.Quaternion.html">Quaternion</a></span><span class="p">,</span> <span class="n">_scale</span><span class="err">:phoenix.Vector</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiplyToArray" href="#multiplyToArray">multiplyToArray</a></p>
+<pre><code><div class="highlight"><pre><span class="n">multiplyToArray</span><span class="p">(</span><span class="n">_a</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">,</span> <span class="n">_b</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">,</span> <span class="n">_r</span><span class="err">:Array&lt;Float&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="GetUp" href="#GetUp">GetUp</a></p>
+<pre><code><div class="highlight"><pre><span class="n">GetUp</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="decompose" href="#decompose">decompose</a></p>
+<pre><code><div class="highlight"><pre><span class="n">decompose</span><span class="p">(</span><span class="err">?</span><span class="n">_position</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="err">?</span><span class="n">_quaternion</span><span class="err">:phoenix.<a href="luxe.Quaternion.html">Quaternion</a></span><span class="p">,</span> <span class="err">?</span><span class="n">_scale</span><span class="err">:phoenix.<a href="luxe.Vector.html">Vector</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Array</span><span class="o">&lt;</span><span class="n">Dynamic</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeRotationX" href="#makeRotationX">makeRotationX</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeRotationX</span><span class="p">(</span><span class="n">_theta</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="inverse" href="#inverse">inverse</a></p>
+<pre><code><div class="highlight"><pre><span class="n">inverse</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="setPosition" href="#setPosition">setPosition</a></p>
+<pre><code><div class="highlight"><pre><span class="n">setPosition</span><span class="p">(</span><span class="n">_v</span><span class="err">:phoenix.Vector</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="copy" href="#copy">copy</a></p>
+<pre><code><div class="highlight"><pre><span class="n">copy</span><span class="p">(</span><span class="n">m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="compose_with_origin" href="#compose_with_origin">compose_with_origin</a></p>
+<pre><code><div class="highlight"><pre><span class="n">compose_with_origin</span><span class="p">(</span><span class="n">_position</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="n">_origin</span><span class="err">:phoenix.Vector</span><span class="p">,</span> <span class="n">_quaternion</span><span class="err">:phoenix.<a href="luxe.Quaternion.html">Quaternion</a></span><span class="p">,</span> <span class="n">_scale</span><span class="err">:phoenix.Vector</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="scale" href="#scale">scale</a></p>
+<pre><code><div class="highlight"><pre><span class="n">scale</span><span class="p">(</span><span class="n">_v</span><span class="err">:phoenix.Vector</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiplyMatrices" href="#multiplyMatrices">multiplyMatrices</a></p>
+<pre><code><div class="highlight"><pre><span class="n">multiplyMatrices</span><span class="p">(</span><span class="n">_a</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">,</span> <span class="n">_b</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clone</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="print" href="#print">print</a></p>
+<pre><code><div class="highlight"><pre><span class="n">print</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toArray" href="#toArray">toArray</a></p>
+<pre><code><div class="highlight"><pre><span class="n">toArray</span><span class="p">()</span> <span class="err">:</span> <span class="n">Array</span><span class="o">&lt;</span><span class="n">Float</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeOrthographic" href="#makeOrthographic">makeOrthographic</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeOrthographic</span><span class="p">(</span><span class="n">_left</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_right</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_top</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_bottom</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_near</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_far</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="identity" href="#identity">identity</a></p>
+<pre><code><div class="highlight"><pre><span class="n">identity</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiply" href="#multiply">multiply</a></p>
+<pre><code><div class="highlight"><pre><span class="n">multiply</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeRotationFromQuaternion" href="#makeRotationFromQuaternion">makeRotationFromQuaternion</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeRotationFromQuaternion</span><span class="p">(</span><span class="n">q</span><span class="err">:phoenix.<a href="luxe.Quaternion.html">Quaternion</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeRotationZ" href="#makeRotationZ">makeRotationZ</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeRotationZ</span><span class="p">(</span><span class="n">_theta</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="float32array" href="#float32array">float32array</a></p>
+<pre><code><div class="highlight"><pre><span class="n">float32array</span><span class="p">()</span> <span class="err">:</span> <span class="n">lime</span><span class="p">.</span><span class="n">utils</span><span class="p">.</span><span class="n">Float32Array</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span><span class="n">n11</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n12</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n13</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n14</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n21</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n22</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n23</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n24</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n31</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n32</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n33</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n34</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n41</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n42</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n43</span><span class="err">:Float</span><span class="p">,</span> <span class="n">n44</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="transpose" href="#transpose">transpose</a></p>
+<pre><code><div class="highlight"><pre><span class="n">transpose</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="determinant" href="#determinant">determinant</a></p>
+<pre><code><div class="highlight"><pre><span class="n">determinant</span><span class="p">()</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="GetDown" href="#GetDown">GetDown</a></p>
+<pre><code><div class="highlight"><pre><span class="n">GetDown</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeFrustum" href="#makeFrustum">makeFrustum</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeFrustum</span><span class="p">(</span><span class="n">_left</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_right</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_bottom</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_top</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_near</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_far</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fromArray" href="#fromArray">fromArray</a></p>
+<pre><code><div class="highlight"><pre><span class="n">fromArray</span><span class="p">(</span><span class="n">_from</span><span class="err">:Array&lt;Float&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="makeTranslation" href="#makeTranslation">makeTranslation</a></p>
+<pre><code><div class="highlight"><pre><span class="n">makeTranslation</span><span class="p">(</span><span class="n">_x</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_y</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_z</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="GetRight" href="#GetRight">GetRight</a></p>
+<pre><code><div class="highlight"><pre><span class="n">GetRight</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="GetLeft" href="#GetLeft">GetLeft</a></p>
+<pre><code><div class="highlight"><pre><span class="n">GetLeft</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="GetForward" href="#GetForward">GetForward</a></p>
+<pre><code><div class="highlight"><pre><span class="n">GetForward</span><span class="p">(</span><span class="n">_m</span><span class="err">:phoenix.<a href="luxe.Matrix4.html">Matrix4</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Vector.html">Vector</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="make2D" href="#make2D">make2D</a></p>
+<pre><code><div class="highlight"><pre><span class="n">make2D</span><span class="p">(</span><span class="n">_x</span><span class="err">:Float</span><span class="p">,</span> <span class="n">_y</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_scale</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_rotation</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Matrix4.html">Matrix4</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

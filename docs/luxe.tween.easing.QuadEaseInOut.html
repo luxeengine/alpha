@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Implements">Implements</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Implements" ></a></p>
+<h3 id="implements">Implements</h3>
+<hr>
+<p><a class="lift" name="luxe.tween.easing.IEasing" href="#luxe.tween.easing.IEasing">luxe.tween.easing.IEasing</a></p>
+<pre><code><div class="highlight"><pre><span class="n">undefined</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="err">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="calculate" href="#calculate">calculate</a></p>
+<pre><code><div class="highlight"><pre><span class="n">calculate</span><span class="p">(</span><span class="n">k</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ease" href="#ease">ease</a></p>
+<pre><code><div class="highlight"><pre><span class="n">ease</span><span class="p">(</span><span class="n">t</span><span class="err">:Float</span><span class="p">,</span> <span class="n">b</span><span class="err">:Float</span><span class="p">,</span> <span class="n">c</span><span class="err">:Float</span><span class="p">,</span> <span class="n">d</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

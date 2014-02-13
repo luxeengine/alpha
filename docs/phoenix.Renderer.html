@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="default_camera" href="#default_camera">default_camera</a></p>
+<pre><code><div class="highlight"><pre><span class="n">default_camera</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Camera.html">Camera</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stop_count" href="#stop_count">stop_count</a></p>
+<pre><code><div class="highlight"><pre><span class="n">stop_count</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stop" href="#stop">stop</a></p>
+<pre><code><div class="highlight"><pre><span class="n">stop</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="resource_manager" href="#resource_manager">resource_manager</a></p>
+<pre><code><div class="highlight"><pre><span class="n">resource_manager</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">ResourceManager</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clear_color" href="#clear_color">clear_color</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clear_color</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html">Color</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="default_font" href="#default_font">default_font</a></p>
+<pre><code><div class="highlight"><pre><span class="n">default_font</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">BitmapFont</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="default_shader" href="#default_shader">default_shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">default_shader</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="default_shader_textured" href="#default_shader_textured">default_shader_textured</a></p>
+<pre><code><div class="highlight"><pre><span class="n">default_shader_textured</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stats" href="#stats">stats</a></p>
+<pre><code><div class="highlight"><pre><span class="n">stats</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">RendererStats</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="state" href="#state">state</a></p>
+<pre><code><div class="highlight"><pre><span class="n">state</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">RenderState</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="default_render_path" href="#default_render_path">default_render_path</a></p>
+<pre><code><div class="highlight"><pre><span class="n">default_render_path</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">RenderPath</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="batchers" href="#batchers">batchers</a></p>
+<pre><code><div class="highlight"><pre><span class="n">batchers</span> <span class="err">:</span> <span class="n">Array</span><span class="o">&lt;</span><span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Batcher.html">Batcher</a></span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="default_batcher" href="#default_batcher">default_batcher</a></p>
+<pre><code><div class="highlight"><pre><span class="n">default_batcher</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Batcher.html">Batcher</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="render_path" href="#render_path">render_path</a></p>
+<pre><code><div class="highlight"><pre><span class="n">render_path</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">RenderPath</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="should_clear" href="#should_clear">should_clear</a></p>
+<pre><code><div class="highlight"><pre><span class="n">should_clear</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="onresize" href="#onresize">onresize</a></p>
+<pre><code><div class="highlight"><pre><span class="n">onresize</span><span class="p">(</span><span class="n">e</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="add_batch" href="#add_batch">add_batch</a></p>
+<pre><code><div class="highlight"><pre><span class="n">add_batch</span><span class="p">(</span><span class="n">batch</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="process" href="#process">process</a></p>
+<pre><code><div class="highlight"><pre><span class="n">process</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="remove_batch" href="#remove_batch">remove_batch</a></p>
+<pre><code><div class="highlight"><pre><span class="n">remove_batch</span><span class="p">(</span><span class="n">batch</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="load_texture_from_string_byte_array" href="#load_texture_from_string_byte_array">load_texture_from_string_byte_array</a></p>
+<pre><code><div class="highlight"><pre><span class="n">load_texture_from_string_byte_array</span><span class="p">(</span><span class="err">?</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_string_byte_array</span><span class="err">:String</span><span class="p">,</span> <span class="n">_width</span><span class="err">:Int</span><span class="p">,</span> <span class="n">_height</span><span class="err">:Int</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Texture.html">Texture</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="n">_core</span><span class="err">:luxe.Core</span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clear" href="#clear">clear</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clear</span><span class="p">(</span><span class="n">_color</span><span class="err">:phoenix.<a href="luxe.Color.html">Color</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="load_font" href="#load_font">load_font</a></p>
+<pre><code><div class="highlight"><pre><span class="n">load_font</span><span class="p">(</span><span class="n">_fontid</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_path</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:phoenix.BitmapFont-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">BitmapFont</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="load_textures" href="#load_textures">load_textures</a></p>
+<pre><code><div class="highlight"><pre><span class="n">load_textures</span><span class="p">(</span><span class="n">_names</span><span class="err">:Array&lt;String&gt;</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Array-&gt;Void</span><span class="p">,</span> <span class="err">?</span><span class="n">_silent</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
+<pre><code><div class="highlight"><pre><span class="n">destroy</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="load_texture" href="#load_texture">load_texture</a></p>
+<pre><code><div class="highlight"><pre><span class="n">load_texture</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:phoenix.<a href="phoenix.Texture.html">Texture</a>-&gt;Void</span><span class="p">,</span> <span class="err">?</span><span class="n">_silent</span><span class="err">:Bool</span><span class="p">,</span> <span class="err">?</span><span class="n">asset_bytes</span><span class="err">:lime.utils.ByteArray</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Texture.html">Texture</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="load_shader" href="#load_shader">load_shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">load_shader</span><span class="p">(</span><span class="n">_psid</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_vsid</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:phoenix.<a href="phoenix.Shader.html">Shader</a>-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="init" href="#init">init</a></p>
+<pre><code><div class="highlight"><pre><span class="n">init</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

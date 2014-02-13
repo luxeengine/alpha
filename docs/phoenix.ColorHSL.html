@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Extends">Extends</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="phoenix.Color" href="phoenix.Color.html">phoenix.Color</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="h" href="#h">h</a></p>
+<pre><code><div class="highlight"><pre><span class="n">h</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="l" href="#l">l</a></p>
+<pre><code><div class="highlight"><pre><span class="n">l</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="s" href="#s">s</a></p>
+<pre><code><div class="highlight"><pre><span class="n">s</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clone</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span><span class="err">?</span><span class="n">_h</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_s</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_l</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_a</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(?</span><span class="n">_h</span><span class="err">:Float,</span> <span class="err">?_s:Float,</span> <span class="err">?_l:Float,</span> <span class="err">?_a:Float</span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toString" href="#toString">toString</a></p>
+<pre><code><div class="highlight"><pre><span class="n">toString</span><span class="p">()</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="_refresh" href="#_refresh">_refresh</a></p>
+<pre><code><div class="highlight"><pre><span class="n">_refresh</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toColor" href="#toColor">toColor</a></p>
+<pre><code><div class="highlight"><pre><span class="n">toColor</span><span class="p">()</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html">Color</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tween" href="#tween">tween</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tween</span><span class="p">(</span><span class="err">?</span><span class="n">_time_in_seconds</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">_dest</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="err">?</span><span class="n">_override</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">IGenericActuator</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fromColor" href="#fromColor">fromColor</a></p>
+<pre><code><div class="highlight"><pre><span class="n">fromColor</span><span class="p">(</span><span class="n">_color</span><span class="err">:phoenix.<a href="luxe.Color.html">Color</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Color.html#ColorHSLClass">ColorHSL</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

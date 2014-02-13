@@ -40,56 +40,85 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="StaticMethods" ></a></p>
-<h3 id="static-methods">Static Methods</h3>
-<hr>
-<p><a class="lift" name="apply" href="#apply">apply</a></p>
-<p><code>apply(target:Dynamic, properties:Dynamic, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="motionPath" href="#motionPath">motionPath</a></p>
-<p><code>motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="pause" href="#pause">pause</a></p>
-<p><code>pause(target:Dynamic) : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="pauseAll" href="#pauseAll">pauseAll</a></p>
-<p><code>pauseAll() : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="reset" href="#reset">reset</a></p>
-<p><code>reset() : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="resume" href="#resume">resume</a></p>
-<p><code>resume(target:Dynamic) : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="resumeAll" href="#resumeAll">resumeAll</a></p>
-<p><code>resumeAll() : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="stop" href="#stop">stop</a></p>
-<p><code>stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool, ?sendEvent:Bool) : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="timer" href="#timer">timer</a></p>
-<p><code>timer(duration:Float, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="tween" href="#tween">tween</a></p>
-<p><code>tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool, ?customActuator:Class) : luxe.tween.actuators.IGenericActuator</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="unload" href="#unload">unload</a></p>
-<p><code>unload(actuator:luxe.tween.actuators.GenericActuator) : Void</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="update" href="#update">update</a></p>
-<p><code>update(target:Dynamic, duration:Float, ?start:Array, ?end:Array, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
-<p><a class="lift" name="defaultActuator" href="#defaultActuator">defaultActuator</a></p>
-<p><code>defaultActuator : Class</code>
-<span class="small_desc_flat"> <code>static</code>:desc unavailable: </span>   </p>
 <p><a class="lift" name="defaultEase" href="#defaultEase">defaultEase</a></p>
-<p><code>defaultEase : luxe.tween.easing.IEasing</code>
-<span class="small_desc_flat"> <code>static</code>:desc unavailable: </span>   </p>
+<pre><code><div class="highlight"><pre><span class="n">defaultEase</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">easing</span><span class="p">.</span><span class="n">IEasing</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="defaultActuator" href="#defaultActuator">defaultActuator</a></p>
+<pre><code><div class="highlight"><pre><span class="n">defaultActuator</span> <span class="err">:</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">GenericActuator</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="reset" href="#reset">reset</a></p>
+<pre><code><div class="highlight"><pre><span class="n">reset</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="resume" href="#resume">resume</a></p>
+<pre><code><div class="highlight"><pre><span class="n">resume</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="resumeAll" href="#resumeAll">resumeAll</a></p>
+<pre><code><div class="highlight"><pre><span class="n">resumeAll</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="stop" href="#stop">stop</a></p>
+<pre><code><div class="highlight"><pre><span class="n">stop</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="err">?</span><span class="n">properties</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="err">?</span><span class="n">complete</span><span class="err">:Bool</span><span class="p">,</span> <span class="err">?</span><span class="n">sendEvent</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="unload" href="#unload">unload</a></p>
+<pre><code><div class="highlight"><pre><span class="n">unload</span><span class="p">(</span><span class="n">actuator</span><span class="err">:luxe.tween.actuators.GenericActuator</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="pause" href="#pause">pause</a></p>
+<pre><code><div class="highlight"><pre><span class="n">pause</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="pauseAll" href="#pauseAll">pauseAll</a></p>
+<pre><code><div class="highlight"><pre><span class="n">pauseAll</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="update" href="#update">update</a></p>
+<pre><code><div class="highlight"><pre><span class="n">update</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">duration</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">start</span><span class="err">:Array&lt;Dynamic&gt;</span><span class="p">,</span> <span class="err">?</span><span class="n">end</span><span class="err">:Array&lt;Dynamic&gt;</span><span class="p">,</span> <span class="err">?</span><span class="n">overwrite</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">IGenericActuator</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tween" href="#tween">tween</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tween</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">duration</span><span class="err">:Float</span><span class="p">,</span> <span class="n">properties</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="err">?</span><span class="n">overwrite</span><span class="err">:Bool</span><span class="p">,</span> <span class="err">?</span><span class="n">customActuator</span><span class="err">:Class&lt;luxe.tween.actuators.GenericActuator&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">IGenericActuator</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="apply" href="#apply">apply</a></p>
+<pre><code><div class="highlight"><pre><span class="n">apply</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">properties</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="err">?</span><span class="n">customActuator</span><span class="err">:Class&lt;luxe.tween.actuators.GenericActuator&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">IGenericActuator</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="motionPath" href="#motionPath">motionPath</a></p>
+<pre><code><div class="highlight"><pre><span class="n">motionPath</span><span class="p">(</span><span class="n">target</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="n">duration</span><span class="err">:Float</span><span class="p">,</span> <span class="n">properties</span><span class="err">:Dynamic</span><span class="p">,</span> <span class="err">?</span><span class="n">overwrite</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">IGenericActuator</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="timer" href="#timer">timer</a></p>
+<pre><code><div class="highlight"><pre><span class="n">timer</span><span class="p">(</span><span class="n">duration</span><span class="err">:Float</span><span class="p">,</span> <span class="err">?</span><span class="n">customActuator</span><span class="err">:Class&lt;luxe.tween.actuators.GenericActuator&gt;</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">tween</span><span class="p">.</span><span class="n">actuators</span><span class="p">.</span><span class="n">IGenericActuator</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>

@@ -32,11 +32,100 @@ var config = require('./documentator.json');
 
     var _parse_code_api = function() {
 
+        console.log('- parsing code doc json, to generate api files');
+
+        var _doc_json = String( fs.readFileSync( config.scribe_source_json ) );
+        if(_doc_json) {
+
+            var doc_json = JSON.parse(_doc_json);
+
+            //we parse each top level object from scribe and spit out a template file for 
+            //the documentator to take and run with
+            if(doc_json) {
+                var classes = doc_json.classes;
+                for(var i = 0; i < classes.length; ++i) {
+
+                    var theclass = classes[i];
+                    var filename = theclass.name + '.md';
+                    var output_json = {
+                        file : filename,
+                        links : [],
+                        toplinks : [],
+                        sections : []
+                    }
+
+                    //now go through and add the sections,
+                    //extends, implements, members, properties, methods
+                    if(theclass["extends"].length != 0) {
+                        output_json.sections.push({
+                            name : "Extends",
+                            link : "#Extends",
+                            values : theclass["extends"]
+                        });
+
+                    } //extends != 0
+
+                    if(theclass["implements"].length != 0) {
+                         output_json.sections.push({
+                            name : "Implements",
+                            link : "#Implements",
+                            values : theclass["implements"]
+                        });
+
+                    }
+
+                    if(theclass["members"].length != 0) {
+                         output_json.sections.push({
+                            name : "Members",
+                            link : "#Members",
+                            values : theclass["members"]
+                        });
+
+                    }
+                    
+                    if(theclass["meta"].length != 0) {
+                         output_json.sections.push({
+                            name : "Meta",
+                            link : "#Meta",
+                            values : theclass["meta"]
+                        });
+                    }
+
+                    if(theclass["properties"].length != 0) {
+                         output_json.sections.push({
+                            name : "Properties",
+                            link : "#Properties",
+                            values : theclass["properties"]
+                        });
+
+                    }
+
+                    if(theclass["methods"].length != 0) {
+                        output_json.sections.push({
+                            name : "Methods",
+                            link : "#Methods",
+                            values : theclass["methods"]
+                        });
+
+                    }
+
+                    //write out a single file per class, so
+                    _verbose("\t- refreshing api file from scribe .. " + config.scribe_api_output_path + theclass.name + ".json");
+
+                    fs.writeFileSync( config.scribe_api_output_path + theclass.name + ".json" , JSON.stringify(output_json) );
+
+                } //for each class
+            } //if doc json
+
+        }
+
         console.log('- parsing code api files');
 
         var _api_template = String( fs.readFileSync( config.api_template ) );
+        var _api_index_template = String( fs.readFileSync( config.api_index_template ) );
 
         var _list = [];
+        var _api_list = [];
             glob( config.api_input , { sync:true, nonull:true }, function (er, files) {
                 _list = _list.concat( files );
             });
@@ -47,6 +136,8 @@ var config = require('./documentator.json');
             var _api_details = JSON.parse( _api_details_string );
 
             if(_api_details.file && _api_details.sections) {
+
+                _api_list.push({ name:_api_details.file.replace('.md',''), link:_api_details.file.replace('.md','.html') })
 
                 var _context = {
                     toplinks : '',
@@ -71,18 +162,79 @@ var config = require('./documentator.json');
                     var _section = _api_details.sections[_j];     
 
                     _context.content += '&nbsp;   \n\n';
-                    if(_section.link){
-                        _context.content += '<a class="lift" name="'+_section.link+'" ></a>\n';
-                    }
-                    _context.content += '###' + _section.name + '   \n---\n';
+
+                    var _section_header_content = '';
+                    var _added_section_header = false;
+
+                    if(_section.values.length) {
+
+                        if(_section.link){
+                            _section_header_content += '<a class="lift" name="'+_section.name+'" ></a>\n';
+                        }
+
+                        _section_header_content += '###' + _section.name + '   \n---\n';
+                    
+                    } //if section has any values
                     
                         //now for each section value
                     for(_k = 0; _k < _section.values.length; ++_k) {
-                        var _value = _section.values[_k];
 
-                        _context.content += '<a class="lift" name="'+_value.link+'" href="#'+_value.link+'">'+_value.name+'</a>\n\n';
-                        _context.content += '```' + _value.code + '```\n';
-                        _context.content += '<span class="small_desc_flat"> ' + _value.desc + ' </span>   \n\n';
+                        var _value = _section.values[_k];
+                        var _skip = false;
+
+                        if( _section.name == 'Methods' || _section.name == 'Members' ) {
+                            if( _value["public"] != true) {
+                                _skip = true;
+                            }
+                        }
+
+                        var _meta_exists = _value["meta"];
+                        if( _meta_exists ) {
+                                //for each of the item in the meta
+                            var _meta = _value["meta"];
+                            for(var _l = 0; _l < _meta.length; ++_l ) {
+                                var _meta_name = _meta[_l].name;
+                                var _meta_value = _meta[_l].value;
+                                if(_meta_name === ':noCompletion' || _meta_name === ':hide') {
+                                    _skip = true;
+                                } else if(_meta_name === ':desc') {
+                                    _value.desc = _meta_value;
+                                }
+                            }
+                        }
+
+                        if(_section.name == 'Meta') {
+                            _skip = true;
+                        }
+
+
+                        if(_skip) {
+                            continue;
+                        }
+
+                        if(!_added_section_header) {
+                                //add the header
+                            _context.content += _section_header_content;
+                                //and add the links                            
+                            _context.links += '[' + _section.name + '](' + _section.link + ')   \n';
+
+                            // console.log("ADDING SECTION LINK TO LIST " + _section.name + " / " + _section.link);
+                            // console.log(_context.links);
+
+                            _added_section_header = true;
+                        }
+
+                        if(_section.name == 'Extends') {
+
+                            _context.content += '<a class="lift" name="'+_value.name+'" href="'+_value.name+'.html">'+_value.name+'</a>\n\n';
+
+                        } else if(_section.name != 'Meta') {
+
+                            _context.content += '<a class="lift" name="'+_value.name+'" href="#'+_value.name+'">'+_value.name+'</a>\n\n';
+                            _context.content += '\n\n    ' + _value.signature +'\n\n';
+                            _context.content += '<span class="small_desc_flat"> ' + (_value.desc || "no description")+ ' </span>   \n\n';
+
+                        }
 
                     } //each section value
 
@@ -91,9 +243,15 @@ var config = require('./documentator.json');
                 var _template_out = mustache.render( _api_template, _context );
                 fs.writeFileSync( config.api_output_path + _api_details.file , _template_out );
                 _verbose("\t - generating file " + config.api_output_path + _api_details.file);
+
             } //if valid
         } //list.length
-            
+
+        var _index_context = { api_list : _api_list };
+        var _template_out = mustache.render( _api_index_template, _index_context );
+        fs.writeFileSync( config.api_output_path + config.api_index_file , _template_out );
+        _verbose("\t - wrote api index file " + config.api_output_path + config.api_index_file);
+
         console.log("- generated api files complete");
 
     };
@@ -151,7 +309,7 @@ var config = require('./documentator.json');
                         _final_list.push(_list[i]);
                         _verbose('> added file ' + _list[i] + (_stat.mtime.getTime() ==  _last_changed_time) + ' ' + (_stat.size == _last_changed_size));
                     } else {
-                        _verbose('> \tskipped file ' + _list[i] + (_stat.mtime.getTime() ==  _last_changed_time) + ' ' + (_stat.size == _last_changed_size));
+                        _verbose('> \tskipped file due to no change ' + _list[i] );
                     }
                 } else {
                     _verbose('> forced file, no history ' + _list[i] );
@@ -430,7 +588,7 @@ var config = require('./documentator.json');
 
     } //_write_log_file
 
-    var verbose = false;
+    var verbose = true;
     var _verbose = function(s){
         if(verbose) {
             console.log(s);

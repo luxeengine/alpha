@@ -2,127 +2,89 @@
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
 
+[Extends](#Extends)   
+[Members](#Members)   
+[Properties](#Properties)   
+[Methods](#Methods)   
 
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="Extends" ></a>
+###Extends   
 ---
-<a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
-
-```get_serialize_data() : null```
-<span class="small_desc_flat"> :desc unavailable: </span>   
-
-<a class="lift" name="point_inside" href="#point_inside">point_inside</a>
-
-```point_inside(_p:phoenix.Vector) : Bool```
-<span class="small_desc_flat"> :desc unavailable: </span>   
-
-<a class="lift" name="destroy" href="#destroy">destroy</a>
-
-```destroy() : Void```
-<span class="small_desc_flat"> :desc unavailable: </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-```new(options:Dynamic) ```
-<span class="small_desc_flat"> :desc unavailable: </span>   
+<a class="lift" name="luxe.Visual" href="luxe.Visual.html">luxe.Visual</a>
 
 &nbsp;   
 
 <a class="lift" name="Members" ></a>
 ###Members   
 ---
-<a class="lift" name="geometry" href="#geometry">geometry</a>
+<a class="lift" name="geometry_quad" href="#geometry_quad">geometry_quad</a>
 
-```geometry : phoenix.geometry.QuadGeometry```
-<span class="small_desc_flat"> :desc unavailable: </span>   
+
+
+    geometry_quad : phoenix.geometry.QuadGeometry
+
+<span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
 <a class="lift" name="Properties" ></a>
 ###Properties   
 ---
-<a class="lift" name="flipx" href="#flipx">flipx</a>
+<a class="lift" name="centered" href="#centered">centered</a>
 
-```flipx : Bool```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+
+
+    centered : Bool
+
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="flipy" href="#flipy">flipy</a>
 
-```flipy : Bool```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a>
 
-```clip_rect : luxe.Rectangle```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+    flipy : Bool
 
-<a class="lift" name="clip" href="#clip">clip</a>
-
-```clip : Bool```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+<span class="small_desc_flat"> no description </span>   
 
 <a class="lift" name="uv" href="#uv">uv</a>
 
-```uv : luxe.Rectangle```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="origin" href="#origin">origin</a>
 
-```origin : phoenix.Vector```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+    uv : luxe.Rectangle
 
-<a class="lift" name="centered" href="#centered">centered</a>
+<span class="small_desc_flat"> no description </span>   
 
-```centered : Bool```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+<a class="lift" name="flipx" href="#flipx">flipx</a>
 
-<a class="lift" name="depth" href="#depth">depth</a>
 
-```depth : Float```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="radians" href="#radians">radians</a>
+    flipx : Bool
 
-```radians : Float```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+<span class="small_desc_flat"> no description </span>   
 
-<a class="lift" name="rotation_z" href="#rotation_z">rotation_z</a>
+&nbsp;   
 
-```rotation_z : Float```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
+<a class="lift" name="point_inside" href="#point_inside">point_inside</a>
 
-<a class="lift" name="visible" href="#visible">visible</a>
 
-```visible : Bool```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="color" href="#color">color</a>
+    point_inside(_p:luxe.Vector) : Bool
 
-```color : phoenix.Color```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+<span class="small_desc_flat"> no description </span>   
 
-<a class="lift" name="size" href="#size">size</a>
+<a class="lift" name="new" href="#new">new</a>
 
-```size : phoenix.Vector```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
 
-<a class="lift" name="shader" href="#shader">shader</a>
 
-```shader : phoenix.Shader```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+    new(options:luxe.options.SpriteOptions<new.T>) 
 
-<a class="lift" name="texture" href="#texture">texture</a>
-
-```texture : phoenix.Texture```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
-
-<a class="lift" name="locked" href="#locked">locked</a>
-
-```locked : Bool```
-<span class="small_desc_flat"> `(read/write)` :desc unavailable: </span>   
+<span class="small_desc_flat"> no description </span>   
 
 
 

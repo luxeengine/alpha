@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="luxe.Resource" href="luxe.Resource.html">luxe.Resource</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="tex1_attribute" href="#tex1_attribute">tex1_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex1_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex2_attribute" href="#tex2_attribute">tex2_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex2_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex3_attribute" href="#tex3_attribute">tex3_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex3_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shader" href="#shader">shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">shader</span> <span class="err">:</span> <span class="n">lime</span><span class="p">.</span><span class="n">gl</span><span class="p">.</span><span class="n">GLShader</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex4_attribute" href="#tex4_attribute">tex4_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex4_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex5_attribute" href="#tex5_attribute">tex5_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex5_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex6_attribute" href="#tex6_attribute">tex6_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex6_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vert_attribute" href="#vert_attribute">vert_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">vert_attribute</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="program" href="#program">program</a></p>
+<pre><code><div class="highlight"><pre><span class="n">program</span> <span class="err">:</span> <span class="n">lime</span><span class="p">.</span><span class="n">gl</span><span class="p">.</span><span class="n">GLProgram</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex7_attribute" href="#tex7_attribute">tex7_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex7_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="errors" href="#errors">errors</a></p>
+<pre><code><div class="highlight"><pre><span class="n">errors</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="normal_attribute" href="#normal_attribute">normal_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">normal_attribute</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="frag_shader" href="#frag_shader">frag_shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">frag_shader</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uniforms" href="#uniforms">uniforms</a></p>
+<pre><code><div class="highlight"><pre><span class="n">uniforms</span> <span class="err">:</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="err">,</span><span class="n">Dynamic</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vert_shader" href="#vert_shader">vert_shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">vert_shader</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="modelviewmatrix_attribute" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">modelviewmatrix_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tcoord_attribute" href="#tcoord_attribute">tcoord_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tcoord_attribute</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="log" href="#log">log</a></p>
+<pre><code><div class="highlight"><pre><span class="n">log</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="color_attribute" href="#color_attribute">color_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">color_attribute</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="projectionmatrix_attribute" href="#projectionmatrix_attribute">projectionmatrix_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">projectionmatrix_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tex0_attribute" href="#tex0_attribute">tex0_attribute</a></p>
+<pre><code><div class="highlight"><pre><span class="n">tex0_attribute</span> <span class="err">:</span> <span class="n">Dynamic</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="compile" href="#compile">compile</a></p>
+<pre><code><div class="highlight"><pre><span class="n">compile</span><span class="p">(</span><span class="n">_type</span><span class="err">:Int</span><span class="p">,</span> <span class="n">_source</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_verbose</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">lime</span><span class="p">.</span><span class="n">gl</span><span class="p">.</span><span class="n">GLShader</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_vector4" href="#set_uniform_vector4">set_uniform_vector4</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_vector4</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:phoenix.<a href="luxe.Vector.html">Vector</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_vector3" href="#set_uniform_vector3">set_uniform_vector3</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_vector3</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:phoenix.<a href="luxe.Vector.html">Vector</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_color" href="#set_uniform_color">set_uniform_color</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_color</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:phoenix.<a href="luxe.Color.html">Color</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_float" href="#set_uniform_float">set_uniform_float</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_float</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="addError" href="#addError">addError</a></p>
+<pre><code><div class="highlight"><pre><span class="n">addError</span><span class="p">(</span><span class="n">_error</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="n">_manager</span><span class="err">:luxe.ResourceManager</span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_texture" href="#set_uniform_texture">set_uniform_texture</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_texture</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:phoenix.<a href="phoenix.Texture.html">Texture</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_vector2" href="#set_uniform_vector2">set_uniform_vector2</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_vector2</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:phoenix.<a href="luxe.Vector.html">Vector</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="addLog" href="#addLog">addLog</a></p>
+<pre><code><div class="highlight"><pre><span class="n">addLog</span><span class="p">(</span><span class="n">_log</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
+<pre><code><div class="highlight"><pre><span class="n">destroy</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="deactivate" href="#deactivate">deactivate</a></p>
+<pre><code><div class="highlight"><pre><span class="n">deactivate</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="load_from_string" href="#load_from_string">load_from_string</a></p>
+<pre><code><div class="highlight"><pre><span class="n">load_from_string</span><span class="p">(</span><span class="n">_vertex_source</span><span class="err">:String</span><span class="p">,</span> <span class="n">_fragment_source</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_verbose</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="drop" href="#drop">drop</a></p>
+<pre><code><div class="highlight"><pre><span class="n">drop</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_uniform_int" href="#set_uniform_int">set_uniform_int</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_uniform_int</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_value</span><span class="err">:Int</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="activate" href="#activate">activate</a></p>
+<pre><code><div class="highlight"><pre><span class="n">activate</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="link" href="#link">link</a></p>
+<pre><code><div class="highlight"><pre><span class="n">link</span><span class="p">()</span> <span class="err">:</span> <span class="n">lime</span><span class="p">.</span><span class="n">gl</span><span class="p">.</span><span class="n">GLProgram</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

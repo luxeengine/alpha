@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="log" href="#log">log</a></p>
+<pre><code><div class="highlight"><pre><span class="n">log</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dirty" href="#dirty">dirty</a></p>
+<pre><code><div class="highlight"><pre><span class="n">dirty</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="group" href="#group">group</a></p>
+<pre><code><div class="highlight"><pre><span class="n">group</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texture" href="#texture">texture</a></p>
+<pre><code><div class="highlight"><pre><span class="n">texture</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Texture.html">Texture</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="depth" href="#depth">depth</a></p>
+<pre><code><div class="highlight"><pre><span class="n">depth</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shader" href="#shader">shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">shader</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="primitive_type" href="#primitive_type">primitive_type</a></p>
+<pre><code><div class="highlight"><pre><span class="n">primitive_type</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">PrimitiveType</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clip_rect</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clip" href="#clip">clip</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clip</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="set_clip" href="#set_clip">set_clip</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_clip</span><span class="p">(</span><span class="n">val</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_texture" href="#set_texture">set_texture</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_texture</span><span class="p">(</span><span class="n">val</span><span class="err">:phoenix.<a href="phoenix.Texture.html">Texture</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Texture.html">Texture</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="err">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_primitive_type" href="#set_primitive_type">set_primitive_type</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_primitive_type</span><span class="p">(</span><span class="n">val</span><span class="err">:phoenix.PrimitiveType</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">PrimitiveType</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clean" href="#clean">clean</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clean</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_shader" href="#set_shader">set_shader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_shader</span><span class="p">(</span><span class="n">val</span><span class="err">:phoenix.<a href="phoenix.Shader.html">Shader</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="update" href="#update">update</a></p>
+<pre><code><div class="highlight"><pre><span class="n">update</span><span class="p">(</span><span class="n">other</span><span class="err">:phoenix.geometry.GeometryState</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="str" href="#str">str</a></p>
+<pre><code><div class="highlight"><pre><span class="n">str</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_group" href="#set_group">set_group</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_group</span><span class="p">(</span><span class="n">val</span><span class="err">:Int</span><span class="p">)</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_clip_rect" href="#set_clip_rect">set_clip_rect</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_clip_rect</span><span class="p">(</span><span class="n">val</span><span class="err">:phoenix.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="luxe.Rectangle.html">Rectangle</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clone_onto" href="#clone_onto">clone_onto</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clone_onto</span><span class="p">(</span><span class="n">_other</span><span class="err">:phoenix.geometry.GeometryState</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_depth" href="#set_depth">set_depth</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_depth</span><span class="p">(</span><span class="n">val</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -40,62 +40,105 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="StaticMethods" ></a></p>
-<h3 id="static-methods">Static Methods</h3>
-<hr>
-<p><a class="lift" name="fixed" href="#fixed">fixed</a></p>
-<p><code>fixed(value:Float, precision:Int) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="clamp" href="#clamp">clamp</a></p>
-<p><code>clamp(value:Float, a:Float, b:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="clampBottom" href="#clampBottom">clampBottom</a></p>
-<p><code>clampBottom(value:Float, a:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="nearest_power_of_two" href="#nearest_power_of_two">nearest_power_of_two</a></p>
-<p><code>nearest_power_of_two(_value:Int) : Int</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="mapLinear" href="#mapLinear">mapLinear</a></p>
-<p><code>mapLinear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="smoothstep" href="#smoothstep">smoothstep</a></p>
-<p><code>smoothstep(x:Float, min:Float, max:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="smootherstep" href="#smootherstep">smootherstep</a></p>
-<p><code>smootherstep(x:Float, min:Float, max:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="random16" href="#random16">random16</a></p>
-<p><code>random16() : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="randInt" href="#randInt">randInt</a></p>
-<p><code>randInt(low:Int, high:Int) : Int</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="randFloat" href="#randFloat">randFloat</a></p>
-<p><code>randFloat(low:Float, high:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="randFloatSpread" href="#randFloatSpread">randFloatSpread</a></p>
-<p><code>randFloatSpread(range:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="sign" href="#sign">sign</a></p>
-<p><code>sign(x:Float) : Int</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="degToRad" href="#degToRad">degToRad</a></p>
-<p><code>degToRad(deg:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
-<p><a class="lift" name="radToDeg" href="#radToDeg">radToDeg</a></p>
-<p><code>radToDeg(rad:Float) : Float</code>
-<span class="small_desc_flat"> <code>static</code> :desc unavailable: </span>   </p>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
-<p><a class="lift" name="DEG2RAD" href="#DEG2RAD">DEG2RAD</a></p>
-<p><code>DEG2RAD : Float</code>
-<span class="small_desc_flat"> <code>static</code>:desc unavailable: </span>   </p>
 <p><a class="lift" name="RAD2DEG" href="#RAD2DEG">RAD2DEG</a></p>
-<p><code>RAD2DEG : Float</code>
-<span class="small_desc_flat"> <code>static</code>:desc unavailable: </span>   </p>
+<pre><code><div class="highlight"><pre><span class="n">RAD2DEG</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="DEG2RAD" href="#DEG2RAD">DEG2RAD</a></p>
+<pre><code><div class="highlight"><pre><span class="n">DEG2RAD</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="nearest_power_of_two" href="#nearest_power_of_two">nearest_power_of_two</a></p>
+<pre><code><div class="highlight"><pre><span class="n">nearest_power_of_two</span><span class="p">(</span><span class="n">_value</span><span class="err">:Int</span><span class="p">)</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="radToDeg" href="#radToDeg">radToDeg</a></p>
+<pre><code><div class="highlight"><pre><span class="n">radToDeg</span><span class="p">(</span><span class="n">rad</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="randFloat" href="#randFloat">randFloat</a></p>
+<pre><code><div class="highlight"><pre><span class="n">randFloat</span><span class="p">(</span><span class="n">low</span><span class="err">:Float</span><span class="p">,</span> <span class="n">high</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="sign" href="#sign">sign</a></p>
+<pre><code><div class="highlight"><pre><span class="n">sign</span><span class="p">(</span><span class="n">x</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="smoothstep" href="#smoothstep">smoothstep</a></p>
+<pre><code><div class="highlight"><pre><span class="n">smoothstep</span><span class="p">(</span><span class="n">x</span><span class="err">:Float</span><span class="p">,</span> <span class="n">min</span><span class="err">:Float</span><span class="p">,</span> <span class="n">max</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="random16" href="#random16">random16</a></p>
+<pre><code><div class="highlight"><pre><span class="n">random16</span><span class="p">()</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="mapLinear" href="#mapLinear">mapLinear</a></p>
+<pre><code><div class="highlight"><pre><span class="n">mapLinear</span><span class="p">(</span><span class="n">value</span><span class="err">:Float</span><span class="p">,</span> <span class="n">a1</span><span class="err">:Float</span><span class="p">,</span> <span class="n">a2</span><span class="err">:Float</span><span class="p">,</span> <span class="n">b1</span><span class="err">:Float</span><span class="p">,</span> <span class="n">b2</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="smootherstep" href="#smootherstep">smootherstep</a></p>
+<pre><code><div class="highlight"><pre><span class="n">smootherstep</span><span class="p">(</span><span class="n">x</span><span class="err">:Float</span><span class="p">,</span> <span class="n">min</span><span class="err">:Float</span><span class="p">,</span> <span class="n">max</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clampBottom" href="#clampBottom">clampBottom</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clampBottom</span><span class="p">(</span><span class="n">value</span><span class="err">:Float</span><span class="p">,</span> <span class="n">a</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="within_range" href="#within_range">within_range</a></p>
+<pre><code><div class="highlight"><pre><span class="n">within_range</span><span class="p">(</span><span class="n">value</span><span class="err">:Float</span><span class="p">,</span> <span class="n">start_range</span><span class="err">:Float</span><span class="p">,</span> <span class="n">end_range</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="randFloatSpread" href="#randFloatSpread">randFloatSpread</a></p>
+<pre><code><div class="highlight"><pre><span class="n">randFloatSpread</span><span class="p">(</span><span class="n">range</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fixed" href="#fixed">fixed</a></p>
+<pre><code><div class="highlight"><pre><span class="n">fixed</span><span class="p">(</span><span class="n">value</span><span class="err">:Float</span><span class="p">,</span> <span class="n">precision</span><span class="err">:Int</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clamp" href="#clamp">clamp</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clamp</span><span class="p">(</span><span class="n">value</span><span class="err">:Float</span><span class="p">,</span> <span class="n">a</span><span class="err">:Float</span><span class="p">,</span> <span class="n">b</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="wrap_angle" href="#wrap_angle">wrap_angle</a></p>
+<pre><code><div class="highlight"><pre><span class="n">wrap_angle</span><span class="p">(</span><span class="n">degrees</span><span class="err">:Float</span><span class="p">,</span> <span class="n">lower</span><span class="err">:Float</span><span class="p">,</span> <span class="n">upper</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="randInt" href="#randInt">randInt</a></p>
+<pre><code><div class="highlight"><pre><span class="n">randInt</span><span class="p">(</span><span class="n">low</span><span class="err">:Int</span><span class="p">,</span> <span class="n">high</span><span class="err">:Int</span><span class="p">)</span> <span class="err">:</span> <span class="n">Int</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="degToRad" href="#degToRad">degToRad</a></p>
+<pre><code><div class="highlight"><pre><span class="n">degToRad</span><span class="p">(</span><span class="n">deg</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>

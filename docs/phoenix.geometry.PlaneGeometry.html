@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Extends">Extends</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="phoenix.geometry.Geometry" href="phoenix.geometry.Geometry.html">phoenix.geometry.Geometry</a></p>
+<p>&nbsp;   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="flipy" href="#flipy">flipy</a></p>
+<pre><code><div class="highlight"><pre><span class="n">flipy</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="flipx" href="#flipx">flipx</a></p>
+<pre><code><div class="highlight"><pre><span class="n">flipx</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set</span><span class="p">(</span><span class="n">quad</span><span class="err">:luxe.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">,</span> <span class="n">y</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_flipy" href="#set_flipy">set_flipy</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_flipy</span><span class="p">(</span><span class="n">_val</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_flipx" href="#set_flipx">set_flipx</a></p>
+<pre><code><div class="highlight"><pre><span class="n">set_flipx</span><span class="p">(</span><span class="n">_val</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Bool</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uv_space" href="#uv_space">uv_space</a></p>
+<pre><code><div class="highlight"><pre><span class="n">uv_space</span><span class="p">(</span><span class="n">_rect</span><span class="err">:luxe.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uv" href="#uv">uv</a></p>
+<pre><code><div class="highlight"><pre><span class="n">uv</span><span class="p">(</span><span class="n">_rect</span><span class="err">:luxe.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

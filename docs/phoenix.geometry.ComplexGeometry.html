@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="phoenix.geometry.Geometry" href="phoenix.geometry.Geometry.html">phoenix.geometry.Geometry</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="quads" href="#quads">quads</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quads</span> <span class="err">:</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="err">,</span><span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">ComplexQuad</span><span class="o">&gt;</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="quad_flipy" href="#quad_flipy">quad_flipy</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_flipy</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_flip</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_flipx" href="#quad_flipx">quad_flipx</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_flipx</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_flip</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_add" href="#quad_add">quad_add</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_add</span><span class="p">(</span><span class="n">_options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<pre><code><div class="highlight"><pre><span class="k">new</span><span class="p">(</span><span class="n">_options</span><span class="err">:Dynamic</span><span class="p">)</span> 
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_pos" href="#quad_pos">quad_pos</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_pos</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_p</span><span class="err">:phoenix.<a href="luxe.Vector.html">Vector</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_show" href="#quad_show">quad_show</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_show</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clear" href="#clear">clear</a></p>
+<pre><code><div class="highlight"><pre><span class="n">clear</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_resize" href="#quad_resize">quad_resize</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_resize</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_quad</span><span class="err">:phoenix.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_uv" href="#quad_uv">quad_uv</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_uv</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_uv</span><span class="err">:phoenix.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_uv_space" href="#quad_uv_space">quad_uv_space</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_uv_space</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_uv</span><span class="err">:phoenix.<a href="luxe.Rectangle.html">Rectangle</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_alpha" href="#quad_alpha">quad_alpha</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_alpha</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_a</span><span class="err">:Float</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_color" href="#quad_color">quad_color</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_color</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">,</span> <span class="n">_c</span><span class="err">:phoenix.<a href="luxe.Color.html">Color</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_hide" href="#quad_hide">quad_hide</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_hide</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_remove" href="#quad_remove">quad_remove</a></p>
+<pre><code><div class="highlight"><pre><span class="n">quad_remove</span><span class="p">(</span><span class="n">_quad_id</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

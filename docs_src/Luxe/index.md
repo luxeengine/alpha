@@ -57,8 +57,7 @@ You code once in haxe, and deploy to all available platforms.
 
 ---
 
-####!! [ View full luxe Class Index](luxe.Classes.html)   
-####!! [View full phoenix Class Index](phoenix.Classes.html)   
+#### [ View full class index ](api.full.html)   
 &nbsp;
 &nbsp;
 

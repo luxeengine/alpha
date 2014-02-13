@@ -1,0 +1,1 @@
+{"file":"phoenix.geometry.ArcGeometry.md","links":[],"toplinks":[],"sections":[{"name":"Extends","link":"#Extends","values":[{"name":"phoenix.geometry.CircleGeometry"}]},{"name":"Methods","link":"#Methods","values":[{"name":"new","meta":[],"public":true,"static":false,"inline":false,"signature":"new(options:Dynamic) ","return":"","args":[{"name":"options","type":"Dynamic"}]}]}]}

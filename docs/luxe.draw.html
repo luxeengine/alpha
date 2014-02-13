@@ -40,73 +40,67 @@
     <body>
         <div class="content">
             <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
-<h3 id="-back-to-api-api-html-"><a href="api.html">Back to API</a></h3>
-<p><a href="#DrawingGeometry">Drawing geometry</a><br><a href="#DrawingText">Drawing text</a>   </p>
-<h2 id="luxe-drawing-api"><a href="api.html">Luxe</a> Drawing API</h2>
-<p>To draw using the draw api :</p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">({</span>
-    <span class="n">p0</span>    <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">),</span>
-    <span class="n">p1</span>    <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="p">),</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">().</span><span class="n">rgb</span><span class="p">(</span><span class="mh">0xcc0000</span><span class="p">)</span>
-<span class="p">});</span>
+<p><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="axis3D" href="#axis3D">axis3D</a></p>
+<pre><code><div class="highlight"><pre><span class="n">axis3D</span><span class="p">(</span><span class="err">?</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
 </pre></div>
 </code></pre>
-<p><a name="DrawingGeometry" ></a></p>
-<h3 id="drawing-geometry">Drawing geometry</h3>
-<p><a name="line" href="#line">line</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">LineGeometry</span>   
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="arc" href="#arc">arc</a></p>
+<pre><code><div class="highlight"><pre><span class="n">arc</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">ArcGeometry</span>
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Draw a line, options are - ( option : Type = default )
-    <span class="indent">
-        <code>p0 : <a href="luxe.Vector.html">Vector</a> = new <a href="luxe.Vector.html">Vector</a>()</code><br>        <code>p1 : <a href="luxe.Vector.html">Vector</a> = new <a href="luxe.Vector.html">Vector</a>()</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : <a href="phoenix.Batcher.html">Batcher</a> = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
-</span>      </p>
-<p><a name="rectangle" href="#rectangle">rectangle</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">RectangleGeometry</span>   
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="box" href="#box">box</a></p>
+<pre><code><div class="highlight"><pre><span class="n">box</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">QuadGeometry</span>
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Draw a rectangle, options are - ( option : Type = default )
-    <span class="indent">
-        <code>x : Float = 0.0</code><br>        <code>y : Float = 0.0</code><br>        <code>w : Float = 0.0</code><br>        <code>h : Float = 0.0</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : <a href="phoenix.Batcher.html">Batcher</a> = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
-</span>      </p>
-<p><a name="box" href="#box">box</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">box</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">QuadGeometry</span>   
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="line" href="#line">line</a></p>
+<pre><code><div class="highlight"><pre><span class="n">line</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">LineGeometry</span>
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Draw a filled rectangle, options are - ( option : Type = default )
-    <span class="indent">
-        <code>x : Float = 0.0</code><br>        <code>y : Float = 0.0</code><br>        <code>w : Float = 0.0</code><br>        <code>h : Float = 0.0</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : <a href="phoenix.Batcher.html">Batcher</a> = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
-</span>      </p>
-<p><a name="ring" href="#ring">ring</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">ring</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">RingGeometry</span>   
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="plane" href="#plane">plane</a></p>
+<pre><code><div class="highlight"><pre><span class="n">plane</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">PlaneGeometry</span>
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Draw a circle, note geometry is a PrimitiveType.line_loop. options are - ( option : Type = default )
-    <span class="indent">
-        <code>x : Float = 0.0</code><br>        <code>y : Float = 0.0</code><br>        <code>r : Float = 0.0</code><br>        <code>steps : Int = (calculated internally, or custom)</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : <a href="phoenix.Batcher.html">Batcher</a> = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
-</span>      </p>
-<p><a name="circle" href="#circle">circle</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">CircleGeometry</span>   
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="text" href="#text">text</a></p>
+<pre><code><div class="highlight"><pre><span class="n">text</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="kc">null</span>
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Draw a filled circle, note geometry is a PrimitiveType.triangle_fan. options are - ( option : Type = default )
-    <span class="indent">
-        <code>x : Float = 0.0</code><br>        <code>y : Float = 0.0</code><br>        <code>r : Float = 0.0</code><br>        <code>steps : Int = (calculated internally, or custom)</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : <a href="phoenix.Batcher.html">Batcher</a> = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
-</span>      </p>
-<p><a name="DrawingText" ></a></p>
-<h3 id="drawing-text">Drawing text</h3>
-<p><a name="text" href="#text">text</a></p>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">text</span><span class="p">(</span> <span class="n">_options</span><span class="err">:Dynamic</span> <span class="p">)</span> <span class="err">:</span> <span class="n">CompositeGeometry</span>   
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ring" href="#ring">ring</a></p>
+<pre><code><div class="highlight"><pre><span class="n">ring</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">RingGeometry</span>
 </pre></div>
 </code></pre>
-<p><span class="small_desc_flat"> Draw some text, options are - ( option : Type = default )
-    <span class="indent">
-        <code>text : String = &#39;&#39;</code> 
-        <code>size : Float = 16</code><br>        <code>font : BitmapFont = <a href="api.html">Luxe</a>.renderer.default_font</code><br>        <code>color : <a href="luxe.Color.html">Color</a> = new <a href="luxe.Color.html">Color</a>()</code><br>        <code>depth : Int = 0</code><br>        <code>group : Int = 0</code><br>        <code>immediate : Bool = false</code><br>        <code>batcher : <a href="phoenix.Batcher.html">Batcher</a> = <a href="api.html">Luxe</a>.renderer.default_batcher</code><br>    </span>
-</span>      </p>
-<p><br/>
-<br/>
-<br/></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="circle" href="#circle">circle</a></p>
+<pre><code><div class="highlight"><pre><span class="n">circle</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">CircleGeometry</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="rectangle" href="#rectangle">rectangle</a></p>
+<pre><code><div class="highlight"><pre><span class="n">rectangle</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n">RectangleGeometry</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ngon" href="#ngon">ngon</a></p>
+<pre><code><div class="highlight"><pre><span class="n">ngon</span><span class="p">(</span><span class="n">options</span><span class="err">:Dynamic</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">geometry</span><span class="p">.</span><span class="n"><a href="phoenix.Geometry.html">Geometry</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

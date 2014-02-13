@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [b55d7f50a6](http://github.com/underscorediscovery/luxe/commit/b55d7f50a6d75c11fea69e579832165967333013)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 11 2014 23:50:08 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [7cb6454a0c](http://github.com/underscorediscovery/luxe/commit/7cb6454a0c847e9c8f880569ff8daa5c7369b283)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Tue Feb 11 2014 23:49:31 GMT-0330 (NST)   

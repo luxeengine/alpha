@@ -87,7 +87,7 @@ a:hover {
 
 
 .lift {
-	margin-bottom: -0.5em;
+	margin-bottom: -0.4em;
 	display: block;
 	margin-left: -0.5em;
 }
@@ -99,16 +99,24 @@ a.liftsmall {
 	font-size: 1em;
 }
 .small_desc_flat {
-	color:#6F6F6F;
-	max-width: 70%;
+	color: #6F6F6F;
+	max-width: 90%;
 	position: relative;
 	display: block;
-	margin-left: 2em;
+	line-height: 1.4em;
+	margin-left: 1em;
 	margin-right: 0.5em;
-    font-size:0.85em;
-    top:0.4em;
-    margin-bottom: 2.4em;
-    opacity:0.8;
+	font-size: 0.85em;
+	top: -0.6em;
+	margin-bottom: 1em;
+	opacity: 0.8;
+}
+
+.small_desc_flat strong {
+	margin-left: 1em;
+	min-width: 5em;
+	display: inline-block;
+	line-height: 1.5em;
 }
 
 .toplink {
@@ -178,10 +186,12 @@ p {
 }
 
 pre {
-	padding:0.3em;
+	padding:0.1em 0.3em 0.1em 0.3em;
+	white-space: pre-line;
 }
 
 code {
+	display: inline-block;
 	font-size: 0.75em;
 	padding-bottom: 0.1em;
 	padding-left: 0.4em;

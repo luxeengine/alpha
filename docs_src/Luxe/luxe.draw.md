@@ -1,130 +1,105 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to API](api.html)
 
-[Drawing geometry](#DrawingGeometry)   
-[Drawing text](#DrawingText)   
-
-## Luxe Drawing API
-
-To draw using the draw api :
-
-	Luxe.draw.line({
-		p0    : new Vector( 0, 0 ),
-		p1    : new Vector( Luxe.screen.w, Luxe.screen.h ),
-		color : new Color().rgb(0xcc0000)
-	});
-
-<a name="DrawingGeometry" ></a>
-
-###Drawing geometry
-
-<a name="line" href="#line">line</a>
-
-	Luxe.draw.line( _options:Dynamic ) : LineGeometry   
-<span class="small_desc_flat"> Draw a line, options are - ( option : Type = default )
-	<span class="indent">
-		`p0 : Vector = new Vector()`   
-		`p1 : Vector = new Vector()`   
-		`color : Color = new Color()`   
-		`depth : Int = 0`   
-		`group : Int = 0`   
-		`immediate : Bool = false`   
-		`batcher : Batcher = Luxe.renderer.default_batcher`   
-	</span>
-</span>      
-
-<a name="rectangle" href="#rectangle">rectangle</a>
-
-	Luxe.draw.rectangle( _options:Dynamic ) : RectangleGeometry   
-<span class="small_desc_flat"> Draw a rectangle, options are - ( option : Type = default )
-	<span class="indent">
-		`x : Float = 0.0`   
-		`y : Float = 0.0`   
-		`w : Float = 0.0`   
-		`h : Float = 0.0`   
-		`color : Color = new Color()`   
-		`depth : Int = 0`   
-		`group : Int = 0`   
-		`immediate : Bool = false`   
-		`batcher : Batcher = Luxe.renderer.default_batcher`   
-	</span>
-</span>      
-
-<a name="box" href="#box">box</a>
-
-	Luxe.draw.box( _options:Dynamic ) : QuadGeometry   
-<span class="small_desc_flat"> Draw a filled rectangle, options are - ( option : Type = default )
-	<span class="indent">
-		`x : Float = 0.0`   
-		`y : Float = 0.0`   
-		`w : Float = 0.0`   
-		`h : Float = 0.0`   
-		`color : Color = new Color()`   
-		`depth : Int = 0`   
-		`group : Int = 0`   
-		`immediate : Bool = false`   
-		`batcher : Batcher = Luxe.renderer.default_batcher`   
-	</span>
-</span>      
-
-<a name="ring" href="#ring">ring</a>
-
-	Luxe.draw.ring( _options:Dynamic ) : RingGeometry   
-<span class="small_desc_flat"> Draw a circle, note geometry is a PrimitiveType.line_loop. options are - ( option : Type = default )
-	<span class="indent">
-		`x : Float = 0.0`   
-		`y : Float = 0.0`   
-		`r : Float = 0.0`   
-		`steps : Int = (calculated internally, or custom)`   
-		`color : Color = new Color()`   
-		`depth : Int = 0`   
-		`group : Int = 0`   
-		`immediate : Bool = false`   
-		`batcher : Batcher = Luxe.renderer.default_batcher`   
-	</span>
-</span>      
-
-<a name="circle" href="#circle">circle</a>
-
-	Luxe.draw.circle( _options:Dynamic ) : CircleGeometry   
-<span class="small_desc_flat"> Draw a filled circle, note geometry is a PrimitiveType.triangle_fan. options are - ( option : Type = default )
-	<span class="indent">
-		`x : Float = 0.0`   
-		`y : Float = 0.0`   
-		`r : Float = 0.0`   
-		`steps : Int = (calculated internally, or custom)`   
-		`color : Color = new Color()`   
-		`depth : Int = 0`   
-		`group : Int = 0`   
-		`immediate : Bool = false`   
-		`batcher : Batcher = Luxe.renderer.default_batcher`   
-	</span>
-</span>      
-
-<a name="DrawingText" ></a>
-
-###Drawing text
-
-<a name="text" href="#text">text</a>
-
-	Luxe.draw.text( _options:Dynamic ) : CompositeGeometry   
-<span class="small_desc_flat"> Draw some text, options are - ( option : Type = default )
-	<span class="indent">
-		`text : String = ''` 
-		`size : Float = 16`  
-		`font : BitmapFont = Luxe.renderer.default_font`   
-		`color : Color = new Color()`   
-		`depth : Int = 0`   
-		`group : Int = 0`   
-		`immediate : Bool = false`   
-		`batcher : Batcher = Luxe.renderer.default_batcher`   
-	</span>
-</span>      
-      
+[Methods](#Methods)   
 
 
-<br/>
-<br/>
-<br/>
+&nbsp;   
+
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
+<a class="lift" name="axis3D" href="#axis3D">axis3D</a>
+
+
+
+    axis3D(?options:Dynamic) : Void
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="arc" href="#arc">arc</a>
+
+
+
+    arc(options:Dynamic) : phoenix.geometry.ArcGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="box" href="#box">box</a>
+
+
+
+    box(options:Dynamic) : phoenix.geometry.QuadGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="line" href="#line">line</a>
+
+
+
+    line(options:Dynamic) : phoenix.geometry.LineGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="plane" href="#plane">plane</a>
+
+
+
+    plane(options:Dynamic) : phoenix.geometry.PlaneGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="text" href="#text">text</a>
+
+
+
+    text(options:Dynamic) : null
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="ring" href="#ring">ring</a>
+
+
+
+    ring(options:Dynamic) : phoenix.geometry.RingGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="circle" href="#circle">circle</a>
+
+
+
+    circle(options:Dynamic) : phoenix.geometry.CircleGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="rectangle" href="#rectangle">rectangle</a>
+
+
+
+    rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="ngon" href="#ngon">ngon</a>
+
+
+
+    ngon(options:Dynamic) : phoenix.geometry.Geometry
+
+<span class="small_desc_flat"> no description </span>   
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+---  
+
+
+&nbsp;   
+&nbsp;   

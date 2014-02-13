@@ -6,7 +6,7 @@
     "style_path" : "./styles/",
 
     "force_full" : false,
-    "force_copy_template" : true,
+    "force_copy_template" : true,    
 
     "images_input" : "./Luxe/images/",
     "images_output_path" : "images/",
@@ -15,8 +15,12 @@
     "samples_output_path" : "samples/",
 
     "api_input" : "./apis/+(*.json)",
+    "scribe_api_output_path" : "./apis/",
+    "scribe_source_json" : "./apis/docsjson",
     "api_output_path" : "./Luxe/",
+    "api_index_file" : "api.full.md",
     "api_template" : "./apis/_template.html",
+    "api_index_template" : "./apis/_template_index.html",
 
     "template_files" : [
         "more.png", "favicon.png", "jquery-2.0.3.min.js", 

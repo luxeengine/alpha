@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="./favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
+        <script src="./jquery-2.0.3.min.js"> </script>
+        <script>
+            $(document).ready(function() {
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...')
+                    } else {
+                        $(this).text('less ...')
+                    }
+
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="index.html"><img src="http://luxeengine.com/images/logo.png" alt="Logo"></a></p>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="timescale" href="#timescale">timescale</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dt" href="#dt">dt</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="draw" href="#draw">draw</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="timer" href="#timer">timer</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="utils" href="#utils">utils</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="camera" href="#camera">camera</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="renderer" href="#renderer">renderer</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fixed_timestep" href="#fixed_timestep">fixed_timestep</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="audio" href="#audio">audio</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="mouse" href="#mouse">mouse</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="core" href="#core">core</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="debug" href="#debug">debug</a></p>
+<pre><code></code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="events" href="#events">events</a></p>
+<pre><code><div class="highlight"><pre><span class="n">events</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.events.html">Events</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="resources" href="#resources">resources</a></p>
+<pre><code><div class="highlight"><pre><span class="n">resources</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">ResourceManager</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="input" href="#input">input</a></p>
+<pre><code><div class="highlight"><pre><span class="n">input</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Input</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="scene" href="#scene">scene</a></p>
+<pre><code><div class="highlight"><pre><span class="n">scene</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Scene.html">Scene</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="screen" href="#screen">screen</a></p>
+<pre><code><div class="highlight"><pre><span class="n">screen</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">Screen</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="time" href="#time">time</a></p>
+<pre><code><div class="highlight"><pre><span class="n">time</span> <span class="err">:</span> <span class="n">Float</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="loadSound" href="#loadSound">loadSound</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadSound</span><span class="p">(</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_is_music</span><span class="err">:Bool</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:luxe.SoundResource-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">SoundResource</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="loadShader" href="#loadShader">loadShader</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadShader</span><span class="p">(</span><span class="err">?</span><span class="n">_ps_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_vs_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:phoenix.<a href="phoenix.Shader.html">Shader</a>-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fileDialogSave" href="#fileDialogSave">fileDialogSave</a></p>
+<pre><code><div class="highlight"><pre><span class="n">fileDialogSave</span><span class="p">(</span><span class="n">_title</span><span class="err">:String</span><span class="p">,</span> <span class="n">_text</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="loadTextures" href="#loadTextures">loadTextures</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadTextures</span><span class="p">(</span><span class="n">_ids</span><span class="err">:Array&lt;String&gt;</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Array-&gt;Void</span><span class="p">,</span> <span class="err">?</span><span class="n">_silent</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="loadText" href="#loadText">loadText</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadText</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:luxe.TextResource-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">TextResource</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="loadFont" href="#loadFont">loadFont</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadFont</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_path</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:phoenix.BitmapFont-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n">BitmapFont</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="addGeometry" href="#addGeometry">addGeometry</a></p>
+<pre><code><div class="highlight"><pre><span class="n">addGeometry</span><span class="p">(</span><span class="n">_geom</span><span class="err">:phoenix.geometry.<a href="phoenix.Geometry.html">Geometry</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="loadData" href="#loadData">loadData</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadData</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:luxe.DataResource-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">luxe</span><span class="p">.</span><span class="n">DataResource</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="loadTexture" href="#loadTexture">loadTexture</a></p>
+<pre><code><div class="highlight"><pre><span class="n">loadTexture</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:phoenix.<a href="phoenix.Texture.html">Texture</a>-&gt;Void</span><span class="p">,</span> <span class="err">?</span><span class="n">_silent</span><span class="err">:Bool</span><span class="p">,</span> <span class="err">?</span><span class="n">_asset_bytes</span><span class="err">:lime.utils.ByteArray</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Texture.html">Texture</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fileDialogFolder" href="#fileDialogFolder">fileDialogFolder</a></p>
+<pre><code><div class="highlight"><pre><span class="n">fileDialogFolder</span><span class="p">(</span><span class="n">_title</span><span class="err">:String</span><span class="p">,</span> <span class="n">_text</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fileDialogOpen" href="#fileDialogOpen">fileDialogOpen</a></p>
+<pre><code><div class="highlight"><pre><span class="n">fileDialogOpen</span><span class="p">(</span><span class="n">_title</span><span class="err">:String</span><span class="p">,</span> <span class="n">_text</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="addGroup" href="#addGroup">addGroup</a></p>
+<pre><code><div class="highlight"><pre><span class="n">addGroup</span><span class="p">(</span><span class="n">_group</span><span class="err">:Int</span><span class="p">,</span> <span class="err">?</span><span class="n">_pre_render</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a>-&gt;Void</span><span class="p">,</span> <span class="err">?</span><span class="n">_post_render</span><span class="err">:phoenix.<a href="phoenix.Batcher.html">Batcher</a>-&gt;Void</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shutdown" href="#shutdown">shutdown</a></p>
+<pre><code><div class="highlight"><pre><span class="n">shutdown</span><span class="p">()</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="openURL" href="#openURL">openURL</a></p>
+<pre><code><div class="highlight"><pre><span class="n">openURL</span><span class="p">(</span><span class="n">_url</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="showConsole" href="#showConsole">showConsole</a></p>
+<pre><code><div class="highlight"><pre><span class="n">showConsole</span><span class="p">(</span><span class="n">_show</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="createBatcher" href="#createBatcher">createBatcher</a></p>
+<pre><code><div class="highlight"><pre><span class="n">createBatcher</span><span class="p">(</span><span class="err">?</span><span class="n">_name</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_camera</span><span class="err">:luxe.<a href="luxe.Camera.html">Camera</a></span><span class="p">,</span> <span class="err">?</span><span class="n">_add</span><span class="err">:Bool</span><span class="p">)</span> <span class="err">:</span> <span class="n">phoenix</span><span class="p">.</span><span class="n"><a href="phoenix.Batcher.html">Batcher</a></span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="removeGeometry" href="#removeGeometry">removeGeometry</a></p>
+<pre><code><div class="highlight"><pre><span class="n">removeGeometry</span><span class="p">(</span><span class="n">_geom</span><span class="err">:phoenix.geometry.<a href="phoenix.Geometry.html">Geometry</a></span><span class="p">)</span> <span class="err">:</span> <span class="n">Void</span>
+</pre></div>
+</code></pre>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

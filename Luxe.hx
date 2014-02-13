@@ -4,12 +4,13 @@ package ;
 import lime.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
-import phoenix.Resource.DataResource;
-import phoenix.Resource.TextResource;
-import phoenix.Resource.SoundResource;
 import phoenix.Texture;
 import phoenix.Shader;
 import phoenix.Batcher;
+
+import luxe.Resource.DataResource;
+import luxe.Resource.TextResource;
+import luxe.Resource.SoundResource;
 
 import luxe.Rectangle;
 import luxe.Vector;
@@ -37,19 +38,19 @@ class Luxe {
 #end //haxebullet
 
     public static var camera    : luxe.Camera;
+    public static var resources : luxe.ResourceManager;    
     public static var renderer  : phoenix.Renderer;
-    public static var resources : phoenix.ResourceManager;    
 
     @:isVar public static var time(get, never) : Float;
     @:isVar public static var screen(get, never) : Screen;
 
-    public static function get_screen() {
+    static function get_screen() {
 
         return core.screen; 
 
     } //get_screen
 
-    public static function get_time() : Float { 
+    static function get_time() : Float { 
 
         return haxe.Timer.stamp();
 
