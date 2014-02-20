@@ -17,6 +17,7 @@ import luxe.debug.DebugView;
 import luxe.debug.TraceDebugView;
 import luxe.debug.ProfilerDebugView;
 import luxe.debug.StatsDebugView;
+import luxe.debug.BatcherDebugView;
 
 class Debug {
 
@@ -71,7 +72,8 @@ class Debug {
         views = [
             new TraceDebugView(),
             new StatsDebugView(),
-            new ProfilerDebugView()
+            new ProfilerDebugView(),
+            new BatcherDebugView()
         ];
 
         current_view = views[0];        

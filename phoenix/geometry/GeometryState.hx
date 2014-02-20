@@ -35,14 +35,14 @@ class GeometryState {
 
     public function clone_onto( _other:GeometryState )  {
         
-            _other.dirty = dirty;
-            _other.texture = texture;
-            _other.shader = shader;
-            _other.group = group;
-            _other.depth = depth;
-            _other.primitive_type = primitive_type;
-            _other.clip = clip;
-            _other.clip_rect.copy_from( clip_rect );
+        _other.dirty = dirty;
+        _other.texture = texture;
+        _other.shader = shader;
+        _other.group = group;
+        _other.depth = depth;
+        _other.primitive_type = primitive_type;
+        _other.clip = clip;
+        _other.clip_rect.copy_from( clip_rect );
 
     }
 

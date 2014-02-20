@@ -205,10 +205,10 @@ class Visual extends Entity {
         }
 
             //clear our references to these
-        geometry = null;
+        geometry = null;        
         texture = null;
         
-    }
+    } //destroyed
 
     function on_geometry_created() {
         //nothing here for now

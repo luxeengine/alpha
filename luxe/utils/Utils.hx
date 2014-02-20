@@ -33,6 +33,31 @@ class Utils {
         return Base64.decode(_string);
     }
 
+    public function stacktrace( ?_depth:Int = 100 ) : String {
+
+        var result = '\n';
+
+            var stack = haxe.CallStack.callStack();            
+
+            stack.shift();
+            stack.reverse();
+
+            var total : Int = Std.int(Math.min(stack.length, _depth));
+
+            for(i in 0 ... total) {
+                var stackitem : haxe.CallStack.StackItem = stack[i];                
+                var params = stackitem.getParameters();
+
+                    result += ' >  ' + params[1] + ':' + params[2];
+                
+                    if(i != total - 1) {
+                        result += '\n';
+                    }
+            } //total
+
+        return result;
+    }
+
     public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
         
         var _final : Array<String> = [];

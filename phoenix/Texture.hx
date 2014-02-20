@@ -76,7 +76,7 @@ class Texture extends Resource {
     }
 
     public function toString() {
-        return 'phoenix.Texture (' + width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
+        return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
     }
 
     public function build(_size : Vector, _color: Dynamic) {
@@ -401,7 +401,7 @@ class Texture extends Resource {
     public function lock() {
         
         //todo sven
-        // glGetTexImage is missing from nme GL
+        // glGetTexImage is missing because it's not in WebGL
 
         // data = new UInt8Array(new ArrayBuffer( width * height * 4));
         
@@ -430,7 +430,7 @@ class Texture extends Resource {
 
     public function destroy() {        
         GL.deleteTexture(texture);
-        data = null;      
+        data = null;
     }
 
 

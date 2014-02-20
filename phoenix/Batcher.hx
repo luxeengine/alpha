@@ -472,7 +472,7 @@ class Batcher {
         } //geom list
 
             //If there is anything left in the vertex buffer, submit it.
-        if(verts > 0 && geom != null) {
+        if(verts > 0 && geom != null && !geom.dropped) {
 
                 //Make sure the state matches this geometry
             state.update(geom);

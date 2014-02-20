@@ -30,7 +30,7 @@ class Main extends luxe.Game {
                 depth : i,
                 texture: (i == 1) ? image2 : image,
                 centered : false,
-                color : new Color(Math.random(), Math.random(), Math.random()),
+                color : (i == 1) ? new Color() : new Color(Math.random(), Math.random(), Math.random()),
                 pos : new Vector(100 + (i*20), 100 + (i*20) ),
                 size : new Vector(iw*0.2,ih*0.2)
             }));
