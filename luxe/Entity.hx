@@ -776,9 +776,10 @@ class Entity extends Objects {
             return scaleRelative = _s;
 
         } else {
+            
                 //if we do have a parent, it needs to affect our scale
                 //based on where the parent is sitting
-            scale = Vector.Add( parent.scale, _s );
+            scale = Vector.Multiply( parent.scale, _s );
                 //apply
             return scaleRelative = _s; 
         }
@@ -839,14 +840,9 @@ class Entity extends Objects {
 
     private function set_scale( _s:Vector ) { 
 
-            //if we have a parent, we adjust our relative scale to match
-        if(parent != null) {
-            scaleRelative.set( _s.x - parent.scale.x, _s.y - parent.scale.y, _s.z - parent.scale.z );
-        }
-
             //update the value before we propogate
         scale = _s;
-        _last_scale = scale.clone();        
+        _last_scale = scale.clone();
 
             //if we have children we must propogate the change to them
         for(child in children) {
@@ -878,8 +874,9 @@ class Entity extends Objects {
     }//internal_parent_pos_changed
 
     @:noCompletion  public function internal_parent_scale_changed(_parent_scale:Vector) {
+
             //our scale is updated as parent_scale+relative
-        scale = _parent_scale.clone().add( scaleRelative );
+        scale = _parent_scale.clone().multiply( scaleRelative );
 
     }//internal_parent_pos_changed
 
