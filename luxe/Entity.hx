@@ -112,7 +112,7 @@ class Entity extends Objects {
             if(options.parent != null) {
 
                 _should_add = false;
-                parent.add_child(this);
+                parent = options.parent;
                 _debug("entity: parent specified, not adding to scene only to parent :" + parent.name);
 
             }
