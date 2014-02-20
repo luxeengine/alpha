@@ -9,11 +9,11 @@ class Component extends Objects {
 
 		//the transfrom that affect the parent entity
 	@:isVar public var pos 				(get,set) : Vector;
-	@:isVar public var posLocal 		(get,set) : Vector;
+	@:isVar public var pos_local 		(get,set) : Vector;
 	@:isVar public var rotation 		(get,set) : Vector;
-	@:isVar public var rotationLocal (get,set) : Vector;
+	@:isVar public var rotation_local (get,set) : Vector;
 	@:isVar public var scale 			(get,set) : Vector;
-	@:isVar public var scaleLocal 	(get,set) : Vector;
+	@:isVar public var scale_local 	(get,set) : Vector;
 
 		//the options
 	@:noCompletion var options : Dynamic;
@@ -36,41 +36,41 @@ class Component extends Objects {
 	private function set_pos(_p:Vector) {
 		return entity.pos = _p;
 	} //set_pos
-	private function set_posLocal(_p:Vector) {
-		return entity.posLocal = _p;
-	} //set_posLocal
+	private function set_pos_local(_p:Vector) {
+		return entity.pos_local = _p;
+	} //set_pos_local
 	private function get_pos() {
 		return entity.pos;
 	} //get_pos
-	private function get_posLocal() {
-		return entity.posLocal;
-	} //get_posLocal
+	private function get_pos_local() {
+		return entity.pos_local;
+	} //get_pos_local
 
 	private function set_rotation(_r:Vector) {
 		return entity.rotation = _r;
 	} //set_rotation
-	private function set_rotationLocal(_r:Vector) {
-		return entity.rotationLocal = _r;
-	} //set_rotationLocal
+	private function set_rotation_local(_r:Vector) {
+		return entity.rotation_local = _r;
+	} //set_rotation_local
 	private function get_rotation() {
 		return entity.rotation;
 	} //get_rotation
-	private function get_rotationLocal() {
-		return entity.rotationLocal;
-	} //get_rotationLocal
+	private function get_rotation_local() {
+		return entity.rotation_local;
+	} //get_rotation_local
 
 	private function set_scale(_s:Vector) {
 		return entity.scale = _s;
 	} //set_scale
-	private function set_scaleLocal(_s:Vector) {
-		return entity.scaleLocal = _s;
-	} //set_scaleLocal
+	private function set_scale_local(_s:Vector) {
+		return entity.scale_local = _s;
+	} //set_scale_local
 	private function get_scale() {
 		return entity.scale;
 	} //get_scale
-	private function get_scaleLocal() {
-		return entity.scaleLocal;
-	} //get_scaleLocal
+	private function get_scale_local() {
+		return entity.scale_local;
+	} //get_scale_local
 
 	public function add<T1,T2>( type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
 		return entity.add( type,_name,_data );
