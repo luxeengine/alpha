@@ -31,12 +31,12 @@ class State extends Objects {
 		return _f;
 	}
 
-	public function enable<T>( ?_data:T ) {
-		machine.enable( name, _data );
+	public function enable<T>( ?_enable_with:T ) {
+		machine.enable( name, _enable_with );
 	}
 
-	public function disable<T>( ?_data:T ) {
-		machine.disable( name, _data );
+	public function disable<T>( ?_disable_with:T ) {
+		machine.disable( name, _disable_with );
 	}
 
 	@:noCompletion public function _init() {
@@ -69,9 +69,10 @@ class States {
 		active_states = new Array<State>();
 	}
 
-	public function add_state<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
+	public function add_state<T1,T2>(type:Class<T1>, ?_name:String='', ?_construct_with:T2 ) : T1 {
 
 		var _temp_name = _name;
+
 		if(_temp_name.length == 0) {
 			_temp_name = Luxe.utils.uniqueid();
 			trace("warning ; State being added with no name " + type);
@@ -80,7 +81,7 @@ class States {
 		}
 
 			//create a class instance
-		var _state = Type.createInstance( type, [_data] );
+		var _state = Type.createInstance( type, [_construct_with] );
 			//create a state typed instance 
 		var _state_instance : State = cast _state;
 			//set the name of the instance
@@ -97,33 +98,33 @@ class States {
 
 	} //add_state
 
-	public function enable<T>( _name:String, ?_data:T ) {
+	public function enable<T>( _name:String, ?_enable_with:T ) {
 		var state = _states.get( _name );
 		if(state != null) {
-			_call(state, 'enabled',[_data] );
+			_call(state, 'enabled',[_enable_with] );
 			active_states.push(state);
 		}
 	}
 
-	public function disable<T>( _name:String, ?_data:T  ) {
+	public function disable<T>( _name:String, ?_disable_with:T  ) {
 		var state = _states.get( _name );
 		if(state != null) {
-			_call(state, 'disabled',[_data] );
+			_call(state, 'disabled',[_disable_with] );
 			active_states.remove( state );
 		}
 	}
 
-	public function set<T1,T2>(name:String, ?_enter_data:T1, ?_leave_data:T2 ) {
+	public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2 ) {
 
 		if (current_state != null) {
 			active_states.remove( current_state );
-			_call(current_state, 'leave',[_leave_data] );
+			_call(current_state, 'leave',[_leave_with] );
 			current_state = null;
 		} 
 
 		if (_states.exists(name)) {
 			current_state = _states.get(name); 
-			_call(current_state, 'enter',[_enter_data] );
+			_call(current_state, 'enter',[_enter_with] );
 			active_states.push (current_state);
 		}
 
