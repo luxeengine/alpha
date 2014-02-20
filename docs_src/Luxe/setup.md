@@ -1,4 +1,3 @@
-
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
 ###[View all guides](guide.html)
@@ -66,7 +65,7 @@ You can find this by right clicking in the github app or wherever you cloned the
 ##Test a simple build of a luxe project
 ---
 
-To build a luxe project, you also use the lime command. To test that things are set up correctly, you can run `lime test html5` from the _/path/to/luxe/repo/_/samples/simplest folder and you should see if a webpage with numbers on screen load up. If so, you are done!
+To build a luxe project, you also use the lime command. To test that things are set up correctly, you can run `lime test html5` from the _/path/to/luxe/repo/_samples/simplest folder and you should see if a webpage with numbers on screen load up. If so, you are done!
 
 
 ##Native targets
