@@ -35,16 +35,16 @@ class Entity extends Objects {
     @:isVar public var parent           (get,set) : Entity;
         //absolute position in world space
     @:isVar public var pos              (get,set) : Vector;
-        //relative position to parent 
-    @:isVar public var posRelative      (get,set) : Vector;
+        //local position to parent 
+    @:isVar public var posLocal      (get,set) : Vector;
         //absolute rotation in world space
     @:isVar public var rotation         (get,set) : Vector;
-        //relative rotation to parent 
-    @:isVar public var rotationRelative (get,set) : Vector;
+        //local rotation to parent 
+    @:isVar public var rotationLocal (get,set) : Vector;
         //absolute scale in world space
     @:isVar public var scale            (get,set) : Vector;
-        //relative scale to parent 
-    @:isVar public var scaleRelative    (get,set) : Vector;
+        //local scale to parent 
+    @:isVar public var scaleLocal    (get,set) : Vector;
         //if the entity is in a scene
     @:isVar public var scene            (get,set) : Scene;
         //whether or not this should be serialized
@@ -67,12 +67,12 @@ class Entity extends Objects {
         events = new luxe.Events();
         
         pos = new Vector();
-        posRelative = new Vector();
+        posLocal = new Vector();
         _last_scale = new Vector(1,1,1);
         scale = new Vector(1,1,1);
-        scaleRelative = new Vector(1,1,1);        
+        scaleLocal = new Vector(1,1,1);        
         rotation = new Vector();
-        rotationRelative = new Vector();
+        rotationLocal = new Vector();
 
 
         if(options != null) {
@@ -87,13 +87,13 @@ class Entity extends Objects {
     //position
             if(options.pos != null) {
                 pos = options.pos.clone();
-                posRelative = pos.clone();
+                posLocal = pos.clone();
             }
     //scale
             if(options.scale != null) {
                 scale = options.scale.clone();
                 _last_scale = scale.clone();
-                scaleRelative = scale.clone();
+                scaleLocal = scale.clone();
             }
 
     //scene
@@ -725,55 +725,55 @@ class Entity extends Objects {
 
     } //removeChild
 
-    private function set_posRelative(_p:Vector) { 
+    private function set_posLocal(_p:Vector) { 
 
         if(parent == null) {
-                //when setting the relative position and we have no parent,
+                //when setting the local position and we have no parent,
                 //it will instead just change our absolute position
             pos = _p.clone();
 
                 //apply
-            return posRelative = _p;
+            return posLocal = _p;
 
         } else {
                 //if we do have a parent, it needs to affect our position
                 //based on where the parent is sitting
             pos = Vector.Add( parent.pos, _p );
                 //apply
-            return posRelative = _p; 
+            return posLocal = _p; 
         }
 
-    } //set_posRelative
+    } //set_posLocal
 
-    private function set_rotationRelative( _r:Vector ) { 
+    private function set_rotationLocal( _r:Vector ) { 
 
         if(parent == null) {
-                //when setting the relative rotation and we have no parent,
+                //when setting the local rotation and we have no parent,
                 //it will instead just change our absolute rotation
             rotation = _r.clone();
 
                 //apply
-            return rotationRelative = _r;
+            return rotationLocal = _r;
 
         } else {
                 //if we do have a parent, it needs to affect our rotation
                 //based on where the parent is sitting
             rotation = Vector.Add( parent.rotation, _r );
                 //apply
-            return rotationRelative = _r; 
+            return rotationLocal = _r; 
         }
 
-    } //set_posRelative    
+    } //set_posLocal    
 
-    private function set_scaleRelative( _s:Vector ) { 
+    private function set_scaleLocal( _s:Vector ) { 
 
         if(parent == null) {
-                //when setting the relative scale and we have no parent,
+                //when setting the local scale and we have no parent,
                 //it will instead just change our absolute scale
             scale = _s.clone();
 
                 //apply
-            return scaleRelative = _s;
+            return scaleLocal = _s;
 
         } else {
             
@@ -781,16 +781,16 @@ class Entity extends Objects {
                 //based on where the parent is sitting
             scale = Vector.Multiply( parent.scale, _s );
                 //apply
-            return scaleRelative = _s; 
+            return scaleLocal = _s; 
         }
 
-    } //set_posRelative    
+    } //set_posLocal    
 
     private function set_pos(_p:Vector) { 
         
-            //if we have a parent, we adjust our relative position to match
+            //if we have a parent, we adjust our local position to match
         if(parent != null) {
-            posRelative.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
+            posLocal.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
         }
         
             //update the value before we propogate
@@ -813,9 +813,9 @@ class Entity extends Objects {
 
     private function set_rotation( _r:Vector ) { 
 
-            //if we have a parent, we adjust our relative rotation to match
+            //if we have a parent, we adjust our local rotation to match
         if(parent != null) {
-            rotationRelative.set( _r.x - parent.rotation.x, _r.y - parent.rotation.y, _r.z - parent.rotation.z );
+            rotationLocal.set( _r.x - parent.rotation.x, _r.y - parent.rotation.y, _r.z - parent.rotation.z );
         }
 
             //update the value before we propogate
@@ -862,21 +862,21 @@ class Entity extends Objects {
     } //set_scale
 
     @:noCompletion  public function internal_parent_pos_changed(_parent_pos:Vector) {
-            //our position is updated as parent_pos+relativePos
-        pos = _parent_pos.clone().add( posRelative );
+            //our position is updated as parent_pos+localPos
+        pos = _parent_pos.clone().add( posLocal );
 
     }//internal_parent_pos_changed
 
     @:noCompletion  public function internal_parent_rotation_changed(_parent_rotation:Vector) {
-            //our rotation is updated as parent_rotation+relative
-        rotation = _parent_rotation.clone().add( rotationRelative );
+            //our rotation is updated as parent_rotation+local
+        rotation = _parent_rotation.clone().add( rotationLocal );
 
     }//internal_parent_pos_changed
 
     @:noCompletion  public function internal_parent_scale_changed(_parent_scale:Vector) {
 
-            //our scale is updated as parent_scale+relative
-        scale = _parent_scale.clone().multiply( scaleRelative );
+            //our scale is updated as parent_scale+local
+        scale = _parent_scale.clone().multiply( scaleLocal );
 
     }//internal_parent_pos_changed
 
@@ -899,9 +899,9 @@ class Entity extends Objects {
         } else {
 
                 //update absolute position
-            pos = parent.pos.clone().add( posRelative );
-                //update relative rotation
-            rotation = parent.rotation.clone().add( rotationRelative );
+            pos = parent.pos.clone().add( posLocal );
+                //update local rotation
+            rotation = parent.rotation.clone().add( rotationLocal );
                 //add to parent as a child
             parent._add_child(this);
 
@@ -918,9 +918,9 @@ class Entity extends Objects {
     private function get_scene() { return scene; }                          //get_scene
     private function set_scene(_scene:Scene) { return scene = _scene; }     //set_scene
 
-    private function get_posRelative() { return posRelative; }              //get_posRelative
-    private function get_rotationRelative() { return rotationRelative; }    //get_rotationRelative
-    private function get_scaleRelative() { return scaleRelative; }          //get_scaleRelative
+    private function get_posLocal() { return posLocal; }              //get_posLocal
+    private function get_rotationLocal() { return rotationLocal; }    //get_rotationLocal
+    private function get_scaleLocal() { return scaleLocal; }          //get_scaleLocal
 
     private function get_parent() { return parent; }                        //get_parent
 

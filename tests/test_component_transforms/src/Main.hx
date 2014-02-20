@@ -66,8 +66,8 @@ class Main extends luxe.Game {
         child_of_child.parent = child;
         child.parent = root;
 
-        child.posRelative = new Vector(10,10,10);
-        child_of_child.posRelative = new Vector(50,0,10);
+        child.posLocal = new Vector(10,10,10);
+        child_of_child.posLocal = new Vector(50,0,10);
 
         spherething = new Entity();
         spherething.name = 'sphere';
@@ -133,8 +133,8 @@ class Main extends luxe.Game {
 
         if(e.value == Input.Keys.key_R) {
 
-            child.posRelative = new Vector(10,10,10);
-            child_of_child.posRelative = new Vector(50,0,10);
+            child.posLocal = new Vector(10,10,10);
+            child_of_child.posLocal = new Vector(50,0,10);
 
         } //key_R
 
@@ -149,7 +149,7 @@ class Main extends luxe.Game {
             }
             
             trace('absolute: ' + child.pos);
-            trace('relative: ' + child.posRelative);
+            trace('relative: ' + child.posLocal);
 
         } //key_P
 
