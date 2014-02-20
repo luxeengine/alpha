@@ -109,6 +109,14 @@ class Entity extends Objects {
                 }
             }
 
+            if(options.parent != null) {
+
+                _should_add = false;
+                parent.add_child(this);
+                _debug("entity: parent specified, not adding to scene only to parent :" + parent.name);
+
+            }
+
             if(_should_add) {
 
                 if(options.scene != null) {                        
@@ -877,7 +885,7 @@ class Entity extends Objects {
 
     private function set_parent( other:Entity ) {
 
-        _debug('>>  ' + name + ' calling set parent to ' + other.name );
+        _debug('>>  ' + name + ' calling set parent to ' + (other == null ? 'null' : other.name) );
             //if we are parented already, remove ourselves from that parent
         if(parent != null) {
             parent.remove_child(this);

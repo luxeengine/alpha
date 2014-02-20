@@ -9,5 +9,6 @@ typedef EntityOptions<T> = {
     ?scale : Vector,
     ?init_with:T,
     ?scene : Scene,
+    ?parent : Entity,
     ?no_scene : Bool
 }
