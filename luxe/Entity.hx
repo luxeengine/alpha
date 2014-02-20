@@ -779,7 +779,7 @@ class Entity extends Objects {
             
                 //if we do have a parent, it needs to affect our scale
                 //based on where the parent is sitting
-            scale = Vector.Multiply( parent.scale, _s );
+            scale = Vector.MultiplyVector( parent.scale, _s );
                 //apply
             return scaleLocal = _s; 
         }
