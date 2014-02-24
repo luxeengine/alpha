@@ -1,6 +1,160 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [6ba36ee114](http://github.com/underscorediscovery/luxe/commit/6ba36ee114bfe45b09f7c388a06f2cdba3f78b3d)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 24 2014 03:28:56 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; more prelim batcher debug view</li><li>Batcher; more comprehensive sort comparisons, should cover all texture spreading bugs and crazy removal antics</li><li>Batcher; some messy debug stuff, but critical for confirming correctness</li><li>Batcher; NOTE if you were using groups, these temporarily have been removed and their features will be back shortly in better form</li><li>Entity; fixing plausible crash on _debug line again</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1b68682886](http://github.com/underscorediscovery/luxe/commit/1b686828865cff6ce2b38df52151c69ae3695e3f)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 15:48:07 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; renaming inconsistent posLocal etc to pos_local etc</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [32be075461](http://github.com/underscorediscovery/luxe/commit/32be075461cb538d8c531027ec027e44710e80fc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 15:43:14 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; fixing incorrect multiply type</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f149b704a1](http://github.com/underscorediscovery/luxe/commit/f149b704a1dc824d7c58f6c9d61225c0fe0f0aea)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 15:42:43 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; renaming all relative vagary to "local", so posRelative becomes posLocal for example</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [de563551f4](http://github.com/underscorediscovery/luxe/commit/de563551f4a78a65bed55669b4296a88c95f9e95)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 15:40:35 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; fixing dumb scale logic</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [258e628bbf](http://github.com/underscorediscovery/luxe/commit/258e628bbf5e5e1f51a2a54007754c0fd60a12bc)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 15:08:42 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; fixing dumb crash on new parent constructor code</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [93044d7e16](http://github.com/underscorediscovery/luxe/commit/93044d7e16fccd014ae8363f8a3f30f6f1a6fca6)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 14:56:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Entity; adding parent in constructor, and fixing silly crash in set_parent</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [92f34324fb](http://github.com/underscorediscovery/luxe/commit/92f34324fbdabea9776123098de799c0470ee7cf)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 11:29:10 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>States; consistency and clarity in function parameters</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [262239223d](http://github.com/underscorediscovery/luxe/commit/262239223ddc9b2155de58771c21caaeb205ecd1)   
+author: Sven Bergström <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 08:11:19 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>fixing typo in path</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ed746610f0](http://github.com/underscorediscovery/luxe/commit/ed746610f01ae1d571977b0138f1c35dd1a30bd8)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 20 2014 07:37:43 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; adding initial batcher debug view panel, nothing there yet</li><li>Utils; adding initial stack trace string return, but it's unclear how to get the names of Method()</li><li>Batcher; fixing issue where dead dropped geometry can infect state</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0a2a7b5d2e](http://github.com/underscorediscovery/luxe/commit/0a2a7b5d2e75b4b4a52d5a25dcb12eefc3f63c47)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Thu Feb 13 2014 05:16:59 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; continued cleanup</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [55a55a0457](http://github.com/underscorediscovery/luxe/commit/55a55a0457cd710382278b2f0f370ed0dc0d4ec7)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Thu Feb 13 2014 04:36:02 GMT-0330 (NST)   

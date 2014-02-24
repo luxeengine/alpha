@@ -40,6 +40,7 @@
 - <a href="luxe.components.Component.html">luxe.components.Component</a> <br/>
 - <a href="luxe.components.Components.html">luxe.components.Components</a> <br/>
 - <a href="luxe.components.sprite.SpriteAnimation.html">luxe.components.sprite.SpriteAnimation</a> <br/>
+- <a href="luxe.debug.BatcherDebugView.html">luxe.debug.BatcherDebugView</a> <br/>
 - <a href="luxe.debug.DebugView.html">luxe.debug.DebugView</a> <br/>
 - <a href="luxe.debug.Inspector.html">luxe.debug.Inspector</a> <br/>
 - <a href="luxe.debug.ProfilerDebugView.html">luxe.debug.ProfilerDebugView</a> <br/>
