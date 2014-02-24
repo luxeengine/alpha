@@ -159,6 +159,17 @@ class Geometry {
 
     } //new
 
+    public function key_string() {
+        return 
+            'ts: '+ key.timestamp + '\n' +
+            'primitive_type: '+ key.primitive_type + '\n' +
+            'texture: '+ (key.texture == null ? 'null' : key.texture.id) + '\n' +
+            'shader: '+ (key.shader == null ? 'null' : key.shader.id) + '\n' +
+            'group: '+ key.group + '\n' +
+            'depth: '+ key.depth + '\n' +
+            'clip: '+ key.clip;
+    }
+
     public function refresh_key() {
         key.uuid = uuid;
         key.timestamp = haxe.Timer.stamp();
@@ -172,7 +183,7 @@ class Geometry {
 
     public function short_id() {
 
-        return uuid.substr(0, uuid.indexOf('-'));
+        return uuid.substr(0, 6);
 
     } //a shorthand id for easier identification
 
@@ -438,7 +449,7 @@ class Geometry {
            refresh_key();
 
         for(b in batchers) {
-            b.add(this,false);
+            b.add( this, false );
         } //for each batcher
 
     } //refresh

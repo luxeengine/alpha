@@ -351,7 +351,7 @@ class BitmapFont extends Resource {
                 immediate : _immediate
             });
 
-            _g.id = 'text.page'+i+'.'+_string;
+            _g.id = 'text.page'+i+'.'+_string.substr(0,8);
 
             _g.primitive_type = PrimitiveType.triangles;
             _g.immediate = _immediate;

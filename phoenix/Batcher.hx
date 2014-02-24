@@ -241,48 +241,240 @@ class Batcher {
         }
     }
 
-    public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
+    public function compare_rule_to_string(r:Int) : String {
+        switch(r) {
+            case 0: {
+                return "same";
+            }
+            case 1: {
+                return "depth <";
+            }
+            case 2: {
+                return "depth >";
+            }
 
-        //check equality
+            case 3: {
+                return "shader <";
+            }
+            case 4: {
+                return "shader >";
+            }
+            case 5: {
+                return "shader s._ >";
+            }
+            case 6: {
+                return "shader _.s <";
+            }
+            
+            case 7: {
+                return "texture <";
+            }
+            case 8: {
+                return "texture >";
+            }
+            case 9: {
+                return "texture t._ >";
+            }
+            case 10: {
+                return "texture _.t <";
+            }
+
+            case 11: {
+                return "primitive <";
+            }
+            case 12: {
+                return "primitive >";
+            }
+            case 13: {
+                return "unclipped";
+            }
+            case 14: {
+                return "clipped";
+            }
+            case 15: {
+                return "timestamp <";
+            }
+            case 16: {
+                return "timestamp >";
+            }
+            case 17: {
+                return "fallback";
+            }
+        }
+
+        return "unknown";
+
+    }
+
+    public function compare_rule( a:GeometryKey, b:GeometryKey ) : Int {
         if(a.uuid == b.uuid) 
             { return 0; }
 
-            //sort depth and group
+            //sort by depth first
+        if( a.depth < b.depth )
+            { return 1; }
+        if( a.depth > b.depth )
+            { return 2; }
+
+            //by this point, both group and depth are equal
+            //so sort by shader, then texture, then primitive type
+
+        if(a.shader != null && b.shader != null) {
+            
+                //sort shaders id's by gl id
+            if(a.shader.id < b.shader.id) 
+                { return 3; }
+            if(a.shader.id > b.shader.id) 
+                { return 4; }
+
+        } else {
+            if(a.shader != null && b.shader == null) {
+                return 5;
+            } else 
+            if(a.shader == null && b.shader != null) {
+                return 6;
+            } 
+        } 
+
+        if(a.texture != null && b.texture != null) {
+
+                //sort textures id's by gl id
+            if(a.texture.id < b.texture.id) 
+                { return 7; }
+            if(a.texture.id > b.texture.id) 
+                { return 8; }
+
+        } else {
+            if(a.texture != null && b.texture == null) {
+                return 9;
+            } else 
+            if(a.texture == null && b.texture != null) {
+                return 10;
+            } 
+            
+        } 
+
+            //same texture and shader, so primitive type
+        var a_primitive_index = Type.enumIndex( a.primitive_type );
+        var b_primitive_index = Type.enumIndex( b.primitive_type );
+
+        if( a_primitive_index < b_primitive_index ) 
+            { return 11; }
+        if( a_primitive_index > b_primitive_index ) 
+            { return 12; }
+
+            //if not the same clipping, we want clipped geometry after, and not clipped before
+        if(a.clip != b.clip) {
+            
+            if(a.clip == false && b.clip == true) {
+                return 13;
+            } else 
+
+            if(a.clip == true && b.clip == false) {
+                return 14;
+            }
+
+        } //clippin
+
+            //if all else is indistinguishable, 
+            //make sure older geometry is before
+
+        if( a.timestamp < b.timestamp ) 
+            { return 15; }
+        if( a.timestamp > b.timestamp ) 
+            { return 16; }
+
+            //otherwise push down the list because wtf
+        return 17;
+    }
+
+    public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
+
+            //rules :
+                //depth 
+                //shader
+                //texture
+                //primitive type
+                //clipping
+                //age
+
+            //check equality
+        if(a.uuid == b.uuid) 
+            { return 0; }
+
+            //sort by depth first
         if( a.depth < b.depth )
             { return -1; }
         if( a.depth > b.depth )
             { return 1; }
-        if( a.depth == b.depth && a.group < b.group )
-            { return -1; }
-        if( a.depth == b.depth && a.group > b.group )
-            { return 1; }
 
-            // sort clipping
-        var clip_value : Int = -1;
+            //by this point, both group and depth are equal
+            //so sort by shader, then texture, then primitive type
+        if(a.shader != null && b.shader != null) {
             
-            if(a.clip == true  && b.clip == true)  
-                { clip_value =  0; }
-            if(a.clip == false && b.clip == true)  
-                { clip_value = -1; }
-            if(a.clip == true  && b.clip == false) 
-                { clip_value =  1; }
+                //sort shaders id's by gl id
+            if(a.shader.id < b.shader.id) 
+                { return -1; }
+            if(a.shader.id > b.shader.id) 
+                { return 1; }
 
-            //sort texture id's
-        var textureid : Dynamic   = a.texture != null ? a.texture.id : 0;
-        var b_textureid : Dynamic = b.texture != null ? b.texture.id : 0;
+        } else {
+            if(a.shader != null && b.shader == null) {
+                return 1;
+            } else 
+            if(a.shader == null && b.shader != null) {
+                return -1;
+            } 
+        } 
 
-        if( a.depth == b.depth && a.group == b.group && textureid < b_textureid ) 
+        if(a.texture != null && b.texture != null) {
+
+                //sort textures id's by gl id
+            if(a.texture.id < b.texture.id) 
+                { return -1; }
+            if(a.texture.id > b.texture.id) 
+                { return 1; }
+
+        } else {
+            if(a.texture != null && b.texture == null) {
+                return 1;
+            } else 
+            if(a.texture == null && b.texture != null) {
+                return -1;
+            } 
+        } 
+  
+            //same texture and shader, so primitive type
+        var a_primitive_index = Type.enumIndex( a.primitive_type );
+        var b_primitive_index = Type.enumIndex( b.primitive_type );
+
+        if( a_primitive_index < b_primitive_index ) 
             { return -1; }
-        if( a.depth == b.depth && a.group == b.group && textureid == b_textureid && a.primitive_type != b.primitive_type) 
-            { return 1; }
-        if( a.depth == b.depth && a.group == b.group && textureid == b_textureid && a.primitive_type == b.primitive_type && (clip_value >= 0)) 
+        if( a_primitive_index > b_primitive_index ) 
             { return 1; }
 
-            //if all else fails, make sure older values are preferred
-        if( a.timestamp <= b.timestamp ) 
+            //if not the same clipping, we want clipped geometry after, and not clipped before
+        if(a.clip != b.clip) {
+            
+            if(a.clip == false && b.clip == true) {
+                return 1;
+            } else 
+
+            if(a.clip == true && b.clip == false) {
+                return -1;
+            }
+
+        } //clippin
+
+            //if all else is indistinguishable, 
+            //make sure older geometry is before
+
+        if( a.timestamp < b.timestamp ) 
             { return -1; }
+        if( a.timestamp > b.timestamp ) 
+            { return 1; }
 
-            //otherwise push down the list
+            //otherwise push down the list because wtf
         return 1;
 
     } //geometry_compare
@@ -334,7 +526,15 @@ class Batcher {
             }
         } //_remove_batcher_from_geometry
 
+        var countbefore = Lambda.count(geometry);
+
         geometry.remove( _geom.key );
+
+        var countafter = Lambda.count(geometry);
+
+        if(countbefore == countafter) {
+            trace("GEOMETRY NOT REMOVED " + _geom.id);
+        }
 
         tree_changed = true;
 
