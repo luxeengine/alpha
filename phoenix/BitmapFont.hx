@@ -158,9 +158,7 @@ class BitmapFont extends Resource {
                         }
 
                             //remove arbitrary new lines
-                        if(_file.indexOf('\n') != -1) {
-                            _file = StringTools.replace(_file,'\n', '');
-                        }
+                        _file = StringTools.trim( _file );
                         
                             //Store the texture id's in the list
                         _pages.push({id:_id, file:_file});
