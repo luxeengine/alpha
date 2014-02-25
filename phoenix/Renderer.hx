@@ -112,6 +112,8 @@ class Renderer {
         _debug("Creating the default font...");
             //create the font texture                    
         var _font_texture = load_texture_from_string_byte_array('default_font', FontBytes.data(), 512,512 );
+            _font_texture.generate_mipmaps();
+            _font_texture.filter = FilterType.mip_linear_linear;
         default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
 
         _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
