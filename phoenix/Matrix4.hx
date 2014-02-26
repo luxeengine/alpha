@@ -47,13 +47,13 @@ class Matrix4 {
         return this;
     }
 
-    public function print() {
+    public function toString() {
         var e = elements;
-        trace('\t 11:' + Maths.fixed(e[0],3) + '    12:' + Maths.fixed(e[4],3)  + '    13:' + Maths.fixed(e[8],3)  + '    14:' + Maths.fixed(e[12],3) );
-        trace('\t 21:' + Maths.fixed(e[1],3) + '    22:' + Maths.fixed(e[5],3)  + '    23:' + Maths.fixed(e[9],3)  + '    24:' + Maths.fixed(e[13],3) );
-        trace('\t 31:' + Maths.fixed(e[2],3) + '    32:' + Maths.fixed(e[6],3)  + '    33:' + Maths.fixed(e[10],3)  + '    34:' + Maths.fixed(e[14],3) );
-        trace('\t 41:' + Maths.fixed(e[3],3) + '    42:' + Maths.fixed(e[7],3)  + '    43:' + Maths.fixed(e[11],3)  + '    44:' + Maths.fixed(e[15],3) );
-        trace('');
+        var str = '{ 11:' + Maths.fixed(e[0], 3) + ', 12:' + Maths.fixed(e[4], 3)  + ', 13:' + Maths.fixed(e[ 8], 3)  + ', 14:' + Maths.fixed(e[12], 3) + ' }, ' +
+                  '{ 21:' + Maths.fixed(e[1], 3) + ', 22:' + Maths.fixed(e[5], 3)  + ', 23:' + Maths.fixed(e[ 9], 3)  + ', 24:' + Maths.fixed(e[13], 3) + ' }, ' +
+                  '{ 31:' + Maths.fixed(e[2], 3) + ', 32:' + Maths.fixed(e[6], 3)  + ', 33:' + Maths.fixed(e[10], 3)  + ', 34:' + Maths.fixed(e[14], 3) + ' }, ' +
+                  '{ 41:' + Maths.fixed(e[3], 3) + ', 42:' + Maths.fixed(e[7], 3)  + ', 43:' + Maths.fixed(e[11], 3)  + ', 44:' + Maths.fixed(e[15], 3) + ' }';
+        return str;
     }
     
     public function float32array() : lime.utils.Float32Array {
