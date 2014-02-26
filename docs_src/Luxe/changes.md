@@ -1,6 +1,90 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [97920e9810](http://github.com/underscorediscovery/luxe/commit/97920e9810c68c6015420f3dc9f7ab9636e6fe84)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 25 2014 22:04:14 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>structural: trying a remove that doesn't have a contains() check</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6c753910b1](http://github.com/underscorediscovery/luxe/commit/6c753910b11e3ca80c4dce71d9c1899e2e28f13b)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 25 2014 22:03:25 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Batcher; undoing change to dropped geometry not submitting due to not-removed geometry</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5740fdec4f](http://github.com/underscorediscovery/luxe/commit/5740fdec4f04e0e3bdb1aee59fae9f7eaa2afe71)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Tue Feb 25 2014 12:33:30 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Texture; Adding min/mag filter as separable</li><li>Texture; Adding filter types for mip linear/nearest</li><li>BitmapFont; defaulting to mipmaps and better filtering when scaling</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b6b2a0f1c0](http://github.com/underscorediscovery/luxe/commit/b6b2a0f1c001e2b131cdece81f95ec65addd30e3)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 24 2014 21:09:48 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>html5; fixing build error on weird type</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [af21d4236b](http://github.com/underscorediscovery/luxe/commit/af21d4236bc7e65d3ef6222319e9e8b754836480)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 24 2014 13:34:04 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>BitmapFont; fixing windows new line bug in font loading. Using StringTools ensures cross platformnessness</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b46792171b](http://github.com/underscorediscovery/luxe/commit/b46792171b69925b5d871b20040765018c5a0ec1)   
+author: underscorediscovery <sven@underscorediscovery.com>   
+date: Mon Feb 24 2014 12:16:49 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; latest</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [6ba36ee114](http://github.com/underscorediscovery/luxe/commit/6ba36ee114bfe45b09f7c388a06f2cdba3f78b3d)   
 author: underscorediscovery <sven@underscorediscovery.com>   
 date: Mon Feb 24 2014 03:28:56 GMT-0330 (NST)   
