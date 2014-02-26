@@ -37,7 +37,6 @@ class Geometry {
 
         //Statically batched VBO's
     public var submitted : Bool = false;
-    public var dirty : Bool = false;
     public var static_vertex_buffer : GLBuffer;
     public var static_tcoord_buffer : GLBuffer;
     public var static_vcolor_buffer : GLBuffer;
@@ -78,6 +77,7 @@ class Geometry {
         //Geometry properties   
     @:isVar public var enabled      (default, set) : Bool = true;
     @:isVar public var locked       (get, set) : Bool = false;
+    @:isVar public var dirty        (get, set) : Bool = false;
     @:isVar public var immediate    (default, default) : Bool;
     @:isVar public var color        (default, set) : Color;
         //Transform
@@ -361,13 +361,25 @@ class Geometry {
 
         return locked = _locked;
 
-    } //set_pos
+    } //set_locked
 
     public function get_locked() : Bool {
         
         return locked;
 
     } //get_locked
+
+    public function set_dirty( _dirty:Bool ) : Bool {
+
+        return dirty = _dirty;
+
+    } //set_dirty
+
+    public function get_dirty() : Bool {
+        
+        return dirty;
+
+    } //get_dirty
 
     public function set_rotation( _rotation:Quaternion ) {
 

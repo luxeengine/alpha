@@ -62,6 +62,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         render_stats_text = new luxe.Text({
             depth : 999.3,
+            no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
             pos : new Vector(debug.padding.x*2,debug.padding.y*3),
             font : Luxe.renderer.default_font,
@@ -73,6 +74,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         
         resource_stats_text = new luxe.Text({
             depth : 999.3,
+            no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
             pos : new Vector(debug.padding.x*7,debug.padding.y*3),
             font : Luxe.renderer.default_font,
@@ -84,6 +86,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         
         resource_list_text = new luxe.Text({
             depth : 999.3,
+            no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
             pos : new Vector(debug.padding.x*7,debug.padding.y*9),
             font : Luxe.renderer.default_font,
@@ -181,15 +184,11 @@ class StatsDebugView extends luxe.debug.DebugView  {
         render_stats_text.text = get_render_stats_string();
         resource_stats_text.text = get_resource_stats_string();
 
-        for(_g in resource_stats_text.geometry.geometry) {
-            _g.locked = true;
-            _g.dirty = true;
-        }
+        resource_stats_text.locked = true;
+        render_stats_text.locked = true;
         
-        for(_g in render_stats_text.geometry.geometry) {
-            _g.locked = true;
-            _g.dirty = true;
-        }
+        resource_stats_text.geometry.dirty = true;
+        render_stats_text.geometry.dirty = true;
         
     } //refresh_render_stats
 

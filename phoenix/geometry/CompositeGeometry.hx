@@ -179,6 +179,15 @@ class CompositeGeometry extends Geometry {
         return locked = val;
     } //set_locked
 
+    public override function set_dirty(val : Bool) : Bool {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.dirty = val;
+            }
+        }
+        return dirty = val;
+    } //set_dirty
+
     public override function set_clip_rect(val : Rectangle) : Rectangle {
         if(geometry != null) {
             for(geom in geometry) {

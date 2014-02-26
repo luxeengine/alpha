@@ -26,6 +26,8 @@ class TraceDebugView extends luxe.debug.DebugView {
         var debug = Luxe.debug;
 
         lines = new luxe.Text({
+            name : 'debug.log.text',
+            no_scene : true,
             depth : 999.3,
             color : new Color().rgb(0x888888),
             bounds : new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 ),

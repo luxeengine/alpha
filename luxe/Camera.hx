@@ -39,13 +39,15 @@ class Camera extends Entity {
         _rotation_radian = new Vector();
         _rotation_cache = new Quaternion();
 
+        var _name = options.name == null ? 'untitled camera' : options.name;
+
 			//Init the entity part
-		super();
-			//Start with defaults
-		name = 'untitled camera';
+		super({
+            name : _name,
+            no_scene : options.no_scene
+        });
 
 				//Apply options
-			name = options.name == null ? name : options.name;
 			view = options.view == null ? new phoenix.Camera(options) : options.view;
 
 			//Update

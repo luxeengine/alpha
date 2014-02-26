@@ -19,20 +19,20 @@ import luxe.options.VisualOptions;
 
 class Visual extends Entity {
 
-    @:isVar public var size         (default,set    )   : Vector;
-    @:isVar public var geometry     (default,set    )   : Geometry;
-    @:isVar public var locked       (default,set    )   : Bool = false;
-    @:isVar public var texture      (default,set    )   : Texture;
-    @:isVar public var shader       (default,set    )   : Shader;
-    @:isVar public var color        (default,set    )   : Color;
-    @:isVar public var visible      (default,set    )   : Bool = true;
-    @:isVar public var rotation_z   (default,set    )   : Float = 0.0;
-    @:isVar public var radians      (default,set    )   : Float = 0.0;
-    @:isVar public var depth        (default,set    )   : Float = 0.0;
-    @:isVar public var group        (default,set    )   : Int = 0;
-    @:isVar public var origin       (default,set    )   : Vector;
-    @:isVar public var clip         (default,set    )   : Bool = false;
-    @:isVar public var clip_rect    (default,set    )   : Rectangle;
+    @:isVar public var size         (default,set) : Vector;
+    @:isVar public var geometry     (default,set) : Geometry;
+    @:isVar public var locked       (default,set) : Bool = false;
+    @:isVar public var texture      (default,set) : Texture;
+    @:isVar public var shader       (default,set) : Shader;
+    @:isVar public var color        (default,set) : Color;
+    @:isVar public var visible      (default,set) : Bool = true;
+    @:isVar public var rotation_z   (default,set) : Float = 0.0;
+    @:isVar public var radians      (default,set) : Float = 0.0;
+    @:isVar public var depth        (default,set) : Float = 0.0;
+    @:isVar public var group        (default,set) : Int = 0;
+    @:isVar public var origin       (default,set) : Vector;
+    @:isVar public var clip         (default,set) : Bool = false;
+    @:isVar public var clip_rect    (default,set) : Rectangle;
 
     var _rotation_vector : Vector;
     var _rotation_quat : Quaternion;
@@ -292,6 +292,8 @@ class Visual extends Entity {
     } //set_origin
 
 //Geometry
+    
+    var ignore_texture_on_geometry_change : Bool = false;
 
     private function set_geometry(_g:Geometry) : Geometry {
         
@@ -306,15 +308,18 @@ class Visual extends Entity {
             //rebind it's colors and whatever else
         if(geometry != null && _creating_geometry == false) {            
             
-            geometry.color = color;
             geometry.pos = pos.clone();
+            geometry.origin = origin;
+            geometry.color = color;            
             geometry.scale = scale;
             geometry.group = group;
-            geometry.depth = depth;
-            geometry.shader = shader;
-            geometry.texture = texture;
-            geometry.origin = origin;
+            geometry.depth = depth;            
             geometry.enabled = visible;
+            geometry.shader = shader;
+
+            if(!ignore_texture_on_geometry_change) {
+                geometry.texture = texture;
+            }
 
         }        
 

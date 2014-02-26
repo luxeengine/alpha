@@ -19,7 +19,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
     public override function create() {
         
         var debug = Luxe.debug;
-        batcher = Luxe.createBatcher('debug_batcher_view', new luxe.Camera({name : 'camera4'}));
+        batcher = Luxe.createBatcher('debug_batcher_view', new luxe.Camera({ name : 'batcher_debug_view', no_scene:true }));
         batcher.layer = 1000;
 
     }

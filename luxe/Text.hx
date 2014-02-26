@@ -1,63 +1,84 @@
 package luxe;
 
 import luxe.Vector;
+import luxe.Visual;
+
 import phoenix.Batcher;
 import phoenix.BitmapFont;
 import phoenix.geometry.CompositeGeometry;
 
 typedef TextAlign = phoenix.BitmapFont.TextAlign;
 
-class Text {
+class Text extends Visual {
     
     public var font : BitmapFont;
-    public var geometry : CompositeGeometry;
-    
     private var _batcher : Batcher;
 
-    @:isVar public var text (default,set) : String = '';
-    @:isVar public var pos (default,set) : Vector;
-    @:isVar public var size (default,set) : Float = 32;
-    @:isVar public var color (default,set) : Color;
-    @:isVar public var visible (default,set) : Bool;
-    @:isVar public var locked (default,set) : Bool = false;
+    public var composite_geometry : CompositeGeometry;
+
+    @:isVar public var text     (default,set) : String = '';
+    @:isVar public var textsize (default,set) : Float = 32;
 
     public var ready : Bool = false;
     public var text_options : Dynamic;
 
     public function new( _options : Dynamic ) {
-                
-        var _font : Dynamic = (_options.font == null) ? null : _options.font;
-        _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
-        size = (_options.size == null) ? 32 : _options.size;
 
-        if(_font == null) _font = Luxe.renderer.default_font;
+            //pass off geometry properties up to super first
+        _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;        
 
-        if(Std.is(_font, String)) {
-                //supplied a font name
-            font = new BitmapFont(Luxe.resources);
-                //fetch font
-            var _folder = haxe.io.Path.directory(_font) + '/';
-            var _text = Luxe.loadText(_font);
-            font.load_from_string( _text.text , _folder, onloaded );
+        if(_options.pos == null) {
+            _options.pos = new Vector();
+        }
 
-        } else {
-                //supplied a precreated font?            
-            font = _font;
-            ready = true;
+        if(_options.color == null) {
+            _options.color = new Color();
+        }
+
+        if(_options.depth == null) {
+            _options.depth = 0;
+        }
+
+        if(_options.group == null) {
+            _options.group = 0;
         }
 
         text_options = _options;
-        text_options.size = size;
-            
-        if(_options.pos != null) {
-            pos = _options.pos;
-        } else {
-            pos = new Vector();
-        }
 
-        if(_options.color != null) {
-            color = _options.color;
+        super({
+            name : _options.name,
+            no_scene : _options.no_scene,
+            batcher : _batcher,
+            color : _options.color,
+            pos : _options.pos,
+            depth : _options.depth,
+            group : _options.group,
+            no_geometry : true
+        });
+             
+    //font   
+        var _font : Dynamic = (_options.font == null) ? null : _options.font;
+            
+        if(_font == null) _font = Luxe.renderer.default_font;
+
+        textsize = (_options.size == null) ? 32 : _options.size;
+
+        if(Std.is(_font, String)) {
+
+                //fetch font path directly from the same path
+            var _folder = haxe.io.Path.directory(_font) + '/';
+                //create the font from the path + file name
+            font = Luxe.loadFont( _font, _folder, onloaded );
+
+        } else {
+
+                //supplied a precreated font?            
+            font = _font;
+            ready = true;
+
         }
+        
+        text_options.size = textsize;
 
             //Apply the setter, which will draw the geometry
         text = _options.text;
@@ -65,86 +86,109 @@ class Text {
     } //new
 
     @:noCompletion public function onloaded( font:BitmapFont ) {
+
         ready = true;
         text = text + '';
-    }
 
-    public function destroy() {
-        if(geometry != null) {
-            geometry.drop();
-            geometry = null;
-        }
-    }
+    } //onloaded
 
-    function set_pos(v:Vector) : Vector {
+    override function set_pos(v:Vector) : Vector {
         
         pos = v.clone();
         text_options.pos = pos;
         
-        if(geometry != null) {        
-            geometry.pos = v;
-        }        
+        super.set_pos(pos);     
         
         return pos;
-    }
 
-    function set_size(v:Float) : Float {
-        if(text_options == null) return size = v;
-        size = v;        
-        text_options.size = size;
-        text = text+'';
-        return v;
-    }
-    function set_color(c:Color) : Color {
+    } //set_pos
+
+    function set_textsize(v:Float) : Float {
+        
+        if(text_options != null) {
+            textsize = v;        
+            text_options.size = textsize;
+            text = text+'';
+        }
+        
+        return textsize;
+
+    } //set_textsize
+
+    override function set_color(c:Color) : Color {
+
         color = c;
 
-        if(geometry != null) {
-            geometry.color = c;
-        }
+        super.set_color(color);
 
-        text_options.color = c;
-        return c;
-    }
-    function set_visible(b:Bool) : Bool {
+        text_options.color = color;
+
+        return color;
+
+    } //set_color
+
+    override function set_visible(b:Bool) : Bool {
+
         visible = b;
         
-        if(geometry != null) {
-            geometry.enabled = visible;
-        }
+        super.set_visible(visible);
 
         text_options.enabled = visible;
-        return b;
-    }
 
-    function set_locked(b:Bool) : Bool {
-        locked = b;
+        return visible;
+
+    } //set_visible
+
+
+    override function set_locked(l:Bool) : Bool {
         
-        if(geometry != null) {
-            geometry.locked = locked;
-        }
+        locked = l;
+        
+        super.set_locked(locked);
 
         text_options.locked = locked;
-        return b;
-    }
 
-    function set_text(v:String) {
+        return locked;
 
-        if(!ready) return text = v;
-        if(text_options == null) return v;  
+    } //set_locked
 
-        text_options.text = v;
+    function set_text( t:String ) {
 
-        destroy();
+        text = t;
 
-        geometry = font.draw_text(text_options);
-        
-        if(locked) {
-            locked = text_options.locked;
+        if(ready && text_options != null) {
+
+            text_options.text = t;
+
+                //clean up first
+            if(geometry != null) {
+                geometry.drop();
+            }
+
+                //make sure its cleared
+            geometry = null;
+
+                //now recreate the new text
+            composite_geometry = font.draw_text(text_options);
+
+                //now we apply the new info to the visual first
+            origin  = composite_geometry.origin;
+            pos     = composite_geometry.pos;
+            locked  = composite_geometry.locked;
+
+                //and then assign it
+            ignore_texture_on_geometry_change = true;
+                
+                geometry = composite_geometry;
+
+            ignore_texture_on_geometry_change = false;
+            
         }
 
-        return text = v;
-    }
+        return text;
 
-}
+    } //set_text
+
+} //Text
 
 
