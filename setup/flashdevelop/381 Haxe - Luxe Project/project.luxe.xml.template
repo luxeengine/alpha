@@ -11,7 +11,7 @@
 
 	<source path="src" />
 	
-	<haxelib name="luxe" />
 	<haxelib name="lime" />
+	<haxelib name="luxe" />
 	
 </project>
