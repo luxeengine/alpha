@@ -526,11 +526,11 @@ class Batcher {
             }
         } //_remove_batcher_from_geometry
 
-        var countbefore = Lambda.count(geometry);
+        var countbefore = geometry.size();
 
         geometry.remove( _geom.key );
 
-        var countafter = Lambda.count(geometry);
+        var countafter = geometry.size();
 
         if(countbefore == countafter) {
             trace("GEOMETRY NOT REMOVED " + _geom.id);
@@ -672,7 +672,7 @@ class Batcher {
         } //geom list
 
             //If there is anything left in the vertex buffer, submit it.
-        if(verts > 0 && geom != null && !geom.dropped) {
+        if(verts > 0 && geom != null) {
 
                 //Make sure the state matches this geometry
             state.update(geom);
