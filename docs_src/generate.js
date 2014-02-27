@@ -556,11 +556,12 @@ var config = require('./documentator.json');
                     var _count = all.length;
                     for(i = 0; i < _count; ++i) {
                         _commit = all[i];
+
                         _final_log += '&nbsp;   \n';
 
                         _final_log += '<div class="commit_info">\n\n';
                         _final_log += 'commit ['+ String(_commit.sha()).substr(0,10) +'](http://github.com/underscorediscovery/luxe/commit/'+ _commit.sha() +')   \n';
-                        _final_log += 'author: ' + _commit.author().name() + ' <' + _commit.author().email() + '>   \n';
+                        _final_log += 'author: ' + _commit.author().name() + '   \n';
                         _final_log += 'date: ' + _commit.date() + '   \n';
                         _final_log += '</div>\n\n';
                         _final_log += '&nbsp;   \n';                        
