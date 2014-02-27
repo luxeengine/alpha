@@ -1,8 +1,92 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [7ba3d9d97e](http://github.com/underscorediscovery/luxe/commit/7ba3d9d97e7ed7952201371d4126c342ec152ba8)   
+author: underscorediscovery   
+date: Thu Feb 27 2014 11:39:32 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; removing email from changes page for now</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [172eca626f](http://github.com/underscorediscovery/luxe/commit/172eca626f432713061e670e555ce1177aac1113)   
+author: underscorediscovery   
+date: Thu Feb 27 2014 11:39:13 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Quaternion; adding dot and scale functionality</li><li>Matrix4; adding M11 - M44 getter/setters for convenience accessing the elements directly</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5bf5b0e0b7](http://github.com/underscorediscovery/luxe/commit/5bf5b0e0b713d7799662d1d2eea5f83dfe8ab017)   
+author: Thomas Hourdel   
+date: Wed Feb 26 2014 20:00:33 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Matrix4; removing print function and adding toString so it can be traced</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [595e88f297](http://github.com/underscorediscovery/luxe/commit/595e88f297444d67e2acbfa895f9d414ba45165b)   
+author: Thomas Hourdel   
+date: Wed Feb 26 2014 19:21:48 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Setup; fixing haxelib import order in the FlashDevelop template</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [6eccfaaf34](http://github.com/underscorediscovery/luxe/commit/6eccfaaf34fe7575dbe8927813e186095bfaf94f)   
+author: underscorediscovery   
+date: Wed Feb 26 2014 14:55:41 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Camera; applying name and no_scene options to the entity above it,</li><li>still need to optionize these as types</li><li>Scene; adding scene.entitycount value for testing how many entities in</li><li>the scene</li><li>Text; extending Text from Visual, so that it is an entity and can</li><li>accept components etc</li><li>Text; all internal text items given names and not added to the default</li><li>scene</li><li>CompositeGeometry; adding dirty flag to propogate to geometries inside</li><li>it</li><li>Tests; Text - added a text with a component, and added a custom font</li><li>for demonstration</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1a359af498](http://github.com/underscorediscovery/luxe/commit/1a359af4987b82177668c082c3e5b56f58b993ee)   
+author: underscorediscovery   
+date: Tue Feb 25 2014 22:04:43 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Update Changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [97920e9810](http://github.com/underscorediscovery/luxe/commit/97920e9810c68c6015420f3dc9f7ab9636e6fe84)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 25 2014 22:04:14 GMT-0330 (NST)   
 </div>
 
@@ -16,7 +100,7 @@ date: Tue Feb 25 2014 22:04:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6c753910b1](http://github.com/underscorediscovery/luxe/commit/6c753910b11e3ca80c4dce71d9c1899e2e28f13b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 25 2014 22:03:25 GMT-0330 (NST)   
 </div>
 
@@ -30,7 +114,7 @@ date: Tue Feb 25 2014 22:03:25 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5740fdec4f](http://github.com/underscorediscovery/luxe/commit/5740fdec4f04e0e3bdb1aee59fae9f7eaa2afe71)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 25 2014 12:33:30 GMT-0330 (NST)   
 </div>
 
@@ -44,7 +128,7 @@ date: Tue Feb 25 2014 12:33:30 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b6b2a0f1c0](http://github.com/underscorediscovery/luxe/commit/b6b2a0f1c001e2b131cdece81f95ec65addd30e3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 24 2014 21:09:48 GMT-0330 (NST)   
 </div>
 
@@ -58,7 +142,7 @@ date: Mon Feb 24 2014 21:09:48 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [af21d4236b](http://github.com/underscorediscovery/luxe/commit/af21d4236bc7e65d3ef6222319e9e8b754836480)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 24 2014 13:34:04 GMT-0330 (NST)   
 </div>
 
@@ -72,7 +156,7 @@ date: Mon Feb 24 2014 13:34:04 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b46792171b](http://github.com/underscorediscovery/luxe/commit/b46792171b69925b5d871b20040765018c5a0ec1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 24 2014 12:16:49 GMT-0330 (NST)   
 </div>
 
@@ -86,7 +170,7 @@ date: Mon Feb 24 2014 12:16:49 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6ba36ee114](http://github.com/underscorediscovery/luxe/commit/6ba36ee114bfe45b09f7c388a06f2cdba3f78b3d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 24 2014 03:28:56 GMT-0330 (NST)   
 </div>
 
@@ -100,7 +184,7 @@ date: Mon Feb 24 2014 03:28:56 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1b68682886](http://github.com/underscorediscovery/luxe/commit/1b686828865cff6ce2b38df52151c69ae3695e3f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 15:48:07 GMT-0330 (NST)   
 </div>
 
@@ -114,7 +198,7 @@ date: Thu Feb 20 2014 15:48:07 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [32be075461](http://github.com/underscorediscovery/luxe/commit/32be075461cb538d8c531027ec027e44710e80fc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 15:43:14 GMT-0330 (NST)   
 </div>
 
@@ -128,7 +212,7 @@ date: Thu Feb 20 2014 15:43:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f149b704a1](http://github.com/underscorediscovery/luxe/commit/f149b704a1dc824d7c58f6c9d61225c0fe0f0aea)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 15:42:43 GMT-0330 (NST)   
 </div>
 
@@ -142,7 +226,7 @@ date: Thu Feb 20 2014 15:42:43 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [de563551f4](http://github.com/underscorediscovery/luxe/commit/de563551f4a78a65bed55669b4296a88c95f9e95)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 15:40:35 GMT-0330 (NST)   
 </div>
 
@@ -156,7 +240,7 @@ date: Thu Feb 20 2014 15:40:35 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [258e628bbf](http://github.com/underscorediscovery/luxe/commit/258e628bbf5e5e1f51a2a54007754c0fd60a12bc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 15:08:42 GMT-0330 (NST)   
 </div>
 
@@ -170,7 +254,7 @@ date: Thu Feb 20 2014 15:08:42 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [93044d7e16](http://github.com/underscorediscovery/luxe/commit/93044d7e16fccd014ae8363f8a3f30f6f1a6fca6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 14:56:12 GMT-0330 (NST)   
 </div>
 
@@ -184,7 +268,7 @@ date: Thu Feb 20 2014 14:56:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [92f34324fb](http://github.com/underscorediscovery/luxe/commit/92f34324fbdabea9776123098de799c0470ee7cf)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 11:29:10 GMT-0330 (NST)   
 </div>
 
@@ -198,7 +282,7 @@ date: Thu Feb 20 2014 11:29:10 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [262239223d](http://github.com/underscorediscovery/luxe/commit/262239223ddc9b2155de58771c21caaeb205ecd1)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Thu Feb 20 2014 08:11:19 GMT-0330 (NST)   
 </div>
 
@@ -212,7 +296,7 @@ date: Thu Feb 20 2014 08:11:19 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ed746610f0](http://github.com/underscorediscovery/luxe/commit/ed746610f01ae1d571977b0138f1c35dd1a30bd8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 20 2014 07:37:43 GMT-0330 (NST)   
 </div>
 
@@ -226,7 +310,7 @@ date: Thu Feb 20 2014 07:37:43 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0a2a7b5d2e](http://github.com/underscorediscovery/luxe/commit/0a2a7b5d2e75b4b4a52d5a25dcb12eefc3f63c47)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 13 2014 05:16:59 GMT-0330 (NST)   
 </div>
 
@@ -240,7 +324,7 @@ date: Thu Feb 13 2014 05:16:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [55a55a0457](http://github.com/underscorediscovery/luxe/commit/55a55a0457cd710382278b2f0f370ed0dc0d4ec7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 13 2014 04:36:02 GMT-0330 (NST)   
 </div>
 
@@ -254,7 +338,7 @@ date: Thu Feb 13 2014 04:36:02 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3d2fc454d2](http://github.com/underscorediscovery/luxe/commit/3d2fc454d2873f26a1b63fe53a8261075cb24e9a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 13 2014 04:35:29 GMT-0330 (NST)   
 </div>
 
@@ -268,7 +352,7 @@ date: Thu Feb 13 2014 04:35:29 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b55d7f50a6](http://github.com/underscorediscovery/luxe/commit/b55d7f50a6d75c11fea69e579832165967333013)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 23:50:08 GMT-0330 (NST)   
 </div>
 
@@ -282,7 +366,7 @@ date: Tue Feb 11 2014 23:50:08 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [7cb6454a0c](http://github.com/underscorediscovery/luxe/commit/7cb6454a0c847e9c8f880569ff8daa5c7369b283)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 23:49:31 GMT-0330 (NST)   
 </div>
 
@@ -296,7 +380,7 @@ date: Tue Feb 11 2014 23:49:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0b2336b676](http://github.com/underscorediscovery/luxe/commit/0b2336b676b282a9455d84be02a100dac0545219)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 23:49:11 GMT-0330 (NST)   
 </div>
 
@@ -310,7 +394,7 @@ date: Tue Feb 11 2014 23:49:11 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [06b8b57ed4](http://github.com/underscorediscovery/luxe/commit/06b8b57ed4b94a7965ec86ca7baa76c10fc4fd2e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 23:48:56 GMT-0330 (NST)   
 </div>
 
@@ -324,7 +408,7 @@ date: Tue Feb 11 2014 23:48:56 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [dc21a437df](http://github.com/underscorediscovery/luxe/commit/dc21a437df4290f1396f8436934f9d11ebef57d5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 21:31:07 GMT-0330 (NST)   
 </div>
 
@@ -338,7 +422,7 @@ date: Tue Feb 11 2014 21:31:07 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [adbe46fb2a](http://github.com/underscorediscovery/luxe/commit/adbe46fb2abee530fe44ce9346d32e3a2404b7f1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 21:30:20 GMT-0330 (NST)   
 </div>
 
@@ -352,7 +436,7 @@ date: Tue Feb 11 2014 21:30:20 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e65a98d882](http://github.com/underscorediscovery/luxe/commit/e65a98d882c4acd24d14f622172e303025805b12)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 21:29:54 GMT-0330 (NST)   
 </div>
 
@@ -366,7 +450,7 @@ date: Tue Feb 11 2014 21:29:54 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1e891ea862](http://github.com/underscorediscovery/luxe/commit/1e891ea862893c772e044cc85b343f07a8ac9806)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 15:58:20 GMT-0330 (NST)   
 </div>
 
@@ -380,7 +464,7 @@ date: Tue Feb 11 2014 15:58:20 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a624545768](http://github.com/underscorediscovery/luxe/commit/a62454576850aebdb6b45a21bd72eb6d3f6c5977)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Feb 11 2014 15:57:35 GMT-0330 (NST)   
 </div>
 
@@ -394,7 +478,7 @@ date: Tue Feb 11 2014 15:57:35 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [eb71077bb6](http://github.com/underscorediscovery/luxe/commit/eb71077bb6c3a43b3626004a20ec81758456dd99)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 10 2014 06:31:38 GMT-0330 (NST)   
 </div>
 
@@ -408,7 +492,7 @@ date: Mon Feb 10 2014 06:31:38 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9fe9429bef](http://github.com/underscorediscovery/luxe/commit/9fe9429bef52c77ef32d707748d87ad29e9d26b6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 10 2014 00:05:13 GMT-0330 (NST)   
 </div>
 
@@ -422,7 +506,7 @@ date: Mon Feb 10 2014 00:05:13 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3cbe1a6a4f](http://github.com/underscorediscovery/luxe/commit/3cbe1a6a4f02708f8383e671b8426a0574f7dd76)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Feb 09 2014 23:55:58 GMT-0330 (NST)   
 </div>
 
@@ -436,7 +520,7 @@ date: Sun Feb 09 2014 23:55:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [69bf0a7fcc](http://github.com/underscorediscovery/luxe/commit/69bf0a7fcc7d3efbe73eb82e609dce193b83ad2f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Feb 09 2014 17:01:15 GMT-0330 (NST)   
 </div>
 
@@ -450,7 +534,7 @@ date: Sun Feb 09 2014 17:01:15 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [fffce05530](http://github.com/underscorediscovery/luxe/commit/fffce055308ea0d8dd4b759b98879450bff66a13)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Feb 09 2014 17:00:57 GMT-0330 (NST)   
 </div>
 
@@ -464,7 +548,7 @@ date: Sun Feb 09 2014 17:00:57 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9d04f15fb8](http://github.com/underscorediscovery/luxe/commit/9d04f15fb874378379fdfa4b0979c9835dc9e873)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Feb 09 2014 16:47:43 GMT-0330 (NST)   
 </div>
 
@@ -478,7 +562,7 @@ date: Sun Feb 09 2014 16:47:43 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3b36f124dc](http://github.com/underscorediscovery/luxe/commit/3b36f124dc4744f787bac59515c67f67f78b75dc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Feb 09 2014 16:42:37 GMT-0330 (NST)   
 </div>
 
@@ -492,7 +576,7 @@ date: Sun Feb 09 2014 16:42:37 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9161dcf1d7](http://github.com/underscorediscovery/luxe/commit/9161dcf1d718fde70ce301b34f3b88d87f1ddd54)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Feb 09 2014 16:34:23 GMT-0330 (NST)   
 </div>
 
@@ -506,7 +590,7 @@ date: Sun Feb 09 2014 16:34:23 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [7bda3560c8](http://github.com/underscorediscovery/luxe/commit/7bda3560c8ddde2e01d12016a8e16498b3dffd74)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Feb 08 2014 22:38:02 GMT-0330 (NST)   
 </div>
 
@@ -520,7 +604,7 @@ date: Sat Feb 08 2014 22:38:02 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6e824b7fd5](http://github.com/underscorediscovery/luxe/commit/6e824b7fd59520f60cfd7b09f4b63fe40c47c49b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Feb 08 2014 07:32:12 GMT-0330 (NST)   
 </div>
 
@@ -534,7 +618,7 @@ date: Sat Feb 08 2014 07:32:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [be8ad8f79b](http://github.com/underscorediscovery/luxe/commit/be8ad8f79bdaaac5ad5a0bf22d54105b72e501bc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Feb 08 2014 07:02:09 GMT-0330 (NST)   
 </div>
 
@@ -548,7 +632,7 @@ date: Sat Feb 08 2014 07:02:09 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0709daba7c](http://github.com/underscorediscovery/luxe/commit/0709daba7c6e9a6baa27734668d499f9a82c2300)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Feb 08 2014 05:29:03 GMT-0330 (NST)   
 </div>
 
@@ -562,7 +646,7 @@ date: Sat Feb 08 2014 05:29:03 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2dd61c9ea4](http://github.com/underscorediscovery/luxe/commit/2dd61c9ea428d38b9dd8644c58c3a0f81b9a5ee1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Feb 07 2014 03:42:00 GMT-0330 (NST)   
 </div>
 
@@ -576,7 +660,7 @@ date: Fri Feb 07 2014 03:42:00 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3ac234ffe7](http://github.com/underscorediscovery/luxe/commit/3ac234ffe79214500b12a6b0b103bec997198227)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Feb 06 2014 17:50:37 GMT-0330 (NST)   
 </div>
 
@@ -590,7 +674,7 @@ date: Thu Feb 06 2014 17:50:37 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [dc2ac48f84](http://github.com/underscorediscovery/luxe/commit/dc2ac48f84b2be4d71c10b1b13db532706dd9d4a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Feb 05 2014 12:53:59 GMT-0330 (NST)   
 </div>
 
@@ -604,7 +688,7 @@ date: Wed Feb 05 2014 12:53:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [21c7bbf72a](http://github.com/underscorediscovery/luxe/commit/21c7bbf72aa1588b96facda76702ceee342d6c7b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 03 2014 20:41:23 GMT-0330 (NST)   
 </div>
 
@@ -618,7 +702,7 @@ date: Mon Feb 03 2014 20:41:23 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ac859df664](http://github.com/underscorediscovery/luxe/commit/ac859df664b8fa381b843e24cb81b643e1e11b0d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 03 2014 20:40:58 GMT-0330 (NST)   
 </div>
 
@@ -632,7 +716,7 @@ date: Mon Feb 03 2014 20:40:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f2113bf580](http://github.com/underscorediscovery/luxe/commit/f2113bf580b127c66b5de10e53d4fbad317a5c93)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Feb 03 2014 02:36:10 GMT-0330 (NST)   
 </div>
 
@@ -646,7 +730,7 @@ date: Mon Feb 03 2014 02:36:10 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [20876edd7e](http://github.com/underscorediscovery/luxe/commit/20876edd7e4d2e044b06430aebe57e842ad3f69d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Feb 01 2014 19:09:31 GMT-0330 (NST)   
 </div>
 
@@ -660,7 +744,7 @@ date: Sat Feb 01 2014 19:09:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5e10223154](http://github.com/underscorediscovery/luxe/commit/5e10223154c6e7f5283d605c5e73afbbf4f7be7d)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Feb 01 2014 05:47:06 GMT-0330 (NST)   
 </div>
 
@@ -674,7 +758,7 @@ date: Sat Feb 01 2014 05:47:06 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [56dca6e2dd](http://github.com/underscorediscovery/luxe/commit/56dca6e2dd61b836e0abb2a0f157612786b4bb6c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 30 2014 04:16:43 GMT-0330 (NST)   
 </div>
 
@@ -688,7 +772,7 @@ date: Thu Jan 30 2014 04:16:43 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [50ae1c0fb5](http://github.com/underscorediscovery/luxe/commit/50ae1c0fb55476638b2e30628f0acb8cfdac8711)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 30 2014 04:09:46 GMT-0330 (NST)   
 </div>
 
@@ -702,7 +786,7 @@ date: Thu Jan 30 2014 04:09:46 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [51607ac700](http://github.com/underscorediscovery/luxe/commit/51607ac7008666d21efe8b46d9fcf32fd3df6af6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 30 2014 04:02:52 GMT-0330 (NST)   
 </div>
 
@@ -716,7 +800,7 @@ date: Thu Jan 30 2014 04:02:52 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [95f0ec57f3](http://github.com/underscorediscovery/luxe/commit/95f0ec57f31cc6d650831b3efd25a3aa08f9084e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 30 2014 00:34:38 GMT-0330 (NST)   
 </div>
 
@@ -730,7 +814,7 @@ date: Thu Jan 30 2014 00:34:38 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ed3797702d](http://github.com/underscorediscovery/luxe/commit/ed3797702deb290927a9920db6601239add89402)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 30 2014 00:32:39 GMT-0330 (NST)   
 </div>
 
@@ -744,7 +828,7 @@ date: Thu Jan 30 2014 00:32:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [52f9197aa5](http://github.com/underscorediscovery/luxe/commit/52f9197aa5a5987c3d0c94937cc26f005370e868)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 30 2014 00:32:23 GMT-0330 (NST)   
 </div>
 
@@ -758,7 +842,7 @@ date: Thu Jan 30 2014 00:32:23 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6e1c4dfcfb](http://github.com/underscorediscovery/luxe/commit/6e1c4dfcfb81acc23357e35ff0fac7a7c4f8a90b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 29 2014 23:38:58 GMT-0330 (NST)   
 </div>
 
@@ -772,7 +856,7 @@ date: Wed Jan 29 2014 23:38:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [71ef9fdb4e](http://github.com/underscorediscovery/luxe/commit/71ef9fdb4e85d0122cc59bc5eda74f469d09be3a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 29 2014 23:33:50 GMT-0330 (NST)   
 </div>
 
@@ -786,7 +870,7 @@ date: Wed Jan 29 2014 23:33:50 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [99f42878f0](http://github.com/underscorediscovery/luxe/commit/99f42878f063cdb9a433b0e5ca85cad91d13f5b7)   
-author: Kristian Brodal <kristianbrodal@gmail.com>   
+author: Kristian Brodal   
 date: Wed Jan 29 2014 23:17:59 GMT-0330 (NST)   
 </div>
 
@@ -800,7 +884,7 @@ date: Wed Jan 29 2014 23:17:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [4943f4165d](http://github.com/underscorediscovery/luxe/commit/4943f4165dccced21e77a878c72a13f4978c15a8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 29 2014 22:26:24 GMT-0330 (NST)   
 </div>
 
@@ -814,7 +898,7 @@ date: Wed Jan 29 2014 22:26:24 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [04cdf39752](http://github.com/underscorediscovery/luxe/commit/04cdf39752ff58ee2e236520347ad61b20232b38)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 29 2014 16:48:58 GMT-0330 (NST)   
 </div>
 
@@ -828,7 +912,7 @@ date: Wed Jan 29 2014 16:48:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6887d8ef79](http://github.com/underscorediscovery/luxe/commit/6887d8ef79343dd48fa15dec33397406afdcbc9f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 29 2014 16:48:32 GMT-0330 (NST)   
 </div>
 
@@ -842,7 +926,7 @@ date: Wed Jan 29 2014 16:48:32 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a35854756b](http://github.com/underscorediscovery/luxe/commit/a35854756bf193414ee2e09599a51e53fdda0ed1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 29 2014 16:40:57 GMT-0330 (NST)   
 </div>
 
@@ -856,7 +940,7 @@ date: Wed Jan 29 2014 16:40:57 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [66dedb203d](http://github.com/underscorediscovery/luxe/commit/66dedb203d2feb7ba8ff7d854d79979241435531)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 28 2014 03:56:40 GMT-0330 (NST)   
 </div>
 
@@ -870,7 +954,7 @@ date: Tue Jan 28 2014 03:56:40 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1b136ee9f7](http://github.com/underscorediscovery/luxe/commit/1b136ee9f7779db0f243f0b877ca368b1f55a5fa)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 28 2014 03:56:24 GMT-0330 (NST)   
 </div>
 
@@ -884,7 +968,7 @@ date: Tue Jan 28 2014 03:56:24 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [933539a1e8](http://github.com/underscorediscovery/luxe/commit/933539a1e8586e33dbf7f0ced7d6bd10677f9722)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 28 2014 03:14:53 GMT-0330 (NST)   
 </div>
 
@@ -898,7 +982,7 @@ date: Tue Jan 28 2014 03:14:53 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [63ce2b93c6](http://github.com/underscorediscovery/luxe/commit/63ce2b93c67d24cf438b80b939dad2bae81b188a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 28 2014 03:13:41 GMT-0330 (NST)   
 </div>
 
@@ -912,7 +996,7 @@ date: Tue Jan 28 2014 03:13:41 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1d9eead67e](http://github.com/underscorediscovery/luxe/commit/1d9eead67eb2fc1a18f4b5183006a44cdbff302c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 27 2014 23:28:53 GMT-0330 (NST)   
 </div>
 
@@ -926,7 +1010,7 @@ date: Mon Jan 27 2014 23:28:53 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c2e8bbddbf](http://github.com/underscorediscovery/luxe/commit/c2e8bbddbf1b0a2760ca3f37285db32f6d0c716a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 22:05:13 GMT-0330 (NST)   
 </div>
 
@@ -940,7 +1024,7 @@ date: Sun Jan 26 2014 22:05:13 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3eb3e42b61](http://github.com/underscorediscovery/luxe/commit/3eb3e42b610e6a9b52d8145eb3f2abc3dc4ba7a6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 22:04:53 GMT-0330 (NST)   
 </div>
 
@@ -954,7 +1038,7 @@ date: Sun Jan 26 2014 22:04:53 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [09f4f20322](http://github.com/underscorediscovery/luxe/commit/09f4f203223495ba9c3ae5b535e9262642c234d2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 21:53:47 GMT-0330 (NST)   
 </div>
 
@@ -968,7 +1052,7 @@ date: Sun Jan 26 2014 21:53:47 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [df9c7367da](http://github.com/underscorediscovery/luxe/commit/df9c7367da153d820da533484179b44a143dfffb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 19:42:21 GMT-0330 (NST)   
 </div>
 
@@ -982,7 +1066,7 @@ date: Sun Jan 26 2014 19:42:21 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2ca51cbfaf](http://github.com/underscorediscovery/luxe/commit/2ca51cbfafb40b354c07b4fd5360d13fd1bec7ae)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 19:41:00 GMT-0330 (NST)   
 </div>
 
@@ -996,7 +1080,7 @@ date: Sun Jan 26 2014 19:41:00 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [dba6a37960](http://github.com/underscorediscovery/luxe/commit/dba6a37960a02fd244e039ea38de530614f87576)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 06:14:08 GMT-0330 (NST)   
 </div>
 
@@ -1010,7 +1094,7 @@ date: Sun Jan 26 2014 06:14:08 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [86053b236a](http://github.com/underscorediscovery/luxe/commit/86053b236a7d1bb2afd72c8c8b6de0763dcad943)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 06:13:46 GMT-0330 (NST)   
 </div>
 
@@ -1024,7 +1108,7 @@ date: Sun Jan 26 2014 06:13:46 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [da0bac6aa8](http://github.com/underscorediscovery/luxe/commit/da0bac6aa8381b50daeaf1ec819c873581be2dff)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 26 2014 03:34:25 GMT-0330 (NST)   
 </div>
 
@@ -1038,7 +1122,7 @@ date: Sun Jan 26 2014 03:34:25 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5eb4902e61](http://github.com/underscorediscovery/luxe/commit/5eb4902e616d36bd696c0a11323fcb9c7b812b24)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 23:11:17 GMT-0330 (NST)   
 </div>
 
@@ -1052,7 +1136,7 @@ date: Sat Jan 25 2014 23:11:17 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1b36f7515e](http://github.com/underscorediscovery/luxe/commit/1b36f7515e6a42ba01e2e25302dddc5cad9ba7f2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 23:04:06 GMT-0330 (NST)   
 </div>
 
@@ -1066,7 +1150,7 @@ date: Sat Jan 25 2014 23:04:06 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a944e36e9d](http://github.com/underscorediscovery/luxe/commit/a944e36e9d0936b2f125dd9c6977af5efe6a1f3f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 21:43:07 GMT-0330 (NST)   
 </div>
 
@@ -1080,7 +1164,7 @@ date: Sat Jan 25 2014 21:43:07 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [bdfb5a58e8](http://github.com/underscorediscovery/luxe/commit/bdfb5a58e8be53dc6457007b08330045467b6314)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 21:38:31 GMT-0330 (NST)   
 </div>
 
@@ -1094,7 +1178,7 @@ date: Sat Jan 25 2014 21:38:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [cbeb39f996](http://github.com/underscorediscovery/luxe/commit/cbeb39f99635d48d8ad015edcf3435489d1eee25)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 18:03:11 GMT-0330 (NST)   
 </div>
 
@@ -1108,7 +1192,7 @@ date: Sat Jan 25 2014 18:03:11 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f6dde1d121](http://github.com/underscorediscovery/luxe/commit/f6dde1d1219f7df5950a033480352a9b78338568)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 18:02:36 GMT-0330 (NST)   
 </div>
 
@@ -1122,7 +1206,7 @@ date: Sat Jan 25 2014 18:02:36 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [49953ec13a](http://github.com/underscorediscovery/luxe/commit/49953ec13ae99cf5ec3250e748a9444c330c4441)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 01:16:54 GMT-0330 (NST)   
 </div>
 
@@ -1136,7 +1220,7 @@ date: Sat Jan 25 2014 01:16:54 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [4375030ea2](http://github.com/underscorediscovery/luxe/commit/4375030ea2706e8f4fe979934c5376d5cade1174)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 25 2014 00:41:50 GMT-0330 (NST)   
 </div>
 
@@ -1150,7 +1234,7 @@ date: Sat Jan 25 2014 00:41:50 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [fb3869b3bf](http://github.com/underscorediscovery/luxe/commit/fb3869b3bf73b99a91b30d81085652e7999b4709)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 23:16:56 GMT-0330 (NST)   
 </div>
 
@@ -1164,7 +1248,7 @@ date: Fri Jan 24 2014 23:16:56 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [fbc0204e96](http://github.com/underscorediscovery/luxe/commit/fbc0204e96ff224f6f42d3c7f24c644bfff66dd8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 23:16:39 GMT-0330 (NST)   
 </div>
 
@@ -1178,7 +1262,7 @@ date: Fri Jan 24 2014 23:16:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6b1e51206a](http://github.com/underscorediscovery/luxe/commit/6b1e51206adcd95633ac04d90bb12d97b2108ec5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 14:24:26 GMT-0330 (NST)   
 </div>
 
@@ -1192,7 +1276,7 @@ date: Fri Jan 24 2014 14:24:26 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1a76012244](http://github.com/underscorediscovery/luxe/commit/1a76012244f04c7480dbc0151d20b602feb2265b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 13:51:19 GMT-0330 (NST)   
 </div>
 
@@ -1206,7 +1290,7 @@ date: Fri Jan 24 2014 13:51:19 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [eb58e384a9](http://github.com/underscorediscovery/luxe/commit/eb58e384a9edfc92ce7bd52cb84917dcc7e8d3d4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 13:48:43 GMT-0330 (NST)   
 </div>
 
@@ -1220,7 +1304,7 @@ date: Fri Jan 24 2014 13:48:43 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [03258cda88](http://github.com/underscorediscovery/luxe/commit/03258cda88c205236020284a4e73cb04a1429dd5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 12:48:04 GMT-0330 (NST)   
 </div>
 
@@ -1234,7 +1318,7 @@ date: Fri Jan 24 2014 12:48:04 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6344531728](http://github.com/underscorediscovery/luxe/commit/6344531728289ca90993ab6179e9a68d076047a6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 12:45:10 GMT-0330 (NST)   
 </div>
 
@@ -1248,7 +1332,7 @@ date: Fri Jan 24 2014 12:45:10 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ad9b503bd1](http://github.com/underscorediscovery/luxe/commit/ad9b503bd191695dd5558670446df39249c9cd1e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 12:16:29 GMT-0330 (NST)   
 </div>
 
@@ -1262,7 +1346,7 @@ date: Fri Jan 24 2014 12:16:29 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1f61361807](http://github.com/underscorediscovery/luxe/commit/1f61361807c92c788c226ba8e4f9dd8752a32d99)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 12:01:47 GMT-0330 (NST)   
 </div>
 
@@ -1276,7 +1360,7 @@ date: Fri Jan 24 2014 12:01:47 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d113797358](http://github.com/underscorediscovery/luxe/commit/d113797358a8f1a4e7da333a4c7bffde0b87b2b0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 24 2014 12:01:47 GMT-0330 (NST)   
 </div>
 
@@ -1290,7 +1374,7 @@ date: Fri Jan 24 2014 12:01:47 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c17734b58b](http://github.com/underscorediscovery/luxe/commit/c17734b58bbb952fbc00d2050a765ab503bd1a77)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Fri Jan 24 2014 11:58:14 GMT-0330 (NST)   
 </div>
 
@@ -1304,7 +1388,7 @@ date: Fri Jan 24 2014 11:58:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [455a57fc53](http://github.com/underscorediscovery/luxe/commit/455a57fc53f400e4a48fdc83ecb02befe224d01e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 23 2014 04:41:59 GMT-0330 (NST)   
 </div>
 
@@ -1318,7 +1402,7 @@ date: Thu Jan 23 2014 04:41:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [4e0e0f1098](http://github.com/underscorediscovery/luxe/commit/4e0e0f1098f42f03d12a110ec87113cae73ccfcc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 23 2014 03:08:32 GMT-0330 (NST)   
 </div>
 
@@ -1332,7 +1416,7 @@ date: Thu Jan 23 2014 03:08:32 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a264117ae1](http://github.com/underscorediscovery/luxe/commit/a264117ae1543c18ae78cb5d440fc0cee911769d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 23 2014 03:03:46 GMT-0330 (NST)   
 </div>
 
@@ -1346,7 +1430,7 @@ date: Thu Jan 23 2014 03:03:46 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2ea9c0cfe9](http://github.com/underscorediscovery/luxe/commit/2ea9c0cfe954b5d10c7e2fc1e600029a902a11cc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jan 23 2014 03:02:28 GMT-0330 (NST)   
 </div>
 
@@ -1360,7 +1444,7 @@ date: Thu Jan 23 2014 03:02:28 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [112e7fcbfb](http://github.com/underscorediscovery/luxe/commit/112e7fcbfb92e326a9c0008253287d7d759ca86c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 22:29:33 GMT-0330 (NST)   
 </div>
 
@@ -1374,7 +1458,7 @@ date: Wed Jan 22 2014 22:29:33 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [25e03b627a](http://github.com/underscorediscovery/luxe/commit/25e03b627a92a8bdd7850d2cdaabaaaed6d1e9a8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 16:29:53 GMT-0330 (NST)   
 </div>
 
@@ -1388,7 +1472,7 @@ date: Wed Jan 22 2014 16:29:53 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e7238f365d](http://github.com/underscorediscovery/luxe/commit/e7238f365df5b5520fd0fbcdf87e9bf6e515ae45)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 16:29:39 GMT-0330 (NST)   
 </div>
 
@@ -1402,7 +1486,7 @@ date: Wed Jan 22 2014 16:29:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [88d01d71f7](http://github.com/underscorediscovery/luxe/commit/88d01d71f7ac4440e70c8130571466794662a157)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 16:06:29 GMT-0330 (NST)   
 </div>
 
@@ -1416,7 +1500,7 @@ date: Wed Jan 22 2014 16:06:29 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [479ecc53fb](http://github.com/underscorediscovery/luxe/commit/479ecc53fbf8bcf87da06d3b02d88a0de605f5aa)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 14:42:53 GMT-0330 (NST)   
 </div>
 
@@ -1430,7 +1514,7 @@ date: Wed Jan 22 2014 14:42:53 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [553d45646f](http://github.com/underscorediscovery/luxe/commit/553d45646f27e4c72003c686d74670b5c91bbd4b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 14:17:30 GMT-0330 (NST)   
 </div>
 
@@ -1444,7 +1528,7 @@ date: Wed Jan 22 2014 14:17:30 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [cd1938697a](http://github.com/underscorediscovery/luxe/commit/cd1938697a2154e0ce7518c4a29e36256a8ddd28)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 02:32:37 GMT-0330 (NST)   
 </div>
 
@@ -1458,7 +1542,7 @@ date: Wed Jan 22 2014 02:32:37 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0a12a32946](http://github.com/underscorediscovery/luxe/commit/0a12a32946f3694daa8393f058f35da979bbad3a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 02:32:08 GMT-0330 (NST)   
 </div>
 
@@ -1472,7 +1556,7 @@ date: Wed Jan 22 2014 02:32:08 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f92b4202d3](http://github.com/underscorediscovery/luxe/commit/f92b4202d3557c01b87c6dee918b148e2ce443a1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 01:29:51 GMT-0330 (NST)   
 </div>
 
@@ -1486,7 +1570,7 @@ date: Wed Jan 22 2014 01:29:51 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5ef13172b8](http://github.com/underscorediscovery/luxe/commit/5ef13172b842c1e6f91721f51a527d264145c488)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 01:08:55 GMT-0330 (NST)   
 </div>
 
@@ -1500,7 +1584,7 @@ date: Wed Jan 22 2014 01:08:55 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [96bf65cdbd](http://github.com/underscorediscovery/luxe/commit/96bf65cdbdc007b97ba7a7b5f0b98e8fc99c0192)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 00:31:57 GMT-0330 (NST)   
 </div>
 
@@ -1514,7 +1598,7 @@ date: Wed Jan 22 2014 00:31:57 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b53b506d4b](http://github.com/underscorediscovery/luxe/commit/b53b506d4b350bf4780ae14a21a42338d260a6db)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jan 22 2014 00:26:59 GMT-0330 (NST)   
 </div>
 
@@ -1528,7 +1612,7 @@ date: Wed Jan 22 2014 00:26:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [8906e9e020](http://github.com/underscorediscovery/luxe/commit/8906e9e020c3b14dae131a4d46af3b6cec4ab40f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 21:36:16 GMT-0330 (NST)   
 </div>
 
@@ -1542,7 +1626,7 @@ date: Tue Jan 21 2014 21:36:16 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [446075cbce](http://github.com/underscorediscovery/luxe/commit/446075cbced294b64da0471ccbf8037cc2b234a3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 21:35:37 GMT-0330 (NST)   
 </div>
 
@@ -1556,7 +1640,7 @@ date: Tue Jan 21 2014 21:35:37 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d308e9e6b3](http://github.com/underscorediscovery/luxe/commit/d308e9e6b32804e83b8308357a56b661ef11f74a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 21:32:14 GMT-0330 (NST)   
 </div>
 
@@ -1570,7 +1654,7 @@ date: Tue Jan 21 2014 21:32:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ec9ee1701a](http://github.com/underscorediscovery/luxe/commit/ec9ee1701a51d03fee9f2a648996602953c1aa14)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 21:30:32 GMT-0330 (NST)   
 </div>
 
@@ -1584,7 +1668,7 @@ date: Tue Jan 21 2014 21:30:32 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [be059a10c2](http://github.com/underscorediscovery/luxe/commit/be059a10c24c29a85f5d8b836c73349183182020)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 21:30:00 GMT-0330 (NST)   
 </div>
 
@@ -1598,7 +1682,7 @@ date: Tue Jan 21 2014 21:30:00 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a5d8fe8b20](http://github.com/underscorediscovery/luxe/commit/a5d8fe8b20ced394f9edfd4d8272aa2c31e5cf15)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 04:02:52 GMT-0330 (NST)   
 </div>
 
@@ -1612,7 +1696,7 @@ date: Tue Jan 21 2014 04:02:52 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [044dc67d70](http://github.com/underscorediscovery/luxe/commit/044dc67d70860890f3e78baf574da6a3c5a10f5e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 03:46:02 GMT-0330 (NST)   
 </div>
 
@@ -1626,7 +1710,7 @@ date: Tue Jan 21 2014 03:46:02 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [39e46813c5](http://github.com/underscorediscovery/luxe/commit/39e46813c51f895e1b0dfda5b4af0d4dce4a77d7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 03:32:00 GMT-0330 (NST)   
 </div>
 
@@ -1640,7 +1724,7 @@ date: Tue Jan 21 2014 03:32:00 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [578ac1bb1e](http://github.com/underscorediscovery/luxe/commit/578ac1bb1e2bc9ba6695c85154c94c4b903ef37a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 03:16:20 GMT-0330 (NST)   
 </div>
 
@@ -1654,7 +1738,7 @@ date: Tue Jan 21 2014 03:16:20 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [87c32a0535](http://github.com/underscorediscovery/luxe/commit/87c32a0535c8db25ffd632fb0f8769e9ae5e93a3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jan 21 2014 02:11:45 GMT-0330 (NST)   
 </div>
 
@@ -1668,7 +1752,7 @@ date: Tue Jan 21 2014 02:11:45 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [99210a17ce](http://github.com/underscorediscovery/luxe/commit/99210a17ce9a1da928f62bf9cecec5dff250a66a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 22:39:57 GMT-0330 (NST)   
 </div>
 
@@ -1682,7 +1766,7 @@ date: Mon Jan 20 2014 22:39:57 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [8197c305a0](http://github.com/underscorediscovery/luxe/commit/8197c305a0c4672752763f816f381adf57e7d5c5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 21:59:41 GMT-0330 (NST)   
 </div>
 
@@ -1696,7 +1780,7 @@ date: Mon Jan 20 2014 21:59:41 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d33223b271](http://github.com/underscorediscovery/luxe/commit/d33223b2719f4329c08dbd58e8fa8aceadfb0810)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 21:55:25 GMT-0330 (NST)   
 </div>
 
@@ -1710,7 +1794,7 @@ date: Mon Jan 20 2014 21:55:25 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [7656655fbf](http://github.com/underscorediscovery/luxe/commit/7656655fbfcc8ba0e36e33efd8291e583d512ad9)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 19:40:58 GMT-0330 (NST)   
 </div>
 
@@ -1724,7 +1808,7 @@ date: Mon Jan 20 2014 19:40:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [be902ad0de](http://github.com/underscorediscovery/luxe/commit/be902ad0de27581691ca30ffee52c61216e4d426)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 18:11:05 GMT-0330 (NST)   
 </div>
 
@@ -1738,7 +1822,7 @@ date: Mon Jan 20 2014 18:11:05 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a2d9718264](http://github.com/underscorediscovery/luxe/commit/a2d97182640fcc02c6187de779af147d618d7dea)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 18:07:47 GMT-0330 (NST)   
 </div>
 
@@ -1752,7 +1836,7 @@ date: Mon Jan 20 2014 18:07:47 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a8762a80ff](http://github.com/underscorediscovery/luxe/commit/a8762a80ff6d0c919e8c48e023f5c4756c280d1d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 08:54:01 GMT-0330 (NST)   
 </div>
 
@@ -1766,7 +1850,7 @@ date: Mon Jan 20 2014 08:54:01 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f5ca4fb48e](http://github.com/underscorediscovery/luxe/commit/f5ca4fb48ed64652c292af6486658c4e557807f2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 08:52:27 GMT-0330 (NST)   
 </div>
 
@@ -1780,7 +1864,7 @@ date: Mon Jan 20 2014 08:52:27 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0cb07e5eae](http://github.com/underscorediscovery/luxe/commit/0cb07e5eaeefe3fe3c3489f0ddead755abbaf6f8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 07:46:39 GMT-0330 (NST)   
 </div>
 
@@ -1794,7 +1878,7 @@ date: Mon Jan 20 2014 07:46:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c0346184ea](http://github.com/underscorediscovery/luxe/commit/c0346184eafcbed532d1a8fe2b6668c4ebdd7804)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 05:52:41 GMT-0330 (NST)   
 </div>
 
@@ -1808,7 +1892,7 @@ date: Mon Jan 20 2014 05:52:41 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c5c5be16b7](http://github.com/underscorediscovery/luxe/commit/c5c5be16b78da3f0d0e68ee015490f17ad5dfc4d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 05:50:58 GMT-0330 (NST)   
 </div>
 
@@ -1822,7 +1906,7 @@ date: Mon Jan 20 2014 05:50:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5b6f1312f9](http://github.com/underscorediscovery/luxe/commit/5b6f1312f9dfc332375eea7798e3f542569f6cde)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 05:49:26 GMT-0330 (NST)   
 </div>
 
@@ -1836,7 +1920,7 @@ date: Mon Jan 20 2014 05:49:26 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [49491e5aa8](http://github.com/underscorediscovery/luxe/commit/49491e5aa800d044d50bda776d3b1b205a9989df)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 04:59:24 GMT-0330 (NST)   
 </div>
 
@@ -1850,7 +1934,7 @@ date: Mon Jan 20 2014 04:59:24 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [776b48d808](http://github.com/underscorediscovery/luxe/commit/776b48d808156f9d2eff2824a70ce749736ac4ae)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 04:38:48 GMT-0330 (NST)   
 </div>
 
@@ -1864,7 +1948,7 @@ date: Mon Jan 20 2014 04:38:48 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ae6633d841](http://github.com/underscorediscovery/luxe/commit/ae6633d8414d4fc735b2da3627c056fdfc32108c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 04:33:15 GMT-0330 (NST)   
 </div>
 
@@ -1878,7 +1962,7 @@ date: Mon Jan 20 2014 04:33:15 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0e2db64624](http://github.com/underscorediscovery/luxe/commit/0e2db6462470a361705aef3e6fae8d7e2dacfbd3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 04:30:11 GMT-0330 (NST)   
 </div>
 
@@ -1892,7 +1976,7 @@ date: Mon Jan 20 2014 04:30:11 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0ca4c8ca61](http://github.com/underscorediscovery/luxe/commit/0ca4c8ca61d1f062663292f3e8d868782e97caa9)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 04:29:55 GMT-0330 (NST)   
 </div>
 
@@ -1906,7 +1990,7 @@ date: Mon Jan 20 2014 04:29:55 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f64f107e06](http://github.com/underscorediscovery/luxe/commit/f64f107e0644026cf68f399e9d870b8fa631d4ef)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 02:47:58 GMT-0330 (NST)   
 </div>
 
@@ -1920,7 +2004,7 @@ date: Mon Jan 20 2014 02:47:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [402a1427a0](http://github.com/underscorediscovery/luxe/commit/402a1427a0f24062f3e7edaa15f44e0f861658de)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 20 2014 02:47:12 GMT-0330 (NST)   
 </div>
 
@@ -1934,7 +2018,7 @@ date: Mon Jan 20 2014 02:47:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [109c799819](http://github.com/underscorediscovery/luxe/commit/109c79981992bfbbb3e43469ba97eaf273f5637f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 16:27:31 GMT-0330 (NST)   
 </div>
 
@@ -1948,7 +2032,7 @@ date: Sun Jan 19 2014 16:27:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [841e97de72](http://github.com/underscorediscovery/luxe/commit/841e97de72d62e99d992ccbf4828ece1536e849c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 16:26:58 GMT-0330 (NST)   
 </div>
 
@@ -1962,7 +2046,7 @@ date: Sun Jan 19 2014 16:26:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [76e6250676](http://github.com/underscorediscovery/luxe/commit/76e6250676c19981fde43517e52ebd8a69418060)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 15:17:25 GMT-0330 (NST)   
 </div>
 
@@ -1976,7 +2060,7 @@ date: Sun Jan 19 2014 15:17:25 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [973824bef0](http://github.com/underscorediscovery/luxe/commit/973824bef0428cb092edcab120fcbdf681b6d983)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 15:04:55 GMT-0330 (NST)   
 </div>
 
@@ -1990,7 +2074,7 @@ date: Sun Jan 19 2014 15:04:55 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [086eb3aec4](http://github.com/underscorediscovery/luxe/commit/086eb3aec4016ac9244ee551ef0f17e03060591f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 02:42:03 GMT-0330 (NST)   
 </div>
 
@@ -2004,7 +2088,7 @@ date: Sun Jan 19 2014 02:42:03 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [be97f9bf35](http://github.com/underscorediscovery/luxe/commit/be97f9bf35b922888429ba2e90296e195d4971de)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 02:41:32 GMT-0330 (NST)   
 </div>
 
@@ -2018,7 +2102,7 @@ date: Sun Jan 19 2014 02:41:32 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [31093c35f7](http://github.com/underscorediscovery/luxe/commit/31093c35f700c05509770e68adb31ba95c5aafa6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 01:05:42 GMT-0330 (NST)   
 </div>
 
@@ -2032,7 +2116,7 @@ date: Sun Jan 19 2014 01:05:42 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c945ec019f](http://github.com/underscorediscovery/luxe/commit/c945ec019f3d10a6f8c972ecdc96126b6c8a35de)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jan 19 2014 01:05:14 GMT-0330 (NST)   
 </div>
 
@@ -2046,7 +2130,7 @@ date: Sun Jan 19 2014 01:05:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [15cee3b0aa](http://github.com/underscorediscovery/luxe/commit/15cee3b0aad785e1368dec05dda9b8d118ab8a19)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 21:14:37 GMT-0330 (NST)   
 </div>
 
@@ -2060,7 +2144,7 @@ date: Sat Jan 18 2014 21:14:37 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1680c7f1bd](http://github.com/underscorediscovery/luxe/commit/1680c7f1bd854f775b944b417e36570105f5b290)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 20:22:13 GMT-0330 (NST)   
 </div>
 
@@ -2074,7 +2158,7 @@ date: Sat Jan 18 2014 20:22:13 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5ba7a98ed0](http://github.com/underscorediscovery/luxe/commit/5ba7a98ed08ed06f5959e5981f942b8c24816b88)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 20:21:44 GMT-0330 (NST)   
 </div>
 
@@ -2088,7 +2172,7 @@ date: Sat Jan 18 2014 20:21:44 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [61d97f4f9a](http://github.com/underscorediscovery/luxe/commit/61d97f4f9a141c0744329eb4491afd3143cc3622)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 19:14:33 GMT-0330 (NST)   
 </div>
 
@@ -2102,7 +2186,7 @@ date: Sat Jan 18 2014 19:14:33 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [760ba6b9e1](http://github.com/underscorediscovery/luxe/commit/760ba6b9e1edcefd5a47381bd72bc86ac2c2954f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 19:11:40 GMT-0330 (NST)   
 </div>
 
@@ -2116,7 +2200,7 @@ date: Sat Jan 18 2014 19:11:40 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2e0fc098de](http://github.com/underscorediscovery/luxe/commit/2e0fc098de5becc693da0ace1143ca1d98ae6b54)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 17:41:44 GMT-0330 (NST)   
 </div>
 
@@ -2130,7 +2214,7 @@ date: Sat Jan 18 2014 17:41:44 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [de45a0b23e](http://github.com/underscorediscovery/luxe/commit/de45a0b23e952aba70bc7a6d24c9ccb217ed2e31)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 17:38:54 GMT-0330 (NST)   
 </div>
 
@@ -2144,7 +2228,7 @@ date: Sat Jan 18 2014 17:38:54 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [77e8c5a992](http://github.com/underscorediscovery/luxe/commit/77e8c5a9922d70892209b594804d8ff2aa582e80)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 17:38:27 GMT-0330 (NST)   
 </div>
 
@@ -2158,7 +2242,7 @@ date: Sat Jan 18 2014 17:38:27 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d19ca74afa](http://github.com/underscorediscovery/luxe/commit/d19ca74afa4a194f64f381522ffd1afd97f585b8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 15:13:13 GMT-0330 (NST)   
 </div>
 
@@ -2172,7 +2256,7 @@ date: Sat Jan 18 2014 15:13:13 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [41d85e4dc1](http://github.com/underscorediscovery/luxe/commit/41d85e4dc1fcdae2fccccd4e7bf724747145b690)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 02:43:26 GMT-0330 (NST)   
 </div>
 
@@ -2186,7 +2270,7 @@ date: Sat Jan 18 2014 02:43:26 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c5f8ad918a](http://github.com/underscorediscovery/luxe/commit/c5f8ad918a912804a839aa8adc8a0f6c9cbbbea6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 02:39:17 GMT-0330 (NST)   
 </div>
 
@@ -2200,7 +2284,7 @@ date: Sat Jan 18 2014 02:39:17 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [caf9e0c7dc](http://github.com/underscorediscovery/luxe/commit/caf9e0c7dc6dea62fd1e2ea9d7e4c0814a777b78)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 18 2014 01:01:54 GMT-0330 (NST)   
 </div>
 
@@ -2214,7 +2298,7 @@ date: Sat Jan 18 2014 01:01:54 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3749171b58](http://github.com/underscorediscovery/luxe/commit/3749171b58d6bc3a7f84a77636b88153a914cc7a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 23:17:12 GMT-0330 (NST)   
 </div>
 
@@ -2228,7 +2312,7 @@ date: Fri Jan 17 2014 23:17:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ab0b1d9146](http://github.com/underscorediscovery/luxe/commit/ab0b1d9146f517314a1f66c0f417c7b7211a7980)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 23:15:12 GMT-0330 (NST)   
 </div>
 
@@ -2242,7 +2326,7 @@ date: Fri Jan 17 2014 23:15:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ea4139ce8b](http://github.com/underscorediscovery/luxe/commit/ea4139ce8b216d33055b226a5c9b0db1dfb4953a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 23:15:03 GMT-0330 (NST)   
 </div>
 
@@ -2256,7 +2340,7 @@ date: Fri Jan 17 2014 23:15:03 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [29c93cdcf6](http://github.com/underscorediscovery/luxe/commit/29c93cdcf6ff15fd697e9115ec557a7b05f7038d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 13:07:41 GMT-0330 (NST)   
 </div>
 
@@ -2270,7 +2354,7 @@ date: Fri Jan 17 2014 13:07:41 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [25afd1c51b](http://github.com/underscorediscovery/luxe/commit/25afd1c51b7bde616747eef860cecb9d81a6b598)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)   
 </div>
 
@@ -2284,7 +2368,7 @@ date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [322e455b10](http://github.com/underscorediscovery/luxe/commit/322e455b104904d77563d6311728d69679993a20)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)   
 </div>
 
@@ -2298,7 +2382,7 @@ date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2bd7c6a27d](http://github.com/underscorediscovery/luxe/commit/2bd7c6a27d8a62e906bee381be61ef1a80107123)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)   
 </div>
 
@@ -2312,7 +2396,7 @@ date: Fri Jan 17 2014 12:57:50 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6c6a9e268c](http://github.com/underscorediscovery/luxe/commit/6c6a9e268cbc2f7ddeae8f21718670181472c85a)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Tue Jan 14 2014 19:13:08 GMT-0330 (NST)   
 </div>
 
@@ -2326,7 +2410,7 @@ date: Tue Jan 14 2014 19:13:08 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6ab1cc961d](http://github.com/underscorediscovery/luxe/commit/6ab1cc961db1ea7ad86ff3636ffcde7017884f02)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Tue Jan 14 2014 19:12:30 GMT-0330 (NST)   
 </div>
 
@@ -2340,7 +2424,7 @@ date: Tue Jan 14 2014 19:12:30 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [65a5d8eb08](http://github.com/underscorediscovery/luxe/commit/65a5d8eb082520b62fb9cb7b314fd9716010bf04)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jan 13 2014 22:39:34 GMT-0330 (NST)   
 </div>
 
@@ -2354,7 +2438,7 @@ date: Mon Jan 13 2014 22:39:34 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a8b7b9b39a](http://github.com/underscorediscovery/luxe/commit/a8b7b9b39a7cb7f2e9f907c90bd29329da9e3e66)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 11 2014 02:46:49 GMT-0330 (NST)   
 </div>
 
@@ -2368,7 +2452,7 @@ date: Sat Jan 11 2014 02:46:49 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2fc9c286c8](http://github.com/underscorediscovery/luxe/commit/2fc9c286c8221cb72de3828888723ced00f6d604)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 11 2014 02:37:22 GMT-0330 (NST)   
 </div>
 
@@ -2382,7 +2466,7 @@ date: Sat Jan 11 2014 02:37:22 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e4de3ba2bd](http://github.com/underscorediscovery/luxe/commit/e4de3ba2bda3e5e133d17494e4f9ac4442863067)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jan 11 2014 02:34:28 GMT-0330 (NST)   
 </div>
 
@@ -2396,7 +2480,7 @@ date: Sat Jan 11 2014 02:34:28 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d077f0615c](http://github.com/underscorediscovery/luxe/commit/d077f0615cad0e9bc1e4bfcf2f2d5505d7b797ba)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 29 2013 05:15:58 GMT-0330 (NST)   
 </div>
 
@@ -2410,7 +2494,7 @@ date: Sun Dec 29 2013 05:15:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f8cac39c78](http://github.com/underscorediscovery/luxe/commit/f8cac39c789ca42fdcd24979faa18184963e15c4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 29 2013 04:24:23 GMT-0330 (NST)   
 </div>
 
@@ -2424,7 +2508,7 @@ date: Sun Dec 29 2013 04:24:23 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [016a4b10f7](http://github.com/underscorediscovery/luxe/commit/016a4b10f77b3cd390b64d1ef270ca5a477bfdee)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 29 2013 04:23:54 GMT-0330 (NST)   
 </div>
 
@@ -2438,7 +2522,7 @@ date: Sun Dec 29 2013 04:23:54 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9fcf396aa7](http://github.com/underscorediscovery/luxe/commit/9fcf396aa734c5b09b5fe2a633b847571b7b0578)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 27 2013 21:55:33 GMT-0330 (NST)   
 </div>
 
@@ -2452,7 +2536,7 @@ date: Fri Dec 27 2013 21:55:33 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c169e54ef6](http://github.com/underscorediscovery/luxe/commit/c169e54ef62143aae23f134a329260e85f24c448)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 27 2013 01:31:39 GMT-0330 (NST)   
 </div>
 
@@ -2466,7 +2550,7 @@ date: Fri Dec 27 2013 01:31:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e1fa7b0a1c](http://github.com/underscorediscovery/luxe/commit/e1fa7b0a1c7e87b19e4009c6e8601157090b3c45)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 27 2013 00:32:35 GMT-0330 (NST)   
 </div>
 
@@ -2480,7 +2564,7 @@ date: Fri Dec 27 2013 00:32:35 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [76292f4524](http://github.com/underscorediscovery/luxe/commit/76292f4524172ee2022b0c6580b094f5629e09bb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 26 2013 21:58:46 GMT-0330 (NST)   
 </div>
 
@@ -2494,7 +2578,7 @@ date: Thu Dec 26 2013 21:58:46 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [dee203a87f](http://github.com/underscorediscovery/luxe/commit/dee203a87f0464de8252066bc09d19937fd119d0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 26 2013 21:42:22 GMT-0330 (NST)   
 </div>
 
@@ -2508,7 +2592,7 @@ date: Thu Dec 26 2013 21:42:22 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2c0227b6a0](http://github.com/underscorediscovery/luxe/commit/2c0227b6a0847d811774e7677bc273ffd7f664f2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 26 2013 21:42:06 GMT-0330 (NST)   
 </div>
 
@@ -2522,7 +2606,7 @@ date: Thu Dec 26 2013 21:42:06 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [019603e3e7](http://github.com/underscorediscovery/luxe/commit/019603e3e76e7c1235a9b6f1960dad3e76b3a7ff)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 26 2013 21:41:45 GMT-0330 (NST)   
 </div>
 
@@ -2536,7 +2620,7 @@ date: Thu Dec 26 2013 21:41:45 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [785c75fa1b](http://github.com/underscorediscovery/luxe/commit/785c75fa1b68edea07efee188b98e18b1194ca98)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 26 2013 18:17:38 GMT-0330 (NST)   
 </div>
 
@@ -2550,7 +2634,7 @@ date: Thu Dec 26 2013 18:17:38 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b65c1fa952](http://github.com/underscorediscovery/luxe/commit/b65c1fa952652c22f1574befb6878b24bebeb063)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 26 2013 17:35:54 GMT-0330 (NST)   
 </div>
 
@@ -2564,7 +2648,7 @@ date: Thu Dec 26 2013 17:35:54 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9d9e1059da](http://github.com/underscorediscovery/luxe/commit/9d9e1059da578c4394ce304945d7d80742805469)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Dec 25 2013 05:52:31 GMT-0330 (NST)   
 </div>
 
@@ -2578,7 +2662,7 @@ date: Wed Dec 25 2013 05:52:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [04a20a7590](http://github.com/underscorediscovery/luxe/commit/04a20a759082ad51965d4c962fa534a582c988a1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Dec 24 2013 13:39:11 GMT-0330 (NST)   
 </div>
 
@@ -2592,7 +2676,7 @@ date: Tue Dec 24 2013 13:39:11 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a2cab96bfa](http://github.com/underscorediscovery/luxe/commit/a2cab96bfa2afa4a95ed5796f321ccd3f7dba36f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Dec 24 2013 13:38:47 GMT-0330 (NST)   
 </div>
 
@@ -2606,7 +2690,7 @@ date: Tue Dec 24 2013 13:38:47 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [842fc51736](http://github.com/underscorediscovery/luxe/commit/842fc51736fd011929f148b8276927c9eb120bea)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Dec 23 2013 23:32:26 GMT-0330 (NST)   
 </div>
 
@@ -2620,7 +2704,7 @@ date: Mon Dec 23 2013 23:32:26 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3efafc4573](http://github.com/underscorediscovery/luxe/commit/3efafc45737e6ab9ca8ac17317780d21efc6919a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Dec 23 2013 23:30:06 GMT-0330 (NST)   
 </div>
 
@@ -2634,7 +2718,7 @@ date: Mon Dec 23 2013 23:30:06 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9f1f09aeab](http://github.com/underscorediscovery/luxe/commit/9f1f09aeabb73797333e923f698b7feaa48d1243)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Dec 23 2013 22:23:59 GMT-0330 (NST)   
 </div>
 
@@ -2648,7 +2732,7 @@ date: Mon Dec 23 2013 22:23:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [8de635ddfb](http://github.com/underscorediscovery/luxe/commit/8de635ddfb05023fb8a8d1d34135df0e91977c2e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Dec 23 2013 05:36:56 GMT-0330 (NST)   
 </div>
 
@@ -2662,7 +2746,7 @@ date: Mon Dec 23 2013 05:36:56 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [154657eae5](http://github.com/underscorediscovery/luxe/commit/154657eae5ffb691d4ad27cd7014305014163d42)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Dec 23 2013 00:33:31 GMT-0330 (NST)   
 </div>
 
@@ -2676,7 +2760,7 @@ date: Mon Dec 23 2013 00:33:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [01b1e07216](http://github.com/underscorediscovery/luxe/commit/01b1e0721649de2189ed890615ddb47f5ec60d71)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 22 2013 23:39:01 GMT-0330 (NST)   
 </div>
 
@@ -2690,7 +2774,7 @@ date: Sun Dec 22 2013 23:39:01 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [95d274a2da](http://github.com/underscorediscovery/luxe/commit/95d274a2da31edb4da63d07e18746d64529edb27)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 22 2013 23:39:01 GMT-0330 (NST)   
 </div>
 
@@ -2704,7 +2788,7 @@ date: Sun Dec 22 2013 23:39:01 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [605057fec7](http://github.com/underscorediscovery/luxe/commit/605057fec709eb3ebda6537b337f46b494c2549c)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Sun Dec 22 2013 18:19:40 GMT-0330 (NST)   
 </div>
 
@@ -2718,7 +2802,7 @@ date: Sun Dec 22 2013 18:19:40 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [8f72a85f88](http://github.com/underscorediscovery/luxe/commit/8f72a85f88eb6c674803ae7e97bae2c0403baa22)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 22 2013 02:25:11 GMT-0330 (NST)   
 </div>
 
@@ -2732,7 +2816,7 @@ date: Sun Dec 22 2013 02:25:11 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ad78910e7c](http://github.com/underscorediscovery/luxe/commit/ad78910e7ce2f985a1747dd737f6b01769cbdb84)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 22 2013 02:24:35 GMT-0330 (NST)   
 </div>
 
@@ -2746,7 +2830,7 @@ date: Sun Dec 22 2013 02:24:35 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [29295cfc43](http://github.com/underscorediscovery/luxe/commit/29295cfc43ba7584021757795bc2cf375491d47a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Dec 21 2013 21:37:51 GMT-0330 (NST)   
 </div>
 
@@ -2760,7 +2844,7 @@ date: Sat Dec 21 2013 21:37:51 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c2587824ad](http://github.com/underscorediscovery/luxe/commit/c2587824adfd4f25870957b8991b5dc649dc2743)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Dec 21 2013 21:33:59 GMT-0330 (NST)   
 </div>
 
@@ -2774,7 +2858,7 @@ date: Sat Dec 21 2013 21:33:59 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [52b2920f6e](http://github.com/underscorediscovery/luxe/commit/52b2920f6e159ef49a1e6c69847cc816b6876d36)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Dec 21 2013 17:47:46 GMT-0330 (NST)   
 </div>
 
@@ -2788,7 +2872,7 @@ date: Sat Dec 21 2013 17:47:46 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e462c155b3](http://github.com/underscorediscovery/luxe/commit/e462c155b3939fd1845840e251b92b0be444baea)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Dec 21 2013 17:47:20 GMT-0330 (NST)   
 </div>
 
@@ -2802,7 +2886,7 @@ date: Sat Dec 21 2013 17:47:20 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [4023c5c95a](http://github.com/underscorediscovery/luxe/commit/4023c5c95a03432a8a1cd0aeeb6b4b5cc1cec217)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Dec 21 2013 07:01:36 GMT-0330 (NST)   
 </div>
 
@@ -2816,7 +2900,7 @@ date: Sat Dec 21 2013 07:01:36 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2d19fc8fa9](http://github.com/underscorediscovery/luxe/commit/2d19fc8fa9f69a7e8ab4eeb039f4737c3223e9f0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Dec 21 2013 01:32:09 GMT-0330 (NST)   
 </div>
 
@@ -2830,7 +2914,7 @@ date: Sat Dec 21 2013 01:32:09 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [a0556bfaec](http://github.com/underscorediscovery/luxe/commit/a0556bfaec99939998ebe1873ba1cf895e255adc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 23:25:12 GMT-0330 (NST)   
 </div>
 
@@ -2844,7 +2928,7 @@ date: Fri Dec 20 2013 23:25:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ccaaf6c876](http://github.com/underscorediscovery/luxe/commit/ccaaf6c8769c14db7e7e58ff78489e430e6cd58a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 21:15:15 GMT-0330 (NST)   
 </div>
 
@@ -2858,7 +2942,7 @@ date: Fri Dec 20 2013 21:15:15 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2c9350029d](http://github.com/underscorediscovery/luxe/commit/2c9350029d3cf2b30bdde464e76b70baedd7ee98)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 21:13:48 GMT-0330 (NST)   
 </div>
 
@@ -2872,7 +2956,7 @@ date: Fri Dec 20 2013 21:13:48 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [eae10498b8](http://github.com/underscorediscovery/luxe/commit/eae10498b8d35d32abb456efb8f659b4ba604963)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 21:13:04 GMT-0330 (NST)   
 </div>
 
@@ -2886,7 +2970,7 @@ date: Fri Dec 20 2013 21:13:04 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [cf3357c157](http://github.com/underscorediscovery/luxe/commit/cf3357c157efadba7a139d89231866aaf88d1e51)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 21:08:24 GMT-0330 (NST)   
 </div>
 
@@ -2900,7 +2984,7 @@ date: Fri Dec 20 2013 21:08:24 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [1e3eb9609b](http://github.com/underscorediscovery/luxe/commit/1e3eb9609b3789a4a27e0ae156b5b64c2f4d25a0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 21:08:04 GMT-0330 (NST)   
 </div>
 
@@ -2914,7 +2998,7 @@ date: Fri Dec 20 2013 21:08:04 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f39ddf2559](http://github.com/underscorediscovery/luxe/commit/f39ddf2559ef16d083cd04d665c7a317cd055b51)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 18:25:38 GMT-0330 (NST)   
 </div>
 
@@ -2928,7 +3012,7 @@ date: Fri Dec 20 2013 18:25:38 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [32b6319174](http://github.com/underscorediscovery/luxe/commit/32b63191740bd8ae7fb3a0a8e05bfc86c3d2c3bb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 18:24:30 GMT-0330 (NST)   
 </div>
 
@@ -2942,7 +3026,7 @@ date: Fri Dec 20 2013 18:24:30 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [95897de2ac](http://github.com/underscorediscovery/luxe/commit/95897de2acb1b49c32022e2bbd0b8f32e01e126d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 18:21:39 GMT-0330 (NST)   
 </div>
 
@@ -2956,7 +3040,7 @@ date: Fri Dec 20 2013 18:21:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9773b11e75](http://github.com/underscorediscovery/luxe/commit/9773b11e756d6e48c45245837336a4114de46709)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 17:11:51 GMT-0330 (NST)   
 </div>
 
@@ -2970,7 +3054,7 @@ date: Fri Dec 20 2013 17:11:51 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ba2da0ab56](http://github.com/underscorediscovery/luxe/commit/ba2da0ab56859fb62e99f22842d3f0e32f8015d6)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 17:10:14 GMT-0330 (NST)   
 </div>
 
@@ -2984,7 +3068,7 @@ date: Fri Dec 20 2013 17:10:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [609f09654e](http://github.com/underscorediscovery/luxe/commit/609f09654e0b2215a25d86d7d3d7346a88f986c4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 17:08:21 GMT-0330 (NST)   
 </div>
 
@@ -2998,7 +3082,7 @@ date: Fri Dec 20 2013 17:08:21 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e37a4cb45e](http://github.com/underscorediscovery/luxe/commit/e37a4cb45e15a5b59fec9534442b2903bdba52e8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 16:50:32 GMT-0330 (NST)   
 </div>
 
@@ -3012,7 +3096,7 @@ date: Fri Dec 20 2013 16:50:32 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [adb7522b55](http://github.com/underscorediscovery/luxe/commit/adb7522b5570faa9686eb0f16e198f422ebafbe1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 16:50:09 GMT-0330 (NST)   
 </div>
 
@@ -3026,7 +3110,7 @@ date: Fri Dec 20 2013 16:50:09 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f11723041c](http://github.com/underscorediscovery/luxe/commit/f11723041ca6ec6631eca741627b2436aed5806b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 20 2013 03:17:44 GMT-0330 (NST)   
 </div>
 
@@ -3040,7 +3124,7 @@ date: Fri Dec 20 2013 03:17:44 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [fc54512b4d](http://github.com/underscorediscovery/luxe/commit/fc54512b4d02a4b2d6cfd2811ff5882558ce3ca1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 19 2013 03:40:55 GMT-0330 (NST)   
 </div>
 
@@ -3054,7 +3138,7 @@ date: Thu Dec 19 2013 03:40:55 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [3beaa1117d](http://github.com/underscorediscovery/luxe/commit/3beaa1117d2f14fbb21f5d5f60b2676d47412e17)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 19 2013 02:02:30 GMT-0330 (NST)   
 </div>
 
@@ -3068,7 +3152,7 @@ date: Thu Dec 19 2013 02:02:30 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b19c33df6a](http://github.com/underscorediscovery/luxe/commit/b19c33df6ae03c7a55f17b0b1446bb4197376a4f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 19 2013 01:14:16 GMT-0330 (NST)   
 </div>
 
@@ -3082,7 +3166,7 @@ date: Thu Dec 19 2013 01:14:16 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [58955a4aed](http://github.com/underscorediscovery/luxe/commit/58955a4aedc5d733028cd098fc23fd2bc1f75a48)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 19 2013 00:54:39 GMT-0330 (NST)   
 </div>
 
@@ -3096,7 +3180,7 @@ date: Thu Dec 19 2013 00:54:39 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [e8706ca41b](http://github.com/underscorediscovery/luxe/commit/e8706ca41ba0ab3268fba21f0425b207de06271c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Dec 19 2013 00:37:52 GMT-0330 (NST)   
 </div>
 
@@ -3110,7 +3194,7 @@ date: Thu Dec 19 2013 00:37:52 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b4a9d5dc93](http://github.com/underscorediscovery/luxe/commit/b4a9d5dc9306cac00128100bf87c40064ead6936)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Dec 18 2013 19:43:01 GMT-0330 (NST)   
 </div>
 
@@ -3124,7 +3208,7 @@ date: Wed Dec 18 2013 19:43:01 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d64697c07a](http://github.com/underscorediscovery/luxe/commit/d64697c07a5f011b70a114304c23ff516f37beab)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Dec 18 2013 19:38:55 GMT-0330 (NST)   
 </div>
 
@@ -3138,7 +3222,7 @@ date: Wed Dec 18 2013 19:38:55 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2272688ec9](http://github.com/underscorediscovery/luxe/commit/2272688ec98af69e29ee6ef25e586e4f056b841f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Dec 17 2013 16:09:33 GMT-0330 (NST)   
 </div>
 
@@ -3152,7 +3236,7 @@ date: Tue Dec 17 2013 16:09:33 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9063ec9dbd](http://github.com/underscorediscovery/luxe/commit/9063ec9dbd0bc15394ed9b7073a1fd9b14ec7d2e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Dec 17 2013 14:52:52 GMT-0330 (NST)   
 </div>
 
@@ -3166,7 +3250,7 @@ date: Tue Dec 17 2013 14:52:52 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [8d01c4d21f](http://github.com/underscorediscovery/luxe/commit/8d01c4d21fa7a74ff763db1d99d025516f80f94e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Dec 16 2013 22:08:40 GMT-0330 (NST)   
 </div>
 
@@ -3180,7 +3264,7 @@ date: Mon Dec 16 2013 22:08:40 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2f7504288a](http://github.com/underscorediscovery/luxe/commit/2f7504288af8dd6e8d47659f12687ca8f2295a4c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Dec 13 2013 19:22:06 GMT-0330 (NST)   
 </div>
 
@@ -3194,7 +3278,7 @@ date: Fri Dec 13 2013 19:22:06 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ceb5266966](http://github.com/underscorediscovery/luxe/commit/ceb526696671b90e3038ebe6310cc7cbf1f24228)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Dec 11 2013 21:56:50 GMT-0330 (NST)   
 </div>
 
@@ -3208,7 +3292,7 @@ date: Wed Dec 11 2013 21:56:50 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [37c88b3f90](http://github.com/underscorediscovery/luxe/commit/37c88b3f90e2fb7bc6ec767c825e697ab98f644a)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Wed Dec 11 2013 15:16:12 GMT-0330 (NST)   
 </div>
 
@@ -3222,7 +3306,7 @@ date: Wed Dec 11 2013 15:16:12 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ca2092b599](http://github.com/underscorediscovery/luxe/commit/ca2092b59911679bfc111698ab70b4cd666b9725)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Dec 10 2013 23:10:19 GMT-0330 (NST)   
 </div>
 
@@ -3236,7 +3320,7 @@ date: Tue Dec 10 2013 23:10:19 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d01822166f](http://github.com/underscorediscovery/luxe/commit/d01822166f1ecf84ea5343558e28f24e7acae9c3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Dec 10 2013 23:07:09 GMT-0330 (NST)   
 </div>
 
@@ -3250,7 +3334,7 @@ date: Tue Dec 10 2013 23:07:09 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [0d16a0c846](http://github.com/underscorediscovery/luxe/commit/0d16a0c846a43a28fa308797733985149cf59a93)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Dec 01 2013 05:50:23 GMT-0330 (NST)   
 </div>
 
@@ -3264,7 +3348,7 @@ date: Sun Dec 01 2013 05:50:23 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [f5cbb70940](http://github.com/underscorediscovery/luxe/commit/f5cbb70940857382a40778ecd511ca0475ca918d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 19:43:58 GMT-0330 (NST)   
 </div>
 
@@ -3278,7 +3362,7 @@ date: Sat Nov 30 2013 19:43:58 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [7257899845](http://github.com/underscorediscovery/luxe/commit/7257899845277223b474598ff38c93926ca2d657)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 19:36:44 GMT-0330 (NST)   
 </div>
 
@@ -3292,7 +3376,7 @@ date: Sat Nov 30 2013 19:36:44 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [943e10c9f0](http://github.com/underscorediscovery/luxe/commit/943e10c9f079493fa72241e2c6e1c19fb8ef36e1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 19:30:49 GMT-0330 (NST)   
 </div>
 
@@ -3306,7 +3390,7 @@ date: Sat Nov 30 2013 19:30:49 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [dcf8e11a51](http://github.com/underscorediscovery/luxe/commit/dcf8e11a518c6203cbdf6d08faa26e078cf8a142)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 08:24:48 GMT-0330 (NST)   
 </div>
 
@@ -3320,7 +3404,7 @@ date: Sat Nov 30 2013 08:24:48 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [c79941c31a](http://github.com/underscorediscovery/luxe/commit/c79941c31ae6694b0bb4b3c2e0f54031285de4a8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 07:23:27 GMT-0330 (NST)   
 </div>
 
@@ -3334,7 +3418,7 @@ date: Sat Nov 30 2013 07:23:27 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [64ae5d15a3](http://github.com/underscorediscovery/luxe/commit/64ae5d15a34e5f1d2db529d25d3f89d0b3135d22)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 06:50:00 GMT-0330 (NST)   
 </div>
 
@@ -3348,7 +3432,7 @@ date: Sat Nov 30 2013 06:50:00 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [bea1c6f84a](http://github.com/underscorediscovery/luxe/commit/bea1c6f84ac6431ed7f090b61aa7a76dbffe37c5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 06:48:31 GMT-0330 (NST)   
 </div>
 
@@ -3362,7 +3446,7 @@ date: Sat Nov 30 2013 06:48:31 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5a11436252](http://github.com/underscorediscovery/luxe/commit/5a114362526bd609d2dac2c158db9297e6ac1867)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 05:48:02 GMT-0330 (NST)   
 </div>
 
@@ -3376,7 +3460,7 @@ date: Sat Nov 30 2013 05:48:02 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [16ae8b3ea1](http://github.com/underscorediscovery/luxe/commit/16ae8b3ea1b1089e680786fea6ee4640f3701ac2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Nov 30 2013 04:16:47 GMT-0330 (NST)   
 </div>
 
@@ -3390,7 +3474,7 @@ date: Sat Nov 30 2013 04:16:47 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [ca8c5cd106](http://github.com/underscorediscovery/luxe/commit/ca8c5cd1067fdac59f220b890d16e2acc53ecca0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Nov 29 2013 21:12:14 GMT-0330 (NST)   
 </div>
 
@@ -3404,7 +3488,7 @@ date: Fri Nov 29 2013 21:12:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [97f36888c2](http://github.com/underscorediscovery/luxe/commit/97f36888c29e6f589b7022efd6aa17a85956da8a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Nov 29 2013 21:11:49 GMT-0330 (NST)   
 </div>
 
@@ -3418,7 +3502,7 @@ date: Fri Nov 29 2013 21:11:49 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b6dc5bf4a6](http://github.com/underscorediscovery/luxe/commit/b6dc5bf4a61157804694f88af641f1e4fd46b7ad)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Nov 29 2013 19:00:08 GMT-0330 (NST)   
 </div>
 
@@ -3432,7 +3516,7 @@ date: Fri Nov 29 2013 19:00:08 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [95942ef976](http://github.com/underscorediscovery/luxe/commit/95942ef976595a2f8aa052707b4155b53eb90e44)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Nov 29 2013 18:58:05 GMT-0330 (NST)   
 </div>
 
@@ -3446,7 +3530,7 @@ date: Fri Nov 29 2013 18:58:05 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6c6a6a2979](http://github.com/underscorediscovery/luxe/commit/6c6a6a2979c59512e75c98ea4b01d68c7b36796e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Nov 29 2013 07:03:15 GMT-0330 (NST)   
 </div>
 
@@ -3460,7 +3544,7 @@ date: Fri Nov 29 2013 07:03:15 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [34f9932400](http://github.com/underscorediscovery/luxe/commit/34f9932400dc701ae167ff9e63da87751182ed18)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 23:41:05 GMT-0330 (NST)   
 </div>
 
@@ -3474,7 +3558,7 @@ date: Thu Nov 28 2013 23:41:05 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [914e5e8cfe](http://github.com/underscorediscovery/luxe/commit/914e5e8cfe0a524bfe5e6ef94e74e937c18ed936)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 07:46:42 GMT-0330 (NST)   
 </div>
 
@@ -3488,7 +3572,7 @@ date: Thu Nov 28 2013 07:46:42 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [d52717e2e1](http://github.com/underscorediscovery/luxe/commit/d52717e2e18ddebeabd44e449903172b7300408b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 07:31:10 GMT-0330 (NST)   
 </div>
 
@@ -3502,7 +3586,7 @@ date: Thu Nov 28 2013 07:31:10 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9450191742](http://github.com/underscorediscovery/luxe/commit/945019174259af3fa43caf3ab0e2a82f549fec29)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Thu Nov 28 2013 07:27:30 GMT-0330 (NST)   
 </div>
 
@@ -3516,7 +3600,7 @@ date: Thu Nov 28 2013 07:27:30 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [25029a8f9d](http://github.com/underscorediscovery/luxe/commit/25029a8f9dd8a149a47609fc547f7fa412292636)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 07:25:56 GMT-0330 (NST)   
 </div>
 
@@ -3530,7 +3614,7 @@ date: Thu Nov 28 2013 07:25:56 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [76e709f57d](http://github.com/underscorediscovery/luxe/commit/76e709f57d420d158211e94663551988631941b2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 01:22:22 GMT-0330 (NST)   
 </div>
 
@@ -3544,7 +3628,7 @@ date: Thu Nov 28 2013 01:22:22 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [8faf44bcdf](http://github.com/underscorediscovery/luxe/commit/8faf44bcdfb2eabca23dc0e92be0e98c4144f941)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 01:22:15 GMT-0330 (NST)   
 </div>
 
@@ -3558,7 +3642,7 @@ date: Thu Nov 28 2013 01:22:15 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [56fb077a18](http://github.com/underscorediscovery/luxe/commit/56fb077a187e1c7e7fdea712f7b5f3e62571bbb9)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Thu Nov 28 2013 01:06:16 GMT-0330 (NST)   
 </div>
 
@@ -3572,7 +3656,7 @@ date: Thu Nov 28 2013 01:06:16 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5762cd34b7](http://github.com/underscorediscovery/luxe/commit/5762cd34b71b6540e49849a921ac40f1c0f6c881)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Thu Nov 28 2013 01:04:27 GMT-0330 (NST)   
 </div>
 
@@ -3586,7 +3670,7 @@ date: Thu Nov 28 2013 01:04:27 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [6025008998](http://github.com/underscorediscovery/luxe/commit/60250089980e12607ecfce639518c5942530526d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Nov 28 2013 00:33:57 GMT-0330 (NST)   
 </div>
 
@@ -3600,7 +3684,7 @@ date: Thu Nov 28 2013 00:33:57 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [7021d2f662](http://github.com/underscorediscovery/luxe/commit/7021d2f662901868b2fdfd1fb53996e91e5fbe56)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Nov 26 2013 06:43:00 GMT-0330 (NST)   
 </div>
 
@@ -3614,7 +3698,7 @@ date: Tue Nov 26 2013 06:43:00 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [043e8a88ca](http://github.com/underscorediscovery/luxe/commit/043e8a88ca969c83e1dd6f1218d215947957c6f4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Nov 26 2013 04:43:23 GMT-0330 (NST)   
 </div>
 
@@ -3628,7 +3712,7 @@ date: Tue Nov 26 2013 04:43:23 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [9bccb019e6](http://github.com/underscorediscovery/luxe/commit/9bccb019e6869c229e1bb95f1172a08c606aee55)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Nov 25 2013 22:36:14 GMT-0330 (NST)   
 </div>
 
@@ -3642,7 +3726,7 @@ date: Mon Nov 25 2013 22:36:14 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [2af96e0c3e](http://github.com/underscorediscovery/luxe/commit/2af96e0c3e484691e5d605d709e2b19b1a954a18)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Nov 25 2013 07:25:48 GMT-0330 (NST)   
 </div>
 
@@ -3656,7 +3740,7 @@ date: Mon Nov 25 2013 07:25:48 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5961ae43d4](http://github.com/underscorediscovery/luxe/commit/5961ae43d499fcfe169182516e084cee67594be2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Nov 24 2013 15:58:04 GMT-0330 (NST)   
 </div>
 
@@ -3670,7 +3754,7 @@ date: Sun Nov 24 2013 15:58:04 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [b6ca6de5b0](http://github.com/underscorediscovery/luxe/commit/b6ca6de5b071ad04e8023ce429e9f922a92be2cc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Nov 24 2013 05:06:13 GMT-0330 (NST)   
 </div>
 
@@ -3684,7 +3768,7 @@ date: Sun Nov 24 2013 05:06:13 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [7d6ec5f39b](http://github.com/underscorediscovery/luxe/commit/7d6ec5f39b6e1eba314bf869c273ad93daf3c693)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Nov 24 2013 01:37:02 GMT-0330 (NST)   
 </div>
 
@@ -3698,7 +3782,7 @@ date: Sun Nov 24 2013 01:37:02 GMT-0330 (NST)
 <div class="commit_info">
 
 commit [5c050d1de9](http://github.com/underscorediscovery/luxe/commit/5c050d1de991d1c2a1274d0401e4e98fb9f32e74)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Oct 15 2013 07:01:15 GMT-0230 (NDT)   
 </div>
 
@@ -3712,7 +3796,7 @@ date: Tue Oct 15 2013 07:01:15 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [aa85882078](http://github.com/underscorediscovery/luxe/commit/aa85882078ab5357d69271623e79afc62fcc0c7b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Oct 06 2013 05:11:14 GMT-0230 (NDT)   
 </div>
 
@@ -3726,7 +3810,7 @@ date: Sun Oct 06 2013 05:11:14 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ac9ffb6922](http://github.com/underscorediscovery/luxe/commit/ac9ffb6922c245283b90aad5c4992d1780135cf1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Oct 06 2013 05:10:46 GMT-0230 (NDT)   
 </div>
 
@@ -3740,7 +3824,7 @@ date: Sun Oct 06 2013 05:10:46 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c277d3ad5c](http://github.com/underscorediscovery/luxe/commit/c277d3ad5c80ea6acef9f6d5ef60e1c219a18cc8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Oct 05 2013 05:56:10 GMT-0230 (NDT)   
 </div>
 
@@ -3754,7 +3838,7 @@ date: Sat Oct 05 2013 05:56:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d681b711f8](http://github.com/underscorediscovery/luxe/commit/d681b711f8eacc5ea2e5b565856636f147e2caac)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Oct 04 2013 04:01:42 GMT-0230 (NDT)   
 </div>
 
@@ -3768,7 +3852,7 @@ date: Fri Oct 04 2013 04:01:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [090e7d57f6](http://github.com/underscorediscovery/luxe/commit/090e7d57f6de3efaa961f5dd190e5233b8bfcdac)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Oct 04 2013 02:56:20 GMT-0230 (NDT)   
 </div>
 
@@ -3782,7 +3866,7 @@ date: Fri Oct 04 2013 02:56:20 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ab6f1443bd](http://github.com/underscorediscovery/luxe/commit/ab6f1443bd57c8e3cc25c2a2355723d9354a1296)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 30 2013 06:59:13 GMT-0230 (NDT)   
 </div>
 
@@ -3796,7 +3880,7 @@ date: Mon Sep 30 2013 06:59:13 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [38fbda2b24](http://github.com/underscorediscovery/luxe/commit/38fbda2b24f1893d549a15798a5b3d610b44264f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 30 2013 06:55:29 GMT-0230 (NDT)   
 </div>
 
@@ -3810,7 +3894,7 @@ date: Mon Sep 30 2013 06:55:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [069e64249c](http://github.com/underscorediscovery/luxe/commit/069e64249cb61beb45c7f8c663b6e7c3417d9b25)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 29 2013 06:26:39 GMT-0230 (NDT)   
 </div>
 
@@ -3824,7 +3908,7 @@ date: Sun Sep 29 2013 06:26:39 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [de69855110](http://github.com/underscorediscovery/luxe/commit/de698551100b4bac104962acdb33ce1a9979e8d0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 29 2013 04:15:56 GMT-0230 (NDT)   
 </div>
 
@@ -3838,7 +3922,7 @@ date: Sun Sep 29 2013 04:15:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [659355a14a](http://github.com/underscorediscovery/luxe/commit/659355a14a6acc349e6cc18f992d618d29f1d056)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 29 2013 04:15:21 GMT-0230 (NDT)   
 </div>
 
@@ -3852,7 +3936,7 @@ date: Sun Sep 29 2013 04:15:21 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2bf92aafb7](http://github.com/underscorediscovery/luxe/commit/2bf92aafb742bff01b93001f748f95621f395560)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 29 2013 02:14:40 GMT-0230 (NDT)   
 </div>
 
@@ -3866,7 +3950,7 @@ date: Sun Sep 29 2013 02:14:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8505e4a5ee](http://github.com/underscorediscovery/luxe/commit/8505e4a5ee32499f0edf2fd02f60cab4e2c62436)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 28 2013 04:52:03 GMT-0230 (NDT)   
 </div>
 
@@ -3880,7 +3964,7 @@ date: Sat Sep 28 2013 04:52:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [86cd117834](http://github.com/underscorediscovery/luxe/commit/86cd117834ee3edde806d4cbd0e11bd390c06175)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 27 2013 07:13:45 GMT-0230 (NDT)   
 </div>
 
@@ -3894,7 +3978,7 @@ date: Fri Sep 27 2013 07:13:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a6f834d4f0](http://github.com/underscorediscovery/luxe/commit/a6f834d4f0256a8216528fe617370d372f5dc853)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 26 2013 08:04:22 GMT-0230 (NDT)   
 </div>
 
@@ -3908,7 +3992,7 @@ date: Thu Sep 26 2013 08:04:22 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [740fe1dbf7](http://github.com/underscorediscovery/luxe/commit/740fe1dbf7c7aadf31b097fbc829107f4ca55256)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 25 2013 06:31:56 GMT-0230 (NDT)   
 </div>
 
@@ -3922,7 +4006,7 @@ date: Wed Sep 25 2013 06:31:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f99aff33ab](http://github.com/underscorediscovery/luxe/commit/f99aff33ab7b581108cf8e7a06907fc0c5afa7f8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 25 2013 06:29:23 GMT-0230 (NDT)   
 </div>
 
@@ -3936,7 +4020,7 @@ date: Wed Sep 25 2013 06:29:23 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4fefd6fd02](http://github.com/underscorediscovery/luxe/commit/4fefd6fd024141d058dbb33886fd26f0a83a131d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 25 2013 02:19:39 GMT-0230 (NDT)   
 </div>
 
@@ -3950,7 +4034,7 @@ date: Wed Sep 25 2013 02:19:39 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4976a8bb2f](http://github.com/underscorediscovery/luxe/commit/4976a8bb2f11b556ef1b2a35374134f62c6949ed)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 22:12:29 GMT-0230 (NDT)   
 </div>
 
@@ -3964,7 +4048,7 @@ date: Tue Sep 24 2013 22:12:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [848ef3f3b9](http://github.com/underscorediscovery/luxe/commit/848ef3f3b976a633f93acc670f7cf7065cbd3058)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 14:47:23 GMT-0230 (NDT)   
 </div>
 
@@ -3978,7 +4062,7 @@ date: Tue Sep 24 2013 14:47:23 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [89d474a330](http://github.com/underscorediscovery/luxe/commit/89d474a330cd9d4518c1166759aa098a279025a8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 14:30:59 GMT-0230 (NDT)   
 </div>
 
@@ -3992,7 +4076,7 @@ date: Tue Sep 24 2013 14:30:59 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8577dc84e1](http://github.com/underscorediscovery/luxe/commit/8577dc84e1408f29ddea4d0f1d0ab99844554fc8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 14:10:25 GMT-0230 (NDT)   
 </div>
 
@@ -4006,7 +4090,7 @@ date: Tue Sep 24 2013 14:10:25 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [644ad4df82](http://github.com/underscorediscovery/luxe/commit/644ad4df8200bf130b291889c85a432987e9dedd)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 13:33:18 GMT-0230 (NDT)   
 </div>
 
@@ -4020,7 +4104,7 @@ date: Tue Sep 24 2013 13:33:18 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e0f0065cb8](http://github.com/underscorediscovery/luxe/commit/e0f0065cb8e9df4117039024e423c607dad554ee)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 13:31:48 GMT-0230 (NDT)   
 </div>
 
@@ -4034,7 +4118,7 @@ date: Tue Sep 24 2013 13:31:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0868d0b1e6](http://github.com/underscorediscovery/luxe/commit/0868d0b1e60af5a13194fc838dcfd6b898aa02a5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 02:33:36 GMT-0230 (NDT)   
 </div>
 
@@ -4048,7 +4132,7 @@ date: Tue Sep 24 2013 02:33:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6f7cb535e8](http://github.com/underscorediscovery/luxe/commit/6f7cb535e880411455fc35691aeba0494bbb6199)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 24 2013 01:10:02 GMT-0230 (NDT)   
 </div>
 
@@ -4062,7 +4146,7 @@ date: Tue Sep 24 2013 01:10:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f0f5cc73bb](http://github.com/underscorediscovery/luxe/commit/f0f5cc73bb19dbdba13ea505f29fefef1c544341)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 21:35:19 GMT-0230 (NDT)   
 </div>
 
@@ -4076,7 +4160,7 @@ date: Mon Sep 23 2013 21:35:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ae11f081bf](http://github.com/underscorediscovery/luxe/commit/ae11f081bf7d9050aad9cddecc788aba56d439ab)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 21:34:52 GMT-0230 (NDT)   
 </div>
 
@@ -4090,7 +4174,7 @@ date: Mon Sep 23 2013 21:34:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [94b0a010fb](http://github.com/underscorediscovery/luxe/commit/94b0a010fb72ab8826e82c7cc04bc1034dbc2554)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 20:45:21 GMT-0230 (NDT)   
 </div>
 
@@ -4104,7 +4188,7 @@ date: Mon Sep 23 2013 20:45:21 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [fb410f57ff](http://github.com/underscorediscovery/luxe/commit/fb410f57ffe55063e4702b533ace75b2b856d815)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 19:03:47 GMT-0230 (NDT)   
 </div>
 
@@ -4118,7 +4202,7 @@ date: Mon Sep 23 2013 19:03:47 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4e5eeccbde](http://github.com/underscorediscovery/luxe/commit/4e5eeccbde02bba0660060d87af2df3063baab46)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 19:03:20 GMT-0230 (NDT)   
 </div>
 
@@ -4132,7 +4216,7 @@ date: Mon Sep 23 2013 19:03:20 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [91eacb34f1](http://github.com/underscorediscovery/luxe/commit/91eacb34f1526d92913071a1bb34a3deb6cf2011)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Mon Sep 23 2013 18:15:48 GMT-0230 (NDT)   
 </div>
 
@@ -4146,7 +4230,7 @@ date: Mon Sep 23 2013 18:15:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9da068d0f0](http://github.com/underscorediscovery/luxe/commit/9da068d0f082015d074d96d57ce21c76145b868b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 14:21:19 GMT-0230 (NDT)   
 </div>
 
@@ -4160,7 +4244,7 @@ date: Mon Sep 23 2013 14:21:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [19b147a5ab](http://github.com/underscorediscovery/luxe/commit/19b147a5ab370ea6e1e4b6607c51e04784af9a14)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 23 2013 02:07:30 GMT-0230 (NDT)   
 </div>
 
@@ -4174,7 +4258,7 @@ date: Mon Sep 23 2013 02:07:30 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1e7c0674af](http://github.com/underscorediscovery/luxe/commit/1e7c0674afbf8255019ae3081edaa6760f0ecd35)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 22:07:42 GMT-0230 (NDT)   
 </div>
 
@@ -4188,7 +4272,7 @@ date: Sun Sep 22 2013 22:07:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4b3eab657e](http://github.com/underscorediscovery/luxe/commit/4b3eab657e33683f593c3a3a03bcd3dac5954beb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 22:07:26 GMT-0230 (NDT)   
 </div>
 
@@ -4202,7 +4286,7 @@ date: Sun Sep 22 2013 22:07:26 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [718c121833](http://github.com/underscorediscovery/luxe/commit/718c12183322b2c67c8ae1c8744d37614750fbb8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 21:41:11 GMT-0230 (NDT)   
 </div>
 
@@ -4216,7 +4300,7 @@ date: Sun Sep 22 2013 21:41:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9b7f530603](http://github.com/underscorediscovery/luxe/commit/9b7f530603e6a590f7dfc6d808da2843e1ab8c1e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 15:52:05 GMT-0230 (NDT)   
 </div>
 
@@ -4230,7 +4314,7 @@ date: Sun Sep 22 2013 15:52:05 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ccea704caa](http://github.com/underscorediscovery/luxe/commit/ccea704caab743c8890520200c21282f6823d463)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 14:51:46 GMT-0230 (NDT)   
 </div>
 
@@ -4244,7 +4328,7 @@ date: Sun Sep 22 2013 14:51:46 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [47855b284f](http://github.com/underscorediscovery/luxe/commit/47855b284f1fef0626d93283ca78a40b29aacf3c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 05:08:45 GMT-0230 (NDT)   
 </div>
 
@@ -4258,7 +4342,7 @@ date: Sun Sep 22 2013 05:08:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0637b878b7](http://github.com/underscorediscovery/luxe/commit/0637b878b79acc2472c67926fda5972a41a56014)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 22 2013 05:07:49 GMT-0230 (NDT)   
 </div>
 
@@ -4272,7 +4356,7 @@ date: Sun Sep 22 2013 05:07:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f951ef8f87](http://github.com/underscorediscovery/luxe/commit/f951ef8f871762e025bf65abff956764955c4dae)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 20 2013 00:38:35 GMT-0230 (NDT)   
 </div>
 
@@ -4286,7 +4370,7 @@ date: Fri Sep 20 2013 00:38:35 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dc2719602d](http://github.com/underscorediscovery/luxe/commit/dc2719602dc8afc17a5f86796f0102568cfb64e4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 20 2013 00:35:38 GMT-0230 (NDT)   
 </div>
 
@@ -4300,7 +4384,7 @@ date: Fri Sep 20 2013 00:35:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [95260b9136](http://github.com/underscorediscovery/luxe/commit/95260b9136385d509100fec86288e084102b04a5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 19 2013 23:57:32 GMT-0230 (NDT)   
 </div>
 
@@ -4314,7 +4398,7 @@ date: Thu Sep 19 2013 23:57:32 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f4d03f2c7e](http://github.com/underscorediscovery/luxe/commit/f4d03f2c7ead450c7e9f4fc7707c3218c88485f3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 19 2013 23:52:28 GMT-0230 (NDT)   
 </div>
 
@@ -4328,7 +4412,7 @@ date: Thu Sep 19 2013 23:52:28 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7406571de2](http://github.com/underscorediscovery/luxe/commit/7406571de244b0a3e2589235ab683ae919301d43)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 18 2013 12:09:59 GMT-0230 (NDT)   
 </div>
 
@@ -4342,7 +4426,7 @@ date: Wed Sep 18 2013 12:09:59 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ac42b68bbd](http://github.com/underscorediscovery/luxe/commit/ac42b68bbd56b51a4333091ac09b04d27a1c2a4b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 17 2013 19:57:25 GMT-0230 (NDT)   
 </div>
 
@@ -4356,7 +4440,7 @@ date: Tue Sep 17 2013 19:57:25 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [73fd1f427b](http://github.com/underscorediscovery/luxe/commit/73fd1f427b89e317bd037521d53fc5006b764f08)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 17 2013 16:32:10 GMT-0230 (NDT)   
 </div>
 
@@ -4370,7 +4454,7 @@ date: Tue Sep 17 2013 16:32:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c9957c5d71](http://github.com/underscorediscovery/luxe/commit/c9957c5d713906bb7702dfd5703ee8e2a56ab993)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 17 2013 15:25:29 GMT-0230 (NDT)   
 </div>
 
@@ -4384,7 +4468,7 @@ date: Tue Sep 17 2013 15:25:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1c1b1e687c](http://github.com/underscorediscovery/luxe/commit/1c1b1e687c64f88206c00750cddfda70a73966fa)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 17 2013 07:00:53 GMT-0230 (NDT)   
 </div>
 
@@ -4398,7 +4482,7 @@ date: Tue Sep 17 2013 07:00:53 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [55c1e0296e](http://github.com/underscorediscovery/luxe/commit/55c1e0296ec590c25ed4e4e8c4c90d30f10db5e7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 19:59:57 GMT-0230 (NDT)   
 </div>
 
@@ -4412,7 +4496,7 @@ date: Sun Sep 15 2013 19:59:57 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e634ec12f7](http://github.com/underscorediscovery/luxe/commit/e634ec12f7034a1b19f35cddbe2eb3a17e7af220)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 19:59:19 GMT-0230 (NDT)   
 </div>
 
@@ -4426,7 +4510,7 @@ date: Sun Sep 15 2013 19:59:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [cdfdce77d6](http://github.com/underscorediscovery/luxe/commit/cdfdce77d6d7d7d495a25085b8209b4fb46124e5)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 17:33:27 GMT-0230 (NDT)   
 </div>
 
@@ -4440,7 +4524,7 @@ date: Sun Sep 15 2013 17:33:27 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [39bfeff19b](http://github.com/underscorediscovery/luxe/commit/39bfeff19b2231b2f31c819ad06ad86228520efe)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 17:24:04 GMT-0230 (NDT)   
 </div>
 
@@ -4454,7 +4538,7 @@ date: Sun Sep 15 2013 17:24:04 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b2344f0c2e](http://github.com/underscorediscovery/luxe/commit/b2344f0c2ef6c65e9c996597282ba24354567675)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 05:38:17 GMT-0230 (NDT)   
 </div>
 
@@ -4468,7 +4552,7 @@ date: Sun Sep 15 2013 05:38:17 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1b0d06582c](http://github.com/underscorediscovery/luxe/commit/1b0d06582c8a406ee4f88ce5c29718dc77dfecc2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 05:16:00 GMT-0230 (NDT)   
 </div>
 
@@ -4482,7 +4566,7 @@ date: Sun Sep 15 2013 05:16:00 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0ddaf1bd30](http://github.com/underscorediscovery/luxe/commit/0ddaf1bd30f9b74f2f62dd7bb42ac861a289832f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 15 2013 05:12:02 GMT-0230 (NDT)   
 </div>
 
@@ -4496,7 +4580,7 @@ date: Sun Sep 15 2013 05:12:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [986d17d834](http://github.com/underscorediscovery/luxe/commit/986d17d834b16936c030aca9b25c664b49785526)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 14 2013 23:09:44 GMT-0230 (NDT)   
 </div>
 
@@ -4510,7 +4594,7 @@ date: Sat Sep 14 2013 23:09:44 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [51116e8849](http://github.com/underscorediscovery/luxe/commit/51116e8849d9925c4d14bd07e915ac4ff537e9be)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 14 2013 22:05:22 GMT-0230 (NDT)   
 </div>
 
@@ -4524,7 +4608,7 @@ date: Sat Sep 14 2013 22:05:22 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c87eec93bd](http://github.com/underscorediscovery/luxe/commit/c87eec93bdc86058c02af4a0f58e4b5504ff15ce)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 14 2013 18:35:11 GMT-0230 (NDT)   
 </div>
 
@@ -4538,7 +4622,7 @@ date: Sat Sep 14 2013 18:35:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1ef6a319b2](http://github.com/underscorediscovery/luxe/commit/1ef6a319b2a6d465377f67f8b6db519c6a9c1138)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 14 2013 05:54:51 GMT-0230 (NDT)   
 </div>
 
@@ -4552,7 +4636,7 @@ date: Sat Sep 14 2013 05:54:51 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [95dabc2dca](http://github.com/underscorediscovery/luxe/commit/95dabc2dcacdada7a3af7b0071fb574f9d265044)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 14 2013 02:06:15 GMT-0230 (NDT)   
 </div>
 
@@ -4566,7 +4650,7 @@ date: Sat Sep 14 2013 02:06:15 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dbde923062](http://github.com/underscorediscovery/luxe/commit/dbde923062bbf1c5486e6dd6d770be028190db63)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 23:49:11 GMT-0230 (NDT)   
 </div>
 
@@ -4580,7 +4664,7 @@ date: Fri Sep 13 2013 23:49:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2505ae87ec](http://github.com/underscorediscovery/luxe/commit/2505ae87ec9ce2a8900fabab45b1a8b119bdc91a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 14:29:11 GMT-0230 (NDT)   
 </div>
 
@@ -4594,7 +4678,7 @@ date: Fri Sep 13 2013 14:29:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dce8610cfa](http://github.com/underscorediscovery/luxe/commit/dce8610cfa16092d49cec22f8a98215e364a810d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 13:56:11 GMT-0230 (NDT)   
 </div>
 
@@ -4608,7 +4692,7 @@ date: Fri Sep 13 2013 13:56:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9868fb5cc7](http://github.com/underscorediscovery/luxe/commit/9868fb5cc715b39098898df5569020203de347c9)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 13:48:33 GMT-0230 (NDT)   
 </div>
 
@@ -4622,7 +4706,7 @@ date: Fri Sep 13 2013 13:48:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5ef0cd9efe](http://github.com/underscorediscovery/luxe/commit/5ef0cd9efe4143e7860cc225888eae0adf84cfa3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 13:47:00 GMT-0230 (NDT)   
 </div>
 
@@ -4636,7 +4720,7 @@ date: Fri Sep 13 2013 13:47:00 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d1d9fca713](http://github.com/underscorediscovery/luxe/commit/d1d9fca713797bed6e3e7f2716266fa792fbd264)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 11:33:10 GMT-0230 (NDT)   
 </div>
 
@@ -4650,7 +4734,7 @@ date: Fri Sep 13 2013 11:33:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [106fdbe0e0](http://github.com/underscorediscovery/luxe/commit/106fdbe0e0fce1a812258973fccfc5385ad8d050)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 09:47:08 GMT-0230 (NDT)   
 </div>
 
@@ -4664,7 +4748,7 @@ date: Fri Sep 13 2013 09:47:08 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c040647529](http://github.com/underscorediscovery/luxe/commit/c04064752971fec4641c471054b4f37ffa2337a3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 09:28:38 GMT-0230 (NDT)   
 </div>
 
@@ -4678,7 +4762,7 @@ date: Fri Sep 13 2013 09:28:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2636e7f64c](http://github.com/underscorediscovery/luxe/commit/2636e7f64c1708cb842795313d45126b7f8f4d1a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 13 2013 09:27:26 GMT-0230 (NDT)   
 </div>
 
@@ -4692,7 +4776,7 @@ date: Fri Sep 13 2013 09:27:26 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [fe14297cc3](http://github.com/underscorediscovery/luxe/commit/fe14297cc3d230c007c2e374b6a59cae46c94c06)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 20:17:34 GMT-0230 (NDT)   
 </div>
 
@@ -4706,7 +4790,7 @@ date: Thu Sep 12 2013 20:17:34 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [68a9707362](http://github.com/underscorediscovery/luxe/commit/68a9707362ec70d95e44422437e4d0036e54be8d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 20:13:48 GMT-0230 (NDT)   
 </div>
 
@@ -4720,7 +4804,7 @@ date: Thu Sep 12 2013 20:13:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3a23480b33](http://github.com/underscorediscovery/luxe/commit/3a23480b333c01a4bf391ae773564b34616628f8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 20:01:48 GMT-0230 (NDT)   
 </div>
 
@@ -4734,7 +4818,7 @@ date: Thu Sep 12 2013 20:01:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [50ad6dbd2f](http://github.com/underscorediscovery/luxe/commit/50ad6dbd2f0a5a54bcc26ac3bcc52cd1866afed7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 20:00:54 GMT-0230 (NDT)   
 </div>
 
@@ -4748,7 +4832,7 @@ date: Thu Sep 12 2013 20:00:54 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [167ab58e02](http://github.com/underscorediscovery/luxe/commit/167ab58e02068c09b3095a731ea0abc88d6ebced)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 19:47:00 GMT-0230 (NDT)   
 </div>
 
@@ -4762,7 +4846,7 @@ date: Thu Sep 12 2013 19:47:00 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bc20b2a1ec](http://github.com/underscorediscovery/luxe/commit/bc20b2a1ec47e25adb97a998bbae374ec21bcfbc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 04:52:56 GMT-0230 (NDT)   
 </div>
 
@@ -4776,7 +4860,7 @@ date: Thu Sep 12 2013 04:52:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d22923662b](http://github.com/underscorediscovery/luxe/commit/d22923662b879bf012dcc233f5af3d07dacf4eaa)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 12 2013 01:51:30 GMT-0230 (NDT)   
 </div>
 
@@ -4790,7 +4874,7 @@ date: Thu Sep 12 2013 01:51:30 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e173da6252](http://github.com/underscorediscovery/luxe/commit/e173da62520ddb6866600a360be610e341de2876)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 11 2013 20:36:18 GMT-0230 (NDT)   
 </div>
 
@@ -4804,7 +4888,7 @@ date: Wed Sep 11 2013 20:36:18 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [face5ecb2d](http://github.com/underscorediscovery/luxe/commit/face5ecb2db19d61002137e6d083c3a0a2a594ec)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 11 2013 18:27:31 GMT-0230 (NDT)   
 </div>
 
@@ -4818,7 +4902,7 @@ date: Wed Sep 11 2013 18:27:31 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [aa078c2fcb](http://github.com/underscorediscovery/luxe/commit/aa078c2fcbde8418876a05ba59586f3d68d0fd64)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 11 2013 18:13:40 GMT-0230 (NDT)   
 </div>
 
@@ -4832,7 +4916,7 @@ date: Wed Sep 11 2013 18:13:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c8803fbec9](http://github.com/underscorediscovery/luxe/commit/c8803fbec9b876fd8596d6cdda0161a4e6528fd4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 11 2013 15:08:05 GMT-0230 (NDT)   
 </div>
 
@@ -4846,7 +4930,7 @@ date: Wed Sep 11 2013 15:08:05 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3ecfdc8bed](http://github.com/underscorediscovery/luxe/commit/3ecfdc8bed9699d44ea6c974c9481e74d314c2e5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 08 2013 09:06:49 GMT-0230 (NDT)   
 </div>
 
@@ -4860,7 +4944,7 @@ date: Sun Sep 08 2013 09:06:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ab91edf9b6](http://github.com/underscorediscovery/luxe/commit/ab91edf9b668a02ab7426654d1de9819e97519c0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 08 2013 09:06:35 GMT-0230 (NDT)   
 </div>
 
@@ -4874,7 +4958,7 @@ date: Sun Sep 08 2013 09:06:35 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bff9508351](http://github.com/underscorediscovery/luxe/commit/bff95083510fb31f2ac3e221d516c87544c47cfc)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Sat Sep 07 2013 22:07:52 GMT-0230 (NDT)   
 </div>
 
@@ -4888,7 +4972,7 @@ date: Sat Sep 07 2013 22:07:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [89c001d28a](http://github.com/underscorediscovery/luxe/commit/89c001d28a21da97369e2f255ef617d9e7f9a976)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 07 2013 16:32:23 GMT-0230 (NDT)   
 </div>
 
@@ -4902,7 +4986,7 @@ date: Sat Sep 07 2013 16:32:23 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d2a33764fc](http://github.com/underscorediscovery/luxe/commit/d2a33764fc1041716c95ba9bbdc1b28750059a7f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Sep 07 2013 04:04:38 GMT-0230 (NDT)   
 </div>
 
@@ -4916,7 +5000,7 @@ date: Sat Sep 07 2013 04:04:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2de46ad34a](http://github.com/underscorediscovery/luxe/commit/2de46ad34a0f20dad01f817b94f7b298780b3768)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 20:42:24 GMT-0230 (NDT)   
 </div>
 
@@ -4930,7 +5014,7 @@ date: Fri Sep 06 2013 20:42:24 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [cd37ee03cd](http://github.com/underscorediscovery/luxe/commit/cd37ee03cd0982fb542ae19a162385abf41b7963)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 20:42:14 GMT-0230 (NDT)   
 </div>
 
@@ -4944,7 +5028,7 @@ date: Fri Sep 06 2013 20:42:14 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [70350b4cbc](http://github.com/underscorediscovery/luxe/commit/70350b4cbca20d00ff9cdd7b0da87b7b2acf64e0)   
-author: Andrew Price <messiahandrw@gmail.com>   
+author: Andrew Price   
 date: Fri Sep 06 2013 14:54:37 GMT-0230 (NDT)   
 </div>
 
@@ -4958,7 +5042,7 @@ date: Fri Sep 06 2013 14:54:37 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f4efb15360](http://github.com/underscorediscovery/luxe/commit/f4efb153609d71b132298bf8620d11ca4b327fa0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 07:32:10 GMT-0230 (NDT)   
 </div>
 
@@ -4972,7 +5056,7 @@ date: Fri Sep 06 2013 07:32:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [486d06c097](http://github.com/underscorediscovery/luxe/commit/486d06c09747ab34cb0693e90f99930dda3c5e3d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 07:31:53 GMT-0230 (NDT)   
 </div>
 
@@ -4986,7 +5070,7 @@ date: Fri Sep 06 2013 07:31:53 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a24a9015d6](http://github.com/underscorediscovery/luxe/commit/a24a9015d6d5755f7ea3823a91e9dd2a6680df46)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 01:31:02 GMT-0230 (NDT)   
 </div>
 
@@ -5000,7 +5084,7 @@ date: Fri Sep 06 2013 01:31:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [70d0994cb5](http://github.com/underscorediscovery/luxe/commit/70d0994cb5d25ce530da936ca8a2b196b1cc22f2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 01:29:46 GMT-0230 (NDT)   
 </div>
 
@@ -5014,7 +5098,7 @@ date: Fri Sep 06 2013 01:29:46 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [31dda1f258](http://github.com/underscorediscovery/luxe/commit/31dda1f2583bc365c94a510ab1a18ff4301c3e7d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 01:29:06 GMT-0230 (NDT)   
 </div>
 
@@ -5028,7 +5112,7 @@ date: Fri Sep 06 2013 01:29:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [185bb820d2](http://github.com/underscorediscovery/luxe/commit/185bb820d294171a545db45549cda5e6c4787b8f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 01:28:42 GMT-0230 (NDT)   
 </div>
 
@@ -5042,7 +5126,7 @@ date: Fri Sep 06 2013 01:28:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c642a48dcc](http://github.com/underscorediscovery/luxe/commit/c642a48dccd977fa20036226b03370aa8261da05)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 01:20:31 GMT-0230 (NDT)   
 </div>
 
@@ -5056,7 +5140,7 @@ date: Fri Sep 06 2013 01:20:31 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f01cbbc792](http://github.com/underscorediscovery/luxe/commit/f01cbbc792fb2cda45162ec075c87f3e17b73fc2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 00:38:42 GMT-0230 (NDT)   
 </div>
 
@@ -5070,7 +5154,7 @@ date: Fri Sep 06 2013 00:38:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [85ce4900a2](http://github.com/underscorediscovery/luxe/commit/85ce4900a2a27426ab2ac8c2a52e2e614efd4fa3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Sep 06 2013 00:21:44 GMT-0230 (NDT)   
 </div>
 
@@ -5084,7 +5168,7 @@ date: Fri Sep 06 2013 00:21:44 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d2a75b1f10](http://github.com/underscorediscovery/luxe/commit/d2a75b1f107d3735ad13880b506b68605118b542)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 20:44:40 GMT-0230 (NDT)   
 </div>
 
@@ -5098,7 +5182,7 @@ date: Thu Sep 05 2013 20:44:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e79b9d98bd](http://github.com/underscorediscovery/luxe/commit/e79b9d98bde2a6c810a2d3f49780cbfaae6e727c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 20:02:52 GMT-0230 (NDT)   
 </div>
 
@@ -5112,7 +5196,7 @@ date: Thu Sep 05 2013 20:02:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3b4e2143ad](http://github.com/underscorediscovery/luxe/commit/3b4e2143ad67a7231fb9a6df1ba1d48dff963ffd)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 19:59:43 GMT-0230 (NDT)   
 </div>
 
@@ -5126,7 +5210,7 @@ date: Thu Sep 05 2013 19:59:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a5ab90e6f2](http://github.com/underscorediscovery/luxe/commit/a5ab90e6f2f3a50844e06276a6991612d74858b7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 19:09:30 GMT-0230 (NDT)   
 </div>
 
@@ -5140,7 +5224,7 @@ date: Thu Sep 05 2013 19:09:30 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ec7fce7cc4](http://github.com/underscorediscovery/luxe/commit/ec7fce7cc4b68da9d5647bb59b6aad7211d334c7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 17:10:34 GMT-0230 (NDT)   
 </div>
 
@@ -5154,7 +5238,7 @@ date: Thu Sep 05 2013 17:10:34 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f7f16f0091](http://github.com/underscorediscovery/luxe/commit/f7f16f00917920efd2fc68f10cf3311b359f54d3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 17:09:20 GMT-0230 (NDT)   
 </div>
 
@@ -5168,7 +5252,7 @@ date: Thu Sep 05 2013 17:09:20 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5814a4f458](http://github.com/underscorediscovery/luxe/commit/5814a4f458fa92598660548e4b05377282fe1326)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 07:36:03 GMT-0230 (NDT)   
 </div>
 
@@ -5182,7 +5266,7 @@ date: Thu Sep 05 2013 07:36:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2cff67eb54](http://github.com/underscorediscovery/luxe/commit/2cff67eb5480e3b402a3ea9bd1c03f995acf3270)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Sep 05 2013 03:47:42 GMT-0230 (NDT)   
 </div>
 
@@ -5196,7 +5280,7 @@ date: Thu Sep 05 2013 03:47:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [59975e2597](http://github.com/underscorediscovery/luxe/commit/59975e259722af48cedc9f337f71d7fbc2af1272)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 04 2013 06:11:04 GMT-0230 (NDT)   
 </div>
 
@@ -5210,7 +5294,7 @@ date: Wed Sep 04 2013 06:11:04 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [31b5e3cc99](http://github.com/underscorediscovery/luxe/commit/31b5e3cc99f9c050352fab48ecbdcfd5ffb5a70e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 04 2013 03:57:19 GMT-0230 (NDT)   
 </div>
 
@@ -5224,7 +5308,7 @@ date: Wed Sep 04 2013 03:57:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9fc093aef9](http://github.com/underscorediscovery/luxe/commit/9fc093aef9ddfe8856e0c49db4a34321a6c2f1ea)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Sep 04 2013 03:55:58 GMT-0230 (NDT)   
 </div>
 
@@ -5238,7 +5322,7 @@ date: Wed Sep 04 2013 03:55:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1566ae7f79](http://github.com/underscorediscovery/luxe/commit/1566ae7f79586f3b9c4f2cea21c91ead95f373a5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Sep 03 2013 02:32:03 GMT-0230 (NDT)   
 </div>
 
@@ -5252,7 +5336,7 @@ date: Tue Sep 03 2013 02:32:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f547eacfc1](http://github.com/underscorediscovery/luxe/commit/f547eacfc108884e42715a4d9bfa833e6ab95f9d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Sep 02 2013 01:29:57 GMT-0230 (NDT)   
 </div>
 
@@ -5266,7 +5350,7 @@ date: Mon Sep 02 2013 01:29:57 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [17a65dd78b](http://github.com/underscorediscovery/luxe/commit/17a65dd78b6fbe8d8a8b8321c599b2d1e6df8ffb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 01 2013 20:37:00 GMT-0230 (NDT)   
 </div>
 
@@ -5280,7 +5364,7 @@ date: Sun Sep 01 2013 20:37:00 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [02a6eb1a12](http://github.com/underscorediscovery/luxe/commit/02a6eb1a12f8d11e05014fc7ba94eab17b615d94)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 01 2013 06:40:11 GMT-0230 (NDT)   
 </div>
 
@@ -5294,7 +5378,7 @@ date: Sun Sep 01 2013 06:40:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [aeaf6e1929](http://github.com/underscorediscovery/luxe/commit/aeaf6e1929da9916f72e97a6b2510ea041282fdb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Sep 01 2013 04:32:06 GMT-0230 (NDT)   
 </div>
 
@@ -5308,7 +5392,7 @@ date: Sun Sep 01 2013 04:32:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6b61a8940b](http://github.com/underscorediscovery/luxe/commit/6b61a8940b2a2da225328edbe149344fec3753b2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 31 2013 03:34:44 GMT-0230 (NDT)   
 </div>
 
@@ -5322,7 +5406,7 @@ date: Sat Aug 31 2013 03:34:44 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3534f5199f](http://github.com/underscorediscovery/luxe/commit/3534f5199f55b02e223c0ad4e35bb82970d6d489)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 31 2013 00:36:09 GMT-0230 (NDT)   
 </div>
 
@@ -5336,7 +5420,7 @@ date: Sat Aug 31 2013 00:36:09 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ed7485e3e5](http://github.com/underscorediscovery/luxe/commit/ed7485e3e58069abb774ec2579af330861f47f6e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Aug 26 2013 06:44:32 GMT-0230 (NDT)   
 </div>
 
@@ -5350,7 +5434,7 @@ date: Mon Aug 26 2013 06:44:32 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a04ab71a82](http://github.com/underscorediscovery/luxe/commit/a04ab71a8280d0a5fe8c516bb6a242e3b0231de4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Aug 26 2013 06:44:27 GMT-0230 (NDT)   
 </div>
 
@@ -5364,7 +5448,7 @@ date: Mon Aug 26 2013 06:44:27 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8cf7a2b248](http://github.com/underscorediscovery/luxe/commit/8cf7a2b248a49db0b7393b0082b569c15100c136)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Aug 25 2013 03:27:09 GMT-0230 (NDT)   
 </div>
 
@@ -5378,7 +5462,7 @@ date: Sun Aug 25 2013 03:27:09 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1056bcf703](http://github.com/underscorediscovery/luxe/commit/1056bcf703df9b4c664d4489c862981779903e0c)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Aug 25 2013 02:54:49 GMT-0230 (NDT)   
 </div>
 
@@ -5392,7 +5476,7 @@ date: Sun Aug 25 2013 02:54:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2a47c1954b](http://github.com/underscorediscovery/luxe/commit/2a47c1954b5927d6eac9b81c15decbb0b2291883)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 24 2013 17:36:52 GMT-0230 (NDT)   
 </div>
 
@@ -5406,7 +5490,7 @@ date: Sat Aug 24 2013 17:36:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [52d5de3717](http://github.com/underscorediscovery/luxe/commit/52d5de3717b10bfc49c930ab17235e3bfad3f8aa)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 24 2013 17:33:19 GMT-0230 (NDT)   
 </div>
 
@@ -5420,7 +5504,7 @@ date: Sat Aug 24 2013 17:33:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [45138def84](http://github.com/underscorediscovery/luxe/commit/45138def84621335488f794599f91ab9b99c09c0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 24 2013 16:26:16 GMT-0230 (NDT)   
 </div>
 
@@ -5434,7 +5518,7 @@ date: Sat Aug 24 2013 16:26:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [844f30e9ca](http://github.com/underscorediscovery/luxe/commit/844f30e9ca7ac89cdc6526bf59d18928a19bb5a1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 24 2013 13:38:46 GMT-0230 (NDT)   
 </div>
 
@@ -5448,7 +5532,7 @@ date: Sat Aug 24 2013 13:38:46 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2d8ffb3f30](http://github.com/underscorediscovery/luxe/commit/2d8ffb3f30095e0b4cc882fbd5c84c44c682fa77)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Aug 23 2013 13:01:02 GMT-0230 (NDT)   
 </div>
 
@@ -5462,7 +5546,7 @@ date: Fri Aug 23 2013 13:01:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [307dfac444](http://github.com/underscorediscovery/luxe/commit/307dfac4441d99a31b62c4fd1b7150e8ed4ba60d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Aug 23 2013 11:35:12 GMT-0230 (NDT)   
 </div>
 
@@ -5476,7 +5560,7 @@ date: Fri Aug 23 2013 11:35:12 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e04d883f6f](http://github.com/underscorediscovery/luxe/commit/e04d883f6f5a47d330d10a13b2f008d70a613511)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 22 2013 23:06:31 GMT-0230 (NDT)   
 </div>
 
@@ -5490,7 +5574,7 @@ date: Thu Aug 22 2013 23:06:31 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1f824df8b0](http://github.com/underscorediscovery/luxe/commit/1f824df8b0730411f891e19b86239d73bdbb3aef)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 22 2013 22:13:47 GMT-0230 (NDT)   
 </div>
 
@@ -5504,7 +5588,7 @@ date: Thu Aug 22 2013 22:13:47 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f812c73b5e](http://github.com/underscorediscovery/luxe/commit/f812c73b5eca6cf276c183401860ff7e1e7383ad)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 22 2013 17:30:55 GMT-0230 (NDT)   
 </div>
 
@@ -5518,7 +5602,7 @@ date: Thu Aug 22 2013 17:30:55 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [87064db3f3](http://github.com/underscorediscovery/luxe/commit/87064db3f3a9c813a035840519ded014db96de48)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 21 2013 06:31:36 GMT-0230 (NDT)   
 </div>
 
@@ -5532,7 +5616,7 @@ date: Wed Aug 21 2013 06:31:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7fb334433f](http://github.com/underscorediscovery/luxe/commit/7fb334433fc4ecf5b38ebdf1c9cb324a1137331f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 21 2013 00:02:24 GMT-0230 (NDT)   
 </div>
 
@@ -5546,7 +5630,7 @@ date: Wed Aug 21 2013 00:02:24 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [45fbb4aa21](http://github.com/underscorediscovery/luxe/commit/45fbb4aa2109c667b1cbd0b8b5be61038d52319d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Aug 20 2013 19:52:36 GMT-0230 (NDT)   
 </div>
 
@@ -5560,7 +5644,7 @@ date: Tue Aug 20 2013 19:52:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [853617ceb5](http://github.com/underscorediscovery/luxe/commit/853617ceb5b9d1f2aa37f86c31e4aa6d61e3a1ca)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Aug 19 2013 03:25:13 GMT-0230 (NDT)   
 </div>
 
@@ -5574,7 +5658,7 @@ date: Mon Aug 19 2013 03:25:13 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ee02f34aec](http://github.com/underscorediscovery/luxe/commit/ee02f34aec43295b1401550e9a827bda394e3a12)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 17 2013 07:50:51 GMT-0230 (NDT)   
 </div>
 
@@ -5588,7 +5672,7 @@ date: Sat Aug 17 2013 07:50:51 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [95551ba2db](http://github.com/underscorediscovery/luxe/commit/95551ba2db087bfd9aed408cf89d7eac45a29f0c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Aug 17 2013 06:55:34 GMT-0230 (NDT)   
 </div>
 
@@ -5602,7 +5686,7 @@ date: Sat Aug 17 2013 06:55:34 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c6acde8b7b](http://github.com/underscorediscovery/luxe/commit/c6acde8b7bc5900773224adf138779a10f36a009)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 15 2013 08:45:51 GMT-0230 (NDT)   
 </div>
 
@@ -5616,7 +5700,7 @@ date: Thu Aug 15 2013 08:45:51 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b040abc975](http://github.com/underscorediscovery/luxe/commit/b040abc9754c7b944386bb9e712d844b8c0a3792)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 15 2013 03:46:39 GMT-0230 (NDT)   
 </div>
 
@@ -5630,7 +5714,7 @@ date: Thu Aug 15 2013 03:46:39 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [142a89af07](http://github.com/underscorediscovery/luxe/commit/142a89af072249195f1d3481727058df9e1c557e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 15 2013 01:16:46 GMT-0230 (NDT)   
 </div>
 
@@ -5644,7 +5728,7 @@ date: Thu Aug 15 2013 01:16:46 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8449514654](http://github.com/underscorediscovery/luxe/commit/844951465465961ff07c9872dfcf8cd4fc760558)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 14 2013 16:56:08 GMT-0230 (NDT)   
 </div>
 
@@ -5658,7 +5742,7 @@ date: Wed Aug 14 2013 16:56:08 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [27ba6f1511](http://github.com/underscorediscovery/luxe/commit/27ba6f151129006595711dee72782274d85c26d3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 14 2013 02:12:07 GMT-0230 (NDT)   
 </div>
 
@@ -5672,7 +5756,7 @@ date: Wed Aug 14 2013 02:12:07 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4953fdac5d](http://github.com/underscorediscovery/luxe/commit/4953fdac5d422c4baa43db6498a1d6afc24bcaaa)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 14 2013 02:04:12 GMT-0230 (NDT)   
 </div>
 
@@ -5686,7 +5770,7 @@ date: Wed Aug 14 2013 02:04:12 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8ccf78c677](http://github.com/underscorediscovery/luxe/commit/8ccf78c6778c3446cfbf3efb2bf3e80d0325b4fc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Aug 13 2013 17:18:38 GMT-0230 (NDT)   
 </div>
 
@@ -5700,7 +5784,7 @@ date: Tue Aug 13 2013 17:18:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [fd94d38098](http://github.com/underscorediscovery/luxe/commit/fd94d3809855acb037c8402609c0ccf26bd601a2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Aug 13 2013 06:12:55 GMT-0230 (NDT)   
 </div>
 
@@ -5714,7 +5798,7 @@ date: Tue Aug 13 2013 06:12:55 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ff897a4857](http://github.com/underscorediscovery/luxe/commit/ff897a48572cad403902b0acab65e6a17d79906c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Aug 13 2013 04:33:03 GMT-0230 (NDT)   
 </div>
 
@@ -5728,7 +5812,7 @@ date: Tue Aug 13 2013 04:33:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [257c34c5ca](http://github.com/underscorediscovery/luxe/commit/257c34c5cadb814b240847a16456c4e4e1f63c58)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Aug 09 2013 03:56:43 GMT-0230 (NDT)   
 </div>
 
@@ -5742,7 +5826,7 @@ date: Fri Aug 09 2013 03:56:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6e392141ab](http://github.com/underscorediscovery/luxe/commit/6e392141ab8080ef6e8252266c1a32550382d808)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 08 2013 22:55:52 GMT-0230 (NDT)   
 </div>
 
@@ -5756,7 +5840,7 @@ date: Thu Aug 08 2013 22:55:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8cb0d5ef1c](http://github.com/underscorediscovery/luxe/commit/8cb0d5ef1c6b0386320d03101b397799120cfa55)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 08 2013 22:30:48 GMT-0230 (NDT)   
 </div>
 
@@ -5770,7 +5854,7 @@ date: Thu Aug 08 2013 22:30:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [83aa16b690](http://github.com/underscorediscovery/luxe/commit/83aa16b69032c8e797a3eb17724b9e09a16ea4cd)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 08 2013 22:30:19 GMT-0230 (NDT)   
 </div>
 
@@ -5784,7 +5868,7 @@ date: Thu Aug 08 2013 22:30:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0163824c4d](http://github.com/underscorediscovery/luxe/commit/0163824c4df046a82b8cba1d049a82b9135e2961)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 08 2013 17:14:03 GMT-0230 (NDT)   
 </div>
 
@@ -5798,7 +5882,7 @@ date: Thu Aug 08 2013 17:14:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8c016079b8](http://github.com/underscorediscovery/luxe/commit/8c016079b8ffcf1a2395981808b3605e097843e1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 08 2013 06:16:51 GMT-0230 (NDT)   
 </div>
 
@@ -5812,7 +5896,7 @@ date: Thu Aug 08 2013 06:16:51 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6aa30f12b9](http://github.com/underscorediscovery/luxe/commit/6aa30f12b948e3cf26bc4b776a8b808213677071)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Aug 08 2013 01:25:22 GMT-0230 (NDT)   
 </div>
 
@@ -5826,7 +5910,7 @@ date: Thu Aug 08 2013 01:25:22 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bcab4f9f2d](http://github.com/underscorediscovery/luxe/commit/bcab4f9f2dfad30afe6404bab188bd76e6048e2c)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Wed Aug 07 2013 23:38:15 GMT-0230 (NDT)   
 </div>
 
@@ -5840,7 +5924,7 @@ date: Wed Aug 07 2013 23:38:15 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8519f9c4e2](http://github.com/underscorediscovery/luxe/commit/8519f9c4e240310d6e007b3472cdae20b7f9c528)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Wed Aug 07 2013 23:37:48 GMT-0230 (NDT)   
 </div>
 
@@ -5854,7 +5938,7 @@ date: Wed Aug 07 2013 23:37:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [77aa7eb6a0](http://github.com/underscorediscovery/luxe/commit/77aa7eb6a08dbc1d9d796986d581e9dff69ab0ef)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Wed Aug 07 2013 23:37:31 GMT-0230 (NDT)   
 </div>
 
@@ -5868,7 +5952,7 @@ date: Wed Aug 07 2013 23:37:31 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [868829bad1](http://github.com/underscorediscovery/luxe/commit/868829bad16039d4a7427fb4c34d7a6fc9a38d82)   
-author: Sven Bergström <sven@underscorediscovery.com>   
+author: Sven Bergström   
 date: Wed Aug 07 2013 23:37:16 GMT-0230 (NDT)   
 </div>
 
@@ -5882,7 +5966,7 @@ date: Wed Aug 07 2013 23:37:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ad283af12f](http://github.com/underscorediscovery/luxe/commit/ad283af12fbb8c7d4a1cb5bbd2d4639a0bfeb3eb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 07 2013 23:24:29 GMT-0230 (NDT)   
 </div>
 
@@ -5896,7 +5980,7 @@ date: Wed Aug 07 2013 23:24:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e635e2fd70](http://github.com/underscorediscovery/luxe/commit/e635e2fd70f72d6502b808b74e64813967fde625)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 07 2013 21:13:33 GMT-0230 (NDT)   
 </div>
 
@@ -5910,7 +5994,7 @@ date: Wed Aug 07 2013 21:13:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4789b1b3b6](http://github.com/underscorediscovery/luxe/commit/4789b1b3b60f5549a33825168b8d5ffdbfc2116c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 07 2013 21:13:10 GMT-0230 (NDT)   
 </div>
 
@@ -5924,7 +6008,7 @@ date: Wed Aug 07 2013 21:13:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7505f74c1d](http://github.com/underscorediscovery/luxe/commit/7505f74c1d488d7d037a595b1f1c56e0262001b8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 07 2013 16:06:02 GMT-0230 (NDT)   
 </div>
 
@@ -5938,7 +6022,7 @@ date: Wed Aug 07 2013 16:06:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d0a3fff523](http://github.com/underscorediscovery/luxe/commit/d0a3fff523061040387488af2bfdb1a20bb4554b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 07 2013 15:53:58 GMT-0230 (NDT)   
 </div>
 
@@ -5952,7 +6036,7 @@ date: Wed Aug 07 2013 15:53:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f30217828e](http://github.com/underscorediscovery/luxe/commit/f30217828ea1e9aebc217d101e80f8418c177ada)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Aug 07 2013 03:51:27 GMT-0230 (NDT)   
 </div>
 
@@ -5966,7 +6050,7 @@ date: Wed Aug 07 2013 03:51:27 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2831f8b9b3](http://github.com/underscorediscovery/luxe/commit/2831f8b9b32c3c096eaee23ea06e3314cc3f4519)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 31 2013 04:03:08 GMT-0230 (NDT)   
 </div>
 
@@ -5980,7 +6064,7 @@ date: Wed Jul 31 2013 04:03:08 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b870402e2b](http://github.com/underscorediscovery/luxe/commit/b870402e2b28864018768e8754a3a864739d658e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 29 2013 14:16:56 GMT-0230 (NDT)   
 </div>
 
@@ -5994,7 +6078,7 @@ date: Mon Jul 29 2013 14:16:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2284ae2bf0](http://github.com/underscorediscovery/luxe/commit/2284ae2bf0bc3e4378ac4d19e53e7e4a79c32958)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 29 2013 10:19:41 GMT-0230 (NDT)   
 </div>
 
@@ -6008,7 +6092,7 @@ date: Mon Jul 29 2013 10:19:41 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [fe61326f6e](http://github.com/underscorediscovery/luxe/commit/fe61326f6e1eb89202219f543b42eeb4c6f2074a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 29 2013 09:22:04 GMT-0230 (NDT)   
 </div>
 
@@ -6022,7 +6106,7 @@ date: Mon Jul 29 2013 09:22:04 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f8e5aa8141](http://github.com/underscorediscovery/luxe/commit/f8e5aa814119fc065086008d8196b35052c4f512)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 29 2013 08:35:56 GMT-0230 (NDT)   
 </div>
 
@@ -6036,7 +6120,7 @@ date: Mon Jul 29 2013 08:35:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5f8bf76867](http://github.com/underscorediscovery/luxe/commit/5f8bf76867fb61f561cd02da29540ced48eab6f2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 29 2013 01:56:06 GMT-0230 (NDT)   
 </div>
 
@@ -6050,7 +6134,7 @@ date: Mon Jul 29 2013 01:56:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [911dc880bb](http://github.com/underscorediscovery/luxe/commit/911dc880bba75832e6c4e7bf1e13ba24cb2ec3b2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 29 2013 01:55:38 GMT-0230 (NDT)   
 </div>
 
@@ -6064,7 +6148,7 @@ date: Mon Jul 29 2013 01:55:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7e7c144c83](http://github.com/underscorediscovery/luxe/commit/7e7c144c836bdf39155a0de17fc90d9940b5e373)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 28 2013 07:50:24 GMT-0230 (NDT)   
 </div>
 
@@ -6078,7 +6162,7 @@ date: Sun Jul 28 2013 07:50:24 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2babad9a69](http://github.com/underscorediscovery/luxe/commit/2babad9a69bf706c04513b013859cfc0122f51a7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 28 2013 07:50:04 GMT-0230 (NDT)   
 </div>
 
@@ -6092,7 +6176,7 @@ date: Sun Jul 28 2013 07:50:04 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [330d5266e8](http://github.com/underscorediscovery/luxe/commit/330d5266e8650460b66a67d4ccebbb05f2af50ee)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 28 2013 07:37:05 GMT-0230 (NDT)   
 </div>
 
@@ -6106,7 +6190,7 @@ date: Sun Jul 28 2013 07:37:05 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [51dc32e604](http://github.com/underscorediscovery/luxe/commit/51dc32e604d8cb4dc82aad7d6ed78a76c4e1d427)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 28 2013 07:36:24 GMT-0230 (NDT)   
 </div>
 
@@ -6120,7 +6204,7 @@ date: Sun Jul 28 2013 07:36:24 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7b3e50d1fa](http://github.com/underscorediscovery/luxe/commit/7b3e50d1fa51f4ada6fe2f477e96a54c4c66ab76)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 28 2013 06:45:40 GMT-0230 (NDT)   
 </div>
 
@@ -6134,7 +6218,7 @@ date: Sun Jul 28 2013 06:45:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [592e85cc18](http://github.com/underscorediscovery/luxe/commit/592e85cc18c306af2c8f8d1f91b50f2fe4071ef1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 27 2013 23:18:53 GMT-0230 (NDT)   
 </div>
 
@@ -6148,7 +6232,7 @@ date: Sat Jul 27 2013 23:18:53 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [df0d32b872](http://github.com/underscorediscovery/luxe/commit/df0d32b8728a97ab64f1f3887fe9cf22d73e397a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 27 2013 23:18:25 GMT-0230 (NDT)   
 </div>
 
@@ -6162,7 +6246,7 @@ date: Sat Jul 27 2013 23:18:25 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5aebd4759a](http://github.com/underscorediscovery/luxe/commit/5aebd4759a60f05fb7398496b568877ae682aa01)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 26 2013 06:58:33 GMT-0230 (NDT)   
 </div>
 
@@ -6176,7 +6260,7 @@ date: Fri Jul 26 2013 06:58:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [269ad16ace](http://github.com/underscorediscovery/luxe/commit/269ad16ace18d5f45791a502a0e26f00b24a57ef)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 26 2013 06:57:39 GMT-0230 (NDT)   
 </div>
 
@@ -6190,7 +6274,7 @@ date: Fri Jul 26 2013 06:57:39 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9307073b13](http://github.com/underscorediscovery/luxe/commit/9307073b13cb12cb8ad25e8b52bacadcbc9e30ee)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 24 2013 06:28:45 GMT-0230 (NDT)   
 </div>
 
@@ -6204,7 +6288,7 @@ date: Wed Jul 24 2013 06:28:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f39df56915](http://github.com/underscorediscovery/luxe/commit/f39df569158a21fe7fe4908d88053e8eeac1e2eb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 24 2013 06:28:30 GMT-0230 (NDT)   
 </div>
 
@@ -6218,7 +6302,7 @@ date: Wed Jul 24 2013 06:28:30 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c4cb3a6ad2](http://github.com/underscorediscovery/luxe/commit/c4cb3a6ad2e9ced8c065096d56a67b4c3afc0e06)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 24 2013 02:48:29 GMT-0230 (NDT)   
 </div>
 
@@ -6232,7 +6316,7 @@ date: Wed Jul 24 2013 02:48:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [56f3c79049](http://github.com/underscorediscovery/luxe/commit/56f3c790492d9f0d1aba2b9c45a4ed11d9af1b6e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 24 2013 02:47:50 GMT-0230 (NDT)   
 </div>
 
@@ -6246,7 +6330,7 @@ date: Wed Jul 24 2013 02:47:50 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [16f12fcd26](http://github.com/underscorediscovery/luxe/commit/16f12fcd26b114afc1227d3117511542a6d1a64b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 24 2013 02:21:59 GMT-0230 (NDT)   
 </div>
 
@@ -6260,7 +6344,7 @@ date: Wed Jul 24 2013 02:21:59 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ae6f13dfeb](http://github.com/underscorediscovery/luxe/commit/ae6f13dfebf0afcf6f2b0604c021ec493e16e4da)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 24 2013 02:21:09 GMT-0230 (NDT)   
 </div>
 
@@ -6274,7 +6358,7 @@ date: Wed Jul 24 2013 02:21:09 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bd42735cee](http://github.com/underscorediscovery/luxe/commit/bd42735ceed998bd1e14dc52cc098eeb35e746fd)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 23:08:23 GMT-0230 (NDT)   
 </div>
 
@@ -6288,7 +6372,7 @@ date: Tue Jul 23 2013 23:08:23 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [442a365905](http://github.com/underscorediscovery/luxe/commit/442a365905191092526fa73f6cb5945a3a117ef3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 20:22:45 GMT-0230 (NDT)   
 </div>
 
@@ -6302,7 +6386,7 @@ date: Tue Jul 23 2013 20:22:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5694f04f40](http://github.com/underscorediscovery/luxe/commit/5694f04f40c5c50f8324c53b0024c1f3de6e15a9)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 19:46:06 GMT-0230 (NDT)   
 </div>
 
@@ -6316,7 +6400,7 @@ date: Tue Jul 23 2013 19:46:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f338b7c8bb](http://github.com/underscorediscovery/luxe/commit/f338b7c8bb50eec22dc945e3048ab201d5ded265)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 19:40:29 GMT-0230 (NDT)   
 </div>
 
@@ -6330,7 +6414,7 @@ date: Tue Jul 23 2013 19:40:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [43ba449834](http://github.com/underscorediscovery/luxe/commit/43ba449834d12c191b4013ac086edc34d0245145)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 19:04:10 GMT-0230 (NDT)   
 </div>
 
@@ -6344,7 +6428,7 @@ date: Tue Jul 23 2013 19:04:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ff12f063c7](http://github.com/underscorediscovery/luxe/commit/ff12f063c7b51886b16e9b69073aeca6477fce99)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 18:43:50 GMT-0230 (NDT)   
 </div>
 
@@ -6358,7 +6442,7 @@ date: Tue Jul 23 2013 18:43:50 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7d6a001e89](http://github.com/underscorediscovery/luxe/commit/7d6a001e89415f6987921e4564e5cb45c18ae532)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 18:31:49 GMT-0230 (NDT)   
 </div>
 
@@ -6372,7 +6456,7 @@ date: Tue Jul 23 2013 18:31:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e19a467e3b](http://github.com/underscorediscovery/luxe/commit/e19a467e3bd29f7c514dfce4c937f0d035eb906c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 17:57:07 GMT-0230 (NDT)   
 </div>
 
@@ -6386,7 +6470,7 @@ date: Tue Jul 23 2013 17:57:07 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bb8338cb0d](http://github.com/underscorediscovery/luxe/commit/bb8338cb0d6b8cb330fdf43115d88572dad5fdb0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 17:08:42 GMT-0230 (NDT)   
 </div>
 
@@ -6400,7 +6484,7 @@ date: Tue Jul 23 2013 17:08:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1718fe0151](http://github.com/underscorediscovery/luxe/commit/1718fe01510d5685e751ab13bc5493d244c3b454)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 06:52:11 GMT-0230 (NDT)   
 </div>
 
@@ -6414,7 +6498,7 @@ date: Tue Jul 23 2013 06:52:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6f76153fd8](http://github.com/underscorediscovery/luxe/commit/6f76153fd8f10d2e143c4c081ef582f8f656f1d1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 01:23:43 GMT-0230 (NDT)   
 </div>
 
@@ -6428,7 +6512,7 @@ date: Tue Jul 23 2013 01:23:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0040e45ab5](http://github.com/underscorediscovery/luxe/commit/0040e45ab59ab120ccd9833c1690bcff9f594063)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 01:23:15 GMT-0230 (NDT)   
 </div>
 
@@ -6442,7 +6526,7 @@ date: Tue Jul 23 2013 01:23:15 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e7c710dcb8](http://github.com/underscorediscovery/luxe/commit/e7c710dcb824b82b15904e76986a70c70a86cb37)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 23 2013 01:22:51 GMT-0230 (NDT)   
 </div>
 
@@ -6456,7 +6540,7 @@ date: Tue Jul 23 2013 01:22:51 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d46adb7898](http://github.com/underscorediscovery/luxe/commit/d46adb78982b738402f34fa5d55e32c7a97b94a4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 22 2013 23:51:43 GMT-0230 (NDT)   
 </div>
 
@@ -6470,7 +6554,7 @@ date: Mon Jul 22 2013 23:51:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [195e6138b8](http://github.com/underscorediscovery/luxe/commit/195e6138b8732b28517e68a316e9c20ef1453d53)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 22 2013 23:51:32 GMT-0230 (NDT)   
 </div>
 
@@ -6484,7 +6568,7 @@ date: Mon Jul 22 2013 23:51:32 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6181cd0c10](http://github.com/underscorediscovery/luxe/commit/6181cd0c108d5d59067dabdb3e519d5332426893)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 22 2013 23:24:47 GMT-0230 (NDT)   
 </div>
 
@@ -6498,7 +6582,7 @@ date: Mon Jul 22 2013 23:24:47 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [be9090a40d](http://github.com/underscorediscovery/luxe/commit/be9090a40d107365332c791d477848278221644d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 22 2013 13:06:09 GMT-0230 (NDT)   
 </div>
 
@@ -6512,7 +6596,7 @@ date: Mon Jul 22 2013 13:06:09 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bcff6a323a](http://github.com/underscorediscovery/luxe/commit/bcff6a323a4095c540d151011661a18c4d7c6a27)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 14:00:02 GMT-0230 (NDT)   
 </div>
 
@@ -6526,7 +6610,7 @@ date: Sun Jul 21 2013 14:00:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9db96e8339](http://github.com/underscorediscovery/luxe/commit/9db96e833958e81b20a97139b540d935e7241afb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 11:22:54 GMT-0230 (NDT)   
 </div>
 
@@ -6540,7 +6624,7 @@ date: Sun Jul 21 2013 11:22:54 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [be09228107](http://github.com/underscorediscovery/luxe/commit/be092281075c3fc585ec6b7d70b27bb8b8e852c2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 10:05:06 GMT-0230 (NDT)   
 </div>
 
@@ -6554,7 +6638,7 @@ date: Sun Jul 21 2013 10:05:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1ba3c03e99](http://github.com/underscorediscovery/luxe/commit/1ba3c03e99ab2cb73907bae49ad61554c6aeffe8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 10:03:52 GMT-0230 (NDT)   
 </div>
 
@@ -6568,7 +6652,7 @@ date: Sun Jul 21 2013 10:03:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9401deb846](http://github.com/underscorediscovery/luxe/commit/9401deb846206706363486400ad33fd4e150ebf0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 09:57:14 GMT-0230 (NDT)   
 </div>
 
@@ -6582,7 +6666,7 @@ date: Sun Jul 21 2013 09:57:14 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7377378058](http://github.com/underscorediscovery/luxe/commit/7377378058be20ccd708e73bac674daf19d3aa42)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 07:32:16 GMT-0230 (NDT)   
 </div>
 
@@ -6596,7 +6680,7 @@ date: Sun Jul 21 2013 07:32:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [551c3ed881](http://github.com/underscorediscovery/luxe/commit/551c3ed8816622095d9f9e6af0746023d29ac509)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 07:29:56 GMT-0230 (NDT)   
 </div>
 
@@ -6610,7 +6694,7 @@ date: Sun Jul 21 2013 07:29:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1a498da9ce](http://github.com/underscorediscovery/luxe/commit/1a498da9cea6f07f6a3b4acb5610ef2136ad0293)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 07:20:19 GMT-0230 (NDT)   
 </div>
 
@@ -6624,7 +6708,7 @@ date: Sun Jul 21 2013 07:20:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4dd4da9abf](http://github.com/underscorediscovery/luxe/commit/4dd4da9abf7fe831fe649021c00246afa108785c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 07:11:35 GMT-0230 (NDT)   
 </div>
 
@@ -6638,7 +6722,7 @@ date: Sun Jul 21 2013 07:11:35 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5aa1067d86](http://github.com/underscorediscovery/luxe/commit/5aa1067d86c7fcfbfa8f25a360db996bdf3b029a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 03:12:17 GMT-0230 (NDT)   
 </div>
 
@@ -6652,7 +6736,7 @@ date: Sun Jul 21 2013 03:12:17 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [67b2fc6947](http://github.com/underscorediscovery/luxe/commit/67b2fc69475eeb453502b9bca32cc57367e1f9d0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 01:33:13 GMT-0230 (NDT)   
 </div>
 
@@ -6666,7 +6750,7 @@ date: Sun Jul 21 2013 01:33:13 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8805d46cbe](http://github.com/underscorediscovery/luxe/commit/8805d46cbe2018b042eb9e412b8944880f524f5b)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 21 2013 00:11:32 GMT-0230 (NDT)   
 </div>
 
@@ -6680,7 +6764,7 @@ date: Sun Jul 21 2013 00:11:32 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f67c431a45](http://github.com/underscorediscovery/luxe/commit/f67c431a45ea2540acd63c9404d7c01b21e20106)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 23:56:38 GMT-0230 (NDT)   
 </div>
 
@@ -6694,7 +6778,7 @@ date: Sat Jul 20 2013 23:56:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [07709a88b7](http://github.com/underscorediscovery/luxe/commit/07709a88b7304c04bfa2179ff607593ca9ac35de)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 23:54:16 GMT-0230 (NDT)   
 </div>
 
@@ -6708,7 +6792,7 @@ date: Sat Jul 20 2013 23:54:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2f2e513c79](http://github.com/underscorediscovery/luxe/commit/2f2e513c794e50088bdc08be10016a14e7fddd5e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 23:49:58 GMT-0230 (NDT)   
 </div>
 
@@ -6722,7 +6806,7 @@ date: Sat Jul 20 2013 23:49:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8830b68e00](http://github.com/underscorediscovery/luxe/commit/8830b68e0040211a681561a81507307e1f80d0eb)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 23:29:58 GMT-0230 (NDT)   
 </div>
 
@@ -6736,7 +6820,7 @@ date: Sat Jul 20 2013 23:29:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3bec823565](http://github.com/underscorediscovery/luxe/commit/3bec823565c24c6360b5d038674a81baa93837a4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 23:29:46 GMT-0230 (NDT)   
 </div>
 
@@ -6750,7 +6834,7 @@ date: Sat Jul 20 2013 23:29:46 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a8e4a03e05](http://github.com/underscorediscovery/luxe/commit/a8e4a03e050cdecd3b7cfccde6a26857fbe935c2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 22:52:57 GMT-0230 (NDT)   
 </div>
 
@@ -6764,7 +6848,7 @@ date: Sat Jul 20 2013 22:52:57 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [64486c7c88](http://github.com/underscorediscovery/luxe/commit/64486c7c88f32b438ec33ea300e91946b76c8aa2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 17:51:26 GMT-0230 (NDT)   
 </div>
 
@@ -6778,7 +6862,7 @@ date: Sat Jul 20 2013 17:51:26 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f8e4383979](http://github.com/underscorediscovery/luxe/commit/f8e43839798544054c1dc1da8ff5ec2b69c817b5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 17:29:49 GMT-0230 (NDT)   
 </div>
 
@@ -6792,7 +6876,7 @@ date: Sat Jul 20 2013 17:29:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3c3fa9c5e4](http://github.com/underscorediscovery/luxe/commit/3c3fa9c5e4e836cb5adc5f5e9e5c292c20a32dd0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 17:07:35 GMT-0230 (NDT)   
 </div>
 
@@ -6806,7 +6890,7 @@ date: Sat Jul 20 2013 17:07:35 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4a937a4909](http://github.com/underscorediscovery/luxe/commit/4a937a4909cc8c044ad42a1896e09c2c8b8fe8ba)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 17:00:47 GMT-0230 (NDT)   
 </div>
 
@@ -6820,7 +6904,7 @@ date: Sat Jul 20 2013 17:00:47 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c7e71f2978](http://github.com/underscorediscovery/luxe/commit/c7e71f2978866860cccc9ea4ea7c41418cdd60dd)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 07:36:03 GMT-0230 (NDT)   
 </div>
 
@@ -6834,7 +6918,7 @@ date: Sat Jul 20 2013 07:36:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [224f2b1d95](http://github.com/underscorediscovery/luxe/commit/224f2b1d957943307cd3b85890140d3e899c3725)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sat Jul 20 2013 07:30:57 GMT-0230 (NDT)   
 </div>
 
@@ -6848,7 +6932,7 @@ date: Sat Jul 20 2013 07:30:57 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [149250687b](http://github.com/underscorediscovery/luxe/commit/149250687b31d6326aa6aceb1adf328e88dd9325)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 19 2013 07:17:36 GMT-0230 (NDT)   
 </div>
 
@@ -6862,7 +6946,7 @@ date: Fri Jul 19 2013 07:17:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dd8ff39709](http://github.com/underscorediscovery/luxe/commit/dd8ff39709a6dbc32af0214715c606d3456421b0)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 19 2013 02:50:33 GMT-0230 (NDT)   
 </div>
 
@@ -6876,7 +6960,7 @@ date: Fri Jul 19 2013 02:50:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a925011d9e](http://github.com/underscorediscovery/luxe/commit/a925011d9e1857d276baca5cc8194ad5bad84804)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 19 2013 01:50:17 GMT-0230 (NDT)   
 </div>
 
@@ -6890,7 +6974,7 @@ date: Fri Jul 19 2013 01:50:17 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0cd502755b](http://github.com/underscorediscovery/luxe/commit/0cd502755b53ad449ef4342ba0b054d92736733d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 18 2013 22:47:34 GMT-0230 (NDT)   
 </div>
 
@@ -6904,7 +6988,7 @@ date: Thu Jul 18 2013 22:47:34 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bd2cc9bdc0](http://github.com/underscorediscovery/luxe/commit/bd2cc9bdc03d6bcbd2aa4f32d634b0f3c1bdefc3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 18 2013 21:27:01 GMT-0230 (NDT)   
 </div>
 
@@ -6918,7 +7002,7 @@ date: Thu Jul 18 2013 21:27:01 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [56a72ab977](http://github.com/underscorediscovery/luxe/commit/56a72ab97701d48ca40829a9194b7680dcac47dd)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 18 2013 21:15:37 GMT-0230 (NDT)   
 </div>
 
@@ -6932,7 +7016,7 @@ date: Thu Jul 18 2013 21:15:37 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9d529db800](http://github.com/underscorediscovery/luxe/commit/9d529db800abaee697ca50966886822fc902be36)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 18 2013 02:08:45 GMT-0230 (NDT)   
 </div>
 
@@ -6946,7 +7030,7 @@ date: Thu Jul 18 2013 02:08:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [12144e8997](http://github.com/underscorediscovery/luxe/commit/12144e8997bc15a0fcc33874a6da076cc788b27c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 17 2013 18:59:03 GMT-0230 (NDT)   
 </div>
 
@@ -6960,7 +7044,7 @@ date: Wed Jul 17 2013 18:59:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [76f4bc235f](http://github.com/underscorediscovery/luxe/commit/76f4bc235f6c61f4fa028b6fe47baf2473474122)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 10:25:33 GMT-0230 (NDT)   
 </div>
 
@@ -6974,7 +7058,7 @@ date: Sun Jul 14 2013 10:25:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b96a193cb9](http://github.com/underscorediscovery/luxe/commit/b96a193cb9da57c9ae58dd7ad504d3de4043641c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 09:59:16 GMT-0230 (NDT)   
 </div>
 
@@ -6988,7 +7072,7 @@ date: Sun Jul 14 2013 09:59:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dd2059759b](http://github.com/underscorediscovery/luxe/commit/dd2059759b39ec71b9463ad39db5577a3b4ffb22)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 09:55:13 GMT-0230 (NDT)   
 </div>
 
@@ -7002,7 +7086,7 @@ date: Sun Jul 14 2013 09:55:13 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1d1d947f8f](http://github.com/underscorediscovery/luxe/commit/1d1d947f8f82bb7177c70be0da0a52b894befd5c)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 09:48:11 GMT-0230 (NDT)   
 </div>
 
@@ -7016,7 +7100,7 @@ date: Sun Jul 14 2013 09:48:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1e3aaf7435](http://github.com/underscorediscovery/luxe/commit/1e3aaf7435b9fe14cb2da860b05f5d145aba3d99)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 09:24:33 GMT-0230 (NDT)   
 </div>
 
@@ -7030,7 +7114,7 @@ date: Sun Jul 14 2013 09:24:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [15e42a7a7a](http://github.com/underscorediscovery/luxe/commit/15e42a7a7adbc31c1f6048b5d1663bb4a669d640)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 09:03:24 GMT-0230 (NDT)   
 </div>
 
@@ -7044,7 +7128,7 @@ date: Sun Jul 14 2013 09:03:24 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8d1601ee81](http://github.com/underscorediscovery/luxe/commit/8d1601ee811aa2ddab22819aae6a4c3cfe127eb2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 08:55:24 GMT-0230 (NDT)   
 </div>
 
@@ -7058,7 +7142,7 @@ date: Sun Jul 14 2013 08:55:24 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [912d0bfe3d](http://github.com/underscorediscovery/luxe/commit/912d0bfe3d2bfaa93ff0f851d7704d3ad9afd7d7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 08:08:18 GMT-0230 (NDT)   
 </div>
 
@@ -7072,7 +7156,7 @@ date: Sun Jul 14 2013 08:08:18 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [16df9676e9](http://github.com/underscorediscovery/luxe/commit/16df9676e92d6c88b49076bc05f104e18a10c0ce)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 07:18:45 GMT-0230 (NDT)   
 </div>
 
@@ -7086,7 +7170,7 @@ date: Sun Jul 14 2013 07:18:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [65ed3745ac](http://github.com/underscorediscovery/luxe/commit/65ed3745ac2d4507cd43713eddca5ee40d43a87d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 07:04:03 GMT-0230 (NDT)   
 </div>
 
@@ -7100,7 +7184,7 @@ date: Sun Jul 14 2013 07:04:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [797cd4d28d](http://github.com/underscorediscovery/luxe/commit/797cd4d28d3261d20bb5fb7cf3a4558f0fafdf82)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 06:57:45 GMT-0230 (NDT)   
 </div>
 
@@ -7114,7 +7198,7 @@ date: Sun Jul 14 2013 06:57:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ca482bc6b3](http://github.com/underscorediscovery/luxe/commit/ca482bc6b38da4e0e88ba455254810e73a1e3811)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 06:48:15 GMT-0230 (NDT)   
 </div>
 
@@ -7128,7 +7212,7 @@ date: Sun Jul 14 2013 06:48:15 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3730fa3311](http://github.com/underscorediscovery/luxe/commit/3730fa33111c8440c98c8bcf823b701ced9c27da)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 06:00:39 GMT-0230 (NDT)   
 </div>
 
@@ -7142,7 +7226,7 @@ date: Sun Jul 14 2013 06:00:39 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [fbdaf1ffce](http://github.com/underscorediscovery/luxe/commit/fbdaf1ffce003128b02dafa0472f965dc91d0d29)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 05:35:16 GMT-0230 (NDT)   
 </div>
 
@@ -7156,7 +7240,7 @@ date: Sun Jul 14 2013 05:35:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5b9d80050c](http://github.com/underscorediscovery/luxe/commit/5b9d80050c29ed6240ac7ecda28d967b649efd58)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 05:25:32 GMT-0230 (NDT)   
 </div>
 
@@ -7170,7 +7254,7 @@ date: Sun Jul 14 2013 05:25:32 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0ae0332a58](http://github.com/underscorediscovery/luxe/commit/0ae0332a58661c14e027a37fd1390259030b25ee)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 05:21:48 GMT-0230 (NDT)   
 </div>
 
@@ -7184,7 +7268,7 @@ date: Sun Jul 14 2013 05:21:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dde4a15058](http://github.com/underscorediscovery/luxe/commit/dde4a150582eb336ed58b8399aa9dcc3d7caa995)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 02:55:59 GMT-0230 (NDT)   
 </div>
 
@@ -7198,7 +7282,7 @@ date: Sun Jul 14 2013 02:55:59 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e3a3556ee2](http://github.com/underscorediscovery/luxe/commit/e3a3556ee20f8ad776f664c230565f7a2d3502c7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 02:00:17 GMT-0230 (NDT)   
 </div>
 
@@ -7212,7 +7296,7 @@ date: Sun Jul 14 2013 02:00:17 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8652532781](http://github.com/underscorediscovery/luxe/commit/8652532781f8a6decbbe8f25fdddc8c4641b2ed7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 14 2013 01:58:49 GMT-0230 (NDT)   
 </div>
 
@@ -7226,7 +7310,7 @@ date: Sun Jul 14 2013 01:58:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e5c104cab0](http://github.com/underscorediscovery/luxe/commit/e5c104cab052c34ebfc368690eb6ece925139a01)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 12 2013 21:58:55 GMT-0230 (NDT)   
 </div>
 
@@ -7240,7 +7324,7 @@ date: Fri Jul 12 2013 21:58:55 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9ebb8b9e24](http://github.com/underscorediscovery/luxe/commit/9ebb8b9e24ab5032e4b95f0f867be335a0c8a191)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 12 2013 21:30:58 GMT-0230 (NDT)   
 </div>
 
@@ -7254,7 +7338,7 @@ date: Fri Jul 12 2013 21:30:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [dcc6d5ff9e](http://github.com/underscorediscovery/luxe/commit/dcc6d5ff9e9c63c6db4c3af1b3ae05a1ee1323a2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 12 2013 05:42:25 GMT-0230 (NDT)   
 </div>
 
@@ -7268,7 +7352,7 @@ date: Fri Jul 12 2013 05:42:25 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6f578bce24](http://github.com/underscorediscovery/luxe/commit/6f578bce2461a4b24fcba1e253f4b973e30ffe9d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jul 12 2013 05:31:33 GMT-0230 (NDT)   
 </div>
 
@@ -7282,7 +7366,7 @@ date: Fri Jul 12 2013 05:31:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e6f9a20486](http://github.com/underscorediscovery/luxe/commit/e6f9a2048640ca14db77d7a546f82803dd1211e7)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 21:42:58 GMT-0230 (NDT)   
 </div>
 
@@ -7296,7 +7380,7 @@ date: Thu Jul 11 2013 21:42:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4de5a6a0c3](http://github.com/underscorediscovery/luxe/commit/4de5a6a0c3fd9ea50324a59d13c37a5389119a66)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 20:24:36 GMT-0230 (NDT)   
 </div>
 
@@ -7310,7 +7394,7 @@ date: Thu Jul 11 2013 20:24:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [7b26475791](http://github.com/underscorediscovery/luxe/commit/7b264757919b0e0a22d478c254c7914e1aae982e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 20:01:17 GMT-0230 (NDT)   
 </div>
 
@@ -7324,7 +7408,7 @@ date: Thu Jul 11 2013 20:01:17 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a287127151](http://github.com/underscorediscovery/luxe/commit/a287127151a138aba2962bbc8dda5b4b6682b3a3)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 19:07:43 GMT-0230 (NDT)   
 </div>
 
@@ -7338,7 +7422,7 @@ date: Thu Jul 11 2013 19:07:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [716a83bd98](http://github.com/underscorediscovery/luxe/commit/716a83bd983d258e9209e54c199b8a7b7c769fd4)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 19:07:22 GMT-0230 (NDT)   
 </div>
 
@@ -7352,7 +7436,7 @@ date: Thu Jul 11 2013 19:07:22 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d3fc46b423](http://github.com/underscorediscovery/luxe/commit/d3fc46b4235da3ada5b158b4dd3e11cc1c3c390f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 19:06:50 GMT-0230 (NDT)   
 </div>
 
@@ -7366,7 +7450,7 @@ date: Thu Jul 11 2013 19:06:50 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [31d678bb0f](http://github.com/underscorediscovery/luxe/commit/31d678bb0f1ce384dac264ec012c2dcf6444ecac)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 09:14:18 GMT-0230 (NDT)   
 </div>
 
@@ -7380,7 +7464,7 @@ date: Thu Jul 11 2013 09:14:18 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [480e81df2f](http://github.com/underscorediscovery/luxe/commit/480e81df2fdbac510f53f2cae0cfc9d1f193990e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 06:54:49 GMT-0230 (NDT)   
 </div>
 
@@ -7394,7 +7478,7 @@ date: Thu Jul 11 2013 06:54:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1552e39bea](http://github.com/underscorediscovery/luxe/commit/1552e39beab9c124a09f0fff18e31898716f14b8)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 06:53:33 GMT-0230 (NDT)   
 </div>
 
@@ -7408,7 +7492,7 @@ date: Thu Jul 11 2013 06:53:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0e96b9b869](http://github.com/underscorediscovery/luxe/commit/0e96b9b869063f406bbcba5dfdfabd2a34bfa680)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 06:53:13 GMT-0230 (NDT)   
 </div>
 
@@ -7422,7 +7506,7 @@ date: Thu Jul 11 2013 06:53:13 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8b7b2d95d7](http://github.com/underscorediscovery/luxe/commit/8b7b2d95d717a5d2f210e52511e9cb689abed3d2)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 04:47:40 GMT-0230 (NDT)   
 </div>
 
@@ -7436,7 +7520,7 @@ date: Thu Jul 11 2013 04:47:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1d6c7eb327](http://github.com/underscorediscovery/luxe/commit/1d6c7eb32730a9e2407a7f0cd52712943d59834e)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 04:46:52 GMT-0230 (NDT)   
 </div>
 
@@ -7450,7 +7534,7 @@ date: Thu Jul 11 2013 04:46:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [d05170344e](http://github.com/underscorediscovery/luxe/commit/d05170344e7c32912255d6c06c8230f28b113df5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 02:29:08 GMT-0230 (NDT)   
 </div>
 
@@ -7464,7 +7548,7 @@ date: Thu Jul 11 2013 02:29:08 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [db6e79586e](http://github.com/underscorediscovery/luxe/commit/db6e79586e03533bbe6d8928ba0211fda8630a37)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 01:53:16 GMT-0230 (NDT)   
 </div>
 
@@ -7478,7 +7562,7 @@ date: Thu Jul 11 2013 01:53:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a1c0177ceb](http://github.com/underscorediscovery/luxe/commit/a1c0177ceb7fbbb0c1cdd28cc7b983f8054781b1)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 01:29:52 GMT-0230 (NDT)   
 </div>
 
@@ -7492,7 +7576,7 @@ date: Thu Jul 11 2013 01:29:52 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [fe174c70f5](http://github.com/underscorediscovery/luxe/commit/fe174c70f52d0cdb3e562ccff216ff17448c2743)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 00:57:10 GMT-0230 (NDT)   
 </div>
 
@@ -7506,7 +7590,7 @@ date: Thu Jul 11 2013 00:57:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [a19f5305f3](http://github.com/underscorediscovery/luxe/commit/a19f5305f3211a31d4ae66edb72702c1b6a7ad59)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Thu Jul 11 2013 00:53:48 GMT-0230 (NDT)   
 </div>
 
@@ -7520,7 +7604,7 @@ date: Thu Jul 11 2013 00:53:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b34f7b6804](http://github.com/underscorediscovery/luxe/commit/b34f7b6804173cc1f4dfb7c74797321f12b5ba32)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Wed Jul 10 2013 02:37:45 GMT-0230 (NDT)   
 </div>
 
@@ -7534,7 +7618,7 @@ date: Wed Jul 10 2013 02:37:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4ab09eb0c7](http://github.com/underscorediscovery/luxe/commit/4ab09eb0c761abe29e19660f2281957b3b01e673)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 09 2013 23:32:40 GMT-0230 (NDT)   
 </div>
 
@@ -7548,7 +7632,7 @@ date: Tue Jul 09 2013 23:32:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c9b047d982](http://github.com/underscorediscovery/luxe/commit/c9b047d9826c74cdd6fd3a23df68a06b9ec2fcb5)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 09 2013 23:32:07 GMT-0230 (NDT)   
 </div>
 
@@ -7562,7 +7646,7 @@ date: Tue Jul 09 2013 23:32:07 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bb4752d7e9](http://github.com/underscorediscovery/luxe/commit/bb4752d7e9679a9a118540cc6a94d0c6e5c636ab)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 09 2013 22:56:28 GMT-0230 (NDT)   
 </div>
 
@@ -7576,7 +7660,7 @@ date: Tue Jul 09 2013 22:56:28 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [367bc70094](http://github.com/underscorediscovery/luxe/commit/367bc70094191948f1d28ef8550e75c4232a7955)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Tue Jul 09 2013 21:20:31 GMT-0230 (NDT)   
 </div>
 
@@ -7590,7 +7674,7 @@ date: Tue Jul 09 2013 21:20:31 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e97910d37d](http://github.com/underscorediscovery/luxe/commit/e97910d37df876d7ecffcb7cd37f51b7c5f11271)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jul 07 2013 09:05:11 GMT-0230 (NDT)   
 </div>
 
@@ -7604,7 +7688,7 @@ date: Sun Jul 07 2013 09:05:11 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6289cb513e](http://github.com/underscorediscovery/luxe/commit/6289cb513ee109ee4c556c56854a6bafa019bc2d)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 01 2013 05:53:40 GMT-0230 (NDT)   
 </div>
 
@@ -7618,7 +7702,7 @@ date: Mon Jul 01 2013 05:53:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1083e04e1d](http://github.com/underscorediscovery/luxe/commit/1083e04e1d45ac5811202ddd3c678901d00c1f7a)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 01 2013 04:41:40 GMT-0230 (NDT)   
 </div>
 
@@ -7632,7 +7716,7 @@ date: Mon Jul 01 2013 04:41:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [263fd90c57](http://github.com/underscorediscovery/luxe/commit/263fd90c57568f395ea16c55f8af7ce2418f3ea9)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Mon Jul 01 2013 04:07:55 GMT-0230 (NDT)   
 </div>
 
@@ -7646,7 +7730,7 @@ date: Mon Jul 01 2013 04:07:55 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e42f06d94c](http://github.com/underscorediscovery/luxe/commit/e42f06d94cc681bd539b18c9b6a9f851077079cc)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jun 30 2013 19:00:50 GMT-0230 (NDT)   
 </div>
 
@@ -7660,7 +7744,7 @@ date: Sun Jun 30 2013 19:00:50 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [507415cdb1](http://github.com/underscorediscovery/luxe/commit/507415cdb104fbd471f29f91ac20399aa4a35c09)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jun 30 2013 06:47:23 GMT-0230 (NDT)   
 </div>
 
@@ -7674,7 +7758,7 @@ date: Sun Jun 30 2013 06:47:23 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b85434749a](http://github.com/underscorediscovery/luxe/commit/b85434749a950d61bce6699ff3f2401f8bde4c94)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jun 30 2013 05:04:51 GMT-0230 (NDT)   
 </div>
 
@@ -7688,7 +7772,7 @@ date: Sun Jun 30 2013 05:04:51 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2077e02c2f](http://github.com/underscorediscovery/luxe/commit/2077e02c2fad1aa7134636083a1cd7da73ac0917)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jun 30 2013 04:47:43 GMT-0230 (NDT)   
 </div>
 
@@ -7702,7 +7786,7 @@ date: Sun Jun 30 2013 04:47:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [926d6acbf1](http://github.com/underscorediscovery/luxe/commit/926d6acbf13149ab11ace854f71c5c59af4bad8f)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Sun Jun 30 2013 04:29:40 GMT-0230 (NDT)   
 </div>
 
@@ -7716,7 +7800,7 @@ date: Sun Jun 30 2013 04:29:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b7a4750937](http://github.com/underscorediscovery/luxe/commit/b7a4750937ebb8ab835c6fae8c85b981979eb7ea)   
-author: underscorediscovery <sven@underscorediscovery.com>   
+author: underscorediscovery   
 date: Fri Jun 28 2013 06:23:16 GMT-0230 (NDT)   
 </div>
 
@@ -7730,7 +7814,7 @@ date: Fri Jun 28 2013 06:23:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6120043698](http://github.com/underscorediscovery/luxe/commit/61200436986f16b21a5a6f2c177ce628eeab282a)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 13:44:10 GMT-0230 (NDT)   
 </div>
 
@@ -7744,7 +7828,7 @@ date: Wed Jun 26 2013 13:44:10 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bd29d34f59](http://github.com/underscorediscovery/luxe/commit/bd29d34f59cdeaeab4db49efe639a2479ce9501a)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 13:43:12 GMT-0230 (NDT)   
 </div>
 
@@ -7758,7 +7842,7 @@ date: Wed Jun 26 2013 13:43:12 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [66257c7c5f](http://github.com/underscorediscovery/luxe/commit/66257c7c5f02a0d2e63a609148df668f6c52d8d5)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 13:41:41 GMT-0230 (NDT)   
 </div>
 
@@ -7772,7 +7856,7 @@ date: Wed Jun 26 2013 13:41:41 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f7c1847854](http://github.com/underscorediscovery/luxe/commit/f7c1847854fea88726c9954a10f0c509dc59af60)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 13:40:57 GMT-0230 (NDT)   
 </div>
 
@@ -7786,7 +7870,7 @@ date: Wed Jun 26 2013 13:40:57 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9b388b4cb6](http://github.com/underscorediscovery/luxe/commit/9b388b4cb62d3c1e2acf08f2238251beb75c9d78)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 01:25:29 GMT-0230 (NDT)   
 </div>
 
@@ -7800,7 +7884,7 @@ date: Wed Jun 26 2013 01:25:29 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [bc2200ebbd](http://github.com/underscorediscovery/luxe/commit/bc2200ebbdbe7b261893e1a7ebcde0e6dac309f7)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 01:22:06 GMT-0230 (NDT)   
 </div>
 
@@ -7814,7 +7898,7 @@ date: Wed Jun 26 2013 01:22:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [4ac874abf5](http://github.com/underscorediscovery/luxe/commit/4ac874abf5d95ace2c22e959c85fc3e8e5f78e33)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Wed Jun 26 2013 01:19:36 GMT-0230 (NDT)   
 </div>
 
@@ -7828,7 +7912,7 @@ date: Wed Jun 26 2013 01:19:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2fc8edd508](http://github.com/underscorediscovery/luxe/commit/2fc8edd50891ac325d0efe3739d862b888c0a3ae)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 23:56:14 GMT-0230 (NDT)   
 </div>
 
@@ -7842,7 +7926,7 @@ date: Tue Jun 25 2013 23:56:14 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [1f45284a7a](http://github.com/underscorediscovery/luxe/commit/1f45284a7ab86508618846a96548b9cf2086f839)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 23:27:26 GMT-0230 (NDT)   
 </div>
 
@@ -7856,7 +7940,7 @@ date: Tue Jun 25 2013 23:27:26 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [ae95801cea](http://github.com/underscorediscovery/luxe/commit/ae95801cea545d61195d551d84fa789ad1aebed6)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 04:01:12 GMT-0230 (NDT)   
 </div>
 
@@ -7870,7 +7954,7 @@ date: Tue Jun 25 2013 04:01:12 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0acd028404](http://github.com/underscorediscovery/luxe/commit/0acd0284042be75bf2d45dbe3bf0b00e32b07e2c)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 03:57:48 GMT-0230 (NDT)   
 </div>
 
@@ -7884,7 +7968,7 @@ date: Tue Jun 25 2013 03:57:48 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e089ef6b28](http://github.com/underscorediscovery/luxe/commit/e089ef6b28c5dfd227e11aaf40f43c26f3992cdc)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 03:46:45 GMT-0230 (NDT)   
 </div>
 
@@ -7898,7 +7982,7 @@ date: Tue Jun 25 2013 03:46:45 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [175d51bc5f](http://github.com/underscorediscovery/luxe/commit/175d51bc5f12e245fe0564be61fc24d235ab8507)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 03:13:19 GMT-0230 (NDT)   
 </div>
 
@@ -7912,7 +7996,7 @@ date: Tue Jun 25 2013 03:13:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b9b7318459](http://github.com/underscorediscovery/luxe/commit/b9b7318459af3dff2c87ebe00d83eb2cc29d072d)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 00:58:28 GMT-0230 (NDT)   
 </div>
 
@@ -7926,7 +8010,7 @@ date: Tue Jun 25 2013 00:58:28 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [70df356b02](http://github.com/underscorediscovery/luxe/commit/70df356b02364fd4bcc6ed19e88455aba5014045)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 00:55:53 GMT-0230 (NDT)   
 </div>
 
@@ -7940,7 +8024,7 @@ date: Tue Jun 25 2013 00:55:53 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3ca1d9fb68](http://github.com/underscorediscovery/luxe/commit/3ca1d9fb6804eaa0069e910219e12401c3aa4e58)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 00:52:39 GMT-0230 (NDT)   
 </div>
 
@@ -7954,7 +8038,7 @@ date: Tue Jun 25 2013 00:52:39 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6cba8acc75](http://github.com/underscorediscovery/luxe/commit/6cba8acc757f24523401ccbf21412af0c44dd4d2)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Tue Jun 25 2013 00:09:03 GMT-0230 (NDT)   
 </div>
 
@@ -7968,7 +8052,7 @@ date: Tue Jun 25 2013 00:09:03 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [09585a80fd](http://github.com/underscorediscovery/luxe/commit/09585a80fd4c22019be4c44dab9d56c365e2fdf2)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 23:51:27 GMT-0230 (NDT)   
 </div>
 
@@ -7982,7 +8066,7 @@ date: Mon Jun 24 2013 23:51:27 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0687390bac](http://github.com/underscorediscovery/luxe/commit/0687390bac5cd9964f28ea1c630b32b43942d365)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 22:31:38 GMT-0230 (NDT)   
 </div>
 
@@ -7996,7 +8080,7 @@ date: Mon Jun 24 2013 22:31:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e9966c19fc](http://github.com/underscorediscovery/luxe/commit/e9966c19fcdf53ec98f7e6cd759d81f23dc09db9)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 19:42:42 GMT-0230 (NDT)   
 </div>
 
@@ -8010,7 +8094,7 @@ date: Mon Jun 24 2013 19:42:42 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f5452c4294](http://github.com/underscorediscovery/luxe/commit/f5452c429456e6b2dbf67126318373816550fbac)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 18:40:38 GMT-0230 (NDT)   
 </div>
 
@@ -8024,7 +8108,7 @@ date: Mon Jun 24 2013 18:40:38 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3e5ee902b2](http://github.com/underscorediscovery/luxe/commit/3e5ee902b25d9ed9c5978deb598a055c07a4ba88)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 18:18:56 GMT-0230 (NDT)   
 </div>
 
@@ -8038,7 +8122,7 @@ date: Mon Jun 24 2013 18:18:56 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [3252054ab4](http://github.com/underscorediscovery/luxe/commit/3252054ab4f189bbaf8a2d223ae9cdb080796e5b)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 17:58:02 GMT-0230 (NDT)   
 </div>
 
@@ -8052,7 +8136,7 @@ date: Mon Jun 24 2013 17:58:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9cfeebc7e2](http://github.com/underscorediscovery/luxe/commit/9cfeebc7e2db77a4072449e6bbefab05f6ebe0c6)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 17:56:25 GMT-0230 (NDT)   
 </div>
 
@@ -8066,7 +8150,7 @@ date: Mon Jun 24 2013 17:56:25 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2203c9f481](http://github.com/underscorediscovery/luxe/commit/2203c9f48167ee3cfb227c7ef64ec575070e8ec6)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 17:53:43 GMT-0230 (NDT)   
 </div>
 
@@ -8080,7 +8164,7 @@ date: Mon Jun 24 2013 17:53:43 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [cd83b61c2d](http://github.com/underscorediscovery/luxe/commit/cd83b61c2de3818f301a8c4ba7b6ac5fe27dc4a6)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 07:12:00 GMT-0230 (NDT)   
 </div>
 
@@ -8094,7 +8178,7 @@ date: Mon Jun 24 2013 07:12:00 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5a73d4caeb](http://github.com/underscorediscovery/luxe/commit/5a73d4caeb24d886f53bcb370008fc32ebb32c2e)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 02:27:31 GMT-0230 (NDT)   
 </div>
 
@@ -8108,7 +8192,7 @@ date: Mon Jun 24 2013 02:27:31 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [36a98e0dbb](http://github.com/underscorediscovery/luxe/commit/36a98e0dbb61094898fd456fdb8f209bba3d6c0a)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 02:26:36 GMT-0230 (NDT)   
 </div>
 
@@ -8122,7 +8206,7 @@ date: Mon Jun 24 2013 02:26:36 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0633c98b93](http://github.com/underscorediscovery/luxe/commit/0633c98b938cca22677d2db9c9e1d7d477427f19)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Mon Jun 24 2013 00:55:49 GMT-0230 (NDT)   
 </div>
 
@@ -8136,7 +8220,7 @@ date: Mon Jun 24 2013 00:55:49 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5d1cd826cc](http://github.com/underscorediscovery/luxe/commit/5d1cd826cc8717a53cd06ce5d33a32050f828686)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 22:04:21 GMT-0230 (NDT)   
 </div>
 
@@ -8150,7 +8234,7 @@ date: Sun Jun 23 2013 22:04:21 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [50065d44bd](http://github.com/underscorediscovery/luxe/commit/50065d44bd04b301908d4b8ac068e7c7dbba6c11)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 21:39:50 GMT-0230 (NDT)   
 </div>
 
@@ -8164,7 +8248,7 @@ date: Sun Jun 23 2013 21:39:50 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [147d1ff13e](http://github.com/underscorediscovery/luxe/commit/147d1ff13edcbc917e747823b311a5eeb96e9b00)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 21:36:40 GMT-0230 (NDT)   
 </div>
 
@@ -8178,7 +8262,7 @@ date: Sun Jun 23 2013 21:36:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e7ea98bd08](http://github.com/underscorediscovery/luxe/commit/e7ea98bd08c40f40095d92599951640d84964420)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 20:00:22 GMT-0230 (NDT)   
 </div>
 
@@ -8192,7 +8276,7 @@ date: Sun Jun 23 2013 20:00:22 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [172bd35ba6](http://github.com/underscorediscovery/luxe/commit/172bd35ba65a496939a74c8fe20bea1f4b2cddd1)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 17:41:28 GMT-0230 (NDT)   
 </div>
 
@@ -8206,7 +8290,7 @@ date: Sun Jun 23 2013 17:41:28 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [935cafd0e5](http://github.com/underscorediscovery/luxe/commit/935cafd0e5ef73784890e7743c166624d574291a)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 16:04:58 GMT-0230 (NDT)   
 </div>
 
@@ -8220,7 +8304,7 @@ date: Sun Jun 23 2013 16:04:58 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [f45e36ba15](http://github.com/underscorediscovery/luxe/commit/f45e36ba1561f8ee92a70c7f7f929c73ee4a22c9)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 15:55:26 GMT-0230 (NDT)   
 </div>
 
@@ -8234,7 +8318,7 @@ date: Sun Jun 23 2013 15:55:26 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [9778036255](http://github.com/underscorediscovery/luxe/commit/97780362554f2220d3b382ed5568a39e5123ff9e)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 15:53:00 GMT-0230 (NDT)   
 </div>
 
@@ -8248,7 +8332,7 @@ date: Sun Jun 23 2013 15:53:00 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [20f1e5d988](http://github.com/underscorediscovery/luxe/commit/20f1e5d98815a0780f4b9e62fc63c2155608ec6b)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 15:23:33 GMT-0230 (NDT)   
 </div>
 
@@ -8262,7 +8346,7 @@ date: Sun Jun 23 2013 15:23:33 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [42cc3151e0](http://github.com/underscorediscovery/luxe/commit/42cc3151e0df974843f8708e94366908d5001dd8)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sun Jun 23 2013 07:08:27 GMT-0230 (NDT)   
 </div>
 
@@ -8276,7 +8360,7 @@ date: Sun Jun 23 2013 07:08:27 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [c1fba12f8d](http://github.com/underscorediscovery/luxe/commit/c1fba12f8d35c3d7da8a864c7e911018a1d216d7)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 20:28:09 GMT-0230 (NDT)   
 </div>
 
@@ -8290,7 +8374,7 @@ date: Sat Jun 22 2013 20:28:09 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [e3052fb55e](http://github.com/underscorediscovery/luxe/commit/e3052fb55ed86bcd5f553dad78e79f9bd1367f74)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 20:05:40 GMT-0230 (NDT)   
 </div>
 
@@ -8304,7 +8388,7 @@ date: Sat Jun 22 2013 20:05:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2311188396](http://github.com/underscorediscovery/luxe/commit/231118839648a3c091966e185a6c80ba225ee098)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 20:03:13 GMT-0230 (NDT)   
 </div>
 
@@ -8318,7 +8402,7 @@ date: Sat Jun 22 2013 20:03:13 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [2c9bc2c412](http://github.com/underscorediscovery/luxe/commit/2c9bc2c412337d33b79736ded6333bd2035c8ae9)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 19:39:05 GMT-0230 (NDT)   
 </div>
 
@@ -8332,7 +8416,7 @@ date: Sat Jun 22 2013 19:39:05 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b10776b936](http://github.com/underscorediscovery/luxe/commit/b10776b936b899d82386d42e1391536898a40774)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 19:32:40 GMT-0230 (NDT)   
 </div>
 
@@ -8346,7 +8430,7 @@ date: Sat Jun 22 2013 19:32:40 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0bd7d04eac](http://github.com/underscorediscovery/luxe/commit/0bd7d04eacff29c75b478bddb0a7d0883b9bb2f5)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 19:32:22 GMT-0230 (NDT)   
 </div>
 
@@ -8360,7 +8444,7 @@ date: Sat Jun 22 2013 19:32:22 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [66fbbbebfa](http://github.com/underscorediscovery/luxe/commit/66fbbbebfa1342d75b7036ef25f650c51cecfeb1)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 18:03:19 GMT-0230 (NDT)   
 </div>
 
@@ -8374,7 +8458,7 @@ date: Sat Jun 22 2013 18:03:19 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [48289e988c](http://github.com/underscorediscovery/luxe/commit/48289e988c7bad45d9d838603e92960c0cd13030)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 17:46:59 GMT-0230 (NDT)   
 </div>
 
@@ -8388,7 +8472,7 @@ date: Sat Jun 22 2013 17:46:59 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [776afbad81](http://github.com/underscorediscovery/luxe/commit/776afbad818a091d1394803a5c8c5f236497d454)   
-author: underscorediscovery <fuzzyspoon@gmail.com>   
+author: underscorediscovery   
 date: Sat Jun 22 2013 17:44:23 GMT-0230 (NDT)   
 </div>
 
@@ -8402,7 +8486,7 @@ date: Sat Jun 22 2013 17:44:23 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [92f7d37ddf](http://github.com/underscorediscovery/luxe/commit/92f7d37ddfcf29f1f06efc29bd248f0645350485)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:43:02 GMT-0230 (NDT)   
 </div>
 
@@ -8416,7 +8500,7 @@ date: Sat Jun 22 2013 17:43:02 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6622ee2644](http://github.com/underscorediscovery/luxe/commit/6622ee2644d15fd67e7a7b5281cd874064e16b89)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:42:21 GMT-0230 (NDT)   
 </div>
 
@@ -8430,7 +8514,7 @@ date: Sat Jun 22 2013 17:42:21 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [6c0466a168](http://github.com/underscorediscovery/luxe/commit/6c0466a168ac2905ac2c9348eb985af1fd35f8ed)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:22:06 GMT-0230 (NDT)   
 </div>
 
@@ -8444,7 +8528,7 @@ date: Sat Jun 22 2013 17:22:06 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [5b4a8bfee0](http://github.com/underscorediscovery/luxe/commit/5b4a8bfee03d4e4fcde5b8d563a3472e5957db03)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:19:50 GMT-0230 (NDT)   
 </div>
 
@@ -8458,7 +8542,7 @@ date: Sat Jun 22 2013 17:19:50 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [58c7556a8a](http://github.com/underscorediscovery/luxe/commit/58c7556a8a116e8b1a6ed2be7b20690453083dbb)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:06:18 GMT-0230 (NDT)   
 </div>
 
@@ -8472,7 +8556,7 @@ date: Sat Jun 22 2013 17:06:18 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [b87dbad487](http://github.com/underscorediscovery/luxe/commit/b87dbad487cc74508c0ed677f705fabf48038ad2)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:05:16 GMT-0230 (NDT)   
 </div>
 
@@ -8486,7 +8570,7 @@ date: Sat Jun 22 2013 17:05:16 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [8dcfbab0ba](http://github.com/underscorediscovery/luxe/commit/8dcfbab0ba16bc74f9b15dcd9f6f83194c418307)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 17:03:32 GMT-0230 (NDT)   
 </div>
 
@@ -8500,7 +8584,7 @@ date: Sat Jun 22 2013 17:03:32 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [802ac296b5](http://github.com/underscorediscovery/luxe/commit/802ac296b55c8ee0890ba3c2053817a647593292)   
-author: Sven Bergström <Sven@Svens-MacBook-Pro.local>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 16:42:44 GMT-0230 (NDT)   
 </div>
 
@@ -8514,7 +8598,7 @@ date: Sat Jun 22 2013 16:42:44 GMT-0230 (NDT)
 <div class="commit_info">
 
 commit [0818841383](http://github.com/underscorediscovery/luxe/commit/08188413831adf1e4ea98dab4a7c30b29a10efef)   
-author: Sven Bergström <fuzzyspoon@gmail.com>   
+author: Sven Bergström   
 date: Sat Jun 22 2013 15:44:59 GMT-0230 (NDT)   
 </div>
 
