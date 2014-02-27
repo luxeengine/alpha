@@ -52,6 +52,10 @@ class Quaternion {
 		return this;
 
 	} //copy
+
+	public function dot( _other:Quaternion ) {
+		return x * _other.x + y * _other.y + z * _other.z + w * _other.w;
+	}
 	
 	
 	public function setFromEuler( _euler:Vector, _order:String = 'XYZ' ) : Quaternion {
@@ -257,6 +261,17 @@ class Quaternion {
 		return multiplyQuaternions( this, _quaternion );
 
 	} //multiply
+		
+	public function multiplyScalar( _scalar:Float ) : Quaternion {
+
+			x *= _scalar;
+			y *= _scalar;
+			z *= _scalar;
+			w *= _scalar;
+
+		return this;	
+
+	} //multiply
 	
 	public function multiplyQuaternions( _a:Quaternion, _b:Quaternion ) : Quaternion {
 
@@ -373,6 +388,10 @@ class Quaternion {
 		return _qm.copy( _qa ).slerp( _qb, _t );
 
 	} //Slerp
+
+	public static function Dot( _a:Quaternion,  _b:Quaternion ) {
+		return new Quaternion(_a.x,_a.y,_a.z,_a.w).dot(_b);
+	}
 
 	private function update_euler() {
 
