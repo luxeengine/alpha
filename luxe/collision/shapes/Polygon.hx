@@ -1,76 +1,83 @@
 package luxe.collision.shapes;
-	
-	import luxe.collision.math.Vector2D;
-	import luxe.collision.shapes.Shape;
-	
-	class Polygon extends Shape {
-		
-		public function new( x:Float, y:Float, vertices:Array<Vector2D> ) {
+    
+import luxe.collision.shapes.Shape;
+import luxe.Vector;
 
-			super( x,y );
-			
-			name = vertices.length + 'polygon';
+class Polygon extends Shape {
+    
+    public function new( x:Float, y:Float, vertices:Array<Vector> ) {
 
-			_vertices = vertices;			
-		}
-		
-		override public function destroy() : Void {
+        super( x,y );
+        
+        name = vertices.length + 'polygon';
 
-			var _count : Int = _vertices.length;
-			for(i in 0 ... _count) {
-				_vertices[i] = null;
-			}
+        _vertices = vertices; 
 
-			_vertices = null;
-			super.destroy();
-		}
-		
+    } //new
+    
+    override public function destroy() : Void {
 
-		
-		public static function create( x:Float, y:Float, sides:Int, radius:Float=100):Polygon {
-			if(sides < 3) {
-				throw 'Polygon - Needs at least 3 sides';
-			}
+        var _count : Int = _vertices.length;
+        for(i in 0 ... _count) {
+            _vertices[i] = null;
+        }
 
-			var rotation:Float = (Math.PI * 2) / sides;
-			var angle:Float;
-			var vector:Vector2D;
-			var vertices:Array<Vector2D> = new Array<Vector2D>();
+        _vertices = null;
+        super.destroy();
 
-			for(i in 0 ... sides) {
-				angle = (i * rotation) + ((Math.PI - rotation) * 0.5);
-				vector = new Vector2D();
-				vector.x = Math.cos(angle) * radius;
-				vector.y = Math.sin(angle) * radius;
-				vertices.push(vector);
-			}
-			return new Polygon(x,y,vertices);
-		}
-		
-		public static function rectangle(x:Float, y:Float, width:Float, height:Float, centered:Bool = true):Polygon {
-			
-			var vertices:Array<Vector2D> = new Array<Vector2D>();
+    } //destroy
+    
+    public static function create( x:Float, y:Float, sides:Int, radius:Float=100):Polygon {
 
-			if(centered) {
+        if(sides < 3) {
+            throw 'Polygon - Needs at least 3 sides';
+        }
 
-				vertices.push( new Vector2D( -width / 2, -height / 2) );
-				vertices.push( new Vector2D(  width / 2, -height / 2) );
-				vertices.push( new Vector2D(  width / 2,  height / 2) );
-				vertices.push( new Vector2D( -width / 2,  height / 2) );
+        var rotation:Float = (Math.PI * 2) / sides;
+        var angle:Float;
+        var vector:Vector;
+        var vertices:Array<Vector> = new Array<Vector>();
 
-			} else {
+        for(i in 0 ... sides) {
+            angle = (i * rotation) + ((Math.PI - rotation) * 0.5);
+            vector = new Vector();
+            vector.x = Math.cos(angle) * radius;
+            vector.y = Math.sin(angle) * radius;
+            vertices.push(vector);
+        }
 
-				vertices.push( new Vector2D( 0, 0 ) );
-				vertices.push( new Vector2D( width, 0 ) );
-				vertices.push( new Vector2D( width, height) );
-				vertices.push( new Vector2D( 0, height) );
+        return new Polygon(x,y,vertices);
 
-			}
+    } //create
+    
+    public static function rectangle(x:Float, y:Float, width:Float, height:Float, centered:Bool = true):Polygon {
+        
+        var vertices:Array<Vector> = new Array<Vector>();
 
-			return new Polygon(x,y,vertices);
-		}
-		
-		public static function square(x:Float, y:Float, width:Float, centered:Bool = true):Polygon {
-			return rectangle(x, y, width, width, centered);
-		}
-	}
+        if(centered) {
+
+            vertices.push( new Vector( -width / 2, -height / 2) );
+            vertices.push( new Vector(  width / 2, -height / 2) );
+            vertices.push( new Vector(  width / 2,  height / 2) );
+            vertices.push( new Vector( -width / 2,  height / 2) );
+
+        } else {
+
+            vertices.push( new Vector( 0, 0 ) );
+            vertices.push( new Vector( width, 0 ) );
+            vertices.push( new Vector( width, height) );
+            vertices.push( new Vector( 0, height) );
+
+        }
+
+        return new Polygon(x,y,vertices);
+
+    } //rectangle
+    
+    public static function square(x:Float, y:Float, width:Float, centered:Bool = true):Polygon {
+        
+        return rectangle(x, y, width, width, centered);
+
+    } //square
+
+} //Polygon

@@ -3,476 +3,540 @@ package phoenix;
 import luxe.utils.Maths;
 
 class Vector {
-	
-	@:isVar public var x(default, set) : Float = 0;
-	@:isVar public var y(default, set) : Float = 0;
-	@:isVar public var z(default, set) : Float = 0;
-	@:isVar public var w(default, default) : Float = 0;
+    
+    @:isVar public var x (default, set) : Float = 0;
+    @:isVar public var y (default, set) : Float = 0;
+    @:isVar public var z (default, set) : Float = 0;
+    @:isVar public var w (default, default) : Float = 0;
 
-	@:isVar public var length(get, set) : Float;
-	@:isVar public var normalized(get, null) : Vector;
-	@:isVar public var inverted(get, null) : Vector;
-	
-	@:isVar public var serialized(get, null) : Dynamic;
-	function get_serialized() : Dynamic { return {x:x,y:y,z:z,w:w} };
+    @:isVar public var length        (get, set ) : Float;
+    @:isVar public var lengthsq      (get, null ) : Float;
+    @:isVar public var angle2D       (get, set ) : Float;
+    @:isVar public var normalized    (get, null) : Vector;
+    @:isVar public var inverted      (get, null) : Vector;
+    
+    @:isVar public var serialized(get, null) : Dynamic;
 
-	public var ignore_listeners : Bool = false;
-	@:isVar public var listen_x(default,default) : Float -> Void;
-	@:isVar public var listen_y(default,default) : Float -> Void;
-	@:isVar public var listen_z(default,default) : Float -> Void;
+    function get_serialized() : Dynamic { return { x:x, y:y, z:z, w:w } };
 
-	public function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0) {
+    public var ignore_listeners : Bool = false;
 
-		x = _x;
-		y = _y;
-		z = _z;
-		w = _w;
+    @:isVar public var listen_x(default,default) : Float -> Void;
+    @:isVar public var listen_y(default,default) : Float -> Void;
+    @:isVar public var listen_z(default,default) : Float -> Void;
 
-	} //new
-	
-	public function copy_from( _other:Vector ) {
-		x = _other.x;
-		y = _other.y;
-		z = _other.z;
-		w = _other.w;
-	}
+    public function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0) {
 
-	public function set_xyz( _x:Float, _y:Float, _z:Float ) {
-		x = _x; 
-		y = _y;
-		z = _z;
-	}
-	public function set_xyzw( _x:Float, _y:Float, _z:Float, _w:Float ) {
-		x = _x; 
-		y = _y;
-		z = _z;
-		w = _w;
-	}
+        x = _x;
+        y = _y;
+        z = _z;
+        w = _w;
 
-	public function set_xy( _x:Float, _y:Float ) {
-		x = _x; 
-		y = _y;
-	}
+    } //new
+    
+    public function copy_from( _other:Vector ) {
+        x = _other.x;
+        y = _other.y;
+        z = _other.z;
+        w = _other.w;
+    }
 
-	public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
-		
-		var _setx = x;
-		var _sety = y;
-		var _setz = z;
-		var _setw = w;
-			
-			//assign new values
-		if(_x != null) _setx = _x;
-		if(_y != null) _sety = _y;
-		if(_z != null) _setz = _z;
-		if(_w != null) _setw = _w;
+    public function set_xyz( _x:Float, _y:Float, _z:Float ) {
+        x = _x; 
+        y = _y;
+        z = _z;
+    }
+    public function set_xyzw( _x:Float, _y:Float, _z:Float, _w:Float ) {
+        x = _x; 
+        y = _y;
+        z = _z;
+        w = _w;
+    }
 
-		x = _setx;
-		y = _sety;
-		z = _setz;
-		w = _setw;
+    public function set_xy( _x:Float, _y:Float ) {
+        x = _x; 
+        y = _y;
+    }
 
-		return this;
+    public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
+        
+        var _setx = x;
+        var _sety = y;
+        var _setz = z;
+        var _setw = w;
+            
+            //assign new values
+        if(_x != null) _setx = _x;
+        if(_y != null) _sety = _y;
+        if(_z != null) _setz = _z;
+        if(_w != null) _setw = _w;
 
-	} //set
+        x = _setx;
+        y = _sety;
+        z = _setz;
+        w = _setw;
 
-	public function toString() {
-		return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
-	} //toString
+        return this;
 
-	public function equals(other:Vector) {
-		return (x == other.x && y == other.y && z == other.z && w == other.w);
-	}
+    } //set
 
-	public function clone() {
-		return new Vector(x,y,z,w);
-	} //clone
+    public function toString() {
+        return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
+    } //toString
 
-	public function normalize() {
-		return divideScalar( length );
-	} //normalize
+    public function equals(other:Vector) {
+        return (x == other.x && y == other.y && z == other.z && w == other.w);
+    }
 
+    public function clone() {
+        return new Vector(x,y,z,w);
+    } //clone
 
-	public function dot(other:Vector) {
-
-		return x * other.x + y * other.y + z * other.z;
-
-	} //dot
+    public function normalize() {
+        return divideScalar( length );
+    } //normalize
 
 
-	public function cross( a:Vector, b:Vector ) {
+    public function dot(other:Vector) {
 
-		x = a.y * b.z - a.z * b.y;
-		y = a.z * b.x - a.x * b.z;
-		z = a.x * b.y - a.y * b.x;
+        return x * other.x + y * other.y + z * other.z;
 
-		return this;
+    } //dot
 
-	} //cross
+
+    public function cross( a:Vector, b:Vector ) {
+
+        x = a.y * b.z - a.z * b.y;
+        y = a.z * b.x - a.x * b.z;
+        z = a.x * b.y - a.y * b.x;
+
+        return this;
+
+    } //cross
 
 //Static Functions
 
-	public static function Add(a:Vector, b:Vector) {
-		return new Vector(
-			a.x + b.x,
-			a.y + b.y,
-			a.z + b.z
-		);
-	} //Add
+    public static function Add(a:Vector, b:Vector) {
+        return new Vector(
+            a.x + b.x,
+            a.y + b.y,
+            a.z + b.z
+        );
+    } //Add
 
-	public static function Subtract(a:Vector, b:Vector) {
-		return new Vector(
-			a.x - b.x,
-			a.y - b.y,
-			a.z - b.z
-		);
-	} //Subtract
+    public static function Subtract(a:Vector, b:Vector) {
+        return new Vector(
+            a.x - b.x,
+            a.y - b.y,
+            a.z - b.z
+        );
+    } //Subtract
 
-	public static function MultiplyVector(a:Vector, b:Vector) : Vector {
-		return new Vector(
-			a.x * b.x,
-			a.y * b.y,
-			a.z * b.z
-		);
-	} //MultiplyVector
+    public static function MultiplyVector(a:Vector, b:Vector) : Vector {
+        return new Vector(
+            a.x * b.x,
+            a.y * b.y,
+            a.z * b.z
+        );
+    } //MultiplyVector
 
-	public static function DivideVector(a:Vector, b:Vector) {
-		return new Vector(
-			a.x / b.x,
-			a.y / b.y,
-			a.z / b.z
-		);
-	} //DivideVector
+    public static function DivideVector(a:Vector, b:Vector) {
+        return new Vector(
+            a.x / b.x,
+            a.y / b.y,
+            a.z / b.z
+        );
+    } //DivideVector
 
-	public static function Multiply(a:Vector, b:Float) {
-		return new Vector(
-			a.x * b,
-			a.y * b,
-			a.z * b
-		);
-	} //Multiply
+    public static function Multiply(a:Vector, b:Float) {
+        return new Vector(
+            a.x * b,
+            a.y * b,
+            a.z * b
+        );
+    } //Multiply
 
-	public static function Divide(a:Vector, b:Float) {
-		return new Vector(
-			a.x / b,
-			a.y / b,
-			a.z / b
-		);
-	} //Divide
+    public static function Divide(a:Vector, b:Float) {
+        return new Vector(
+            a.x / b,
+            a.y / b,
+            a.z / b
+        );
+    } //Divide
 
-	public static function AddScalar(a:Vector, b:Float) {
-		return new Vector(
-			a.x + b,
-			a.y + b,
-			a.z + b
-		);
-	} //AddScalar
+    public static function AddScalar(a:Vector, b:Float) {
+        return new Vector(
+            a.x + b,
+            a.y + b,
+            a.z + b
+        );
+    } //AddScalar
 
-	public static function SubtractScalar(a:Vector, b:Float) {
-		return new Vector(
-			a.x - b,
-			a.y - b,
-			a.z - b
-		);
-	} //SubtractScalar
+    public static function SubtractScalar(a:Vector, b:Float) {
+        return new Vector(
+            a.x - b,
+            a.y - b,
+            a.z - b
+        );
+    } //SubtractScalar
 
-	public static function Cross(a:Vector, b:Vector) {
-		return new Vector(
-			 a.y * b.z - a.z * b.y,
-			 a.z * b.x - a.x * b.z,
-			 a.x * b.y - a.y * b.x
-		);
-	} //Cross
+    public static function Cross(a:Vector, b:Vector) {
+        return new Vector(
+             a.y * b.z - a.z * b.y,
+             a.z * b.x - a.x * b.z,
+             a.x * b.y - a.y * b.x
+        );
+    } //Cross
 
-	public static function RotationTo(a:Vector,b:Vector) {
-		return a.rotationTo(b);		
-	} //RotationBetween
+    public static function RotationTo(a:Vector,b:Vector) {
+        return a.rotationTo(b);     
+    } //RotationBetween
 
 // Operations
 
-	public function add(other:Vector) {
+    public function add(other:Vector) {
 
-		if(other == null) {
-			throw "vector.add other was handed in as null";
-		}
+        if(other == null) {
+            throw "vector.add other was handed in as null";
+        }
 
-		x += other.x;
+        x += other.x;
         y += other.y;
         z += other.z;
 
         return this;
 
-	} //add
-	
-	public function subtract(other:Vector) {
+    } //add
+    
+    public function subtract(other:Vector) {
 
-		if(other == null) {
-			throw "vector.subtract other was handed in as null";
-		}
+        if(other == null) {
+            throw "vector.subtract other was handed in as null";
+        }
 
-		x -= other.x;
+        x -= other.x;
         y -= other.y;
         z -= other.z;
 
         return this;
 
-	} //subtract
-	
-	public function multiply(other:Vector) {
+    } //subtract
+    
+    public function multiply(other:Vector) {
 
-		if(other == null) {
-			throw "vector.multiply other was handed in as null";
-		}
+        if(other == null) {
+            throw "vector.multiply other was handed in as null";
+        }
 
-		x *= other.x;
+        x *= other.x;
         y *= other.y;
         z *= other.z;
 
         return this;
 
-	} //multiply
-	
-	public function divide(other:Vector) {
+    } //multiply
+    
+    public function divide(other:Vector) {
 
-		if(other == null) {
-			throw "vector.divide other was handed in as null";
-		}
+        if(other == null) {
+            throw "vector.divide other was handed in as null";
+        }
 
-		x /= other.x;
+        x /= other.x;
         y /= other.y;
         z /= other.z;
 
         return this;
 
-	} //divide
+    } //divide
 
-	public function addScalar( v:Float ) {
+    public function addScalar( v:Float ) {
 
-		x += v;
-		y += v;
-		z += v;
+        x += v;
+        y += v;
+        z += v;
 
-		return this;
+        return this;
 
-	} //addScalar
+    } //addScalar
 
-	public function subtractScalar( v:Float ) {
+    public function subtractScalar( v:Float ) {
 
-		x -= v;
-		y -= v;
-		z -= v;
+        x -= v;
+        y -= v;
+        z -= v;
 
-		return this;
+        return this;
 
-	} //subtractScalar
+    } //subtractScalar
 
-	 public function multiplyScalar( v:Float ) {
+     public function multiplyScalar( v:Float ) {
 
-		x *= v;
-		y *= v;
-		z *= v;
+        x *= v;
+        y *= v;
+        z *= v;
 
-		return this;
+        return this;
 
-	} //multiplyScalar
+    } //multiplyScalar
 
-	public function divideScalar( v:Float ) : Vector {
+    public function divideScalar( v:Float ) : Vector {
 
-		if ( v != 0 ) {
-			x /= v;
-			y /= v;
-			z /= v;
-		} else {
-			x = 0;
-			y = 0;
-			z = 0;
-		}
+        if ( v != 0 ) {
+            x /= v;
+            y /= v;
+            z /= v;
+        } else {
+            x = 0;
+            y = 0;
+            z = 0;
+        }
 
-		return this;
+        return this;
 
-	} //divideScalar
+    } //divideScalar
 
 
 //Properties
 
-	function set_length(v:Float) : Float {
-		return 0;
-	} //set_length
+    function set_length( value:Float ) : Float {
 
-	function get_length() : Float {
-		return Math.sqrt( x * x + y * y + z * z );
-	} //get_length
+        normalize().multiplyScalar(value);
 
-	function get_normalized() {
-		return Vector.Divide( this, length );
-	} //get_normalized
+        return value;
 
-	function set_x(_x:Float) : Float {
-		x = _x;
-		if(listen_x != null && !ignore_listeners) listen_x(_x);
-		return x;
-	} //set_x
+    } //set_length
 
-	function set_y(_y:Float) : Float {
-		y = _y;
-		if(listen_y != null && !ignore_listeners) listen_y(_y);
-		return y;
-	} //set_y
+    function get_length() : Float {
 
-	function set_z(_z:Float) : Float {
-		z = _z;
-		if(listen_z != null && !ignore_listeners) listen_z(_z);
-		return z;
-	} //set_z
+        return Math.sqrt( x * x + y * y + z * z );
 
-	function get_inverted() : Vector {
-		return new Vector(-x,-y,-z);
-	} //get_inverted
+    } //get_length
+
+
+    function get_lengthsq() : Float {
+
+        return x * x + y * y + z * z;
+
+    } //get_lengthsq
+
+    function get_normalized() {
+
+        return Vector.Divide( this, length );
+
+    } //get_normalized
+
+    function set_x(_x:Float) : Float {
+        
+        x = _x;
+        
+            if(listen_x != null && !ignore_listeners) listen_x(_x);
+        
+        return x;
+
+    } //set_x
+
+    function set_y(_y:Float) : Float {
+        
+        y = _y;
+        
+            if(listen_y != null && !ignore_listeners) listen_y(_y);
+        
+        return y;
+
+    } //set_y
+
+    function set_z(_z:Float) : Float {
+        
+        z = _z;
+        
+            if(listen_z != null && !ignore_listeners) listen_z(_z);
+        
+        return z;
+
+    } //set_z
+
+    function get_inverted() : Vector {
+
+        return new Vector(-x,-y,-z);
+
+    } //get_inverted
+
+    
+        //Changes the angle of the vector. 
+        //X and Y will change, length stays the same.
+    function set_angle2D( value : Float ) : Float {
+
+        var len:Float = length;
+
+            x = Math.cos(value) * len;
+            y = Math.sin(value) * len;
+
+        return value;
+    }
+    
+        //Get the angle of this vector.
+    function get_angle2D():Float {
+
+        return Math.atan2(y, x);
+
+    }
 
 //Convenience functions
+    
+        //Sets the length under the given value. 
+        //Nothing is done if the vector is already shorter.
+        //max The max length this vector can be.
+    public function truncate( max:Float ) : Vector {
 
-	public function rotationTo( other:Vector ) : Float {
-		var theta =  Math.atan2(  other.x - x , other.y - y );
-		var r = -(180.0 + (theta*180.0/Math.PI));
-		return r;
-	}
+        length = Math.min(max, length);
+        
+        return this;
+
+    } //truncate
+
+    public function rotationTo( other:Vector ) : Float {
+        var theta =  Math.atan2(  other.x - x , other.y - y );
+        var r = -(180.0 + (theta*180.0/Math.PI));
+        return r;
+    }
 
 //Transforms
 
-	public function applyQuaternion( q:Quaternion ) : Vector {
+    public function applyQuaternion( q:Quaternion ) : Vector {
 
-		var qx = q.x;
-		var qy = q.y;
-		var qz = q.z;
-		var qw = q.w;
-		
-		var ix = qw * x + qy * z - qz * y;
-		var iy = qw * y + qz * x - qx * z;
-		var iz = qw * z + qx * y - qy * x;
-		var iw = -qx * x - qy * y - qz * z;
-		
-			x = ix * qw + iw * -qx + iy * -qz - iz * -qy;
-			y = iy * qw + iw * -qy + iz * -qx - ix * -qz;
-			z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+        var qx = q.x;
+        var qy = q.y;
+        var qz = q.z;
+        var qw = q.w;
+        
+        var ix = qw * x + qy * z - qz * y;
+        var iy = qw * y + qz * x - qx * z;
+        var iz = qw * z + qx * y - qy * x;
+        var iw = -qx * x - qy * y - qz * z;
+        
+            x = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+            y = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+            z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
 
-		return this;
+        return this;
 
-	} //applyQuaternion
+    } //applyQuaternion
 
-	public function applyProjection( m:Matrix4 ) : Vector {
+    public function applyProjection( m:Matrix4 ) : Vector {
 
-		var e = m.elements;
-		var x = this.x, y = this.y, z = this.z;
-		var d:Float = 1 / (e[3] * x + e[7] * y + e[11] * z + e[15]);
+        var e = m.elements;
+        var x = this.x, y = this.y, z = this.z;
+        var d:Float = 1 / (e[3] * x + e[7] * y + e[11] * z + e[15]);
 
-			this.x = (e[0] * x + e[4] * y + e[8] * z + e[12]) * d;
-			this.y = (e[1] * x + e[5] * y + e[9] * z + e[13]) * d;
-			this.z = (e[2] * x + e[6] * y + e[10] * z + e[14]) * d;
+            this.x = (e[0] * x + e[4] * y + e[8] * z + e[12]) * d;
+            this.y = (e[1] * x + e[5] * y + e[9] * z + e[13]) * d;
+            this.z = (e[2] * x + e[6] * y + e[10] * z + e[14]) * d;
 
-		return this;
+        return this;
 
-	} //applyProjection	
+    } //applyProjection 
 
-	public function applyMatrix4( _m:Matrix4 ) : Vector {
-		
-		var _x = x;
-		var _y = y;
-		var _z = z;
+    public function applyMatrix4( _m:Matrix4 ) : Vector {
+        
+        var _x = x;
+        var _y = y;
+        var _z = z;
 
-		var e = _m.elements;
+        var e = _m.elements;
 
-			x = e[0] * _x + e[4] * _y + e[8]  * _z + e[12];
-			y = e[1] * _x + e[5] * _y + e[9]  * _z + e[13];
-			z = e[2] * _x + e[6] * _y + e[10] * _z + e[14];
+            x = e[0] * _x + e[4] * _y + e[8]  * _z + e[12];
+            y = e[1] * _x + e[5] * _y + e[9]  * _z + e[13];
+            z = e[2] * _x + e[6] * _y + e[10] * _z + e[14];
 
-		return this;
+        return this;
 
-	} //applyMatrix4
+    } //applyMatrix4
 
-	public function transformDirection( m:Matrix4 ) : Vector {
+    public function transformDirection( m:Matrix4 ) : Vector {
 
-		var e = m.elements;
-		var x = this.x, y = this.y, z = this.z;
-		
-			this.x = e[0] * x + e[4] * y + e[8] * z;
-			this.y = e[1] * x + e[5] * y + e[9] * z;
-			this.z = e[2] * x + e[6] * y + e[10] * z;
-		
-		normalize();
+        var e = m.elements;
+        var x = this.x, y = this.y, z = this.z;
+        
+            this.x = e[0] * x + e[4] * y + e[8] * z;
+            this.y = e[1] * x + e[5] * y + e[9] * z;
+            this.z = e[2] * x + e[6] * y + e[10] * z;
+        
+        normalize();
 
-		return this;
+        return this;
 
-	} //transformDirection
+    } //transformDirection
 
-	public function setEulerFromRotationMatrix (m:Matrix4, order:String = 'XYZ') : Vector {
+    public function setEulerFromRotationMatrix (m:Matrix4, order:String = 'XYZ') : Vector {
 
-		var te = m.elements;
-		var m11 = te[0], m12 = te[4], m13 = te[8];
-		var m21 = te[1], m22 = te[5], m23 = te[9];
-		var m31 = te[2], m32 = te[6], m33 = te[10];
-		
-			//todo - support other euler orders
-		if (order == 'XYZ') {
+        var te = m.elements;
+        var m11 = te[0], m12 = te[4], m13 = te[8];
+        var m21 = te[1], m22 = te[5], m23 = te[9];
+        var m31 = te[2], m32 = te[6], m33 = te[10];
+        
+            //todo - support other euler orders
+        if (order == 'XYZ') {
 
-			y = Math.asin(Math.min(Math.max(m13, -1), 1));
-			
-			if (Math.abs(m13) < 0.99999)
-			{
-				x = Math.atan2( -m23, m33);
-				z = Math.atan2( -m12, m11);
-			} else {
-				x = Math.atan2(m32, m22);
-				z = 0;
-			}
+            y = Math.asin(Math.min(Math.max(m13, -1), 1));
+            
+            if (Math.abs(m13) < 0.99999)
+            {
+                x = Math.atan2( -m23, m33);
+                z = Math.atan2( -m12, m11);
+            } else {
+                x = Math.atan2(m32, m22);
+                z = 0;
+            }
 
-		} //order
-		
-		return this;
+        } //order
+        
+        return this;
 
-	} //setEulerFromRotationMatrix
+    } //setEulerFromRotationMatrix
 
-	public function setEulerFromQuaternion (q:Quaternion, order:String = 'XYZ') : Vector {
+    public function setEulerFromQuaternion (q:Quaternion, order:String = 'XYZ') : Vector {
 
-		var sqx : Float = q.x * q.x;
-		var sqy : Float = q.y * q.y;
-		var sqz : Float = q.z * q.z;
-		var sqw : Float = q.w * q.w;
-		
-		if (order == 'XYZ') {
-			x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );
-			y = Math.asin(  Maths.clamp( 2 * ( q.x * q.z + q.y * q.w ), -1, 1 ) );
-			z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );			
-		}
-		
-		return this;
+        var sqx : Float = q.x * q.x;
+        var sqy : Float = q.y * q.y;
+        var sqz : Float = q.z * q.z;
+        var sqw : Float = q.w * q.w;
+        
+        if (order == 'XYZ') {
+            x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );
+            y = Math.asin(  Maths.clamp( 2 * ( q.x * q.z + q.y * q.w ), -1, 1 ) );
+            z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );         
+        }
+        
+        return this;
 
-	} //setEulerFromQuaternion
+    } //setEulerFromQuaternion
 
-	public function toDegrees() : Vector {
+    public function toDegrees() : Vector {
 
-		x = Maths.radToDeg(x);
-		y = Maths.radToDeg(y);
-		z = Maths.radToDeg(z);
+        x = Maths.radToDeg(x);
+        y = Maths.radToDeg(y);
+        z = Maths.radToDeg(z);
 
-		return this;
-	}
+        return this;
+    }
 
-	public function toRadians() : Vector {
+    public function toRadians() : Vector {
 
-		x = Maths.degToRad(x);
-		y = Maths.degToRad(y);
-		z = Maths.degToRad(z);
+        x = Maths.degToRad(x);
+        y = Maths.degToRad(y);
+        z = Maths.degToRad(z);
 
-		return this;
-	}
+        return this;
+    }
 
-	public static function ToDegrees( _radian_vector:Vector ) : Vector {
-		return _radian_vector.clone().toDegrees();
-	}
-	
-	public static function ToRadians( _degree_vector:Vector ) : Vector {
-		return _degree_vector.clone().toRadians();
-	}
+    public static function ToDegrees( _radian_vector:Vector ) : Vector {
+        return _radian_vector.clone().toDegrees();
+    }
+    
+    public static function ToRadians( _degree_vector:Vector ) : Vector {
+        return _degree_vector.clone().toRadians();
+    }
 
 } //Vector class
 
