@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [5a11d88a37](http://github.com/underscorediscovery/luxe/commit/5a11d88a373ea9d244e9fdb84478c33afe0725d8)   
+author: underscorediscovery   
+date: Fri Feb 28 2014 12:10:13 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Sprite; adding exact hit test `point_inside_exact` which is more costly than the AABB one but takes into account rotation, scale, size and origin . see `test_sprite` for an example</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9e4326791c](http://github.com/underscorediscovery/luxe/commit/9e4326791c0a22769ac128e3ddddedf7b90ff520)   
+author: underscorediscovery   
+date: Fri Feb 28 2014 01:11:42 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Vector; added toDegrees and toRadians helpers</li><li>Quaternion; adding add and dot functions and cleanup</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [c5e2669870](http://github.com/underscorediscovery/luxe/commit/c5e266987090d90acfe3465330ce884fe2e9bfaf)   
+author: underscorediscovery   
+date: Thu Feb 27 2014 11:39:54 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [7ba3d9d97e](http://github.com/underscorediscovery/luxe/commit/7ba3d9d97e7ed7952201371d4126c342ec152ba8)   
 author: underscorediscovery   
 date: Thu Feb 27 2014 11:39:32 GMT-0330 (NST)   
