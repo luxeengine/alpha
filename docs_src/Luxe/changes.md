@@ -1,6 +1,48 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [8a38b9f581](http://github.com/underscorediscovery/luxe/commit/8a38b9f581a97550a6f8eddb510b0fb9cd51dc7d)   
+author: underscorediscovery   
+date: Fri Feb 28 2014 13:50:56 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Rectangle; added overlap(_other:Rectangle) test helper, and general cleanup (fix #73)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3d0938894c](http://github.com/underscorediscovery/luxe/commit/3d0938894c806a8dd8876098ecfbcca8ae1675c1)   
+author: underscorediscovery   
+date: Fri Feb 28 2014 13:38:12 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Collision; removing custom math classes from hxcollision legacy, fix #74</li><li>Collision; updated current code to use luxe Matrix and Vector</li><li>Collision; shape drawer has a color and immediate option</li><li>Tests; Collision; ported hxcollision test case over to luxe quick for testing</li><li>Vector; added lengthsq, angle2D, truncate and set_length</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f894515d3d](http://github.com/underscorediscovery/luxe/commit/f894515d3db3216315eeef7fc4a22c2356d2b395)   
+author: underscorediscovery   
+date: Fri Feb 28 2014 12:11:41 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [5a11d88a37](http://github.com/underscorediscovery/luxe/commit/5a11d88a373ea9d244e9fdb84478c33afe0725d8)   
 author: underscorediscovery   
 date: Fri Feb 28 2014 12:10:13 GMT-0330 (NST)   
