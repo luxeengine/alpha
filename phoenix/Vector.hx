@@ -448,6 +448,32 @@ class Vector {
 
 	} //setEulerFromQuaternion
 
+	public function toDegrees() : Vector {
+
+		x = Maths.radToDeg(x);
+		y = Maths.radToDeg(y);
+		z = Maths.radToDeg(z);
+
+		return this;
+	}
+
+	public function toRadians() : Vector {
+
+		x = Maths.degToRad(x);
+		y = Maths.degToRad(y);
+		z = Maths.degToRad(z);
+
+		return this;
+	}
+
+	public static function ToDegrees( _radian_vector:Vector ) : Vector {
+		return _radian_vector.clone().toDegrees();
+	}
+	
+	public static function ToRadians( _degree_vector:Vector ) : Vector {
+		return _degree_vector.clone().toRadians();
+	}
+
 } //Vector class
 
 
