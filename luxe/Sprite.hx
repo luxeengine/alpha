@@ -93,6 +93,29 @@ class Sprite extends Visual {
 
 //Helper functions
 
+    var _hit_box_vert_list : Array<Vector>;
+    var _hit_origin_offset : Vector;
+
+        //:todo: note that this function is a heavier alternative
+        //plus they should be just one function and use dirty flags
+        //to only update things when things do change but 
+        //this is utilitarian for now
+    public function point_inside_exact(_p:Vector) : Bool {
+
+        if(_hit_box_vert_list == null) {
+            _hit_box_vert_list = [];
+            _hit_origin_offset = new Vector();
+        }
+        
+        _hit_box_vert_list.splice(0,_hit_box_vert_list.length);
+        for(_v in geometry.vertices) {
+            _hit_box_vert_list.push( _v.pos.clone().subtract(geometry.origin).applyMatrix4(geometry.matrix) );
+        }
+
+        return Luxe.utils.geometry.point_in_polygon( _p, _hit_origin_offset, _hit_box_vert_list );
+
+    } //point_inside_exact
+
         //Returns true if a point is inside the default AABB 
         //todo: Improve this to include origins of geom + rotation + scale
     public function point_inside(_p:Vector) : Bool {
