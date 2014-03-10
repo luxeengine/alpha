@@ -475,18 +475,77 @@ class Vector {
         var m21 = te[1], m22 = te[5], m23 = te[9];
         var m31 = te[2], m32 = te[6], m33 = te[10];
         
-            //todo - support other euler orders
         if (order == 'XYZ') {
 
-            y = Math.asin(Math.min(Math.max(m13, -1), 1));
+            y = Math.asin( Maths.clamp( m13, -1, 1 ) );
             
             if (Math.abs(m13) < 0.99999)
             {
                 x = Math.atan2( -m23, m33);
                 z = Math.atan2( -m12, m11);
             } else {
-                x = Math.atan2(m32, m22);
+                x = Math.atan2( m32, m22 );
                 z = 0;
+            }
+
+        }  else if ( order == 'YXZ' ) {
+
+            x = Math.asin( -Maths.clamp( m23, -1, 1 ) );
+
+            if ( Math.abs( m23 ) < 0.99999 ) {
+                y = Math.atan2( m13, m33 );
+                z = Math.atan2( m21, m22 );
+            } else {
+                y = Math.atan2( -m31, m11 );
+                z = 0;
+            }
+
+        } else if ( order == 'ZXY' ) {
+
+            x = Math.asin( Maths.clamp( m32, -1, 1 ) );
+
+            if ( Math.abs( m32 ) < 0.99999 ) {
+                y = Math.atan2( -m31, m33 );
+                z = Math.atan2( -m12, m22 );
+            } else {
+                y = 0;
+                z = Math.atan2( m21, m11 );
+            }
+
+        } else if ( order == 'ZYX' ) {
+
+            y = Math.asin( -Maths.clamp( m31, -1, 1 ) );
+
+            if ( Math.abs( m31 ) < 0.99999 ) {
+                x = Math.atan2( m32, m33 );
+                z = Math.atan2( m21, m11 );
+            } else {
+                x = 0;
+                z = Math.atan2( -m12, m22 );
+            }
+
+        } else if ( order == 'YZX' ) {
+
+            z = Math.asin( Maths.clamp( m21, -1, 1 ) );
+
+            if ( Math.abs( m21 ) < 0.99999 ) {
+                x = Math.atan2( -m23, m22 );
+                y = Math.atan2( -m31, m11 );
+            } else {
+                x = 0;
+                y = Math.atan2( m13, m33 );
+            }
+
+        } else if ( order == 'XZY' ) {
+
+            z = Math.asin( -Maths.clamp( m12, -1, 1 ) );
+
+            if ( Math.abs( m12 ) < 0.99999 ) {
+                x = Math.atan2( m32, m22 );
+                y = Math.atan2( m13, m11 );
+            } else {
+                x = Math.atan2( -m23, m33 );
+                y = 0;
             }
 
         } //order
@@ -506,7 +565,27 @@ class Vector {
             x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );
             y = Math.asin(  Maths.clamp( 2 * ( q.x * q.z + q.y * q.w ), -1, 1 ) );
             z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );         
-        }
+        } else if ( order ==  'YXZ' ) {
+            x = Math.asin(  Maths.clamp( 2 * ( q.x * q.w - q.y * q.z ), -1, 1 ) );
+            y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw - sqx - sqy + sqz ) );
+            z = Math.atan2( 2 * ( q.x * q.y + q.z * q.w ), ( sqw - sqx + sqy - sqz ) );
+        } else if ( order == 'ZXY' ) {
+            x = Math.asin(  Maths.clamp( 2 * ( q.x * q.w + q.y * q.z ), -1, 1 ) );
+            y = Math.atan2( 2 * ( q.y * q.w - q.z * q.x ), ( sqw - sqx - sqy + sqz ) );
+            z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw - sqx + sqy - sqz ) );
+        } else if ( order == 'ZYX' ) {
+            x = Math.atan2( 2 * ( q.x * q.w + q.z * q.y ), ( sqw - sqx - sqy + sqz ) );
+            y = Math.asin(  Maths.clamp( 2 * ( q.y * q.w - q.x * q.z ), -1, 1 ) );
+            z = Math.atan2( 2 * ( q.x * q.y + q.z * q.w ), ( sqw + sqx - sqy - sqz ) );
+        } else if ( order == 'YZX' ) {
+            x = Math.atan2( 2 * ( q.x * q.w - q.z * q.y ), ( sqw - sqx + sqy - sqz ) );
+            y = Math.atan2( 2 * ( q.y * q.w - q.x * q.z ), ( sqw + sqx - sqy - sqz ) );
+            z = Math.asin(  Maths.clamp( 2 * ( q.x * q.y + q.z * q.w ), -1, 1 ) );
+        } else if ( order == 'XZY' ) {
+            x = Math.atan2( 2 * ( q.x * q.w + q.y * q.z ), ( sqw - sqx + sqy - sqz ) );
+            y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw + sqx - sqy - sqz ) );
+            z = Math.asin(  Maths.clamp( 2 * ( q.z * q.w - q.x * q.y ), -1, 1 ) );
+        } //order
         
         return this;
 
