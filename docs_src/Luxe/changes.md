@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [a4ed7a642c](http://github.com/underscorediscovery/luxe/commit/a4ed7a642ce169a25f5dec52d2441f685a68ca52)   
+author: underscorediscovery   
+date: Wed Mar 12 2014 00:50:31 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Tilemaps; adding refresh from edited tilemap  (changing tile.id will refresh the visual uv's)</li><li>Tilemaps; added remove_tile api as well as setting a tile to 0 id will remove it (geometry as well)</li><li>Tilemaps; geometry is only drawn when id != 0, so clearing id's drop geom and vice versa, non 0 creates geom</li><li>Tilemaps; closes #61, for 1.0</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [467731f231](http://github.com/underscorediscovery/luxe/commit/467731f2318ead5fb556703e293b7fb7a2249cf8)   
+author: underscorediscovery   
+date: Wed Mar 12 2014 00:50:31 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9ffce7d163](http://github.com/underscorediscovery/luxe/commit/9ffce7d163749d46e7a56681c5ca000ac0b6552c)   
+author: Thomas Hourdel   
+date: Mon Mar 10 2014 21:24:55 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Matrix4; fixed make2D</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [cff93346ff](http://github.com/underscorediscovery/luxe/commit/cff93346ff8cd4d881449bc02c54a599772a501c)   
+author: Thomas Hourdel   
+date: Mon Mar 10 2014 16:32:05 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Vector; added the missing euler orders in setEulerFromRotationMatrix and setEulerFromQuaternion</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [8a38b9f581](http://github.com/underscorediscovery/luxe/commit/8a38b9f581a97550a6f8eddb510b0fb9cd51dc7d)   
 author: underscorediscovery   
 date: Fri Feb 28 2014 13:50:56 GMT-0330 (NST)   
