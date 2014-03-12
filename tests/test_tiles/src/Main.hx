@@ -46,6 +46,14 @@ class Main extends luxe.Game {
         tiled_iso = new TiledMap( { file:'assets/isotiles.tmx', pos : new Vector(256,128) } );
         tiled_iso.display({ scale:1, grid:true});
 
+            //change a tile id post display, to show "14" with grass
+        tiled_iso.tile_at('Tile Layer 2', 0, 0).id = 4;
+        tiled_iso.tile_at('Tile Layer 2', 0, 1).id = 0;
+            //try remove first
+        tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 0;
+            //then readd, to test it works
+        tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 4;
+
     }
 
     function load_ortho_tiledmap() {
@@ -115,9 +123,19 @@ class Main extends luxe.Game {
 
             //before we display it, remove the "removed" layer so it's not there
         small_tiles.remove_layer('removed');
+
+            //let's change a tile before we display it
+        small_tiles.tile_at('fg', 0, 0).id = 1;
         
             //finally, tell it to display
         small_tiles.display({ scale:1 });
+
+            //and change a tile after we display it
+        small_tiles.tile_at('fg', 1, 0).id = 1;
+        small_tiles.tile_at('fg', 2, 0).id = 1;
+        small_tiles.tile_at('fg', 3, 0).id = 1;
+        small_tiles.tile_at('fg', 4, 0).id = 1;
+        small_tiles.tile_at('fg', 5, 0).id = 1;
 
     }
   
@@ -159,7 +177,8 @@ class Main extends luxe.Game {
 
 
     public function onmousemove(e:MouseEvent) {
-                // Get the tile position that the mouse is hovering.
+
+            // Get the tile position that the mouse is hovering.
         var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
         
         var tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos );

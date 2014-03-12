@@ -7,6 +7,7 @@ import luxe.Vector;
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
 
+import phoenix.geometry.QuadGeometry;
 import phoenix.Texture.FilterType;
 import phoenix.geometry.Geometry;
 import phoenix.Vector;
@@ -65,83 +66,45 @@ class IsometricVisuals extends TilemapVisuals {
     public override function create( options:Dynamic ) {
 
         var _scale = (options.scale != null) ? options.scale : 1;
-        var _filter = (options.filter != null) ? options.filter : FilterType.nearest;
 
             //map tile size scaled up
         var _scaled_tilewidth = map.tile_width*_scale;
         var _scaled_tileheight = map.tile_height*_scale;
 
         for( layer in map ) {
+
+            var _layer_geom : TilemapVisualsLayerGeometry = [];
             
             for( y in 0 ... map.height ) {
                     
                     //the geometry row
-                var _geom_row = [];
+                var _geom_row : Array<Geometry> = [];
 
                 for( x in 0 ... map.width ) {
                     
-                    var tile = layer.tiles[y][x];
+                    var _tile_geom = create_tile_for_layer(layer, x, y, _scale, options.filter);
 
-                    if(tile.id == 0) {
-                        continue;
-                    }
-
-                    var tileset = map.tileset_from_id( tile.id );
-
-                        //specific to each tileset
-                    var _scaled_tileset_tilewidth = tileset.tile_width*_scale;
-                    var _scaled_tileset_tileheight = tileset.tile_height*_scale;
-
-                        //the half tile size in world space, not tile space
-                    var _half_world_tile_width = _scaled_tilewidth / 2;
-                    var _half_world_tile_height = _scaled_tileheight / 2;
-					
-                        //create the tile to the geometry
-                    var _tile_geom = Luxe.draw.box({
-                            //the positions are based on the map tile width, not the texture tilesize
-                        x : (map.pos.x + ((x - y) * _half_world_tile_width)) - _half_world_tile_width,
-                        y : (map.pos.y + ((x + y) * _half_world_tile_height)) - _half_world_tile_height,
-                            //the geometry size is based on the texture/tileset size, not the map size
-                        w : _scaled_tileset_tilewidth, 
-                        h : _scaled_tileset_tileheight,
-                        texture : (tileset != null) ? tileset.texture : null,
-                        enabled : layer.visible,
-                        color : new Color(1,1,1,layer.opacity)
-                    });
-
-                    if(tileset != null) {
-                        if(tileset.texture != null) {
-                            tileset.texture.onload = function(t) {
-
-                                var image_coord = tileset.pos_in_texture( tile.id );
-
-                                _tile_geom.uv( 
-                                    new Rectangle(
-                                        image_coord.x * tileset.tile_width,
-                                        image_coord.y * tileset.tile_height,
-                                        tileset.tile_width,
-                                        tileset.tile_height
-                                    ) //rectangle
-                                ); //uv
-
-                                tileset.texture.filter = _filter;
-                            }
-                        }
-                    } //tileset != null
+                        //we want to push nulls into here,
+                        //because otherwise the sizes won't match
+                        //and because we use it to create tiles when
+                        //changing the tile gid later
+                    _geom_row.push( _tile_geom );
 
                 } //for each tile in the x 
 
                     //add the geometry to the bunches
-                geometry.push(_geom_row);
+                _layer_geom.push(_geom_row);
 
             } //for y
+
+                //add the geometry to the list
+            geometry.set( layer.name, _layer_geom );
 
         } //for each layer
 
         if(options.grid != null && options.grid == true) {
 
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
-
 
             for(x in 0 ... map.width+1) {
                 
@@ -151,7 +114,8 @@ class IsometricVisuals extends TilemapVisuals {
                 Luxe.draw.line({ 
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y ),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
-                    color : color
+                    color : color,
+                    depth : 2
                 });
             }
 
@@ -163,12 +127,78 @@ class IsometricVisuals extends TilemapVisuals {
                 Luxe.draw.line({ 
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
-                    color : color
+                    color : color,
+                    depth : 2
                 });
             }
 
         }
 
     } //create
+
+    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType ) {
+        
+        _filter = (_filter != null) ? _filter: FilterType.nearest;
+
+            //map tile size scaled up
+        var _scaled_tilewidth = map.tile_width*_scale;
+        var _scaled_tileheight = map.tile_height*_scale;
+
+        var tile = layer.tiles[y][x];
+
+            //don't create blank tiles
+        if(tile.id == 0) {
+            return null;
+        }
+
+        var tileset = map.tileset_from_id( tile.id );
+
+            //specific to each tileset
+        var _scaled_tileset_tilewidth = tileset.tile_width*_scale;
+        var _scaled_tileset_tileheight = tileset.tile_height*_scale;
+
+            //the half tile size in world space, not tile space
+        var _half_world_tile_width = _scaled_tilewidth / 2;
+        var _half_world_tile_height = _scaled_tileheight / 2;
+        
+            //create the tile to the geometry
+        var _tile_geom = Luxe.draw.box({
+                //the positions are based on the map tile width, not the texture tilesize
+            x : (map.pos.x + ((x - y) * _half_world_tile_width)) - _half_world_tile_width,
+            y : (map.pos.y + ((x + y) * _half_world_tile_height)) - _half_world_tile_height,
+                //the geometry size is based on the texture/tileset size, not the map size
+            w : _scaled_tileset_tilewidth, 
+            h : _scaled_tileset_tileheight,
+            texture : (tileset != null) ? tileset.texture : null,
+            visible : layer.visible,
+            color : new Color(1,1,1,layer.opacity)
+        });
+
+        if(tileset != null) {
+            if(tileset.texture != null) {
+                tileset.texture.onload = function(t) {
+
+                    var image_coord = tileset.pos_in_texture( tile.id );
+
+                    _tile_geom.uv( 
+                        new Rectangle(
+                            tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                            tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                            tileset.tile_width,
+                            tileset.tile_height
+                        ) //Rectangle
+                    ); //uv
+
+                    if(_filter != null) {
+                        tileset.texture.filter = _filter;
+                    } //_filter != null
+                }
+            }
+        } //tileset != null
+
+        return _tile_geom;
+
+    } //create_tile_for_layer
+
 
 } //IsometricVisuals
