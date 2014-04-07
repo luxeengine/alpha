@@ -125,8 +125,12 @@ class Reader {
 
     private function parse_face(line:String) {
 
+            //remove rogue endings from the line
+        line = StringTools.trim(line);
+            //split the parts up by spaces, f 1/1 2/2 3/3
         var items = line.split(' ');
-        
+            
+            //split each index by /
         var vert1 = items[1].split('/');
         var vert2 = items[2].split('/');
         var vert3 = items[3].split('/');
