@@ -4,7 +4,6 @@ package game;
 import game.items.Explosive;
 import game.Manager;
 
-import luxe.collision.math.Vector2D;
 import luxe.collision.shapes.Polygon;
 import luxe.collision.shapes.Shape;
 import luxe.collision.ShapeDrawerLuxe;
