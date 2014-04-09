@@ -15,6 +15,10 @@ class ProfilerDebugView extends luxe.debug.DebugView {
     public static var lists:Map<String,ProfilerValue>;
 
     public function new() {
+        
+        super();
+
+        name = 'Profiler';
         lists = new Map();
     }
 

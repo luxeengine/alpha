@@ -4,7 +4,11 @@ import luxe.Input.KeyEvent;
 import luxe.Input.MouseEvent;
 
 
-class DebugView {
+class DebugView extends luxe.Objects {
+    public function new() {
+        super();
+    }
+    
     public function refresh() {
         
     }

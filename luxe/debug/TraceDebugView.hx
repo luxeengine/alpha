@@ -7,8 +7,12 @@ class TraceDebugView extends luxe.debug.DebugView {
     public var lines : luxe.Text;
     public var max_lines : Int = 35;
 
-    public function new(  ) {
-        
+    public function new() {
+            
+        super();
+
+        name = 'Log';
+
         Luxe.debug.add_trace_listener('TraceDebugView', on_trace);
 
         logged = new Array<String>();

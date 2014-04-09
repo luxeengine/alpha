@@ -19,6 +19,10 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     public function new() {
 
+        super();
+
+        name = 'Statistics';
+
         _last_render_stats = {
             batchers : 0,
             geometry_count : 0,

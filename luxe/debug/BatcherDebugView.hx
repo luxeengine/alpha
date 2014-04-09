@@ -11,7 +11,8 @@ import phoenix.geometry.Geometry;
 class BatcherDebugView extends luxe.debug.DebugView {
     
     public function new(  ) {
-        
+        super();
+        name = 'Batcher Debug';
     }
 
     var batcher : Batcher;
@@ -169,6 +170,10 @@ class BatcherDebugView extends luxe.debug.DebugView {
     }
 
     public function draw_geom_leaf( L:Bool, _leaf : BalancedBinarySearchTreeNode<GeometryKey,Geometry>, _p:Vector ) {
+
+        if(_leaf == null) {
+            return;
+        }
 
         var _bw:Float = _leaf.nodecount / 20;
         var _bwb:Float = _leaf.nodecount * 25;
