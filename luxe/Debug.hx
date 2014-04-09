@@ -62,8 +62,8 @@ class Debug {
         views = [
             new TraceDebugView(),
             new StatsDebugView(),
-            new ProfilerDebugView(),
-            new BatcherDebugView()
+            new ProfilerDebugView()
+            // new BatcherDebugView()
         ];
 
         current_view = views[0];        
@@ -146,7 +146,7 @@ class Debug {
         for(view in views) {
             view.create();
         }
-        
+
     } //create_debug_console
 
     public function onmouseup(e:MouseEvent) {
