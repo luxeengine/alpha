@@ -1,6 +1,146 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [6df4613370](http://github.com/underscorediscovery/luxe/commit/6df4613370236a3a0436061f7e112540ac8bb595)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 14:04:09 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>OBJ : Making parser more robust, where new lines or empty elements caused breakdown</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [9ac4dfc233](http://github.com/underscorediscovery/luxe/commit/9ac4dfc2331e22446e17da6854369189cb9359de)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 05:39:44 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; continued cleanup for #77</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e3b43b0f9a](http://github.com/underscorediscovery/luxe/commit/e3b43b0f9a4d367d0fc75bb022871f5c921eff24)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 05:12:25 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; continued cleanup for #77</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [48ff622d3e](http://github.com/underscorediscovery/luxe/commit/48ff622d3e2fa3536826206b430151dee6780fe0)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 02:52:27 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; cleanup for #77, removing Dynamic in favour of typing things</li><li>Input; InputEvent now includes name and an InputState.up/down flag for checking those things on generic handlers, like squads did</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [42d8eb019e](http://github.com/underscorediscovery/luxe/commit/42d8eb019e1031f293c90ee083ef677fcb630400)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 02:04:10 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; fixing debug window showing dt as - using a separator</li><li>Text; fixing text default visibility not being respected, solves debug views overlapping</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f5b2569635](http://github.com/underscorediscovery/luxe/commit/f5b2569635f0b45067120c4409d488d85006a49e)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 01:25:58 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; cleaning up code and starting with consistency passes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [4348a2f517](http://github.com/underscorediscovery/luxe/commit/4348a2f517ce0649448767f5c330e97f4c640375)   
+author: underscorediscovery   
+date: Wed Apr 09 2014 23:14:01 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Merge branch 'master' of https://github.com/underscorediscovery/luxe</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3f032b9d2a](http://github.com/underscorediscovery/luxe/commit/3f032b9d2adc4fcf8bbf90174c18f155767cf3a4)   
+author: underscorediscovery   
+date: Wed Apr 09 2014 23:09:32 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Revert "BitmapFont; fixing failing to load fonts on windows, due to different new lines. Handling it with StringTools ensures cross platform"</li><li>This reverts commit d7d2a317f45567aacdab573d03662ea49e0e5f62.</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [23a5eee999](http://github.com/underscorediscovery/luxe/commit/23a5eee999369ee7762c47533a2c6f9870f229cb)   
+author: underscorediscovery   
+date: Wed Apr 09 2014 20:24:03 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; removing batcher debug view, it's slow and not used for end users right now</li><li>SuitStory; updating tilt shift with explanations and info</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [28ebf4a12b](http://github.com/underscorediscovery/luxe/commit/28ebf4a12b9c2b9d0c25642a6e4a23d239680e31)   
+author: underscorediscovery   
+date: Wed Apr 09 2014 17:30:22 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [c57284c203](http://github.com/underscorediscovery/luxe/commit/c57284c203ae2d43248b846ecc35e7d30de6bcfb)   
 author: underscorediscovery   
 date: Wed Apr 09 2014 17:29:57 GMT-0230 (NDT)   
@@ -360,6 +500,20 @@ date: Mon Feb 24 2014 13:34:04 GMT-0330 (NST)
 <div class="commit_message">
 
 <ul><li>BitmapFont; fixing windows new line bug in font loading. Using StringTools ensures cross platformnessness</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [d7d2a317f4](http://github.com/underscorediscovery/luxe/commit/d7d2a317f45567aacdab573d03662ea49e0e5f62)   
+author: underscorediscovery   
+date: Mon Feb 24 2014 13:31:26 GMT-0330 (NST)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>BitmapFont; fixing failing to load fonts on windows, due to different new lines. Handling it with StringTools ensures cross platform</li></ul>
 </div>
 &nbsp;   
 &nbsp;   
