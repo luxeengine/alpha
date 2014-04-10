@@ -39,7 +39,11 @@ class Reader {
         var temp_normals : Array<phoenix.formats.obj.Normal> = new Array<phoenix.formats.obj.Normal>();
 
         for(line in lines) {
+            
+            line = StringTools.trim(line);
+
             var type = line.split(' ')[0];
+
             switch(type) {
                 case "v":
                     temp_verts.push( parse_vert(line) );
@@ -84,7 +88,13 @@ class Reader {
     private function parse_vert(line:String) : phoenix.formats.obj.Vector {
             
             //note items[0] is the identifier
-        var items = line.split(' ');            
+        var items = line.split(' ');
+
+        for(element in items) {
+            if( element.length == 0) {
+                items.remove(element);
+            }
+        } //for each element
 
         var v : phoenix.formats.obj.Vector = {
             x : Std.parseFloat( items[1] ),
