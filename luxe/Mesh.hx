@@ -117,6 +117,25 @@ class Mesh {
     } //set_scale
 
 //Create a mesh from an Obj file 
+    
+    function _obj_add_vert( v:phoenix.formats.obj.Data.Vertex, _scale:Vector ) {
+
+        var normal : Vector = new Vector();
+           
+           if(v.normal != null) {
+                normal.set(v.normal.x, v.normal.y, v.normal.z);
+           }
+        
+       var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), normal );
+
+                //todo;multiple uv sets
+           if(v.uv != null) {                    
+               _v.uv.uv0.set( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space 
+           }
+       
+       geometry.add( _v );
+
+    } //_obj_add_vert
 
     public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector  ) {
 
@@ -135,22 +154,10 @@ class Mesh {
 
         for(v in obj_mesh_data.vertices) {
            
-               var normal : Vector = new Vector();
-               
-               if(v.normal != null) {
-                    normal.set(v.normal.x, v.normal.y, v.normal.z);
-               }
-
-           var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), normal );
-
-                    //todo;multiple uv sets
-               if(v.uv != null) {                    
-                   _v.uv.uv0.set( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space 
-               }
-           
-           geometry.add( _v );
+            _obj_add_vert(v, _scale);
 
         } //for all verts
+
 
     } // from obj file
 

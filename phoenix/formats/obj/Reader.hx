@@ -68,12 +68,12 @@ class Reader {
                 
                 // Get the attributes thanks to the index
                 var pos = temp_verts[ vertexIndex-1 ];
-                var uv = temp_uvs[ uvIndex-1 ];
-                var normal = temp_normals[ normalIndex-1 ];
+                var uv = (uvIndex != -1) ? temp_uvs[ uvIndex-1 ] : { u:0.0, v:0.0 };
+                var normal = (normalIndex != -1) ? temp_normals[ normalIndex-1 ] : { x:0.0, y:0.0, z:0.0, w:0.0 };
 
                 // trace('\t pos : ' + pos);
                 // trace('\t uv : ' + uv);   
-                // trace('\t normal : ' + normal);   
+                // trace('\t normal : ' + normal);
 
                 data.vertices.push({
                     pos : pos,
@@ -90,6 +90,8 @@ class Reader {
             //note items[0] is the identifier
         var items = line.split(' ');
 
+            //remove any loose extra spaces 
+            //that the exporter may have added
         for(element in items) {
             if( element.length == 0) {
                 items.remove(element);
@@ -99,17 +101,27 @@ class Reader {
         var v : phoenix.formats.obj.Vector = {
             x : Std.parseFloat( items[1] ),
             y : Std.parseFloat( items[2] ),
-            z : Std.parseFloat( items[3] )
+            z : Std.parseFloat( items[3] ),
+            w : (items.length > 4) ? Std.parseFloat( items[4] ) : 1.0
         };
 
         return v;
-    }
+
+    } //parse_vert
 
     private function parse_uv(line:String) : phoenix.formats.obj.UV {
 
             //note items[0] is the identifier
         var items = line.split(' ');
-        
+
+            //remove any loose extra spaces 
+            //that the exporter may have added
+        for(element in items) {
+            if( element.length == 0) {
+                items.remove(element);
+            }
+        } //for each element
+
         var uv : phoenix.formats.obj.UV = {
             u : Std.parseFloat( items[1] ),
             v : Std.parseFloat( items[2] )
@@ -120,18 +132,27 @@ class Reader {
 
     private function parse_normal(line:String) : phoenix.formats.obj.Normal {
         
-        // trace('parsing normal ' + line);
             //note items[0] is the identifier
         var items = line.split(' ');
+
+            //remove any loose extra spaces 
+            //that the exporter may have added
+        for(element in items) {
+            if( element.length == 0) {
+                items.remove(element);
+            }
+        } //for each element
 
         var n : phoenix.formats.obj.Normal = {
             x : Std.parseFloat( items[1] ),
             y : Std.parseFloat( items[2] ),
-            z : Std.parseFloat( items[3] )
+            z : Std.parseFloat( items[3] ),
+            w : (items.length > 4) ? Std.parseFloat( items[4] ) : 1.0
         }
 
         return n;
-    }
+
+    } //parse_normal
 
     private function parse_face(line:String) {
 
@@ -139,27 +160,85 @@ class Reader {
         line = StringTools.trim(line);
             //split the parts up by spaces, f 1/1 2/2 3/3
         var items = line.split(' ');
-            
-            //split each index by /
-        var vert1 = items[1].split('/');
-        var vert2 = items[2].split('/');
-        var vert3 = items[3].split('/');
 
-        if(items.length > 4) {
+           //remove any loose extra spaces 
+            //that the exporter may have added
+        for(element in items) {
+            if( element.length == 0) {
+                items.remove(element);
+            }
+        } //for each element
+
+            //we want to remove the `f` item
+        items.shift();
+
+        if(items.length > 3) {
             throw "Can't parse faces that aren't triangulated from here (yet).";
         }
 
-        vertexIndices.push( Std.parseInt(vert1[0]) );
-        vertexIndices.push( Std.parseInt(vert2[0]) );
-        vertexIndices.push( Std.parseInt(vert3[0]) );
+            //we need to allow extraneous items
+            //in the f 1//2 type setup from the spec
+        for(item in items) {
+                //if there is a basic 1/2/3 setup 
+            if(item.indexOf('//') == -1) {
 
-        uvIndices.push( Std.parseInt(vert1[1]) );
-        uvIndices.push( Std.parseInt(vert2[1]) );
-        uvIndices.push( Std.parseInt(vert3[1]) );
+                var indices = item.split('/');
 
-        normalIndices.push( Std.parseInt(vert1[2]) );
-        normalIndices.push( Std.parseInt(vert2[2]) );
-        normalIndices.push( Std.parseInt(vert3[2]) );
+                    //Vertex indices
+                vertexIndices.push( Std.parseInt(indices[0]) );
+
+                    //UV's 
+                uvIndices.push( Std.parseInt(indices[1]) );
+
+                    //it's possible no normals exist
+                if(indices.length > 2) {
+                    normalIndices.push( Std.parseInt(indices[2]) );
+                } else {
+                    normalIndices.push( -1 );
+                }
+
+            } else {
+
+                //if in this case it should be 1//3,
+                //meaning only normals and no uv coords                
+
+                var indices = item.split('/');
+
+                    //Vertex indices
+                vertexIndices.push( Std.parseInt(indices[0]) );
+                    //No UV coords given so we use -1 to specify
+                    //that it's not a valid imported UV and default to 0,0
+                uvIndices.push( -1 );
+
+                    //it's possible no normals exist
+                if(indices.length > 2) {
+                    normalIndices.push( Std.parseInt(indices[2]) );
+                } else {
+                    normalIndices.push( -1 );
+                }
+
+            } // // is not found
+
+        } //for each set of indices
+
+        //     //split each index by /
+        // var vert1 = items[1].split('/');
+        // var vert2 = items[2].split('/');
+        // var vert3 = items[3].split('/');
+
+        
+
+        // vertexIndices.push( Std.parseInt(vert1[0]) );
+        // vertexIndices.push( Std.parseInt(vert2[0]) );
+        // vertexIndices.push( Std.parseInt(vert3[0]) );
+
+        // uvIndices.push( Std.parseInt(vert1[1]) );
+        // uvIndices.push( Std.parseInt(vert2[1]) );
+        // uvIndices.push( Std.parseInt(vert3[1]) );
+
+        // normalIndices.push( Std.parseInt(vert1[2]) );
+        // normalIndices.push( Std.parseInt(vert2[2]) );
+        // normalIndices.push( Std.parseInt(vert3[2]) );
 
     }
 

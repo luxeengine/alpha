@@ -14,12 +14,14 @@ typedef Normal = {
     var x : Float;   
     var y : Float;   
     var z : Float;
+    var w : Float;
 }
 
 typedef Vector = {
     var x : Float;   
     var y : Float;   
     var z : Float;
+    var w : Float;
 }
 
 typedef UV = {
