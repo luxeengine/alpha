@@ -528,6 +528,7 @@ class BitmapFont extends Resource {
         
         _final_geom.id = 'drawn_text- ' + _string;
         _final_geom.immediate = _immediate;
+        _final_geom.enabled = _enabled;
 
         return _final_geom;
     }

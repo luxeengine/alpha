@@ -45,6 +45,14 @@ class Text extends Visual {
             _options.group = 0;
         }
 
+        if(_options.enabled == null) {
+            _options.enabled = true;
+        }
+
+        if(_options.visible != null) {
+            _options.enabled = _options.visible;
+        }
+
         text_options = _options;
 
         super({
@@ -52,6 +60,7 @@ class Text extends Visual {
             no_scene : _options.no_scene,
             batcher : _batcher,
             color : _options.color,
+            visible : _options.visible,
             pos : _options.pos,
             depth : _options.depth,
             group : _options.group,
@@ -131,11 +140,10 @@ class Text extends Visual {
 
     override function set_visible(b:Bool) : Bool {
 
-        visible = b;
-        
-        super.set_visible(visible);
+        super.set_visible(b);
 
         text_options.enabled = visible;
+        text_options.visible = visible;
 
         return visible;
 
@@ -177,6 +185,7 @@ class Text extends Visual {
             origin  = composite_geometry.origin;
             pos     = composite_geometry.pos;
             locked  = composite_geometry.locked;
+            visible = composite_geometry.enabled;
 
                 //and then assign it
             ignore_texture_on_geometry_change = true;
