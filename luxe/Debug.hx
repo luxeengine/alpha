@@ -55,16 +55,6 @@ class Debug {
     public var profile_path : String = "profile.txt";
     public var profiling : Bool = false;
 
-#if luxe_native
-    #if neko
-        static var thread : neko.vm.Thread;
-        static var mutex : neko.vm.Mutex;
-    #else    
-        static var thread : cpp.vm.Thread;
-        static var mutex : cpp.vm.Mutex;
-    #end 
-#end 
-
     public function init() {        
 
         trace_callbacks = new Map();
@@ -72,8 +62,8 @@ class Debug {
         views = [
             new TraceDebugView(),
             new StatsDebugView(),
-            new ProfilerDebugView(),
-            new BatcherDebugView()
+            new ProfilerDebugView()
+            // new BatcherDebugView()
         ];
 
         current_view = views[0];        
@@ -142,7 +132,7 @@ class Debug {
             //create the scene inspector
         padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
         debug_inspector = new Inspector({ 
-            title:'default scene', 
+            title:'luxe debug', 
             pos : new Vector(padding.x, padding.y),
             size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
             batcher : batcher
@@ -156,12 +146,6 @@ class Debug {
         for(view in views) {
             view.create();
         }
-
-        //start a background thread with the debug process function
-        // #if luxe_native
-        //     mutex = new cpp.vm.Mutex();
-        //     thread = cpp.vm.Thread.create(do_views);            
-        // #end
 
     } //create_debug_console
 
@@ -315,20 +299,6 @@ class Debug {
         core._debug(':: luxe :: \t Debug shut down.');
     } //destroy
 
-    
-    // public static function do_views() {
-
-    //     while(!shut_down) {
-            
-    //         for(view in views) {
-    //             view.process();
-    //         }
-
-    //         Sys.sleep(0.05);
-    //     }
-
-    // }
-
     public function process() {
 
         dt_average_accum += Luxe.dt;
@@ -343,10 +313,8 @@ class Debug {
         if(!visible) return;        
 
             //update the title
-        debug_inspector._title_text.text = Maths.fixed(Luxe.dt,3) + ' / ' + Maths.fixed(dt_average,3);
+        debug_inspector._title_text.text = current_view.name + " - " + Maths.fixed(Luxe.dt,3) + ' / ' + Maths.fixed(dt_average,3);
         
-        // return;
-
         // #if !luxe_native
             for(view in views) {
                 view.process();

@@ -158,9 +158,7 @@ class BitmapFont extends Resource {
                         }
 
                             //remove arbitrary new lines
-                        if(_file.indexOf('\n') != -1) {
-                            _file = StringTools.replace(_file,'\n', '');
-                        }
+                        _file = StringTools.trim( _file );
                         
                             //Store the texture id's in the list
                         _pages.push({id:_id, file:_file});
@@ -212,20 +210,31 @@ class BitmapFont extends Resource {
         //once all loaded, we can load up the pages textures
         //but only if the custom pages wasn't specified
         if(custom_pages == null) {
+            
             for(_page_item in _pages) {
                     //fetch the texture
                 var _t = Luxe.loadTexture( _folder + _page_item.file, one_page_loaded );
                     //store the texture in the map for use
-                pages.set(_page_item.id, _t);
+                _t.onload = function(t_t) { 
+                    pages.set(_page_item.id, _t); 
+                    _t.generate_mipmaps();
+                    _t.filter = FilterType.mip_linear_linear;
+                }
+
             }
+
         } else {
+
             var _id : Int = 0;
+            
             for(_page in custom_pages) {
                 pages.set(_id, _page);
                 ++_id;
             } //for each custom page
+
                 //still do the callback in case
             on_all_pages_loaded();
+
         } //if custom pages
 
     } //load_from_string

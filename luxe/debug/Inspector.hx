@@ -90,7 +90,9 @@ import luxe.defaults.TinyUI;
 		_window.lock();		
 
 		_title_text = new Text({
+			name : 'debug.title',
 			batcher : _batcher,
+			no_scene : true,
 			depth : 999.2,
 			color : new Color().rgb(0xf6007b),
 			pos : new Vector( pos.x+(size.x/2), pos.y+6 ),
@@ -101,9 +103,7 @@ import luxe.defaults.TinyUI;
 			enabled : false
 		});
 
-		_title_text.geometry.geometry.map(function(g){
-			g.id = 'debug.title.text';
-		});
+		_title_text.geometry.id = 'debug.title.text';
 
 	}
 }

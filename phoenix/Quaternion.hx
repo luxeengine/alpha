@@ -2,423 +2,459 @@ package phoenix;
 
 import phoenix.Vector;
 
-	//Ported from Three.js https://github.com/mrdoob/three.js
+    //Ported from Three.js https://github.com/mrdoob/three.js
 
 class Quaternion {
-	
-	@:isVar public var x(default,set) : Float = 0.0;
-	@:isVar public var y(default,set) : Float = 0.0;
-	@:isVar public var z(default,set) : Float = 0.0;
-	@:isVar public var w(default,set) : Float = 0.0;
+    
+    @:isVar public var x(default,set) : Float = 0.0;
+    @:isVar public var y(default,set) : Float = 0.0;
+    @:isVar public var z(default,set) : Float = 0.0;
+    @:isVar public var w(default,set) : Float = 0.0;
 
-	var euler : Vector;
+    var euler : Vector;
 
-	public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
-		
-		euler = new Vector();
+    public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
+        
+        euler = new Vector();
 
-			x = _x;
-			y = _y;
-			z = _z;
-			w = _w;
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
 
-	} //new
+    } //new
 
-	public function toString() {
+    public function toString() {
 
-		return "{ x:"+x + ", y:" + y + ", z:" + z  + ", w:" + w  +  " }" ;
+        return "{ x:"+x + ", y:" + y + ", z:" + z  + ", w:" + w  +  " }" ;
 
-	} //toString
-	
-	public function set( _x:Float, _y:Float, _z:Float, _w:Float ) : Quaternion {
+    } //toString
+    
+    public function set( _x:Float, _y:Float, _z:Float, _w:Float ) : Quaternion {
 
-			x = _x;
-			y = _y;
-			z = _z;
-			w = _w;
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
 
-		return this;
+        return this;
 
-	} //set
-	
-	
-	public function copy( _quaternion :Quaternion ) : Quaternion {
+    } //set
+    
+    
+    public function copy( _quaternion :Quaternion ) : Quaternion {
 
-			x = _quaternion.x;
-			y = _quaternion.y;
-			z = _quaternion.z;
-			w = _quaternion.w;
+            x = _quaternion.x;
+            y = _quaternion.y;
+            z = _quaternion.z;
+            w = _quaternion.w;
 
-		return this;
+        return this;
 
-	} //copy
-	
-	
-	public function setFromEuler( _euler:Vector, _order:String = 'XYZ' ) : Quaternion {
+    } //copy
 
-			// http://www.mathworks.com/matlabcentral/fileexchange/
-			// 	20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
-			//	content/SpinCalc.m
+    public function dot( _other:Quaternion ) {
+        return x * _other.x + y * _other.y + z * _other.z + w * _other.w;
+    }
+    
+    
+    public function setFromEuler( _euler:Vector, _order:String = 'XYZ' ) : Quaternion {
 
-		var c1 = Math.cos( _euler.x / 2 );
-		var c2 = Math.cos( _euler.y / 2 );
-		var c3 = Math.cos( _euler.z / 2 );
+            // http://www.mathworks.com/matlabcentral/fileexchange/
+            //  20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
+            //  content/SpinCalc.m
 
-		var s1 = Math.sin( _euler.x / 2 );
-		var s2 = Math.sin( _euler.y / 2 );
-		var s3 = Math.sin( _euler.z / 2 );
+        var c1 = Math.cos( _euler.x / 2 );
+        var c2 = Math.cos( _euler.y / 2 );
+        var c3 = Math.cos( _euler.z / 2 );
 
-			if ( _order == 'XYZ' ) {
+        var s1 = Math.sin( _euler.x / 2 );
+        var s2 = Math.sin( _euler.y / 2 );
+        var s3 = Math.sin( _euler.z / 2 );
 
-				x = s1 * c2 * c3 + c1 * s2 * s3;
-				y = c1 * s2 * c3 - s1 * c2 * s3;
-				z = c1 * c2 * s3 + s1 * s2 * c3;
-				w = c1 * c2 * c3 - s1 * s2 * s3;
+            if ( _order == 'XYZ' ) {
 
-			} else if ( _order == 'YXZ' ) {
+                x = s1 * c2 * c3 + c1 * s2 * s3;
+                y = c1 * s2 * c3 - s1 * c2 * s3;
+                z = c1 * c2 * s3 + s1 * s2 * c3;
+                w = c1 * c2 * c3 - s1 * s2 * s3;
 
-				x = s1 * c2 * c3 + c1 * s2 * s3;
-				y = c1 * s2 * c3 - s1 * c2 * s3;
-				z = c1 * c2 * s3 - s1 * s2 * c3;
-				w = c1 * c2 * c3 + s1 * s2 * s3;
+            } else if ( _order == 'YXZ' ) {
 
-			} else if ( _order == 'ZXY' ) {
+                x = s1 * c2 * c3 + c1 * s2 * s3;
+                y = c1 * s2 * c3 - s1 * c2 * s3;
+                z = c1 * c2 * s3 - s1 * s2 * c3;
+                w = c1 * c2 * c3 + s1 * s2 * s3;
 
-				x = s1 * c2 * c3 - c1 * s2 * s3;
-				y = c1 * s2 * c3 + s1 * c2 * s3;
-				z = c1 * c2 * s3 + s1 * s2 * c3;
-				w = c1 * c2 * c3 - s1 * s2 * s3;
+            } else if ( _order == 'ZXY' ) {
 
-			} else if ( _order == 'ZYX' ) {
+                x = s1 * c2 * c3 - c1 * s2 * s3;
+                y = c1 * s2 * c3 + s1 * c2 * s3;
+                z = c1 * c2 * s3 + s1 * s2 * c3;
+                w = c1 * c2 * c3 - s1 * s2 * s3;
 
-				x = s1 * c2 * c3 - c1 * s2 * s3;
-				y = c1 * s2 * c3 + s1 * c2 * s3;
-				z = c1 * c2 * s3 - s1 * s2 * c3;
-				w = c1 * c2 * c3 + s1 * s2 * s3;
+            } else if ( _order == 'ZYX' ) {
 
-			} else if ( _order == 'YZX' ) {
+                x = s1 * c2 * c3 - c1 * s2 * s3;
+                y = c1 * s2 * c3 + s1 * c2 * s3;
+                z = c1 * c2 * s3 - s1 * s2 * c3;
+                w = c1 * c2 * c3 + s1 * s2 * s3;
 
-				x = s1 * c2 * c3 + c1 * s2 * s3;
-				y = c1 * s2 * c3 + s1 * c2 * s3;
-				z = c1 * c2 * s3 - s1 * s2 * c3;
-				w = c1 * c2 * c3 - s1 * s2 * s3;
+            } else if ( _order == 'YZX' ) {
 
-			} else if ( _order == 'XZY' ) {
+                x = s1 * c2 * c3 + c1 * s2 * s3;
+                y = c1 * s2 * c3 + s1 * c2 * s3;
+                z = c1 * c2 * s3 - s1 * s2 * c3;
+                w = c1 * c2 * c3 - s1 * s2 * s3;
 
-				x = s1 * c2 * c3 - c1 * s2 * s3;
-				y = c1 * s2 * c3 - s1 * c2 * s3;
-				z = c1 * c2 * s3 + s1 * s2 * c3;
-				w = c1 * c2 * c3 + s1 * s2 * s3;
+            } else if ( _order == 'XZY' ) {
 
-			}
+                x = s1 * c2 * c3 - c1 * s2 * s3;
+                y = c1 * s2 * c3 - s1 * c2 * s3;
+                z = c1 * c2 * s3 + s1 * s2 * c3;
+                w = c1 * c2 * c3 + s1 * s2 * s3;
 
-		return this;
+            }
 
-	} //setFromEuler
-	
-	
-	public function setFromAxisAngle( _axis:Vector, _angle:Float ) : Quaternion {
+        return this;
 
-		// from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
-		// axis have to be normalized
+    } //setFromEuler
+    
+    
+    public function setFromAxisAngle( _axis:Vector, _angle:Float ) : Quaternion {
 
-		var _halfAngle = _angle / 2;
-		var _s = Math.sin( _halfAngle );
+        // from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
+        // axis have to be normalized
 
-			x = _axis.x * _s;
-			y = _axis.y * _s;
-			z = _axis.z * _s;
-			w = Math.cos( _halfAngle );
+        var _halfAngle = _angle / 2;
+        var _s = Math.sin( _halfAngle );
 
-		return this;
+            x = _axis.x * _s;
+            y = _axis.y * _s;
+            z = _axis.z * _s;
+            w = Math.cos( _halfAngle );
 
-	} //setFromAxisAngle
+        return this;
 
-	
-	public function setFromRotationMatrix( _m:Matrix4 ) : Quaternion {
+    } //setFromAxisAngle
 
-		// http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
-		// assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)		
+    
+    public function setFromRotationMatrix( _m:Matrix4 ) : Quaternion {
 
-		var te = _m.elements;
+        // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+        // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)     
 
-		var m11 = te[0], m12 = te[4], m13 = te[8];
-		var m21 = te[1], m22 = te[5], m23 = te[9];
-		var m31 = te[2], m32 = te[6], m33 = te[10];
+        var te = _m.elements;
 
-		var tr = m11 + m22 + m33;
+        var m11 = te[0], m12 = te[4], m13 = te[8];
+        var m21 = te[1], m22 = te[5], m23 = te[9];
+        var m31 = te[2], m32 = te[6], m33 = te[10];
 
-		var s : Float;
-		
-			if (tr > 0) {
+        var tr = m11 + m22 + m33;
 
-				s = 0.5 / Math.sqrt( tr + 1.0 );
+        var s : Float;
+        
+            if (tr > 0) {
 
-				w = 0.25 / s;
-				x = (m32 - m23) * s;
-				y = (m13 - m31) * s;
-				z = (m21 - m12) * s;
-				
-			} else if (m11 > m22 && m11 > m33) {
+                s = 0.5 / Math.sqrt( tr + 1.0 );
 
-				s = 2.0 * Math.sqrt(1.0 + m11 - m22 - m33);
+                w = 0.25 / s;
+                x = (m32 - m23) * s;
+                y = (m13 - m31) * s;
+                z = (m21 - m12) * s;
+                
+            } else if (m11 > m22 && m11 > m33) {
 
-				w = (m32 - m23) / s;
-				x = 0.25 * s;
-				y = (m12 + m21) / s;
-				z = (m13 + m31) / s;
-				
-			} else if (m22 > m33) {
+                s = 2.0 * Math.sqrt(1.0 + m11 - m22 - m33);
 
-				s = 2.0 * Math.sqrt(1.0 + m22 - m11 - m33);
+                w = (m32 - m23) / s;
+                x = 0.25 * s;
+                y = (m12 + m21) / s;
+                z = (m13 + m31) / s;
+                
+            } else if (m22 > m33) {
 
-				w = (m13 - m31) / s;
-				x = (m12 + m21) / s;
-				y = 0.25 * s;
-				z = (m23 + m32) / s;
-				
-			} else {
+                s = 2.0 * Math.sqrt(1.0 + m22 - m11 - m33);
 
-				s = 2.0 * Math.sqrt(1.0 + m33 - m11 - m22);
+                w = (m13 - m31) / s;
+                x = (m12 + m21) / s;
+                y = 0.25 * s;
+                z = (m23 + m32) / s;
+                
+            } else {
 
-				w = (m21 - m12) / s;
-				x = (m13 + m31) / s;
-				y = (m23 + m32) / s;
-				z = 0.25 * s;
+                s = 2.0 * Math.sqrt(1.0 + m33 - m11 - m22);
 
-			}
-		
-		return this;
+                w = (m21 - m12) / s;
+                x = (m13 + m31) / s;
+                y = (m23 + m32) / s;
+                z = 0.25 * s;
 
-	} //setFromRotationMatrix
-	
-	
-	public function inverse() : Quaternion {
+            }
+        
+        return this;
 
-		return conjugate().normalize();
+    } //setFromRotationMatrix
+    
+    
+    public function inverse() : Quaternion {
 
-	} //inverse
-	
-	
-	public function conjugate() : Quaternion {
+        return conjugate().normalize();
 
-			this.x *= -1;
-			this.y *= -1;
-			this.z *= -1;
+    } //inverse
+    
+    
+    public function conjugate() : Quaternion {
 
-		return this;
+            this.x *= -1;
+            this.y *= -1;
+            this.z *= -1;
 
-	} //conjugate
+        return this;
 
-	
-	public function lengthSq() : Float {
+    } //conjugate
 
-		return x * x + y * y + z * z + w * w;
+    
+    public function lengthSq() : Float {
 
-	} //lengthSq
-	
-	
-	public function length() : Float {
+        return x * x + y * y + z * z + w * w;
 
-		return Math.sqrt(x * x + y * y + z * z + w * w);
+    } //lengthSq
+    
+    
+    public function length() : Float {
 
-	} //length
-	
-	
-	public function normalize() : Quaternion {
+        return Math.sqrt(x * x + y * y + z * z + w * w);
 
-		var l = length();
+    } //length
+    
+    
+    public function normalize() : Quaternion {
 
-			if (l == 0) {
+        var l = length();
 
-				x = 0;
-				y = 0;
-				z = 0;
-				w = 1;
+            if (l == 0) {
 
-			} else {
+                x = 0;
+                y = 0;
+                z = 0;
+                w = 1;
 
-				l = 1 / l;
+            } else {
 
-				x *= l;
-				y *= l;
-				z *= l;
-				w *= l;
+                l = 1 / l;
 
-			}
+                x *= l;
+                y *= l;
+                z *= l;
+                w *= l;
 
-		return this;
+            }
 
-	} //normalize
-	
-	
-	public function multiply( _quaternion:Quaternion ) : Quaternion {
+        return this;
 
-		return multiplyQuaternions( this, _quaternion );
+    } //normalize
+    
+    
+    public function multiply( _quaternion:Quaternion ) : Quaternion {
 
-	} //multiply
-	
-	public function multiplyQuaternions( _a:Quaternion, _b:Quaternion ) : Quaternion {
+        return multiplyQuaternions( this, _quaternion );
 
-		var qax = _a.x, qay = _a.y, qaz = _a.z, qaw = _a.w;
-		var qbx = _b.x, qby = _b.y, qbz = _b.z, qbw = _b.w;
-			
-			x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
-			y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
-			z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
-			w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
+    } //multiply
 
-		return this;
+    public function add( _quaternion:Quaternion ) : Quaternion {
 
-	} //multiplyQuaternions
+        return addQuaternions( this, _quaternion );
 
-	
-	public function slerp( _qb:Quaternion, _t:Float ) : Quaternion {
+    } //add
 
-		var _x = x;
-		var _y = y; 
-		var _z = z; 
-		var _w = w;
+    public function addQuaternions( _a:Quaternion, _b:Quaternion ) {
 
-		// http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
+            x = _a.x + _b.x;
+            y = _a.y + _b.y;
+            z = _a.z + _b.z;
+            w = _a.w + _b.w;
 
-		var cosHalfTheta = _w * _qb.w + _x * _qb.x + _y * _qb.y + _z * _qb.z;
+        return this;
 
-		if ( cosHalfTheta < 0 ) {
+    } //addQuaternions
+        
+    public function multiplyScalar( _scalar:Float ) : Quaternion {
 
-				w = -_qb.w;
-				x = -_qb.x;
-				y = -_qb.y;
-				z = -_qb.z;
+            x *= _scalar;
+            y *= _scalar;
+            z *= _scalar;
+            w *= _scalar;
 
-				cosHalfTheta = -cosHalfTheta;
+        return this;    
 
-		} else {
+    } //multiply
+    
+    public function multiplyQuaternions( _a:Quaternion, _b:Quaternion ) : Quaternion {
 
-			this.copy( _qb );
+        var qax = _a.x, qay = _a.y, qaz = _a.z, qaw = _a.w;
+        var qbx = _b.x, qby = _b.y, qbz = _b.z, qbw = _b.w;
+            
+            x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
+            y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
+            z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
+            w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
 
-		}
+        return this;
 
-		if ( cosHalfTheta >= 1.0 ) {
+    } //multiplyQuaternions
 
-			w = _w;
-			x = _x;
-			y = _y;
-			z = _z;
+    
+    public function slerp( _qb:Quaternion, _t:Float ) : Quaternion {
 
-			return this;
+        var _x = x;
+        var _y = y; 
+        var _z = z; 
+        var _w = w;
 
-		}
+        // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
 
-		var halfTheta = Math.acos( cosHalfTheta );
-		var sinHalfTheta = Math.sqrt( 1.0 - cosHalfTheta * cosHalfTheta );
+        var cosHalfTheta = _w * _qb.w + _x * _qb.x + _y * _qb.y + _z * _qb.z;
 
-		if ( Math.abs( sinHalfTheta ) < 0.001 ) {
+        if ( cosHalfTheta < 0 ) {
 
-			w = 0.5 * ( _w + w );
-			x = 0.5 * ( _x + x );
-			y = 0.5 * ( _y + y );
-			z = 0.5 * ( _z + z );
+                w = -_qb.w;
+                x = -_qb.x;
+                y = -_qb.y;
+                z = -_qb.z;
 
-			return this;
+                cosHalfTheta = -cosHalfTheta;
 
-		} 
+        } else {
 
-		var ratioA = Math.sin( ( 1 - _t ) * halfTheta ) / sinHalfTheta,
-		ratioB = Math.sin( _t * halfTheta ) / sinHalfTheta;
+            this.copy( _qb );
 
-			w = ( _w * ratioA + w * ratioB );
-			x = ( _x * ratioA + x * ratioB );
-			y = ( _y * ratioA + y * ratioB );
-			z = ( _z * ratioA + z * ratioB );
+        }
 
-		return this;
+        if ( cosHalfTheta >= 1.0 ) {
 
-	} //slerp
-	
-	
-	public function equals( _q:Quaternion ) : Bool {
+            w = _w;
+            x = _x;
+            y = _y;
+            z = _z;
 
-		return ( (_q.x == x) && (_q.y == y) && (_q.z == z) && (_q.w == w) );
+            return this;
 
-	} //equals
+        }
 
+        var halfTheta = Math.acos( cosHalfTheta );
+        var sinHalfTheta = Math.sqrt( 1.0 - cosHalfTheta * cosHalfTheta );
 
-	public function fromArray( _a:Array<Float> ) : Quaternion {
+        if ( Math.abs( sinHalfTheta ) < 0.001 ) {
 
-			x = _a[0];
-			y = _a[1];
-			z = _a[2];
-			w = _a[3];
+            w = 0.5 * ( _w + w );
+            x = 0.5 * ( _x + x );
+            y = 0.5 * ( _y + y );
+            z = 0.5 * ( _z + z );
 
-		return this;
+            return this;
 
-	} //fromArray
-	
-	
-	public function toArray() : Array<Float> {
+        } 
 
-		return [ x,y,z,w ];
+        var ratioA = Math.sin( ( 1 - _t ) * halfTheta ) / sinHalfTheta,
+        ratioB = Math.sin( _t * halfTheta ) / sinHalfTheta;
 
-	} //toArray
-	
-	public function clone() : Quaternion {
+            w = ( _w * ratioA + w * ratioB );
+            x = ( _x * ratioA + x * ratioB );
+            y = ( _y * ratioA + y * ratioB );
+            z = ( _z * ratioA + z * ratioB );
 
-		return new Quaternion( x, y, z, w );
+        return this;
 
-	} //clone
+    } //slerp
+    
+    
+    public function equals( _q:Quaternion ) : Bool {
 
-	public static function Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) : Quaternion {
+        return ( (_q.x == x) && (_q.y == y) && (_q.z == z) && (_q.w == w) );
 
-		return _qm.copy( _qa ).slerp( _qb, _t );
+    } //equals
 
-	} //Slerp
 
-	private function update_euler() {
+    public function fromArray( _a:Array<Float> ) : Quaternion {
 
-		euler.setEulerFromQuaternion( this );
+            x = _a[0];
+            y = _a[1];
+            z = _a[2];
+            w = _a[3];
 
-	} //update_euler
+        return this;
 
-	function set_x( _v:Float ) {
-		
-		x = _v;
-		
-		update_euler();
+    } //fromArray
+    
+    
+    public function toArray() : Array<Float> {
 
-		return x;
-		
-	} //set_x
+        return [ x,y,z,w ];
 
-	function set_y( _v:Float ) {
-		
-		y = _v;
-		
-		update_euler();
+    } //toArray
+    
+    public function clone() : Quaternion {
 
-		return y;
-		
-	} //set_y
+        return new Quaternion( x, y, z, w );
 
-	function set_z( _v:Float ) {
-		
-		z = _v;
-		
-		update_euler();
+    } //clone
 
-		return z;
+    public static function Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) : Quaternion {
 
-	} //set_z
+        return _qm.copy( _qa ).slerp( _qb, _t );
 
-	function set_w( _v:Float ) {
-		
-		w = _v;
-		
-		update_euler();
+    } //Slerp
 
-		return w;
+    public static function Dot( _a:Quaternion,  _b:Quaternion ) {
+        return new Quaternion(_a.x,_a.y,_a.z,_a.w).dot(_b);
+    }
 
-	} //set_w
+    private function update_euler() {
+
+        euler.setEulerFromQuaternion( this );
+
+    } //update_euler
+
+    function set_x( _v:Float ) {
+        
+        x = _v;
+        
+        update_euler();
+
+        return x;
+        
+    } //set_x
+
+    function set_y( _v:Float ) {
+        
+        y = _v;
+        
+        update_euler();
+
+        return y;
+        
+    } //set_y
+
+    function set_z( _v:Float ) {
+        
+        z = _v;
+        
+        update_euler();
+
+        return z;
+
+    } //set_z
+
+    function set_w( _v:Float ) {
+        
+        w = _v;
+        
+        update_euler();
+
+        return w;
+
+    } //set_w
 
 } //Quaternion
 

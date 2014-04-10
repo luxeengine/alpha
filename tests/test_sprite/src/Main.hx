@@ -22,9 +22,33 @@ class Main extends luxe.Game {
         test_sprite1.flipx = false;
         test_sprite1.flipy = false;
 
+        mouse = new Vector();
+
     } //ready
-  
-    public function onmouseup(e) {
+    
+    var inside = false;
+    var mouse : Vector;
+    public function onmousemove( e:MouseEvent ) {
+        mouse = e.pos;
+    }
+
+    public function hittest( e:Vector ) {
+        if( test_sprite1.point_inside_exact(e) ) {
+            if(!inside) {
+                inside = true;
+                // test_sprite1.color.tween(0.1, {r:0.8, b:0, g:0});
+                test_sprite1.color.a = 0.2;
+            }
+        } else {
+            if(inside) {
+                inside = false;
+                // test_sprite1.color.tween(0.1, {r:1, b:1, g:1});
+                test_sprite1.color.a = 1;
+            }
+        }
+    }
+
+    public function onmouseup( e:MouseEvent ) {
         var m = new Vector(e.x,e.y);
             test_sprite1.pos = m;
     }
@@ -83,6 +107,7 @@ class Main extends luxe.Game {
 
     public function update(dt:Float) {
         test_sprite1.rotation_z += 50 * dt;
+        hittest(mouse);
     } //update
 
     public function destroyed() {

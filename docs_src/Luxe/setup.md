@@ -60,7 +60,7 @@ You can find this by right clicking in the github app or wherever you cloned the
 ##Tell lime to setup luxe dependencies
 ---
 
-`haxelib install luxe`
+`lime install luxe`
 
 ##Test a simple build of a luxe project
 ---

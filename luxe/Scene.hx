@@ -14,6 +14,8 @@ class Scene extends Objects {
     var _delayed_init_entities : Array<Entity>;
     var _delayed_start_entities : Array<Entity>;
 
+    public var entitycount (get, null) : Int = 0;
+
     public function new() {
         super();
         name = 'Untitled Scene';
@@ -25,6 +27,12 @@ class Scene extends Objects {
     public function toString() {
         return "Luxe Scene: " + name + " entities:" + Lambda.count(entities) + " (" + id + ")"; 
     }
+
+    function get_entitycount() : Int {
+        
+        return Lambda.count(entities);
+
+    } //entitycount
 
     public function create<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
 

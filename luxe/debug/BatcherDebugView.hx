@@ -11,7 +11,8 @@ import phoenix.geometry.Geometry;
 class BatcherDebugView extends luxe.debug.DebugView {
     
     public function new(  ) {
-        
+        super();
+        name = 'Batcher Debug';
     }
 
     var batcher : Batcher;
@@ -19,7 +20,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
     public override function create() {
         
         var debug = Luxe.debug;
-        batcher = Luxe.createBatcher('debug_batcher_view', new luxe.Camera({name : 'camera4'}));
+        batcher = Luxe.createBatcher('debug_batcher_view', new luxe.Camera({ name : 'batcher_debug_view', no_scene:true }));
         batcher.layer = 1000;
 
     }
@@ -70,7 +71,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
          return 
             'ts: '+ key.timestamp + '\n' +
             'primitive_type: '+ key.primitive_type + " " + (Type.enumIndex( key.primitive_type )) + '\n' +
-            'texture: '+ (key.texture == null ? 'null' : key.texture.texture.id) + '\n' +
+            'texture: '+ (key.texture == null ? 'null' : Std.string(key.texture.texture)) + '\n' +
             'texture id: '+ (key.texture == null ? 'null' : key.texture.id) + '\n' +
             'shader: '+ (key.shader == null ? 'null' : key.shader.id) + '\n' +
             'group: '+ key.group + '\n' +
@@ -169,6 +170,10 @@ class BatcherDebugView extends luxe.debug.DebugView {
     }
 
     public function draw_geom_leaf( L:Bool, _leaf : BalancedBinarySearchTreeNode<GeometryKey,Geometry>, _p:Vector ) {
+
+        if(_leaf == null) {
+            return;
+        }
 
         var _bw:Float = _leaf.nodecount / 20;
         var _bwb:Float = _leaf.nodecount * 25;

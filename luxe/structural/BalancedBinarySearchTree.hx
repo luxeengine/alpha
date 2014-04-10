@@ -297,12 +297,17 @@ class BalancedBinarySearchTree<K,T> {
 
     } //_deleteMax
 
-    public function remove( _key:K ) {
+    public function remove( _key:K ) : Bool {
 
         // if both children of root are black, set root to red
         if( !is_red(root.left) && !is_red(root.right) ) {
             root.color = RED;
         }
+
+        //     //wondering about the search code of this 
+        // if(!contains(_key)) {
+        //     return false;
+        // }
 
         root = _remove(root, _key);
 
@@ -310,14 +315,12 @@ class BalancedBinarySearchTree<K,T> {
         	root.color = BLACK;
         }
 
-    } //delete
+        return true;
+
+    } //remove
 
  
-    private function _remove( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {
-
-        if(!contains(_key)) {
-            return _node;
-        }
+    private function _remove( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {        
 
     	var comparison = compare( _key, _node.key );
 		if( comparison < 0 )  {

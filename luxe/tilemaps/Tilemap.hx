@@ -2,6 +2,7 @@ package luxe.tilemaps;
 
 import luxe.Rectangle;
 import luxe.Vector;
+import phoenix.geometry.QuadGeometry;
 import phoenix.Texture;
 import phoenix.geometry.Geometry;
 
@@ -10,15 +11,16 @@ import luxe.tilemaps.Isometric.IsometricVisuals;
 
 import luxe.options.TilemapOptions;
 
+typedef TilemapVisualsLayerGeometry = Array< Array<Geometry> >;
 
 class TilemapVisuals {
 
-    public var geometry : Array<Array<Geometry> >;
+    public var geometry : Map<String, TilemapVisualsLayerGeometry>;
     public var map : Tilemap;
     
     public function new( _map:Tilemap, options:Dynamic ) {
         
-        geometry = [];
+        geometry = new Map();
         map = _map;
 
         create( options );
@@ -30,23 +32,96 @@ class TilemapVisuals {
             destroy();
         }
 
-        //implemented in children
+        //implemented in subclass
 
     } //create
+
+    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType  ) : QuadGeometry {
+
+        //implemented in subclass
+        return null;
+
+    } //create_tile_for_layer
+
+    public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+
+        var _geom_layer : Array< Array<Geometry> > = geometry.get( _layer_name );
+        if(_geom_layer != null) {
+                
+                //we need to know if the _x/_y fits inside the map because
+                //if the geometry is actually null, we need to create it first
+            if(map.inside(_x,_y)) {
+
+                var _geom : QuadGeometry = cast _geom_layer[_y][_x];
+                    
+                    //null geometry means the tile was either destroyed
+                    //or created at 0 gid, which means we can create it now
+                if(_geom == null) { 
+
+                        //don't create blank tiles, ever
+                    if(_id != 0) {
+
+                            //create the geometry, this sets the uv's also
+                        _geom = create_tile_for_layer(map.layer(_layer_name), _x, _y);
+                            //store it back in the tilemap
+                        _geom_layer[_y][_x] = _geom;
+                    
+                    } //id != 0
+                
+                } else {
+
+                    //if we have a geometry and the new id is 0, we should kill the geometry
+                    if(_id == 0) {
+
+                        _geom.drop();
+                        _geom = null;
+                        _geom_layer[_y][_x] = null;
+
+                    } else { //id == 0
+
+                        //now we know the geometry is there, we just set it's uv's
+                        var tileset = map.tileset_from_id( _id );
+                        var image_coord = tileset.pos_in_texture( _id );
+
+                        _geom.uv(
+                            new Rectangle(
+                                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                                tileset.tile_width,
+                                tileset.tile_height
+                            ) //Rectangle
+                        ); //uv
+
+                    } // id == 0 else
+
+                } // geom == null else
+            
+            } else { //inside
+                trace("cannot refresh tile " + _x + "," + _y + " because the coords were out of the map width/height : " + _layer_name + " and " + map.width + "," + map.height );
+            }
+
+        } else {
+            trace("cannot refresh tile " + _x + "," + _y + " because layer was not found : " + _layer_name );
+        }
+
+    } //refresh_tile_id
 
     public function destroy( ) {
 
         if(geometry != null) {
-            for(row in geometry) {
-                for(tile in row) {
-                    tile.drop();
-                } //tile
-            } //row
+            for(layer in geometry) {
+                for(row in layer) {
+                    for(tile in row) {
+                        tile.drop();
+                    } //tile
+                } //row
+            } //layer
         } //!null
 
-        geometry = [];
+        geometry = null;
 
     } //destroy
+
 } //TilemapVisuals
 
 class Tile {
@@ -59,7 +134,8 @@ class Tile {
 
     public var layer : TileLayer;
     public var map : Tilemap;
-    public var id : Int;
+
+    @:isVar public var id (default, set) : Int = 0;
 
     public function new( options : TileOptions ) {
 
@@ -88,6 +164,23 @@ class Tile {
         return "Tile: id:"+id+" x,y:" + x + "," + y + " layer(" + layer.name + ") coord("+x+","+y+") pos("+pos.x+","+pos.y+") size("+size.x+","+size.y+")";
     }
 
+    function set_id( _id:Int ) {
+
+            //update first, so
+            //visuals have the latest
+            //values
+        id = _id;
+
+        if(map != null) {
+            if(map.visuals != null) {
+                map.visuals.refresh_tile_id( layer.name, x, y, _id );
+            }
+        }
+
+        return id;
+
+    } //set_id
+
 } //Tile
 
 
@@ -95,6 +188,8 @@ class TileLayer {
 
     //the depth/ordering value 
     public var layer : Int;
+        //the unique id of the layer
+    public var id : String;
         //the name of the layer
     public var name : String;
         //the name of the layer
@@ -115,6 +210,7 @@ class TileLayer {
         }
 
             //required options 
+        id = Luxe.utils.uniqueid();
         name = options.name;
         map = options.map;
             //optional layer index
@@ -426,6 +522,22 @@ class Tilemap {
         return tileset;
 
     } //tileset_from_id
+
+        //to remove the tile we can set the id to 0
+    public function remove_tile( layer_name:String, x:Int, y:Int ) : Bool {
+
+        if(inside(x,y)) {
+
+            var _layer = layer(layer_name);
+            if(_layer != null) {
+                _layer.tiles[y][x].id = 0;
+            } 
+
+        }
+
+        return false;
+
+    } //remove_tile
 
     public function remove_tileset( name:String, _destroy_textures:Bool = false ) : Bool {
         

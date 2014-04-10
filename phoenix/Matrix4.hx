@@ -9,7 +9,27 @@ import luxe.utils.Maths;
 class Matrix4 {
 
     public var elements:Array<Float>;
-    
+
+    @:isVar public var M11 (get,set) : Float = 1;
+    @:isVar public var M21 (get,set) : Float = 0;
+    @:isVar public var M31 (get,set) : Float = 0;
+    @:isVar public var M41 (get,set) : Float = 0;
+
+    @:isVar public var M12 (get,set) : Float = 0;
+    @:isVar public var M22 (get,set) : Float = 1;
+    @:isVar public var M32 (get,set) : Float = 0;
+    @:isVar public var M42 (get,set) : Float = 0;
+
+    @:isVar public var M13 (get,set) : Float = 0;
+    @:isVar public var M23 (get,set) : Float = 0;
+    @:isVar public var M33 (get,set) : Float = 1;
+    @:isVar public var M43 (get,set) : Float = 0;
+
+    @:isVar public var M14 (get,set) : Float = 0;
+    @:isVar public var M24 (get,set) : Float = 0;
+    @:isVar public var M34 (get,set) : Float = 0;
+    @:isVar public var M44 (get,set) : Float = 1;
+
     public function new(
         n11:Float = 1, n12:Float = 0, n13:Float = 0, n14:Float = 0,
         n21:Float = 0, n22:Float = 1, n23:Float = 0, n24:Float = 0,
@@ -47,14 +67,54 @@ class Matrix4 {
         return this;
     }
 
-    public function print() {
+    public function toString() {
         var e = elements;
-        trace('\t 11:' + Maths.fixed(e[0],3) + '    12:' + Maths.fixed(e[4],3)  + '    13:' + Maths.fixed(e[8],3)  + '    14:' + Maths.fixed(e[12],3) );
-        trace('\t 21:' + Maths.fixed(e[1],3) + '    22:' + Maths.fixed(e[5],3)  + '    23:' + Maths.fixed(e[9],3)  + '    24:' + Maths.fixed(e[13],3) );
-        trace('\t 31:' + Maths.fixed(e[2],3) + '    32:' + Maths.fixed(e[6],3)  + '    33:' + Maths.fixed(e[10],3)  + '    34:' + Maths.fixed(e[14],3) );
-        trace('\t 41:' + Maths.fixed(e[3],3) + '    42:' + Maths.fixed(e[7],3)  + '    43:' + Maths.fixed(e[11],3)  + '    44:' + Maths.fixed(e[15],3) );
-        trace('');
+        var str = '{ 11:' + Maths.fixed(e[0], 3) + ', 12:' + Maths.fixed(e[4], 3)  + ', 13:' + Maths.fixed(e[ 8], 3)  + ', 14:' + Maths.fixed(e[12], 3) + ' }, ' +
+                  '{ 21:' + Maths.fixed(e[1], 3) + ', 22:' + Maths.fixed(e[5], 3)  + ', 23:' + Maths.fixed(e[ 9], 3)  + ', 24:' + Maths.fixed(e[13], 3) + ' }, ' +
+                  '{ 31:' + Maths.fixed(e[2], 3) + ', 32:' + Maths.fixed(e[6], 3)  + ', 33:' + Maths.fixed(e[10], 3)  + ', 34:' + Maths.fixed(e[14], 3) + ' }, ' +
+                  '{ 41:' + Maths.fixed(e[3], 3) + ', 42:' + Maths.fixed(e[7], 3)  + ', 43:' + Maths.fixed(e[11], 3)  + ', 44:' + Maths.fixed(e[15], 3) + ' }';
+        return str;
     }
+
+    function get_M11() : Float { return elements[0]; }
+    function get_M12() : Float { return elements[1]; }
+    function get_M13() : Float { return elements[2]; }
+    function get_M14() : Float { return elements[3]; }
+    
+    function get_M21() : Float { return elements[4]; }
+    function get_M22() : Float { return elements[5]; }
+    function get_M23() : Float { return elements[6]; }
+    function get_M24() : Float { return elements[7]; }
+    
+    function get_M31() : Float { return elements[8]; }
+    function get_M32() : Float { return elements[9]; }
+    function get_M33() : Float { return elements[10]; }
+    function get_M34() : Float { return elements[11]; }
+        
+    function get_M41() : Float { return elements[12]; }
+    function get_M42() : Float { return elements[13]; }
+    function get_M43() : Float { return elements[14]; }
+    function get_M44() : Float { return elements[15]; }
+
+    function set_M11( _value:Float ) : Float { elements[0] = _value; return _value; }
+    function set_M12( _value:Float ) : Float { elements[1] = _value; return _value; }
+    function set_M13( _value:Float ) : Float { elements[2] = _value; return _value; }
+    function set_M14( _value:Float ) : Float { elements[3] = _value; return _value; }
+    
+    function set_M21( _value:Float ) : Float { elements[4] = _value; return _value; }
+    function set_M22( _value:Float ) : Float { elements[5] = _value; return _value; }
+    function set_M23( _value:Float ) : Float { elements[6] = _value; return _value; }
+    function set_M24( _value:Float ) : Float { elements[7] = _value; return _value; }
+    
+    function set_M31( _value:Float ) : Float { elements[8] = _value; return _value; }
+    function set_M32( _value:Float ) : Float { elements[9] = _value; return _value; }
+    function set_M33( _value:Float ) : Float { elements[10] = _value; return _value; }
+    function set_M34( _value:Float ) : Float { elements[11] = _value; return _value; }
+        
+    function set_M41( _value:Float ) : Float { elements[12] = _value; return _value; }
+    function set_M42( _value:Float ) : Float { elements[13] = _value; return _value; }
+    function set_M43( _value:Float ) : Float { elements[14] = _value; return _value; }
+    function set_M44( _value:Float ) : Float { elements[15] = _value; return _value; }
     
     public function float32array() : lime.utils.Float32Array {
         return new lime.utils.Float32Array(elements);
@@ -89,19 +149,18 @@ class Matrix4 {
     
     public function make2D( _x:Float, _y:Float, _scale:Float = 1, _rotation:Float = 0 ) {
 
-      var theta = Maths.degToRad(_rotation);
-      var c = Math.cos(theta);
-      var s = Math.sin(theta);
+        var theta = Maths.degToRad(_rotation);
+        var c = Math.cos(theta);
+        var s = Math.sin(theta);
 
-      var me = elements;
-       set(
-         c * _scale,  -s *_scale,  me[8],       me[12],
-         s * _scale,   c *_scale,  me[9],       me[13],
-         me[2],        me[6],      me[10],      me[14],
-        _x,           _y,          me[11],      me[15]
-      );
+        set(
+             c * _scale,  s *_scale,  0,  _x,
+            -s * _scale,  c *_scale,  0,  _y,
+                      0,          0,  1,   0,
+                      0,          0,  0,   1
+        );
 
-       return this;
+        return this;
    }    
     
     

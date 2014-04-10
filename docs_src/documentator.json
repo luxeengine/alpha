@@ -5,7 +5,7 @@
     "style_name" : "luxe", 
     "style_path" : "./styles/",
 
-    "force_full" : true,
+    "force_full" : false,
     "force_copy_template" : true,    
 
     "images_input" : "./Luxe/images/",

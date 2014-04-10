@@ -15,6 +15,10 @@ class ProfilerDebugView extends luxe.debug.DebugView {
     public static var lists:Map<String,ProfilerValue>;
 
     public function new() {
+        
+        super();
+
+        name = 'Profiler';
         lists = new Map();
     }
 
@@ -135,6 +139,8 @@ private class ProfilerBar {
         height2 = height*2;
 
         text_item = new Text({
+            no_scene : true,
+            name : 'profiler.text.' + _name,
             pos : new Vector(0,0),
             color : _color,
             size : height*2.2,
