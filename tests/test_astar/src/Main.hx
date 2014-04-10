@@ -9,6 +9,7 @@ import phoenix.geometry.ComplexGeometry;
 
 class Main extends luxe.Game {
 
+
     var grid : Grid;
     var geom : ComplexGeometry;
     var geom_quads : Map<String, String>;
@@ -77,8 +78,7 @@ class Main extends luxe.Game {
 
     public function update(dt:Float) {
 
-
-
     } //update
+
 
 } //Main

@@ -8,6 +8,7 @@ import phoenix.geometry.Geometry;
 
 class Main extends luxe.Game {
 
+
     var shift_scale = false;
 
     var player : Sprite;
@@ -20,6 +21,7 @@ class Main extends luxe.Game {
 
     var left : Bool = false;
     var right : Bool = false;
+
 
     public function ready() {
 
@@ -69,10 +71,12 @@ class Main extends luxe.Game {
     } //oninput
 
     function jump() {
+
         if(player.pos.y >= floor_y) {
             vel.y = -jump_vel;
         } //player is on the ground
-    }
+
+    } //jump
 
     public function onmousemove( e:MouseEvent ) {
         
@@ -100,24 +104,26 @@ class Main extends luxe.Game {
                 right = false;
             }
         }
-    }
+
+    } //ongamepadaxis
 
     public function ongamepadbuttonup( e:GamepadButtonEvent ) {
         if(e.button == 0) {
             jump();
         }
-    }
+    } //ongamepadbuttonup
 
     public function ongamepadbuttondown( e:GamepadButtonEvent ) {
-    }
+    } //ongamepadbuttondown
 
-    public function onkeydown(e) {
+    public function onkeydown( e:KeyEvent ) {
+
         if(e.value == Input.Keys.left || e.value == Input.Keys.key_A) { left = true; }
         if(e.value == Input.Keys.right || e.value == Input.Keys.key_D) { right = true; }
 
-    }
+    } //onkeydown
 
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
 
         if(e.value == Input.Keys.left || e.value == Input.Keys.key_A) { left = false; }
         if(e.value == Input.Keys.right || e.value == Input.Keys.key_D) { right = false; }
@@ -135,9 +141,10 @@ class Main extends luxe.Game {
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
         if(left) {
             vel.x = -movespeed;
@@ -179,6 +186,6 @@ class Main extends luxe.Game {
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

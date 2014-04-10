@@ -10,11 +10,13 @@ import phoenix.RenderTexture;
 
 class Main extends luxe.Game {
 
+
     var rtt : RenderTexture;
     var batcher : Batcher;
     var camera : Camera;
     var sprite : Sprite;
     var sprite2 : Sprite;
+
 
     public function ready() {
         
@@ -50,26 +52,30 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onkeyup(e) {
-      if(e.value == Input.Keys.escape) {
-        Luxe.shutdown();
-      }
+    public function onkeyup( e:KeyEvent ) {
+
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
+
     } //onkeyup
 
     public function prerender() {
+
         rtt.bindBuffer();
         batcher.renderer.clear(new Color().rgb(0xff4b03));
         batcher.draw( false );
         rtt.unbindBuffer();
-    }
 
-    public function update(dt:Float) {
+    } //prerender
+
+    public function update( dt:Float ) {
         // sprite.rotation_z += 40 * dt;
     } //update
 
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

@@ -7,9 +7,11 @@ import luxe.Vector;
 
 class Main extends luxe.Game {
 
+
     var stars : Sprite;
     var sky : Sprite;
     var mousetext : Text;
+
 
     public function ready() {
 
@@ -40,8 +42,10 @@ class Main extends luxe.Game {
     } //ready
 
     public function onmousemove( e:MouseEvent ) {
+
         mousetext.text = 'mouse pos' + e.pos;
-    }
+
+    } //onmousemove
 
     public function onkeyup( e:KeyEvent ) {
 
@@ -57,5 +61,6 @@ class Main extends luxe.Game {
         stars.uv.x += 0.4;
 
     } //update
+
 
 } //Main

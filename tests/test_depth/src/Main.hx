@@ -6,7 +6,9 @@ import luxe.Color;
 
 class Main extends luxe.Game {
 
+
     public var sprites : Array<Sprite>;
+
 
     public function ready() {
 
@@ -35,36 +37,36 @@ class Main extends luxe.Game {
                 size : new Vector(iw*0.2,ih*0.2)
             }));
 
-        } //
-
+        } //for loop
        
     } //ready
   
-    public function onmousemove(e) {
-        var m = new Vector(e.x,e.y);
-        sprites[0].pos = m;
-    }
+    public function onmousemove( e:MouseEvent ) {
 
-    public function onkeyup(e) {
+        sprites[0].pos = e.pos;
 
-      if(e.value == Input.Keys.escape) {
-        Luxe.shutdown();
-      }
+    } //onmousemove
 
+    public function onkeyup( e:KeyEvent ) {
 
-      if(e.value == Input.Keys.space) {
-        var d= sprites[0].depth;
-        sprites[0].depth = d;
-      }
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
 
-      if(e.value == Input.Keys.equals) {
-        sprites[0].depth+=1;
-        trace(sprites[0].depth);
-      }
-      if(e.value == Input.Keys.minus) {
-        sprites[0].depth-=1;
-        trace(sprites[0].depth);
-      }
+        if(e.value == Input.Keys.space) {
+            var d= sprites[0].depth;
+            sprites[0].depth = d;
+        }
+
+        if(e.value == Input.Keys.equals) {
+            sprites[0].depth+=1;
+            trace(sprites[0].depth);
+        }
+
+        if(e.value == Input.Keys.minus) {
+            sprites[0].depth-=1;
+            trace(sprites[0].depth);
+        }
 
     } //onkeyup
 
@@ -75,6 +77,6 @@ class Main extends luxe.Game {
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

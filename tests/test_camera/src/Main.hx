@@ -11,10 +11,12 @@ import phoenix.geometry.LineGeometry;
 
 class Main extends luxe.Game {
 
+
     var hud_batcher:Batcher;
 
     var line_one : LineGeometry;
     var line_two : LineGeometry;
+
 
     public function ready() {
 
@@ -235,7 +237,9 @@ class Main extends luxe.Game {
     var screen_mouse : Vector;
     var view_mouse : Vector;
     var world_mouse : Vector;
+
     public function update(dt:Float) {
+
         Luxe.draw.text({
             batcher : hud_batcher,
             immediate : true,
@@ -243,6 +247,8 @@ class Main extends luxe.Game {
             color:new Color().rgb(0xff4b03),
             text : 'world mouse : ' + world_mouse.x + ',' + world_mouse.y + '\n' + 'view mouse : ' + view_mouse.x + ',' + view_mouse.y
         });
+        
     } //update
+
 
 } //Main

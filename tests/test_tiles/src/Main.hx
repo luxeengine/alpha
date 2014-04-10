@@ -11,6 +11,7 @@ import luxe.tilemaps.Isometric;
 
 class Main extends luxe.Game {
 
+
         //A hand made ortho Tilemap
     var small_tiles : Tilemap;
         //A tiled ortho map from a tmx/json
@@ -19,6 +20,7 @@ class Main extends luxe.Game {
     var tiled_iso : TiledMap;
         //text to display a position
     public var tile_text : luxe.Text;
+
 
     public function ready() {
         
@@ -54,7 +56,7 @@ class Main extends luxe.Game {
             //then readd, to test it works
         tiled_iso.tile_at('Tile Layer 2', 0, 2).id = 4;
 
-    }
+    } //load_isometric_tiledmap
 
     function load_ortho_tiledmap() {
         
@@ -72,7 +74,7 @@ class Main extends luxe.Game {
             //draw the additional objects
         draw_tiled_object_groups( scale );
 
-    }
+    } //load_ortho_tiledmap
 
     function create_small_handmade_tilemap() {
 
@@ -137,9 +139,9 @@ class Main extends luxe.Game {
         small_tiles.tile_at('fg', 4, 0).id = 1;
         small_tiles.tile_at('fg', 5, 0).id = 1;
 
-    }
+    } //create_small_handmade_tilemap
   
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
         
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
@@ -162,7 +164,7 @@ class Main extends luxe.Game {
     var left_down = false;
     var right_down = false;
 
-    public function onkeydown(e:KeyEvent) {
+    public function onkeydown( e:KeyEvent ) {
 
         if(e.key == KeyValue.key_A || e.key == KeyValue.left) {
             left_down = true;
@@ -174,9 +176,7 @@ class Main extends luxe.Game {
 
     } //onkeydown
 
-
-
-    public function onmousemove(e:MouseEvent) {
+    public function onmousemove( e:MouseEvent ) {
 
             // Get the tile position that the mouse is hovering.
         var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
@@ -186,9 +186,9 @@ class Main extends luxe.Game {
         
         tile_text.text = world + "\n" + tile;
 
-    }
+    } //onmousemove
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
         if(left_down) {
             Luxe.camera.pos.x -= 150 / Luxe.camera.zoom * dt;
@@ -269,8 +269,9 @@ class Main extends luxe.Game {
 
                 } //switch type
             } //for each object
-        }        
-    }
-}
+        } //groups
+
+    } //draw_tiled_object_groups
 
 
+} //Main

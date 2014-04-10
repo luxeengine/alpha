@@ -5,7 +5,9 @@ import luxe.Vector;
 import luxe.Color;
 import phoenix.Shader;
 
+
 class Main extends luxe.Game {
+
 
 	var distort_sprite : Sprite;
 	var hue_sprite : Sprite;
@@ -17,6 +19,7 @@ class Main extends luxe.Game {
 
 	var loaded : Bool = false;
 	var loaded_logo : Bool = false;
+
 
     public function ready() {
 
@@ -80,12 +83,12 @@ class Main extends luxe.Game {
 
 	    	loaded = true;
 
-    	}	
-
+    	} //distort map onload
 
     } //ready
 
     public function ontouchmove( e:TouchEvent ) {
+
         if(loaded && loaded_logo) {
 
             var percent = e.x / Luxe.screen.w;
@@ -96,7 +99,8 @@ class Main extends luxe.Game {
                 //hue based on mouse x 
             hue_shader.set_uniform_float('in_hue', hue);
         }
-    }
+
+    } //ontouchmove
 
     public function onmousemove( e:MouseEvent ) {
 
@@ -111,12 +115,14 @@ class Main extends luxe.Game {
     		hue_shader.set_uniform_float('in_hue', hue);
     	}
 
-    }
+    } //onmousemove
 
     public function onkeyup( e:KeyEvent ) {
+
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
-        }        
+        }
+
     } //onkeyup
 
 

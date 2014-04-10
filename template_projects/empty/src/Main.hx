@@ -3,6 +3,7 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
     } //ready
@@ -18,5 +19,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

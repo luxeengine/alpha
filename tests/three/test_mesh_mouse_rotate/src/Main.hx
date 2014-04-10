@@ -1,9 +1,10 @@
 
-import luxe.components.Components.Component;
-import luxe.components.render.MeshComponent;
 import luxe.Input;
 import luxe.Entity;
 import luxe.Vector;
+
+import luxe.components.Components.Component;
+import luxe.components.render.MeshComponent;
 
 class MouseRotate extends Component {
 	
@@ -15,9 +16,11 @@ class MouseRotate extends Component {
 	var reference_rotation : Vector;
 
 	public function init() {
+
 		mouse = new Vector();
 		reference_rotation = new Vector();
-	}
+
+	} //init
 		
 	public function onmousedown(e:MouseEvent) {
 		mouse = e.pos;
@@ -25,28 +28,40 @@ class MouseRotate extends Component {
 		reference_rotation.x = rotation.x;
 		reference_rotation.y = rotation.y;
 	}
+
 	public function onmouseup(e:MouseEvent) {
+
 		mouse = e.pos;
 		dragging = false;
-	}
+
+	} //onmouseup
+
 	public function onmousemove(e:MouseEvent) {
+
 		mouse = e.pos;
-	}
+
+	} //onmousemove
 
 	public function update(dt:Float) {
+
 		if(dragging) {
     		mx = (Luxe.screen.h / 2 - mouse.y) / smooth;
 			my = (Luxe.screen.w / 2 - mouse.x) / smooth;    	
 		    rotation.x = -mx;
 			rotation.y = -my;
     	}
+
 	} //update
 
-}
+
+} //MouseRotate
+
 
 class Main extends luxe.Game {
 
+
 	var tower:Entity;
+
 
     public function ready() {
 

@@ -4,9 +4,12 @@ import luxe.Color;
 
 import phoenix.geometry.RingGeometry;
 
+
 class Main extends luxe.Game {
 
+
     var ring : RingGeometry;
+
 
     public function ready() {
 
@@ -45,5 +48,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

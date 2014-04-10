@@ -6,11 +6,13 @@ import phoenix.Batcher;
 
 class Main extends luxe.Game {
 
+
     var level_sprite : Sprite;
 
     var luxe_sprite1 : Sprite;
     var luxe_sprite2 : Sprite;
     var luxe_sprite3 : Sprite;
+
 
     public function ready() {
 
@@ -92,5 +94,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

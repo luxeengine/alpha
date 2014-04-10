@@ -7,6 +7,7 @@ class Main extends luxe.Game {
 
 	var mesh : Mesh;
 
+
     public function ready() {
 
     	Luxe.camera.view.set_perspective({
@@ -30,10 +31,12 @@ class Main extends luxe.Game {
     } //onkeyup
 
     var y = 0.0;
+
     public function update(dt:Float) {
 
     	mesh.rotation.y += 1 * dt;
 
     } //update
+
 
 } //Main

@@ -3,7 +3,9 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     var pan : Float = 1;
+
 
     public function ready() {
 
@@ -56,5 +58,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {        
 
     } //update
+
 
 } //Main

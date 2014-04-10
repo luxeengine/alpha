@@ -12,12 +12,14 @@ import phoenix.geometry.RectangleGeometry;
 
 class Main extends luxe.Game {
 
+
     public var mouse    : Vector;
     public var line     : LineGeometry; 
     public var rect     : RectangleGeometry; 
     public var box      : QuadGeometry; 
     public var circle   : CircleGeometry; 
     public var ring     : RingGeometry; 
+
 
     public function ready() {
 
@@ -134,17 +136,19 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onmousemove(e) {
+    public function onmousemove( e:MouseEvent ) {
         mouse.set(e.x,e.y);
-    }
-    public function onmousedown(e) {
-        mouse.set(e.x,e.y);
-    }
-    public function onmouseup(e) {
-        mouse.set(e.x,e.y);
-    }
+    } //onmousemove
 
-    public function onkeyup(e) {
+    public function onmousedown( e:MouseEvent ) {
+        mouse.set(e.x,e.y);
+    } //onmousedown
+
+    public function onmouseup( e:MouseEvent ) {
+        mouse.set(e.x,e.y);
+    } //onmouseup
+
+    public function onkeyup( e:KeyEvent ) {
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
@@ -171,6 +175,5 @@ class Main extends luxe.Game {
 
     } //update
 
+
 } //Main
-
-

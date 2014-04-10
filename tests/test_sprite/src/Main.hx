@@ -3,7 +3,9 @@ import luxe.Vector;
 import luxe.Input;
 import luxe.Sprite;
 
+
 class Main extends luxe.Game {
+
 
     var test_sprite1 : Sprite;
 
@@ -28,9 +30,10 @@ class Main extends luxe.Game {
     
     var inside = false;
     var mouse : Vector;
+    
     public function onmousemove( e:MouseEvent ) {
         mouse = e.pos;
-    }
+    } //onmousemove
 
     public function hittest( e:Vector ) {
         if( test_sprite1.point_inside_exact(e) ) {
@@ -46,21 +49,22 @@ class Main extends luxe.Game {
                 test_sprite1.color.a = 1;
             }
         }
-    }
+    } //hittest
 
     public function onmouseup( e:MouseEvent ) {
-        var m = new Vector(e.x,e.y);
-            test_sprite1.pos = m;
-    }
+        test_sprite1.pos = e.pos;
+    } //onmouseup
 
 
     var _next : Int = 0;
     var _next2 : Int = 0;
     var _scales : Array<Vector>;
     var _sizes : Array<Vector>;
-    public function onkeyup(e) {
+
+    public function onkeyup( e:KeyEvent ) {
 
         if(e.value == Input.Keys.key_R) {
+
             if(_sizes == null) {
                 _sizes = [                    
                     new Vector(128,128),
@@ -78,9 +82,11 @@ class Main extends luxe.Game {
 
             var _size = _sizes[_next2];
             test_sprite1.size = _size;
-        }
+
+        } //key_R
 
         if(e.value == Input.Keys.key_S) {
+
             if(_scales == null) {
                 _scales = [                    
                     new Vector(1,1,1),
@@ -98,21 +104,24 @@ class Main extends luxe.Game {
 
             var _scale = _scales[_next];
             test_sprite1.scale = _scale;
-        }
 
-      if(e.value == Input.Keys.escape) {
-        Luxe.shutdown();
-      }
+        } //key_S
+
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        } //escape
+
     } //onkeyup
 
     public function update(dt:Float) {
+
         test_sprite1.rotation_z += 50 * dt;
         hittest(mouse);
+
     } //update
 
     public function destroyed() {
 
     } //destroyed
-}
 
-
+} //Main

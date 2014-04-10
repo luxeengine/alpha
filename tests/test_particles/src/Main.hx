@@ -1,23 +1,27 @@
 
 import lime.utils.ByteArray;
 import lime.utils.Float32Array;
+
 import luxe.Vector;
 import luxe.Color;
 import luxe.Input;
 import luxe.Entity;
 import luxe.Particles;
 import luxe.Sprite;
+
 import phoenix.Batcher;
 
 
 class Main extends luxe.Game {
+
 
     public var mouse : Vector;
 
     var particle_system : Entity;
     var particles : ParticleSystem;
 
-    var ss : Sprite ;
+    var ss : Sprite;
+
 
     public function ready() {
 
@@ -80,8 +84,6 @@ class Main extends luxe.Game {
             emit_time : 0.3
         });
 
-        
-
         Luxe.renderer.default_batcher.add_group(5, 
             function(b:Batcher){
                 b.blend_mode(BlendMode.src_alpha, BlendMode.one);
@@ -93,25 +95,27 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onmousemove(e) {
+    public function onmousemove( e:MouseEvent ) {
         mouse.set(e.x,e.y);
         particles.pos = mouse; 
 
         ss.pos = mouse;
-    }
-    public function onmousedown(e) {
+    } //onmousemove
+
+    public function onmousedown( e:MouseEvent ) {
         mouse.set(e.x,e.y);
         if(particles.active) {
             particles.stop();
         } else {
             particles.emit();
         }
-    }
-    public function onmouseup(e) {
-        mouse.set(e.x,e.y);
-    }
+    } //onmousedown
 
-    public function onkeyup(e) {
+    public function onmouseup( e:MouseEvent ) {
+        mouse.set(e.x,e.y);
+    } //onmouseup
+
+    public function onkeyup( e:KeyEvent ) {
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
@@ -119,12 +123,11 @@ class Main extends luxe.Game {
 
     public function update(dt:Float) {
 
-
     } //update
 
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

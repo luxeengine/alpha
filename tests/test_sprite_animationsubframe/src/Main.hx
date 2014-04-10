@@ -13,8 +13,10 @@ import phoenix.Texture.FilterType;
 
 class Main extends luxe.Game {
 
+
     var animation : Sprite;
     var subanimation : Sprite;
+
 
     public function ready() {
             
@@ -29,6 +31,7 @@ class Main extends luxe.Game {
             p1 : new Vector(Luxe.screen.w/2, Luxe.screen.h),
             color : new Color(0,0,0,0.3),
         });
+        
         Luxe.draw.line({
             p0 : new Vector(0, Luxe.screen.h/2),
             p1 : new Vector(Luxe.screen.w, Luxe.screen.h/2),
@@ -134,7 +137,7 @@ class Main extends luxe.Game {
 
     public function onmouseup( e:MouseEvent ) {
 
-    }
+    } //onmouseup
 
     public function onkeyup( e:KeyEvent ) {
 

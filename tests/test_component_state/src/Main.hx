@@ -11,25 +11,37 @@ import luxe.Vector;
 //
 
 class Toggler extends Component {
+
+
     var sprite : Sprite;
+
+
     public function init() {
         sprite = cast entity;
         trace('init toggler ');
-    }
+    } //init
+
     public function reset() {
         trace('reset toggler');
+       
         sprite.color = new Color().rgb(0xcc0000);
-    }
+    } //reset
+
     public function removed() {
         sprite.color = new Color();
         trace('removed toggler');        
-    }
-}
+    } //removed
+
+
+} //Toggler
+
 
 class Main extends luxe.Game {
 
+
     var entity_one : Sprite;
     var toggle_value : Bool = false;
+
 
     public function ready() {
 
@@ -67,5 +79,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

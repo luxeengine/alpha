@@ -4,10 +4,13 @@ import luxe.Color;
 import luxe.Sprite;
 import luxe.Vector;
 
+
 class Main extends luxe.Game {
+
 
     var sprite_image : Sprite;
     var sprite_block : Sprite;
+
 
     public function ready() {
 
@@ -37,13 +40,16 @@ class Main extends luxe.Game {
     } //onmousemove
   
     public function onkeyup( e:KeyEvent ) {
+
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
         
     } //update
+
 
 } //Main

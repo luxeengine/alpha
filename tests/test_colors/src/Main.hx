@@ -8,6 +8,7 @@ import luxe.utils.Maths;
 
 class Main extends luxe.Game {
 
+
     var sprite : Sprite;
     var hsv_blue : Sprite;
     var hsl_pink : Sprite;
@@ -19,6 +20,7 @@ class Main extends luxe.Game {
     var mouse : Vector;
     
     var bar_color : ColorHSV;
+
 
     public function ready() {
 
@@ -88,7 +90,7 @@ class Main extends luxe.Game {
 
     } //onmousemove
 
-    public function onmousedown(e) {
+    public function onmousedown( e:MouseEvent ) {
         
         sprite.color.tween(1.5, { 
             r:Math.random(), 
@@ -99,7 +101,7 @@ class Main extends luxe.Game {
 
     } //onmousedown
 
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
         
         if(e.value == Input.Keys.space) {
             bar_color.tween( 1, { h : 0.5, v : 0 } ).onUpdate(
@@ -113,8 +115,8 @@ class Main extends luxe.Game {
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
+
     } //onkeyup
 
+
 } //Main
-
-

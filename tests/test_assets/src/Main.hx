@@ -3,6 +3,7 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
     	var bytes = Luxe.loadData('assets/asset.bytes');
@@ -30,5 +31,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

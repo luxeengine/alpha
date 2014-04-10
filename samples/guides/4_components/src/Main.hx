@@ -5,11 +5,14 @@ import luxe.Text;
 import luxe.Vector;
 import luxe.Color;
 
+
 class Main extends luxe.Game {
+
 
 	var logo : Sprite;
 	var rotator : Rotate;
     var delta_time_text : Text;
+
 
     public function ready() {
 
@@ -35,14 +38,13 @@ class Main extends luxe.Game {
             size : 20
         });
 
-
     } //ready
 
     public function update(dt:Float) {
             //Update the text each frame
         delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
 
-    }
+    } //update
 
     public function onmousemove( e:MouseEvent ) {
 
@@ -51,7 +53,7 @@ class Main extends luxe.Game {
 
     		rotator.rotate_speed = new_speed;
 
-    		// trace(rotator.rotate_speed);
-    }
+    } //onmousemove
+
 
 } //Main

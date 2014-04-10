@@ -5,11 +5,11 @@ import luxe.Sprite;
 import luxe.Color;
 import luxe.Vector;
 
-
 import luxe.Parcel;
 import luxe.ParcelProgress;
 
 class Main extends luxe.Game {
+
 
     public function ready() {
 
@@ -64,8 +64,6 @@ class Main extends luxe.Game {
 
             parcel1.from_json( luxe.utils.JSON.parse(json_string) );
 
-
-
         // parcel1.load();
 
             //show an animation to test background thread
@@ -95,7 +93,6 @@ class Main extends luxe.Game {
 
         parcel1.load();
 
-
     } //ready
     
     var sprites : Array<Sprite>;
@@ -104,7 +101,7 @@ class Main extends luxe.Game {
 
     function onloaded( p:Parcel ) { 
         trace("All complete :  Total time took " + p.time_to_load);
-    }
+    } //onloaded
 
     public function onkeyup( e:KeyEvent ) {
 
@@ -114,8 +111,9 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
     } //update
+
 
 } //Main

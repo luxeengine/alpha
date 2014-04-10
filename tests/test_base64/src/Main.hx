@@ -3,6 +3,7 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
     	var encoded = Luxe.utils.base64_encode('hello world');
@@ -27,5 +28,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

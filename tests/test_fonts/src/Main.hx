@@ -6,6 +6,7 @@ import luxe.Rectangle;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
     	//Fonts are currently created with BMFont compatible generators
@@ -54,5 +55,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

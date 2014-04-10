@@ -6,16 +6,20 @@ import luxe.Entity;
 typedef HealthEvent = {
     amount : Float
 }
+
 typedef DiedEvent = {
     attacker : String
 }
+
 typedef SpawnEvent = {
     spawn_node : String
 }
 
 class Main extends luxe.Game {
 
+
     var entity : Entity;
+
 
     public function ready() {
 
@@ -70,7 +74,7 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
 
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
@@ -92,6 +96,5 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-}
 
-
+} //Main

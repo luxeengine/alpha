@@ -7,6 +7,7 @@ import luxe.Rectangle;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
             //The first three don't need to exist in the default scene
@@ -65,19 +66,21 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onkeyup(e) {
-      if(e.value == Input.Keys.escape) {
-        Luxe.shutdown();
-      }
+    public function onkeyup( e:KeyEvent ) {
+
+        if(e.value == Input.Keys.escape) {
+            Luxe.shutdown();
+        }
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
     } //update
 
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

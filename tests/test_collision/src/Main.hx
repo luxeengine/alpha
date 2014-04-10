@@ -14,6 +14,7 @@ import luxe.collision.ShapeDrawerLuxe;
 
 class Main extends luxe.Game {
 
+
     var drawer : ShapeDrawerLuxe;
 
     var normal_color : Int = 0x999999;
@@ -86,7 +87,7 @@ class Main extends luxe.Game {
 
     public function onmousedown( e:MouseEvent ) {
         mouse_is_hexagon = !mouse_is_hexagon;
-    }
+    } //onmousedown
 
     public function onmousemove( e:MouseEvent ) {
 
@@ -133,7 +134,7 @@ class Main extends luxe.Game {
         
         drawer.drawLine( new Vector(pos.x, pos.y), new Vector( pos.x+(collision_response.unitVector.x*20), pos.y+(collision_response.unitVector.y*20) ), _main_color, true );
 
-    } 
+    } //draw_collision_response
 
     public function onkeyup( e:KeyEvent ) {
 
@@ -265,5 +266,6 @@ class Main extends luxe.Game {
             drawer.drawLine(line_start, line_end, c , true);
 
     } //update
+
 
 } //Main

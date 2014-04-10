@@ -3,6 +3,7 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
         Luxe.showConsole( true );
@@ -17,7 +18,7 @@ class Main extends luxe.Game {
         
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
         if(Luxe.input.keypressed(KeyValue.key_R)) {
             trace('key R was pressed');
@@ -32,5 +33,6 @@ class Main extends luxe.Game {
         }
 
     } //update
+
 
 } //Main

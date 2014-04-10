@@ -7,6 +7,7 @@ import luxe.tween.Actuate;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
     	var size = Luxe.screen.h*0.1;
@@ -69,8 +70,9 @@ class Main extends luxe.Game {
         
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
     } //update
+
 
 } //Main

@@ -7,10 +7,12 @@ import luxe.tween.Actuate;
 
 class Main extends luxe.Game {
 
+
     var geom : NineSlice;
 
     var sx : Int = 500;
     var sy : Int = 260;
+
 
     public function ready() {
 
@@ -23,16 +25,21 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onmousemove(e) {
+    public function onmousemove( e:MouseEvent ) {
+
         var m = new Vector(e.x,e.y);
         geom.pos = m;
-    }
+
+    } //onmousemove
 
     private function sizechange() {
-        geom.size = new Vector(sx,sy);
-    }
 
-    public function onkeyup(e) {
+        geom.size = new Vector(sx,sy);
+
+    } //sizechange
+
+    public function onkeyup( e:KeyEvent ) {
+
         if(e.value == Input.Keys.space) {
             var nsx : Int = Math.round( 100+(Math.random()*600) );
             var nsy : Int = Math.round( 100+(Math.random()*600) );
@@ -42,6 +49,7 @@ class Main extends luxe.Game {
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         }
+
     } //onkeyup
 
     public function update(dt:Float) {
@@ -51,6 +59,6 @@ class Main extends luxe.Game {
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

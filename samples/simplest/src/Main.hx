@@ -8,7 +8,9 @@ import lime.gl.GL.Ext;
 
 class Main extends luxe.Game {
 
+
     public var delta_time_text : luxe.Text;
+
 
     public function ready() {
 
@@ -22,7 +24,7 @@ class Main extends luxe.Game {
 
     } //ready
   
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
         
             //quit when we press escape
         if(e.value == Input.Keys.escape) {
@@ -31,7 +33,7 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    public function update( dt:Float ) {
 
             //Update the text each frame
         delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
@@ -41,6 +43,6 @@ class Main extends luxe.Game {
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

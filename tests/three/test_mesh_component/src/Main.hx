@@ -1,11 +1,14 @@
 
-import luxe.components.render.MeshComponent;
 import luxe.Input;
 import luxe.Entity;
 
+import luxe.components.render.MeshComponent;
+
 class Main extends luxe.Game {
 
+
 	var tower:Entity;
+
 
     public function ready() {
 
@@ -39,5 +42,6 @@ class Main extends luxe.Game {
     	tower.rotation.y += 1 * dt;
 
     } //update
+
 
 } //Main

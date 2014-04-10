@@ -3,6 +3,7 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
         
         var _time : Float = haxe.Timer.stamp();
@@ -45,5 +46,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

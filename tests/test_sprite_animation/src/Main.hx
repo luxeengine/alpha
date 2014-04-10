@@ -13,10 +13,12 @@ import phoenix.Texture.FilterType;
 
 class Main extends luxe.Game {
 
+
     var sprite : Sprite;
     var sprite2 : Sprite;
 	var text : Text;
     var textbounds : Rectangle;
+
 
     public function ready() {
 
@@ -154,7 +156,8 @@ class Main extends luxe.Game {
         if(textbounds.point_inside(e.pos)) {
             Luxe.openURL('http://meetcartographer.com/carapace/');
         }
-    }
+
+    } //onmouseup
 
     public function onkeyup( e:KeyEvent ) {
 
@@ -167,5 +170,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

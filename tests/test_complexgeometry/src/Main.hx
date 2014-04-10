@@ -14,6 +14,7 @@ typedef MapTile = {
 
 class Main extends luxe.Game {
 
+
     var geom : ComplexGeometry;
     var big_quad : String;
     var mouse_quad : String;
@@ -27,6 +28,7 @@ class Main extends luxe.Game {
     var loaded : Bool = false;
 
     var map_tiles : Array< Array<MapTile> >;
+
 
     public function ready() {
 
@@ -77,14 +79,15 @@ class Main extends luxe.Game {
             // geom.locked = true;
 
             loaded = true;
-        }   
 
+        } //texture onload
 
     } //ready
 
+    public function random_int( max:Int ) {
 
-    public function random_int(max:Int) {
         return Math.floor(max*Math.random());
+
     }//random_int
 
     public function create_map() {
@@ -109,11 +112,11 @@ class Main extends luxe.Game {
         } //_y
     } //create_map
   
-    public function onmousemove(e) {
+    public function onmousemove( e:MouseEvent ) {
         // geom.quad_pos( mouse_quad, new Vector(e.x-32, e.y-32) );
     }
 
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
         
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
@@ -142,9 +145,7 @@ class Main extends luxe.Game {
 
     public function destroyed() {
 
-
-
     } //destroyed
-}
 
 
+} //Main

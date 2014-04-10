@@ -10,6 +10,7 @@ import luxe.Camera;
 
 class Main extends luxe.Game {
 
+
     var hud_batcher:Batcher;
     
         //for 4 views, you want 4 unique batchers
@@ -25,6 +26,7 @@ class Main extends luxe.Game {
     var camera_4 : Camera;
 
     var current_camera : Camera;
+
 
     public function ready() {
 
@@ -321,6 +323,7 @@ class Main extends luxe.Game {
     var world_mouse : Vector;
 
     public function update(dt:Float) {
+
         // current_camera.view.rotation.z += luxe.utils.Maths.degToRad(10 * dt);
         Luxe.draw.text({
             batcher : hud_batcher,
@@ -329,6 +332,7 @@ class Main extends luxe.Game {
             color:new Color().rgb(0xff4b03),
             text : 'world mouse : ' + world_mouse.x + ',' + world_mouse.y + '\n' + 'view mouse : ' + view_mouse.x + ',' + view_mouse.y
         });
+        
     } //update
 
 } //Main

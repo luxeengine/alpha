@@ -4,6 +4,7 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
         Luxe.input.add('fire', KeyValue.space);
@@ -14,10 +15,11 @@ class Main extends luxe.Game {
 
     public function oninputup( _input:String, e:InputEvent ) {
         trace( 'named input up : ' + _input );
-    }
+    } //oninputup
+
     public function oninputdown( _input:String, e:InputEvent ) {
         trace( 'named input down : ' + _input );
-    }
+    } //oninputdown
   
     public function onkeyup( e:KeyEvent ) {
         if(e.value == Input.Keys.escape) {
@@ -32,6 +34,6 @@ class Main extends luxe.Game {
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main

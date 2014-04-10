@@ -11,6 +11,7 @@ import luxe.importers.TexturePackerSpriteAnimation;
 
 class Main extends luxe.Game {
 
+
     public function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xf0f0f0);
@@ -28,6 +29,7 @@ class Main extends luxe.Game {
         var json_sprite_2 = TexturePackerSpriteAnimation.parse( data2, 'all' ); 
 
         var texture = Luxe.loadTexture('assets/playertest.png');
+
         texture.onload = function(t) {
             
             //create 2 sprites with the 2 diff importer types
@@ -62,8 +64,7 @@ class Main extends luxe.Game {
             sprite1_anim.play();
             sprite2_anim.play();
 
-        } //onload
-
+        } //texture.onload
 
     } //ready
 
@@ -78,5 +79,6 @@ class Main extends luxe.Game {
     public function update(dt:Float) {
 
     } //update
+
 
 } //Main

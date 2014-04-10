@@ -7,44 +7,64 @@ import luxe.components.Components;
 
 import luxe.Color;
 
-class RigidBody extends Components.Component {
+class FakeRigidBody extends Components.Component {
+
+
     public function init() {
         trace('init rigidbody');
     } //init
+
     public function reset() {
         trace('reset rigidbody');
         trace('getting collider' + entity.get('collider'));
     } //reset
+
     public function destroyed() {
         trace('destroy rigidbody');
-    } //destroy
-}
+    } //destroyed
 
-class MeshComponent extends Components.Component {
-    public function init() {
-        trace('init MeshComponent');
-    } //init
-    public function reset() {
-        trace('reset MeshComponent');
-    } //reset
-    public function destroyed() {
-        trace('destroy MeshComponent');
-    } //destroy
-}
 
-class Collider extends Components.Component {
+} //FakeRigidBody
+
+
+class FakeMeshComponent extends Components.Component {
+
+
     public function init() {
-        trace('init Collider');
+        trace('init FakeMeshComponent');
     } //init
+
     public function reset() {
-        trace('reset Collider');        
+        trace('reset FakeMeshComponent');
     } //reset
+
     public function destroyed() {
-        trace('destroy Collider');
+        trace('destroy FakeMeshComponent');
+    } //destroyed
+
+
+} //FakeMeshComponent
+
+class FakeCollider extends Components.Component {
+
+
+    public function init() {
+        trace('init FakeCollider');
+    } //init
+
+    public function reset() {
+        trace('reset FakeCollider');        
+    } //reset
+
+    public function destroyed() {
+        trace('destroy FakeCollider');
     } //destroy
-}
+
+
+} //FakeCollider
 
 class Main extends luxe.Game {
+
 
     var root : Entity;
     var child : Entity;
@@ -54,6 +74,7 @@ class Main extends luxe.Game {
     var spherechild : Entity;
 
     var od : Bool = true;
+
 
     public function ready() {
 
@@ -77,11 +98,11 @@ class Main extends luxe.Game {
         spherechild.parent = spherething;    
 
             //physics on the parent
-        spherething.add( RigidBody, 'rigidbody');
-        spherething.add( Collider, 'collider');
+        spherething.add( FakeRigidBody, 'rigidbody');
+        spherething.add( FakeCollider, 'collider');
 
             //add the mesh to the child
-        spherechild.add( MeshComponent, 'mesh');
+        spherechild.add( FakeMeshComponent, 'mesh');
 
             //test that get works, it should print the type names of all
         trace( spherething.get('collider') );
@@ -119,17 +140,19 @@ class Main extends luxe.Game {
             immediate : true
         }); 
 
-    }
+    } //draw_entities_transforms
 
-    public function onmousemove(e) {
+    public function onmousemove( e:MouseEvent ) {
+
         if(od) {
             root.pos = new Vector(e.x,e.y);
         } else {
             child.pos = new Vector(e.x , e.y);
         }
-    }
+
+    } //onmousemove
   
-    public function onkeyup(e) {
+    public function onkeyup( e:KeyEvent ) {
 
         if(e.value == Input.Keys.key_R) {
 
@@ -170,6 +193,6 @@ class Main extends luxe.Game {
     public function destroyed() {
 
     } //destroyed
-}
 
 
+} //Main
