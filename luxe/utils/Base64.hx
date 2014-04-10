@@ -9,21 +9,27 @@ import haxe.io.BytesData;
 
 class Base64 {
 
+
 	private static inline var BASE_64_ENCODINGS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	private static inline var BASE_64_PADDING = "=";
-		
+
+
 	public static function decode( _string:String ) : String {
+
 		#if !neko
 			var result = decodeBytesData( _string );
 			return result.toString();
 		#end
 
 		return '';
-	}
+
+	} //decode
 
 	public static function encode( _string:String ) : String {
+
 		return encodeBytesData( Bytes.ofString(_string).getData() );
-	}
+
+	} //encode
 
 	public static function encodeBytesData( bytesData : BytesData ) : String {
 
@@ -42,9 +48,11 @@ class Base64 {
 		}
 		
 		return base64;
-	}
+
+	} //encodeBytesData
 
 	public static function decodeBytesData( base64 : String ) : BytesData {
+
 		var paddingSize = -1;
 		if (base64.charAt(base64.length - 2) == BASE_64_PADDING) {
 			paddingSize = 2;
@@ -59,7 +67,10 @@ class Base64 {
 		
 		var encodings = Bytes.ofString(BASE_64_ENCODINGS);
 		var bytes = new BaseCode(encodings).decodeBytes(Bytes.ofString(base64));
+
 		return bytes.getData();
-	}
+
+	} //decodeBytesData
+
 	
-}
+} //Base64

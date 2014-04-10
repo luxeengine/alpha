@@ -1,3 +1,5 @@
+package luxe.utils;
+
 /*
  * Copyright (c) 2008, The Caffeine-hx project contributors
  * Original author : Mark Winterhalder
@@ -24,26 +26,18 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
-package luxe.utils;
 
-class UUID
-{
-/*	static function main()
-	{
-		var s = neko.Sys.time();
-		for(x in 0 ... 1000) // Should be about 1.5 secs on a Core2 3.0 GHz machine
-			UUID.generateDashed();
+class UUID {
 
-		trace(neko.Sys.time() - s);
-	}
-*/
+
 	static var rule30 = Rule30.createWithLength( 24 );
 	static var hexChars = "0123456789ABCDEF";
 
 	/** Generate a Universal Unique Identifier string.
 		For example: B859AA4C0A96CA94F7F82DBECD24205F **/
-	public static function generate_undashed()
-	{
+
+	public static function generate_undashed() {
+
 		var sbuf = new StringBuf();
 		var getBits = rule30.getBits;
 		var hex = hex.bind(sbuf);
@@ -67,12 +61,13 @@ class UUID
 		hex(getBits( 16 ));
 
 		return sbuf.toString();
-	}
+
+	} //generate_undashed
 
 	/** Generate a Universal Unique Identifier string, with dashes according to the spec.
 		For example: BD5FB953-0BD3-D6B4-82AB-E642B7036246 **/
-	public static function get()
-	{
+	public static function get() {
+
 		var sbuf = new StringBuf();
 		var getBits = rule30.getBits;
 		var hex = hex.bind(sbuf);
@@ -100,10 +95,11 @@ class UUID
 		hex(getBits( 16 ));
 
 		return sbuf.toString().toLowerCase();
-	}
 
-	private static function hex( sbuf:StringBuf, n:Int )
-	{
+	} //get
+
+	private static function hex( sbuf:StringBuf, n:Int ) {
+
 		var s = new StringBuf();
 		do {
 			s.addChar(hexChars.charCodeAt(n%16));
@@ -115,13 +111,18 @@ class UUID
 			sbuf.addChar(48); // "0"
 
 		sbuf.add(s);
-	}
-}
 
-@:noCompletion private class Rule30
-{
-	static public function createWithLength ( length : Int ) : Rule30
-	{
+	} //hex
+
+
+} //UUID
+
+
+@:noCompletion private class Rule30 {
+
+
+	static public function createWithLength( length : Int ) : Rule30 {
+
 		var str = new StringBuf();
 		var f = Math.floor, r = Math.random;
 
@@ -129,13 +130,14 @@ class UUID
 			str.addChar(  f(r() * 256) );
 
 		return new Rule30( str.toString() );
-	}
+
+	} //createWithLength
 
 	var cells : String;
 	var cellsLength : Int;
 
-	private function new ( cells : String )
-	{
+	private function new( cells : String ) {
+
 		this.cellsLength = cells.length;
 		this.cells = untyped cells;
 		var str = new StringBuf();
@@ -147,10 +149,11 @@ class UUID
 			str.addChar( getBits( 8 ) );
 
 		this.cells = untyped str.toString();
-	}
 
-	public function getBits ( length : Int ) : Int
-	{
+	} //new
+
+	public function getBits( length : Int ) : Int {
+
 		if( length > 30 ) length = 30;
 
 		var bits = 0;
@@ -158,10 +161,11 @@ class UUID
 			bits = (bits << 1) | getBit();
 
 		return bits;
-	}
 
-	function getBit () : Int
-	{
+	} //getBits
+
+	function getBit() : Int {
+
 		var cells = this.cells;
 		var newCells = new StringBuf();
 		var C = newCells.addChar;
@@ -180,5 +184,8 @@ class UUID
 
 		this.cells = newCells.toString();
 		return newCell & 1;
-	}
-}
+
+	} //getBit
+
+
+} //Rule30

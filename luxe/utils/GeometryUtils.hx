@@ -1,23 +1,34 @@
 package luxe.utils;
 
+import luxe.Core;
 import luxe.Vector;
 
+
 class GeometryUtils {
-    @:noCompletion public var luxe:luxe.Core;
-    @:noCompletion public function new(_luxe:luxe.Core) {
+
+
+    @:noCompletion public var luxe:Core;
+
+
+    @:noCompletion public function new(_luxe:Core) {
+        
         luxe = _luxe;
-    }
+
+    } //new
 
     public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 6 ) {
         return _smooth * Math.sqrt( _radius );
     } //segments_for_smooth_circle
 
     public function random_point_in_unit_circle() : Vector {
+
         var t = 2*Math.PI*Math.random();
         var u = Math.random()+Math.random();
         var r = (u > 1.0) ? (2.0 - u) : u;
+        
         return new Vector( Math.cos(t), Math.cos(u) );
-    }
+
+    } //random_point_in_unit_circle
 
     public function point_in_polygon(_point:Vector, _offset:Vector, _verts:Array<Vector> ) : Bool {
 

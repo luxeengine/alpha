@@ -12,4 +12,4 @@ typedef SpriteOptions<T> = {
     ?flipy : Bool,
     ?uv : Rectangle
 
-}
+} //SpriteOptions

@@ -1,8 +1,9 @@
 package luxe.options;
 
-import phoenix.Texture;
 import luxe.Color;
 import luxe.Parcel;
+
+import phoenix.Texture;
 
 typedef ParcelProgressOptions = {
 
@@ -17,4 +18,4 @@ typedef ParcelProgressOptions = {
     ?background : Color,    
     ?texture : Texture
 
-}
+} //ParcelProgressOptions

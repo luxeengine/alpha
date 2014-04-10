@@ -11,14 +11,14 @@ typedef TilemapOptions = {
     tile_width : Int,
     tile_height : Int,
     ?orientation : TilemapOrientation
-}
+} //TilemapOptions
 
 typedef TileOptions = {
     x: Int,
     y: Int,
     id : Int,
     layer : TileLayer
-}
+} //TileOptions
 
 typedef TileLayerOptions = {
     name : String,
@@ -26,7 +26,7 @@ typedef TileLayerOptions = {
     ?visible : Bool,
     ?map : Tilemap,
     ?layer : Int
-}
+} //TileLayerOptions
 
 typedef TilesetOptions = {
     name : String,
@@ -36,4 +36,4 @@ typedef TilesetOptions = {
     ?margin : Int,
     ?spacing : Int,
     ?first_id : Int
-};
+} //TilesetOptions

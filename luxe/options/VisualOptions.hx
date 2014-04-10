@@ -29,4 +29,5 @@ typedef VisualOptions<T> = {
     ?geometry : Geometry,
     ?no_geometry : Bool,
     ?no_batcher_add : Bool
-}
+
+} //VisualOptions

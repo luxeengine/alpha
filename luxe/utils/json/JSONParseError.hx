@@ -1,4 +1,9 @@
+package luxe.utils.json;
+
 /*
+    
+    Originated from hxJson2
+
   Copyright (c) 2008, Adobe Systems Incorporated
   Copyright (c) 2011, Philipp Klose
   All rights reserved.
@@ -30,8 +35,6 @@
   NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
-package luxe.utils.json;
 
 @:noCompletion class JSONParseError {
 

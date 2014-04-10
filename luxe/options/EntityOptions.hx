@@ -11,4 +11,4 @@ typedef EntityOptions<T> = {
     ?scene : Scene,
     ?parent : Entity,
     ?no_scene : Bool
-}
+} //EntityOptions

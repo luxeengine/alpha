@@ -1,4 +1,3 @@
-
 package luxe;
 
 typedef Vector = phoenix.Vector;

@@ -1,6 +1,5 @@
 package ;
 
-
 import lime.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
@@ -16,7 +15,9 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Screen;
 
+
 class Luxe {
+
 
     public static var dt                : Float = 0.016;
     public static var timescale         : Float = 1;
@@ -43,6 +44,7 @@ class Luxe {
 
     @:isVar public static var time(get, never) : Float;
     @:isVar public static var screen(get, never) : Screen;
+
 
     static function get_screen() {
 
@@ -192,7 +194,7 @@ class Luxe {
 
         return _batcher;
 
-    } //createBatcher    
+    } //createBatcher
+
 
 } //Luxe
-

@@ -1,4 +1,3 @@
-
 package luxe;
 
 import luxe.Input;

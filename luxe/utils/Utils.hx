@@ -1,37 +1,43 @@
-
 package luxe.utils;
 
+import luxe.Core;
 import luxe.utils.UUID;
 
 class Utils {
+
     public var geometry : luxe.utils.GeometryUtils;
-
-    private var _byte_levels : Array<String>;
     
-    @:noCompletion public var luxe:luxe.Core;
-    @:noCompletion public function new(_luxe:luxe.Core) {
-        luxe = _luxe;
+    @:noCompletion public var luxe:Core;
 
-            //initialise our helpers
+    var _byte_levels : Array<String>;
+    
+
+    @:noCompletion public function new( _luxe:Core ) {
+
+            //store the reference
+        luxe = _luxe;
+            //initialise the helpers
         geometry = new luxe.utils.GeometryUtils(luxe);
+            //initialize the byte text helpers
         _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
-    }  
+
+    }  //new
 
     public function uniqueid() : String {
         return haxe.crypto.Md5.encode(Std.string(haxe.Timer.stamp()*Math.random()));
-    }
+    } //uniqueid
 
     public function uuid() : String {
     	return UUID.get();
-    }
+    } //uuid
 
     public function base64_encode(_string:String) {
         return Base64.encode(_string);
-    }
+    } //base64_encode
 
     public function base64_decode(_string:String) {
         return Base64.decode(_string);
-    }
+    } //base64_decode
 
     public function stacktrace( ?_depth:Int = 100 ) : String {
 
@@ -56,7 +62,8 @@ class Utils {
             } //total
 
         return result;
-    }
+
+    } //stacktrace
 
     public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
         
@@ -102,17 +109,23 @@ class Utils {
     } //find_assets_image_sequence
     
     public function bytes_to_string( bytes:Int ) : String {
+
         var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );
         var _byte_value = ( bytes / Math.pow(1024, index));
+
         return _byte_value + _byte_levels[index];
-    }
+
+    } //bytes_to_string
 
     public function arrayToBytes(array:Array<Int>):haxe.io.Bytes {
+
         if (array == null) return null;
         var bytes:haxe.io.Bytes = haxe.io.Bytes.alloc(array.length);
         for (n in 0 ... bytes.length) bytes.set(n, array[n]);
+
         return bytes;
-    }
+
+    } //arrayToBytes
 
     public function file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int = 2048) {
 
@@ -146,22 +159,5 @@ class Utils {
 
     } // file_bytes_to_class
 
-}
 
-// Luxe.utils.file_bytes_to_class('assets/ui/tiny.box.png', '/Users/Sven/dev/luxe/luxe/luxe/defaults/UIBox.hx');
-// Luxe.utils.file_bytes_to_class('assets/ui/tiny.button.png', '/Users/Sven/dev/luxe/luxe/luxe/defaults/UIButton.hx');
-
-        //     //create a more bitesized file
-        // var s = FontString.data();
-        // var current = "'";
-        // var final_string = "";        
-        // var _string_length = s.length;
-
-        // for(i in 0..._string_length) {
-        //     final_string += s.charAt(i);
-        //     if(final_string.length % 4096 == 0) {
-        //         final_string+="'+\n'";
-        //     }            
-        // }
-
-        // sys.io.File.saveContent('/Users/Sven/dev/luxe/test.txt', final_string);
+} //Utils
