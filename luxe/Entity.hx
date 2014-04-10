@@ -15,22 +15,22 @@ import luxe.options.EntityOptions;
 //Objects -> Entity
 class Entity extends Objects {
 
-    public var components (get,never) : Map<String, Component>;
-    private var _components : Components;
 
+    public var components (get,never) : Map<String, Component>;    
     public var events : luxe.Events;
     public var children : Array<Entity>;
-    
-    @:isVar public var fixed_rate (get,set) : Float = 0;
 
-    var fixed_rate_timer : haxe.Timer;
-
+        ////whether or not this entity has been destroyed
     public var _destroyed : Bool = false;
+        //whether or not this entity has been inited yet
     public var inited : Bool = false;
+        //whether or not this entity has been started
     public var started : Bool = false;
-        //previous scale cache
-    private var _last_scale:Vector;
+        //whether or not this should be serialized
+    public var serialize : Bool = true;
 
+        //The fixed rate timer if any
+    @:isVar public var fixed_rate (get,set) : Float = 0;
         //The parent entity if any, set to null for no parent
     @:isVar public var parent           (get,set) : Entity;
         //absolute position in world space
@@ -47,10 +47,12 @@ class Entity extends Objects {
     @:isVar public var scale_local      (get,set) : Vector;
         //if the entity is in a scene
     @:isVar public var scene            (get,set) : Scene;
-        //whether or not this should be serialized
-    public var serialize : Bool = true;
-        //the options passed into the constructor
-    @:noCompletion var options : Dynamic;
+
+    var _components : Components;
+    var fixed_rate_timer : haxe.Timer;
+    var _last_scale:Vector; //todo? legacy?        
+    var options : Dynamic;
+
 
     public function new<T>( ?_options:EntityOptions<T> ) {
 

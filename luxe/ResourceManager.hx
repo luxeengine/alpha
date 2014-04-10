@@ -11,6 +11,7 @@ import luxe.Resource;
 
 class ResourceStats {    
 
+
     public var resources : Int = 0;
     public var fonts : Int = 0;
     public var textures : Int = 0;
@@ -21,11 +22,13 @@ class ResourceStats {
     public var sounds : Int = 0;
     public var unknown : Int = 0;
 
+
     public function new() {
 
     } //new
 
     public function toString() {
+
         return 
             'Resource Statistics\n' + 
             '\ttotal resources : ' + resources + '\n' +
@@ -37,6 +40,7 @@ class ResourceStats {
             '\ttext : ' + texts + '\n' +
             '\tdata : ' + datas + '\n' +
             '\tunknown : ' + unknown;
+
     } //toString
 
     public function reset() {
@@ -53,10 +57,12 @@ class ResourceStats {
 
     } //reset
 
+
 } //ResourceStats
 
 class ResourceManager {
     
+
     public var resourcelist : Array<Resource>;
         //cache lists for creating
     public var render_textures : Map<String,RenderTexture>;
@@ -68,6 +74,7 @@ class ResourceManager {
     public var sounds : Map<String,String>;
 
     public var stats : ResourceStats;
+
 
     public function new() {
 
@@ -256,4 +263,4 @@ class ResourceManager {
     } //find
 
     
-}
+} //ResourceManager

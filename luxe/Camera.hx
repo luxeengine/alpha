@@ -13,16 +13,17 @@ typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
 
-	public var view : phoenix.Camera;
+
 
     @:isVar public var viewport (get,set) : Rectangle;
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (get,set) : Float = 1.0;
     @:isVar public var minimum_zoom (get,set) : Float = 0.01;
+    
+    public var view : phoenix.Camera;
+    public var bounds : Rectangle;
 
-	public var bounds : Rectangle;
-
-	public var shake_vector : Vector;
+    public var shake_vector : Vector;
     public var shake_amount : Float;
     public var shaking : Bool = false;
     public var minimum_shake : Float = 0.1;
@@ -31,9 +32,10 @@ class Camera extends Entity {
     var _rotation_radian : Vector;
     var _rotation_cache : Quaternion;
 
-	public function new(?options:Dynamic = null) {
-			
-		if(options == null) options = {};		
+
+    public function new(?options:Dynamic = null) {
+            
+        if(options == null) options = {};       
 
             //cache for later
         _rotation_radian = new Vector();
@@ -41,43 +43,43 @@ class Camera extends Entity {
 
         var _name = options.name == null ? 'untitled camera' : options.name;
 
-			//Init the entity part
-		super({
+            //Init the entity part
+        super({
             name : _name,
             no_scene : options.no_scene
         });
 
-				//Apply options
-			view = options.view == null ? new phoenix.Camera(options) : options.view;
+                //Apply options
+            view = options.view == null ? new phoenix.Camera(options) : options.view;
 
-			//Update
+            //Update
         _final_pos = view.pos;
 
-	} //new
+    } //new
 
     function get_viewport() : Rectangle {
         return view.viewport;
-    }
+    } //get_viewport
 
     function set_viewport( _v:Rectangle ) : Rectangle {
         return view.viewport = _v;
-    }
+    } //set_viewport
 
     function get_center() : Vector {
         return view.center;
-    }
+    } //get_center
 
     function set_center( _c:Vector ) : Vector {
         return view.center = _c;
-    }
+    } //set_center
 
     override function get_scale() : Vector {
         return view == null ? scale : view.scale;
-    }
+    } //get_scale
 
     override function set_scale( _c:Vector ) : Vector {
         return view == null ? scale = _c : view.scale = _c;
-    }
+    } //set_scale
 
     override function get_rotation() : Vector {
 
@@ -113,50 +115,56 @@ class Camera extends Entity {
 
     function get_minimum_zoom() : Float {
         return view.minimum_zoom;
-    }
+    } //get_minimum_zoom
 
     function set_minimum_zoom( _m:Float ) : Float {
         return view.minimum_zoom = _m;
-    }
+    } //set_minimum_zoom
 
     function get_zoom() : Float {
         return view.zoom;
-    }
+    } //get_zoom
 
     function set_zoom( _z:Float ) : Float {
         return view.zoom = _z;
-    }
+    } //set_zoom
 
-		///Focus the camera on a specific point, for Ortho atm
-	public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {	
+        ///Focus the camera on a specific point, for Ortho atm
+    public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {   
 
-		var center_point_x = (_p.x/view.scale.x) - (viewport.w/2);
-		var center_point_y = (_p.y/view.scale.y) - (viewport.h/2);
+        var center_point_x = (_p.x/view.scale.x) - (viewport.w/2);
+        var center_point_y = (_p.y/view.scale.y) - (viewport.h/2);
 
-		Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
+        Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut )
             .onUpdate( function() {
                 _final_pos.set_xyz( pos.x, pos.y, pos.z );
                 view.pos = _final_pos;
             });
 
-	} //focus
+    } //focus
 
     public function screen_point_to_world( _vector:Vector ) : Vector {
+
         return view.screen_point_to_world( _vector );
+
     } //screen_point_to_world
 
     public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
+        
         return view.world_point_to_screen( _vector, _viewport );
+
     } //world_point_to_screen
 
 
     @:noCompletion public override function get_pos() : Vector {
+        
         return pos;
-    }
 
-	@:noCompletion public override function set_pos(v:Vector) : Vector {
-		
+    } //get_pos
+
+    @:noCompletion public override function set_pos(v:Vector) : Vector {
+        
         if(view != null) {
 
             if(bounds != null) {
@@ -169,23 +177,26 @@ class Camera extends Entity {
             view.pos = v;
         }
 
-		pos = v;
+        pos = v;
 
-			//listen for sub changes on properties
-		_attach_listener( pos, _pos_change );
+            //listen for sub changes on properties
+        _attach_listener( pos, _pos_change );
 
-		return pos;
-	}
+        return pos;
+
+    } //set_pos
 
     public function shake(amount:Float) {
+
         shake_amount = amount;
         shaking = true;
-    }
+
+    } //shake
 
         //Called by the scene the camera belongs to, or manually if you want    
-    @:noCompletion public function update(dt:Float) {    	       
+    @:noCompletion public function update(dt:Float) {              
 
-    		//add camera shake
+            //add camera shake
         if(shaking) {
 
                 //start at our base position
@@ -235,14 +246,4 @@ class Camera extends Entity {
 
     } //get_serialize_data    
 
-}
-
-
-
-//     //check that we are within the given bounds
-// if(bounds != null) {
-//     if(final_pos.x < bounds.x) final_pos.x = bounds.x;
-//     if(final_pos.y < bounds.y) final_pos.y = bounds.y;
-//     if(final_pos.x > bounds.w-view.size.x) final_pos.x = bounds.w-view.size.x;
-//     if(final_pos.y > bounds.h-view.size.y) final_pos.y = bounds.h-view.size.y;
-// }
+} //Camera

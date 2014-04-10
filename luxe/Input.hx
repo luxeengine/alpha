@@ -56,8 +56,8 @@ class Input {
     var mouse_bindings : Map<String, Map<MouseButton,Bool> >;  
 #end
 
-
     @:noCompletion public function init() {
+
         Keys = new lime.helpers.Keys();
         Gamepad = new lime.helpers.Gamepad();
         key_bindings = new Map();
@@ -67,15 +67,16 @@ class Input {
         Gamepad.apply_360_profile();
 
         core._debug(':: luxe :: \t Input Initialized.');
+
     } //init
 
     @:noCompletion public function destroy() {
         core._debug(':: luxe :: \t Input shut down.');
-    }
+    } //destroy
 
     @:noCompletion public function process() {
         //todo, poll for gamepad disconnects and reconnects
-    }    
+    } //process
 
 #if input_lazy
 
@@ -126,7 +127,8 @@ class Input {
                 //if mouse value, add as mouse value
             add_mouse_binding(_name, cast _event);
         }
-    }
+
+    } //add
 
     @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
 
@@ -188,68 +190,68 @@ class Input {
 
     } //check_named_keys
 
-
 //Keyboard
 
     @:noCompletion public function onchar(_event:KeyEvent) {
-    }
+    } //onchar
 
     @:noCompletion public function onkeydown(_event:KeyEvent) {
-    }
+    } //onkeydown
 
     @:noCompletion public function onkeyup(_event:KeyEvent) {
-    }
+    } //onkeyup
 
     @:noCompletion public function gotinputfocus(_event:KeyEvent) {
-    }   
+    } //gotinputfocus
 
     @:noCompletion public function lostinputfocus(_event:KeyEvent) {
-    }
+    } //lostinputfocus
 
 //Mouse
     
     @:noCompletion public function mousemove(_event:MouseEvent) {
-    }
+    } //mousemove
 
     @:noCompletion public function mousedown(_event:MouseEvent) {
-    }
+    } //mousedown
 
     @:noCompletion public function mouseclick(_event:MouseEvent) {
-    }
+    } //mouseclick
 
     @:noCompletion public function mouseup(_event:MouseEvent) {
-    }
+    } //mouseup
 
 //Touch
 
     
     @:noCompletion public function touchbegin(_event:TouchEvent) {
-    }
+    } //touchbegin
 
     @:noCompletion public function touchmove(_event:TouchEvent) {
-    }
+    } //touchmove
 
     @:noCompletion public function touchend(_event:TouchEvent) {
-    }
+    } //touchend
 
     @:noCompletion public function touchtap(_event:TouchEvent) {
-    }
+    } //touchtap
 
 //Joystick
 
     @:noCompletion public function joyaxismove(_event:Dynamic) {
-    }
+    } //joyaxismove
 
     @:noCompletion public function joyballmove(_event:Dynamic) {
-    }
+    } //joyballmove
 
     @:noCompletion public function joyhatmove(_event:Dynamic) {
-    }
+    } //joyhatmove
 
     @:noCompletion public function joybuttondown(_event:Dynamic) {
-    }
+    } //joybuttondown
 
     @:noCompletion public function joybuttonup(_event:Dynamic) {
-    }
+    } //joybuttonup
 
-}
+
+} //Input

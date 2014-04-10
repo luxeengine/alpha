@@ -12,12 +12,14 @@ import luxe.options.SpriteOptions;
 
 class Sprite extends Visual {
     
+
     @:isVar public var centered     (default,set    )   : Bool = true;    
     @:isVar public var flipx        (default,set    )   : Bool = false;
     @:isVar public var flipy        (default,set    )   : Bool = false;
     @:isVar public var uv           (default,set    )   : Rectangle;
 
     public var geometry_quad : QuadGeometry; 
+
 
     public function new<T>( options:SpriteOptions<T> ) {
 
@@ -244,13 +246,13 @@ class Sprite extends Visual {
 
         //An internal callback for when x y or w or h on a transform changes
     private function _uv_change(_v:Float) { this.set_uv(uv); }
-
+        //The helper to attach all listeners
     private function _attach_rect_listener( _v : Rectangle, listener ) {
         _v.listen_x = listener;
         _v.listen_y = listener;
         _v.listen_w = listener;
         _v.listen_h = listener;
-    }
+    } //_attach_rect_listener
+
 
 } //Sprite
-

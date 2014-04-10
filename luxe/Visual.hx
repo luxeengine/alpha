@@ -19,6 +19,7 @@ import luxe.options.VisualOptions;
 
 class Visual extends Entity {
 
+
     @:isVar public var size         (default,set) : Vector;
     @:isVar public var geometry     (default,set) : Geometry;
     @:isVar public var locked       (default,set) : Bool = false;
@@ -38,6 +39,7 @@ class Visual extends Entity {
     var _rotation_quat : Quaternion;
 
     var _has_custom_origin : Bool = false;
+
 
     public function new<T>( _options:VisualOptions<T> ) {
 
@@ -466,5 +468,5 @@ class Visual extends Entity {
 
     } //get_serialize_data
 
-} //Visual
 
+} //Visual

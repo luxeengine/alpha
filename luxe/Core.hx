@@ -1,10 +1,9 @@
 package luxe;
 
 import lime.Lime;
-
 import lime.utils.ByteArray;
-import Luxe;
 
+import Luxe;
 import luxe.Audio;
 import luxe.Events;
 import luxe.Input;
@@ -21,7 +20,6 @@ import phoenix.Shader;
     import luxe.Physics;
 #end //haxebullet
 
-import phoenix.Renderer;
 
 #if (!luxe_threading_disabled && luxe_native) 
 
@@ -89,9 +87,9 @@ import phoenix.Renderer;
     public var physics  : Physics;
 #end //haxebullet
 
-//Delta times
-    private var end_dt : Float = 0;
+//Delta times    
     public var dt : Float = 0;
+    var end_dt : Float = 0;
 
 //Mouse and fake mouse touch
     var _mouse_pos : Vector;
@@ -113,6 +111,7 @@ import phoenix.Renderer;
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
 
+
         //constructor
     public function new( _host:Dynamic ) {
             
@@ -133,7 +132,6 @@ import phoenix.Renderer;
             //Set external references
         Luxe.core = this;
         Luxe.utils = new luxe.utils.Utils(this);
-
 
     } //new
     
@@ -233,7 +231,8 @@ import phoenix.Renderer;
 
             //finally, create the debug console
         debug.create_debug_console(); 
-    }
+
+    } //init
 
     public function shutdown() {        
 
@@ -276,7 +275,8 @@ import phoenix.Renderer;
         has_shutdown = true;
 
         _debug(':: luxe :: Goodbye.');
-    }
+
+    } //shutdown
 
         //Called by Lime
     public function update() { 
@@ -397,24 +397,26 @@ import phoenix.Renderer;
 
         debug.end(core_tag_render);
 
-    }
+    } //render
 
 //External overrides
     public function set_renderer( _renderer:Renderer ) {
         if(_renderer != null) {
             renderer = _renderer;
         }
-    }
+    } //set_renderer
 
 //Lib load wrapper
     public static function load( library:String, method:String, args:Int = 0 ) : Dynamic {
         return lime.utils.Libs.load( library, method, args );
-    }
+    } //load
 
     public function show_console(_show:Bool = true) {
+
         console_visible = _show;
         debug.show_console(console_visible);
-    }
+
+    } //show_console
 
 //window events
     public function onresize(e) {
@@ -430,6 +432,7 @@ import phoenix.Renderer;
         if(host.onresize != null) host.onresize(e);
 
     } // onresize
+
 //input events
 //keys
     public function onkeydown( e:KeyEvent ) {
@@ -443,7 +446,9 @@ import phoenix.Renderer;
             debug.onkeydown(e);
         }
 
-        if(host.onkeydown != null) host.onkeydown(e);        
+        if(host.onkeydown != null) {
+            host.onkeydown(e);
+        }
 
         if(e.key == KeyValue.tilde) {
             show_console( !console_visible );
@@ -462,8 +467,9 @@ import phoenix.Renderer;
             if(debug!=null)debug.onkeyup(e);
         }
         
-        if(host.onkeyup != null) host.onkeyup(e);
-
+        if(host.onkeyup != null) {
+            host.onkeyup(e);
+        }
 
     } //onkeyup
 
@@ -475,8 +481,11 @@ import phoenix.Renderer;
             scene.oninputdown(_name,e);
         }
 
-        if(host.oninputdown != null) host.oninputdown(_name,e); 
-    }
+        if(host.oninputdown != null) {
+            host.oninputdown(_name,e); 
+        }
+
+    } //oninputdown
 
     public function oninputup( _name:String, e:InputEvent ) {
         
@@ -484,8 +493,11 @@ import phoenix.Renderer;
             scene.oninputup(_name,e);
         }
 
-        if(host.oninputup != null) host.oninputup(_name,e); 
-    }
+        if(host.oninputup != null) {
+            host.oninputup(_name,e); 
+        }
+
+    } //oninputup
 
 //mouse
 
@@ -501,8 +513,11 @@ import phoenix.Renderer;
             debug.onmousedown(e);
         }
 
-        if(host.onmousedown != null) host.onmousedown(e);
-    }
+        if(host.onmousedown != null) {
+            host.onmousedown(e);
+        }
+
+    } //onmousedown
     
     public function onmousewheel(e : MouseEvent) {
 
@@ -512,7 +527,9 @@ import phoenix.Renderer;
             debug.onmousewheel(e);
         }
         
-        if(host.onmousewheel != null) host.onmousewheel(e);
+        if(host.onmousewheel != null) {
+            host.onmousewheel(e);
+        }
 
     } //onmousewheel
 
@@ -528,8 +545,11 @@ import phoenix.Renderer;
             debug.onmouseup(e);
         }
 
-        if(host.onmouseup != null) host.onmouseup(e);
-    }
+        if(host.onmouseup != null) {
+            host.onmouseup(e);
+        }
+
+    } //onmouseup
 
     public function onmousemove(e : MouseEvent) {
 
@@ -542,9 +562,11 @@ import phoenix.Renderer;
             debug.onmousemove(e);
         }
 
-        if(host.onmousemove != null) host.onmousemove(e);
+        if(host.onmousemove != null) {
+            host.onmousemove(e);
+        }
 
-    }
+    } //onmousemove
     
 //touch
     var touches_down : Map<Int, TouchEvent>;
@@ -555,13 +577,16 @@ import phoenix.Renderer;
         e.pos = _touch_pos;
 
         if(!shutting_down) {
-                //pass to scene
             scene.ontouchbegin(e);
         }
 
-        if(host.ontouchbegin != null) host.ontouchbegin(e);
+        if(host.ontouchbegin != null) {
+            host.ontouchbegin(e);
+        }
 
-        if(touches_down == null) touches_down = new Map();
+        if(touches_down == null) {
+            touches_down = new Map();
+        }
         
         touches_down.set(e.ID, e);
 
@@ -577,7 +602,7 @@ import phoenix.Renderer;
             show_console( !console_visible );
         }
 
-    }
+    } //ontouchbegin
 
     public function ontouchend(e : TouchEvent) {
 
@@ -589,10 +614,14 @@ import phoenix.Renderer;
             scene.ontouchend(e);
         }        
 
-        if(host.ontouchend != null) host.ontouchend(e);
+        if(host.ontouchend != null) {
+            host.ontouchend(e);
+        }
 
         touches_down.remove(e.ID);
-    }
+
+    } //ontouchend
+
     public function ontouchmove(e : TouchEvent) {
         
         _touch_pos.set( e.x, e.y );
@@ -603,9 +632,12 @@ import phoenix.Renderer;
             scene.ontouchmove(e);
         }
 
-        if(host.ontouchmove != null) host.ontouchmove(e);
+        if(host.ontouchmove != null) {
+            host.ontouchmove(e);
+        }
         
-    }
+    } //ontouchmove
+
 //joystick
 
     public function ongamepadaxis(e) {
@@ -614,40 +646,59 @@ import phoenix.Renderer;
             scene.ongamepadaxis(e);
         }
 
-        if(host.ongamepadaxis != null) host.ongamepadaxis(e);
-    }
+        if(host.ongamepadaxis != null) {
+            host.ongamepadaxis(e);
+        }
+
+    } //ongamepadaxis
+
     public function ongamepadball(e) {
 
         if(!shutting_down) {
             scene.ongamepadball(e);
         }
 
-        if(host.ongamepadball != null) host.ongamepadball(e);
-    }
+        if(host.ongamepadball != null) {
+            host.ongamepadball(e);
+        }
+
+    } //ongamepadball
+
     public function ongamepadhat(e) {
 
         if(!shutting_down) {
             scene.ongamepadhat(e);
         }
 
-        if(host.ongamepadhat != null) host.ongamepadhat(e);
-    }    
+        if(host.ongamepadhat != null) {
+            host.ongamepadhat(e);
+        }
+
+    } //ongamepadhat
+
     public function ongamepadbuttondown(e) {
 
         if(!shutting_down) {
             scene.ongamepadbuttondown(e);
         }
 
-        if(host.ongamepadbuttondown != null) host.ongamepadbuttondown(e);
-    }    
+        if(host.ongamepadbuttondown != null) {
+            host.ongamepadbuttondown(e);
+        }
+
+    } //ongamepadbuttondown
+
     public function ongamepadbuttonup(e) {
 
         if(!shutting_down) {
             scene.ongamepadbuttonup(e);
         }
         
-        if(host.ongamepadbuttonup != null) host.ongamepadbuttonup(e);
-    }
+        if(host.ongamepadbuttonup != null) {
+            host.ongamepadbuttonup(e);
+        }
+
+    } //ongamepadbuttonup
 
 //Noisy stuff
 
@@ -681,4 +732,6 @@ import phoenix.Renderer;
             } //elses
         } //log
     } //_debug
-}
+
+
+} //Core

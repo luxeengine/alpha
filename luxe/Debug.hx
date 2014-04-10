@@ -21,16 +21,13 @@ import luxe.debug.BatcherDebugView;
 
 class Debug {
 
-    public var core : Core;
-    public function new( _core:Core ) { core = _core; }
 
+    public var core : Core;
     public var visible : Bool = false;
     public static var shut_down : Bool = false;
 
     public var debug_inspector : Inspector;
     public var overlay : QuadGeometry;
-
-    static var trace_callbacks : Map<String, Dynamic->?haxe.PosInfos->Void>;
 
     public var batcher : Batcher;
     public var view : Camera;
@@ -54,6 +51,12 @@ class Debug {
 //Profile path
     public var profile_path : String = "profile.txt";
     public var profiling : Bool = false;
+
+    static var trace_callbacks : Map<String, Dynamic->?haxe.PosInfos->Void>;
+
+    public function new( _core:Core ) { 
+        core = _core; 
+    } //new
 
     public function init() {        
 
@@ -155,7 +158,7 @@ class Debug {
                 view.onmouseup(e);
             }
         }
-    }
+    } //onmouseup
 
     public function onmousedown(e:MouseEvent) {
         if(visible) {
@@ -163,7 +166,7 @@ class Debug {
                 view.onmousedown(e);
             }
         }
-    }  
+    } //onmousedown
 
     public function onmousewheel(e:MouseEvent) {
         if(visible) {
@@ -171,7 +174,7 @@ class Debug {
                 view.onmousewheel(e);
             }
         }
-    }
+    } //onmousewheel
     
     public function onmousemove(e:MouseEvent) {
         if(visible) {
@@ -179,7 +182,7 @@ class Debug {
                 view.onmousemove(e);
             }
         }
-    }
+    } //onmousemove
 
     public function onkeyup(e:KeyEvent) {
 
@@ -187,7 +190,7 @@ class Debug {
             for(view in views) {
                 view.onkeyup(e);
             }
-        }
+        } //onkeyup
 
         #if profiler
             #if luxe_native
@@ -198,7 +201,8 @@ class Debug {
                 }
             #end //luxe_native
         #end //profiler        
-    }
+    } //onkeyup
+
     public function onkeydown(e:KeyEvent) {
     
         if(visible) {
@@ -221,8 +225,9 @@ class Debug {
                     profiling = true;
                 }
             #end //luxe_native
-        #end //profiler        
-    }
+        #end //profiler
+
+    } //onkeydown
 
     public function onresize(e) {
         view.set_ortho({ x2 : Luxe.screen.w, y2 : Luxe.screen.h });
@@ -231,7 +236,7 @@ class Debug {
 
     function refresh() {
         current_view.refresh();
-    }
+    } //refresh
 
     public function switch_view() {
 
@@ -254,7 +259,7 @@ class Debug {
             //show the new one
         current_view.show();
 
-    } //switch_console
+    } //switch_view
 
     var last_cursor_shown : Bool = true;
     var last_cursor_locked : Bool = false;
@@ -292,11 +297,14 @@ class Debug {
             debug_inspector.hide();
             overlay.enabled = false;
         }
-    }
+
+    } //show_console
 
     public function destroy() {
+
         shut_down = true;
         core._debug(':: luxe :: \t Debug shut down.');
+
     } //destroy
 
     public function process() {
@@ -310,7 +318,9 @@ class Debug {
             dt_average_count = 0;
         }
 
-        if(!visible) return;        
+        if(!visible) {
+            return;
+        }
 
             //update the title
         debug_inspector._title_text.text = current_view.name + " - " + Maths.fixed(Luxe.dt,3) + ' / ' + Maths.fixed(dt_average,3);
@@ -322,5 +332,6 @@ class Debug {
         // #end
         
     } //process
+
 
 } //Debug 

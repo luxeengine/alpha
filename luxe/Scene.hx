@@ -289,11 +289,12 @@ class Scene extends Objects {
             if(entity != null) {
                 entity._reset();
             }
-        }
+        } //for each entity
 
         started = true;
         
     } //start
+
     public function update(dt:Float) {
 
             //late scene additions get init'ed and start'ed
@@ -304,15 +305,18 @@ class Scene extends Objects {
             if(entity != null) {
                 entity._update(dt);
             }
-        }
+        } //for each entity
 
     } //update
+
     public function fixed_update() {
+
         for(entity in entities) {
             if(entity != null) {
                 entity._fixed_update();
             }
-        }
+        } //for each entity
+
     } //fixed_update
 
     function handle_delayed_additions() {
@@ -333,38 +337,37 @@ class Scene extends Objects {
 
     } //handle_delayed_additions
 
-#if luxe_native
+    #if luxe_native
+        public function serialize_to_disk( _destination_path:String ) {
 
-    public function serialize_to_disk( _destination_path:String ) {
+                trace('Saving scene to ' + _destination_path);
 
-            trace('Saving scene to ' + _destination_path);
+                    //write the scene metadata
+                var _metafile = _destination_path + 'scene.meta.luxe.json';
 
-                //write the scene metadata
-            var _metafile = _destination_path + 'scene.meta.luxe.json';
+                    var meta = {
+                        id : id,
+                        name : name,
+                        count_entities : Lambda.count(entities)
+                    }
 
-                var meta = {
-                    id : id,
-                    name : name,
-                    count_entities : Lambda.count(entities)
+                var _file : sys.io.FileOutput = sys.io.File.write( _metafile, false);
+                    _file.writeString( luxe.utils.JSON.encode(meta) );
+                    _file.close();
+
+                var _entity_path = _destination_path + 'entities/';
+
+                sys.FileSystem.createDirectory(_entity_path);
+
+                    //write out all the entities in the scene
+                for(entity in entities) {
+                    entity.serialize_to_disk( _entity_path );
                 }
 
-            var _file : sys.io.FileOutput = sys.io.File.write( _metafile, false);
-                _file.writeString( luxe.utils.JSON.encode(meta) );
-                _file.close();
+                trace('Done saving scene.');
 
-            var _entity_path = _destination_path + 'entities/';
+            
+        } //serialize_to_disk
+    #end //luxe_native
 
-            sys.FileSystem.createDirectory(_entity_path);
-
-                //write out all the entities in the scene
-            for(entity in entities) {
-                entity.serialize_to_disk( _entity_path );
-            }
-
-            trace('Done saving scene.');
-
-        
-    }
-#end //luxe_native
-
-}
+} //Scene

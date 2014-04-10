@@ -5,11 +5,17 @@ import luxe.components.Components;
 
 class ParticleSystem extends Entity {
 
+
     public var active : Bool = true;
     public var emitters : Map<String, ParticleEmitter>;
 
+
     public function init( ) {
-        if(emitters == null) new Map<String, ParticleEmitter>();
+
+        if(emitters == null) {
+            new Map<String, ParticleEmitter>();
+        }
+
     } //init
 
     public function add_emitter(_template:Dynamic) {
@@ -27,12 +33,12 @@ class ParticleSystem extends Entity {
         } //_name.lengths
 
             //create the emitter instance
-        var _emitter = add(ParticleEmitter, _name, { init_with : { system:this, template:_template } } );
+        var _emitter = add( ParticleEmitter, _name, { init_with : { system:this, template:_template } } );
         // var _emitter = new ParticleEmitter(_name, this, _template);
                 //store the reference of the emitter
             emitters.set(_name, _emitter);
 
-    } //add
+    } //add_emitter
 
     public function emit(duration:Float = -1) {
         active = true;
@@ -69,7 +75,7 @@ class ParticleSystem extends Entity {
 typedef ParticleEmitterInitData = {
     system : ParticleSystem, 
     template : Dynamic
-}
+} //ParticleEmitterInitData
 
 class ParticleEmitter extends Component {
 
@@ -85,8 +91,6 @@ class ParticleEmitter extends Component {
     public var emit_next : Float = 0;
     public var emit_last : Float = 0;
     public var particle_index : Int = 0;
-
-    var emit_timer : Float = 0;
 
     public var particle_cache : Array<Sprite>;
     public var cache_size : Int = 100;
@@ -108,7 +112,9 @@ class ParticleEmitter extends Component {
     public var zrotation : Float = 0;
     public var _position : Vector;
 
-        //todo
+        //todo? no idea why this radius stuff was here,
+        //it might be for spawning in a radial area idk
+        //will have to figure out when cleaning this up
     public var radius : Float = 50;
     public var radius_random : Float = 50;
 
@@ -122,7 +128,7 @@ class ParticleEmitter extends Component {
     public var speed_random : Float;
     public var life : Float;
     public var life_random : Float;
-    
+        
     public var rotation_value : Float;
     public var rotation_random : Float;
     public var end_rotation : Float;
@@ -133,17 +139,19 @@ class ParticleEmitter extends Component {
     public var end_color : Color;
     public var end_color_random : Color;
 
-        //internal stuff
-    var direction_vector : Vector;
+        //The template
     public var template : Dynamic = null;
 
+        //internal stuff
+    var emit_timer : Float = 0; 
     var finish_time : Float = 0;
+    var direction_vector : Vector;
 
     var has_end_rotation : Bool = false;
     var _temp_speed : Vector;
     var _to_remove : Array<Particle>;
 
-    // public function new( _name:String, _system:ParticleSystem, _template:Dynamic ) {
+
     public function init( _data:ParticleEmitterInitData ) {
 
         active_particles = new Array<Particle>();
@@ -163,9 +171,11 @@ class ParticleEmitter extends Component {
 
             //apply defaults 
         apply(template);
-    }
+
+    } //init
 
     public function apply(_template:Dynamic) {
+
         if(_template == null) _template = {};
         
         (_template.depth != null) ? 
@@ -298,6 +308,7 @@ class ParticleEmitter extends Component {
     } //apply
 
     public function destroy() {
+
         active_particles = null;
         if(particle_cache != null) {
             for(p in particle_cache) {
@@ -308,7 +319,8 @@ class ParticleEmitter extends Component {
         }
 
         particle_cache = null;
-    }
+
+    } //destroy
 
     public function emit(t:Float) {
 
@@ -526,11 +538,13 @@ class ParticleEmitter extends Component {
             //clean up the dead list
         _to_remove.splice(0,_to_remove.length);
 
-    }
+    } //update
 
 } //ParticleEmitter
 
+
 class Particle {
+
 
     public var particle_system : ParticleSystem;
     public var particle_emitter : ParticleEmitter;
@@ -556,7 +570,9 @@ class Particle {
     public var draw_size : Vector;
     public var draw_color : Color;
 
+
     public function new(e:ParticleEmitter) {
+
         particle_emitter = e;
         particle_system = e.particle_system;
         
@@ -565,7 +581,7 @@ class Particle {
         speed = new Vector();
         speed_delta = 0.0;
         size = new Vector();
-        position = new Vector();        
+        position = new Vector();
         start_size = new Vector();
         end_size = new Vector();
         size_delta = new Vector();
@@ -578,5 +594,6 @@ class Particle {
         draw_size = new Vector();
 
     } //new
+
 
 }  //Particle

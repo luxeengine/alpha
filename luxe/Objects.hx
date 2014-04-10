@@ -4,8 +4,10 @@ package luxe;
 
 class Objects {
 
+
 	public var id : String;
     public var name : String;
+
 
     @:noCompletion public function new() {
     	id = Luxe.utils.uniqueid();
@@ -41,14 +43,15 @@ class Objects {
     @:noCompletion public static var _show_debug_verbose : Bool = false;
     @:noCompletion private function _debug(v,?verbose=false){ 
         if(_show_debug) { 
-            if(!verbose) { 
+            if(!verbose) {
                 trace(v); 
             } else {
                 if(_show_debug_verbose) {
                     trace(v); 
                 } 
             }
-        } 
-    }	
+        } //_show_debug
+    } //_debug
+
 
 } //Objects

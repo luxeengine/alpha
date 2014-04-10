@@ -11,6 +11,7 @@ typedef TextAlign = phoenix.BitmapFont.TextAlign;
 
 class Text extends Visual {
     
+
     public var font : BitmapFont;
     private var _batcher : Batcher;
 
@@ -21,6 +22,7 @@ class Text extends Visual {
 
     public var ready : Bool = false;
     public var text_options : Dynamic;
+
 
     public function new( _options : Dynamic ) {
 
@@ -189,6 +191,6 @@ class Text extends Visual {
 
     } //set_text
 
+
+
 } //Text
-
-

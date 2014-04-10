@@ -19,8 +19,8 @@ import luxe.Core;
 
     class Physics {
         
+
         public var core : Core;
-        public function new( _core:Core ) { core = _core; }
 
         public var rate : Float = 0.0167;
         public var step_rate : Float = 0.0167;
@@ -28,11 +28,19 @@ import luxe.Core;
         public var paused : Bool = false;
         public var do_debug_draw : Bool = true;
 
-        var broadphase:BtDbvtBroadphase;
-        var collisionConfiguration:BtDefaultCollisionConfiguration;
-        var dispatcher:BtCollisionDispatcher;
-        var solver:BtSequentialImpulseConstraintSolver;
-        public var dynamicsWorld:BtDiscreteDynamicsWorld;
+        public var dynamicsWorld : BtDiscreteDynamicsWorld;
+
+        var broadphase : BtDbvtBroadphase;
+        var collisionConfiguration : BtDefaultCollisionConfiguration;
+        var dispatcher : BtCollisionDispatcher;
+        var solver : BtSequentialImpulseConstraintSolver;        
+
+
+        public function new( _core:Core ) {
+            
+            core = _core;
+
+        } //new
 
         public function init() {
 
@@ -108,7 +116,7 @@ import luxe.Core;
             core._debug(':: luxe :: \t Physics shut down.');
         } //destroy
 
+
     } //Physics
 
 #end //haxebullet
-

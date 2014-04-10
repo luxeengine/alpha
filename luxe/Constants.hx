@@ -2,6 +2,7 @@ package luxe;
 
 class SystemEvents {
 
+
     static public var char              = 1;
     static public var keydown           = 2;
     static public var keyup             = 3;
@@ -32,4 +33,5 @@ class SystemEvents {
     static public var joybuttonup       = 28;
     static public var syswm             = 29;
 
-}
+
+} //SystemEvents

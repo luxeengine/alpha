@@ -11,6 +11,7 @@ import luxe.utils.Maths;
 
 class Mesh {
 
+
     public var geometry : Geometry;
 
     public var pos      (default,set) : Vector;
@@ -18,6 +19,7 @@ class Mesh {
     public var rotation (default,set) : Vector;    
 
     var _rotation_quat : Quaternion;
+
 
     public function new(?_options:Dynamic = null) {
 

@@ -14,18 +14,10 @@ enum ResourceType {
     render_texture;
     font;
     shader;
-}
+} 
 
-class Droppable {
-    public var references : Int = 0;
-    public var dropped : Bool = false;
-
-    public function drop() {
-        dropped = true;
-    }
-}
-
-class Resource extends Droppable {
+class Resource {
+    
     
     public var manager : ResourceManager;
     public var type : ResourceType;
@@ -33,6 +25,8 @@ class Resource extends Droppable {
     public var persistent : Bool = false;
     public var time_to_load : Float = 0;
     public var time_created : Float = 0;
+    public var dropped : Bool = false;
+
 
     public function new( _manager : ResourceManager, _type:ResourceType, ?_load_time:Float ) {
 
@@ -46,19 +40,22 @@ class Resource extends Droppable {
 
     } //new
 
-    public override function drop() {
+    public function drop() {
         if(!dropped) {
-            super.drop();
+            dropped = true;
             manager.remove( this );
         }
     } //drop
+
 
 } //Resource
 
 
 class TextResource extends Resource {
     
+
     public var text : String;
+
 
     public function new( _id:String, _text:String, _manager:ResourceManager ) {
     
@@ -70,11 +67,14 @@ class TextResource extends Resource {
 
     } //new
 
+
 } //TextResource
 
 class DataResource extends Resource {
 
+
     public var data : ByteArray;
+
 
     public function new( _id:String, _data:ByteArray, _manager:ResourceManager ) {
         
@@ -85,13 +85,16 @@ class DataResource extends Resource {
         data = _data;
 
     } //new
+
     
 } //DataResource
 
 
 class SoundResource extends Resource {
 
+
     public var name : String;
+
 
     public function new( _name:String, _id:String, _manager:ResourceManager ) {
             
@@ -102,6 +105,6 @@ class SoundResource extends Resource {
         name = _name;        
 
     } //new
+
     
 } //DataResource
-

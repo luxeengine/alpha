@@ -4,11 +4,13 @@ import luxe.Vector;
 
 class Cursor {
     
+
     var screen : Screen;
 
     @:isVar public var visible (get,set): Bool = true;
     @:isVar public var locked (get,set): Bool = false;
     @:isVar public var pos (get,set): Vector;
+
 
     public function new( _screen:Screen ) {
 
@@ -71,35 +73,35 @@ class Cursor {
 
 class Screen {
 
-	public var x : Float;
-	public var y : Float;
-	public var w : Float;
-	public var h : Float;
+    public var x : Float;
+    public var y : Float;
+    public var w : Float;
+    public var h : Float;
 
     public var cursor : Cursor;
     public var core : Core;
 
     @:isVar public var mid (get,null) : Vector;
 
-	public function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
-		
+    public function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
+        
         core = _core;
         cursor = new Cursor(this);
 
-		x = _x;
-		y = _y;
-		w = _w;
-		h = _h;
+        x = _x;
+        y = _y;
+        w = _w;
+        h = _h;
 
-		mid = new Vector( Math.round(w/2), Math.round(h/2) );        
+        mid = new Vector( Math.round(w/2), Math.round(h/2) );        
 
-	} //new
+    } //new
 
-	function get_mid() : Vector {
+    function get_mid() : Vector {
 
-		return mid.clone();
+        return mid.clone();
 
-	} //get_mid
+    } //get_mid
 
     public function point_inside(_p:Vector) {
 
@@ -111,5 +113,6 @@ class Screen {
         return true;
 
     } //point_inside
+
 
 } //Screen

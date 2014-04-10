@@ -4,12 +4,14 @@ import luxe.Core;
 
 class Events {
     
+
     @:noCompletion public var event_queue : Map< String, EventObject>;
     @:noCompletion public var event_connections : Map< String, EventConnection>; //event id, connect
     @:noCompletion public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
     @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
     @:noCompletion public var event_schedules : Map< String, haxe.Timer >; //event id, timer
     
+
     public function new( ) { 
             //create the queue, lists and map
         event_connections = new Map();
@@ -181,22 +183,7 @@ class Events {
             event_queue = new Map();
         }
 
-    } //update
-
-
-    private function tag_properties(_properties:Dynamic, _name:String,_count:Int) {
-        
-        if(_properties == null) {
-            _properties = {};
-        }
-
-            //tag these information slots, with _ so they don't clobber other stuff
-        Reflect.setField(_properties,'_event_name_', _name);
-            //tag a listener count 
-        Reflect.setField(_properties,'_event_connection_count_', _count);
-
-        return _properties;
-    }
+    } //update    
 
         //Fire an event immediately, bypassing the queue. 
             //event_name : The event (register listeners with connect())
@@ -251,6 +238,7 @@ class Events {
             //properties : A dynamic pass-through value to hand off data
             //  -- Returns a String, the ID of the schedule (see unschedule)
     public function schedule<T>( time:Float, event_name : String, ?properties : T ) : String {
+
         var id : String = Luxe.utils.uniqueid();
 
             var _timer = haxe.Timer.delay(function(){
@@ -282,32 +270,57 @@ class Events {
         return false;
 
     } //unschedule    
-    
+
+    function tag_properties(_properties:Dynamic, _name:String,_count:Int) {
+        
+        if(_properties == null) {
+            _properties = {};
+        }
+
+            //tag these information slots, with _ so they don't clobber other stuff
+        Reflect.setField(_properties,'_event_name_', _name);
+            //tag a listener count 
+        Reflect.setField(_properties,'_event_connection_count_', _count);
+
+        return _properties;
+    }
+
 } // Events
 
-@:noCompletion class EventConnection {
+private class EventConnection {
     
+
     public var listener : Dynamic -> Void;
     public var id : String;
     public var event_name : String;
 
+
     public function new( _id:String, _event_name:String, _listener : Dynamic -> Void ) {
+        
         id = _id;
         listener = _listener;
         event_name = _event_name;
-    }
 
-}
+    } //new
 
-@:noCompletion class EventObject {
+
+} //EventConnection
+
+private class EventObject {
+
 
     public var id : String;
     public var name:String;
     public var properties : Dynamic;
 
+
     public function new(_id:String, _event_name:String, _event_properties:Dynamic ) {
+
         id = _id;
         name = _event_name;
         properties = _event_properties;
-    }
-}
+
+    } //new
+
+
+} //EventObject

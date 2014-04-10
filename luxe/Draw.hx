@@ -29,7 +29,8 @@ class Draw {
 
             //return
         return options; 
-    }
+
+    } //default_options
 
     public function line(options:Dynamic) {
 
