@@ -198,7 +198,7 @@ class Main extends luxe.Game {
 
     var hidden = false;
     var locked = false;
-    public function onkeyup(e:Dynamic) {
+    public function onkeyup(e:KeyEvent) {
 
         if(e.value == Input.Keys.key_R) {
             cube_rigidbody_component.rigid_body.origin = new Vector(0,10,0);

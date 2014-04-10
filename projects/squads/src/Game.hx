@@ -74,11 +74,11 @@ class Game extends luxe.Game {
     	states.onmouseup(e);
     } //onmouseup
 
-    public function oninputup( _input:String, _event:Dynamic ) {
+    public function oninputup( _input:String, _event:InputEvent ) {
         states.oninputup(_input,_event);
     }
 
-    public function oninputdown( _input:String, _event:Dynamic ) {
+    public function oninputdown( _input:String, _event:InputEvent ) {
         states.oninputdown(_input, _event);
     }
 

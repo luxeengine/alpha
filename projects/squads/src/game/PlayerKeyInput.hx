@@ -5,8 +5,7 @@ import game.PlayerAim;
 import game.PlayerMovement;
 import game.PlayerShoot;
 import game.PlayerWeapon;
-import luxe.Input.KeyValue;
-import luxe.Input.MouseButton;
+import luxe.Input;
 import luxe.Vector;
 import luxe.Sprite;
 
@@ -88,11 +87,11 @@ class PlayerKeyInput extends Component {
 
 	} //update
 
-	public function oninput( _event:Dynamic ) {
+	public function oninput( _event:InputEvent ) {
 
-		if(_event.input_type == 'input.down') {
+		if(_event.state == InputState.down) {
 
-			switch(_event.input_name) {
+			switch(_event.name) {
 				case "sprint":
 					sprint = true;
 				case "left":
@@ -127,7 +126,7 @@ class PlayerKeyInput extends Component {
 
 		} else {
 
-			switch(_event.input_name) {
+			switch(_event.name) {
 				case "sprint":
 					sprint = false;
 				case "left":

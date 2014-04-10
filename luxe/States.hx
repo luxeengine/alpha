@@ -1,9 +1,6 @@
 package luxe;
 
-import luxe.Input.KeyEvent;
-import luxe.Input.MouseEvent;
-import luxe.Input.TouchEvent;
-
+import luxe.Input;
 import luxe.Objects;
 
 import luxe.options.StateOptions;
@@ -180,13 +177,13 @@ class States {
 		}
 	} //onkeyup
 
-	public function oninputup( name:String, e:Dynamic ) {
+	public function oninputup( name:String, e:InputEvent ) {
 		for (state in active_states) {
 			_call(state, 'oninputup', [name,e]);
 		}
 	} //oninputup
 
-	public function oninputdown( name:String, e:Dynamic ) {
+	public function oninputdown( name:String, e:InputEvent ) {
 		for (state in active_states) {
 			_call(state, 'oninputdown', [name,e]);
 		}

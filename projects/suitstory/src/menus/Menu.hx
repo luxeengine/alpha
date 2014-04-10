@@ -97,11 +97,11 @@ class Menu extends State {
         
     }
    
-    public function onkeyup(e:Dynamic) {
+    public function onkeyup(e:KeyEvent) {
         
     }
 
-    public function onkeydown(e:Dynamic) {
+    public function onkeydown(e:KeyEvent) {
         
         if(e.value == 27) {
             Luxe.shutdown();

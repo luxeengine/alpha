@@ -32,8 +32,15 @@ enum InputType {
     gamepad;
 }
 
+enum InputState {
+    down;
+    up;
+}
+
 typedef InputEvent = {
-    type            : InputType,
+    name             : String,
+    type             : InputType,
+    state            : InputState,
     ?touch_event     : TouchEvent,
     ?mouse_event     : MouseEvent,
     ?key_event       : KeyEvent,
@@ -147,12 +154,16 @@ class Input {
         for(_f in _fired) {
             if(_down) {
                 core.oninputdown( _f, {
+                    name : _f,
                     type : InputType.keys,
+                    state : InputState.down,
                     key_event : e
                 });  
             } else {
                 core.oninputup( _f, {
+                    name : _f,
                     type : InputType.keys,
+                    state : InputState.up,
                     key_event : e
                 });  
             }
@@ -177,12 +188,16 @@ class Input {
         for(_f in _fired) {
             if(_down) {
                 core.oninputdown( _f, {
+                    name : _f,
                     type : InputType.mouse,
+                    state : InputState.down,
                     mouse_event : e
                 });
             } else {
                 core.oninputup( _f, {
+                    name : _f,
                     type : InputType.mouse,
+                    state : InputState.up,
                     mouse_event : e
                 });                
             } 
@@ -236,21 +251,21 @@ class Input {
     @:noCompletion public function touchtap(_event:TouchEvent) {
     } //touchtap
 
-//Joystick
+//Gamepad
 
-    @:noCompletion public function joyaxismove(_event:Dynamic) {
-    } //joyaxismove
+    @:noCompletion public function gamepadaxis(_event:Dynamic) {
+    } //gamepadaxis
 
-    @:noCompletion public function joyballmove(_event:Dynamic) {
-    } //joyballmove
+    @:noCompletion public function gamepadball(_event:Dynamic) {
+    } //gamepadball
 
-    @:noCompletion public function joyhatmove(_event:Dynamic) {
-    } //joyhatmove
+    @:noCompletion public function gamepadhat(_event:Dynamic) {
+    } //gamepadhatmove
 
-    @:noCompletion public function joybuttondown(_event:Dynamic) {
-    } //joybuttondown
+    @:noCompletion public function gamepadbuttondown(_event:Dynamic) {
+    } //gamepadbuttondown
 
-    @:noCompletion public function joybuttonup(_event:Dynamic) {
+    @:noCompletion public function gamepadbuttonup(_event:Dynamic) {
     } //joybuttonup
 
 

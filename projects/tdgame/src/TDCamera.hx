@@ -69,7 +69,7 @@ class TDCamera extends Component {
         } //switch
     } //onmousedown
 
-    public function oninputdown( name:String, e:Dynamic ) {
+    public function oninputdown( name:String, e:InputEvent ) {
         switch(name) {
             case 'left': left = true;
             case 'right': right = true;
@@ -78,7 +78,7 @@ class TDCamera extends Component {
         } //switch
     } //oninputdown
     
-    public function oninputup( name:String, e:Dynamic ) {
+    public function oninputup( name:String, e:InputEvent ) {
         switch(name) {
             case 'left': left = false;
             case 'right': right = false;

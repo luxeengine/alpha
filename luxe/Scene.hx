@@ -1,9 +1,7 @@
 
 package luxe;
 
-import luxe.Input.MouseEvent;
-import luxe.Input.KeyEvent;
-import luxe.Input.TouchEvent;
+import luxe.Input;
 
 class Scene extends Objects {
 
@@ -224,14 +222,14 @@ class Scene extends Objects {
         }
     }
 //Input    
-    public function oninputdown(_name:String, e:Dynamic) {
+    public function oninputdown(_name:String, e:InputEvent) {
         for(entity in entities) {
             if(entity != null) {
                 entity._oninputdown(_name, e);
             }
         }
     } //oninputdown
-    public function oninputup(_name:String, e:Dynamic) {
+    public function oninputup(_name:String, e:InputEvent) {
         for(entity in entities) {
             if(entity != null) {
                 entity._oninputup(_name, e);

@@ -13,6 +13,7 @@ import luxe.Sprite;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Color;
+import luxe.Input;
 import phoenix.Texture;
 
 class Level extends State {
@@ -104,12 +105,12 @@ class Level extends State {
                 _colpoly.data = item;
         }
 
-        for(shape in ground_collision_shapes) {
-            drawer.drawPolygon( cast shape );
-        }
-        for(shape in air_collision_shapes) {
-            drawer.drawPolygon( cast shape );
-        }        
+        // for(shape in ground_collision_shapes) {
+        //     drawer.drawPolygon( cast shape );
+        // }
+        // for(shape in air_collision_shapes) {
+        //     drawer.drawPolygon( cast shape );
+        // }
 
     } //init
 
@@ -156,7 +157,7 @@ class Level extends State {
         return new Rectangle(x,y,w,h);
     }
 
-    public function oninputup(_name:String, _event:Dynamic) {
+    public function oninputup(_name:String, _event:InputEvent) {
         switch(_name) {
             case 'quit':
                 machine.set('mainmenu');

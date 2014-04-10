@@ -3,8 +3,7 @@ package game;
 import game.PlayerAim;
 import game.PlayerTeam;
 import game.PlayerWeapon;
-import luxe.Input.KeyEvent;
-import luxe.Input.KeyValue;
+import luxe.Input;
 import luxe.States;
 import luxe.Rectangle;
 import luxe.Sprite;
@@ -477,19 +476,17 @@ class Manager extends State {
 
     
 
-    public function oninputdown(_name:String, _event:Dynamic) {
-        _event.input_type = 'input.down';
-        _event.input_name = _name;
+    public function oninputdown(_name:String, _event:InputEvent) {
+
         players.get('player1').events.fire('input.down.' + _name, _event );
     }
 
-    public function oninputup(_name:String, _event:Dynamic) {
+    public function oninputup(_name:String, _event:InputEvent) {
         if(_name == 'quit' && !level_running) {
              Luxe.shutdown();
              return;
         }
-        _event.input_type = 'input.up';
-        _event.input_name = _name;
+
         players.get('player1').events.fire('input.up.' + _name, _event );
     }
 

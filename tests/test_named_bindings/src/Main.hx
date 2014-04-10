@@ -12,10 +12,10 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function oninputup( _input:String, e:Dynamic ) {
+    public function oninputup( _input:String, e:InputEvent ) {
         trace( 'named input up : ' + _input );
     }
-    public function oninputdown( _input:String, e:Dynamic ) {
+    public function oninputdown( _input:String, e:InputEvent ) {
         trace( 'named input down : ' + _input );
     }
   

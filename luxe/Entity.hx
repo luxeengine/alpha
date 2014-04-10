@@ -1,11 +1,8 @@
 package luxe;
 
-import luxe.Input.MouseEvent;
-import luxe.Input.KeyEvent;
-import luxe.Input.TouchEvent;
-
 import phoenix.Matrix4;
 
+import luxe.Input;
 import luxe.Vector;
 import luxe.Scene;
 import luxe.components.Components;
@@ -551,7 +548,7 @@ class Entity extends Objects {
 
 //Input
 
-    @:noCompletion public function _oninputdown(_name:String,e:Dynamic) {
+    @:noCompletion public function _oninputdown(_name:String, e:InputEvent) {
 
         _debug('calling _oninputdown on ' + name, true);
 
@@ -572,7 +569,7 @@ class Entity extends Objects {
 
     } //_oninputdown
 
-    @:noCompletion public function _oninputup(_name:String,e:Dynamic) {
+    @:noCompletion public function _oninputup(_name:String, e:InputEvent) {
 
         _debug('calling _oninputup on ' + name, true);
 
