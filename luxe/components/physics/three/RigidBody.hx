@@ -11,6 +11,22 @@ import luxe.Quaternion;
 import luxe.Vector;
 import luxe.utils.Maths;
 
+typedef RigidBodyConstructInfo = {
+    localInertia : Vector,
+    linearDamping : Float,
+    angularDamping : Float,
+    friction : Float,
+    rollingFriction : Float,
+    restitution : Float,
+    linearSleepingThreshold : Float,
+    angularSleepingThreshold : Float,
+    additionalDamping : Bool,
+    additionalDampingFactor : Float,
+    additionalLinearDampingThresholdSqr : Float,
+    additionalAngularDampingThresholdSqr : Float,
+    additionalAngularDampingFactor : Float
+}
+
 class RigidBody extends Component {
 
     public var rigid_body : BtRigidBody;
@@ -38,7 +54,7 @@ class RigidBody extends Component {
     public var additionalAngularDampingThresholdSqr : Float = 0.01;
     public var additionalAngularDampingFactor : Float = 0.01; 
 
-    private var construct_info : Dynamic;
+    private var construct_info : RigidBodyConstructInfo;
 
     var _rotation_vector : Vector;
 

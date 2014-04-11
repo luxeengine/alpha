@@ -4,10 +4,20 @@ import luxe.Input.KeyEvent;
 import luxe.Input;
 import luxe.Resource;
 
+typedef RenderStats = {
+    batchers : Int,
+    geometry_count : Int,
+    dynamic_batched_count : Int,
+    static_batched_count : Int,
+    enabled_count : Int,
+    draw_calls : Int,
+    group_count : Int     
+}
+
 class StatsDebugView extends luxe.debug.DebugView  {
 
-    public var _last_render_stats : Dynamic;
-    public var _render_stats : Dynamic;
+    public var _last_render_stats : RenderStats;
+    public var _render_stats : RenderStats;
 
     public var debug_draw_call_count : Int = 3;
     public var debug_geometry_count : Int = 13;

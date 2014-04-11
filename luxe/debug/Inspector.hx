@@ -8,6 +8,14 @@ import phoenix.BitmapFont;
 
 import luxe.defaults.TinyUI;
 
+typedef DebugInspectorOptions = {
+	? title : String,
+	? font : BitmapFont,
+	? pos  : Vector,
+	? size : Vector,
+	? batcher : Batcher
+}
+
 @:noCompletion class Inspector {
 
 	public var title:String;
@@ -25,7 +33,7 @@ import luxe.defaults.TinyUI;
 
 	public var onrefresh : Void->Void;
 
-	public function new(_options:Dynamic) {
+	public function new( _options:DebugInspectorOptions ) {
 
 		title = 'Inspector';
 		font = Luxe.renderer.default_font;

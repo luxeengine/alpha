@@ -45,6 +45,11 @@ typedef KeyValuePair = {
     var value : String;
 }
 
+typedef PageInfo = {
+    id : Int,
+    file : String
+}
+
 class BitmapFont extends Resource {
 
         //  _font_name:String = '', _bitmap_file : String = '' 
@@ -111,7 +116,7 @@ class BitmapFont extends Resource {
                                       ?custom_pages:Array<Texture> = null ) {
 
         var lines : Array<String> = _bitmap_file.split("\n");
-        var _pages : Array<Dynamic> = new Array<Dynamic>();
+        var _pages : Array<PageInfo> = [];
 
             //store the listener
         onload = onloaded;
@@ -161,7 +166,7 @@ class BitmapFont extends Resource {
                         _file = StringTools.trim( _file );
                         
                             //Store the texture id's in the list
-                        _pages.push({id:_id, file:_file});
+                        _pages.push({ id:_id, file:_file });
                             //Set this so the count is maintained
                         pages.set(_id, null);
 

@@ -254,19 +254,19 @@ class Input {
 
 //Gamepad
 
-    @:noCompletion public function gamepadaxis(_event:Dynamic) {
+    @:noCompletion public function gamepadaxis(_event:GamepadEvent) {
     } //gamepadaxis
 
-    @:noCompletion public function gamepadball(_event:Dynamic) {
+    @:noCompletion public function gamepadball(_event:GamepadEvent) {
     } //gamepadball
 
-    @:noCompletion public function gamepadhat(_event:Dynamic) {
+    @:noCompletion public function gamepadhat(_event:GamepadEvent) {
     } //gamepadhatmove
 
-    @:noCompletion public function gamepadbuttondown(_event:Dynamic) {
+    @:noCompletion public function gamepadbuttondown(_event:GamepadEvent) {
     } //gamepadbuttondown
 
-    @:noCompletion public function gamepadbuttonup(_event:Dynamic) {
+    @:noCompletion public function gamepadbuttonup(_event:GamepadEvent) {
     } //joybuttonup
 
 

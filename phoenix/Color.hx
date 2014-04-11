@@ -5,6 +5,7 @@ import luxe.tween.actuators.SimpleActuator;
 
 //Pieces of the color conversion code come from
 // http://haxe.org/doc/snip/colorconverter
+import luxe.options.ColorOptions;
 
 class Color {
 
@@ -110,7 +111,7 @@ class Color {
 		return Math.min(r, Math.min(g, b));
 	}
 
-	public function tween( ?_time_in_seconds:Float = 0.5, ?_properties_to_tween:Dynamic = null, _override:Bool = true ) {
+	public function tween( ?_time_in_seconds:Float = 0.5, ?_properties_to_tween:ColorOptions = null, _override:Bool = true ) {
 			
 		if(_properties_to_tween != null) {
 
@@ -341,7 +342,7 @@ class ColorHSL extends Color {
 
 	} //set
 
-	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
+	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:ColorOptions = null, _override:Bool = true ) {
 		
 		super.tween(_time_in_seconds, _dest, _override);
 
@@ -517,7 +518,7 @@ class ColorHSV extends Color {
 
 	} //set
 
-	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:Dynamic = null, _override:Bool = true ) {
+	public override function tween( ?_time_in_seconds:Float = 0.5, ?_dest:ColorOptions = null, _override:Bool = true ) {
 			
 		super.tween(_time_in_seconds, _dest, _override);
 		
