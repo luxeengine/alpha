@@ -40,6 +40,8 @@ class Rendering {
         switch( type ) {
             case points:
                 return Std.int(length/4);
+            case lines:
+                return Std.int(length/4);
             case line_strip:
                 return Std.int(length/4);
             case line_loop:
@@ -57,6 +59,8 @@ class Rendering {
         switch( type ) {
             case points:
                 return GL.POINTS;
+            case lines:
+                return GL.LINES;
             case line_strip:
                 return GL.LINE_STRIP;
             case line_loop:

@@ -17,6 +17,7 @@ enum PrimitiveType {
     none;
     line_strip;
     line_loop;
+    lines;
     triangle_strip;
     triangles;
     triangle_fan;
