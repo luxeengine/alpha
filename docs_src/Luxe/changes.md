@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [97452af277](http://github.com/underscorediscovery/luxe/commit/97452af277e82d2046e1e21206b3f96e6d415d17)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 05:50:01 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Input; add typed, removing dynamic</li><li>Texture; general cleanup and fixing get/set pixel types (255 vs 1.0 color types) and dynamic usage</li><li>Camera; removing dynamics and adding CameraOptions</li><li>Components; get is now typed, and get_any is added, for the array type results</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5d6ba290ed](http://github.com/underscorediscovery/luxe/commit/5d6ba290eda2e7a9c67f1588cd8a18ffb4e87457)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 02:59:42 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Batcher; Geometry; Adding missing lines primitive (lol)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [868f965692](http://github.com/underscorediscovery/luxe/commit/868f9656927e830e57dd2178b30e174492a2b71b)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 18:39:22 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Obj; readying importer for more than triangulated faces</li><li>Tests; fixing 3d tests requiring depth-buffer</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [980afdb7a5](http://github.com/underscorediscovery/luxe/commit/980afdb7a55f9cf7649a15ae9a82f0de6061fb61)   
+author: underscorediscovery   
+date: Thu Apr 10 2014 14:04:34 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [6df4613370](http://github.com/underscorediscovery/luxe/commit/6df4613370236a3a0436061f7e112540ac8bb595)   
 author: underscorediscovery   
 date: Thu Apr 10 2014 14:04:09 GMT-0230 (NDT)   
