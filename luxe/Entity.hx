@@ -681,8 +681,12 @@ class Entity extends Objects {
         return _components.remove( _name, _data );
     } //remove
 
-    public function get(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Dynamic {
-        return _components.get( _name, _in_children, _first_only );
+    public function get<T>(_name:String, ?_in_children:Bool = false ) : T {
+        return _components.get( _name, _in_children );
+    } //get
+
+    public function get_any<T>(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Array<T> {
+        return _components.get_any( _name, _in_children, _first_only );
     } //get
 
     public function has( _name:String ) : Bool {

@@ -9,6 +9,8 @@ import luxe.tween.easing.Quad;
 import phoenix.Camera.ProjectionType;
 import phoenix.Quaternion;
 
+import luxe.options.CameraOptions;
+
 typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
@@ -33,15 +35,19 @@ class Camera extends Entity {
     var _rotation_cache : Quaternion;
 
 
-    public function new(?options:Dynamic = null) {
-            
-        if(options == null) options = {};       
+    public function new( ?options:LuxeCameraOptions ) {
 
             //cache for later
         _rotation_radian = new Vector();
         _rotation_cache = new Quaternion();
 
-        var _name = options.name == null ? 'untitled camera' : options.name;
+        var _name = 'untitled camera';
+
+        if(options != null) {
+            if(options.name != null) {
+                _name = options.name;
+            }
+        } 
 
             //Init the entity part
         super({
@@ -50,7 +56,7 @@ class Camera extends Entity {
         });
 
                 //Apply options
-            view = options.view == null ? new phoenix.Camera(options) : options.view;
+            view = options.view == null ? new phoenix.Camera( options ) : options.view;
 
             //Update
         _final_pos = view.pos;

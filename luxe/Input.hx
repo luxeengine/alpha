@@ -125,14 +125,15 @@ class Input {
 
     } //add_key_binding
 
-    public function add( _name:String, _event:Dynamic ) {
-            
-        if(Std.is(_event, KeyValue)) {
+    public function add<T>( _name:String, _binding_value:T ) {
+        
+        if(Std.is(_binding_value, KeyValue)) {
                 //if key value, add it
-            add_key_binding(_name, cast _event);
-        } else if(Std.is(_event, MouseButton)) { 
+            add_key_binding(_name, cast _binding_value);
+
+        } else if(Std.is(_binding_value, MouseButton)) { 
                 //if mouse value, add as mouse value
-            add_mouse_binding(_name, cast _event);
+            add_mouse_binding(_name, cast _binding_value);
         }
 
     } //add

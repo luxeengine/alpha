@@ -9,6 +9,8 @@ import phoenix.Camera;
 import luxe.utils.Maths;
 import luxe.Camera.ProjectionType;
 
+import luxe.options.CameraOptions;
+
 class FlyCamera extends luxe.Camera {
 
     public var move_forward : Bool;
@@ -40,7 +42,7 @@ class FlyCamera extends luxe.Camera {
     static var halfPI = Math.PI*0.5;
     static var twoPI = Math.PI*2;
 
-    public function new(_options:Dynamic = null) {
+    public function new( _options:LuxeCameraOptions ) {
 
         super(_options);
         

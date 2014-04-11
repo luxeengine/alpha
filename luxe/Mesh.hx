@@ -9,6 +9,8 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import luxe.utils.Maths;
 
+import luxe.options.MeshOptions;
+
 class Mesh {
 
 
@@ -20,16 +22,18 @@ class Mesh {
 
     var _rotation_quat : Quaternion;
 
+    public function new( ?_options:MeshOptions ) {
 
-    public function new(?_options:Dynamic = null) {
-
-        if(_options == null) throw "Mesh requires non-null options at the moment";
+        if(_options == null) {
+            throw "Mesh requires non-null options at the moment";
+        }
 
         var _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
 
         _rotation_quat = new Quaternion();   
 
         if(_options.file != null) {
+
             // trace("\t Loading Mesh from file " + _options.file );
             var ext = haxe.io.Path.extension( _options.file );
             switch(ext) {
@@ -38,6 +42,7 @@ class Mesh {
                 default:
                     throw 'cannot handle files with extension ' + ext + ' right now';
             } //switch ext
+            
         } //options.file
 
         if(geometry != null) {

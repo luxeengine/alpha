@@ -80,9 +80,13 @@ class Component extends Objects {
     	return entity.remove( _name, _data );
     } //add
 
-	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
-		return entity.get(_name,in_children,first_only);
+	public function get<T>(_name:String, ?in_children:Bool = false ) : T {
+		return entity.get( _name, in_children );
 	} //get
+
+	public function get_any<T>(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
+		return entity.get_any( _name, in_children, first_only );
+	} //get_any
 
 	@:noCompletion public function entity_pos_change(_p:Vector) {}
 	@:noCompletion public function entity_scale_change(_p:Vector) {}
@@ -209,24 +213,63 @@ class Component extends Objects {
 
     } //remove
 
-	public function get(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Dynamic {
-			
-		_debug('looking for ' + _name + ' in children : ' + in_children + ' first only ; ' + first_only);
+    public function get<T>(_name:String, ?in_children:Bool = false ) : T {
+
+    	_debug('looking for all of ' + _name + ' in children : ' + in_children );
 
 		if(!in_children) {
 
-			return components.get(_name);
+			return cast components.get(_name);
 
 		} else {
 
-			var results = [];
+				//if found in the root entity
+			var in_this_entity = components.get( _name );				
+			if( in_this_entity != null ) {
+				return cast in_this_entity;
+			} 
+
+			_debug('check each of our children for the component');
+
+				//check each child of our entity
+			for(_child in entity.children) {
+				
+				_debug('looking at ' + _child.name + ' for ' + _name );
+				
+				var found : T = _child.get( _name, true );
+				
+				if(found != null) {
+					return cast found;
+				} //found
+
+			} //for each child
+
+			return null;
+
+		} //if in children
+
+		return null;
+
+    } //get
+
+	public function get_any<T>(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
+			
+		_debug('looking for all of ' + _name + ' in children : ' + in_children + ' first only ; ' + first_only);
+
+		var results : Array<T> = [];
+
+		if(!in_children) {
+
+			return [cast components.get(_name)];
+
+		} else {
 
 			var in_this_entity = components.get( _name );
 			if( in_this_entity != null ) {
 				if(first_only) {
-					return in_this_entity;
+					return [cast in_this_entity];
 				} else {
-					results.push( in_this_entity );
+					results.push( cast in_this_entity );
 				}
 			} //if found in the root entity
 
@@ -237,34 +280,26 @@ class Component extends Objects {
 				
 				_debug('looking at ' + _child.name + ' for ' + _name );
 				
-				var found : Dynamic = _child.get( _name, true, first_only );
+				var found : Array<T> = _child.get_any( _name, true, first_only );
 				
 				if(found != null) {
-					if(Std.is(found, Array)) {
-							//only want the first result, i.e not a list
-						if(first_only && found.length > 0) {
-							return found[0];
-						} else {
-							results.concat(found);
-						} //append to the list 
+					
+						//only want the first result, i.e not a list
+					if(first_only && found.length > 0) {
+						return [cast found[0]];
 					} else {
-						if(first_only) {
-							return found;
-						} else {
-							results.push( found );
-						} //first only
-					} //not array
+						results.concat(found);
+					} //append to the list 
+
 				} //found
 
-			} //for each child
-
-			return (results.length > 0) ? results : null;
+			} //for each child			
 
 		} //if in children
 
-		return null;
+		return results;
 
-	} //get
+	} //get_any
 
 	public function has(_name:String) : Bool {
 		return components.exists(_name);

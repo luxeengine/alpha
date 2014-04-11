@@ -2,12 +2,11 @@ package phoenix;
 
 import lime.gl.GL;
 import lime.gl.GLTexture;
-
 import lime.utils.UInt8Array;
-
 import lime.utils.Libs;
 import lime.utils.ArrayBuffer;
 
+import phoenix.Color;
 import phoenix.Vector;
 
 import luxe.Resource;
@@ -28,7 +27,9 @@ enum ClampType {
     mirror;    
 }
 
+
 class Texture extends Resource {
+
 
     public var texture : GLTexture;
     public var data : UInt8Array;
@@ -49,6 +50,7 @@ class Texture extends Resource {
     @:isVar public var filter_mag(default,set) : FilterType;
     @:isVar public var clamp(default,set) : ClampType;
 
+
     public function new( _manager : ResourceManager, ?_type : ResourceType = null ) {
             
         if(_type == null) _type = ResourceType.texture;
@@ -57,7 +59,8 @@ class Texture extends Resource {
         _onload_handlers = new Array<Texture -> Void>();
 
         id = 'Untitled';
-    }
+
+    } //new
 
     public function set_onload( f: Texture -> Void ) {
             //if already loaded when adding an onloaded handler,
@@ -71,24 +74,29 @@ class Texture extends Resource {
         }
 
         return f;
-    }
+
+    } //set_onload
 
     public function do_onload() {
+
         loaded = true;
+        
         for(f in _onload_handlers) {
             f(this);
         }
+        
         _onload_handlers.splice(0,_onload_handlers.length);
-    }
+
+    } //do_onload
 
     public function toString() {
         return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
-    }
+    } //toString
 
-    @:noCompletion public function build(_size : Vector, _color: Dynamic) {
+    @:noCompletion public function build(_size : Vector, _color: Color ) {
 
         if(_size == null) _size = new Vector();
-        if(_color == null) _color = {r:1,g:1,b:1,a:1};
+        if(_color == null) _color = new Color();
         if(_size.x > 0 && _size.y > 0) {
 
             width = Std.int(_size.x);
@@ -101,20 +109,31 @@ class Texture extends Resource {
                 //create a new set of pixels data
             data = new UInt8Array( cast new ArrayBuffer(  ) ); //width * height * 4
                 //fill it up!
+            var _p = new Vector();
+
             for(x in 0 ... width) {
                 for(y in 0 ... height) {
-                    setPixel({x:x, y:y}, _color);
+                    _p.set(x,y);
+                    set_pixel( _p, _color );
                 }
             }
 
             texture = GL.createTexture();
-        }
-    }
+
+            //upload it, todo, this was legacy code
+            //from phoenix but it would be useful, to finish this.
+
+        } //if size is valid
+
+    } //build
 
     public function estimated_memory() {
+        
         var _bytes = (actual_width * actual_height * 4);        
+        
         return Luxe.utils.bytes_to_string(_bytes);
-    }
+
+    } //estimated_memory
 
     public function create_from_bytes_html(_asset_name:String, _asset_bytes, _width, _height ) {
 
@@ -145,7 +164,8 @@ class Texture extends Resource {
 
         // image_bytes = null;
         // data = null; //todo - sven use lock/unlock
-    }
+
+    } //create_from_bytes_html
 
         //Create from the bytes from Assets.getBytes() or other method
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
@@ -218,8 +238,10 @@ class Texture extends Resource {
 
         image_bytes = null;
         data = null; //todo - sven use lock/unlock
+
         // trace('texture.create took ' + (haxe.Timer.stamp() - start));
-    }
+
+    } //create_from_bytes
 
         //Only used for memory array fonts on html5 atm (like the default font and ui)
     public function create_from_bytes_using_haxe( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
@@ -282,146 +304,7 @@ class Texture extends Resource {
         png_header = null;
         data = null; //todo - sven use lock/unlock
 
-    }
-
-
-    private function _set_clamp( _clamp : ClampType ) {
-
-        switch (_clamp) {
-            case ClampType.edge:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE );
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE );
-            case ClampType.repeat:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT );
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT );
-           case ClampType.mirror:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT );
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT );
-        }        
-    }
-
-    private function set_clamp( _clamp : ClampType ) {
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_clamp(_clamp);
-            }
-        } else {
-            bind();
-            _set_clamp(_clamp);
-        }
-
-        return _clamp;
-    }
-
-    function _set_filter( _filter : FilterType ) {       
-
-        switch(_filter) {
-            case FilterType.linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
-
-            case FilterType.nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);  
-
-        //mip filters
-            case FilterType.mip_nearest_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);  
-            case FilterType.mip_linear_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-            case FilterType.mip_nearest_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);            
-            case FilterType.mip_linear_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);            
-        }
-
-    } //set_filter
-
-    function _set_filter_min( _filter : FilterType ) {       
-
-        switch(_filter) {
-            case FilterType.linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
-            case FilterType.nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-
-        //mip filters
-            case FilterType.mip_nearest_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-            case FilterType.mip_linear_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-            case FilterType.mip_nearest_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-            case FilterType.mip_linear_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-        }
-
-    } //set_filter_min
-
-    function _set_filter_mag( _filter : FilterType ) {       
-
-        switch(_filter) {
-            case FilterType.linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
-            case FilterType.nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
-
-        //mip filters
-            case FilterType.mip_nearest_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-            case FilterType.mip_linear_nearest:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
-            case FilterType.mip_nearest_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-            case FilterType.mip_linear_linear:
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-        }
-
-    } //set_filter_min
-
-    function set_filter( _filter : FilterType ) {
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_filter(_filter);
-            }
-        } else {
-            bind();
-            _set_filter(_filter);
-        }
-        return filter = _filter;
-    }
-
-    function set_filter_min( _filter : FilterType ) {
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_filter_min(_filter);
-            }
-        } else {
-            bind();
-            _set_filter_min(_filter);
-        }
-        return filter_min = _filter;
-    }
-
-    function set_filter_mag( _filter : FilterType ) {
-        if(loaded == false) {
-            onload = function(t) {
-                bind();
-                _set_filter_mag(_filter);
-            }
-        } else {
-            bind();
-            _set_filter_mag(_filter);
-        }
-        return filter_mag = _filter;
-    }
+    } //create_from_bytes_using_haxe
 
     public function generate_mipmaps() {
 
@@ -458,37 +341,35 @@ class Texture extends Resource {
         Luxe.renderer.state.bindTexture2D( texture );
     }
 
-    public function activate(att) {
+    public function get_pixel( _pos : Vector ) {
         
-    }
-
-    public function getPixel(_pos) {
         if(data == null) return null;
 
         var x : Int = Std.int(_pos.x);
         var y : Int = Std.int(_pos.y);
 
         return {
-            r: data[ (((y*width)+x)*4)  ],
-            g: data[ (((y*width)+x)*4)+1],
-            b: data[ (((y*width)+x)*4)+2],
-            a: data[ (((y*width)+x)*4)+3]
+            r: data[ (((y*width)+x)*4)  ]/255.0,
+            g: data[ (((y*width)+x)*4)+1]/255.0,
+            b: data[ (((y*width)+x)*4)+2]/255.0,
+            a: data[ (((y*width)+x)*4)+3]/255.0
         };
-    }
 
-    public function setPixel(_pos, _color) {
+    } //get_pixel
+
+    public function set_pixel( _pos:Vector, _color:Color ) {
         
         if(data == null) return;
 
         var x : Int = Std.int(_pos.x);
         var y : Int = Std.int(_pos.y);
 
-        data[ (((y*width)+x)*4)  ] = _color.r;
-        data[ (((y*width)+x)*4)+1] = _color.g;
-        data[ (((y*width)+x)*4)+2] = _color.b;
-        data[ (((y*width)+x)*4)+3] = _color.a;
+        data[ (((y*width)+x)*4)  ] = Std.int(_color.r*255);
+        data[ (((y*width)+x)*4)+1] = Std.int(_color.g*255);
+        data[ (((y*width)+x)*4)+2] = Std.int(_color.b*255);
+        data[ (((y*width)+x)*4)+3] = Std.int(_color.a*255);
 
-    }
+    } //set_pixel
 
     public function lock() {
         
@@ -511,24 +392,187 @@ class Texture extends Resource {
             GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data);
 
             data = null;
+
         }
 
-    }
+    } //unlock
 
     public override function drop() {
+
         super.drop();
         destroy();
-    }
 
-    public function destroy() {        
+    } //drop
+
+    public function activate(att) { }
+
+    public function destroy() {
+
         GL.deleteTexture(texture);
         data = null;
-    }
 
+    } //destroy
+
+
+    function _set_clamp( _clamp : ClampType ) {
+
+        switch (_clamp) {
+            case ClampType.edge:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.CLAMP_TO_EDGE );
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.CLAMP_TO_EDGE );
+            case ClampType.repeat:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.REPEAT );
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.REPEAT );
+           case ClampType.mirror:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT );
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT );
+        }   
+
+    } //_set_clamp
+
+    function set_clamp( _clamp : ClampType ) {
+
+        if(loaded == false) {
+            onload = function(t) {
+                bind();
+                _set_clamp(_clamp);
+            }
+        } else {
+            bind();
+            _set_clamp(_clamp);
+        }
+
+        return _clamp;
+
+    } //set_clamp
+
+    function _set_filter( _filter : FilterType ) {       
+
+        switch(_filter) {
+
+            case FilterType.linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
+
+            case FilterType.nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);  
+
+        //mip filters
+            case FilterType.mip_nearest_nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);  
+            case FilterType.mip_linear_nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
+            case FilterType.mip_nearest_linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);            
+            case FilterType.mip_linear_linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+
+        } //switch _filter
+
+    } //set_filter
+
+    function _set_filter_min( _filter : FilterType ) {       
+
+        switch(_filter) {
+
+            case FilterType.linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR);
+            case FilterType.nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
+
+        //mip filters
+            case FilterType.mip_nearest_nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
+            case FilterType.mip_linear_nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
+            case FilterType.mip_nearest_linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
+            case FilterType.mip_linear_linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+        
+        } //switch _filter
+
+    } //set_filter_min
+
+    function _set_filter_mag( _filter : FilterType ) {       
+
+        switch(_filter) {
+
+            case FilterType.linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR);
+            case FilterType.nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
+
+        //mip filters
+            case FilterType.mip_nearest_nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);
+            case FilterType.mip_linear_nearest:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
+            case FilterType.mip_nearest_linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);
+            case FilterType.mip_linear_linear:
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);
+        } //switch _filter
+
+    } //set_filter_min
+
+    function set_filter( _filter : FilterType ) {
+
+        if(loaded == false) {
+            onload = function(t) {
+                bind();
+                _set_filter(_filter);
+            }
+        } else {
+            bind();
+            _set_filter(_filter);
+        }
+
+        return filter = _filter;
+
+    } //set_filter
+
+    function set_filter_min( _filter : FilterType ) {
+
+        if(loaded == false) {
+            onload = function(t) {
+                bind();
+                _set_filter_min(_filter);
+            }
+        } else {
+            bind();
+            _set_filter_min(_filter);
+        }
+
+        return filter_min = _filter;
+
+    } //set_filter_min
+
+    function set_filter_mag( _filter : FilterType ) {
+        
+        if(loaded == false) {
+            onload = function(t) {
+                bind();
+                _set_filter_mag(_filter);
+            }
+        } else {
+            bind();
+            _set_filter_mag(_filter);
+        }
+        
+        return filter_mag = _filter;
+
+    } //set_filter_mag
 
     private static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
     private static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
     private static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
     private static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2); 
 
-}
+
+} //Texture
