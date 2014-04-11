@@ -6,11 +6,19 @@ import luxe.Core;
     import luxe.physics.PhysicsBullet;
 #end //haxebullet
 
+#if nape
+    import luxe.physics.PhysicsNape;
+#end //nape
+
 class Physics {
 
 #if haxebullet    
     public var bullet : PhysicsBullet;
 #end //haxebullet
+
+#if nape 
+    public var nape : PhysicsNape;
+#end //nape
         
     public var core : Core;
     public var engines : Array<PhysicsEngine>;
@@ -26,6 +34,10 @@ class Physics {
         #if haxebullet
             bullet = add_engine(luxe.physics.PhysicsBullet);
         #end //haxebullet
+
+        #if nape
+            nape = add_engine(luxe.physics.PhysicsNape);
+        #end //nape
 
     }
 
