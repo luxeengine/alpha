@@ -1,5 +1,6 @@
 package phoenix;
 
+
 import luxe.Resource;
 import luxe.ResourceManager;
 
@@ -9,6 +10,7 @@ import phoenix.Texture;
 import lime.gl.GL;
 import lime.gl.GLShader;
 import lime.gl.GLProgram;
+import lime.gl.GLUniformLocation;
 
 enum UniformValueType {
     int;
@@ -21,11 +23,11 @@ enum UniformValueType {
     unknown;
 }
 
-typedef UniformValue = {
+typedef UniformValue<T> = {
     var name : String;
-    var value : Dynamic;
+    var value : T;
     var type : UniformValueType;
-    var location : Dynamic;
+    var location : GLUniformLocation;
 }
 
 class Shader extends Resource {
@@ -33,8 +35,8 @@ class Shader extends Resource {
     public var errors : String = '';
     public var log : String = '';
 
-    public var vert_shader : Dynamic;
-    public var frag_shader : Dynamic;
+    public var vert_shader : GLShader;
+    public var frag_shader : GLShader;
     public var program : GLProgram;
     public var shader : GLShader;
 
@@ -43,25 +45,25 @@ class Shader extends Resource {
     public var color_attribute  : Int = 2;
     public var normal_attribute : Int = 3;
 
-    public var projectionmatrix_attribute : Dynamic;
-    public var modelviewmatrix_attribute : Dynamic;
-    public var tex0_attribute : Dynamic;
-    public var tex1_attribute : Dynamic;
-    public var tex2_attribute : Dynamic;
-    public var tex3_attribute : Dynamic;
-    public var tex4_attribute : Dynamic;
-    public var tex5_attribute : Dynamic;
-    public var tex6_attribute : Dynamic;
-    public var tex7_attribute : Dynamic;    
+    public var projectionmatrix_attribute : GLUniformLocation;
+    public var modelviewmatrix_attribute : GLUniformLocation;
+    public var tex0_attribute : GLUniformLocation;
+    public var tex1_attribute : GLUniformLocation;
+    public var tex2_attribute : GLUniformLocation;
+    public var tex3_attribute : GLUniformLocation;
+    public var tex4_attribute : GLUniformLocation;
+    public var tex5_attribute : GLUniformLocation;
+    public var tex6_attribute : GLUniformLocation;
+    public var tex7_attribute : GLUniformLocation;    
 
-    public var uniforms : Map<String, Dynamic>;
+    public var uniforms : Map<String, UniformValue<Dynamic> >;
     
     var uniform_textures : Map<String,Texture>;
 
     public function new( _manager : ResourceManager ) {
         
         super( _manager, ResourceType.shader );
-        uniforms = new Map<String,Dynamic>();
+        uniforms = new Map<String, UniformValue<Dynamic> >();
         uniform_textures = new Map();
 
     } //new
@@ -81,11 +83,11 @@ class Shader extends Resource {
 
    public function set_uniform_int( _name:String, _value:Int ) : Void {
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+            var _uniformvalue : UniformValue<Int> = uniforms.get(_name);
                 _uniformvalue.value = _value;
         } else {
 
-            var _uniformvalue : UniformValue = {
+            var _uniformvalue : UniformValue<Int> = {
                 name : _name,
                 value : _value,
                 type : UniformValueType.int,
@@ -97,11 +99,11 @@ class Shader extends Resource {
     } //set_uniform_int
    public function set_uniform_float( _name:String, _value:Float ) : Void {
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+            var _uniformvalue : UniformValue<Float> = uniforms.get(_name);
                 _uniformvalue.value = _value;
         } else {
 
-            var _uniformvalue : UniformValue = {
+            var _uniformvalue : UniformValue<Float> = {
                 name : _name,
                 value : _value,
                 type : UniformValueType.float,
@@ -113,52 +115,106 @@ class Shader extends Resource {
     } //set_uniform_float
 
     public function set_uniform_vector2( _name:String, _value:Vector ) : Void {
+        
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+
+            var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
                 _uniformvalue.value = _value;
+
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector2, location : GL.getUniformLocation( program, _name ) }
+
+            var _uniformvalue : UniformValue<Vector> = { 
+                name : _name, 
+                value : _value, 
+                type : UniformValueType.vector2, 
+                location : GL.getUniformLocation( program, _name ) 
+            }
+
             uniforms.set(_name, _uniformvalue);
         }
     } //set_uniform_vector2
 
     public function set_uniform_vector3( _name:String, _value:Vector ) : Void {
+        
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+
+            var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
                 _uniformvalue.value = _value;
+
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector3, location : GL.getUniformLocation( program, _name ) }
+
+            var _uniformvalue : UniformValue<Vector> = { 
+                name : _name, 
+                value : _value, 
+                type : UniformValueType.vector3, 
+                location : GL.getUniformLocation( program, _name ) 
+            }
+
             uniforms.set(_name, _uniformvalue);
+
         }
+
     } //set_uniform_vector3
 
     public function set_uniform_vector4( _name:String, _value:Vector ) : Void {
+
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+
+            var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
                 _uniformvalue.value = _value;
+
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.vector4, location : GL.getUniformLocation( program, _name ) }
+            
+            var _uniformvalue : UniformValue<Vector> = { 
+                name : _name, 
+                value : _value, 
+                type : UniformValueType.vector4, 
+                location : GL.getUniformLocation( program, _name ) 
+            }
+
             uniforms.set(_name, _uniformvalue);
-        }
+
+        } //if exists
+
     } //set_uniform_vector4
 
     public function set_uniform_color( _name:String, _value:Color ) : Void {
+
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+
+            var _uniformvalue : UniformValue<Color> = uniforms.get(_name);
                 _uniformvalue.value = _value;
+
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.color, location : GL.getUniformLocation( program, _name ) }
-                uniforms.set(_name, _uniformvalue);
+
+            var _uniformvalue : UniformValue<Color> = { 
+                name : _name, 
+                value : _value, 
+                type : UniformValueType.color, 
+                location : GL.getUniformLocation( program, _name ) 
+            }
+                
+            uniforms.set(_name, _uniformvalue);
+
         }
+
     } //set_uniform_color
 
     public function set_uniform_texture( _name:String, _value:Texture ) : Void {
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue = cast uniforms.get(_name);
+
+            var _uniformvalue : UniformValue<Texture> = uniforms.get(_name);
                 _uniformvalue.value = _value;
                 uniform_textures.set(_name, _value);
+
         } else {
-            var _uniformvalue : UniformValue = { name : _name, value : _value, type : UniformValueType.texture, location : GL.getUniformLocation( program, _name ) }
+
+            var _uniformvalue : UniformValue<Texture> = { 
+                name : _name, value : _value, 
+                type : UniformValueType.texture, 
+                location : GL.getUniformLocation( program, _name ) 
+            }
+
             uniforms.set(_name, _uniformvalue);
             uniform_textures.set(_name, _value);
         }
@@ -169,12 +225,15 @@ class Shader extends Resource {
     public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
 
         var _shader = GL.createShader( _type );
-        GL.shaderSource( _shader,  _source);
-        GL.compileShader(_shader);
+
+            GL.shaderSource( _shader,  _source);
+            GL.compileShader(_shader);
 
         var shader_log = '';
+
         if(_verbose) {
             shader_log = GL.getShaderInfoLog(_shader);
+
             if(shader_log.length > 0) {
 
                 addLog("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
@@ -323,51 +382,52 @@ class Shader extends Resource {
         GL.uniform1i( tex6_attribute, 6);
         GL.uniform1i( tex7_attribute, 7);
 
-        for(_uniform in uniforms) {
-            var uniform : UniformValue = cast _uniform;
+        for(uniform in uniforms) {
+
             switch(uniform.type) {
                 case UniformValueType.int:
-                    setUniformInt(uniform.name, cast uniform.value, uniform.location);
+                    setUniformInt(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.float:
-                    setUniformFloat(uniform.name, cast uniform.value, uniform.location);
+                    setUniformFloat(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.vector2:
-                    setUniformVector2(uniform.name, cast uniform.value, uniform.location);
+                    setUniformVector2(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.vector3:
-                    setUniformVector3(uniform.name, cast uniform.value, uniform.location);
+                    setUniformVector3(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.vector4:
-                    setUniformVector4(uniform.name, cast uniform.value, uniform.location);
+                    setUniformVector4(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.color:
-                    setUniformColor(uniform.name, cast uniform.value, uniform.location);
+                    setUniformColor(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.texture:
-                    setUniformTexture(uniform.name, cast uniform.value, uniform.location);
+                    setUniformTexture(uniform.name, uniform.value, uniform.location);
                 case UniformValueType.unknown:
-            }
+            } //switch type
+
         } //for each uniform
     }
 
-    @:noCompletion public function getUniform( uniform_name : String  ) : lime.gl.GLUniformLocation {
+    @:noCompletion public function getUniform( uniform_name : String  ) : GLUniformLocation {
         return GL.getUniformLocation( program, uniform_name );
     }
 
-    @:noCompletion public function setUniformInt( uniform_name:String, value:Int, location:Dynamic = null ) {
+    @:noCompletion public function setUniformInt( uniform_name:String, value:Int, location:GLUniformLocation = null) {
         GL.uniform1i( location, value );
     }
-    @:noCompletion public function setUniformFloat( uniform_name:String, value:Float, location:Dynamic = null  ) {
+    @:noCompletion public function setUniformFloat( uniform_name:String, value:Float, location:GLUniformLocation = null ) {
         GL.uniform1f( location, value );
     }
-    @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector, location:Dynamic = null  ) {
+    @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector, location:GLUniformLocation = null ) {
         GL.uniform2f( location, value.x, value.y);
     }
-    @:noCompletion public function setUniformVector3( uniform_name:String, value:Vector, location:Dynamic = null  ) {
+    @:noCompletion public function setUniformVector3( uniform_name:String, value:Vector, location:GLUniformLocation = null ) {
         GL.uniform3f( location, value.x, value.y, value.z );
     }
-    @:noCompletion public function setUniformVector4( uniform_name:String, value:Vector, location:Dynamic = null  ) {
+    @:noCompletion public function setUniformVector4( uniform_name:String, value:Vector, location:GLUniformLocation = null ) {
         GL.uniform4f( location, value.x, value.y, value.z, value.w );
     }
-    @:noCompletion public function setUniformColor( uniform_name:String, value:Color, location:Dynamic = null  ) {
+    @:noCompletion public function setUniformColor( uniform_name:String, value:Color, location:GLUniformLocation = null ) {
         GL.uniform4f( location, value.r, value.g, value.b, value.a );
     }
-    @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:Dynamic = null  ) {
+    @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:GLUniformLocation = null ) {
         value.bind();
         GL.uniform1i( location, value.slot );
         Luxe.renderer.state.activeTexture(GL.TEXTURE0);

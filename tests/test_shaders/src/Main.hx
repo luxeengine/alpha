@@ -37,18 +37,21 @@ class Main extends luxe.Game {
     	distort_sprite = new Sprite({
     		texture : luxe_tex,
     		pos : new Vector(_size/2,_size),
-            size : new Vector(_size,_size)
-    	});        
+            size : new Vector(_size,_size),
+            depth : 2
+    	});
 
     	hue_sprite = new Sprite({
     		texture : luxe_tex,
     		pos : new Vector(_size+(_size*0.05),_size),
-            size : new Vector(_size,_size)
+            size : new Vector(_size,_size),
+            depth : 2
     	});
 
     	level_sprite = new Sprite({
     		texture : level_texture,
-    		pos : new Vector(Luxe.screen.w/2,Luxe.screen.h/2)
+    		pos : new Vector(Luxe.screen.w/2,Luxe.screen.h/2),
+            depth : 0
     	});
 
     		//for the logo blocks image
@@ -61,14 +64,18 @@ class Main extends luxe.Game {
 	    	hue_sprite.shader = hue_shader;
 
 	    	loaded_logo = true;
+
     	} //luxe_tex on load
 
     	level_texture.onload = function(tt) {
-    		level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
+    		
+            level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
+            
             // #if !mobile
     		  level_tiltshift = Luxe.loadShader('assets/gray_tilt_shift.glsl');
 	    	  level_sprite.shader = level_tiltshift;
             // #end
+
     	} //level tex on load
 
     	distort_map.onload = function(tt) {

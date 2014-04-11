@@ -10,6 +10,7 @@ import phoenix.BatchState;
 import lime.gl.GL;
 import lime.gl.GLBuffer;
 import lime.utils.Float32Array;
+import lime.gl.GLUniformLocation;
 
 import luxe.structural.BalancedBinarySearchTree;
 
@@ -90,22 +91,22 @@ class Batcher {
     public var vcolorBuffers : Array<GLBuffer>;
     public var normalBuffers : Array<GLBuffer>;
 
-    public var projectionmatrix_attribute : Dynamic; 
-    public var modelviewmatrix_attribute : Dynamic;
+    public var projectionmatrix_attribute : GLUniformLocation; 
+    public var modelviewmatrix_attribute : GLUniformLocation;
 
     public var vert_attribute   : Int = 0;
     public var tcoord_attribute : Int = 1;
     public var color_attribute  : Int = 2;
     public var normal_attribute : Int = 3;
 
-    public var tex0_attribute : Dynamic;
-    public var tex1_attribute : Dynamic;
-    public var tex2_attribute : Dynamic;
-    public var tex3_attribute : Dynamic;
-    public var tex4_attribute : Dynamic;
-    public var tex5_attribute : Dynamic;
-    public var tex6_attribute : Dynamic;
-    public var tex7_attribute : Dynamic;      
+    public var tex0_attribute : GLUniformLocation;
+    public var tex1_attribute : GLUniformLocation;
+    public var tex2_attribute : GLUniformLocation;
+    public var tex3_attribute : GLUniformLocation;
+    public var tex4_attribute : GLUniformLocation;
+    public var tex5_attribute : GLUniformLocation;
+    public var tex6_attribute : GLUniformLocation;
+    public var tex7_attribute : GLUniformLocation;      
 
     public var renderer : Renderer;
     public var view : Camera;

@@ -17,7 +17,7 @@ class RenderState {
         _viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
     }
 
-    public function enable( what:Dynamic ) {
+    public function enable( what:Int ) {
         switch(what) {
             case GL.CULL_FACE:
                 if(!cull_face) {
@@ -34,7 +34,7 @@ class RenderState {
         } //switch
     } //enable_if_not
 
-    public function disable( what:Dynamic ) {
+    public function disable( what:Int ) {
         switch(what) {
             case GL.CULL_FACE:
                 if(cull_face) {
@@ -77,8 +77,8 @@ class RenderState {
         }
     } //useProgram
 
-    var _active_texture = null;
-    public function activeTexture( val:Dynamic ) {
+    var _active_texture = -1;
+    public function activeTexture( val:Int ) {
         if(_active_texture != val) {
             GL.activeTexture(val);
             _active_texture = val;
