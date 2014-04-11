@@ -26,7 +26,7 @@ class Circle {
         return new Circle(x,y,r);
     } //clone
 
-    public function set(?_x:Float, ?_y:Float, ?_w:Float, ?_r:Float) {
+    public function set(?_x:Float, ?_y:Float, ?_r:Float) {
         var _setx = x;
         var _sety = y;
         var _setr = r;
