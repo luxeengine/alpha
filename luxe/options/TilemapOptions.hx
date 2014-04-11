@@ -3,6 +3,13 @@ package luxe.options;
 import phoenix.Texture;
 import luxe.tilemaps.Tilemap;
 
+
+typedef TilemapVisualOptions = {
+    ? scale : Float,
+    ? grid : Bool,
+    ? filter : FilterType
+}
+
 typedef TilemapOptions = {
     ?x : Int,
     ?y : Int,

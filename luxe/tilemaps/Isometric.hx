@@ -12,6 +12,8 @@ import phoenix.Texture.FilterType;
 import phoenix.geometry.Geometry;
 import phoenix.Vector;
 
+import luxe.options.TilemapOptions;
+
 class Isometric {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
@@ -63,13 +65,13 @@ class Isometric {
 
 class IsometricVisuals extends TilemapVisuals {
 
-    public override function create( options:Dynamic ) {
+    public override function create( options:TilemapVisualOptions ) {
 
-        var _scale = (options.scale != null) ? options.scale : 1;
+        var _scale : Float = (options.scale != null) ? options.scale : 1;
 
             //map tile size scaled up
-        var _scaled_tilewidth = map.tile_width*_scale;
-        var _scaled_tileheight = map.tile_height*_scale;
+        var _scaled_tilewidth = Std.int(map.tile_width*_scale);
+        var _scaled_tileheight = Std.int(map.tile_height*_scale);
 
         for( layer in map ) {
 

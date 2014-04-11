@@ -1,6 +1,9 @@
 package luxe;
 
 import luxe.components.Components;
+import phoenix.Texture;
+
+import luxe.options.ParticleOptions;
 
 class ParticleSystem extends Entity {
 
@@ -17,7 +20,7 @@ class ParticleSystem extends Entity {
 
     } //init
 
-    public function add_emitter(_template:Dynamic) {
+    public function add_emitter(_template:ParticleEmitterOptions) {
 
         if(emitters == null) emitters = new Map<String, ParticleEmitter>();
 
@@ -73,7 +76,7 @@ class ParticleSystem extends Entity {
 
 typedef ParticleEmitterInitData = {
     system : ParticleSystem, 
-    template : Dynamic
+    template : ParticleEmitterOptions
 } //ParticleEmitterInitData
 
 class ParticleEmitter extends Component {
@@ -95,11 +98,11 @@ class ParticleEmitter extends Component {
     public var cache_size : Int = 100;
     public var cache_index : Int = 0;
 
-    public var depth : Int = 0;
+    public var depth : Float = 0;
     public var group : Int = 0;
 
         //emitter properties
-    public var particle_image : phoenix.Texture = null;
+    public var particle_image : Texture = null;
     public var pos_value : Vector;
     public var pos_offset : Vector;
     public var pos_random : Vector;
@@ -139,7 +142,7 @@ class ParticleEmitter extends Component {
     public var end_color_random : Color;
 
         //The template
-    public var template : Dynamic = null;
+    public var template : ParticleEmitterOptions;
 
         //internal stuff
     var emit_timer : Float = 0; 
@@ -173,13 +176,13 @@ class ParticleEmitter extends Component {
 
     } //init
 
-    public function apply(_template:Dynamic) {
+    public function apply(_template:ParticleEmitterOptions) {
 
         if(_template == null) _template = {};
         
         (_template.depth != null) ? 
             depth = _template.depth : 
-            depth = 0; 
+            depth = 0.0; 
 
         (_template.group != null) ? 
             group = _template.group : 

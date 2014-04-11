@@ -10,6 +10,7 @@ import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 
+import luxe.options.NineSliceOptions;
 
 typedef Slice = {
     pos : Vector,
@@ -41,15 +42,13 @@ class NineSlice extends luxe.Sprite {
     @:noCompletion public var midheight : Float = 0.0;
     @:noCompletion public var slices : Array<Slice>;
     @:noCompletion public var added : Bool = false;
-    @:noCompletion public var nineslice_options : Dynamic;
+    @:noCompletion public var nineslice_options : NineSliceOptions<Dynamic>;
     @:noCompletion public var _geometry : ComplexGeometry;
 
     private var _batcher : Batcher;
 
-
-    public function new(_options:Dynamic) {
-
-        nineslice_options = {};   
+    public function new<T>( _options:NineSliceOptions<T> ) {
+        
             //default to internal batcher
         _batcher = Luxe.renderer.default_batcher;
         slices = new Array<Slice>();
@@ -68,8 +67,6 @@ class NineSlice extends luxe.Sprite {
 
         nineslice_options = _options;
         
-        if(_options.depth != null)      nineslice_options.depth = _options.depth;
-        if(_options.group != null)      nineslice_options.group = _options.group;
         if(_options.batcher != null)    _batcher = _options.batcher;
         
             //sprite options to parent

@@ -10,6 +10,8 @@ import luxe.Vector;
 
 import phoenix.geometry.Geometry;
 
+import luxe.options.TilemapOptions;
+
 class Ortho {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
@@ -56,7 +58,7 @@ class Ortho {
 
 class OrthoVisuals extends TilemapVisuals {    
 
-    public override function create( options:Dynamic ) {
+    public override function create( options:TilemapVisualOptions ) {
 
         var _scale = (options.scale != null) ? options.scale : 1;        
 

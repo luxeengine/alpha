@@ -96,10 +96,12 @@ class Main extends luxe.Game {
     } //ready
   
     public function onmousemove( e:MouseEvent ) {
+
         mouse.set(e.x,e.y);
         particles.pos = mouse; 
 
         ss.pos = mouse;
+        
     } //onmousemove
 
     public function onmousedown( e:MouseEvent ) {

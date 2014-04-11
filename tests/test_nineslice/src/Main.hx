@@ -1,4 +1,5 @@
 
+import luxe.Color;
 import luxe.NineSlice;
 import luxe.Vector;
 import luxe.Input;
@@ -15,6 +16,8 @@ class Main extends luxe.Game {
 
 
     public function ready() {
+
+        Luxe.renderer.clear_color = new Color().rgb(0xefefef);
 
         geom = new NineSlice({
             texture : Luxe.loadTexture('default_ui_box'),
