@@ -9,16 +9,14 @@ import luxe.Events;
 import luxe.Input;
 import luxe.Scene;
 import luxe.Debug;
-import luxe.debug.ProfilerDebugView;
 import luxe.Timer;
+import luxe.Physics;
+
+import luxe.debug.ProfilerDebugView;
 
 import phoenix.Renderer;
 import phoenix.Texture;
 import phoenix.Shader;
-
-#if haxebullet
-    import luxe.Physics;
-#end //haxebullet
 
 
 #if (!luxe_threading_disabled && luxe_native) 
@@ -82,10 +80,7 @@ import phoenix.Shader;
     public var scene    : Scene;
     public var renderer : Renderer;
     public var screen   : luxe.Screen;
-
-#if haxebullet
     public var physics  : Physics;
-#end //haxebullet
 
 //Delta times    
     public var dt : Float = 0;
@@ -185,10 +180,7 @@ import phoenix.Shader;
         events = new Events();
         audio = new Audio( this );  
         input = new Input( this );
-
-        #if haxebullet
-            physics = new Physics( this );    
-        #end //haxebullet
+        physics = new Physics( this );
 
             //create the renderer
         renderer = new Renderer( this );
@@ -204,12 +196,8 @@ import phoenix.Shader;
         time.init();
         audio.init();
         input.init();
-
-        #if haxebullet
-            physics.init();
-        #end //haxebullet
-                
-        renderer.init();        
+        renderer.init();  
+        physics.init();      
 
         Luxe.audio = audio;
         Luxe.draw = draw;     
@@ -218,10 +206,7 @@ import phoenix.Shader;
         Luxe.input = input;
         Luxe.camera = new luxe.Camera({ name:'default_camera', view:renderer.default_camera });
         Luxe.resources = renderer.resource_manager;
-
-        #if haxebullet
-            Luxe.physics = physics;
-        #end //haxebullet
+        Luxe.physics = physics;
 
         scene = new Scene();
         scene.name = 'default scene';
@@ -255,8 +240,9 @@ import phoenix.Shader;
 
         if(renderer != null && renderer.destroy != null) {
             renderer.destroy();
-        }        
+        }
 
+        physics.destroy();
         input.destroy();
         audio.destroy();
         time.destroy();
@@ -306,11 +292,9 @@ import phoenix.Shader;
             #if luxe_fullprofile debug.end(core_tag_events); #end
 
 //Physics
-        #if haxebullet
-            debug.start(core_tag_physics);
-            physics.process();   //physics 
-            debug.end(core_tag_physics);
-        #end //haxebullet
+        debug.start(core_tag_physics);
+        physics.process();
+        debug.end(core_tag_physics);
 
         #if (luxe_native && !luxe_threading_disabled) 
 //Background threads sending requests our way

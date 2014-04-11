@@ -26,11 +26,12 @@ import phoenix.formats.obj.Reader;
 import luxe.components.cameras.FlyCamera;
 import luxe.components.render.MeshComponent;
 
-import luxe.components.physics.three.BoxCollider;
-import luxe.components.physics.three.PlaneCollider;
-import luxe.components.physics.three.SphereCollider;
-import luxe.components.physics.three.MeshCollider;
-import luxe.components.physics.three.RigidBody;
+import luxe.components.physics.bullet.three.BoxCollider;
+import luxe.components.physics.bullet.three.PlaneCollider;
+import luxe.components.physics.bullet.three.SphereCollider;
+import luxe.components.physics.bullet.three.MeshCollider;
+import luxe.components.physics.bullet.three.RigidBody;
+
 
 class Main extends luxe.Game {
 
@@ -45,8 +46,9 @@ class Main extends luxe.Game {
     var rotation : Vector;
     var info : Text;
 
+
     public function ready() {
-        
+
         Luxe.screen.cursor.locked = false;
         Luxe.screen.cursor.visible = true;
         Luxe.screen.cursor.visible = true;
@@ -105,7 +107,7 @@ class Main extends luxe.Game {
             p0 : new Vector(0+10, 0, 0-10),
             p1 : new Vector(0+10, 0, 0+10),
             batcher : batch3d
-        });      
+        });
 
     } //derp
 
@@ -178,48 +180,59 @@ class Main extends luxe.Game {
 
     } //load level
 
-    public function onkeydown(e) {
+    public function onkeydown( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.key_Q) {
+        if(e.key == KeyValue.key_Q) {
             cam3d.shake(1);
         }
 
-        if(e.value == Input.Keys.escape) {
+        if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }
 
-        if(e.value == Input.Keys.space) {
-            Luxe.physics.pause( !Luxe.physics.paused );
+        if(e.key == KeyValue.space) {
+            Luxe.physics.bullet.pause( !Luxe.physics.bullet.paused );
+        }
+
+        if(e.key == KeyValue.key_E) {
+            ramp = !ramp;
+            if(ramp) {
+                luxe.tween.Actuate.tween( Luxe.physics.bullet, 0.8, { step_rate:0.00167, rate:0.00167 });
+            } else {
+                luxe.tween.Actuate.tween( Luxe.physics.bullet, 0.8, { step_rate:0.0167, rate:0.0167 });
+            }
         }
 
         cam3d.onkeydown(e);
 
     } //onkeydown
 
+    var ramp = false;
     var hidden = false;
     var locked = false;
+
     public function onkeyup(e:KeyEvent) {
 
-        if(e.value == Input.Keys.key_R) {
+        if(e.key == KeyValue.key_R) {
             cube_rigidbody_component.rigid_body.origin = new Vector(0,10,0);
             cube_rigidbody_component.rigid_body.linearVelocity = new Vector(0,0,0);
             cube_rigidbody_component.rigid_body.angularVelocity = new Vector(0,0,0);
             cube_rigidbody_component.rigid_body.activate();
         } //key_R
 
-        if(e.value == Input.Keys.key_1) {
+        if(e.key == KeyValue.key_1) {
             cube_mesh_component.mesh.rotation = new Vector(0,0,0);
         } //key_4
-        if(e.value == Input.Keys.key_2) {
+        if(e.key == KeyValue.key_2) {
             cube_mesh_component.mesh.rotation = new Vector(0,90,0);
         } //key_4
-        if(e.value == Input.Keys.key_3) {
+        if(e.key == KeyValue.key_3) {
             cube_mesh_component.mesh.rotation = new Vector(0,-90,0);
         } //key_4
-        if(e.value == Input.Keys.key_4) {
+        if(e.key == KeyValue.key_4) {
             cube_mesh_component.mesh.rotation = new Vector(90,0,0);
         } //key_5
-        if(e.value == Input.Keys.key_5) {
+        if(e.key == KeyValue.key_5) {
             cube_mesh_component.mesh.rotation = new Vector(0,0,90);
         } //key_5
 

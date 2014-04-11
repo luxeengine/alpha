@@ -33,11 +33,7 @@ class Luxe {
     public static var input     : luxe.Input;
     public static var scene     : luxe.Scene;    
     public static var utils     : luxe.utils.Utils;
-
-#if haxebullet
     public static var physics   : luxe.Physics;    
-#end //haxebullet
-
     public static var camera    : luxe.Camera;
     public static var resources : luxe.ResourceManager;    
     public static var renderer  : phoenix.Renderer;

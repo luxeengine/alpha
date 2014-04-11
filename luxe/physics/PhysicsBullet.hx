@@ -1,12 +1,6 @@
-package luxe;
-
-import luxe.Core;
+package luxe.physics;
 
 #if haxebullet
-
-    #if luxe_html5
-    import bullet.AmmoBinding;
-    #end //luxe_html5
 
     import bullet.bulletCollision.broadphaseCollision.BtDbvtBroadphase;
     import bullet.bulletCollision.collisionDispatch.BtCollisionDispatcher;
@@ -16,16 +10,17 @@ import luxe.Core;
 
     import bullet.bulletDynamics.dynamics.BtRigidBody;
 
+    #if luxe_html5
 
-    class Physics {
-        
+        import bullet.AmmoBinding;
 
-        public var core : Core;
+    #end //luxe_html5
+
+    class PhysicsBullet extends luxe.Physics.PhysicsEngine {
 
         public var rate : Float = 0.0167;
         public var step_rate : Float = 0.0167;
         public var max_iterations : Int = 7;
-        public var paused : Bool = false;
         public var do_debug_draw : Bool = true;
 
         public var dynamicsWorld : BtDiscreteDynamicsWorld;
@@ -35,14 +30,7 @@ import luxe.Core;
         var dispatcher : BtCollisionDispatcher;
         var solver : BtSequentialImpulseConstraintSolver;        
 
-
-        public function new( _core:Core ) {
-            
-            core = _core;
-
-        } //new
-
-        public function init() {
+        public override function init() {
 
                 // Build the broadphase
             broadphase = new BtDbvtBroadphase();
@@ -56,8 +44,6 @@ import luxe.Core;
             dynamicsWorld = new BtDiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
                 // Set the default gravity
             dynamicsWorld.setGravity( new Vector( 0, -10, 0 ) );
-
-            core._debug(':: luxe :: \t Physics Initialized.');
 
         }  //init
 
@@ -78,20 +64,9 @@ import luxe.Core;
             // haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
         } //start_loop
 
-        public function pause( ?_pause:Bool = true ) {
+        public override function process() {
 
-                //if already paused
-                //and we unpausing, start the loop
-            if(paused) {
-                if(_pause == false) {
-                    // start_loop();
-                }
-            }
-            paused = _pause;
-
-        } //pause
-
-        public function process() {
+            super.process();
 
             if(!paused) {
 
@@ -105,18 +80,19 @@ import luxe.Core;
 
         } //fixedProcess
 
-        public function destroy() {
+        public override function destroy() {
+
+            super.destroy();
 
             dynamicsWorld.destroy();
             solver.destroy();
             dispatcher.destroy();
             collisionConfiguration.destroy();
-            broadphase.destroy();
+            broadphase.destroy();            
 
-            core._debug(':: luxe :: \t Physics shut down.');
         } //destroy
 
-
-    } //Physics
+    } //PhysicsBullet
 
 #end //haxebullet
+
