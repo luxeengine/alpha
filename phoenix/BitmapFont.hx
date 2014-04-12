@@ -222,8 +222,9 @@ class BitmapFont extends Resource {
                     //store the texture in the map for use
                 _t.onload = function(t_t) { 
                     pages.set(_page_item.id, _t); 
-                    _t.generate_mipmaps();
-                    _t.filter = FilterType.mip_linear_linear;
+                    // _t.generate_mipmaps();
+                    _t.filter_min = FilterType.linear;
+                    // _t.filter_mag = FilterType.linear; 
                 }
 
             }
