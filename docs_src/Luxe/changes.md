@@ -1,6 +1,146 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [3a197f7c65](http://github.com/underscorediscovery/luxe/commit/3a197f7c650dcf5429d9fbc4a0a1acd052bd7a47)   
+author: underscorediscovery   
+date: Sat Apr 12 2014 00:35:33 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Fonts; cleaning up filtering for minification, and solving webgl/ES complaining about invalid mag filter (doesn't support mipmaps on mag! http://stackoverflow.com/a/12318929/305975)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a498364626](http://github.com/underscorediscovery/luxe/commit/a498364626534548bd090617e1bd80dd192abcf1)   
+author: underscorediscovery   
+date: Sat Apr 12 2014 00:34:19 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; Nape; Adding custom debug draw, wip, and making demo interactive (press left/right arrow)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [afcb7981d3](http://github.com/underscorediscovery/luxe/commit/afcb7981d3219a9753c059314ab5a5af61edf2c2)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 18:42:43 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; Adding prelim Nape support, working ok but no visual connection yet</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f615d8b4eb](http://github.com/underscorediscovery/luxe/commit/f615d8b4eb23852966b9311f09cc16e000504d3a)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 17:58:19 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; not sure why this is saying it isn't committed...</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [72a1df307a](http://github.com/underscorediscovery/luxe/commit/72a1df307aeeab5c34c6ec337b9100c459f0b32d)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 17:57:55 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; cleanup and adding multiple engine bindings for #67</li><li>Added ramping to three/ demo (press E to ramp time)</li><li>Added a multi physics handler that will facilitate using any or all 3</li><li>of the physics engines together (they will not interact, obviously).</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b6de3d9fcc](http://github.com/underscorediscovery/luxe/commit/b6de3d9fcc49a479cc32d7443d49fdcfc33ac4b9)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 15:06:34 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; continued cleanup for #77</li><li>Nineslice options typed</li><li>Particle emitter templates typed</li><li>Tilemap visual options typed</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [09d1ec9338](http://github.com/underscorediscovery/luxe/commit/09d1ec93386a0dd0f43e5d66ca4b201cfcdbf95b)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 14:23:29 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; continue on #77</li><li>Removed Rigidbody Dynamic construct info</li><li>Debug inspector options typed</li><li>Stats debug view values typed</li><li>Input Gamepad events typed</li><li>ColorOptions added for colour tweens</li><li>BitmapFont pages info typed</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [064590137b](http://github.com/underscorediscovery/luxe/commit/064590137b997c81eb48733492bdf5f132d2d180)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 13:53:47 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>General; continued cleanup for #77</li><li>Batcher shader uniforms, shader class types and locations, render state</li><li>flags typed</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [68a5d3dc4e](http://github.com/underscorediscovery/luxe/commit/68a5d3dc4ecf52277482179a94154b64ea7ca606)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 12:46:31 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>fixing extra flag</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [167c91603a](http://github.com/underscorediscovery/luxe/commit/167c91603ae5b7c29826bebb6a2242454088e140)   
+author: underscorediscovery   
+date: Fri Apr 11 2014 05:51:18 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; updating changes, previous commit related to #77</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [97452af277](http://github.com/underscorediscovery/luxe/commit/97452af277e82d2046e1e21206b3f96e6d415d17)   
 author: underscorediscovery   
 date: Fri Apr 11 2014 05:50:01 GMT-0230 (NDT)   
