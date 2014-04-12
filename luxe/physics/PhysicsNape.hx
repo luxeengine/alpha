@@ -17,6 +17,7 @@ class PhysicsNape extends luxe.Physics.PhysicsEngine {
 
     public override function init() {
 
+            //unit's are pixels/second/second
         var gravity = Vec2.weak(0, 980);
         
         space = new Space(gravity);
