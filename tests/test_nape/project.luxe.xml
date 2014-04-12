@@ -20,5 +20,8 @@
     <haxelib name="luxe" />
 
     <haxelib name="nape" />
+
+    <haxeflag name="-dce" value="no" />
+    <haxedef name="NAPE_RELEASE_BUILD" />
     
 </project>
