@@ -2,6 +2,7 @@
 import luxe.Input;
 
 import nape.constraint.Constraint;
+import nape.constraint.PivotJoint;
 import nape.geom.Vec2;
 import nape.phys.Body;
 import nape.phys.BodyType;
@@ -243,18 +244,31 @@ class Main extends luxe.Game {
 
     var debug : LuxeNapeDebug;
     var ball : Body;
+    var mouseJoint : PivotJoint;
 
     public function ready() {
 
         debug = new LuxeNapeDebug();
 
+        reset_world();
+
+    } //ready
+
+    function reset_world() {
         var w = Luxe.screen.w;
         var h = Luxe.screen.h;
 
-        var floor = new Body(BodyType.STATIC);
-        
-            floor.shapes.add(new Polygon(Polygon.rect(50, (h - 50), (w - 100), 1)));
-            floor.space = Luxe.physics.nape.space;
+        mouseJoint = new PivotJoint(Luxe.physics.nape.space.world, null, Vec2.weak(), Vec2.weak());
+        mouseJoint.space = Luxe.physics.nape.space;
+        mouseJoint.active = false;
+        mouseJoint.stiff = false;
+
+        var border = new Body(BodyType.STATIC);
+            border.shapes.add(new Polygon(Polygon.rect(0, 0, w, -1)));
+            border.shapes.add(new Polygon(Polygon.rect(0, h, w, 1)));
+            border.shapes.add(new Polygon(Polygon.rect(0, 0, -1, h)));
+            border.shapes.add(new Polygon(Polygon.rect(w, 0, 1, h)));
+            border.space = Luxe.physics.nape.space;
 
             for (i in 0...16) {
                 var box = new Body(BodyType.DYNAMIC);
@@ -263,23 +277,77 @@ class Main extends luxe.Game {
                 box.space = Luxe.physics.nape.space;
             }
 
-             ball = new Body(BodyType.DYNAMIC);
+            ball = new Body(BodyType.DYNAMIC);
                 ball.shapes.add(new Circle(50));
                 ball.position.setxy(50, h / 2);
                 ball.angularVel = 10;
-                ball.space = Luxe.physics.nape.space;        
+                ball.space = Luxe.physics.nape.space;
+    }
 
-    } //ready
+    function onmouseup( e:MouseEvent ) {
+        mouseJoint.active = false;
+    }
+
+    function onmousedown( e:MouseEvent ) {
+
+        var mousePoint = Vec2.get(e.pos.x, e.pos.y);
+
+        for (body in Luxe.physics.nape.space.bodiesUnderPoint(mousePoint)) {
+
+            if (!body.isDynamic()) {
+                continue;
+            }
+
+            mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
+ 
+            // Configure hand joint to drag this body.
+            //   We initialise the anchor point on this body so that
+            //   constraint is satisfied.
+            //
+            //   The second argument of worldPointToLocal means we get back
+            //   a 'weak' Vec2 which will be automatically sent back to object
+            //   pool when setting the mouseJoint's anchor2 property.
+            mouseJoint.body2 = body;
+            mouseJoint.anchor2.set( body.worldPointToLocal(mousePoint, true));
+ 
+            // Enable hand joint!
+            mouseJoint.active = true;
+ 
+            break;
+        }
+
+        mousePoint.dispose();
+    }
+
+    function onmousemove( e:MouseEvent ) {
+        if (mouseJoint.active) {
+            mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
+        }
+    }
+    
+    function ontouchmove( e:MouseEvent ) {
+        if (mouseJoint.active) {
+            mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
+        }
+    }
 
     public function onkeyup( e:KeyEvent ) {
 
         var imp = 900;
 
+        if(e.key == KeyValue.key_R) {
+            Luxe.physics.nape.space.clear();
+            reset_world();
+        }
+
         if(e.key == KeyValue.left) {
-            ball.applyImpulse(new Vec2(-imp, -imp), ball.position);
+            ball.applyImpulse(new Vec2(-imp, 0), ball.position);
+        }
+        if(e.key == KeyValue.up) {
+            ball.applyImpulse(new Vec2(0, -imp), ball.position);
         }
         if(e.key == KeyValue.right) {
-            ball.applyImpulse(new Vec2(imp, -imp), ball.position);
+            ball.applyImpulse(new Vec2(imp, 0), ball.position);
         }
 
         if(e.key == KeyValue.escape) {
