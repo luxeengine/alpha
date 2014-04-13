@@ -80,8 +80,8 @@ class ProfilerDebugView extends luxe.debug.DebugView {
         if(!_setup) {
             ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher');
             ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher_view');
-            ProfilerDebugView.hide_item('batch.debug_batcher');
-            // ProfilerDebugView.hide_item('batch.debug_batcher_view');
+            // ProfilerDebugView.hide_item('batch.debug_batcher');
+            ProfilerDebugView.hide_item('batch.debug_batcher_view');
             _setup = true;
         }
     }
