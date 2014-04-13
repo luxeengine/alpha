@@ -40,7 +40,7 @@ class TraceDebugView extends luxe.debug.DebugView {
             align_vertical : luxe.Text.TextAlign.bottom,
             size : 15,
             batcher : debug.batcher,
-            enabled : false
+            visible : false
         });
 
         lines.geometry.locked = true;        
@@ -56,7 +56,7 @@ class TraceDebugView extends luxe.debug.DebugView {
         logged.push(_t);
 
             //update the line geometry
-        if(!Luxe.debug.visible) return;
+        if(!visible) return;
 
         refresh_lines();
 

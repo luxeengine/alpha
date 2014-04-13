@@ -152,7 +152,7 @@ class Visual extends Entity {
                         shader : shader,
                         depth : (options.depth == null) ? 0 : options.depth,
                         group : (options.group == null) ? 0 : options.group,
-                        enabled : (options.visible == null) ? true : options.visible
+                        visible : (options.visible == null) ? true : options.visible
                     });
 
                 _creating_geometry = false;
@@ -224,7 +224,7 @@ class Visual extends Entity {
 
             //careful
         if(geometry != null) {
-            geometry.enabled = _v;
+            geometry.visible = visible;
         }
 
         return visible;
@@ -316,14 +316,14 @@ class Visual extends Entity {
             geometry.scale = scale;
             geometry.group = group;
             geometry.depth = depth;            
-            geometry.enabled = visible;
+            geometry.visible = visible;
             geometry.shader = shader;
 
             if(!ignore_texture_on_geometry_change) {
                 geometry.texture = texture;
             }
 
-        }        
+        }
 
         return geometry;
         

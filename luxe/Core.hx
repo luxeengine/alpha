@@ -346,9 +346,9 @@ import phoenix.Shader;
         } //host.update
 
 //And finally the debug stuff
-            debug.start(core_tag_debug);
+            #if luxe_fullprofile debug.start(core_tag_debug); #end
         debug.process(); 
-            debug.end(core_tag_debug);
+            #if luxe_fullprofile debug.end(core_tag_debug); #end
 
 //Update delta time
 

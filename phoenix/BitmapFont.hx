@@ -334,7 +334,7 @@ class BitmapFont extends Resource {
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
          var _size : Float = (options.size == null) ? 32 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.default_batcher : options.batcher;
-         var _enabled : Bool = (options.enabled == null) ? true : options.enabled;
+         var _visible : Bool = (options.visible == null) ? true : options.visible;
          var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
          var _final_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
 
@@ -362,7 +362,7 @@ class BitmapFont extends Resource {
                 texture : pages[i],
                 color : _col,
                 depth : _depth,
-                enabled : _enabled,
+                visible : _visible,
                 immediate : _immediate
             });
 
@@ -534,7 +534,7 @@ class BitmapFont extends Resource {
         
         _final_geom.id = 'drawn_text- ' + _string;
         _final_geom.immediate = _immediate;
-        _final_geom.enabled = _enabled;
+        _final_geom.visible = _visible;
 
         return _final_geom;
     }

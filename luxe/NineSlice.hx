@@ -368,7 +368,7 @@ class NineSlice extends luxe.Sprite {
         super.set_visible(_v);
 
         if(is_set) {
-            _geometry.enabled = _v;
+            _geometry.visible = _v;
         }
 
         return visible = _v;
@@ -419,7 +419,7 @@ class NineSlice extends luxe.Sprite {
             color : _color,
             depth : nineslice_options.depth,
             group : nineslice_options.group,
-            enabled : nineslice_options.enabled            
+            visible : nineslice_options.visible            
         });
 
         for(slice in slices) {

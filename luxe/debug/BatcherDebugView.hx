@@ -258,14 +258,13 @@ class BatcherDebugView extends luxe.debug.DebugView {
         }
     }
 
-    var visible : Bool = false;
     public override function show() {
-        visible = true;
+        super.show();
         refresh();
     }
 
     public override function hide() {
-        visible = false;   
+        super.hide();
         clear_batcher_tree();
     }
 

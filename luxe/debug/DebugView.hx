@@ -9,6 +9,8 @@ class DebugView extends luxe.Objects {
         super();
     }
     
+    public var visible : Bool = false;
+
     public function refresh() {
         
     }
@@ -37,9 +39,9 @@ class DebugView extends luxe.Objects {
         
     }
     public function show() {
-
+        visible = true;
     }
     public function hide() {
-
+        visible = false;
     }
 }

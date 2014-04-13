@@ -65,8 +65,8 @@ class Debug {
         views = [
             new TraceDebugView(),
             new StatsDebugView(),
+            new BatcherDebugView(),
             new ProfilerDebugView()
-            // new BatcherDebugView()
         ];
 
         current_view = views[0];        
@@ -126,7 +126,7 @@ class Debug {
             color : new Color(0,0,0,0.8),
             depth : 999,    //debug depth
             group : 999,    //debug group
-            enabled : false //default invisible
+            visible : false //default invisible
         });
 
             //add the geometry to the renderer
@@ -290,12 +290,12 @@ class Debug {
 
         if(_show) {
             current_view.show();
-            overlay.enabled = true;
+            overlay.visible = true;
             debug_inspector.show();
         } else {
             current_view.hide();
             debug_inspector.hide();
-            overlay.enabled = false;
+            overlay.visible = false;
         }
 
     } //show_console

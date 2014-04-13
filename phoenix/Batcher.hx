@@ -114,7 +114,7 @@ class Batcher {
     public var draw_calls : Int = 0;
     public var dynamic_batched_count : Int = 0;
     public var static_batched_count : Int = 0;
-    public var enabled_count : Int = 0;
+    public var visible_count : Int = 0;
 
     public var log : Bool = false;
     public var name : String = '';
@@ -577,7 +577,7 @@ class Batcher {
         //reset render stats before we start
         dynamic_batched_count = 0;
         static_batched_count = 0;
-        enabled_count = 0;
+        visible_count = 0;
 
         verts = 0;
         tcoords = 0;
@@ -619,9 +619,9 @@ class Batcher {
                     // Now activate state changes (if any)
                 state.activate(this);
 
-                if(geom.enabled) {
+                if(geom.visible) {
                         //try
-                    enabled_count++;
+                    visible_count++;
 
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
@@ -664,7 +664,7 @@ class Batcher {
                         geom.drop();
                     } //!persist_immediate && geom.immediate
 
-                } //geom.enabled
+                } //geom.visible
 
             } else { //!null && !dropped
                 //todo: If there is null or dropped geometry shouldn't they be removed or maybe

@@ -108,7 +108,7 @@ typedef DebugInspectorOptions = {
 			font : font,
 			text : title,
 			size : 18,
-			enabled : false
+			visible : false
 		});
 
 		_title_text.geometry.id = 'debug.title.text';

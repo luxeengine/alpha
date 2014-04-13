@@ -46,6 +46,7 @@ class Geometry {
     public var added : Bool = false;
     public var batchers : Array<Batcher>;
 
+        //state
     public var state : GeometryState;
     public var dropped : Bool = false;
     public var uuid : String = '';
@@ -75,7 +76,7 @@ class Geometry {
     private var dirty_clip : Bool = false;
 
         //Geometry properties   
-    @:isVar public var enabled      (default, set) : Bool = true;
+    @:isVar public var visible      (default, set) : Bool = true;
     @:isVar public var locked       (get, set) : Bool = false;
     @:isVar public var dirty        (get, set) : Bool = false;
     @:isVar public var immediate    (default, default) : Bool;
@@ -140,7 +141,7 @@ class Geometry {
 
             origin      = (options.origin == null)      ? origin    : options.origin;
             immediate   = (options.immediate == null)   ? false     : options.immediate;
-            enabled     = (options.enabled == null)     ? true      : options.enabled;
+            visible     = (options.visible == null)     ? true      : options.visible;
 
             color       = (options.color == null)       ? new Color() : options.color;
             
@@ -197,8 +198,6 @@ class Geometry {
 
     public function drop( ?remove:Bool = true ) {
         
-        dropped = true;
-
         if( remove && added ) {
             
             for(b in batchers) {                
@@ -206,6 +205,8 @@ class Geometry {
             } //for each batcher
 
         }
+
+        dropped = true;
 
     } //drop
 
@@ -508,11 +509,11 @@ class Geometry {
 
 //Visibility
 
-    public function set_enabled(val : Bool) : Bool {
+    public function set_visible(val : Bool) : Bool {
 
-        return enabled = val;
+        return visible = val;
 
-    } //set_enabled
+    } //set_visible
 
 //Color
 

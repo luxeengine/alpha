@@ -6,8 +6,6 @@ typedef NineSliceOptions<T> = {
     
     > SpriteOptions<T>,
 
-    ? enabled : Bool,
-    
     ? top : Float,
     ? left : Float,
     ? right : Float,

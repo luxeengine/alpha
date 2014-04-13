@@ -197,15 +197,15 @@ class CompositeGeometry extends Geometry {
         return clip_rect = val;
     } //set_clip_rect
 
-    public override function set_enabled(val : Bool) : Bool {
+    public override function set_visible(val : Bool) : Bool {
 
         if(geometry != null) {
             for(geom in geometry) {
-                geom.enabled = val;
+                geom.visible = val;
             }
         }
 
-        return enabled = val;
-    } //set_enabled
+        return visible = val;
+    } //set_visible
 
 } //CompositeGeometry

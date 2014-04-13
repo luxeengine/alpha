@@ -258,7 +258,7 @@ class Stage1Level1 extends State {
             color : new Color(1,0.3,0.1,0)
         }); 
 
-        // aim.enabled = false;
+        // aim.visible = false;
 
         Luxe.addGroup(2, 
             function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.05 ); },
@@ -923,8 +923,8 @@ class Stage1Level1 extends State {
 
         if(pre_shoot && !shoot_range) {
             shid = true;
-            // power.enabled = false;
-            // aim.enabled = false;
+            // power.visible = false;
+            // aim.visible = false;
         }
 
         if(inrange) {
@@ -950,7 +950,7 @@ class Stage1Level1 extends State {
             
             if(shid) {
                 shid = false;
-                // aim.enabled = true;
+                // aim.visible = true;
             }
             
         }

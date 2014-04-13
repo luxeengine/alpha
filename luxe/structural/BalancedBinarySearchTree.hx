@@ -528,6 +528,8 @@ class BalancedBinarySearchTreeNode<K,T> {
 		value = _value;
 		nodecount = _nodecount;
 		color = _color;
+        left = null;        
+        right = null;        
 	} //new
 
 } //BalancedBinarySearchTreeNode

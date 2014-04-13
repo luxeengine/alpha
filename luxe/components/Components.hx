@@ -317,4 +317,4 @@ class Component extends Objects {
     @:noCompletion public static var _show_debug : Bool = false;
     @:noCompletion private function _debug(v){ if(_show_debug) { trace(v); } }		
 
-} //AcceptsComponents
+} //Components

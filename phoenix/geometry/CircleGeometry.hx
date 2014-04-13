@@ -54,7 +54,7 @@ class CircleGeometry extends Geometry {
             //Apply the new options 
 		set( options.x, options.y, _radius_x, _radius_y, options.steps, options.start_angle, options.end_angle );
 
-        if(options.enabled != null) enabled = options.enabled;
+        if(options.visible != null) visible = options.visible;
 
 	} //new
 
@@ -109,6 +109,7 @@ class CircleGeometry extends Geometry {
 
 		//and finally, set the position
 		pos.set( _x, _y );
+        
 	}
 
 } //CircleGeometry

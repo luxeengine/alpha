@@ -457,7 +457,7 @@ class RendererStats {
     public var geometry_count : Int = 0;
     public var dynamic_batched_count : Int = 0;
     public var static_batched_count : Int = 0;
-    public var enabled_count : Int = 0;
+    public var visible_count : Int = 0;
     public var draw_calls : Int = 0;
     public var group_count : Int = 0;
 
@@ -465,7 +465,7 @@ class RendererStats {
         geometry_count = 0;
         dynamic_batched_count = 0;
         static_batched_count = 0;
-        enabled_count = 0;
+        visible_count = 0;
         group_count = 0;
         draw_calls = 0;        
     }
@@ -474,7 +474,7 @@ class RendererStats {
             'Renderer Statistics\n' + 
             '\tbatcher count : ' + batchers + '\n' +
             '\ttotal geometry : ' + geometry_count + '\n' +
-            '\tenabled geometry : ' + enabled_count + '\n' +
+            '\tvisible geometry : ' + visible_count + '\n' +
             '\tdynamic batched geometry : ' + dynamic_batched_count + '\n' +
             '\tstatic batched geometry : ' + static_batched_count + '\n' +
             '\ttotal draw calls : ' + draw_calls;

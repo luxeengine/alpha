@@ -11,7 +11,6 @@ import phoenix.geometry.Vertex;
 
 class ProfilerDebugView extends luxe.debug.DebugView {
 
-    public var core:ProfilerValue;
     public static var lists:Map<String,ProfilerValue>;
 
     public function new() {
@@ -20,6 +19,34 @@ class ProfilerDebugView extends luxe.debug.DebugView {
 
         name = 'Profiler';
         lists = new Map();
+    }
+
+    var _setup : Bool = false;
+
+    public static function add_offset(_id:String, _offset:String) {
+        var _item = lists.get(_id);
+        var _offsetitem = lists.get(_offset);
+        if(_item != null && _offsetitem != null) {
+            _item.offsets.push(_offsetitem);
+        } else {
+            trace("not found for " + _id + " or " + _offset);
+            trace(_item + " / " + _offsetitem);
+        }
+    }
+
+    public static function hide_item(_id:String) {
+        var _item = lists.get(_id);
+        if(_item != null) {
+            _item.hidden = true;
+            _item.bar.hide();
+        }
+    }
+    public static function show_item(_id:String) {
+        var _item = lists.get(_id);
+        if(_item != null) {
+            _item.hidden = false;
+            _item.bar.show();
+        }
     }
 
     public static function start(_id:String) {
@@ -45,7 +72,17 @@ class ProfilerDebugView extends luxe.debug.DebugView {
 
     public override function show() {
         for(_item in lists) {
-            _item.bar.show();
+            if(!_item.hidden) {
+                _item.bar.show();
+            }
+        }
+
+        if(!_setup) {
+            ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher');
+            ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher_view');
+            ProfilerDebugView.hide_item('batch.debug_batcher');
+            // ProfilerDebugView.hide_item('batch.debug_batcher_view');
+            _setup = true;
         }
     }
     public override function hide() {
@@ -58,22 +95,31 @@ class ProfilerDebugView extends luxe.debug.DebugView {
 
 private class ProfilerValue {
 
+    public var offsets : Array<ProfilerValue>;
     public var bar : ProfilerBar;
     public var name : String;
     public var start : Float = 0.0;
     public var history : Array<Float>;
     public var avg : Int = 10;
+    public var hidden : Bool = false;
     var count : Int = 0;
     var accum : Float = 0;
 
     public function new(_name:String, _bar:ProfilerBar) {
         name = _name; bar = _bar;
         history = [];
+        offsets = [];
     }
 
     public function set() {
 
         var _t = haxe.Timer.stamp() - start;
+
+            //adjust by any offsets
+        for(_offset in offsets) {
+            _t -= _offset.history[_offset.history.length-1];
+        }
+
             //push the value into history
         history.push(_t);
             //drop old values
@@ -134,6 +180,7 @@ private class ProfilerBar {
         color_green = new Color().rgb(0x228844);
         color_normal = new Color().rgb(0xf0f0f0);
 
+        max = (1/Luxe.core.config.fps) * 1000;
         name = _name;
         segment = (width/history);
         height2 = height*2;
@@ -191,18 +238,18 @@ private class ProfilerBar {
 
     public function hide() {
         visible = false;
-        bar_geometry.enabled = false;
-        bg_geometry.enabled = false;
-        graph_geometry.enabled = false;
-        graphbg_geometry.enabled = false;
+        bar_geometry.visible = false;
+        bg_geometry.visible = false;
+        graph_geometry.visible = false;
+        graphbg_geometry.visible = false;
         text_item.visible = false;
     }
     public function show() {
         visible = true;
-        bar_geometry.enabled = true;
-        bg_geometry.enabled = true;
-        graph_geometry.enabled = true;
-        graphbg_geometry.enabled = true;
+        bar_geometry.visible = true;
+        bg_geometry.visible = true;
+        graph_geometry.visible = true;
+        graphbg_geometry.visible = true;
         text_item.visible = true;
     }
 
@@ -227,14 +274,14 @@ private class ProfilerBar {
         if(_p > 1) {
             _p = 1;
             graph_geometry.vertices[history-1].color = color_red;
-        } else if(_p < 0.15) { 
+        } else if(_p < 0.2) { 
             graph_geometry.vertices[history-1].color = color_green;
         } else { 
             graph_geometry.vertices[history-1].color = color_normal; 
         }
 
-        if(_p < 0.005) {
-            _p = 0.005;
+        if(_p < 0.001) {
+            _p = 0.001;
         }
 
         graph_geometry.vertices[history-1].pos.y = ((height2)*(1.0-_p));

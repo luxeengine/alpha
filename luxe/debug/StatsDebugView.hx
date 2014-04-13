@@ -9,7 +9,7 @@ typedef RenderStats = {
     geometry_count : Int,
     dynamic_batched_count : Int,
     static_batched_count : Int,
-    enabled_count : Int,
+    visible_count : Int,
     draw_calls : Int,
     group_count : Int     
 }
@@ -38,7 +38,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             geometry_count : 0,
             dynamic_batched_count : 0,
             static_batched_count : 0,
-            enabled_count : 0,
+            visible_count : 0,
             draw_calls : 0,
             group_count : 0      
         };          
@@ -48,7 +48,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             geometry_count : 0,
             dynamic_batched_count : 0,
             static_batched_count : 0,
-            enabled_count : 0,
+            visible_count : 0,
             draw_calls : 0,
             group_count : 0
         };        
@@ -64,7 +64,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             'Renderer Statistics\n' + 
             '\tbatcher count : ' + _render_stats.batchers + '\n' +
             '\ttotal geometry : ' + _render_stats.geometry_count + '\n' +
-            '\tenabled geometry : ' + _render_stats.enabled_count + '\n' +
+            '\tvisible geometry : ' + _render_stats.visible_count + '\n' +
             '\tdynamic batch count : ' + _render_stats.dynamic_batched_count + '\n' +
             '\tstatic batch count : ' + _render_stats.static_batched_count + '\n' +
             '\ttotal draw calls : ' + _render_stats.draw_calls;            
@@ -83,7 +83,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             text : get_render_stats_string(),
             size : 18,
             batcher : debug.batcher,
-            enabled : false
+            visible : false
         });
         
         resource_stats_text = new luxe.Text({
@@ -95,7 +95,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             text : get_resource_stats_string(),
             size : 18,
             batcher : debug.batcher,
-            enabled : false
+            visible : false
         });
         
         resource_list_text = new luxe.Text({
@@ -107,7 +107,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             text : '',
             size : 14,
             batcher : debug.batcher,
-            enabled : false
+            visible : false
         });
 
 
@@ -149,6 +149,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
 
     public override function process() {
+
+        if(!visible) return;
+        
         var dirty = false;
         
             //Update the local statistics
@@ -162,8 +165,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
             { dirty = true; _last_render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count; }
         if(_last_render_stats.static_batched_count != _render_stats.static_batched_count) 
             { dirty = true; _last_render_stats.static_batched_count = _render_stats.static_batched_count; }
-        if(_last_render_stats.enabled_count != _render_stats.enabled_count) 
-            { dirty = true; _last_render_stats.enabled_count = _render_stats.enabled_count; }
+        if(_last_render_stats.visible_count != _render_stats.visible_count) 
+            { dirty = true; _last_render_stats.visible_count = _render_stats.visible_count; }
         if(_last_render_stats.draw_calls != _render_stats.draw_calls) 
             { dirty = true; _last_render_stats.draw_calls = _render_stats.draw_calls; }
         if(_last_render_stats.group_count != _render_stats.group_count) 
@@ -172,28 +175,35 @@ class StatsDebugView extends luxe.debug.DebugView  {
         if(dirty) {
             refresh_render_stats();
         } //dirty
-    }
+
+    } //process
 
     public override function onkeydown(e:KeyEvent) {
-        if(e.key == KeyValue.key_2 && Luxe.debug.visible ) {
+        if(e.key == KeyValue.key_2 && visible ) {
             toggle_debug_stats();
         }
-    }
+    } //onkeydown
 
     public override function show() {
+        super.show();
         refresh();
         render_stats_text.visible = true;
         resource_stats_text.visible = true;
         resource_list_text.visible = true;        
-    }
+    } //show
 
     public override function hide() {
+        super.hide();
         render_stats_text.visible = false;
         resource_stats_text.visible = false;
         resource_list_text.visible = false;
-    }
+    } //hide
 
    public function refresh_render_stats() {
+
+        if(!visible) {
+            return;
+        }
 
         render_stats_text.text = get_render_stats_string();
         resource_stats_text.text = get_resource_stats_string();
@@ -218,16 +228,16 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         _render_stats.batchers = Luxe.renderer.stats.batchers;
         _render_stats.geometry_count = Luxe.renderer.stats.geometry_count;
-        _render_stats.enabled_count = Luxe.renderer.stats.enabled_count;
+        _render_stats.visible_count = Luxe.renderer.stats.visible_count;
         _render_stats.dynamic_batched_count = Luxe.renderer.stats.dynamic_batched_count;
         _render_stats.static_batched_count = Luxe.renderer.stats.static_batched_count;
         _render_stats.draw_calls = Luxe.renderer.stats.draw_calls;
 
         if(hide_debug) {
 
-            _render_stats.batchers = _render_stats.batchers - 1;
+            _render_stats.batchers = _render_stats.batchers - 2;
             _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
-            _render_stats.enabled_count = _render_stats.enabled_count - _render_stats.enabled_count;
+            _render_stats.visible_count = _render_stats.visible_count - _render_stats.visible_count;
             _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - Luxe.debug.batcher.dynamic_batched_count;// - Luxe.debug.batcher.static_batched_count;
             _render_stats.static_batched_count = _render_stats.static_batched_count - Luxe.debug.batcher.static_batched_count;
             _render_stats.draw_calls -= debug_draw_call_count;

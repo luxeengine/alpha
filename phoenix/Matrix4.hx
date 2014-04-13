@@ -6,6 +6,12 @@ import luxe.utils.Maths;
     
     //Ported from Three.js https://github.com/mrdoob/three.js
 
+typedef MatrixTransform = {
+    pos : Vector,
+    rotation : Quaternion,
+    scale : Vector
+}
+
 class Matrix4 {
 
     public var elements:Array<Float>;
@@ -173,6 +179,10 @@ class Matrix4 {
         return this;
     }
     
+
+    public function getPosition() : Vector {
+        return new Vector(elements[12], elements[13], elements[14],1);
+    }
     
     public function extractRotation( m:Matrix4 ) : Matrix4 {
 
@@ -834,7 +844,7 @@ class Matrix4 {
 
     } //compose
 
-    public function decompose( _position:Vector = null, _quaternion:Quaternion = null, _scale:Vector = null ) : Array<Dynamic> {
+    public function decompose( _position:Vector = null, _quaternion:Quaternion = null, _scale:Vector = null ) : MatrixTransform {
 
         var te = elements;
         
@@ -846,7 +856,7 @@ class Matrix4 {
         
         if (_position == null)      _position = new Vector();
         if (_quaternion == null)    _quaternion = new Quaternion();
-        if (_scale == null)         _scale = new Vector();
+        if (_scale == null)         _scale = new Vector(1,1,1);
         
             _scale.x = ax.length;
             _scale.y = ay.length;
@@ -875,14 +885,11 @@ class Matrix4 {
                 
             _quaternion.setFromRotationMatrix(matrix);
                 
-                //hmm
-            var arr = new Array<Dynamic>();
-
-                arr.push(_position);
-                arr.push(_quaternion);
-                arr.push(_scale);
-
-        return arr;
+        return { 
+            pos : _position,
+            rotation : _quaternion,
+            scale : _scale
+        };
 
     } //decompose
 
