@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [a1587b9e38](http://github.com/underscorediscovery/luxe/commit/a1587b9e38e3d139a2cf8b951bf93ea314303fcd)   
+author: underscorediscovery   
+date: Sat Apr 12 2014 22:04:42 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>::: POTENTIALLY BREAKING/CONFUSING CHANGE :::</li><li>TL;DR; any use of "enabled" -> "visible" (unless on a Batcher, batcher.enabled is correct, geometry.enabled is not)</li><li>Any use of "enabled" on geometry or text etc anywhere has been changed to "visible". The context in which it was used was visibility, Batcher uses it correctly where processing is ignored on disabled batchers. Any visibility related flags and values have been made consistent across the board. Sorry if this causes some minor code changes but it's unavoidable pre 1.0 :> Search your code for "enabled" and if you see any that aren't your own or on a batcher it's likely meant to be .visible instead.</li><li>General; part of #77, cleanup enabled -> visible</li><li>Matrix4; decompose was using an Array<Dynamic> as a return, now typed and proper, added "getPosition" as a convenience but this is inconsistent a bit still.. still deciding on this file.</li><li>BBST; left/right default to null for dynamic platforms that don't populate this for clarity/debugging</li><li>DebugView; profiler now has "offsets" that allow you to ignore profiles in other profiles. For example, the core.render loop includes the very debug view showing you that, which, when expensive, is masking the game rendering profile quite badly causing it to seem way worse. This basically says core.render is core.render - debugview. Profiler view also now has hidden views, that will track but not draw (like when tracking portions of the render stage that aren't relevant to the game, like debug views).</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [a7b129d954](http://github.com/underscorediscovery/luxe/commit/a7b129d954a93d989bc76345e4d52e5ec5b8bc61)   
+author: underscorediscovery   
+date: Sat Apr 12 2014 04:09:19 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; nape; found the units in the docs, noting it here</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [bd33fc10d5](http://github.com/underscorediscovery/luxe/commit/bd33fc10d559dc59eceed69ed6803f138f870185)   
+author: underscorediscovery   
+date: Sat Apr 12 2014 04:07:32 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; nape test, adding 4 walls, mouse drag joint, reset key (R), jump</li><li>Physics; nape; exposing iteration flags and setting default gravity to</li><li>980 (not sure what units this is)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b7063b22a3](http://github.com/underscorediscovery/luxe/commit/b7063b22a3fbbc74a670f7d6b94df4e85b75a7d7)   
+author: underscorediscovery   
+date: Sat Apr 12 2014 00:58:14 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [3a197f7c65](http://github.com/underscorediscovery/luxe/commit/3a197f7c650dcf5429d9fbc4a0a1acd052bd7a47)   
 author: underscorediscovery   
 date: Sat Apr 12 2014 00:35:33 GMT-0230 (NDT)   
