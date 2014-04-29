@@ -95,9 +95,11 @@ class SpriteAnimationData {
 
             //run over the frame sets, store their texture in the frame
         for(_frame in frameset) {
-            if(_frame.image_frame <= image_set.length - 1) {
+            if(_frame.image_frame <= image_set.length) {
                 _frame.image_source = image_set[_frame.image_frame-1];
-                _frame.image_source.filter = filter_type;
+                if(filter_type != null) {
+                    _frame.image_source.filter = filter_type;
+                }
             }
         }
 
@@ -213,14 +215,14 @@ class SpriteAnimationData {
 
                 //ask for the textures
             var _images_list = Luxe.utils.find_assets_image_sequence( _json_image_sequence );
+                //set the type
+            type = SpriteAnimationType.animated_texture;
+            image_set = [];
+
             if(_images_list.length > 0) {
                 image_set_list = _images_list;
                 Luxe.loadTextures( _images_list, on_image_sequence_loaded, true);
             }
-
-                //set the type
-            type = SpriteAnimationType.animated_texture;
-            image_set = [];
 
         } //_json_image_sequence
 
@@ -665,6 +667,7 @@ class SpriteAnimation extends Component {
     function set_animation( _name:String ) {
 
         if(animation_list.exists(_name)) {
+
             current = animation_list.get(_name);
             loop = current.loop;
             pingpong = current.pingpong;
@@ -746,7 +749,7 @@ class SpriteAnimation extends Component {
         
         } else if(current.type == SpriteAnimationType.animated_texture) {
 
-            if( image_frame <= current.image_set.length-1 ) {
+            if( image_frame <= current.image_set.length ) {
                 sprite.texture = current.image_set[image_frame-1];
             }
 
@@ -763,7 +766,7 @@ class SpriteAnimation extends Component {
         var end = false;
 
             //update the local time
-        time += dt;     
+        time += dt;
 
             //time for a frame update?
         if(time >= next_frame_time) {
@@ -813,7 +816,7 @@ class SpriteAnimation extends Component {
             } //if end
                 
                 //the current animation frame 
-            var _anim_frame = current.frameset[frame-1];            
+            var _anim_frame = current.frameset[frame-1];
 
                 //set the image frame from the current frameset
             image_frame = _anim_frame.image_frame;
