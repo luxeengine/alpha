@@ -78,7 +78,8 @@ class ParcelProgress {
             no_scene : true,
             size : new Vector( Luxe.screen.w, Luxe.screen.h ),
             centered : false,
-            color : options.background
+            color : options.background,
+            depth : 998
         });
 
         progress_bar = new Sprite({
@@ -86,7 +87,8 @@ class ParcelProgress {
             size : new Vector( 2, height ),
             no_scene : true,
             centered : false,
-            color : options.bar
+            color : options.bar,
+            depth : 998
         });
 
         progress_border = new Sprite({
@@ -98,7 +100,8 @@ class ParcelProgress {
             geometry : Luxe.draw.rectangle({
                 w : width + 2,
                 h : height + 2
-            })
+            }),
+            depth : 998
         });
 
             //we intercept the onprogress and oncomplete of the parcel
