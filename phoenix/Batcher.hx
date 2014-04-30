@@ -127,15 +127,17 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        vertlist = new Float32Array(65356);
-        tcoordlist = new Float32Array(65356);
-        colorlist = new Float32Array(65356);
-        normallist = new Float32Array(65356);
+        var c = Math.pow(2, 18);
 
-        static_vertlist = new Float32Array(65356);
-        static_tcoordlist = new Float32Array(65356);
-        static_colorlist = new Float32Array(65356);
-        static_normallist = new Float32Array(65356);
+        vertlist = new Float32Array(c);
+        tcoordlist = new Float32Array(c);
+        colorlist = new Float32Array(c);
+        normallist = new Float32Array(c);
+
+        static_vertlist = new Float32Array(c);
+        static_tcoordlist = new Float32Array(c);
+        static_colorlist = new Float32Array(c);
+        static_normallist = new Float32Array(c);
 
             //The default view so we see stuff
         view = renderer.default_camera;
