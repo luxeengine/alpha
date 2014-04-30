@@ -181,7 +181,7 @@ class QuadGeometry extends Geometry {
         translate(origin.inverted);
 
             //And finally move it into place
-        pos = new Vector(quad.x, quad.y);
+        transform.pos = new Vector(quad.x, quad.y);
 
             //Make sure we know we can access the verts now
         is_set = true;

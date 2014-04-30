@@ -5,6 +5,7 @@ import phoenix.geometry.Vertex;
 import phoenix.Matrix4;
 import phoenix.Quaternion;
 import phoenix.Rectangle;
+import phoenix.Transform;
 import phoenix.Vector;
 import phoenix.Shader;
 import phoenix.Texture;
@@ -32,6 +33,11 @@ typedef GeometryKey = {
 
 class Geometry {
 
+        //the positional transform information
+    public var transform : Transform;
+        //The origin for the transform
+    @:isVar public var origin(default, set) : Vector;
+     
         //The list of vertices
     public var vertices : Array<Vertex>;
 
@@ -81,19 +87,7 @@ class Geometry {
     @:isVar public var dirty        (get, set) : Bool = false;
     @:isVar public var immediate    (default, default) : Bool;
     @:isVar public var color        (default, set) : Color;
-        //Transform
-    @:isVar public var pos      (get, set) : Vector;
-    @:isVar public var rotation (get, set) : Quaternion;
-    @:isVar public var scale    (get, set) : Vector;
 
-    var _pos_dirty : Bool = false;
-    var _rotation_dirty : Bool = false;
-    var _scale_dirty : Bool = false;
-
-        //The origin for the transform
-    @:isVar public var origin(default, set) : Vector;
-        //The transform matrix
-    public var matrix : Matrix4;
         //Private reuse value
     var _final_vert_position : Vector;
 
@@ -103,19 +97,15 @@ class Geometry {
 
         uuid = Luxe.utils.uniqueid();
         id = uuid;
+
         vertices = new Array<Vertex>();
         state = new GeometryState();
         batchers = new Array<Batcher>();
-            
-            //default transform properties
-        pos = new Vector();
-        rotation = new Quaternion();
-        scale = new Vector(1,1,1);
-            //offset for transform
+        
+            //init transforms
+        transform = new Transform();            
         origin = new Vector();
-            //default matrix for transform
-        matrix = new Matrix4();
-        matrix = matrix.identity();
+
             //init the empty vertex reuse
         _final_vert_position = new Vector();
 
@@ -133,17 +123,16 @@ class Geometry {
             state.primitive_type    = options.type == null      ? state.primitive_type  : options.type;
             state.shader            = options.shader == null    ? state.shader          : options.shader;
 
+            id                      = (options.id == null)          ? uuid                : options.id;
+            transform.pos           = (options.pos == null)         ? transform.pos       : options.pos;
+            transform.rotation      = (options.rotation == null)    ? transform.rotation  : options.rotation;
+            transform.scale         = (options.scale == null)       ? transform.scale     : options.scale;
 
-            id          = (options.id == null)          ? uuid      : options.id;
-            pos         = (options.pos == null)         ? pos       : options.pos;
-            rotation    = (options.rotation == null)    ? rotation  : options.rotation;
-            scale       = (options.scale == null)       ? scale     : options.scale;
+            origin                  = (options.origin == null)      ? origin    : options.origin;
+            immediate               = (options.immediate == null)   ? false     : options.immediate;
+            visible                 = (options.visible == null)     ? true      : options.visible;
 
-            origin      = (options.origin == null)      ? origin    : options.origin;
-            immediate   = (options.immediate == null)   ? false     : options.immediate;
-            visible     = (options.visible == null)     ? true      : options.visible;
-
-            color       = (options.color == null)       ? new Color() : options.color;
+            color                   = (options.color == null)       ? new Color() : options.color;
             
         } //options != null
 
@@ -157,6 +146,9 @@ class Geometry {
             depth : state.depth,
             clip : state.clip
         };
+
+        transform.id = uuid;
+        transform.name = id;
 
     } //new
 
@@ -232,15 +224,12 @@ class Geometry {
         var origin_z : Float = origin.z;
         var origin_w : Float = origin.w;
 
-            //compose the final position matrix
-        matrix.compose( pos, rotation, scale ); 
-
         for(v in vertices) {    
 
                 //the base position of the vert
             _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
                 //apply the transform to the vert
-            _final_vert_position.applyMatrix4( matrix );
+            _final_vert_position.applyMatrix4( transform.world );
 
                     //submit vertex positions
                 vertlist[(vert_index+0)] = _final_vert_position.x;
@@ -302,10 +291,8 @@ class Geometry {
 
                 // the base position of the vert
             _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
-                // compose the final position matrix
-            matrix.compose( pos, rotation, scale );
                 // apply the transform to the vert
-            _final_vert_position.applyMatrix4( matrix );
+            _final_vert_position.applyMatrix4( transform.world );
 
                 //submit vert positions
             vertlist.push( _final_vert_position.x );
@@ -335,7 +322,7 @@ class Geometry {
 
     public function translate( _offset:Vector ) {
 
-        pos.set( pos.x+_offset.x, pos.y+_offset.y, pos.x+_offset.z );
+        transform.pos.set( transform.pos.x+_offset.x, transform.pos.y+_offset.y, transform.pos.x+_offset.z );
 
     } // translate
 
@@ -344,19 +331,6 @@ class Geometry {
         return origin = _origin;
 
     } //set_origin
-
-    public function set_pos( _position:Vector ) : Vector {
-
-        _pos_dirty = true;
-        return pos = _position;
-
-    } //set_pos
-
-    public function get_pos() : Vector {
-        
-        return pos;
-
-    } //get_pos
 
     public function set_locked( _locked:Bool ) : Bool {
 
@@ -381,42 +355,6 @@ class Geometry {
         return dirty;
 
     } //get_dirty
-
-    public function set_rotation( _rotation:Quaternion ) {
-
-        _rotation_dirty = true;
-
-        if(rotation == null) { 
-            return rotation = _rotation;
-        } //rotation == null            
-        
-        return rotation = _rotation;
-
-    } //set_rotation
-
-    public function get_rotation() : Quaternion {
-        
-        return rotation;
-        
-    } //get_rotation
-
-    public function set_scale( _scale:Vector ) {
-
-        _scale_dirty = true;
-
-        if(scale == null) { 
-            return scale = _scale;
-        } //rotation == null            
-        
-        return scale = _scale;
-
-    } //set_rotation
-
-    public function get_scale() : Vector {
-
-        return scale;
-
-    } //get_scale
 
 //Invariants that cause a shift in the geometry tree
 

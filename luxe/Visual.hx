@@ -310,10 +310,10 @@ class Visual extends Entity {
             //rebind it's colors and whatever else
         if(geometry != null && _creating_geometry == false) {            
             
-            geometry.pos = pos.clone();
+            geometry.transform.pos = pos;
+            geometry.transform.scale = scale;
             geometry.origin = origin;
             geometry.color = color;            
-            geometry.scale = scale;
             geometry.group = group;
             geometry.depth = depth;            
             geometry.visible = visible;
@@ -334,8 +334,9 @@ class Visual extends Entity {
     
     private override function set_pos(_p:Vector) : Vector {
 
-        if(geometry != null) {            
-            geometry.pos = _p.clone();
+            //set pos in parent
+        if(geometry != null) {
+            geometry.transform.pos = _p;
         } //geometry ! null
 
             //store the position
@@ -384,7 +385,7 @@ class Visual extends Entity {
 
         if(geometry != null) {
                 //send to the geometry
-            geometry.rotation = _rotation_quat;
+            geometry.transform.rotation = _rotation_quat;
 
         } //geometry ! null
 
@@ -412,7 +413,7 @@ class Visual extends Entity {
 
         if(geometry != null) {
 
-            geometry.scale = scale;
+            geometry.transform.scale = scale;
 
         } //geometry != null
 

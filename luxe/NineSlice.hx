@@ -346,10 +346,10 @@ class NineSlice extends luxe.Sprite {
         var _pv = _v.clone();
 
         if(is_set) {
-            _geometry.pos = _pv;
+            _geometry.transform.pos = _pv;
         }
 
-        return pos = _pv;
+        return super.set_pos(_pv);
 
     } //set_pos
 
@@ -436,7 +436,7 @@ class NineSlice extends luxe.Sprite {
 
         }
 
-        _geometry.pos = _pos;
+        _geometry.transform.pos = _pos;
         _geometry.id = 'NineSlice';
 
         _batcher.add( _geometry );

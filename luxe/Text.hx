@@ -172,7 +172,7 @@ class Text extends Visual {
 
                 //now we apply the new info to the visual first
             origin  = composite_geometry.origin;
-            pos     = composite_geometry.pos;
+            pos     = composite_geometry.transform.pos;
             locked  = composite_geometry.locked;
             visible = composite_geometry.visible;
 

@@ -11,8 +11,12 @@ class CompositeGeometry extends Geometry {
     public var geometry : Array<Geometry>;
 
     public function new(?options:Dynamic = null) {
-        
+
         super(options);
+
+        transform.pos_changed = set_pos_from_transform;
+        transform.scale_changed = set_scale_from_transform;
+        transform.rotation_changed = set_rotation_from_transform;
 
         geometry = new Array<Geometry>();
 
@@ -89,23 +93,29 @@ class CompositeGeometry extends Geometry {
         return origin = _origin;
     } //set_origin
 
-    public override function set_pos( _position:Vector ) : Vector {
+    public function set_pos_from_transform( _position:Vector ) {
         if(geometry != null) {
             for(geom in geometry) {
-                geom.pos = _position;
+                geom.transform.pos = _position;
             }
         }
-        return pos = _position;
     } //set_pos
 
-    public override function set_rotation( _rotation:Quaternion ) : Quaternion {
+    public function set_rotation_from_transform( _rotation:Quaternion ) {
         if(geometry != null) {
             for(geom in geometry) {
-                geom.rotation = _rotation;
+                geom.transform.rotation = _rotation;
             }
         }
-        return rotation = _rotation;
     } //set_rotation
+
+    public function set_scale_from_transform( _scale:Vector ) {
+        if(geometry != null) {
+            for(geom in geometry) {
+                geom.transform.scale = _scale;
+            }
+        }
+    } //set_scale
 
     public override function set_color( _color:Color ) : Color {
         if(geometry != null) {

@@ -4,6 +4,7 @@ import luxe.Vector;
 import luxe.Quaternion;
 import luxe.Transform;
 import luxe.Color;
+import luxe.tween.Actuate;
 
 import phoenix.geometry.Geometry;
 
@@ -16,8 +17,6 @@ class Transforms {
     public var pos_world            (get,set) : Vector;
     public var rotation             (get,set) : Quaternion;
     public var rotation_world       (get,set) : Quaternion;
-    public var rotation_euler       (get,set) : Vector;
-    public var rotation_euler_world (get,set) : Vector;
     public var scale                (get,set) : Vector;
     public var scale_world          (get,set) : Vector;
 
@@ -31,9 +30,7 @@ class Transforms {
         // transform.pos_world_changed = trans_pos_world_changed;
             //rotation        
         transform.rotation_changed = trans_rotation_changed;
-        transform.rotation_euler_changed = trans_rotation_euler_changed;
         // transform.rotation_world_changed = trans_rotation_world_changed;
-        // transform.rotation_euler_world_changed = trans_rotation_euler_world_changed;
             //scale
         transform.scale_changed = trans_scale_changed;
         // transform.scale_world_changed = trans_scale_world_changed;
@@ -57,12 +54,6 @@ class Transforms {
         return transform.pos = _p;
 
     } //set_pos
-
-    function set_rotation_euler( _r:Vector ) : Vector { 
-
-        return transform.rotation_euler = _r;
-
-    } //set_rotation_euler
 
     function set_rotation( _r:Quaternion ) : Quaternion { 
 
@@ -94,12 +85,6 @@ class Transforms {
 
     } //set_rotation_world
 
-    function set_rotation_euler_world( _r:Vector ) : Vector {
-
-        return transform.rotation_euler_world = _r;
-
-    } //set_rotation_euler_world
-
     function get_pos() {
 
         return transform.pos;
@@ -112,12 +97,6 @@ class Transforms {
 
     } //get_pos_world
 
-    function get_rotation_euler() {
-
-        return transform.rotation_euler;
-
-    } //get_rotation_euler
-
     function get_rotation() {
 
         return transform.rotation;
@@ -129,12 +108,6 @@ class Transforms {
         return transform.rotation_world;
 
     } //get_rotation_world
-
-    function get_rotation_euler_world() {
-
-        return transform.rotation_euler_world;
-
-    } //get_rotation_euler_world
 
     function get_scale() {
 
@@ -154,9 +127,7 @@ class Transforms {
     function trans_pos_world_changed(_p:Vector) {}
         //rotation
     function trans_rotation_changed(_r:Quaternion) {}
-    function trans_rotation_euler_changed(_r:Vector) {}
     function trans_rotation_world_changed(_r:Quaternion) {}    
-    function trans_rotation_euler_world_changed(_r:Vector) {}
         //scale
     function trans_scale_changed(_p:Vector) {}
     function trans_scale_world_changed(_p:Vector) {}
@@ -223,11 +194,17 @@ class Main extends luxe.Game {
         st2.pos = new Vector(50,50);
         st2.transform.parent = st.transform;
 
+        st2.pos.x = 250;
+
+        Actuate.tween(st2.pos, 1, {x:0}).repeat().reflect().onUpdate(function(){trace(st2.pos.x);});
+
     } //ready
 
     public function onmousemove( e:MouseEvent ) {
         if(st != null) {
-            st.pos = e.pos;
+            // st.pos = e.pos;
+            st.pos.x = e.pos.x;
+            st.pos.y = e.pos.y;
         }
     }
 
@@ -244,8 +221,9 @@ class Main extends luxe.Game {
     public function update( dt:Float ) {
 
         if(st != null) {
-            r  += 2 * dt;
+            r  += 3 * dt;
             st.rotation = new Quaternion().setFromEuler( new Vector(0,0,r) );
+            st2.rotation = new Quaternion().setFromEuler( new Vector(0,0,r/2.0) );
         }
 
     } //update

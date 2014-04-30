@@ -141,6 +141,7 @@ class Camera {
         };
 
     } //default_perspective_options
+    
     public function process() {
 
         switch(projection) {

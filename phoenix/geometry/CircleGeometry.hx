@@ -108,7 +108,7 @@ class CircleGeometry extends Geometry {
 			} //for
 
 		//and finally, set the position
-		pos.set( _x, _y );
+		transform.pos = new Vector( _x, _y );
         
 	}
 

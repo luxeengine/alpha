@@ -66,7 +66,7 @@ class Mesh {
     public function set_pos( _position:Vector ) : Vector {
             
         if(geometry != null) {            
-            geometry.pos = _position;
+            geometry.transform.pos = _position;
         }
         
         pos = _position;
@@ -92,7 +92,7 @@ class Mesh {
                 //cache locally, avoids allocation
             _rotation_quat.setFromEuler(_rotation);
                 //pass to the geometry
-            geometry.rotation = _rotation_quat;
+            geometry.transform.rotation = _rotation_quat;
 
         } //geometry
 
@@ -110,7 +110,7 @@ class Mesh {
     public function set_scale( _scale:Vector ) : Vector {
             
         if(geometry != null) {            
-            geometry.scale = _scale;
+            geometry.transform.scale = _scale;
         }
         
         scale = _scale;
