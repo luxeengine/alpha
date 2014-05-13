@@ -127,7 +127,7 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        var c = Math.pow(2, 18);
+        var c : Int = Std.int(Math.pow(2, 18));
 
         vertlist = new Float32Array(c);
         tcoordlist = new Float32Array(c);
