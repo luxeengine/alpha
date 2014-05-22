@@ -212,6 +212,14 @@ var marked      = require('marked'),
 
     helper.copy_folder_recursively( config.images_path, config.output_path + config.images_output_path, true );
 
+    if(config.samples_path) {
+
+            helper.log('- copying samples');
+
+        helper.copy_folder_recursively( config.samples_path, config.output_path + config.samples_output_path, true );
+
+    } //if samples path
+
         helper.log('- copying style template');
 
     helper.copy_folder_recursively( config.style_path, config.output_path );

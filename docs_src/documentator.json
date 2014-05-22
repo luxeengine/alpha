@@ -5,6 +5,7 @@
     "style_path" : "./luxe/style/",
     "template_path" : "./luxe/templates/",
     "images_path" : "./luxe/images/",
+    "samples_path" : "./luxe/samples/",
     "apis_path" : "./luxe/apis/api/",
     "md_path" : "./luxe/md/",
 
@@ -13,6 +14,7 @@
 
     "output_path" : "../docs/",
     "images_output_path" : "images/",
+    "samples_output_path" : "samples/",
 
     "api_out_md_path" : "api/",
     "api_source_json" : "./luxe/apis/generated_api.json",
