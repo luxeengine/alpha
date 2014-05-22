@@ -3,16 +3,16 @@
 
 ---
 
-#PropertyPathDetails
-
 
 ##[API Index](../../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe.tween](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween.actuators](./) / PropertyPathDetails
+&emsp;&emsp;&emsp;[luxe.tween.actuators](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PropertyPathDetails
 
-<br/>
+---
+
+#PropertyPathDetails
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 `path : luxe.tween.IComponentPath`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +57,7 @@
 
 `new(target:Dynamic, propertyName:String, path:luxe.tween.IComponentPath, ?isField:Bool=true) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

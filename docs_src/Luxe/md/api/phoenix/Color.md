@@ -3,16 +3,15 @@
 
 ---
 
-#Color
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Color
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Color
 
-<br/>
+---
+
+#Color
+
 
 ---
 
@@ -36,7 +35,7 @@ _none_
 
 `a : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -49,7 +48,7 @@ _none_
 
 `b : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="g" href="#g">g</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `g : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="r" href="#r">r</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `r : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="serialized" href="#serialized">serialized</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `serialized : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -86,7 +85,7 @@ _none_
 
 `random(?_include_alpha:Bool=false) : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -99,7 +98,7 @@ _none_
 
 `clone() : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fromColorHSL" href="#fromColorHSL">fromColorHSL</a>
 
@@ -107,7 +106,7 @@ _none_
 
 `fromColorHSL(_color_hsl:phoenix.ColorHSL) : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fromColorHSV" href="#fromColorHSV">fromColorHSV</a>
 
@@ -115,7 +114,7 @@ _none_
 
 `fromColorHSV(_color_hsv:phoenix.ColorHSV) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="maxRGB" href="#maxRGB">maxRGB</a>
 
@@ -123,7 +122,7 @@ _none_
 
 `maxRGB() : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="minRGB" href="#minRGB">minRGB</a>
 
@@ -131,7 +130,7 @@ _none_
 
 `minRGB() : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -139,7 +138,7 @@ _none_
 
 `new(?_r:Float=1.0f, ?_g:Float=1.0f, ?_b:Float=1.0f, ?_a:Float=1.0f) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rgb" href="#rgb">rgb</a>
 
@@ -147,7 +146,7 @@ _none_
 
 `rgb(?_rgb:Int=16777215) : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -155,7 +154,7 @@ _none_
 
 `set(?_r:Float, ?_g:Float, ?_b:Float, ?_a:Float) : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toColorHSL" href="#toColorHSL">toColorHSL</a>
 
@@ -163,7 +162,7 @@ _none_
 
 `toColorHSL() : phoenix.ColorHSL`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toColorHSV" href="#toColorHSV">toColorHSV</a>
 
@@ -171,7 +170,7 @@ _none_
 
 `toColorHSV() : phoenix.ColorHSV`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -179,7 +178,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tween" href="#tween">tween</a>
 
@@ -187,7 +186,7 @@ _none_
 
 `tween(?_time_in_seconds:Float=0.5f, ?_properties_to_tween:luxe.options.ColorOptions, ?_override:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

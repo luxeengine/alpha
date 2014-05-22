@@ -3,16 +3,15 @@
 
 ---
 
-#CoreThreadRequest
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / CoreThreadRequest
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CoreThreadRequest
 
-<br/>
+---
+
+#CoreThreadRequest
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `luxe.CoreThreadRequest.load_shader`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_texture" href="#load_texture">load_texture</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `luxe.CoreThreadRequest.load_texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

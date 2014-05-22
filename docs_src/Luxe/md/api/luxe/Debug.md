@@ -3,16 +3,15 @@
 
 ---
 
-#Debug
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Debug
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Debug
 
-<br/>
+---
+
+#Debug
+
 
 ---
 
@@ -35,7 +34,7 @@ _none_
 
 `batcher : phoenix.Batcher`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="core" href="#core">core</a>
 
@@ -43,7 +42,7 @@ _none_
 
 `core : luxe.Core`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="current_view" href="#current_view">current_view</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `current_view : luxe.debug.DebugView`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="current_view_index" href="#current_view_index">current_view_index</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `current_view_index : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="debug_font" href="#debug_font">debug_font</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `debug_font : phoenix.BitmapFont`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="debug_inspector" href="#debug_inspector">debug_inspector</a>
 
@@ -75,7 +74,7 @@ _none_
 
 `debug_inspector : luxe.debug.Inspector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dt_average" href="#dt_average">dt_average</a>
 
@@ -83,7 +82,7 @@ _none_
 
 `dt_average : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dt_average_accum" href="#dt_average_accum">dt_average_accum</a>
 
@@ -91,7 +90,7 @@ _none_
 
 `dt_average_accum : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dt_average_count" href="#dt_average_count">dt_average_count</a>
 
@@ -99,7 +98,7 @@ _none_
 
 `dt_average_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dt_average_span" href="#dt_average_span">dt_average_span</a>
 
@@ -107,7 +106,7 @@ _none_
 
 `dt_average_span : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="last_view_index" href="#last_view_index">last_view_index</a>
 
@@ -115,7 +114,7 @@ _none_
 
 `last_view_index : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="overlay" href="#overlay">overlay</a>
 
@@ -123,7 +122,7 @@ _none_
 
 `overlay : phoenix.geometry.QuadGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="padding" href="#padding">padding</a>
 
@@ -131,7 +130,7 @@ _none_
 
 `padding : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="profile_path" href="#profile_path">profile_path</a>
 
@@ -139,7 +138,7 @@ _none_
 
 `profile_path : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="profiling" href="#profiling">profiling</a>
 
@@ -147,7 +146,7 @@ _none_
 
 `profiling : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shut_down" href="#shut_down">shut_down</a>
 
@@ -155,7 +154,7 @@ _none_
 
 <span class="inline-block static">static</span>`shut_down : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="started" href="#started">started</a>
 
@@ -163,7 +162,7 @@ _none_
 
 `started : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="view" href="#view">view</a>
 
@@ -171,7 +170,7 @@ _none_
 
 `view : phoenix.Camera`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="views" href="#views">views</a>
 
@@ -179,7 +178,7 @@ _none_
 
 <span class="inline-block static">static</span>`views : Array<luxe.debug.DebugView>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="visible" href="#visible">visible</a>
 
@@ -187,7 +186,7 @@ _none_
 
 `visible : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -200,7 +199,7 @@ _none_
 
 `internal_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -213,7 +212,7 @@ _none_
 
 `add_trace_listener(_name:String, _callback:Dynamic->haxe.PosInfos->Void) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="create_debug_console" href="#create_debug_console">create_debug_console</a>
 
@@ -221,7 +220,7 @@ _none_
 
 `create_debug_console() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
@@ -229,7 +228,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="end" href="#end">end</a>
 
@@ -237,7 +236,7 @@ _none_
 
 `end(_name:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="init" href="#init">init</a>
 
@@ -245,7 +244,7 @@ _none_
 
 `init() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -253,7 +252,7 @@ _none_
 
 `new(_core:luxe.Core) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onkeydown" href="#onkeydown">onkeydown</a>
 
@@ -261,7 +260,7 @@ _none_
 
 `onkeydown(e:luxe.KeyEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onkeyup" href="#onkeyup">onkeyup</a>
 
@@ -269,7 +268,7 @@ _none_
 
 `onkeyup(e:luxe.KeyEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmousedown" href="#onmousedown">onmousedown</a>
 
@@ -277,7 +276,7 @@ _none_
 
 `onmousedown(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmousemove" href="#onmousemove">onmousemove</a>
 
@@ -285,7 +284,7 @@ _none_
 
 `onmousemove(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmouseup" href="#onmouseup">onmouseup</a>
 
@@ -293,7 +292,7 @@ _none_
 
 `onmouseup(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmousewheel" href="#onmousewheel">onmousewheel</a>
 
@@ -301,7 +300,7 @@ _none_
 
 `onmousewheel(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onresize" href="#onresize">onresize</a>
 
@@ -309,7 +308,7 @@ _none_
 
 `onresize(e:null<null,null>) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="process" href="#process">process</a>
 
@@ -317,7 +316,7 @@ _none_
 
 `process() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove_trace_listener" href="#remove_trace_listener">remove_trace_listener</a>
 
@@ -325,7 +324,7 @@ _none_
 
 `remove_trace_listener(_name:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="show_console" href="#show_console">show_console</a>
 
@@ -333,7 +332,7 @@ _none_
 
 `show_console(?_show:Bool=true) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="start" href="#start">start</a>
 
@@ -341,7 +340,7 @@ _none_
 
 `start(_name:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="switch_view" href="#switch_view">switch_view</a>
 
@@ -349,7 +348,7 @@ _none_
 
 `switch_view() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,15 @@
 
 ---
 
-#Camera
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Camera
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Camera
 
-<br/>
+---
+
+#Camera
+
 
 ---
 
@@ -43,7 +42,7 @@ _none_
 
 `bounds : luxe.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="minimum_shake" href="#minimum_shake">minimum_shake</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `minimum_shake : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shake_amount" href="#shake_amount">shake_amount</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `shake_amount : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shake_vector" href="#shake_vector">shake_vector</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `shake_vector : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shaking" href="#shaking">shaking</a>
 
@@ -75,7 +74,7 @@ _none_
 
 `shaking : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="view" href="#view">view</a>
 
@@ -83,7 +82,7 @@ _none_
 
 `view : phoenix.Camera`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -96,7 +95,7 @@ _none_
 
 `center : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="minimum_zoom" href="#minimum_zoom">minimum_zoom</a>
 
@@ -104,7 +103,7 @@ _none_
 
 `minimum_zoom : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="viewport" href="#viewport">viewport</a>
 
@@ -112,7 +111,7 @@ _none_
 
 `viewport : luxe.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="zoom" href="#zoom">zoom</a>
 
@@ -120,7 +119,7 @@ _none_
 
 `zoom : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -135,7 +134,7 @@ _none_
 
 `focus(_p:luxe.Vector, ?_t:Float=0.6f, ?oncomplete:Void) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
 
@@ -143,7 +142,7 @@ _none_
 
 `get_serialize_data() : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -151,7 +150,7 @@ _none_
 
 `new(?options:luxe.options.LuxeCameraOptions) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="screen_point_to_world" href="#screen_point_to_world">screen_point_to_world</a>
 
@@ -159,7 +158,7 @@ _none_
 
 `screen_point_to_world(_vector:luxe.Vector) : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shake" href="#shake">shake</a>
 
@@ -167,7 +166,7 @@ _none_
 
 `shake(amount:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="world_point_to_screen" href="#world_point_to_screen">world_point_to_screen</a>
 
@@ -175,7 +174,7 @@ _none_
 
 `world_point_to_screen(_vector:luxe.Vector, ?_viewport:luxe.Rectangle) : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

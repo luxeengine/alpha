@@ -3,16 +3,16 @@
 
 ---
 
-#FontString
-
 
 ##[API Index](../../../api/index.html#phoenix.defaults)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.defaults](./) / FontString
+&emsp;&emsp;&emsp;[phoenix.defaults](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FontString
 
-<br/>
+---
+
+#FontString
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `data() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

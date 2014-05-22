@@ -3,16 +3,16 @@
 
 ---
 
-#ArcGeometry
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / ArcGeometry
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ArcGeometry
 
-<br/>
+---
+
+#ArcGeometry
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `new(options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,15 @@
 
 ---
 
-#LoadTextureInfo
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / LoadTextureInfo
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LoadTextureInfo
 
-<br/>
+---
+
+#LoadTextureInfo
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `bytes : lime.utils.ByteArray`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onloaded" href="#onloaded">onloaded</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `onloaded : phoenix.Texture->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

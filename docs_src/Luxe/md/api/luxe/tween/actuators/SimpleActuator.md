@@ -3,23 +3,18 @@
 
 ---
 
-#SimpleActuator
 
---- 
+##[API Index](../../../../api/index.html#luxe.tween)   
+[luxe.tween](../)     
+&emsp;&emsp;&emsp;[luxe.tween.actuators](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;SimpleActuator
+
+---
+
+#SimpleActuator
 
 * @author Joshua Granick
  * @version 1.2
-
----
-<br/>
-
-##[API Index](../../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
-[luxe.tween](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween.actuators](./) / SimpleActuator
-
-<br/>
 
 ---
 
@@ -68,7 +63,7 @@
 
 `move() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -76,7 +71,7 @@
 
 `new(target:Dynamic, duration:Float, properties:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onUpdate" href="#onUpdate">onUpdate</a>
 
@@ -92,7 +87,7 @@
 
 `pause() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="resume" href="#resume">resume</a>
 
@@ -100,7 +95,7 @@
 
 `resume() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stop" href="#stop">stop</a>
 
@@ -108,7 +103,7 @@
 
 `stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

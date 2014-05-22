@@ -3,16 +3,15 @@
 
 ---
 
-#ProjectionType
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / ProjectionType
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ProjectionType
 
-<br/>
+---
+
+#ProjectionType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.ProjectionType.custom`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ortho" href="#ortho">ortho</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.ProjectionType.ortho`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="perspective" href="#perspective">perspective</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.ProjectionType.perspective`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

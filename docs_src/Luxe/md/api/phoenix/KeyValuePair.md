@@ -3,16 +3,15 @@
 
 ---
 
-#KeyValuePair
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / KeyValuePair
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;KeyValuePair
 
-<br/>
+---
+
+#KeyValuePair
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `key : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="value" href="#value">value</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `value : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

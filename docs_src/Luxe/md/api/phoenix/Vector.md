@@ -3,16 +3,15 @@
 
 ---
 
-#Vector
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Vector
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Vector
 
-<br/>
+---
+
+#Vector
+
 
 ---
 
@@ -36,7 +35,7 @@ _none_
 
 `ignore_listeners : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_x" href="#listen_x">listen_x</a>
 
@@ -44,7 +43,7 @@ _none_
 
 `listen_x : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_y" href="#listen_y">listen_y</a>
 
@@ -52,7 +51,7 @@ _none_
 
 `listen_y : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_z" href="#listen_z">listen_z</a>
 
@@ -60,7 +59,7 @@ _none_
 
 `listen_z : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="w" href="#w">w</a>
 
@@ -68,7 +67,7 @@ _none_
 
 `w : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -81,7 +80,7 @@ _none_
 
 `angle2D : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="inverted" href="#inverted">inverted</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `inverted : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="length" href="#length">length</a>
 
@@ -97,7 +96,7 @@ _none_
 
 `length : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lengthsq" href="#lengthsq">lengthsq</a>
 
@@ -105,7 +104,7 @@ _none_
 
 `lengthsq : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normalized" href="#normalized">normalized</a>
 
@@ -113,7 +112,7 @@ _none_
 
 `normalized : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="serialized" href="#serialized">serialized</a>
 
@@ -121,7 +120,7 @@ _none_
 
 `serialized : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -129,7 +128,7 @@ _none_
 
 `x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -137,7 +136,7 @@ _none_
 
 `y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="z" href="#z">z</a>
 
@@ -145,7 +144,7 @@ _none_
 
 `z : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -158,7 +157,7 @@ _none_
 
 `Add(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="AddScalar" href="#AddScalar">AddScalar</a>
 
@@ -166,7 +165,7 @@ _none_
 
 `AddScalar(a:phoenix.Vector, b:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="Cross" href="#Cross">Cross</a>
 
@@ -174,7 +173,7 @@ _none_
 
 `Cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="Divide" href="#Divide">Divide</a>
 
@@ -182,7 +181,7 @@ _none_
 
 `Divide(a:phoenix.Vector, b:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="DivideVector" href="#DivideVector">DivideVector</a>
 
@@ -190,7 +189,7 @@ _none_
 
 `DivideVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="Multiply" href="#Multiply">Multiply</a>
 
@@ -198,7 +197,7 @@ _none_
 
 `Multiply(a:phoenix.Vector, b:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="MultiplyVector" href="#MultiplyVector">MultiplyVector</a>
 
@@ -206,7 +205,7 @@ _none_
 
 `MultiplyVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="RotationTo" href="#RotationTo">RotationTo</a>
 
@@ -214,7 +213,7 @@ _none_
 
 `RotationTo(a:phoenix.Vector, b:phoenix.Vector) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="Subtract" href="#Subtract">Subtract</a>
 
@@ -222,7 +221,7 @@ _none_
 
 `Subtract(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="SubtractScalar" href="#SubtractScalar">SubtractScalar</a>
 
@@ -230,7 +229,7 @@ _none_
 
 `SubtractScalar(a:phoenix.Vector, b:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ToDegrees" href="#ToDegrees">ToDegrees</a>
 
@@ -238,7 +237,7 @@ _none_
 
 `ToDegrees(_radian_vector:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ToRadians" href="#ToRadians">ToRadians</a>
 
@@ -246,7 +245,7 @@ _none_
 
 `ToRadians(_degree_vector:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -259,7 +258,7 @@ _none_
 
 `add(other:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="addScalar" href="#addScalar">addScalar</a>
 
@@ -267,7 +266,7 @@ _none_
 
 `addScalar(v:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="applyMatrix4" href="#applyMatrix4">applyMatrix4</a>
 
@@ -275,7 +274,7 @@ _none_
 
 `applyMatrix4(_m:phoenix.Matrix4) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="applyProjection" href="#applyProjection">applyProjection</a>
 
@@ -283,7 +282,7 @@ _none_
 
 `applyProjection(m:phoenix.Matrix4) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="applyQuaternion" href="#applyQuaternion">applyQuaternion</a>
 
@@ -291,7 +290,7 @@ _none_
 
 `applyQuaternion(q:phoenix.Quaternion) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clone" href="#clone">clone</a>
 
@@ -299,7 +298,7 @@ _none_
 
 `clone() : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="copy_from" href="#copy_from">copy_from</a>
 
@@ -307,7 +306,7 @@ _none_
 
 `copy_from(_other:phoenix.Vector) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="cross" href="#cross">cross</a>
 
@@ -315,7 +314,7 @@ _none_
 
 `cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="divide" href="#divide">divide</a>
 
@@ -323,7 +322,7 @@ _none_
 
 `divide(other:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="divideScalar" href="#divideScalar">divideScalar</a>
 
@@ -331,7 +330,7 @@ _none_
 
 `divideScalar(v:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dot" href="#dot">dot</a>
 
@@ -339,7 +338,7 @@ _none_
 
 `dot(other:phoenix.Vector) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="equals" href="#equals">equals</a>
 
@@ -347,7 +346,7 @@ _none_
 
 `equals(other:phoenix.Vector) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="multiply" href="#multiply">multiply</a>
 
@@ -355,7 +354,7 @@ _none_
 
 `multiply(other:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a>
 
@@ -363,7 +362,7 @@ _none_
 
 `multiplyScalar(v:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -371,7 +370,7 @@ _none_
 
 `new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=0) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normalize" href="#normalize">normalize</a>
 
@@ -379,7 +378,7 @@ _none_
 
 `normalize() : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotationTo" href="#rotationTo">rotationTo</a>
 
@@ -387,7 +386,7 @@ _none_
 
 `rotationTo(other:phoenix.Vector) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -395,7 +394,7 @@ _none_
 
 `set(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a>
 
@@ -403,7 +402,7 @@ _none_
 
 `setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String='XYZ') : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a>
 
@@ -411,7 +410,7 @@ _none_
 
 `setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String='XYZ') : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_xy" href="#set_xy">set_xy</a>
 
@@ -419,7 +418,7 @@ _none_
 
 `set_xy(_x:Float, _y:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_xyz" href="#set_xyz">set_xyz</a>
 
@@ -427,7 +426,7 @@ _none_
 
 `set_xyz(_x:Float, _y:Float, _z:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_xyzw" href="#set_xyzw">set_xyzw</a>
 
@@ -435,7 +434,7 @@ _none_
 
 `set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="subtract" href="#subtract">subtract</a>
 
@@ -443,7 +442,7 @@ _none_
 
 `subtract(other:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="subtractScalar" href="#subtractScalar">subtractScalar</a>
 
@@ -451,7 +450,7 @@ _none_
 
 `subtractScalar(v:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toDegrees" href="#toDegrees">toDegrees</a>
 
@@ -459,7 +458,7 @@ _none_
 
 `toDegrees() : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toRadians" href="#toRadians">toRadians</a>
 
@@ -467,7 +466,7 @@ _none_
 
 `toRadians() : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -475,7 +474,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="transformDirection" href="#transformDirection">transformDirection</a>
 
@@ -483,7 +482,7 @@ _none_
 
 `transformDirection(m:phoenix.Matrix4) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="truncate" href="#truncate">truncate</a>
 
@@ -491,7 +490,7 @@ _none_
 
 `truncate(max:Float) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

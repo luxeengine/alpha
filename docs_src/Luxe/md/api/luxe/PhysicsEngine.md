@@ -3,16 +3,15 @@
 
 ---
 
-#PhysicsEngine
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / PhysicsEngine
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PhysicsEngine
 
-<br/>
+---
+
+#PhysicsEngine
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `paused : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -49,7 +48,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="init" href="#init">init</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `init() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pause" href="#pause">pause</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `pause(?_pause:Bool=true) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="process" href="#process">process</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `process() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

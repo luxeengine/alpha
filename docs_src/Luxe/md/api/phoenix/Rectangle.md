@@ -3,16 +3,15 @@
 
 ---
 
-#Rectangle
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Rectangle
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Rectangle
 
-<br/>
+---
+
+#Rectangle
+
 
 ---
 
@@ -35,7 +34,7 @@ _none_
 
 `ignore_listeners : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_h" href="#listen_h">listen_h</a>
 
@@ -43,7 +42,7 @@ _none_
 
 `listen_h : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_w" href="#listen_w">listen_w</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `listen_w : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_x" href="#listen_x">listen_x</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `listen_x : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen_y" href="#listen_y">listen_y</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `listen_y : Float->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -80,7 +79,7 @@ _none_
 
 `h : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="serialized" href="#serialized">serialized</a>
 
@@ -88,7 +87,7 @@ _none_
 
 `serialized : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="w" href="#w">w</a>
 
@@ -96,7 +95,7 @@ _none_
 
 `w : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -104,7 +103,7 @@ _none_
 
 `x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -112,7 +111,7 @@ _none_
 
 `y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -127,7 +126,7 @@ _none_
 
 `clone() : phoenix.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="copy_from" href="#copy_from">copy_from</a>
 
@@ -135,7 +134,7 @@ _none_
 
 `copy_from(_rect:phoenix.Rectangle) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="equal" href="#equal">equal</a>
 
@@ -143,7 +142,7 @@ _none_
 
 `equal(_other:phoenix.Rectangle) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -151,7 +150,7 @@ _none_
 
 `new(?_x:Float=0, ?_y:Float=0, ?_w:Float=0, ?_h:Float=0) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="overlaps" href="#overlaps">overlaps</a>
 
@@ -159,7 +158,7 @@ _none_
 
 `overlaps(_other:phoenix.Rectangle) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="point_inside" href="#point_inside">point_inside</a>
 
@@ -167,7 +166,7 @@ _none_
 
 `point_inside(_p:phoenix.Vector) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -175,7 +174,7 @@ _none_
 
 `set(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) : phoenix.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -183,7 +182,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

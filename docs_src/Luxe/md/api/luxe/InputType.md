@@ -3,16 +3,15 @@
 
 ---
 
-#InputType
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / InputType
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;InputType
 
-<br/>
+---
+
+#InputType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `luxe.InputType.gamepad`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="keys" href="#keys">keys</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `luxe.InputType.keys`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mouse" href="#mouse">mouse</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `luxe.InputType.mouse`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="touch" href="#touch">touch</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `luxe.InputType.touch`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

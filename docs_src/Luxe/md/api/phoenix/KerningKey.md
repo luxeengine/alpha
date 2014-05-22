@@ -3,16 +3,15 @@
 
 ---
 
-#KerningKey
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / KerningKey
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;KerningKey
 
-<br/>
+---
+
+#KerningKey
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `glyph : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="index" href="#index">index</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `index : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

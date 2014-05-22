@@ -3,16 +3,15 @@
 
 ---
 
-#Character
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Character
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Character
 
-<br/>
+---
+
+#Character
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `height : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `id : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="page" href="#page">page</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `page : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="width" href="#width">width</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `width : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `x : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="xadvance" href="#xadvance">xadvance</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `xadvance : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="xoffset" href="#xoffset">xoffset</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `xoffset : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `y : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="yoffset" href="#yoffset">yoffset</a>
 
@@ -97,7 +96,7 @@ _none_
 
 `yoffset : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

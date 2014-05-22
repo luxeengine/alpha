@@ -3,16 +3,16 @@
 
 ---
 
-#Actuate
-
 
 ##[API Index](../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween](./) / Actuate
+&emsp;&emsp;&emsp;[luxe.tween](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Actuate
 
-<br/>
+---
+
+#Actuate
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 <span class="inline-block static">static</span>`defaultActuator : Class<luxe.tween.actuators.GenericActuator>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="defaultEase" href="#defaultEase">defaultEase</a>
 
@@ -42,7 +42,7 @@
 
 <span class="inline-block static">static</span>`defaultEase : luxe.tween.easing.IEasing`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -90,7 +90,7 @@
 
 `pauseAll() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="reset" href="#reset">reset</a>
 
@@ -115,7 +115,7 @@
 
 `resumeAll() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stop" href="#stop">stop</a>
 
@@ -162,7 +162,7 @@
 
 `unload(actuator:luxe.tween.actuators.GenericActuator) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="update" href="#update">update</a>
 

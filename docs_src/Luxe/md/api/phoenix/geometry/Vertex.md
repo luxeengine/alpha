@@ -3,16 +3,16 @@
 
 ---
 
-#Vertex
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / Vertex
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Vertex
 
-<br/>
+---
+
+#Vertex
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 `color : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normal" href="#normal">normal</a>
 
@@ -42,7 +42,7 @@
 
 `normal : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -50,7 +50,7 @@
 
 `pos : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv" href="#uv">uv</a>
 
@@ -58,7 +58,7 @@
 
 `uv : phoenix.geometry.TextureCoordSet`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -73,7 +73,7 @@
 
 `new(_pos:phoenix.Vector, ?_normal:phoenix.Vector, ?_color:phoenix.Color) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

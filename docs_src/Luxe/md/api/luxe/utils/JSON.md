@@ -3,16 +3,16 @@
 
 ---
 
-#JSON
-
 
 ##[API Index](../../../api/index.html#luxe.utils)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.utils](./) / JSON
+&emsp;&emsp;&emsp;[luxe.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;JSON
 
-<br/>
+---
+
+#JSON
+
 
 ---
 

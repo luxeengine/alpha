@@ -3,16 +3,15 @@
 
 ---
 
-#Entity
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Entity
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Entity
 
-<br/>
+---
+
+#Entity
+
 
 ---
 
@@ -43,7 +42,7 @@ _none_
 
 `_destroyed : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="children" href="#children">children</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `children : Array<luxe.Entity>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="events" href="#events">events</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `events : luxe.Events`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="inited" href="#inited">inited</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `inited : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="serialize" href="#serialize">serialize</a>
 
@@ -75,7 +74,7 @@ _none_
 
 `serialize : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="started" href="#started">started</a>
 
@@ -83,7 +82,7 @@ _none_
 
 `started : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -96,7 +95,7 @@ _none_
 
 `components : Map`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fixed_rate" href="#fixed_rate">fixed_rate</a>
 
@@ -104,7 +103,7 @@ _none_
 
 `fixed_rate : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="parent" href="#parent">parent</a>
 
@@ -112,7 +111,7 @@ _none_
 
 `parent : luxe.Entity`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -120,7 +119,7 @@ _none_
 
 `pos : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos_local" href="#pos_local">pos_local</a>
 
@@ -128,7 +127,7 @@ _none_
 
 `pos_local : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation" href="#rotation">rotation</a>
 
@@ -136,7 +135,7 @@ _none_
 
 `rotation : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation_local" href="#rotation_local">rotation_local</a>
 
@@ -144,7 +143,7 @@ _none_
 
 `rotation_local : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale" href="#scale">scale</a>
 
@@ -152,7 +151,7 @@ _none_
 
 `scale : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale_local" href="#scale_local">scale_local</a>
 
@@ -160,7 +159,7 @@ _none_
 
 `scale_local : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scene" href="#scene">scene</a>
 
@@ -168,7 +167,7 @@ _none_
 
 `scene : luxe.Scene`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -183,7 +182,7 @@ _none_
 
 `add<T1,T2>(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="add_child" href="#add_child">add_child</a>
 
@@ -191,7 +190,7 @@ _none_
 
 `add_child(child:luxe.Entity) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
@@ -199,7 +198,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get" href="#get">get</a>
 
@@ -207,7 +206,7 @@ _none_
 
 `get<T>(_name:String, ?_in_children:Bool=false) : get.T`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_any" href="#get_any">get_any</a>
 
@@ -215,7 +214,7 @@ _none_
 
 `get_any<T>(_name:String, ?_in_children:Bool=false, ?_first_only:Bool=true) : Array<get_any.T>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
 
@@ -223,7 +222,7 @@ _none_
 
 `get_serialize_data() : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="has" href="#has">has</a>
 
@@ -231,7 +230,7 @@ _none_
 
 `has(_name:String) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -239,7 +238,7 @@ _none_
 
 `new<T>(?_options:luxe.options.EntityOptions<new.T>) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove" href="#remove">remove</a>
 
@@ -247,7 +246,7 @@ _none_
 
 `remove<T>(?_name:String='', ?_data:remove.T) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove_child" href="#remove_child">remove_child</a>
 
@@ -255,7 +254,7 @@ _none_
 
 `remove_child(child:luxe.Entity) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="serialize_to_disk" href="#serialize_to_disk">serialize_to_disk</a>
 
@@ -263,7 +262,7 @@ _none_
 
 `serialize_to_disk(_destination_path:String, ?_parent_write:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

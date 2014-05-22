@@ -3,16 +3,15 @@
 
 ---
 
-#Camera
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Camera
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Camera
 
-<br/>
+---
+
+#Camera
+
 
 ---
 
@@ -35,7 +34,7 @@ _none_
 
 `minimum_zoom : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="name" href="#name">name</a>
 
@@ -43,7 +42,7 @@ _none_
 
 `name : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ortho_options" href="#ortho_options">ortho_options</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `ortho_options : luxe.options.ProjectionOptions`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="perspective_options" href="#perspective_options">perspective_options</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `perspective_options : luxe.options.ProjectionOptions`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="projection" href="#projection">projection</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `projection : phoenix.ProjectionType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="projection_matrix" href="#projection_matrix">projection_matrix</a>
 
@@ -75,7 +74,7 @@ _none_
 
 `projection_matrix : phoenix.Matrix4`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="target" href="#target">target</a>
 
@@ -83,7 +82,7 @@ _none_
 
 `target : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="up" href="#up">up</a>
 
@@ -91,7 +90,7 @@ _none_
 
 `up : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="view_matrix" href="#view_matrix">view_matrix</a>
 
@@ -99,7 +98,7 @@ _none_
 
 `view_matrix : phoenix.Matrix4`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -112,7 +111,7 @@ _none_
 
 `center : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -120,7 +119,7 @@ _none_
 
 `pos : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation" href="#rotation">rotation</a>
 
@@ -128,7 +127,7 @@ _none_
 
 `rotation : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale" href="#scale">scale</a>
 
@@ -136,7 +135,7 @@ _none_
 
 `scale : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="viewport" href="#viewport">viewport</a>
 
@@ -144,7 +143,7 @@ _none_
 
 `viewport : phoenix.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="zoom" href="#zoom">zoom</a>
 
@@ -152,7 +151,7 @@ _none_
 
 `zoom : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -167,7 +166,7 @@ _none_
 
 `apply_ortho() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="apply_perspective" href="#apply_perspective">apply_perspective</a>
 
@@ -175,7 +174,7 @@ _none_
 
 `apply_perspective() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -183,7 +182,7 @@ _none_
 
 `new(?options:luxe.options.CameraOptions) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="process" href="#process">process</a>
 
@@ -191,7 +190,7 @@ _none_
 
 `process() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="projectVector" href="#projectVector">projectVector</a>
 
@@ -199,7 +198,7 @@ _none_
 
 `projectVector(_vector:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="screen_point_to_ray" href="#screen_point_to_ray">screen_point_to_ray</a>
 
@@ -207,7 +206,7 @@ _none_
 
 `screen_point_to_ray(_vector:phoenix.Vector) : phoenix.Ray`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="screen_point_to_world" href="#screen_point_to_world">screen_point_to_world</a>
 
@@ -215,7 +214,7 @@ _none_
 
 `screen_point_to_world(_vector:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_ortho" href="#set_ortho">set_ortho</a>
 
@@ -223,7 +222,7 @@ _none_
 
 `set_ortho(options:luxe.options.ProjectionOptions) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_perspective" href="#set_perspective">set_perspective</a>
 
@@ -231,7 +230,7 @@ _none_
 
 `set_perspective(options:luxe.options.ProjectionOptions) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unprojectVector" href="#unprojectVector">unprojectVector</a>
 
@@ -239,7 +238,7 @@ _none_
 
 `unprojectVector(_vector:phoenix.Vector) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="update_look_at" href="#update_look_at">update_look_at</a>
 
@@ -247,7 +246,7 @@ _none_
 
 `update_look_at() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="world_point_to_screen" href="#world_point_to_screen">world_point_to_screen</a>
 
@@ -255,7 +254,7 @@ _none_
 
 `world_point_to_screen(_vector:phoenix.Vector, ?_viewport:phoenix.Rectangle) : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

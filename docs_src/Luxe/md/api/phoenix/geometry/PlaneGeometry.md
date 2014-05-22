@@ -3,16 +3,16 @@
 
 ---
 
-#PlaneGeometry
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / PlaneGeometry
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PlaneGeometry
 
-<br/>
+---
+
+#PlaneGeometry
+
 
 ---
 
@@ -44,7 +44,7 @@
 
 `flipx : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flipy" href="#flipy">flipy</a>
 
@@ -52,7 +52,7 @@
 
 `flipy : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -67,7 +67,7 @@
 
 `new(options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -75,7 +75,7 @@
 
 `set(quad:luxe.Rectangle, y:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_flipx" href="#set_flipx">set_flipx</a>
 
@@ -83,7 +83,7 @@
 
 `set_flipx(_val:Bool) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_flipy" href="#set_flipy">set_flipy</a>
 
@@ -91,7 +91,7 @@
 
 `set_flipy(_val:Bool) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv" href="#uv">uv</a>
 
@@ -99,7 +99,7 @@
 
 `uv(_rect:luxe.Rectangle) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv_space" href="#uv_space">uv_space</a>
 
@@ -107,7 +107,7 @@
 
 `uv_space(_rect:luxe.Rectangle) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

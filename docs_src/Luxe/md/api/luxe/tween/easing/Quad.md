@@ -3,16 +3,16 @@
 
 ---
 
-#Quad
-
 
 ##[API Index](../../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe.tween](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween.easing](./) / Quad
+&emsp;&emsp;&emsp;[luxe.tween.easing](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Quad
 
-<br/>
+---
+
+#Quad
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `easeIn : luxe.tween.easing.IEasing`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="easeInOut" href="#easeInOut">easeInOut</a>
 
@@ -41,7 +41,7 @@
 
 `easeInOut : luxe.tween.easing.IEasing`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="easeOut" href="#easeOut">easeOut</a>
 
@@ -49,7 +49,7 @@
 
 `easeOut : luxe.tween.easing.IEasing`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

@@ -3,29 +3,21 @@
 
 ---
 
-#{{{class_name}}}
-
-{{#doc}}
---- 
-
-{{{doc}}}
-
----
-<br/>
-{{/doc}}
 
 ##[API Index]({{{rel_path}}}api/index.html#{{{package_root}}})   
-&emsp;&emsp;&emsp;parent    
 {{#package_parent}}
 [{{{package_parent}}}](../)     
 {{/package_parent}}
-{{^package_parent}}
-_none_   
-{{/package_parent}}
-&emsp;&emsp;&emsp;current    
-[{{{package}}}](./) / {{{class_name}}}
+&emsp;&emsp;&emsp;[{{{package}}}](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{{class_name}}}
 
-<br/>
+---
+
+#{{{class_name}}}
+
+{{#doc}}
+{{{doc}}}
+{{/doc}}
 
 ---
 

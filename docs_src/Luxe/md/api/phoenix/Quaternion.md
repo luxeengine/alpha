@@ -3,16 +3,15 @@
 
 ---
 
-#Quaternion
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Quaternion
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Quaternion
 
-<br/>
+---
+
+#Quaternion
+
 
 ---
 
@@ -37,7 +36,7 @@ _none_
 
 `w : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -45,7 +44,7 @@ _none_
 
 `x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -53,7 +52,7 @@ _none_
 
 `y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="z" href="#z">z</a>
 
@@ -61,7 +60,7 @@ _none_
 
 `z : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -74,7 +73,7 @@ _none_
 
 `Dot(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="Slerp" href="#Slerp">Slerp</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `Slerp(_qa:phoenix.Quaternion, _qb:phoenix.Quaternion, _qm:phoenix.Quaternion, _t:Float) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -95,7 +94,7 @@ _none_
 
 `add(_quaternion:phoenix.Quaternion) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="addQuaternions" href="#addQuaternions">addQuaternions</a>
 
@@ -103,7 +102,7 @@ _none_
 
 `addQuaternions(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clone" href="#clone">clone</a>
 
@@ -111,7 +110,7 @@ _none_
 
 `clone() : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="conjugate" href="#conjugate">conjugate</a>
 
@@ -119,7 +118,7 @@ _none_
 
 `conjugate() : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="copy" href="#copy">copy</a>
 
@@ -127,7 +126,7 @@ _none_
 
 `copy(_quaternion:phoenix.Quaternion) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dot" href="#dot">dot</a>
 
@@ -135,7 +134,7 @@ _none_
 
 `dot(_other:phoenix.Quaternion) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="equals" href="#equals">equals</a>
 
@@ -143,7 +142,7 @@ _none_
 
 `equals(_q:phoenix.Quaternion) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fromArray" href="#fromArray">fromArray</a>
 
@@ -151,7 +150,7 @@ _none_
 
 `fromArray(_a:Array<Float>) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="inverse" href="#inverse">inverse</a>
 
@@ -159,7 +158,7 @@ _none_
 
 `inverse() : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="length" href="#length">length</a>
 
@@ -167,7 +166,7 @@ _none_
 
 `length() : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lengthSq" href="#lengthSq">lengthSq</a>
 
@@ -175,7 +174,7 @@ _none_
 
 `lengthSq() : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="multiply" href="#multiply">multiply</a>
 
@@ -183,7 +182,7 @@ _none_
 
 `multiply(_quaternion:phoenix.Quaternion) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="multiplyQuaternions" href="#multiplyQuaternions">multiplyQuaternions</a>
 
@@ -191,7 +190,7 @@ _none_
 
 `multiplyQuaternions(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a>
 
@@ -199,7 +198,7 @@ _none_
 
 `multiplyScalar(_scalar:Float) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -207,7 +206,7 @@ _none_
 
 `new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=1) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normalize" href="#normalize">normalize</a>
 
@@ -215,7 +214,7 @@ _none_
 
 `normalize() : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -223,7 +222,7 @@ _none_
 
 `set(_x:Float, _y:Float, _z:Float, _w:Float) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="setFromAxisAngle" href="#setFromAxisAngle">setFromAxisAngle</a>
 
@@ -231,7 +230,7 @@ _none_
 
 `setFromAxisAngle(_axis:phoenix.Vector, _angle:Float) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="setFromEuler" href="#setFromEuler">setFromEuler</a>
 
@@ -239,7 +238,7 @@ _none_
 
 `setFromEuler(_euler:phoenix.Vector, ?_order:String='XYZ') : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="setFromRotationMatrix" href="#setFromRotationMatrix">setFromRotationMatrix</a>
 
@@ -247,7 +246,7 @@ _none_
 
 `setFromRotationMatrix(_m:phoenix.Matrix4) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="slerp" href="#slerp">slerp</a>
 
@@ -255,7 +254,7 @@ _none_
 
 `slerp(_qb:phoenix.Quaternion, _t:Float) : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toArray" href="#toArray">toArray</a>
 
@@ -263,7 +262,7 @@ _none_
 
 `toArray() : Array<Float>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -271,7 +270,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

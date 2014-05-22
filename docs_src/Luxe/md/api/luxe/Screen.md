@@ -3,16 +3,15 @@
 
 ---
 
-#Screen
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Screen
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Screen
 
-<br/>
+---
+
+#Screen
+
 
 ---
 
@@ -35,7 +34,7 @@ _none_
 
 `core : luxe.Core`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="cursor" href="#cursor">cursor</a>
 
@@ -43,7 +42,7 @@ _none_
 
 `cursor : luxe.Cursor`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="h" href="#h">h</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `h : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="w" href="#w">w</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `w : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -75,7 +74,7 @@ _none_
 
 `y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -88,7 +87,7 @@ _none_
 
 `mid : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -103,7 +102,7 @@ _none_
 
 `new(?_core:luxe.Core, _x:Int, _y:Int, _w:Int, _h:Int) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="point_inside" href="#point_inside">point_inside</a>
 
@@ -111,7 +110,7 @@ _none_
 
 `point_inside(_p:luxe.Vector) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

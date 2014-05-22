@@ -3,16 +3,16 @@
 
 ---
 
-#RectangleGeometry
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / RectangleGeometry
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RectangleGeometry
 
-<br/>
+---
+
+#RectangleGeometry
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `new(options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -51,7 +51,7 @@
 
 `set(options:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

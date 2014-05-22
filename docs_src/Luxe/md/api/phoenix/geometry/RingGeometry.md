@@ -3,16 +3,16 @@
 
 ---
 
-#RingGeometry
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / RingGeometry
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RingGeometry
 
-<br/>
+---
+
+#RingGeometry
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `new(options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

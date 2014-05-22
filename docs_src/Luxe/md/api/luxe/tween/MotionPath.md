@@ -3,22 +3,17 @@
 
 ---
 
-#MotionPath
-
---- 
-
-* @author Joshua Granick
-
----
-<br/>
 
 ##[API Index](../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween](./) / MotionPath
+&emsp;&emsp;&emsp;[luxe.tween](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MotionPath
 
-<br/>
+---
+
+#MotionPath
+
+* @author Joshua Granick
 
 ---
 
@@ -42,7 +37,7 @@
 
 `x : luxe.tween.IComponentPath`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -50,7 +45,7 @@
 
 `y : luxe.tween.IComponentPath`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -91,7 +86,7 @@
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

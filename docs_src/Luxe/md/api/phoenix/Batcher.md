@@ -3,16 +3,15 @@
 
 ---
 
-#Batcher
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Batcher
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Batcher
 
-<br/>
+---
+
+#Batcher
+
 
 ---
 
@@ -35,7 +34,7 @@ _none_
 
 `buffer_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="buffer_index" href="#buffer_index">buffer_index</a>
 
@@ -43,7 +42,7 @@ _none_
 
 `buffer_index : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="color_attribute" href="#color_attribute">color_attribute</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `color_attribute : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="colorlist" href="#colorlist">colorlist</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `colorlist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="colors" href="#colors">colors</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `colors : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="draw_calls" href="#draw_calls">draw_calls</a>
 
@@ -75,7 +74,7 @@ _none_
 
 `draw_calls : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dynamic_batched_count" href="#dynamic_batched_count">dynamic_batched_count</a>
 
@@ -83,7 +82,7 @@ _none_
 
 `dynamic_batched_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="enabled" href="#enabled">enabled</a>
 
@@ -91,7 +90,7 @@ _none_
 
 `enabled : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="geometry" href="#geometry">geometry</a>
 
@@ -99,7 +98,7 @@ _none_
 
 `geometry : luxe.structural.BalancedBinarySearchTree<phoenix.geometry.GeometryKey,phoenix.geometry.Geometry>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="groups" href="#groups">groups</a>
 
@@ -107,7 +106,7 @@ _none_
 
 `groups : Map<Int,Array>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -115,7 +114,7 @@ _none_
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="log" href="#log">log</a>
 
@@ -123,7 +122,7 @@ _none_
 
 `log : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="modelviewmatrix_attribute" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a>
 
@@ -131,7 +130,7 @@ _none_
 
 `modelviewmatrix_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="name" href="#name">name</a>
 
@@ -139,7 +138,7 @@ _none_
 
 `name : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normalBuffers" href="#normalBuffers">normalBuffers</a>
 
@@ -147,7 +146,7 @@ _none_
 
 `normalBuffers : Array<lime.gl.GLBuffer>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normal_attribute" href="#normal_attribute">normal_attribute</a>
 
@@ -155,7 +154,7 @@ _none_
 
 `normal_attribute : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normallist" href="#normallist">normallist</a>
 
@@ -163,7 +162,7 @@ _none_
 
 `normallist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="normals" href="#normals">normals</a>
 
@@ -171,7 +170,7 @@ _none_
 
 `normals : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="projectionmatrix_attribute" href="#projectionmatrix_attribute">projectionmatrix_attribute</a>
 
@@ -179,7 +178,7 @@ _none_
 
 `projectionmatrix_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="renderer" href="#renderer">renderer</a>
 
@@ -187,7 +186,7 @@ _none_
 
 `renderer : phoenix.Renderer`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_batched_count" href="#static_batched_count">static_batched_count</a>
 
@@ -195,7 +194,7 @@ _none_
 
 `static_batched_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_colorlist" href="#static_colorlist">static_colorlist</a>
 
@@ -203,7 +202,7 @@ _none_
 
 `static_colorlist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_colors" href="#static_colors">static_colors</a>
 
@@ -211,7 +210,7 @@ _none_
 
 `static_colors : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_normallist" href="#static_normallist">static_normallist</a>
 
@@ -219,7 +218,7 @@ _none_
 
 `static_normallist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_normals" href="#static_normals">static_normals</a>
 
@@ -227,7 +226,7 @@ _none_
 
 `static_normals : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_tcoordlist" href="#static_tcoordlist">static_tcoordlist</a>
 
@@ -235,7 +234,7 @@ _none_
 
 `static_tcoordlist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_tcoords" href="#static_tcoords">static_tcoords</a>
 
@@ -243,7 +242,7 @@ _none_
 
 `static_tcoords : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_vertlist" href="#static_vertlist">static_vertlist</a>
 
@@ -251,7 +250,7 @@ _none_
 
 `static_vertlist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_verts" href="#static_verts">static_verts</a>
 
@@ -259,7 +258,7 @@ _none_
 
 `static_verts : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tcoordBuffers" href="#tcoordBuffers">tcoordBuffers</a>
 
@@ -267,7 +266,7 @@ _none_
 
 `tcoordBuffers : Array<lime.gl.GLBuffer>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tcoord_attribute" href="#tcoord_attribute">tcoord_attribute</a>
 
@@ -275,7 +274,7 @@ _none_
 
 `tcoord_attribute : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tcoordlist" href="#tcoordlist">tcoordlist</a>
 
@@ -283,7 +282,7 @@ _none_
 
 `tcoordlist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tcoords" href="#tcoords">tcoords</a>
 
@@ -291,7 +290,7 @@ _none_
 
 `tcoords : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex0_attribute" href="#tex0_attribute">tex0_attribute</a>
 
@@ -299,7 +298,7 @@ _none_
 
 `tex0_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex1_attribute" href="#tex1_attribute">tex1_attribute</a>
 
@@ -307,7 +306,7 @@ _none_
 
 `tex1_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex2_attribute" href="#tex2_attribute">tex2_attribute</a>
 
@@ -315,7 +314,7 @@ _none_
 
 `tex2_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex3_attribute" href="#tex3_attribute">tex3_attribute</a>
 
@@ -323,7 +322,7 @@ _none_
 
 `tex3_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex4_attribute" href="#tex4_attribute">tex4_attribute</a>
 
@@ -331,7 +330,7 @@ _none_
 
 `tex4_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex5_attribute" href="#tex5_attribute">tex5_attribute</a>
 
@@ -339,7 +338,7 @@ _none_
 
 `tex5_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex6_attribute" href="#tex6_attribute">tex6_attribute</a>
 
@@ -347,7 +346,7 @@ _none_
 
 `tex6_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tex7_attribute" href="#tex7_attribute">tex7_attribute</a>
 
@@ -355,7 +354,7 @@ _none_
 
 `tex7_attribute : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tree_changed" href="#tree_changed">tree_changed</a>
 
@@ -363,7 +362,7 @@ _none_
 
 `tree_changed : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vcolorBuffers" href="#vcolorBuffers">vcolorBuffers</a>
 
@@ -371,7 +370,7 @@ _none_
 
 `vcolorBuffers : Array<lime.gl.GLBuffer>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vert_attribute" href="#vert_attribute">vert_attribute</a>
 
@@ -379,7 +378,7 @@ _none_
 
 `vert_attribute : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vertexBuffers" href="#vertexBuffers">vertexBuffers</a>
 
@@ -387,7 +386,7 @@ _none_
 
 `vertexBuffers : Array<lime.gl.GLBuffer>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vertlist" href="#vertlist">vertlist</a>
 
@@ -395,7 +394,7 @@ _none_
 
 `vertlist : lime.utils.Float32Array`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="verts" href="#verts">verts</a>
 
@@ -403,7 +402,7 @@ _none_
 
 `verts : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="view" href="#view">view</a>
 
@@ -411,7 +410,7 @@ _none_
 
 `view : phoenix.Camera`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="visible_count" href="#visible_count">visible_count</a>
 
@@ -419,7 +418,7 @@ _none_
 
 `visible_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -432,7 +431,7 @@ _none_
 
 `layer : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -447,7 +446,7 @@ _none_
 
 `add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="add_group" href="#add_group">add_group</a>
 
@@ -455,7 +454,7 @@ _none_
 
 `add_group(_group:Int, _pre_render:phoenix.Batcher->Void, _post_render:phoenix.Batcher->Void) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="batch" href="#batch">batch</a>
 
@@ -463,7 +462,7 @@ _none_
 
 `batch(?persist_immediate:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="blend_mode" href="#blend_mode">blend_mode</a>
 
@@ -471,7 +470,7 @@ _none_
 
 `blend_mode(?_src_mode:phoenix.BlendMode, ?_dst_mode:phoenix.BlendMode) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="compare" href="#compare">compare</a>
 
@@ -479,7 +478,7 @@ _none_
 
 `compare(other:phoenix.Batcher) : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="compare_rule" href="#compare_rule">compare_rule</a>
 
@@ -487,7 +486,7 @@ _none_
 
 `compare_rule(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="compare_rule_to_string" href="#compare_rule_to_string">compare_rule_to_string</a>
 
@@ -495,7 +494,7 @@ _none_
 
 `compare_rule_to_string(r:Int) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="draw" href="#draw">draw</a>
 
@@ -503,7 +502,7 @@ _none_
 
 `draw(?persist_immediate:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="geometry_compare" href="#geometry_compare">geometry_compare</a>
 
@@ -511,7 +510,7 @@ _none_
 
 `geometry_compare(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -519,7 +518,7 @@ _none_
 
 `new(_r:phoenix.Renderer, ?_name:String='') `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove" href="#remove">remove</a>
 
@@ -527,7 +526,7 @@ _none_
 
 `remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool=true) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_layer" href="#set_layer">set_layer</a>
 
@@ -535,7 +534,7 @@ _none_
 
 `set_layer(_layer:Int) : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shader_activate" href="#shader_activate">shader_activate</a>
 
@@ -543,7 +542,7 @@ _none_
 
 `shader_activate(_shader:phoenix.Shader) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="submit_current_vertex_list" href="#submit_current_vertex_list">submit_current_vertex_list</a>
 
@@ -551,7 +550,7 @@ _none_
 
 `submit_current_vertex_list(type:phoenix.PrimitiveType) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="submit_static_geometry" href="#submit_static_geometry">submit_static_geometry</a>
 
@@ -559,7 +558,7 @@ _none_
 
 `submit_static_geometry(geom:phoenix.geometry.Geometry) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -567,7 +566,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

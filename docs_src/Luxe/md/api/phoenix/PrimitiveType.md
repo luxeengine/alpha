@@ -3,16 +3,15 @@
 
 ---
 
-#PrimitiveType
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / PrimitiveType
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PrimitiveType
 
-<br/>
+---
+
+#PrimitiveType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.PrimitiveType.line_loop`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="line_strip" href="#line_strip">line_strip</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.PrimitiveType.line_strip`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lines" href="#lines">lines</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.PrimitiveType.lines`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="none" href="#none">none</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `phoenix.PrimitiveType.none`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="points" href="#points">points</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `phoenix.PrimitiveType.points`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="triangle_fan" href="#triangle_fan">triangle_fan</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `phoenix.PrimitiveType.triangle_fan`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="triangle_strip" href="#triangle_strip">triangle_strip</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `phoenix.PrimitiveType.triangle_strip`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="triangles" href="#triangles">triangles</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `phoenix.PrimitiveType.triangles`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

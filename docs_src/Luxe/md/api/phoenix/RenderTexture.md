@@ -3,16 +3,15 @@
 
 ---
 
-#RenderTexture
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / RenderTexture
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RenderTexture
 
-<br/>
+---
+
+#RenderTexture
+
 
 ---
 
@@ -42,7 +41,7 @@ _none_
 
 `fbo : lime.gl.GLFramebuffer`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +56,7 @@ _none_
 
 `bindBuffer() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `new(_manager:luxe.ResourceManager, ?_size:phoenix.Vector) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unbindBuffer" href="#unbindBuffer">unbindBuffer</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `unbindBuffer(?_other:lime.gl.GLFramebuffer) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

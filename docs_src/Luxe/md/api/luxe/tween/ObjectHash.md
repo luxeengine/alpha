@@ -3,16 +3,16 @@
 
 ---
 
-#ObjectHash
-
 
 ##[API Index](../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween](./) / ObjectHash
+&emsp;&emsp;&emsp;[luxe.tween](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ObjectHash
 
-<br/>
+---
+
+#ObjectHash
+
 
 ---
 

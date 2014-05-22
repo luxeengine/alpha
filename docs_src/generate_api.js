@@ -1,4 +1,4 @@
-    
+
     var api = {};
 
     var helper   = require('./generate_helper'),
@@ -494,7 +494,7 @@
                             _context.content += '<a class="lift" name="'+_value.name+'" href="#'+_value.name+'">' + _value.name + '</a>\n\n';
 
                             _context.content += '\n\n'+ _prefix +'`'+_value.signature +'`\n\n';
-                            _context.content += '<span class="small_desc_flat"> ' + (_value.doc || "no description")+ ' </span>   \n\n';
+                            _context.content += '<span class="small_desc_flat"> ' + (_value.doc || "")+ ' </span>   \n\n';
 
                         }
 

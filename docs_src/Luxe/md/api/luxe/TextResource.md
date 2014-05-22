@@ -3,16 +3,15 @@
 
 ---
 
-#TextResource
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / TextResource
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextResource
 
-<br/>
+---
+
+#TextResource
+
 
 ---
 
@@ -42,7 +41,7 @@ _none_
 
 `text : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +56,7 @@ _none_
 
 `new(_id:String, _text:String, _manager:luxe.ResourceManager) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

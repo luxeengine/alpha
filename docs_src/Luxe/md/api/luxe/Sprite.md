@@ -3,16 +3,15 @@
 
 ---
 
-#Sprite
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Sprite
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sprite
 
-<br/>
+---
+
+#Sprite
+
 
 ---
 
@@ -43,7 +42,7 @@ _none_
 
 `geometry_quad : phoenix.geometry.QuadGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -56,7 +55,7 @@ _none_
 
 `centered : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flipx" href="#flipx">flipx</a>
 
@@ -64,7 +63,7 @@ _none_
 
 `flipx : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flipy" href="#flipy">flipy</a>
 
@@ -72,7 +71,7 @@ _none_
 
 `flipy : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv" href="#uv">uv</a>
 
@@ -80,7 +79,7 @@ _none_
 
 `uv : luxe.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -95,7 +94,7 @@ _none_
 
 `new<T>(options:luxe.options.SpriteOptions<new.T>) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="point_inside" href="#point_inside">point_inside</a>
 
@@ -103,7 +102,7 @@ _none_
 
 `point_inside(_p:luxe.Vector) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="point_inside_exact" href="#point_inside_exact">point_inside_exact</a>
 
@@ -111,7 +110,7 @@ _none_
 
 `point_inside_exact(_p:luxe.Vector) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,16 @@
 
 ---
 
-#BalancedBinarySearchTreeNode
-
 
 ##[API Index](../../../api/index.html#luxe.structural)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.structural](./) / BalancedBinarySearchTreeNode
+&emsp;&emsp;&emsp;[luxe.structural](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BalancedBinarySearchTreeNode
 
-<br/>
+---
+
+#BalancedBinarySearchTreeNode
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 `color : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="key" href="#key">key</a>
 
@@ -42,7 +42,7 @@
 
 `key : luxe.structural.BalancedBinarySearchTreeNode.K`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="left" href="#left">left</a>
 
@@ -50,7 +50,7 @@
 
 `left : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTreeNode.K,luxe.structural.BalancedBinarySearchTreeNode.T>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="nodecount" href="#nodecount">nodecount</a>
 
@@ -58,7 +58,7 @@
 
 `nodecount : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="right" href="#right">right</a>
 
@@ -66,7 +66,7 @@
 
 `right : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTreeNode.K,luxe.structural.BalancedBinarySearchTreeNode.T>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="value" href="#value">value</a>
 
@@ -74,7 +74,7 @@
 
 `value : luxe.structural.BalancedBinarySearchTreeNode.T`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -89,7 +89,7 @@
 
 `new(_key:luxe.structural.BalancedBinarySearchTreeNode.K, _value:luxe.structural.BalancedBinarySearchTreeNode.T, _nodecount:Int, _color:Bool) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

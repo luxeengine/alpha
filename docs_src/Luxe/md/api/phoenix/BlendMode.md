@@ -3,16 +3,15 @@
 
 ---
 
-#BlendMode
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / BlendMode
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BlendMode
 
-<br/>
+---
+
+#BlendMode
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.BlendMode.dst_alpha`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dst_color" href="#dst_color">dst_color</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.BlendMode.dst_color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="one" href="#one">one</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.BlendMode.one`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="one_minus_dst_alpha" href="#one_minus_dst_alpha">one_minus_dst_alpha</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `phoenix.BlendMode.one_minus_dst_alpha`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="one_minus_dst_color" href="#one_minus_dst_color">one_minus_dst_color</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `phoenix.BlendMode.one_minus_dst_color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="one_minus_src_alpha" href="#one_minus_src_alpha">one_minus_src_alpha</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `phoenix.BlendMode.one_minus_src_alpha`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="one_minus_src_color" href="#one_minus_src_color">one_minus_src_color</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `phoenix.BlendMode.one_minus_src_color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="src_alpha" href="#src_alpha">src_alpha</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `phoenix.BlendMode.src_alpha`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="src_alpha_saturate" href="#src_alpha_saturate">src_alpha_saturate</a>
 
@@ -97,7 +96,7 @@ _none_
 
 `phoenix.BlendMode.src_alpha_saturate`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="src_color" href="#src_color">src_color</a>
 
@@ -105,7 +104,7 @@ _none_
 
 `phoenix.BlendMode.src_color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="zero" href="#zero">zero</a>
 
@@ -113,7 +112,7 @@ _none_
 
 `phoenix.BlendMode.zero`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

@@ -3,16 +3,15 @@
 
 ---
 
-#Objects
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Objects
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Objects
 
-<br/>
+---
+
+#Objects
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="name" href="#name">name</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `name : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

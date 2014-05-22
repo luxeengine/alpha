@@ -3,16 +3,15 @@
 
 ---
 
-#Text
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Text
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Text
 
-<br/>
+---
+
+#Text
+
 
 ---
 
@@ -43,7 +42,7 @@ _none_
 
 `composite_geometry : phoenix.geometry.CompositeGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="font" href="#font">font</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `font : phoenix.BitmapFont`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ready" href="#ready">ready</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `ready : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="text_options" href="#text_options">text_options</a>
 
@@ -67,7 +66,7 @@ _none_
 
 `text_options : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -80,7 +79,7 @@ _none_
 
 `text : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="textsize" href="#textsize">textsize</a>
 
@@ -88,7 +87,7 @@ _none_
 
 `textsize : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -103,7 +102,7 @@ _none_
 
 `new(_options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

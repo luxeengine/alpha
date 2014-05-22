@@ -3,16 +3,16 @@
 
 ---
 
-#CircleGeometry
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / CircleGeometry
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CircleGeometry
 
-<br/>
+---
+
+#CircleGeometry
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `new(options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -51,7 +51,7 @@
 
 `set(_x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, ?_start_angle:Float=0, ?_end_angle:Float=360) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

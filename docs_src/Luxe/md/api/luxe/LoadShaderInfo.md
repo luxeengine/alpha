@@ -3,16 +3,15 @@
 
 ---
 
-#LoadShaderInfo
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / LoadShaderInfo
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LoadShaderInfo
 
-<br/>
+---
+
+#LoadShaderInfo
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `onloaded : phoenix.Shader->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ps_id" href="#ps_id">ps_id</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `ps_id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vs_id" href="#vs_id">vs_id</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `vs_id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

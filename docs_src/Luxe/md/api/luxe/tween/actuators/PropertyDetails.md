@@ -3,16 +3,16 @@
 
 ---
 
-#PropertyDetails
-
 
 ##[API Index](../../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe.tween](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween.actuators](./) / PropertyDetails
+&emsp;&emsp;&emsp;[luxe.tween.actuators](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PropertyDetails
 
-<br/>
+---
+
+#PropertyDetails
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 `change : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="isField" href="#isField">isField</a>
 
@@ -42,7 +42,7 @@
 
 `isField : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="propertyName" href="#propertyName">propertyName</a>
 
@@ -50,7 +50,7 @@
 
 `propertyName : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="start" href="#start">start</a>
 
@@ -58,7 +58,7 @@
 
 `start : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="target" href="#target">target</a>
 
@@ -66,7 +66,7 @@
 
 `target : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -81,7 +81,7 @@
 
 `new(target:Dynamic, propertyName:String, start:Float, change:Float, ?isField:Bool=true) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

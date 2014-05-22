@@ -3,16 +3,15 @@
 
 ---
 
-#Events
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Events
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Events
 
-<br/>
+---
+
+#Events
+
 
 ---
 
@@ -37,7 +36,7 @@ _none_
 
 `clear() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dequeue" href="#dequeue">dequeue</a>
 
@@ -45,7 +44,7 @@ _none_
 
 `dequeue(event_id:String) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
@@ -53,7 +52,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="disconnect" href="#disconnect">disconnect</a>
 
@@ -61,7 +60,7 @@ _none_
 
 `disconnect(event_id:String) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="does_filter_event" href="#does_filter_event">does_filter_event</a>
 
@@ -69,7 +68,7 @@ _none_
 
 `does_filter_event(_filter:String, _event:String) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fire" href="#fire">fire</a>
 
@@ -77,7 +76,7 @@ _none_
 
 `fire<T>(_event_name:String, ?_properties:fire.T) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="listen" href="#listen">listen</a>
 
@@ -85,7 +84,7 @@ _none_
 
 `listen<T>(_event_name:String, _listener:listen.T->Void) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -93,7 +92,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="process" href="#process">process</a>
 
@@ -101,7 +100,7 @@ _none_
 
 `process() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="queue" href="#queue">queue</a>
 
@@ -109,7 +108,7 @@ _none_
 
 `queue<T>(event_name:String, ?properties:queue.T) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="schedule" href="#schedule">schedule</a>
 
@@ -117,7 +116,7 @@ _none_
 
 `schedule<T>(time:Float, event_name:String, ?properties:schedule.T) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unschedule" href="#unschedule">unschedule</a>
 
@@ -125,7 +124,7 @@ _none_
 
 `unschedule(schedule_id:String) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

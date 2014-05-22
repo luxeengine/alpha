@@ -3,16 +3,15 @@
 
 ---
 
-#Visual
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Visual
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Visual
 
-<br/>
+---
+
+#Visual
+
 
 ---
 
@@ -44,7 +43,7 @@ _none_
 
 `clip : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a>
 
@@ -52,7 +51,7 @@ _none_
 
 `clip_rect : luxe.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="color" href="#color">color</a>
 
@@ -60,7 +59,7 @@ _none_
 
 `color : luxe.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="depth" href="#depth">depth</a>
 
@@ -68,7 +67,7 @@ _none_
 
 `depth : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="geometry" href="#geometry">geometry</a>
 
@@ -76,7 +75,7 @@ _none_
 
 `geometry : phoenix.geometry.Geometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="group" href="#group">group</a>
 
@@ -84,7 +83,7 @@ _none_
 
 `group : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="locked" href="#locked">locked</a>
 
@@ -92,7 +91,7 @@ _none_
 
 `locked : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="origin" href="#origin">origin</a>
 
@@ -100,7 +99,7 @@ _none_
 
 `origin : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="radians" href="#radians">radians</a>
 
@@ -108,7 +107,7 @@ _none_
 
 `radians : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation_z" href="#rotation_z">rotation_z</a>
 
@@ -116,7 +115,7 @@ _none_
 
 `rotation_z : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shader" href="#shader">shader</a>
 
@@ -124,7 +123,7 @@ _none_
 
 `shader : phoenix.Shader`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="size" href="#size">size</a>
 
@@ -132,7 +131,7 @@ _none_
 
 `size : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="texture" href="#texture">texture</a>
 
@@ -140,7 +139,7 @@ _none_
 
 `texture : phoenix.Texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="visible" href="#visible">visible</a>
 
@@ -148,7 +147,7 @@ _none_
 
 `visible : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -163,7 +162,7 @@ _none_
 
 `get_serialize_data() : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -171,7 +170,7 @@ _none_
 
 `new<T>(_options:luxe.options.VisualOptions<new.T>) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

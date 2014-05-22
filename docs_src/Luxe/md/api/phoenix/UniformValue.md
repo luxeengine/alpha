@@ -3,16 +3,15 @@
 
 ---
 
-#UniformValue
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / UniformValue
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;UniformValue
 
-<br/>
+---
+
+#UniformValue
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `location : lime.gl.GLUniformLocation`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="name" href="#name">name</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `name : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `type : phoenix.UniformValueType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="value" href="#value">value</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `value : phoenix.UniformValue.T`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

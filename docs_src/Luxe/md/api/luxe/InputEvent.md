@@ -3,16 +3,15 @@
 
 ---
 
-#InputEvent
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / InputEvent
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;InputEvent
 
-<br/>
+---
+
+#InputEvent
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `gamepad_event : luxe.GamepadEvent`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="key_event" href="#key_event">key_event</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `key_event : luxe.KeyEvent`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mouse_event" href="#mouse_event">mouse_event</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `mouse_event : luxe.MouseEvent`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="name" href="#name">name</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `name : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="state" href="#state">state</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `state : luxe.InputState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="touch_event" href="#touch_event">touch_event</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `touch_event : luxe.TouchEvent`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `type : luxe.InputType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

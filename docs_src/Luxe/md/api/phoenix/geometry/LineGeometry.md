@@ -3,16 +3,16 @@
 
 ---
 
-#LineGeometry
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / LineGeometry
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LineGeometry
 
-<br/>
+---
+
+#LineGeometry
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 `p0 : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="p1" href="#p1">p1</a>
 
@@ -50,7 +50,7 @@
 
 `p1 : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -65,7 +65,7 @@
 
 `new(options:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -73,7 +73,7 @@
 
 `set(options:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_p0" href="#set_p0">set_p0</a>
 
@@ -81,7 +81,7 @@
 
 `set_p0(_p:luxe.Vector) : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_p1" href="#set_p1">set_p1</a>
 
@@ -89,7 +89,7 @@
 
 `set_p1(_p:luxe.Vector) : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

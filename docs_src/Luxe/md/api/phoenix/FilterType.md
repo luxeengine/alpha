@@ -3,16 +3,15 @@
 
 ---
 
-#FilterType
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / FilterType
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FilterType
 
-<br/>
+---
+
+#FilterType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.FilterType.linear`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mip_linear_linear" href="#mip_linear_linear">mip_linear_linear</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.FilterType.mip_linear_linear`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mip_linear_nearest" href="#mip_linear_nearest">mip_linear_nearest</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.FilterType.mip_linear_nearest`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mip_nearest_linear" href="#mip_nearest_linear">mip_nearest_linear</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `phoenix.FilterType.mip_nearest_linear`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mip_nearest_nearest" href="#mip_nearest_nearest">mip_nearest_nearest</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `phoenix.FilterType.mip_nearest_nearest`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="nearest" href="#nearest">nearest</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `phoenix.FilterType.nearest`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

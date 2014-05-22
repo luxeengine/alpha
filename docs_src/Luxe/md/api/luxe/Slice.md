@@ -3,16 +3,15 @@
 
 ---
 
-#Slice
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Slice
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Slice
 
-<br/>
+---
+
+#Slice
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `geometry_id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="height" href="#height">height</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `height : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `pos : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_height" href="#source_height">source_height</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `source_height : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_width" href="#source_width">source_width</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `source_width : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_x" href="#source_x">source_x</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `source_x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_y" href="#source_y">source_y</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `source_y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="width" href="#width">width</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `width : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

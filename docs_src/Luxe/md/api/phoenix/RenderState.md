@@ -3,16 +3,15 @@
 
 ---
 
-#RenderState
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / RenderState
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RenderState
 
-<br/>
+---
+
+#RenderState
+
 
 ---
 
@@ -37,7 +36,7 @@ _none_
 
 `activeTexture(val:Int) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="bindTexture2D" href="#bindTexture2D">bindTexture2D</a>
 
@@ -45,7 +44,7 @@ _none_
 
 `bindTexture2D(tex:lime.gl.GLTexture) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="disable" href="#disable">disable</a>
 
@@ -53,7 +52,7 @@ _none_
 
 `disable(what:Int) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="enable" href="#enable">enable</a>
 
@@ -61,7 +60,7 @@ _none_
 
 `enable(what:Int) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lineWidth" href="#lineWidth">lineWidth</a>
 
@@ -69,7 +68,7 @@ _none_
 
 `lineWidth(_width:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -77,7 +76,7 @@ _none_
 
 `new(_renderer:phoenix.Renderer) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="useProgram" href="#useProgram">useProgram</a>
 
@@ -85,7 +84,7 @@ _none_
 
 `useProgram(program:lime.gl.GLProgram) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="viewport" href="#viewport">viewport</a>
 
@@ -93,7 +92,7 @@ _none_
 
 `viewport(x:Float, y:Float, w:Float, h:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,15 @@
 
 ---
 
-#ResourceManager
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / ResourceManager
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ResourceManager
 
-<br/>
+---
+
+#ResourceManager
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `data : Map<String,lime.utils.ByteArray>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fonts" href="#fonts">fonts</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `fonts : Map<String,phoenix.BitmapFont>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="render_textures" href="#render_textures">render_textures</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `render_textures : Map<String,phoenix.RenderTexture>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="resourcelist" href="#resourcelist">resourcelist</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `resourcelist : Array<luxe.Resource>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shaders" href="#shaders">shaders</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `shaders : Map<String,phoenix.Shader>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="sounds" href="#sounds">sounds</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `sounds : Map<String,String>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stats" href="#stats">stats</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `stats : luxe.ResourceStats`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="text" href="#text">text</a>
 
@@ -90,7 +89,7 @@ _none_
 
 `text : Map<String,String>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="textures" href="#textures">textures</a>
 
@@ -98,7 +97,7 @@ _none_
 
 `textures : Map<String,phoenix.Texture>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -113,7 +112,7 @@ _none_
 
 `add(res:luxe.Resource) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="cache" href="#cache">cache</a>
 
@@ -121,7 +120,7 @@ _none_
 
 `cache(res:luxe.Resource) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clear" href="#clear">clear</a>
 
@@ -129,7 +128,7 @@ _none_
 
 `clear(?and_persistent:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find" href="#find">find</a>
 
@@ -137,7 +136,7 @@ _none_
 
 `find(id:String) : luxe.Resource`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_data" href="#find_data">find_data</a>
 
@@ -145,7 +144,7 @@ _none_
 
 `find_data(_name:String) : Null<lime.utils.ByteArray>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_font" href="#find_font">find_font</a>
 
@@ -153,7 +152,7 @@ _none_
 
 `find_font(_name:String) : Null<phoenix.BitmapFont>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_render_texture" href="#find_render_texture">find_render_texture</a>
 
@@ -161,7 +160,7 @@ _none_
 
 `find_render_texture(_name:String) : Null<phoenix.RenderTexture>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_shader" href="#find_shader">find_shader</a>
 
@@ -169,7 +168,7 @@ _none_
 
 `find_shader(_name:String) : Null<phoenix.Shader>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_sound" href="#find_sound">find_sound</a>
 
@@ -177,7 +176,7 @@ _none_
 
 `find_sound(_name:String) : Null<String>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_text" href="#find_text">find_text</a>
 
@@ -185,7 +184,7 @@ _none_
 
 `find_text(_name:String) : Null<String>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="find_texture" href="#find_texture">find_texture</a>
 
@@ -193,7 +192,7 @@ _none_
 
 `find_texture(_name:String) : Null<phoenix.Texture>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -201,7 +200,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove" href="#remove">remove</a>
 
@@ -209,7 +208,7 @@ _none_
 
 `remove(res:luxe.Resource) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uncache" href="#uncache">uncache</a>
 
@@ -217,7 +216,7 @@ _none_
 
 `uncache(res:luxe.Resource) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

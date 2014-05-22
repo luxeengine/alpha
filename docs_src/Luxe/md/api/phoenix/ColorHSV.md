@@ -3,16 +3,15 @@
 
 ---
 
-#ColorHSV
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / ColorHSV
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ColorHSV
 
-<br/>
+---
+
+#ColorHSV
+
 
 ---
 
@@ -42,7 +41,7 @@ _none_
 
 `h : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="s" href="#s">s</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `s : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="v" href="#v">v</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `v : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -73,7 +72,7 @@ _none_
 
 `_refresh() : phoenix.ColorHSV`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clone" href="#clone">clone</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `clone() : phoenix.ColorHSV`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fromColor" href="#fromColor">fromColor</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `fromColor(_color:phoenix.Color) : phoenix.ColorHSV`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fromColorHSL" href="#fromColorHSL">fromColorHSL</a>
 
@@ -97,7 +96,7 @@ _none_
 
 `fromColorHSL(_color_hsl:phoenix.ColorHSL) : phoenix.ColorHSV`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -105,7 +104,7 @@ _none_
 
 `new(?_h:Float=0.0f, ?_s:Float=0.0f, ?_v:Float=1.0f, ?_a:Float=1.0f) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set" href="#set">set</a>
 
@@ -113,7 +112,7 @@ _none_
 
 `set(?_h:Float, ?_s:Float, ?_v:Float, ?_a:Float) : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toColor" href="#toColor">toColor</a>
 
@@ -121,7 +120,7 @@ _none_
 
 `toColor() : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toColorHSL" href="#toColorHSL">toColorHSL</a>
 
@@ -129,7 +128,7 @@ _none_
 
 `toColorHSL() : phoenix.ColorHSL`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -137,7 +136,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="tween" href="#tween">tween</a>
 
@@ -145,7 +144,7 @@ _none_
 
 `tween(?_time_in_seconds:Float=0.5f, ?_dest:luxe.options.ColorOptions, ?_override:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

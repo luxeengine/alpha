@@ -3,16 +3,16 @@
 
 ---
 
-#GenericActuator
-
 
 ##[API Index](../../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe.tween](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween.actuators](./) / GenericActuator
+&emsp;&emsp;&emsp;[luxe.tween.actuators](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GenericActuator
 
-<br/>
+---
+
+#GenericActuator
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 `duration : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -50,7 +50,7 @@
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="properties" href="#properties">properties</a>
 
@@ -58,7 +58,7 @@
 
 `properties : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="target" href="#target">target</a>
 
@@ -66,7 +66,7 @@
 
 `target : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="timescaled" href="#timescaled">timescaled</a>
 
@@ -91,7 +91,7 @@
 
 `apply() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="autoVisible" href="#autoVisible">autoVisible</a>
 
@@ -129,7 +129,7 @@
 
 `move() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -137,7 +137,7 @@
 
 `new(target:Dynamic, duration:Float, properties:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onComplete" href="#onComplete">onComplete</a>
 
@@ -178,7 +178,7 @@
 
 `pause() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="reflect" href="#reflect">reflect</a>
 
@@ -206,7 +206,7 @@
 
 `resume() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="reverse" href="#reverse">reverse</a>
 
@@ -244,7 +244,7 @@
 
 `stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="timescale" href="#timescale">timescale</a>
 
@@ -252,7 +252,7 @@
 
 `timescale(?_value:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

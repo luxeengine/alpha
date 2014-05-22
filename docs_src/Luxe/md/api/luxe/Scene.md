@@ -3,16 +3,15 @@
 
 ---
 
-#Scene
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Scene
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Scene
 
-<br/>
+---
+
+#Scene
+
 
 ---
 
@@ -43,7 +42,7 @@ _none_
 
 `entities : Map<String,luxe.Entity>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="inited" href="#inited">inited</a>
 
@@ -51,7 +50,7 @@ _none_
 
 `inited : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="started" href="#started">started</a>
 
@@ -59,7 +58,7 @@ _none_
 
 `started : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -72,7 +71,7 @@ _none_
 
 `entitycount : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -87,7 +86,7 @@ _none_
 
 `add(entity:luxe.Entity) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="create" href="#create">create</a>
 
@@ -95,7 +94,7 @@ _none_
 
 `create<T1,T2>(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
@@ -103,7 +102,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="empty" href="#empty">empty</a>
 
@@ -111,7 +110,7 @@ _none_
 
 `empty() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fixed_update" href="#fixed_update">fixed_update</a>
 
@@ -119,7 +118,7 @@ _none_
 
 `fixed_update() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="init" href="#init">init</a>
 
@@ -127,7 +126,7 @@ _none_
 
 `init() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -135,7 +134,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ongamepadaxis" href="#ongamepadaxis">ongamepadaxis</a>
 
@@ -143,7 +142,7 @@ _none_
 
 `ongamepadaxis(e:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ongamepadball" href="#ongamepadball">ongamepadball</a>
 
@@ -151,7 +150,7 @@ _none_
 
 `ongamepadball(e:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ongamepadbuttondown" href="#ongamepadbuttondown">ongamepadbuttondown</a>
 
@@ -159,7 +158,7 @@ _none_
 
 `ongamepadbuttondown(e:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ongamepadbuttonup" href="#ongamepadbuttonup">ongamepadbuttonup</a>
 
@@ -167,7 +166,7 @@ _none_
 
 `ongamepadbuttonup(e:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ongamepadhat" href="#ongamepadhat">ongamepadhat</a>
 
@@ -175,7 +174,7 @@ _none_
 
 `ongamepadhat(e:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="oninputdown" href="#oninputdown">oninputdown</a>
 
@@ -183,7 +182,7 @@ _none_
 
 `oninputdown(_name:String, e:luxe.InputEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="oninputup" href="#oninputup">oninputup</a>
 
@@ -191,7 +190,7 @@ _none_
 
 `oninputup(_name:String, e:luxe.InputEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onkeydown" href="#onkeydown">onkeydown</a>
 
@@ -199,7 +198,7 @@ _none_
 
 `onkeydown(e:luxe.KeyEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onkeyup" href="#onkeyup">onkeyup</a>
 
@@ -207,7 +206,7 @@ _none_
 
 `onkeyup(e:luxe.KeyEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmousedown" href="#onmousedown">onmousedown</a>
 
@@ -215,7 +214,7 @@ _none_
 
 `onmousedown(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmousemove" href="#onmousemove">onmousemove</a>
 
@@ -223,7 +222,7 @@ _none_
 
 `onmousemove(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmouseup" href="#onmouseup">onmouseup</a>
 
@@ -231,7 +230,7 @@ _none_
 
 `onmouseup(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onmousewheel" href="#onmousewheel">onmousewheel</a>
 
@@ -239,7 +238,7 @@ _none_
 
 `onmousewheel(e:luxe.MouseEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ontouchbegin" href="#ontouchbegin">ontouchbegin</a>
 
@@ -247,7 +246,7 @@ _none_
 
 `ontouchbegin(e:luxe.TouchEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ontouchend" href="#ontouchend">ontouchend</a>
 
@@ -255,7 +254,7 @@ _none_
 
 `ontouchend(e:luxe.TouchEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ontouchmove" href="#ontouchmove">ontouchmove</a>
 
@@ -263,7 +262,7 @@ _none_
 
 `ontouchmove(e:luxe.TouchEvent) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove" href="#remove">remove</a>
 
@@ -271,7 +270,7 @@ _none_
 
 `remove(entity:luxe.Entity) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="serialize_to_disk" href="#serialize_to_disk">serialize_to_disk</a>
 
@@ -279,7 +278,7 @@ _none_
 
 `serialize_to_disk(_destination_path:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="start" href="#start">start</a>
 
@@ -287,7 +286,7 @@ _none_
 
 `start() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -295,7 +294,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="update" href="#update">update</a>
 
@@ -303,7 +302,7 @@ _none_
 
 `update(dt:Float) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

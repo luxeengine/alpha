@@ -3,16 +3,16 @@
 
 ---
 
-#LinearPath
-
 
 ##[API Index](../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween](./) / LinearPath
+&emsp;&emsp;&emsp;[luxe.tween](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LinearPath
 
-<br/>
+---
+
+#LinearPath
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `calculate(start:Float, k:Float) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -51,7 +51,7 @@
 
 `new(end:Float, strength:Float) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,15 @@
 
 ---
 
-#Timer
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Timer
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Timer
 
-<br/>
+---
+
+#Timer
+
 
 ---
 
@@ -37,7 +36,7 @@ _none_
 
 `schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool=false) : haxe.Timer`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

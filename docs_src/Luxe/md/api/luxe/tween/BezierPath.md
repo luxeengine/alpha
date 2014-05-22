@@ -3,16 +3,16 @@
 
 ---
 
-#BezierPath
-
 
 ##[API Index](../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween](./) / BezierPath
+&emsp;&emsp;&emsp;[luxe.tween](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BezierPath
 
-<br/>
+---
+
+#BezierPath
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 `control : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="end" href="#end">end</a>
 
@@ -42,7 +42,7 @@
 
 `end : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="strength" href="#strength">strength</a>
 
@@ -50,7 +50,7 @@
 
 `strength : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -65,7 +65,7 @@
 
 `calculate(start:Float, k:Float) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -73,7 +73,7 @@
 
 `new(end:Float, control:Float, strength:Float) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

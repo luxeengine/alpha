@@ -3,16 +3,15 @@
 
 ---
 
-#ClampType
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / ClampType
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ClampType
 
-<br/>
+---
+
+#ClampType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.ClampType.edge`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="mirror" href="#mirror">mirror</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.ClampType.mirror`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="repeat" href="#repeat">repeat</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.ClampType.repeat`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

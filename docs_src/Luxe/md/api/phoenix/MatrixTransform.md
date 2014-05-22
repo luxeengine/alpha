@@ -3,16 +3,15 @@
 
 ---
 
-#MatrixTransform
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / MatrixTransform
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MatrixTransform
 
-<br/>
+---
+
+#MatrixTransform
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `pos : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation" href="#rotation">rotation</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `rotation : phoenix.Quaternion`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale" href="#scale">scale</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `scale : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

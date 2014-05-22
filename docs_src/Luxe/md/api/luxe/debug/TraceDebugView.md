@@ -3,16 +3,16 @@
 
 ---
 
-#TraceDebugView
-
 
 ##[API Index](../../../api/index.html#luxe.debug)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.debug](./) / TraceDebugView
+&emsp;&emsp;&emsp;[luxe.debug](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TraceDebugView
 
-<br/>
+---
+
+#TraceDebugView
+
 
 ---
 
@@ -42,7 +42,7 @@
 
 `lines : luxe.Text`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="logged" href="#logged">logged</a>
 
@@ -50,7 +50,7 @@
 
 `logged : Array<String>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="max_lines" href="#max_lines">max_lines</a>
 
@@ -58,7 +58,7 @@
 
 `max_lines : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -73,7 +73,7 @@
 
 `add_line(_t:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="create" href="#create">create</a>
 
@@ -81,7 +81,7 @@
 
 `create() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="hide" href="#hide">hide</a>
 
@@ -89,7 +89,7 @@
 
 `hide() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -97,7 +97,7 @@
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="on_trace" href="#on_trace">on_trace</a>
 
@@ -105,7 +105,7 @@
 
 `on_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="process" href="#process">process</a>
 
@@ -113,7 +113,7 @@
 
 `process() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="refresh" href="#refresh">refresh</a>
 
@@ -121,7 +121,7 @@
 
 `refresh() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="show" href="#show">show</a>
 
@@ -129,7 +129,7 @@
 
 `show() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

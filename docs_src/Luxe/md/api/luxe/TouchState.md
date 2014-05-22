@@ -3,16 +3,15 @@
 
 ---
 
-#TouchState
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / TouchState
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TouchState
 
-<br/>
+---
+
+#TouchState
+
 
 ---
 

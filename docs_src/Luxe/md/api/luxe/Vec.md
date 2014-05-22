@@ -3,16 +3,15 @@
 
 ---
 
-#Vec
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Vec
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Vec
 
-<br/>
+---
+
+#Vec
+
 
 ---
 

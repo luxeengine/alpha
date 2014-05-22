@@ -3,16 +3,15 @@
 
 ---
 
-#Input
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Input
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Input
 
-<br/>
+---
+
+#Input
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 <span class="inline-block static">static</span>`Gamepad : lime.helpers.Gamepad`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="Keys" href="#Keys">Keys</a>
 
@@ -42,7 +41,7 @@ _none_
 
 <span class="inline-block static">static</span>`Keys : lime.helpers.Keys`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +56,7 @@ _none_
 
 `add<T>(_name:String, _binding_value:add.T) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

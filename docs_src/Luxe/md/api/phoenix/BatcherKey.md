@@ -3,16 +3,15 @@
 
 ---
 
-#BatcherKey
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / BatcherKey
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BatcherKey
 
-<br/>
+---
+
+#BatcherKey
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `layer : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uuid" href="#uuid">uuid</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `uuid : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

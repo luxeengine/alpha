@@ -3,16 +3,15 @@
 
 ---
 
-#TouchEvent
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / TouchEvent
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TouchEvent
 
-<br/>
+---
+
+#TouchEvent
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `ID : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flags" href="#flags">flags</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `flags : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `pos : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="raw" href="#raw">raw</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `raw : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="state" href="#state">state</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `state : lime.TouchState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

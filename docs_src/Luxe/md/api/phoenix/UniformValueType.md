@@ -3,16 +3,15 @@
 
 ---
 
-#UniformValueType
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / UniformValueType
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;UniformValueType
 
-<br/>
+---
+
+#UniformValueType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.UniformValueType.color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="float" href="#float">float</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.UniformValueType.float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="int" href="#int">int</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.UniformValueType.int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="texture" href="#texture">texture</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `phoenix.UniformValueType.texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unknown" href="#unknown">unknown</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `phoenix.UniformValueType.unknown`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vector2" href="#vector2">vector2</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `phoenix.UniformValueType.vector2`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vector3" href="#vector3">vector3</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `phoenix.UniformValueType.vector3`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="vector4" href="#vector4">vector4</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `phoenix.UniformValueType.vector4`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

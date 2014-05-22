@@ -3,16 +3,15 @@
 
 ---
 
-#Draw
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Draw
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Draw
 
-<br/>
+---
+
+#Draw
+
 
 ---
 
@@ -37,7 +36,7 @@ _none_
 
 `arc(options:Dynamic) : phoenix.geometry.ArcGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="axis3D" href="#axis3D">axis3D</a>
 
@@ -45,7 +44,7 @@ _none_
 
 `axis3D(?options:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="box" href="#box">box</a>
 
@@ -53,7 +52,7 @@ _none_
 
 `box(options:Dynamic) : phoenix.geometry.QuadGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="circle" href="#circle">circle</a>
 
@@ -61,7 +60,7 @@ _none_
 
 `circle(options:Dynamic) : phoenix.geometry.CircleGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="line" href="#line">line</a>
 
@@ -69,7 +68,7 @@ _none_
 
 `line(options:Dynamic) : phoenix.geometry.LineGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ngon" href="#ngon">ngon</a>
 
@@ -77,7 +76,7 @@ _none_
 
 `ngon(options:Dynamic) : phoenix.geometry.Geometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="plane" href="#plane">plane</a>
 
@@ -85,7 +84,7 @@ _none_
 
 `plane(options:Dynamic) : phoenix.geometry.PlaneGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rectangle" href="#rectangle">rectangle</a>
 
@@ -93,7 +92,7 @@ _none_
 
 `rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ring" href="#ring">ring</a>
 
@@ -101,7 +100,7 @@ _none_
 
 `ring(options:Dynamic) : phoenix.geometry.RingGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="text" href="#text">text</a>
 
@@ -109,7 +108,7 @@ _none_
 
 `text(options:Dynamic) : phoenix.geometry.Geometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

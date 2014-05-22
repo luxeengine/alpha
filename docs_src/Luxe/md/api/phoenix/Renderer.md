@@ -3,16 +3,15 @@
 
 ---
 
-#Renderer
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Renderer
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Renderer
 
-<br/>
+---
+
+#Renderer
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `batchers : Array<phoenix.Batcher>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clear_color" href="#clear_color">clear_color</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `clear_color : phoenix.Color`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="default_batcher" href="#default_batcher">default_batcher</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `default_batcher : phoenix.Batcher`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="default_camera" href="#default_camera">default_camera</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `default_camera : phoenix.Camera`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="default_font" href="#default_font">default_font</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `default_font : phoenix.BitmapFont`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="default_render_path" href="#default_render_path">default_render_path</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `default_render_path : phoenix.RenderPath`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="default_shader" href="#default_shader">default_shader</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `default_shader : phoenix.Shader`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="default_shader_textured" href="#default_shader_textured">default_shader_textured</a>
 
@@ -90,7 +89,7 @@ _none_
 
 `default_shader_textured : phoenix.Shader`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="render_path" href="#render_path">render_path</a>
 
@@ -98,7 +97,7 @@ _none_
 
 `render_path : phoenix.RenderPath`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="resource_manager" href="#resource_manager">resource_manager</a>
 
@@ -106,7 +105,7 @@ _none_
 
 `resource_manager : luxe.ResourceManager`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="should_clear" href="#should_clear">should_clear</a>
 
@@ -114,7 +113,7 @@ _none_
 
 `should_clear : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="state" href="#state">state</a>
 
@@ -122,7 +121,7 @@ _none_
 
 `state : phoenix.RenderState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stats" href="#stats">stats</a>
 
@@ -130,7 +129,7 @@ _none_
 
 `stats : phoenix.RendererStats`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stop" href="#stop">stop</a>
 
@@ -138,7 +137,7 @@ _none_
 
 `stop : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="stop_count" href="#stop_count">stop_count</a>
 
@@ -146,7 +145,7 @@ _none_
 
 `stop_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -161,7 +160,7 @@ _none_
 
 `add_batch(batch:phoenix.Batcher) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clear" href="#clear">clear</a>
 
@@ -169,7 +168,7 @@ _none_
 
 `clear(_color:phoenix.Color) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="destroy" href="#destroy">destroy</a>
 
@@ -177,7 +176,7 @@ _none_
 
 `destroy() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="init" href="#init">init</a>
 
@@ -185,7 +184,7 @@ _none_
 
 `init() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_font" href="#load_font">load_font</a>
 
@@ -193,7 +192,7 @@ _none_
 
 `load_font(_fontid:String, ?_path:String='assets/', ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_shader" href="#load_shader">load_shader</a>
 
@@ -201,7 +200,7 @@ _none_
 
 `load_shader(_psid:String, ?_vsid:String, ?_onloaded:phoenix.Shader->Void) : phoenix.Shader`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_texture" href="#load_texture">load_texture</a>
 
@@ -209,7 +208,7 @@ _none_
 
 `load_texture(_name:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool=false, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_texture_from_string_byte_array" href="#load_texture_from_string_byte_array">load_texture_from_string_byte_array</a>
 
@@ -217,7 +216,7 @@ _none_
 
 `load_texture_from_string_byte_array(?_name:String='untitled texture', _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_textures" href="#load_textures">load_textures</a>
 
@@ -225,7 +224,7 @@ _none_
 
 `load_textures(_names:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -233,7 +232,7 @@ _none_
 
 `new(_core:luxe.Core) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onresize" href="#onresize">onresize</a>
 
@@ -241,7 +240,7 @@ _none_
 
 `onresize(e:Dynamic) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="process" href="#process">process</a>
 
@@ -249,7 +248,7 @@ _none_
 
 `process() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove_batch" href="#remove_batch">remove_batch</a>
 
@@ -257,7 +256,7 @@ _none_
 
 `remove_batch(batch:phoenix.Batcher) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

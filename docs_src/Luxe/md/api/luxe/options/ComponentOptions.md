@@ -3,16 +3,16 @@
 
 ---
 
-#ComponentOptions
-
 
 ##[API Index](../../../api/index.html#luxe.options)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.options](./) / ComponentOptions
+&emsp;&emsp;&emsp;[luxe.options](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ComponentOptions
 
-<br/>
+---
+
+#ComponentOptions
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `init_with : luxe.options.ComponentOptions.T`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

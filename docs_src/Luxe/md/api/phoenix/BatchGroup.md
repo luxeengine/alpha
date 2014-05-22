@@ -3,16 +3,15 @@
 
 ---
 
-#BatchGroup
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / BatchGroup
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BatchGroup
 
-<br/>
+---
+
+#BatchGroup
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `post_render : phoenix.Batcher->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pre_render" href="#pre_render">pre_render</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `pre_render : phoenix.Batcher->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +56,7 @@ _none_
 
 `new(_pre:phoenix.Batcher->Void, _post:phoenix.Batcher->Void) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

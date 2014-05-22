@@ -3,16 +3,16 @@
 
 ---
 
-#ComplexQuad
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / ComplexQuad
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ComplexQuad
 
-<br/>
+---
+
+#ComplexQuad
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `_uv_cache : phoenix.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flipx" href="#flipx">flipx</a>
 
@@ -41,7 +41,7 @@
 
 `flipx : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flipy" href="#flipy">flipy</a>
 
@@ -49,7 +49,7 @@
 
 `flipy : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uuid" href="#uuid">uuid</a>
 
@@ -57,7 +57,7 @@
 
 `uuid : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="verts" href="#verts">verts</a>
 
@@ -65,7 +65,7 @@
 
 `verts : Array<phoenix.geometry.Vertex>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

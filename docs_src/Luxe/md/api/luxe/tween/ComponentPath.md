@@ -3,16 +3,16 @@
 
 ---
 
-#ComponentPath
-
 
 ##[API Index](../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween](./) / ComponentPath
+&emsp;&emsp;&emsp;[luxe.tween](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ComponentPath
 
-<br/>
+---
+
+#ComponentPath
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `start : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -56,7 +56,7 @@
 
 `end : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -71,7 +71,7 @@
 
 `addPath(path:luxe.tween.BezierPath) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="calculate" href="#calculate">calculate</a>
 
@@ -79,7 +79,7 @@
 
 `calculate(k:Float) : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -87,7 +87,7 @@
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

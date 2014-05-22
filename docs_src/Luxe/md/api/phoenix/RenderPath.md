@@ -3,16 +3,15 @@
 
 ---
 
-#RenderPath
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / RenderPath
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RenderPath
 
-<br/>
+---
+
+#RenderPath
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `renderer : phoenix.Renderer`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -49,7 +48,7 @@ _none_
 
 `new(_renderer:phoenix.Renderer) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="render" href="#render">render</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `render(_batchers:Array<phoenix.Batcher>, _stats:phoenix.RendererStats) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

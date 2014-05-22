@@ -3,22 +3,17 @@
 
 ---
 
-#MotionPathActuator
-
---- 
-
-* @author Joshua Granick
-
----
-<br/>
 
 ##[API Index](../../../../api/index.html#luxe.tween)   
-&emsp;&emsp;&emsp;parent    
 [luxe.tween](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.tween.actuators](./) / MotionPathActuator
+&emsp;&emsp;&emsp;[luxe.tween.actuators](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MotionPathActuator
 
-<br/>
+---
+
+#MotionPathActuator
+
+* @author Joshua Granick
 
 ---
 
@@ -51,7 +46,7 @@
 
 `apply() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -59,7 +54,7 @@
 
 `new(target:Dynamic, duration:Float, properties:Dynamic) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

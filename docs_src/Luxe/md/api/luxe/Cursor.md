@@ -3,16 +3,15 @@
 
 ---
 
-#Cursor
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Cursor
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Cursor
 
-<br/>
+---
+
+#Cursor
+
 
 ---
 
@@ -36,7 +35,7 @@ _none_
 
 `locked : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -44,7 +43,7 @@ _none_
 
 `pos : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="visible" href="#visible">visible</a>
 
@@ -52,7 +51,7 @@ _none_
 
 `visible : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -67,7 +66,7 @@ _none_
 
 `new(_screen:luxe.Screen) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

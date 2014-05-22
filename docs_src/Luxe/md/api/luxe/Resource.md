@@ -3,16 +3,15 @@
 
 ---
 
-#Resource
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / Resource
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Resource
 
-<br/>
+---
+
+#Resource
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `dropped : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `id : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="manager" href="#manager">manager</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `manager : luxe.ResourceManager`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="persistent" href="#persistent">persistent</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `persistent : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="time_created" href="#time_created">time_created</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `time_created : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="time_to_load" href="#time_to_load">time_to_load</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `time_to_load : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="type" href="#type">type</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `type : luxe.ResourceType`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -97,7 +96,7 @@ _none_
 
 `drop() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -105,7 +104,7 @@ _none_
 
 `new(_manager:luxe.ResourceManager, _type:luxe.ResourceType, ?_load_time:Float) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

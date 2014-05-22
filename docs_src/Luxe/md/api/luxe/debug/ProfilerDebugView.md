@@ -3,16 +3,16 @@
 
 ---
 
-#ProfilerDebugView
-
 
 ##[API Index](../../../api/index.html#luxe.debug)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.debug](./) / ProfilerDebugView
+&emsp;&emsp;&emsp;[luxe.debug](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ProfilerDebugView
 
-<br/>
+---
+
+#ProfilerDebugView
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 <span class="inline-block static">static</span>`lists : Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -56,7 +56,7 @@
 
 `add_offset(_id:String, _offset:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="end" href="#end">end</a>
 
@@ -64,7 +64,7 @@
 
 `end(_id:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="hide_item" href="#hide_item">hide_item</a>
 
@@ -72,7 +72,7 @@
 
 `hide_item(_id:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="show_item" href="#show_item">show_item</a>
 
@@ -80,7 +80,7 @@
 
 `show_item(_id:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="start" href="#start">start</a>
 
@@ -88,7 +88,7 @@
 
 `start(_id:String) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -101,7 +101,7 @@
 
 `hide() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -109,7 +109,7 @@
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="show" href="#show">show</a>
 
@@ -117,7 +117,7 @@
 
 `show() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

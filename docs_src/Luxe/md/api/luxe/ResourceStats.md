@@ -3,16 +3,15 @@
 
 ---
 
-#ResourceStats
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / ResourceStats
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ResourceStats
 
-<br/>
+---
+
+#ResourceStats
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `datas : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="fonts" href="#fonts">fonts</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `fonts : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="render_textures" href="#render_textures">render_textures</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `render_textures : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="resources" href="#resources">resources</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `resources : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shaders" href="#shaders">shaders</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `shaders : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="sounds" href="#sounds">sounds</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `sounds : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="texts" href="#texts">texts</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `texts : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="textures" href="#textures">textures</a>
 
@@ -90,7 +89,7 @@ _none_
 
 `textures : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unknown" href="#unknown">unknown</a>
 
@@ -98,7 +97,7 @@ _none_
 
 `unknown : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -113,7 +112,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="reset" href="#reset">reset</a>
 
@@ -121,7 +120,7 @@ _none_
 
 `reset() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -129,7 +128,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

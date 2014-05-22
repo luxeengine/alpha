@@ -3,16 +3,15 @@
 
 ---
 
-#BitmapFont
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / BitmapFont
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BitmapFont
 
-<br/>
+---
+
+#BitmapFont
+
 
 ---
 
@@ -42,7 +41,7 @@ _none_
 
 `characters : Map<Int,phoenix.Character>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dimensions" href="#dimensions">dimensions</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `dimensions : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="font_character_count" href="#font_character_count">font_character_count</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `font_character_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="font_size" href="#font_size">font_size</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `font_size : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="kernings" href="#kernings">kernings</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `kernings : Map<phoenix.KerningKey,Int>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="line_height" href="#line_height">line_height</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `line_height : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="on_pages_loaded" href="#on_pages_loaded">on_pages_loaded</a>
 
@@ -90,7 +89,7 @@ _none_
 
 `on_pages_loaded : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="onload" href="#onload">onload</a>
 
@@ -98,7 +97,7 @@ _none_
 
 `onload : phoenix.BitmapFont->Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pages" href="#pages">pages</a>
 
@@ -106,7 +105,7 @@ _none_
 
 `pages : Map<Int,phoenix.Texture>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pages_loaded" href="#pages_loaded">pages_loaded</a>
 
@@ -114,7 +113,7 @@ _none_
 
 `pages_loaded : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale" href="#scale">scale</a>
 
@@ -122,7 +121,7 @@ _none_
 
 `scale : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="spacing" href="#spacing">spacing</a>
 
@@ -130,7 +129,7 @@ _none_
 
 `spacing : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -145,7 +144,7 @@ _none_
 
 `draw_text(options:Dynamic) : phoenix.geometry.CompositeGeometry`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_kerning" href="#get_kerning">get_kerning</a>
 
@@ -153,7 +152,7 @@ _none_
 
 `get_kerning(_glyph:Int, _index:Int) : Null<Int>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_text_dimensions" href="#get_text_dimensions">get_text_dimensions</a>
 
@@ -161,7 +160,7 @@ _none_
 
 `get_text_dimensions(_string:String, _scale:luxe.Vector) : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="load_from_string" href="#load_from_string">load_from_string</a>
 
@@ -169,7 +168,7 @@ _none_
 
 `load_from_string(?_bitmap_file:String='', ?_folder:String='assets/', ?onloaded:phoenix.BitmapFont->Void, ?custom_pages:Array<phoenix.Texture>) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -177,7 +176,7 @@ _none_
 
 `new(?_resource_manager:luxe.ResourceManager) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="on_all_pages_loaded" href="#on_all_pages_loaded">on_all_pages_loaded</a>
 
@@ -185,7 +184,7 @@ _none_
 
 `on_all_pages_loaded() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="one_page_loaded" href="#one_page_loaded">one_page_loaded</a>
 
@@ -193,7 +192,7 @@ _none_
 
 `one_page_loaded(t:phoenix.Texture) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_character" href="#set_character">set_character</a>
 
@@ -201,7 +200,7 @@ _none_
 
 `set_character(_index:Int, _char_info:phoenix.Character) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="set_kerning" href="#set_kerning">set_kerning</a>
 
@@ -209,7 +208,7 @@ _none_
 
 `set_kerning(_glyph:Int, _index:Int, _amount:Int) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -217,7 +216,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

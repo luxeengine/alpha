@@ -3,16 +3,15 @@
 
 ---
 
-#MouseEvent
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / MouseEvent
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MouseEvent
 
-<br/>
+---
+
+#MouseEvent
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `alt_down : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="button" href="#button">button</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `button : lime.MouseButton`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="ctrl_down" href="#ctrl_down">ctrl_down</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `ctrl_down : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="deltaX" href="#deltaX">deltaX</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `deltaX : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="deltaY" href="#deltaY">deltaY</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `deltaY : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="flags" href="#flags">flags</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `flags : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="meta_down" href="#meta_down">meta_down</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `meta_down : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos" href="#pos">pos</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `pos : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="raw" href="#raw">raw</a>
 
@@ -97,7 +96,7 @@ _none_
 
 `raw : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shift_down" href="#shift_down">shift_down</a>
 
@@ -105,7 +104,7 @@ _none_
 
 `shift_down : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="state" href="#state">state</a>
 
@@ -113,7 +112,7 @@ _none_
 
 `state : lime.MouseState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="x" href="#x">x</a>
 
@@ -121,7 +120,7 @@ _none_
 
 `x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="y" href="#y">y</a>
 
@@ -129,7 +128,7 @@ _none_
 
 `y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

@@ -3,16 +3,16 @@
 
 ---
 
-#TextureCoordSet
-
 
 ##[API Index](../../../api/index.html#phoenix.geometry)   
-&emsp;&emsp;&emsp;parent    
 [phoenix](../)     
-&emsp;&emsp;&emsp;current    
-[phoenix.geometry](./) / TextureCoordSet
+&emsp;&emsp;&emsp;[phoenix.geometry](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextureCoordSet
 
-<br/>
+---
+
+#TextureCoordSet
+
 
 ---
 
@@ -34,7 +34,7 @@
 
 `uv0 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv1" href="#uv1">uv1</a>
 
@@ -42,7 +42,7 @@
 
 `uv1 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv2" href="#uv2">uv2</a>
 
@@ -50,7 +50,7 @@
 
 `uv2 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv3" href="#uv3">uv3</a>
 
@@ -58,7 +58,7 @@
 
 `uv3 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv4" href="#uv4">uv4</a>
 
@@ -66,7 +66,7 @@
 
 `uv4 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv5" href="#uv5">uv5</a>
 
@@ -74,7 +74,7 @@
 
 `uv5 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv6" href="#uv6">uv6</a>
 
@@ -82,7 +82,7 @@
 
 `uv6 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="uv7" href="#uv7">uv7</a>
 
@@ -90,7 +90,7 @@
 
 `uv7 : phoenix.geometry.TextureCoord`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -105,7 +105,7 @@
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

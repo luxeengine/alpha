@@ -3,16 +3,16 @@
 
 ---
 
-#Component
-
 
 ##[API Index](../../../api/index.html#luxe.components)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.components](./) / Component
+&emsp;&emsp;&emsp;[luxe.components](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Component
 
-<br/>
+---
+
+#Component
+
 
 ---
 
@@ -43,7 +43,7 @@
 
 `entity : luxe.Entity`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -56,7 +56,7 @@
 
 `pos : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="pos_local" href="#pos_local">pos_local</a>
 
@@ -64,7 +64,7 @@
 
 `pos_local : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation" href="#rotation">rotation</a>
 
@@ -72,7 +72,7 @@
 
 `rotation : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="rotation_local" href="#rotation_local">rotation_local</a>
 
@@ -80,7 +80,7 @@
 
 `rotation_local : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale" href="#scale">scale</a>
 
@@ -88,7 +88,7 @@
 
 `scale : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="scale_local" href="#scale_local">scale_local</a>
 
@@ -96,7 +96,7 @@
 
 `scale_local : luxe.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -111,7 +111,7 @@
 
 `add<T1,T2>(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get" href="#get">get</a>
 
@@ -119,7 +119,7 @@
 
 `get<T>(_name:String, ?in_children:Bool=false) : get.T`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_any" href="#get_any">get_any</a>
 
@@ -127,7 +127,7 @@
 
 `get_any<T>(_name:String, ?in_children:Bool=false, ?first_only:Bool=true) : Array<get_any.T>`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
 
@@ -135,7 +135,7 @@
 
 `get_serialize_data() : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -143,7 +143,7 @@
 
 `new<T>(?_options:luxe.options.ComponentOptions<new.T>) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="remove" href="#remove">remove</a>
 
@@ -151,7 +151,7 @@
 
 `remove<T>(?_name:String='', ?_data:remove.T) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

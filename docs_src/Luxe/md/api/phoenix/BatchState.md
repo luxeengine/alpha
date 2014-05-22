@@ -3,16 +3,15 @@
 
 ---
 
-#BatchState
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / BatchState
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BatchState
 
-<br/>
+---
+
+#BatchState
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `batcher : phoenix.Batcher`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `clip_rect : phoenix.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="geom_state" href="#geom_state">geom_state</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `geom_state : phoenix.geometry.GeometryState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="is_clipping" href="#is_clipping">is_clipping</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `is_clipping : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="last_clip_rect" href="#last_clip_rect">last_clip_rect</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `last_clip_rect : phoenix.Rectangle`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="last_geom_state" href="#last_geom_state">last_geom_state</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `last_geom_state : phoenix.geometry.GeometryState`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="last_group" href="#last_group">last_group</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `last_group : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="last_shader_id" href="#last_shader_id">last_shader_id</a>
 
@@ -90,7 +89,7 @@ _none_
 
 `last_shader_id : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="last_texture_id" href="#last_texture_id">last_texture_id</a>
 
@@ -98,7 +97,7 @@ _none_
 
 `last_texture_id : Dynamic`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="log" href="#log">log</a>
 
@@ -106,7 +105,7 @@ _none_
 
 `log : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -121,7 +120,7 @@ _none_
 
 `activate(batcher:phoenix.Batcher) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="deactivate" href="#deactivate">deactivate</a>
 
@@ -129,7 +128,7 @@ _none_
 
 `deactivate(batcher:phoenix.Batcher) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -137,7 +136,7 @@ _none_
 
 `new(_r:phoenix.Batcher) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="str" href="#str">str</a>
 
@@ -145,7 +144,7 @@ _none_
 
 `str() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="update" href="#update">update</a>
 
@@ -153,7 +152,7 @@ _none_
 
 `update(geom:phoenix.geometry.Geometry) : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

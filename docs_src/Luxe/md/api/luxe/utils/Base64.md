@@ -3,16 +3,16 @@
 
 ---
 
-#Base64
-
 
 ##[API Index](../../../api/index.html#luxe.utils)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.utils](./) / Base64
+&emsp;&emsp;&emsp;[luxe.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Base64
 
-<br/>
+---
+
+#Base64
+
 
 ---
 
@@ -33,7 +33,7 @@
 
 `decode(_string:String) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="decodeBytesData" href="#decodeBytesData">decodeBytesData</a>
 
@@ -41,7 +41,7 @@
 
 `decodeBytesData(base64:String) : haxe.io.BytesData`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="encode" href="#encode">encode</a>
 
@@ -49,7 +49,7 @@
 
 `encode(_string:String) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="encodeBytesData" href="#encodeBytesData">encodeBytesData</a>
 
@@ -57,7 +57,7 @@
 
 `encodeBytesData(bytesData:haxe.io.BytesData) : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

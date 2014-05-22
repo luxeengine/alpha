@@ -3,16 +3,15 @@
 
 ---
 
-#NineSlice
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / NineSlice
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;NineSlice
 
-<br/>
+---
+
+#NineSlice
+
 
 ---
 
@@ -42,7 +41,7 @@ _none_
 
 `bottom : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="height" href="#height">height</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `height : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="is_set" href="#is_set">is_set</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `is_set : Bool`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="left" href="#left">left</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `left : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="right" href="#right">right</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `right : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_h" href="#source_h">source_h</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `source_h : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_w" href="#source_w">source_w</a>
 
@@ -90,7 +89,7 @@ _none_
 
 `source_w : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_x" href="#source_x">source_x</a>
 
@@ -98,7 +97,7 @@ _none_
 
 `source_x : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="source_y" href="#source_y">source_y</a>
 
@@ -106,7 +105,7 @@ _none_
 
 `source_y : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="top" href="#top">top</a>
 
@@ -114,7 +113,7 @@ _none_
 
 `top : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="width" href="#width">width</a>
 
@@ -122,7 +121,7 @@ _none_
 
 `width : Float`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -137,7 +136,7 @@ _none_
 
 `create(_pos:luxe.Vector, _w:Float, _h:Float, ?_reset:Bool=false) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dirty" href="#dirty">dirty</a>
 
@@ -145,7 +144,7 @@ _none_
 
 `dirty() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="lock" href="#lock">lock</a>
 
@@ -153,7 +152,7 @@ _none_
 
 `lock() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="new" href="#new">new</a>
 
@@ -161,7 +160,7 @@ _none_
 
 `new<T>(_options:luxe.options.NineSliceOptions<new.T>) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

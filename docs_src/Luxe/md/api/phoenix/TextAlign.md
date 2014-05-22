@@ -3,16 +3,15 @@
 
 ---
 
-#TextAlign
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / TextAlign
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextAlign
 
-<br/>
+---
+
+#TextAlign
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `phoenix.TextAlign.bottom`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="center" href="#center">center</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `phoenix.TextAlign.center`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="left" href="#left">left</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `phoenix.TextAlign.left`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="right" href="#right">right</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `phoenix.TextAlign.right`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="top" href="#top">top</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `phoenix.TextAlign.top`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

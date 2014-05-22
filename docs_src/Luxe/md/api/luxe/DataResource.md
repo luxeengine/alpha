@@ -3,16 +3,15 @@
 
 ---
 
-#DataResource
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / DataResource
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;DataResource
 
-<br/>
+---
+
+#DataResource
+
 
 ---
 
@@ -42,7 +41,7 @@ _none_
 
 `data : lime.utils.ByteArray`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -57,7 +56,7 @@ _none_
 
 `new(_id:String, _data:lime.utils.ByteArray, _manager:luxe.ResourceManager) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

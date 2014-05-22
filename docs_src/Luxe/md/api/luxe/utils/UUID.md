@@ -3,16 +3,16 @@
 
 ---
 
-#UUID
-
 
 ##[API Index](../../../api/index.html#luxe.utils)   
-&emsp;&emsp;&emsp;parent    
 [luxe](../)     
-&emsp;&emsp;&emsp;current    
-[luxe.utils](./) / UUID
+&emsp;&emsp;&emsp;[luxe.utils](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;UUID
 
-<br/>
+---
+
+#UUID
+
 
 ---
 

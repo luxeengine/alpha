@@ -3,16 +3,15 @@
 
 ---
 
-#Luxe
-
 
 ##[API Index](../api/index.html#)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[](./) / Luxe
+&emsp;&emsp;&emsp;[](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Luxe
 
-<br/>
+---
+
+#Luxe
+
 
 ---
 

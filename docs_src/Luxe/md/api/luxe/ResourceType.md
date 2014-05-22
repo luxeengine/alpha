@@ -3,16 +3,15 @@
 
 ---
 
-#ResourceType
-
 
 ##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[luxe](./) / ResourceType
+&emsp;&emsp;&emsp;[luxe](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ResourceType
 
-<br/>
+---
+
+#ResourceType
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `luxe.ResourceType.data`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="font" href="#font">font</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `luxe.ResourceType.font`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="render_texture" href="#render_texture">render_texture</a>
 
@@ -49,7 +48,7 @@ _none_
 
 `luxe.ResourceType.render_texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="shader" href="#shader">shader</a>
 
@@ -57,7 +56,7 @@ _none_
 
 `luxe.ResourceType.shader`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="sound" href="#sound">sound</a>
 
@@ -65,7 +64,7 @@ _none_
 
 `luxe.ResourceType.sound`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="text" href="#text">text</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `luxe.ResourceType.text`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="texture" href="#texture">texture</a>
 
@@ -81,7 +80,7 @@ _none_
 
 `luxe.ResourceType.texture`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="unknown" href="#unknown">unknown</a>
 
@@ -89,7 +88,7 @@ _none_
 
 `luxe.ResourceType.unknown`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 

@@ -3,16 +3,15 @@
 
 ---
 
-#PageInfo
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / PageInfo
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PageInfo
 
-<br/>
+---
+
+#PageInfo
+
 
 ---
 
@@ -33,7 +32,7 @@ _none_
 
 `file : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="id" href="#id">id</a>
 
@@ -41,7 +40,7 @@ _none_
 
 `id : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

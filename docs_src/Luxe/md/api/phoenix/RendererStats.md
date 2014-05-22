@@ -3,16 +3,15 @@
 
 ---
 
-#RendererStats
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / RendererStats
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RendererStats
 
-<br/>
+---
+
+#RendererStats
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `batchers : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="draw_calls" href="#draw_calls">draw_calls</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `draw_calls : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="dynamic_batched_count" href="#dynamic_batched_count">dynamic_batched_count</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `dynamic_batched_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="geometry_count" href="#geometry_count">geometry_count</a>
 
@@ -58,7 +57,7 @@ _none_
 
 `geometry_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="group_count" href="#group_count">group_count</a>
 
@@ -66,7 +65,7 @@ _none_
 
 `group_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="static_batched_count" href="#static_batched_count">static_batched_count</a>
 
@@ -74,7 +73,7 @@ _none_
 
 `static_batched_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="visible_count" href="#visible_count">visible_count</a>
 
@@ -82,7 +81,7 @@ _none_
 
 `visible_count : Int`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -97,7 +96,7 @@ _none_
 
 `new() `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="reset" href="#reset">reset</a>
 
@@ -105,7 +104,7 @@ _none_
 
 `reset() : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="toString" href="#toString">toString</a>
 
@@ -113,7 +112,7 @@ _none_
 
 `toString() : String`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 

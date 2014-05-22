@@ -3,16 +3,15 @@
 
 ---
 
-#Ray
-
 
 ##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;parent    
-_none_   
-&emsp;&emsp;&emsp;current    
-[phoenix](./) / Ray
+&emsp;&emsp;&emsp;[phoenix](./)   
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Ray
 
-<br/>
+---
+
+#Ray
+
 
 ---
 
@@ -34,7 +33,7 @@ _none_
 
 `dir : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="end" href="#end">end</a>
 
@@ -42,7 +41,7 @@ _none_
 
 `end : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="origin" href="#origin">origin</a>
 
@@ -50,7 +49,7 @@ _none_
 
 `origin : phoenix.Vector`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 &nbsp;   
 
@@ -65,7 +64,7 @@ _none_
 
 `new(_screen_pos:phoenix.Vector, _camera:phoenix.Camera, ?_viewport:phoenix.Rectangle) `
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 <a class="lift" name="refresh" href="#refresh">refresh</a>
 
@@ -73,7 +72,7 @@ _none_
 
 `refresh(_screen_pos:phoenix.Vector) : Void`
 
-<span class="small_desc_flat"> no description </span>   
+<span class="small_desc_flat">  </span>   
 
 
 
