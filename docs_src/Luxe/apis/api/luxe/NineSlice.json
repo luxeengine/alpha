@@ -321,7 +321,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "new(_options:luxe.options.NineSliceOptions<new.T>) ",
+          "signature": "new<T>(_options:luxe.options.NineSliceOptions<new.T>) ",
           "return": "",
           "args": [
             {

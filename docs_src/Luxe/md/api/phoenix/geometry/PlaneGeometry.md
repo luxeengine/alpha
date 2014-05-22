@@ -6,8 +6,7 @@
 #PlaneGeometry
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#phoenix.geometry)   
+##[API Index](../../../api/index.html#phoenix.geometry)   
 &emsp;&emsp;&emsp;parent    
 [phoenix](../)     
 &emsp;&emsp;&emsp;current    

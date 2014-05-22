@@ -123,7 +123,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "schedule(time:Float, event_name:String, ?properties:schedule.T) : String",
+          "signature": "schedule<T>(time:Float, event_name:String, ?properties:schedule.T) : String",
           "return": ": String",
           "args": [
             {
@@ -150,7 +150,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "listen(_event_name:String, _listener:listen.T->Void) : String",
+          "signature": "listen<T>(_event_name:String, _listener:listen.T->Void) : String",
           "return": ": String",
           "args": [
             {
@@ -172,7 +172,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "queue(event_name:String, ?properties:queue.T) : String",
+          "signature": "queue<T>(event_name:String, ?properties:queue.T) : String",
           "return": ": String",
           "args": [
             {
@@ -265,7 +265,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "fire(_event_name:String, ?_properties:fire.T) : Bool",
+          "signature": "fire<T>(_event_name:String, ?_properties:fire.T) : Bool",
           "return": ": Bool",
           "args": [
             {

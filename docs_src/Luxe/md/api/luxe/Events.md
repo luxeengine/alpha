@@ -6,8 +6,7 @@
 #Events
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#luxe)   
+##[API Index](../../api/index.html#luxe)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -76,7 +75,7 @@ _none_
 
 
 
-`fire(_event_name:String, ?_properties:fire.T) : Bool`
+`fire<T>(_event_name:String, ?_properties:fire.T) : Bool`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -84,7 +83,7 @@ _none_
 
 
 
-`listen(_event_name:String, _listener:listen.T->Void) : String`
+`listen<T>(_event_name:String, _listener:listen.T->Void) : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -108,7 +107,7 @@ _none_
 
 
 
-`queue(event_name:String, ?properties:queue.T) : String`
+`queue<T>(event_name:String, ?properties:queue.T) : String`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -116,7 +115,7 @@ _none_
 
 
 
-`schedule(time:Float, event_name:String, ?properties:schedule.T) : String`
+`schedule<T>(time:Float, event_name:String, ?properties:schedule.T) : String`
 
 <span class="small_desc_flat"> no description </span>   
 

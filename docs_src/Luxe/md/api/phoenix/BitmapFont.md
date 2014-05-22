@@ -6,8 +6,7 @@
 #BitmapFont
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#phoenix)   
+##[API Index](../../api/index.html#phoenix)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    

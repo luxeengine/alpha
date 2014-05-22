@@ -6,8 +6,7 @@
 #BalancedBinarySearchTraverseMethod
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#luxe.structural)   
+##[API Index](../../../api/index.html#luxe.structural)   
 &emsp;&emsp;&emsp;parent    
 [luxe](../)     
 &emsp;&emsp;&emsp;current    

@@ -6,8 +6,7 @@
 #JSON
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#luxe.utils)   
+##[API Index](../../../api/index.html#luxe.utils)   
 &emsp;&emsp;&emsp;parent    
 [luxe](../)     
 &emsp;&emsp;&emsp;current    

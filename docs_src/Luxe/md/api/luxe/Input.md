@@ -6,8 +6,7 @@
 #Input
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#luxe)   
+##[API Index](../../api/index.html#luxe)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -56,7 +55,7 @@ _none_
 
 
 
-`add(_name:String, _binding_value:add.T) : Void`
+`add<T>(_name:String, _binding_value:add.T) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

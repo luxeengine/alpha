@@ -90,7 +90,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "add_engine(type:Class<add_engine.T1>, ?_data:add_engine.T2) : add_engine.T1",
+          "signature": "add_engine<T1,T2>(type:Class<add_engine.T1>, ?_data:add_engine.T2) : add_engine.T1",
           "return": ": add_engine.T1",
           "args": [
             {

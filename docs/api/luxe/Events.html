@@ -47,7 +47,8 @@
             <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="events">Events</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#luxe">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Events</p>
+<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Events</p>
 <p><br/></p>
 <hr>
 <p><a href="#Methods">Methods</a>   </p>
@@ -74,10 +75,10 @@
 <p><code>does_filter_event(_filter:String, _event:String) : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="fire" href="#fire">fire</a></p>
-<p><code>fire(_event_name:String, ?_properties:fire.T) : Bool</code></p>
+<p><code>fire&lt;T&gt;(_event_name:String, ?_properties:fire.T) : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="listen" href="#listen">listen</a></p>
-<p><code>listen(_event_name:String, _listener:listen.T-&gt;Void) : String</code></p>
+<p><code>listen&lt;T&gt;(_event_name:String, _listener:listen.T-&gt;Void) : String</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
 <p><code>new()</code></p>
@@ -86,10 +87,10 @@
 <p><code>process() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="queue" href="#queue">queue</a></p>
-<p><code>queue(event_name:String, ?properties:queue.T) : String</code></p>
+<p><code>queue&lt;T&gt;(event_name:String, ?properties:queue.T) : String</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="schedule" href="#schedule">schedule</a></p>
-<p><code>schedule(time:Float, event_name:String, ?properties:schedule.T) : String</code></p>
+<p><code>schedule&lt;T&gt;(time:Float, event_name:String, ?properties:schedule.T) : String</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="unschedule" href="#unschedule">unschedule</a></p>
 <p><code>unschedule(schedule_id:String) : Bool</code></p>

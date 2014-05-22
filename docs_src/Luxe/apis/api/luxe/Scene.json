@@ -174,7 +174,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "create(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1",
+          "signature": "create<T1,T2>(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1",
           "return": ": create.T1",
           "args": [
             {

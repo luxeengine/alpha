@@ -6,8 +6,7 @@
 #Rendering
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#phoenix.utils)   
+##[API Index](../../../api/index.html#phoenix.utils)   
 &emsp;&emsp;&emsp;parent    
 [phoenix](../)     
 &emsp;&emsp;&emsp;current    

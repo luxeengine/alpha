@@ -6,8 +6,7 @@
 #DebugInspectorOptions
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#luxe.debug)   
+##[API Index](../../../api/index.html#luxe.debug)   
 &emsp;&emsp;&emsp;parent    
 [luxe](../)     
 &emsp;&emsp;&emsp;current    

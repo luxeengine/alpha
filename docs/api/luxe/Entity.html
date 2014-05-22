@@ -47,7 +47,8 @@
             <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="entity">Entity</h1>
-<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#luxe">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Entity</p>
+<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
+<p>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Entity</p>
 <p><br/></p>
 <hr>
 <p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
@@ -119,7 +120,7 @@
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="add" href="#add">add</a></p>
-<p><code>add(type:Class&lt;add.T1&gt;, ?_name:String=&#39;&#39;, ?_data:add.T2) : add.T1</code></p>
+<p><code>add&lt;T1,T2&gt;(type:Class&lt;add.T1&gt;, ?_name:String=&#39;&#39;, ?_data:add.T2) : add.T1</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="add_child" href="#add_child">add_child</a></p>
 <p><code>add_child(child:luxe.Entity) : Void</code></p>
@@ -128,10 +129,10 @@
 <p><code>destroy() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get" href="#get">get</a></p>
-<p><code>get(_name:String, ?_in_children:Bool=false) : get.T</code></p>
+<p><code>get&lt;T&gt;(_name:String, ?_in_children:Bool=false) : get.T</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get_any" href="#get_any">get_any</a></p>
-<p><code>get_any(_name:String, ?_in_children:Bool=false, ?_first_only:Bool=true) : Array&lt;get_any.T&gt;</code></p>
+<p><code>get_any&lt;T&gt;(_name:String, ?_in_children:Bool=false, ?_first_only:Bool=true) : Array&lt;get_any.T&gt;</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
 <p><code>get_serialize_data() : Dynamic</code></p>
@@ -140,10 +141,10 @@
 <p><code>has(_name:String) : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?_options:luxe.options.EntityOptions&lt;new.T&gt;)</code></p>
+<p><code>new&lt;T&gt;(?_options:luxe.options.EntityOptions&lt;new.T&gt;)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="remove" href="#remove">remove</a></p>
-<p><code>remove(?_name:String=&#39;&#39;, ?_data:remove.T) : Bool</code></p>
+<p><code>remove&lt;T&gt;(?_name:String=&#39;&#39;, ?_data:remove.T) : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="remove_child" href="#remove_child">remove_child</a></p>
 <p><code>remove_child(child:luxe.Entity) : Void</code></p>

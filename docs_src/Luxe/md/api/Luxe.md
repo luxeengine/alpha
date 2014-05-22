@@ -6,8 +6,7 @@
 #Luxe
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../api/index.html#)   
+##[API Index](../api/index.html#)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    

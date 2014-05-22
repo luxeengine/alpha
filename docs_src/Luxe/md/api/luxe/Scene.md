@@ -6,8 +6,7 @@
 #Scene
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#luxe)   
+##[API Index](../../api/index.html#luxe)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -94,7 +93,7 @@ _none_
 
 
 
-`create(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1`
+`create<T1,T2>(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1`
 
 <span class="small_desc_flat"> no description </span>   
 

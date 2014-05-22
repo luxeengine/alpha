@@ -6,8 +6,7 @@
 #Sprite
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#luxe)   
+##[API Index](../../api/index.html#luxe)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -94,7 +93,7 @@ _none_
 
 
 
-`new(options:luxe.options.SpriteOptions<new.T>) `
+`new<T>(options:luxe.options.SpriteOptions<new.T>) `
 
 <span class="small_desc_flat"> no description </span>   
 

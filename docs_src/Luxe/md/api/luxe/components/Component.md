@@ -6,8 +6,7 @@
 #Component
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../../api/index.html#luxe.components)   
+##[API Index](../../../api/index.html#luxe.components)   
 &emsp;&emsp;&emsp;parent    
 [luxe](../)     
 &emsp;&emsp;&emsp;current    
@@ -110,7 +109,7 @@
 
 
 
-`add(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1`
+`add<T1,T2>(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -118,7 +117,7 @@
 
 
 
-`get(_name:String, ?in_children:Bool=false) : get.T`
+`get<T>(_name:String, ?in_children:Bool=false) : get.T`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -126,7 +125,7 @@
 
 
 
-`get_any(_name:String, ?in_children:Bool=false, ?first_only:Bool=true) : Array<get_any.T>`
+`get_any<T>(_name:String, ?in_children:Bool=false, ?first_only:Bool=true) : Array<get_any.T>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -142,7 +141,7 @@
 
 
 
-`new(?_options:luxe.options.ComponentOptions<new.T>) `
+`new<T>(?_options:luxe.options.ComponentOptions<new.T>) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -150,7 +149,7 @@
 
 
 
-`remove(?_name:String='', ?_data:remove.T) : Bool`
+`remove<T>(?_name:String='', ?_data:remove.T) : Bool`
 
 <span class="small_desc_flat"> no description </span>   
 

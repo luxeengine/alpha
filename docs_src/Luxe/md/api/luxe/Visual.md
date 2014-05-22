@@ -6,8 +6,7 @@
 #Visual
 
 
-&emsp;&emsp;&emsp;home   
-[API Index](../../api/index.html#luxe)   
+##[API Index](../../api/index.html#luxe)   
 &emsp;&emsp;&emsp;parent    
 _none_   
 &emsp;&emsp;&emsp;current    
@@ -170,7 +169,7 @@ _none_
 
 
 
-`new(_options:luxe.options.VisualOptions<new.T>) `
+`new<T>(_options:luxe.options.VisualOptions<new.T>) `
 
 <span class="small_desc_flat"> no description </span>   
 

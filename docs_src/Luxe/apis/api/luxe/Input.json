@@ -525,7 +525,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "add(_name:String, _binding_value:add.T) : Void",
+          "signature": "add<T>(_name:String, _binding_value:add.T) : Void",
           "return": ": Void",
           "args": [
             {

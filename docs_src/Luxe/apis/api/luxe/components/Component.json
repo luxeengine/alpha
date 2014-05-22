@@ -305,7 +305,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "get(_name:String, ?in_children:Bool=false) : get.T",
+          "signature": "get<T>(_name:String, ?in_children:Bool=false) : get.T",
           "return": ": get.T",
           "args": [
             {
@@ -360,7 +360,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "get_any(_name:String, ?in_children:Bool=false, ?first_only:Bool=true) : Array<get_any.T>",
+          "signature": "get_any<T>(_name:String, ?in_children:Bool=false, ?first_only:Bool=true) : Array<get_any.T>",
           "return": ": Array<get_any.T>",
           "args": [
             {
@@ -430,7 +430,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "remove(?_name:String='', ?_data:remove.T) : Bool",
+          "signature": "remove<T>(?_name:String='', ?_data:remove.T) : Bool",
           "return": ": Bool",
           "args": [
             {
@@ -452,7 +452,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "new(?_options:luxe.options.ComponentOptions<new.T>) ",
+          "signature": "new<T>(?_options:luxe.options.ComponentOptions<new.T>) ",
           "return": "",
           "args": [
             {
@@ -564,7 +564,7 @@
           "isstatic": false,
           "isinline": false,
           "doc": "",
-          "signature": "add(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1",
+          "signature": "add<T1,T2>(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1",
           "return": ": add.T1",
           "args": [
             {
