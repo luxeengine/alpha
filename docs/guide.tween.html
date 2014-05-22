@@ -59,88 +59,72 @@
 <p>It, in simple terms, is about moving from a start value to an end value (keyframes). This is especially useful in games where things should move smoothly, transition and generally animate over time.</p>
 <h3 id="examples">Examples</h3>
 <p>Slide the menu in from the top, over 2 seconds</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//assume that y was -menu.height (off screen)</span>
-<span class="err">Actuate.tween(</span> <span class="err">menu,</span> <span class="err">2,</span> <span class="err">{</span> <span class="err">y:10</span> <span class="err">}</span> <span class="err">);</span>
-</pre></div>
-
+<pre><code>    <span class="hljs-comment">//assume that y was -menu.height (off screen)</span>
+Actuate.tween( menu, <span class="hljs-number">2</span>, { y:<span class="hljs-number">10</span> } );
 </code></pre><p>Fade in this overlay over half a second</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//assume that alpha is 0 already</span>
-<span class="err">Actuate.tween(</span> <span class="err">overlay.color,</span> <span class="err">0.5,</span> <span class="err">{</span> <span class="err">a:1</span> <span class="err">}</span> <span class="err">);</span>
-</pre></div>
-
+<pre><code>    <span class="hljs-comment">//assume that alpha is 0 already</span>
+Actuate.tween( overlay.color, <span class="hljs-number">0.5</span>, { a:<span class="hljs-number">1</span> } );
 </code></pre><p>Fade this enemy quickly to half opaque, then wait 1 second, then fade out slowly</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//Take the tween that Acutate returns, and </span>
-    <span class="c1">// call .onComplete on it with a function</span>
-<span class="err">Actuate.tween(</span> <span class="err">enemy.color,</span> <span class="err">0.2,</span> <span class="err">{</span> <span class="err">a:0.5</span> <span class="err">}</span> <span class="err">)</span>
-    <span class="err">.onComplete(function(){</span>
+<pre><code>    <span class="hljs-comment">//Take the tween that Acutate returns, and </span>
+    <span class="hljs-comment">// call .onComplete on it with a function</span>
+Actuate.tween( enemy.color, <span class="hljs-number">0.2</span>, { a:<span class="hljs-number">0.5</span> } )
+    .onComplete(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
 
-            <span class="c1">//Now that the first tween is done, start a second one,</span>
-            <span class="c1">//but by using the tween .delay function we can wait</span>
-        <span class="err">Actuate.tween(</span> <span class="err">enemy.color,</span> <span class="err">3,</span> <span class="err">{</span> <span class="err">a:0</span> <span class="err">}</span> <span class="err">).delay(</span> <span class="err">1</span> <span class="err">);</span>
+            <span class="hljs-comment">//Now that the first tween is done, start a second one,</span>
+            <span class="hljs-comment">//but by using the tween .delay function we can wait</span>
+        Actuate.tween( enemy.color, <span class="hljs-number">3</span>, { a:<span class="hljs-number">0</span> } ).delay( <span class="hljs-number">1</span> );
 
-    <span class="err">});</span> <span class="c1">//onComplete</span>
-</pre></div>
-
+    }); <span class="hljs-comment">//onComplete</span>
 </code></pre><p>Fade up, over and over, starting from 0</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//the value of flashing.color.a should be 0 at first</span>
-    <span class="c1">//then we fade to 1, and say &quot;repeat that&quot;</span>
-<span class="err">Actuate.tween(flashing.color,</span> <span class="err">0.5,</span> <span class="err">{</span> <span class="err">a:1</span> <span class="err">}).repeat();</span>
-</pre></div>
-
+<pre><code>    <span class="hljs-comment">//the value of flashing.color.a should be 0 at first</span>
+    <span class="hljs-comment">//then we fade to 1, and say "repeat that"</span>
+Actuate.tween(flashing.color, <span class="hljs-number">0.5</span>, { a:<span class="hljs-number">1</span> }).repeat();
 </code></pre><p>Fade up and down continuously</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//Similar to repeat, you can ping pong the value using reflect</span>
-    <span class="c1">//If flashing.color.a is 0, </span>
-    <span class="c1">//it will go up to 1, and then animate to 0 on a loop</span>
-<span class="err">Actuate.tween(flashing.color,</span> <span class="err">0.5,</span> <span class="err">{</span> <span class="err">a:1</span> <span class="err">}).repeat().reflect();</span>
-</pre></div>
-
+<pre><code>    <span class="hljs-comment">//Similar to repeat, you can ping pong the value using reflect</span>
+    <span class="hljs-comment">//If flashing.color.a is 0, </span>
+    <span class="hljs-comment">//it will go up to 1, and then animate to 0 on a loop</span>
+Actuate.tween(flashing.color, <span class="hljs-number">0.5</span>, { a:<span class="hljs-number">1</span> }).repeat().reflect();
 </code></pre><h2 id="callback-functions-on-the-created-motion">Callback functions on the created motion</h2>
 <hr>
 <p>Like the onComplete function above, there are other callbacks you can ask for :</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//Remember, these can be chained like above and function handlers can be a local class member</span>
-    <span class="c1">//or any previously declared function - or an inline function like the above example.</span>
+<pre><code>    <span class="hljs-comment">//Remember, these can be chained like above and function handlers can be a local class member</span>
+    <span class="hljs-comment">//or any previously declared function - or an inline function like the above example.</span>
 
-    <span class="c1">//Called when the motion has completed</span>
-<span class="err">.onComplete(</span> <span class="err">handler:Dynamic,</span> <span class="err">parameters:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="err">)</span>
+    <span class="hljs-comment">//Called when the motion has completed</span>
+.onComplete( handler:Dynamic, parameters:Array&lt;Dynamic&gt; = <span class="hljs-literal">null</span> )
 
-    <span class="c1">//When a .repeat() is requested, you will get an onRepeat instead of onComplete</span>
-<span class="err">.onRepeat(</span> <span class="err">handler:Dynamic,</span> <span class="err">parameters:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="err">)</span>
+    <span class="hljs-comment">//When a .repeat() is requested, you will get an onRepeat instead of onComplete</span>
+.onRepeat( handler:Dynamic, parameters:Array&lt;Dynamic&gt; = <span class="hljs-literal">null</span> )
 
-    <span class="c1">//Every time the value changes in the animation/motion, your callback will fire</span>
-<span class="err">.onUpdate(</span> <span class="err">handler:Dynamic,</span> <span class="err">parameters:Array&lt;Dynamic&gt;</span> <span class="err">=</span> <span class="err">null</span> <span class="err">)</span>
-</pre></div>
-
+    <span class="hljs-comment">//Every time the value changes in the animation/motion, your callback will fire</span>
+.onUpdate( handler:Dynamic, parameters:Array&lt;Dynamic&gt; = <span class="hljs-literal">null</span> )
 </code></pre><h2 id="helper-functions-on-the-created-motion">Helper functions on the created motion</h2>
 <hr>
-<pre><code><div class="highlight"><pre>    <span class="c1">//If you want float values during motion should be automatically rounded to </span>
-<span class="err">.snapping(</span> <span class="err">enabled:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="err">)</span>
+<pre><code>    <span class="hljs-comment">//If you want float values during motion should be automatically rounded to </span>
+.snapping( enabled:Bool = <span class="hljs-literal">true</span> )
 
-    <span class="c1">//If you want the motion to be performed in reverse</span>
-<span class="err">.reverse(</span> <span class="err">enabled:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="err">)</span>
+    <span class="hljs-comment">//If you want the motion to be performed in reverse</span>
+.reverse( enabled:Bool = <span class="hljs-literal">true</span> )
 
-    <span class="c1">//If you want the motion to repeat</span>
-<span class="err">.repeat(</span> <span class="err">enabled:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="err">)</span>
+    <span class="hljs-comment">//If you want the motion to repeat</span>
+.repeat( enabled:Bool = <span class="hljs-literal">true</span> )
 
-    <span class="c1">//If you want to motion to reverse the tween on repeat</span>
-    <span class="c1">//this requires .repeat() to be enabled!</span>
-<span class="err">.reflect(</span> <span class="err">enabled:Bool</span> <span class="err">=</span> <span class="err">true</span> <span class="err">)</span>    
+    <span class="hljs-comment">//If you want to motion to reverse the tween on repeat</span>
+    <span class="hljs-comment">//this requires .repeat() to be enabled!</span>
+.reflect( enabled:Bool = <span class="hljs-literal">true</span> )    
 
-    <span class="c1">//Helper functions to set tween properties</span>
+    <span class="hljs-comment">//Helper functions to set tween properties</span>
 
-    <span class="c1">//the curve function to use (curves displayed below)</span>
-<span class="err">.ease(</span> <span class="err">luxe.tween.easing.*</span> <span class="err">)</span>
+    <span class="hljs-comment">//the curve function to use (curves displayed below)</span>
+.ease( luxe.tween.easing.* )
 
-    <span class="c1">//the amount of time to wait in seconds, before doing the tween</span>
-<span class="err">.delay(</span> <span class="err">duration:Bool</span> <span class="err">)</span>
-</pre></div>
-
+    <span class="hljs-comment">//the amount of time to wait in seconds, before doing the tween</span>
+.delay( duration:Bool )
 </code></pre><h2 id="the-different-types-of-easing">The different types of easing</h2>
 <hr>
 <p>These easing values are accessed via <code>luxe.tween.easing.*</code><br>Each type has one or more variations, such as <code>easeIn</code>, <code>easeOut</code> or <code>easeInOut</code> listed below.<br>This means that the curve is applied at the beginning (ease in) at the end (ease out) or both over the time period.</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//example usage, this will bounce &quot;at the end&quot; of the animation</span>
-<span class="err">Actuate.tween(</span> <span class="err">menu,</span> <span class="err">2,</span> <span class="err">{</span> <span class="err">y:10</span> <span class="err">}</span> <span class="err">).ease(</span> <span class="err">luxe.tween.easing.Bounce.easeOut</span> <span class="err">);</span>
-</pre></div>
-
+<pre><code>    <span class="hljs-comment">//example usage, this will bounce "at the end" of the animation</span>
+Actuate.tween( menu, <span class="hljs-number">2</span>, { y:<span class="hljs-number">10</span> } ).ease( luxe.tween.easing.Bounce.easeOut );
 </code></pre><p>The following curve type has only one option (because it is linear!)</p>
 <ul>
 <li>Linear  <code>easeNone</code></li>

@@ -77,25 +77,23 @@ and with good reason as they are quite useful for the way games are often struct
 <hr>
 <p>Component classes have some default functions that are called for you, much like the game class.
 Have a look at the comments in the code below to see them.</p>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.components.Components.Component</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.components.Components.Component;
 
-<span class="kd">class</span> <span class="nc">MyComponent</span> <span class="kd">extends</span> <span class="nc">Component</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//called when initialising the component</span>
-    <span class="p">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//called when initialising the component</span>
+    }
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">start</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//called when the scene starts or restarts</span>
-    <span class="p">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//called when the scene starts or restarts</span>
+    }
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">dt</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//called every frame for you</span>
-    <span class="p">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(dt:Float)</span> </span>{
+        <span class="hljs-comment">//called every frame for you</span>
+    }
 
-<span class="p">}</span>
-</pre></div>
-
+}
 </code></pre><h3 id="understanding-the-component-transforms">Understanding the Component transforms</h3>
 <hr>
 <p>Components are directly tied to the entity they are attached to.   </p>
@@ -108,33 +106,27 @@ Have a look at the comments in the code below to see them.</p>
 <h3 id="creating-entities-via-the-scene-class">Creating entities via the scene class</h3>
 <hr>
 <p>The Scene class has a <code>create</code> function that will return an entity instance.</p>
-<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">entity</span> <span class="err">=</span> <span class="err">Luxe.scene.create(Entity,</span> <span class="err">&#39;entity_name&#39;);</span>
-</pre></div>
-
+<pre><code><span class="hljs-keyword">var</span> entity = Luxe.scene.create(Entity, <span class="hljs-string">'entity_name'</span>);
 </code></pre><h3 id="creating-entities-from-classes">Creating entities from classes</h3>
 <hr>
 <p>Entites can also be created from the constructor but are not added to any scene. This gives you control, but take note of it when something isn’t showing up.</p>
-<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">entity</span> <span class="err">=</span> <span class="err">new</span> <span class="err">Entity();</span>
-</pre></div>
-
+<pre><code><span class="hljs-keyword">var</span> entity = <span class="hljs-keyword">new</span> Entity();
 </code></pre><p>The <code>Sprite</code> and <code>Camera</code> class in luxe extend from the Entity class so that you can add components to them. Sprites are automatically added to the default scene unless you tell it not to, by passing <code>add : false</code> into the constructor of Sprite.</p>
 <h3 id="accessing-entities-from-other-entities-and-components">Accessing entities from other entities and components</h3>
 <hr>
 <p>Entities are stored in the scene by name, so you can fetch them later. This means that when creating your sprite, or entity, you will want to pass the name as well.<br>You fetch the sprite from the scene by accessing the entities property from the scene.</p>
-<pre><code><div class="highlight"><pre><span class="kd">public</span> <span class="err">function</span> <span class="err">init()</span> <span class="err">{</span>
+<pre><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
 
-    <span class="err">var</span> <span class="err">sprite</span> <span class="err">=</span> <span class="err">new</span> <span class="err">Sprite({</span>
-        <span class="err">name</span> <span class="err">:</span> <span class="err">&#39;spritename&#39;</span>
-    <span class="err">});</span>        
+    <span class="hljs-keyword">var</span> sprite = <span class="hljs-keyword">new</span> Sprite({
+        name : <span class="hljs-string">'spritename'</span>
+    });        
 
-<span class="err">}</span>
+}
 
-<span class="err">...</span>
+...
 
-    <span class="c1">//at a later time</span>
-<span class="err">var</span> <span class="err">sprite</span> <span class="err">:</span> <span class="err">Sprite</span> <span class="err">=</span> <span class="err">cast</span> <span class="err">Luxe.scene.entities.get(&#39;spritename&#39;);</span>
-</pre></div>
-
+    <span class="hljs-comment">//at a later time</span>
+<span class="hljs-keyword">var</span> sprite : Sprite = <span class="hljs-keyword">cast</span> Luxe.scene.entities.get(<span class="hljs-string">'spritename'</span>);
 </code></pre><p>&nbsp;   </p>
 <h2 id="creating-and-accessing-components">Creating and accessing components</h2>
 <hr>
@@ -144,33 +136,29 @@ Have a look at the comments in the code below to see them.</p>
 <p>Components are added to entities using the <code>add</code> function, and the <code>add</code> function returns the instance if you want to store a typed reference.
 The second parameter is the name of the entity or component, so you can use them by name later on.</p>
 <p>For example, inside of your game init function :</p>
-<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">component</span> <span class="err">:</span> <span class="err">Component;</span>
-<span class="err">var</span> <span class="err">entity</span> <span class="err">:</span> <span class="err">Entity;</span>
+<pre><code><span class="hljs-keyword">var</span> component : Component;
+<span class="hljs-keyword">var</span> entity : Entity;
 
-<span class="kd">public</span> <span class="err">function</span> <span class="err">init()</span> <span class="err">{</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
 
-        <span class="c1">// create an entity in the default scene</span>
-    <span class="err">entity</span> <span class="err">=</span> <span class="err">Luxe.scene.create(Entity,</span> <span class="err">&#39;some_entity&#39;);</span>
+        <span class="hljs-comment">// create an entity in the default scene</span>
+    entity = Luxe.scene.create(Entity, <span class="hljs-string">'some_entity'</span>);
 
-        <span class="c1">// add/attach a component to the entity.</span>
-    <span class="err">component</span> <span class="err">=</span> <span class="err">entity.add(Component,</span> <span class="err">&#39;some_component&#39;);</span>
+        <span class="hljs-comment">// add/attach a component to the entity.</span>
+    component = entity.add(Component, <span class="hljs-string">'some_component'</span>);
 
-<span class="err">}</span>
-</pre></div>
-
+}
 </code></pre><h3 id="accessing-the-entity">Accessing the entity</h3>
 <hr>
 <p>When you are inside of a component and want to access the entity that the component is connected to,<br>there is a variable called <code>entity</code> that is declared in the Component class as <code>entity : Entity</code>. </p>
 <p>When the entity is attached to a sub class of Entity (like a Sprite, which <code>extends Entity</code>),<br>you can store a typed reference by using the <code>cast</code> keyword. Like below :</p>
-<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">sprite:Sprite;</span>
+<pre><code><span class="hljs-keyword">var</span> sprite:Sprite;
 
-<span class="kd">public</span> <span class="err">function</span> <span class="err">init()</span> <span class="err">{</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
 
-    <span class="err">sprite</span> <span class="err">=</span> <span class="err">cast</span> <span class="err">entity;</span>
+    sprite = <span class="hljs-keyword">cast</span> entity;
 
-<span class="err">}</span>
-</pre></div>
-
+}
 </code></pre><p>&nbsp;   </p>
 <h2 id="accessing-other-components-attached-to-the-entity">Accessing other components attached to the entity</h2>
 <hr>
@@ -178,17 +166,15 @@ The second parameter is the name of the entity or component, so you can use them
 <p>The <code>get</code> function is available from inside the component class, or from the entity.   </p>
 <p>The parameter passed into the get function is the name of the component instance (which is set when calling the <code>add</code> function, like above).</p>
 <p>&nbsp;   </p>
-<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">other_component</span> <span class="err">:</span> <span class="err">Component2;</span>
+<pre><code><span class="hljs-keyword">var</span> other_component : Component2;
 
-<span class="err">function</span> <span class="err">init()</span> <span class="err">{</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
 
-    <span class="err">other_component</span> <span class="err">=</span> <span class="err">cast</span> <span class="err">get(&#39;other_component_name&#39;);</span>
+    other_component = <span class="hljs-keyword">cast</span> get(<span class="hljs-string">'other_component_name'</span>);
 
-    <span class="err">var</span> <span class="err">another_component</span> <span class="err">=</span> <span class="err">entity.get(&#39;another&#39;);</span>
+    <span class="hljs-keyword">var</span> another_component = entity.get(<span class="hljs-string">'another'</span>);
 
-<span class="err">}</span>
-</pre></div>
-
+}
 </code></pre><p>&nbsp;   </p>
 <h2 id="a-practical-sample">A practical sample</h2>
 <hr>
@@ -215,93 +201,87 @@ The second parameter is the name of the entity or component, so you can use them
 <p></a></p>
 <p><em>(found in samples/guides/4_components/)</em></p>
 <h3 id="rotate-hx">Rotate.hx</h3>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.components.Components.Component</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Vector</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.components.Components.Component;
+<span class="hljs-keyword">import</span> luxe.Vector;
 
-<span class="c1">//This component will rotate the entity that it is attached to a small amount each frame.</span>
-<span class="c1">//It is assumed that the entity is a Sprite! </span>
+<span class="hljs-comment">//This component will rotate the entity that it is attached to a small amount each frame.</span>
+<span class="hljs-comment">//It is assumed that the entity is a Sprite! </span>
 
-<span class="kd">class</span> <span class="nc">Rotate</span> <span class="kd">extends</span> <span class="nc">Component</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rotate</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
 
-    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">rotate_speed</span> <span class="p">:</span> <span class="nc">Float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">max_rotate_speed</span> <span class="p">:</span> <span class="nc">Float</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> rotate_speed : Float = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">var</span> max_rotate_speed : Float = <span class="hljs-number">60</span>;
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">dt</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(dt:Float)</span> </span>{
 
-            <span class="c1">//changes to the transform inside of components affect the entity directly!</span>
-        <span class="n">rotation</span><span class="o">.</span><span class="n">z</span> <span class="o">+=</span> <span class="n">rotate_speed</span> <span class="o">*</span> <span class="n">dt</span><span class="p">;</span>
+            <span class="hljs-comment">//changes to the transform inside of components affect the entity directly!</span>
+        rotation.z += rotate_speed * dt;
 
-    <span class="p">}</span> <span class="c1">//update</span>
+    } <span class="hljs-comment">//update</span>
 
-<span class="p">}</span> <span class="c1">//Rotate</span>
-</pre></div>
-
+} <span class="hljs-comment">//Rotate</span>
 </code></pre><h3 id="bounce-hx">Bounce.hx</h3>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.components.Components.Component</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.components.Components.Component;
 
-<span class="kd">class</span> <span class="nc">Bounce</span> <span class="kd">extends</span> <span class="nc">Component</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bounce</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
 
-    <span class="kd">var</span> <span class="vi">dir</span> <span class="p">:</span> <span class="nc">Int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">speed</span> <span class="p">:</span> <span class="nc">Int</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+    <span class="hljs-keyword">var</span> dir : Int = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">var</span> speed : Int = <span class="hljs-number">200</span>;
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">dt</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">speed</span> <span class="o">*</span> <span class="n">dir</span> <span class="o">*</span> <span class="n">dt</span><span class="p">;</span>
-            <span class="c1">//hit the bottom? go back up</span>
-        <span class="kr">if</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">dir</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-            <span class="c1">//hit the middle? go down</span>
-        <span class="kr">if</span><span class="p">(</span><span class="n">pos</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">dir</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="c1">//update</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(dt:Float)</span> </span>{
+        pos.y += speed * dir * dt;
+            <span class="hljs-comment">//hit the bottom? go back up</span>
+        <span class="hljs-keyword">if</span>(pos.y &gt; Luxe.screen.h) {
+            dir = -<span class="hljs-number">1</span>;
+        }
+            <span class="hljs-comment">//hit the middle? go down</span>
+        <span class="hljs-keyword">if</span>(pos.y &lt; Luxe.screen.h/<span class="hljs-number">2</span>) {
+            dir = <span class="hljs-number">1</span>;
+        }
+    } <span class="hljs-comment">//update</span>
 
-<span class="p">}</span> <span class="c1">//Bounce</span>
-</pre></div>
-
+} <span class="hljs-comment">//Bounce</span>
 </code></pre><h3 id="main-hx">Main.hx</h3>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Sprite</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Vector</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
 
-<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-    <span class="kd">var</span> <span class="vi">logo</span> <span class="p">:</span> <span class="nc">Sprite</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">rotator</span> <span class="p">:</span> <span class="nc">Rotate</span><span class="p">;</span>
+    <span class="hljs-keyword">var</span> logo : Sprite;
+    <span class="hljs-keyword">var</span> rotator : Rotate;
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-        <span class="n">logo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sprite</span><span class="p">({</span>
-            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span>
-            <span class="n">texture</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/luxelogo.png&#39;</span><span class="p">),</span>
-        <span class="p">});</span> 
+        logo = <span class="hljs-keyword">new</span> Sprite({
+            pos : <span class="hljs-keyword">new</span> Vector(Luxe.screen.w/<span class="hljs-number">2</span>, Luxe.screen.h/<span class="hljs-number">2</span>),
+            texture : Luxe.loadTexture(<span class="hljs-string">'assets/luxelogo.png'</span>),
+        }); 
 
-            <span class="c1">//Now the important bit, we attach a component to an </span>
-            <span class="c1">//entity by calling .add(TypeOfComponent, &#39;NameOfComponent&#39;);</span>
-            <span class="c1">//It is important to note that the name of the component must be set </span>
-            <span class="c1">//if you want to fetch it later using .get(&#39;NameOfComponent&#39;).</span>
-            <span class="c1">//If no name is given, it uses a UUID.</span>
-        <span class="n">rotator</span> <span class="o">=</span> <span class="n">logo</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Rotate</span><span class="p">,</span> <span class="s1">&#39;rotator&#39;</span><span class="p">);</span>
+            <span class="hljs-comment">//Now the important bit, we attach a component to an </span>
+            <span class="hljs-comment">//entity by calling .add(TypeOfComponent, 'NameOfComponent');</span>
+            <span class="hljs-comment">//It is important to note that the name of the component must be set </span>
+            <span class="hljs-comment">//if you want to fetch it later using .get('NameOfComponent').</span>
+            <span class="hljs-comment">//If no name is given, it uses a UUID.</span>
+        rotator = logo.add(Rotate, <span class="hljs-string">'rotator'</span>);
 
-            <span class="c1">//we don&#39;t need to reference the bounce component, so we just add it.</span>
-        <span class="n">logo</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Bounce</span><span class="p">,</span> <span class="s1">&#39;bounce&#39;</span><span class="p">);</span>
+            <span class="hljs-comment">//we don't need to reference the bounce component, so we just add it.</span>
+        logo.add(Bounce, <span class="hljs-string">'bounce'</span>);
 
-    <span class="p">}</span> <span class="c1">//ready</span>
+    } <span class="hljs-comment">//ready</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
 
-            <span class="c1">//Change the sprite speed based on the mouse x position</span>
+            <span class="hljs-comment">//Change the sprite speed based on the mouse x position</span>
 
-        <span class="kd">var</span> <span class="nv">percent</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nv">new_speed</span> <span class="o">=</span> <span class="n">percent</span> <span class="o">*</span> <span class="n">rotator</span><span class="o">.</span><span class="n">max_rotate_speed</span><span class="p">;</span>
+        <span class="hljs-keyword">var</span> percent = e.pos.x / Luxe.screen.w;
+        <span class="hljs-keyword">var</span> new_speed = percent * rotator.max_rotate_speed;
 
-            <span class="n">rotator</span><span class="o">.</span><span class="n">rotate_speed</span> <span class="o">=</span> <span class="n">new_speed</span><span class="p">;</span>
+            rotator.rotate_speed = new_speed;
 
-    <span class="p">}</span> <span class="c1">//onmousemove</span>
+    } <span class="hljs-comment">//onmousemove</span>
 
-<span class="p">}</span> <span class="c1">//Main</span>
-</pre></div>
-
+} <span class="hljs-comment">//Main</span>
 </code></pre><p><a href="#links">Jump to the guide links</a></p>
 <p>&nbsp;<br>&nbsp;<br>&nbsp;   </p>
 

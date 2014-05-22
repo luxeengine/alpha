@@ -78,10 +78,8 @@
 <p><a class="lift" name="timescaled" href="#timescaled">timescaled</a></p>
 <p><code>timescaled : Bool</code></p>
 <p><span class="small_desc_flat"> * Specify whether this should be scaled by the global timescale</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">_value</span>      <span class="err">Whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">it</span> <span class="err">should</span> <span class="err">be</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   _value      Whether or not it should be
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
@@ -92,24 +90,18 @@
 <p><a class="lift" name="autoVisible" href="#autoVisible">autoVisible</a></p>
 <p><code>autoVisible(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">autoVisible</span> <span class="err">should</span> <span class="err">be</span> <span class="err">enabled</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   value       Whether autoVisible should be enabled (Default is <span class="hljs-literal">true</span>)
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="delay" href="#delay">delay</a></p>
 <p><code>delay(duration:Float) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Increases the delay before a tween is executed</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">duration</span>        <span class="err">The</span> <span class="err">amount</span> <span class="err">of</span> <span class="err">seconds</span> <span class="err">to</span> <span class="err">delay</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   duration        The amount of seconds to delay
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="ease" href="#ease">ease</a></p>
 <p><code>ease(easing:luxe.tween.easing.IEasing) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Sets the easing which is used when running the tween</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">easing</span>      <span class="err">An</span> <span class="err">easing</span> <span class="err">equation,</span> <span class="err">like</span> <span class="err">Elastic.easeIn</span> <span class="err">or</span> <span class="err">Quad.easeOut</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="move" href="#move">move</a></p>
 <p><code>move() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
@@ -119,68 +111,52 @@
 <p><a class="lift" name="onComplete" href="#onComplete">onComplete</a></p>
 <p><code>onComplete(handler:Dynamic, ?parameters:Array&lt;Dynamic&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Defines a function which will be called when the tween finishes</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">handler</span>     <span class="err">The</span> <span class="err">function</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">be</span> <span class="err">called</span>
- <span class="err">*</span> <span class="err">@param</span>   <span class="err">parameters</span>      <span class="err">Parameters</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">pass</span> <span class="err">to</span> <span class="err">the</span> <span class="err">handler</span> <span class="err">function</span> <span class="err">when</span> <span class="err">it</span> <span class="err">is</span> <span class="err">called</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   handler     The function you would like to be called
+ * @param   parameters      Parameters you would like to pass to the handler function when it is called
+ * @return      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="onRepeat" href="#onRepeat">onRepeat</a></p>
 <p><code>onRepeat(handler:Dynamic, ?parameters:Array&lt;Dynamic&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Defines a function which will be called when the tween repeats</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">handler</span>     <span class="err">The</span> <span class="err">function</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">be</span> <span class="err">called</span>
- <span class="err">*</span> <span class="err">@param</span>   <span class="err">parameters</span>      <span class="err">Parameters</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">pass</span> <span class="err">to</span> <span class="err">the</span> <span class="err">handler</span> <span class="err">function</span> <span class="err">when</span> <span class="err">it</span> <span class="err">is</span> <span class="err">called</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   handler     The function you would like to be called
+ * @param   parameters      Parameters you would like to pass to the handler function when it is called
+ * @return      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="onUpdate" href="#onUpdate">onUpdate</a></p>
 <p><code>onUpdate(handler:Dynamic, ?parameters:Array&lt;Dynamic&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Defines a function which will be called when the tween updates</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">handler</span>     <span class="err">The</span> <span class="err">function</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">be</span> <span class="err">called</span>
- <span class="err">*</span> <span class="err">@param</span>   <span class="err">parameters</span>      <span class="err">Parameters</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">pass</span> <span class="err">to</span> <span class="err">the</span> <span class="err">handler</span> <span class="err">function</span> <span class="err">when</span> <span class="err">it</span> <span class="err">is</span> <span class="err">called</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   handler     The function you would like to be called
+ * @param   parameters      Parameters you would like to pass to the handler function when it is called
+ * @return      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="pause" href="#pause">pause</a></p>
 <p><code>pause() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="reflect" href="#reflect">reflect</a></p>
 <p><code>reflect(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">reflect</span> <span class="err">should</span> <span class="err">be</span> <span class="err">enabled</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   value       Whether reflect should be enabled (Default is <span class="hljs-literal">true</span>)
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="repeat" href="#repeat">repeat</a></p>
 <p><code>repeat(?times:Int) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Repeats the tween after it finishes</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">times</span>       <span class="err">The</span> <span class="err">number</span> <span class="err">of</span> <span class="err">times</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">the</span> <span class="err">tween</span> <span class="err">to</span> <span class="err">repeat,</span> <span class="err">or</span> <span class="err">-1</span> <span class="err">if</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">repeat</span> <span class="err">the</span> <span class="err">tween</span> <span class="err">indefinitely</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">-1)</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   times       The number of times you would like the tween to repeat, or -<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> you would like to repeat the tween indefinitely (Default is -<span class="hljs-number">1</span>)
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="resume" href="#resume">resume</a></p>
 <p><code>resume() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="reverse" href="#reverse">reverse</a></p>
 <p><code>reverse(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Sets if the tween should be handled in reverse</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">the</span> <span class="err">tween</span> <span class="err">should</span> <span class="err">be</span> <span class="err">reversed</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   value       Whether the tween should be reversed (Default is <span class="hljs-literal">true</span>)
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="smartRotation" href="#smartRotation">smartRotation</a></p>
 <p><code>smartRotation(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Enabling smartRotation can prevent undesired results when tweening rotation values</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">smart</span> <span class="err">rotation</span> <span class="err">should</span> <span class="err">be</span> <span class="err">enabled</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   value       Whether smart rotation should be enabled (Default is <span class="hljs-literal">true</span>)
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="snapping" href="#snapping">snapping</a></p>
 <p><code>snapping(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Snapping causes tween values to be rounded automatically</p>
-<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">tween</span> <span class="err">values</span> <span class="err">should</span> <span class="err">be</span> <span class="err">rounded</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
- <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
-</pre></div>
-
+<pre><code> * @param   value       Whether tween values should be rounded (Default is <span class="hljs-literal">true</span>)
+ * @<span class="hljs-keyword">return</span>      The current actuator instance &lt;/span&gt;   
 </code></pre><p><a class="lift" name="stop" href="#stop">stop</a></p>
 <p><code>stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>

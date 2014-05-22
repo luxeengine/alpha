@@ -69,31 +69,29 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <p>&nbsp;</p>
 <h3 id="what-the-empty-project-code-looks-like">What the empty project code looks like</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Input;
 
-<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
-        <span class="c1">//called by luxe for you when the game is starting</span>
-    <span class="p">}</span> <span class="c1">//ready</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">//called by luxe for you when the game is starting</span>
+    } <span class="hljs-comment">//ready</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
 
-            <span class="c1">//called by luxe for you, when a key is released</span>
-            <span class="c1">//so, when the escape key is pressed, quit!</span>
-        <span class="kr">if</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">KeyValue</span><span class="o">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Luxe</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="c1">//onkeyup</span>
+            <span class="hljs-comment">//called by luxe for you, when a key is released</span>
+            <span class="hljs-comment">//so, when the escape key is pressed, quit!</span>
+        <span class="hljs-keyword">if</span>(e.key == KeyValue.escape) {
+            Luxe.shutdown();
+        }
+    } <span class="hljs-comment">//onkeyup</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">dt</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//called by luxe for you, each frame, and passes in the</span>
-        <span class="c1">//delta time (the length in seconds of the last frame).</span>
-    <span class="p">}</span> <span class="c1">//update</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update</span><span class="hljs-params">(dt:Float)</span> </span>{
+        <span class="hljs-comment">//called by luxe for you, each frame, and passes in the</span>
+        <span class="hljs-comment">//delta time (the length in seconds of the last frame).</span>
+    } <span class="hljs-comment">//update</span>
 
-<span class="p">}</span> <span class="c1">//Main</span>
-</pre></div>
-
+} <span class="hljs-comment">//Main</span>
 </code></pre><p>&nbsp;</p>
 <h3 id="drawing-something">Drawing something</h3>
 <hr>
@@ -102,45 +100,41 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <p><strong>Take note</strong> that the Geometry classes are considered “lower level” and the next guide shows you easier ways of making objects on screen (like sprites).</p>
 <h3 id="drawing-a-ring-on-screen">Drawing a ring on screen</h3>
 <hr>
-<pre><code><div class="highlight"><pre>    <span class="c1">//this goes at the top of the file</span>
-<span class="kn">import</span> <span class="nn">phoenix.geometry.RingGeometry</span><span class="p">;</span>
+<pre><code>    <span class="hljs-comment">//this goes at the top of the file</span>
+<span class="hljs-keyword">import</span> phoenix.geometry.RingGeometry;
 
-<span class="err">...</span> 
+... 
 
-<span class="err">var</span> <span class="err">ring</span> <span class="err">:</span> <span class="err">RingGeometry;</span>
+<span class="hljs-keyword">var</span> ring : RingGeometry;
 
-<span class="kd">public</span> <span class="err">function</span> <span class="err">ready()</span> <span class="err">{</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-    <span class="err">var</span> <span class="err">middle_screen_x</span> <span class="err">=</span> <span class="err">Luxe.screen.w</span> <span class="err">/</span> <span class="err">2;</span>
-    <span class="err">var</span> <span class="err">middle_screen_y</span> <span class="err">=</span> <span class="err">Luxe.screen.h</span> <span class="err">/</span> <span class="err">2;</span>
+    <span class="hljs-keyword">var</span> middle_screen_x = Luxe.screen.w / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">var</span> middle_screen_y = Luxe.screen.h / <span class="hljs-number">2</span>;
 
-    <span class="err">var</span> <span class="err">box</span> <span class="err">=</span> <span class="err">Luxe.draw.box({</span>
-        <span class="err">x:</span> <span class="err">middle_screen_x</span> <span class="err">-</span> <span class="err">45,</span>
-        <span class="err">y:</span> <span class="err">middle_screen_y</span> <span class="err">-</span> <span class="err">45,</span>
-        <span class="err">w:</span> <span class="err">90,</span>
-        <span class="err">h:</span> <span class="err">90,</span>
-        <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color().rgb(0xff5917)</span>
-    <span class="err">});</span>
+    <span class="hljs-keyword">var</span> box = Luxe.draw.box({
+        x: middle_screen_x - <span class="hljs-number">45</span>,
+        y: middle_screen_y - <span class="hljs-number">45</span>,
+        w: <span class="hljs-number">90</span>,
+        h: <span class="hljs-number">90</span>,
+        color : <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xff5917</span>)
+    });
 
-    <span class="err">ring</span> <span class="err">=</span> <span class="err">Luxe.draw.ring({</span>
-        <span class="err">x:</span> <span class="err">middle_screen_x,</span>
-        <span class="err">y:</span> <span class="err">middle_screen_y,</span>
-        <span class="err">r:</span> <span class="err">70</span>
-    <span class="err">});</span>
+    ring = Luxe.draw.ring({
+        x: middle_screen_x,
+        y: middle_screen_y,
+        r: <span class="hljs-number">70</span>
+    });
 
-<span class="err">}</span> <span class="c1">//ready</span>
-</pre></div>
-
+} <span class="hljs-comment">//ready</span>
 </code></pre><h3 id="moving-the-ring">Moving the ring</h3>
 <p>To move the ring, you can set the <code>.pos</code> value of the geometry that was returned by Luxe. To make this simpler, we will use the <code>onmousemove</code> function from luxe, by adding it to our class like below :</p>
-<pre><code><div class="highlight"><pre><span class="kd">public</span> <span class="err">function</span> <span class="err">onmousemove(</span> <span class="err">e:MouseEvent</span> <span class="err">)</span> <span class="err">{</span>
+<pre><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
 
-        <span class="c1">//move the ring to the mouse position</span>
-    <span class="err">ring.pos</span> <span class="err">=</span> <span class="err">e.pos;</span>
+        <span class="hljs-comment">//move the ring to the mouse position</span>
+    ring.pos = e.pos;
 
-<span class="err">}</span> <span class="c1">//onmousemove</span>
-</pre></div>
-
+} <span class="hljs-comment">//onmousemove</span>
 </code></pre><h3 id="what-comes-next">What comes next</h3>
 <p>Well, that’s as basic as it gets! 
 Some of the questions you may have, </p>
@@ -163,46 +157,44 @@ Some of the questions you may have, </p>
 <h4 id="code-listing-1">Code listing 1</h4>
 <p></a></p>
 <p><em>(found in samples/guides/1_gettingstarted/)</em></p>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Color</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Color;
 
-<span class="kn">import</span> <span class="nn">phoenix.geometry.RingGeometry</span><span class="p">;</span>
+<span class="hljs-keyword">import</span> phoenix.geometry.RingGeometry;
 
-<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-    <span class="kd">var</span> <span class="vi">ring</span> <span class="p">:</span> <span class="nc">RingGeometry</span><span class="p">;</span>
+    <span class="hljs-keyword">var</span> ring : RingGeometry;
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-        <span class="kd">var</span> <span class="nv">middle_screen_x</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nv">middle_screen_y</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="hljs-keyword">var</span> middle_screen_x = Luxe.screen.w / <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">var</span> middle_screen_y = Luxe.screen.h / <span class="hljs-number">2</span>;
 
-        <span class="kd">var</span> <span class="nv">box</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">box</span><span class="p">({</span>
-            <span class="n">x</span><span class="o">:</span> <span class="n">middle_screen_x</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
-            <span class="n">y</span><span class="o">:</span> <span class="n">middle_screen_y</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
-            <span class="n">w</span><span class="o">:</span> <span class="mi">90</span><span class="p">,</span>
-            <span class="n">h</span><span class="o">:</span> <span class="mi">90</span><span class="p">,</span>
-            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">()</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="mh">0xff5917</span><span class="p">)</span>
-        <span class="p">});</span>
+        <span class="hljs-keyword">var</span> box = Luxe.draw.box({
+            x: middle_screen_x - <span class="hljs-number">45</span>,
+            y: middle_screen_y - <span class="hljs-number">45</span>,
+            w: <span class="hljs-number">90</span>,
+            h: <span class="hljs-number">90</span>,
+            color : <span class="hljs-keyword">new</span> Color().rgb(<span class="hljs-number">0xff5917</span>)
+        });
 
-        <span class="n">ring</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">ring</span><span class="p">({</span>
-            <span class="n">x</span><span class="o">:</span> <span class="n">middle_screen_x</span><span class="p">,</span>
-            <span class="n">y</span><span class="o">:</span> <span class="n">middle_screen_y</span><span class="p">,</span>
-            <span class="n">r</span><span class="o">:</span> <span class="mi">70</span>
-        <span class="p">});</span>
+        ring = Luxe.draw.ring({
+            x: middle_screen_x,
+            y: middle_screen_y,
+            r: <span class="hljs-number">70</span>
+        });
 
-    <span class="p">}</span> <span class="c1">//ready</span>
+    } <span class="hljs-comment">//ready</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
 
-            <span class="c1">//move the ring to the mouse position</span>
-        <span class="n">ring</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pos</span><span class="p">;</span>
+            <span class="hljs-comment">//move the ring to the mouse position</span>
+        ring.pos = e.pos;
 
-    <span class="p">}</span> <span class="c1">//onmousemove</span>
+    } <span class="hljs-comment">//onmousemove</span>
 
-<span class="p">}</span> <span class="c1">//Main</span>
-</pre></div>
-
+} <span class="hljs-comment">//Main</span>
 </code></pre><p>&nbsp;</p>
 
         </div>

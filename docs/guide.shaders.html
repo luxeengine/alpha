@@ -85,174 +85,166 @@ That means, for a quad or rectangle like a sprite, there are 6 vertices sent to 
 <hr>
 <p>luxe makes using shaders a bit easier by wrapping up the details and giving you the ability to load and apply shaders to your sprites and geometry easily. It also makes it easy to send information into the shaders, because that is important to make great custom shaders. These values for a pixel shader are called “uniforms”, and are set from the shader object you create.</p>
 <p>Take a look at the code from the demo, and you should be able to follow along as to what is happening.</p>
-<pre><code><div class="highlight"><pre>    <span class="c1">//we create a variable to hold the shader</span>
-<span class="err">var</span> <span class="err">hue_shader</span> <span class="err">:</span> <span class="err">Shader;</span>
+<pre><code>    <span class="hljs-comment">//we create a variable to hold the shader</span>
+<span class="hljs-keyword">var</span> hue_shader : Shader;
 
-    <span class="c1">//and then we load the shader code, and we leave the vertex parameter blank, to use the default shader!</span>
-<span class="err">hue_shader</span> <span class="err">=</span> <span class="err">Luxe.loadShader(&#39;assets/huechange.glsl&#39;);</span>
+    <span class="hljs-comment">//and then we load the shader code, and we leave the vertex parameter blank, to use the default shader!</span>
+hue_shader = Luxe.loadShader(<span class="hljs-string">'assets/huechange.glsl'</span>);
 
-    <span class="c1">//then we tell the sprite to use this shader when rendering</span>
-<span class="err">hue_sprite.shader</span> <span class="err">=</span> <span class="err">hue_shader;</span>
-</pre></div>
-
+    <span class="hljs-comment">//then we tell the sprite to use this shader when rendering</span>
+hue_sprite.shader = hue_shader;
 </code></pre><p>And finally, when we move the mouse, we send some information to the shader to change the color</p>
-<pre><code><div class="highlight"><pre><span class="kd">public</span> <span class="err">function</span> <span class="err">onmousemove(</span> <span class="err">e:MouseEvent</span> <span class="err">)</span> <span class="err">{</span>
+<pre><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
 
-    <span class="err">var</span> <span class="err">percent</span> <span class="err">=</span> <span class="err">e.pos.x</span> <span class="err">/</span> <span class="err">Luxe.screen.w;</span>
-    <span class="err">var</span> <span class="err">hue</span> <span class="err">=</span> <span class="err">(Math.PI*2)</span> <span class="err">*</span> <span class="err">percent;</span>
+    <span class="hljs-keyword">var</span> percent = e.pos.x / Luxe.screen.w;
+    <span class="hljs-keyword">var</span> hue = (Math.PI*<span class="hljs-number">2</span>) * percent;
 
-        <span class="c1">//hue based on mouse x </span>
-    <span class="err">hue_shader.set_uniform_float(&#39;in_hue&#39;,</span> <span class="err">hue);</span>
+        <span class="hljs-comment">//hue based on mouse x </span>
+    hue_shader.set_uniform_float(<span class="hljs-string">'in_hue'</span>, hue);
 
-<span class="err">}</span>
-</pre></div>
-
+}
 </code></pre><h2 id="code-from-the-live-demo">Code from the live demo</h2>
 <hr>
 <h4 id="distort-glsl">distort.glsl</h4>
-<pre><code><div class="highlight"><pre><span class="err">uniform</span> <span class="err">sampler2D</span> <span class="err">tex0;</span>
-<span class="err">uniform</span> <span class="err">sampler2D</span> <span class="err">tex1;</span>
+<pre><code>uniform sampler2D tex0;
+uniform sampler2D tex1;
 
-<span class="err">varying</span> <span class="err">vec2</span> <span class="err">tcoord;</span>
-<span class="err">varying</span> <span class="err">vec4</span> <span class="err">color;</span>
+varying vec2 tcoord;
+varying vec4 color;
 
-<span class="err">uniform</span> <span class="err">float</span> <span class="err">distortamount;</span>
+uniform float distortamount;
 
-<span class="err">void</span> <span class="err">main()</span> <span class="err">{</span>
+void main() {
 
-    <span class="err">vec4</span> <span class="err">direction</span> <span class="err">=</span> <span class="err">texture2D(tex1,</span> <span class="err">tcoord);</span>
-    <span class="err">vec4</span> <span class="err">c</span> <span class="err">=</span> <span class="err">texture2D(tex0,</span> <span class="err">tcoord</span> <span class="err">+</span> <span class="err">distortamount</span> <span class="err">*</span> <span class="err">(direction.rg</span> <span class="err">-</span> <span class="err">vec2(0.5,</span> <span class="err">0.5)));</span>
+    vec4 direction = texture2D(tex1, tcoord);
+    vec4 c = texture2D(tex0, tcoord + distortamount * (direction.rg - vec2(<span class="hljs-number">0.5</span>, <span class="hljs-number">0.5</span>)));
 
-    <span class="err">gl_FragColor</span> <span class="err">=</span> <span class="err">c;</span>
+    gl_FragColor = c;
 
-<span class="err">}</span>
-</pre></div>
-
+}
 </code></pre><h4 id="full-code-from-sample">full code from sample</h4>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Sprite</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Vector</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Color</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">phoenix.Shader</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Input;
+<span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
+<span class="hljs-keyword">import</span> luxe.Color;
+<span class="hljs-keyword">import</span> phoenix.Shader;
 
-<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-    <span class="kd">var</span> <span class="vi">distort_sprite</span> <span class="p">:</span> <span class="nc">Sprite</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">hue_sprite</span> <span class="p">:</span> <span class="nc">Sprite</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">level_sprite</span> <span class="p">:</span> <span class="nc">Sprite</span><span class="p">;</span>
+    <span class="hljs-keyword">var</span> distort_sprite : Sprite;
+    <span class="hljs-keyword">var</span> hue_sprite : Sprite;
+    <span class="hljs-keyword">var</span> level_sprite : Sprite;
 
-    <span class="kd">var</span> <span class="vi">level_tiltshift</span> <span class="p">:</span> <span class="nc">Shader</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">hue_shader</span> <span class="p">:</span> <span class="nc">Shader</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">distort_shader</span> <span class="p">:</span> <span class="nc">Shader</span><span class="p">;</span>
+    <span class="hljs-keyword">var</span> level_tiltshift : Shader;
+    <span class="hljs-keyword">var</span> hue_shader : Shader;
+    <span class="hljs-keyword">var</span> distort_shader : Shader;
 
-    <span class="kd">var</span> <span class="vi">loaded</span> <span class="p">:</span> <span class="nc">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">loaded_logo</span> <span class="p">:</span> <span class="nc">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="hljs-keyword">var</span> loaded : Bool = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">var</span> loaded_logo : Bool = <span class="hljs-literal">false</span>;
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-        <span class="kd">var</span> <span class="nv">luxe_tex</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/luxe.png&#39;</span><span class="p">);</span>
+        <span class="hljs-keyword">var</span> luxe_tex = Luxe.loadTexture(<span class="hljs-string">'assets/luxe.png'</span>);
 
-        <span class="kd">var</span> <span class="nv">level_texture</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/level.png&#39;</span><span class="p">);</span>
-            <span class="n">level_texture</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="n">phoenix</span><span class="o">.</span><span class="n">Texture</span><span class="o">.</span><span class="n">FilterType</span><span class="o">.</span><span class="n">nearest</span><span class="p">;</span>
+        <span class="hljs-keyword">var</span> level_texture = Luxe.loadTexture(<span class="hljs-string">'assets/level.png'</span>);
+            level_texture.filter = phoenix.Texture.FilterType.nearest;
 
-        <span class="kd">var</span> <span class="nv">distort_map</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/distort.png&#39;</span><span class="p">);</span>
-
-
-        <span class="kd">var</span> <span class="nv">_size</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="o">*</span> <span class="mi">0</span><span class="o">.</span><span class="mi">8</span><span class="p">;</span>
-        <span class="kr">if</span><span class="p">(</span><span class="n">_size</span> <span class="o">&gt;</span> <span class="mi">512</span><span class="p">)</span> <span class="n">_size</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
-
-        <span class="n">distort_sprite</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sprite</span><span class="p">({</span>
-            <span class="n">texture</span> <span class="o">:</span> <span class="n">luxe_tex</span><span class="p">,</span>
-            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">_size</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">_size</span><span class="p">),</span>
-            <span class="n">size</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="n">_size</span><span class="p">)</span>
-        <span class="p">});</span>        
-
-        <span class="n">hue_sprite</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sprite</span><span class="p">({</span>
-            <span class="n">texture</span> <span class="o">:</span> <span class="n">luxe_tex</span><span class="p">,</span>
-            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">_size</span><span class="o">+</span><span class="p">(</span><span class="n">_size</span><span class="o">*</span><span class="mi">0</span><span class="o">.</span><span class="mi">05</span><span class="p">),</span><span class="n">_size</span><span class="p">),</span>
-            <span class="n">size</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">_size</span><span class="p">,</span><span class="n">_size</span><span class="p">)</span>
-        <span class="p">});</span>
-
-        <span class="n">level_sprite</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sprite</span><span class="p">({</span>
-            <span class="n">texture</span> <span class="o">:</span> <span class="n">level_texture</span><span class="p">,</span>
-            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-        <span class="p">});</span>
-
-            <span class="c1">//for the logo blocks image</span>
-        <span class="n">luxe_tex</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nv">tt</span><span class="p">)</span> <span class="p">{</span>
-
-            <span class="n">distort_sprite</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">);</span>
-            <span class="n">hue_sprite</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">);</span>
-
-            <span class="n">hue_shader</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;assets/huechange.glsl&#39;</span><span class="p">);</span>
-            <span class="n">hue_sprite</span><span class="o">.</span><span class="n">shader</span> <span class="o">=</span> <span class="n">hue_shader</span><span class="p">;</span>
-
-            <span class="n">loaded_logo</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-        <span class="p">}</span> <span class="c1">//luxe_tex on load</span>
-
-        <span class="n">level_texture</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nv">tt</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">level_sprite</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">240</span><span class="p">,</span><span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">160</span><span class="p">);</span>
-            <span class="c1">// #if !mobile</span>
-              <span class="n">level_tiltshift</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;assets/gray_tilt_shift.glsl&#39;</span><span class="p">);</span>
-              <span class="n">level_sprite</span><span class="o">.</span><span class="n">shader</span> <span class="o">=</span> <span class="n">level_tiltshift</span><span class="p">;</span>
-            <span class="c1">// #end</span>
-        <span class="p">}</span> <span class="c1">//level tex on load</span>
-
-        <span class="n">distort_map</span><span class="o">.</span><span class="n">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nv">tt</span><span class="p">)</span> <span class="p">{</span>
-
-            <span class="n">distort_shader</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;assets/distort.glsl&#39;</span><span class="p">);</span>
-            <span class="n">distort_sprite</span><span class="o">.</span><span class="n">shader</span> <span class="o">=</span> <span class="n">distort_shader</span><span class="p">;</span>
-
-                <span class="c1">//move to second slot</span>
-            <span class="n">distort_map</span><span class="o">.</span><span class="n">slot</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-                <span class="c1">//set the uniform</span>
-            <span class="n">distort_shader</span><span class="o">.</span><span class="n">set_uniform_texture</span><span class="p">(</span><span class="s1">&#39;tex1&#39;</span><span class="p">,</span> <span class="n">distort_map</span><span class="p">);</span>
-
-            <span class="n">loaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-
-        <span class="p">}</span>    
+        <span class="hljs-keyword">var</span> distort_map = Luxe.loadTexture(<span class="hljs-string">'assets/distort.png'</span>);
 
 
-    <span class="p">}</span> <span class="c1">//ready</span>
+        <span class="hljs-keyword">var</span> _size = Luxe.screen.h * <span class="hljs-number">0.8</span>;
+        <span class="hljs-keyword">if</span>(_size &gt; <span class="hljs-number">512</span>) _size = <span class="hljs-number">512</span>;
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ontouchmove</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">TouchEvent</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="kr">if</span><span class="p">(</span><span class="n">loaded</span> <span class="o">&amp;&amp;</span> <span class="n">loaded_logo</span><span class="p">)</span> <span class="p">{</span>
+        distort_sprite = <span class="hljs-keyword">new</span> Sprite({
+            texture : luxe_tex,
+            pos : <span class="hljs-keyword">new</span> Vector(_size/<span class="hljs-number">2</span>,_size),
+            size : <span class="hljs-keyword">new</span> Vector(_size,_size)
+        });        
 
-            <span class="kd">var</span> <span class="nv">percent</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="p">;</span>
-            <span class="kd">var</span> <span class="nv">hue</span> <span class="o">=</span> <span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">PI</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">percent</span><span class="p">;</span>
+        hue_sprite = <span class="hljs-keyword">new</span> Sprite({
+            texture : luxe_tex,
+            pos : <span class="hljs-keyword">new</span> Vector(_size+(_size*<span class="hljs-number">0.05</span>),_size),
+            size : <span class="hljs-keyword">new</span> Vector(_size,_size)
+        });
 
-                <span class="c1">//distort based on mouse x</span>
-            <span class="n">distort_shader</span><span class="o">.</span><span class="n">set_uniform_float</span><span class="p">(</span><span class="s1">&#39;distortamount&#39;</span><span class="p">,</span> <span class="n">percent</span><span class="p">);</span>
-                <span class="c1">//hue based on mouse x </span>
-            <span class="n">hue_shader</span><span class="o">.</span><span class="n">set_uniform_float</span><span class="p">(</span><span class="s1">&#39;in_hue&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+        level_sprite = <span class="hljs-keyword">new</span> Sprite({
+            texture : level_texture,
+            pos : <span class="hljs-keyword">new</span> Vector(Luxe.screen.w/<span class="hljs-number">2</span>,Luxe.screen.h/<span class="hljs-number">2</span>)
+        });
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="hljs-comment">//for the logo blocks image</span>
+        luxe_tex.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tt)</span> </span>{
 
-        <span class="kr">if</span><span class="p">(</span><span class="n">loaded</span> <span class="o">&amp;&amp;</span> <span class="n">loaded_logo</span><span class="p">)</span> <span class="p">{</span>
+            distort_sprite.scale = <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>);
+            hue_sprite.scale = <span class="hljs-keyword">new</span> Vector(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>);
 
-            <span class="kd">var</span> <span class="nv">percent</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="p">;</span>
-            <span class="kd">var</span> <span class="nv">hue</span> <span class="o">=</span> <span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">PI</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">percent</span><span class="p">;</span>
+            hue_shader = Luxe.loadShader(<span class="hljs-string">'assets/huechange.glsl'</span>);
+            hue_sprite.shader = hue_shader;
 
-                <span class="c1">//distort based on mouse x</span>
-            <span class="n">distort_shader</span><span class="o">.</span><span class="n">set_uniform_float</span><span class="p">(</span><span class="s1">&#39;distortamount&#39;</span><span class="p">,</span> <span class="n">percent</span><span class="p">);</span>
-                <span class="c1">//hue based on mouse x </span>
-            <span class="n">hue_shader</span><span class="o">.</span><span class="n">set_uniform_float</span><span class="p">(</span><span class="s1">&#39;in_hue&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="p">);</span>
-        <span class="p">}</span>
+            loaded_logo = <span class="hljs-literal">true</span>;
+        } <span class="hljs-comment">//luxe_tex on load</span>
 
-    <span class="p">}</span>
+        level_texture.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tt)</span> </span>{
+            level_sprite.scale = <span class="hljs-keyword">new</span> Vector(Luxe.screen.w/<span class="hljs-number">240</span>,Luxe.screen.h/<span class="hljs-number">160</span>);
+            <span class="hljs-comment">// #if !mobile</span>
+              level_tiltshift = Luxe.loadShader(<span class="hljs-string">'assets/gray_tilt_shift.glsl'</span>);
+              level_sprite.shader = level_tiltshift;
+            <span class="hljs-comment">// #end</span>
+        } <span class="hljs-comment">//level tex on load</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="kr">if</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">KeyValue</span><span class="o">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">Luxe</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span>
-        <span class="p">}</span>        
-    <span class="p">}</span> <span class="c1">//onkeyup</span>
+        distort_map.onload = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tt)</span> </span>{
+
+            distort_shader = Luxe.loadShader(<span class="hljs-string">'assets/distort.glsl'</span>);
+            distort_sprite.shader = distort_shader;
+
+                <span class="hljs-comment">//move to second slot</span>
+            distort_map.slot = <span class="hljs-number">1</span>;
+                <span class="hljs-comment">//set the uniform</span>
+            distort_shader.set_uniform_texture(<span class="hljs-string">'tex1'</span>, distort_map);
+
+            loaded = <span class="hljs-literal">true</span>;
+
+        }    
 
 
-<span class="p">}</span> <span class="c1">//Main</span>
-</pre></div>
+    } <span class="hljs-comment">//ready</span>
 
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchmove</span><span class="hljs-params">( e:TouchEvent )</span> </span>{
+        <span class="hljs-keyword">if</span>(loaded &amp;&amp; loaded_logo) {
+
+            <span class="hljs-keyword">var</span> percent = e.x / Luxe.screen.w;
+            <span class="hljs-keyword">var</span> hue = (Math.PI*<span class="hljs-number">2</span>) * percent;
+
+                <span class="hljs-comment">//distort based on mouse x</span>
+            distort_shader.set_uniform_float(<span class="hljs-string">'distortamount'</span>, percent);
+                <span class="hljs-comment">//hue based on mouse x </span>
+            hue_shader.set_uniform_float(<span class="hljs-string">'in_hue'</span>, hue);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( e:MouseEvent )</span> </span>{
+
+        <span class="hljs-keyword">if</span>(loaded &amp;&amp; loaded_logo) {
+
+            <span class="hljs-keyword">var</span> percent = e.pos.x / Luxe.screen.w;
+            <span class="hljs-keyword">var</span> hue = (Math.PI*<span class="hljs-number">2</span>) * percent;
+
+                <span class="hljs-comment">//distort based on mouse x</span>
+            distort_shader.set_uniform_float(<span class="hljs-string">'distortamount'</span>, percent);
+                <span class="hljs-comment">//hue based on mouse x </span>
+            hue_shader.set_uniform_float(<span class="hljs-string">'in_hue'</span>, hue);
+        }
+
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( e:KeyEvent )</span> </span>{
+        <span class="hljs-keyword">if</span>(e.key == KeyValue.escape) {
+            Luxe.shutdown();
+        }        
+    } <span class="hljs-comment">//onkeyup</span>
+
+
+} <span class="hljs-comment">//Main</span>
 </code></pre><p>&nbsp;   </p>
 <h3 id="-back-to-feature-guide-guide-html-shaders-"><a href="guide.html#shaders">Back to feature guide</a></h3>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>

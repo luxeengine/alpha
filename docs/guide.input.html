@@ -67,16 +67,14 @@
 <h3 id="the-specific-event-types">The specific event types</h3>
 <hr>
 <p>Each type of event have a typed event structure, for the details of the event.<br>For example, here is a touch event :</p>
-<pre><code><div class="highlight"><pre><span class="kd">typedef</span> <span class="nc">TouchEvent</span> <span class="p">=</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="vi">state</span> <span class="p">:</span> <span class="nc">TouchState</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">flags</span> <span class="p">:</span> <span class="nc">Int</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">ID</span> <span class="p">:</span> <span class="nc">Int</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">x</span> <span class="p">:</span> <span class="nc">Float</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">y</span> <span class="p">:</span> <span class="nc">Float</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="vi">raw</span> <span class="p">:</span> <span class="nc">Dynamic</span><span class="p">;</span>
-<span class="p">}</span><span class="err">;</span>
-</pre></div>
-
+<pre><code><span class="hljs-keyword">typedef</span> TouchEvent = {
+    <span class="hljs-keyword">var</span> state : TouchState;
+    <span class="hljs-keyword">var</span> flags : Int;
+    <span class="hljs-keyword">var</span> ID : Int;
+    <span class="hljs-keyword">var</span> x : Float;
+    <span class="hljs-keyword">var</span> y : Float;
+    <span class="hljs-keyword">var</span> raw : Dynamic;
+};
 </code></pre><p>You may also note the <code>raw</code> property.<br>Sometimes you need to know some value from the OS/platform that luxe is not explicitly exposing.</p>
 <p>For this purpose all of the events (MouseEvent, TouchEvent, GamepadEvent, KeyEvent) pass a property through the event object.
 This is the exact event structure, untouched, low level (you can use <code>trace(event.raw)</code> to dump it’s contents.</p>
@@ -86,119 +84,109 @@ This is the exact event structure, untouched, low level (you can use <code>trace
 <p>It is always useful to be able to refer to an input binding by name (rather than the exact key) for things like customisable key binding screens.</p>
 <p>For these reasons, luxe offers a named input binding system, where multiple events (even of different types) can be bound to a single spot, so you can handle them accordingly.</p>
 <p>Let’s use a common example where the jump key might be Z, Space, and Right Mouse.</p>
-<pre><code><div class="highlight"><pre><span class="err">Luxe.input.add(&#39;jump&#39;,</span> <span class="err">KeyValue.key_Z);</span>
-<span class="err">Luxe.input.add(&#39;jump&#39;,</span> <span class="err">KeyValue.space);</span>
-<span class="err">Luxe.input.add(&#39;jump&#39;,</span> <span class="err">MouseButton.right);</span>
-</pre></div>
-
+<pre><code>Luxe.input.add(<span class="hljs-string">'jump'</span>, KeyValue.key_Z);
+Luxe.input.add(<span class="hljs-string">'jump'</span>, KeyValue.space);
+Luxe.input.add(<span class="hljs-string">'jump'</span>, MouseButton.right);
 </code></pre><h3 id="handling-the-named-input">handling the named input</h3>
 <hr>
 <p>Now that you have the named input bound, you can listen for the event using <code>oninputdown</code> or <code>oninputup</code>.</p>
-<pre><code><div class="highlight"><pre><span class="kd">public</span> <span class="err">function</span> <span class="err">oninputup(</span> <span class="err">event_name:String,</span> <span class="err">event:InputEvent</span> <span class="err">)</span> <span class="err">{</span>
+<pre><code><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oninputup</span><span class="hljs-params">( event_name:String, event:InputEvent )</span> </span>{
 
-    <span class="err">switch(</span> <span class="err">event_name</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="err">case</span> <span class="err">&#39;jump&#39;:</span>
-            <span class="err">player.jump();</span>
-    <span class="err">}</span> <span class="c1">//switch</span>
+    <span class="hljs-keyword">switch</span>( event_name ) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">'jump'</span>:
+            player.jump();
+    } <span class="hljs-comment">//switch</span>
 
-<span class="err">}</span> 
-</pre></div>
-
+} 
 </code></pre><p>You can make the assumption here that all types of input mapped to jump, should call jump directly. But - the even is typed as InputEvent, and contains the following information :</p>
-<pre><code><div class="highlight"><pre><span class="kd">typedef</span> <span class="nc">InputEvent</span> <span class="p">=</span> <span class="p">{</span>
-    <span class="err">type</span>             <span class="err">:</span> <span class="err">InputType</span><span class="p">,</span>
-    <span class="err">?touch_event</span>     <span class="err">:</span> <span class="err">TouchEvent</span><span class="p">,</span>
-    <span class="err">?mouse_event</span>     <span class="err">:</span> <span class="err">MouseEvent</span><span class="p">,</span>
-    <span class="err">?key_event</span>       <span class="err">:</span> <span class="err">KeyEvent</span><span class="p">,</span>
-    <span class="err">?gamepad_event</span>   <span class="err">:</span> <span class="err">GamepadEvent</span>
-<span class="p">}</span> 
-</pre></div>
-
+<pre><code><span class="hljs-keyword">typedef</span> InputEvent = {
+    type             : InputType,
+    ?touch_event     : TouchEvent,
+    ?mouse_event     : MouseEvent,
+    ?key_event       : KeyEvent,
+    ?gamepad_event   : GamepadEvent
+} 
 </code></pre><p>When the event originates from a mouse event, the <code>event.type</code> will be <code>InputType.mouse</code>, and the <code>event.mouse_event</code> will be populated with the originating event.</p>
-<pre><code><div class="highlight"><pre><span class="kd">enum</span> <span class="nc">InputType</span> <span class="p">{</span>
-    <span class="vi">mouse</span><span class="p">;</span>
-    <span class="vi">touch</span><span class="p">;</span>
-    <span class="vi">keys</span><span class="p">;</span>
-    <span class="vi">gamepad</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
+<pre><code><span class="hljs-keyword">enum</span> InputType {
+    mouse;
+    touch;
+    keys;
+    gamepad;
+}
 </code></pre><hr>
 <h2 id="additional-information">Additional information</h2>
 <hr>
 <p><a name="handlers"> </a>
 Here is a full list of functions, with commented descriptions :</p>
-<pre><code><div class="highlight"><pre><span class="c1">//Keyboard</span>
+<pre><code><span class="hljs-comment">//Keyboard</span>
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">onkeydown(</span> <span class="err">event:KeyEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a key is pushed down</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeydown</span><span class="hljs-params">( event:KeyEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a key is pushed down</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">onkeyup(</span> <span class="err">event:KeyEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a key is released</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onkeyup</span><span class="hljs-params">( event:KeyEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a key is released</span>
+    }
 
-<span class="c1">//Mouse    </span>
+<span class="hljs-comment">//Mouse    </span>
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">onmousedown(</span> <span class="err">event:MouseEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a mouse button is pushed down</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousedown</span><span class="hljs-params">( event:MouseEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a mouse button is pushed down</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">onmouseup(</span> <span class="err">event:MouseEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a mouse button is released</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmouseup</span><span class="hljs-params">( event:MouseEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a mouse button is released</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">onmousemove(</span> <span class="err">event:MouseEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//every time the mouse moves</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onmousemove</span><span class="hljs-params">( event:MouseEvent )</span> </span>{
+        <span class="hljs-comment">//every time the mouse moves</span>
+    }
 
-<span class="c1">//Touch    </span>
+<span class="hljs-comment">//Touch    </span>
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ontouchbegin(</span> <span class="err">event:TouchEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a touch is detected (event contains a unique touch ID)</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchbegin</span><span class="hljs-params">( event:TouchEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a touch is detected (event contains a unique touch ID)</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ontouchend(</span> <span class="err">event:TouchEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a touch is released (event contains a unique touch ID, to know which)</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchend</span><span class="hljs-params">( event:TouchEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a touch is released (event contains a unique touch ID, to know which)</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ontouchmove(</span> <span class="err">event:TouchEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//as soon as a touch is moved (event contains a unique touch ID, to know which)</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ontouchmove</span><span class="hljs-params">( event:TouchEvent )</span> </span>{
+        <span class="hljs-comment">//as soon as a touch is moved (event contains a unique touch ID, to know which)</span>
+    }
 
-<span class="c1">//Gamepad    </span>
+<span class="hljs-comment">//Gamepad    </span>
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ongamepadaxis(</span> <span class="err">event:GamepadEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//when a gamepad axis changes</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadaxis</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{
+        <span class="hljs-comment">//when a gamepad axis changes</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ongamepadball(</span> <span class="err">event:GamepadEvent</span>  <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//when a gamepad ball changes</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadball</span><span class="hljs-params">( event:GamepadEvent  )</span> </span>{
+        <span class="hljs-comment">//when a gamepad ball changes</span>
+    }
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ongamepadhat(</span> <span class="err">event:GamepadEvent</span>  <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//when a gamepad hat is pressed (D-pad)</span>
-    <span class="err">}</span>    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadhat</span><span class="hljs-params">( event:GamepadEvent  )</span> </span>{
+        <span class="hljs-comment">//when a gamepad hat is pressed (D-pad)</span>
+    }    
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ongamepadbuttondown(</span> <span class="err">event:GamepadEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//when a gamepad button is pressed down</span>
-    <span class="err">}</span>    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadbuttondown</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{
+        <span class="hljs-comment">//when a gamepad button is pressed down</span>
+    }    
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">ongamepadbuttonup(</span> <span class="err">event:GamepadEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//when a gamepad button is released</span>
-    <span class="err">}</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ongamepadbuttonup</span><span class="hljs-params">( event:GamepadEvent )</span> </span>{
+        <span class="hljs-comment">//when a gamepad button is released</span>
+    }
 
-<span class="c1">//Input    </span>
+<span class="hljs-comment">//Input    </span>
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">oninputup(</span> <span class="err">named_input:String,</span> <span class="err">e:InputEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//called when a bound named input event is released  </span>
-    <span class="err">}</span> 
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oninputup</span><span class="hljs-params">( named_input:String, e:InputEvent )</span> </span>{
+        <span class="hljs-comment">//called when a bound named input event is released  </span>
+    } 
 
-    <span class="kd">public</span> <span class="err">function</span> <span class="err">oninputdown(</span> <span class="err">named_input:String,</span> <span class="err">e:InputEvent</span> <span class="err">)</span> <span class="err">{</span>
-        <span class="c1">//called when a bound named input event is pressed</span>
-    <span class="err">}</span>
-</pre></div>
-
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">oninputdown</span><span class="hljs-params">( named_input:String, e:InputEvent )</span> </span>{
+        <span class="hljs-comment">//called when a bound named input event is pressed</span>
+    }
 </code></pre><hr>
 <h3 id="-to-the-prev-guide-guide-gettingstarted-html-"><a href="guide.gettingstarted.html">To the prev guide</a></h3>
 <h3 id="-to-the-next-guide-guide-basiccomponents-html-"><a href="guide.basiccomponents.html">To the next guide</a></h3>

@@ -67,26 +67,18 @@ Luxe uses common patterns for working with the engine, such as Components/Entity
 <h2 id="quick-look">Quick look</h2>
 <p>&nbsp; <a href="quick.html">go here for more</a>   </p>
 <p><strong>A simple sprite example</strong></p>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Sprite</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Vector</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
 
-<span class="kd">class</span> <span class="nc">Example</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
+...
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+<span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Sprite({
+    depth : <span class="hljs-number">4</span>,
+    pos : <span class="hljs-keyword">new</span> Vector( Luxe.screen.w, Luxe.screen.h ),
+    texture : Luxe.loadTexture(<span class="hljs-string">'assets/player.png'</span>)
+});
 
-        <span class="kd">var</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sprite</span><span class="p">({</span>
-            <span class="n">depth</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
-            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="p">),</span>
-            <span class="n">texture</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/player.png&#39;</span><span class="p">)</span>
-        <span class="p">});</span>
-
-        <span class="n">player</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
-
-    <span class="p">}</span> <span class="c1">//ready</span>
-
-<span class="p">}</span> <span class="c1">//Example</span>
-</pre></div>
-
+player.pos.x = Luxe.screen.w/<span class="hljs-number">4</span>;
 </code></pre><hr>
 <p><a name="docs"></a></p>
 <h2 id="documentation">Documentation</h2>

@@ -28,7 +28,6 @@ hr {
 	border-top: 1px solid #ECECEC;
 }
 
-pre,code { font-family:'dsm',monospace; background:#272822; border-radius:0.2em; height:auto; margin: 0.2em; padding: 0; padding-left:1em;  }
 
 li {
 	font-size: 1em;
@@ -112,10 +111,6 @@ a.liftsmall {
 	opacity: 0.8;
 }
 
-.small_desc_flat_lift {
-	top:0.2em;
-}
-
 .small_desc_flat strong {
 	margin-left: 1em;
 	min-width: 5em;
@@ -169,7 +164,7 @@ p {
 	min-width:1.7em;	
 	min-height:1.7em;
 	background-repeat: no-repeat;
-	background-image:url('../images/more.png');
+	background-image:url('../more.png');
 	background-size: 1.7em 1.7em;	
 	margin: 1em;
 	color:#999;
@@ -187,22 +182,6 @@ p {
 .more {
 	display: block;
 	position: relative;
-}
-
-pre {
-	padding:0.1em 0.3em 0.1em 0.3em;
-	white-space: pre-wrap;
-}
-
-code {
-	display: inline-block;
-	font-size: 0.75em;
-	padding-bottom: 0.1em;
-	padding-left: 0.4em;
-	padding-right: 0.4em;
-	border-radius: 0.2em;
-	background-color: transparent;	
-	white-space: nowrap;
 }
 
 

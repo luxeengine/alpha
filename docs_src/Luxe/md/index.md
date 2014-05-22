@@ -38,21 +38,16 @@ You code once in haxe, and deploy to all available platforms.
     import luxe.Sprite;
     import luxe.Vector;
 
-    class Example extends luxe.Game {
+    ...
 
-        public function ready() {
+    var player = new Sprite({
+        depth : 4,
+        pos : new Vector( Luxe.screen.w, Luxe.screen.h ),
+        texture : Luxe.loadTexture('assets/player.png')
+    });
 
-            var player = new Sprite({
-                depth : 4,
-                pos : new Vector( Luxe.screen.w, Luxe.screen.h ),
-                texture : Luxe.loadTexture('assets/player.png')
-            });
+    player.pos.x = Luxe.screen.w/4;
 
-            player.pos.x = Luxe.screen.w/4;
-
-        } //ready
-
-    } //Example
 
 ----
 

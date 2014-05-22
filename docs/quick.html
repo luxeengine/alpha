@@ -51,60 +51,54 @@
 <h2 id="some-quick-examples-of-things-done-in-luxe">Some quick examples of things done in luxe</h2>
 <h3 id="creating-a-simple-sprite">Creating a simple sprite</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Sprite</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe.Vector</span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
 
-<span class="kd">class</span> <span class="nc">Example</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
 
-        <span class="kd">var</span> <span class="nv">player</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sprite</span><span class="p">({</span>
-            <span class="n">depth</span> <span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
-            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="p">),</span>
-            <span class="n">texture</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/player.png&#39;</span><span class="p">)</span>
-        <span class="p">});</span>
+        <span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Sprite({
+            depth : <span class="hljs-number">4</span>,
+            pos : <span class="hljs-keyword">new</span> Vector( Luxe.screen.w, Luxe.screen.h ),
+            texture : Luxe.loadTexture(<span class="hljs-string">'assets/player.png'</span>)
+        });
 
-        <span class="n">player</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
+        player.pos.x = Luxe.screen.w/<span class="hljs-number">4</span>;
 
-    <span class="p">}</span> <span class="c1">//ready</span>
+    } <span class="hljs-comment">//ready</span>
 
-<span class="p">}</span> <span class="c1">//Example</span>
-</pre></div>
-
+} <span class="hljs-comment">//Example</span>
 </code></pre><h3 id="create-an-entity-and-give-it-a-component">Create an entity and give it a component</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">entity</span> <span class="err">=</span> <span class="err">Luxe.scene.create(Entity,</span> <span class="err">&#39;player&#39;);</span>
+<pre><code><span class="hljs-keyword">var</span> entity = Luxe.scene.create(Entity, <span class="hljs-string">'player'</span>);
 
-<span class="err">var</span> <span class="err">move</span> <span class="err">=</span> <span class="err">entity.add(PlayerMovement,</span> <span class="err">&#39;move&#39;);</span>
-        <span class="c1">//2.5x faster than default</span>
-    <span class="err">move.speed</span> <span class="err">*=</span> <span class="err">2.5;</span>
-</pre></div>
-
+<span class="hljs-keyword">var</span> move = entity.add(PlayerMovement, <span class="hljs-string">'move'</span>);
+        <span class="hljs-comment">//2.5x faster than default</span>
+    move.speed *= <span class="hljs-number">2.5</span>;
 </code></pre><h3 id="drawing-shapes">Drawing shapes</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="err">Luxe.draw.rectangle({</span>
-    <span class="err">x</span> <span class="err">:</span> <span class="err">10,</span> <span class="err">y</span> <span class="err">:</span> <span class="err">10,</span>
-    <span class="err">w</span> <span class="err">:</span> <span class="err">Luxe.screen.w</span> <span class="err">-</span> <span class="err">20,</span> 
-    <span class="err">h</span> <span class="err">:</span> <span class="err">Luxe.screen.h</span> <span class="err">-</span> <span class="err">20,</span>
-    <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color(0.4,0.4,0.4)</span>
-<span class="err">});</span>
+<pre><code>Luxe.draw.rectangle({
+    x : <span class="hljs-number">10</span>, y : <span class="hljs-number">10</span>,
+    w : Luxe.screen.w - <span class="hljs-number">20</span>, 
+    h : Luxe.screen.h - <span class="hljs-number">20</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0.4</span>,<span class="hljs-number">0.4</span>,<span class="hljs-number">0.4</span>)
+});
 
-<span class="err">Luxe.draw.circle({</span>
-    <span class="err">x</span> <span class="err">:</span> <span class="err">Luxe.screen.w/2,</span>
-    <span class="err">y</span> <span class="err">:</span> <span class="err">Luxe.screen.h/2,</span>
-    <span class="err">r</span> <span class="err">:</span> <span class="err">50,</span>
-    <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color(0.8,0.3,0.2,1)</span>
-<span class="err">});</span> 
+Luxe.draw.circle({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">50</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0.8</span>,<span class="hljs-number">0.3</span>,<span class="hljs-number">0.2</span>,<span class="hljs-number">1</span>)
+}); 
 
-<span class="err">Luxe.draw.arc({</span>
-    <span class="err">x</span> <span class="err">:</span> <span class="err">Luxe.screen.w/2,</span>
-    <span class="err">y</span> <span class="err">:</span> <span class="err">Luxe.screen.h/2,</span>
-    <span class="err">r</span> <span class="err">:</span> <span class="err">70,</span>
-    <span class="err">end_angle:70,</span>
-    <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color(1,1,1,1)</span>
-<span class="err">});</span>
-</pre></div>
-
+Luxe.draw.arc({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">70</span>,
+    end_angle:<span class="hljs-number">70</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+});
 </code></pre><hr>
 <p>&nbsp;<br>&nbsp;   </p>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>

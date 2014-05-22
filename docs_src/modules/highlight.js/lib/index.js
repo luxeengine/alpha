@@ -1,0 +1,10 @@
+var Highlight = require('./highlight');
+var hljs = new Highlight();
+hljs.registerLanguage('haxe', require('./languages/haxe.js'));
+hljs.registerLanguage('javascript', require('./languages/javascript.js'));
+hljs.registerLanguage('glsl', require('./languages/glsl.js'));
+hljs.registerLanguage('xml', require('./languages/xml.js'));
+hljs.registerLanguage('markdown', require('./languages/markdown.js'));
+hljs.registerLanguage('json', require('./languages/json.js'));
+hljs.registerLanguage('cpp', require('./languages/cpp.js'));
+module.exports = hljs;
