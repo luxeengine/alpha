@@ -453,6 +453,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug.Inspector",
@@ -656,6 +657,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.ColorHSL",
@@ -866,6 +868,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Audio",
@@ -1112,6 +1115,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe._Events.EventObject",
@@ -1176,6 +1180,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "luxe.Draw",
@@ -1372,6 +1377,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.easing.QuadEaseInOut",
@@ -1432,6 +1438,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Cursor",
@@ -1589,6 +1596,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.PropertyDetails",
@@ -1677,6 +1685,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.LinearPath",
@@ -1723,6 +1732,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix._Vector.Vec_Impl_",
@@ -1930,6 +1940,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "phoenix.geometry.RectangleGeometry",
@@ -1974,6 +1985,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.MotionPath",
@@ -2117,6 +2129,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"* @author Joshua Granick"
     },
     { "name": "phoenix.RenderTexture",
@@ -2199,6 +2212,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.NineSlice",
@@ -2622,6 +2636,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Rectangle",
@@ -2941,6 +2956,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Shader",
@@ -3591,6 +3607,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.LineGeometry",
@@ -3687,6 +3704,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Renderer",
@@ -4088,6 +4106,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.ColorHSV",
@@ -4325,6 +4344,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.BezierPath",
@@ -4404,6 +4424,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.Geometry",
@@ -5480,6 +5501,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug.TraceDebugView",
@@ -5660,6 +5682,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.ResourceManager",
@@ -5969,6 +5992,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Screen",
@@ -6107,6 +6131,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.BatchGroup",
@@ -6159,6 +6184,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Batcher",
@@ -7037,6 +7063,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Color",
@@ -7397,6 +7424,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.MotionPathActuator",
@@ -7480,6 +7508,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"* @author Joshua Granick"
     },
     { "name": "phoenix.defaults.Shaders",
@@ -7534,6 +7563,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.structural.BinarySearchTreeNode",
@@ -7620,6 +7650,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.json.JSONTokenizer",
@@ -7864,6 +7895,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Vector",
@@ -8802,6 +8834,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.GeometryState",
@@ -9088,6 +9121,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.easing.QuadEaseOut",
@@ -9148,6 +9182,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.defaults.FontString",
@@ -9176,6 +9211,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.UUID",
@@ -9254,6 +9290,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "Luxe",
@@ -9764,6 +9801,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.GeometryUtils",
@@ -9867,6 +9905,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils._UUID.Rule30",
@@ -9971,6 +10010,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "luxe.Events",
@@ -10232,6 +10272,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.MethodActuator",
@@ -10351,6 +10392,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"* @author Joshua Granick\n * @version 1.2"
     },
     { "name": "luxe.tween.easing.IEasing",
@@ -10420,6 +10462,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"* @author Joshua Granick\n * @author Philippe / http://philippe.elsass.me"
     },
     { "name": "luxe.Entity",
@@ -11522,6 +11565,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.BitmapFont",
@@ -11841,6 +11885,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.PlaneGeometry",
@@ -11988,6 +12033,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Core",
@@ -12717,6 +12763,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.GenericActuator",
@@ -13235,6 +13282,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug._ProfilerDebugView.ProfilerValue",
@@ -13377,6 +13425,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "luxe.debug.ProfilerDebugView",
@@ -13525,6 +13574,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.structural.BalancedBinarySearchTreeNode",
@@ -13623,6 +13673,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.IGenericActuator",
@@ -13821,6 +13872,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Text",
@@ -14029,6 +14081,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.JSON",
@@ -14044,6 +14097,7 @@
       ],
       "methods":[
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.utils.Rendering",
@@ -14102,6 +14156,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug.DebugView",
@@ -14291,6 +14346,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.ComplexGeometry",
@@ -14521,6 +14577,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.ComponentPath",
@@ -14635,6 +14692,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.RenderState",
@@ -14853,6 +14911,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.TextResource",
@@ -14896,6 +14955,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.ResourceStats",
@@ -15049,6 +15109,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug._ProfilerDebugView.ProfilerBar",
@@ -15385,6 +15446,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "luxe.Input",
@@ -15860,6 +15922,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Resource",
@@ -15981,6 +16044,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Visual",
@@ -16552,6 +16616,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug.StatsDebugView",
@@ -16813,6 +16878,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.IComponentPath",
@@ -16865,6 +16931,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Texture",
@@ -17448,6 +17515,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.json.JSONEncoder",
@@ -17623,6 +17691,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Circle",
@@ -17743,6 +17812,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Sprite",
@@ -18022,6 +18092,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.QuadGeometry",
@@ -18182,6 +18253,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.DataResource",
@@ -18225,6 +18297,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.debug.BatcherDebugView",
@@ -18515,6 +18588,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.Base64",
@@ -18586,6 +18660,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.PropertyPathDetails",
@@ -18630,6 +18705,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.defaults.TinyButton",
@@ -18670,6 +18746,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.RendererStats",
@@ -18801,6 +18878,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.Vertex",
@@ -18876,6 +18954,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Timer",
@@ -18976,6 +19055,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.RingGeometry",
@@ -19006,6 +19086,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.RenderPath",
@@ -19061,6 +19142,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.PhysicsEngine",
@@ -19153,6 +19235,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Quaternion",
@@ -19653,6 +19736,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.components.Components",
@@ -19836,6 +19920,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.actuators.SimpleActuator",
@@ -20227,6 +20312,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":"* @author Joshua Granick\n * @version 1.2"
     },
     { "name": "phoenix.defaults.FontBytes",
@@ -20255,6 +20341,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Objects",
@@ -20379,6 +20466,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Camera",
@@ -21065,6 +21153,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.defaults.TinyBox",
@@ -21105,6 +21194,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.easing.QuadEaseIn",
@@ -21165,6 +21255,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.Maths",
@@ -21443,6 +21534,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.json.JSONToken",
@@ -21507,6 +21599,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.json.JSONDecoder",
@@ -21658,6 +21751,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.json.JSONParseError",
@@ -21806,6 +21900,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Debug",
@@ -22350,6 +22445,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.TextureCoordSet",
@@ -22466,6 +22562,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Scene",
@@ -22989,6 +23086,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.TextureCoord",
@@ -23095,6 +23193,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.BatchState",
@@ -23289,6 +23388,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Physics",
@@ -23395,6 +23495,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.structural.BinarySearchTree",
@@ -23868,6 +23969,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.Actuate",
@@ -24112,6 +24214,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.CircleGeometry",
@@ -24162,6 +24265,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.Game",
@@ -24213,6 +24317,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.ArcGeometry",
@@ -24243,6 +24348,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.structural.BalancedBinarySearchTree",
@@ -24857,6 +24963,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.SoundResource",
@@ -24900,6 +25007,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween._Actuate.TweenTimer",
@@ -24952,6 +25060,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "phoenix.Ray",
@@ -25052,6 +25161,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.utils.Utils",
@@ -25244,6 +25354,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe._Events.EventConnection",
@@ -25308,6 +25419,7 @@
             ]
           }
       ],
+      "ispublic":false,
       "doc":""
     },
     { "name": "luxe.components.Component",
@@ -25819,6 +25931,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "luxe.tween.easing.Quad",
@@ -25906,6 +26019,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.Matrix4",
@@ -27283,6 +27397,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     },
     { "name": "phoenix.geometry.CompositeGeometry",
@@ -27644,6 +27759,7 @@
             ]
           }
       ],
+      "ispublic":true,
       "doc":""
     }
   ]

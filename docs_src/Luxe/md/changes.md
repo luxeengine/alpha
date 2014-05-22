@@ -1,6 +1,34 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [53661246ed](http://github.com/underscorediscovery/luxe/commit/53661246ed76472aee3196809b09391c8dd84468)   
+author: underscorediscovery   
+date: Thu May 22 2014 01:17:11 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>hiding private classes in generator</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [62d845a441](http://github.com/underscorediscovery/luxe/commit/62d845a4418d9caf6653effbbc59f3d211bbe528)   
+author: underscorediscovery   
+date: Thu May 22 2014 00:46:29 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>embedding highlight.js with haxe support so that there is no dependence on pygments</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [5cb45b1b64](http://github.com/underscorediscovery/luxe/commit/5cb45b1b64b4ab80d429403093b347f33cc3ffc2)   
 author: underscorediscovery   
 date: Wed May 21 2014 23:11:06 GMT-0230 (NDT)   
