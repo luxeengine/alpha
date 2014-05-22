@@ -1,0 +1,44 @@
+{
+  "source": "phoenix.MatrixTransform",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "rotation",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rotation : phoenix.Quaternion",
+          "type": "phoenix.Quaternion",
+          "doc": ""
+        },
+        {
+          "name": "scale",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "scale : phoenix.Vector",
+          "type": "phoenix.Vector",
+          "doc": ""
+        },
+        {
+          "name": "pos",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "pos : phoenix.Vector",
+          "type": "phoenix.Vector",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

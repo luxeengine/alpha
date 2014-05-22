@@ -277,6 +277,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -308,7 +310,7 @@
 
 
 
-`drop(?remove:Bool) : Void`
+`drop(?remove:Bool=true) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

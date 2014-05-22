@@ -1,0 +1,54 @@
+{
+  "source": "phoenix.FilterType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "nearest",
+          "signature": "phoenix.FilterType.nearest",
+          "doc": ""
+        },
+        {
+          "name": "linear",
+          "signature": "phoenix.FilterType.linear",
+          "doc": ""
+        },
+        {
+          "name": "mip_nearest_nearest",
+          "signature": "phoenix.FilterType.mip_nearest_nearest",
+          "doc": ""
+        },
+        {
+          "name": "mip_linear_nearest",
+          "signature": "phoenix.FilterType.mip_linear_nearest",
+          "doc": ""
+        },
+        {
+          "name": "mip_nearest_linear",
+          "signature": "phoenix.FilterType.mip_nearest_linear",
+          "doc": ""
+        },
+        {
+          "name": "mip_linear_linear",
+          "signature": "phoenix.FilterType.mip_linear_linear",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

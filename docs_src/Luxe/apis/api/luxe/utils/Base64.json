@@ -5,74 +5,83 @@
   "toplinks": [],
   "sections": [
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "encodeBytesData",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "encodeBytesData(bytesData:haxe.io.BytesData) : String",
           "return": ": String",
           "args": [
             {
               "name": "bytesData",
-              "type": "haxe.io.BytesData"
+              "type": "haxe.io.BytesData",
+              "value": "null"
             }
           ]
         },
         {
           "name": "encode",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "encode(_string:String) : String",
           "return": ": String",
           "args": [
             {
               "name": "_string",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "decodeBytesData",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "decodeBytesData(base64:String) : haxe.io.BytesData",
           "return": ": haxe.io.BytesData",
           "args": [
             {
               "name": "base64",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "decode",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "decode(_string:String) : String",
           "return": ": String",
           "args": [
             {
               "name": "_string",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

@@ -30,7 +30,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="luxe.tween.actuators.PropertyDetails" href="{{{rel_path}}}api/luxe/tween.actuators.PropertyDetails.html">luxe.tween.actuators.PropertyDetails</a>
+<a class="lift" name="luxe.tween.actuators.PropertyDetails" href="{{{rel_path}}}api/luxe/tween/actuators/PropertyDetails.html">luxe.tween.actuators.PropertyDetails</a>
 
 &nbsp;   
 
@@ -47,6 +47,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -54,7 +56,7 @@
 
 
 
-`new(target:Dynamic, propertyName:String, path:luxe.tween.IComponentPath, ?isField:Bool) `
+`new(target:Dynamic, propertyName:String, path:luxe.tween.IComponentPath, ?isField:Bool=true) `
 
 <span class="small_desc_flat"> no description </span>   
 

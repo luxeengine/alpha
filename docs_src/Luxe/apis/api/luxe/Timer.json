@@ -16,14 +16,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "core : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -37,40 +42,44 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_core:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_core",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
         {
           "name": "schedule",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool) : haxe.Timer",
+          "signature": "schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool=false) : haxe.Timer",
           "return": ": haxe.Timer",
           "args": [
             {
               "name": "_time_in_seconds",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "_on_time",
-              "type": "Void"
+              "type": "Void",
+              "value": ""
             },
             {
               "name": "?repeat",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             }
           ]
         },
@@ -82,9 +91,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -98,9 +107,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -114,9 +123,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",

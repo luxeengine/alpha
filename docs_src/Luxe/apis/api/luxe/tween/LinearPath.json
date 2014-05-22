@@ -14,46 +14,55 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(end:Float, strength:Float) ",
           "return": "",
           "args": [
             {
               "name": "end",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "strength",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "calculate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "calculate(start:Float, k:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "start",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "k",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         }

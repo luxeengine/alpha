@@ -20,14 +20,19 @@
         {
           "name": "data",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "data : lime.utils.ByteArray",
           "type": "lime.utils.ByteArray",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,24 +41,27 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_id:String, _data:lime.utils.ByteArray, _manager:luxe.ResourceManager) ",
           "return": "",
           "args": [
             {
               "name": "_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_data",
-              "type": "lime.utils.ByteArray"
+              "type": "lime.utils.ByteArray",
+              "value": "null"
             },
             {
               "name": "_manager",
-              "type": "luxe.ResourceManager"
+              "type": "luxe.ResourceManager",
+              "value": "null"
             }
           ]
         }

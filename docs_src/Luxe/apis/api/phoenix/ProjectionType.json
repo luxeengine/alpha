@@ -1,0 +1,39 @@
+{
+  "source": "phoenix.ProjectionType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "ortho",
+          "signature": "phoenix.ProjectionType.ortho",
+          "doc": ""
+        },
+        {
+          "name": "perspective",
+          "signature": "phoenix.ProjectionType.perspective",
+          "doc": ""
+        },
+        {
+          "name": "custom",
+          "signature": "phoenix.ProjectionType.custom",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

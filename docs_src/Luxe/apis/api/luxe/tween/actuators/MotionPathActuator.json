@@ -20,14 +20,19 @@
         {
           "name": "haxe_doc",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "haxe_doc : Dynamic",
           "type": "Dynamic",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,49 +41,53 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(target:Dynamic, duration:Float, properties:Dynamic) ",
           "return": "",
           "args": [
             {
               "name": "target",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "duration",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "properties",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "update",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update(currentTime:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "currentTime",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "initialize",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "initialize() : Void",
           "return": ": Void",
@@ -87,9 +96,9 @@
         {
           "name": "apply",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "apply() : Void",
           "return": ": Void",

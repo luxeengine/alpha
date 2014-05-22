@@ -1,0 +1,34 @@
+{
+  "source": "luxe.CoreThreadRequest",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "load_texture",
+          "signature": "luxe.CoreThreadRequest.load_texture",
+          "doc": ""
+        },
+        {
+          "name": "load_shader",
+          "signature": "luxe.CoreThreadRequest.load_shader",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

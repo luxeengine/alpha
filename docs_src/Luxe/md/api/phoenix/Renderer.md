@@ -151,6 +151,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -190,7 +192,7 @@ _none_
 
 
 
-`load_font(_fontid:String, ?_path:String, ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont`
+`load_font(_fontid:String, ?_path:String='assets/', ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -206,7 +208,7 @@ _none_
 
 
 
-`load_texture(_name:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture`
+`load_texture(_name:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool=false, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -214,7 +216,7 @@ _none_
 
 
 
-`load_texture_from_string_byte_array(?_name:String, _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture`
+`load_texture_from_string_byte_array(?_name:String='untitled texture', _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -222,7 +224,7 @@ _none_
 
 
 
-`load_textures(_names:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool) : Void`
+`load_textures(_names:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool=false) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

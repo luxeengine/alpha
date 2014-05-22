@@ -36,7 +36,9 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="luxe.tween.actuators.SimpleActuator" href="{{{rel_path}}}api/luxe/tween.actuators.SimpleActuator.html">luxe.tween.actuators.SimpleActuator</a>
+<a class="lift" name="luxe.tween.actuators.SimpleActuator" href="{{{rel_path}}}api/luxe/tween/actuators/SimpleActuator.html">luxe.tween.actuators.SimpleActuator</a>
+
+&nbsp;   
 
 &nbsp;   
 

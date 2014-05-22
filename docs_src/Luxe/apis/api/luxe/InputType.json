@@ -1,0 +1,44 @@
+{
+  "source": "luxe.InputType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "mouse",
+          "signature": "luxe.InputType.mouse",
+          "doc": ""
+        },
+        {
+          "name": "touch",
+          "signature": "luxe.InputType.touch",
+          "doc": ""
+        },
+        {
+          "name": "keys",
+          "signature": "luxe.InputType.keys",
+          "doc": ""
+        },
+        {
+          "name": "gamepad",
+          "signature": "luxe.InputType.gamepad",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

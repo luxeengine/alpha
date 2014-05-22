@@ -1,0 +1,34 @@
+{
+  "source": "phoenix.KeyValuePair",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "key",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "key : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "value",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "value : String",
+          "type": "String",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

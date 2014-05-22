@@ -42,7 +42,7 @@ _none_
 
 
 
-`listen_h : Dynamic`
+`listen_h : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -50,7 +50,7 @@ _none_
 
 
 
-`listen_w : Dynamic`
+`listen_w : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -58,7 +58,7 @@ _none_
 
 
 
-`listen_x : Dynamic`
+`listen_x : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -66,7 +66,7 @@ _none_
 
 
 
-`listen_y : Dynamic`
+`listen_y : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -117,6 +117,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -148,7 +150,7 @@ _none_
 
 
 
-`new(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) `
+`new(?_x:Float=0, ?_y:Float=0, ?_w:Float=0, ?_h:Float=0) `
 
 <span class="small_desc_flat"> no description </span>   
 

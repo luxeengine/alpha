@@ -5,62 +5,71 @@
   "toplinks": [],
   "sections": [
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "gl_blend_mode_from_BlendMode",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "gl_blend_mode_from_BlendMode(_b:phoenix.BlendMode) : Int",
           "return": ": Int",
           "args": [
             {
               "name": "_b",
-              "type": "phoenix.BlendMode"
+              "type": "phoenix.BlendMode",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_elements_for_type",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "get_elements_for_type(type:phoenix.PrimitiveType, length:Int) : Int",
           "return": ": Int",
           "args": [
             {
               "name": "type",
-              "type": "phoenix.PrimitiveType"
+              "type": "phoenix.PrimitiveType",
+              "value": "null"
             },
             {
               "name": "length",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_opengl_primitive_type",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "get_opengl_primitive_type(type:phoenix.PrimitiveType) : Int",
           "return": ": Int",
           "args": [
             {
               "name": "type",
-              "type": "phoenix.PrimitiveType"
+              "type": "phoenix.PrimitiveType",
+              "value": "null"
             }
           ]
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

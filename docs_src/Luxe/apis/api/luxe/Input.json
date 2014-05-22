@@ -11,9 +11,9 @@
         {
           "name": "mouse_bindings",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "mouse_bindings : Map<String,Map>",
           "type": "Map<String,Map>",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "Keys",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "Keys : lime.helpers.Keys",
           "type": "lime.helpers.Keys",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "Gamepad",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "Gamepad : lime.helpers.Gamepad",
           "type": "lime.helpers.Gamepad",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "key_bindings",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "key_bindings : Map<String,Map>",
           "type": "Map<String,Map>",
           "doc": ""
@@ -56,14 +56,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "core : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -77,16 +82,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "gamepadbuttonup(_event:luxe.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.GamepadEvent"
+              "type": "luxe.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -98,9 +104,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -114,16 +120,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "gamepadbuttondown(_event:luxe.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.GamepadEvent"
+              "type": "luxe.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -135,20 +142,22 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "check_named_mouse(e:luxe.MouseEvent, ?_down:Bool) : Void",
+          "signature": "check_named_mouse(e:luxe.MouseEvent, ?_down:Bool=false) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": ""
             },
             {
               "name": "?_down",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             }
           ]
         },
@@ -160,16 +169,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "gotinputfocus(_event:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -181,36 +191,39 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "lostinputfocus(_event:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add_mouse_binding",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add_mouse_binding(_name:String, _value:luxe.MouseButton) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_value",
-              "type": "luxe.MouseButton"
+              "type": "luxe.MouseButton",
+              "value": "null"
             }
           ]
         },
@@ -222,20 +235,22 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "check_named_keys(e:luxe.KeyEvent, ?_down:Bool) : Void",
+          "signature": "check_named_keys(e:luxe.KeyEvent, ?_down:Bool=false) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": ""
             },
             {
               "name": "?_down",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             }
           ]
         },
@@ -247,16 +262,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "mousedown(_event:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -268,16 +284,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "touchend(_event:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         },
@@ -289,16 +306,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "gamepadaxis(_event:luxe.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.GamepadEvent"
+              "type": "luxe.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -310,16 +328,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onkeydown(_event:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -331,16 +350,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "mousemove(_event:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -352,16 +372,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "touchbegin(_event:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         },
@@ -373,16 +394,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_core:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_core",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
@@ -394,16 +416,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onchar(_event:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -415,16 +438,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "mouseclick(_event:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -436,16 +460,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "mouseup(_event:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
@@ -457,56 +482,61 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "gamepadhat(_event:luxe.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.GamepadEvent"
+              "type": "luxe.GamepadEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add_key_binding",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add_key_binding(_name:String, _value:luxe.KeyValue) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_value",
-              "type": "luxe.KeyValue"
+              "type": "luxe.KeyValue",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add(_name:String, _binding_value:add.T) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_binding_value",
-              "type": "add.T"
+              "type": "add.T",
+              "value": "null"
             }
           ]
         },
@@ -518,9 +548,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -534,16 +564,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "gamepadball(_event:luxe.GamepadEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.GamepadEvent"
+              "type": "luxe.GamepadEvent",
+              "value": "null"
             }
           ]
         },
@@ -555,16 +586,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onkeyup(_event:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
@@ -576,9 +608,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",
@@ -592,16 +624,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "touchmove(_event:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         },
@@ -613,16 +646,17 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "touchtap(_event:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_event",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         }

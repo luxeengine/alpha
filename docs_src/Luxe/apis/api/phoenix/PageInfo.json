@@ -1,0 +1,34 @@
+{
+  "source": "phoenix.PageInfo",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "file",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "file : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "id : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

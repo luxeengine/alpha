@@ -27,6 +27,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -34,7 +36,7 @@ _none_
 
 
 
-`create(_name:String, _file:String, ?_stream:Bool) : lime.helpers.Sound`
+`create(_name:String, _file:String, ?_stream:Bool=false) : lime.helpers.Sound`
 
 <span class="small_desc_flat"> Create a named audio reference, with optional stream flag   
             **name** The name to assign this audio reference    
@@ -88,7 +90,7 @@ _none_
 
 
 
-`play(_name:String, ?_number_of_times:Int, ?_start_position_in_s:Float) : Void`
+`play(_name:String, ?_number_of_times:Int=1, ?_start_position_in_s:Float=0) : Void`
 
 <span class="small_desc_flat"> Play a named audio reference   
             **name** The audio reference name to play    

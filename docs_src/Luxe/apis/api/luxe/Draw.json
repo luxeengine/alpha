@@ -16,14 +16,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "core : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -32,64 +37,68 @@
         {
           "name": "line",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "line(options:Dynamic) : phoenix.geometry.LineGeometry",
           "return": ": phoenix.geometry.LineGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "box",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "box(options:Dynamic) : phoenix.geometry.QuadGeometry",
           "return": ": phoenix.geometry.QuadGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "arc",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "arc(options:Dynamic) : phoenix.geometry.ArcGeometry",
           "return": ": phoenix.geometry.ArcGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "axis3D",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "axis3D(?options:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "?options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
@@ -101,128 +110,136 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_core:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_core",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
         {
           "name": "text",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "text(options:Dynamic) : phoenix.geometry.Geometry",
           "return": ": phoenix.geometry.Geometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "plane",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "plane(options:Dynamic) : phoenix.geometry.PlaneGeometry",
           "return": ": phoenix.geometry.PlaneGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "ring",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ring(options:Dynamic) : phoenix.geometry.RingGeometry",
           "return": ": phoenix.geometry.RingGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "circle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "circle(options:Dynamic) : phoenix.geometry.CircleGeometry",
           "return": ": phoenix.geometry.CircleGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "rectangle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry",
           "return": ": phoenix.geometry.RectangleGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "default_options",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "default_options(options:Dynamic) : Dynamic",
           "return": ": Dynamic",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "ngon",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ngon(options:Dynamic) : phoenix.geometry.Geometry",
           "return": ": phoenix.geometry.Geometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         }

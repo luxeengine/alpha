@@ -11,9 +11,9 @@
         {
           "name": "viewport",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "viewport : phoenix.Rectangle",
           "type": "phoenix.Rectangle",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "origin",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "origin : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "dir",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dir : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "camera",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "camera : phoenix.Camera",
           "type": "phoenix.Camera",
           "doc": ""
@@ -51,14 +51,19 @@
         {
           "name": "end",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "end : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -67,40 +72,44 @@
         {
           "name": "refresh",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh(_screen_pos:phoenix.Vector) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_screen_pos",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_screen_pos:phoenix.Vector, _camera:phoenix.Camera, ?_viewport:phoenix.Rectangle) ",
           "return": "",
           "args": [
             {
               "name": "_screen_pos",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": ""
             },
             {
               "name": "_camera",
-              "type": "phoenix.Camera"
+              "type": "phoenix.Camera",
+              "value": ""
             },
             {
               "name": "?_viewport",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         }

@@ -16,9 +16,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "event_connections : Map<String,luxe._Events.EventConnection>",
           "type": "Map<String,luxe._Events.EventConnection>",
           "doc": ""
@@ -31,9 +31,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "event_filters : Map<String,Array>",
           "type": "Map<String,Array>",
           "doc": ""
@@ -46,9 +46,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "event_slots : Map<String,Array>",
           "type": "Map<String,Array>",
           "doc": ""
@@ -61,9 +61,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "event_queue : Map<String,luxe._Events.EventObject>",
           "type": "Map<String,luxe._Events.EventObject>",
           "doc": ""
@@ -76,14 +76,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "event_schedules : Map<String,haxe.Timer>",
           "type": "Map<String,haxe.Timer>",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -92,9 +97,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -103,9 +108,9 @@
         {
           "name": "clear",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clear() : Void",
           "return": ": Void",
@@ -114,73 +119,80 @@
         {
           "name": "schedule",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "schedule(time:Float, event_name:String, ?properties:schedule.T) : String",
           "return": ": String",
           "args": [
             {
               "name": "time",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "event_name",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?properties",
-              "type": "schedule.T"
+              "type": "schedule.T",
+              "value": "null"
             }
           ]
         },
         {
           "name": "listen",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "listen(_event_name:String, _listener:listen.T->Void) : String",
           "return": ": String",
           "args": [
             {
               "name": "_event_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_listener",
-              "type": "listen.T->Void"
+              "type": "listen.T->Void",
+              "value": "null"
             }
           ]
         },
         {
           "name": "queue",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "queue(event_name:String, ?properties:queue.T) : String",
           "return": ": String",
           "args": [
             {
               "name": "event_name",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?properties",
-              "type": "queue.T"
+              "type": "queue.T",
+              "value": "null"
             }
           ]
         },
         {
           "name": "process",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -189,53 +201,58 @@
         {
           "name": "does_filter_event",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "does_filter_event(_filter:String, _event:String) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_filter",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_event",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "tag_properties",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "tag_properties(_properties:Dynamic, _name:String, _count:Int) : fire.T",
           "return": ": fire.T",
           "args": [
             {
               "name": "_properties",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_count",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -244,68 +261,73 @@
         {
           "name": "fire",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "fire(_event_name:String, ?_properties:fire.T) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_event_name",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_properties",
-              "type": "fire.T"
+              "type": "fire.T",
+              "value": "null"
             }
           ]
         },
         {
           "name": "unschedule",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "unschedule(schedule_id:String) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "schedule_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "dequeue",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "dequeue(event_id:String) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "event_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "disconnect",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "disconnect(event_id:String) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "event_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         }

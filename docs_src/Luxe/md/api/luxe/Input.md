@@ -33,7 +33,7 @@ _none_
 
 
 
-`Gamepad : lime.helpers.Gamepad`
+<span class="inline-block static">static</span>`Gamepad : lime.helpers.Gamepad`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,9 +41,11 @@ _none_
 
 
 
-`Keys : lime.helpers.Keys`
+<span class="inline-block static">static</span>`Keys : lime.helpers.Keys`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

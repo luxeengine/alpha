@@ -127,6 +127,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -134,7 +136,7 @@ _none_
 
 
 
-`create(_pos:luxe.Vector, _w:Float, _h:Float, ?_reset:Bool) : Void`
+`create(_pos:luxe.Vector, _w:Float, _h:Float, ?_reset:Bool=false) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

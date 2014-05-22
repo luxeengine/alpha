@@ -11,9 +11,9 @@
         {
           "name": "key",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "key : luxe.structural.BinarySearchTreeNode.K",
           "type": "luxe.structural.BinarySearchTreeNode.K",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "right",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "right : luxe.structural.BinarySearchTreeNode<luxe.structural.BinarySearchTreeNode.K,luxe.structural.BinarySearchTreeNode.T>",
           "type": "luxe.structural.BinarySearchTreeNode<luxe.structural.BinarySearchTreeNode.K,luxe.structural.BinarySearchTreeNode.T>",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "left",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "left : luxe.structural.BinarySearchTreeNode<luxe.structural.BinarySearchTreeNode.K,luxe.structural.BinarySearchTreeNode.T>",
           "type": "luxe.structural.BinarySearchTreeNode<luxe.structural.BinarySearchTreeNode.K,luxe.structural.BinarySearchTreeNode.T>",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "nodecount",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "nodecount : Int",
           "type": "Int",
           "doc": ""
@@ -51,14 +51,19 @@
         {
           "name": "value",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "value : luxe.structural.BinarySearchTreeNode.T",
           "type": "luxe.structural.BinarySearchTreeNode.T",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -67,24 +72,27 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_key:luxe.structural.BinarySearchTreeNode.K, _value:luxe.structural.BinarySearchTreeNode.T, _nodecount:Int) ",
           "return": "",
           "args": [
             {
               "name": "_key",
-              "type": "luxe.structural.BinarySearchTreeNode.K"
+              "type": "luxe.structural.BinarySearchTreeNode.K",
+              "value": "null"
             },
             {
               "name": "_value",
-              "type": "luxe.structural.BinarySearchTreeNode.T"
+              "type": "luxe.structural.BinarySearchTreeNode.T",
+              "value": "null"
             },
             {
               "name": "_nodecount",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         }

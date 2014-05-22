@@ -11,9 +11,9 @@
         {
           "name": "color",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "color : phoenix.Color",
           "type": "phoenix.Color",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "normal",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "normal : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "pos",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "pos : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
@@ -41,14 +41,19 @@
         {
           "name": "uv",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv : phoenix.geometry.TextureCoordSet",
           "type": "phoenix.geometry.TextureCoordSet",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -57,24 +62,27 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_pos:phoenix.Vector, ?_normal:phoenix.Vector, ?_color:phoenix.Color) ",
           "return": "",
           "args": [
             {
               "name": "_pos",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": ""
             },
             {
               "name": "?_normal",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             },
             {
               "name": "?_color",
-              "type": "phoenix.Color"
+              "type": "phoenix.Color",
+              "value": "null"
             }
           ]
         }

@@ -11,9 +11,9 @@
         {
           "name": "shadow_primitive_type",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shadow_primitive_type : phoenix.PrimitiveType",
           "type": "phoenix.PrimitiveType",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "_final_vert_position",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_final_vert_position : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "shadow_depth",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shadow_depth : Float",
           "type": "Float",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "vertices",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "vertices : Array<phoenix.geometry.Vertex>",
           "type": "Array<phoenix.geometry.Vertex>",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "submitted",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "submitted : Bool",
           "type": "Bool",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "shadow_clip",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shadow_clip : Bool",
           "type": "Bool",
           "doc": ""
@@ -71,9 +71,9 @@
         {
           "name": "dirty_clip",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dirty_clip : Bool",
           "type": "Bool",
           "doc": ""
@@ -81,9 +81,9 @@
         {
           "name": "matrix",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "matrix : phoenix.Matrix4",
           "type": "phoenix.Matrix4",
           "doc": ""
@@ -91,9 +91,9 @@
         {
           "name": "static_vertex_buffer",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "static_vertex_buffer : lime.gl.GLBuffer",
           "type": "lime.gl.GLBuffer",
           "doc": ""
@@ -101,9 +101,9 @@
         {
           "name": "_scale_dirty",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_scale_dirty : Bool",
           "type": "Bool",
           "doc": ""
@@ -111,9 +111,9 @@
         {
           "name": "static_normal_buffer",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "static_normal_buffer : lime.gl.GLBuffer",
           "type": "lime.gl.GLBuffer",
           "doc": ""
@@ -121,9 +121,9 @@
         {
           "name": "state",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "state : phoenix.geometry.GeometryState",
           "type": "phoenix.geometry.GeometryState",
           "doc": ""
@@ -131,9 +131,9 @@
         {
           "name": "uuid",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uuid : String",
           "type": "String",
           "doc": ""
@@ -141,9 +141,9 @@
         {
           "name": "shadow_shader",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shadow_shader : phoenix.Shader",
           "type": "phoenix.Shader",
           "doc": ""
@@ -151,9 +151,9 @@
         {
           "name": "shadow_group",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shadow_group : Int",
           "type": "Int",
           "doc": ""
@@ -161,9 +161,9 @@
         {
           "name": "_pos_dirty",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_pos_dirty : Bool",
           "type": "Bool",
           "doc": ""
@@ -171,9 +171,9 @@
         {
           "name": "dirty_depth",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dirty_depth : Bool",
           "type": "Bool",
           "doc": ""
@@ -181,9 +181,9 @@
         {
           "name": "id",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "id : String",
           "type": "String",
           "doc": ""
@@ -191,9 +191,9 @@
         {
           "name": "_rotation_dirty",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_rotation_dirty : Bool",
           "type": "Bool",
           "doc": ""
@@ -201,9 +201,9 @@
         {
           "name": "static_vcolor_buffer",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "static_vcolor_buffer : lime.gl.GLBuffer",
           "type": "lime.gl.GLBuffer",
           "doc": ""
@@ -211,9 +211,9 @@
         {
           "name": "dirty_texture",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dirty_texture : Bool",
           "type": "Bool",
           "doc": ""
@@ -221,9 +221,9 @@
         {
           "name": "dirty_group",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dirty_group : Bool",
           "type": "Bool",
           "doc": ""
@@ -231,9 +231,9 @@
         {
           "name": "static_tcoord_buffer",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "static_tcoord_buffer : lime.gl.GLBuffer",
           "type": "lime.gl.GLBuffer",
           "doc": ""
@@ -241,9 +241,9 @@
         {
           "name": "key",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "key : phoenix.geometry.GeometryKey",
           "type": "phoenix.geometry.GeometryKey",
           "doc": ""
@@ -251,9 +251,9 @@
         {
           "name": "dropped",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dropped : Bool",
           "type": "Bool",
           "doc": ""
@@ -261,9 +261,9 @@
         {
           "name": "shadow_texture",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shadow_texture : phoenix.Texture",
           "type": "phoenix.Texture",
           "doc": ""
@@ -271,9 +271,9 @@
         {
           "name": "dirty_shader",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dirty_shader : Bool",
           "type": "Bool",
           "doc": ""
@@ -281,9 +281,9 @@
         {
           "name": "dirty_primitive_type",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dirty_primitive_type : Bool",
           "type": "Bool",
           "doc": ""
@@ -291,9 +291,9 @@
         {
           "name": "added",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "added : Bool",
           "type": "Bool",
           "doc": ""
@@ -301,9 +301,9 @@
         {
           "name": "batchers",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "batchers : Array<phoenix.Batcher>",
           "type": "Array<phoenix.Batcher>",
           "doc": ""
@@ -316,9 +316,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "immediate : Bool",
           "type": "Bool",
           "doc": ""
@@ -557,15 +557,20 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "get_pos",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_pos() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -574,9 +579,9 @@
         {
           "name": "refresh",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh() : Void",
           "return": ": Void",
@@ -585,41 +590,43 @@
         {
           "name": "set_clip",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_clip(val:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "val",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "translate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "translate(_offset:phoenix.Vector) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_offset",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_shader",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_shader() : phoenix.Shader",
           "return": ": phoenix.Shader",
@@ -628,9 +635,9 @@
         {
           "name": "get_dirty",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_dirty() : Bool",
           "return": ": Bool",
@@ -639,9 +646,9 @@
         {
           "name": "key_string",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "key_string() : String",
           "return": ": String",
@@ -650,9 +657,9 @@
         {
           "name": "refresh_key",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh_key() : Void",
           "return": ": Void",
@@ -661,37 +668,41 @@
         {
           "name": "batch",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "batch(vertlist:Array<Float>, tcoordlist:Array<Float>, colorlist:Array<Float>, normallist:Array<Float>) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "vertlist",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             },
             {
               "name": "tcoordlist",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             },
             {
               "name": "colorlist",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             },
             {
               "name": "normallist",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_texture",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_texture() : phoenix.Texture",
           "return": ": phoenix.Texture",
@@ -700,57 +711,60 @@
         {
           "name": "set_clip_rect",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_clip_rect(val:phoenix.Rectangle) : phoenix.Rectangle",
           "return": ": phoenix.Rectangle",
           "args": [
             {
               "name": "val",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_origin",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_origin(_origin:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "_origin",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_locked",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_locked(_locked:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_locked",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_scale",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_scale() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -759,9 +773,9 @@
         {
           "name": "get_primitive_type",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_primitive_type() : phoenix.PrimitiveType",
           "return": ": phoenix.PrimitiveType",
@@ -770,85 +784,95 @@
         {
           "name": "remove",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "remove(v:phoenix.geometry.Vertex) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "v",
-              "type": "phoenix.geometry.Vertex"
+              "type": "phoenix.geometry.Vertex",
+              "value": "null"
             }
           ]
         },
         {
           "name": "batch_into_float32array",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "batch_into_float32array(vert_index:Int, tcoord_index:Int, color_index:Int, normal_index:Int, vertlist:lime.utils.Float32Array, tcoordlist:lime.utils.Float32Array, colorlist:lime.utils.Float32Array, normallist:lime.utils.Float32Array) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "vert_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "tcoord_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "color_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "normal_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "vertlist",
-              "type": "lime.utils.Float32Array"
+              "type": "lime.utils.Float32Array",
+              "value": "null"
             },
             {
               "name": "tcoordlist",
-              "type": "lime.utils.Float32Array"
+              "type": "lime.utils.Float32Array",
+              "value": "null"
             },
             {
               "name": "colorlist",
-              "type": "lime.utils.Float32Array"
+              "type": "lime.utils.Float32Array",
+              "value": "null"
             },
             {
               "name": "normallist",
-              "type": "lime.utils.Float32Array"
+              "type": "lime.utils.Float32Array",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(options:Dynamic) ",
           "return": "",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "short_id",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "short_id() : String",
           "return": ": String",
@@ -857,25 +881,26 @@
         {
           "name": "set_color",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_color(val:phoenix.Color) : phoenix.Color",
           "return": ": phoenix.Color",
           "args": [
             {
               "name": "val",
-              "type": "phoenix.Color"
+              "type": "phoenix.Color",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_group",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_group() : Int",
           "return": ": Int",
@@ -884,9 +909,9 @@
         {
           "name": "str",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "str() : Void",
           "return": ": Void",
@@ -895,41 +920,43 @@
         {
           "name": "add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add(v:phoenix.geometry.Vertex) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "v",
-              "type": "phoenix.geometry.Vertex"
+              "type": "phoenix.geometry.Vertex",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_visible",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_visible(val:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "val",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_clip",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_clip() : Bool",
           "return": ": Bool",
@@ -938,73 +965,77 @@
         {
           "name": "set_depth",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_depth(val:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "val",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_rotation",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_rotation",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_pos",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_pos(_position:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "_position",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_shader",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_shader(val:phoenix.Shader) : phoenix.Shader",
           "return": ": phoenix.Shader",
           "args": [
             {
               "name": "val",
-              "type": "phoenix.Shader"
+              "type": "phoenix.Shader",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_clip_rect",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_clip_rect() : phoenix.Rectangle",
           "return": ": phoenix.Rectangle",
@@ -1013,9 +1044,9 @@
         {
           "name": "get_locked",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_locked() : Bool",
           "return": ": Bool",
@@ -1024,73 +1055,77 @@
         {
           "name": "set_dirty",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_dirty(_dirty:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_dirty",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_texture",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_texture(val:phoenix.Texture) : phoenix.Texture",
           "return": ": phoenix.Texture",
           "args": [
             {
               "name": "val",
-              "type": "phoenix.Texture"
+              "type": "phoenix.Texture",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_scale",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_scale(_scale:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "_scale",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_primitive_type",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_primitive_type(val:phoenix.PrimitiveType) : phoenix.PrimitiveType",
           "return": ": phoenix.PrimitiveType",
           "args": [
             {
               "name": "val",
-              "type": "phoenix.PrimitiveType"
+              "type": "phoenix.PrimitiveType",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_depth",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_depth() : Float",
           "return": ": Float",
@@ -1099,41 +1134,43 @@
         {
           "name": "set_group",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_group(val:Int) : Int",
           "return": ": Int",
           "args": [
             {
               "name": "val",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "drop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "drop(?remove:Bool) : Void",
+          "signature": "drop(?remove:Bool=true) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "?remove",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
         {
           "name": "get_rotation",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_rotation() : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",

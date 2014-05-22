@@ -5,15 +5,15 @@
   "toplinks": [],
   "sections": [
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "fragment_textured",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "fragment_textured() : String",
           "return": ": String",
@@ -22,9 +22,9 @@
         {
           "name": "vertex_shader",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "vertex_shader() : String",
           "return": ": String",
@@ -33,15 +33,20 @@
         {
           "name": "fragment_untextured",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "fragment_untextured() : String",
           "return": ": String",
           "args": []
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

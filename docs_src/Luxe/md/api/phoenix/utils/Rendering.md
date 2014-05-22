@@ -18,15 +18,15 @@
 ---
 
 
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="get_elements_for_type" href="#get_elements_for_type">get_elements_for_type</a>
 
@@ -51,6 +51,8 @@
 `gl_blend_mode_from_BlendMode(_b:phoenix.BlendMode) : Int`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

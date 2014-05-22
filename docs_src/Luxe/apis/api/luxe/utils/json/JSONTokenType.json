@@ -1,0 +1,89 @@
+{
+  "source": "luxe.utils.json.JSONTokenType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "tUNKNOWN",
+          "signature": "luxe.utils.json.JSONTokenType.tUNKNOWN",
+          "doc": ""
+        },
+        {
+          "name": "tCOMMA",
+          "signature": "luxe.utils.json.JSONTokenType.tCOMMA",
+          "doc": ""
+        },
+        {
+          "name": "tLEFT_BRACE",
+          "signature": "luxe.utils.json.JSONTokenType.tLEFT_BRACE",
+          "doc": ""
+        },
+        {
+          "name": "tRIGHT_BRACE",
+          "signature": "luxe.utils.json.JSONTokenType.tRIGHT_BRACE",
+          "doc": ""
+        },
+        {
+          "name": "tLEFT_BRACKET",
+          "signature": "luxe.utils.json.JSONTokenType.tLEFT_BRACKET",
+          "doc": ""
+        },
+        {
+          "name": "tRIGHT_BRACKET",
+          "signature": "luxe.utils.json.JSONTokenType.tRIGHT_BRACKET",
+          "doc": ""
+        },
+        {
+          "name": "tCOLON",
+          "signature": "luxe.utils.json.JSONTokenType.tCOLON",
+          "doc": ""
+        },
+        {
+          "name": "tTRUE",
+          "signature": "luxe.utils.json.JSONTokenType.tTRUE",
+          "doc": ""
+        },
+        {
+          "name": "tFALSE",
+          "signature": "luxe.utils.json.JSONTokenType.tFALSE",
+          "doc": ""
+        },
+        {
+          "name": "tNULL",
+          "signature": "luxe.utils.json.JSONTokenType.tNULL",
+          "doc": ""
+        },
+        {
+          "name": "tSTRING",
+          "signature": "luxe.utils.json.JSONTokenType.tSTRING",
+          "doc": ""
+        },
+        {
+          "name": "tNUMBER",
+          "signature": "luxe.utils.json.JSONTokenType.tNUMBER",
+          "doc": ""
+        },
+        {
+          "name": "tNAN",
+          "signature": "luxe.utils.json.JSONTokenType.tNAN",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

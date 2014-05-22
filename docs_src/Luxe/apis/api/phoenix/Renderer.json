@@ -11,9 +11,9 @@
         {
           "name": "default_camera",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "default_camera : phoenix.Camera",
           "type": "phoenix.Camera",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "resource_manager",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "resource_manager : luxe.ResourceManager",
           "type": "luxe.ResourceManager",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "stop",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "stop : Bool",
           "type": "Bool",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "stop_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "stop_count : Int",
           "type": "Int",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "default_shader",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "default_shader : phoenix.Shader",
           "type": "phoenix.Shader",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "default_font",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "default_font : phoenix.BitmapFont",
           "type": "phoenix.BitmapFont",
           "doc": ""
@@ -71,9 +71,9 @@
         {
           "name": "clear_color",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "clear_color : phoenix.Color",
           "type": "phoenix.Color",
           "doc": ""
@@ -81,9 +81,9 @@
         {
           "name": "default_shader_textured",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "default_shader_textured : phoenix.Shader",
           "type": "phoenix.Shader",
           "doc": ""
@@ -91,9 +91,9 @@
         {
           "name": "state",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "state : phoenix.RenderState",
           "type": "phoenix.RenderState",
           "doc": ""
@@ -101,9 +101,9 @@
         {
           "name": "stats",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "stats : phoenix.RendererStats",
           "type": "phoenix.RendererStats",
           "doc": ""
@@ -111,9 +111,9 @@
         {
           "name": "default_render_path",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "default_render_path : phoenix.RenderPath",
           "type": "phoenix.RenderPath",
           "doc": ""
@@ -121,9 +121,9 @@
         {
           "name": "batchers",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "batchers : Array<phoenix.Batcher>",
           "type": "Array<phoenix.Batcher>",
           "doc": ""
@@ -131,9 +131,9 @@
         {
           "name": "default_batcher",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "default_batcher : phoenix.Batcher",
           "type": "phoenix.Batcher",
           "doc": ""
@@ -141,9 +141,9 @@
         {
           "name": "render_path",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "render_path : phoenix.RenderPath",
           "type": "phoenix.RenderPath",
           "doc": ""
@@ -151,14 +151,19 @@
         {
           "name": "should_clear",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "should_clear : Bool",
           "type": "Bool",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -167,32 +172,34 @@
         {
           "name": "onresize",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onresize(e:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add_batch",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add_batch(batch:phoenix.Batcher) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "batch",
-              "type": "phoenix.Batcher"
+              "type": "phoenix.Batcher",
+              "value": "null"
             }
           ]
         },
@@ -204,29 +211,31 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "sort_batchers(a:phoenix.Batcher, b:phoenix.Batcher) : Int",
           "return": ": Int",
           "args": [
             {
               "name": "a",
-              "type": "phoenix.Batcher"
+              "type": "phoenix.Batcher",
+              "value": "null"
             },
             {
               "name": "b",
-              "type": "phoenix.Batcher"
+              "type": "phoenix.Batcher",
+              "value": "null"
             }
           ]
         },
         {
           "name": "process",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -235,133 +244,146 @@
         {
           "name": "remove_batch",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "remove_batch(batch:phoenix.Batcher) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "batch",
-              "type": "phoenix.Batcher"
+              "type": "phoenix.Batcher",
+              "value": "null"
             }
           ]
         },
         {
           "name": "load_texture_from_string_byte_array",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "load_texture_from_string_byte_array(?_name:String, _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture",
+          "signature": "load_texture_from_string_byte_array(?_name:String='untitled texture', _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture",
           "return": ": phoenix.Texture",
           "args": [
             {
               "name": "?_name",
-              "type": "String"
+              "type": "String",
+              "value": "'untitled texture'"
             },
             {
               "name": "_string_byte_array",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "_width",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "_height",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_core:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_core",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
         {
           "name": "clear",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clear(_color:phoenix.Color) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_color",
-              "type": "phoenix.Color"
+              "type": "phoenix.Color",
+              "value": "null"
             }
           ]
         },
         {
           "name": "load_font",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "load_font(_fontid:String, ?_path:String, ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont",
+          "signature": "load_font(_fontid:String, ?_path:String='assets/', ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont",
           "return": ": phoenix.BitmapFont",
           "args": [
             {
               "name": "_fontid",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_path",
-              "type": "String"
+              "type": "String",
+              "value": "'assets/'"
             },
             {
               "name": "?_onloaded",
-              "type": "phoenix.BitmapFont->Void"
+              "type": "phoenix.BitmapFont->Void",
+              "value": "null"
             }
           ]
         },
         {
           "name": "load_textures",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "load_textures(_names:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool) : Void",
+          "signature": "load_textures(_names:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool=false) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_names",
-              "type": "Array<String>"
+              "type": "Array<String>",
+              "value": ""
             },
             {
               "name": "?_onloaded",
-              "type": "Array->Void"
+              "type": "Array->Void",
+              "value": "null"
             },
             {
               "name": "?_silent",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             }
           ]
         },
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -370,25 +392,26 @@
         {
           "name": "_debug",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_debug(v:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "v",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "init",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",
@@ -397,52 +420,59 @@
         {
           "name": "load_shader",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "load_shader(_psid:String, ?_vsid:String, ?_onloaded:phoenix.Shader->Void) : phoenix.Shader",
           "return": ": phoenix.Shader",
           "args": [
             {
               "name": "_psid",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_vsid",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "?_onloaded",
-              "type": "phoenix.Shader->Void"
+              "type": "phoenix.Shader->Void",
+              "value": "null"
             }
           ]
         },
         {
           "name": "load_texture",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "load_texture(_name:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture",
+          "signature": "load_texture(_name:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool=false, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture",
           "return": ": phoenix.Texture",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_onloaded",
-              "type": "phoenix.Texture->Void"
+              "type": "phoenix.Texture->Void",
+              "value": "null"
             },
             {
               "name": "?_silent",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "false"
             },
             {
               "name": "?asset_bytes",
-              "type": "lime.utils.ByteArray"
+              "type": "lime.utils.ByteArray",
+              "value": "null"
             }
           ]
         }

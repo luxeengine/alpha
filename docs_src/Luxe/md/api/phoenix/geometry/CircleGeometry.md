@@ -29,7 +29,9 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="phoenix.geometry.Geometry" href="{{{rel_path}}}api/phoenix/geometry.Geometry.html">phoenix.geometry.Geometry</a>
+<a class="lift" name="phoenix.geometry.Geometry" href="{{{rel_path}}}api/phoenix/geometry/Geometry.html">phoenix.geometry.Geometry</a>
+
+&nbsp;   
 
 &nbsp;   
 
@@ -48,7 +50,7 @@
 
 
 
-`set(_x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, ?_start_angle:Float, ?_end_angle:Float) : Void`
+`set(_x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, ?_start_angle:Float=0, ?_end_angle:Float=360) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

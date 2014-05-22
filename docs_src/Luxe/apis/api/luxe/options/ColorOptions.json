@@ -1,0 +1,134 @@
+{
+  "source": "luxe.options.ColorOptions",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "v",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "v : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "h",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "h : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "a",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "a : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "g",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "g : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "s",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "s : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "l",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "l : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "r",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "r : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "b",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "b : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

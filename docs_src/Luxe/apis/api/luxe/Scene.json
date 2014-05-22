@@ -20,9 +20,9 @@
         {
           "name": "entities",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "entities : Map<String,luxe.Entity>",
           "type": "Map<String,luxe.Entity>",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "inited",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "inited : Bool",
           "type": "Bool",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "started",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "started : Bool",
           "type": "Bool",
           "doc": ""
@@ -50,9 +50,9 @@
         {
           "name": "_delayed_init_entities",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_delayed_init_entities : Array<luxe.Entity>",
           "type": "Array<luxe.Entity>",
           "doc": ""
@@ -60,9 +60,9 @@
         {
           "name": "_delayed_start_entities",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_delayed_start_entities : Array<luxe.Entity>",
           "type": "Array<luxe.Entity>",
           "doc": ""
@@ -86,31 +86,37 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "onmousedown",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onmousedown(e:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_entitycount",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_entitycount() : Int",
           "return": ": Int",
@@ -119,41 +125,43 @@
         {
           "name": "onmousewheel",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onmousewheel(e:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "onmouseup",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onmouseup(e:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "handle_delayed_additions",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "handle_delayed_additions() : Void",
           "return": ": Void",
@@ -162,49 +170,53 @@
         {
           "name": "create",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "create(type:Class<create.T1>, ?_name:String, ?_data:create.T2) : create.T1",
+          "signature": "create(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1",
           "return": ": create.T1",
           "args": [
             {
               "name": "type",
-              "type": "Class<create.T1>"
+              "type": "Class<create.T1>",
+              "value": ""
             },
             {
               "name": "?_name",
-              "type": "String"
+              "type": "String",
+              "value": "''"
             },
             {
               "name": "?_data",
-              "type": "create.T2"
+              "type": "create.T2",
+              "value": "null"
             }
           ]
         },
         {
           "name": "remove",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "remove(entity:luxe.Entity) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "entity",
-              "type": "luxe.Entity"
+              "type": "luxe.Entity",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -213,41 +225,43 @@
         {
           "name": "onmousemove",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onmousemove(e:luxe.MouseEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.MouseEvent"
+              "type": "luxe.MouseEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "ongamepadaxis",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ongamepadaxis(e:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "start",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "start() : Void",
           "return": ": Void",
@@ -256,41 +270,43 @@
         {
           "name": "serialize_to_disk",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "serialize_to_disk(_destination_path:String) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_destination_path",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add(entity:luxe.Entity) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "entity",
-              "type": "luxe.Entity"
+              "type": "luxe.Entity",
+              "value": "null"
             }
           ]
         },
         {
           "name": "fixed_update",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "fixed_update() : Void",
           "return": ": Void",
@@ -299,41 +315,43 @@
         {
           "name": "onkeyup",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onkeyup(e:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "ontouchbegin",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ontouchbegin(e:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "list_entities",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "list_entities() : Void",
           "return": ": Void",
@@ -342,25 +360,26 @@
         {
           "name": "ontouchend",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ontouchend(e:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",
@@ -369,25 +388,26 @@
         {
           "name": "ongamepadbuttondown",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ongamepadbuttondown(e:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "empty",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "empty() : Void",
           "return": ": Void",
@@ -396,93 +416,99 @@
         {
           "name": "ontouchmove",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ontouchmove(e:luxe.TouchEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.TouchEvent"
+              "type": "luxe.TouchEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "ongamepadhat",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ongamepadhat(e:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "ongamepadbuttonup",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ongamepadbuttonup(e:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "onkeydown",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onkeydown(e:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "oninputdown",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "oninputdown(_name:String, e:luxe.InputEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "e",
-              "type": "luxe.InputEvent"
+              "type": "luxe.InputEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "_do_init",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_do_init() : Bool",
           "return": ": Bool",
@@ -491,45 +517,48 @@
         {
           "name": "update",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update(dt:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "dt",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "oninputup",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "oninputup(_name:String, e:luxe.InputEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "e",
-              "type": "luxe.InputEvent"
+              "type": "luxe.InputEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -538,25 +567,26 @@
         {
           "name": "ongamepadball",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "ongamepadball(e:Dynamic) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "init",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",

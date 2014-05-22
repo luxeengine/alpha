@@ -20,19 +20,19 @@
         {
           "name": "onload",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "onload : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "onload : phoenix.BitmapFont->Void",
+          "type": "phoenix.BitmapFont->Void",
           "doc": ""
         },
         {
           "name": "pages",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "pages : Map<Int,phoenix.Texture>",
           "type": "Map<Int,phoenix.Texture>",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "characters",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "characters : Map<Int,phoenix.Character>",
           "type": "Map<Int,phoenix.Character>",
           "doc": ""
@@ -50,9 +50,9 @@
         {
           "name": "kernings",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "kernings : Map<phoenix.KerningKey,Int>",
           "type": "Map<phoenix.KerningKey,Int>",
           "doc": ""
@@ -60,9 +60,9 @@
         {
           "name": "line_height",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "line_height : Float",
           "type": "Float",
           "doc": ""
@@ -70,9 +70,9 @@
         {
           "name": "font_character_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "font_character_count : Int",
           "type": "Int",
           "doc": ""
@@ -80,19 +80,19 @@
         {
           "name": "on_pages_loaded",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "on_pages_loaded : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "on_pages_loaded : Void",
+          "type": "Void",
           "doc": ""
         },
         {
           "name": "font_size",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "font_size : Float",
           "type": "Float",
           "doc": ""
@@ -100,9 +100,9 @@
         {
           "name": "pages_loaded",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "pages_loaded : Int",
           "type": "Int",
           "doc": ""
@@ -110,9 +110,9 @@
         {
           "name": "dimensions",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dimensions : luxe.Vector",
           "type": "luxe.Vector",
           "doc": ""
@@ -120,9 +120,9 @@
         {
           "name": "spacing",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "spacing : Float",
           "type": "Float",
           "doc": ""
@@ -130,9 +130,9 @@
         {
           "name": "scale",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "scale : luxe.Vector",
           "type": "luxe.Vector",
           "doc": ""
@@ -140,14 +140,19 @@
         {
           "name": "line_widths",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "line_widths : Array<Float>",
           "type": "Array<Float>",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -156,61 +161,65 @@
         {
           "name": "one_page_loaded",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "one_page_loaded(t:phoenix.Texture) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "t",
-              "type": "phoenix.Texture"
+              "type": "phoenix.Texture",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_kerning",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_kerning(_glyph:Int, _index:Int) : Null<Int>",
           "return": ": Null<Int>",
           "args": [
             {
               "name": "_glyph",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(?_resource_manager:luxe.ResourceManager) ",
           "return": "",
           "args": [
             {
               "name": "?_resource_manager",
-              "type": "luxe.ResourceManager"
+              "type": "luxe.ResourceManager",
+              "value": "null"
             }
           ]
         },
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",
@@ -219,113 +228,124 @@
         {
           "name": "set_kerning",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_kerning(_glyph:Int, _index:Int, _amount:Int) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_glyph",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_amount",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "draw_text",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "draw_text(options:Dynamic) : phoenix.geometry.CompositeGeometry",
           "return": ": phoenix.geometry.CompositeGeometry",
           "args": [
             {
               "name": "options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_text_dimensions",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_text_dimensions(_string:String, _scale:luxe.Vector) : luxe.Vector",
           "return": ": luxe.Vector",
           "args": [
             {
               "name": "_string",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_scale",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "_tokenize_font_line",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_tokenize_font_line(_line_tokens:Array<String>) : Map<String,phoenix.KeyValuePair>",
           "return": ": Map<String,phoenix.KeyValuePair>",
           "args": [
             {
               "name": "_line_tokens",
-              "type": "Array<String>"
+              "type": "Array<String>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "load_from_string",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "load_from_string(?_bitmap_file:String, ?_folder:String, ?onloaded:phoenix.BitmapFont->Void, ?custom_pages:Array<phoenix.Texture>) : Void",
+          "signature": "load_from_string(?_bitmap_file:String='', ?_folder:String='assets/', ?onloaded:phoenix.BitmapFont->Void, ?custom_pages:Array<phoenix.Texture>) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "?_bitmap_file",
-              "type": "String"
+              "type": "String",
+              "value": "''"
             },
             {
               "name": "?_folder",
-              "type": "String"
+              "type": "String",
+              "value": "'assets/'"
             },
             {
               "name": "?onloaded",
-              "type": "phoenix.BitmapFont->Void"
+              "type": "phoenix.BitmapFont->Void",
+              "value": "null"
             },
             {
               "name": "?custom_pages",
-              "type": "Array<phoenix.Texture>"
+              "type": "Array<phoenix.Texture>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "on_all_pages_loaded",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "on_all_pages_loaded() : Void",
           "return": ": Void",
@@ -334,20 +354,22 @@
         {
           "name": "set_character",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_character(_index:Int, _char_info:phoenix.Character) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_index",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             },
             {
               "name": "_char_info",
-              "type": "phoenix.Character"
+              "type": "phoenix.Character",
+              "value": "null"
             }
           ]
         }

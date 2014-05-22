@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="uniformvaluetype">UniformValueType</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / UniformValueType</p>
+<p><br/></p>
+<hr>
+<p><a href="#Values">Values</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Values" ></a></p>
+<h3 id="values">Values</h3>
+<hr>
+<p><a class="lift" name="color" href="#color">color</a></p>
+<p><code>phoenix.UniformValueType.color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="float" href="#float">float</a></p>
+<p><code>phoenix.UniformValueType.float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="int" href="#int">int</a></p>
+<p><code>phoenix.UniformValueType.int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texture" href="#texture">texture</a></p>
+<p><code>phoenix.UniformValueType.texture</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="unknown" href="#unknown">unknown</a></p>
+<p><code>phoenix.UniformValueType.unknown</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vector2" href="#vector2">vector2</a></p>
+<p><code>phoenix.UniformValueType.vector2</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vector3" href="#vector3">vector3</a></p>
+<p><code>phoenix.UniformValueType.vector3</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vector4" href="#vector4">vector4</a></p>
+<p><code>phoenix.UniformValueType.vector4</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -20,14 +20,19 @@
         {
           "name": "quads",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "quads : Map<String,phoenix.geometry.ComplexQuad>",
           "type": "Map<String,phoenix.geometry.ComplexQuad>",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -36,81 +41,87 @@
         {
           "name": "quad_add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_add(_options:Dynamic) : String",
           "return": ": String",
           "args": [
             {
               "name": "_options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_flipx",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_flipx(_quad_id:String, _flip:Bool) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_flip",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_flipy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_flipy(_quad_id:String, _flip:Bool) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_flip",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_options:Dynamic) ",
           "return": "",
           "args": [
             {
               "name": "_options",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "clear",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clear() : Void",
           "return": ": Void",
@@ -119,168 +130,183 @@
         {
           "name": "quad_show",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_show(_quad_id:String) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_pos",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_pos(_quad_id:String, _p:phoenix.Vector) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_p",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_resize",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_resize(_quad_id:String, _quad:phoenix.Rectangle) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_quad",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_uv",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_uv(_quad_id:String, _uv:phoenix.Rectangle) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_uv",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_alpha",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_alpha(_quad_id:String, _a:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_a",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_uv_space",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_uv_space(_quad_id:String, _uv:phoenix.Rectangle) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_uv",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_remove",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_remove(_quad_id:String) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_hide",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_hide(_quad_id:String) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "quad_color",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "quad_color(_quad_id:String, _c:phoenix.Color) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_quad_id",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             },
             {
               "name": "_c",
-              "type": "phoenix.Color"
+              "type": "phoenix.Color",
+              "value": "null"
             }
           ]
         }

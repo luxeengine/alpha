@@ -29,7 +29,9 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="phoenix.geometry.Geometry" href="{{{rel_path}}}api/phoenix/geometry.Geometry.html">phoenix.geometry.Geometry</a>
+<a class="lift" name="phoenix.geometry.Geometry" href="{{{rel_path}}}api/phoenix/geometry/Geometry.html">phoenix.geometry.Geometry</a>
+
+&nbsp;   
 
 &nbsp;   
 

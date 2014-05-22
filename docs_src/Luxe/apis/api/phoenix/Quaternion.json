@@ -11,9 +11,9 @@
         {
           "name": "euler",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "euler : phoenix.Vector",
           "type": "phoenix.Vector",
           "doc": ""
@@ -87,167 +87,241 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": [
+        {
+          "name": "Slerp",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Slerp(_qa:phoenix.Quaternion, _qb:phoenix.Quaternion, _qm:phoenix.Quaternion, _t:Float) : phoenix.Quaternion",
+          "return": ": phoenix.Quaternion",
+          "args": [
+            {
+              "name": "_qa",
+              "type": "phoenix.Quaternion",
+              "value": "null"
+            },
+            {
+              "name": "_qb",
+              "type": "phoenix.Quaternion",
+              "value": "null"
+            },
+            {
+              "name": "_qm",
+              "type": "phoenix.Quaternion",
+              "value": "null"
+            },
+            {
+              "name": "_t",
+              "type": "Float",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "Dot",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Dot(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_a",
+              "type": "phoenix.Quaternion",
+              "value": "null"
+            },
+            {
+              "name": "_b",
+              "type": "phoenix.Quaternion",
+              "value": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "setFromRotationMatrix",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "setFromRotationMatrix(_m:phoenix.Matrix4) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_m",
-              "type": "phoenix.Matrix4"
+              "type": "phoenix.Matrix4",
+              "value": "null"
             }
           ]
         },
         {
           "name": "multiplyScalar",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "multiplyScalar(_scalar:Float) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_scalar",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_y",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_y(_v:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) ",
+          "signature": "new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=1) ",
           "return": "",
           "args": [
             {
               "name": "?_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "1"
             }
           ]
         },
         {
           "name": "setFromEuler",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "setFromEuler(_euler:phoenix.Vector, ?_order:String) : phoenix.Quaternion",
+          "signature": "setFromEuler(_euler:phoenix.Vector, ?_order:String='XYZ') : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_euler",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": ""
             },
             {
               "name": "?_order",
-              "type": "String"
+              "type": "String",
+              "value": "'XYZ'"
             }
           ]
         },
         {
           "name": "setFromAxisAngle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "setFromAxisAngle(_axis:phoenix.Vector, _angle:Float) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_axis",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             },
             {
               "name": "_angle",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add(_quaternion:phoenix.Quaternion) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_quaternion",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "multiplyQuaternions",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "multiplyQuaternions(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_a",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             },
             {
               "name": "_b",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "inverse",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "inverse() : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
@@ -256,61 +330,65 @@
         {
           "name": "copy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "copy(_quaternion:phoenix.Quaternion) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_quaternion",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "slerp",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "slerp(_qb:phoenix.Quaternion, _t:Float) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_qb",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             },
             {
               "name": "_t",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "dot",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "dot(_other:phoenix.Quaternion) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_other",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "clone",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clone() : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
@@ -319,9 +397,9 @@
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",
@@ -330,53 +408,26 @@
         {
           "name": "set_x",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_x(_v:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_v",
-              "type": "Float"
-            }
-          ]
-        },
-        {
-          "name": "Slerp",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Slerp(_qa:phoenix.Quaternion, _qb:phoenix.Quaternion, _qm:phoenix.Quaternion, _t:Float) : phoenix.Quaternion",
-          "return": ": phoenix.Quaternion",
-          "args": [
-            {
-              "name": "_qa",
-              "type": "phoenix.Quaternion"
-            },
-            {
-              "name": "_qb",
-              "type": "phoenix.Quaternion"
-            },
-            {
-              "name": "_qm",
-              "type": "phoenix.Quaternion"
-            },
-            {
-              "name": "_t",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "length",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "length() : Float",
           "return": ": Float",
@@ -385,56 +436,37 @@
         {
           "name": "toArray",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toArray() : Array<Float>",
           "return": ": Array<Float>",
           "args": []
         },
         {
-          "name": "Dot",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Dot(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : Float",
-          "return": ": Float",
-          "args": [
-            {
-              "name": "_a",
-              "type": "phoenix.Quaternion"
-            },
-            {
-              "name": "_b",
-              "type": "phoenix.Quaternion"
-            }
-          ]
-        },
-        {
           "name": "equals",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "equals(_q:phoenix.Quaternion) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_q",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "update_euler",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update_euler() : Void",
           "return": ": Void",
@@ -443,9 +475,9 @@
         {
           "name": "lengthSq",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "lengthSq() : Float",
           "return": ": Float",
@@ -454,53 +486,58 @@
         {
           "name": "multiply",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "multiply(_quaternion:phoenix.Quaternion) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_quaternion",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set(_x:Float, _y:Float, _z:Float, _w:Float) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "conjugate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "conjugate() : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
@@ -509,41 +546,43 @@
         {
           "name": "fromArray",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "fromArray(_a:Array<Float>) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_a",
-              "type": "Array<Float>"
+              "type": "Array<Float>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_w",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_w(_v:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "normalize",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "normalize() : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
@@ -552,36 +591,39 @@
         {
           "name": "set_z",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_z(_v:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "addQuaternions",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "addQuaternions(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : phoenix.Quaternion",
           "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_a",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             },
             {
               "name": "_b",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         }

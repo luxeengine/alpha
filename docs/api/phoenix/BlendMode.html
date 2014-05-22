@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="blendmode">BlendMode</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / BlendMode</p>
+<p><br/></p>
+<hr>
+<p><a href="#Values">Values</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Values" ></a></p>
+<h3 id="values">Values</h3>
+<hr>
+<p><a class="lift" name="dst_alpha" href="#dst_alpha">dst_alpha</a></p>
+<p><code>phoenix.BlendMode.dst_alpha</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dst_color" href="#dst_color">dst_color</a></p>
+<p><code>phoenix.BlendMode.dst_color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="one" href="#one">one</a></p>
+<p><code>phoenix.BlendMode.one</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="one_minus_dst_alpha" href="#one_minus_dst_alpha">one_minus_dst_alpha</a></p>
+<p><code>phoenix.BlendMode.one_minus_dst_alpha</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="one_minus_dst_color" href="#one_minus_dst_color">one_minus_dst_color</a></p>
+<p><code>phoenix.BlendMode.one_minus_dst_color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="one_minus_src_alpha" href="#one_minus_src_alpha">one_minus_src_alpha</a></p>
+<p><code>phoenix.BlendMode.one_minus_src_alpha</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="one_minus_src_color" href="#one_minus_src_color">one_minus_src_color</a></p>
+<p><code>phoenix.BlendMode.one_minus_src_color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="src_alpha" href="#src_alpha">src_alpha</a></p>
+<p><code>phoenix.BlendMode.src_alpha</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="src_alpha_saturate" href="#src_alpha_saturate">src_alpha_saturate</a></p>
+<p><code>phoenix.BlendMode.src_alpha_saturate</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="src_color" href="#src_color">src_color</a></p>
+<p><code>phoenix.BlendMode.src_color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="zero" href="#zero">zero</a></p>
+<p><code>phoenix.BlendMode.zero</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

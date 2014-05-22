@@ -27,6 +27,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -34,7 +36,7 @@ _none_
 
 
 
-`schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool) : haxe.Timer`
+`schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool=false) : haxe.Timer`
 
 <span class="small_desc_flat"> no description </span>   
 

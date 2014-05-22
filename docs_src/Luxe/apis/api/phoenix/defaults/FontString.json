@@ -5,21 +5,26 @@
   "toplinks": [],
   "sections": [
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "data",
           "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "data() : String",
           "return": ": String",
           "args": []
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

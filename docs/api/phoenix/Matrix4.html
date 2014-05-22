@@ -50,7 +50,7 @@
 <p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / Matrix4</p>
 <p><br/></p>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#StaticMethods">StaticMethods</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
@@ -112,8 +112,8 @@
 <p><code>M44 : Float</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="staticmethods">StaticMethods</h3>
 <hr>
 <p><a class="lift" name="GetBackward" href="#GetBackward">GetBackward</a></p>
 <p><code>GetBackward(_m:phoenix.Matrix4) : phoenix.Vector</code></p>
@@ -133,6 +133,10 @@
 <p><a class="lift" name="GetUp" href="#GetUp">GetUp</a></p>
 <p><code>GetUp(_m:phoenix.Matrix4) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
 <p><a class="lift" name="clone" href="#clone">clone</a></p>
 <p><code>clone() : phoenix.Matrix4</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
@@ -188,7 +192,7 @@
 <p><code>lookAt(_eye:phoenix.Vector, _target:phoenix.Vector, _up:phoenix.Vector) : phoenix.Matrix4</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="make2D" href="#make2D">make2D</a></p>
-<p><code>make2D(_x:Float, _y:Float, ?_scale:Float, ?_rotation:Float) : phoenix.Matrix4</code></p>
+<p><code>make2D(_x:Float, _y:Float, ?_scale:Float=1, ?_rotation:Float=0) : phoenix.Matrix4</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="makeFrustum" href="#makeFrustum">makeFrustum</a></p>
 <p><code>makeFrustum(_left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float) : phoenix.Matrix4</code></p>
@@ -203,7 +207,7 @@
 <p><code>makeRotationAxis(_axis:phoenix.Vector, _angle:Float) : phoenix.Matrix4</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="makeRotationFromEuler" href="#makeRotationFromEuler">makeRotationFromEuler</a></p>
-<p><code>makeRotationFromEuler(_v:phoenix.Vector, ?_order:String) : phoenix.Matrix4</code></p>
+<p><code>makeRotationFromEuler(_v:phoenix.Vector, ?_order:String=&#39;XYZ&#39;) : phoenix.Matrix4</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="makeRotationFromQuaternion" href="#makeRotationFromQuaternion">makeRotationFromQuaternion</a></p>
 <p><code>makeRotationFromQuaternion(q:phoenix.Quaternion) : phoenix.Matrix4</code></p>
@@ -239,7 +243,7 @@
 <p><code>multiplyVector3Array(_a:Array&lt;Float&gt;) : Array&lt;Float&gt;</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?n11:Float, ?n12:Float, ?n13:Float, ?n14:Float, ?n21:Float, ?n22:Float, ?n23:Float, ?n24:Float, ?n31:Float, ?n32:Float, ?n33:Float, ?n34:Float, ?n41:Float, ?n42:Float, ?n43:Float, ?n44:Float)</code></p>
+<p><code>new(?n11:Float=1, ?n12:Float=0, ?n13:Float=0, ?n14:Float=0, ?n21:Float=0, ?n22:Float=1, ?n23:Float=0, ?n24:Float=0, ?n31:Float=0, ?n32:Float=0, ?n33:Float=1, ?n34:Float=0, ?n41:Float=0, ?n42:Float=0, ?n43:Float=0, ?n44:Float=1)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="scale" href="#scale">scale</a></p>
 <p><code>scale(_v:phoenix.Vector) : phoenix.Matrix4</code></p>

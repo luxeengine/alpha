@@ -19,7 +19,7 @@
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +33,7 @@
 
 
 
-`DEG2RAD : Float`
+<span class="inline-block static">static</span>`DEG2RAD : Float`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,14 +41,14 @@
 
 
 
-`RAD2DEG : Float`
+<span class="inline-block static">static</span>`RAD2DEG : Float`
 
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="clamp" href="#clamp">clamp</a>
 
@@ -177,6 +177,8 @@
 `wrap_angle(degrees:Float, lower:Float, upper:Float) : Float`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

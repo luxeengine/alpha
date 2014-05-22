@@ -16,19 +16,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_y : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_y : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         },
         {
           "name": "ignore_listeners",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "ignore_listeners : Bool",
           "type": "Bool",
           "doc": ""
@@ -41,11 +41,11 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_w : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_w : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         },
         {
@@ -56,11 +56,11 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_h : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_h : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         },
         {
@@ -71,11 +71,11 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_x : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_x : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         }
       ]
@@ -162,47 +162,54 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "point_inside",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "point_inside(_p:phoenix.Vector) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_p",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "overlaps",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "overlaps(_other:phoenix.Rectangle) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_other",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "clone",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clone() : phoenix.Rectangle",
           "return": ": phoenix.Rectangle",
@@ -211,81 +218,90 @@
         {
           "name": "set",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) : phoenix.Rectangle",
           "return": ": phoenix.Rectangle",
           "args": [
             {
               "name": "?_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_h",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_y",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_y(_y:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) ",
+          "signature": "new(?_x:Float=0, ?_y:Float=0, ?_w:Float=0, ?_h:Float=0) ",
           "return": "",
           "args": [
             {
               "name": "?_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_h",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             }
           ]
         },
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",
@@ -294,41 +310,43 @@
         {
           "name": "copy_from",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "copy_from(_rect:phoenix.Rectangle) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_rect",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_x",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_x(_x:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_serialized",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_serialized() : Dynamic",
           "return": ": Dynamic",
@@ -337,48 +355,51 @@
         {
           "name": "set_w",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_w(_w:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "equal",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "equal(_other:phoenix.Rectangle) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_other",
-              "type": "phoenix.Rectangle"
+              "type": "phoenix.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_h",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_h(_h:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_h",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         }

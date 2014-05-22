@@ -1,0 +1,104 @@
+{
+  "source": "phoenix.Character",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "page",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "page : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "height",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "height : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "id : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "yoffset",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "yoffset : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "y",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "y : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "xadvance",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "xadvance : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "width",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "width : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "xoffset",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "xoffset : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "x",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "x : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

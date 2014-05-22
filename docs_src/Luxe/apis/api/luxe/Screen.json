@@ -11,9 +11,9 @@
         {
           "name": "h",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "h : Float",
           "type": "Float",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "y",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "y : Float",
           "type": "Float",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "x",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "x : Float",
           "type": "Float",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "core",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "core : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "w",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "w : Float",
           "type": "Float",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "cursor",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "cursor : luxe.Cursor",
           "type": "luxe.Cursor",
           "doc": ""
@@ -92,63 +92,74 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "point_inside",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "point_inside(_p:luxe.Vector) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_p",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(?_core:luxe.Core, _x:Int, _y:Int, _w:Int, _h:Int) ",
           "return": "",
           "args": [
             {
               "name": "?_core",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             },
             {
               "name": "_x",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "_y",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "_w",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             },
             {
               "name": "_h",
-              "type": "Int"
+              "type": "Int",
+              "value": ""
             }
           ]
         },
         {
           "name": "get_mid",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_mid() : luxe.Vector",
           "return": ": luxe.Vector",

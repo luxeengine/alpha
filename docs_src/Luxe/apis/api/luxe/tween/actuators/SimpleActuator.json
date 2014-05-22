@@ -20,9 +20,9 @@
         {
           "name": "setVisible",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "setVisible : Bool",
           "type": "Bool",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "actuators",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "actuators : Array<luxe.tween.actuators.SimpleActuator>",
           "type": "Array<luxe.tween.actuators.SimpleActuator>",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "initialized",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "initialized : Bool",
           "type": "Bool",
           "doc": ""
@@ -50,9 +50,9 @@
         {
           "name": "paused",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "paused : Bool",
           "type": "Bool",
           "doc": ""
@@ -60,9 +60,9 @@
         {
           "name": "has_timescaled_starttime",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "has_timescaled_starttime : Bool",
           "type": "Bool",
           "doc": ""
@@ -70,9 +70,9 @@
         {
           "name": "update_timer",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "update_timer : Float",
           "type": "Float",
           "doc": ""
@@ -80,9 +80,9 @@
         {
           "name": "pauseTime",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "pauseTime : Float",
           "type": "Float",
           "doc": ""
@@ -90,9 +90,9 @@
         {
           "name": "startTime",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "startTime : Float",
           "type": "Float",
           "doc": ""
@@ -100,9 +100,9 @@
         {
           "name": "actuatorsLength",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "actuatorsLength : Int",
           "type": "Int",
           "doc": ""
@@ -110,9 +110,9 @@
         {
           "name": "sendChange",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "sendChange : Bool",
           "type": "Bool",
           "doc": ""
@@ -120,9 +120,9 @@
         {
           "name": "timer",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "timer : haxe.Timer",
           "type": "haxe.Timer",
           "doc": ""
@@ -130,9 +130,9 @@
         {
           "name": "current_time",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "current_time : Float",
           "type": "Float",
           "doc": ""
@@ -140,9 +140,9 @@
         {
           "name": "timeOffset",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "timeOffset : Float",
           "type": "Float",
           "doc": ""
@@ -150,9 +150,9 @@
         {
           "name": "active",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "active : Bool",
           "type": "Bool",
           "doc": ""
@@ -160,9 +160,9 @@
         {
           "name": "toggleVisible",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "toggleVisible : Bool",
           "type": "Bool",
           "doc": ""
@@ -170,9 +170,9 @@
         {
           "name": "propertyDetails",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "propertyDetails : Array<luxe.tween.actuators.PropertyDetails>",
           "type": "Array<luxe.tween.actuators.PropertyDetails>",
           "doc": ""
@@ -180,9 +180,9 @@
         {
           "name": "haxe_doc",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "haxe_doc : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -190,9 +190,9 @@
         {
           "name": "cacheVisible",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "cacheVisible : Bool",
           "type": "Bool",
           "doc": ""
@@ -200,9 +200,9 @@
         {
           "name": "addedEvent",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": true,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": true,
           "signature": "addedEvent : Bool",
           "type": "Bool",
           "doc": ""
@@ -210,12 +210,35 @@
         {
           "name": "detailsLength",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "detailsLength : Int",
           "type": "Int",
           "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": [
+        {
+          "name": "on_internal_update",
+          "meta": [],
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "on_internal_update(dt:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "dt",
+              "type": "Float",
+              "value": "null"
+            }
+          ]
         }
       ]
     },
@@ -226,41 +249,43 @@
         {
           "name": "autoVisible",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* @inheritDoc",
           "signature": "autoVisible(?value:Bool) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "delay",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* @inheritDoc",
           "signature": "delay(duration:Float) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "duration",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "move",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "move() : Void",
           "return": ": Void",
@@ -269,9 +294,9 @@
         {
           "name": "resume",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "resume() : Void",
           "return": ": Void",
@@ -280,100 +305,91 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(target:Dynamic, duration:Float, properties:Dynamic) ",
           "return": "",
           "args": [
             {
               "name": "target",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "duration",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "properties",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "stop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "properties",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "complete",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "sendEvent",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "pause",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "pause() : Void",
           "return": ": Void",
           "args": []
         },
         {
-          "name": "on_internal_update",
-          "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "on_internal_update(dt:Float) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "dt",
-              "type": "Float"
-            }
-          ]
-        },
-        {
           "name": "update",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update(currentTime:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "currentTime",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "initialize",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "initialize() : Void",
           "return": ": Void",
@@ -382,20 +398,22 @@
         {
           "name": "onUpdate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* @inheritDoc",
           "signature": "onUpdate(handler:Dynamic, ?parameters:Array<Dynamic>) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "handler",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?parameters",
-              "type": "Array<Dynamic>"
+              "type": "Array<Dynamic>",
+              "value": "null"
             }
           ]
         }

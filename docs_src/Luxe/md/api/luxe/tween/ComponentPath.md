@@ -31,13 +31,7 @@
 <a class="lift" name="Implements" ></a>
 ###Implements   
 ---
-<a class="lift" name="luxe.tween.IComponentPath" href="#luxe.tween.IComponentPath">luxe.tween.IComponentPath</a>
-
-
-
-`undefined`
-
-<span class="small_desc_flat"> no description </span>   
+<a class="lift" name="luxe.tween.IComponentPath" href="{{{rel_path}}}api/luxe/tween/IComponentPath.html">luxe.tween.IComponentPath</a>
 
 &nbsp;   
 
@@ -64,6 +58,8 @@
 `end : Float`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

@@ -20,9 +20,9 @@
         {
           "name": "lines",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "lines : luxe.Text",
           "type": "luxe.Text",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "max_lines",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "max_lines : Int",
           "type": "Int",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "logged",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "logged : Array<String>",
           "type": "Array<String>",
           "doc": ""
@@ -50,14 +50,19 @@
         {
           "name": "_last_logged_length",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_last_logged_length : Int",
           "type": "Int",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -66,9 +71,9 @@
         {
           "name": "create",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "create() : Void",
           "return": ": Void",
@@ -77,25 +82,26 @@
         {
           "name": "add_line",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add_line(_t:String) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_t",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "refresh_lines",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh_lines() : Void",
           "return": ": Void",
@@ -104,9 +110,9 @@
         {
           "name": "refresh",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh() : Void",
           "return": ": Void",
@@ -115,9 +121,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -126,9 +132,9 @@
         {
           "name": "process",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -137,9 +143,9 @@
         {
           "name": "hide",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "hide() : Void",
           "return": ": Void",
@@ -148,9 +154,9 @@
         {
           "name": "show",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "show() : Void",
           "return": ": Void",
@@ -159,20 +165,22 @@
         {
           "name": "on_trace",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "on_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "v",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?inf",
-              "type": "haxe.PosInfos"
+              "type": "haxe.PosInfos",
+              "value": "null"
             }
           ]
         }

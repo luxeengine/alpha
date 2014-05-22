@@ -11,9 +11,9 @@
         {
           "name": "dynamic_batched_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dynamic_batched_count : Int",
           "type": "Int",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "group_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "group_count : Int",
           "type": "Int",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "batchers",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "batchers : Int",
           "type": "Int",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "geometry_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "geometry_count : Int",
           "type": "Int",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "visible_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "visible_count : Int",
           "type": "Int",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "static_batched_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "static_batched_count : Int",
           "type": "Int",
           "doc": ""
@@ -71,14 +71,19 @@
         {
           "name": "draw_calls",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "draw_calls : Int",
           "type": "Int",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -87,9 +92,9 @@
         {
           "name": "reset",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "reset() : Void",
           "return": ": Void",
@@ -98,9 +103,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -109,9 +114,9 @@
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",

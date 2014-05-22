@@ -18,15 +18,15 @@
 ---
 
 
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="fragment_textured" href="#fragment_textured">fragment_textured</a>
 
@@ -51,6 +51,8 @@
 `vertex_shader() : String`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

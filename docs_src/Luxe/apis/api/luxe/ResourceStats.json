@@ -11,9 +11,9 @@
         {
           "name": "render_textures",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "render_textures : Int",
           "type": "Int",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "datas",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "datas : Int",
           "type": "Int",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "sounds",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "sounds : Int",
           "type": "Int",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "texts",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "texts : Int",
           "type": "Int",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "unknown",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "unknown : Int",
           "type": "Int",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "textures",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "textures : Int",
           "type": "Int",
           "doc": ""
@@ -71,9 +71,9 @@
         {
           "name": "shaders",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "shaders : Int",
           "type": "Int",
           "doc": ""
@@ -81,9 +81,9 @@
         {
           "name": "resources",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "resources : Int",
           "type": "Int",
           "doc": ""
@@ -91,14 +91,19 @@
         {
           "name": "fonts",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "fonts : Int",
           "type": "Int",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -107,9 +112,9 @@
         {
           "name": "reset",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "reset() : Void",
           "return": ": Void",
@@ -118,9 +123,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -129,9 +134,9 @@
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",

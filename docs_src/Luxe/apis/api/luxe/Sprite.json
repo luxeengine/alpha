@@ -20,9 +20,9 @@
         {
           "name": "_hit_box_vert_list",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_hit_box_vert_list : Array<luxe.Vector>",
           "type": "Array<luxe.Vector>",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "_hit_origin_offset",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_hit_origin_offset : luxe.Vector",
           "type": "luxe.Vector",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "geometry_quad",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "geometry_quad : phoenix.geometry.QuadGeometry",
           "type": "phoenix.geometry.QuadGeometry",
           "doc": ""
@@ -116,90 +116,101 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "point_inside",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "point_inside(_p:luxe.Vector) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_p",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "_attach_rect_listener",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_attach_rect_listener(_v:luxe.Rectangle, listener:Float->Void) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_v",
-              "type": "luxe.Rectangle"
+              "type": "luxe.Rectangle",
+              "value": "null"
             },
             {
               "name": "listener",
-              "type": "Float->Void"
+              "type": "Float->Void",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(options:luxe.options.SpriteOptions<new.T>) ",
           "return": "",
           "args": [
             {
               "name": "options",
-              "type": "luxe.options.SpriteOptions<new.T>"
+              "type": "luxe.options.SpriteOptions<new.T>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_geometry",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_geometry(_g:phoenix.geometry.Geometry) : phoenix.geometry.Geometry",
           "return": ": phoenix.geometry.Geometry",
           "args": [
             {
               "name": "_g",
-              "type": "phoenix.geometry.Geometry"
+              "type": "phoenix.geometry.Geometry",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_flipy",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_flipy(_v:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_v",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
@@ -211,9 +222,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_serialize_data() : Dynamic",
           "return": ": Dynamic",
@@ -222,57 +233,60 @@
         {
           "name": "point_inside_exact",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "point_inside_exact(_p:luxe.Vector) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_p",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_uv",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_uv(_uv:luxe.Rectangle) : luxe.Rectangle",
           "return": ": luxe.Rectangle",
           "args": [
             {
               "name": "_uv",
-              "type": "luxe.Rectangle"
+              "type": "luxe.Rectangle",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_centered",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_centered(_c:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_c",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "on_geometry_created",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "on_geometry_created() : Void",
           "return": ": Void",
@@ -281,48 +295,51 @@
         {
           "name": "set_flipx",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_flipx(_v:Bool) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_v",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "_uv_change",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_uv_change(_v:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_size",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_size(_v:luxe.Vector) : luxe.Vector",
           "return": ": luxe.Vector",
           "args": [
             {
               "name": "_v",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             }
           ]
         }

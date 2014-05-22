@@ -33,7 +33,7 @@ _none_
 
 
 
-`post_render : Dynamic`
+`post_render : phoenix.Batcher->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,9 +41,11 @@ _none_
 
 
 
-`pre_render : Dynamic`
+`pre_render : phoenix.Batcher->Void`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

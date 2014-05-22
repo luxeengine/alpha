@@ -1,0 +1,64 @@
+{
+  "source": "phoenix.geometry.ComplexQuad",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "_uv_cache",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "_uv_cache : phoenix.Rectangle",
+          "type": "phoenix.Rectangle",
+          "doc": ""
+        },
+        {
+          "name": "verts",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "verts : Array<phoenix.geometry.Vertex>",
+          "type": "Array<phoenix.geometry.Vertex>",
+          "doc": ""
+        },
+        {
+          "name": "flipy",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "flipy : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "uuid",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "uuid : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "flipx",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "flipx : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

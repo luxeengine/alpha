@@ -27,6 +27,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -58,7 +60,7 @@
 
 
 
-`segments_for_smooth_circle(_radius:Float, ?_smooth:Float) : Float`
+`segments_for_smooth_circle(_radius:Float, ?_smooth:Float=6) : Float`
 
 <span class="small_desc_flat"> no description </span>   
 

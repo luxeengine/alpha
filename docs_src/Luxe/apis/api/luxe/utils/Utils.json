@@ -11,9 +11,9 @@
         {
           "name": "geometry",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "geometry : luxe.utils.GeometryUtils",
           "type": "luxe.utils.GeometryUtils",
           "doc": ""
@@ -26,9 +26,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "luxe : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
@@ -36,14 +36,19 @@
         {
           "name": "_byte_levels",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_byte_levels : Array<String>",
           "type": "Array<String>",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -52,40 +57,44 @@
         {
           "name": "arrayToBytes",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "arrayToBytes(array:Array<Int>) : haxe.io.Bytes",
           "return": ": haxe.io.Bytes",
           "args": [
             {
               "name": "array",
-              "type": "Array<Int>"
+              "type": "Array<Int>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "file_bytes_to_class",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int) : Void",
+          "signature": "file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int=2048) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_file",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "_outfile",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_string_length",
-              "type": "Int"
+              "type": "Int",
+              "value": "2048"
             }
           ]
         },
@@ -97,25 +106,26 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_luxe:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_luxe",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
         {
           "name": "uniqueid",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "uniqueid() : String",
           "return": ": String",
@@ -124,81 +134,87 @@
         {
           "name": "base64_decode",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "base64_decode(_string:String) : String",
           "return": ": String",
           "args": [
             {
               "name": "_string",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         },
         {
           "name": "find_assets_image_sequence",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "find_assets_image_sequence(_name:String, ?_ext:String, ?_start:String) : Array<String>",
+          "signature": "find_assets_image_sequence(_name:String, ?_ext:String='.png', ?_start:String='1') : Array<String>",
           "return": ": Array<String>",
           "args": [
             {
               "name": "_name",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "?_ext",
-              "type": "String"
+              "type": "String",
+              "value": "'.png'"
             },
             {
               "name": "?_start",
-              "type": "String"
+              "type": "String",
+              "value": "'1'"
             }
           ]
         },
         {
           "name": "stacktrace",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "stacktrace(?_depth:Int) : String",
+          "signature": "stacktrace(?_depth:Int=100) : String",
           "return": ": String",
           "args": [
             {
               "name": "?_depth",
-              "type": "Int"
+              "type": "Int",
+              "value": "100"
             }
           ]
         },
         {
           "name": "bytes_to_string",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "bytes_to_string(bytes:Int) : String",
           "return": ": String",
           "args": [
             {
               "name": "bytes",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "uuid",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "uuid() : String",
           "return": ": String",
@@ -207,16 +223,17 @@
         {
           "name": "base64_encode",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "base64_encode(_string:String) : String",
           "return": ": String",
           "args": [
             {
               "name": "_string",
-              "type": "String"
+              "type": "String",
+              "value": "null"
             }
           ]
         }

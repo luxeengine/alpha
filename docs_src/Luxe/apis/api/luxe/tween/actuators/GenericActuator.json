@@ -20,9 +20,9 @@
         {
           "name": "properties",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "properties : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "target",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "target : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "_ease",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_ease : luxe.tween.easing.IEasing",
           "type": "luxe.tween.easing.IEasing",
           "doc": ""
@@ -50,9 +50,9 @@
         {
           "name": "_onRepeat",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_onRepeat : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -60,9 +60,9 @@
         {
           "name": "_onRepeatParams",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_onRepeatParams : Array<Dynamic>",
           "type": "Array<Dynamic>",
           "doc": ""
@@ -70,9 +70,9 @@
         {
           "name": "_onUpdate",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_onUpdate : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -80,9 +80,9 @@
         {
           "name": "timescaled",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "timescaled : Bool",
           "type": "Bool",
           "doc": "* Specify whether this should be scaled by the global timescale\n     * @param   _value      Whether or not it should be\n     * @return      The current actuator instance"
@@ -90,9 +90,9 @@
         {
           "name": "_autoVisible",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_autoVisible : Bool",
           "type": "Bool",
           "doc": ""
@@ -100,9 +100,9 @@
         {
           "name": "_onCompleteParams",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_onCompleteParams : Array<Dynamic>",
           "type": "Array<Dynamic>",
           "doc": ""
@@ -110,9 +110,9 @@
         {
           "name": "_delay",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_delay : Float",
           "type": "Float",
           "doc": ""
@@ -120,9 +120,9 @@
         {
           "name": "_reflect",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_reflect : Bool",
           "type": "Bool",
           "doc": ""
@@ -130,9 +130,9 @@
         {
           "name": "_smartRotation",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_smartRotation : Bool",
           "type": "Bool",
           "doc": ""
@@ -140,9 +140,9 @@
         {
           "name": "_onComplete",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_onComplete : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -150,9 +150,9 @@
         {
           "name": "_snapping",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_snapping : Bool",
           "type": "Bool",
           "doc": ""
@@ -160,9 +160,9 @@
         {
           "name": "id",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "id : String",
           "type": "String",
           "doc": ""
@@ -170,9 +170,9 @@
         {
           "name": "_reverse",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_reverse : Bool",
           "type": "Bool",
           "doc": ""
@@ -180,9 +180,9 @@
         {
           "name": "special",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "special : Bool",
           "type": "Bool",
           "doc": ""
@@ -190,9 +190,9 @@
         {
           "name": "_onUpdateParams",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_onUpdateParams : Array<Dynamic>",
           "type": "Array<Dynamic>",
           "doc": ""
@@ -200,9 +200,9 @@
         {
           "name": "duration",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "duration : Float",
           "type": "Float",
           "doc": ""
@@ -210,14 +210,19 @@
         {
           "name": "_repeat",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_repeat : Int",
           "type": "Int",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -226,57 +231,60 @@
         {
           "name": "autoVisible",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values\n     * @param   value       Whether autoVisible should be enabled (Default is true)\n     * @return      The current actuator instance",
           "signature": "autoVisible(?value:Bool) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "complete",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "complete(?sendEvent:Bool) : Void",
+          "signature": "complete(?sendEvent:Bool=true) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "?sendEvent",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
         {
           "name": "delay",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Increases the delay before a tween is executed\n     * @param   duration        The amount of seconds to delay\n     * @return      The current actuator instance",
           "signature": "delay(duration:Float) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "duration",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "move",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "move() : Void",
           "return": ": Void",
@@ -285,25 +293,26 @@
         {
           "name": "timescale",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "timescale(?_value:Bool) : luxe.tween.actuators.IGenericActuator",
+          "signature": "timescale(?_value:Bool=true) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?_value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
         {
           "name": "resume",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "resume() : Void",
           "return": ": Void",
@@ -312,125 +321,136 @@
         {
           "name": "stop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "properties",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "complete",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             },
             {
               "name": "sendEvent",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "smartRotation",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Enabling smartRotation can prevent undesired results when tweening rotation values\n     * @param   value       Whether smart rotation should be enabled (Default is true)\n     * @return      The current actuator instance",
           "signature": "smartRotation(?value:Bool) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "onComplete",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Defines a function which will be called when the tween finishes\n     * @param   handler     The function you would like to be called\n     * @param   parameters      Parameters you would like to pass to the handler function when it is called\n     * @return      The current actuator instance",
           "signature": "onComplete(handler:Dynamic, ?parameters:Array<Dynamic>) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "handler",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?parameters",
-              "type": "Array<Dynamic>"
+              "type": "Array<Dynamic>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "onRepeat",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Defines a function which will be called when the tween repeats\n     * @param   handler     The function you would like to be called\n     * @param   parameters      Parameters you would like to pass to the handler function when it is called\n     * @return      The current actuator instance",
           "signature": "onRepeat(handler:Dynamic, ?parameters:Array<Dynamic>) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "handler",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?parameters",
-              "type": "Array<Dynamic>"
+              "type": "Array<Dynamic>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "onUpdate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Defines a function which will be called when the tween updates\n     * @param   handler     The function you would like to be called\n     * @param   parameters      Parameters you would like to pass to the handler function when it is called\n     * @return      The current actuator instance",
           "signature": "onUpdate(handler:Dynamic, ?parameters:Array<Dynamic>) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "handler",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "?parameters",
-              "type": "Array<Dynamic>"
+              "type": "Array<Dynamic>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "reverse",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Sets if the tween should be handled in reverse\n     * @param   value       Whether the tween should be reversed (Default is true)\n     * @return      The current actuator instance",
           "signature": "reverse(?value:Bool) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "change",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "change() : Void",
           "return": ": Void",
@@ -439,49 +459,53 @@
         {
           "name": "snapping",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Snapping causes tween values to be rounded automatically\n     * @param   value       Whether tween values should be rounded (Default is true)\n     * @return      The current actuator instance",
           "signature": "snapping(?value:Bool) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(target:Dynamic, duration:Float, properties:Dynamic) ",
           "return": "",
           "args": [
             {
               "name": "target",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             },
             {
               "name": "duration",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "properties",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": "null"
             }
           ]
         },
         {
           "name": "pause",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "pause() : Void",
           "return": ": Void",
@@ -490,41 +514,43 @@
         {
           "name": "reflect",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect\n     * @param   value       Whether reflect should be enabled (Default is true)\n     * @return      The current actuator instance",
           "signature": "reflect(?value:Bool) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?value",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "null"
             }
           ]
         },
         {
           "name": "repeat",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Repeats the tween after it finishes\n     * @param   times       The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)\n     * @return      The current actuator instance",
           "signature": "repeat(?times:Int) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?times",
-              "type": "Int"
+              "type": "Int",
+              "value": "null"
             }
           ]
         },
         {
           "name": "apply",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "apply() : Void",
           "return": ": Void",
@@ -533,16 +559,17 @@
         {
           "name": "ease",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Sets the easing which is used when running the tween\n     * @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut\n     * @return      The current actuator instance",
           "signature": "ease(easing:luxe.tween.easing.IEasing) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "easing",
-              "type": "luxe.tween.easing.IEasing"
+              "type": "luxe.tween.easing.IEasing",
+              "value": "null"
             }
           ]
         }

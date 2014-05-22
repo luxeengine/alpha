@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="textalign">TextAlign</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / TextAlign</p>
+<p><br/></p>
+<hr>
+<p><a href="#Values">Values</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Values" ></a></p>
+<h3 id="values">Values</h3>
+<hr>
+<p><a class="lift" name="bottom" href="#bottom">bottom</a></p>
+<p><code>phoenix.TextAlign.bottom</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="center" href="#center">center</a></p>
+<p><code>phoenix.TextAlign.center</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="left" href="#left">left</a></p>
+<p><code>phoenix.TextAlign.left</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="right" href="#right">right</a></p>
+<p><code>phoenix.TextAlign.right</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="top" href="#top">top</a></p>
+<p><code>phoenix.TextAlign.top</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

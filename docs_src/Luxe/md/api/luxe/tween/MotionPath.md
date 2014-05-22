@@ -55,6 +55,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -62,7 +64,7 @@
 
 
 
-`bezier(x:Float, y:Float, controlX:Float, controlY:Float, ?strength:Float) : luxe.tween.MotionPath`
+`bezier(x:Float, y:Float, controlX:Float, controlY:Float, ?strength:Float=1) : luxe.tween.MotionPath`
 
 <span class="small_desc_flat"> * Adds a bezier curve to the current motion path
      * @param   x  The x position of the end point for the curve
@@ -76,7 +78,7 @@
 
 
 
-`line(x:Float, y:Float, ?strength:Float) : luxe.tween.MotionPath`
+`line(x:Float, y:Float, ?strength:Float=1) : luxe.tween.MotionPath`
 
 <span class="small_desc_flat"> * Adds a line to the current motion path
      * @param   x  The x position of the end point for the line

@@ -18,15 +18,15 @@
 ---
 
 
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="data" href="#data">data</a>
 
@@ -35,6 +35,8 @@
 `data() : String`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

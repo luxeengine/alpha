@@ -1,0 +1,64 @@
+{
+  "source": "phoenix.UniformValueType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "int",
+          "signature": "phoenix.UniformValueType.int",
+          "doc": ""
+        },
+        {
+          "name": "float",
+          "signature": "phoenix.UniformValueType.float",
+          "doc": ""
+        },
+        {
+          "name": "vector2",
+          "signature": "phoenix.UniformValueType.vector2",
+          "doc": ""
+        },
+        {
+          "name": "vector3",
+          "signature": "phoenix.UniformValueType.vector3",
+          "doc": ""
+        },
+        {
+          "name": "vector4",
+          "signature": "phoenix.UniformValueType.vector4",
+          "doc": ""
+        },
+        {
+          "name": "color",
+          "signature": "phoenix.UniformValueType.color",
+          "doc": ""
+        },
+        {
+          "name": "texture",
+          "signature": "phoenix.UniformValueType.texture",
+          "doc": ""
+        },
+        {
+          "name": "unknown",
+          "signature": "phoenix.UniformValueType.unknown",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

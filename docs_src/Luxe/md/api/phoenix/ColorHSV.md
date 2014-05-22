@@ -63,6 +63,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -102,7 +104,7 @@ _none_
 
 
 
-`new(?_h:Float, ?_s:Float, ?_v:Float, ?_a:Float) `
+`new(?_h:Float=0.0f, ?_s:Float=0.0f, ?_v:Float=1.0f, ?_a:Float=1.0f) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -142,7 +144,7 @@ _none_
 
 
 
-`tween(?_time_in_seconds:Float, ?_dest:luxe.options.ColorOptions, ?_override:Bool) : luxe.tween.actuators.IGenericActuator`
+`tween(?_time_in_seconds:Float=0.5f, ?_dest:luxe.options.ColorOptions, ?_override:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
 <span class="small_desc_flat"> no description </span>   
 

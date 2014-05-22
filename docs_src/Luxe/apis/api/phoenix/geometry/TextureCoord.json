@@ -11,9 +11,9 @@
         {
           "name": "v",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "v : Float",
           "type": "Float",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "u",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "u : Float",
           "type": "Float",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "t",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "t : Float",
           "type": "Float",
           "doc": ""
@@ -41,14 +41,19 @@
         {
           "name": "w",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "w : Float",
           "type": "Float",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -57,65 +62,73 @@
         {
           "name": "set",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set(?_u:Float, ?_v:Float, ?_w:Float, ?_t:Float) : phoenix.geometry.TextureCoord",
           "return": ": phoenix.geometry.TextureCoord",
           "args": [
             {
               "name": "?_u",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_t",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(?_u:Float, ?_v:Float, ?_w:Float, ?_t:Float) ",
+          "signature": "new(?_u:Float=0.0f, ?_v:Float=0.0f, ?_w:Float=0.0f, ?_t:Float=0.0f) ",
           "return": "",
           "args": [
             {
               "name": "?_u",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.0f"
             },
             {
               "name": "?_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.0f"
             },
             {
               "name": "?_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.0f"
             },
             {
               "name": "?_t",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.0f"
             }
           ]
         },
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",

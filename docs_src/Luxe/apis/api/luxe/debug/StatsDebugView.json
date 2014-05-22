@@ -20,9 +20,9 @@
         {
           "name": "debug_geometry_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "debug_geometry_count : Int",
           "type": "Int",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "render_stats_text",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "render_stats_text : luxe.Text",
           "type": "luxe.Text",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "debug_draw_call_count",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "debug_draw_call_count : Int",
           "type": "Int",
           "doc": ""
@@ -50,9 +50,9 @@
         {
           "name": "hide_debug",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "hide_debug : Bool",
           "type": "Bool",
           "doc": ""
@@ -60,9 +60,9 @@
         {
           "name": "_render_stats",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_render_stats : luxe.debug.RenderStats",
           "type": "luxe.debug.RenderStats",
           "doc": ""
@@ -70,9 +70,9 @@
         {
           "name": "resource_stats_text",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "resource_stats_text : luxe.Text",
           "type": "luxe.Text",
           "doc": ""
@@ -80,9 +80,9 @@
         {
           "name": "resource_list_text",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "resource_list_text : luxe.Text",
           "type": "luxe.Text",
           "doc": ""
@@ -90,14 +90,19 @@
         {
           "name": "_last_render_stats",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_last_render_stats : luxe.debug.RenderStats",
           "type": "luxe.debug.RenderStats",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -106,9 +111,9 @@
         {
           "name": "create",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "create() : Void",
           "return": ": Void",
@@ -117,9 +122,9 @@
         {
           "name": "refresh",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh() : Void",
           "return": ": Void",
@@ -128,25 +133,26 @@
         {
           "name": "onkeydown",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "onkeydown(e:luxe.KeyEvent) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "e",
-              "type": "luxe.KeyEvent"
+              "type": "luxe.KeyEvent",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -155,9 +161,9 @@
         {
           "name": "get_render_stats_string",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_render_stats_string() : String",
           "return": ": String",
@@ -166,9 +172,9 @@
         {
           "name": "process",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -177,9 +183,9 @@
         {
           "name": "hide",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "hide() : Void",
           "return": ": Void",
@@ -188,9 +194,9 @@
         {
           "name": "toggle_debug_stats",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toggle_debug_stats() : Void",
           "return": ": Void",
@@ -199,9 +205,9 @@
         {
           "name": "get_resource_stats_string",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_resource_stats_string() : String",
           "return": ": String",
@@ -210,9 +216,9 @@
         {
           "name": "show",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "show() : Void",
           "return": ": Void",
@@ -221,9 +227,9 @@
         {
           "name": "refresh_render_stats",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "refresh_render_stats() : Void",
           "return": ": Void",
@@ -232,9 +238,9 @@
         {
           "name": "update_render_stats",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "update_render_stats() : Void",
           "return": ": Void",

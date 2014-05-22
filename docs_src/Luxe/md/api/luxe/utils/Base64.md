@@ -18,15 +18,15 @@
 ---
 
 
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="decode" href="#decode">decode</a>
 
@@ -59,6 +59,8 @@
 `encodeBytesData(bytesData:haxe.io.BytesData) : String`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 
 

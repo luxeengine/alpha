@@ -89,7 +89,7 @@ _none_
 
 
 
-`on_pages_loaded : Dynamic`
+`on_pages_loaded : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -97,7 +97,7 @@ _none_
 
 
 
-`onload : Dynamic`
+`onload : phoenix.BitmapFont->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -135,6 +135,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -166,7 +168,7 @@ _none_
 
 
 
-`load_from_string(?_bitmap_file:String, ?_folder:String, ?onloaded:phoenix.BitmapFont->Void, ?custom_pages:Array<phoenix.Texture>) : Void`
+`load_from_string(?_bitmap_file:String='', ?_folder:String='assets/', ?onloaded:phoenix.BitmapFont->Void, ?custom_pages:Array<phoenix.Texture>) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

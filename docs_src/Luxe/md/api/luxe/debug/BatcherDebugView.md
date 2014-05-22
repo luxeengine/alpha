@@ -29,7 +29,9 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug.DebugView.html">luxe.debug.DebugView</a>
+<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug/DebugView.html">luxe.debug.DebugView</a>
+
+&nbsp;   
 
 &nbsp;   
 
@@ -74,7 +76,7 @@
 
 
 
-`draw_geom_node(l:Bool, _leaf:luxe.structural.BalancedBinarySearchTreeNode<phoenix.geometry.GeometryKey,phoenix.geometry.Geometry>, _p:luxe.Vector, ?_bbw:Float) : Void`
+`draw_geom_node(l:Bool, _leaf:luxe.structural.BalancedBinarySearchTreeNode<phoenix.geometry.GeometryKey,phoenix.geometry.Geometry>, _p:luxe.Vector, ?_bbw:Float=20) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

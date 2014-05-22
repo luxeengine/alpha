@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="debuginspectoroptions">DebugInspectorOptions</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#luxe.debug">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">luxe</a><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe.debug</a> / DebugInspectorOptions</p>
+<p><br/></p>
+<hr>
+<p><a href="#Members">Members</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="batcher" href="#batcher">batcher</a></p>
+<p><code>batcher : phoenix.Batcher</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="font" href="#font">font</a></p>
+<p><code>font : phoenix.BitmapFont</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="pos" href="#pos">pos</a></p>
+<p><code>pos : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="size" href="#size">size</a></p>
+<p><code>size : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="title" href="#title">title</a></p>
+<p><code>title : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

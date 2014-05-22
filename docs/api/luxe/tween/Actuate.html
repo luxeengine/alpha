@@ -50,21 +50,21 @@
 <p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#luxe.tween">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">luxe</a><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe.tween</a> / Actuate</p>
 <p><br/></p>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><a href="#Members">Members</a><br><a href="#StaticMethods">StaticMethods</a>   </p>
 <hr>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
 <h3 id="members">Members</h3>
 <hr>
 <p><a class="lift" name="defaultActuator" href="#defaultActuator">defaultActuator</a></p>
-<p><code>defaultActuator : Class&lt;luxe.tween.actuators.GenericActuator&gt;</code></p>
+<p><span class="inline-block static">static</span><code>defaultActuator : Class&lt;luxe.tween.actuators.GenericActuator&gt;</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="defaultEase" href="#defaultEase">defaultEase</a></p>
-<p><code>defaultEase : luxe.tween.easing.IEasing</code></p>
+<p><span class="inline-block static">static</span><code>defaultEase : luxe.tween.easing.IEasing</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="staticmethods">StaticMethods</h3>
 <hr>
 <p><a class="lift" name="apply" href="#apply">apply</a></p>
 <p><code>apply(target:Dynamic, properties:Dynamic, ?customActuator:Class&lt;luxe.tween.actuators.GenericActuator&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
@@ -75,7 +75,7 @@
  * @param   customActuator      A custom actuator to use instead of the <span class="hljs-keyword">default</span> (Optional)
  * @<span class="hljs-keyword">return</span>      The current actuator instance, which can be used to apply properties like onComplete or onUpdate handlers]]&gt; &lt;/span&gt;   
 </code></pre><p><a class="lift" name="motionPath" href="#motionPath">motionPath</a></p>
-<p><code>motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><code>motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool=true) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> * Creates a new MotionPath tween</p>
 <pre><code> * @param   target      The object to tween
  * @param   duration        The length of the tween <span class="hljs-keyword">in</span> seconds
@@ -100,7 +100,7 @@
 <p><code>resumeAll() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="stop" href="#stop">stop</a></p>
-<p><code>stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool, ?sendEvent:Bool) : Void</code></p>
+<p><code>stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool=false, ?sendEvent:Bool=true) : Void</code></p>
 <p><span class="small_desc_flat"> * Stops all tweens for an individual object</p>
 <pre><code> * @param   target      The target object which will have its tweens stopped, or a generic actuator instance
  * @param   properties      A string, array or object which contains the properties you wish to stop, like <span class="hljs-string">"alpha"</span>, [ <span class="hljs-string">"x"</span>, <span class="hljs-string">"y"</span> ] or { alpha: <span class="hljs-literal">null</span> }. Passing no value removes all tweens <span class="hljs-keyword">for</span> the object (Optional)
@@ -114,7 +114,7 @@
  * @param   customActuator      A custom actuator to use instead of the <span class="hljs-keyword">default</span> (Optional)
  * @<span class="hljs-keyword">return</span>      The current actuator instance, which can be used to apply properties like onComplete or to gain a reference to the target timer object]]&gt; &lt;/span&gt;   
 </code></pre><p><a class="lift" name="tween" href="#tween">tween</a></p>
-<p><code>tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool, ?customActuator:Class&lt;luxe.tween.actuators.GenericActuator&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><code>tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool=true, ?customActuator:Class&lt;luxe.tween.actuators.GenericActuator&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> &lt;![CDATA[* Creates a new tween</p>
 <pre><code> * @example     &lt;code&gt;Actuate.tween (MyClip, <span class="hljs-number">1</span>, { alpha: <span class="hljs-number">1</span> } ).onComplete (<span class="hljs-keyword">trace</span>, [ <span class="hljs-string">"MyClip is now visible"</span> ]);&lt;/code&gt;
  * @param   target      The object to tween
@@ -127,7 +127,7 @@
 <p><code>unload(actuator:luxe.tween.actuators.GenericActuator) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="update" href="#update">update</a></p>
-<p><code>update(target:Dynamic, duration:Float, ?start:Array&lt;Dynamic&gt;, ?end:Array&lt;Dynamic&gt;, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><code>update(target:Dynamic, duration:Float, ?start:Array&lt;Dynamic&gt;, ?end:Array&lt;Dynamic&gt;, ?overwrite:Bool=true) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> &lt;![CDATA[* Creates a new tween that updates a method rather than setting the properties of an object</p>
 <pre><code> * @example     &lt;code&gt;Actuate.update (<span class="hljs-keyword">trace</span>, <span class="hljs-number">1</span>, [<span class="hljs-string">"Value: "</span>, <span class="hljs-number">0</span>], [<span class="hljs-string">""</span>, <span class="hljs-number">1</span>]).onComplete (<span class="hljs-keyword">trace</span>, [ <span class="hljs-string">"Finished tracing values between 0 and 1"</span> ]);&lt;/code&gt;
  * @param   target      The method to update        
@@ -136,7 +136,8 @@
  * @param   end     The ending parameters of the method call. You may use both numeric and non-numeric values, but the signature should match the start parameters
  * @param   overwrite       Sets whether previous tweens <span class="hljs-keyword">for</span> the same target and properties will be overwritten (Default is <span class="hljs-literal">true</span>)
  * @<span class="hljs-keyword">return</span>      The current actuator instance, which can be used to apply properties like ease, delay, onComplete or onUpdate]]&gt; &lt;/span&gt;   
-</code></pre><p>&nbsp;
+</code></pre><p>&nbsp;   </p>
+<p>&nbsp;
 &nbsp;
 &nbsp;</p>
 <hr>

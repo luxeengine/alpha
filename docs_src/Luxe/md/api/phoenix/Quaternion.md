@@ -19,6 +19,7 @@ _none_
 
 
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -65,8 +66,8 @@ _none_
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="Dot" href="#Dot">Dot</a>
 
@@ -84,6 +85,11 @@ _none_
 
 <span class="small_desc_flat"> no description </span>   
 
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
 <a class="lift" name="add" href="#add">add</a>
 
 
@@ -200,7 +206,7 @@ _none_
 
 
 
-`new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) `
+`new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=1) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -232,7 +238,7 @@ _none_
 
 
 
-`setFromEuler(_euler:phoenix.Vector, ?_order:String) : phoenix.Quaternion`
+`setFromEuler(_euler:phoenix.Vector, ?_order:String='XYZ') : phoenix.Quaternion`
 
 <span class="small_desc_flat"> no description </span>   
 

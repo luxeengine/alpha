@@ -30,13 +30,7 @@
 <a class="lift" name="Implements" ></a>
 ###Implements   
 ---
-<a class="lift" name="luxe.tween.actuators.IGenericActuator" href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a>
-
-
-
-`undefined`
-
-<span class="small_desc_flat"> no description </span>   
+<a class="lift" name="luxe.tween.actuators.IGenericActuator" href="{{{rel_path}}}api/luxe/tween/actuators/IGenericActuator.html">luxe.tween.actuators.IGenericActuator</a>
 
 &nbsp;   
 
@@ -84,6 +78,8 @@
 <span class="small_desc_flat"> * Specify whether this should be scaled by the global timescale
      * @param   _value      Whether or not it should be
      * @return      The current actuator instance </span>   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -255,7 +251,7 @@
 
 
 
-`timescale(?_value:Bool) : luxe.tween.actuators.IGenericActuator`
+`timescale(?_value:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
 <span class="small_desc_flat"> no description </span>   
 

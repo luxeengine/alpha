@@ -50,7 +50,7 @@
 <p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / Quaternion</p>
 <p><br/></p>
 <hr>
-<p><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><a href="#Properties">Properties</a><br><a href="#StaticMethods">StaticMethods</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
 <p>&nbsp;   </p>
 <p>&nbsp;   </p>
@@ -70,8 +70,8 @@
 <p><code>z : Float</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="staticmethods">StaticMethods</h3>
 <hr>
 <p><a class="lift" name="Dot" href="#Dot">Dot</a></p>
 <p><code>Dot(_a:phoenix.Quaternion, _b:phoenix.Quaternion) : Float</code></p>
@@ -79,6 +79,10 @@
 <p><a class="lift" name="Slerp" href="#Slerp">Slerp</a></p>
 <p><code>Slerp(_qa:phoenix.Quaternion, _qb:phoenix.Quaternion, _qm:phoenix.Quaternion, _t:Float) : phoenix.Quaternion</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
 <p><a class="lift" name="add" href="#add">add</a></p>
 <p><code>add(_quaternion:phoenix.Quaternion) : phoenix.Quaternion</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
@@ -122,7 +126,7 @@
 <p><code>multiplyScalar(_scalar:Float) : phoenix.Quaternion</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float)</code></p>
+<p><code>new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=1)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="normalize" href="#normalize">normalize</a></p>
 <p><code>normalize() : phoenix.Quaternion</code></p>
@@ -134,7 +138,7 @@
 <p><code>setFromAxisAngle(_axis:phoenix.Vector, _angle:Float) : phoenix.Quaternion</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="setFromEuler" href="#setFromEuler">setFromEuler</a></p>
-<p><code>setFromEuler(_euler:phoenix.Vector, ?_order:String) : phoenix.Quaternion</code></p>
+<p><code>setFromEuler(_euler:phoenix.Vector, ?_order:String=&#39;XYZ&#39;) : phoenix.Quaternion</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="setFromRotationMatrix" href="#setFromRotationMatrix">setFromRotationMatrix</a></p>
 <p><code>setFromRotationMatrix(_m:phoenix.Matrix4) : phoenix.Quaternion</code></p>

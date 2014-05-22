@@ -207,6 +207,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -238,7 +240,7 @@ _none_
 
 
 
-`compile(_type:Int, _source:String, ?_verbose:Bool) : lime.gl.GLShader`
+`compile(_type:Int, _source:String, ?_verbose:Bool=false) : lime.gl.GLShader`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -278,7 +280,7 @@ _none_
 
 
 
-`load_from_string(_vertex_source:String, _fragment_source:String, ?_verbose:Bool) : Bool`
+`load_from_string(_vertex_source:String, _fragment_source:String, ?_verbose:Bool=false) : Bool`
 
 <span class="small_desc_flat"> no description </span>   
 

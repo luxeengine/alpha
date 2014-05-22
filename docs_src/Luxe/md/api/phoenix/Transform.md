@@ -19,9 +19,7 @@ _none_
 
 
 [Extends](#Extends)   
-[Members](#Members)   
 [Properties](#Properties)   
-[Methods](#Methods)   
 
 
 ---
@@ -34,65 +32,6 @@ _none_
 <a class="lift" name="luxe.Objects" href="{{{rel_path}}}api/luxe/Objects.html">luxe.Objects</a>
 
 &nbsp;   
-
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="children" href="#children">children</a>
-
-
-
-`children : Array<phoenix.Transform>`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="compensate" href="#compensate">compensate</a>
-
-
-
-`compensate : Bool`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="dirty_world" href="#dirty_world">dirty_world</a>
-
-
-
-`dirty_world : Bool`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="ignore_listeners" href="#ignore_listeners">ignore_listeners</a>
-
-
-
-`ignore_listeners : Bool`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="pos_changed" href="#pos_changed">pos_changed</a>
-
-
-
-`pos_changed : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="rotation_changed" href="#rotation_changed">rotation_changed</a>
-
-
-
-`rotation_changed : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="scale_changed" href="#scale_changed">scale_changed</a>
-
-
-
-`scale_changed : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
@@ -172,25 +111,6 @@ _none_
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new() `
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="refresh" href="#refresh">refresh</a>
-
-
-
-`refresh() : Void`
-
-<span class="small_desc_flat"> no description </span>   
 
 
 

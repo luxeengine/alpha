@@ -20,6 +20,7 @@ _none_
 
 [Members](#Members)   
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -173,8 +174,8 @@ _none_
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="GetBackward" href="#GetBackward">GetBackward</a>
 
@@ -224,6 +225,11 @@ _none_
 
 <span class="small_desc_flat"> no description </span>   
 
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
 <a class="lift" name="clone" href="#clone">clone</a>
 
 
@@ -372,7 +378,7 @@ _none_
 
 
 
-`make2D(_x:Float, _y:Float, ?_scale:Float, ?_rotation:Float) : phoenix.Matrix4`
+`make2D(_x:Float, _y:Float, ?_scale:Float=1, ?_rotation:Float=0) : phoenix.Matrix4`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -412,7 +418,7 @@ _none_
 
 
 
-`makeRotationFromEuler(_v:phoenix.Vector, ?_order:String) : phoenix.Matrix4`
+`makeRotationFromEuler(_v:phoenix.Vector, ?_order:String='XYZ') : phoenix.Matrix4`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -508,7 +514,7 @@ _none_
 
 
 
-`new(?n11:Float, ?n12:Float, ?n13:Float, ?n14:Float, ?n21:Float, ?n22:Float, ?n23:Float, ?n24:Float, ?n31:Float, ?n32:Float, ?n33:Float, ?n34:Float, ?n41:Float, ?n42:Float, ?n43:Float, ?n44:Float) `
+`new(?n11:Float=1, ?n12:Float=0, ?n13:Float=0, ?n14:Float=0, ?n21:Float=0, ?n22:Float=1, ?n23:Float=0, ?n24:Float=0, ?n31:Float=0, ?n32:Float=0, ?n33:Float=1, ?n34:Float=0, ?n41:Float=0, ?n42:Float=0, ?n43:Float=0, ?n44:Float=1) `
 
 <span class="small_desc_flat"> no description </span>   
 

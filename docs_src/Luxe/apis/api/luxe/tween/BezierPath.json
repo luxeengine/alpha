@@ -11,9 +11,9 @@
         {
           "name": "control",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "control : Float",
           "type": "Float",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "strength",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "strength : Float",
           "type": "Float",
           "doc": ""
@@ -31,14 +31,19 @@
         {
           "name": "end",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "end : Float",
           "type": "Float",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -47,44 +52,49 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(end:Float, control:Float, strength:Float) ",
           "return": "",
           "args": [
             {
               "name": "end",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "control",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "strength",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "calculate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "calculate(start:Float, k:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "start",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "k",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         }

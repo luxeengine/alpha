@@ -77,6 +77,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -92,7 +94,7 @@ _none_
 
 
 
-`create(type:Class<create.T1>, ?_name:String, ?_data:create.T2) : create.T1`
+`create(type:Class<create.T1>, ?_name:String='', ?_data:create.T2) : create.T1`
 
 <span class="small_desc_flat"> no description </span>   
 

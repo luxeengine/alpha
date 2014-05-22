@@ -65,43 +65,52 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "set",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set(?_h:Float, ?_s:Float, ?_v:Float, ?_a:Float) : phoenix.Color",
           "return": ": phoenix.Color",
           "args": [
             {
               "name": "?_h",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_s",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_a",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "clone",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clone() : phoenix.ColorHSV",
           "return": ": phoenix.ColorHSV",
@@ -110,37 +119,41 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(?_h:Float, ?_s:Float, ?_v:Float, ?_a:Float) ",
+          "signature": "new(?_h:Float=0.0f, ?_s:Float=0.0f, ?_v:Float=1.0f, ?_a:Float=1.0f) ",
           "return": "",
           "args": [
             {
               "name": "?_h",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.0f"
             },
             {
               "name": "?_s",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.0f"
             },
             {
               "name": "?_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "1.0f"
             },
             {
               "name": "?_a",
-              "type": "Float"
+              "type": "Float",
+              "value": "1.0f"
             }
           ]
         },
         {
           "name": "_refresh",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "_refresh() : phoenix.ColorHSV",
           "return": ": phoenix.ColorHSV",
@@ -149,9 +162,9 @@
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",
@@ -160,33 +173,36 @@
         {
           "name": "tween",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "tween(?_time_in_seconds:Float, ?_dest:luxe.options.ColorOptions, ?_override:Bool) : luxe.tween.actuators.IGenericActuator",
+          "signature": "tween(?_time_in_seconds:Float=0.5f, ?_dest:luxe.options.ColorOptions, ?_override:Bool=true) : luxe.tween.actuators.IGenericActuator",
           "return": ": luxe.tween.actuators.IGenericActuator",
           "args": [
             {
               "name": "?_time_in_seconds",
-              "type": "Float"
+              "type": "Float",
+              "value": "0.5f"
             },
             {
               "name": "?_dest",
-              "type": "luxe.options.ColorOptions"
+              "type": "luxe.options.ColorOptions",
+              "value": "null"
             },
             {
               "name": "?_override",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         },
         {
           "name": "toColor",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toColor() : phoenix.Color",
           "return": ": phoenix.Color",
@@ -195,9 +211,9 @@
         {
           "name": "toColorHSL",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toColorHSL() : phoenix.ColorHSL",
           "return": ": phoenix.ColorHSL",
@@ -206,80 +222,85 @@
         {
           "name": "set_s",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_s(_s:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_s",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_h",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_h(_h:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_h",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_v",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_v(_v:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "fromColorHSL",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "fromColorHSL(_color_hsl:phoenix.ColorHSL) : phoenix.ColorHSV",
           "return": ": phoenix.ColorHSV",
           "args": [
             {
               "name": "_color_hsl",
-              "type": "phoenix.ColorHSL"
+              "type": "phoenix.ColorHSL",
+              "value": "null"
             }
           ]
         },
         {
           "name": "fromColor",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "fromColor(_color:phoenix.Color) : phoenix.ColorHSV",
           "return": ": phoenix.ColorHSV",
           "args": [
             {
               "name": "_color",
-              "type": "phoenix.Color"
+              "type": "phoenix.Color",
+              "value": "null"
             }
           ]
         }

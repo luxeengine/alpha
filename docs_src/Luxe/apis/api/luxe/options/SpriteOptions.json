@@ -1,0 +1,389 @@
+{
+  "source": "luxe.options.SpriteOptions",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "texture",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "texture : phoenix.Texture",
+          "type": "phoenix.Texture",
+          "doc": ""
+        },
+        {
+          "name": "name",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "group",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "group : Null<Int>",
+          "type": "Null<Int>",
+          "doc": ""
+        },
+        {
+          "name": "color",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "color : luxe.Color",
+          "type": "luxe.Color",
+          "doc": ""
+        },
+        {
+          "name": "visible",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "visible : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "origin",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "origin : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        },
+        {
+          "name": "centered",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "centered : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "shader",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "shader : phoenix.Shader",
+          "type": "phoenix.Shader",
+          "doc": ""
+        },
+        {
+          "name": "depth",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "depth : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "rotation_z",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "rotation_z : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "no_batcher_add",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "no_batcher_add : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "parent",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "parent : luxe.Entity",
+          "type": "luxe.Entity",
+          "doc": ""
+        },
+        {
+          "name": "uv",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "uv : luxe.Rectangle",
+          "type": "luxe.Rectangle",
+          "doc": ""
+        },
+        {
+          "name": "init_with",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "init_with : luxe.options.SpriteOptions.T",
+          "type": "luxe.options.SpriteOptions.T",
+          "doc": ""
+        },
+        {
+          "name": "flipx",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "flipx : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "batcher",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "batcher : phoenix.Batcher",
+          "type": "phoenix.Batcher",
+          "doc": ""
+        },
+        {
+          "name": "no_geometry",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "no_geometry : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "geometry",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "geometry : phoenix.geometry.Geometry",
+          "type": "phoenix.geometry.Geometry",
+          "doc": ""
+        },
+        {
+          "name": "size",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "size : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        },
+        {
+          "name": "no_scene",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "no_scene : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "serialize",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "serialize : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "flipy",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "flipy : Null<Bool>",
+          "type": "Null<Bool>",
+          "doc": ""
+        },
+        {
+          "name": "scene",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "scene : luxe.Scene",
+          "type": "luxe.Scene",
+          "doc": ""
+        },
+        {
+          "name": "scale",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "scale : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        },
+        {
+          "name": "pos",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "pos : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

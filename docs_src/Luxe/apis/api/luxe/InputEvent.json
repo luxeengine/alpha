@@ -1,0 +1,104 @@
+{
+  "source": "luxe.InputEvent",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "name",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "key_event",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "key_event : luxe.KeyEvent",
+          "type": "luxe.KeyEvent",
+          "doc": ""
+        },
+        {
+          "name": "gamepad_event",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "gamepad_event : luxe.GamepadEvent",
+          "type": "luxe.GamepadEvent",
+          "doc": ""
+        },
+        {
+          "name": "type",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "type : luxe.InputType",
+          "type": "luxe.InputType",
+          "doc": ""
+        },
+        {
+          "name": "touch_event",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "touch_event : luxe.TouchEvent",
+          "type": "luxe.TouchEvent",
+          "doc": ""
+        },
+        {
+          "name": "mouse_event",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "mouse_event : luxe.MouseEvent",
+          "type": "luxe.MouseEvent",
+          "doc": ""
+        },
+        {
+          "name": "state",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "state : luxe.InputState",
+          "type": "luxe.InputState",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

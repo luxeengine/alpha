@@ -71,6 +71,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -78,7 +80,7 @@
 
 
 
-`new(target:Dynamic, propertyName:String, start:Float, change:Float, ?isField:Bool) `
+`new(target:Dynamic, propertyName:String, start:Float, change:Float, ?isField:Bool=true) `
 
 <span class="small_desc_flat"> no description </span>   
 

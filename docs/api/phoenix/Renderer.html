@@ -102,6 +102,7 @@
 <p><code>stop_count : Int</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
+<p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
@@ -118,19 +119,19 @@
 <p><code>init() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="load_font" href="#load_font">load_font</a></p>
-<p><code>load_font(_fontid:String, ?_path:String, ?_onloaded:phoenix.BitmapFont-&gt;Void) : phoenix.BitmapFont</code></p>
+<p><code>load_font(_fontid:String, ?_path:String=&#39;assets/&#39;, ?_onloaded:phoenix.BitmapFont-&gt;Void) : phoenix.BitmapFont</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="load_shader" href="#load_shader">load_shader</a></p>
 <p><code>load_shader(_psid:String, ?_vsid:String, ?_onloaded:phoenix.Shader-&gt;Void) : phoenix.Shader</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="load_texture" href="#load_texture">load_texture</a></p>
-<p><code>load_texture(_name:String, ?_onloaded:phoenix.Texture-&gt;Void, ?_silent:Bool, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture</code></p>
+<p><code>load_texture(_name:String, ?_onloaded:phoenix.Texture-&gt;Void, ?_silent:Bool=false, ?asset_bytes:lime.utils.ByteArray) : phoenix.Texture</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="load_texture_from_string_byte_array" href="#load_texture_from_string_byte_array">load_texture_from_string_byte_array</a></p>
-<p><code>load_texture_from_string_byte_array(?_name:String, _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture</code></p>
+<p><code>load_texture_from_string_byte_array(?_name:String=&#39;untitled texture&#39;, _string_byte_array:String, _width:Int, _height:Int) : phoenix.Texture</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="load_textures" href="#load_textures">load_textures</a></p>
-<p><code>load_textures(_names:Array&lt;String&gt;, ?_onloaded:Array-&gt;Void, ?_silent:Bool) : Void</code></p>
+<p><code>load_textures(_names:Array&lt;String&gt;, ?_onloaded:Array-&gt;Void, ?_silent:Bool=false) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
 <p><code>new(_core:luxe.Core)</code></p>

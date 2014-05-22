@@ -30,7 +30,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug.DebugView.html">luxe.debug.DebugView</a>
+<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug/DebugView.html">luxe.debug.DebugView</a>
 
 &nbsp;   
 
@@ -60,6 +60,8 @@
 `max_lines : Int`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

@@ -1,0 +1,54 @@
+{
+  "source": "phoenix.UniformValue",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "name",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "type",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "type : phoenix.UniformValueType",
+          "type": "phoenix.UniformValueType",
+          "doc": ""
+        },
+        {
+          "name": "location",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "location : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "value",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "value : phoenix.UniformValue.T",
+          "type": "phoenix.UniformValue.T",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

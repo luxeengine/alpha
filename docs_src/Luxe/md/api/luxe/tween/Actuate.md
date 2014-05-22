@@ -19,7 +19,7 @@
 
 
 [Members](#Members)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -33,7 +33,7 @@
 
 
 
-`defaultActuator : Class<luxe.tween.actuators.GenericActuator>`
+<span class="inline-block static">static</span>`defaultActuator : Class<luxe.tween.actuators.GenericActuator>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -41,14 +41,14 @@
 
 
 
-`defaultEase : luxe.tween.easing.IEasing`
+<span class="inline-block static">static</span>`defaultEase : luxe.tween.easing.IEasing`
 
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="apply" href="#apply">apply</a>
 
@@ -67,7 +67,7 @@
 
 
 
-`motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator`
+`motionPath(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
 <span class="small_desc_flat"> * Creates a new MotionPath tween
      * @param   target      The object to tween
@@ -122,7 +122,7 @@
 
 
 
-`stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool, ?sendEvent:Bool) : Void`
+`stop(target:Dynamic, ?properties:Dynamic, ?complete:Bool=false, ?sendEvent:Bool=true) : Void`
 
 <span class="small_desc_flat"> * Stops all tweens for an individual object
      * @param   target      The target object which will have its tweens stopped, or a generic actuator instance
@@ -146,7 +146,7 @@
 
 
 
-`tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool, ?customActuator:Class<luxe.tween.actuators.GenericActuator>) : luxe.tween.actuators.IGenericActuator`
+`tween(target:Dynamic, duration:Float, properties:Dynamic, ?overwrite:Bool=true, ?customActuator:Class<luxe.tween.actuators.GenericActuator>) : luxe.tween.actuators.IGenericActuator`
 
 <span class="small_desc_flat"> <![CDATA[* Creates a new tween
      * @example     <code>Actuate.tween (MyClip, 1, { alpha: 1 } ).onComplete (trace, [ "MyClip is now visible" ]);</code>
@@ -169,7 +169,7 @@
 
 
 
-`update(target:Dynamic, duration:Float, ?start:Array<Dynamic>, ?end:Array<Dynamic>, ?overwrite:Bool) : luxe.tween.actuators.IGenericActuator`
+`update(target:Dynamic, duration:Float, ?start:Array<Dynamic>, ?end:Array<Dynamic>, ?overwrite:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
 <span class="small_desc_flat"> <![CDATA[* Creates a new tween that updates a method rather than setting the properties of an object
      * @example     <code>Actuate.update (trace, 1, ["Value: ", 0], ["", 1]).onComplete (trace, [ "Finished tracing values between 0 and 1" ]);</code>
@@ -179,6 +179,8 @@
      * @param   end     The ending parameters of the method call. You may use both numeric and non-numeric values, but the signature should match the start parameters
      * @param   overwrite       Sets whether previous tweens for the same target and properties will be overwritten (Default is true)
      * @return      The current actuator instance, which can be used to apply properties like ease, delay, onComplete or onUpdate]]> </span>   
+
+&nbsp;   
 
 
 

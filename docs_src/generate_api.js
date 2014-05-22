@@ -27,6 +27,9 @@
 
             //we parse each top level object from scribe and spit out a template file for 
             //the documentator to take and run with
+
+        //Classes
+
             if(doc_json) {
                 var classes = doc_json.classes;
                 if(classes) {
@@ -34,8 +37,23 @@
 
                         var theclass = classes[i];
                         var filename = theclass.name;
+                        var _skip = false;
 
                         if(!theclass.ispublic) {
+                            _skip = true;
+                        }
+
+                        if(theclass["meta"]) {
+                            var _metas = theclass["meta"];
+                            for(var j = 0; j < _metas.length; ++j ) {
+                                var _meta = _metas[j];
+                                if(_meta.name == ':noCompletion') {
+                                    _skip = true;
+                                }
+                            }
+                        }
+
+                        if(_skip) {
                             continue;
                         }
 
@@ -94,10 +112,29 @@
                         }
 
                         if(theclass["methods"].length != 0) {
+                            var _method_list = theclass["methods"];
+                            var _static_methods = [];
+                            var _normal_methods = [];
+
+                            for(var j = 0; j < _method_list.length; ++j) {
+                                var _cur_method = _method_list[j];
+                                if(_cur_method.isstatic) {
+                                    _static_methods.push(_cur_method);
+                                } else {
+                                    _normal_methods.push(_cur_method);
+                                }
+                            }
+
+                            output_json.sections.push({
+                                name : "StaticMethods",
+                                link : "#StaticMethods",
+                                values : _static_methods
+                            });
+
                             output_json.sections.push({
                                 name : "Methods",
                                 link : "#Methods",
-                                values : theclass["methods"]
+                                values : _normal_methods
                             });
                         }
 
@@ -118,6 +155,173 @@
 
                     } //for each class
                 }
+            
+            //Typedefs
+
+                var typedefs = doc_json.typedefs;
+                if(typedefs) {
+                    for(var i = 0; i < typedefs.length; ++i) {
+
+                        var thetypedef = typedefs[i];
+                        var filename = thetypedef.name;
+                        var _skip = false;
+
+                        if(!thetypedef.ispublic) {
+                            _skip = true;
+                        }
+
+                        if(thetypedef["meta"]) {
+                            var _metas = thetypedef["meta"];
+                            for(var j = 0; j < _metas.length; ++j ) {
+                                var _meta = _metas[j];
+                                if(_meta.name == ':noCompletion') {
+                                    _skip = true;
+                                }
+                            }
+                        }
+
+                        if(_skip) {
+                            continue;
+                        }
+
+                        var output_json = {
+                            source : filename,
+                            doc : '',
+                            links : [],
+                            toplinks : [],
+                            sections : []
+                        }
+
+                        //add the docs if any
+                        if(thetypedef["doc"].length != 0) {
+                            output_json.doc = thetypedef["doc"];
+                        }
+
+                        if(thetypedef["alias"].length != 0) {
+                            output_json.alias = thetypedef["alias"];
+                        }
+
+                        if(thetypedef["members"].length != 0) {
+                             output_json.sections.push({
+                                name : "Members",
+                                link : "#Members",
+                                values : thetypedef["members"]
+                            });
+                        }
+                        
+                        if(thetypedef["meta"].length != 0) {
+                             output_json.sections.push({
+                                name : "Meta",
+                                link : "#Meta",
+                                values : thetypedef["meta"]
+                            });
+                        }
+
+                            //write out a single file per class, into it's package folder
+                        var packages = thetypedef.name.split('.');
+                            //remove the class name from the end
+                        var class_name = packages.pop();
+                            //find where this file will end up
+                        var package_path = config.apis_path + packages.join('/') + '/';
+                            //generate the package folders if required
+                        helper.create_folder_path( package_path );
+                            //work out the final file destination
+                        var api_file = package_path + class_name + ".json";
+                            //debugging
+                        helper.verbose("\t- refreshing api file from scribe .. " + api_file);
+                            //write the generated file to the path 
+                        helper.write_file( api_file, JSON.stringify(output_json, null, 2) );
+
+                    } //for each typedef
+                }//if typedefs
+
+            //Enums
+
+                var enums = doc_json.enums;
+                if(enums) {
+                    for(var i = 0; i < enums.length; ++i) {
+
+                        var theenum = enums[i];
+                        var filename = theenum.name;
+                        var _skip = false;
+
+                        if(!theenum.ispublic) {
+                            _skip = true;
+                        }
+
+                        if(theenum["meta"]) {
+                            var _metas = theenum["meta"];
+                            for(var j = 0; j < _metas.length; ++j ) {
+                                var _meta = _metas[j];
+                                if(_meta.name == ':noCompletion') {
+                                    _skip = true;
+                                }
+                            }
+                        }
+
+                        if(_skip) {
+                            continue;
+                        }
+
+                        var output_json = {
+                            source : filename,
+                            doc : '',
+                            links : [],
+                            toplinks : [],
+                            sections : []
+                        }
+
+                            //add the docs if any
+                        if(theenum["doc"].length != 0) {
+                            output_json.doc = theenum["doc"];
+                        }
+
+                        var _values = [];
+                        var __values = theenum["values"];
+
+                        for(var j = 0; j < __values.length; ++j) {
+                            var _value = __values[j];
+                            _values.push({ 
+                                name:_value.name, 
+                                signature : theenum["name"] + '.' + _value.name,
+                                doc : _value.doc
+                            });
+                        }
+
+                        if(theenum["values"].length != 0) {
+                             output_json.sections.push({
+                                name : "Values",
+                                link : "#Values",
+                                values : _values
+                            });
+                        }
+                        
+                        if(theenum["meta"].length != 0) {
+                             output_json.sections.push({
+                                name : "Meta",
+                                link : "#Meta",
+                                values : theenum["meta"]
+                            });
+                        }
+
+                            //write out a single file per class, into it's package folder
+                        var packages = theenum.name.split('.');
+                            //remove the class name from the end
+                        var class_name = packages.pop();
+                            //find where this file will end up
+                        var package_path = config.apis_path + packages.join('/') + '/';
+                            //generate the package folders if required
+                        helper.create_folder_path( package_path );
+                            //work out the final file destination
+                        var api_file = package_path + class_name + ".json";
+                            //debugging
+                        helper.verbose("\t- refreshing api file from scribe .. " + api_file);
+                            //write the generated file to the path 
+                        helper.write_file( api_file, JSON.stringify(output_json, null, 2) );
+
+                    } //for each enum
+                }//if enums
+
             } //if doc json
 
         } //_docs_json
@@ -164,18 +368,16 @@
                         //join them again
                     _package_info = _package_info[0];
 
-                if(_package_root.indexOf('/_') == -1) {
-                            //add if not existing
-                        if(!_package_items[_package_root]) {
-                            _package_items[_package_root] = [];
+                    //add if not existing
+                if(!_package_items[_package_root]) {
+                    _package_items[_package_root] = [];
 
-                            _package_list.push({ name:_package_root, items:_package_items[_package_root]});
-                        }
-
-                    var _api_item = _api_list[_api_list.length-1];
-                        _api_item.name = _api_item.name.replace(_package_root+'.','');
-                    _package_items[_package_root].push(_api_item);
+                    _package_list.push({ name:_package_root, items:_package_items[_package_root]});
                 }
+
+                var _api_item = _api_list[_api_list.length-1];
+                    _api_item.name = _api_item.name.replace(_package_root+'.','');
+                _package_items[_package_root].push(_api_item);
 
                 var _dest_path = _list[i];
                     _dest_path = _dest_path.replace( config.apis_path, '');
@@ -237,8 +439,8 @@
                         var _value = _section.values[_k];
                         var _skip = false;
 
-                        if( _section.name == 'Methods' || _section.name == 'Members' ) {
-                            if( _value["public"] != true) {
+                        if( _section.name == 'Methods' || _section.name == 'Members' || _section.name == 'StaticMethods' ) {
+                            if( _value["ispublic"] != true) {
                                 _skip = true;
                             }
                         }
@@ -274,15 +476,24 @@
                             _added_section_header = true;
                         }
 
-                        if(_section.name == 'Extends') {
+                        if(_section.name == 'Extends' || _section.name == 'Implements') {
 
-                            var _extends_link = _value.name.replace('.','/')+'.html' 
+                            var _extends_link = _value.name.replace(/\./gi,'/')+'.html' 
                             _context.content += '<a class="lift" name="'+_value.name+'" href="{{{rel_path}}}api/'+_extends_link+'">'+_value.name+'</a>\n\n';
 
                         } else if(_section.name != 'Meta') {
 
-                            _context.content += '<a class="lift" name="'+_value.name+'" href="#'+_value.name+'">'+_value.name+'</a>\n\n';
-                            _context.content += '\n\n`' + _value.signature +'`\n\n';
+                            var _prefix = '';
+
+                            if(_section.name == 'Members') {
+                                if(_value.isstatic) {
+                                    _prefix = '<span class="inline-block static">static</span>';
+                                }
+                            }
+
+                            _context.content += '<a class="lift" name="'+_value.name+'" href="#'+_value.name+'">' + _value.name + '</a>\n\n';
+
+                            _context.content += '\n\n'+ _prefix +'`'+_value.signature +'`\n\n';
                             _context.content += '<span class="small_desc_flat"> ' + (_value.doc || "no description")+ ' </span>   \n\n';
 
                         }

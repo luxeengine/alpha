@@ -114,11 +114,12 @@
 <p><code>scene : luxe.Scene</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
+<p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="add" href="#add">add</a></p>
-<p><code>add(type:Class&lt;add.T1&gt;, ?_name:String, ?_data:add.T2) : add.T1</code></p>
+<p><code>add(type:Class&lt;add.T1&gt;, ?_name:String=&#39;&#39;, ?_data:add.T2) : add.T1</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="add_child" href="#add_child">add_child</a></p>
 <p><code>add_child(child:luxe.Entity) : Void</code></p>
@@ -127,10 +128,10 @@
 <p><code>destroy() : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get" href="#get">get</a></p>
-<p><code>get(_name:String, ?_in_children:Bool) : get.T</code></p>
+<p><code>get(_name:String, ?_in_children:Bool=false) : get.T</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get_any" href="#get_any">get_any</a></p>
-<p><code>get_any(_name:String, ?_in_children:Bool, ?_first_only:Bool) : Array&lt;get_any.T&gt;</code></p>
+<p><code>get_any(_name:String, ?_in_children:Bool=false, ?_first_only:Bool=true) : Array&lt;get_any.T&gt;</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
 <p><code>get_serialize_data() : Dynamic</code></p>
@@ -142,13 +143,13 @@
 <p><code>new(?_options:luxe.options.EntityOptions&lt;new.T&gt;)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="remove" href="#remove">remove</a></p>
-<p><code>remove(?_name:String, ?_data:remove.T) : Bool</code></p>
+<p><code>remove(?_name:String=&#39;&#39;, ?_data:remove.T) : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="remove_child" href="#remove_child">remove_child</a></p>
 <p><code>remove_child(child:luxe.Entity) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="serialize_to_disk" href="#serialize_to_disk">serialize_to_disk</a></p>
-<p><code>serialize_to_disk(_destination_path:String, ?_parent_write:Bool) : Void</code></p>
+<p><code>serialize_to_disk(_destination_path:String, ?_parent_write:Bool=false) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;
 &nbsp;

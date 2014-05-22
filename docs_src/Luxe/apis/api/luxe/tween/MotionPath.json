@@ -11,9 +11,9 @@
         {
           "name": "haxe_doc",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "haxe_doc : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "_x",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_x : luxe.tween.ComponentPath",
           "type": "luxe.tween.ComponentPath",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "_y",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_y : luxe.tween.ComponentPath",
           "type": "luxe.tween.ComponentPath",
           "doc": ""
@@ -67,39 +67,47 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "line",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Adds a line to the current motion path\n     * @param   x  The x position of the end point for the line\n     * @param   x  The y position of the end point for the line\n     * @param   strength  The degree of emphasis that should be placed on this segment . If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)\n     * @return  The current motion path instance",
-          "signature": "line(x:Float, y:Float, ?strength:Float) : luxe.tween.MotionPath",
+          "signature": "line(x:Float, y:Float, ?strength:Float=1) : luxe.tween.MotionPath",
           "return": ": luxe.tween.MotionPath",
           "args": [
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "?strength",
-              "type": "Float"
+              "type": "Float",
+              "value": "1"
             }
           ]
         },
         {
           "name": "get_x",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_x() : luxe.tween.IComponentPath",
           "return": ": luxe.tween.IComponentPath",
@@ -108,9 +116,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -119,41 +127,46 @@
         {
           "name": "bezier",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "* Adds a bezier curve to the current motion path\n     * @param   x  The x position of the end point for the curve\n     * @param   y  The y position of the end point for the curve\n     * @param   controlX  The x position of the control point for the curve, which affects the angle and midpoint\n     * @param   controlX  The x position of the control point for the curve, which affects the angle and midpoint\n     * @param   strength  The degree of emphasis that should be placed on this segment. If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)\n     * @return  The current motion path instance",
-          "signature": "bezier(x:Float, y:Float, controlX:Float, controlY:Float, ?strength:Float) : luxe.tween.MotionPath",
+          "signature": "bezier(x:Float, y:Float, controlX:Float, controlY:Float, ?strength:Float=1) : luxe.tween.MotionPath",
           "return": ": luxe.tween.MotionPath",
           "args": [
             {
               "name": "x",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "y",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "controlX",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "controlY",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "?strength",
-              "type": "Float"
+              "type": "Float",
+              "value": "1"
             }
           ]
         },
         {
           "name": "get_y",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_y() : luxe.tween.IComponentPath",
           "return": ": luxe.tween.IComponentPath",

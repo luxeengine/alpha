@@ -1,0 +1,144 @@
+{
+  "source": "luxe.MouseEvent",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "shift_down",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "shift_down : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "raw",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "raw : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "alt_down",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "alt_down : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "meta_down",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "meta_down : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "deltaY",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "deltaY : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "y",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "y : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "flags",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "flags : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "x",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "x : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "button",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "button : lime.MouseButton",
+          "type": "lime.MouseButton",
+          "doc": ""
+        },
+        {
+          "name": "state",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "state : lime.MouseState",
+          "type": "lime.MouseState",
+          "doc": ""
+        },
+        {
+          "name": "pos",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "pos : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        },
+        {
+          "name": "deltaX",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "deltaX : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "ctrl_down",
+          "meta": [],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "ctrl_down : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

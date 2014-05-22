@@ -29,7 +29,9 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="luxe.tween.BezierPath" href="{{{rel_path}}}api/luxe/tween.BezierPath.html">luxe.tween.BezierPath</a>
+<a class="lift" name="luxe.tween.BezierPath" href="{{{rel_path}}}api/luxe/tween/BezierPath.html">luxe.tween.BezierPath</a>
+
+&nbsp;   
 
 &nbsp;   
 

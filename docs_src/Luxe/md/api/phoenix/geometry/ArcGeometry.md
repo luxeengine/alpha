@@ -29,7 +29,9 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="phoenix.geometry.CircleGeometry" href="{{{rel_path}}}api/phoenix/geometry.CircleGeometry.html">phoenix.geometry.CircleGeometry</a>
+<a class="lift" name="phoenix.geometry.CircleGeometry" href="{{{rel_path}}}api/phoenix/geometry/CircleGeometry.html">phoenix.geometry.CircleGeometry</a>
+
+&nbsp;   
 
 &nbsp;   
 

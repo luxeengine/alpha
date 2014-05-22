@@ -11,9 +11,9 @@
         {
           "name": "uv6",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv6 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "uv4",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv4 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "uv2",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv2 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "uv0",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv0 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "uv7",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv7 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "uv5",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv5 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -71,9 +71,9 @@
         {
           "name": "uv3",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv3 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
@@ -81,14 +81,19 @@
         {
           "name": "uv1",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "uv1 : phoenix.geometry.TextureCoord",
           "type": "phoenix.geometry.TextureCoord",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -97,9 +102,9 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",

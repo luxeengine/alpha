@@ -33,7 +33,7 @@
 
 
 
-`compare : Dynamic`
+`compare : luxe.structural.BalancedBinarySearchTree.K->luxe.structural.BalancedBinarySearchTree.K->Int`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -44,6 +44,8 @@
 `root : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 

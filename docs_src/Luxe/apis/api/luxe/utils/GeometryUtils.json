@@ -16,14 +16,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "luxe : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -32,28 +37,32 @@
         {
           "name": "intersect_ray_plane",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "intersect_ray_plane(_ray_start:luxe.Vector, _ray_dir:luxe.Vector, _plane_normal:luxe.Vector, _plane_point:luxe.Vector) : luxe.Vector",
           "return": ": luxe.Vector",
           "args": [
             {
               "name": "_ray_start",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             },
             {
               "name": "_ray_dir",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             },
             {
               "name": "_plane_normal",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             },
             {
               "name": "_plane_point",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             }
           ]
         },
@@ -65,69 +74,75 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_luxe:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_luxe",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
         {
           "name": "segments_for_smooth_circle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "segments_for_smooth_circle(_radius:Float, ?_smooth:Float) : Float",
+          "signature": "segments_for_smooth_circle(_radius:Float, ?_smooth:Float=6) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_radius",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "?_smooth",
-              "type": "Float"
+              "type": "Float",
+              "value": "6"
             }
           ]
         },
         {
           "name": "point_in_polygon",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "point_in_polygon(_point:luxe.Vector, _offset:luxe.Vector, _verts:Array<luxe.Vector>) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "_point",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             },
             {
               "name": "_offset",
-              "type": "luxe.Vector"
+              "type": "luxe.Vector",
+              "value": "null"
             },
             {
               "name": "_verts",
-              "type": "Array<luxe.Vector>"
+              "type": "Array<luxe.Vector>",
+              "value": "null"
             }
           ]
         },
         {
           "name": "random_point_in_unit_circle",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "random_point_in_unit_circle() : luxe.Vector",
           "return": ": luxe.Vector",

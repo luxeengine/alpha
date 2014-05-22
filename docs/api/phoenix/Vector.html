@@ -50,7 +50,7 @@
 <p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / Vector</p>
 <p><br/></p>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#StaticMethods">StaticMethods</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
@@ -60,13 +60,13 @@
 <p><code>ignore_listeners : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="listen_x" href="#listen_x">listen_x</a></p>
-<p><code>listen_x : Dynamic</code></p>
+<p><code>listen_x : Float-&gt;Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="listen_y" href="#listen_y">listen_y</a></p>
-<p><code>listen_y : Dynamic</code></p>
+<p><code>listen_y : Float-&gt;Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="listen_z" href="#listen_z">listen_z</a></p>
-<p><code>listen_z : Dynamic</code></p>
+<p><code>listen_z : Float-&gt;Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="w" href="#w">w</a></p>
 <p><code>w : Float</code></p>
@@ -103,8 +103,8 @@
 <p><code>z : Float</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="staticmethods">StaticMethods</h3>
 <hr>
 <p><a class="lift" name="Add" href="#Add">Add</a></p>
 <p><code>Add(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
@@ -142,6 +142,10 @@
 <p><a class="lift" name="ToRadians" href="#ToRadians">ToRadians</a></p>
 <p><code>ToRadians(_degree_vector:phoenix.Vector) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
 <p><a class="lift" name="add" href="#add">add</a></p>
 <p><code>add(other:phoenix.Vector) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
@@ -185,7 +189,7 @@
 <p><code>multiplyScalar(v:Float) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float)</code></p>
+<p><code>new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=0)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="normalize" href="#normalize">normalize</a></p>
 <p><code>normalize() : phoenix.Vector</code></p>
@@ -197,10 +201,10 @@
 <p><code>set(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a></p>
-<p><code>setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String) : phoenix.Vector</code></p>
+<p><code>setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String=&#39;XYZ&#39;) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></p>
-<p><code>setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String) : phoenix.Vector</code></p>
+<p><code>setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String=&#39;XYZ&#39;) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="set_xy" href="#set_xy">set_xy</a></p>
 <p><code>set_xy(_x:Float, _y:Float) : Void</code></p>

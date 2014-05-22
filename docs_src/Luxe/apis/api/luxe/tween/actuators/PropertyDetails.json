@@ -11,9 +11,9 @@
         {
           "name": "change",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "change : Float",
           "type": "Float",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "target",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "target : Dynamic",
           "type": "Dynamic",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "start",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "start : Float",
           "type": "Float",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "propertyName",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "propertyName : String",
           "type": "String",
           "doc": ""
@@ -51,14 +51,19 @@
         {
           "name": "isField",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "isField : Bool",
           "type": "Bool",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -67,32 +72,37 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(target:Dynamic, propertyName:String, start:Float, change:Float, ?isField:Bool) ",
+          "signature": "new(target:Dynamic, propertyName:String, start:Float, change:Float, ?isField:Bool=true) ",
           "return": "",
           "args": [
             {
               "name": "target",
-              "type": "Dynamic"
+              "type": "Dynamic",
+              "value": ""
             },
             {
               "name": "propertyName",
-              "type": "String"
+              "type": "String",
+              "value": ""
             },
             {
               "name": "start",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "change",
-              "type": "Float"
+              "type": "Float",
+              "value": ""
             },
             {
               "name": "?isField",
-              "type": "Bool"
+              "type": "Bool",
+              "value": "true"
             }
           ]
         }

@@ -211,17 +211,18 @@
 <p><code>layer : Int</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
+<p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="add" href="#add">add</a></p>
-<p><code>add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool) : Void</code></p>
+<p><code>add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool=false) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="add_group" href="#add_group">add_group</a></p>
 <p><code>add_group(_group:Int, _pre_render:phoenix.Batcher-&gt;Void, _post_render:phoenix.Batcher-&gt;Void) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="batch" href="#batch">batch</a></p>
-<p><code>batch(?persist_immediate:Bool) : Void</code></p>
+<p><code>batch(?persist_immediate:Bool=false) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="blend_mode" href="#blend_mode">blend_mode</a></p>
 <p><code>blend_mode(?_src_mode:phoenix.BlendMode, ?_dst_mode:phoenix.BlendMode) : Void</code></p>
@@ -236,16 +237,16 @@
 <p><code>compare_rule_to_string(r:Int) : String</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="draw" href="#draw">draw</a></p>
-<p><code>draw(?persist_immediate:Bool) : Void</code></p>
+<p><code>draw(?persist_immediate:Bool=false) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="geometry_compare" href="#geometry_compare">geometry_compare</a></p>
 <p><code>geometry_compare(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_r:phoenix.Renderer, ?_name:String)</code></p>
+<p><code>new(_r:phoenix.Renderer, ?_name:String=&#39;&#39;)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="remove" href="#remove">remove</a></p>
-<p><code>remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool) : Void</code></p>
+<p><code>remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool=true) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="set_layer" href="#set_layer">set_layer</a></p>
 <p><code>set_layer(_layer:Int) : Int</code></p>

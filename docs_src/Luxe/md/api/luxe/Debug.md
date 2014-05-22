@@ -19,6 +19,7 @@ _none_
 
 
 [Members](#Members)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -153,7 +154,7 @@ _none_
 
 
 
-`shut_down : Bool`
+<span class="inline-block static">static</span>`shut_down : Bool`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -177,7 +178,7 @@ _none_
 
 
 
-`views : Array<luxe.debug.DebugView>`
+<span class="inline-block static">static</span>`views : Array<luxe.debug.DebugView>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -191,6 +192,19 @@ _none_
 
 &nbsp;   
 
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
+---
+<a class="lift" name="internal_trace" href="#internal_trace">internal_trace</a>
+
+
+
+`internal_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void`
+
+<span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -198,7 +212,7 @@ _none_
 
 
 
-`add_trace_listener(_name:String, _callback:null->haxe.PosInfos->Void) : Void`
+`add_trace_listener(_name:String, _callback:Dynamic->haxe.PosInfos->Void) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -231,14 +245,6 @@ _none_
 
 
 `init() : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="internal_trace" href="#internal_trace">internal_trace</a>
-
-
-
-`internal_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -326,7 +332,7 @@ _none_
 
 
 
-`show_console(?_show:Bool) : Void`
+`show_console(?_show:Bool=true) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

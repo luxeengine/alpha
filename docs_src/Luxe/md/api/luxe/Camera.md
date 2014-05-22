@@ -125,6 +125,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -132,7 +134,7 @@ _none_
 
 
 
-`focus(_p:luxe.Vector, ?_t:Float, ?oncomplete:Void) : Void`
+`focus(_p:luxe.Vector, ?_t:Float=0.6f, ?oncomplete:Void) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

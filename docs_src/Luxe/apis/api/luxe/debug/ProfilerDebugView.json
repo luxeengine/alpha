@@ -20,9 +20,9 @@
         {
           "name": "lists",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": true,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": true,
           "signature": "lists : Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>",
           "type": "Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>",
           "doc": ""
@@ -30,12 +30,108 @@
         {
           "name": "_setup",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "_setup : Bool",
           "type": "Bool",
           "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": [
+        {
+          "name": "hide_item",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "hide_item(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "start",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "start(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "add_offset",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "add_offset(_id:String, _offset:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String",
+              "value": "null"
+            },
+            {
+              "name": "_offset",
+              "type": "String",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "show_item",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "show_item(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "end",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "end(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String",
+              "value": "null"
+            }
+          ]
         }
       ]
     },
@@ -46,115 +142,31 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
           "args": []
         },
         {
-          "name": "hide_item",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "hide_item(_id:String) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_id",
-              "type": "String"
-            }
-          ]
-        },
-        {
-          "name": "start",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "start(_id:String) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_id",
-              "type": "String"
-            }
-          ]
-        },
-        {
           "name": "hide",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "hide() : Void",
           "return": ": Void",
           "args": []
         },
         {
-          "name": "add_offset",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "add_offset(_id:String, _offset:String) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_id",
-              "type": "String"
-            },
-            {
-              "name": "_offset",
-              "type": "String"
-            }
-          ]
-        },
-        {
-          "name": "show_item",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "show_item(_id:String) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_id",
-              "type": "String"
-            }
-          ]
-        },
-        {
-          "name": "end",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "end(_id:String) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_id",
-              "type": "String"
-            }
-          ]
-        },
-        {
           "name": "show",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "show() : Void",
           "return": ": Void",

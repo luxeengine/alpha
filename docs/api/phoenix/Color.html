@@ -50,7 +50,7 @@
 <p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / Color</p>
 <p><br/></p>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#StaticMethods">StaticMethods</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
@@ -76,6 +76,13 @@
 <p><code>serialized : Dynamic</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="staticmethods">StaticMethods</h3>
+<hr>
+<p><a class="lift" name="random" href="#random">random</a></p>
+<p><code>random(?_include_alpha:Bool=false) : phoenix.Color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
@@ -95,13 +102,10 @@
 <p><code>minRGB() : Float</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?_r:Float, ?_g:Float, ?_b:Float, ?_a:Float)</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="random" href="#random">random</a></p>
-<p><code>random(?_include_alpha:Bool) : phoenix.Color</code></p>
+<p><code>new(?_r:Float=1.0f, ?_g:Float=1.0f, ?_b:Float=1.0f, ?_a:Float=1.0f)</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="rgb" href="#rgb">rgb</a></p>
-<p><code>rgb(?_rgb:Int) : phoenix.Color</code></p>
+<p><code>rgb(?_rgb:Int=16777215) : phoenix.Color</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="set" href="#set">set</a></p>
 <p><code>set(?_r:Float, ?_g:Float, ?_b:Float, ?_a:Float) : phoenix.Color</code></p>
@@ -116,7 +120,7 @@
 <p><code>toString() : String</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="tween" href="#tween">tween</a></p>
-<p><code>tween(?_time_in_seconds:Float, ?_properties_to_tween:luxe.options.ColorOptions, ?_override:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><code>tween(?_time_in_seconds:Float=0.5f, ?_properties_to_tween:luxe.options.ColorOptions, ?_override:Bool=true) : luxe.tween.actuators.IGenericActuator</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;
 &nbsp;

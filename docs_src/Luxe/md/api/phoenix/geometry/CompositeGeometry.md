@@ -30,7 +30,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="phoenix.geometry.Geometry" href="{{{rel_path}}}api/phoenix/geometry.Geometry.html">phoenix.geometry.Geometry</a>
+<a class="lift" name="phoenix.geometry.Geometry" href="{{{rel_path}}}api/phoenix/geometry/Geometry.html">phoenix.geometry.Geometry</a>
 
 &nbsp;   
 
@@ -44,6 +44,8 @@
 `geometry : Array<phoenix.geometry.Geometry>`
 
 <span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
 
 &nbsp;   
 
@@ -78,7 +80,7 @@
 
 
 
-`drop(?remove:Bool) : Void`
+`drop(?remove:Bool=true) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

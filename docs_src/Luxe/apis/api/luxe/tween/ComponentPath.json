@@ -20,9 +20,9 @@
         {
           "name": "start",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "start : Float",
           "type": "Float",
           "doc": ""
@@ -30,9 +30,9 @@
         {
           "name": "paths",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "paths : Array<luxe.tween.BezierPath>",
           "type": "Array<luxe.tween.BezierPath>",
           "doc": ""
@@ -40,9 +40,9 @@
         {
           "name": "totalStrength",
           "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
+          "ispublic": false,
+          "isinline": false,
+          "isstatic": false,
           "signature": "totalStrength : Float",
           "type": "Float",
           "doc": ""
@@ -66,15 +66,20 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new() ",
           "return": "",
@@ -83,41 +88,43 @@
         {
           "name": "addPath",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "addPath(path:luxe.tween.BezierPath) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "path",
-              "type": "luxe.tween.BezierPath"
+              "type": "luxe.tween.BezierPath",
+              "value": "null"
             }
           ]
         },
         {
           "name": "calculate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "calculate(k:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "k",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_end",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_end() : Float",
           "return": ": Float",

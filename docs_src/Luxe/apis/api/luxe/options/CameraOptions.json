@@ -1,0 +1,179 @@
+{
+  "source": "luxe.options.CameraOptions",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "x2",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "x2 : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "viewport",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "viewport : phoenix.Rectangle",
+          "type": "phoenix.Rectangle",
+          "doc": ""
+        },
+        {
+          "name": "name",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "projection",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "projection : phoenix.ProjectionType",
+          "type": "phoenix.ProjectionType",
+          "doc": ""
+        },
+        {
+          "name": "aspect",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "aspect : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "y1",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "y1 : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "fov",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "fov : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "x1",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "x1 : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "y2",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "y2 : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "near",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "near : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        },
+        {
+          "name": "far",
+          "meta": [
+            {
+              "name": ":optional",
+              "value": ""
+            }
+          ],
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "far : Null<Float>",
+          "type": "Null<Float>",
+          "doc": ""
+        }
+      ]
+    }
+  ]
+}

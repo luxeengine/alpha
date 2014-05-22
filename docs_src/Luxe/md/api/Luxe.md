@@ -20,7 +20,7 @@ _none_
 
 [Members](#Members)   
 [Properties](#Properties)   
-[Methods](#Methods)   
+[StaticMethods](#StaticMethods)   
 
 
 ---
@@ -34,7 +34,7 @@ _none_
 
 
 
-`audio : luxe.Audio`
+<span class="inline-block static">static</span>`audio : luxe.Audio`
 
 <span class="small_desc_flat"> Access to the audio features </span>   
 
@@ -42,7 +42,7 @@ _none_
 
 
 
-`camera : luxe.Camera`
+<span class="inline-block static">static</span>`camera : luxe.Camera`
 
 <span class="small_desc_flat"> Access to the default camera </span>   
 
@@ -50,7 +50,7 @@ _none_
 
 
 
-`core : luxe.Core`
+<span class="inline-block static">static</span>`core : luxe.Core`
 
 <span class="small_desc_flat"> Direct access to the core engine </span>   
 
@@ -58,7 +58,7 @@ _none_
 
 
 
-`debug : luxe.Debug`
+<span class="inline-block static">static</span>`debug : luxe.Debug`
 
 <span class="small_desc_flat"> Access to the core debug features </span>   
 
@@ -66,7 +66,7 @@ _none_
 
 
 
-`draw : luxe.Draw`
+<span class="inline-block static">static</span>`draw : luxe.Draw`
 
 <span class="small_desc_flat"> Access to the drawing features </span>   
 
@@ -74,7 +74,7 @@ _none_
 
 
 
-`dt : Float`
+<span class="inline-block static">static</span>`dt : Float`
 
 <span class="small_desc_flat"> The time the last frame took, this value can be altered or fixed using `Luxe.timescale` or `Luxe.fixed_timestep` </span>   
 
@@ -82,7 +82,7 @@ _none_
 
 
 
-`events : luxe.Events`
+<span class="inline-block static">static</span>`events : luxe.Events`
 
 <span class="small_desc_flat"> Access to the global event system </span>   
 
@@ -90,7 +90,7 @@ _none_
 
 
 
-`fixed_timestep : Float`
+<span class="inline-block static">static</span>`fixed_timestep : Float`
 
 <span class="small_desc_flat"> Set this for a fixed timestep value </span>   
 
@@ -98,7 +98,7 @@ _none_
 
 
 
-`input : luxe.Input`
+<span class="inline-block static">static</span>`input : luxe.Input`
 
 <span class="small_desc_flat"> Access to the input features </span>   
 
@@ -106,7 +106,7 @@ _none_
 
 
 
-`mouse : luxe.Vector`
+<span class="inline-block static">static</span>`mouse : luxe.Vector`
 
 <span class="small_desc_flat"> The last known mouse position </span>   
 
@@ -114,7 +114,7 @@ _none_
 
 
 
-`physics : luxe.Physics`
+<span class="inline-block static">static</span>`physics : luxe.Physics`
 
 <span class="small_desc_flat"> Access to the physics bindings, if any </span>   
 
@@ -122,7 +122,7 @@ _none_
 
 
 
-`renderer : phoenix.Renderer`
+<span class="inline-block static">static</span>`renderer : phoenix.Renderer`
 
 <span class="small_desc_flat"> Access to the rendering system </span>   
 
@@ -130,7 +130,7 @@ _none_
 
 
 
-`resources : luxe.ResourceManager`
+<span class="inline-block static">static</span>`resources : luxe.ResourceManager`
 
 <span class="small_desc_flat"> Access to the default resource manager </span>   
 
@@ -138,7 +138,7 @@ _none_
 
 
 
-`scene : luxe.Scene`
+<span class="inline-block static">static</span>`scene : luxe.Scene`
 
 <span class="small_desc_flat"> Access to the default luxe scene </span>   
 
@@ -146,7 +146,7 @@ _none_
 
 
 
-`timer : luxe.Timer`
+<span class="inline-block static">static</span>`timer : luxe.Timer`
 
 <span class="small_desc_flat"> Access to the timing features </span>   
 
@@ -154,7 +154,7 @@ _none_
 
 
 
-`timescale : Float`
+<span class="inline-block static">static</span>`timescale : Float`
 
 <span class="small_desc_flat"> The scale of time that affects the update rates and deltas </span>   
 
@@ -162,7 +162,7 @@ _none_
 
 
 
-`utils : luxe.utils.Utils`
+<span class="inline-block static">static</span>`utils : luxe.utils.Utils`
 
 <span class="small_desc_flat"> Access to the different utilities </span>   
 
@@ -189,8 +189,8 @@ _none_
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="addGeometry" href="#addGeometry">addGeometry</a>
 
@@ -212,7 +212,7 @@ _none_
 
 
 
-`createBatcher(?_name:String, ?_camera:luxe.Camera, ?_add:Bool) : phoenix.Batcher`
+`createBatcher(?_name:String='batcher', ?_camera:luxe.Camera, ?_add:Bool=true) : phoenix.Batcher`
 
 <span class="small_desc_flat"> Create a batcher, convenience for create batcher, add batcher, and create camera for the batcher. </span>   
 
@@ -260,7 +260,7 @@ _none_
 
 
 
-`loadShader(?_ps_id:String, ?_vs_id:String, ?_onloaded:phoenix.Shader->Void) : phoenix.Shader`
+`loadShader(?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:phoenix.Shader->Void) : phoenix.Shader`
 
 <span class="small_desc_flat"> Load a shader resource </span>   
 
@@ -268,7 +268,7 @@ _none_
 
 
 
-`loadSound(_name:String, _id:String, ?_is_music:Bool, ?_onloaded:luxe.SoundResource->Void) : luxe.SoundResource`
+`loadSound(_name:String, _id:String, ?_is_music:Bool=false, ?_onloaded:luxe.SoundResource->Void) : luxe.SoundResource`
 
 <span class="small_desc_flat"> Load a sound resource </span>   
 
@@ -284,7 +284,7 @@ _none_
 
 
 
-`loadTexture(_id:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool, ?_asset_bytes:lime.utils.ByteArray) : phoenix.Texture`
+`loadTexture(_id:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool=false, ?_asset_bytes:lime.utils.ByteArray) : phoenix.Texture`
 
 <span class="small_desc_flat"> Load a texture/image resource </span>   
 
@@ -292,7 +292,7 @@ _none_
 
 
 
-`loadTextures(_ids:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool) : Void`
+`loadTextures(_ids:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool=false) : Void`
 
 <span class="small_desc_flat"> Load multiple texture/image resources, useful for preloading </span>   
 
@@ -327,6 +327,8 @@ _none_
 `shutdown() : Void`
 
 <span class="small_desc_flat"> shutdown the engine and quit </span>   
+
+&nbsp;   
 
 
 

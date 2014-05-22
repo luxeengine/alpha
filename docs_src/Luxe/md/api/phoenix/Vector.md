@@ -20,6 +20,7 @@ _none_
 
 [Members](#Members)   
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -42,7 +43,7 @@ _none_
 
 
 
-`listen_x : Dynamic`
+`listen_x : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -50,7 +51,7 @@ _none_
 
 
 
-`listen_y : Dynamic`
+`listen_y : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -58,7 +59,7 @@ _none_
 
 
 
-`listen_z : Dynamic`
+`listen_z : Float->Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -149,8 +150,8 @@ _none_
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="Add" href="#Add">Add</a>
 
@@ -248,6 +249,11 @@ _none_
 
 <span class="small_desc_flat"> no description </span>   
 
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
 <a class="lift" name="add" href="#add">add</a>
 
 
@@ -364,7 +370,7 @@ _none_
 
 
 
-`new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) `
+`new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=0) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -396,7 +402,7 @@ _none_
 
 
 
-`setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String) : phoenix.Vector`
+`setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String='XYZ') : phoenix.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -404,7 +410,7 @@ _none_
 
 
 
-`setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String) : phoenix.Vector`
+`setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String='XYZ') : phoenix.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 

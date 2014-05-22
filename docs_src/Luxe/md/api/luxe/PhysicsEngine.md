@@ -39,6 +39,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -70,7 +72,7 @@ _none_
 
 
 
-`pause(?_pause:Bool) : Void`
+`pause(?_pause:Bool=true) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

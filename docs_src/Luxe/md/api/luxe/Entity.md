@@ -173,6 +173,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -180,7 +182,7 @@ _none_
 
 
 
-`add(type:Class<add.T1>, ?_name:String, ?_data:add.T2) : add.T1`
+`add(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -204,7 +206,7 @@ _none_
 
 
 
-`get(_name:String, ?_in_children:Bool) : get.T`
+`get(_name:String, ?_in_children:Bool=false) : get.T`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -212,7 +214,7 @@ _none_
 
 
 
-`get_any(_name:String, ?_in_children:Bool, ?_first_only:Bool) : Array<get_any.T>`
+`get_any(_name:String, ?_in_children:Bool=false, ?_first_only:Bool=true) : Array<get_any.T>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -244,7 +246,7 @@ _none_
 
 
 
-`remove(?_name:String, ?_data:remove.T) : Bool`
+`remove(?_name:String='', ?_data:remove.T) : Bool`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -260,7 +262,7 @@ _none_
 
 
 
-`serialize_to_disk(_destination_path:String, ?_parent_write:Bool) : Void`
+`serialize_to_disk(_destination_path:String, ?_parent_write:Bool=false) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

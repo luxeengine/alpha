@@ -11,9 +11,9 @@
         {
           "name": "engines",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "engines : Array<luxe.PhysicsEngine>",
           "type": "Array<luxe.PhysicsEngine>",
           "doc": ""
@@ -21,14 +21,19 @@
         {
           "name": "core",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "core : luxe.Core",
           "type": "luxe.Core",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -37,25 +42,26 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_core:luxe.Core) ",
           "return": "",
           "args": [
             {
               "name": "_core",
-              "type": "luxe.Core"
+              "type": "luxe.Core",
+              "value": "null"
             }
           ]
         },
         {
           "name": "process",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "process() : Void",
           "return": ": Void",
@@ -64,9 +70,9 @@
         {
           "name": "destroy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "destroy() : Void",
           "return": ": Void",
@@ -80,29 +86,31 @@
               "value": ""
             }
           ],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add_engine(type:Class<add_engine.T1>, ?_data:add_engine.T2) : add_engine.T1",
           "return": ": add_engine.T1",
           "args": [
             {
               "name": "type",
-              "type": "Class<add_engine.T1>"
+              "type": "Class<add_engine.T1>",
+              "value": ""
             },
             {
               "name": "?_data",
-              "type": "add_engine.T2"
+              "type": "add_engine.T2",
+              "value": "null"
             }
           ]
         },
         {
           "name": "init",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "init() : Void",
           "return": ": Void",

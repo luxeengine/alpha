@@ -63,6 +63,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -70,7 +72,7 @@
 
 
 
-`new(?_u:Float, ?_v:Float, ?_w:Float, ?_t:Float) `
+`new(?_u:Float=0.0f, ?_v:Float=0.0f, ?_w:Float=0.0f, ?_t:Float=0.0f) `
 
 <span class="small_desc_flat"> no description </span>   
 

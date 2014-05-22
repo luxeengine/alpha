@@ -41,15 +41,15 @@
       ]
     },
     {
-      "name": "Methods",
-      "link": "#Methods",
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
       "values": [
         {
           "name": "get_easeIn",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "get_easeIn() : luxe.tween.easing.IEasing",
           "return": ": luxe.tween.easing.IEasing",
@@ -58,9 +58,9 @@
         {
           "name": "get_easeInOut",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "get_easeInOut() : luxe.tween.easing.IEasing",
           "return": ": luxe.tween.easing.IEasing",
@@ -69,15 +69,20 @@
         {
           "name": "get_easeOut",
           "meta": [],
-          "public": false,
-          "static": true,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": true,
+          "isinline": false,
           "doc": "",
           "signature": "get_easeOut() : luxe.tween.easing.IEasing",
           "return": ": luxe.tween.easing.IEasing",
           "args": []
         }
       ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": []
     }
   ]
 }

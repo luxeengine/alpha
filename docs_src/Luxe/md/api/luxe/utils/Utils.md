@@ -39,6 +39,8 @@
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -78,7 +80,7 @@
 
 
 
-`file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int) : Void`
+`file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int=2048) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -86,7 +88,7 @@
 
 
 
-`find_assets_image_sequence(_name:String, ?_ext:String, ?_start:String) : Array<String>`
+`find_assets_image_sequence(_name:String, ?_ext:String='.png', ?_start:String='1') : Array<String>`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -94,7 +96,7 @@
 
 
 
-`stacktrace(?_depth:Int) : String`
+`stacktrace(?_depth:Int=100) : String`
 
 <span class="small_desc_flat"> no description </span>   
 

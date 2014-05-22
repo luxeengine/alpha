@@ -20,6 +20,7 @@ _none_
 
 [Members](#Members)   
 [Properties](#Properties)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -77,6 +78,19 @@ _none_
 
 &nbsp;   
 
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
+---
+<a class="lift" name="random" href="#random">random</a>
+
+
+
+`random(?_include_alpha:Bool=false) : phoenix.Color`
+
+<span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -124,15 +138,7 @@ _none_
 
 
 
-`new(?_r:Float, ?_g:Float, ?_b:Float, ?_a:Float) `
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="random" href="#random">random</a>
-
-
-
-`random(?_include_alpha:Bool) : phoenix.Color`
+`new(?_r:Float=1.0f, ?_g:Float=1.0f, ?_b:Float=1.0f, ?_a:Float=1.0f) `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -140,7 +146,7 @@ _none_
 
 
 
-`rgb(?_rgb:Int) : phoenix.Color`
+`rgb(?_rgb:Int=16777215) : phoenix.Color`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -180,7 +186,7 @@ _none_
 
 
 
-`tween(?_time_in_seconds:Float, ?_properties_to_tween:luxe.options.ColorOptions, ?_override:Bool) : luxe.tween.actuators.IGenericActuator`
+`tween(?_time_in_seconds:Float=0.5f, ?_properties_to_tween:luxe.options.ColorOptions, ?_override:Bool=true) : luxe.tween.actuators.IGenericActuator`
 
 <span class="small_desc_flat"> no description </span>   
 

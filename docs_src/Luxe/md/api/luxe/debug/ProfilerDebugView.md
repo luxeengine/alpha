@@ -20,6 +20,7 @@
 
 [Extends](#Extends)   
 [Members](#Members)   
+[StaticMethods](#StaticMethods)   
 [Methods](#Methods)   
 
 
@@ -30,7 +31,7 @@
 <a class="lift" name="Extends" ></a>
 ###Extends   
 ---
-<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug.DebugView.html">luxe.debug.DebugView</a>
+<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug/DebugView.html">luxe.debug.DebugView</a>
 
 &nbsp;   
 
@@ -41,14 +42,14 @@
 
 
 
-`lists : Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>`
+<span class="inline-block static">static</span>`lists : Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>`
 
 <span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
+<a class="lift" name="StaticMethods" ></a>
+###StaticMethods   
 ---
 <a class="lift" name="add_offset" href="#add_offset">add_offset</a>
 
@@ -66,35 +67,11 @@
 
 <span class="small_desc_flat"> no description </span>   
 
-<a class="lift" name="hide" href="#hide">hide</a>
-
-
-
-`hide() : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
 <a class="lift" name="hide_item" href="#hide_item">hide_item</a>
 
 
 
 `hide_item(_id:String) : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new() `
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="show" href="#show">show</a>
-
-
-
-`show() : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -111,6 +88,35 @@
 
 
 `start(_id:String) : Void`
+
+<span class="small_desc_flat"> no description </span>   
+
+&nbsp;   
+
+<a class="lift" name="Methods" ></a>
+###Methods   
+---
+<a class="lift" name="hide" href="#hide">hide</a>
+
+
+
+`hide() : Void`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="new" href="#new">new</a>
+
+
+
+`new() `
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="show" href="#show">show</a>
+
+
+
+`show() : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

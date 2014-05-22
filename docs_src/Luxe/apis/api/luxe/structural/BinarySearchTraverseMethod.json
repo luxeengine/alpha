@@ -1,0 +1,39 @@
+{
+  "source": "luxe.structural.BinarySearchTraverseMethod",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "PreOrder",
+          "signature": "luxe.structural.BinarySearchTraverseMethod.PreOrder",
+          "doc": ""
+        },
+        {
+          "name": "InOrder",
+          "signature": "luxe.structural.BinarySearchTraverseMethod.InOrder",
+          "doc": ""
+        },
+        {
+          "name": "PostOrder",
+          "signature": "luxe.structural.BinarySearchTraverseMethod.PostOrder",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

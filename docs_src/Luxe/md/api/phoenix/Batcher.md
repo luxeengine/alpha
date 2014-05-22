@@ -437,6 +437,8 @@ _none_
 
 &nbsp;   
 
+&nbsp;   
+
 <a class="lift" name="Methods" ></a>
 ###Methods   
 ---
@@ -444,7 +446,7 @@ _none_
 
 
 
-`add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool) : Void`
+`add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool=false) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -460,7 +462,7 @@ _none_
 
 
 
-`batch(?persist_immediate:Bool) : Void`
+`batch(?persist_immediate:Bool=false) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -500,7 +502,7 @@ _none_
 
 
 
-`draw(?persist_immediate:Bool) : Void`
+`draw(?persist_immediate:Bool=false) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -516,7 +518,7 @@ _none_
 
 
 
-`new(_r:phoenix.Renderer, ?_name:String) `
+`new(_r:phoenix.Renderer, ?_name:String='') `
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -524,7 +526,7 @@ _none_
 
 
 
-`remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool) : Void`
+`remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool=true) : Void`
 
 <span class="small_desc_flat"> no description </span>   
 

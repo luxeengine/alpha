@@ -1,0 +1,39 @@
+{
+  "source": "phoenix.ClampType",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Values",
+      "link": "#Values",
+      "values": [
+        {
+          "name": "edge",
+          "signature": "phoenix.ClampType.edge",
+          "doc": ""
+        },
+        {
+          "name": "repeat",
+          "signature": "phoenix.ClampType.repeat",
+          "doc": ""
+        },
+        {
+          "name": "mirror",
+          "signature": "phoenix.ClampType.mirror",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":flatEnum",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

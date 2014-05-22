@@ -50,7 +50,7 @@
 <p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#luxe">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Debug</p>
 <p><br/></p>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><a href="#Members">Members</a><br><a href="#StaticMethods">StaticMethods</a><br><a href="#Methods">Methods</a>   </p>
 <hr>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Members" ></a></p>
@@ -102,7 +102,7 @@
 <p><code>profiling : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="shut_down" href="#shut_down">shut_down</a></p>
-<p><code>shut_down : Bool</code></p>
+<p><span class="inline-block static">static</span><code>shut_down : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="started" href="#started">started</a></p>
 <p><code>started : Bool</code></p>
@@ -111,17 +111,24 @@
 <p><code>view : phoenix.Camera</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="views" href="#views">views</a></p>
-<p><code>views : Array&lt;luxe.debug.DebugView&gt;</code></p>
+<p><span class="inline-block static">static</span><code>views : Array&lt;luxe.debug.DebugView&gt;</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="visible" href="#visible">visible</a></p>
 <p><code>visible : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="StaticMethods" ></a></p>
+<h3 id="staticmethods">StaticMethods</h3>
+<hr>
+<p><a class="lift" name="internal_trace" href="#internal_trace">internal_trace</a></p>
+<p><code>internal_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p>&nbsp;   </p>
 <p><a class="lift" name="Methods" ></a></p>
 <h3 id="methods">Methods</h3>
 <hr>
 <p><a class="lift" name="add_trace_listener" href="#add_trace_listener">add_trace_listener</a></p>
-<p><code>add_trace_listener(_name:String, _callback:null-&gt;haxe.PosInfos-&gt;Void) : Void</code></p>
+<p><code>add_trace_listener(_name:String, _callback:Dynamic-&gt;haxe.PosInfos-&gt;Void) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="create_debug_console" href="#create_debug_console">create_debug_console</a></p>
 <p><code>create_debug_console() : Void</code></p>
@@ -134,9 +141,6 @@
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="init" href="#init">init</a></p>
 <p><code>init() : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="internal_trace" href="#internal_trace">internal_trace</a></p>
-<p><code>internal_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="new" href="#new">new</a></p>
 <p><code>new(_core:luxe.Core)</code></p>
@@ -169,7 +173,7 @@
 <p><code>remove_trace_listener(_name:String) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="show_console" href="#show_console">show_console</a></p>
-<p><code>show_console(?_show:Bool) : Void</code></p>
+<p><code>show_console(?_show:Bool=true) : Void</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="start" href="#start">start</a></p>
 <p><code>start(_name:String) : Void</code></p>

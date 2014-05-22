@@ -16,19 +16,19 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_y : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_y : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         },
         {
           "name": "ignore_listeners",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "ignore_listeners : Bool",
           "type": "Bool",
           "doc": ""
@@ -41,11 +41,11 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_z : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_z : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         },
         {
@@ -56,9 +56,9 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "w : Float",
           "type": "Float",
           "doc": ""
@@ -71,11 +71,11 @@
               "value": ""
             }
           ],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "listen_x : Dynamic",
-          "type": "Dynamic",
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
+          "signature": "listen_x : Float->Void",
+          "type": "Float->Void",
           "doc": ""
         }
       ]
@@ -222,15 +222,275 @@
       ]
     },
     {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": [
+        {
+          "name": "SubtractScalar",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "SubtractScalar(a:phoenix.Vector, b:Float) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "Float",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "AddScalar",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "AddScalar(a:phoenix.Vector, b:Float) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "Float",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "Cross",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "ToDegrees",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "ToDegrees(_radian_vector:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_radian_vector",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "RotationTo",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "RotationTo(a:phoenix.Vector, b:phoenix.Vector) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "Add",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Add(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "DivideVector",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "DivideVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "Divide",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Divide(a:phoenix.Vector, b:Float) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "Float",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "MultiplyVector",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "MultiplyVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "Subtract",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Subtract(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "Multiply",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "Multiply(a:phoenix.Vector, b:Float) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.Vector",
+              "value": "null"
+            },
+            {
+              "name": "b",
+              "type": "Float",
+              "value": "null"
+            }
+          ]
+        },
+        {
+          "name": "ToRadians",
+          "meta": [],
+          "ispublic": true,
+          "isstatic": true,
+          "isinline": false,
+          "doc": "",
+          "signature": "ToRadians(_degree_vector:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_degree_vector",
+              "type": "phoenix.Vector",
+              "value": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Methods",
       "link": "#Methods",
       "values": [
         {
           "name": "get_lengthsq",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_lengthsq() : Float",
           "return": ": Float",
@@ -239,65 +499,48 @@
         {
           "name": "addScalar",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "addScalar(v:Float) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "v",
-              "type": "Float"
-            }
-          ]
-        },
-        {
-          "name": "SubtractScalar",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "SubtractScalar(a:phoenix.Vector, b:Float) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "cross",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "a",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             },
             {
               "name": "b",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_angle2D",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_angle2D() : Float",
           "return": ": Float",
@@ -306,9 +549,9 @@
         {
           "name": "toDegrees",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toDegrees() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -317,136 +560,86 @@
         {
           "name": "get_inverted",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_inverted() : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": []
         },
         {
-          "name": "AddScalar",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "AddScalar(a:phoenix.Vector, b:Float) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "Float"
-            }
-          ]
-        },
-        {
           "name": "set_xyzw",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "applyProjection",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "applyProjection(m:phoenix.Matrix4) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "m",
-              "type": "phoenix.Matrix4"
-            }
-          ]
-        },
-        {
-          "name": "Cross",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "phoenix.Vector"
-            }
-          ]
-        },
-        {
-          "name": "ToDegrees",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "ToDegrees(_radian_vector:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "_radian_vector",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Matrix4",
+              "value": "null"
             }
           ]
         },
         {
           "name": "multiplyScalar",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "multiplyScalar(v:Float) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_normalized",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_normalized() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -455,85 +648,92 @@
         {
           "name": "set_y",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_y(_y:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) ",
+          "signature": "new(?_x:Float=0, ?_y:Float=0, ?_z:Float=0, ?_w:Float=0) ",
           "return": "",
           "args": [
             {
               "name": "?_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             },
             {
               "name": "?_w",
-              "type": "Float"
+              "type": "Float",
+              "value": "0"
             }
           ]
         },
         {
           "name": "rotationTo",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "rotationTo(other:phoenix.Vector) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "add",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "add(other:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "get_length",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_length() : Float",
           "return": ": Float",
@@ -542,97 +742,60 @@
         {
           "name": "transformDirection",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "transformDirection(m:phoenix.Matrix4) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "m",
-              "type": "phoenix.Matrix4"
-            }
-          ]
-        },
-        {
-          "name": "RotationTo",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "RotationTo(a:phoenix.Vector, b:phoenix.Vector) : Float",
-          "return": ": Float",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Matrix4",
+              "value": "null"
             }
           ]
         },
         {
           "name": "applyMatrix4",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "applyMatrix4(_m:phoenix.Matrix4) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "_m",
-              "type": "phoenix.Matrix4"
+              "type": "phoenix.Matrix4",
+              "value": "null"
             }
           ]
         },
         {
           "name": "truncate",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "truncate(max:Float) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "max",
-              "type": "Float"
-            }
-          ]
-        },
-        {
-          "name": "Add",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Add(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "phoenix.Vector"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "clone",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "clone() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -641,61 +804,65 @@
         {
           "name": "dot",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "dot(other:phoenix.Vector) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "setEulerFromQuaternion",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String) : phoenix.Vector",
+          "signature": "setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String='XYZ') : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "q",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": ""
             },
             {
               "name": "?order",
-              "type": "String"
+              "type": "String",
+              "value": "'XYZ'"
             }
           ]
         },
         {
           "name": "copy_from",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "copy_from(_other:phoenix.Vector) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "toString",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toString() : String",
           "return": ": String",
@@ -704,9 +871,9 @@
         {
           "name": "get_serialized",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "get_serialized() : Dynamic",
           "return": ": Dynamic",
@@ -715,241 +882,216 @@
         {
           "name": "divide",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "divide(other:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_x",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_x(_x:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_xy",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_xy(_x:Float, _y:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "equals",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "equals(other:phoenix.Vector) : Bool",
           "return": ": Bool",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
-            }
-          ]
-        },
-        {
-          "name": "DivideVector",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "DivideVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_xyz",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_xyz(_x:Float, _y:Float, _z:Float) : Void",
           "return": ": Void",
           "args": [
             {
               "name": "_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "subtract",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "subtract(other:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "multiply",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "multiply(other:phoenix.Vector) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "other",
-              "type": "phoenix.Vector"
+              "type": "phoenix.Vector",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_angle2D",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_angle2D(value:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "applyQuaternion",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "applyQuaternion(q:phoenix.Quaternion) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "q",
-              "type": "phoenix.Quaternion"
+              "type": "phoenix.Quaternion",
+              "value": "null"
             }
           ]
         },
         {
           "name": "setEulerFromRotationMatrix",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
-          "signature": "setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String) : phoenix.Vector",
+          "signature": "setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String='XYZ') : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "m",
-              "type": "phoenix.Matrix4"
+              "type": "phoenix.Matrix4",
+              "value": ""
             },
             {
               "name": "?order",
-              "type": "String"
-            }
-          ]
-        },
-        {
-          "name": "Divide",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Divide(a:phoenix.Vector, b:Float) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "Float"
+              "type": "String",
+              "value": "'XYZ'"
             }
           ]
         },
         {
           "name": "divideScalar",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "divideScalar(v:Float) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "toRadians",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "toRadians() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -958,113 +1100,41 @@
         {
           "name": "set",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "?_x",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_y",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             },
             {
               "name": "?_w",
-              "type": "Float"
-            }
-          ]
-        },
-        {
-          "name": "MultiplyVector",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "MultiplyVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "phoenix.Vector"
-            }
-          ]
-        },
-        {
-          "name": "Subtract",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Subtract(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "phoenix.Vector"
-            }
-          ]
-        },
-        {
-          "name": "Multiply",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "Multiply(a:phoenix.Vector, b:Float) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "a",
-              "type": "phoenix.Vector"
-            },
-            {
-              "name": "b",
-              "type": "Float"
-            }
-          ]
-        },
-        {
-          "name": "ToRadians",
-          "meta": [],
-          "public": true,
-          "static": true,
-          "inline": false,
-          "doc": "",
-          "signature": "ToRadians(_degree_vector:phoenix.Vector) : phoenix.Vector",
-          "return": ": phoenix.Vector",
-          "args": [
-            {
-              "name": "_degree_vector",
-              "type": "phoenix.Vector"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "normalize",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "normalize() : phoenix.Vector",
           "return": ": phoenix.Vector",
@@ -1073,48 +1143,51 @@
         {
           "name": "set_length",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_length(value:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "value",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "set_z",
           "meta": [],
-          "public": false,
-          "static": false,
-          "inline": false,
+          "ispublic": false,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "set_z(_z:Float) : Float",
           "return": ": Float",
           "args": [
             {
               "name": "_z",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "subtractScalar",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "subtractScalar(v:Float) : phoenix.Vector",
           "return": ": phoenix.Vector",
           "args": [
             {
               "name": "v",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         }

@@ -11,9 +11,9 @@
         {
           "name": "persistent",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "persistent : Bool",
           "type": "Bool",
           "doc": ""
@@ -21,9 +21,9 @@
         {
           "name": "type",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "type : luxe.ResourceType",
           "type": "luxe.ResourceType",
           "doc": ""
@@ -31,9 +31,9 @@
         {
           "name": "time_created",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "time_created : Float",
           "type": "Float",
           "doc": ""
@@ -41,9 +41,9 @@
         {
           "name": "id",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "id : String",
           "type": "String",
           "doc": ""
@@ -51,9 +51,9 @@
         {
           "name": "time_to_load",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "time_to_load : Float",
           "type": "Float",
           "doc": ""
@@ -61,9 +61,9 @@
         {
           "name": "manager",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "manager : luxe.ResourceManager",
           "type": "luxe.ResourceManager",
           "doc": ""
@@ -71,14 +71,19 @@
         {
           "name": "dropped",
           "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
+          "ispublic": true,
+          "isinline": false,
+          "isstatic": false,
           "signature": "dropped : Bool",
           "type": "Bool",
           "doc": ""
         }
       ]
+    },
+    {
+      "name": "StaticMethods",
+      "link": "#StaticMethods",
+      "values": []
     },
     {
       "name": "Methods",
@@ -87,33 +92,36 @@
         {
           "name": "new",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "new(_manager:luxe.ResourceManager, _type:luxe.ResourceType, ?_load_time:Float) ",
           "return": "",
           "args": [
             {
               "name": "_manager",
-              "type": "luxe.ResourceManager"
+              "type": "luxe.ResourceManager",
+              "value": ""
             },
             {
               "name": "_type",
-              "type": "luxe.ResourceType"
+              "type": "luxe.ResourceType",
+              "value": ""
             },
             {
               "name": "?_load_time",
-              "type": "Float"
+              "type": "Float",
+              "value": "null"
             }
           ]
         },
         {
           "name": "drop",
           "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
+          "ispublic": true,
+          "isstatic": false,
+          "isinline": false,
           "doc": "",
           "signature": "drop() : Void",
           "return": ": Void",

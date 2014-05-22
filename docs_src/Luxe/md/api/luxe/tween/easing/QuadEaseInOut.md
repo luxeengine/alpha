@@ -29,13 +29,9 @@
 <a class="lift" name="Implements" ></a>
 ###Implements   
 ---
-<a class="lift" name="luxe.tween.easing.IEasing" href="#luxe.tween.easing.IEasing">luxe.tween.easing.IEasing</a>
+<a class="lift" name="luxe.tween.easing.IEasing" href="{{{rel_path}}}api/luxe/tween/easing/IEasing.html">luxe.tween.easing.IEasing</a>
 
-
-
-`undefined`
-
-<span class="small_desc_flat"> no description </span>   
+&nbsp;   
 
 &nbsp;   
 
