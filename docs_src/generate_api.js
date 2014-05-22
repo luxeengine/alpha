@@ -34,6 +34,11 @@
 
                         var theclass = classes[i];
                         var filename = theclass.name;
+
+                        if(!theclass.ispublic) {
+                            continue;
+                        }
+
                         var output_json = {
                             source : filename,
                             doc : '',

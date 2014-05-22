@@ -16,9 +16,6 @@ var marked      = require('marked'),
     var _marked_options = {
         gfm: true,
         highlight: function (code, _lang, callback) {
-            // colorize(code, 'hx', 'html', function(data) {
-            //     callback(null, data);
-            // });
             callback( null, hljs.highlight('haxe', code).value );
         },
         tables: true,

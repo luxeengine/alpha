@@ -1,6 +1,6 @@
 {
   "author": "Sven Bergström",
-  "name": "generate.luxe.docs",
+  "name": "documentator",
   "description": "",
   "license": "MIT",
   "version": "1.0.0",
@@ -8,7 +8,6 @@
     "marked": "latest",
     "glob": "latest",
     "mustache" : "latest",
-    "highlight.js" : "latest",
     "graceful-fs" : "latest",
     "pygments" : "latest",
     "wrench" : "latest",
