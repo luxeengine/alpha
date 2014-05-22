@@ -39,20 +39,20 @@ package luxe.utils.json;
 import luxe.utils.json.JSONDecoder;
 
 @:noCompletion class JSONToken {
-	
-	/** type of the token */
-	public var type:JSONTokenType;
-	/** value of the token */
-	public var value:Dynamic;
-	
-	/**
-	 * Creates a new JSONToken with a specific token type and value.
-	 *
-	 * @param type The JSONTokenType of the token
-	 * @param value The value of the token
-	 */
-	public function new(?type:JSONTokenType,?value:Dynamic = null) {
-		this.type = type==null?tUNKNOWN:type;
-		this.value = value;
-	}
+  
+  /** type of the token */
+  public var type:JSONTokenType;
+  /** value of the token */
+  public var value:Dynamic;
+  
+  /**
+   * Creates a new JSONToken with a specific token type and value.
+   *
+   * @param type The JSONTokenType of the token
+   * @param value The value of the token
+   */
+  public function new(?type:JSONTokenType,?value:Dynamic = null) {
+    this.type = type==null?tUNKNOWN:type;
+    this.value = value;
+  }
 }

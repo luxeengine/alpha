@@ -1,0 +1,139 @@
+{
+  "source": "luxe.utils.GeometryUtils",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "luxe",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "luxe : luxe.Core",
+          "type": "luxe.Core",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "intersect_ray_plane",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "intersect_ray_plane(_ray_start:luxe.Vector, _ray_dir:luxe.Vector, _plane_normal:luxe.Vector, _plane_point:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_ray_start",
+              "type": "luxe.Vector"
+            },
+            {
+              "name": "_ray_dir",
+              "type": "luxe.Vector"
+            },
+            {
+              "name": "_plane_normal",
+              "type": "luxe.Vector"
+            },
+            {
+              "name": "_plane_point",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_luxe:luxe.Core) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_luxe",
+              "type": "luxe.Core"
+            }
+          ]
+        },
+        {
+          "name": "segments_for_smooth_circle",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "segments_for_smooth_circle(_radius:Float, ?_smooth:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_radius",
+              "type": "Float"
+            },
+            {
+              "name": "?_smooth",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "point_in_polygon",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "point_in_polygon(_point:luxe.Vector, _offset:luxe.Vector, _verts:Array<luxe.Vector>) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_point",
+              "type": "luxe.Vector"
+            },
+            {
+              "name": "_offset",
+              "type": "luxe.Vector"
+            },
+            {
+              "name": "_verts",
+              "type": "Array<luxe.Vector>"
+            }
+          ]
+        },
+        {
+          "name": "random_point_in_unit_circle",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "random_point_in_unit_circle() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

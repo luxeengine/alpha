@@ -1,0 +1,66 @@
+{
+  "source": "luxe.tween.IComponentPath",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "start",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "start : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "meta : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":noCompletion",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "calculate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "calculate(k:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "k",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

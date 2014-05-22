@@ -1,0 +1,251 @@
+{
+  "source": "luxe.utils.json.JSONTokenizer",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "obj",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "obj : Dynamic",
+          "type": "Dynamic",
+          "doc": "The object that will get parsed from the JSON string"
+        },
+        {
+          "name": "ch",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "ch : String",
+          "type": "String",
+          "doc": "The current character in the JSON string during parsing"
+        },
+        {
+          "name": "strict",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "strict : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "loc",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "loc : Int",
+          "type": "Int",
+          "doc": "The current parsing location in the JSON string"
+        },
+        {
+          "name": "jsonString",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "jsonString : String",
+          "type": "String",
+          "doc": "The JSON string to be parsed"
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "meta : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":noCompletion",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "* Constructs a new JSONDecoder to parse a JSON string \n     * into a native object.\n     *\n     * @param s The JSON string to be converted\n     *      into a native object",
+          "signature": "new(s:String, strict:Bool) ",
+          "return": "",
+          "args": [
+            {
+              "name": "s",
+              "type": "String"
+            },
+            {
+              "name": "strict",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "readString",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Attempts to read a string from the input string.  Places\n     * the character location at the first character after the\n     * string.  It is assumed that ch is \" before this method is called.\n     *\n     * @return the JSONToken with the string value if a string could\n     *      be read.  Throws an error otherwise.",
+          "signature": "readString() : luxe.utils.json.JSONToken",
+          "return": ": luxe.utils.json.JSONToken",
+          "args": []
+        },
+        {
+          "name": "nextChar",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Reads the next character in the input\n     * string and advances the character location.\n     *\n     * @return The next character in the input string, or\n     *      null if we've read past the end.",
+          "signature": "nextChar() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "getNextToken",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "* Gets the next token in the input sting and advances\n    * the character to the next character after the token",
+          "signature": "getNextToken() : luxe.utils.json.JSONToken",
+          "return": ": luxe.utils.json.JSONToken",
+          "args": []
+        },
+        {
+          "name": "isWhiteSpace",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Determines if a character is whitespace or not.\n     *\n     * @return True if the character passed in is a whitespace\n     *  character",
+          "signature": "isWhiteSpace(ch:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "ch",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "skipComments",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Skips comments in the input string, either\n     * single-line or multi-line.  Advances the character\n     * to the first position after the end of the comment.",
+          "signature": "skipComments() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "skipWhite",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Skip any whitespace in the input string and advances\n     * the character to the first character after any possible\n     * whitespace.",
+          "signature": "skipWhite() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "isDigit",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Determines if a character is a digit [0-9].\n     *\n     * @return True if the character passed in is a digit",
+          "signature": "isDigit(ch:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "ch",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "readNumber",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Attempts to read a number from the input string.  Places\n     * the character location at the first character after the\n     * number.\n     * \n     * @return The JSONToken with the number value if a number could\n     *      be read.  Throws an error otherwise.",
+          "signature": "readNumber() : luxe.utils.json.JSONToken",
+          "return": ": luxe.utils.json.JSONToken",
+          "args": []
+        },
+        {
+          "name": "skipIgnored",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Advances the character location past any\n     * sort of white space and comments",
+          "signature": "skipIgnored() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "isHexDigit",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Determines if a character is a digit [0-9].\n     *\n     * @return True if the character passed in is a digit",
+          "signature": "isHexDigit(ch:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "ch",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "parseError",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "* Raises a parsing error with a specified message, tacking\n     * on the error location and the original string.\n     *\n     * @param message The message indicating why the error occurred",
+          "signature": "parseError(message:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "message",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

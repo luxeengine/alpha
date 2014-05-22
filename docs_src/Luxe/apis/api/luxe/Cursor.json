@@ -1,0 +1,178 @@
+{
+  "source": "luxe.Cursor",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "screen",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "screen : luxe.Screen",
+          "type": "luxe.Screen",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "visible",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "visible : Bool",
+          "doc": "",
+          "type": "Bool",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "locked",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "locked : Bool",
+          "doc": "",
+          "type": "Bool",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "pos",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "pos : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "get_pos",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pos() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_screen:luxe.Screen) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_screen",
+              "type": "luxe.Screen"
+            }
+          ]
+        },
+        {
+          "name": "get_visible",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_visible() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "set_pos",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos(_p:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_p",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_visible",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_visible(_visible:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_visible",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "get_locked",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_locked() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "set_locked",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_locked(_lock:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_lock",
+              "type": "Bool"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "source": "luxe.tween.LinearPath",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.tween.BezierPath"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(end:Float, strength:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "end",
+              "type": "Float"
+            },
+            {
+              "name": "strength",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "calculate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "calculate(start:Float, k:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "start",
+              "type": "Float"
+            },
+            {
+              "name": "k",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

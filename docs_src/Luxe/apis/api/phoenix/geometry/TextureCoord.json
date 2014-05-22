@@ -1,0 +1,127 @@
+{
+  "source": "phoenix.geometry.TextureCoord",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "v",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "v : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "u",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "u : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "t",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "t : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "w",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "w : Float",
+          "type": "Float",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "set",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set(?_u:Float, ?_v:Float, ?_w:Float, ?_t:Float) : phoenix.geometry.TextureCoord",
+          "return": ": phoenix.geometry.TextureCoord",
+          "args": [
+            {
+              "name": "?_u",
+              "type": "Float"
+            },
+            {
+              "name": "?_v",
+              "type": "Float"
+            },
+            {
+              "name": "?_w",
+              "type": "Float"
+            },
+            {
+              "name": "?_t",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?_u:Float, ?_v:Float, ?_w:Float, ?_t:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?_u",
+              "type": "Float"
+            },
+            {
+              "name": "?_v",
+              "type": "Float"
+            },
+            {
+              "name": "?_w",
+              "type": "Float"
+            },
+            {
+              "name": "?_t",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

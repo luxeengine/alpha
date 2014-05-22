@@ -1,0 +1,79 @@
+{
+  "source": "phoenix.geometry.CircleGeometry",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "phoenix.geometry.Geometry"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "set",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set(_x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, ?_start_angle:Float, ?_end_angle:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_x",
+              "type": "Float"
+            },
+            {
+              "name": "_y",
+              "type": "Float"
+            },
+            {
+              "name": "_rx",
+              "type": "Float"
+            },
+            {
+              "name": "_ry",
+              "type": "Float"
+            },
+            {
+              "name": "_steps",
+              "type": "Int"
+            },
+            {
+              "name": "?_start_angle",
+              "type": "Float"
+            },
+            {
+              "name": "?_end_angle",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(options:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "options",
+              "type": "Dynamic"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "source": "phoenix.RenderState",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "_used_program",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_used_program : lime.gl.GLProgram",
+          "type": "lime.gl.GLProgram",
+          "doc": ""
+        },
+        {
+          "name": "_viewport",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_viewport : phoenix.Rectangle",
+          "type": "phoenix.Rectangle",
+          "doc": ""
+        },
+        {
+          "name": "_last_line_width",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_last_line_width : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "cull_face",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "cull_face : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "depth_test",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "depth_test : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "renderer",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "renderer : phoenix.Renderer",
+          "type": "phoenix.Renderer",
+          "doc": ""
+        },
+        {
+          "name": "_bound_texture_2D",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_bound_texture_2D : lime.gl.GLTexture",
+          "type": "lime.gl.GLTexture",
+          "doc": ""
+        },
+        {
+          "name": "_active_texture",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_active_texture : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "viewport",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "viewport(x:Float, y:Float, w:Float, h:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            },
+            {
+              "name": "y",
+              "type": "Float"
+            },
+            {
+              "name": "w",
+              "type": "Float"
+            },
+            {
+              "name": "h",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "lineWidth",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "lineWidth(_width:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_width",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_renderer:phoenix.Renderer) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_renderer",
+              "type": "phoenix.Renderer"
+            }
+          ]
+        },
+        {
+          "name": "bindTexture2D",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "bindTexture2D(tex:lime.gl.GLTexture) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "tex",
+              "type": "lime.gl.GLTexture"
+            }
+          ]
+        },
+        {
+          "name": "enable",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "enable(what:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "what",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "disable",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "disable(what:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "what",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "useProgram",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "useProgram(program:lime.gl.GLProgram) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "program",
+              "type": "lime.gl.GLProgram"
+            }
+          ]
+        },
+        {
+          "name": "activeTexture",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "activeTexture(val:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "val",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

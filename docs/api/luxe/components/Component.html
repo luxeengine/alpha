@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="component">Component</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#luxe.components">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">luxe</a><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe.components</a> / Component</p>
+<p><br/></p>
+<hr>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="luxe.Objects" href="../../../api/luxe/Objects.html">luxe.Objects</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="entity" href="#entity">entity</a></p>
+<p><code>entity : luxe.Entity</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="pos" href="#pos">pos</a></p>
+<p><code>pos : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="rotation" href="#rotation">rotation</a></p>
+<p><code>rotation : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="scale" href="#scale">scale</a></p>
+<p><code>scale : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>add(type:Class&lt;add.T1&gt;, ?_name:String, ?_data:add.T2) : add.T1</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get" href="#get">get</a></p>
+<p><code>get(_name:String, ?in_children:Bool) : get.T</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_any" href="#get_any">get_any</a></p>
+<p><code>get_any(_name:String, ?in_children:Bool, ?first_only:Bool) : Array&lt;get_any.T&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
+<p><code>get_serialize_data() : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(?_options:luxe.options.ComponentOptions&lt;new.T&gt;)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="remove" href="#remove">remove</a></p>
+<p><code>remove(?_name:String, ?_data:remove.T) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

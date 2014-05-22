@@ -1,0 +1,80 @@
+{
+  "source": "luxe.utils.json.JSONToken",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "type",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "type : luxe.utils.json.JSONTokenType",
+          "type": "luxe.utils.json.JSONTokenType",
+          "doc": "type of the token"
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "meta : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "value",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "value : Dynamic",
+          "type": "Dynamic",
+          "doc": "value of the token"
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":noCompletion",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "* Creates a new JSONToken with a specific token type and value.\n   *\n   * @param type The JSONTokenType of the token\n   * @param value The value of the token",
+          "signature": "new(?type:luxe.utils.json.JSONTokenType, ?value:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?type",
+              "type": "luxe.utils.json.JSONTokenType"
+            },
+            {
+              "name": "?value",
+              "type": "Dynamic"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

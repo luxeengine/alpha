@@ -1,0 +1,248 @@
+{
+  "source": "luxe.Text",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.Visual"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "text_options",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "text_options : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "composite_geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "composite_geometry : phoenix.geometry.CompositeGeometry",
+          "type": "phoenix.geometry.CompositeGeometry",
+          "doc": ""
+        },
+        {
+          "name": "font",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "font : phoenix.BitmapFont",
+          "type": "phoenix.BitmapFont",
+          "doc": ""
+        },
+        {
+          "name": "ready",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "ready : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "_batcher",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_batcher : phoenix.Batcher",
+          "type": "phoenix.Batcher",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "text",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "text : String",
+          "doc": "",
+          "type": "String",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "textsize",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "textsize : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_options:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_options",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "set_pos",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos(v:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "v",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_color",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_color(c:luxe.Color) : luxe.Color",
+          "return": ": luxe.Color",
+          "args": [
+            {
+              "name": "c",
+              "type": "luxe.Color"
+            }
+          ]
+        },
+        {
+          "name": "set_visible",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_visible(b:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "b",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "onloaded",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onloaded(font:phoenix.BitmapFont) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "font",
+              "type": "phoenix.BitmapFont"
+            }
+          ]
+        },
+        {
+          "name": "set_textsize",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_textsize(v:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "v",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_text",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_text(t:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "t",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "set_locked",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_locked(l:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "l",
+              "type": "Bool"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

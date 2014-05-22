@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="genericactuator">GenericActuator</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../../api/index.html#luxe.tween">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">luxe.tween</a><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe.tween.actuators</a> / GenericActuator</p>
+<p><br/></p>
+<hr>
+<p><a href="#Implements">Implements</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Implements" ></a></p>
+<h3 id="implements">Implements</h3>
+<hr>
+<p><a class="lift" name="luxe.tween.actuators.IGenericActuator" href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></p>
+<p><code>undefined</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="duration" href="#duration">duration</a></p>
+<p><code>duration : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="id" href="#id">id</a></p>
+<p><code>id : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="properties" href="#properties">properties</a></p>
+<p><code>properties : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="target" href="#target">target</a></p>
+<p><code>target : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="timescaled" href="#timescaled">timescaled</a></p>
+<p><code>timescaled : Bool</code></p>
+<p><span class="small_desc_flat"> * Specify whether this should be scaled by the global timescale</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">_value</span>      <span class="err">Whether</span> <span class="err">or</span> <span class="err">not</span> <span class="err">it</span> <span class="err">should</span> <span class="err">be</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="apply" href="#apply">apply</a></p>
+<p><code>apply() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="autoVisible" href="#autoVisible">autoVisible</a></p>
+<p><code>autoVisible(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">autoVisible</span> <span class="err">should</span> <span class="err">be</span> <span class="err">enabled</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="delay" href="#delay">delay</a></p>
+<p><code>delay(duration:Float) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Increases the delay before a tween is executed</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">duration</span>        <span class="err">The</span> <span class="err">amount</span> <span class="err">of</span> <span class="err">seconds</span> <span class="err">to</span> <span class="err">delay</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="ease" href="#ease">ease</a></p>
+<p><code>ease(easing:luxe.tween.easing.IEasing) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Sets the easing which is used when running the tween</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">easing</span>      <span class="err">An</span> <span class="err">easing</span> <span class="err">equation,</span> <span class="err">like</span> <span class="err">Elastic.easeIn</span> <span class="err">or</span> <span class="err">Quad.easeOut</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="move" href="#move">move</a></p>
+<p><code>move() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(target:Dynamic, duration:Float, properties:Dynamic)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onComplete" href="#onComplete">onComplete</a></p>
+<p><code>onComplete(handler:Dynamic, ?parameters:Array&lt;Dynamic&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Defines a function which will be called when the tween finishes</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">handler</span>     <span class="err">The</span> <span class="err">function</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">be</span> <span class="err">called</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">parameters</span>      <span class="err">Parameters</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">pass</span> <span class="err">to</span> <span class="err">the</span> <span class="err">handler</span> <span class="err">function</span> <span class="err">when</span> <span class="err">it</span> <span class="err">is</span> <span class="err">called</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="onRepeat" href="#onRepeat">onRepeat</a></p>
+<p><code>onRepeat(handler:Dynamic, ?parameters:Array&lt;Dynamic&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Defines a function which will be called when the tween repeats</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">handler</span>     <span class="err">The</span> <span class="err">function</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">be</span> <span class="err">called</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">parameters</span>      <span class="err">Parameters</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">pass</span> <span class="err">to</span> <span class="err">the</span> <span class="err">handler</span> <span class="err">function</span> <span class="err">when</span> <span class="err">it</span> <span class="err">is</span> <span class="err">called</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="onUpdate" href="#onUpdate">onUpdate</a></p>
+<p><code>onUpdate(handler:Dynamic, ?parameters:Array&lt;Dynamic&gt;) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Defines a function which will be called when the tween updates</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">handler</span>     <span class="err">The</span> <span class="err">function</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">be</span> <span class="err">called</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">parameters</span>      <span class="err">Parameters</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">pass</span> <span class="err">to</span> <span class="err">the</span> <span class="err">handler</span> <span class="err">function</span> <span class="err">when</span> <span class="err">it</span> <span class="err">is</span> <span class="err">called</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="pause" href="#pause">pause</a></p>
+<p><code>pause() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="reflect" href="#reflect">reflect</a></p>
+<p><code>reflect(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">reflect</span> <span class="err">should</span> <span class="err">be</span> <span class="err">enabled</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="repeat" href="#repeat">repeat</a></p>
+<p><code>repeat(?times:Int) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Repeats the tween after it finishes</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">times</span>       <span class="err">The</span> <span class="err">number</span> <span class="err">of</span> <span class="err">times</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">the</span> <span class="err">tween</span> <span class="err">to</span> <span class="err">repeat,</span> <span class="err">or</span> <span class="err">-1</span> <span class="err">if</span> <span class="err">you</span> <span class="err">would</span> <span class="err">like</span> <span class="err">to</span> <span class="err">repeat</span> <span class="err">the</span> <span class="err">tween</span> <span class="err">indefinitely</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">-1)</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="resume" href="#resume">resume</a></p>
+<p><code>resume() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="reverse" href="#reverse">reverse</a></p>
+<p><code>reverse(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Sets if the tween should be handled in reverse</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">the</span> <span class="err">tween</span> <span class="err">should</span> <span class="err">be</span> <span class="err">reversed</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="smartRotation" href="#smartRotation">smartRotation</a></p>
+<p><code>smartRotation(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Enabling smartRotation can prevent undesired results when tweening rotation values</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">smart</span> <span class="err">rotation</span> <span class="err">should</span> <span class="err">be</span> <span class="err">enabled</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="snapping" href="#snapping">snapping</a></p>
+<p><code>snapping(?value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> * Snapping causes tween values to be rounded automatically</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">value</span>       <span class="err">Whether</span> <span class="err">tween</span> <span class="err">values</span> <span class="err">should</span> <span class="err">be</span> <span class="err">rounded</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">true)</span>
+ <span class="err">*</span> <span class="err">@return</span>      <span class="err">The</span> <span class="err">current</span> <span class="err">actuator</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="stop" href="#stop">stop</a></p>
+<p><code>stop(properties:Dynamic, complete:Bool, sendEvent:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="timescale" href="#timescale">timescale</a></p>
+<p><code>timescale(?_value:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

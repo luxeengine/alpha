@@ -1,0 +1,226 @@
+{
+  "source": "luxe.utils.Utils",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "geometry : luxe.utils.GeometryUtils",
+          "type": "luxe.utils.GeometryUtils",
+          "doc": ""
+        },
+        {
+          "name": "luxe",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "luxe : luxe.Core",
+          "type": "luxe.Core",
+          "doc": ""
+        },
+        {
+          "name": "_byte_levels",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_byte_levels : Array<String>",
+          "type": "Array<String>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "arrayToBytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "arrayToBytes(array:Array<Int>) : haxe.io.Bytes",
+          "return": ": haxe.io.Bytes",
+          "args": [
+            {
+              "name": "array",
+              "type": "Array<Int>"
+            }
+          ]
+        },
+        {
+          "name": "file_bytes_to_class",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_file",
+              "type": "String"
+            },
+            {
+              "name": "_outfile",
+              "type": "String"
+            },
+            {
+              "name": "?_string_length",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_luxe:luxe.Core) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_luxe",
+              "type": "luxe.Core"
+            }
+          ]
+        },
+        {
+          "name": "uniqueid",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "uniqueid() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "base64_decode",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "base64_decode(_string:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_string",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "find_assets_image_sequence",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_assets_image_sequence(_name:String, ?_ext:String, ?_start:String) : Array<String>",
+          "return": ": Array<String>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "?_ext",
+              "type": "String"
+            },
+            {
+              "name": "?_start",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "stacktrace",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "stacktrace(?_depth:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "?_depth",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "bytes_to_string",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "bytes_to_string(bytes:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "bytes",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "uuid",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "uuid() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "base64_encode",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "base64_encode(_string:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_string",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

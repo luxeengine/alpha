@@ -1,0 +1,895 @@
+{
+  "source": "phoenix.Batcher",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "vcolorBuffers",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "vcolorBuffers : Array<lime.gl.GLBuffer>",
+          "type": "Array<lime.gl.GLBuffer>",
+          "doc": ""
+        },
+        {
+          "name": "static_normallist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_normallist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "vert_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "vert_attribute : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "buffer_count",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "buffer_count : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "normal_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "normal_attribute : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "tcoord_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tcoord_attribute : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "static_colors",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_colors : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "renderer",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "renderer : phoenix.Renderer",
+          "type": "phoenix.Renderer",
+          "doc": ""
+        },
+        {
+          "name": "normals",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "normals : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "color_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "color_attribute : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "static_batched_count",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_batched_count : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "projectionmatrix_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "projectionmatrix_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "tcoords",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tcoords : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "tex0_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex0_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "static_normals",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_normals : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "tex1_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex1_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "dynamic_batched_count",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dynamic_batched_count : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "name",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "static_tcoordlist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_tcoordlist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "static_colorlist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_colorlist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "tex2_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex2_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "tex3_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex3_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "view",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "view : phoenix.Camera",
+          "type": "phoenix.Camera",
+          "doc": ""
+        },
+        {
+          "name": "verts",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "verts : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "tex4_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex4_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "visible_count",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "visible_count : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "enabled",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "enabled : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "vertlist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "vertlist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "tex5_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex5_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "groups",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "groups : Map<Int,Array>",
+          "type": "Map<Int,Array>",
+          "doc": ""
+        },
+        {
+          "name": "static_vertlist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_vertlist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "colors",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "colors : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "normalBuffers",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "normalBuffers : Array<lime.gl.GLBuffer>",
+          "type": "Array<lime.gl.GLBuffer>",
+          "doc": ""
+        },
+        {
+          "name": "tex6_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex6_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "normallist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "normallist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "tex7_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tex7_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "geometry : luxe.structural.BalancedBinarySearchTree<phoenix.geometry.GeometryKey,phoenix.geometry.Geometry>",
+          "type": "luxe.structural.BalancedBinarySearchTree<phoenix.geometry.GeometryKey,phoenix.geometry.Geometry>",
+          "doc": ""
+        },
+        {
+          "name": "tcoordBuffers",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tcoordBuffers : Array<lime.gl.GLBuffer>",
+          "type": "Array<lime.gl.GLBuffer>",
+          "doc": ""
+        },
+        {
+          "name": "tree_changed",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tree_changed : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "tcoordlist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "tcoordlist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        },
+        {
+          "name": "buffer_index",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "buffer_index : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "modelviewmatrix_attribute",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "modelviewmatrix_attribute : lime.gl.GLUniformLocation",
+          "type": "lime.gl.GLUniformLocation",
+          "doc": ""
+        },
+        {
+          "name": "log",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "log : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "static_verts",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_verts : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "static_tcoords",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_tcoords : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "vertexBuffers",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "vertexBuffers : Array<lime.gl.GLBuffer>",
+          "type": "Array<lime.gl.GLBuffer>",
+          "doc": ""
+        },
+        {
+          "name": "draw_calls",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "draw_calls : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "colorlist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "colorlist : lime.utils.Float32Array",
+          "type": "lime.utils.Float32Array",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "layer",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "layer : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "add_group",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_group(_group:Int, _pre_render:phoenix.Batcher->Void, _post_render:phoenix.Batcher->Void) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_group",
+              "type": "Int"
+            },
+            {
+              "name": "_pre_render",
+              "type": "phoenix.Batcher->Void"
+            },
+            {
+              "name": "_post_render",
+              "type": "phoenix.Batcher->Void"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "submit_current_vertex_list",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "submit_current_vertex_list(type:phoenix.PrimitiveType) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "type",
+              "type": "phoenix.PrimitiveType"
+            }
+          ]
+        },
+        {
+          "name": "geometry_batch",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "geometry_batch(geom:phoenix.geometry.Geometry) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "geom",
+              "type": "phoenix.geometry.Geometry"
+            }
+          ]
+        },
+        {
+          "name": "geometry_batch_static",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "geometry_batch_static(geom:phoenix.geometry.Geometry) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "geom",
+              "type": "phoenix.geometry.Geometry"
+            }
+          ]
+        },
+        {
+          "name": "geometry_compare",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "geometry_compare(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.geometry.GeometryKey"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.geometry.GeometryKey"
+            }
+          ]
+        },
+        {
+          "name": "batch",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "batch(?persist_immediate:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?persist_immediate",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "draw",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "draw(?persist_immediate:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?persist_immediate",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "_enable_attributes",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_enable_attributes() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "blend_mode",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "blend_mode(?_src_mode:phoenix.BlendMode, ?_dst_mode:phoenix.BlendMode) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?_src_mode",
+              "type": "phoenix.BlendMode"
+            },
+            {
+              "name": "?_dst_mode",
+              "type": "phoenix.BlendMode"
+            }
+          ]
+        },
+        {
+          "name": "list_geometry",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "list_geometry() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "shader_activate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "shader_activate(_shader:phoenix.Shader) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_shader",
+              "type": "phoenix.Shader"
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_geom",
+              "type": "phoenix.geometry.Geometry"
+            },
+            {
+              "name": "?_remove_batcher_from_geometry",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_r:phoenix.Renderer, ?_name:String) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_r",
+              "type": "phoenix.Renderer"
+            },
+            {
+              "name": "?_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "compare_rule",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "compare_rule(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "a",
+              "type": "phoenix.geometry.GeometryKey"
+            },
+            {
+              "name": "b",
+              "type": "phoenix.geometry.GeometryKey"
+            }
+          ]
+        },
+        {
+          "name": "submit_static_geometry",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "submit_static_geometry(geom:phoenix.geometry.Geometry) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "geom",
+              "type": "phoenix.geometry.Geometry"
+            }
+          ]
+        },
+        {
+          "name": "add",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_geom",
+              "type": "phoenix.geometry.Geometry"
+            },
+            {
+              "name": "?_force_add",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "_debug",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_debug(v:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "v",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "compare_rule_to_string",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "compare_rule_to_string(r:Int) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "r",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "compare",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "compare(other:phoenix.Batcher) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "other",
+              "type": "phoenix.Batcher"
+            }
+          ]
+        },
+        {
+          "name": "_disable_attributes",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_disable_attributes() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_layer",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_layer(_layer:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_layer",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

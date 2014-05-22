@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="complexgeometry">ComplexGeometry</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#phoenix.geometry">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">phoenix</a><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix.geometry</a> / ComplexGeometry</p>
+<p><br/></p>
+<hr>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="phoenix.geometry.Geometry" href="../../../api/phoenix/geometry.Geometry.html">phoenix.geometry.Geometry</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="quads" href="#quads">quads</a></p>
+<p><code>quads : Map&lt;String,phoenix.geometry.ComplexQuad&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="clear" href="#clear">clear</a></p>
+<p><code>clear() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(_options:Dynamic)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_add" href="#quad_add">quad_add</a></p>
+<p><code>quad_add(_options:Dynamic) : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_alpha" href="#quad_alpha">quad_alpha</a></p>
+<p><code>quad_alpha(_quad_id:String, _a:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_color" href="#quad_color">quad_color</a></p>
+<p><code>quad_color(_quad_id:String, _c:phoenix.Color) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_flipx" href="#quad_flipx">quad_flipx</a></p>
+<p><code>quad_flipx(_quad_id:String, _flip:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_flipy" href="#quad_flipy">quad_flipy</a></p>
+<p><code>quad_flipy(_quad_id:String, _flip:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_hide" href="#quad_hide">quad_hide</a></p>
+<p><code>quad_hide(_quad_id:String) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_pos" href="#quad_pos">quad_pos</a></p>
+<p><code>quad_pos(_quad_id:String, _p:phoenix.Vector) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_remove" href="#quad_remove">quad_remove</a></p>
+<p><code>quad_remove(_quad_id:String) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_resize" href="#quad_resize">quad_resize</a></p>
+<p><code>quad_resize(_quad_id:String, _quad:phoenix.Rectangle) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_show" href="#quad_show">quad_show</a></p>
+<p><code>quad_show(_quad_id:String) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_uv" href="#quad_uv">quad_uv</a></p>
+<p><code>quad_uv(_quad_id:String, _uv:phoenix.Rectangle) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="quad_uv_space" href="#quad_uv_space">quad_uv_space</a></p>
+<p><code>quad_uv_space(_quad_id:String, _uv:phoenix.Rectangle) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

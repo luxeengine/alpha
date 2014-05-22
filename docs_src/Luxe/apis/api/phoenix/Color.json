@@ -1,0 +1,411 @@
+{
+  "source": "phoenix.Color",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "a",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "a : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "refreshing",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "refreshing : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "is_hsl",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "is_hsl : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "is_hsv",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "is_hsv : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "g",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "g : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "serialized",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": false,
+          "signature": "serialized : Dynamic",
+          "doc": "",
+          "type": "Dynamic",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "r",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "r : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "b",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "b : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "set_r",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_r(_r:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_r",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "clone",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "clone() : phoenix.Color",
+          "return": ": phoenix.Color",
+          "args": []
+        },
+        {
+          "name": "rgb",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "rgb(?_rgb:Int) : phoenix.Color",
+          "return": ": phoenix.Color",
+          "args": [
+            {
+              "name": "?_rgb",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "set_g",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_g(_g:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_g",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "random",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "random(?_include_alpha:Bool) : phoenix.Color",
+          "return": ": phoenix.Color",
+          "args": [
+            {
+              "name": "?_include_alpha",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "get_serialized",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_serialized() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "toColorHSV",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toColorHSV() : phoenix.ColorHSV",
+          "return": ": phoenix.ColorHSV",
+          "args": []
+        },
+        {
+          "name": "set_b",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_b(_b:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_b",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "maxRGB",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "maxRGB() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "minRGB",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "minRGB() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "tween",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "tween(?_time_in_seconds:Float, ?_properties_to_tween:luxe.options.ColorOptions, ?_override:Bool) : luxe.tween.actuators.IGenericActuator",
+          "return": ": luxe.tween.actuators.IGenericActuator",
+          "args": [
+            {
+              "name": "?_time_in_seconds",
+              "type": "Float"
+            },
+            {
+              "name": "?_properties_to_tween",
+              "type": "luxe.options.ColorOptions"
+            },
+            {
+              "name": "?_override",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "toColorHSL",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toColorHSL() : phoenix.ColorHSL",
+          "return": ": phoenix.ColorHSL",
+          "args": []
+        },
+        {
+          "name": "from_int",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "from_int(_i:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_i",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "set",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set(?_r:Float, ?_g:Float, ?_b:Float, ?_a:Float) : phoenix.Color",
+          "return": ": phoenix.Color",
+          "args": [
+            {
+              "name": "?_r",
+              "type": "Float"
+            },
+            {
+              "name": "?_g",
+              "type": "Float"
+            },
+            {
+              "name": "?_b",
+              "type": "Float"
+            },
+            {
+              "name": "?_a",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?_r:Float, ?_g:Float, ?_b:Float, ?_a:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?_r",
+              "type": "Float"
+            },
+            {
+              "name": "?_g",
+              "type": "Float"
+            },
+            {
+              "name": "?_b",
+              "type": "Float"
+            },
+            {
+              "name": "?_a",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "fromColorHSV",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "fromColorHSV(_color_hsv:phoenix.ColorHSV) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_color_hsv",
+              "type": "phoenix.ColorHSV"
+            }
+          ]
+        },
+        {
+          "name": "fromColorHSL",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "fromColorHSL(_color_hsl:phoenix.ColorHSL) : phoenix.Color",
+          "return": ": phoenix.Color",
+          "args": [
+            {
+              "name": "_color_hsl",
+              "type": "phoenix.ColorHSL"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

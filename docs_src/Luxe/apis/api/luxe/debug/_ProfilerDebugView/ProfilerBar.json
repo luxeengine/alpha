@@ -1,0 +1,352 @@
+{
+  "source": "luxe.debug._ProfilerDebugView.ProfilerBar",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "text_item",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "text_item : luxe.Text",
+          "type": "luxe.Text",
+          "doc": ""
+        },
+        {
+          "name": "name",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "visible",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "visible : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "height2",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "height2 : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "bg_geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "bg_geometry : phoenix.geometry.QuadGeometry",
+          "type": "phoenix.geometry.QuadGeometry",
+          "doc": ""
+        },
+        {
+          "name": "max",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "max : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "color_green",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "color_green : luxe.Color",
+          "type": "luxe.Color",
+          "doc": ""
+        },
+        {
+          "name": "bar_geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "bar_geometry : phoenix.geometry.QuadGeometry",
+          "type": "phoenix.geometry.QuadGeometry",
+          "doc": ""
+        },
+        {
+          "name": "graphbg_geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "graphbg_geometry : phoenix.geometry.QuadGeometry",
+          "type": "phoenix.geometry.QuadGeometry",
+          "doc": ""
+        },
+        {
+          "name": "history",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "history : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "color_normal",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "color_normal : luxe.Color",
+          "type": "luxe.Color",
+          "doc": ""
+        },
+        {
+          "name": "graph_geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "graph_geometry : phoenix.geometry.Geometry",
+          "type": "phoenix.geometry.Geometry",
+          "doc": ""
+        },
+        {
+          "name": "height",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "height : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "segment",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "segment : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "color_red",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "color_red : luxe.Color",
+          "type": "luxe.Color",
+          "doc": ""
+        },
+        {
+          "name": "width",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "width : Float",
+          "type": "Float",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "text",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "text : String",
+          "doc": "",
+          "type": "String",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "ping",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "ping : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "pos",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "pos : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "value",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "value : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_name:String, _color:luxe.Color) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_color",
+              "type": "luxe.Color"
+            }
+          ]
+        },
+        {
+          "name": "set_ping",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_ping(_v:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_v",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "hide",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "hide() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_value",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_value(_v:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_v",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_pos",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos(_p:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_p",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "show",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "show() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_text",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_text(_t:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_t",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

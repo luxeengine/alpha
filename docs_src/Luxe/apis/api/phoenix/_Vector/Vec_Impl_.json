@@ -1,0 +1,314 @@
+{
+  "source": "phoenix._Vector.Vec_Impl_",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "_divide",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A/B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_divide(lhs:phoenix.Vec, rhs:phoenix.Vec) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "phoenix.Vec"
+            }
+          ]
+        },
+        {
+          "name": "_add_scalar_int",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A+B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_add_scalar_int(lhs:phoenix.Vec, rhs:Int) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "_add",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A+B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_add(lhs:phoenix.Vec, rhs:phoenix.Vec) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "phoenix.Vec"
+            }
+          ]
+        },
+        {
+          "name": "_divide_scalar_int",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A/B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_divide_scalar_int(lhs:phoenix.Vec, rhs:Int) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "_multiply",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A*B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_multiply(lhs:phoenix.Vec, rhs:phoenix.Vec) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "phoenix.Vec"
+            }
+          ]
+        },
+        {
+          "name": "_multiply_scalar",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A*B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_multiply_scalar(lhs:phoenix.Vec, rhs:Float) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_multiply_scalar_int",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A*B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_multiply_scalar_int(lhs:phoenix.Vec, rhs:Int) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "_divide_scalar",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A/B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_divide_scalar(lhs:phoenix.Vec, rhs:Float) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_add_scalar",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A+B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_add_scalar(lhs:phoenix.Vec, rhs:Float) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_subtract",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A-B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_subtract(lhs:phoenix.Vec, rhs:phoenix.Vec) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "phoenix.Vec"
+            }
+          ]
+        },
+        {
+          "name": "_subtract_scalar",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A-B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_subtract_scalar(lhs:phoenix.Vec, rhs:Float) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_subtract_scalar_int",
+          "meta": [
+            {
+              "name": ":op",
+              "value": "A-B"
+            }
+          ],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "_subtract_scalar_int(lhs:phoenix.Vec, rhs:Int) : phoenix.Vec",
+          "return": ": phoenix.Vec",
+          "args": [
+            {
+              "name": "lhs",
+              "type": "phoenix.Vec"
+            },
+            {
+              "name": "rhs",
+              "type": "Int"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "source": "luxe.utils.Base64",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "encodeBytesData",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "encodeBytesData(bytesData:haxe.io.BytesData) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "bytesData",
+              "type": "haxe.io.BytesData"
+            }
+          ]
+        },
+        {
+          "name": "encode",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "encode(_string:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_string",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "decodeBytesData",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "decodeBytesData(base64:String) : haxe.io.BytesData",
+          "return": ": haxe.io.BytesData",
+          "args": [
+            {
+              "name": "base64",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "decode",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "decode(_string:String) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_string",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "source": "luxe.debug.DebugView",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.Objects"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "visible",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "visible : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "refresh",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "refresh() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onkeydown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeydown(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "create",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "onmousemove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousemove(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "process",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "process() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "hide",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "hide() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onmousedown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousedown(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "onmousewheel",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousewheel(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "onkeyup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeyup(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "show",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "show() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onmouseup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmouseup(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

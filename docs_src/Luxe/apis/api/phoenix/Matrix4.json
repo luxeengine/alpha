@@ -1,0 +1,1686 @@
+{
+  "source": "phoenix.Matrix4",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "elements",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "elements : Array<Float>",
+          "type": "Array<Float>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "M44",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M44 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M21",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M21 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M14",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M14 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M33",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M33 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M22",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M22 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M41",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M41 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M34",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M34 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M11",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M11 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M23",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M23 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M42",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M42 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M12",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M12 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M31",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M31 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M24",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M24 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M43",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M43 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M13",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M13 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "M32",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "M32 : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "copyPosition",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "copyPosition(m:phoenix.Matrix4) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "GetBackward",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "GetBackward(_m:phoenix.Matrix4) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "getMaxScaleOnAxis",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getMaxScaleOnAxis() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "makeRotationAxis",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeRotationAxis(_axis:phoenix.Vector, _angle:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_axis",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_angle",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "flattenToArray",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "flattenToArray(?_flat:Array<Float>) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "?_flat",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "makeScale",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeScale(_x:Float, _y:Float, _z:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_x",
+              "type": "Float"
+            },
+            {
+              "name": "_y",
+              "type": "Float"
+            },
+            {
+              "name": "_z",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "decompose",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "decompose(?_position:phoenix.Vector, ?_quaternion:phoenix.Quaternion, ?_scale:phoenix.Vector) : phoenix.MatrixTransform",
+          "return": ": phoenix.MatrixTransform",
+          "args": [
+            {
+              "name": "?_position",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "?_quaternion",
+              "type": "phoenix.Quaternion"
+            },
+            {
+              "name": "?_scale",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "copy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "copy(m:phoenix.Matrix4) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "set_M44",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M44(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M43",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M43(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M42",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M42(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "makeOrthographic",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeOrthographic(_left:Float, _right:Float, _top:Float, _bottom:Float, _near:Float, _far:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_left",
+              "type": "Float"
+            },
+            {
+              "name": "_right",
+              "type": "Float"
+            },
+            {
+              "name": "_top",
+              "type": "Float"
+            },
+            {
+              "name": "_bottom",
+              "type": "Float"
+            },
+            {
+              "name": "_near",
+              "type": "Float"
+            },
+            {
+              "name": "_far",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "toArray",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toArray() : Array<Float>",
+          "return": ": Array<Float>",
+          "args": []
+        },
+        {
+          "name": "set_M34",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M34(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M41",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M41(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M33",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M33(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "makeRotationFromQuaternion",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeRotationFromQuaternion(q:phoenix.Quaternion) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "q",
+              "type": "phoenix.Quaternion"
+            }
+          ]
+        },
+        {
+          "name": "multiply",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "multiply(_m:phoenix.Matrix4) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "set_M32",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M32(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M24",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M24(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M31",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M31(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "float32array",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "float32array() : lime.utils.Float32Array",
+          "return": ": lime.utils.Float32Array",
+          "args": []
+        },
+        {
+          "name": "makeRotationZ",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeRotationZ(_theta:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_theta",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M23",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M23(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "determinant",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "determinant() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "GetDown",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "GetDown(_m:phoenix.Matrix4) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "set_M22",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M22(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M14",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M14(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M21",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M21(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "makeTranslation",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeTranslation(_x:Float, _y:Float, _z:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_x",
+              "type": "Float"
+            },
+            {
+              "name": "_y",
+              "type": "Float"
+            },
+            {
+              "name": "_z",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "fromArray",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "fromArray(_from:Array<Float>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_from",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "set_M13",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M13(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_M12",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M12(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_M44",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M44() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "set_M11",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_M11(_value:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_M43",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M43() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "makeRotationFromEuler",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeRotationFromEuler(_v:phoenix.Vector, ?_order:String) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_v",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "?_order",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "flattenToArrayOffset",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "flattenToArrayOffset(_flat:Array<Float>, _offset:Int) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "_flat",
+              "type": "Array<Float>"
+            },
+            {
+              "name": "_offset",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "get_M42",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M42() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "getInverse",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getInverse(_m:phoenix.Matrix4) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "makePerspective",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makePerspective(_fov:Float, _aspect:Float, _near:Float, _far:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_fov",
+              "type": "Float"
+            },
+            {
+              "name": "_aspect",
+              "type": "Float"
+            },
+            {
+              "name": "_near",
+              "type": "Float"
+            },
+            {
+              "name": "_far",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_M34",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M34() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M41",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M41() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "makeRotationY",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeRotationY(_theta:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_theta",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_M33",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M33() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M32",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M32() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "extractRotation",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "extractRotation(m:phoenix.Matrix4) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "multiplyVector3Array",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "multiplyVector3Array(_a:Array<Float>) : Array<Float>",
+          "return": ": Array<Float>",
+          "args": [
+            {
+              "name": "_a",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "get_M24",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M24() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M31",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M31() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "lookAt",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "lookAt(_eye:phoenix.Vector, _target:phoenix.Vector, _up:phoenix.Vector) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_eye",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_target",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_up",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "get_M23",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M23() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M22",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M22() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "multiplyScalar",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "multiplyScalar(_s:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_s",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?n11:Float, ?n12:Float, ?n13:Float, ?n14:Float, ?n21:Float, ?n22:Float, ?n23:Float, ?n24:Float, ?n31:Float, ?n32:Float, ?n33:Float, ?n34:Float, ?n41:Float, ?n42:Float, ?n43:Float, ?n44:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?n11",
+              "type": "Float"
+            },
+            {
+              "name": "?n12",
+              "type": "Float"
+            },
+            {
+              "name": "?n13",
+              "type": "Float"
+            },
+            {
+              "name": "?n14",
+              "type": "Float"
+            },
+            {
+              "name": "?n21",
+              "type": "Float"
+            },
+            {
+              "name": "?n22",
+              "type": "Float"
+            },
+            {
+              "name": "?n23",
+              "type": "Float"
+            },
+            {
+              "name": "?n24",
+              "type": "Float"
+            },
+            {
+              "name": "?n31",
+              "type": "Float"
+            },
+            {
+              "name": "?n32",
+              "type": "Float"
+            },
+            {
+              "name": "?n33",
+              "type": "Float"
+            },
+            {
+              "name": "?n34",
+              "type": "Float"
+            },
+            {
+              "name": "?n41",
+              "type": "Float"
+            },
+            {
+              "name": "?n42",
+              "type": "Float"
+            },
+            {
+              "name": "?n43",
+              "type": "Float"
+            },
+            {
+              "name": "?n44",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_M14",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M14() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M21",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M21() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M13",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M13() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "multiplyToArray",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "multiplyToArray(_a:phoenix.Matrix4, _b:phoenix.Matrix4, _r:Array<Float>) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_a",
+              "type": "phoenix.Matrix4"
+            },
+            {
+              "name": "_b",
+              "type": "phoenix.Matrix4"
+            },
+            {
+              "name": "_r",
+              "type": "Array<Float>"
+            }
+          ]
+        },
+        {
+          "name": "compose",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "compose(_position:phoenix.Vector, _quaternion:phoenix.Quaternion, _scale:phoenix.Vector) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_position",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_quaternion",
+              "type": "phoenix.Quaternion"
+            },
+            {
+              "name": "_scale",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "GetUp",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "GetUp(_m:phoenix.Matrix4) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "get_M12",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M12() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "get_M11",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_M11() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "inverse",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "inverse() : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": []
+        },
+        {
+          "name": "makeRotationX",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeRotationX(_theta:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_theta",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "setPosition",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "setPosition(_v:phoenix.Vector) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_v",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "multiplyMatrices",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "multiplyMatrices(_a:phoenix.Matrix4, _b:phoenix.Matrix4) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_a",
+              "type": "phoenix.Matrix4"
+            },
+            {
+              "name": "_b",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "scale",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "scale(_v:phoenix.Vector) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_v",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "compose_with_origin",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "compose_with_origin(_position:phoenix.Vector, _origin:phoenix.Vector, _quaternion:phoenix.Quaternion, _scale:phoenix.Vector) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_position",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_origin",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_quaternion",
+              "type": "phoenix.Quaternion"
+            },
+            {
+              "name": "_scale",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "clone",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "clone() : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": []
+        },
+        {
+          "name": "identity",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "identity() : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": []
+        },
+        {
+          "name": "set",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set(n11:Float, n12:Float, n13:Float, n14:Float, n21:Float, n22:Float, n23:Float, n24:Float, n31:Float, n32:Float, n33:Float, n34:Float, n41:Float, n42:Float, n43:Float, n44:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "n11",
+              "type": "Float"
+            },
+            {
+              "name": "n12",
+              "type": "Float"
+            },
+            {
+              "name": "n13",
+              "type": "Float"
+            },
+            {
+              "name": "n14",
+              "type": "Float"
+            },
+            {
+              "name": "n21",
+              "type": "Float"
+            },
+            {
+              "name": "n22",
+              "type": "Float"
+            },
+            {
+              "name": "n23",
+              "type": "Float"
+            },
+            {
+              "name": "n24",
+              "type": "Float"
+            },
+            {
+              "name": "n31",
+              "type": "Float"
+            },
+            {
+              "name": "n32",
+              "type": "Float"
+            },
+            {
+              "name": "n33",
+              "type": "Float"
+            },
+            {
+              "name": "n34",
+              "type": "Float"
+            },
+            {
+              "name": "n41",
+              "type": "Float"
+            },
+            {
+              "name": "n42",
+              "type": "Float"
+            },
+            {
+              "name": "n43",
+              "type": "Float"
+            },
+            {
+              "name": "n44",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "transpose",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "transpose() : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": []
+        },
+        {
+          "name": "makeFrustum",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "makeFrustum(_left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_left",
+              "type": "Float"
+            },
+            {
+              "name": "_right",
+              "type": "Float"
+            },
+            {
+              "name": "_bottom",
+              "type": "Float"
+            },
+            {
+              "name": "_top",
+              "type": "Float"
+            },
+            {
+              "name": "_near",
+              "type": "Float"
+            },
+            {
+              "name": "_far",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "getPosition",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "getPosition() : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": []
+        },
+        {
+          "name": "GetRight",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "GetRight(_m:phoenix.Matrix4) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "GetLeft",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "GetLeft(_m:phoenix.Matrix4) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "GetForward",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "GetForward(_m:phoenix.Matrix4) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_m",
+              "type": "phoenix.Matrix4"
+            }
+          ]
+        },
+        {
+          "name": "make2D",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "make2D(_x:Float, _y:Float, ?_scale:Float, ?_rotation:Float) : phoenix.Matrix4",
+          "return": ": phoenix.Matrix4",
+          "args": [
+            {
+              "name": "_x",
+              "type": "Float"
+            },
+            {
+              "name": "_y",
+              "type": "Float"
+            },
+            {
+              "name": "?_scale",
+              "type": "Float"
+            },
+            {
+              "name": "?_rotation",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

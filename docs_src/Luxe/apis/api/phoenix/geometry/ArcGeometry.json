@@ -1,0 +1,39 @@
+{
+  "source": "phoenix.geometry.ArcGeometry",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "phoenix.geometry.CircleGeometry"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(options:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "options",
+              "type": "Dynamic"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

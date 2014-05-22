@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="camera">Camera</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#luxe">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Camera</p>
+<p><br/></p>
+<hr>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="luxe.Entity" href="../../api/luxe/Entity.html">luxe.Entity</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="bounds" href="#bounds">bounds</a></p>
+<p><code>bounds : luxe.Rectangle</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="minimum_shake" href="#minimum_shake">minimum_shake</a></p>
+<p><code>minimum_shake : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shake_amount" href="#shake_amount">shake_amount</a></p>
+<p><code>shake_amount : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shake_vector" href="#shake_vector">shake_vector</a></p>
+<p><code>shake_vector : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shaking" href="#shaking">shaking</a></p>
+<p><code>shaking : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="view" href="#view">view</a></p>
+<p><code>view : phoenix.Camera</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="center" href="#center">center</a></p>
+<p><code>center : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="minimum_zoom" href="#minimum_zoom">minimum_zoom</a></p>
+<p><code>minimum_zoom : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="viewport" href="#viewport">viewport</a></p>
+<p><code>viewport : luxe.Rectangle</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="zoom" href="#zoom">zoom</a></p>
+<p><code>zoom : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="focus" href="#focus">focus</a></p>
+<p><code>focus(_p:luxe.Vector, ?_t:Float, ?oncomplete:Void) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
+<p><code>get_serialize_data() : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(?options:luxe.options.LuxeCameraOptions)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="screen_point_to_world" href="#screen_point_to_world">screen_point_to_world</a></p>
+<p><code>screen_point_to_world(_vector:luxe.Vector) : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shake" href="#shake">shake</a></p>
+<p><code>shake(amount:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="world_point_to_screen" href="#world_point_to_screen">world_point_to_screen</a></p>
+<p><code>world_point_to_screen(_vector:luxe.Vector, ?_viewport:luxe.Rectangle) : luxe.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,110 @@
+{
+  "source": "phoenix.Ray",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "viewport",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "viewport : phoenix.Rectangle",
+          "type": "phoenix.Rectangle",
+          "doc": ""
+        },
+        {
+          "name": "origin",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "origin : phoenix.Vector",
+          "type": "phoenix.Vector",
+          "doc": ""
+        },
+        {
+          "name": "dir",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dir : phoenix.Vector",
+          "type": "phoenix.Vector",
+          "doc": ""
+        },
+        {
+          "name": "camera",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "camera : phoenix.Camera",
+          "type": "phoenix.Camera",
+          "doc": ""
+        },
+        {
+          "name": "end",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "end : phoenix.Vector",
+          "type": "phoenix.Vector",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "refresh",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "refresh(_screen_pos:phoenix.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_screen_pos",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_screen_pos:phoenix.Vector, _camera:phoenix.Camera, ?_viewport:phoenix.Rectangle) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_screen_pos",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_camera",
+              "type": "phoenix.Camera"
+            },
+            {
+              "name": "?_viewport",
+              "type": "phoenix.Rectangle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "source": "luxe.ResourceStats",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "render_textures",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "render_textures : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "datas",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "datas : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "sounds",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "sounds : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "texts",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "texts : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "unknown",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "unknown : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "textures",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "textures : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "shaders",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "shaders : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "resources",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "resources : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "fonts",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "fonts : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "reset",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "reset() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

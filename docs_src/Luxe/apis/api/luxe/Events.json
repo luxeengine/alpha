@@ -1,0 +1,315 @@
+{
+  "source": "luxe.Events",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "event_connections",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "event_connections : Map<String,luxe._Events.EventConnection>",
+          "type": "Map<String,luxe._Events.EventConnection>",
+          "doc": ""
+        },
+        {
+          "name": "event_filters",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "event_filters : Map<String,Array>",
+          "type": "Map<String,Array>",
+          "doc": ""
+        },
+        {
+          "name": "event_slots",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "event_slots : Map<String,Array>",
+          "type": "Map<String,Array>",
+          "doc": ""
+        },
+        {
+          "name": "event_queue",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "event_queue : Map<String,luxe._Events.EventObject>",
+          "type": "Map<String,luxe._Events.EventObject>",
+          "doc": ""
+        },
+        {
+          "name": "event_schedules",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "event_schedules : Map<String,haxe.Timer>",
+          "type": "Map<String,haxe.Timer>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "clear",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "clear() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "schedule",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "schedule(time:Float, event_name:String, ?properties:schedule.T) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "time",
+              "type": "Float"
+            },
+            {
+              "name": "event_name",
+              "type": "String"
+            },
+            {
+              "name": "?properties",
+              "type": "schedule.T"
+            }
+          ]
+        },
+        {
+          "name": "listen",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "listen(_event_name:String, _listener:listen.T->Void) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "_event_name",
+              "type": "String"
+            },
+            {
+              "name": "_listener",
+              "type": "listen.T->Void"
+            }
+          ]
+        },
+        {
+          "name": "queue",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "queue(event_name:String, ?properties:queue.T) : String",
+          "return": ": String",
+          "args": [
+            {
+              "name": "event_name",
+              "type": "String"
+            },
+            {
+              "name": "?properties",
+              "type": "queue.T"
+            }
+          ]
+        },
+        {
+          "name": "process",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "process() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "does_filter_event",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "does_filter_event(_filter:String, _event:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "String"
+            },
+            {
+              "name": "_event",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "tag_properties",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "tag_properties(_properties:Dynamic, _name:String, _count:Int) : fire.T",
+          "return": ": fire.T",
+          "args": [
+            {
+              "name": "_properties",
+              "type": "Dynamic"
+            },
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_count",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "fire",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "fire(_event_name:String, ?_properties:fire.T) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_event_name",
+              "type": "String"
+            },
+            {
+              "name": "?_properties",
+              "type": "fire.T"
+            }
+          ]
+        },
+        {
+          "name": "unschedule",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "unschedule(schedule_id:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "schedule_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "dequeue",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "dequeue(event_id:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "event_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "disconnect",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "disconnect(event_id:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "event_id",
+              "type": "String"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

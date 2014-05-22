@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="motionpath">MotionPath</h1>
+<hr>
+<ul>
+<li>@author Joshua Granick</li>
+</ul>
+<hr>
+<p><br/></p>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#luxe.tween">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">luxe</a><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe.tween</a> / MotionPath</p>
+<p><br/></p>
+<hr>
+<p><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="x" href="#x">x</a></p>
+<p><code>x : luxe.tween.IComponentPath</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="y" href="#y">y</a></p>
+<p><code>y : luxe.tween.IComponentPath</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="bezier" href="#bezier">bezier</a></p>
+<p><code>bezier(x:Float, y:Float, controlX:Float, controlY:Float, ?strength:Float) : luxe.tween.MotionPath</code></p>
+<p><span class="small_desc_flat"> * Adds a bezier curve to the current motion path</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">x</span>  <span class="err">The</span> <span class="err">x</span> <span class="err">position</span> <span class="err">of</span> <span class="err">the</span> <span class="err">end</span> <span class="err">point</span> <span class="err">for</span> <span class="err">the</span> <span class="err">curve</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">y</span>  <span class="err">The</span> <span class="err">y</span> <span class="err">position</span> <span class="err">of</span> <span class="err">the</span> <span class="err">end</span> <span class="err">point</span> <span class="err">for</span> <span class="err">the</span> <span class="err">curve</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">controlX</span>  <span class="err">The</span> <span class="err">x</span> <span class="err">position</span> <span class="err">of</span> <span class="err">the</span> <span class="err">control</span> <span class="err">point</span> <span class="err">for</span> <span class="err">the</span> <span class="err">curve,</span> <span class="err">which</span> <span class="err">affects</span> <span class="err">the</span> <span class="err">angle</span> <span class="err">and</span> <span class="err">midpoint</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">controlX</span>  <span class="err">The</span> <span class="err">x</span> <span class="err">position</span> <span class="err">of</span> <span class="err">the</span> <span class="err">control</span> <span class="err">point</span> <span class="err">for</span> <span class="err">the</span> <span class="err">curve,</span> <span class="err">which</span> <span class="err">affects</span> <span class="err">the</span> <span class="err">angle</span> <span class="err">and</span> <span class="err">midpoint</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">strength</span>  <span class="err">The</span> <span class="err">degree</span> <span class="err">of</span> <span class="err">emphasis</span> <span class="err">that</span> <span class="err">should</span> <span class="err">be</span> <span class="err">placed</span> <span class="err">on</span> <span class="err">this</span> <span class="err">segment.</span> <span class="err">If</span> <span class="err">a</span> <span class="err">motion</span> <span class="err">path</span> <span class="err">contains</span> <span class="err">multiple</span> <span class="err">segments</span> <span class="err">with</span> <span class="err">the</span> <span class="err">same</span> <span class="err">strength,</span> <span class="err">they</span> <span class="err">all</span> <span class="err">receive</span> <span class="err">equal</span> <span class="err">emphasis</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">1)</span>
+ <span class="err">*</span> <span class="err">@return</span>  <span class="err">The</span> <span class="err">current</span> <span class="err">motion</span> <span class="err">path</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="line" href="#line">line</a></p>
+<p><code>line(x:Float, y:Float, ?strength:Float) : luxe.tween.MotionPath</code></p>
+<p><span class="small_desc_flat"> * Adds a line to the current motion path</p>
+<pre><code><div class="highlight"><pre> <span class="err">*</span> <span class="err">@param</span>   <span class="err">x</span>  <span class="err">The</span> <span class="err">x</span> <span class="err">position</span> <span class="err">of</span> <span class="err">the</span> <span class="err">end</span> <span class="err">point</span> <span class="err">for</span> <span class="err">the</span> <span class="err">line</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">x</span>  <span class="err">The</span> <span class="err">y</span> <span class="err">position</span> <span class="err">of</span> <span class="err">the</span> <span class="err">end</span> <span class="err">point</span> <span class="err">for</span> <span class="err">the</span> <span class="err">line</span>
+ <span class="err">*</span> <span class="err">@param</span>   <span class="err">strength</span>  <span class="err">The</span> <span class="err">degree</span> <span class="err">of</span> <span class="err">emphasis</span> <span class="err">that</span> <span class="err">should</span> <span class="err">be</span> <span class="err">placed</span> <span class="err">on</span> <span class="err">this</span> <span class="err">segment</span> <span class="err">.</span> <span class="err">If</span> <span class="err">a</span> <span class="err">motion</span> <span class="err">path</span> <span class="err">contains</span> <span class="err">multiple</span> <span class="err">segments</span> <span class="err">with</span> <span class="err">the</span> <span class="err">same</span> <span class="err">strength,</span> <span class="err">they</span> <span class="err">all</span> <span class="err">receive</span> <span class="err">equal</span> <span class="err">emphasis</span> <span class="err">(Default</span> <span class="err">is</span> <span class="err">1)</span>
+ <span class="err">*</span> <span class="err">@return</span>  <span class="err">The</span> <span class="err">current</span> <span class="err">motion</span> <span class="err">path</span> <span class="err">instance</span> <span class="err">&lt;/span&gt;</span>   
+</pre></div>
+
+</code></pre><p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new()</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,632 @@
+{
+  "source": "luxe.Input",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "mouse_bindings",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "mouse_bindings : Map<String,Map>",
+          "type": "Map<String,Map>",
+          "doc": ""
+        },
+        {
+          "name": "Keys",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "Keys : lime.helpers.Keys",
+          "type": "lime.helpers.Keys",
+          "doc": ""
+        },
+        {
+          "name": "Gamepad",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "Gamepad : lime.helpers.Gamepad",
+          "type": "lime.helpers.Gamepad",
+          "doc": ""
+        },
+        {
+          "name": "key_bindings",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "key_bindings : Map<String,Map>",
+          "type": "Map<String,Map>",
+          "doc": ""
+        },
+        {
+          "name": "core",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "core : luxe.Core",
+          "type": "luxe.Core",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "gamepadbuttonup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "gamepadbuttonup(_event:luxe.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "process",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "process() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "gamepadbuttondown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "gamepadbuttondown(_event:luxe.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "check_named_mouse",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "check_named_mouse(e:luxe.MouseEvent, ?_down:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            },
+            {
+              "name": "?_down",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "gotinputfocus",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "gotinputfocus(_event:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "lostinputfocus",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "lostinputfocus(_event:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "add_mouse_binding",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_mouse_binding(_name:String, _value:luxe.MouseButton) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_value",
+              "type": "luxe.MouseButton"
+            }
+          ]
+        },
+        {
+          "name": "check_named_keys",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "check_named_keys(e:luxe.KeyEvent, ?_down:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            },
+            {
+              "name": "?_down",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "mousedown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mousedown(_event:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "touchend",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "touchend(_event:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "gamepadaxis",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "gamepadaxis(_event:luxe.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "onkeydown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeydown(_event:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "mousemove",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mousemove(_event:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "touchbegin",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "touchbegin(_event:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_core:luxe.Core) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_core",
+              "type": "luxe.Core"
+            }
+          ]
+        },
+        {
+          "name": "onchar",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onchar(_event:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "mouseclick",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mouseclick(_event:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "mouseup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "mouseup(_event:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "gamepadhat",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "gamepadhat(_event:luxe.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "add_key_binding",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_key_binding(_name:String, _value:luxe.KeyValue) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_value",
+              "type": "luxe.KeyValue"
+            }
+          ]
+        },
+        {
+          "name": "add",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add(_name:String, _binding_value:add.T) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_binding_value",
+              "type": "add.T"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "gamepadball",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "gamepadball(_event:luxe.GamepadEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.GamepadEvent"
+            }
+          ]
+        },
+        {
+          "name": "onkeyup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeyup(_event:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "init",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "touchmove",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "touchmove(_event:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "touchtap",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "touchtap(_event:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_event",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

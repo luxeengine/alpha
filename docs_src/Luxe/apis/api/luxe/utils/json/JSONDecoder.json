@@ -1,0 +1,155 @@
+{
+  "source": "luxe.utils.json.JSONDecoder",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "strict",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "strict : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "tokenizer",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "tokenizer : luxe.utils.json.JSONTokenizer",
+          "type": "luxe.utils.json.JSONTokenizer",
+          "doc": "The tokenizer designated to read the JSON string"
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "meta : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "value",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "value : Dynamic",
+          "type": "Dynamic",
+          "doc": "The value that will get parsed from the JSON string"
+        },
+        {
+          "name": "token",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "token : luxe.utils.json.JSONToken",
+          "type": "luxe.utils.json.JSONToken",
+          "doc": "The current token from the tokenizer"
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":noCompletion",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "* Constructs a new JSONDecoder to parse a JSON string \n     * into a native object.\n     *\n     * @param s The JSON string to be converted into a native object",
+          "signature": "new(s:String, strict:Bool) ",
+          "return": "",
+          "args": [
+            {
+              "name": "s",
+              "type": "String"
+            },
+            {
+              "name": "strict",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "nextToken",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Returns the next token from the tokenzier reading\n     * the JSON string",
+          "signature": "nextToken() : luxe.utils.json.JSONToken",
+          "return": ": luxe.utils.json.JSONToken",
+          "args": []
+        },
+        {
+          "name": "parseObject",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Attempt to parse an object",
+          "signature": "parseObject() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "parseArray",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Attempt to parse an array",
+          "signature": "parseArray() : Array<Dynamic>",
+          "return": ": Array<Dynamic>",
+          "args": []
+        },
+        {
+          "name": "parseValue",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "* Attempt to parse a value",
+          "signature": "parseValue() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "getValue",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "* Gets the internal object that was created by parsing\n     * the JSON string passed to the constructor.\n     *\n     * @return The internal object representation of the JSON\n     *      string that was passed to the constructor",
+          "signature": "getValue() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

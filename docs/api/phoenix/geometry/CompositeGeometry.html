@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="compositegeometry">CompositeGeometry</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#phoenix.geometry">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">phoenix</a><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix.geometry</a> / CompositeGeometry</p>
+<p><br/></p>
+<hr>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="phoenix.geometry.Geometry" href="../../../api/phoenix/geometry.Geometry.html">phoenix.geometry.Geometry</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="geometry" href="#geometry">geometry</a></p>
+<p><code>geometry : Array&lt;phoenix.geometry.Geometry&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="add_geometry" href="#add_geometry">add_geometry</a></p>
+<p><code>add_geometry(g:phoenix.geometry.Geometry) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="add_to_batcher" href="#add_to_batcher">add_to_batcher</a></p>
+<p><code>add_to_batcher(_batcher:phoenix.Batcher) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clear" href="#clear">clear</a></p>
+<p><code>clear() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="drop" href="#drop">drop</a></p>
+<p><code>drop(?remove:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="has_geometry" href="#has_geometry">has_geometry</a></p>
+<p><code>has_geometry(g:phoenix.geometry.Geometry) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(?options:Dynamic)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="remove_geometry" href="#remove_geometry">remove_geometry</a></p>
+<p><code>remove_geometry(g:phoenix.geometry.Geometry) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="replace" href="#replace">replace</a></p>
+<p><code>replace(_geometry:Array&lt;phoenix.geometry.Geometry&gt;) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_clip" href="#set_clip">set_clip</a></p>
+<p><code>set_clip(val:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_clip_rect" href="#set_clip_rect">set_clip_rect</a></p>
+<p><code>set_clip_rect(val:phoenix.Rectangle) : phoenix.Rectangle</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_color" href="#set_color">set_color</a></p>
+<p><code>set_color(_color:phoenix.Color) : phoenix.Color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_depth" href="#set_depth">set_depth</a></p>
+<p><code>set_depth(val:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_dirty" href="#set_dirty">set_dirty</a></p>
+<p><code>set_dirty(val:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_group" href="#set_group">set_group</a></p>
+<p><code>set_group(val:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_locked" href="#set_locked">set_locked</a></p>
+<p><code>set_locked(val:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_origin" href="#set_origin">set_origin</a></p>
+<p><code>set_origin(_origin:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_pos_from_transform" href="#set_pos_from_transform">set_pos_from_transform</a></p>
+<p><code>set_pos_from_transform(_position:phoenix.Vector) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_primitive_type" href="#set_primitive_type">set_primitive_type</a></p>
+<p><code>set_primitive_type(val:phoenix.PrimitiveType) : phoenix.PrimitiveType</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_rotation_from_transform" href="#set_rotation_from_transform">set_rotation_from_transform</a></p>
+<p><code>set_rotation_from_transform(_rotation:phoenix.Quaternion) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_scale_from_transform" href="#set_scale_from_transform">set_scale_from_transform</a></p>
+<p><code>set_scale_from_transform(_scale:phoenix.Vector) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_shader" href="#set_shader">set_shader</a></p>
+<p><code>set_shader(val:phoenix.Shader) : phoenix.Shader</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_texture" href="#set_texture">set_texture</a></p>
+<p><code>set_texture(val:phoenix.Texture) : phoenix.Texture</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_visible" href="#set_visible">set_visible</a></p>
+<p><code>set_visible(val:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toString" href="#toString">toString</a></p>
+<p><code>toString() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="translate" href="#translate">translate</a></p>
+<p><code>translate(_offset:phoenix.Vector) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

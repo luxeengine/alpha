@@ -1,0 +1,94 @@
+{
+  "source": "luxe.tween.BezierPath",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "control",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "control : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "strength",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "strength : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "end",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "end : Float",
+          "type": "Float",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(end:Float, control:Float, strength:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "end",
+              "type": "Float"
+            },
+            {
+              "name": "control",
+              "type": "Float"
+            },
+            {
+              "name": "strength",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "calculate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "calculate(start:Float, k:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "start",
+              "type": "Float"
+            },
+            {
+              "name": "k",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

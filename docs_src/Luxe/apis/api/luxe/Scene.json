@@ -1,0 +1,568 @@
+{
+  "source": "luxe.Scene",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.Objects"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "entities",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "entities : Map<String,luxe.Entity>",
+          "type": "Map<String,luxe.Entity>",
+          "doc": ""
+        },
+        {
+          "name": "inited",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "inited : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "started",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "started : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "_delayed_init_entities",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_delayed_init_entities : Array<luxe.Entity>",
+          "type": "Array<luxe.Entity>",
+          "doc": ""
+        },
+        {
+          "name": "_delayed_start_entities",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_delayed_start_entities : Array<luxe.Entity>",
+          "type": "Array<luxe.Entity>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "entitycount",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "entitycount : Int",
+          "doc": "",
+          "type": "Int",
+          "type_desc": "(read only)"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "onmousedown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousedown(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "get_entitycount",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_entitycount() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "onmousewheel",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousewheel(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "onmouseup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmouseup(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "handle_delayed_additions",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "handle_delayed_additions() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "create",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create(type:Class<create.T1>, ?_name:String, ?_data:create.T2) : create.T1",
+          "return": ": create.T1",
+          "args": [
+            {
+              "name": "type",
+              "type": "Class<create.T1>"
+            },
+            {
+              "name": "?_name",
+              "type": "String"
+            },
+            {
+              "name": "?_data",
+              "type": "create.T2"
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove(entity:luxe.Entity) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "entity",
+              "type": "luxe.Entity"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "onmousemove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousemove(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "ongamepadaxis",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ongamepadaxis(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "start",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "start() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "serialize_to_disk",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "serialize_to_disk(_destination_path:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_destination_path",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "add",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add(entity:luxe.Entity) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "entity",
+              "type": "luxe.Entity"
+            }
+          ]
+        },
+        {
+          "name": "fixed_update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "fixed_update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onkeyup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeyup(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "ontouchbegin",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ontouchbegin(e:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "list_entities",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "list_entities() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "ontouchend",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ontouchend(e:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "ongamepadbuttondown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ongamepadbuttondown(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "empty",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "empty() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "ontouchmove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ontouchmove(e:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "ongamepadhat",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ongamepadhat(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "ongamepadbuttonup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ongamepadbuttonup(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "onkeydown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeydown(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "oninputdown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "oninputdown(_name:String, e:luxe.InputEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "e",
+              "type": "luxe.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "_do_init",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_do_init() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "update",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "update(dt:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "dt",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "oninputup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "oninputup(_name:String, e:luxe.InputEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "e",
+              "type": "luxe.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "ongamepadball",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ongamepadball(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

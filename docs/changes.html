@@ -3,25 +3,28 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" href="./favicon.png" />
+        <link rel="shortcut icon" href="./images/favicon.png" />
 
-        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
-        <script src="./jquery-2.0.3.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+        
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+
         <script>
+
             $(document).ready(function() {
+
                 $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...')
+                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...')
+                        $(this).text('less ...');
                     }
-
                     _child.css('display', _opp);
                 });
 
@@ -33,7 +36,9 @@
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
-            });
+
+            }); //document.ready
+
         </script>
     </head>
 
@@ -42,12 +47,75 @@
             <p>&nbsp;   </p>
 <div class="commit_info">
 
+commit <a href="http://github.com/underscorediscovery/luxe/commit/997cb13a2b7a6193ee43cbf6c12cbec6c5942ae7">997cb13a2b</a><br>author: underscorediscovery<br>date: Sat May 03 2014 09:45:06 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>tidy</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/luxe/commit/abb001f9119054c39faec9cafea0876fe5d477aa">abb001f911</a><br>author: underscorediscovery<br>date: Wed Apr 30 2014 20:50:09 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>cleanup rogue spacing</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/luxe/commit/9722e7d0a95e75044cf15544d7df03a888376486">9722e7d0a9</a><br>author: underscorediscovery<br>date: Wed Apr 30 2014 09:11:54 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Batcher; increasing base vert count from 16k to 65k</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/luxe/commit/2c044744ecc0536e8e4b8a5147cc96f908b09cda">2c044744ec</a><br>author: underscorediscovery<br>date: Tue Apr 29 2014 00:05:36 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; fixing bugs with image frame animations</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/luxe/commit/11feee35caa17dd9ee84a178243c8099e4aacf36">11feee35ca</a><br>author: underscorediscovery<br>date: Sat Apr 26 2014 01:53:39 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Tests; Adding new test for transforms but this isn’t usable yet</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/luxe/commit/e9567a951466632f6fe1e3867c40bcaf17088e44">e9567a9514</a><br>author: underscorediscovery<br>date: Sat Apr 12 2014 22:09:14 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>DebugView; Hid the wrong thing by default for now</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="http://github.com/underscorediscovery/luxe/commit/07d0f6693d346853f6ab71d08e534ac199d80805">07d0f6693d</a><br>author: underscorediscovery<br>date: Sat Apr 12 2014 22:09:00 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Docs; update changes</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
 commit <a href="http://github.com/underscorediscovery/luxe/commit/a1587b9e38e3d139a2cf8b951bf93ea314303fcd">a1587b9e38</a><br>author: underscorediscovery<br>date: Sat Apr 12 2014 22:04:42 GMT-0230 (NDT)<br></div>
 
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>::: POTENTIALLY BREAKING/CONFUSING CHANGE :::</li><li>TL;DR; any use of “enabled” -&gt; “visible” (unless on a <a href="phoenix.Batcher.html">Batcher</a>, batcher.enabled is correct, geometry.enabled is not)</li><li>Any use of “enabled” on geometry or text etc anywhere has been changed to “visible”. The context in which it was used was visibility, <a href="phoenix.Batcher.html">Batcher</a> uses it correctly where processing is ignored on disabled batchers. Any visibility related flags and values have been made consistent across the board. Sorry if this causes some minor code changes but it’s unavoidable pre 1.0 :&gt; Search your code for “enabled” and if you see any that aren’t your own or on a batcher it’s likely meant to be .visible instead.</li><li>General; part of #77, cleanup enabled -&gt; visible</li><li><a href="luxe.Matrix4.html">Matrix4</a>; decompose was using an Array<Dynamic> as a return, now typed and proper, added “getPosition” as a convenience but this is inconsistent a bit still.. still deciding on this file.</li><li>BBST; left/right default to null for dynamic platforms that don’t populate this for clarity/debugging</li><li>DebugView; profiler now has “offsets” that allow you to ignore profiles in other profiles. For example, the core.render loop includes the very debug view showing you that, which, when expensive, is masking the game rendering profile quite badly causing it to seem way worse. This basically says core.render is core.render - debugview. Profiler view also now has hidden views, that will track but not draw (like when tracking portions of the render stage that aren’t relevant to the game, like debug views).</li></ul>
+<ul><li>::: POTENTIALLY BREAKING/CONFUSING CHANGE :::</li><li>TL;DR; any use of “enabled” -&gt; “visible” (unless on a Batcher, batcher.enabled is correct, geometry.enabled is not)</li><li>Any use of “enabled” on geometry or text etc anywhere has been changed to “visible”. The context in which it was used was visibility, Batcher uses it correctly where processing is ignored on disabled batchers. Any visibility related flags and values have been made consistent across the board. Sorry if this causes some minor code changes but it’s unavoidable pre 1.0 :&gt; Search your code for “enabled” and if you see any that aren’t your own or on a batcher it’s likely meant to be .visible instead.</li><li>General; part of #77, cleanup enabled -&gt; visible</li><li>Matrix4; decompose was using an Array<Dynamic> as a return, now typed and proper, added “getPosition” as a convenience but this is inconsistent a bit still.. still deciding on this file.</li><li>BBST; left/right default to null for dynamic platforms that don’t populate this for clarity/debugging</li><li>DebugView; profiler now has “offsets” that allow you to ignore profiles in other profiles. For example, the core.render loop includes the very debug view showing you that, which, when expensive, is masking the game rendering profile quite badly causing it to seem way worse. This basically says core.render is core.render - debugview. Profiler view also now has hidden views, that will track but not draw (like when tracking portions of the render stage that aren’t relevant to the game, like debug views).</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -146,7 +214,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/064590137b997c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>General; continued cleanup for #77</li><li><a href="phoenix.Batcher.html">Batcher</a> shader uniforms, shader class types and locations, render state</li><li>flags typed</li></ul>
+<ul><li>General; continued cleanup for #77</li><li>Batcher shader uniforms, shader class types and locations, render state</li><li>flags typed</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -173,7 +241,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/97452af277e82d
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Input; add typed, removing dynamic</li><li>Texture; general cleanup and fixing get/set pixel types (255 vs 1.0 color types) and dynamic usage</li><li><a href="luxe.Camera.html">Camera</a>; removing dynamics and adding CameraOptions</li><li>Components; get is now typed, and get_any is added, for the array type results</li></ul>
+<ul><li>Input; add typed, removing dynamic</li><li>Texture; general cleanup and fixing get/set pixel types (255 vs 1.0 color types) and dynamic usage</li><li>Camera; removing dynamics and adding CameraOptions</li><li>Components; get is now typed, and get_any is added, for the array type results</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -182,7 +250,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5d6ba290eda2e7
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Batcher; <a href="phoenix.Geometry.html">Geometry</a>; Adding missing lines primitive (lol)</li></ul>
+<ul><li>Batcher; Geometry; Adding missing lines primitive (lol)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -245,7 +313,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/42d8eb019e1031
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Debug; fixing debug window showing dt as - using a separator</li><li><a href="luxe.Text.html">Text</a>; fixing text default visibility not being respected, solves debug views overlapping</li></ul>
+<ul><li>Debug; fixing debug window showing dt as - using a separator</li><li>Text; fixing text default visibility not being respected, solves debug views overlapping</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -362,7 +430,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/9ffce7d163749d
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Matrix4.html">Matrix4</a>; fixed make2D</li></ul>
+<ul><li>Matrix4; fixed make2D</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -371,7 +439,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/cff93346ff8cd4
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Vector.html">Vector</a>; added the missing euler orders in setEulerFromRotationMatrix and setEulerFromQuaternion</li></ul>
+<ul><li>Vector; added the missing euler orders in setEulerFromRotationMatrix and setEulerFromQuaternion</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -380,7 +448,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8a38b9f581a975
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Rectangle.html">Rectangle</a>; added overlap(_other:<a href="luxe.Rectangle.html">Rectangle</a>) test helper, and general cleanup (fix #73)</li></ul>
+<ul><li>Rectangle; added overlap(_other:Rectangle) test helper, and general cleanup (fix #73)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -389,7 +457,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/3d0938894c806a
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Collision; removing custom math classes from hxcollision legacy, fix #74</li><li>Collision; updated current code to use luxe Matrix and <a href="luxe.Vector.html">Vector</a></li><li>Collision; shape drawer has a color and immediate option</li><li>Tests; Collision; ported hxcollision test case over to luxe quick for testing</li><li><a href="luxe.Vector.html">Vector</a>; added lengthsq, angle2D, truncate and set_length</li></ul>
+<ul><li>Collision; removing custom math classes from hxcollision legacy, fix #74</li><li>Collision; updated current code to use luxe Matrix and Vector</li><li>Collision; shape drawer has a color and immediate option</li><li>Tests; Collision; ported hxcollision test case over to luxe quick for testing</li><li>Vector; added lengthsq, angle2D, truncate and set_length</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -407,7 +475,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5a11d88a373ea9
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a>; adding exact hit test <code>point_inside_exact</code> which is more costly than the AABB one but takes into account rotation, scale, size and origin . see <code>test_sprite</code> for an example</li></ul>
+<ul><li>Sprite; adding exact hit test <code>point_inside_exact</code> which is more costly than the AABB one but takes into account rotation, scale, size and origin . see <code>test_sprite</code> for an example</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -416,7 +484,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/9e4326791c0a22
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Vector; added toDegrees and toRadians helpers</li><li><a href="luxe.Quaternion.html">Quaternion</a>; adding add and dot functions and cleanup</li></ul>
+<ul><li>Vector; added toDegrees and toRadians helpers</li><li>Quaternion; adding add and dot functions and cleanup</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -443,7 +511,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/172eca626f4327
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Quaternion.html">Quaternion</a>; adding dot and scale functionality</li><li><a href="luxe.Matrix4.html">Matrix4</a>; adding M11 - M44 getter/setters for convenience accessing the elements directly</li></ul>
+<ul><li>Quaternion; adding dot and scale functionality</li><li>Matrix4; adding M11 - M44 getter/setters for convenience accessing the elements directly</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -452,7 +520,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5bf5b0e0b713d7
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Matrix4.html">Matrix4</a>; removing print function and adding toString so it can be traced</li></ul>
+<ul><li>Matrix4; removing print function and adding toString so it can be traced</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -470,7 +538,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/6eccfaaf34fe75
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; applying name and no_scene options to the entity above it,</li><li>still need to optionize these as types</li><li>Scene; adding scene.entitycount value for testing how many entities in</li><li>the scene</li><li><a href="luxe.Text.html">Text</a>; extending <a href="luxe.Text.html">Text</a> from Visual, so that it is an entity and can</li><li>accept components etc</li><li><a href="luxe.Text.html">Text</a>; all internal text items given names and not added to the default</li><li>scene</li><li>CompositeGeometry; adding dirty flag to propogate to geometries inside</li><li>it</li><li>Tests; <a href="luxe.Text.html">Text</a> - added a text with a component, and added a custom font</li><li>for demonstration</li></ul>
+<ul><li>Camera; applying name and no_scene options to the entity above it,</li><li>still need to optionize these as types</li><li>Scene; adding scene.entitycount value for testing how many entities in</li><li>the scene</li><li>Text; extending Text from Visual, so that it is an entity and can</li><li>accept components etc</li><li>Text; all internal text items given names and not added to the default</li><li>scene</li><li>CompositeGeometry; adding dirty flag to propogate to geometries inside</li><li>it</li><li>Tests; Text - added a text with a component, and added a custom font</li><li>for demonstration</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -497,7 +565,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/6c753910b11e3c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Batcher.html">Batcher</a>; undoing change to dropped geometry not submitting due to not-removed geometry</li></ul>
+<ul><li>Batcher; undoing change to dropped geometry not submitting due to not-removed geometry</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -506,7 +574,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5740fdec4f04e0
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Texture.html">Texture</a>; Adding min/mag filter as separable</li><li><a href="phoenix.Texture.html">Texture</a>; Adding filter types for mip linear/nearest</li><li>BitmapFont; defaulting to mipmaps and better filtering when scaling</li></ul>
+<ul><li>Texture; Adding min/mag filter as separable</li><li>Texture; Adding filter types for mip linear/nearest</li><li>BitmapFont; defaulting to mipmaps and better filtering when scaling</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -551,7 +619,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/6ba36ee114bfe4
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Debug; more prelim batcher debug view</li><li>Batcher; more comprehensive sort comparisons, should cover all texture spreading bugs and crazy removal antics</li><li>Batcher; some messy debug stuff, but critical for confirming correctness</li><li>Batcher; NOTE if you were using groups, these temporarily have been removed and their features will be back shortly in better form</li><li><a href="luxe.Entity.html">Entity</a>; fixing plausible crash on _debug line again</li></ul>
+<ul><li>Debug; more prelim batcher debug view</li><li>Batcher; more comprehensive sort comparisons, should cover all texture spreading bugs and crazy removal antics</li><li>Batcher; some messy debug stuff, but critical for confirming correctness</li><li>Batcher; NOTE if you were using groups, these temporarily have been removed and their features will be back shortly in better form</li><li>Entity; fixing plausible crash on _debug line again</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -560,7 +628,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/1b686828865cff
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; renaming inconsistent posLocal etc to pos_local etc</li></ul>
+<ul><li>Entity; renaming inconsistent posLocal etc to pos_local etc</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -569,7 +637,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/32be075461cb53
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; fixing incorrect multiply type</li></ul>
+<ul><li>Entity; fixing incorrect multiply type</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -578,7 +646,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/f149b704a1dc82
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; renaming all relative vagary to “local”, so posRelative becomes posLocal for example</li></ul>
+<ul><li>Entity; renaming all relative vagary to “local”, so posRelative becomes posLocal for example</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -587,7 +655,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/de563551f4a78a
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; fixing dumb scale logic</li></ul>
+<ul><li>Entity; fixing dumb scale logic</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -596,7 +664,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/258e628bbf5e5e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; fixing dumb crash on new parent constructor code</li></ul>
+<ul><li>Entity; fixing dumb crash on new parent constructor code</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -605,7 +673,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/93044d7e16fccd
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; adding parent in constructor, and fixing silly crash in set_parent</li></ul>
+<ul><li>Entity; adding parent in constructor, and fixing silly crash in set_parent</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -614,7 +682,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/92f34324fbdabe
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.States.html">States</a>; consistency and clarity in function parameters</li></ul>
+<ul><li>States; consistency and clarity in function parameters</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -632,7 +700,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/ed746610f01ae1
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Debug; adding initial batcher debug view panel, nothing there yet</li><li>Utils; adding initial stack trace string return, but it’s unclear how to get the names of Method()</li><li><a href="phoenix.Batcher.html">Batcher</a>; fixing issue where dead dropped geometry can infect state</li></ul>
+<ul><li>Debug; adding initial batcher debug view panel, nothing there yet</li><li>Utils; adding initial stack trace string return, but it’s unclear how to get the names of Method()</li><li>Batcher; fixing issue where dead dropped geometry can infect state</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -650,7 +718,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/55a55a0457cd71
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Resource.html">Resource</a>; moving to luxe package, and cleaning up core types like droppable (not really used atm)</li></ul>
+<ul><li>Resource; moving to luxe package, and cleaning up core types like droppable (not really used atm)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -677,7 +745,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/7cb6454a0c847e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Particles.html">Particles</a>; fixing bug where init_with wasn’t used for emitter components</li></ul>
+<ul><li>Particles; fixing bug where init_with wasn’t used for emitter components</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -767,7 +835,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/3cbe1a6a4f0270
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Resources; adding TextResource, SoundResource, DataResource, and adjusting the API toward consistency</li><li>Parcels; adding parcel api to <a href="api.html">Luxe</a>, see test_parcels, still some other things to do</li></ul>
+<ul><li>Resources; adding TextResource, SoundResource, DataResource, and adjusting the API toward consistency</li><li>Parcels; adding parcel api to Luxe, see test_parcels, still some other things to do</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -812,7 +880,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/9161dcf1d718fd
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>API; cleanup of api functions</li><li>Screen; Cursor; moved the cursor functionality into <a href="api.html">Luxe</a>.screen.cursor</li></ul>
+<ul><li>API; cleanup of api functions</li><li>Screen; Cursor; moved the cursor functionality into Luxe.screen.cursor</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -848,7 +916,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/0709daba7c6e9a
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; Visual; commit d113797358 made changes to origin and scale, but that broke scaling , so reverting the change because otherwise things wont apply well elsewhere.</li><li><a href="luxe.Color.html">Color</a>; Adding flags to refresh hsv/hsl when changing rgb on a ColorHSL/<a href="luxe.Color.html#ColorHSVClass">ColorHSV</a>, such that a <a href="luxe.Color.html#ColorHSVClass">ColorHSV</a>/HSL can be tweened using rgb as well.</li></ul>
+<ul><li>Entity; Visual; commit d113797358 made changes to origin and scale, but that broke scaling , so reverting the change because otherwise things wont apply well elsewhere.</li><li>Color; Adding flags to refresh hsv/hsl when changing rgb on a ColorHSL/ColorHSV, such that a ColorHSV/HSL can be tweened using rgb as well.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -875,7 +943,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/dc2ac48f84b2be
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Scene.html">Scene</a>; shielding all entity access with null checks so the game doesn’t crash, because this shouldn’t happen - but still digging into how this came about using a test case from @bennuk</li></ul>
+<ul><li>Scene; shielding all entity access with null checks so the game doesn’t crash, because this shouldn’t happen - but still digging into how this came about using a test case from @bennuk</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1037,7 +1105,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a35854756bf193
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a>; adding flipx, flipy to the constructor options</li><li><a href="luxe.Sprite.html">Sprite</a>; making centered, flipx and flipy consistent whether you set it in the constructor or after</li><li><a href="luxe.Sprite.html">Sprite</a>; Fix #59</li></ul>
+<ul><li>Sprite; adding flipx, flipy to the constructor options</li><li>Sprite; making centered, flipx and flipy consistent whether you set it in the constructor or after</li><li>Sprite; Fix #59</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1082,7 +1150,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/1d9eead67eb2fc
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Rectangle; Adding change listeners for sub components</li><li><a href="luxe.Sprite.html">Sprite</a>; making sure uv isn’t null, and making sure it gets the correct values from the texture on load</li><li><a href="luxe.Sprite.html">Sprite</a>; adding sub texture uv listeners so sprite.uv.x += 5 can work in pixels</li><li>Tests; sprite uv test</li></ul>
+<ul><li>Rectangle; Adding change listeners for sub components</li><li>Sprite; making sure uv isn’t null, and making sure it gets the correct values from the texture on load</li><li>Sprite; adding sub texture uv listeners so sprite.uv.x += 5 can work in pixels</li><li>Tests; sprite uv test</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1127,7 +1195,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2ca51cbfafb40b
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; cleaning up old references</li></ul>
+<ul><li>Camera; cleaning up old references</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1208,7 +1276,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/f6dde1d1219f7d
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Input; pressed/released/down lazy input methods added - fix #41 - REQUIRES an update to lime repo, or wait till next lime update</li><li>Tests; test_keystate for the above input</li><li>Api; Added <a href="api.html">Luxe</a>.showConsole(true/false) as a shortcut for <a href="api.html">Luxe</a>.core.show_console</li></ul>
+<ul><li>Input; pressed/released/down lazy input methods added - fix #41 - REQUIRES an update to lime repo, or wait till next lime update</li><li>Tests; test_keystate for the above input</li><li>Api; Added Luxe.showConsole(true/false) as a shortcut for Luxe.core.show_console</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1226,7 +1294,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/4375030ea2706e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; Fix view_matrix being out of date in between frame updates (i.e input events), Fix #56 thanks @BigZaphod</li></ul>
+<ul><li>Camera; Fix view_matrix being out of date in between frame updates (i.e input events), Fix #56 thanks @BigZaphod</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1316,7 +1384,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/d113797358a8f1
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; Visual; <a href="luxe.Sprite.html">Sprite</a>; moving pos and scale setting to the root type, and fixing inconsistency issues with scale and origin being a reference</li></ul>
+<ul><li>Entity; Visual; Sprite; moving pos and scale setting to the root type, and fixing inconsistency issues with scale and origin being a reference</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1352,7 +1420,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a264117ae1543c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Matrix; compose_with_origin added but note it allocates new matrices, best to cache these like phoenix.<a href="luxe.Camera.html">Camera</a> does</li></ul>
+<ul><li>Matrix; compose_with_origin added but note it allocates new matrices, best to cache these like phoenix.Camera does</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1361,7 +1429,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2ea9c0cfe954b5
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; adding rotation cache and converting to radians before passing to camera for correct values</li></ul>
+<ul><li>Camera; adding rotation cache and converting to radians before passing to camera for correct values</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1415,7 +1483,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/553d45646f27e4
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; Fixing silly logic for adding to scene in _init, where _init is called from the scene.</li></ul>
+<ul><li>Entity; Fixing silly logic for adding to scene in _init, where _init is called from the scene.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1433,7 +1501,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/0a12a32946f369
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; Moving scene management flags into entity level and not in visual, and making sure that scene remains unspecified if no scene is set or requested</li></ul>
+<ul><li>Entity; Moving scene management flags into entity level and not in visual, and making sure that scene remains unspecified if no scene is set or requested</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1442,7 +1510,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/f92b4202d3557c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Components; Parity with States and <a href="luxe.Entity.html">Entity</a> and so on with the data -&gt; becoming { init_with : data } for consistency</li></ul>
+<ul><li>Components; Parity with States and Entity and so on with the data -&gt; becoming { init_with : data } for consistency</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1451,7 +1519,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5ef13172b842c1
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>States; Consistency with <a href="luxe.Entity.html">Entity</a> and options for { init_with:data } instead of data</li></ul>
+<ul><li>States; Consistency with Entity and options for { init_with:data } instead of data</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1460,7 +1528,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/96bf65cdbdc007
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; <a href="luxe.Sprite.html">Sprite</a>; Visual; moving options to unique files to avoid “Loop found in cascading signatures definitions. Please change order/import” errors on import orders</li></ul>
+<ul><li>Entity; Sprite; Visual; moving options to unique files to avoid “Loop found in cascading signatures definitions. Please change order/import” errors on import orders</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1487,7 +1555,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/446075cbced294
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; Visual; <a href="luxe.Sprite.html">Sprite</a>; Collapsing the init options into a better structure, such that options can be stored, and init data can be passed to the base entity as well as descendants using { init_with:data } (and this is typed on both sides)</li></ul>
+<ul><li>Entity; Visual; Sprite; Collapsing the init options into a better structure, such that options can be stored, and init data can be passed to the base entity as well as descendants using { init_with:data } (and this is typed on both sides)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1505,7 +1573,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/ec9ee1701a51d0
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Scene.html">Scene</a>; create function printing more useful debug info</li></ul>
+<ul><li>Scene; create function printing more useful debug info</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1523,7 +1591,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a5d8fe8b20ced3
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>API; <a href="api.html">Luxe</a>; <a href="api.html">Luxe</a>.time is now a shortcut for haxe.Timer.stamp()</li><li>Timer; <a href="api.html">Luxe</a>.time was renamed to <a href="api.html">Luxe</a>.timer, for schedules</li><li>Fix #52</li></ul>
+<ul><li>API; Luxe; Luxe.time is now a shortcut for haxe.Timer.stamp()</li><li>Timer; Luxe.time was renamed to Luxe.timer, for schedules</li><li>Fix #52</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1568,7 +1636,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/99210a17ce9a1d
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>html5; <a href="phoenix.Texture.html">Texture</a> cross policy fallback is neater for now (not sure that the texture is even needed to taint cross origin… but whatever)</li><li>html5; shutdown clears the screen to luxe orange as a clear indicator. This will need to be an event you can handle yourself somehow…</li><li>html5; fix #48</li></ul>
+<ul><li>html5; Texture cross policy fallback is neater for now (not sure that the texture is even needed to taint cross origin… but whatever)</li><li>html5; shutdown clears the screen to luxe orange as a clear indicator. This will need to be an event you can handle yourself somehow…</li><li>html5; fix #48</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1577,7 +1645,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8197c305a0c467
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Batcher.html">Batcher</a>; Fixing sorting being incorrect when two different types of primitive types are being sorted weirdly, Fix #54</li></ul>
+<ul><li>Batcher; Fixing sorting being incorrect when two different types of primitive types are being sorted weirdly, Fix #54</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1586,7 +1654,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/d33223b2719f43
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Draw; Some useful debug info on the .id value of geometry</li><li>Entity; Adding the init functionality like Component, such that <a href="api.html">Luxe</a>.scene.create can pass typed init data</li><li><a href="luxe.Scene.html">Scene</a>; adding create(type,name, initdata)</li><li>Visual; name based on name + visual</li><li><a href="phoenix.Geometry.html">Geometry</a>; id assign on passed in</li></ul>
+<ul><li>Draw; Some useful debug info on the .id value of geometry</li><li>Entity; Adding the init functionality like Component, such that Luxe.scene.create can pass typed init data</li><li>Scene; adding create(type,name, initdata)</li><li>Visual; name based on name + visual</li><li>Geometry; id assign on passed in</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1613,7 +1681,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a2d97182640fcc
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Visual; removing size warning for now, this is meant to be a component of the image sprites without images but that’s changed with visual/sprite separation.</li><li><a href="luxe.Entity.html">Entity</a>; fix bug where destroying an entity didn’t remove it from it’s parent, so it tried to update past being destroyed. Should Fix #44 (again).</li><li><a href="luxe.Scene.html">Scene</a>; some shielding against null entities existing in the scene, and trying to remove entities that don’t belong to the scene in question, and a toString() to be more interesting to trace()</li><li>Visual; changed from default luxe scene to the given scene, so that it would work as intended when more scenes are layered on each other</li></ul>
+<ul><li>Visual; removing size warning for now, this is meant to be a component of the image sprites without images but that’s changed with visual/sprite separation.</li><li>Entity; fix bug where destroying an entity didn’t remove it from it’s parent, so it tried to update past being destroyed. Should Fix #44 (again).</li><li>Scene; some shielding against null entities existing in the scene, and trying to remove entities that don’t belong to the scene in question, and a toString() to be more interesting to trace()</li><li>Visual; changed from default luxe scene to the given scene, so that it would work as intended when more scenes are layered on each other</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1631,7 +1699,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/f5ca4fb48ed646
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Debug; Switching avg/current to current/avg, makes more sense</li><li>Particles; removing null setter causing null entities in scene (particles need a touch of work still anyway)</li><li>Scene; adding a gaurd against null entities on destroy</li><li><a href="luxe.Sprite.html">Sprite</a>; Large important refactor, sprite is now inherited from Visual, visual will handle the geometry wrapping, sprite will handle the “image sprite” logistics (encapsulated better)</li><li>Visual; First pass of visual, still has a touch of sprite stuff (size specifically and some odd timing things to resolve without it). This will also allow more defaults than just quad to exist as a flag type, like new Visual({ geometry_type:GeometryType.ring }) or circle etc.</li></ul>
+<ul><li>Debug; Switching avg/current to current/avg, makes more sense</li><li>Particles; removing null setter causing null entities in scene (particles need a touch of work still anyway)</li><li>Scene; adding a gaurd against null entities on destroy</li><li>Sprite; Large important refactor, sprite is now inherited from Visual, visual will handle the geometry wrapping, sprite will handle the “image sprite” logistics (encapsulated better)</li><li>Visual; First pass of visual, still has a touch of sprite stuff (size specifically and some odd timing things to resolve without it). This will also allow more defaults than just quad to exist as a flag type, like new Visual({ geometry_type:GeometryType.ring }) or circle etc.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1640,7 +1708,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/0cb07e5eaeefe3
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; Fix #50 , update position to the view when tweening</li></ul>
+<ul><li>Camera; Fix #50 , update position to the view when tweening</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1667,7 +1735,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5b6f1312f9dfc3
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; <code>entity.destroy</code> handles proper destruction, implement <code>destroyed</code> for the handler of when that happens in your own components.</li><li>Refactor; <a href="luxe.Entity.html">Entity</a>; <a href="luxe.components.Component.html">Component</a>; <code>destroyed</code> instead of <code>destroy</code> for the handlers, <code>start</code> is renamed to <code>reset</code> because start is vague and unclear.</li><li><a href="luxe.components.Component.html">Component</a>; <code>removed</code> event for when a component is being removed. This still needs some consistency, like remove vs destroy</li><li>Refactor; <a href="luxe.States.html">States</a>; <code>enable</code> is now <code>enabled</code>, <code>disable</code> is now <code>disabled</code> and do_disable is called disable.</li><li>Tests; builder; For generating builds of projects and tests. See builds.json, used for building html5 tests and keeping builds running with latest code.</li><li>Builder.hx:138: completed 78 / 78</li><li>Builder.hx:147:  successes:</li><li>Builder.hx:149:    html5 | test_assets</li><li>Builder.hx:149:    html5 | test_astar</li><li>Builder.hx:149:    html5 | test_audio</li><li>Builder.hx:149:    html5 | test_base64</li><li>Builder.hx:149:    html5 | test_camera</li><li>Builder.hx:149:    html5 | test_camera_views</li><li>Builder.hx:149:    html5 | test_colors</li><li>Builder.hx:149:    html5 | test_complexgeometry</li><li>Builder.hx:149:    html5 | test_component_state</li><li>Builder.hx:149:    html5 | test_component_transforms</li><li>Builder.hx:149:    html5 | test_components</li><li>Builder.hx:149:    html5 | test_depth</li><li>Builder.hx:149:    html5 | test_draw</li><li>Builder.hx:149:    html5 | test_events</li><li>Builder.hx:149:    html5 | test_fonts</li><li>Builder.hx:149:    html5 | test_groups_and_blendmodes</li><li>Builder.hx:149:    html5 | test_luxemark</li><li>Builder.hx:149:    html5 | test_named_bindings</li><li>Builder.hx:149:    html5 | test_nineslice</li><li>Builder.hx:149:    html5 | test_particles</li><li>Builder.hx:149:    html5 | test_rtt</li><li>Builder.hx:149:    html5 | test_shaders</li><li>Builder.hx:149:    html5 | test_sprite</li><li>Builder.hx:149:    html5 | test_sprite_animation</li><li>Builder.hx:149:    html5 | test_states</li><li>Builder.hx:149:    html5 | test_text</li><li>Builder.hx:149:    html5 | test_tiles</li><li>Builder.hx:149:    html5 | test_timescale</li><li>Builder.hx:149:    html5 | test_tween</li><li>Builder.hx:149:    html5 | test_uuid</li><li>Builder.hx:149:    html5 | test_mesh</li><li>Builder.hx:149:    html5 | test_mesh_component</li><li>Builder.hx:149:    html5 | test_mesh_mouse_rotate</li><li>Builder.hx:149:    html5 | letter5</li><li>Builder.hx:149:    html5 | rings</li><li>Builder.hx:149:    html5 | squads</li><li>Builder.hx:149:    html5 | suitstory</li><li>Builder.hx:149:    html5 | tdgame</li><li>Builder.hx:149:    html5 | three</li><li>Builder.hx:149:    mac | test_assets</li><li>Builder.hx:149:    mac | test_astar</li><li>Builder.hx:149:    mac | test_audio</li><li>Builder.hx:149:    mac | test_base64</li><li>Builder.hx:149:    mac | test_camera</li><li>Builder.hx:149:    mac | test_camera_views</li><li>Builder.hx:149:    mac | test_colors</li><li>Builder.hx:149:    mac | test_complexgeometry</li><li>Builder.hx:149:    mac | test_component_state</li><li>Builder.hx:149:    mac | test_component_transforms</li><li>Builder.hx:149:    mac | test_components</li><li>Builder.hx:149:    mac | test_depth</li><li>Builder.hx:149:    mac | test_draw</li><li>Builder.hx:149:    mac | test_events</li><li>Builder.hx:149:    mac | test_fonts</li><li>Builder.hx:149:    mac | test_groups_and_blendmodes</li><li>Builder.hx:149:    mac | test_luxemark</li><li>Builder.hx:149:    mac | test_named_bindings</li><li>Builder.hx:149:    mac | test_nineslice</li><li>Builder.hx:149:    mac | test_particles</li><li>Builder.hx:149:    mac | test_rtt</li><li>Builder.hx:149:    mac | test_shaders</li><li>Builder.hx:149:    mac | test_sprite</li><li>Builder.hx:149:    mac | test_sprite_animation</li><li>Builder.hx:149:    mac | test_states</li><li>Builder.hx:149:    mac | test_text</li><li>Builder.hx:149:    mac | test_tiles</li><li>Builder.hx:149:    mac | test_timescale</li><li>Builder.hx:149:    mac | test_tween</li><li>Builder.hx:149:    mac | test_uuid</li><li>Builder.hx:149:    mac | test_mesh</li><li>Builder.hx:149:    mac | test_mesh_component</li><li>Builder.hx:149:    mac | test_mesh_mouse_rotate</li><li>Builder.hx:149:    mac | letter5</li><li>Builder.hx:149:    mac | rings</li><li>Builder.hx:149:    mac | squads</li><li>Builder.hx:149:    mac | suitstory</li><li>Builder.hx:149:    mac | tdgame</li><li>Builder.hx:149:    mac | three</li></ul>
+<ul><li>Entity; <code>entity.destroy</code> handles proper destruction, implement <code>destroyed</code> for the handler of when that happens in your own components.</li><li>Refactor; Entity; Component; <code>destroyed</code> instead of <code>destroy</code> for the handlers, <code>start</code> is renamed to <code>reset</code> because start is vague and unclear.</li><li>Component; <code>removed</code> event for when a component is being removed. This still needs some consistency, like remove vs destroy</li><li>Refactor; States; <code>enable</code> is now <code>enabled</code>, <code>disable</code> is now <code>disabled</code> and do_disable is called disable.</li><li>Tests; builder; For generating builds of projects and tests. See builds.json, used for building html5 tests and keeping builds running with latest code.</li><li>Builder.hx:138: completed 78 / 78</li><li>Builder.hx:147:  successes:</li><li>Builder.hx:149:    html5 | test_assets</li><li>Builder.hx:149:    html5 | test_astar</li><li>Builder.hx:149:    html5 | test_audio</li><li>Builder.hx:149:    html5 | test_base64</li><li>Builder.hx:149:    html5 | test_camera</li><li>Builder.hx:149:    html5 | test_camera_views</li><li>Builder.hx:149:    html5 | test_colors</li><li>Builder.hx:149:    html5 | test_complexgeometry</li><li>Builder.hx:149:    html5 | test_component_state</li><li>Builder.hx:149:    html5 | test_component_transforms</li><li>Builder.hx:149:    html5 | test_components</li><li>Builder.hx:149:    html5 | test_depth</li><li>Builder.hx:149:    html5 | test_draw</li><li>Builder.hx:149:    html5 | test_events</li><li>Builder.hx:149:    html5 | test_fonts</li><li>Builder.hx:149:    html5 | test_groups_and_blendmodes</li><li>Builder.hx:149:    html5 | test_luxemark</li><li>Builder.hx:149:    html5 | test_named_bindings</li><li>Builder.hx:149:    html5 | test_nineslice</li><li>Builder.hx:149:    html5 | test_particles</li><li>Builder.hx:149:    html5 | test_rtt</li><li>Builder.hx:149:    html5 | test_shaders</li><li>Builder.hx:149:    html5 | test_sprite</li><li>Builder.hx:149:    html5 | test_sprite_animation</li><li>Builder.hx:149:    html5 | test_states</li><li>Builder.hx:149:    html5 | test_text</li><li>Builder.hx:149:    html5 | test_tiles</li><li>Builder.hx:149:    html5 | test_timescale</li><li>Builder.hx:149:    html5 | test_tween</li><li>Builder.hx:149:    html5 | test_uuid</li><li>Builder.hx:149:    html5 | test_mesh</li><li>Builder.hx:149:    html5 | test_mesh_component</li><li>Builder.hx:149:    html5 | test_mesh_mouse_rotate</li><li>Builder.hx:149:    html5 | letter5</li><li>Builder.hx:149:    html5 | rings</li><li>Builder.hx:149:    html5 | squads</li><li>Builder.hx:149:    html5 | suitstory</li><li>Builder.hx:149:    html5 | tdgame</li><li>Builder.hx:149:    html5 | three</li><li>Builder.hx:149:    mac | test_assets</li><li>Builder.hx:149:    mac | test_astar</li><li>Builder.hx:149:    mac | test_audio</li><li>Builder.hx:149:    mac | test_base64</li><li>Builder.hx:149:    mac | test_camera</li><li>Builder.hx:149:    mac | test_camera_views</li><li>Builder.hx:149:    mac | test_colors</li><li>Builder.hx:149:    mac | test_complexgeometry</li><li>Builder.hx:149:    mac | test_component_state</li><li>Builder.hx:149:    mac | test_component_transforms</li><li>Builder.hx:149:    mac | test_components</li><li>Builder.hx:149:    mac | test_depth</li><li>Builder.hx:149:    mac | test_draw</li><li>Builder.hx:149:    mac | test_events</li><li>Builder.hx:149:    mac | test_fonts</li><li>Builder.hx:149:    mac | test_groups_and_blendmodes</li><li>Builder.hx:149:    mac | test_luxemark</li><li>Builder.hx:149:    mac | test_named_bindings</li><li>Builder.hx:149:    mac | test_nineslice</li><li>Builder.hx:149:    mac | test_particles</li><li>Builder.hx:149:    mac | test_rtt</li><li>Builder.hx:149:    mac | test_shaders</li><li>Builder.hx:149:    mac | test_sprite</li><li>Builder.hx:149:    mac | test_sprite_animation</li><li>Builder.hx:149:    mac | test_states</li><li>Builder.hx:149:    mac | test_text</li><li>Builder.hx:149:    mac | test_tiles</li><li>Builder.hx:149:    mac | test_timescale</li><li>Builder.hx:149:    mac | test_tween</li><li>Builder.hx:149:    mac | test_uuid</li><li>Builder.hx:149:    mac | test_mesh</li><li>Builder.hx:149:    mac | test_mesh_component</li><li>Builder.hx:149:    mac | test_mesh_mouse_rotate</li><li>Builder.hx:149:    mac | letter5</li><li>Builder.hx:149:    mac | rings</li><li>Builder.hx:149:    mac | squads</li><li>Builder.hx:149:    mac | suitstory</li><li>Builder.hx:149:    mac | tdgame</li><li>Builder.hx:149:    mac | three</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1748,7 +1816,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/841e97de72d62e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a>; deal with custom geometry via  as well as via  in the construct options.</li><li><a href="luxe.Sprite.html">Sprite</a>; added no_geometry flag for better handling of flexibility</li><li><a href="luxe.Sprite.html">Sprite</a>; fixing missing flags not set on the sprite itself, but only on geometry (like depth, group etc)</li><li><a href="luxe.Sprite.html">Sprite</a>; adding missing group flag as well</li><li><a href="luxe.NineSlice.html">NineSlice</a>; using no_geometry flag instead of weird old code</li><li>Rings; using new geometry fixes for sprite to pass geometry in constructor</li></ul>
+<ul><li>Sprite; deal with custom geometry via  as well as via  in the construct options.</li><li>Sprite; added no_geometry flag for better handling of flexibility</li><li>Sprite; fixing missing flags not set on the sprite itself, but only on geometry (like depth, group etc)</li><li>Sprite; adding missing group flag as well</li><li>NineSlice; using no_geometry flag instead of weird old code</li><li>Rings; using new geometry fixes for sprite to pass geometry in constructor</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1856,7 +1924,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2e0fc098de5bec
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>API; Screen; Adding <a href="api.html">Luxe</a>.screen.mid for easy access to that</li></ul>
+<ul><li>API; Screen; Adding Luxe.screen.mid for easy access to that</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -1973,7 +2041,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2bd7c6a27d8a62
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; <a href="luxe.Sprite.html">Sprite</a>; Fixing weird condition where calling .destroy directly calls itself twice, now it defers the first to allow the internal destroy to do it’s job.</li></ul>
+<ul><li>Entity; Sprite; Fixing weird condition where calling .destroy directly calls itself twice, now it defers the first to allow the internal destroy to do it’s job.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2027,7 +2095,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/e4de3ba2bda3e5
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Audio; play was missing loop, and start functions</li><li><a href="luxe.Sprite.html">Sprite</a>; refactored to use <a href="phoenix.Geometry.html">Geometry</a> instead of QuadGeometry, temporary fixes required for casting though</li><li>Rings; Tons of refactoring and new input model, adding audio and music</li><li>Pathing; adding a test path function, broken cos of heap implementation</li><li>Structural; temp Heap class</li></ul>
+<ul><li>Audio; play was missing loop, and start functions</li><li>Sprite; refactored to use Geometry instead of QuadGeometry, temporary fixes required for casting though</li><li>Rings; Tons of refactoring and new input model, adding audio and music</li><li>Pathing; adding a test path function, broken cos of heap implementation</li><li>Structural; temp Heap class</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2054,7 +2122,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/016a4b10f77b3c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a>; fixing rotation_z on creation, adding no_scene flag for not added to scene, clearer warning.</li><li>Tween; changing default tween to something more sensible and not the most expensive, slowest one</li><li>Utils; maths wrap_angle function from rings</li><li>Rings; adding states so that levels can be implemented, added first completable challenge level with progress indicator, intro image, end image, fixing window flags</li><li>CompositeGeometry; adding set_rotation because it was missing</li><li>Structural; Pool class added to core, still needs some tweaks and functions but useful</li></ul>
+<ul><li>Sprite; fixing rotation_z on creation, adding no_scene flag for not added to scene, clearer warning.</li><li>Tween; changing default tween to something more sensible and not the most expensive, slowest one</li><li>Utils; maths wrap_angle function from rings</li><li>Rings; adding states so that levels can be implemented, added first completable challenge level with progress indicator, intro image, end image, fixing window flags</li><li>CompositeGeometry; adding set_rotation because it was missing</li><li>Structural; Pool class added to core, still needs some tweaks and functions but useful</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2072,7 +2140,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/c169e54ef62143
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; removing temporary rotation bug for test</li></ul>
+<ul><li>Camera; removing temporary rotation bug for test</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2081,7 +2149,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/e1fa7b0a1c7e87
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; fixing endless loop in rotation setter.</li><li>Tests; camera views - Adding cameras to scene so their shake gets updated.</li></ul>
+<ul><li>Camera; fixing endless loop in rotation setter.</li><li>Tests; camera views - Adding cameras to scene so their shake gets updated.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2090,7 +2158,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/76292f4524172e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Tests; <a href="luxe.Camera.html">Camera</a> views, making each view have their own zoom at start</li></ul>
+<ul><li>Tests; Camera views, making each view have their own zoom at start</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2117,7 +2185,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/019603e3e76e7c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Batcher; Changing how batchers are stored, just simple arrays and sort on insert for simplicity.</li><li><a href="luxe.Camera.html">Camera</a>; fixing how viewport doesn’t adjust center, fixing how viewport is applied in the rendering and all other viewport related junk.</li><li>API; adding create batcher function which helps in setting up a batcher and camera for you</li></ul>
+<ul><li>Batcher; Changing how batchers are stored, just simple arrays and sort on insert for simplicity.</li><li>Camera; fixing how viewport doesn’t adjust center, fixing how viewport is applied in the rendering and all other viewport related junk.</li><li>API; adding create batcher function which helps in setting up a batcher and camera for you</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2126,7 +2194,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/785c75fa1b68ed
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; fixing rotation breaking on not ready view.</li><li>Tests; Tiled - fixing html5 late load textures, and camera bounds</li></ul>
+<ul><li>Camera; fixing rotation breaking on not ready view.</li><li>Tests; Tiled - fixing html5 late load textures, and camera bounds</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2135,7 +2203,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/b65c1fa952652c
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; luxe - adding get / set rotation to pass the rotation to the view as quat instead of euler</li><li><a href="luxe.Camera.html">Camera</a>; luxe/phoenix - screen_point_to_world / world_point_to_screen conversions</li><li>Tests; camera; world conversion example and stuff, adding drag to rotate (still not complete)</li></ul>
+<ul><li>Camera; luxe - adding get / set rotation to pass the rotation to the view as quat instead of euler</li><li>Camera; luxe/phoenix - screen_point_to_world / world_point_to_screen conversions</li><li>Tests; camera; world conversion example and stuff, adding drag to rotate (still not complete)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2153,7 +2221,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/04a20a759082ad
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Vector.html">Vector</a>; adding ignore listeners flag for updating the position without a call to set_pos</li></ul>
+<ul><li>Vector; adding ignore listeners flag for updating the position without a call to set_pos</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2162,7 +2230,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a2cab96bfa2afa
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; phoenix camera features working properly now, but needs to be shielded for ortho vs perspective</li></ul>
+<ul><li>Camera; phoenix camera features working properly now, but needs to be shielded for ortho vs perspective</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2171,7 +2239,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/842fc51736fd01
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; pushing preliminary fixes for redoing the views</li></ul>
+<ul><li>Camera; pushing preliminary fixes for redoing the views</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2180,7 +2248,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/3efafc45737e6a
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Camera.html">Camera</a>; pushing preliminary fixes for redoing the views</li></ul>
+<ul><li>Camera; pushing preliminary fixes for redoing the views</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2198,7 +2266,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8de635ddfb0502
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Utils; Adding a find_assets_image_sequence( _name:String, _ext:String=’.png’, _start:String=’1’ ), for the animation system</li><li>SpriteAnimation; Adding image from image_sequences, as well as filter_type for the image sequences.</li><li>API; Adding <a href="api.html">Luxe</a>.loadTextures( _ids:Array<String>, ?_onloaded:Array<<a href="phoenix.Texture.html">Texture</a>>-&gt;Void, ?_silent:Bool=false )</li><li>API; Adding a silent flag to loadTexture and loadTextures to keep from printing when needed.</li></ul>
+<ul><li>Utils; Adding a find_assets_image_sequence( _name:String, _ext:String=’.png’, _start:String=’1’ ), for the animation system</li><li>SpriteAnimation; Adding image from image_sequences, as well as filter_type for the image sequences.</li><li>API; Adding Luxe.loadTextures( _ids:Array<String>, ?_onloaded:Array<Texture>-&gt;Void, ?_silent:Bool=false )</li><li>API; Adding a silent flag to loadTexture and loadTextures to keep from printing when needed.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2207,7 +2275,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/154657eae5ffb6
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a> Animation; adding hold frame parser, syntax is [‘10’,’hold 5’,’11 hold 5’], where ‘hold (count)’ will hold on the previous frame in the set (count) times, and ‘(frame) hold (count)’ will use the frame specified. Solves #24</li></ul>
+<ul><li>Sprite Animation; adding hold frame parser, syntax is [‘10’,’hold 5’,’11 hold 5’], where ‘hold (count)’ will hold on the previous frame in the set (count) times, and ‘(frame) hold (count)’ will use the frame specified. Solves #24</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2225,7 +2293,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/95d274a2da31ed
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a> Animation; Resolve #23, Adding frameset ranges, forward and reverse, works in groups (see tests/test_sprite_animation)</li></ul>
+<ul><li>Sprite Animation; Resolve #23, Adding frameset ranges, forward and reverse, works in groups (see tests/test_sprite_animation)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2252,7 +2320,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/ad78910e7ce2f9
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Vector; Adding set_xyzw, set_xy, and set_xyz for optimized setting when you know what will be set.</li><li>QuadGeometry; Fixing bugs where resize would increment the position based on newer methods of rendering</li><li>Tests; sprite test adding resize tests for seeing that resizing is behaving as expected</li><li>Tests; particle test updated to match latest particle class</li><li><a href="luxe.Sprite.html">Sprite</a>; making it so that when size is called, if centered, and no custom origin has been specified, it will adjust the origin for you</li><li><a href="luxe.Particles.html">Particles</a>; fixing bugs and starting to cleanup some more. Added end_speed for slow down impact particle types</li><li><a href="phoenix.Geometry.html">Geometry</a>; fixing matrix.compose being per vertex instead of once. Updating to parity with html5 api (which existed all along, I just wasn’t aware)</li></ul>
+<ul><li>Vector; Adding set_xyzw, set_xy, and set_xyz for optimized setting when you know what will be set.</li><li>QuadGeometry; Fixing bugs where resize would increment the position based on newer methods of rendering</li><li>Tests; sprite test adding resize tests for seeing that resizing is behaving as expected</li><li>Tests; particle test updated to match latest particle class</li><li>Sprite; making it so that when size is called, if centered, and no custom origin has been specified, it will adjust the origin for you</li><li>Particles; fixing bugs and starting to cleanup some more. Added end_speed for slow down impact particle types</li><li>Geometry; fixing matrix.compose being per vertex instead of once. Updating to parity with html5 api (which existed all along, I just wasn’t aware)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2297,7 +2365,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/4023c5c95a0343
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Performance; fixes to mobile performance being thrashed by profiler views, as well as various code fixes that were costing on mobile.</li><li>Tween; Making tweens have a .timescale( trueorfalse ) flag so they obey <a href="api.html">Luxe</a>.timescale. This let’s you use global timescale to slow down tweens as well.</li><li>Rings; Making enemies, projectiles and player all obey timescale. Making player drag slow time down, making the input way better for desktop/mobile.</li></ul>
+<ul><li>Performance; fixes to mobile performance being thrashed by profiler views, as well as various code fixes that were costing on mobile.</li><li>Tween; Making tweens have a .timescale( trueorfalse ) flag so they obey Luxe.timescale. This let’s you use global timescale to slow down tweens as well.</li><li>Rings; Making enemies, projectiles and player all obey timescale. Making player drag slow time down, making the input way better for desktop/mobile.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2342,7 +2410,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/eae10498b8d35d
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; fixing bugs with how set parent was calling add_child and vice versa</li></ul>
+<ul><li>Entity; fixing bugs with how set parent was calling add_child and vice versa</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2432,7 +2500,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/adb7522b5570fa
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Events; Components; Fix #32 - typed data for init when using .add( Type, name, data )</li><li>Docs; Updating event guide code and descriptions</li><li><a href="luxe.Camera.html">Camera</a>; Fixing bug introduced yesterday where screenshake would change/move the camera position, instead of affecting it</li><li>Events; Tidying up the shutdown / startup confusion</li><li>Events; Added a clear() command, fixes #31 but needs to be added to the tests</li><li>Tests; <a href="luxe.Camera.html">Camera</a>; Added visual info to camera test</li><li>Tests; Components; Fixed and renamed the two component tests, still more to go</li></ul>
+<ul><li>Events; Components; Fix #32 - typed data for init when using .add( Type, name, data )</li><li>Docs; Updating event guide code and descriptions</li><li>Camera; Fixing bug introduced yesterday where screenshake would change/move the camera position, instead of affecting it</li><li>Events; Tidying up the shutdown / startup confusion</li><li>Events; Added a clear() command, fixes #31 but needs to be added to the tests</li><li>Tests; Camera; Added visual info to camera test</li><li>Tests; Components; Fixed and renamed the two component tests, still more to go</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2504,7 +2572,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/d64697c07a5f01
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; fixing sprite not calling parent destroy, as well as fixing direct calling of entity internal functions</li></ul>
+<ul><li>Entity; fixing sprite not calling parent destroy, as well as fixing direct calling of entity internal functions</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2531,7 +2599,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8d01c4d21fa7a7
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Modes; Renaming to <a href="luxe.States.html">States</a>, and changing it across all projects</li></ul>
+<ul><li>Modes; Renaming to States, and changing it across all projects</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2549,7 +2617,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/ceb526696671b9
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Api; adding a fixed timestep option , set <a href="api.html">Luxe</a>.fixed_timestep to a fixed time in seconds to keep a fixed dt (this allows you to use dt and alternate )</li><li>Debug; Profiler; Adding profiler view</li><li>Core; Switching out uuid() to uniqueid(), it’s significantly faster (see tests/test_uuid)</li><li><a href="phoenix.Batcher.html">Batcher</a>; Fixing exploding verts crashing, submitting only the portions of the vertlist that change.</li><li>HTML5; Fixing depth buffer flags breaking html5 builds</li></ul>
+<ul><li>Api; adding a fixed timestep option , set Luxe.fixed_timestep to a fixed time in seconds to keep a fixed dt (this allows you to use dt and alternate )</li><li>Debug; Profiler; Adding profiler view</li><li>Core; Switching out uuid() to uniqueid(), it’s significantly faster (see tests/test_uuid)</li><li>Batcher; Fixing exploding verts crashing, submitting only the portions of the vertlist that change.</li><li>HTML5; Fixing depth buffer flags breaking html5 builds</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2585,7 +2653,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/0d16a0c846a43a
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Renderer.html">Renderer</a>; no longer optional, for now, to play nicely with neko.</li><li>Neko; Various ridiculous fixes™ to play nicely with neko. At least the samples are working, but mouse is exploding still.</li></ul>
+<ul><li>Renderer; no longer optional, for now, to play nicely with neko.</li><li>Neko; Various ridiculous fixes™ to play nicely with neko. At least the samples are working, but mouse is exploding still.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2639,7 +2707,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/64ae5d15a34e5f
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Fixing bug in <a href="luxe.Quaternion.html">Quaternion</a></li></ul>
+<ul><li>Fixing bug in Quaternion</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2648,7 +2716,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/bea1c6f84ac643
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Docs; Adding <a href="luxe.Matrix4.html">Matrix4</a> docs and json file for that</li></ul>
+<ul><li>Docs; Adding Matrix4 docs and json file for that</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2693,7 +2761,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/b6dc5bf4a61157
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Color.html">Color</a>; Fixing bug I just added &gt;.&gt;</li></ul>
+<ul><li>Color; Fixing bug I just added &gt;.&gt;</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2774,7 +2842,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8faf44bcdfb2ea
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>templates; renaming to be proper with tools.</li><li><a href="phoenix.Texture.html">Texture</a>; Fixing NME references to mention lime instead</li></ul>
+<ul><li>templates; renaming to be proper with tools.</li><li>Texture; Fixing NME references to mention lime instead</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2810,7 +2878,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/7021d2f6629018
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>General; Adding a simple benchmark test for fun</li><li><a href="phoenix.Batcher.html">Batcher</a>; Capping maximum dynamic batches to meet the size of buffers to avoid crashing.</li></ul>
+<ul><li>General; Adding a simple benchmark test for fun</li><li>Batcher; Capping maximum dynamic batches to meet the size of buffers to avoid crashing.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2837,7 +2905,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2af96e0c3e4846
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Renderer; Adding state manager type thing that won’t set the same state twice, and corresponding updates. <a href="api.html">Luxe</a>.renderer.state.stuff</li><li><a href="phoenix.Batcher.html">Batcher</a>; Updated the way batching happens, properly streaming data to the buffers instead of recreating them each time etc.</li><li><a href="phoenix.Batcher.html">Batcher</a>; Adding double buffering for the VBO’s to avoid desync issues on iOS or other platforms</li><li>Shaders; forcing location of fixed attributes so they can be reused without setting them the entire time</li><li><a href="phoenix.Batcher.html">Batcher</a>; aligning verts/normals/tcoords/colors to 4 floats of 4 bytes each</li></ul>
+<ul><li>Renderer; Adding state manager type thing that won’t set the same state twice, and corresponding updates. Luxe.renderer.state.stuff</li><li>Batcher; Updated the way batching happens, properly streaming data to the buffers instead of recreating them each time etc.</li><li>Batcher; Adding double buffering for the VBO’s to avoid desync issues on iOS or other platforms</li><li>Shaders; forcing location of fixed attributes so they can be reused without setting them the entire time</li><li>Batcher; aligning verts/normals/tcoords/colors to 4 floats of 4 bytes each</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2864,7 +2932,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/7d6ec5f39b6e1e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Text.html">Text</a>; Adding locked to text, propogating it to geometry to keep text static buffers.</li><li>Structural; moving luxe/structures to luxe/structural because of the library name</li><li>Batcher; Massive rewrite for the method of handling the arrays and batching.</li><li>Shader; Moved the attributes into the shaders for less setting of redundant state</li><li>Utils; Adding utils for phoenix to clean up batcher code</li><li>CompositeGeometry; locked geometry value passing</li><li><a href="phoenix.Geometry.html">Geometry</a>; adding different method of batching for new float32arrays</li><li>Letter5; used for testing geometry on mobile - but no longer going to be porting right now</li></ul>
+<ul><li>Text; Adding locked to text, propogating it to geometry to keep text static buffers.</li><li>Structural; moving luxe/structures to luxe/structural because of the library name</li><li>Batcher; Massive rewrite for the method of handling the arrays and batching.</li><li>Shader; Moved the attributes into the shaders for less setting of redundant state</li><li>Utils; Adding utils for phoenix to clean up batcher code</li><li>CompositeGeometry; locked geometry value passing</li><li>Geometry; adding different method of batching for new float32arrays</li><li>Letter5; used for testing geometry on mobile - but no longer going to be porting right now</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2873,7 +2941,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/5c050d1de991d1
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Templates ; Fixing support for latest openfl-tools</li><li>Debug; fixing bug and showing memory usage on native platforms in title</li><li><a href="phoenix.Geometry.html">Geometry</a>; changed to uv set of 8 predefined fixed variables (lowers allocations at runtime)</li><li>General; more cleanup of completion for classes</li><li>HTML5; fix build errors because of serialization code</li><li><a href="phoenix.Batcher.html">Batcher</a>; In flux: Changing vert lists stategies to lower allocation costs</li><li>HTML5; fixing bug where textures weren’t returned correctly from cache cos of race conditions</li><li><a href="phoenix.Texture.html">Texture</a>; fixing onloaded for cached textures being called (wouldn’t before)</li><li>TextureCoord; adding texturecoordset class and adding .set function for uvs</li><li>Letter5; bunch of various fixes and clean up, also adding touch/mouse input</li></ul>
+<ul><li>Templates ; Fixing support for latest openfl-tools</li><li>Debug; fixing bug and showing memory usage on native platforms in title</li><li>Geometry; changed to uv set of 8 predefined fixed variables (lowers allocations at runtime)</li><li>General; more cleanup of completion for classes</li><li>HTML5; fix build errors because of serialization code</li><li>Batcher; In flux: Changing vert lists stategies to lower allocation costs</li><li>HTML5; fixing bug where textures weren’t returned correctly from cache cos of race conditions</li><li>Texture; fixing onloaded for cached textures being called (wouldn’t before)</li><li>TextureCoord; adding texturecoordset class and adding .set function for uvs</li><li>Letter5; bunch of various fixes and clean up, also adding touch/mouse input</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2900,7 +2968,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/c277d3ad5c80ea
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Texture.html">Texture</a>; default to edge clamping, so NPOT works on iOS.</li><li>Letter5; adding fixes for skins, adding touch inputs and testing on device.</li><li>Modes; adding touch event forwarding</li></ul>
+<ul><li>Texture; default to edge clamping, so NPOT works on iOS.</li><li>Letter5; adding fixes for skins, adding touch inputs and testing on device.</li><li>Modes; adding touch event forwarding</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2918,7 +2986,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/090e7d57f6de3e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Editor; Conceptually messing with using hscript to show dynamic inspector fields without rebuilding. Works well!</li><li>Debug; Fixing trouble in the counting of stats, and the updating of geometry when disabled. Only refreshes when visible/required now.</li><li>Debug; Removing troublesome batch list viewer that was leaking geometry, and generally slowing things down. Proper visualise tools are better.</li><li>Batcher;Geometry; Switching to a more concise GeometryKey typedef as the key for the batcher. Saves memory and is less prone to errors on the compare side.</li><li>Batcher; Reworked and fixed (or, at least it appears to be fixed) recurring nightmare bug with geometry not being removed occasionally.</li><li>BitmapFont;<a href="luxe.Text.html">Text</a>; Removed kerning calls for now, this was making text jump around and not be consistently positioned. <a href="luxe.Text.html">Text</a> is infinitely cleaner because of this, but kerning is desirable so will be investigated  further in the near future.</li><li>BitmapFont; Switching from replacing an array of geom to directly inserting the array later, to be more stable and consistent.</li><li>ComplexGeometry; Adding a clear function to remove all quads quickly.</li><li>CompositeGeometry; Adding a .add( _batcher ) function for adding all items to a batcher easily.</li><li>Letter5; Tidying up and beginning to finish skin code for rest of port.</li></ul>
+<ul><li>Editor; Conceptually messing with using hscript to show dynamic inspector fields without rebuilding. Works well!</li><li>Debug; Fixing trouble in the counting of stats, and the updating of geometry when disabled. Only refreshes when visible/required now.</li><li>Debug; Removing troublesome batch list viewer that was leaking geometry, and generally slowing things down. Proper visualise tools are better.</li><li>Batcher;Geometry; Switching to a more concise GeometryKey typedef as the key for the batcher. Saves memory and is less prone to errors on the compare side.</li><li>Batcher; Reworked and fixed (or, at least it appears to be fixed) recurring nightmare bug with geometry not being removed occasionally.</li><li>BitmapFont;Text; Removed kerning calls for now, this was making text jump around and not be consistently positioned. Text is infinitely cleaner because of this, but kerning is desirable so will be investigated  further in the near future.</li><li>BitmapFont; Switching from replacing an array of geom to directly inserting the array later, to be more stable and consistent.</li><li>ComplexGeometry; Adding a clear function to remove all quads quickly.</li><li>CompositeGeometry; Adding a .add( _batcher ) function for adding all items to a batcher easily.</li><li>Letter5; Tidying up and beginning to finish skin code for rest of port.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2963,7 +3031,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/659355a14a6acc
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Scene.html">Scene</a>; Fixing bugs in how the entities are stored in the scene list. Updating guide docs.</li></ul>
+<ul><li>Scene; Fixing bugs in how the entities are stored in the scene list. Updating guide docs.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2972,7 +3040,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2bf92aafb742bf
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Sprite.html">Sprite</a>; Fixing bug when parent entity is set rotation and stuff is not passed to subclass. Adding a guide for components</li></ul>
+<ul><li>Sprite; Fixing bug when parent entity is set rotation and stuff is not passed to subclass. Adding a guide for components</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2990,7 +3058,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/86cd117834ee3e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Api; adding fileDialogFolder, fileDialogOpen, fileDialogSave in preparation for exposing from nme. Mac ndll includes these already, other’s don’t just yet.</li><li>Editor; cleaning up code structure into some classes, refactoring compiling and events keeping ui in encapsulated, added an open project dialog, generates missing project files, generates necessarily files to build a non-editor created project and see the output. Public member parsing is now done from compiler xml, more reliable and follows compilation already,</li><li><a href="luxe.Entity.html">Entity</a>;Sprite;Camera;Vector;Rectangle;Color; adding serialization for better json output, as well as serializing entities for scene saving etc. WIP.</li><li><a href="luxe.Entity.html">Entity</a>; fixing bug where components added DURING the init sequence weren’t inited along with their parent entity.</li><li><a href="luxe.Objects.html">Objects</a>; adding _merge_properties helper for combining Dynamics for json export</li><li>Squads; minor renames and fixes to the project, cleaning up for serialization tests</li></ul>
+<ul><li>Api; adding fileDialogFolder, fileDialogOpen, fileDialogSave in preparation for exposing from nme. Mac ndll includes these already, other’s don’t just yet.</li><li>Editor; cleaning up code structure into some classes, refactoring compiling and events keeping ui in encapsulated, added an open project dialog, generates missing project files, generates necessarily files to build a non-editor created project and see the output. Public member parsing is now done from compiler xml, more reliable and follows compilation already,</li><li>Entity;Sprite;Camera;Vector;Rectangle;Color; adding serialization for better json output, as well as serializing entities for scene saving etc. WIP.</li><li>Entity; fixing bug where components added DURING the init sequence weren’t inited along with their parent entity.</li><li>Objects; adding _merge_properties helper for combining Dynamics for json export</li><li>Squads; minor renames and fixes to the project, cleaning up for serialization tests</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -2999,7 +3067,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a6f834d4f0256a
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.events.html">Events</a>; cleaning up interfaces for using in projects cleanly</li><li>Input; putting neko shields, so neko builds work</li><li><a href="luxe.Scene.html">Scene</a>; entities changed to an id map, so they can be fetched quickly</li><li>TDGame; adding a test directional light shader</li><li>Editor; adding a bunch of UI stuff, project compilation status, project file parsing, and more.</li></ul>
+<ul><li>Events; cleaning up interfaces for using in projects cleanly</li><li>Input; putting neko shields, so neko builds work</li><li>Scene; entities changed to an id map, so they can be fetched quickly</li><li>TDGame; adding a test directional light shader</li><li>Editor; adding a bunch of UI stuff, project compilation status, project file parsing, and more.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3026,7 +3094,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/4fefd6fd024141
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Phoenix; Adding PlaneGeometry for 3d planes, right now kinda awkward api but it does the job. <a href="api.html">Luxe</a>.draw.plane to compliment.</li></ul>
+<ul><li>Phoenix; Adding PlaneGeometry for 3d planes, right now kinda awkward api but it does the job. Luxe.draw.plane to compliment.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3062,7 +3130,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8577dc84e1408f
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Shader;<a href="phoenix.Texture.html">Texture</a>; Adding fixes to allow multiple textures in a shader, passed in as tex0 to tex7 for now! See test_shaders example for how</li></ul>
+<ul><li>Shader;Texture; Adding fixes to allow multiple textures in a shader, passed in as tex0 to tex7 for now! See test_shaders example for how</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3071,7 +3139,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/644ad4df8200bf
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Shader;<a href="phoenix.Batcher.html">Batcher</a>;Texture; Adding a slot value to textures, so they can be bound to different slots in shaders. Adding set uniform fixes for shaders to work, and fixing <a href="phoenix.Batcher.html">Batcher</a> as needed for new changes. Textures being passed are not being bound atm, but fixing that now</li></ul>
+<ul><li>Shader;Batcher;Texture; Adding a slot value to textures, so they can be bound to different slots in shaders. Adding set uniform fixes for shaders to work, and fixing Batcher as needed for new changes. Textures being passed are not being bound atm, but fixing that now</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3098,7 +3166,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/6f7cb535e88041
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Entity;Scene;Component; Adding oninputdown and oninputup</li><li>Phoenix; Adding Ray class, and camera projection between world+screen</li><li>Draw; Added axis3D</li><li>Utils; <a href="api.html">Luxe</a>.utils.geometry.intersect_ray_plane()</li><li><a href="luxe.Camera.html">Camera</a>; Adding screen_point_to_ray,  world_point_to_screen</li><li>TDGame; Refactoring to components and cleaning up Main.hx</li></ul>
+<ul><li>Entity;Scene;Component; Adding oninputdown and oninputup</li><li>Phoenix; Adding Ray class, and camera projection between world+screen</li><li>Draw; Added axis3D</li><li>Utils; Luxe.utils.geometry.intersect_ray_plane()</li><li>Camera; Adding screen_point_to_ray,  world_point_to_screen</li><li>TDGame; Refactoring to components and cleaning up Main.hx</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3125,7 +3193,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/94b0a010fb72ab
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>renaming inverted() to inverse() on <a href="luxe.Matrix4.html">Matrix4</a>, moving the unproject and project code into the camera clas as that is where it is most useful. Adding projectVector to tdgame to display health above the tower for fun</li></ul>
+<ul><li>renaming inverted() to inverse() on Matrix4, moving the unproject and project code into the camera clas as that is where it is most useful. Adding projectVector to tdgame to display health above the tower for fun</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3170,7 +3238,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/19b147a5ab370e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Scene/<a href="luxe.Entity.html">Entity</a>; Propogating mouse events through entity to components (for now, this way will work well.</li></ul>
+<ul><li>Scene/Entity; Propogating mouse events through entity to components (for now, this way will work well.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3305,7 +3373,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/c9957c5d713906
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Vector.html">Vector</a>; hiding setters and getters. Squads; adding fixed aim direction and fixes</li></ul>
+<ul><li>Vector; hiding setters and getters. Squads; adding fixed aim direction and fixes</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3395,7 +3463,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/51116e8849d992
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="luxe.Entity.html">Entity</a>; Fixing fixed rate setter getting weird timing from the values in the getter</li><li>Modes; Readding modes.enable and .disable, for allowing multiple modes at once.</li><li>Squads; Adding first pass of new art assets, added modes to switch into level (space in menu) and go back(esc in game)</li></ul>
+<ul><li>Entity; Fixing fixed rate setter getting weird timing from the values in the getter</li><li>Modes; Readding modes.enable and .disable, for allowing multiple modes at once.</li><li>Squads; Adding first pass of new art assets, added modes to switch into level (space in menu) and go back(esc in game)</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3413,7 +3481,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/1ef6a319b2a6d4
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>QuadGeometry; Fixing non immediate flag set in creation</li><li><a href="luxe.Entity.html">Entity</a>; Fixed rate callback now stops on destroy, and also fixed rate can now be changed at runtime</li><li>Squads; Adding a bunch of gameplay stuff, weapon switching and firing etc</li></ul>
+<ul><li>QuadGeometry; Fixing non immediate flag set in creation</li><li>Entity; Fixed rate callback now stops on destroy, and also fixed rate can now be changed at runtime</li><li>Squads; Adding a bunch of gameplay stuff, weapon switching and firing etc</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3422,7 +3490,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/95dabc2dcacdad
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="api.html">Luxe</a>; Adding a profiler key, use ctrl+P to start profiling (requires <haxedef name='profiler'/> or luxe test target -Dprofiler , and only works on native targets.</li><li><a href="luxe.Entity.html">Entity</a>; Fixing a slow down on entity fixed updates, by changing a bunch of code in haxe/timer (in lime), timers are more stable and much faster now.</li><li><a href="luxe.Objects.html">Objects</a>; Adding a shield against null crashes in <a href="luxe.Objects.html">Objects</a> when args are null</li></ul>
+<ul><li>Luxe; Adding a profiler key, use ctrl+P to start profiling (requires <haxedef name='profiler'/> or luxe test target -Dprofiler , and only works on native targets.</li><li>Entity; Fixing a slow down on entity fixed updates, by changing a bunch of code in haxe/timer (in lime), timers are more stable and much faster now.</li><li>Objects; Adding a shield against null crashes in Objects when args are null</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3440,7 +3508,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2505ae87ec9ce2
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Vector; Adding rotationTo and RotationTo, for angle between two vectors.</li><li>Entity; Renaming addChild and removeChild to add_child and remove_child for consistency</li><li>API; Adding <a href="api.html">Luxe</a>.mouse accessible value anywhere.</li></ul>
+<ul><li>Vector; Adding rotationTo and RotationTo, for angle between two vectors.</li><li>Entity; Renaming addChild and removeChild to add_child and remove_child for consistency</li><li>API; Adding Luxe.mouse accessible value anywhere.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3503,7 +3571,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2636e7f64c1708
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>API; Adding loadFont to easily load fonts from assets</li><li>API; Explicitly typing loadText</li><li>Modes; Typing key and mouse events in mode class.</li><li>Components; Tidying public code completion</li><li>Components; Moving 3D physics components to it’s own folder</li><li>LineGeometry; Adding color0 color1 options to specify each side color</li><li>Letter5; Fixing scale for screen size. Still bugs there, though.</li><li><a href="luxe.Entity.html">Entity</a>; Moved scene to entity not the sprites class.</li><li><a href="luxe.Entity.html">Entity</a>/<a href="luxe.components.Component.html">Component</a>; Fixed bug where late added components or entities were not inited/started</li><li><a href="luxe.Sprite.html">Sprite</a> Animation component added;</li></ul>
+<ul><li>API; Adding loadFont to easily load fonts from assets</li><li>API; Explicitly typing loadText</li><li>Modes; Typing key and mouse events in mode class.</li><li>Components; Tidying public code completion</li><li>Components; Moving 3D physics components to it’s own folder</li><li>LineGeometry; Adding color0 color1 options to specify each side color</li><li>Letter5; Fixing scale for screen size. Still bugs there, though.</li><li>Entity; Moved scene to entity not the sprites class.</li><li>Entity/Component; Fixed bug where late added components or entities were not inited/started</li><li>Sprite Animation component added;</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3557,7 +3625,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/bc20b2a1ec47e2
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Docs; adding some guides and adjusting some output options for the generator ,like copying images from the folder to the output.</li><li>Samples; Adding samples/guides with the first two guide sample code.</li><li>Input; Adding a .pos property as luxe.<a href="luxe.Vector.html">Vector</a> to MouseEvent for direct use. It’s cached internally so no allocation is done.</li></ul>
+<ul><li>Docs; adding some guides and adjusting some output options for the generator ,like copying images from the folder to the output.</li><li>Samples; Adding samples/guides with the first two guide sample code.</li><li>Input; Adding a .pos property as luxe.Vector to MouseEvent for direct use. It’s cached internally so no allocation is done.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3575,7 +3643,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/e173da62520ddb
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding draw circle and draw ring to <a href="api.html">Luxe</a>.draw commands</li></ul>
+<ul><li>Adding draw circle and draw ring to Luxe.draw commands</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3602,7 +3670,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/c8803fbec9b876
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="phoenix.Texture.html">Texture</a>; removing legacy comment. adding tests for letter5 for mobile</li></ul>
+<ul><li>Texture; removing legacy comment. adding tests for letter5 for mobile</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3782,7 +3850,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/3b4e2143ad67a7
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="api.html">Luxe</a> : tidying the project folder</li><li><a href="luxe.Color.html">Color</a> : Adding color tween</li><li>tests : Adding test_tween</li></ul>
+<ul><li>Luxe : tidying the project folder</li><li>Color : Adding color tween</li><li>tests : Adding test_tween</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3854,7 +3922,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/9fc093aef9ddfe
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Debug : adding geometry batcher tree for testing</li><li>Batcher : Changed layer to int, hardly likely to need float for that</li><li>Batcher : Replaced the old BinarySearchTree with the new one, and its compares etc</li><li><a href="phoenix.Geometry.html">Geometry</a> : Switching to new BST style, and tidying up state changes</li><li><a href="phoenix.Geometry.html">Geometry</a> : Added shadow state values to swap in after removal</li><li>LineGeometry : <a href="luxe.Color.html">Color</a> for verts was not correct</li><li>QuadGeometry : Changed from the only use of .width and .height to .w and .h for consistency</li></ul>
+<ul><li>Debug : adding geometry batcher tree for testing</li><li>Batcher : Changed layer to int, hardly likely to need float for that</li><li>Batcher : Replaced the old BinarySearchTree with the new one, and its compares etc</li><li>Geometry : Switching to new BST style, and tidying up state changes</li><li>Geometry : Added shadow state values to swap in after removal</li><li>LineGeometry : Color for verts was not correct</li><li>QuadGeometry : Changed from the only use of .width and .height to .w and .h for consistency</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3881,7 +3949,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/17a65dd78b6fbe
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Fixing missing Dynamic on constructor when seeing src/Main.hx:33: lines 33-35 : { texture : phoenix.<a href="phoenix.Texture.html">Texture</a> } has no field color _options etc</li></ul>
+<ul><li>Fixing missing Dynamic on constructor when seeing src/Main.hx:33: lines 33-35 : { texture : phoenix.Texture } has no field color _options etc</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3917,7 +3985,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/3534f5199f55b0
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Debug: Moved to update last, for stats to be better.</li><li>Debug: Adding provisional geometry debugger view</li><li>Debug: Moved debug console from many lines to one single text item for performance, and made it static batched</li><li>NineSlice: Moved into a ComplexGeometry, so it’s now a single draw call</li><li>NineSlice: Moved to luxe.NineSlice instead of luxe.utils, as it will be an <a href="luxe.Entity.html">Entity</a> soon (already extends sprite…so it is already)</li><li><a href="luxe.NineSlice.html">NineSlice</a>: Added .size property which will efficiently resize the nineslice to a new size (see tests/test_nineslice)</li><li>Tests: Added test_nineslice, update test_depth to have a better test of the depth system (+/- to change depth)</li><li>Fonts: Fixed bug where text positions were ignoring their alignment after positioning. Fixed with .origin</li><li>CompositeGeometry: Adding fix for missing set_origin</li><li><a href="phoenix.Geometry.html">Geometry</a>: Temporarily disabling .refresh() for set_clip and set_clip_rect (need elegant solution to same depths being readded at the end (forcing reordering, which is bad))</li><li><a href="phoenix.Geometry.html">Geometry</a>: Fixing state compare function after cleaning up from the remove bugs.</li><li>SuitStory: Tidying up project some more, added scale to the balloons</li><li>Empty: Updating nmml to include actuate, as for now it is dependent for code completion. New Tween coming soon.</li></ul>
+<ul><li>Debug: Moved to update last, for stats to be better.</li><li>Debug: Adding provisional geometry debugger view</li><li>Debug: Moved debug console from many lines to one single text item for performance, and made it static batched</li><li>NineSlice: Moved into a ComplexGeometry, so it’s now a single draw call</li><li>NineSlice: Moved to luxe.NineSlice instead of luxe.utils, as it will be an Entity soon (already extends sprite…so it is already)</li><li>NineSlice: Added .size property which will efficiently resize the nineslice to a new size (see tests/test_nineslice)</li><li>Tests: Added test_nineslice, update test_depth to have a better test of the depth system (+/- to change depth)</li><li>Fonts: Fixed bug where text positions were ignoring their alignment after positioning. Fixed with .origin</li><li>CompositeGeometry: Adding fix for missing set_origin</li><li>Geometry: Temporarily disabling .refresh() for set_clip and set_clip_rect (need elegant solution to same depths being readded at the end (forcing reordering, which is bad))</li><li>Geometry: Fixing state compare function after cleaning up from the remove bugs.</li><li>SuitStory: Tidying up project some more, added scale to the balloons</li><li>Empty: Updating nmml to include actuate, as for now it is dependent for code completion. New Tween coming soon.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -3998,7 +4066,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/2d8ffb3f30095e
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding more docs, tidying up the <a href="luxe.Vector.html">Vector</a> implementation</li></ul>
+<ul><li>Adding more docs, tidying up the Vector implementation</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4061,7 +4129,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/45fbb4aa2109c6
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li><a href="api.html">Luxe</a>: adding <a href="api.html">Luxe</a>.loadShader,</li><li>Camera : adding .center( point, time, oncomplete ) , added camera.bounds which clamps the movement inside this area</li><li><a href="luxe.Sprite.html">Sprite</a> : adding .shader accessor, added batcher into the constructor</li><li>Tidying suit story project, adding game stuff</li></ul>
+<ul><li>Luxe: adding Luxe.loadShader,</li><li>Camera : adding .center( point, time, oncomplete ) , added camera.bounds which clamps the movement inside this area</li><li>Sprite : adding .shader accessor, added batcher into the constructor</li><li>Tidying suit story project, adding game stuff</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4088,7 +4156,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/95551ba2db087b
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Mesh : Adding rotate/scale/pos, and updated MeshComponent</li><li>Physics : Exposing world as public for fetching properties etc</li><li>Sprite : Adjusting for latest geometry transforms, cleans up code for sprite</li><li>Text : Adjusting for latest geometry transforms</li><li>RigidBody <a href="luxe.components.Component.html">Component</a> : Adding all properties to bullet, like damping, friction, restitution etc. And fetches rotation from physics</li><li>Batcher : Fixing bugs in removal/adding geometry, as well as tidying the ordering</li><li>CompositeGeometry : Adding set_pos and a bunch of null shields to avoid crashes</li><li><a href="phoenix.Geometry.html">Geometry</a> : Completely redid transforms using a more reliable matrix approach for both 2d and 3d,</li><li>also made geometry state properties that affect the sorting in the batchers refresh its position in the list,</li><li>LineGeometry : Adding immediate passing flag to options, it was ignored before</li><li>TestSprite Added test sprite project to add more tests for sprites, only position rotation and scale added atm</li><li>Various fixes and cleanups</li></ul>
+<ul><li>Mesh : Adding rotate/scale/pos, and updated MeshComponent</li><li>Physics : Exposing world as public for fetching properties etc</li><li>Sprite : Adjusting for latest geometry transforms, cleans up code for sprite</li><li>Text : Adjusting for latest geometry transforms</li><li>RigidBody Component : Adding all properties to bullet, like damping, friction, restitution etc. And fetches rotation from physics</li><li>Batcher : Fixing bugs in removal/adding geometry, as well as tidying the ordering</li><li>CompositeGeometry : Adding set_pos and a bunch of null shields to avoid crashes</li><li>Geometry : Completely redid transforms using a more reliable matrix approach for both 2d and 3d,</li><li>also made geometry state properties that affect the sorting in the batchers refresh its position in the list,</li><li>LineGeometry : Adding immediate passing flag to options, it was ignored before</li><li>TestSprite Added test sprite project to add more tests for sprites, only position rotation and scale added atm</li><li>Various fixes and cleanups</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4385,7 +4453,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/911dc880bba758
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>adding Lab.draw.text, added clipping to geometry and batcher, added toString for batcher and bitmapfont to show their names, fixing bugs in drawing text to be immediate, adding <a href="luxe.Rectangle.html">Rectangle</a>.equal(other), fixing drop of CompositeGeometry</li></ul>
+<ul><li>adding Lab.draw.text, added clipping to geometry and batcher, added toString for batcher and bitmapfont to show their names, fixing bugs in drawing text to be immediate, adding Rectangle.equal(other), fixing drop of CompositeGeometry</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4430,7 +4498,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/7b3e50d1fa51f4
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding text vertical alignment, adding text bounds, fixing destroy function in Nineslice, adding <a href="luxe.Rectangle.html">Rectangle</a>.set, .clone, fixing empty sample creator file</li></ul>
+<ul><li>Adding text vertical alignment, adding text bounds, fixing destroy function in Nineslice, adding Rectangle.set, .clone, fixing empty sample creator file</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4754,7 +4822,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/4dd4da9abf7fe8
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>fixed camera not listening for sub property changes on position, added more debug output, added fixes to texture : onload is overloaded to take multiple listeners when set, so many listeners can work. Texture now works with deferred properties on filter and clamp type, fixed bugs in the texture properties order of loading, added internal load from byte string for textures, fixing webgl export problems with linear/nearest settings, adding <a href="luxe.NineSlice.html">NineSlice</a> fixes to wait for the texture before being created so that they work as expected. Removing buggy test line of code on html5 target. Adding padding for html5 textures so that they work as expected (i.e you dont have to worry about power of two, it should just work as expected including the UV function).</li></ul>
+<ul><li>fixed camera not listening for sub property changes on position, added more debug output, added fixes to texture : onload is overloaded to take multiple listeners when set, so many listeners can work. Texture now works with deferred properties on filter and clamp type, fixed bugs in the texture properties order of loading, added internal load from byte string for textures, fixing webgl export problems with linear/nearest settings, adding NineSlice fixes to wait for the texture before being created so that they work as expected. Removing buggy test line of code on html5 target. Adding padding for html5 textures so that they work as expected (i.e you dont have to worry about power of two, it should just work as expected including the UV function).</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4781,7 +4849,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/8805d46cbe2018
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Fixing disabled by default geometry in <a href="luxe.Sprite.html">Sprite</a> bug</li></ul>
+<ul><li>Fixing disabled by default geometry in Sprite bug</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4889,7 +4957,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/224f2b1d957943
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding batcher group listeners, adding simple particle system components (see suitstory project for example), fixing Vector having problems with Dynamic implement, Fixed sprite accidentally not creating geometry while texture was null, adding improvements to <a href="luxe.Entity.html">Entity</a></li></ul>
+<ul><li>Adding batcher group listeners, adding simple particle system components (see suitstory project for example), fixing Vector having problems with Dynamic implement, Fixed sprite accidentally not creating geometry while texture was null, adding improvements to Entity</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4907,7 +4975,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/dd8ff39709a6db
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding searching children and other fixes to the <a href="luxe.Entity.html">Entity</a> apis, changing Lab.camera to a lab.Camera (not phoenix.Camera) so it can be extended and extend <a href="luxe.Entity.html">Entity</a>, and take components.</li></ul>
+<ul><li>Adding searching children and other fixes to the Entity apis, changing Lab.camera to a lab.Camera (not phoenix.Camera) so it can be extended and extend Entity, and take components.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -4916,7 +4984,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/a925011d9e1857
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding component system, basic <a href="luxe.Scene.html">Scene</a> manager</li></ul>
+<ul><li>Adding component system, basic Scene manager</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -5114,7 +5182,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/dde4a150582eb3
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding more fixes to the <a href="luxe.Vector.html">Vector</a> class</li></ul>
+<ul><li>Adding more fixes to the Vector class</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -5240,7 +5308,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/480e81df2fdbac
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding required assets and <a href="luxe.Rectangle.html">Rectangle</a> classes</li></ul>
+<ul><li>Adding required assets and Rectangle classes</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -5375,7 +5443,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/e97910d37df876
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding text rendering. Adding <a href="luxe.Text.html">Text</a> class. Lots going on.</li></ul>
+<ul><li>Adding text rendering. Adding Text class. Lots going on.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -5402,7 +5470,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/263fd90c57568f
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding support for chrome, firefox, safari, opera and maybe others that represent the same options. Added fix for mouse position on cross browsers, fixing bugs in color code, fixing bugs in batcher. Renamed primitive_type to type: for options on <a href="phoenix.Geometry.html">Geometry</a> constructor. Fixed alpha premultiply options (hopefully) in the browsers, making colors match better to OpenGL, including disabling premult for textures. Will optionify this later.</li></ul>
+<ul><li>Adding support for chrome, firefox, safari, opera and maybe others that represent the same options. Added fix for mouse position on cross browsers, fixing bugs in color code, fixing bugs in batcher. Renamed primitive_type to type: for options on Geometry constructor. Fixed alpha premultiply options (hopefully) in the browsers, making colors match better to OpenGL, including disabling premult for textures. Will optionify this later.</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 
@@ -5573,7 +5641,7 @@ commit <a href="http://github.com/underscorediscovery/luxe/commit/175d51bc5f12e2
 <p>&nbsp;   </p>
 <div class="commit_message">
 
-<ul><li>Adding some minor fixes to the batcher, seems to render correctly now. <a href="phoenix.Geometry.html">Geometry</a> for quads is not really useful as a triangle strip for batching, so it should be triangles for better batching. When both geometries share the same texture they should still batch. Right now if you set them the same depth etc it fails to batch correctly. Still 2 draw calls )see the state came back dirty</li></ul>
+<ul><li>Adding some minor fixes to the batcher, seems to render correctly now. Geometry for quads is not really useful as a triangle strip for batching, so it should be triangles for better batching. When both geometries share the same texture they should still batch. Right now if you set them the same depth etc it fails to batch correctly. Still 2 draw calls )see the state came back dirty</li></ul>
 </div>
 &nbsp;<br>&nbsp;<br><div class="commit_info">
 

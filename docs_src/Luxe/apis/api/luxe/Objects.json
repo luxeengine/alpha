@@ -1,0 +1,165 @@
+{
+  "source": "luxe.Objects",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "name",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "_show_debug",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "_show_debug : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "_show_debug_verbose",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "_show_debug_verbose : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "_merge_properties",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_merge_properties(_properties:Dynamic, _with:Dynamic) : Dynamic",
+          "return": ": Dynamic",
+          "args": [
+            {
+              "name": "_properties",
+              "type": "Dynamic"
+            },
+            {
+              "name": "_with",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "_debug",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_debug(v:String, ?verbose:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "v",
+              "type": "String"
+            },
+            {
+              "name": "?verbose",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "_call",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_object",
+              "type": "luxe.Objects"
+            },
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "?args",
+              "type": "Array<Dynamic>"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

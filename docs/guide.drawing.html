@@ -3,25 +3,28 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" href="./favicon.png" />
+        <link rel="shortcut icon" href="./images/favicon.png" />
 
-        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
-        <script src="./jquery-2.0.3.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+        
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+
         <script>
+
             $(document).ready(function() {
+
                 $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...')
+                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...')
+                        $(this).text('less ...');
                     }
-
                     _child.css('display', _opp);
                 });
 
@@ -33,7 +36,9 @@
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
-            });
+
+            }); //document.ready
+
         </script>
     </head>
 
@@ -44,7 +49,7 @@
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <h2 id="drawing-shapes-and-geometry-in-luxe">Drawing shapes and geometry in luxe</h2>
 <hr>
-<p><a href="api.html">Luxe</a> supports drawing a few shapes by default, each with some very similar options available. We can start by defining which functions are available, these functions are accessed via the <a href="api.html">Luxe</a> api under <code><a href="api.html">Luxe</a>.draw</code>.</p>
+<p>Luxe supports drawing a few shapes by default, each with some very similar options available. We can start by defining which functions are available, these functions are accessed via the Luxe api under <code>Luxe.draw</code>.</p>
 <ul>
 <li>line    </li>
 <li>rectangle</li>
@@ -60,35 +65,35 @@
 <p>&nbsp;<br>&nbsp;   </p>
 <h2 id="starting-by-example-drawing-a-line">Starting by example, drawing a line</h2>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kd">var</span> mid_y <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="err">var</span> <span class="err">mid_y</span> <span class="err">=</span> <span class="err">Luxe.screen.h/2;</span>
 
-<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">({</span>
-    <span class="n">p0</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mid_y</span> <span class="p">),</span>
-    <span class="n">p1</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n">mid_y</span> <span class="p">),</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span>
-<span class="p">});</span>
+<span class="err">Luxe.draw.line({</span>
+    <span class="err">p0</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Vector(</span> <span class="err">0,</span> <span class="err">mid_y</span> <span class="err">),</span>
+    <span class="err">p1</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Vector(</span> <span class="err">Luxe.screen.w,</span> <span class="err">mid_y</span> <span class="err">),</span>
+    <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color(</span> <span class="err">0.5,</span> <span class="err">0.2,</span> <span class="err">0.2,</span> <span class="err">1</span> <span class="err">)</span>
+<span class="err">});</span>
 </pre></div>
-</code></pre>
-<h4 id="and-a-rectangle-">And a rectangle :</h4>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rectangle</span><span class="p">({</span>
-    <span class="n">x</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
-    <span class="n">y</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="n">w</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> 
-    <span class="n">h</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span> <span class="p">)</span>
-<span class="p">});</span>
+
+</code></pre><h4 id="and-a-rectangle-">And a rectangle :</h4>
+<pre><code><div class="highlight"><pre><span class="err">Luxe.draw.rectangle({</span>
+    <span class="err">x</span> <span class="err">:</span> <span class="err">10,</span> 
+    <span class="err">y</span> <span class="err">:</span> <span class="err">10,</span>
+    <span class="err">w</span> <span class="err">:</span> <span class="err">Luxe.screen.w</span> <span class="err">-</span> <span class="err">20,</span> 
+    <span class="err">h</span> <span class="err">:</span> <span class="err">Luxe.screen.h</span> <span class="err">-</span> <span class="err">20,</span>
+    <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color(</span> <span class="err">0.4,</span> <span class="err">0.4,</span> <span class="err">0.4</span> <span class="err">)</span>
+<span class="err">});</span>
 </pre></div>
-</code></pre>
-<h4 id="and-a-circle-">And a circle :</h4>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">({</span>
-    <span class="n">x</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">y</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">r</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span> <span class="p">)</span>
-<span class="p">});</span>
+
+</code></pre><h4 id="and-a-circle-">And a circle :</h4>
+<pre><code><div class="highlight"><pre><span class="err">Luxe.draw.circle({</span>
+    <span class="err">x</span> <span class="err">:</span> <span class="err">Luxe.screen.w/2,</span>
+    <span class="err">y</span> <span class="err">:</span> <span class="err">Luxe.screen.h/2,</span>
+    <span class="err">r</span> <span class="err">:</span> <span class="err">50,</span>
+    <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color(</span> <span class="err">0.8,</span> <span class="err">0.3,</span> <span class="err">0.2,</span> <span class="err">1</span> <span class="err">)</span>
+<span class="err">});</span>
 </pre></div>
-</code></pre>
-<h3 id="drawing-options">Drawing options</h3>
+
+</code></pre><h3 id="drawing-options">Drawing options</h3>
 <p>Each drawing function takes an <code>options</code> parameter that can have the following values :</p>
 <hr>
 <h3 id="text">text</h3>
@@ -98,26 +103,26 @@
 </ul>
 <p>&nbsp;   </p>
 <ul>
-<li>pos <code><a href="luxe.Vector.html">Vector</a></code></li>
-<li>color <code><a href="luxe.Color.html">Color</a></code></li>
+<li>pos <code>Vector</code></li>
+<li>color <code>Color</code></li>
 <li>depth <code>Float</code></li>
 <li>group <code>Int</code></li>
 <li>immediate <code>Bool</code></li>
-<li>batcher <code><a href="phoenix.Batcher.html">Batcher</a></code></li>
+<li>batcher <code>Batcher</code></li>
 </ul>
 <hr>
 <h3 id="line">line</h3>
 <ul>
-<li>p0 &emsp; The first point on the line &emsp; <code><a href="luxe.Vector.html">Vector</a></code> </li>
-<li>p1 &emsp; The second point on the line &emsp; <code><a href="luxe.Vector.html">Vector</a></code> </li>
+<li>p0 &emsp; The first point on the line &emsp; <code>Vector</code> </li>
+<li>p1 &emsp; The second point on the line &emsp; <code>Vector</code> </li>
 </ul>
 <p>&nbsp;   </p>
 <ul>
-<li>color <code><a href="luxe.Color.html">Color</a></code></li>
+<li>color <code>Color</code></li>
 <li>depth <code>Float</code></li>
 <li>group <code>Int</code></li>
 <li>immediate <code>Bool</code></li>
-<li>batcher <code><a href="phoenix.Batcher.html">Batcher</a></code></li>
+<li>batcher <code>Batcher</code></li>
 </ul>
 <hr>
 <h3 id="rectangle-box">rectangle / box</h3>
@@ -129,11 +134,11 @@
 </ul>
 <p>&nbsp;   </p>
 <ul>
-<li>color <code><a href="luxe.Color.html">Color</a></code></li>
+<li>color <code>Color</code></li>
 <li>depth <code>Float</code></li>
 <li>group <code>Int</code></li>
 <li>immediate <code>Bool</code></li>
-<li>batcher <code><a href="phoenix.Batcher.html">Batcher</a></code></li>
+<li>batcher <code>Batcher</code></li>
 </ul>
 <hr>
 <h3 id="circle-ring">circle / ring</h3>
@@ -144,11 +149,11 @@
 </ul>
 <p>&nbsp;   </p>
 <ul>
-<li>color <code><a href="luxe.Color.html">Color</a></code></li>
+<li>color <code>Color</code></li>
 <li>depth <code>Float</code></li>
 <li>group <code>Int</code></li>
 <li>immediate <code>Bool</code></li>
-<li>batcher <code><a href="phoenix.Batcher.html">Batcher</a></code></li>
+<li>batcher <code>Batcher</code></li>
 </ul>
 <hr>
 <h3 id="arc-pie">arc / pie</h3>
@@ -160,11 +165,11 @@
 </ul>
 <p>&nbsp;   </p>
 <ul>
-<li>color <code><a href="luxe.Color.html">Color</a></code></li>
+<li>color <code>Color</code></li>
 <li>depth <code>Float</code></li>
 <li>group <code>Int</code></li>
 <li>immediate <code>Bool</code></li>
-<li>batcher <code><a href="phoenix.Batcher.html">Batcher</a></code></li>
+<li>batcher <code>Batcher</code></li>
 </ul>
 <hr>
 <h3 id="live-demo">Live demo</h3>
@@ -173,125 +178,125 @@
 
 <hr>
 <h3 id="code-from-the-live-demo">Code from the live demo</h3>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Color.html">Color</a></span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Vector</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe.Color</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">CircleGeometry</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">RingGeometry</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">LineGeometry</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">QuadGeometry</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">RectangleGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.CircleGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.RingGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.LineGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.QuadGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.RectangleGeometry</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
 
-    <span class="kd">public</span> <span class="kd">var</span> <span class="n">mouse</span>    <span class="p">:</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
-    <span class="kd">public</span> <span class="kd">var</span> <span class="n">line</span>     <span class="p">:</span> <span class="n">LineGeometry</span><span class="p">;</span> 
-    <span class="kd">public</span> <span class="kd">var</span> <span class="n">rect</span>     <span class="p">:</span> <span class="n">RectangleGeometry</span><span class="p">;</span> 
-    <span class="kd">public</span> <span class="kd">var</span> <span class="n">box</span>      <span class="p">:</span> <span class="n">QuadGeometry</span><span class="p">;</span> 
-    <span class="kd">public</span> <span class="kd">var</span> <span class="n">circle</span>   <span class="p">:</span> <span class="n">CircleGeometry</span><span class="p">;</span> 
-    <span class="kd">public</span> <span class="kd">var</span> <span class="n">ring</span>     <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span> 
+    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">mouse</span>    <span class="p">:</span> <span class="nc">Vector</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">line</span>     <span class="p">:</span> <span class="nc">LineGeometry</span><span class="p">;</span> 
+    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">rect</span>     <span class="p">:</span> <span class="nc">RectangleGeometry</span><span class="p">;</span> 
+    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">box</span>      <span class="p">:</span> <span class="nc">QuadGeometry</span><span class="p">;</span> 
+    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">circle</span>   <span class="p">:</span> <span class="nc">CircleGeometry</span><span class="p">;</span> 
+    <span class="kd">public</span> <span class="kd">var</span> <span class="vi">ring</span>     <span class="p">:</span> <span class="nc">RingGeometry</span><span class="p">;</span> 
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
 
-        <span class="n">mouse</span> <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Vector.html">Vector</a></span><span class="p">();</span>
+        <span class="n">mouse</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">();</span>
 
-        <span class="n">line</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">line</span><span class="p">({</span>
-            <span class="n">p0</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="p">),</span>
-            <span class="n">p1</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="p">),</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">line</span><span class="p">({</span>
+            <span class="n">p0</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="p">),</span>
+            <span class="n">p1</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="p">,</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="p">),</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n">rect</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rectangle</span><span class="p">({</span>
-            <span class="n">x</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-            <span class="n">w</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> 
-            <span class="n">h</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">({</span>
+            <span class="n">x</span> <span class="o">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">w</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> 
+            <span class="n">h</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">4</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n">box</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">box</span><span class="p">({</span>
-            <span class="n">x</span> <span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
-            <span class="n">w</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span> 
-            <span class="n">h</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">box</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">box</span><span class="p">({</span>
+            <span class="n">x</span> <span class="o">:</span> <span class="mi">40</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="mi">40</span><span class="p">,</span>
+            <span class="n">w</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span> 
+            <span class="n">h</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="o">-</span> <span class="mi">80</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n">circle</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">({</span>
-            <span class="n">x</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">y</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">r</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">({</span>
+            <span class="n">x</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">r</span> <span class="o">:</span> <span class="mi">50</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n">ring</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">ring</span><span class="p">({</span>
-            <span class="n">x</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">y</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">r</span> <span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ring</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">ring</span><span class="p">({</span>
+            <span class="n">x</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">r</span> <span class="o">:</span> <span class="mi">60</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">arc</span><span class="p">({</span>
-            <span class="n">x</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">y</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">r</span> <span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
-            <span class="n">end_angle</span><span class="p">:</span><span class="mi">70</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">arc</span><span class="p">({</span>
+            <span class="n">x</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">y</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">r</span> <span class="o">:</span> <span class="mi">70</span><span class="p">,</span>
+            <span class="n">end_angle</span><span class="o">:</span><span class="mi">70</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">text</span><span class="p">({</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="mf">0.5</span><span class="p">),</span>
-            <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="p">),</span>
-            <span class="n">text</span> <span class="p">:</span> <span class="s2">&quot;<a href="api.html">Luxe</a>.draw.ring({</span>
-<span class="s2">                        </span><span class="se">\t</span><span class="s2"> x : <a href="api.html">Luxe</a>.screen.w/2,</span>
-<span class="s2">                        </span><span class="se">\t</span><span class="s2"> y : <a href="api.html">Luxe</a>.screen.h/2,</span>
-<span class="s2">                        </span><span class="se">\t</span><span class="s2"> r : 70,</span>
-<span class="s2">                        </span><span class="se">\t</span><span class="s2"> color : new <a href="luxe.Color.html">Color</a>(1,1,1,1)</span>
-<span class="s2">                    });</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">({</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span>
+            <span class="n">pos</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Vector</span><span class="p">(</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span> <span class="p">),</span>
+            <span class="n">text</span> <span class="o">:</span> <span class="s2">&quot;Luxe.draw.ring({</span>
+<span class="s2">                        \t x : Luxe.screen.w/2,</span>
+<span class="s2">                        \t y : Luxe.screen.h/2,</span>
+<span class="s2">                        \t r : 70,</span>
+<span class="s2">                        \t color : new Color(1,1,1,1)</span>
+<span class="s2">                    });\n&quot;</span>
         <span class="p">});</span>
 
     <span class="p">}</span> <span class="c1">//ready</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">mouse</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span><span class="nv">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mouse</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">y</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousedown</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">mouse</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousedown</span><span class="p">(</span><span class="nv">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mouse</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">y</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmouseup</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">mouse</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmouseup</span><span class="p">(</span><span class="nv">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">mouse</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">x</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">y</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">Input</span><span class="p">.</span><span class="n">Keys</span><span class="p">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span><span class="nv">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">if</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">Input</span><span class="o">.</span><span class="n">Keys</span><span class="o">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Luxe</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span> <span class="c1">//onkeyup</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">dt</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">{</span>
 
-        <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rectangle</span><span class="p">({</span>
+        <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rectangle</span><span class="p">({</span>
                 <span class="c1">//this line is important, as each frame it will create new geometry!</span>
-            <span class="n">immediate</span> <span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="n">x</span> <span class="p">:</span> <span class="n">mouse</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">mouse</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
-            <span class="n">w</span> <span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
-            <span class="n">h</span> <span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">immediate</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="n">x</span> <span class="o">:</span> <span class="n">mouse</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">:</span> <span class="n">mouse</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+            <span class="n">w</span> <span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
+            <span class="n">h</span> <span class="o">:</span> <span class="mi">120</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">text</span><span class="p">({</span>
+        <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">({</span>
                 <span class="c1">//this line is important, as each frame it will create new geometry!</span>
-            <span class="n">immediate</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span><span class="mf">0.5</span><span class="p">),</span>
-            <span class="n">pos</span> <span class="p">:</span> <span class="n">mouse</span><span class="p">,</span>
-            <span class="n">text</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">dt</span>
+            <span class="n">immediate</span><span class="o">:</span><span class="kc">true</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span><span class="mi">0</span><span class="o">.</span><span class="mi">5</span><span class="p">),</span>
+            <span class="n">pos</span> <span class="o">:</span> <span class="n">mouse</span><span class="p">,</span>
+            <span class="n">text</span> <span class="o">:</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">dt</span>
         <span class="p">});</span>
 
     <span class="p">}</span> <span class="c1">//update</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>
 </pre></div>
-</code></pre>
-<p>&nbsp;   </p>
+
+</code></pre><p>&nbsp;   </p>
 <p>&nbsp;   </p>
 <h3 id="-back-to-feature-guide-guide-html-drawing-"><a href="guide.html#drawing">Back to feature guide</a></h3>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>

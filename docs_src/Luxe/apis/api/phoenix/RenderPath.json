@@ -1,0 +1,66 @@
+{
+  "source": "phoenix.RenderPath",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "renderer",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "renderer : phoenix.Renderer",
+          "type": "phoenix.Renderer",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_renderer:phoenix.Renderer) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_renderer",
+              "type": "phoenix.Renderer"
+            }
+          ]
+        },
+        {
+          "name": "render",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "render(_batchers:Array<phoenix.Batcher>, _stats:phoenix.RendererStats) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_batchers",
+              "type": "Array<phoenix.Batcher>"
+            },
+            {
+              "name": "_stats",
+              "type": "phoenix.RendererStats"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

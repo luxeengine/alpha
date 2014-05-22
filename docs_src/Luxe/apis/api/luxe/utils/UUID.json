@@ -1,0 +1,82 @@
+{
+  "source": "luxe.utils.UUID",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "hexChars",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "hexChars : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "rule30",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "rule30 : luxe.utils._UUID.Rule30",
+          "type": "luxe.utils._UUID.Rule30",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "generate_undashed",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "Generate a Universal Unique Identifier string.\n        For example: B859AA4C0A96CA94F7F82DBECD24205F",
+          "signature": "generate_undashed() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "hex",
+          "meta": [],
+          "public": false,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "hex(sbuf:StringBuf, n:Int) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "sbuf",
+              "type": "StringBuf"
+            },
+            {
+              "name": "n",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "get",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "Generate a Universal Unique Identifier string, with dashes according to the spec.\n        For example: BD5FB953-0BD3-D6B4-82AB-E642B7036246",
+          "signature": "get() : String",
+          "return": ": String",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

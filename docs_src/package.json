@@ -9,9 +9,8 @@
     "glob": "latest",
     "mustache" : "latest",
     "highlight.js" : "latest",
-    "pygmentize-bundled" : "latest",
-    "pygments" : "latest",
     "graceful-fs" : "latest",
+    "pygments" : "latest",
     "wrench" : "latest",
     "jsonic" : "latest",
     "nodegit" : "latest"
@@ -25,5 +24,5 @@
   },
   "engines": {
     "node": "0.10.x"
-  }  
+  }
 }

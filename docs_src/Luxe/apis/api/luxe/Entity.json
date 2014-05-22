@@ -1,0 +1,1189 @@
+{
+  "source": "luxe.Entity",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.Objects"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "children",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "children : Array<luxe.Entity>",
+          "type": "Array<luxe.Entity>",
+          "doc": ""
+        },
+        {
+          "name": "inited",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "inited : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "options",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "options : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "started",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "started : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "_destroyed",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "_destroyed : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "serialize",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "serialize : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "fixed_rate_timer",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "fixed_rate_timer : haxe.Timer",
+          "type": "haxe.Timer",
+          "doc": ""
+        },
+        {
+          "name": "events",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "events : luxe.Events",
+          "type": "luxe.Events",
+          "doc": ""
+        },
+        {
+          "name": "_components",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_components : luxe.components.Components",
+          "type": "luxe.components.Components",
+          "doc": ""
+        },
+        {
+          "name": "_last_scale",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_last_scale : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "rotation",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "rotation : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "components",
+          "meta": [],
+          "get": true,
+          "set": false,
+          "signature": "components : Map",
+          "doc": "",
+          "type": "Map",
+          "type_desc": "(read only)"
+        },
+        {
+          "name": "parent",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "parent : luxe.Entity",
+          "doc": "",
+          "type": "luxe.Entity",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "fixed_rate",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "fixed_rate : Float",
+          "doc": "",
+          "type": "Float",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "pos",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "pos : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "scale",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "scale : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "scene",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "scene : luxe.Scene",
+          "doc": "",
+          "type": "luxe.Scene",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "_onmousedown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_onmousedown(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "get_pos",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pos() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        },
+        {
+          "name": "_ongamepadbuttondown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ongamepadbuttondown(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "_stop_fixed_rate_timer",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_stop_fixed_rate_timer() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "_onmousemove",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_onmousemove(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "_ongamepadaxis",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ongamepadaxis(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "_scale_change",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_scale_change(_v:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_v",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_oninputdown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_oninputdown(_name:String, e:luxe.InputEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "e",
+              "type": "luxe.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "get",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get(_name:String, ?_in_children:Bool) : get.T",
+          "return": ": get.T",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "?_in_children",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "get_scale",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_scale() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        },
+        {
+          "name": "_attach_listener",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_attach_listener(_v:luxe.Vector, listener:Float->Void) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_v",
+              "type": "luxe.Vector"
+            },
+            {
+              "name": "listener",
+              "type": "Float->Void"
+            }
+          ]
+        },
+        {
+          "name": "_reset",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_reset() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "_onkeyup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_onkeyup(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "_onmousewheel",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_onmousewheel(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "_ongamepadhat",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ongamepadhat(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove(?_name:String, ?_data:remove.T) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "?_name",
+              "type": "String"
+            },
+            {
+              "name": "?_data",
+              "type": "remove.T"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?_options:luxe.options.EntityOptions<new.T>) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?_options",
+              "type": "luxe.options.EntityOptions<new.T>"
+            }
+          ]
+        },
+        {
+          "name": "remove_child",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove_child(child:luxe.Entity) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "child",
+              "type": "luxe.Entity"
+            }
+          ]
+        },
+        {
+          "name": "get_scene",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_scene() : luxe.Scene",
+          "return": ": luxe.Scene",
+          "args": []
+        },
+        {
+          "name": "add_child",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_child(child:luxe.Entity) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "child",
+              "type": "luxe.Entity"
+            }
+          ]
+        },
+        {
+          "name": "get_serialize_data",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_serialize_data() : Dynamic",
+          "return": ": Dynamic",
+          "args": []
+        },
+        {
+          "name": "serialize_to_disk",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "serialize_to_disk(_destination_path:String, ?_parent_write:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_destination_path",
+              "type": "String"
+            },
+            {
+              "name": "?_parent_write",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "add",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add(type:Class<add.T1>, ?_name:String, ?_data:add.T2) : add.T1",
+          "return": ": add.T1",
+          "args": [
+            {
+              "name": "type",
+              "type": "Class<add.T1>"
+            },
+            {
+              "name": "?_name",
+              "type": "String"
+            },
+            {
+              "name": "?_data",
+              "type": "add.T2"
+            }
+          ]
+        },
+        {
+          "name": "get_parent",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_parent() : luxe.Entity",
+          "return": ": luxe.Entity",
+          "args": []
+        },
+        {
+          "name": "_ontouchbegin",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ontouchbegin(e:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "set_fixed_rate",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_fixed_rate(_rate:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "_rate",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_onmouseup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_onmouseup(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "_ontouchmove",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ontouchmove(e:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "internal_parent_rotation_changed",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_parent_rotation_changed(_parent_rotation:luxe.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_parent_rotation",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "_rotation_change",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_rotation_change(_v:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_v",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "set_rotation",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_rotation(_r:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_r",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "_init",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_init() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "_fixed_update",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_fixed_update() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_pos",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos(_p:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_p",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "internal_parent_pos_changed",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_parent_pos_changed(_parent_pos:luxe.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_parent_pos",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "_pos_change",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_pos_change(_v:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_v",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_oninputup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_oninputup(_name:String, e:luxe.InputEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "e",
+              "type": "luxe.InputEvent"
+            }
+          ]
+        },
+        {
+          "name": "_start_fixed_rate_timer",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_start_fixed_rate_timer(_rate:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_rate",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "_update",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_update(dt:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "dt",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "get_any",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_any(_name:String, ?_in_children:Bool, ?_first_only:Bool) : Array<get_any.T>",
+          "return": ": Array<get_any.T>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "?_in_children",
+              "type": "Bool"
+            },
+            {
+              "name": "?_first_only",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "_ontouchend",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ontouchend(e:luxe.TouchEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.TouchEvent"
+            }
+          ]
+        },
+        {
+          "name": "_ongamepadball",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ongamepadball(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "has",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "has(_name:String) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "_onkeydown",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_onkeydown(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "get_components",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_components() : Map<String,luxe.components.Component>",
+          "return": ": Map<String,luxe.components.Component>",
+          "args": []
+        },
+        {
+          "name": "set_scale",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_scale(_s:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_s",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "get_fixed_rate",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_fixed_rate() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "internal_parent_scale_changed",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_parent_scale_changed(_parent_scale:luxe.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_parent_scale",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_scene",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_scene(_scene:luxe.Scene) : luxe.Scene",
+          "return": ": luxe.Scene",
+          "args": [
+            {
+              "name": "_scene",
+              "type": "luxe.Scene"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "_add_child",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_add_child(child:luxe.Entity) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "child",
+              "type": "luxe.Entity"
+            }
+          ]
+        },
+        {
+          "name": "set_parent",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_parent(other:luxe.Entity) : luxe.Entity",
+          "return": ": luxe.Entity",
+          "args": [
+            {
+              "name": "other",
+              "type": "luxe.Entity"
+            }
+          ]
+        },
+        {
+          "name": "get_rotation",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_rotation() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        },
+        {
+          "name": "_ongamepadbuttonup",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ongamepadbuttonup(e:Dynamic) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "Dynamic"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

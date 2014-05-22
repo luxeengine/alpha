@@ -1,0 +1,60 @@
+{
+  "source": "phoenix.BatchGroup",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "post_render",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "post_render : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "pre_render",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "pre_render : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_pre:phoenix.Batcher->Void, _post:phoenix.Batcher->Void) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_pre",
+              "type": "phoenix.Batcher->Void"
+            },
+            {
+              "name": "_post",
+              "type": "phoenix.Batcher->Void"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

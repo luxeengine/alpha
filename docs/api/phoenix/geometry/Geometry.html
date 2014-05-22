@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="geometry">Geometry</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#phoenix.geometry">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">phoenix</a><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix.geometry</a> / Geometry</p>
+<p><br/></p>
+<hr>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="added" href="#added">added</a></p>
+<p><code>added : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="batchers" href="#batchers">batchers</a></p>
+<p><code>batchers : Array&lt;phoenix.Batcher&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dropped" href="#dropped">dropped</a></p>
+<p><code>dropped : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="id" href="#id">id</a></p>
+<p><code>id : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="immediate" href="#immediate">immediate</a></p>
+<p><code>immediate : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="key" href="#key">key</a></p>
+<p><code>key : phoenix.geometry.GeometryKey</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="state" href="#state">state</a></p>
+<p><code>state : phoenix.geometry.GeometryState</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="static_normal_buffer" href="#static_normal_buffer">static_normal_buffer</a></p>
+<p><code>static_normal_buffer : lime.gl.GLBuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="static_tcoord_buffer" href="#static_tcoord_buffer">static_tcoord_buffer</a></p>
+<p><code>static_tcoord_buffer : lime.gl.GLBuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="static_vcolor_buffer" href="#static_vcolor_buffer">static_vcolor_buffer</a></p>
+<p><code>static_vcolor_buffer : lime.gl.GLBuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="static_vertex_buffer" href="#static_vertex_buffer">static_vertex_buffer</a></p>
+<p><code>static_vertex_buffer : lime.gl.GLBuffer</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="submitted" href="#submitted">submitted</a></p>
+<p><code>submitted : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="transform" href="#transform">transform</a></p>
+<p><code>transform : phoenix.Transform</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="uuid" href="#uuid">uuid</a></p>
+<p><code>uuid : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="vertices" href="#vertices">vertices</a></p>
+<p><code>vertices : Array&lt;phoenix.geometry.Vertex&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="clip" href="#clip">clip</a></p>
+<p><code>clip : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a></p>
+<p><code>clip_rect : phoenix.Rectangle</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="color" href="#color">color</a></p>
+<p><code>color : phoenix.Color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="depth" href="#depth">depth</a></p>
+<p><code>depth : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dirty" href="#dirty">dirty</a></p>
+<p><code>dirty : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="group" href="#group">group</a></p>
+<p><code>group : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="locked" href="#locked">locked</a></p>
+<p><code>locked : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="origin" href="#origin">origin</a></p>
+<p><code>origin : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="primitive_type" href="#primitive_type">primitive_type</a></p>
+<p><code>primitive_type : phoenix.PrimitiveType</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="shader" href="#shader">shader</a></p>
+<p><code>shader : phoenix.Shader</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="texture" href="#texture">texture</a></p>
+<p><code>texture : phoenix.Texture</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="visible" href="#visible">visible</a></p>
+<p><code>visible : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>add(v:phoenix.geometry.Vertex) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="batch" href="#batch">batch</a></p>
+<p><code>batch(vertlist:Array&lt;Float&gt;, tcoordlist:Array&lt;Float&gt;, colorlist:Array&lt;Float&gt;, normallist:Array&lt;Float&gt;) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="batch_into_float32array" href="#batch_into_float32array">batch_into_float32array</a></p>
+<p><code>batch_into_float32array(vert_index:Int, tcoord_index:Int, color_index:Int, normal_index:Int, vertlist:lime.utils.Float32Array, tcoordlist:lime.utils.Float32Array, colorlist:lime.utils.Float32Array, normallist:lime.utils.Float32Array) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="drop" href="#drop">drop</a></p>
+<p><code>drop(?remove:Bool) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_clip" href="#get_clip">get_clip</a></p>
+<p><code>get_clip() : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_clip_rect" href="#get_clip_rect">get_clip_rect</a></p>
+<p><code>get_clip_rect() : phoenix.Rectangle</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_depth" href="#get_depth">get_depth</a></p>
+<p><code>get_depth() : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_dirty" href="#get_dirty">get_dirty</a></p>
+<p><code>get_dirty() : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_group" href="#get_group">get_group</a></p>
+<p><code>get_group() : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_locked" href="#get_locked">get_locked</a></p>
+<p><code>get_locked() : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_shader" href="#get_shader">get_shader</a></p>
+<p><code>get_shader() : phoenix.Shader</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_texture" href="#get_texture">get_texture</a></p>
+<p><code>get_texture() : phoenix.Texture</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="key_string" href="#key_string">key_string</a></p>
+<p><code>key_string() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(options:Dynamic)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="refresh_key" href="#refresh_key">refresh_key</a></p>
+<p><code>refresh_key() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="remove" href="#remove">remove</a></p>
+<p><code>remove(v:phoenix.geometry.Vertex) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_clip" href="#set_clip">set_clip</a></p>
+<p><code>set_clip(val:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_clip_rect" href="#set_clip_rect">set_clip_rect</a></p>
+<p><code>set_clip_rect(val:phoenix.Rectangle) : phoenix.Rectangle</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_color" href="#set_color">set_color</a></p>
+<p><code>set_color(val:phoenix.Color) : phoenix.Color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_depth" href="#set_depth">set_depth</a></p>
+<p><code>set_depth(val:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_dirty" href="#set_dirty">set_dirty</a></p>
+<p><code>set_dirty(_dirty:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_group" href="#set_group">set_group</a></p>
+<p><code>set_group(val:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_locked" href="#set_locked">set_locked</a></p>
+<p><code>set_locked(_locked:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_origin" href="#set_origin">set_origin</a></p>
+<p><code>set_origin(_origin:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_shader" href="#set_shader">set_shader</a></p>
+<p><code>set_shader(val:phoenix.Shader) : phoenix.Shader</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_texture" href="#set_texture">set_texture</a></p>
+<p><code>set_texture(val:phoenix.Texture) : phoenix.Texture</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_visible" href="#set_visible">set_visible</a></p>
+<p><code>set_visible(val:Bool) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="short_id" href="#short_id">short_id</a></p>
+<p><code>short_id() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="str" href="#str">str</a></p>
+<p><code>str() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="translate" href="#translate">translate</a></p>
+<p><code>translate(_offset:phoenix.Vector) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

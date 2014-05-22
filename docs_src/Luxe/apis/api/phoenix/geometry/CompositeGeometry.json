@@ -1,0 +1,429 @@
+{
+  "source": "phoenix.geometry.CompositeGeometry",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "phoenix.geometry.Geometry"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "geometry",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "geometry : Array<phoenix.geometry.Geometry>",
+          "type": "Array<phoenix.geometry.Geometry>",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "set_rotation_from_transform",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_rotation_from_transform(_rotation:phoenix.Quaternion) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_rotation",
+              "type": "phoenix.Quaternion"
+            }
+          ]
+        },
+        {
+          "name": "set_clip",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_clip(val:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "val",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "translate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "translate(_offset:phoenix.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_offset",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "has_geometry",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "has_geometry(g:phoenix.geometry.Geometry) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "g",
+              "type": "phoenix.geometry.Geometry"
+            }
+          ]
+        },
+        {
+          "name": "add_to_batcher",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_to_batcher(_batcher:phoenix.Batcher) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_batcher",
+              "type": "phoenix.Batcher"
+            }
+          ]
+        },
+        {
+          "name": "set_shader",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_shader(val:phoenix.Shader) : phoenix.Shader",
+          "return": ": phoenix.Shader",
+          "args": [
+            {
+              "name": "val",
+              "type": "phoenix.Shader"
+            }
+          ]
+        },
+        {
+          "name": "set_scale_from_transform",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_scale_from_transform(_scale:phoenix.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_scale",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_dirty",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_dirty(val:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "val",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "add_geometry",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_geometry(g:phoenix.geometry.Geometry) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "g",
+              "type": "phoenix.geometry.Geometry"
+            }
+          ]
+        },
+        {
+          "name": "set_clip_rect",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_clip_rect(val:phoenix.Rectangle) : phoenix.Rectangle",
+          "return": ": phoenix.Rectangle",
+          "args": [
+            {
+              "name": "val",
+              "type": "phoenix.Rectangle"
+            }
+          ]
+        },
+        {
+          "name": "remove_geometry",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove_geometry(g:phoenix.geometry.Geometry) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "g",
+              "type": "phoenix.geometry.Geometry"
+            }
+          ]
+        },
+        {
+          "name": "set_origin",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_origin(_origin:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_origin",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_pos_from_transform",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos_from_transform(_position:phoenix.Vector) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_position",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_locked",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_locked(val:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "val",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "set_texture",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_texture(val:phoenix.Texture) : phoenix.Texture",
+          "return": ": phoenix.Texture",
+          "args": [
+            {
+              "name": "val",
+              "type": "phoenix.Texture"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(?options:Dynamic) ",
+          "return": "",
+          "args": [
+            {
+              "name": "?options",
+              "type": "Dynamic"
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "clear() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_primitive_type",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_primitive_type(val:phoenix.PrimitiveType) : phoenix.PrimitiveType",
+          "return": ": phoenix.PrimitiveType",
+          "args": [
+            {
+              "name": "val",
+              "type": "phoenix.PrimitiveType"
+            }
+          ]
+        },
+        {
+          "name": "set_color",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_color(_color:phoenix.Color) : phoenix.Color",
+          "return": ": phoenix.Color",
+          "args": [
+            {
+              "name": "_color",
+              "type": "phoenix.Color"
+            }
+          ]
+        },
+        {
+          "name": "set_visible",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_visible(val:Bool) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "val",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "set_group",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_group(val:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "val",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "drop",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "drop(?remove:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?remove",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "replace",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "replace(_geometry:Array<phoenix.geometry.Geometry>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_geometry",
+              "type": "Array<phoenix.geometry.Geometry>"
+            }
+          ]
+        },
+        {
+          "name": "set_depth",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_depth(val:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "val",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

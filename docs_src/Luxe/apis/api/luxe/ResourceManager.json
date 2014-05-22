@@ -1,0 +1,329 @@
+{
+  "source": "luxe.ResourceManager",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "render_textures",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "render_textures : Map<String,phoenix.RenderTexture>",
+          "type": "Map<String,phoenix.RenderTexture>",
+          "doc": ""
+        },
+        {
+          "name": "text",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "text : Map<String,String>",
+          "type": "Map<String,String>",
+          "doc": ""
+        },
+        {
+          "name": "sounds",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "sounds : Map<String,String>",
+          "type": "Map<String,String>",
+          "doc": ""
+        },
+        {
+          "name": "textures",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "textures : Map<String,phoenix.Texture>",
+          "type": "Map<String,phoenix.Texture>",
+          "doc": ""
+        },
+        {
+          "name": "shaders",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "shaders : Map<String,phoenix.Shader>",
+          "type": "Map<String,phoenix.Shader>",
+          "doc": ""
+        },
+        {
+          "name": "resourcelist",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "resourcelist : Array<luxe.Resource>",
+          "type": "Array<luxe.Resource>",
+          "doc": ""
+        },
+        {
+          "name": "fonts",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "fonts : Map<String,phoenix.BitmapFont>",
+          "type": "Map<String,phoenix.BitmapFont>",
+          "doc": ""
+        },
+        {
+          "name": "data",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "data : Map<String,lime.utils.ByteArray>",
+          "type": "Map<String,lime.utils.ByteArray>",
+          "doc": ""
+        },
+        {
+          "name": "stats",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "stats : luxe.ResourceStats",
+          "type": "luxe.ResourceStats",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "remove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove(res:luxe.Resource) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "res",
+              "type": "luxe.Resource"
+            }
+          ]
+        },
+        {
+          "name": "find_font",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_font(_name:String) : Null<phoenix.BitmapFont>",
+          "return": ": Null<phoenix.BitmapFont>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "uncache",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "uncache(res:luxe.Resource) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "res",
+              "type": "luxe.Resource"
+            }
+          ]
+        },
+        {
+          "name": "find_render_texture",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_render_texture(_name:String) : Null<phoenix.RenderTexture>",
+          "return": ": Null<phoenix.RenderTexture>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "find_data",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_data(_name:String) : Null<lime.utils.ByteArray>",
+          "return": ": Null<lime.utils.ByteArray>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "clear",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "clear(?and_persistent:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?and_persistent",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "add",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add(res:luxe.Resource) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "res",
+              "type": "luxe.Resource"
+            }
+          ]
+        },
+        {
+          "name": "find_text",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_text(_name:String) : Null<String>",
+          "return": ": Null<String>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "find_texture",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_texture(_name:String) : Null<phoenix.Texture>",
+          "return": ": Null<phoenix.Texture>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "find_shader",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_shader(_name:String) : Null<phoenix.Shader>",
+          "return": ": Null<phoenix.Shader>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "find_sound",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find_sound(_name:String) : Null<String>",
+          "return": ": Null<String>",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "find",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find(id:String) : luxe.Resource",
+          "return": ": luxe.Resource",
+          "args": [
+            {
+              "name": "id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "cache",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "cache(res:luxe.Resource) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "res",
+              "type": "luxe.Resource"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

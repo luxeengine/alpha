@@ -3,25 +3,28 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" href="./favicon.png" />
+        <link rel="shortcut icon" href="./images/favicon.png" />
 
-        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
-        <script src="./jquery-2.0.3.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+        
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+
         <script>
+
             $(document).ready(function() {
+
                 $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...')
+                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...')
+                        $(this).text('less ...');
                     }
-
                     _child.css('display', _opp);
                 });
 
@@ -33,7 +36,9 @@
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
-            });
+
+            }); //document.ready
+
         </script>
     </head>
 
@@ -43,12 +48,12 @@
 <h3 id="-to-the-next-guide-guide-sprites-html-"><a href="guide.sprites.html">To the next guide</a></h3>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2 id="getting-started-with-luxe">Getting Started with <a href="api.html">Luxe</a></h2>
+<h2 id="getting-started-with-luxe">Getting Started with Luxe</h2>
 <h3 id="what-is-luxe-">What is luxe?</h3>
 <hr>
-<p><a href="api.html">Luxe</a> is a game focused framework, which is written in haxe to offer many output platforms sharing the same code.
+<p>Luxe is a game focused framework, which is written in haxe to offer many output platforms sharing the same code.
 It focuses on performance, usability, flexibility and rapid iteration.   </p>
-<p><a href="api.html">Luxe</a> is made so that you can make game jam games quickly, but also in such a way that bigger longer term projects still make sense. 
+<p>Luxe is made so that you can make game jam games quickly, but also in such a way that bigger longer term projects still make sense. 
 For a much deeper look at how luxe is built and why, see this guide <a href="understandingluxe.html">here</a>.</p>
 <p>&nbsp;</p>
 <h3 id="live-demo">Live demo</h3>
@@ -64,79 +69,79 @@ Make sure you have <a href="setup.html">installed luxe and that it is working fi
 <p>&nbsp;</p>
 <h3 id="what-the-empty-project-code-looks-like">What the empty project code looks like</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
         <span class="c1">//called by luxe for you when the game is starting</span>
     <span class="p">}</span> <span class="c1">//ready</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onkeyup</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">KeyEvent</span> <span class="p">)</span> <span class="p">{</span>
 
             <span class="c1">//called by luxe for you, when a key is released</span>
             <span class="c1">//so, when the escape key is pressed, quit!</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">KeyValue</span><span class="p">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">shutdown</span><span class="p">();</span>
+        <span class="kr">if</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">key</span> <span class="o">==</span> <span class="n">KeyValue</span><span class="o">.</span><span class="n">escape</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Luxe</span><span class="o">.</span><span class="n">shutdown</span><span class="p">();</span>
         <span class="p">}</span>
     <span class="p">}</span> <span class="c1">//onkeyup</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">dt</span><span class="p">:</span><span class="n">Float</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">dt</span><span class="p">:</span><span class="nc">Float</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">//called by luxe for you, each frame, and passes in the</span>
         <span class="c1">//delta time (the length in seconds of the last frame).</span>
     <span class="p">}</span> <span class="c1">//update</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>
 </pre></div>
-</code></pre>
-<p>&nbsp;</p>
+
+</code></pre><p>&nbsp;</p>
 <h3 id="drawing-something">Drawing something</h3>
 <hr>
 <p>The class above shows the basic functions that a game <em>can</em> implement. A full list of functions are shown here, but for a basic game, you can implement only the important functions like <code>ready</code>, <code>update</code> and <code>onkeyup</code>.    </p>
 <p>Now you can draw something inside the <code>ready</code> function, and it will appear on screen. Let’s draw a <a href="luxe.draw.html#box">box</a>, and a <a href="luxe.draw.html#ring">ring</a> around the box. We store the ring as a class member, because we want to move it later on. </p>
-<p><strong>Take note</strong> that the <a href="phoenix.Geometry.html">Geometry</a> classes are considered “lower level” and the next guide shows you easier ways of making objects on screen (like sprites).</p>
+<p><strong>Take note</strong> that the Geometry classes are considered “lower level” and the next guide shows you easier ways of making objects on screen (like sprites).</p>
 <h3 id="drawing-a-ring-on-screen">Drawing a ring on screen</h3>
 <hr>
 <pre><code><div class="highlight"><pre>    <span class="c1">//this goes at the top of the file</span>
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">RingGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.RingGeometry</span><span class="p">;</span>
 
 <span class="err">...</span> 
 
-<span class="kd">var</span> ring <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
+<span class="err">var</span> <span class="err">ring</span> <span class="err">:</span> <span class="err">RingGeometry;</span>
 
-<span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
+<span class="kd">public</span> <span class="err">function</span> <span class="err">ready()</span> <span class="err">{</span>
 
-    <span class="kd">var</span> middle_screen_x <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="kd">var</span> middle_screen_y <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="err">var</span> <span class="err">middle_screen_x</span> <span class="err">=</span> <span class="err">Luxe.screen.w</span> <span class="err">/</span> <span class="err">2;</span>
+    <span class="err">var</span> <span class="err">middle_screen_y</span> <span class="err">=</span> <span class="err">Luxe.screen.h</span> <span class="err">/</span> <span class="err">2;</span>
 
-    <span class="kd">var</span> box <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">box</span><span class="p">({</span>
-        <span class="n">x</span><span class="p">:</span> <span class="n">middle_screen_x</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
-        <span class="n">y</span><span class="p">:</span> <span class="n">middle_screen_y</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
-        <span class="n">w</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
-        <span class="n">h</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
-        <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">().</span><span class="n">rgb</span><span class="p">(</span><span class="mh">0xff5917</span><span class="p">)</span>
-    <span class="p">});</span>
+    <span class="err">var</span> <span class="err">box</span> <span class="err">=</span> <span class="err">Luxe.draw.box({</span>
+        <span class="err">x:</span> <span class="err">middle_screen_x</span> <span class="err">-</span> <span class="err">45,</span>
+        <span class="err">y:</span> <span class="err">middle_screen_y</span> <span class="err">-</span> <span class="err">45,</span>
+        <span class="err">w:</span> <span class="err">90,</span>
+        <span class="err">h:</span> <span class="err">90,</span>
+        <span class="err">color</span> <span class="err">:</span> <span class="err">new</span> <span class="err">Color().rgb(0xff5917)</span>
+    <span class="err">});</span>
 
-    <span class="n">ring</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">ring</span><span class="p">({</span>
-        <span class="n">x</span><span class="p">:</span> <span class="n">middle_screen_x</span><span class="p">,</span>
-        <span class="n">y</span><span class="p">:</span> <span class="n">middle_screen_y</span><span class="p">,</span>
-        <span class="n">r</span><span class="p">:</span> <span class="mi">70</span>
-    <span class="p">});</span>
+    <span class="err">ring</span> <span class="err">=</span> <span class="err">Luxe.draw.ring({</span>
+        <span class="err">x:</span> <span class="err">middle_screen_x,</span>
+        <span class="err">y:</span> <span class="err">middle_screen_y,</span>
+        <span class="err">r:</span> <span class="err">70</span>
+    <span class="err">});</span>
 
-<span class="p">}</span> <span class="c1">//ready</span>
+<span class="err">}</span> <span class="c1">//ready</span>
 </pre></div>
-</code></pre>
-<h3 id="moving-the-ring">Moving the ring</h3>
-<p>To move the ring, you can set the <code>.pos</code> value of the geometry that was returned by <a href="api.html">Luxe</a>. To make this simpler, we will use the <code>onmousemove</code> function from luxe, by adding it to our class like below :</p>
-<pre><code><div class="highlight"><pre><span class="err">p</span><span class="n">ublic</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+
+</code></pre><h3 id="moving-the-ring">Moving the ring</h3>
+<p>To move the ring, you can set the <code>.pos</code> value of the geometry that was returned by Luxe. To make this simpler, we will use the <code>onmousemove</code> function from luxe, by adding it to our class like below :</p>
+<pre><code><div class="highlight"><pre><span class="kd">public</span> <span class="err">function</span> <span class="err">onmousemove(</span> <span class="err">e:MouseEvent</span> <span class="err">)</span> <span class="err">{</span>
 
         <span class="c1">//move the ring to the mouse position</span>
-    <span class="n">ring</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
+    <span class="err">ring.pos</span> <span class="err">=</span> <span class="err">e.pos;</span>
 
-<span class="p">}</span> <span class="c1">//onmousemove</span>
+<span class="err">}</span> <span class="c1">//onmousemove</span>
 </pre></div>
-</code></pre>
-<h3 id="what-comes-next">What comes next</h3>
+
+</code></pre><h3 id="what-comes-next">What comes next</h3>
 <p>Well, that’s as basic as it gets! 
 Some of the questions you may have, </p>
 <ul>
@@ -144,7 +149,7 @@ Some of the questions you may have, </p>
 </li>
 <li><p><strong>What made the geometry appear (and stay) on screen?</strong><br>Read <a href="guide.geometry.html">understanding geometry in luxe</a>.   </p>
 </li>
-<li><p><strong>Where do I find a list of all the supported <code><a href="luxe.Game.html">Game</a></code> class functions?</strong><br>Read the <a href="luxe.Game.html">Game</a> class documentation.   </p>
+<li><p><strong>Where do I find a list of all the supported <code>Game</code> class functions?</strong><br>Read the Game class documentation.   </p>
 </li>
 <li><p><strong>Things that were not discussed include</strong><br>the <a href="guide.color.html">color</a> class, <a href="guide.input.html">mouse events</a>, <a href="guide.input.html">key events</a>.</p>
 </li>
@@ -158,47 +163,47 @@ Some of the questions you may have, </p>
 <h4 id="code-listing-1">Code listing 1</h4>
 <p></a></p>
 <p><em>(found in samples/guides/1_gettingstarted/)</em></p>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn">Input</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Color.html">Color</a></span><span class="p">;</span>
+<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe.Input</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">luxe.Color</span><span class="p">;</span>
 
-<span class="kn">import</span> <span class="nn">phoenix</span><span class="p">.</span><span class="nn">geometry</span><span class="p">.</span><span class="nn">RingGeometry</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">phoenix.geometry.RingGeometry</span><span class="p">;</span>
 
-<span class="kd">class</span> <span class="n">Main</span> <span class="kd">extends</span> <span class="n">luxe</span><span class="p">.</span><span class="n"><a href="luxe.Game.html">Game</a></span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">Main</span> <span class="kd">extends</span> <span class="nc">luxe.Game</span> <span class="p">{</span>
 
-    <span class="kd">var</span> <span class="n">ring</span> <span class="p">:</span> <span class="n">RingGeometry</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="vi">ring</span> <span class="p">:</span> <span class="nc">RingGeometry</span><span class="p">;</span>
 
     <span class="kd">public</span> <span class="kd">function</span> <span class="nf">ready</span><span class="p">()</span> <span class="p">{</span>
 
-        <span class="kd">var</span> middle_screen_x <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="kd">var</span> middle_screen_y <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nv">middle_screen_x</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">w</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nv">middle_screen_y</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">screen</span><span class="o">.</span><span class="n">h</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
 
-        <span class="kd">var</span> box <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">box</span><span class="p">({</span>
-            <span class="n">x</span><span class="p">:</span> <span class="n">middle_screen_x</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">:</span> <span class="n">middle_screen_y</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
-            <span class="n">w</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
-            <span class="n">h</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
-            <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">().</span><span class="n">rgb</span><span class="p">(</span><span class="mh">0xff5917</span><span class="p">)</span>
+        <span class="kd">var</span> <span class="nv">box</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">box</span><span class="p">({</span>
+            <span class="n">x</span><span class="o">:</span> <span class="n">middle_screen_x</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">:</span> <span class="n">middle_screen_y</span> <span class="o">-</span> <span class="mi">45</span><span class="p">,</span>
+            <span class="n">w</span><span class="o">:</span> <span class="mi">90</span><span class="p">,</span>
+            <span class="n">h</span><span class="o">:</span> <span class="mi">90</span><span class="p">,</span>
+            <span class="n">color</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">Color</span><span class="p">()</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="mh">0xff5917</span><span class="p">)</span>
         <span class="p">});</span>
 
-        <span class="n">ring</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">ring</span><span class="p">({</span>
-            <span class="n">x</span><span class="p">:</span> <span class="n">middle_screen_x</span><span class="p">,</span>
-            <span class="n">y</span><span class="p">:</span> <span class="n">middle_screen_y</span><span class="p">,</span>
-            <span class="n">r</span><span class="p">:</span> <span class="mi">70</span>
+        <span class="n">ring</span> <span class="o">=</span> <span class="n">Luxe</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">ring</span><span class="p">({</span>
+            <span class="n">x</span><span class="o">:</span> <span class="n">middle_screen_x</span><span class="p">,</span>
+            <span class="n">y</span><span class="o">:</span> <span class="n">middle_screen_y</span><span class="p">,</span>
+            <span class="n">r</span><span class="o">:</span> <span class="mi">70</span>
         <span class="p">});</span>
 
     <span class="p">}</span> <span class="c1">//ready</span>
 
-    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="n">e</span><span class="p">:</span><span class="n">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nf">onmousemove</span><span class="p">(</span> <span class="nv">e</span><span class="p">:</span><span class="nc">MouseEvent</span> <span class="p">)</span> <span class="p">{</span>
 
             <span class="c1">//move the ring to the mouse position</span>
-        <span class="n">ring</span><span class="p">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="n">pos</span><span class="p">;</span>
+        <span class="n">ring</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">pos</span><span class="p">;</span>
 
     <span class="p">}</span> <span class="c1">//onmousemove</span>
 
 <span class="p">}</span> <span class="c1">//Main</span>
 </pre></div>
-</code></pre>
-<p>&nbsp;</p>
+
+</code></pre><p>&nbsp;</p>
 
         </div>
     </body>

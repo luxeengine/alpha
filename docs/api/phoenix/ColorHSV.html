@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="colorhsv">ColorHSV</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / ColorHSV</p>
+<p><br/></p>
+<hr>
+<p><a href="#Extends">Extends</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="phoenix.Color" href="../../api/phoenix/Color.html">phoenix.Color</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="h" href="#h">h</a></p>
+<p><code>h : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="s" href="#s">s</a></p>
+<p><code>s : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="v" href="#v">v</a></p>
+<p><code>v : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="_refresh" href="#_refresh">_refresh</a></p>
+<p><code>_refresh() : phoenix.ColorHSV</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<p><code>clone() : phoenix.ColorHSV</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fromColor" href="#fromColor">fromColor</a></p>
+<p><code>fromColor(_color:phoenix.Color) : phoenix.ColorHSV</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fromColorHSL" href="#fromColorHSL">fromColorHSL</a></p>
+<p><code>fromColorHSL(_color_hsl:phoenix.ColorHSL) : phoenix.ColorHSV</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(?_h:Float, ?_s:Float, ?_v:Float, ?_a:Float)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set(?_h:Float, ?_s:Float, ?_v:Float, ?_a:Float) : phoenix.Color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toColor" href="#toColor">toColor</a></p>
+<p><code>toColor() : phoenix.Color</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toColorHSL" href="#toColorHSL">toColorHSL</a></p>
+<p><code>toColorHSL() : phoenix.ColorHSL</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toString" href="#toString">toString</a></p>
+<p><code>toString() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="tween" href="#tween">tween</a></p>
+<p><code>tween(?_time_in_seconds:Float, ?_dest:luxe.options.ColorOptions, ?_override:Bool) : luxe.tween.actuators.IGenericActuator</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

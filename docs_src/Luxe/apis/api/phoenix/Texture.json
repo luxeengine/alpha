@@ -1,0 +1,648 @@
+{
+  "source": "phoenix.Texture",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.Resource"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "texture",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "texture : lime.gl.GLTexture",
+          "type": "lime.gl.GLTexture",
+          "doc": ""
+        },
+        {
+          "name": "lime_bitmap_data_from_bytes",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lime_bitmap_data_from_bytes : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "lime_bitmap_data_height",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lime_bitmap_data_height : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "height",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "height : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "_onload_handlers",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "_onload_handlers : Array<null>",
+          "type": "Array<null>",
+          "doc": ""
+        },
+        {
+          "name": "actual_width",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "actual_width : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "loaded",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "loaded : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "slot",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "slot : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "lime_bitmap_data_get_pixels",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lime_bitmap_data_get_pixels : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "actual_height",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "actual_height : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "width",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "width : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "lime_bitmap_data_width",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "lime_bitmap_data_width : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        },
+        {
+          "name": "data",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "data : lime.utils.UInt8Array",
+          "type": "lime.utils.UInt8Array",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Properties",
+      "link": "#Properties",
+      "values": [
+        {
+          "name": "onload",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": false,
+          "set": true,
+          "signature": "onload : Dynamic",
+          "doc": "",
+          "type": "Dynamic",
+          "type_desc": "(write only)"
+        },
+        {
+          "name": "filter_min",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "filter_min : phoenix.FilterType",
+          "doc": "",
+          "type": "phoenix.FilterType",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "filter_mag",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "filter_mag : phoenix.FilterType",
+          "doc": "",
+          "type": "phoenix.FilterType",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "filter",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "filter : phoenix.FilterType",
+          "doc": "",
+          "type": "phoenix.FilterType",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "clamp",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "clamp : phoenix.ClampType",
+          "doc": "",
+          "type": "phoenix.ClampType",
+          "type_desc": "read/write"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "do_onload",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "do_onload() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "get_pixel",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pixel(_pos:phoenix.Vector) : null<null,null,null,null>",
+          "return": ": null<null,null,null,null>",
+          "args": [
+            {
+              "name": "_pos",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_onload",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_onload(f:phoenix.Texture->Void) : phoenix.Texture->Void",
+          "return": ": phoenix.Texture->Void",
+          "args": [
+            {
+              "name": "f",
+              "type": "phoenix.Texture->Void"
+            }
+          ]
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "build",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "build(_size:phoenix.Vector, _color:phoenix.Color) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_size",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_color",
+              "type": "phoenix.Color"
+            }
+          ]
+        },
+        {
+          "name": "bind",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "bind() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_pixel",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pixel(_pos:phoenix.Vector, _color:phoenix.Color) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_pos",
+              "type": "phoenix.Vector"
+            },
+            {
+              "name": "_color",
+              "type": "phoenix.Color"
+            }
+          ]
+        },
+        {
+          "name": "_set_clamp",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_set_clamp(_clamp:phoenix.ClampType) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_clamp",
+              "type": "phoenix.ClampType"
+            }
+          ]
+        },
+        {
+          "name": "generate_mipmaps",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "generate_mipmaps() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "_set_filter",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_set_filter(_filter:phoenix.FilterType) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "phoenix.FilterType"
+            }
+          ]
+        },
+        {
+          "name": "lock",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "lock() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "set_filter_mag",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_filter_mag(_filter:phoenix.FilterType) : phoenix.FilterType",
+          "return": ": phoenix.FilterType",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "phoenix.FilterType"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:luxe.ResourceManager, ?_type:luxe.ResourceType) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "luxe.ResourceManager"
+            },
+            {
+              "name": "?_type",
+              "type": "luxe.ResourceType"
+            }
+          ]
+        },
+        {
+          "name": "create_from_bytes",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create_from_bytes(_asset_name:String, _asset_bytes:haxe.io.Bytes) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_asset_name",
+              "type": "String"
+            },
+            {
+              "name": "_asset_bytes",
+              "type": "haxe.io.Bytes"
+            }
+          ]
+        },
+        {
+          "name": "_set_filter_mag",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_set_filter_mag(_filter:phoenix.FilterType) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "phoenix.FilterType"
+            }
+          ]
+        },
+        {
+          "name": "create_from_bytes_html",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create_from_bytes_html(_asset_name:String, _asset_bytes:Dynamic, _width:Float, _height:Float) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_asset_name",
+              "type": "String"
+            },
+            {
+              "name": "_asset_bytes",
+              "type": "Dynamic"
+            },
+            {
+              "name": "_width",
+              "type": "Float"
+            },
+            {
+              "name": "_height",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "create_from_bytes_using_haxe",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create_from_bytes_using_haxe(_asset_name:String, _asset_bytes:haxe.io.Bytes) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_asset_name",
+              "type": "String"
+            },
+            {
+              "name": "_asset_bytes",
+              "type": "haxe.io.Bytes"
+            }
+          ]
+        },
+        {
+          "name": "estimated_memory",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "estimated_memory() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "unlock",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "unlock() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "set_filter_min",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_filter_min(_filter:phoenix.FilterType) : phoenix.FilterType",
+          "return": ": phoenix.FilterType",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "phoenix.FilterType"
+            }
+          ]
+        },
+        {
+          "name": "drop",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "drop() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "activate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "activate(att:lime.gl.GLUniformLocation) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "att",
+              "type": "lime.gl.GLUniformLocation"
+            }
+          ]
+        },
+        {
+          "name": "_set_filter_min",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_set_filter_min(_filter:phoenix.FilterType) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "phoenix.FilterType"
+            }
+          ]
+        },
+        {
+          "name": "set_filter",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_filter(_filter:phoenix.FilterType) : phoenix.FilterType",
+          "return": ": phoenix.FilterType",
+          "args": [
+            {
+              "name": "_filter",
+              "type": "phoenix.FilterType"
+            }
+          ]
+        },
+        {
+          "name": "set_clamp",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_clamp(_clamp:phoenix.ClampType) : phoenix.ClampType",
+          "return": ": phoenix.ClampType",
+          "args": [
+            {
+              "name": "_clamp",
+              "type": "phoenix.ClampType"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

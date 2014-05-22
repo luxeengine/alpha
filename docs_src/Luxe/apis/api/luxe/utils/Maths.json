@@ -1,0 +1,363 @@
+{
+  "source": "luxe.utils.Maths",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "RAD2DEG",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "RAD2DEG : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "DEG2RAD",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "DEG2RAD : Float",
+          "type": "Float",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "nearest_power_of_two",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "nearest_power_of_two(_value:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_value",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "radToDeg",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "radToDeg(rad:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "rad",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "clamp_bottom",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "clamp_bottom(value:Float, a:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            },
+            {
+              "name": "a",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "sign",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "sign(x:Float) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "smoothstep",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "smoothstep(x:Float, min:Float, max:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            },
+            {
+              "name": "min",
+              "type": "Float"
+            },
+            {
+              "name": "max",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "random16",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "random16() : Float",
+          "return": ": Float",
+          "args": []
+        },
+        {
+          "name": "random_float",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "random_float(low:Float, high:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "low",
+              "type": "Float"
+            },
+            {
+              "name": "high",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "random_float_spread",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "random_float_spread(range:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "range",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "smootherstep",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "smootherstep(x:Float, min:Float, max:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "x",
+              "type": "Float"
+            },
+            {
+              "name": "min",
+              "type": "Float"
+            },
+            {
+              "name": "max",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "within_range",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "within_range(value:Float, start_range:Float, end_range:Float) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            },
+            {
+              "name": "start_range",
+              "type": "Float"
+            },
+            {
+              "name": "end_range",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "random_int",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "random_int(low:Int, high:Int) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "low",
+              "type": "Int"
+            },
+            {
+              "name": "high",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "fixed",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "fixed(value:Float, precision:Int) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            },
+            {
+              "name": "precision",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "clamp",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "clamp(value:Float, a:Float, b:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            },
+            {
+              "name": "a",
+              "type": "Float"
+            },
+            {
+              "name": "b",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "wrap_angle",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "wrap_angle(degrees:Float, lower:Float, upper:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "degrees",
+              "type": "Float"
+            },
+            {
+              "name": "lower",
+              "type": "Float"
+            },
+            {
+              "name": "upper",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "map_linear",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "map_linear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "value",
+              "type": "Float"
+            },
+            {
+              "name": "a1",
+              "type": "Float"
+            },
+            {
+              "name": "a2",
+              "type": "Float"
+            },
+            {
+              "name": "b1",
+              "type": "Float"
+            },
+            {
+              "name": "b2",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "degToRad",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "degToRad(deg:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "deg",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

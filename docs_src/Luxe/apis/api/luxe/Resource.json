@@ -1,0 +1,125 @@
+{
+  "source": "luxe.Resource",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "persistent",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "persistent : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "type",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "type : luxe.ResourceType",
+          "type": "luxe.ResourceType",
+          "doc": ""
+        },
+        {
+          "name": "time_created",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "time_created : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "time_to_load",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "time_to_load : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "manager",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "manager : luxe.ResourceManager",
+          "type": "luxe.ResourceManager",
+          "doc": ""
+        },
+        {
+          "name": "dropped",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dropped : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_manager:luxe.ResourceManager, _type:luxe.ResourceType, ?_load_time:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_manager",
+              "type": "luxe.ResourceManager"
+            },
+            {
+              "name": "_type",
+              "type": "luxe.ResourceType"
+            },
+            {
+              "name": "?_load_time",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "drop",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "drop() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

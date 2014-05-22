@@ -1,0 +1,78 @@
+{
+  "source": "luxe.tween.easing.QuadEaseIn",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Implements",
+      "link": "#Implements",
+      "values": [
+        {
+          "name": "luxe.tween.easing.IEasing"
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "calculate",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "calculate(k:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "k",
+              "type": "Float"
+            }
+          ]
+        },
+        {
+          "name": "ease",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ease(t:Float, b:Float, c:Float, d:Float) : Float",
+          "return": ": Float",
+          "args": [
+            {
+              "name": "t",
+              "type": "Float"
+            },
+            {
+              "name": "b",
+              "type": "Float"
+            },
+            {
+              "name": "c",
+              "type": "Float"
+            },
+            {
+              "name": "d",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

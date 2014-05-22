@@ -1,0 +1,141 @@
+{
+  "source": "luxe.debug._ProfilerDebugView.ProfilerValue",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "offsets",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "offsets : Array<luxe.debug._ProfilerDebugView.ProfilerValue>",
+          "type": "Array<luxe.debug._ProfilerDebugView.ProfilerValue>",
+          "doc": ""
+        },
+        {
+          "name": "name",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "name : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "hidden",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "hidden : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "count",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "count : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "start",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "start : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "accum",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "accum : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "bar",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "bar : luxe.debug._ProfilerDebugView.ProfilerBar",
+          "type": "luxe.debug._ProfilerDebugView.ProfilerBar",
+          "doc": ""
+        },
+        {
+          "name": "history",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "history : Array<Float>",
+          "type": "Array<Float>",
+          "doc": ""
+        },
+        {
+          "name": "avg",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "avg : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "set",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_name:String, _bar:luxe.debug._ProfilerDebugView.ProfilerBar) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_bar",
+              "type": "luxe.debug._ProfilerDebugView.ProfilerBar"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

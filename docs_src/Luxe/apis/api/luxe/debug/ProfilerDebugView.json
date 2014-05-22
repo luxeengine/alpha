@@ -1,0 +1,166 @@
+{
+  "source": "luxe.debug.ProfilerDebugView",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Extends",
+      "link": "#Extends",
+      "values": [
+        {
+          "name": "luxe.debug.DebugView"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "lists",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "lists : Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>",
+          "type": "Map<String,luxe.debug._ProfilerDebugView.ProfilerValue>",
+          "doc": ""
+        },
+        {
+          "name": "_setup",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_setup : Bool",
+          "type": "Bool",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new() ",
+          "return": "",
+          "args": []
+        },
+        {
+          "name": "hide_item",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "hide_item(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "start",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "start(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "hide",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "hide() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "add_offset",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "add_offset(_id:String, _offset:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            },
+            {
+              "name": "_offset",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "show_item",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "show_item(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "end",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "end(_id:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_id",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "show",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "show() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
+        
+        <script src="../../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="maths">Maths</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../../api/index.html#luxe.utils">API Index</a><br>&emsp;&emsp;&emsp;parent<br><a href="../">luxe</a><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe.utils</a> / Maths</p>
+<p><br/></p>
+<hr>
+<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="DEG2RAD" href="#DEG2RAD">DEG2RAD</a></p>
+<p><code>DEG2RAD : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="RAD2DEG" href="#RAD2DEG">RAD2DEG</a></p>
+<p><code>RAD2DEG : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="clamp" href="#clamp">clamp</a></p>
+<p><code>clamp(value:Float, a:Float, b:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clamp_bottom" href="#clamp_bottom">clamp_bottom</a></p>
+<p><code>clamp_bottom(value:Float, a:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="degToRad" href="#degToRad">degToRad</a></p>
+<p><code>degToRad(deg:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fixed" href="#fixed">fixed</a></p>
+<p><code>fixed(value:Float, precision:Int) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="map_linear" href="#map_linear">map_linear</a></p>
+<p><code>map_linear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="nearest_power_of_two" href="#nearest_power_of_two">nearest_power_of_two</a></p>
+<p><code>nearest_power_of_two(_value:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="radToDeg" href="#radToDeg">radToDeg</a></p>
+<p><code>radToDeg(rad:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="random16" href="#random16">random16</a></p>
+<p><code>random16() : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="random_float" href="#random_float">random_float</a></p>
+<p><code>random_float(low:Float, high:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="random_float_spread" href="#random_float_spread">random_float_spread</a></p>
+<p><code>random_float_spread(range:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="random_int" href="#random_int">random_int</a></p>
+<p><code>random_int(low:Int, high:Int) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="sign" href="#sign">sign</a></p>
+<p><code>sign(x:Float) : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="smootherstep" href="#smootherstep">smootherstep</a></p>
+<p><code>smootherstep(x:Float, min:Float, max:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="smoothstep" href="#smoothstep">smoothstep</a></p>
+<p><code>smoothstep(x:Float, min:Float, max:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="within_range" href="#within_range">within_range</a></p>
+<p><code>within_range(value:Float, start_range:Float, end_range:Float) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="wrap_angle" href="#wrap_angle">wrap_angle</a></p>
+<p><code>wrap_angle(degrees:Float, lower:Float, upper:Float) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

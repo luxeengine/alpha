@@ -1,0 +1,66 @@
+{
+  "source": "luxe.tween._Actuate.TweenTimer",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "progress",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "progress : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "meta",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "meta : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Meta",
+      "link": "#Meta",
+      "values": [
+        {
+          "name": ":noCompletion",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(progress:Float) ",
+          "return": "",
+          "args": [
+            {
+              "name": "progress",
+              "type": "Float"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

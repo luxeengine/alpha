@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="vector">Vector</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#phoenix">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">phoenix</a> / Vector</p>
+<p><br/></p>
+<hr>
+<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="ignore_listeners" href="#ignore_listeners">ignore_listeners</a></p>
+<p><code>ignore_listeners : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="listen_x" href="#listen_x">listen_x</a></p>
+<p><code>listen_x : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="listen_y" href="#listen_y">listen_y</a></p>
+<p><code>listen_y : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="listen_z" href="#listen_z">listen_z</a></p>
+<p><code>listen_z : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="w" href="#w">w</a></p>
+<p><code>w : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="angle2D" href="#angle2D">angle2D</a></p>
+<p><code>angle2D : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="inverted" href="#inverted">inverted</a></p>
+<p><code>inverted : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="length" href="#length">length</a></p>
+<p><code>length : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="lengthsq" href="#lengthsq">lengthsq</a></p>
+<p><code>lengthsq : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="normalized" href="#normalized">normalized</a></p>
+<p><code>normalized : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="serialized" href="#serialized">serialized</a></p>
+<p><code>serialized : Dynamic</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="x" href="#x">x</a></p>
+<p><code>x : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="y" href="#y">y</a></p>
+<p><code>y : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="z" href="#z">z</a></p>
+<p><code>z : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="Add" href="#Add">Add</a></p>
+<p><code>Add(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="AddScalar" href="#AddScalar">AddScalar</a></p>
+<p><code>AddScalar(a:phoenix.Vector, b:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="Cross" href="#Cross">Cross</a></p>
+<p><code>Cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="Divide" href="#Divide">Divide</a></p>
+<p><code>Divide(a:phoenix.Vector, b:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="DivideVector" href="#DivideVector">DivideVector</a></p>
+<p><code>DivideVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="Multiply" href="#Multiply">Multiply</a></p>
+<p><code>Multiply(a:phoenix.Vector, b:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="MultiplyVector" href="#MultiplyVector">MultiplyVector</a></p>
+<p><code>MultiplyVector(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="RotationTo" href="#RotationTo">RotationTo</a></p>
+<p><code>RotationTo(a:phoenix.Vector, b:phoenix.Vector) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="Subtract" href="#Subtract">Subtract</a></p>
+<p><code>Subtract(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="SubtractScalar" href="#SubtractScalar">SubtractScalar</a></p>
+<p><code>SubtractScalar(a:phoenix.Vector, b:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ToDegrees" href="#ToDegrees">ToDegrees</a></p>
+<p><code>ToDegrees(_radian_vector:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ToRadians" href="#ToRadians">ToRadians</a></p>
+<p><code>ToRadians(_degree_vector:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>add(other:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="addScalar" href="#addScalar">addScalar</a></p>
+<p><code>addScalar(v:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="applyMatrix4" href="#applyMatrix4">applyMatrix4</a></p>
+<p><code>applyMatrix4(_m:phoenix.Matrix4) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="applyProjection" href="#applyProjection">applyProjection</a></p>
+<p><code>applyProjection(m:phoenix.Matrix4) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="applyQuaternion" href="#applyQuaternion">applyQuaternion</a></p>
+<p><code>applyQuaternion(q:phoenix.Quaternion) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="clone" href="#clone">clone</a></p>
+<p><code>clone() : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="copy_from" href="#copy_from">copy_from</a></p>
+<p><code>copy_from(_other:phoenix.Vector) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="cross" href="#cross">cross</a></p>
+<p><code>cross(a:phoenix.Vector, b:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="divide" href="#divide">divide</a></p>
+<p><code>divide(other:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="divideScalar" href="#divideScalar">divideScalar</a></p>
+<p><code>divideScalar(v:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="dot" href="#dot">dot</a></p>
+<p><code>dot(other:phoenix.Vector) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="equals" href="#equals">equals</a></p>
+<p><code>equals(other:phoenix.Vector) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiply" href="#multiply">multiply</a></p>
+<p><code>multiply(other:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="multiplyScalar" href="#multiplyScalar">multiplyScalar</a></p>
+<p><code>multiplyScalar(v:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float)</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="normalize" href="#normalize">normalize</a></p>
+<p><code>normalize() : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="rotationTo" href="#rotationTo">rotationTo</a></p>
+<p><code>rotationTo(other:phoenix.Vector) : Float</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set" href="#set">set</a></p>
+<p><code>set(?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="setEulerFromQuaternion" href="#setEulerFromQuaternion">setEulerFromQuaternion</a></p>
+<p><code>setEulerFromQuaternion(q:phoenix.Quaternion, ?order:String) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="setEulerFromRotationMatrix" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></p>
+<p><code>setEulerFromRotationMatrix(m:phoenix.Matrix4, ?order:String) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_xy" href="#set_xy">set_xy</a></p>
+<p><code>set_xy(_x:Float, _y:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_xyz" href="#set_xyz">set_xyz</a></p>
+<p><code>set_xyz(_x:Float, _y:Float, _z:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_xyzw" href="#set_xyzw">set_xyzw</a></p>
+<p><code>set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="subtract" href="#subtract">subtract</a></p>
+<p><code>subtract(other:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="subtractScalar" href="#subtractScalar">subtractScalar</a></p>
+<p><code>subtractScalar(v:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toDegrees" href="#toDegrees">toDegrees</a></p>
+<p><code>toDegrees() : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toRadians" href="#toRadians">toRadians</a></p>
+<p><code>toRadians() : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toString" href="#toString">toString</a></p>
+<p><code>toString() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="transformDirection" href="#transformDirection">transformDirection</a></p>
+<p><code>transformDirection(m:phoenix.Matrix4) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="truncate" href="#truncate">truncate</a></p>
+<p><code>truncate(max:Float) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

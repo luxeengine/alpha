@@ -1,0 +1,700 @@
+{
+  "source": "luxe.structural.BalancedBinarySearchTree",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "root",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "root : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "doc": ""
+        },
+        {
+          "name": "compare",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "compare : Dynamic",
+          "type": "Dynamic",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "_floor",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_floor(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _key:luxe.structural.BalancedBinarySearchTree.K) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "ceil",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "ceil(_key:luxe.structural.BalancedBinarySearchTree.K) : Null<luxe.structural.BalancedBinarySearchTree.K>",
+          "return": ": Null<luxe.structural.BalancedBinarySearchTree.K>",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "rotate_left",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "rotate_left(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "_deleteMax",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_deleteMax(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "iterator",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "iterator() : Iterator<luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": Iterator<luxe.structural.BalancedBinarySearchTree.T>",
+          "args": []
+        },
+        {
+          "name": "max",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "max() : luxe.structural.BalancedBinarySearchTree.K",
+          "return": ": luxe.structural.BalancedBinarySearchTree.K",
+          "args": []
+        },
+        {
+          "name": "_rank",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_rank(_key:luxe.structural.BalancedBinarySearchTree.K, _node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            },
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "_remove",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_remove(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _key:luxe.structural.BalancedBinarySearchTree.K) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "traverse",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "traverse(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _traverse_method:luxe.structural.BalancedBinarySearchTraverseMethod, _process_node_function:luxe.structural.BalancedBinarySearchTreeNode->Void) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_traverse_method",
+              "type": "luxe.structural.BalancedBinarySearchTraverseMethod"
+            },
+            {
+              "name": "_process_node_function",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode->Void"
+            }
+          ]
+        },
+        {
+          "name": "contains",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "contains(_key:luxe.structural.BalancedBinarySearchTree.K) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "select",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "select(_rank:Int) : luxe.structural.BalancedBinarySearchTree.K",
+          "return": ": luxe.structural.BalancedBinarySearchTree.K",
+          "args": [
+            {
+              "name": "_rank",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "floor",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "floor(_key:luxe.structural.BalancedBinarySearchTree.K) : Null<luxe.structural.BalancedBinarySearchTree.K>",
+          "return": ": Null<luxe.structural.BalancedBinarySearchTree.K>",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "_ceil",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_ceil(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _key:luxe.structural.BalancedBinarySearchTree.K) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "remove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove(_key:luxe.structural.BalancedBinarySearchTree.K) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "is_red",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "is_red(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : Bool",
+          "return": ": Bool",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "balance",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "balance(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(compare_function:luxe.structural.BalancedBinarySearchTree.K->luxe.structural.BalancedBinarySearchTree.K->Int) ",
+          "return": "",
+          "args": [
+            {
+              "name": "compare_function",
+              "type": "luxe.structural.BalancedBinarySearchTree.K->luxe.structural.BalancedBinarySearchTree.K->Int"
+            }
+          ]
+        },
+        {
+          "name": "size",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "size() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "_max",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_max(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "flip_colors",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "flip_colors(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "_find",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_find(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _key:luxe.structural.BalancedBinarySearchTree.K) : luxe.structural.BalancedBinarySearchTree.T",
+          "return": ": luxe.structural.BalancedBinarySearchTree.T",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "insert",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "insert(_key:luxe.structural.BalancedBinarySearchTree.K, _value:luxe.structural.BalancedBinarySearchTree.T) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            },
+            {
+              "name": "_value",
+              "type": "luxe.structural.BalancedBinarySearchTree.T"
+            }
+          ]
+        },
+        {
+          "name": "find",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "find(_key:luxe.structural.BalancedBinarySearchTree.K) : luxe.structural.BalancedBinarySearchTree.T",
+          "return": ": luxe.structural.BalancedBinarySearchTree.T",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "_select",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_select(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _rank:Int) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_rank",
+              "type": "Int"
+            }
+          ]
+        },
+        {
+          "name": "deleteMax",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "deleteMax() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "toString",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toString() : String",
+          "return": ": String",
+          "args": []
+        },
+        {
+          "name": "move_red_right",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "move_red_right(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "deleteMin",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "deleteMin() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "_height",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_height(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "min",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "min() : luxe.structural.BalancedBinarySearchTree.K",
+          "return": ": luxe.structural.BalancedBinarySearchTree.K",
+          "args": []
+        },
+        {
+          "name": "toArray",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "toArray() : Array<luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": Array<luxe.structural.BalancedBinarySearchTree.T>",
+          "args": []
+        },
+        {
+          "name": "empty",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "empty() : Bool",
+          "return": ": Bool",
+          "args": []
+        },
+        {
+          "name": "_size",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_size(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "rank",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "rank(_key:luxe.structural.BalancedBinarySearchTree.K) : Int",
+          "return": ": Int",
+          "args": [
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            }
+          ]
+        },
+        {
+          "name": "keys",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "keys() : Array<luxe.structural.BalancedBinarySearchTree.K>",
+          "return": ": Array<luxe.structural.BalancedBinarySearchTree.K>",
+          "args": []
+        },
+        {
+          "name": "height",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "height() : Int",
+          "return": ": Int",
+          "args": []
+        },
+        {
+          "name": "_min",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_min(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "_insert",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_insert(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>, _key:luxe.structural.BalancedBinarySearchTree.K, _value:luxe.structural.BalancedBinarySearchTree.T) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            },
+            {
+              "name": "_key",
+              "type": "luxe.structural.BalancedBinarySearchTree.K"
+            },
+            {
+              "name": "_value",
+              "type": "luxe.structural.BalancedBinarySearchTree.T"
+            }
+          ]
+        },
+        {
+          "name": "move_red_left",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "move_red_left(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "_deleteMin",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "_deleteMin(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        },
+        {
+          "name": "rotate_right",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "rotate_right(_node:luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>) : luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "return": ": luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>",
+          "args": [
+            {
+              "name": "_node",
+              "type": "luxe.structural.BalancedBinarySearchTreeNode<luxe.structural.BalancedBinarySearchTree.K,luxe.structural.BalancedBinarySearchTree.T>"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

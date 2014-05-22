@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                        $(this).text('more ...');
+                    } else {
+                        $(this).text('less ...');
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="scene">Scene</h1>
+<p>&emsp;&emsp;&emsp;home<br><a href="../../api/index.html#luxe">API Index</a><br>&emsp;&emsp;&emsp;parent<br><em>none</em><br>&emsp;&emsp;&emsp;current<br><a href="./">luxe</a> / Scene</p>
+<p><br/></p>
+<hr>
+<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<hr>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Extends" ></a></p>
+<h3 id="extends">Extends</h3>
+<hr>
+<p><a class="lift" name="luxe.Objects" href="../../api/luxe/Objects.html">luxe.Objects</a></p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Members" ></a></p>
+<h3 id="members">Members</h3>
+<hr>
+<p><a class="lift" name="entities" href="#entities">entities</a></p>
+<p><code>entities : Map&lt;String,luxe.Entity&gt;</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="inited" href="#inited">inited</a></p>
+<p><code>inited : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="started" href="#started">started</a></p>
+<p><code>started : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Properties" ></a></p>
+<h3 id="properties">Properties</h3>
+<hr>
+<p><a class="lift" name="entitycount" href="#entitycount">entitycount</a></p>
+<p><code>entitycount : Int</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;   </p>
+<p><a class="lift" name="Methods" ></a></p>
+<h3 id="methods">Methods</h3>
+<hr>
+<p><a class="lift" name="add" href="#add">add</a></p>
+<p><code>add(entity:luxe.Entity) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="create" href="#create">create</a></p>
+<p><code>create(type:Class&lt;create.T1&gt;, ?_name:String, ?_data:create.T2) : create.T1</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
+<p><code>destroy() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="empty" href="#empty">empty</a></p>
+<p><code>empty() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="fixed_update" href="#fixed_update">fixed_update</a></p>
+<p><code>fixed_update() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="init" href="#init">init</a></p>
+<p><code>init() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="new" href="#new">new</a></p>
+<p><code>new()</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ongamepadaxis" href="#ongamepadaxis">ongamepadaxis</a></p>
+<p><code>ongamepadaxis(e:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ongamepadball" href="#ongamepadball">ongamepadball</a></p>
+<p><code>ongamepadball(e:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ongamepadbuttondown" href="#ongamepadbuttondown">ongamepadbuttondown</a></p>
+<p><code>ongamepadbuttondown(e:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ongamepadbuttonup" href="#ongamepadbuttonup">ongamepadbuttonup</a></p>
+<p><code>ongamepadbuttonup(e:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ongamepadhat" href="#ongamepadhat">ongamepadhat</a></p>
+<p><code>ongamepadhat(e:Dynamic) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="oninputdown" href="#oninputdown">oninputdown</a></p>
+<p><code>oninputdown(_name:String, e:luxe.InputEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="oninputup" href="#oninputup">oninputup</a></p>
+<p><code>oninputup(_name:String, e:luxe.InputEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onkeydown" href="#onkeydown">onkeydown</a></p>
+<p><code>onkeydown(e:luxe.KeyEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onkeyup" href="#onkeyup">onkeyup</a></p>
+<p><code>onkeyup(e:luxe.KeyEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onmousedown" href="#onmousedown">onmousedown</a></p>
+<p><code>onmousedown(e:luxe.MouseEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onmousemove" href="#onmousemove">onmousemove</a></p>
+<p><code>onmousemove(e:luxe.MouseEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onmouseup" href="#onmouseup">onmouseup</a></p>
+<p><code>onmouseup(e:luxe.MouseEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="onmousewheel" href="#onmousewheel">onmousewheel</a></p>
+<p><code>onmousewheel(e:luxe.MouseEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ontouchbegin" href="#ontouchbegin">ontouchbegin</a></p>
+<p><code>ontouchbegin(e:luxe.TouchEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ontouchend" href="#ontouchend">ontouchend</a></p>
+<p><code>ontouchend(e:luxe.TouchEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="ontouchmove" href="#ontouchmove">ontouchmove</a></p>
+<p><code>ontouchmove(e:luxe.TouchEvent) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="remove" href="#remove">remove</a></p>
+<p><code>remove(entity:luxe.Entity) : Bool</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="serialize_to_disk" href="#serialize_to_disk">serialize_to_disk</a></p>
+<p><code>serialize_to_disk(_destination_path:String) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="start" href="#start">start</a></p>
+<p><code>start() : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="toString" href="#toString">toString</a></p>
+<p><code>toString() : String</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="update" href="#update">update</a></p>
+<p><code>update(dt:Float) : Void</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+<hr>
+<p>&nbsp;<br>&nbsp;   </p>
+
+        </div>
+    </body>
+
+</html>

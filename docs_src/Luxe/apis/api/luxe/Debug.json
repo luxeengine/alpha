@@ -1,0 +1,548 @@
+{
+  "source": "luxe.Debug",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "profile_path",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "profile_path : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "visible",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "visible : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "last_cursor_locked",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "last_cursor_locked : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "view",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "view : phoenix.Camera",
+          "type": "phoenix.Camera",
+          "doc": ""
+        },
+        {
+          "name": "started",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "started : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "views",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "views : Array<luxe.debug.DebugView>",
+          "type": "Array<luxe.debug.DebugView>",
+          "doc": ""
+        },
+        {
+          "name": "dt_average",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dt_average : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "current_view_index",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "current_view_index : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "shut_down",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": true,
+          "signature": "shut_down : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "trace_callbacks",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": true,
+          "signature": "trace_callbacks : Map<String,null>",
+          "type": "Map<String,null>",
+          "doc": ""
+        },
+        {
+          "name": "batcher",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "batcher : phoenix.Batcher",
+          "type": "phoenix.Batcher",
+          "doc": ""
+        },
+        {
+          "name": "last_view_index",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "last_view_index : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "dt_average_accum",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dt_average_accum : Float",
+          "type": "Float",
+          "doc": ""
+        },
+        {
+          "name": "last_cursor_shown",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "last_cursor_shown : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "overlay",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "overlay : phoenix.geometry.QuadGeometry",
+          "type": "phoenix.geometry.QuadGeometry",
+          "doc": ""
+        },
+        {
+          "name": "profiling",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "profiling : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "debug_font",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "debug_font : phoenix.BitmapFont",
+          "type": "phoenix.BitmapFont",
+          "doc": ""
+        },
+        {
+          "name": "dt_average_span",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dt_average_span : Int",
+          "type": "Int",
+          "doc": ""
+        },
+        {
+          "name": "current_view",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "current_view : luxe.debug.DebugView",
+          "type": "luxe.debug.DebugView",
+          "doc": ""
+        },
+        {
+          "name": "padding",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "padding : luxe.Vector",
+          "type": "luxe.Vector",
+          "doc": ""
+        },
+        {
+          "name": "core",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "core : luxe.Core",
+          "type": "luxe.Core",
+          "doc": ""
+        },
+        {
+          "name": "debug_inspector",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "debug_inspector : luxe.debug.Inspector",
+          "type": "luxe.debug.Inspector",
+          "doc": ""
+        },
+        {
+          "name": "dt_average_count",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dt_average_count : Int",
+          "type": "Int",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "onresize",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onresize(e:null<null,null>) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "null<null,null>"
+            }
+          ]
+        },
+        {
+          "name": "refresh",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "refresh() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "process",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "process() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onmousedown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousedown(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "onmousewheel",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousewheel(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "switch_view",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "switch_view() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onmouseup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmouseup(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "add_trace_listener",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_trace_listener(_name:String, _callback:null->haxe.PosInfos->Void) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            },
+            {
+              "name": "_callback",
+              "type": "null->haxe.PosInfos->Void"
+            }
+          ]
+        },
+        {
+          "name": "create_debug_console",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "create_debug_console() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "onkeydown",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeydown(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_core:luxe.Core) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_core",
+              "type": "luxe.Core"
+            }
+          ]
+        },
+        {
+          "name": "remove_trace_listener",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "remove_trace_listener(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "onmousemove",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onmousemove(e:luxe.MouseEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.MouseEvent"
+            }
+          ]
+        },
+        {
+          "name": "start",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "start(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "internal_trace",
+          "meta": [],
+          "public": true,
+          "static": true,
+          "inline": false,
+          "doc": "",
+          "signature": "internal_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "v",
+              "type": "Dynamic"
+            },
+            {
+              "name": "?inf",
+              "type": "haxe.PosInfos"
+            }
+          ]
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "end",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "end(_name:String) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "_name",
+              "type": "String"
+            }
+          ]
+        },
+        {
+          "name": "onkeyup",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "onkeyup(e:luxe.KeyEvent) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "e",
+              "type": "luxe.KeyEvent"
+            }
+          ]
+        },
+        {
+          "name": "show_console",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "show_console(?_show:Bool) : Void",
+          "return": ": Void",
+          "args": [
+            {
+              "name": "?_show",
+              "type": "Bool"
+            }
+          ]
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}

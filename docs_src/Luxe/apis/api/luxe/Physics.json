@@ -1,0 +1,114 @@
+{
+  "source": "luxe.Physics",
+  "doc": "",
+  "links": [],
+  "toplinks": [],
+  "sections": [
+    {
+      "name": "Members",
+      "link": "#Members",
+      "values": [
+        {
+          "name": "engines",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "engines : Array<luxe.PhysicsEngine>",
+          "type": "Array<luxe.PhysicsEngine>",
+          "doc": ""
+        },
+        {
+          "name": "core",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "core : luxe.Core",
+          "type": "luxe.Core",
+          "doc": ""
+        }
+      ]
+    },
+    {
+      "name": "Methods",
+      "link": "#Methods",
+      "values": [
+        {
+          "name": "new",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "new(_core:luxe.Core) ",
+          "return": "",
+          "args": [
+            {
+              "name": "_core",
+              "type": "luxe.Core"
+            }
+          ]
+        },
+        {
+          "name": "process",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "process() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "destroy",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "destroy() : Void",
+          "return": ": Void",
+          "args": []
+        },
+        {
+          "name": "add_engine",
+          "meta": [
+            {
+              "name": ":noCompletion",
+              "value": ""
+            }
+          ],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "add_engine(type:Class<add_engine.T1>, ?_data:add_engine.T2) : add_engine.T1",
+          "return": ": add_engine.T1",
+          "args": [
+            {
+              "name": "type",
+              "type": "Class<add_engine.T1>"
+            },
+            {
+              "name": "?_data",
+              "type": "add_engine.T2"
+            }
+          ]
+        },
+        {
+          "name": "init",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "init() : Void",
+          "return": ": Void",
+          "args": []
+        }
+      ]
+    }
+  ]
+}
