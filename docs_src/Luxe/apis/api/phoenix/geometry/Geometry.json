@@ -9,16 +9,6 @@
       "link": "#Members",
       "values": [
         {
-          "name": "static_tcoord_buffer",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "static_tcoord_buffer : lime.gl.GLBuffer",
-          "type": "lime.gl.GLBuffer",
-          "doc": ""
-        },
-        {
           "name": "shadow_primitive_type",
           "meta": [],
           "public": false,
@@ -36,16 +26,6 @@
           "static": false,
           "signature": "_final_vert_position : phoenix.Vector",
           "type": "phoenix.Vector",
-          "doc": ""
-        },
-        {
-          "name": "key",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "key : phoenix.geometry.GeometryKey",
-          "type": "phoenix.geometry.GeometryKey",
           "doc": ""
         },
         {
@@ -99,6 +79,16 @@
           "doc": ""
         },
         {
+          "name": "matrix",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "matrix : phoenix.Matrix4",
+          "type": "phoenix.Matrix4",
+          "doc": ""
+        },
+        {
           "name": "static_vertex_buffer",
           "meta": [],
           "public": true,
@@ -109,23 +99,13 @@
           "doc": ""
         },
         {
-          "name": "dropped",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "dropped : Bool",
-          "type": "Bool",
-          "doc": ""
-        },
-        {
-          "name": "shadow_texture",
+          "name": "_scale_dirty",
           "meta": [],
           "public": false,
           "inline": false,
           "static": false,
-          "signature": "shadow_texture : phoenix.Texture",
-          "type": "phoenix.Texture",
+          "signature": "_scale_dirty : Bool",
+          "type": "Bool",
           "doc": ""
         },
         {
@@ -179,6 +159,116 @@
           "doc": ""
         },
         {
+          "name": "_pos_dirty",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_pos_dirty : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "dirty_depth",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "dirty_depth : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "id",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "id : String",
+          "type": "String",
+          "doc": ""
+        },
+        {
+          "name": "_rotation_dirty",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "_rotation_dirty : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "static_vcolor_buffer",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_vcolor_buffer : lime.gl.GLBuffer",
+          "type": "lime.gl.GLBuffer",
+          "doc": ""
+        },
+        {
+          "name": "dirty_texture",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "dirty_texture : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "dirty_group",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "dirty_group : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "static_tcoord_buffer",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "static_tcoord_buffer : lime.gl.GLBuffer",
+          "type": "lime.gl.GLBuffer",
+          "doc": ""
+        },
+        {
+          "name": "key",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "key : phoenix.geometry.GeometryKey",
+          "type": "phoenix.geometry.GeometryKey",
+          "doc": ""
+        },
+        {
+          "name": "dropped",
+          "meta": [],
+          "public": true,
+          "inline": false,
+          "static": false,
+          "signature": "dropped : Bool",
+          "type": "Bool",
+          "doc": ""
+        },
+        {
+          "name": "shadow_texture",
+          "meta": [],
+          "public": false,
+          "inline": false,
+          "static": false,
+          "signature": "shadow_texture : phoenix.Texture",
+          "type": "phoenix.Texture",
+          "doc": ""
+        },
+        {
           "name": "dirty_shader",
           "meta": [],
           "public": false,
@@ -219,46 +309,6 @@
           "doc": ""
         },
         {
-          "name": "dirty_depth",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
-          "signature": "dirty_depth : Bool",
-          "type": "Bool",
-          "doc": ""
-        },
-        {
-          "name": "id",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "id : String",
-          "type": "String",
-          "doc": ""
-        },
-        {
-          "name": "transform",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "transform : phoenix.Transform",
-          "type": "phoenix.Transform",
-          "doc": ""
-        },
-        {
-          "name": "static_vcolor_buffer",
-          "meta": [],
-          "public": true,
-          "inline": false,
-          "static": false,
-          "signature": "static_vcolor_buffer : lime.gl.GLBuffer",
-          "type": "lime.gl.GLBuffer",
-          "doc": ""
-        },
-        {
           "name": "immediate",
           "meta": [
             {
@@ -270,26 +320,6 @@
           "inline": false,
           "static": false,
           "signature": "immediate : Bool",
-          "type": "Bool",
-          "doc": ""
-        },
-        {
-          "name": "dirty_texture",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
-          "signature": "dirty_texture : Bool",
-          "type": "Bool",
-          "doc": ""
-        },
-        {
-          "name": "dirty_group",
-          "meta": [],
-          "public": false,
-          "inline": false,
-          "static": false,
-          "signature": "dirty_group : Bool",
           "type": "Bool",
           "doc": ""
         }
@@ -345,21 +375,6 @@
           "type_desc": "read/write"
         },
         {
-          "name": "origin",
-          "meta": [
-            {
-              "name": ":isVar",
-              "value": ""
-            }
-          ],
-          "get": true,
-          "set": true,
-          "signature": "origin : phoenix.Vector",
-          "doc": "",
-          "type": "phoenix.Vector",
-          "type_desc": "read/write"
-        },
-        {
           "name": "visible",
           "meta": [
             {
@@ -390,7 +405,7 @@
           "type_desc": "read/write"
         },
         {
-          "name": "primitive_type",
+          "name": "origin",
           "meta": [
             {
               "name": ":isVar",
@@ -399,9 +414,9 @@
           ],
           "get": true,
           "set": true,
-          "signature": "primitive_type : phoenix.PrimitiveType",
+          "signature": "origin : phoenix.Vector",
           "doc": "",
-          "type": "phoenix.PrimitiveType",
+          "type": "phoenix.Vector",
           "type_desc": "read/write"
         },
         {
@@ -450,6 +465,51 @@
           "type_desc": "read/write"
         },
         {
+          "name": "clip_rect",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "clip_rect : phoenix.Rectangle",
+          "doc": "",
+          "type": "phoenix.Rectangle",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "rotation",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "rotation : phoenix.Quaternion",
+          "doc": "",
+          "type": "phoenix.Quaternion",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "primitive_type",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "primitive_type : phoenix.PrimitiveType",
+          "doc": "",
+          "type": "phoenix.PrimitiveType",
+          "type_desc": "read/write"
+        },
+        {
           "name": "clip",
           "meta": [
             {
@@ -465,7 +525,7 @@
           "type_desc": "read/write"
         },
         {
-          "name": "clip_rect",
+          "name": "pos",
           "meta": [
             {
               "name": ":isVar",
@@ -474,9 +534,24 @@
           ],
           "get": true,
           "set": true,
-          "signature": "clip_rect : phoenix.Rectangle",
+          "signature": "pos : phoenix.Vector",
           "doc": "",
-          "type": "phoenix.Rectangle",
+          "type": "phoenix.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "scale",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "scale : phoenix.Vector",
+          "doc": "",
+          "type": "phoenix.Vector",
           "type_desc": "read/write"
         }
       ]
@@ -485,6 +560,17 @@
       "name": "Methods",
       "link": "#Methods",
       "values": [
+        {
+          "name": "get_pos",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pos() : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": []
+        },
         {
           "name": "refresh",
           "meta": [],
@@ -658,6 +744,17 @@
               "type": "Bool"
             }
           ]
+        },
+        {
+          "name": "get_scale",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_scale() : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": []
         },
         {
           "name": "get_primitive_type",
@@ -855,6 +952,38 @@
           ]
         },
         {
+          "name": "set_rotation",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion",
+          "return": ": phoenix.Quaternion",
+          "args": [
+            {
+              "name": "_rotation",
+              "type": "phoenix.Quaternion"
+            }
+          ]
+        },
+        {
+          "name": "set_pos",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos(_position:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_position",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
           "name": "set_shader",
           "meta": [],
           "public": true,
@@ -925,6 +1054,22 @@
           ]
         },
         {
+          "name": "set_scale",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_scale(_scale:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_scale",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
           "name": "set_primitive_type",
           "meta": [],
           "public": false,
@@ -982,6 +1127,17 @@
               "type": "Bool"
             }
           ]
+        },
+        {
+          "name": "get_rotation",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_rotation() : phoenix.Quaternion",
+          "return": ": phoenix.Quaternion",
+          "args": []
         }
       ]
     }

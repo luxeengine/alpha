@@ -59,6 +59,14 @@
 
 <span class="small_desc_flat"> no description </span>   
 
+<a class="lift" name="pos_local" href="#pos_local">pos_local</a>
+
+
+
+`pos_local : luxe.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
 <a class="lift" name="rotation" href="#rotation">rotation</a>
 
 
@@ -67,11 +75,27 @@
 
 <span class="small_desc_flat"> no description </span>   
 
+<a class="lift" name="rotation_local" href="#rotation_local">rotation_local</a>
+
+
+
+`rotation_local : luxe.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
 <a class="lift" name="scale" href="#scale">scale</a>
 
 
 
 `scale : luxe.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="scale_local" href="#scale_local">scale_local</a>
+
+
+
+`scale_local : luxe.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 

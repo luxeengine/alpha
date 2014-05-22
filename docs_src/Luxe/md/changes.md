@@ -1,9 +1,23 @@
 &nbsp;   
 <div class="commit_info">
 
-commit [997cb13a2b](http://github.com/underscorediscovery/luxe/commit/997cb13a2b7a6193ee43cbf6c12cbec6c5942ae7)   
+commit [004ba2e5ed](http://github.com/underscorediscovery/luxe/commit/004ba2e5ed524ce6b1d7f05b0530cdaed9915de8)   
 author: underscorediscovery   
-date: Sat May 03 2014 09:45:06 GMT-0230 (NDT)   
+date: Wed May 21 2014 22:34:07 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Cleaning up and adding new cleaner documentation implementation</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ac32401feb](http://github.com/underscorediscovery/luxe/commit/ac32401feb21fc0e118c9ad5e70947ad43acc95b)   
+author: underscorediscovery   
+date: Wed May 21 2014 22:30:55 GMT-0230 (NDT)   
 </div>
 
 &nbsp;   
@@ -15,15 +29,29 @@ date: Sat May 03 2014 09:45:06 GMT-0230 (NDT)
 &nbsp;   
 <div class="commit_info">
 
-commit [abb001f911](http://github.com/underscorediscovery/luxe/commit/abb001f9119054c39faec9cafea0876fe5d477aa)   
+commit [b2b7521b01](http://github.com/underscorediscovery/luxe/commit/b2b7521b0142f15b56f76402b09c5c18012ddb8f)   
 author: underscorediscovery   
-date: Wed Apr 30 2014 20:50:09 GMT-0230 (NDT)   
+date: Wed May 21 2014 22:30:55 GMT-0230 (NDT)   
 </div>
 
 &nbsp;   
 <div class="commit_message">
 
 <ul><li>cleanup rogue spacing</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [70638f6ce4](http://github.com/underscorediscovery/luxe/commit/70638f6ce42486dd11c11e40c3ea352fc744170a)   
+author: underscorediscovery   
+date: Tue May 13 2014 16:25:54 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>fixing compile errors on windows for html5...somehow.</li></ul>
 </div>
 &nbsp;   
 &nbsp;   

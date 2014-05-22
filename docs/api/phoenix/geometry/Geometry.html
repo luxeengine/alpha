@@ -74,6 +74,9 @@
 <p><a class="lift" name="key" href="#key">key</a></p>
 <p><code>key : phoenix.geometry.GeometryKey</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="matrix" href="#matrix">matrix</a></p>
+<p><code>matrix : phoenix.Matrix4</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="state" href="#state">state</a></p>
 <p><code>state : phoenix.geometry.GeometryState</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
@@ -91,9 +94,6 @@
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="submitted" href="#submitted">submitted</a></p>
 <p><code>submitted : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
-<p><a class="lift" name="transform" href="#transform">transform</a></p>
-<p><code>transform : phoenix.Transform</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="uuid" href="#uuid">uuid</a></p>
 <p><code>uuid : String</code></p>
@@ -129,8 +129,17 @@
 <p><a class="lift" name="origin" href="#origin">origin</a></p>
 <p><code>origin : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="pos" href="#pos">pos</a></p>
+<p><code>pos : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="primitive_type" href="#primitive_type">primitive_type</a></p>
 <p><code>primitive_type : phoenix.PrimitiveType</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="rotation" href="#rotation">rotation</a></p>
+<p><code>rotation : phoenix.Quaternion</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="scale" href="#scale">scale</a></p>
+<p><code>scale : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="shader" href="#shader">shader</a></p>
 <p><code>shader : phoenix.Shader</code></p>
@@ -175,6 +184,15 @@
 <p><a class="lift" name="get_locked" href="#get_locked">get_locked</a></p>
 <p><code>get_locked() : Bool</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_pos" href="#get_pos">get_pos</a></p>
+<p><code>get_pos() : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_rotation" href="#get_rotation">get_rotation</a></p>
+<p><code>get_rotation() : phoenix.Quaternion</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="get_scale" href="#get_scale">get_scale</a></p>
+<p><code>get_scale() : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="get_shader" href="#get_shader">get_shader</a></p>
 <p><code>get_shader() : phoenix.Shader</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
@@ -216,6 +234,15 @@
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="set_origin" href="#set_origin">set_origin</a></p>
 <p><code>set_origin(_origin:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_pos" href="#set_pos">set_pos</a></p>
+<p><code>set_pos(_position:phoenix.Vector) : phoenix.Vector</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_rotation" href="#set_rotation">set_rotation</a></p>
+<p><code>set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion</code></p>
+<p><span class="small_desc_flat"> no description </span>   </p>
+<p><a class="lift" name="set_scale" href="#set_scale">set_scale</a></p>
+<p><code>set_scale(_scale:phoenix.Vector) : phoenix.Vector</code></p>
 <p><span class="small_desc_flat"> no description </span>   </p>
 <p><a class="lift" name="set_shader" href="#set_shader">set_shader</a></p>
 <p><code>set_shader(val:phoenix.Shader) : phoenix.Shader</code></p>

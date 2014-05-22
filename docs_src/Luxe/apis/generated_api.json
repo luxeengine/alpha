@@ -455,544 +455,6 @@
       ],
       "doc":""
     },
-    { "name": "phoenix.Transform",
-      "meta":[
-      ],
-      "extends":[
-        { "name":"luxe.Objects" }
-      ],
-      "implements":[
-      ],
-      "members":[
-        {
-          "name":"scale_changed",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"scale_changed : Dynamic",
-            "type":"Dynamic",
-            "doc":""
-        },
-        {
-          "name":"children",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"children : Array<phoenix.Transform>",
-            "type":"Array<phoenix.Transform>",
-            "doc":""
-        },
-        {
-          "name":"pos_changed",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"pos_changed : Dynamic",
-            "type":"Dynamic",
-            "doc":""
-        },
-        {
-          "name":"compensate",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"compensate : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"_refresh_rotation",
-            "meta":[
-            ],
-            "public":false,
-            "inline":false,
-            "static":false,
-            "signature":"_refresh_rotation : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"ignore_listeners",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"ignore_listeners : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"rotation_changed",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"rotation_changed : Dynamic",
-            "type":"Dynamic",
-            "doc":""
-        },
-        {
-          "name":"_setup",
-            "meta":[
-            ],
-            "public":false,
-            "inline":false,
-            "static":false,
-            "signature":"_setup : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"dirty_world",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"dirty_world : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"_refreshing",
-            "meta":[
-            ],
-            "public":false,
-            "inline":false,
-            "static":false,
-            "signature":"_refreshing : Bool",
-            "type":"Bool",
-            "doc":""
-        }
-      ],
-      "properties":[
-        {
-          "name":"rotation",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"rotation : phoenix.Quaternion",
-            "doc":"",
-            "type":"phoenix.Quaternion",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"scale_world",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"scale_world : phoenix.Vector",
-            "doc":"",
-            "type":"phoenix.Vector",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"rotation_world",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"rotation_world : phoenix.Quaternion",
-            "doc":"",
-            "type":"phoenix.Quaternion",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"world",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"world : phoenix.Matrix4",
-            "doc":"",
-            "type":"phoenix.Matrix4",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"local",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"local : phoenix.Matrix4",
-            "doc":"",
-            "type":"phoenix.Matrix4",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"parent",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"parent : phoenix.Transform",
-            "doc":"",
-            "type":"phoenix.Transform",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"pos_world",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"pos_world : phoenix.Vector",
-            "doc":"",
-            "type":"phoenix.Vector",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"pos",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"pos : phoenix.Vector",
-            "doc":"",
-            "type":"phoenix.Vector",
-            "type_desc":"read/write"
-        },
-        {
-          "name":"scale",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"scale : phoenix.Vector",
-            "doc":"",
-            "type":"phoenix.Vector",
-            "type_desc":"read/write"
-        }
-      ],
-      "methods":[
-        {
-          "name":"refresh",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"refresh() : Void",
-            "return":": Void",
-            "args":[
-            ]
-          },
-        {
-          "name":"set_rotation",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_rotation(_r:phoenix.Quaternion) : phoenix.Quaternion",
-            "return":": phoenix.Quaternion",
-            "args":[
-              { "name": "_r","type": "phoenix.Quaternion" }
-            ]
-          },
-        {
-          "name":"set_local",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_local(_m:phoenix.Matrix4) : phoenix.Matrix4",
-            "return":": phoenix.Matrix4",
-            "args":[
-              { "name": "_m","type": "phoenix.Matrix4" }
-            ]
-          },
-        {
-          "name":"set_pos",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_pos(_p:phoenix.Vector) : phoenix.Vector",
-            "return":": phoenix.Vector",
-            "args":[
-              { "name": "_p","type": "phoenix.Vector" }
-            ]
-          },
-        {
-          "name":"_pos_change",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_pos_change(_v:Float) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_v","type": "Float" }
-            ]
-          },
-        {
-          "name":"_scale_change",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_scale_change(_v:Float) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_v","type": "Float" }
-            ]
-          },
-        {
-          "name":"get_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_world() : phoenix.Matrix4",
-            "return":": phoenix.Matrix4",
-            "args":[
-            ]
-          },
-        {
-          "name":"get_scale_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_scale_world() : phoenix.Vector",
-            "return":": phoenix.Vector",
-            "args":[
-            ]
-          },
-        {
-          "name":"set_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_world(_m:phoenix.Matrix4) : phoenix.Matrix4",
-            "return":": phoenix.Matrix4",
-            "args":[
-              { "name": "_m","type": "phoenix.Matrix4" }
-            ]
-          },
-        {
-          "name":"_attach_listener",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_attach_listener(_v:phoenix.Vector, listener:Float->Void) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_v","type": "phoenix.Vector" },
-              { "name": "listener","type": "Float->Void" }
-            ]
-          },
-        {
-          "name":"_attach_listener_quat",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_attach_listener_quat(_v:phoenix.Quaternion, listener:Float->Void) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_v","type": "phoenix.Quaternion" },
-              { "name": "listener","type": "Float->Void" }
-            ]
-          },
-        {
-          "name":"set_scale_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_scale_world(_s:phoenix.Vector) : phoenix.Vector",
-            "return":": phoenix.Vector",
-            "args":[
-              { "name": "_s","type": "phoenix.Vector" }
-            ]
-          },
-        {
-          "name":"propogate_pos",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"propogate_pos(_p:phoenix.Vector) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_p","type": "phoenix.Vector" }
-            ]
-          },
-        {
-          "name":"new",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"new() ",
-            "return":"",
-            "args":[
-            ]
-          },
-        {
-          "name":"set_scale",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_scale(_s:phoenix.Vector) : phoenix.Vector",
-            "return":": phoenix.Vector",
-            "args":[
-              { "name": "_s","type": "phoenix.Vector" }
-            ]
-          },
-        {
-          "name":"get_pos_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_pos_world() : phoenix.Vector",
-            "return":": phoenix.Vector",
-            "args":[
-            ]
-          },
-        {
-          "name":"get_rotation_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_rotation_world() : phoenix.Quaternion",
-            "return":": phoenix.Quaternion",
-            "args":[
-            ]
-          },
-        {
-          "name":"set_parent",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_parent(_p:phoenix.Transform) : phoenix.Transform",
-            "return":": phoenix.Transform",
-            "args":[
-              { "name": "_p","type": "phoenix.Transform" }
-            ]
-          },
-        {
-          "name":"get_local",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_local() : phoenix.Matrix4",
-            "return":": phoenix.Matrix4",
-            "args":[
-            ]
-          },
-        {
-          "name":"set_pos_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_pos_world(_p:phoenix.Vector) : phoenix.Vector",
-            "return":": phoenix.Vector",
-            "args":[
-              { "name": "_p","type": "phoenix.Vector" }
-            ]
-          },
-        {
-          "name":"set_rotation_world",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_rotation_world(_r:phoenix.Quaternion) : phoenix.Quaternion",
-            "return":": phoenix.Quaternion",
-            "args":[
-              { "name": "_r","type": "phoenix.Quaternion" }
-            ]
-          },
-        {
-          "name":"_rotation_change",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_rotation_change(_v:Float) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_v","type": "Float" }
-            ]
-          }
-      ],
-      "doc":""
-    },
     { "name": "luxe.debug.Inspector",
       "meta":[
       { "name":":noCompletion", "value":"" }
@@ -4964,17 +4426,6 @@
       ],
       "members":[
         {
-          "name":"static_tcoord_buffer",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"static_tcoord_buffer : lime.gl.GLBuffer",
-            "type":"lime.gl.GLBuffer",
-            "doc":""
-        },
-        {
           "name":"shadow_primitive_type",
             "meta":[
             ],
@@ -4994,17 +4445,6 @@
             "static":false,
             "signature":"_final_vert_position : phoenix.Vector",
             "type":"phoenix.Vector",
-            "doc":""
-        },
-        {
-          "name":"key",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"key : phoenix.geometry.GeometryKey",
-            "type":"phoenix.geometry.GeometryKey",
             "doc":""
         },
         {
@@ -5063,6 +4503,17 @@
             "doc":""
         },
         {
+          "name":"matrix",
+            "meta":[
+            ],
+            "public":true,
+            "inline":false,
+            "static":false,
+            "signature":"matrix : phoenix.Matrix4",
+            "type":"phoenix.Matrix4",
+            "doc":""
+        },
+        {
           "name":"static_vertex_buffer",
             "meta":[
             ],
@@ -5074,25 +4525,14 @@
             "doc":""
         },
         {
-          "name":"dropped",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"dropped : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"shadow_texture",
+          "name":"_scale_dirty",
             "meta":[
             ],
             "public":false,
             "inline":false,
             "static":false,
-            "signature":"shadow_texture : phoenix.Texture",
-            "type":"phoenix.Texture",
+            "signature":"_scale_dirty : Bool",
+            "type":"Bool",
             "doc":""
         },
         {
@@ -5151,6 +4591,127 @@
             "doc":""
         },
         {
+          "name":"_pos_dirty",
+            "meta":[
+            ],
+            "public":false,
+            "inline":false,
+            "static":false,
+            "signature":"_pos_dirty : Bool",
+            "type":"Bool",
+            "doc":""
+        },
+        {
+          "name":"dirty_depth",
+            "meta":[
+            ],
+            "public":false,
+            "inline":false,
+            "static":false,
+            "signature":"dirty_depth : Bool",
+            "type":"Bool",
+            "doc":""
+        },
+        {
+          "name":"id",
+            "meta":[
+            ],
+            "public":true,
+            "inline":false,
+            "static":false,
+            "signature":"id : String",
+            "type":"String",
+            "doc":""
+        },
+        {
+          "name":"_rotation_dirty",
+            "meta":[
+            ],
+            "public":false,
+            "inline":false,
+            "static":false,
+            "signature":"_rotation_dirty : Bool",
+            "type":"Bool",
+            "doc":""
+        },
+        {
+          "name":"static_vcolor_buffer",
+            "meta":[
+            ],
+            "public":true,
+            "inline":false,
+            "static":false,
+            "signature":"static_vcolor_buffer : lime.gl.GLBuffer",
+            "type":"lime.gl.GLBuffer",
+            "doc":""
+        },
+        {
+          "name":"dirty_texture",
+            "meta":[
+            ],
+            "public":false,
+            "inline":false,
+            "static":false,
+            "signature":"dirty_texture : Bool",
+            "type":"Bool",
+            "doc":""
+        },
+        {
+          "name":"dirty_group",
+            "meta":[
+            ],
+            "public":false,
+            "inline":false,
+            "static":false,
+            "signature":"dirty_group : Bool",
+            "type":"Bool",
+            "doc":""
+        },
+        {
+          "name":"static_tcoord_buffer",
+            "meta":[
+            ],
+            "public":true,
+            "inline":false,
+            "static":false,
+            "signature":"static_tcoord_buffer : lime.gl.GLBuffer",
+            "type":"lime.gl.GLBuffer",
+            "doc":""
+        },
+        {
+          "name":"key",
+            "meta":[
+            ],
+            "public":true,
+            "inline":false,
+            "static":false,
+            "signature":"key : phoenix.geometry.GeometryKey",
+            "type":"phoenix.geometry.GeometryKey",
+            "doc":""
+        },
+        {
+          "name":"dropped",
+            "meta":[
+            ],
+            "public":true,
+            "inline":false,
+            "static":false,
+            "signature":"dropped : Bool",
+            "type":"Bool",
+            "doc":""
+        },
+        {
+          "name":"shadow_texture",
+            "meta":[
+            ],
+            "public":false,
+            "inline":false,
+            "static":false,
+            "signature":"shadow_texture : phoenix.Texture",
+            "type":"phoenix.Texture",
+            "doc":""
+        },
+        {
           "name":"dirty_shader",
             "meta":[
             ],
@@ -5195,50 +4756,6 @@
             "doc":""
         },
         {
-          "name":"dirty_depth",
-            "meta":[
-            ],
-            "public":false,
-            "inline":false,
-            "static":false,
-            "signature":"dirty_depth : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"id",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"id : String",
-            "type":"String",
-            "doc":""
-        },
-        {
-          "name":"transform",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"transform : phoenix.Transform",
-            "type":"phoenix.Transform",
-            "doc":""
-        },
-        {
-          "name":"static_vcolor_buffer",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"static_vcolor_buffer : lime.gl.GLBuffer",
-            "type":"lime.gl.GLBuffer",
-            "doc":""
-        },
-        {
           "name":"immediate",
             "meta":[
             { "name":":isVar", "value":"" }
@@ -5247,28 +4764,6 @@
             "inline":false,
             "static":false,
             "signature":"immediate : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"dirty_texture",
-            "meta":[
-            ],
-            "public":false,
-            "inline":false,
-            "static":false,
-            "signature":"dirty_texture : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"dirty_group",
-            "meta":[
-            ],
-            "public":false,
-            "inline":false,
-            "static":false,
-            "signature":"dirty_group : Bool",
             "type":"Bool",
             "doc":""
         }
@@ -5311,18 +4806,6 @@
             "type_desc":"read/write"
         },
         {
-          "name":"origin",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "get":true,
-            "set":true,
-            "signature":"origin : phoenix.Vector",
-            "doc":"",
-            "type":"phoenix.Vector",
-            "type_desc":"read/write"
-        },
-        {
           "name":"visible",
             "meta":[
             { "name":":isVar", "value":"" }
@@ -5347,15 +4830,15 @@
             "type_desc":"read/write"
         },
         {
-          "name":"primitive_type",
+          "name":"origin",
             "meta":[
             { "name":":isVar", "value":"" }
             ],
             "get":true,
             "set":true,
-            "signature":"primitive_type : phoenix.PrimitiveType",
+            "signature":"origin : phoenix.Vector",
             "doc":"",
-            "type":"phoenix.PrimitiveType",
+            "type":"phoenix.Vector",
             "type_desc":"read/write"
         },
         {
@@ -5395,6 +4878,42 @@
             "type_desc":"read/write"
         },
         {
+          "name":"clip_rect",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"clip_rect : phoenix.Rectangle",
+            "doc":"",
+            "type":"phoenix.Rectangle",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"rotation",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"rotation : phoenix.Quaternion",
+            "doc":"",
+            "type":"phoenix.Quaternion",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"primitive_type",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"primitive_type : phoenix.PrimitiveType",
+            "doc":"",
+            "type":"phoenix.PrimitiveType",
+            "type_desc":"read/write"
+        },
+        {
           "name":"clip",
             "meta":[
             { "name":":isVar", "value":"" }
@@ -5407,19 +4926,44 @@
             "type_desc":"read/write"
         },
         {
-          "name":"clip_rect",
+          "name":"pos",
             "meta":[
             { "name":":isVar", "value":"" }
             ],
             "get":true,
             "set":true,
-            "signature":"clip_rect : phoenix.Rectangle",
+            "signature":"pos : phoenix.Vector",
             "doc":"",
-            "type":"phoenix.Rectangle",
+            "type":"phoenix.Vector",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"scale",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"scale : phoenix.Vector",
+            "doc":"",
+            "type":"phoenix.Vector",
             "type_desc":"read/write"
         }
       ],
       "methods":[
+        {
+          "name":"get_pos",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_pos() : phoenix.Vector",
+            "return":": phoenix.Vector",
+            "args":[
+            ]
+          },
         {
           "name":"refresh",
             "meta":[
@@ -5583,6 +5127,19 @@
             "return":": Bool",
             "args":[
               { "name": "_locked","type": "Bool" }
+            ]
+          },
+        {
+          "name":"get_scale",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_scale() : phoenix.Vector",
+            "return":": phoenix.Vector",
+            "args":[
             ]
           },
         {
@@ -5756,6 +5313,34 @@
             ]
           },
         {
+          "name":"set_rotation",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion",
+            "return":": phoenix.Quaternion",
+            "args":[
+              { "name": "_rotation","type": "phoenix.Quaternion" }
+            ]
+          },
+        {
+          "name":"set_pos",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_pos(_position:phoenix.Vector) : phoenix.Vector",
+            "return":": phoenix.Vector",
+            "args":[
+              { "name": "_position","type": "phoenix.Vector" }
+            ]
+          },
+        {
           "name":"set_shader",
             "meta":[
             ],
@@ -5824,6 +5409,20 @@
             ]
           },
         {
+          "name":"set_scale",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_scale(_scale:phoenix.Vector) : phoenix.Vector",
+            "return":": phoenix.Vector",
+            "args":[
+              { "name": "_scale","type": "phoenix.Vector" }
+            ]
+          },
+        {
           "name":"set_primitive_type",
             "meta":[
             ],
@@ -5876,6 +5475,19 @@
             "return":": Void",
             "args":[
               { "name": "?remove","type": "Bool" }
+            ]
+          },
+        {
+          "name":"get_rotation",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_rotation() : phoenix.Quaternion",
+            "return":": phoenix.Quaternion",
+            "args":[
             ]
           }
       ],
@@ -10943,6 +10555,18 @@
       ],
       "properties":[
         {
+          "name":"pos_local",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"pos_local : luxe.Vector",
+            "doc":"",
+            "type":"luxe.Vector",
+            "type_desc":"read/write"
+        },
+        {
           "name":"rotation",
             "meta":[
             { "name":":isVar", "value":"" }
@@ -10950,6 +10574,30 @@
             "get":true,
             "set":true,
             "signature":"rotation : luxe.Vector",
+            "doc":"",
+            "type":"luxe.Vector",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"rotation_local",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"rotation_local : luxe.Vector",
+            "doc":"",
+            "type":"luxe.Vector",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"scale_local",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"scale_local : luxe.Vector",
             "doc":"",
             "type":"luxe.Vector",
             "type_desc":"read/write"
@@ -11028,21 +10676,6 @@
       ],
       "methods":[
         {
-          "name":"_onmousedown",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_onmousedown(e:luxe.MouseEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "e","type": "luxe.MouseEvent" }
-            ]
-          },
-        {
           "name":"get_pos",
             "meta":[
             ],
@@ -11084,21 +10717,6 @@
             ]
           },
         {
-          "name":"_onmousemove",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_onmousemove(e:luxe.MouseEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "e","type": "luxe.MouseEvent" }
-            ]
-          },
-        {
           "name":"_ongamepadaxis",
             "meta":[
             { "name":":noCompletion", "value":"" }
@@ -11128,22 +10746,6 @@
             ]
           },
         {
-          "name":"_oninputdown",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_oninputdown(_name:String, e:luxe.InputEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_name","type": "String" },
-              { "name": "e","type": "luxe.InputEvent" }
-            ]
-          },
-        {
           "name":"get",
             "meta":[
             ],
@@ -11159,19 +10761,6 @@
             ]
           },
         {
-          "name":"get_scale",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_scale() : luxe.Vector",
-            "return":": luxe.Vector",
-            "args":[
-            ]
-          },
-        {
           "name":"_attach_listener",
             "meta":[
             ],
@@ -11184,20 +10773,6 @@
             "args":[
               { "name": "_v","type": "luxe.Vector" },
               { "name": "listener","type": "Float->Void" }
-            ]
-          },
-        {
-          "name":"_reset",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_reset() : Void",
-            "return":": Void",
-            "args":[
             ]
           },
         {
@@ -11261,34 +10836,6 @@
             ]
           },
         {
-          "name":"new",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"new(?_options:luxe.options.EntityOptions<new.T>) ",
-            "return":"",
-            "args":[
-              { "name": "?_options","type": "luxe.options.EntityOptions<new.T>" }
-            ]
-          },
-        {
-          "name":"remove_child",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"remove_child(child:luxe.Entity) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "child","type": "luxe.Entity" }
-            ]
-          },
-        {
           "name":"get_scene",
             "meta":[
             ],
@@ -11298,33 +10845,6 @@
             "doc":"",
             "signature":"get_scene() : luxe.Scene",
             "return":": luxe.Scene",
-            "args":[
-            ]
-          },
-        {
-          "name":"add_child",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"add_child(child:luxe.Entity) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "child","type": "luxe.Entity" }
-            ]
-          },
-        {
-          "name":"get_serialize_data",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_serialize_data() : Dynamic",
-            "return":": Dynamic",
             "args":[
             ]
           },
@@ -11344,19 +10864,16 @@
             ]
           },
         {
-          "name":"add",
+          "name":"get_scale_local",
             "meta":[
             ],
-            "public":true,
+            "public":false,
             "static":false,
             "inline":false,
             "doc":"",
-            "signature":"add(type:Class<add.T1>, ?_name:String, ?_data:add.T2) : add.T1",
-            "return":": add.T1",
+            "signature":"get_scale_local() : luxe.Vector",
+            "return":": luxe.Vector",
             "args":[
-              { "name": "type","type": "Class<add.T1>" },
-              { "name": "?_name","type": "String" },
-              { "name": "?_data","type": "add.T2" }
             ]
           },
         {
@@ -11373,21 +10890,6 @@
             ]
           },
         {
-          "name":"_ontouchbegin",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_ontouchbegin(e:luxe.TouchEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "e","type": "luxe.TouchEvent" }
-            ]
-          },
-        {
           "name":"set_fixed_rate",
             "meta":[
             ],
@@ -11399,36 +10901,6 @@
             "return":": Float",
             "args":[
               { "name": "_rate","type": "Float" }
-            ]
-          },
-        {
-          "name":"_onmouseup",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_onmouseup(e:luxe.MouseEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "e","type": "luxe.MouseEvent" }
-            ]
-          },
-        {
-          "name":"_ontouchmove",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_ontouchmove(e:luxe.TouchEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "e","type": "luxe.TouchEvent" }
             ]
           },
         {
@@ -11500,6 +10972,364 @@
             "signature":"_fixed_update() : Void",
             "return":": Void",
             "args":[
+            ]
+          },
+        {
+          "name":"_update",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_update(dt:Float) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "dt","type": "Float" }
+            ]
+          },
+        {
+          "name":"get_any",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_any(_name:String, ?_in_children:Bool, ?_first_only:Bool) : Array<get_any.T>",
+            "return":": Array<get_any.T>",
+            "args":[
+              { "name": "_name","type": "String" },
+              { "name": "?_in_children","type": "Bool" },
+              { "name": "?_first_only","type": "Bool" }
+            ]
+          },
+        {
+          "name":"_ontouchend",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_ontouchend(e:luxe.TouchEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "e","type": "luxe.TouchEvent" }
+            ]
+          },
+        {
+          "name":"get_components",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_components() : Map<String,luxe.components.Component>",
+            "return":": Map<String,luxe.components.Component>",
+            "args":[
+            ]
+          },
+        {
+          "name":"set_rotation_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_rotation_local(_r:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+              { "name": "_r","type": "luxe.Vector" }
+            ]
+          },
+        {
+          "name":"set_scale",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_scale(_s:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+              { "name": "_s","type": "luxe.Vector" }
+            ]
+          },
+        {
+          "name":"get_fixed_rate",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_fixed_rate() : Float",
+            "return":": Float",
+            "args":[
+            ]
+          },
+        {
+          "name":"internal_parent_scale_changed",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"internal_parent_scale_changed(_parent_scale:luxe.Vector) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "_parent_scale","type": "luxe.Vector" }
+            ]
+          },
+        {
+          "name":"_add_child",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_add_child(child:luxe.Entity) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "child","type": "luxe.Entity" }
+            ]
+          },
+        {
+          "name":"get_rotation",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_rotation() : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+            ]
+          },
+        {
+          "name":"_onmousedown",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_onmousedown(e:luxe.MouseEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "e","type": "luxe.MouseEvent" }
+            ]
+          },
+        {
+          "name":"_onmousemove",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_onmousemove(e:luxe.MouseEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "e","type": "luxe.MouseEvent" }
+            ]
+          },
+        {
+          "name":"_oninputdown",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_oninputdown(_name:String, e:luxe.InputEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "_name","type": "String" },
+              { "name": "e","type": "luxe.InputEvent" }
+            ]
+          },
+        {
+          "name":"get_scale",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_scale() : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+            ]
+          },
+        {
+          "name":"get_rotation_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_rotation_local() : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+            ]
+          },
+        {
+          "name":"_reset",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_reset() : Void",
+            "return":": Void",
+            "args":[
+            ]
+          },
+        {
+          "name":"new",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"new(?_options:luxe.options.EntityOptions<new.T>) ",
+            "return":"",
+            "args":[
+              { "name": "?_options","type": "luxe.options.EntityOptions<new.T>" }
+            ]
+          },
+        {
+          "name":"remove_child",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"remove_child(child:luxe.Entity) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "child","type": "luxe.Entity" }
+            ]
+          },
+        {
+          "name":"set_pos_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_pos_local(_p:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+              { "name": "_p","type": "luxe.Vector" }
+            ]
+          },
+        {
+          "name":"add_child",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"add_child(child:luxe.Entity) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "child","type": "luxe.Entity" }
+            ]
+          },
+        {
+          "name":"get_serialize_data",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_serialize_data() : Dynamic",
+            "return":": Dynamic",
+            "args":[
+            ]
+          },
+        {
+          "name":"add",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"add(type:Class<add.T1>, ?_name:String, ?_data:add.T2) : add.T1",
+            "return":": add.T1",
+            "args":[
+              { "name": "type","type": "Class<add.T1>" },
+              { "name": "?_name","type": "String" },
+              { "name": "?_data","type": "add.T2" }
+            ]
+          },
+        {
+          "name":"_ontouchbegin",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_ontouchbegin(e:luxe.TouchEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "e","type": "luxe.TouchEvent" }
+            ]
+          },
+        {
+          "name":"_onmouseup",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_onmouseup(e:luxe.MouseEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "e","type": "luxe.MouseEvent" }
+            ]
+          },
+        {
+          "name":"_ontouchmove",
+            "meta":[
+            { "name":":noCompletion", "value":"" }
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"_ontouchmove(e:luxe.TouchEvent) : Void",
+            "return":": Void",
+            "args":[
+              { "name": "e","type": "luxe.TouchEvent" }
             ]
           },
         {
@@ -11576,49 +11406,16 @@
             ]
           },
         {
-          "name":"_update",
+          "name":"get_pos_local",
             "meta":[
-            { "name":":noCompletion", "value":"" }
             ],
-            "public":true,
+            "public":false,
             "static":false,
             "inline":false,
             "doc":"",
-            "signature":"_update(dt:Float) : Void",
-            "return":": Void",
+            "signature":"get_pos_local() : luxe.Vector",
+            "return":": luxe.Vector",
             "args":[
-              { "name": "dt","type": "Float" }
-            ]
-          },
-        {
-          "name":"get_any",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_any(_name:String, ?_in_children:Bool, ?_first_only:Bool) : Array<get_any.T>",
-            "return":": Array<get_any.T>",
-            "args":[
-              { "name": "_name","type": "String" },
-              { "name": "?_in_children","type": "Bool" },
-              { "name": "?_first_only","type": "Bool" }
-            ]
-          },
-        {
-          "name":"_ontouchend",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"_ontouchend(e:luxe.TouchEvent) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "e","type": "luxe.TouchEvent" }
             ]
           },
         {
@@ -11666,61 +11463,6 @@
             ]
           },
         {
-          "name":"get_components",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_components() : Map<String,luxe.components.Component>",
-            "return":": Map<String,luxe.components.Component>",
-            "args":[
-            ]
-          },
-        {
-          "name":"set_scale",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_scale(_s:luxe.Vector) : luxe.Vector",
-            "return":": luxe.Vector",
-            "args":[
-              { "name": "_s","type": "luxe.Vector" }
-            ]
-          },
-        {
-          "name":"get_fixed_rate",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_fixed_rate() : Float",
-            "return":": Float",
-            "args":[
-            ]
-          },
-        {
-          "name":"internal_parent_scale_changed",
-            "meta":[
-            { "name":":noCompletion", "value":"" }
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"internal_parent_scale_changed(_parent_scale:luxe.Vector) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_parent_scale","type": "luxe.Vector" }
-            ]
-          },
-        {
           "name":"set_scene",
             "meta":[
             ],
@@ -11748,17 +11490,17 @@
             ]
           },
         {
-          "name":"_add_child",
+          "name":"set_scale_local",
             "meta":[
             ],
             "public":false,
             "static":false,
             "inline":false,
             "doc":"",
-            "signature":"_add_child(child:luxe.Entity) : Void",
-            "return":": Void",
+            "signature":"set_scale_local(_s:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
             "args":[
-              { "name": "child","type": "luxe.Entity" }
+              { "name": "_s","type": "luxe.Vector" }
             ]
           },
         {
@@ -11773,19 +11515,6 @@
             "return":": luxe.Entity",
             "args":[
               { "name": "other","type": "luxe.Entity" }
-            ]
-          },
-        {
-          "name":"get_rotation",
-            "meta":[
-            ],
-            "public":false,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"get_rotation() : luxe.Vector",
-            "return":": luxe.Vector",
-            "args":[
             ]
           },
         {
@@ -19455,65 +19184,6 @@
             "signature":"euler : phoenix.Vector",
             "type":"phoenix.Vector",
             "doc":""
-        },
-        {
-          "name":"listen_y",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"listen_y : Dynamic",
-            "type":"Dynamic",
-            "doc":""
-        },
-        {
-          "name":"ignore_listeners",
-            "meta":[
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"ignore_listeners : Bool",
-            "type":"Bool",
-            "doc":""
-        },
-        {
-          "name":"listen_w",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"listen_w : Dynamic",
-            "type":"Dynamic",
-            "doc":""
-        },
-        {
-          "name":"listen_z",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"listen_z : Dynamic",
-            "type":"Dynamic",
-            "doc":""
-        },
-        {
-          "name":"listen_x",
-            "meta":[
-            { "name":":isVar", "value":"" }
-            ],
-            "public":true,
-            "inline":false,
-            "static":false,
-            "signature":"listen_x : Dynamic",
-            "type":"Dynamic",
-            "doc":""
         }
       ],
       "properties":[
@@ -25686,6 +25356,18 @@
       ],
       "properties":[
         {
+          "name":"pos_local",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"pos_local : luxe.Vector",
+            "doc":"",
+            "type":"luxe.Vector",
+            "type_desc":"read/write"
+        },
+        {
           "name":"rotation",
             "meta":[
             { "name":":isVar", "value":"" }
@@ -25693,6 +25375,30 @@
             "get":true,
             "set":true,
             "signature":"rotation : luxe.Vector",
+            "doc":"",
+            "type":"luxe.Vector",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"rotation_local",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"rotation_local : luxe.Vector",
+            "doc":"",
+            "type":"luxe.Vector",
+            "type_desc":"read/write"
+        },
+        {
+          "name":"scale_local",
+            "meta":[
+            { "name":":isVar", "value":"" }
+            ],
+            "get":true,
+            "set":true,
+            "signature":"scale_local : luxe.Vector",
             "doc":"",
             "type":"luxe.Vector",
             "type_desc":"read/write"
@@ -25854,6 +25560,32 @@
             ]
           },
         {
+          "name":"get_pos_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_pos_local() : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+            ]
+          },
+        {
+          "name":"get_rotation_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_rotation_local() : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+            ]
+          },
+        {
           "name":"get_scale",
             "meta":[
             ],
@@ -25942,6 +25674,34 @@
             ]
           },
         {
+          "name":"set_pos_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_pos_local(_p:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+              { "name": "_p","type": "luxe.Vector" }
+            ]
+          },
+        {
+          "name":"set_rotation_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_rotation_local(_r:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+              { "name": "_r","type": "luxe.Vector" }
+            ]
+          },
+        {
           "name":"set_scale",
             "meta":[
             ],
@@ -25981,6 +25741,19 @@
             "return":": Void",
             "args":[
               { "name": "_destination_path","type": "String" }
+            ]
+          },
+        {
+          "name":"get_scale_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"get_scale_local() : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
             ]
           },
         {
@@ -26025,6 +25798,20 @@
             "signature":"get_rotation() : luxe.Vector",
             "return":": luxe.Vector",
             "args":[
+            ]
+          },
+        {
+          "name":"set_scale_local",
+            "meta":[
+            ],
+            "public":false,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_scale_local(_s:luxe.Vector) : luxe.Vector",
+            "return":": luxe.Vector",
+            "args":[
+              { "name": "_s","type": "luxe.Vector" }
             ]
           },
         {
@@ -27534,15 +27321,15 @@
       ],
       "methods":[
         {
-          "name":"set_rotation_from_transform",
+          "name":"set_rotation",
             "meta":[
             ],
             "public":true,
             "static":false,
             "inline":false,
             "doc":"",
-            "signature":"set_rotation_from_transform(_rotation:phoenix.Quaternion) : Void",
-            "return":": Void",
+            "signature":"set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion",
+            "return":": phoenix.Quaternion",
             "args":[
               { "name": "_rotation","type": "phoenix.Quaternion" }
             ]
@@ -27617,6 +27404,20 @@
             ]
           },
         {
+          "name":"set_pos",
+            "meta":[
+            ],
+            "public":true,
+            "static":false,
+            "inline":false,
+            "doc":"",
+            "signature":"set_pos(_position:phoenix.Vector) : phoenix.Vector",
+            "return":": phoenix.Vector",
+            "args":[
+              { "name": "_position","type": "phoenix.Vector" }
+            ]
+          },
+        {
           "name":"set_shader",
             "meta":[
             ],
@@ -27628,20 +27429,6 @@
             "return":": phoenix.Shader",
             "args":[
               { "name": "val","type": "phoenix.Shader" }
-            ]
-          },
-        {
-          "name":"set_scale_from_transform",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_scale_from_transform(_scale:phoenix.Vector) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_scale","type": "phoenix.Vector" }
             ]
           },
         {
@@ -27712,20 +27499,6 @@
             "return":": phoenix.Vector",
             "args":[
               { "name": "_origin","type": "phoenix.Vector" }
-            ]
-          },
-        {
-          "name":"set_pos_from_transform",
-            "meta":[
-            ],
-            "public":true,
-            "static":false,
-            "inline":false,
-            "doc":"",
-            "signature":"set_pos_from_transform(_position:phoenix.Vector) : Void",
-            "return":": Void",
-            "args":[
-              { "name": "_position","type": "phoenix.Vector" }
             ]
           },
         {

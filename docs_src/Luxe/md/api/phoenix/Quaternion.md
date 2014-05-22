@@ -18,7 +18,6 @@ _none_
 ---
 
 
-[Members](#Members)   
 [Properties](#Properties)   
 [Methods](#Methods)   
 
@@ -26,49 +25,6 @@ _none_
 ---
 
 &nbsp;   
-
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="ignore_listeners" href="#ignore_listeners">ignore_listeners</a>
-
-
-
-`ignore_listeners : Bool`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="listen_w" href="#listen_w">listen_w</a>
-
-
-
-`listen_w : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="listen_x" href="#listen_x">listen_x</a>
-
-
-
-`listen_x : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="listen_y" href="#listen_y">listen_y</a>
-
-
-
-`listen_y : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="listen_z" href="#listen_z">listen_z</a>
-
-
-
-`listen_z : Dynamic`
-
-<span class="small_desc_flat"> no description </span>   
 
 &nbsp;   
 

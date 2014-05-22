@@ -49,6 +49,21 @@
       "link": "#Properties",
       "values": [
         {
+          "name": "pos_local",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "pos_local : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
           "name": "rotation",
           "meta": [
             {
@@ -59,6 +74,36 @@
           "get": true,
           "set": true,
           "signature": "rotation : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "rotation_local",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "rotation_local : luxe.Vector",
+          "doc": "",
+          "type": "luxe.Vector",
+          "type_desc": "read/write"
+        },
+        {
+          "name": "scale_local",
+          "meta": [
+            {
+              "name": ":isVar",
+              "value": ""
+            }
+          ],
+          "get": true,
+          "set": true,
+          "signature": "scale_local : luxe.Vector",
           "doc": "",
           "type": "luxe.Vector",
           "type_desc": "read/write"
@@ -263,6 +308,28 @@
           ]
         },
         {
+          "name": "get_pos_local",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_pos_local() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        },
+        {
+          "name": "get_rotation_local",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_rotation_local() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
+        },
+        {
           "name": "get_scale",
           "meta": [],
           "public": false,
@@ -375,6 +442,38 @@
           ]
         },
         {
+          "name": "set_pos_local",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos_local(_p:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_p",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
+          "name": "set_rotation_local",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_rotation_local(_r:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_r",
+              "type": "luxe.Vector"
+            }
+          ]
+        },
+        {
           "name": "set_scale",
           "meta": [],
           "public": false,
@@ -421,6 +520,17 @@
               "type": "String"
             }
           ]
+        },
+        {
+          "name": "get_scale_local",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "get_scale_local() : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": []
         },
         {
           "name": "add",
@@ -477,6 +587,22 @@
           "signature": "get_rotation() : luxe.Vector",
           "return": ": luxe.Vector",
           "args": []
+        },
+        {
+          "name": "set_scale_local",
+          "meta": [],
+          "public": false,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_scale_local(_s:luxe.Vector) : luxe.Vector",
+          "return": ": luxe.Vector",
+          "args": [
+            {
+              "name": "_s",
+              "type": "luxe.Vector"
+            }
+          ]
         },
         {
           "name": "_rotation_change",

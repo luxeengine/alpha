@@ -34,14 +34,14 @@
       "link": "#Methods",
       "values": [
         {
-          "name": "set_rotation_from_transform",
+          "name": "set_rotation",
           "meta": [],
           "public": true,
           "static": false,
           "inline": false,
           "doc": "",
-          "signature": "set_rotation_from_transform(_rotation:phoenix.Quaternion) : Void",
-          "return": ": Void",
+          "signature": "set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion",
+          "return": ": phoenix.Quaternion",
           "args": [
             {
               "name": "_rotation",
@@ -125,6 +125,22 @@
           ]
         },
         {
+          "name": "set_pos",
+          "meta": [],
+          "public": true,
+          "static": false,
+          "inline": false,
+          "doc": "",
+          "signature": "set_pos(_position:phoenix.Vector) : phoenix.Vector",
+          "return": ": phoenix.Vector",
+          "args": [
+            {
+              "name": "_position",
+              "type": "phoenix.Vector"
+            }
+          ]
+        },
+        {
           "name": "set_shader",
           "meta": [],
           "public": true,
@@ -137,22 +153,6 @@
             {
               "name": "val",
               "type": "phoenix.Shader"
-            }
-          ]
-        },
-        {
-          "name": "set_scale_from_transform",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
-          "signature": "set_scale_from_transform(_scale:phoenix.Vector) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_scale",
-              "type": "phoenix.Vector"
             }
           ]
         },
@@ -232,22 +232,6 @@
           "args": [
             {
               "name": "_origin",
-              "type": "phoenix.Vector"
-            }
-          ]
-        },
-        {
-          "name": "set_pos_from_transform",
-          "meta": [],
-          "public": true,
-          "static": false,
-          "inline": false,
-          "doc": "",
-          "signature": "set_pos_from_transform(_position:phoenix.Vector) : Void",
-          "return": ": Void",
-          "args": [
-            {
-              "name": "_position",
               "type": "phoenix.Vector"
             }
           ]

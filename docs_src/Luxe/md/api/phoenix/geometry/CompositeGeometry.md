@@ -178,11 +178,11 @@
 
 <span class="small_desc_flat"> no description </span>   
 
-<a class="lift" name="set_pos_from_transform" href="#set_pos_from_transform">set_pos_from_transform</a>
+<a class="lift" name="set_pos" href="#set_pos">set_pos</a>
 
 
 
-`set_pos_from_transform(_position:phoenix.Vector) : Void`
+`set_pos(_position:phoenix.Vector) : phoenix.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -194,19 +194,11 @@
 
 <span class="small_desc_flat"> no description </span>   
 
-<a class="lift" name="set_rotation_from_transform" href="#set_rotation_from_transform">set_rotation_from_transform</a>
+<a class="lift" name="set_rotation" href="#set_rotation">set_rotation</a>
 
 
 
-`set_rotation_from_transform(_rotation:phoenix.Quaternion) : Void`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="set_scale_from_transform" href="#set_scale_from_transform">set_scale_from_transform</a>
-
-
-
-`set_scale_from_transform(_scale:phoenix.Vector) : Void`
+`set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion`
 
 <span class="small_desc_flat"> no description </span>   
 

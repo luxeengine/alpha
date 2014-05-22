@@ -78,6 +78,14 @@
 
 <span class="small_desc_flat"> no description </span>   
 
+<a class="lift" name="matrix" href="#matrix">matrix</a>
+
+
+
+`matrix : phoenix.Matrix4`
+
+<span class="small_desc_flat"> no description </span>   
+
 <a class="lift" name="state" href="#state">state</a>
 
 
@@ -123,14 +131,6 @@
 
 
 `submitted : Bool`
-
-<span class="small_desc_flat"> no description </span>   
-
-<a class="lift" name="transform" href="#transform">transform</a>
-
-
-
-`transform : phoenix.Transform`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -219,11 +219,35 @@
 
 <span class="small_desc_flat"> no description </span>   
 
+<a class="lift" name="pos" href="#pos">pos</a>
+
+
+
+`pos : phoenix.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
 <a class="lift" name="primitive_type" href="#primitive_type">primitive_type</a>
 
 
 
 `primitive_type : phoenix.PrimitiveType`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="rotation" href="#rotation">rotation</a>
+
+
+
+`rotation : phoenix.Quaternion`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="scale" href="#scale">scale</a>
+
+
+
+`scale : phoenix.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
@@ -336,6 +360,30 @@
 
 <span class="small_desc_flat"> no description </span>   
 
+<a class="lift" name="get_pos" href="#get_pos">get_pos</a>
+
+
+
+`get_pos() : phoenix.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="get_rotation" href="#get_rotation">get_rotation</a>
+
+
+
+`get_rotation() : phoenix.Quaternion`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="get_scale" href="#get_scale">get_scale</a>
+
+
+
+`get_scale() : phoenix.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
 <a class="lift" name="get_shader" href="#get_shader">get_shader</a>
 
 
@@ -445,6 +493,30 @@
 
 
 `set_origin(_origin:phoenix.Vector) : phoenix.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="set_pos" href="#set_pos">set_pos</a>
+
+
+
+`set_pos(_position:phoenix.Vector) : phoenix.Vector`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="set_rotation" href="#set_rotation">set_rotation</a>
+
+
+
+`set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion`
+
+<span class="small_desc_flat"> no description </span>   
+
+<a class="lift" name="set_scale" href="#set_scale">set_scale</a>
+
+
+
+`set_scale(_scale:phoenix.Vector) : phoenix.Vector`
 
 <span class="small_desc_flat"> no description </span>   
 
