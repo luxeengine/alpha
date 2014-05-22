@@ -895,12 +895,11 @@
         {
           "name":"position",
             "meta":[
-            { "name":":desc", "value":"\n            get/set the position of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pos** A new position value (set), or leave empty (get)   \n            **returns** The position of `name` IF position is unspecified\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"get/set the position of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pos** A new position value (set), or leave empty (get)   \n            **returns** The position of `name` IF position is unspecified",
             "signature":"position(_name:String, ?_pos:Float) : Float",
             "return":": Float",
             "args":[
@@ -911,12 +910,11 @@
         {
           "name":"stop",
             "meta":[
-            { "name":":desc", "value":"\n            Stop a named audio reference from playing (or looping)   \n            **name** The audio reference name to stop    \n            **returns** nothing\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Stop a named audio reference from playing (or looping)   \n            **name** The audio reference name to stop    \n            **returns** nothing",
             "signature":"stop(_name:String) : Void",
             "return":": Void",
             "args":[
@@ -940,12 +938,11 @@
         {
           "name":"exists",
             "meta":[
-            { "name":":desc", "value":"\n            Determine whether a named audio reference exists  \n            **name** The audio reference name to check    \n            **returns** true/false\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Determine whether a named audio reference exists  \n            **name** The audio reference name to check    \n            **returns** true/false",
             "signature":"exists(_name:String) : Bool",
             "return":": Bool",
             "args":[
@@ -955,12 +952,11 @@
         {
           "name":"loop",
             "meta":[
-            { "name":":desc", "value":"\n            Loop a named audio reference indefinitely. Use `stop` if needed.  \n            **name** The audio reference name to loop    \n            **returns** nothing\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Loop a named audio reference indefinitely. Use `stop` if needed.  \n            **name** The audio reference name to loop    \n            **returns** nothing",
             "signature":"loop(_name:String) : Void",
             "return":": Void",
             "args":[
@@ -970,12 +966,11 @@
         {
           "name":"create",
             "meta":[
-            { "name":":desc", "value":"\n            Create a named audio reference, with optional stream flag   \n            **name** The name to assign this audio reference    \n            **file** The asset file id from which the audio is loaded/streamed    \n            **stream** Whether or not to stream the audio, default `false`   \n            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Create a named audio reference, with optional stream flag   \n            **name** The name to assign this audio reference    \n            **file** The asset file id from which the audio is loaded/streamed    \n            **stream** Whether or not to stream the audio, default `false`   \n            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.",
             "signature":"create(_name:String, _file:String, ?_stream:Bool) : lime.helpers.Sound",
             "return":": lime.helpers.Sound",
             "args":[
@@ -1002,12 +997,11 @@
         {
           "name":"playing",
             "meta":[
-            { "name":":desc", "value":"\n            Determine whether a named audio reference is playing  \n            **name** The audio reference name to check    \n            **returns** true/false\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Determine whether a named audio reference is playing  \n            **name** The audio reference name to check    \n            **returns** true/false",
             "signature":"playing(_name:String) : Bool",
             "return":": Bool",
             "args":[
@@ -1017,12 +1011,11 @@
         {
           "name":"volume",
             "meta":[
-            { "name":":desc", "value":"\n            get/set the volume of a named audio reference    \n            **name** The audio reference name to adjust    \n            **volume** A new volume value (set), or leave empty (get)    \n            **returns** The volume of `name` IF volume is unspecified\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"get/set the volume of a named audio reference    \n            **name** The audio reference name to adjust    \n            **volume** A new volume value (set), or leave empty (get)    \n            **returns** The volume of `name` IF volume is unspecified",
             "signature":"volume(_name:String, ?_volume:Float) : Float",
             "return":": Float",
             "args":[
@@ -1033,12 +1026,11 @@
         {
           "name":"sound",
             "meta":[
-            { "name":":desc", "value":"\n            Fetch a named audio reference   \n            **name** The name to acquire audio reference    \n            **returns** The `Sound` instance\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Fetch a named audio reference   \n            **name** The name to acquire audio reference    \n            **returns** The `Sound` instance",
             "signature":"sound(_name:String) : lime.helpers.Sound",
             "return":": lime.helpers.Sound",
             "args":[
@@ -1062,12 +1054,11 @@
         {
           "name":"play",
             "meta":[
-            { "name":":desc", "value":"\n            Play a named audio reference   \n            **name** The audio reference name to play    \n            **number_of_times** The exact number of times to play    \n            **start_position_in_s** The start time, in seconds    \n            **returns** nothing\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Play a named audio reference   \n            **name** The audio reference name to play    \n            **number_of_times** The exact number of times to play    \n            **start_position_in_s** The start time, in seconds    \n            **returns** nothing",
             "signature":"play(_name:String, ?_number_of_times:Int, ?_start_position_in_s:Float) : Void",
             "return":": Void",
             "args":[
@@ -1079,12 +1070,11 @@
         {
           "name":"on_complete",
             "meta":[
-            { "name":":desc", "value":"\n            Set the on complete handler for a named audio reference   \n            **name** The audio reference name to assign to   \n            **handler** The callback to call when playback is complete   \n            **returns** nothing   \n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"Set the on complete handler for a named audio reference   \n            **name** The audio reference name to assign to   \n            **handler** The callback to call when playback is complete   \n            **returns** nothing",
             "signature":"on_complete(_name:String, handler:lime.helpers.Sound->Void) : Void",
             "return":": Void",
             "args":[
@@ -1095,12 +1085,11 @@
         {
           "name":"pan",
             "meta":[
-            { "name":":desc", "value":"\n            get/set the pan of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pan** A new pan value (set), or leave empty (get)   \n            **returns** The pan of `name` IF pan is unspecified\n        " }
             ],
             "public":true,
             "static":false,
             "inline":false,
-            "doc":"",
+            "doc":"get/set the pan of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pan** A new pan value (set), or leave empty (get)   \n            **returns** The pan of `name` IF pan is unspecified",
             "signature":"pan(_name:String, ?_pan:Float) : Float",
             "return":": Float",
             "args":[
@@ -9284,7 +9273,7 @@
             "static":true,
             "signature":"timescale : Float",
             "type":"Float",
-            "doc":""
+            "doc":"The scale of time that affects the update rates and deltas"
         },
         {
           "name":"dt",
@@ -9295,7 +9284,7 @@
             "static":true,
             "signature":"dt : Float",
             "type":"Float",
-            "doc":""
+            "doc":"The time the last frame took, this value can be altered or fixed using `Luxe.timescale` or `Luxe.fixed_timestep`"
         },
         {
           "name":"draw",
@@ -9306,7 +9295,7 @@
             "static":true,
             "signature":"draw : luxe.Draw",
             "type":"luxe.Draw",
-            "doc":""
+            "doc":"Access to the drawing features"
         },
         {
           "name":"timer",
@@ -9317,7 +9306,7 @@
             "static":true,
             "signature":"timer : luxe.Timer",
             "type":"luxe.Timer",
-            "doc":""
+            "doc":"Access to the timing features"
         },
         {
           "name":"utils",
@@ -9328,7 +9317,7 @@
             "static":true,
             "signature":"utils : luxe.utils.Utils",
             "type":"luxe.utils.Utils",
-            "doc":""
+            "doc":"Access to the different utilities"
         },
         {
           "name":"camera",
@@ -9339,7 +9328,7 @@
             "static":true,
             "signature":"camera : luxe.Camera",
             "type":"luxe.Camera",
-            "doc":""
+            "doc":"Access to the default camera"
         },
         {
           "name":"renderer",
@@ -9350,7 +9339,7 @@
             "static":true,
             "signature":"renderer : phoenix.Renderer",
             "type":"phoenix.Renderer",
-            "doc":""
+            "doc":"Access to the rendering system"
         },
         {
           "name":"fixed_timestep",
@@ -9361,7 +9350,7 @@
             "static":true,
             "signature":"fixed_timestep : Float",
             "type":"Float",
-            "doc":""
+            "doc":"Set this for a fixed timestep value"
         },
         {
           "name":"audio",
@@ -9372,7 +9361,7 @@
             "static":true,
             "signature":"audio : luxe.Audio",
             "type":"luxe.Audio",
-            "doc":""
+            "doc":"Access to the audio features"
         },
         {
           "name":"mouse",
@@ -9383,7 +9372,7 @@
             "static":true,
             "signature":"mouse : luxe.Vector",
             "type":"luxe.Vector",
-            "doc":""
+            "doc":"The last known mouse position"
         },
         {
           "name":"core",
@@ -9394,7 +9383,7 @@
             "static":true,
             "signature":"core : luxe.Core",
             "type":"luxe.Core",
-            "doc":""
+            "doc":"Direct access to the core engine"
         },
         {
           "name":"debug",
@@ -9405,7 +9394,7 @@
             "static":true,
             "signature":"debug : luxe.Debug",
             "type":"luxe.Debug",
-            "doc":""
+            "doc":"Access to the core debug features"
         },
         {
           "name":"events",
@@ -9416,7 +9405,7 @@
             "static":true,
             "signature":"events : luxe.Events",
             "type":"luxe.Events",
-            "doc":""
+            "doc":"Access to the global event system"
         },
         {
           "name":"physics",
@@ -9427,7 +9416,7 @@
             "static":true,
             "signature":"physics : luxe.Physics",
             "type":"luxe.Physics",
-            "doc":""
+            "doc":"Access to the physics bindings, if any"
         },
         {
           "name":"resources",
@@ -9438,7 +9427,7 @@
             "static":true,
             "signature":"resources : luxe.ResourceManager",
             "type":"luxe.ResourceManager",
-            "doc":""
+            "doc":"Access to the default resource manager"
         },
         {
           "name":"input",
@@ -9449,7 +9438,7 @@
             "static":true,
             "signature":"input : luxe.Input",
             "type":"luxe.Input",
-            "doc":""
+            "doc":"Access to the input features"
         },
         {
           "name":"scene",
@@ -9460,7 +9449,7 @@
             "static":true,
             "signature":"scene : luxe.Scene",
             "type":"luxe.Scene",
-            "doc":""
+            "doc":"Access to the default luxe scene"
         }
       ],
       "properties":[
@@ -9472,7 +9461,7 @@
             "get":true,
             "set":false,
             "signature":"screen : luxe.Screen",
-            "doc":"",
+            "doc":"Access to information about the game window (sizes, cursor etc)",
             "type":"luxe.Screen",
             "type_desc":"(read only)"
         },
@@ -9484,7 +9473,7 @@
             "get":true,
             "set":false,
             "signature":"time : Float",
-            "doc":"",
+            "doc":"The current time in seconds, highest precision from the platform",
             "type":"Float",
             "type_desc":"(read only)"
         }
@@ -9510,7 +9499,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load a sound resource",
             "signature":"loadSound(_name:String, _id:String, ?_is_music:Bool, ?_onloaded:luxe.SoundResource->Void) : luxe.SoundResource",
             "return":": luxe.SoundResource",
             "args":[
@@ -9527,7 +9516,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load a shader resource",
             "signature":"loadShader(?_ps_id:String, ?_vs_id:String, ?_onloaded:phoenix.Shader->Void) : phoenix.Shader",
             "return":": phoenix.Shader",
             "args":[
@@ -9543,7 +9532,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Open the system file save dialog picker",
             "signature":"fileDialogSave(_title:String, _text:String) : String",
             "return":": String",
             "args":[
@@ -9571,7 +9560,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load multiple texture/image resources, useful for preloading",
             "signature":"loadTextures(_ids:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool) : Void",
             "return":": Void",
             "args":[
@@ -9587,7 +9576,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load a text resource",
             "signature":"loadText(_id:String, ?_onloaded:luxe.TextResource->Void) : luxe.TextResource",
             "return":": luxe.TextResource",
             "args":[
@@ -9602,7 +9591,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load a font resource",
             "signature":"loadFont(_id:String, ?_path:String, ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont",
             "return":": phoenix.BitmapFont",
             "args":[
@@ -9618,7 +9607,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Add geometry to the default batcher",
             "signature":"addGeometry(_geom:phoenix.geometry.Geometry) : Void",
             "return":": Void",
             "args":[
@@ -9632,7 +9621,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load a bytes/data resource",
             "signature":"loadData(_id:String, ?_onloaded:luxe.DataResource->Void) : luxe.DataResource",
             "return":": luxe.DataResource",
             "args":[
@@ -9647,7 +9636,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Load a texture/image resource",
             "signature":"loadTexture(_id:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool, ?_asset_bytes:lime.utils.ByteArray) : phoenix.Texture",
             "return":": phoenix.Texture",
             "args":[
@@ -9664,7 +9653,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Open the system folder dialog picker",
             "signature":"fileDialogFolder(_title:String, _text:String) : String",
             "return":": String",
             "args":[
@@ -9679,7 +9668,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Open the system file open dialog picker",
             "signature":"fileDialogOpen(_title:String, _text:String) : String",
             "return":": String",
             "args":[
@@ -9694,7 +9683,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Add a geometry group to the default batcher",
             "signature":"addGroup(_group:Int, ?_pre_render:phoenix.Batcher->Void, ?_post_render:phoenix.Batcher->Void) : Void",
             "return":": Void",
             "args":[
@@ -9710,7 +9699,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"shutdown the engine and quit",
             "signature":"shutdown() : Void",
             "return":": Void",
             "args":[
@@ -9723,7 +9712,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Open the system browser with the given URL",
             "signature":"openURL(_url:String) : Void",
             "return":": Void",
             "args":[
@@ -9737,7 +9726,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"show/hide the debug console programmatically",
             "signature":"showConsole(_show:Bool) : Void",
             "return":": Void",
             "args":[
@@ -9751,7 +9740,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Create a batcher, convenience for create batcher, add batcher, and create camera for the batcher.",
             "signature":"createBatcher(?_name:String, ?_camera:luxe.Camera, ?_add:Bool) : phoenix.Batcher",
             "return":": phoenix.Batcher",
             "args":[
@@ -9767,7 +9756,7 @@
             "public":true,
             "static":true,
             "inline":false,
-            "doc":"",
+            "doc":"Remove geometry to the default batcher",
             "signature":"removeGeometry(_geom:phoenix.geometry.Geometry) : Void",
             "return":": Void",
             "args":[

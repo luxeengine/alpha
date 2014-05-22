@@ -16,7 +16,7 @@
           "static": true,
           "signature": "timescale : Float",
           "type": "Float",
-          "doc": ""
+          "doc": "The scale of time that affects the update rates and deltas"
         },
         {
           "name": "dt",
@@ -26,7 +26,7 @@
           "static": true,
           "signature": "dt : Float",
           "type": "Float",
-          "doc": ""
+          "doc": "The time the last frame took, this value can be altered or fixed using `Luxe.timescale` or `Luxe.fixed_timestep`"
         },
         {
           "name": "draw",
@@ -36,7 +36,7 @@
           "static": true,
           "signature": "draw : luxe.Draw",
           "type": "luxe.Draw",
-          "doc": ""
+          "doc": "Access to the drawing features"
         },
         {
           "name": "timer",
@@ -46,7 +46,7 @@
           "static": true,
           "signature": "timer : luxe.Timer",
           "type": "luxe.Timer",
-          "doc": ""
+          "doc": "Access to the timing features"
         },
         {
           "name": "utils",
@@ -56,7 +56,7 @@
           "static": true,
           "signature": "utils : luxe.utils.Utils",
           "type": "luxe.utils.Utils",
-          "doc": ""
+          "doc": "Access to the different utilities"
         },
         {
           "name": "camera",
@@ -66,7 +66,7 @@
           "static": true,
           "signature": "camera : luxe.Camera",
           "type": "luxe.Camera",
-          "doc": ""
+          "doc": "Access to the default camera"
         },
         {
           "name": "renderer",
@@ -76,7 +76,7 @@
           "static": true,
           "signature": "renderer : phoenix.Renderer",
           "type": "phoenix.Renderer",
-          "doc": ""
+          "doc": "Access to the rendering system"
         },
         {
           "name": "fixed_timestep",
@@ -86,7 +86,7 @@
           "static": true,
           "signature": "fixed_timestep : Float",
           "type": "Float",
-          "doc": ""
+          "doc": "Set this for a fixed timestep value"
         },
         {
           "name": "audio",
@@ -96,7 +96,7 @@
           "static": true,
           "signature": "audio : luxe.Audio",
           "type": "luxe.Audio",
-          "doc": ""
+          "doc": "Access to the audio features"
         },
         {
           "name": "mouse",
@@ -106,7 +106,7 @@
           "static": true,
           "signature": "mouse : luxe.Vector",
           "type": "luxe.Vector",
-          "doc": ""
+          "doc": "The last known mouse position"
         },
         {
           "name": "core",
@@ -116,7 +116,7 @@
           "static": true,
           "signature": "core : luxe.Core",
           "type": "luxe.Core",
-          "doc": ""
+          "doc": "Direct access to the core engine"
         },
         {
           "name": "debug",
@@ -126,7 +126,7 @@
           "static": true,
           "signature": "debug : luxe.Debug",
           "type": "luxe.Debug",
-          "doc": ""
+          "doc": "Access to the core debug features"
         },
         {
           "name": "events",
@@ -136,7 +136,7 @@
           "static": true,
           "signature": "events : luxe.Events",
           "type": "luxe.Events",
-          "doc": ""
+          "doc": "Access to the global event system"
         },
         {
           "name": "physics",
@@ -146,7 +146,7 @@
           "static": true,
           "signature": "physics : luxe.Physics",
           "type": "luxe.Physics",
-          "doc": ""
+          "doc": "Access to the physics bindings, if any"
         },
         {
           "name": "resources",
@@ -156,7 +156,7 @@
           "static": true,
           "signature": "resources : luxe.ResourceManager",
           "type": "luxe.ResourceManager",
-          "doc": ""
+          "doc": "Access to the default resource manager"
         },
         {
           "name": "input",
@@ -166,7 +166,7 @@
           "static": true,
           "signature": "input : luxe.Input",
           "type": "luxe.Input",
-          "doc": ""
+          "doc": "Access to the input features"
         },
         {
           "name": "scene",
@@ -176,7 +176,7 @@
           "static": true,
           "signature": "scene : luxe.Scene",
           "type": "luxe.Scene",
-          "doc": ""
+          "doc": "Access to the default luxe scene"
         }
       ]
     },
@@ -195,7 +195,7 @@
           "get": true,
           "set": false,
           "signature": "screen : luxe.Screen",
-          "doc": "",
+          "doc": "Access to information about the game window (sizes, cursor etc)",
           "type": "luxe.Screen",
           "type_desc": "(read only)"
         },
@@ -210,7 +210,7 @@
           "get": true,
           "set": false,
           "signature": "time : Float",
-          "doc": "",
+          "doc": "The current time in seconds, highest precision from the platform",
           "type": "Float",
           "type_desc": "(read only)"
         }
@@ -237,7 +237,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load a sound resource",
           "signature": "loadSound(_name:String, _id:String, ?_is_music:Bool, ?_onloaded:luxe.SoundResource->Void) : luxe.SoundResource",
           "return": ": luxe.SoundResource",
           "args": [
@@ -265,7 +265,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load a shader resource",
           "signature": "loadShader(?_ps_id:String, ?_vs_id:String, ?_onloaded:phoenix.Shader->Void) : phoenix.Shader",
           "return": ": phoenix.Shader",
           "args": [
@@ -289,7 +289,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Open the system file save dialog picker",
           "signature": "fileDialogSave(_title:String, _text:String) : String",
           "return": ": String",
           "args": [
@@ -320,7 +320,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load multiple texture/image resources, useful for preloading",
           "signature": "loadTextures(_ids:Array<String>, ?_onloaded:Array->Void, ?_silent:Bool) : Void",
           "return": ": Void",
           "args": [
@@ -344,7 +344,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load a text resource",
           "signature": "loadText(_id:String, ?_onloaded:luxe.TextResource->Void) : luxe.TextResource",
           "return": ": luxe.TextResource",
           "args": [
@@ -364,7 +364,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load a font resource",
           "signature": "loadFont(_id:String, ?_path:String, ?_onloaded:phoenix.BitmapFont->Void) : phoenix.BitmapFont",
           "return": ": phoenix.BitmapFont",
           "args": [
@@ -388,7 +388,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Add geometry to the default batcher",
           "signature": "addGeometry(_geom:phoenix.geometry.Geometry) : Void",
           "return": ": Void",
           "args": [
@@ -404,7 +404,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load a bytes/data resource",
           "signature": "loadData(_id:String, ?_onloaded:luxe.DataResource->Void) : luxe.DataResource",
           "return": ": luxe.DataResource",
           "args": [
@@ -424,7 +424,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Load a texture/image resource",
           "signature": "loadTexture(_id:String, ?_onloaded:phoenix.Texture->Void, ?_silent:Bool, ?_asset_bytes:lime.utils.ByteArray) : phoenix.Texture",
           "return": ": phoenix.Texture",
           "args": [
@@ -452,7 +452,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Open the system folder dialog picker",
           "signature": "fileDialogFolder(_title:String, _text:String) : String",
           "return": ": String",
           "args": [
@@ -472,7 +472,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Open the system file open dialog picker",
           "signature": "fileDialogOpen(_title:String, _text:String) : String",
           "return": ": String",
           "args": [
@@ -492,7 +492,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Add a geometry group to the default batcher",
           "signature": "addGroup(_group:Int, ?_pre_render:phoenix.Batcher->Void, ?_post_render:phoenix.Batcher->Void) : Void",
           "return": ": Void",
           "args": [
@@ -516,7 +516,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "shutdown the engine and quit",
           "signature": "shutdown() : Void",
           "return": ": Void",
           "args": []
@@ -527,7 +527,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Open the system browser with the given URL",
           "signature": "openURL(_url:String) : Void",
           "return": ": Void",
           "args": [
@@ -543,7 +543,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "show/hide the debug console programmatically",
           "signature": "showConsole(_show:Bool) : Void",
           "return": ": Void",
           "args": [
@@ -559,7 +559,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Create a batcher, convenience for create batcher, add batcher, and create camera for the batcher.",
           "signature": "createBatcher(?_name:String, ?_camera:luxe.Camera, ?_add:Bool) : phoenix.Batcher",
           "return": ": phoenix.Batcher",
           "args": [
@@ -583,7 +583,7 @@
           "public": true,
           "static": true,
           "inline": false,
-          "doc": "",
+          "doc": "Remove geometry to the default batcher",
           "signature": "removeGeometry(_geom:phoenix.geometry.Geometry) : Void",
           "return": ": Void",
           "args": [

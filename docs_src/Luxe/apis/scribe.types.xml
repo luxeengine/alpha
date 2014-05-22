@@ -530,146 +530,250 @@
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="Luxe" params="" file="/Users/sven/dev/luxe/luxe/Luxe.hx">
-		<dt public="1" line="22" static="1"><x path="Float"/></dt>
-		<timescale public="1" line="23" static="1"><x path="Float"/></timescale>
-		<fixed_timestep public="1" line="24" static="1"><x path="Float"/></fixed_timestep>
-		<mouse public="1" static="1"><t path="luxe.Vector"/></mouse>
-		<core public="1" static="1"><c path="luxe.Core"/></core>
-		<debug public="1" static="1"><c path="luxe.Debug"/></debug>
-		<draw public="1" static="1"><c path="luxe.Draw"/></draw>
-		<audio public="1" static="1"><c path="luxe.Audio"/></audio>
-		<timer public="1" static="1"><c path="luxe.Timer"/></timer>
-		<events public="1" static="1"><c path="luxe.Events"/></events>
-		<input public="1" static="1"><c path="luxe.Input"/></input>
-		<scene public="1" static="1"><c path="luxe.Scene"/></scene>
-		<utils public="1" static="1"><c path="luxe.utils.Utils"/></utils>
-		<physics public="1" static="1"><c path="luxe.Physics"/></physics>
-		<camera public="1" static="1"><c path="luxe.Camera"/></camera>
-		<resources public="1" static="1"><c path="luxe.ResourceManager"/></resources>
-		<renderer public="1" static="1"><c path="phoenix.Renderer"/></renderer>
+		<dt public="1" line="22" static="1">
+			<x path="Float"/>
+			<haxe_doc>The time the last frame took, this value can be altered or fixed using `Luxe.timescale` or `Luxe.fixed_timestep`</haxe_doc>
+		</dt>
+		<timescale public="1" line="24" static="1">
+			<x path="Float"/>
+			<haxe_doc>The scale of time that affects the update rates and deltas</haxe_doc>
+		</timescale>
+		<fixed_timestep public="1" line="26" static="1">
+			<x path="Float"/>
+			<haxe_doc>Set this for a fixed timestep value</haxe_doc>
+		</fixed_timestep>
+		<mouse public="1" static="1">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The last known mouse position</haxe_doc>
+		</mouse>
+		<core public="1" static="1">
+			<c path="luxe.Core"/>
+			<haxe_doc>Direct access to the core engine</haxe_doc>
+		</core>
+		<debug public="1" static="1">
+			<c path="luxe.Debug"/>
+			<haxe_doc>Access to the core debug features</haxe_doc>
+		</debug>
+		<draw public="1" static="1">
+			<c path="luxe.Draw"/>
+			<haxe_doc>Access to the drawing features</haxe_doc>
+		</draw>
+		<audio public="1" static="1">
+			<c path="luxe.Audio"/>
+			<haxe_doc>Access to the audio features</haxe_doc>
+		</audio>
+		<timer public="1" static="1">
+			<c path="luxe.Timer"/>
+			<haxe_doc>Access to the timing features</haxe_doc>
+		</timer>
+		<events public="1" static="1">
+			<c path="luxe.Events"/>
+			<haxe_doc>Access to the global event system</haxe_doc>
+		</events>
+		<input public="1" static="1">
+			<c path="luxe.Input"/>
+			<haxe_doc>Access to the input features</haxe_doc>
+		</input>
+		<scene public="1" static="1">
+			<c path="luxe.Scene"/>
+			<haxe_doc>Access to the default luxe scene</haxe_doc>
+		</scene>
+		<utils public="1" static="1">
+			<c path="luxe.utils.Utils"/>
+			<haxe_doc>Access to the different utilities</haxe_doc>
+		</utils>
+		<physics public="1" static="1">
+			<c path="luxe.Physics"/>
+			<haxe_doc>Access to the physics bindings, if any</haxe_doc>
+		</physics>
+		<camera public="1" static="1">
+			<c path="luxe.Camera"/>
+			<haxe_doc>Access to the default camera</haxe_doc>
+		</camera>
+		<resources public="1" static="1">
+			<c path="luxe.ResourceManager"/>
+			<haxe_doc>Access to the default resource manager</haxe_doc>
+		</resources>
+		<renderer public="1" static="1">
+			<c path="phoenix.Renderer"/>
+			<haxe_doc>Access to the rendering system</haxe_doc>
+		</renderer>
 		<time public="1" get="accessor" set="null" static="1">
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The current time in seconds, highest precision from the platform</haxe_doc>
 		</time>
 		<screen public="1" get="accessor" set="null" static="1">
 			<c path="luxe.Screen"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>Access to information about the game window (sizes, cursor etc)</haxe_doc>
 		</screen>
-		<get_screen set="method" line="45" static="1"><f a=""><c path="luxe.Screen"/></f></get_screen>
-		<get_time set="method" line="51" static="1"><f a=""><x path="Float"/></f></get_time>
-		<shutdown public="1" set="method" line="57" static="1"><f a=""><x path="Void"/></f></shutdown>
-		<showConsole public="1" set="method" line="63" static="1"><f a="_show">
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></showConsole>
-		<loadText public="1" set="method" line="69" static="1"><f a="_id:?_onloaded" v=":null">
-	<c path="String"/>
-	<f a="">
-		<c path="luxe.TextResource"/>
-		<x path="Void"/>
-	</f>
-	<c path="luxe.TextResource"/>
-</f></loadText>
-		<loadData public="1" set="method" line="82" static="1"><f a="_id:?_onloaded" v=":null">
-	<c path="String"/>
-	<f a="">
-		<c path="luxe.DataResource"/>
-		<x path="Void"/>
-	</f>
-	<c path="luxe.DataResource"/>
-</f></loadData>
-		<loadSound public="1" set="method" line="95" static="1"><f a="_name:_id:?_is_music:?_onloaded" v="::false:null">
-	<c path="String"/>
-	<c path="String"/>
-	<x path="Bool"/>
-	<f a="">
-		<c path="luxe.SoundResource"/>
-		<x path="Void"/>
-	</f>
-	<c path="luxe.SoundResource"/>
-</f></loadSound>
-		<loadTexture public="1" set="method" line="109" static="1"><f a="_id:?_onloaded:?_silent:?_asset_bytes" v=":null:false:null">
-	<c path="String"/>
-	<f a="">
-		<c path="phoenix.Texture"/>
-		<x path="Void"/>
-	</f>
-	<x path="Bool"/>
-	<t path="lime.utils.ByteArray"/>
-	<c path="phoenix.Texture"/>
-</f></loadTexture>
-		<loadTextures public="1" set="method" line="115" static="1"><f a="_ids:?_onloaded:?_silent" v=":null:false">
-	<c path="Array"><c path="String"/></c>
-	<f a="">
-		<c path="Array"><c path="phoenix.Texture"/></c>
-		<x path="Void"/>
-	</f>
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></loadTextures>
-		<loadFont public="1" set="method" line="121" static="1"><f a="_id:?_path:?_onloaded" v=":null:null">
-	<c path="String"/>
-	<c path="String"/>
-	<f a="">
-		<c path="phoenix.BitmapFont"/>
-		<x path="Void"/>
-	</f>
-	<c path="phoenix.BitmapFont"/>
-</f></loadFont>
-		<loadShader public="1" set="method" line="127" static="1"><f a="?_ps_id:?_vs_id:?_onloaded" v="'default':'default':null">
-	<c path="String"/>
-	<c path="String"/>
-	<f a="">
-		<c path="phoenix.Shader"/>
-		<x path="Void"/>
-	</f>
-	<c path="phoenix.Shader"/>
-</f></loadShader>
-		<openURL public="1" set="method" line="135" static="1"><f a="_url">
-	<c path="String"/>
-	<x path="Void"/>
-</f></openURL>
-		<fileDialogFolder public="1" set="method" line="141" static="1"><f a="_title:_text">
-	<c path="String"/>
-	<c path="String"/>
-	<c path="String"/>
-</f></fileDialogFolder>
-		<fileDialogOpen public="1" set="method" line="147" static="1"><f a="_title:_text">
-	<c path="String"/>
-	<c path="String"/>
-	<c path="String"/>
-</f></fileDialogOpen>
-		<fileDialogSave public="1" set="method" line="153" static="1"><f a="_title:_text">
-	<c path="String"/>
-	<c path="String"/>
-	<c path="String"/>
-</f></fileDialogSave>
-		<addGeometry public="1" set="method" line="161" static="1"><f a="_geom">
-	<c path="phoenix.geometry.Geometry"/>
-	<x path="Void"/>
-</f></addGeometry>
-		<removeGeometry public="1" set="method" line="167" static="1"><f a="_geom">
-	<c path="phoenix.geometry.Geometry"/>
-	<x path="Void"/>
-</f></removeGeometry>
-		<addGroup public="1" set="method" line="173" static="1"><f a="_group:?_pre_render:?_post_render" v=":null:null">
-	<x path="Int"/>
-	<f a="">
-		<c path="phoenix.Batcher"/>
-		<x path="Void"/>
-	</f>
-	<f a="">
-		<c path="phoenix.Batcher"/>
-		<x path="Void"/>
-	</f>
-	<x path="Void"/>
-</f></addGroup>
-		<createBatcher public="1" set="method" line="179" static="1"><f a="?_name:?_camera:?_add" v="'batcher':null:true">
-	<c path="String"/>
-	<c path="luxe.Camera"/>
-	<x path="Bool"/>
-	<c path="phoenix.Batcher"/>
-</f></createBatcher>
+		<get_screen set="method" line="63" static="1"><f a=""><c path="luxe.Screen"/></f></get_screen>
+		<get_time set="method" line="69" static="1"><f a=""><x path="Float"/></f></get_time>
+		<shutdown public="1" set="method" line="76" static="1">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>shutdown the engine and quit</haxe_doc>
+		</shutdown>
+		<showConsole public="1" set="method" line="83" static="1">
+			<f a="_show">
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>show/hide the debug console programmatically</haxe_doc>
+		</showConsole>
+		<loadText public="1" set="method" line="90" static="1">
+			<f a="_id:?_onloaded" v=":null">
+				<c path="String"/>
+				<f a="">
+					<c path="luxe.TextResource"/>
+					<x path="Void"/>
+				</f>
+				<c path="luxe.TextResource"/>
+			</f>
+			<haxe_doc>Load a text resource</haxe_doc>
+		</loadText>
+		<loadData public="1" set="method" line="104" static="1">
+			<f a="_id:?_onloaded" v=":null">
+				<c path="String"/>
+				<f a="">
+					<c path="luxe.DataResource"/>
+					<x path="Void"/>
+				</f>
+				<c path="luxe.DataResource"/>
+			</f>
+			<haxe_doc>Load a bytes/data resource</haxe_doc>
+		</loadData>
+		<loadSound public="1" set="method" line="118" static="1">
+			<f a="_name:_id:?_is_music:?_onloaded" v="::false:null">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Bool"/>
+				<f a="">
+					<c path="luxe.SoundResource"/>
+					<x path="Void"/>
+				</f>
+				<c path="luxe.SoundResource"/>
+			</f>
+			<haxe_doc>Load a sound resource</haxe_doc>
+		</loadSound>
+		<loadTexture public="1" set="method" line="133" static="1">
+			<f a="_id:?_onloaded:?_silent:?_asset_bytes" v=":null:false:null">
+				<c path="String"/>
+				<f a="">
+					<c path="phoenix.Texture"/>
+					<x path="Void"/>
+				</f>
+				<x path="Bool"/>
+				<t path="lime.utils.ByteArray"/>
+				<c path="phoenix.Texture"/>
+			</f>
+			<haxe_doc>Load a texture/image resource</haxe_doc>
+		</loadTexture>
+		<loadTextures public="1" set="method" line="140" static="1">
+			<f a="_ids:?_onloaded:?_silent" v=":null:false">
+				<c path="Array"><c path="String"/></c>
+				<f a="">
+					<c path="Array"><c path="phoenix.Texture"/></c>
+					<x path="Void"/>
+				</f>
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Load multiple texture/image resources, useful for preloading</haxe_doc>
+		</loadTextures>
+		<loadFont public="1" set="method" line="147" static="1">
+			<f a="_id:?_path:?_onloaded" v=":null:null">
+				<c path="String"/>
+				<c path="String"/>
+				<f a="">
+					<c path="phoenix.BitmapFont"/>
+					<x path="Void"/>
+				</f>
+				<c path="phoenix.BitmapFont"/>
+			</f>
+			<haxe_doc>Load a font resource</haxe_doc>
+		</loadFont>
+		<loadShader public="1" set="method" line="154" static="1">
+			<f a="?_ps_id:?_vs_id:?_onloaded" v="'default':'default':null">
+				<c path="String"/>
+				<c path="String"/>
+				<f a="">
+					<c path="phoenix.Shader"/>
+					<x path="Void"/>
+				</f>
+				<c path="phoenix.Shader"/>
+			</f>
+			<haxe_doc>Load a shader resource</haxe_doc>
+		</loadShader>
+		<openURL public="1" set="method" line="163" static="1">
+			<f a="_url">
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Open the system browser with the given URL</haxe_doc>
+		</openURL>
+		<fileDialogFolder public="1" set="method" line="170" static="1">
+			<f a="_title:_text">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Open the system folder dialog picker</haxe_doc>
+		</fileDialogFolder>
+		<fileDialogOpen public="1" set="method" line="177" static="1">
+			<f a="_title:_text">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Open the system file open dialog picker</haxe_doc>
+		</fileDialogOpen>
+		<fileDialogSave public="1" set="method" line="184" static="1">
+			<f a="_title:_text">
+				<c path="String"/>
+				<c path="String"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Open the system file save dialog picker</haxe_doc>
+		</fileDialogSave>
+		<addGeometry public="1" set="method" line="193" static="1">
+			<f a="_geom">
+				<c path="phoenix.geometry.Geometry"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Add geometry to the default batcher</haxe_doc>
+		</addGeometry>
+		<removeGeometry public="1" set="method" line="200" static="1">
+			<f a="_geom">
+				<c path="phoenix.geometry.Geometry"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Remove geometry to the default batcher</haxe_doc>
+		</removeGeometry>
+		<addGroup public="1" set="method" line="207" static="1">
+			<f a="_group:?_pre_render:?_post_render" v=":null:null">
+				<x path="Int"/>
+				<f a="">
+					<c path="phoenix.Batcher"/>
+					<x path="Void"/>
+				</f>
+				<f a="">
+					<c path="phoenix.Batcher"/>
+					<x path="Void"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Add a geometry group to the default batcher</haxe_doc>
+		</addGroup>
+		<createBatcher public="1" set="method" line="214" static="1">
+			<f a="?_name:?_camera:?_add" v="'batcher':null:true">
+				<c path="String"/>
+				<c path="luxe.Camera"/>
+				<x path="Bool"/>
+				<c path="phoenix.Batcher"/>
+			</f>
+			<haxe_doc>Create a batcher, convenience for create batcher, add batcher, and create camera for the batcher.</haxe_doc>
+		</createBatcher>
 	</class>
 	<class path="luxe.Game" params="" file="/Users/sven/dev/luxe/luxe/luxe/Game.hx">
 		<luxecore public="1"><c path="luxe.Core"/></luxecore>
@@ -7573,28 +7677,38 @@
 				<x path="Bool"/>
 				<c path="lime.helpers.Sound"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Create a named audio reference, with optional stream flag   \n            **name** The name to assign this audio reference    \n            **file** The asset file id from which the audio is loaded/streamed    \n            **stream** Whether or not to stream the audio, default `false`   \n            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.\n        "</e></m></meta>
+			<haxe_doc>Create a named audio reference, with optional stream flag   
+            **name** The name to assign this audio reference    
+            **file** The asset file id from which the audio is loaded/streamed    
+            **stream** Whether or not to stream the audio, default `false`   
+            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.</haxe_doc>
 		</create>
 		<sound public="1" set="method" line="41">
 			<f a="_name">
 				<c path="String"/>
 				<c path="lime.helpers.Sound"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Fetch a named audio reference   \n            **name** The name to acquire audio reference    \n            **returns** The `Sound` instance\n        "</e></m></meta>
+			<haxe_doc>Fetch a named audio reference   
+            **name** The name to acquire audio reference    
+            **returns** The `Sound` instance</haxe_doc>
 		</sound>
 		<exists public="1" set="method" line="50">
 			<f a="_name">
 				<c path="String"/>
 				<x path="Bool"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Determine whether a named audio reference exists  \n            **name** The audio reference name to check    \n            **returns** true/false\n        "</e></m></meta>
+			<haxe_doc>Determine whether a named audio reference exists  
+            **name** The audio reference name to check    
+            **returns** true/false</haxe_doc>
 		</exists>
 		<playing public="1" set="method" line="59">
 			<f a="_name">
 				<c path="String"/>
 				<x path="Bool"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Determine whether a named audio reference is playing  \n            **name** The audio reference name to check    \n            **returns** true/false\n        "</e></m></meta>
+			<haxe_doc>Determine whether a named audio reference is playing  
+            **name** The audio reference name to check    
+            **returns** true/false</haxe_doc>
 		</playing>
 		<on_complete public="1" set="method" line="69">
 			<f a="_name:handler">
@@ -7605,21 +7719,28 @@
 				</f>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Set the on complete handler for a named audio reference   \n            **name** The audio reference name to assign to   \n            **handler** The callback to call when playback is complete   \n            **returns** nothing   \n        "</e></m></meta>
+			<haxe_doc>Set the on complete handler for a named audio reference   
+            **name** The audio reference name to assign to   
+            **handler** The callback to call when playback is complete   
+            **returns** nothing</haxe_doc>
 		</on_complete>
 		<loop public="1" set="method" line="78">
 			<f a="_name">
 				<c path="String"/>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Loop a named audio reference indefinitely. Use `stop` if needed.  \n            **name** The audio reference name to loop    \n            **returns** nothing\n        "</e></m></meta>
+			<haxe_doc>Loop a named audio reference indefinitely. Use `stop` if needed.  
+            **name** The audio reference name to loop    
+            **returns** nothing</haxe_doc>
 		</loop>
 		<stop public="1" set="method" line="87">
 			<f a="_name">
 				<c path="String"/>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Stop a named audio reference from playing (or looping)   \n            **name** The audio reference name to stop    \n            **returns** nothing\n        "</e></m></meta>
+			<haxe_doc>Stop a named audio reference from playing (or looping)   
+            **name** The audio reference name to stop    
+            **returns** nothing</haxe_doc>
 		</stop>
 		<play public="1" set="method" line="98">
 			<f a="_name:?_number_of_times:?_start_position_in_s" v=":1:0">
@@ -7628,7 +7749,11 @@
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            Play a named audio reference   \n            **name** The audio reference name to play    \n            **number_of_times** The exact number of times to play    \n            **start_position_in_s** The start time, in seconds    \n            **returns** nothing\n        "</e></m></meta>
+			<haxe_doc>Play a named audio reference   
+            **name** The audio reference name to play    
+            **number_of_times** The exact number of times to play    
+            **start_position_in_s** The start time, in seconds    
+            **returns** nothing</haxe_doc>
 		</play>
 		<volume public="1" set="method" line="108">
 			<f a="_name:?_volume" v=":null">
@@ -7636,7 +7761,10 @@
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            get/set the volume of a named audio reference    \n            **name** The audio reference name to adjust    \n            **volume** A new volume value (set), or leave empty (get)    \n            **returns** The volume of `name` IF volume is unspecified\n        "</e></m></meta>
+			<haxe_doc>get/set the volume of a named audio reference    
+            **name** The audio reference name to adjust    
+            **volume** A new volume value (set), or leave empty (get)    
+            **returns** The volume of `name` IF volume is unspecified</haxe_doc>
 		</volume>
 		<pan public="1" set="method" line="118">
 			<f a="_name:?_pan" v=":null">
@@ -7644,7 +7772,10 @@
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            get/set the pan of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pan** A new pan value (set), or leave empty (get)   \n            **returns** The pan of `name` IF pan is unspecified\n        "</e></m></meta>
+			<haxe_doc>get/set the pan of a named audio reference    
+            **name** The audio reference name to adjust    
+            **pan** A new pan value (set), or leave empty (get)   
+            **returns** The pan of `name` IF pan is unspecified</haxe_doc>
 		</pan>
 		<position public="1" set="method" line="128">
 			<f a="_name:?_pos" v=":null">
@@ -7652,7 +7783,10 @@
 				<x path="Float"/>
 				<x path="Float"/>
 			</f>
-			<meta><m n=":desc"><e>"\n            get/set the position of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pos** A new position value (set), or leave empty (get)   \n            **returns** The position of `name` IF position is unspecified\n        "</e></m></meta>
+			<haxe_doc>get/set the position of a named audio reference    
+            **name** The audio reference name to adjust    
+            **pos** A new position value (set), or leave empty (get)   
+            **returns** The position of `name` IF position is unspecified</haxe_doc>
 		</position>
 		<process public="1" set="method" line="132">
 			<f a=""><x path="Void"/></f>

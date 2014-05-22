@@ -31,16 +31,11 @@
       "values": [
         {
           "name": "position",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            get/set the position of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pos** A new position value (set), or leave empty (get)   \n            **returns** The position of `name` IF position is unspecified\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "get/set the position of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pos** A new position value (set), or leave empty (get)   \n            **returns** The position of `name` IF position is unspecified",
           "signature": "position(_name:String, ?_pos:Float) : Float",
           "return": ": Float",
           "args": [
@@ -56,16 +51,11 @@
         },
         {
           "name": "stop",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Stop a named audio reference from playing (or looping)   \n            **name** The audio reference name to stop    \n            **returns** nothing\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Stop a named audio reference from playing (or looping)   \n            **name** The audio reference name to stop    \n            **returns** nothing",
           "signature": "stop(_name:String) : Void",
           "return": ": Void",
           "args": [
@@ -93,16 +83,11 @@
         },
         {
           "name": "exists",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Determine whether a named audio reference exists  \n            **name** The audio reference name to check    \n            **returns** true/false\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Determine whether a named audio reference exists  \n            **name** The audio reference name to check    \n            **returns** true/false",
           "signature": "exists(_name:String) : Bool",
           "return": ": Bool",
           "args": [
@@ -114,16 +99,11 @@
         },
         {
           "name": "loop",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Loop a named audio reference indefinitely. Use `stop` if needed.  \n            **name** The audio reference name to loop    \n            **returns** nothing\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Loop a named audio reference indefinitely. Use `stop` if needed.  \n            **name** The audio reference name to loop    \n            **returns** nothing",
           "signature": "loop(_name:String) : Void",
           "return": ": Void",
           "args": [
@@ -135,16 +115,11 @@
         },
         {
           "name": "create",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Create a named audio reference, with optional stream flag   \n            **name** The name to assign this audio reference    \n            **file** The asset file id from which the audio is loaded/streamed    \n            **stream** Whether or not to stream the audio, default `false`   \n            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Create a named audio reference, with optional stream flag   \n            **name** The name to assign this audio reference    \n            **file** The asset file id from which the audio is loaded/streamed    \n            **stream** Whether or not to stream the audio, default `false`   \n            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.",
           "signature": "create(_name:String, _file:String, ?_stream:Bool) : lime.helpers.Sound",
           "return": ": lime.helpers.Sound",
           "args": [
@@ -185,16 +160,11 @@
         },
         {
           "name": "playing",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Determine whether a named audio reference is playing  \n            **name** The audio reference name to check    \n            **returns** true/false\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Determine whether a named audio reference is playing  \n            **name** The audio reference name to check    \n            **returns** true/false",
           "signature": "playing(_name:String) : Bool",
           "return": ": Bool",
           "args": [
@@ -206,16 +176,11 @@
         },
         {
           "name": "volume",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            get/set the volume of a named audio reference    \n            **name** The audio reference name to adjust    \n            **volume** A new volume value (set), or leave empty (get)    \n            **returns** The volume of `name` IF volume is unspecified\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "get/set the volume of a named audio reference    \n            **name** The audio reference name to adjust    \n            **volume** A new volume value (set), or leave empty (get)    \n            **returns** The volume of `name` IF volume is unspecified",
           "signature": "volume(_name:String, ?_volume:Float) : Float",
           "return": ": Float",
           "args": [
@@ -231,16 +196,11 @@
         },
         {
           "name": "sound",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Fetch a named audio reference   \n            **name** The name to acquire audio reference    \n            **returns** The `Sound` instance\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Fetch a named audio reference   \n            **name** The name to acquire audio reference    \n            **returns** The `Sound` instance",
           "signature": "sound(_name:String) : lime.helpers.Sound",
           "return": ": lime.helpers.Sound",
           "args": [
@@ -268,16 +228,11 @@
         },
         {
           "name": "play",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Play a named audio reference   \n            **name** The audio reference name to play    \n            **number_of_times** The exact number of times to play    \n            **start_position_in_s** The start time, in seconds    \n            **returns** nothing\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Play a named audio reference   \n            **name** The audio reference name to play    \n            **number_of_times** The exact number of times to play    \n            **start_position_in_s** The start time, in seconds    \n            **returns** nothing",
           "signature": "play(_name:String, ?_number_of_times:Int, ?_start_position_in_s:Float) : Void",
           "return": ": Void",
           "args": [
@@ -297,16 +252,11 @@
         },
         {
           "name": "on_complete",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            Set the on complete handler for a named audio reference   \n            **name** The audio reference name to assign to   \n            **handler** The callback to call when playback is complete   \n            **returns** nothing   \n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "Set the on complete handler for a named audio reference   \n            **name** The audio reference name to assign to   \n            **handler** The callback to call when playback is complete   \n            **returns** nothing",
           "signature": "on_complete(_name:String, handler:lime.helpers.Sound->Void) : Void",
           "return": ": Void",
           "args": [
@@ -322,16 +272,11 @@
         },
         {
           "name": "pan",
-          "meta": [
-            {
-              "name": ":desc",
-              "value": "\n            get/set the pan of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pan** A new pan value (set), or leave empty (get)   \n            **returns** The pan of `name` IF pan is unspecified\n        "
-            }
-          ],
+          "meta": [],
           "public": true,
           "static": false,
           "inline": false,
-          "doc": "",
+          "doc": "get/set the pan of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pan** A new pan value (set), or leave empty (get)   \n            **returns** The pan of `name` IF pan is unspecified",
           "signature": "pan(_name:String, ?_pan:Float) : Float",
           "return": ": Float",
           "args": [

@@ -59,37 +59,37 @@
 <hr>
 <p><a class="lift" name="create" href="#create">create</a></p>
 <p><code>create(_name:String, _file:String, ?_stream:Bool) : lime.helpers.Sound</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Create a named audio reference, with optional stream flag<br>            <strong>name</strong> The name to assign this audio reference<br>            <strong>file</strong> The asset file id from which the audio is loaded/streamed<br>            <strong>stream</strong> Whether or not to stream the audio, default <code>false</code><br>            <strong>returns</strong> The <code>Sound</code> instance, but the audio API stores this, use the API to manipulate it by name. </span>   </p>
 <p><a class="lift" name="exists" href="#exists">exists</a></p>
 <p><code>exists(_name:String) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Determine whether a named audio reference exists<br>            <strong>name</strong> The audio reference name to check<br>            <strong>returns</strong> true/false </span>   </p>
 <p><a class="lift" name="loop" href="#loop">loop</a></p>
 <p><code>loop(_name:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Loop a named audio reference indefinitely. Use <code>stop</code> if needed.<br>            <strong>name</strong> The audio reference name to loop<br>            <strong>returns</strong> nothing </span>   </p>
 <p><a class="lift" name="on_complete" href="#on_complete">on_complete</a></p>
 <p><code>on_complete(_name:String, handler:lime.helpers.Sound-&gt;Void) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Set the on complete handler for a named audio reference<br>            <strong>name</strong> The audio reference name to assign to<br>            <strong>handler</strong> The callback to call when playback is complete<br>            <strong>returns</strong> nothing </span>   </p>
 <p><a class="lift" name="pan" href="#pan">pan</a></p>
 <p><code>pan(_name:String, ?_pan:Float) : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> get/set the pan of a named audio reference<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>pan</strong> A new pan value (set), or leave empty (get)<br>            <strong>returns</strong> The pan of <code>name</code> IF pan is unspecified </span>   </p>
 <p><a class="lift" name="play" href="#play">play</a></p>
 <p><code>play(_name:String, ?_number_of_times:Int, ?_start_position_in_s:Float) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Play a named audio reference<br>            <strong>name</strong> The audio reference name to play<br>            <strong>number_of_times</strong> The exact number of times to play<br>            <strong>start_position_in_s</strong> The start time, in seconds<br>            <strong>returns</strong> nothing </span>   </p>
 <p><a class="lift" name="playing" href="#playing">playing</a></p>
 <p><code>playing(_name:String) : Bool</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Determine whether a named audio reference is playing<br>            <strong>name</strong> The audio reference name to check<br>            <strong>returns</strong> true/false </span>   </p>
 <p><a class="lift" name="position" href="#position">position</a></p>
 <p><code>position(_name:String, ?_pos:Float) : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> get/set the position of a named audio reference<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>pos</strong> A new position value (set), or leave empty (get)<br>            <strong>returns</strong> The position of <code>name</code> IF position is unspecified </span>   </p>
 <p><a class="lift" name="sound" href="#sound">sound</a></p>
 <p><code>sound(_name:String) : lime.helpers.Sound</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Fetch a named audio reference<br>            <strong>name</strong> The name to acquire audio reference<br>            <strong>returns</strong> The <code>Sound</code> instance </span>   </p>
 <p><a class="lift" name="stop" href="#stop">stop</a></p>
 <p><code>stop(_name:String) : Void</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> Stop a named audio reference from playing (or looping)<br>            <strong>name</strong> The audio reference name to stop<br>            <strong>returns</strong> nothing </span>   </p>
 <p><a class="lift" name="volume" href="#volume">volume</a></p>
 <p><code>volume(_name:String, ?_volume:Float) : Float</code></p>
-<p><span class="small_desc_flat"> no description </span>   </p>
+<p><span class="small_desc_flat"> get/set the volume of a named audio reference<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>volume</strong> A new volume value (set), or leave empty (get)<br>            <strong>returns</strong> The volume of <code>name</code> IF volume is unspecified </span>   </p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
