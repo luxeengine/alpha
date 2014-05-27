@@ -1,89 +1,39 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FilterType
-
----
 
 #FilterType
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="linear" href="#linear">linear</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`linear`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`mip_linear_linear`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`mip_linear_nearest`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`mip_nearest_linear`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`mip_nearest_nearest`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`nearest`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`phoenix.FilterType.linear`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="mip_linear_linear" href="#mip_linear_linear">mip_linear_linear</a>
-
-
-
-`phoenix.FilterType.mip_linear_linear`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="mip_linear_nearest" href="#mip_linear_nearest">mip_linear_nearest</a>
-
-
-
-`phoenix.FilterType.mip_linear_nearest`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="mip_nearest_linear" href="#mip_nearest_linear">mip_nearest_linear</a>
-
-
-
-`phoenix.FilterType.mip_nearest_linear`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="mip_nearest_nearest" href="#mip_nearest_nearest">mip_nearest_nearest</a>
-
-
-
-`phoenix.FilterType.mip_nearest_nearest`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="nearest" href="#nearest">nearest</a>
-
-
-
-`phoenix.FilterType.nearest`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

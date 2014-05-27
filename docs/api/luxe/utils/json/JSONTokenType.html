@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,64 +50,36 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../../index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-utils-"><a href="../../../../api/index.html#luxe.utils">API Index</a></h2>
-<p><a href="../">luxe.utils</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.utils.json</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;JSONTokenType</p>
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="jsontokentype">JSONTokenType</h1>
 <hr>
-<p><a href="#Values">Values</a>   </p>
+<p><code>enum</code>
+<span class="meta">
+<br/>meta: @:flatEnum
+</span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Values" ></a></p>
-<h3 id="values">Values</h3>
-<hr>
-<p><a class="lift" name="tCOLON" href="#tCOLON">tCOLON</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tCOLON</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tCOMMA" href="#tCOMMA">tCOMMA</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tCOMMA</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tFALSE" href="#tFALSE">tFALSE</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tFALSE</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tLEFT_BRACE" href="#tLEFT_BRACE">tLEFT_BRACE</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tLEFT_BRACE</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tLEFT_BRACKET" href="#tLEFT_BRACKET">tLEFT_BRACKET</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tLEFT_BRACKET</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tNAN" href="#tNAN">tNAN</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tNAN</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tNULL" href="#tNULL">tNULL</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tNULL</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tNUMBER" href="#tNUMBER">tNUMBER</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tNUMBER</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tRIGHT_BRACE" href="#tRIGHT_BRACE">tRIGHT_BRACE</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tRIGHT_BRACE</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tRIGHT_BRACKET" href="#tRIGHT_BRACKET">tRIGHT_BRACKET</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tRIGHT_BRACKET</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tSTRING" href="#tSTRING">tSTRING</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tSTRING</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tTRUE" href="#tTRUE">tTRUE</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tTRUE</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tUNKNOWN" href="#tUNKNOWN">tUNKNOWN</a></p>
-<p><code>luxe.utils.json.JSONTokenType.tUNKNOWN</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage"><code>tCOLON</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tCOMMA</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tFALSE</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tLEFT_BRACE</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tLEFT_BRACKET</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tNAN</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tNULL</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tNUMBER</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tRIGHT_BRACE</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tRIGHT_BRACKET</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tSTRING</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tTRUE</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>tUNKNOWN</code><br/> </span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

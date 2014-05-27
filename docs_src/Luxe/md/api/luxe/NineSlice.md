@@ -1,175 +1,67 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;NineSlice
-
----
 
 #NineSlice
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.Sprite]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.Sprite" href="{{{rel_path}}}api/luxe/Sprite.html">luxe.Sprite</a>
 
-&nbsp;   
-
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="bottom" href="#bottom">bottom</a>
-
-
-
-`bottom : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="height" href="#height">height</a>
-
-
-
-`height : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="is_set" href="#is_set">is_set</a>
-
-
-
-`is_set : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="left" href="#left">left</a>
-
-
-
-`left : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="right" href="#right">right</a>
-
-
-
-`right : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_h" href="#source_h">source_h</a>
-
-
-
-`source_h : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_w" href="#source_w">source_w</a>
-
-
-
-`source_w : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_x" href="#source_x">source_x</a>
-
-
-
-`source_x : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_y" href="#source_y">source_y</a>
-
-
-
-`source_y : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="top" href="#top">top</a>
-
-
-
-`top : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="width" href="#width">width</a>
-
-
-
-`width : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="create" href="#create">create</a>
-
-
-
-`create(_pos:luxe.Vector, _w:Float, _h:Float, ?_reset:Bool=false) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="dirty" href="#dirty">dirty</a>
-
-
-
-`dirty() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="lock" href="#lock">lock</a>
-
-
-
-`lock() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new<T>(_options:luxe.options.NineSliceOptions<new.T>) `
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="bottom"><a class="lift" href="#bottom">bottom</a></a><code class="signature apipage">bottom : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="height"><a class="lift" href="#height">height</a></a><code class="signature apipage">height : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="is_set"><a class="lift" href="#is_set">is\_set</a></a><code class="signature apipage">is\_set : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="left"><a class="lift" href="#left">left</a></a><code class="signature apipage">left : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="right"><a class="lift" href="#right">right</a></a><code class="signature apipage">right : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_h"><a class="lift" href="#source_h">source\_h</a></a><code class="signature apipage">source\_h : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_w"><a class="lift" href="#source_w">source\_w</a></a><code class="signature apipage">source\_w : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_x"><a class="lift" href="#source_x">source\_x</a></a><code class="signature apipage">source\_x : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_y"><a class="lift" href="#source_y">source\_y</a></a><code class="signature apipage">source\_y : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="top"><a class="lift" href="#top">top</a></a><code class="signature apipage">top : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="width"><a class="lift" href="#width">width</a></a><code class="signature apipage">width : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(\_pos:<span>[luxe.Vector](#luxe.Vector)</span>, \_w:<span>[Float](http://api.haxe.org/Float.html)</span>, \_h:<span>[Float](http://api.haxe.org/Float.html)</span>, ?\_reset:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="dirty"><a class="lift" href="#dirty">dirty</a></a><code class="signature apipage">dirty() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="lock"><a class="lift" href="#lock">lock</a></a><code class="signature apipage">lock() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_options:<span>[luxe.options.NineSliceOptions](#luxe.options.NineSliceOptions)&lt;[new.T]()&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

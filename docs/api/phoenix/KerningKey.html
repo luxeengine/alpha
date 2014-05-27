@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,30 +50,26 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;KerningKey</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="kerningkey">KerningKey</h1>
 <hr>
-<p><a href="#Members">Members</a>   </p>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="glyph" href="#glyph">glyph</a></p>
-<p><code>glyph : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="index" href="#index">index</a></p>
-<p><code>index : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="glyph"><a class="lift" href="#glyph">glyph</a></a><code class="signature apipage">glyph : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="index"><a class="lift" href="#index">index</a></a><code class="signature apipage">index : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

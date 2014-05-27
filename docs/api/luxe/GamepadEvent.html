@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,19 +50,22 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GamepadEvent</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="gamepadevent">GamepadEvent</h1>
 <hr>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members</p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

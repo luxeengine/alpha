@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,94 +50,73 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-debug-"><a href="../../../api/index.html#luxe.debug">API Index</a></h2>
-<p><a href="../">luxe</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.debug</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;StatsDebugView</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="statsdebugview">StatsDebugView</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.debug.DebugView</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.debug.DebugView" href="../../../api/luxe/debug/DebugView.html">luxe.debug.DebugView</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="_last_render_stats" href="#_last_render_stats">_last_render_stats</a></p>
-<p><code>_last_render_stats : luxe.debug.RenderStats</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="_render_stats" href="#_render_stats">_render_stats</a></p>
-<p><code>_render_stats : luxe.debug.RenderStats</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="debug_draw_call_count" href="#debug_draw_call_count">debug_draw_call_count</a></p>
-<p><code>debug_draw_call_count : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="debug_geometry_count" href="#debug_geometry_count">debug_geometry_count</a></p>
-<p><code>debug_geometry_count : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="hide_debug" href="#hide_debug">hide_debug</a></p>
-<p><code>hide_debug : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="render_stats_text" href="#render_stats_text">render_stats_text</a></p>
-<p><code>render_stats_text : luxe.Text</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="resource_list_text" href="#resource_list_text">resource_list_text</a></p>
-<p><code>resource_list_text : luxe.Text</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="resource_stats_text" href="#resource_stats_text">resource_stats_text</a></p>
-<p><code>resource_stats_text : luxe.Text</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="create" href="#create">create</a></p>
-<p><code>create() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="get_render_stats_string" href="#get_render_stats_string">get_render_stats_string</a></p>
-<p><code>get_render_stats_string() : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="get_resource_stats_string" href="#get_resource_stats_string">get_resource_stats_string</a></p>
-<p><code>get_resource_stats_string() : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="hide" href="#hide">hide</a></p>
-<p><code>hide() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new()</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onkeydown" href="#onkeydown">onkeydown</a></p>
-<p><code>onkeydown(e:luxe.KeyEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="process" href="#process">process</a></p>
-<p><code>process() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="refresh" href="#refresh">refresh</a></p>
-<p><code>refresh() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="refresh_render_stats" href="#refresh_render_stats">refresh_render_stats</a></p>
-<p><code>refresh_render_stats() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="show" href="#show">show</a></p>
-<p><code>show() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="toggle_debug_stats" href="#toggle_debug_stats">toggle_debug_stats</a></p>
-<p><code>toggle_debug_stats() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="update_render_stats" href="#update_render_stats">update_render_stats</a></p>
-<p><code>update_render_stats() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="_last_render_stats"><a class="lift" href="#_last_render_stats">_last_render_stats</a></a><code class="signature apipage">_last_render_stats : <a href="#luxe.debug.RenderStats">luxe.debug.RenderStats</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="_render_stats"><a class="lift" href="#_render_stats">_render_stats</a></a><code class="signature apipage">_render_stats : <a href="#luxe.debug.RenderStats">luxe.debug.RenderStats</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="debug_draw_call_count"><a class="lift" href="#debug_draw_call_count">debug_draw_call_count</a></a><code class="signature apipage">debug_draw_call_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="debug_geometry_count"><a class="lift" href="#debug_geometry_count">debug_geometry_count</a></a><code class="signature apipage">debug_geometry_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="hide_debug"><a class="lift" href="#hide_debug">hide_debug</a></a><code class="signature apipage">hide_debug : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="render_stats_text"><a class="lift" href="#render_stats_text">render_stats_text</a></a><code class="signature apipage">render_stats_text : <a href="#luxe.Text">luxe.Text</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="resource_list_text"><a class="lift" href="#resource_list_text">resource_list_text</a></a><code class="signature apipage">resource_list_text : <a href="#luxe.Text">luxe.Text</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="resource_stats_text"><a class="lift" href="#resource_stats_text">resource_stats_text</a></a><code class="signature apipage">resource_stats_text : <a href="#luxe.Text">luxe.Text</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_render_stats_string"><a class="lift" href="#get_render_stats_string">get_render_stats_string</a></a><code class="signature apipage">get_render_stats_string() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_resource_stats_string"><a class="lift" href="#get_resource_stats_string">get_resource_stats_string</a></a><code class="signature apipage">get_resource_stats_string() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="hide"><a class="lift" href="#hide">hide</a></a><code class="signature apipage">hide() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onkeydown"><a class="lift" href="#onkeydown">onkeydown</a></a><code class="signature apipage">onkeydown(e:<span><a href="#luxe.KeyEvent">luxe.KeyEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh"><a class="lift" href="#refresh">refresh</a></a><code class="signature apipage">refresh() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh_render_stats"><a class="lift" href="#refresh_render_stats">refresh_render_stats</a></a><code class="signature apipage">refresh_render_stats() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a><code class="signature apipage">show() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toggle_debug_stats"><a class="lift" href="#toggle_debug_stats">toggle_debug_stats</a></a><code class="signature apipage">toggle_debug_stats() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update_render_stats"><a class="lift" href="#update_render_stats">update_render_stats</a></a><code class="signature apipage">update_render_stats() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

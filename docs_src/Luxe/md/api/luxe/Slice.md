@@ -1,103 +1,49 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Slice
-
----
 
 #Slice
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="geometry_id" href="#geometry_id">geometry_id</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="geometry_id"><a class="lift" href="#geometry_id">geometry\_id</a></a><code class="signature apipage">geometry\_id : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="height"><a class="lift" href="#height">height</a></a><code class="signature apipage">height : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_height"><a class="lift" href="#source_height">source\_height</a></a><code class="signature apipage">source\_height : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_width"><a class="lift" href="#source_width">source\_width</a></a><code class="signature apipage">source\_width : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_x"><a class="lift" href="#source_x">source\_x</a></a><code class="signature apipage">source\_x : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="source_y"><a class="lift" href="#source_y">source\_y</a></a><code class="signature apipage">source\_y : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="width"><a class="lift" href="#width">width</a></a><code class="signature apipage">width : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`geometry_id : String`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="height" href="#height">height</a>
-
-
-
-`height : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos" href="#pos">pos</a>
-
-
-
-`pos : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_height" href="#source_height">source_height</a>
-
-
-
-`source_height : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_width" href="#source_width">source_width</a>
-
-
-
-`source_width : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_x" href="#source_x">source_x</a>
-
-
-
-`source_x : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="source_y" href="#source_y">source_y</a>
-
-
-
-`source_y : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="width" href="#width">width</a>
-
-
-
-`width : Float`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

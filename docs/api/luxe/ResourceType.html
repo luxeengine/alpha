@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,49 +50,31 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ResourceType</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="resourcetype">ResourceType</h1>
 <hr>
-<p><a href="#Values">Values</a>   </p>
+<p><code>enum</code>
+<span class="meta">
+<br/>meta: @:flatEnum
+</span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Values" ></a></p>
-<h3 id="values">Values</h3>
-<hr>
-<p><a class="lift" name="data" href="#data">data</a></p>
-<p><code>luxe.ResourceType.data</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="font" href="#font">font</a></p>
-<p><code>luxe.ResourceType.font</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="render_texture" href="#render_texture">render_texture</a></p>
-<p><code>luxe.ResourceType.render_texture</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shader" href="#shader">shader</a></p>
-<p><code>luxe.ResourceType.shader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="sound" href="#sound">sound</a></p>
-<p><code>luxe.ResourceType.sound</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="text" href="#text">text</a></p>
-<p><code>luxe.ResourceType.text</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="texture" href="#texture">texture</a></p>
-<p><code>luxe.ResourceType.texture</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="unknown" href="#unknown">unknown</a></p>
-<p><code>luxe.ResourceType.unknown</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage"><code>data</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>font</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>render_texture</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>shader</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>sound</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>text</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>texture</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>unknown</code><br/> </span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

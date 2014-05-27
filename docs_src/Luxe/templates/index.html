@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="{{{rel_path}}}css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="{{{rel_path}}}css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="{{{rel_path}}}css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="{{{rel_path}}}css/tooltipster-shadow.css" media="all">
+        
         <script src="{{{rel_path}}}js/jquery-2.0.3.min.js"> </script>
+        <script src="{{{rel_path}}}js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -35,6 +37,10 @@
                     $(this).off('click');
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
                 });
 
             }); //document.ready

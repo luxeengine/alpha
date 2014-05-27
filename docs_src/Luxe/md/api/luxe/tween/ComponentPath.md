@@ -1,102 +1,46 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.tween)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.tween](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ComponentPath
-
----
 
 #ComponentPath
 
 
----
-
-
-[Implements](#Implements)   
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`<br/>implements <code><span>[luxe.tween.IComponentPath]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Implements" ></a>
-###Implements   
+</span>
+
+
 ---
-<a class="lift" name="luxe.tween.IComponentPath" href="{{{rel_path}}}api/luxe/tween/IComponentPath.html">luxe.tween.IComponentPath</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="start" href="#start">start</a>
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="start"><a class="lift" href="#start">start</a></a><code class="signature apipage">start : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="addPath"><a class="lift" href="#addPath">addPath</a></a><code class="signature apipage">addPath(path:<span>[luxe.tween.BezierPath](#luxe.tween.BezierPath)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="calculate"><a class="lift" href="#calculate">calculate</a></a><code class="signature apipage">calculate(k:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-`start : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="end" href="#end">end</a>
-
-
-
-`end : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="addPath" href="#addPath">addPath</a>
-
-
-
-`addPath(path:luxe.tween.BezierPath) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="calculate" href="#calculate">calculate</a>
-
-
-
-`calculate(k:Float) : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new() `
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="end"><a class="lift" href="#end">end</a></a><code class="signature apipage">end : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

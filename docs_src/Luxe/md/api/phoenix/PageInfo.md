@@ -1,55 +1,37 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PageInfo
-
----
 
 #PageInfo
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="file" href="#file">file</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="file"><a class="lift" href="#file">file</a></a><code class="signature apipage">file : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`file : String`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="id" href="#id">id</a>
-
-
-
-`id : Int`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

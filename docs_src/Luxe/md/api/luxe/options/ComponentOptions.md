@@ -1,48 +1,35 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.options)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.options](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ComponentOptions
-
----
 
 #ComponentOptions
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="init_with" href="#init_with">init_with</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="init_with"><a class="lift" href="#init_with">init\_with</a></a><code class="signature apipage">init\_with : [luxe.options.ComponentOptions.T](#luxe.options.ComponentOptions.T)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`init_with : luxe.options.ComponentOptions.T`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

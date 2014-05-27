@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,231 +50,169 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Batcher</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="batcher">Batcher</h1>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="buffer_count" href="#buffer_count">buffer_count</a></p>
-<p><code>buffer_count : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="buffer_index" href="#buffer_index">buffer_index</a></p>
-<p><code>buffer_index : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="color_attribute" href="#color_attribute">color_attribute</a></p>
-<p><code>color_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="colorlist" href="#colorlist">colorlist</a></p>
-<p><code>colorlist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="colors" href="#colors">colors</a></p>
-<p><code>colors : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="draw_calls" href="#draw_calls">draw_calls</a></p>
-<p><code>draw_calls : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="dynamic_batched_count" href="#dynamic_batched_count">dynamic_batched_count</a></p>
-<p><code>dynamic_batched_count : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="enabled" href="#enabled">enabled</a></p>
-<p><code>enabled : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="geometry" href="#geometry">geometry</a></p>
-<p><code>geometry : luxe.structural.BalancedBinarySearchTree&lt;phoenix.geometry.GeometryKey,phoenix.geometry.Geometry&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="groups" href="#groups">groups</a></p>
-<p><code>groups : Map&lt;Int,Array&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="id" href="#id">id</a></p>
-<p><code>id : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="log" href="#log">log</a></p>
-<p><code>log : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="modelviewmatrix_attribute" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a></p>
-<p><code>modelviewmatrix_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="name" href="#name">name</a></p>
-<p><code>name : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="normalBuffers" href="#normalBuffers">normalBuffers</a></p>
-<p><code>normalBuffers : Array&lt;lime.gl.GLBuffer&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="normal_attribute" href="#normal_attribute">normal_attribute</a></p>
-<p><code>normal_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="normallist" href="#normallist">normallist</a></p>
-<p><code>normallist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="normals" href="#normals">normals</a></p>
-<p><code>normals : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="projectionmatrix_attribute" href="#projectionmatrix_attribute">projectionmatrix_attribute</a></p>
-<p><code>projectionmatrix_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="renderer" href="#renderer">renderer</a></p>
-<p><code>renderer : phoenix.Renderer</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_batched_count" href="#static_batched_count">static_batched_count</a></p>
-<p><code>static_batched_count : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_colorlist" href="#static_colorlist">static_colorlist</a></p>
-<p><code>static_colorlist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_colors" href="#static_colors">static_colors</a></p>
-<p><code>static_colors : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_normallist" href="#static_normallist">static_normallist</a></p>
-<p><code>static_normallist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_normals" href="#static_normals">static_normals</a></p>
-<p><code>static_normals : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_tcoordlist" href="#static_tcoordlist">static_tcoordlist</a></p>
-<p><code>static_tcoordlist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_tcoords" href="#static_tcoords">static_tcoords</a></p>
-<p><code>static_tcoords : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_vertlist" href="#static_vertlist">static_vertlist</a></p>
-<p><code>static_vertlist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="static_verts" href="#static_verts">static_verts</a></p>
-<p><code>static_verts : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tcoordBuffers" href="#tcoordBuffers">tcoordBuffers</a></p>
-<p><code>tcoordBuffers : Array&lt;lime.gl.GLBuffer&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tcoord_attribute" href="#tcoord_attribute">tcoord_attribute</a></p>
-<p><code>tcoord_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tcoordlist" href="#tcoordlist">tcoordlist</a></p>
-<p><code>tcoordlist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tcoords" href="#tcoords">tcoords</a></p>
-<p><code>tcoords : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex0_attribute" href="#tex0_attribute">tex0_attribute</a></p>
-<p><code>tex0_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex1_attribute" href="#tex1_attribute">tex1_attribute</a></p>
-<p><code>tex1_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex2_attribute" href="#tex2_attribute">tex2_attribute</a></p>
-<p><code>tex2_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex3_attribute" href="#tex3_attribute">tex3_attribute</a></p>
-<p><code>tex3_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex4_attribute" href="#tex4_attribute">tex4_attribute</a></p>
-<p><code>tex4_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex5_attribute" href="#tex5_attribute">tex5_attribute</a></p>
-<p><code>tex5_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex6_attribute" href="#tex6_attribute">tex6_attribute</a></p>
-<p><code>tex6_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex7_attribute" href="#tex7_attribute">tex7_attribute</a></p>
-<p><code>tex7_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tree_changed" href="#tree_changed">tree_changed</a></p>
-<p><code>tree_changed : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vcolorBuffers" href="#vcolorBuffers">vcolorBuffers</a></p>
-<p><code>vcolorBuffers : Array&lt;lime.gl.GLBuffer&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vert_attribute" href="#vert_attribute">vert_attribute</a></p>
-<p><code>vert_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vertexBuffers" href="#vertexBuffers">vertexBuffers</a></p>
-<p><code>vertexBuffers : Array&lt;lime.gl.GLBuffer&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vertlist" href="#vertlist">vertlist</a></p>
-<p><code>vertlist : lime.utils.Float32Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="verts" href="#verts">verts</a></p>
-<p><code>verts : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="view" href="#view">view</a></p>
-<p><code>view : phoenix.Camera</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="visible_count" href="#visible_count">visible_count</a></p>
-<p><code>visible_count : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="layer" href="#layer">layer</a></p>
-<p><code>layer : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="add" href="#add">add</a></p>
-<p><code>add(_geom:phoenix.geometry.Geometry, ?_force_add:Bool=false) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="add_group" href="#add_group">add_group</a></p>
-<p><code>add_group(_group:Int, _pre_render:phoenix.Batcher-&gt;Void, _post_render:phoenix.Batcher-&gt;Void) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="batch" href="#batch">batch</a></p>
-<p><code>batch(?persist_immediate:Bool=false) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="blend_mode" href="#blend_mode">blend_mode</a></p>
-<p><code>blend_mode(?_src_mode:phoenix.BlendMode, ?_dst_mode:phoenix.BlendMode) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="compare" href="#compare">compare</a></p>
-<p><code>compare(other:phoenix.Batcher) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="compare_rule" href="#compare_rule">compare_rule</a></p>
-<p><code>compare_rule(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="compare_rule_to_string" href="#compare_rule_to_string">compare_rule_to_string</a></p>
-<p><code>compare_rule_to_string(r:Int) : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="draw" href="#draw">draw</a></p>
-<p><code>draw(?persist_immediate:Bool=false) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="geometry_compare" href="#geometry_compare">geometry_compare</a></p>
-<p><code>geometry_compare(a:phoenix.geometry.GeometryKey, b:phoenix.geometry.GeometryKey) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_r:phoenix.Renderer, ?_name:String=&#39;&#39;)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="remove" href="#remove">remove</a></p>
-<p><code>remove(_geom:phoenix.geometry.Geometry, ?_remove_batcher_from_geometry:Bool=true) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_layer" href="#set_layer">set_layer</a></p>
-<p><code>set_layer(_layer:Int) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shader_activate" href="#shader_activate">shader_activate</a></p>
-<p><code>shader_activate(_shader:phoenix.Shader) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="submit_current_vertex_list" href="#submit_current_vertex_list">submit_current_vertex_list</a></p>
-<p><code>submit_current_vertex_list(type:phoenix.PrimitiveType) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="submit_static_geometry" href="#submit_static_geometry">submit_static_geometry</a></p>
-<p><code>submit_static_geometry(geom:phoenix.geometry.Geometry) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="toString" href="#toString">toString</a></p>
-<p><code>toString() : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="buffer_count"><a class="lift" href="#buffer_count">buffer_count</a></a><code class="signature apipage">buffer_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="buffer_index"><a class="lift" href="#buffer_index">buffer_index</a></a><code class="signature apipage">buffer_index : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="color_attribute"><a class="lift" href="#color_attribute">color_attribute</a></a><code class="signature apipage">color_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="colorlist"><a class="lift" href="#colorlist">colorlist</a></a><code class="signature apipage">colorlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="colors"><a class="lift" href="#colors">colors</a></a><code class="signature apipage">colors : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="draw_calls"><a class="lift" href="#draw_calls">draw_calls</a></a><code class="signature apipage">draw_calls : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="dynamic_batched_count"><a class="lift" href="#dynamic_batched_count">dynamic_batched_count</a></a><code class="signature apipage">dynamic_batched_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="enabled"><a class="lift" href="#enabled">enabled</a></a><code class="signature apipage">enabled : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="geometry"><a class="lift" href="#geometry">geometry</a></a><code class="signature apipage">geometry : <a href="#luxe.structural.BalancedBinarySearchTree">luxe.structural.BalancedBinarySearchTree</a>&lt;<a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a>, <a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="groups"><a class="lift" href="#groups">groups</a></a><code class="signature apipage">groups : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>, <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#phoenix.BatchGroup">phoenix.BatchGroup</a>&gt;&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a></a><code class="signature apipage">modelviewmatrix_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="normal_attribute"><a class="lift" href="#normal_attribute">normal_attribute</a></a><code class="signature apipage">normal_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="normalBuffers"><a class="lift" href="#normalBuffers">normalBuffers</a></a><code class="signature apipage">normalBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="normallist"><a class="lift" href="#normallist">normallist</a></a><code class="signature apipage">normallist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="normals"><a class="lift" href="#normals">normals</a></a><code class="signature apipage">normals : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="projectionmatrix_attribute"><a class="lift" href="#projectionmatrix_attribute">projectionmatrix_attribute</a></a><code class="signature apipage">projectionmatrix_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="renderer"><a class="lift" href="#renderer">renderer</a></a><code class="signature apipage">renderer : <a href="#phoenix.Renderer">phoenix.Renderer</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_batched_count"><a class="lift" href="#static_batched_count">static_batched_count</a></a><code class="signature apipage">static_batched_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_colorlist"><a class="lift" href="#static_colorlist">static_colorlist</a></a><code class="signature apipage">static_colorlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_colors"><a class="lift" href="#static_colors">static_colors</a></a><code class="signature apipage">static_colors : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_normallist"><a class="lift" href="#static_normallist">static_normallist</a></a><code class="signature apipage">static_normallist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_normals"><a class="lift" href="#static_normals">static_normals</a></a><code class="signature apipage">static_normals : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_tcoordlist"><a class="lift" href="#static_tcoordlist">static_tcoordlist</a></a><code class="signature apipage">static_tcoordlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_tcoords"><a class="lift" href="#static_tcoords">static_tcoords</a></a><code class="signature apipage">static_tcoords : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_vertlist"><a class="lift" href="#static_vertlist">static_vertlist</a></a><code class="signature apipage">static_vertlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_verts"><a class="lift" href="#static_verts">static_verts</a></a><code class="signature apipage">static_verts : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tcoord_attribute"><a class="lift" href="#tcoord_attribute">tcoord_attribute</a></a><code class="signature apipage">tcoord_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tcoordBuffers"><a class="lift" href="#tcoordBuffers">tcoordBuffers</a></a><code class="signature apipage">tcoordBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tcoordlist"><a class="lift" href="#tcoordlist">tcoordlist</a></a><code class="signature apipage">tcoordlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tcoords"><a class="lift" href="#tcoords">tcoords</a></a><code class="signature apipage">tcoords : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex0_attribute"><a class="lift" href="#tex0_attribute">tex0_attribute</a></a><code class="signature apipage">tex0_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex1_attribute"><a class="lift" href="#tex1_attribute">tex1_attribute</a></a><code class="signature apipage">tex1_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex2_attribute"><a class="lift" href="#tex2_attribute">tex2_attribute</a></a><code class="signature apipage">tex2_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex3_attribute"><a class="lift" href="#tex3_attribute">tex3_attribute</a></a><code class="signature apipage">tex3_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex4_attribute"><a class="lift" href="#tex4_attribute">tex4_attribute</a></a><code class="signature apipage">tex4_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex5_attribute"><a class="lift" href="#tex5_attribute">tex5_attribute</a></a><code class="signature apipage">tex5_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex6_attribute"><a class="lift" href="#tex6_attribute">tex6_attribute</a></a><code class="signature apipage">tex6_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex7_attribute"><a class="lift" href="#tex7_attribute">tex7_attribute</a></a><code class="signature apipage">tex7_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tree_changed"><a class="lift" href="#tree_changed">tree_changed</a></a><code class="signature apipage">tree_changed : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vcolorBuffers"><a class="lift" href="#vcolorBuffers">vcolorBuffers</a></a><code class="signature apipage">vcolorBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vert_attribute"><a class="lift" href="#vert_attribute">vert_attribute</a></a><code class="signature apipage">vert_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vertexBuffers"><a class="lift" href="#vertexBuffers">vertexBuffers</a></a><code class="signature apipage">vertexBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vertlist"><a class="lift" href="#vertlist">vertlist</a></a><code class="signature apipage">vertlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="verts"><a class="lift" href="#verts">verts</a></a><code class="signature apipage">verts : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="view"><a class="lift" href="#view">view</a></a><code class="signature apipage">view : <a href="#phoenix.Camera">phoenix.Camera</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="visible_count"><a class="lift" href="#visible_count">visible_count</a></a><code class="signature apipage">visible_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(_geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>, ?_force_add:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="add_group"><a class="lift" href="#add_group">add_group</a></a><code class="signature apipage">add_group(_group:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _pre_render:<span><a href="#phoenix.Batcher-&gt;Void">phoenix.Batcher-&gt;Void</a></span>, _post_render:<span><a href="#phoenix.Batcher-&gt;Void">phoenix.Batcher-&gt;Void</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="batch"><a class="lift" href="#batch">batch</a></a><code class="signature apipage">batch(?persist_immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="blend_mode"><a class="lift" href="#blend_mode">blend_mode</a></a><code class="signature apipage">blend_mode(?_src_mode:<span><a href="#phoenix.BlendMode">phoenix.BlendMode</a>=null</span>, ?_dst_mode:<span><a href="#phoenix.BlendMode">phoenix.BlendMode</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="compare"><a class="lift" href="#compare">compare</a></a><code class="signature apipage">compare(other:<span><a href="#phoenix.Batcher">phoenix.Batcher</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="compare_rule"><a class="lift" href="#compare_rule">compare_rule</a></a><code class="signature apipage">compare_rule(a:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>, b:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="compare_rule_to_string"><a class="lift" href="#compare_rule_to_string">compare_rule_to_string</a></a><code class="signature apipage">compare_rule_to_string(r:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="draw"><a class="lift" href="#draw">draw</a></a><code class="signature apipage">draw(?persist_immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="geometry_compare"><a class="lift" href="#geometry_compare">geometry_compare</a></a><code class="signature apipage">geometry_compare(a:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>, b:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_r:<span><a href="#phoenix.Renderer">phoenix.Renderer</a></span>, ?_name:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;&#x27;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(_geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>, ?_remove_batcher_from_geometry:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_layer"><a class="lift" href="#set_layer">set_layer</a></a><code class="signature apipage">set_layer(_layer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="shader_activate"><a class="lift" href="#shader_activate">shader_activate</a></a><code class="signature apipage">shader_activate(_shader:<span><a href="#phoenix.Shader">phoenix.Shader</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="submit_current_vertex_list"><a class="lift" href="#submit_current_vertex_list">submit_current_vertex_list</a></a><code class="signature apipage">submit_current_vertex_list(type:<span><a href="#phoenix.PrimitiveType">phoenix.PrimitiveType</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="submit_static_geometry"><a class="lift" href="#submit_static_geometry">submit_static_geometry</a></a><code class="signature apipage">submit_static_geometry(geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="layer"><a class="lift" href="#layer">layer</a></a><code class="signature apipage">layer : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

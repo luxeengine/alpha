@@ -69,8 +69,8 @@ pre code {
 
 pre,code { font-family:'dsm',monospace; background:#272822; border-radius:0.2em; height:auto; margin: 0.2em; padding: 0; padding-left:1em;  }
 
-code { color:#f6007b; border:solid 1px rgba(39,40,34,0.3); }
-code a { color:#FF8B1F; }
+code { color:#666; border:solid 1px rgba(39,40,34,0.3); }
+code a { color:#f6007b; }
 code a:hover { color:#000; }
 
 
@@ -81,7 +81,7 @@ pre {
 
 code {
   display: inline-block;
-  font-size: 0.75em;
+  font-size: 0.79em;
   padding-bottom: 0.1em;
   padding-left: 0.4em;
   padding-right: 0.4em;

@@ -1,185 +1,67 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Visual
-
----
 
 #Visual
 
 
----
-
-
-[Extends](#Extends)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.Entity]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.Entity" href="{{{rel_path}}}api/luxe/Entity.html">luxe.Entity</a>
 
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="clip" href="#clip">clip</a>
-
-
-
-`clip : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a>
-
-
-
-`clip_rect : luxe.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="color" href="#color">color</a>
-
-
-
-`color : luxe.Color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="depth" href="#depth">depth</a>
-
-
-
-`depth : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="geometry" href="#geometry">geometry</a>
-
-
-
-`geometry : phoenix.geometry.Geometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="group" href="#group">group</a>
-
-
-
-`group : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="locked" href="#locked">locked</a>
-
-
-
-`locked : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="origin" href="#origin">origin</a>
-
-
-
-`origin : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="radians" href="#radians">radians</a>
-
-
-
-`radians : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="rotation_z" href="#rotation_z">rotation_z</a>
-
-
-
-`rotation_z : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shader" href="#shader">shader</a>
-
-
-
-`shader : phoenix.Shader`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="size" href="#size">size</a>
-
-
-
-`size : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="texture" href="#texture">texture</a>
-
-
-
-`texture : phoenix.Texture`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="visible" href="#visible">visible</a>
-
-
-
-`visible : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
-
-
-
-`get_serialize_data() : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new<T>(_options:luxe.options.VisualOptions<new.T>) `
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get\_serialize\_data</a></a><code class="signature apipage">get\_serialize\_data() : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_options:<span>[luxe.options.VisualOptions](#luxe.options.VisualOptions)&lt;[new.T]()&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="clip"><a class="lift" href="#clip">clip</a></a><code class="signature apipage">clip : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><code class="signature apipage">clip\_rect : [luxe.Rectangle]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="color"><a class="lift" href="#color">color</a></a><code class="signature apipage">color : [luxe.Color]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="depth"><a class="lift" href="#depth">depth</a></a><code class="signature apipage">depth : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="geometry"><a class="lift" href="#geometry">geometry</a></a><code class="signature apipage">geometry : [phoenix.geometry.Geometry]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="group"><a class="lift" href="#group">group</a></a><code class="signature apipage">group : [Int]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="locked"><a class="lift" href="#locked">locked</a></a><code class="signature apipage">locked : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="radians"><a class="lift" href="#radians">radians</a></a><code class="signature apipage">radians : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="rotation_z"><a class="lift" href="#rotation_z">rotation\_z</a></a><code class="signature apipage">rotation\_z : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="shader"><a class="lift" href="#shader">shader</a></a><code class="signature apipage">shader : [phoenix.Shader]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="size"><a class="lift" href="#size">size</a></a><code class="signature apipage">size : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture : [phoenix.Texture]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="visible"><a class="lift" href="#visible">visible</a></a><code class="signature apipage">visible : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

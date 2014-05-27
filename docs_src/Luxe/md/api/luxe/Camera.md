@@ -1,189 +1,71 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Camera
-
----
 
 #Camera
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.Entity]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.Entity" href="{{{rel_path}}}api/luxe/Entity.html">luxe.Entity</a>
 
-&nbsp;   
-
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="bounds" href="#bounds">bounds</a>
-
-
-
-`bounds : luxe.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="minimum_shake" href="#minimum_shake">minimum_shake</a>
-
-
-
-`minimum_shake : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shake_amount" href="#shake_amount">shake_amount</a>
-
-
-
-`shake_amount : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shake_vector" href="#shake_vector">shake_vector</a>
-
-
-
-`shake_vector : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shaking" href="#shaking">shaking</a>
-
-
-
-`shaking : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="view" href="#view">view</a>
-
-
-
-`view : phoenix.Camera`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="center" href="#center">center</a>
-
-
-
-`center : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="minimum_zoom" href="#minimum_zoom">minimum_zoom</a>
-
-
-
-`minimum_zoom : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="viewport" href="#viewport">viewport</a>
-
-
-
-`viewport : luxe.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="zoom" href="#zoom">zoom</a>
-
-
-
-`zoom : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="focus" href="#focus">focus</a>
-
-
-
-`focus(_p:luxe.Vector, ?_t:Float=0.6f, ?oncomplete:Void) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
-
-
-
-`get_serialize_data() : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(?options:luxe.options.LuxeCameraOptions) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="screen_point_to_world" href="#screen_point_to_world">screen_point_to_world</a>
-
-
-
-`screen_point_to_world(_vector:luxe.Vector) : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shake" href="#shake">shake</a>
-
-
-
-`shake(amount:Float) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="world_point_to_screen" href="#world_point_to_screen">world_point_to_screen</a>
-
-
-
-`world_point_to_screen(_vector:luxe.Vector, ?_viewport:luxe.Rectangle) : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="bounds"><a class="lift" href="#bounds">bounds</a></a><code class="signature apipage">bounds : [luxe.Rectangle](#luxe.Rectangle)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="minimum_shake"><a class="lift" href="#minimum_shake">minimum\_shake</a></a><code class="signature apipage">minimum\_shake : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shake_amount"><a class="lift" href="#shake_amount">shake\_amount</a></a><code class="signature apipage">shake\_amount : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shake_vector"><a class="lift" href="#shake_vector">shake\_vector</a></a><code class="signature apipage">shake\_vector : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shaking"><a class="lift" href="#shaking">shaking</a></a><code class="signature apipage">shaking : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="view"><a class="lift" href="#view">view</a></a><code class="signature apipage">view : [phoenix.Camera](#phoenix.Camera)</code><br/></span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="focus"><a class="lift" href="#focus">focus</a></a><code class="signature apipage">focus(\_p:<span>[luxe.Vector](#luxe.Vector)</span>, ?\_t:<span>[Float](http://api.haxe.org/Float.html)=0.6f</span>, ?oncomplete:<span>[Void](http://api.haxe.org/Void.html)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get\_serialize\_data</a></a><code class="signature apipage">get\_serialize\_data() : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?options:<span>[luxe.options.LuxeCameraOptions](#luxe.options.LuxeCameraOptions)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="screen_point_to_world"><a class="lift" href="#screen_point_to_world">screen\_point\_to\_world</a></a><code class="signature apipage">screen\_point\_to\_world(\_vector:<span>[luxe.Vector](#luxe.Vector)</span>) : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="shake"><a class="lift" href="#shake">shake</a></a><code class="signature apipage">shake(amount:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="world_point_to_screen"><a class="lift" href="#world_point_to_screen">world\_point\_to\_screen</a></a><code class="signature apipage">world\_point\_to\_screen(\_vector:<span>[luxe.Vector](#luxe.Vector)</span>, ?\_viewport:<span>[luxe.Rectangle](#luxe.Rectangle)=null</span>) : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="center"><a class="lift" href="#center">center</a></a><code class="signature apipage">center : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="minimum_zoom"><a class="lift" href="#minimum_zoom">minimum\_zoom</a></a><code class="signature apipage">minimum\_zoom : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport : [luxe.Rectangle]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="zoom"><a class="lift" href="#zoom">zoom</a></a><code class="signature apipage">zoom : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

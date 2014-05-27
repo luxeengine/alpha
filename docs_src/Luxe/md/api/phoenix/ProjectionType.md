@@ -1,65 +1,36 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ProjectionType
-
----
 
 #ProjectionType
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="custom" href="#custom">custom</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`custom`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`ortho`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`perspective`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`phoenix.ProjectionType.custom`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="ortho" href="#ortho">ortho</a>
-
-
-
-`phoenix.ProjectionType.ortho`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="perspective" href="#perspective">perspective</a>
-
-
-
-`phoenix.ProjectionType.perspective`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

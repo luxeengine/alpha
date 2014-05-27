@@ -1,74 +1,42 @@
 
-[![Logo](../../../../images/logo.png)](../../../../index.html)
+[![Logo](../../../../images/logo.png)](../../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../../api/index.html#luxe.tween)   
-[luxe.tween](../)     
-&emsp;&emsp;&emsp;[luxe.tween.easing](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;QuadEaseOut
-
----
 
 #QuadEaseOut
 
 
----
-
-
-[Implements](#Implements)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`<br/>implements <code><span>[luxe.tween.easing.IEasing]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Implements" ></a>
-###Implements   
+</span>
+
+
 ---
-<a class="lift" name="luxe.tween.easing.IEasing" href="{{{rel_path}}}api/luxe/tween/easing/IEasing.html">luxe.tween.easing.IEasing</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-&nbsp;   
+<h3>Members</h3> <hr/>no public members
 
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="calculate" href="#calculate">calculate</a>
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="calculate"><a class="lift" href="#calculate">calculate</a></a><code class="signature apipage">calculate(k:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ease"><a class="lift" href="#ease">ease</a></a><code class="signature apipage">ease(t:<span>[Float](http://api.haxe.org/Float.html)</span>, b:<span>[Float](http://api.haxe.org/Float.html)</span>, c:<span>[Float](http://api.haxe.org/Float.html)</span>, d:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-
-`calculate(k:Float) : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="ease" href="#ease">ease</a>
-
-
-
-`ease(t:Float, b:Float, c:Float, d:Float) : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new() `
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

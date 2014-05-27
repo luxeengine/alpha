@@ -1,166 +1,69 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.components)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.components](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Component
-
----
 
 #Component
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.Objects]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.Objects" href="{{{rel_path}}}api/luxe/Objects.html">luxe.Objects</a>
 
-&nbsp;   
-
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="entity" href="#entity">entity</a>
-
-
-
-`entity : luxe.Entity`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="pos" href="#pos">pos</a>
-
-
-
-`pos : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos_local" href="#pos_local">pos_local</a>
-
-
-
-`pos_local : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="rotation" href="#rotation">rotation</a>
-
-
-
-`rotation : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="rotation_local" href="#rotation_local">rotation_local</a>
-
-
-
-`rotation_local : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="scale" href="#scale">scale</a>
-
-
-
-`scale : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="scale_local" href="#scale_local">scale_local</a>
-
-
-
-`scale_local : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="add" href="#add">add</a>
-
-
-
-`add<T1,T2>(type:Class<add.T1>, ?_name:String='', ?_data:add.T2) : add.T1`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get" href="#get">get</a>
-
-
-
-`get<T>(_name:String, ?in_children:Bool=false) : get.T`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_any" href="#get_any">get_any</a>
-
-
-
-`get_any<T>(_name:String, ?in_children:Bool=false, ?first_only:Bool=true) : Array<get_any.T>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a>
-
-
-
-`get_serialize_data() : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new<T>(?_options:luxe.options.ComponentOptions<new.T>) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="remove" href="#remove">remove</a>
-
-
-
-`remove<T>(?_name:String='', ?_data:remove.T) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="entity"><a class="lift" href="#entity">entity</a></a><code class="signature apipage">entity : [luxe.Entity](#luxe.Entity)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">id : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(type:<span>[Class]()&lt;[add.T1]()&gt;</span>, ?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[add.T2]()=null</span>) : [add.T1]()</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get"><a class="lift" href="#get">get</a></a><code class="signature apipage">get(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?in\_children:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [get.T]()</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_any"><a class="lift" href="#get_any">get\_any</a></a><code class="signature apipage">get\_any(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?in\_children:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>, ?first\_only:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [Array](http://api.haxe.org/Array.html)&lt;[get_any.T]()&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get\_serialize\_data</a></a><code class="signature apipage">get\_serialize\_data() : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">new(?\_options:<span>[luxe.options.ComponentOptions](#luxe.options.ComponentOptions)&lt;[new.T]()&gt;=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[remove.T]()=null</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="pos_local"><a class="lift" href="#pos_local">pos\_local</a></a><code class="signature apipage">pos\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="rotation_local"><a class="lift" href="#rotation_local">rotation\_local</a></a><code class="signature apipage">rotation\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="scale_local"><a class="lift" href="#scale_local">scale\_local</a></a><code class="signature apipage">scale\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

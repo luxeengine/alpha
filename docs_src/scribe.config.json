@@ -1,0 +1,7 @@
+{ 
+	"input":"scribe.types.xml", 
+	"lime_project":"../samples/simplest/project.luxe.xml", 
+	"output":"generated_api.json", 
+	"force":true,
+	"allowed_packages":"luxe,phoenix" 
+}

@@ -1,63 +1,39 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LoadShaderInfo
-
----
 
 #LoadShaderInfo
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="onloaded" href="#onloaded">onloaded</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="onloaded"><a class="lift" href="#onloaded">onloaded</a></a><code class="signature apipage">onloaded : [phoenix.Shader-&gt;Void](#phoenix.Shader->Void)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ps_id"><a class="lift" href="#ps_id">ps\_id</a></a><code class="signature apipage">ps\_id : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vs_id"><a class="lift" href="#vs_id">vs\_id</a></a><code class="signature apipage">vs\_id : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`onloaded : phoenix.Shader->Void`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="ps_id" href="#ps_id">ps_id</a>
-
-
-
-`ps_id : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="vs_id" href="#vs_id">vs_id</a>
-
-
-
-`vs_id : String`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

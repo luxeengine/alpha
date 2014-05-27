@@ -1,146 +1,46 @@
 
-[![Logo](../../../../images/logo.png)](../../../../index.html)
+[![Logo](../../../../images/logo.png)](../../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../../api/index.html#luxe.utils)   
-[luxe.utils](../)     
-&emsp;&emsp;&emsp;[luxe.utils.json](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;JSONTokenType
-
----
 
 #JSONTokenType
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="tCOLON" href="#tCOLON">tCOLON</a>
 
-
-
-`luxe.utils.json.JSONTokenType.tCOLON`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tCOMMA" href="#tCOMMA">tCOMMA</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tCOMMA`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tFALSE" href="#tFALSE">tFALSE</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tFALSE`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tLEFT_BRACE" href="#tLEFT_BRACE">tLEFT_BRACE</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tLEFT_BRACE`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tLEFT_BRACKET" href="#tLEFT_BRACKET">tLEFT_BRACKET</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tLEFT_BRACKET`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tNAN" href="#tNAN">tNAN</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tNAN`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tNULL" href="#tNULL">tNULL</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tNULL`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tNUMBER" href="#tNUMBER">tNUMBER</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tNUMBER`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tRIGHT_BRACE" href="#tRIGHT_BRACE">tRIGHT_BRACE</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tRIGHT_BRACE`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tRIGHT_BRACKET" href="#tRIGHT_BRACKET">tRIGHT_BRACKET</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tRIGHT_BRACKET`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tSTRING" href="#tSTRING">tSTRING</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tSTRING`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tTRUE" href="#tTRUE">tTRUE</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tTRUE`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="tUNKNOWN" href="#tUNKNOWN">tUNKNOWN</a>
-
-
-
-`luxe.utils.json.JSONTokenType.tUNKNOWN`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`tCOLON`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tCOMMA`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tFALSE`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tLEFT_BRACE`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tLEFT_BRACKET`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tNAN`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tNULL`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tNUMBER`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tRIGHT_BRACE`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tRIGHT_BRACKET`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tSTRING`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tTRUE`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`tUNKNOWN`<br/> </span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/>no public methods
+
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

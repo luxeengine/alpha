@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,67 +50,51 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-debug-"><a href="../../../api/index.html#luxe.debug">API Index</a></h2>
-<p><a href="../">luxe</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.debug</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TraceDebugView</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="tracedebugview">TraceDebugView</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.debug.DebugView</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.debug.DebugView" href="../../../api/luxe/debug/DebugView.html">luxe.debug.DebugView</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="lines" href="#lines">lines</a></p>
-<p><code>lines : luxe.Text</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="logged" href="#logged">logged</a></p>
-<p><code>logged : Array&lt;String&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="max_lines" href="#max_lines">max_lines</a></p>
-<p><code>max_lines : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="add_line" href="#add_line">add_line</a></p>
-<p><code>add_line(_t:String) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="create" href="#create">create</a></p>
-<p><code>create() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="hide" href="#hide">hide</a></p>
-<p><code>hide() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new()</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="on_trace" href="#on_trace">on_trace</a></p>
-<p><code>on_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="process" href="#process">process</a></p>
-<p><code>process() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="refresh" href="#refresh">refresh</a></p>
-<p><code>refresh() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="show" href="#show">show</a></p>
-<p><code>show() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="lines"><a class="lift" href="#lines">lines</a></a><code class="signature apipage">lines : <a href="#luxe.Text">luxe.Text</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="logged"><a class="lift" href="#logged">logged</a></a><code class="signature apipage">logged : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="max_lines"><a class="lift" href="#max_lines">max_lines</a></a><code class="signature apipage">max_lines : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add_line"><a class="lift" href="#add_line">add_line</a></a><code class="signature apipage">add_line(_t:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="hide"><a class="lift" href="#hide">hide</a></a><code class="signature apipage">hide() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="on_trace"><a class="lift" href="#on_trace">on_trace</a></a><code class="signature apipage">on_trace(v:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?inf:<span><a href="http://api.haxe.org/haxe/PosInfos.html">haxe.PosInfos</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh"><a class="lift" href="#refresh">refresh</a></a><code class="signature apipage">refresh() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a><code class="signature apipage">show() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

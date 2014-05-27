@@ -1,33 +1,33 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MouseButton
-
----
 
 #MouseButton
 
 
----
-
-
-
 
 ---
 
+`typedef`
+<span class="meta">
 
+</span>
+
+
+---
+
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/>no public members
+
+<h3>Methods</h3> <hr/>no public methods
+
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

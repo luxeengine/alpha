@@ -1,144 +1,63 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.debug)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.debug](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TraceDebugView
-
----
 
 #TraceDebugView
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.debug.DebugView]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.debug.DebugView" href="{{{rel_path}}}api/luxe/debug/DebugView.html">luxe.debug.DebugView</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="lines" href="#lines">lines</a>
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="lines"><a class="lift" href="#lines">lines</a></a><code class="signature apipage">lines : [luxe.Text](#luxe.Text)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="logged"><a class="lift" href="#logged">logged</a></a><code class="signature apipage">logged : [Array](http://api.haxe.org/Array.html)&lt;[String](http://api.haxe.org/String.html)&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="max_lines"><a class="lift" href="#max_lines">max\_lines</a></a><code class="signature apipage">max\_lines : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add_line"><a class="lift" href="#add_line">add\_line</a></a><code class="signature apipage">add\_line(\_t:<span>[String](http://api.haxe.org/String.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="hide"><a class="lift" href="#hide">hide</a></a><code class="signature apipage">hide() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="on_trace"><a class="lift" href="#on_trace">on\_trace</a></a><code class="signature apipage">on\_trace(v:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>, ?inf:<span>[haxe.PosInfos](http://api.haxe.org/haxe/PosInfos.html)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh"><a class="lift" href="#refresh">refresh</a></a><code class="signature apipage">refresh() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a><code class="signature apipage">show() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-`lines : luxe.Text`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="logged" href="#logged">logged</a>
-
-
-
-`logged : Array<String>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="max_lines" href="#max_lines">max_lines</a>
-
-
-
-`max_lines : Int`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="add_line" href="#add_line">add_line</a>
-
-
-
-`add_line(_t:String) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="create" href="#create">create</a>
-
-
-
-`create() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="hide" href="#hide">hide</a>
-
-
-
-`hide() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new() `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="on_trace" href="#on_trace">on_trace</a>
-
-
-
-`on_trace(v:Dynamic, ?inf:haxe.PosInfos) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="process" href="#process">process</a>
-
-
-
-`process() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="refresh" href="#refresh">refresh</a>
-
-
-
-`refresh() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="show" href="#show">show</a>
-
-
-
-`show() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

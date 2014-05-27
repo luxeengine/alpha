@@ -1,95 +1,50 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PhysicsEngine
-
----
 
 #PhysicsEngine
 
 
----
-
-
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="paused" href="#paused">paused</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="paused"><a class="lift" href="#paused">paused</a></a><code class="signature apipage">paused : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`paused : Bool`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="pause"><a class="lift" href="#pause">pause</a></a><code class="signature apipage">pause(?\_pause:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="destroy" href="#destroy">destroy</a>
-
-
-
-`destroy() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="init" href="#init">init</a>
-
-
-
-`init() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new() `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pause" href="#pause">pause</a>
-
-
-
-`pause(?_pause:Bool=true) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="process" href="#process">process</a>
-
-
-
-`process() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

@@ -1,95 +1,47 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;InputEvent
-
----
 
 #InputEvent
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="gamepad_event" href="#gamepad_event">gamepad_event</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="gamepad_event"><a class="lift" href="#gamepad_event">gamepad\_event</a></a><code class="signature apipage">gamepad\_event : [luxe.GamepadEvent](#luxe.GamepadEvent)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="key_event"><a class="lift" href="#key_event">key\_event</a></a><code class="signature apipage">key\_event : [luxe.KeyEvent](#luxe.KeyEvent)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="mouse_event"><a class="lift" href="#mouse_event">mouse\_event</a></a><code class="signature apipage">mouse\_event : [luxe.MouseEvent](#luxe.MouseEvent)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="state"><a class="lift" href="#state">state</a></a><code class="signature apipage">state : [luxe.InputState](#luxe.InputState)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="touch_event"><a class="lift" href="#touch_event">touch\_event</a></a><code class="signature apipage">touch\_event : [luxe.TouchEvent](#luxe.TouchEvent)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="type"><a class="lift" href="#type">type</a></a><code class="signature apipage">type : [luxe.InputType](#luxe.InputType)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`gamepad_event : luxe.GamepadEvent`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="key_event" href="#key_event">key_event</a>
-
-
-
-`key_event : luxe.KeyEvent`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="mouse_event" href="#mouse_event">mouse_event</a>
-
-
-
-`mouse_event : luxe.MouseEvent`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="name" href="#name">name</a>
-
-
-
-`name : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="state" href="#state">state</a>
-
-
-
-`state : luxe.InputState`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="touch_event" href="#touch_event">touch_event</a>
-
-
-
-`touch_event : luxe.TouchEvent`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="type" href="#type">type</a>
-
-
-
-`type : luxe.InputType`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

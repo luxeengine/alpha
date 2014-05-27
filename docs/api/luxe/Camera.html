@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,86 +50,59 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Camera</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="camera">Camera</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.Entity</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.Entity" href="../../api/luxe/Entity.html">luxe.Entity</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="bounds" href="#bounds">bounds</a></p>
-<p><code>bounds : luxe.Rectangle</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="minimum_shake" href="#minimum_shake">minimum_shake</a></p>
-<p><code>minimum_shake : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shake_amount" href="#shake_amount">shake_amount</a></p>
-<p><code>shake_amount : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shake_vector" href="#shake_vector">shake_vector</a></p>
-<p><code>shake_vector : luxe.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shaking" href="#shaking">shaking</a></p>
-<p><code>shaking : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="view" href="#view">view</a></p>
-<p><code>view : phoenix.Camera</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="center" href="#center">center</a></p>
-<p><code>center : luxe.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="minimum_zoom" href="#minimum_zoom">minimum_zoom</a></p>
-<p><code>minimum_zoom : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="viewport" href="#viewport">viewport</a></p>
-<p><code>viewport : luxe.Rectangle</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="zoom" href="#zoom">zoom</a></p>
-<p><code>zoom : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="focus" href="#focus">focus</a></p>
-<p><code>focus(_p:luxe.Vector, ?_t:Float=0.6f, ?oncomplete:Void) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="get_serialize_data" href="#get_serialize_data">get_serialize_data</a></p>
-<p><code>get_serialize_data() : Dynamic</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?options:luxe.options.LuxeCameraOptions)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="screen_point_to_world" href="#screen_point_to_world">screen_point_to_world</a></p>
-<p><code>screen_point_to_world(_vector:luxe.Vector) : luxe.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shake" href="#shake">shake</a></p>
-<p><code>shake(amount:Float) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="world_point_to_screen" href="#world_point_to_screen">world_point_to_screen</a></p>
-<p><code>world_point_to_screen(_vector:luxe.Vector, ?_viewport:luxe.Rectangle) : luxe.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="bounds"><a class="lift" href="#bounds">bounds</a></a><code class="signature apipage">bounds : <a href="#luxe.Rectangle">luxe.Rectangle</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="minimum_shake"><a class="lift" href="#minimum_shake">minimum_shake</a></a><code class="signature apipage">minimum_shake : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shake_amount"><a class="lift" href="#shake_amount">shake_amount</a></a><code class="signature apipage">shake_amount : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shake_vector"><a class="lift" href="#shake_vector">shake_vector</a></a><code class="signature apipage">shake_vector : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shaking"><a class="lift" href="#shaking">shaking</a></a><code class="signature apipage">shaking : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="view"><a class="lift" href="#view">view</a></a><code class="signature apipage">view : <a href="#phoenix.Camera">phoenix.Camera</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="focus"><a class="lift" href="#focus">focus</a></a><code class="signature apipage">focus(_p:<span><a href="#luxe.Vector">luxe.Vector</a></span>, ?_t:<span><a href="http://api.haxe.org/Float.html">Float</a>=0.6f</span>, ?oncomplete:<span><a href="http://api.haxe.org/Void.html">Void</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get_serialize_data</a></a><code class="signature apipage">get_serialize_data() : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?options:<span><a href="#luxe.options.LuxeCameraOptions">luxe.options.LuxeCameraOptions</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="screen_point_to_world"><a class="lift" href="#screen_point_to_world">screen_point_to_world</a></a><code class="signature apipage">screen_point_to_world(_vector:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="#luxe.Vector">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="shake"><a class="lift" href="#shake">shake</a></a><code class="signature apipage">shake(amount:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="world_point_to_screen"><a class="lift" href="#world_point_to_screen">world_point_to_screen</a></a><code class="signature apipage">world_point_to_screen(_vector:<span><a href="#luxe.Vector">luxe.Vector</a></span>, ?_viewport:<span><a href="#luxe.Rectangle">luxe.Rectangle</a>=null</span>) : <a href="#luxe.Vector">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="center"><a class="lift" href="#center">center</a></a><code class="signature apipage">center : <a href="">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="minimum_zoom"><a class="lift" href="#minimum_zoom">minimum_zoom</a></a><code class="signature apipage">minimum_zoom : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport : <a href="">luxe.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="zoom"><a class="lift" href="#zoom">zoom</a></a><code class="signature apipage">zoom : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

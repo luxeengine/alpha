@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,148 +50,128 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Shader</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="shader">Shader</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.Resource</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.Resource" href="../../api/luxe/Resource.html">luxe.Resource</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="color_attribute" href="#color_attribute">color_attribute</a></p>
-<p><code>color_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="errors" href="#errors">errors</a></p>
-<p><code>errors : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="frag_shader" href="#frag_shader">frag_shader</a></p>
-<p><code>frag_shader : lime.gl.GLShader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="log" href="#log">log</a></p>
-<p><code>log : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="modelviewmatrix_attribute" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a></p>
-<p><code>modelviewmatrix_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="normal_attribute" href="#normal_attribute">normal_attribute</a></p>
-<p><code>normal_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="program" href="#program">program</a></p>
-<p><code>program : lime.gl.GLProgram</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="projectionmatrix_attribute" href="#projectionmatrix_attribute">projectionmatrix_attribute</a></p>
-<p><code>projectionmatrix_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shader" href="#shader">shader</a></p>
-<p><code>shader : lime.gl.GLShader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tcoord_attribute" href="#tcoord_attribute">tcoord_attribute</a></p>
-<p><code>tcoord_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex0_attribute" href="#tex0_attribute">tex0_attribute</a></p>
-<p><code>tex0_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex1_attribute" href="#tex1_attribute">tex1_attribute</a></p>
-<p><code>tex1_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex2_attribute" href="#tex2_attribute">tex2_attribute</a></p>
-<p><code>tex2_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex3_attribute" href="#tex3_attribute">tex3_attribute</a></p>
-<p><code>tex3_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex4_attribute" href="#tex4_attribute">tex4_attribute</a></p>
-<p><code>tex4_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex5_attribute" href="#tex5_attribute">tex5_attribute</a></p>
-<p><code>tex5_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex6_attribute" href="#tex6_attribute">tex6_attribute</a></p>
-<p><code>tex6_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="tex7_attribute" href="#tex7_attribute">tex7_attribute</a></p>
-<p><code>tex7_attribute : lime.gl.GLUniformLocation</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uniforms" href="#uniforms">uniforms</a></p>
-<p><code>uniforms : Map&lt;String,phoenix.UniformValue&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vert_attribute" href="#vert_attribute">vert_attribute</a></p>
-<p><code>vert_attribute : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vert_shader" href="#vert_shader">vert_shader</a></p>
-<p><code>vert_shader : lime.gl.GLShader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="activate" href="#activate">activate</a></p>
-<p><code>activate() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="addError" href="#addError">addError</a></p>
-<p><code>addError(_error:String) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="addLog" href="#addLog">addLog</a></p>
-<p><code>addLog(_log:String) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="compile" href="#compile">compile</a></p>
-<p><code>compile(_type:Int, _source:String, ?_verbose:Bool=false) : lime.gl.GLShader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="deactivate" href="#deactivate">deactivate</a></p>
-<p><code>deactivate() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
-<p><code>destroy() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="drop" href="#drop">drop</a></p>
-<p><code>drop() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="link" href="#link">link</a></p>
-<p><code>link() : lime.gl.GLProgram</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="load_from_string" href="#load_from_string">load_from_string</a></p>
-<p><code>load_from_string(_vertex_source:String, _fragment_source:String, ?_verbose:Bool=false) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_manager:luxe.ResourceManager)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_color" href="#set_uniform_color">set_uniform_color</a></p>
-<p><code>set_uniform_color(_name:String, _value:phoenix.Color) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_float" href="#set_uniform_float">set_uniform_float</a></p>
-<p><code>set_uniform_float(_name:String, _value:Float) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_int" href="#set_uniform_int">set_uniform_int</a></p>
-<p><code>set_uniform_int(_name:String, _value:Int) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_texture" href="#set_uniform_texture">set_uniform_texture</a></p>
-<p><code>set_uniform_texture(_name:String, _value:phoenix.Texture) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_vector2" href="#set_uniform_vector2">set_uniform_vector2</a></p>
-<p><code>set_uniform_vector2(_name:String, _value:phoenix.Vector) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_vector3" href="#set_uniform_vector3">set_uniform_vector3</a></p>
-<p><code>set_uniform_vector3(_name:String, _value:phoenix.Vector) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_uniform_vector4" href="#set_uniform_vector4">set_uniform_vector4</a></p>
-<p><code>set_uniform_vector4(_name:String, _value:phoenix.Vector) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="color_attribute"><a class="lift" href="#color_attribute">color_attribute</a></a><code class="signature apipage">color_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="errors"><a class="lift" href="#errors">errors</a></a><code class="signature apipage">errors : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="frag_shader"><a class="lift" href="#frag_shader">frag_shader</a></a><code class="signature apipage">frag_shader : <a href="">lime.gl.GLShader</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a></a><code class="signature apipage">modelviewmatrix_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="normal_attribute"><a class="lift" href="#normal_attribute">normal_attribute</a></a><code class="signature apipage">normal_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="program"><a class="lift" href="#program">program</a></a><code class="signature apipage">program : <a href="">lime.gl.GLProgram</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="projectionmatrix_attribute"><a class="lift" href="#projectionmatrix_attribute">projectionmatrix_attribute</a></a><code class="signature apipage">projectionmatrix_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shader"><a class="lift" href="#shader">shader</a></a><code class="signature apipage">shader : <a href="">lime.gl.GLShader</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tcoord_attribute"><a class="lift" href="#tcoord_attribute">tcoord_attribute</a></a><code class="signature apipage">tcoord_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex0_attribute"><a class="lift" href="#tex0_attribute">tex0_attribute</a></a><code class="signature apipage">tex0_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex1_attribute"><a class="lift" href="#tex1_attribute">tex1_attribute</a></a><code class="signature apipage">tex1_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex2_attribute"><a class="lift" href="#tex2_attribute">tex2_attribute</a></a><code class="signature apipage">tex2_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex3_attribute"><a class="lift" href="#tex3_attribute">tex3_attribute</a></a><code class="signature apipage">tex3_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex4_attribute"><a class="lift" href="#tex4_attribute">tex4_attribute</a></a><code class="signature apipage">tex4_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex5_attribute"><a class="lift" href="#tex5_attribute">tex5_attribute</a></a><code class="signature apipage">tex5_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex6_attribute"><a class="lift" href="#tex6_attribute">tex6_attribute</a></a><code class="signature apipage">tex6_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="tex7_attribute"><a class="lift" href="#tex7_attribute">tex7_attribute</a></a><code class="signature apipage">tex7_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uniforms"><a class="lift" href="#uniforms">uniforms</a></a><code class="signature apipage">uniforms : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="#phoenix.UniformValue">phoenix.UniformValue</a>&lt;<a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&gt;&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vert_attribute"><a class="lift" href="#vert_attribute">vert_attribute</a></a><code class="signature apipage">vert_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vert_shader"><a class="lift" href="#vert_shader">vert_shader</a></a><code class="signature apipage">vert_shader : <a href="">lime.gl.GLShader</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="dropped"><a class="lift" href="#dropped">dropped</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">dropped : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="manager"><a class="lift" href="#manager">manager</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">manager : <a href="#luxe.ResourceManager">luxe.ResourceManager</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="persistent"><a class="lift" href="#persistent">persistent</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">persistent : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="time_created"><a class="lift" href="#time_created">time_created</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">time_created : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="time_to_load"><a class="lift" href="#time_to_load">time_to_load</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">time_to_load : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="type"><a class="lift" href="#type">type</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">type : <a href="#luxe.ResourceType">luxe.ResourceType</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="activate"><a class="lift" href="#activate">activate</a></a><code class="signature apipage">activate() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="addError"><a class="lift" href="#addError">addError</a></a><code class="signature apipage">addError(_error:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="addLog"><a class="lift" href="#addLog">addLog</a></a><code class="signature apipage">addLog(_log:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="compile"><a class="lift" href="#compile">compile</a></a><code class="signature apipage">compile(_type:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _source:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_verbose:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="">lime.gl.GLShader</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deactivate"><a class="lift" href="#deactivate">deactivate</a></a><code class="signature apipage">deactivate() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="drop"><a class="lift" href="#drop">drop</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">drop() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="link"><a class="lift" href="#link">link</a></a><code class="signature apipage">link() : <a href="">lime.gl.GLProgram</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="load_from_string"><a class="lift" href="#load_from_string">load_from_string</a></a><code class="signature apipage">load_from_string(_vertex_source:<span><a href="http://api.haxe.org/String.html">String</a></span>, _fragment_source:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_verbose:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">new(_manager:<span><a href="#luxe.ResourceManager">luxe.ResourceManager</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_color"><a class="lift" href="#set_uniform_color">set_uniform_color</a></a><code class="signature apipage">set_uniform_color(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="#phoenix.Color">phoenix.Color</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_float"><a class="lift" href="#set_uniform_float">set_uniform_float</a></a><code class="signature apipage">set_uniform_float(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_int"><a class="lift" href="#set_uniform_int">set_uniform_int</a></a><code class="signature apipage">set_uniform_int(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_texture"><a class="lift" href="#set_uniform_texture">set_uniform_texture</a></a><code class="signature apipage">set_uniform_texture(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="#phoenix.Texture">phoenix.Texture</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_vector2"><a class="lift" href="#set_uniform_vector2">set_uniform_vector2</a></a><code class="signature apipage">set_uniform_vector2(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_vector3"><a class="lift" href="#set_uniform_vector3">set_uniform_vector3</a></a><code class="signature apipage">set_uniform_vector3(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_uniform_vector4"><a class="lift" href="#set_uniform_vector4">set_uniform_vector4</a></a><code class="signature apipage">set_uniform_vector4(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _value:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

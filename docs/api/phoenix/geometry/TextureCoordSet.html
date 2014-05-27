@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,56 +50,40 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-geometry-"><a href="../../../api/index.html#phoenix.geometry">API Index</a></h2>
-<p><a href="../">phoenix</a><br>&emsp;&emsp;&emsp;<a href="./">phoenix.geometry</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextureCoordSet</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="texturecoordset">TextureCoordSet</h1>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="uv0" href="#uv0">uv0</a></p>
-<p><code>uv0 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv1" href="#uv1">uv1</a></p>
-<p><code>uv1 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv2" href="#uv2">uv2</a></p>
-<p><code>uv2 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv3" href="#uv3">uv3</a></p>
-<p><code>uv3 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv4" href="#uv4">uv4</a></p>
-<p><code>uv4 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv5" href="#uv5">uv5</a></p>
-<p><code>uv5 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv6" href="#uv6">uv6</a></p>
-<p><code>uv6 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv7" href="#uv7">uv7</a></p>
-<p><code>uv7 : phoenix.geometry.TextureCoord</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new()</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="uv0"><a class="lift" href="#uv0">uv0</a></a><code class="signature apipage">uv0 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv1"><a class="lift" href="#uv1">uv1</a></a><code class="signature apipage">uv1 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv2"><a class="lift" href="#uv2">uv2</a></a><code class="signature apipage">uv2 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv3"><a class="lift" href="#uv3">uv3</a></a><code class="signature apipage">uv3 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv4"><a class="lift" href="#uv4">uv4</a></a><code class="signature apipage">uv4 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv5"><a class="lift" href="#uv5">uv5</a></a><code class="signature apipage">uv5 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv6"><a class="lift" href="#uv6">uv6</a></a><code class="signature apipage">uv6 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uv7"><a class="lift" href="#uv7">uv7</a></a><code class="signature apipage">uv7 : <a href="#phoenix.geometry.TextureCoord">phoenix.geometry.TextureCoord</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

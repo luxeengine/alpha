@@ -1,129 +1,44 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BlendMode
-
----
 
 #BlendMode
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="dst_alpha" href="#dst_alpha">dst_alpha</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`dst_alpha`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`dst_color`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`one`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`one_minus_dst_alpha`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`one_minus_dst_color`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`one_minus_src_alpha`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`one_minus_src_color`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`src_alpha`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`src_alpha_saturate`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`src_color`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`zero`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`phoenix.BlendMode.dst_alpha`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="dst_color" href="#dst_color">dst_color</a>
-
-
-
-`phoenix.BlendMode.dst_color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="one" href="#one">one</a>
-
-
-
-`phoenix.BlendMode.one`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="one_minus_dst_alpha" href="#one_minus_dst_alpha">one_minus_dst_alpha</a>
-
-
-
-`phoenix.BlendMode.one_minus_dst_alpha`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="one_minus_dst_color" href="#one_minus_dst_color">one_minus_dst_color</a>
-
-
-
-`phoenix.BlendMode.one_minus_dst_color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="one_minus_src_alpha" href="#one_minus_src_alpha">one_minus_src_alpha</a>
-
-
-
-`phoenix.BlendMode.one_minus_src_alpha`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="one_minus_src_color" href="#one_minus_src_color">one_minus_src_color</a>
-
-
-
-`phoenix.BlendMode.one_minus_src_color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="src_alpha" href="#src_alpha">src_alpha</a>
-
-
-
-`phoenix.BlendMode.src_alpha`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="src_alpha_saturate" href="#src_alpha_saturate">src_alpha_saturate</a>
-
-
-
-`phoenix.BlendMode.src_alpha_saturate`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="src_color" href="#src_color">src_color</a>
-
-
-
-`phoenix.BlendMode.src_color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="zero" href="#zero">zero</a>
-
-
-
-`phoenix.BlendMode.zero`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

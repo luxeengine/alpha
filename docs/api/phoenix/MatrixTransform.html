@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,33 +50,28 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MatrixTransform</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="matrixtransform">MatrixTransform</h1>
 <hr>
-<p><a href="#Members">Members</a>   </p>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="pos" href="#pos">pos</a></p>
-<p><code>pos : phoenix.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="rotation" href="#rotation">rotation</a></p>
-<p><code>rotation : phoenix.Quaternion</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="scale" href="#scale">scale</a></p>
-<p><code>scale : phoenix.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : <a href="#phoenix.Quaternion">phoenix.Quaternion</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

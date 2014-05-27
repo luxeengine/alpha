@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,96 +50,75 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-geometry-"><a href="../../../api/index.html#phoenix.geometry">API Index</a></h2>
-<p><a href="../">phoenix</a><br>&emsp;&emsp;&emsp;<a href="./">phoenix.geometry</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GeometryState</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="geometrystate">GeometryState</h1>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="dirty" href="#dirty">dirty</a></p>
-<p><code>dirty : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="log" href="#log">log</a></p>
-<p><code>log : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="clip" href="#clip">clip</a></p>
-<p><code>clip : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a></p>
-<p><code>clip_rect : phoenix.Rectangle</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="depth" href="#depth">depth</a></p>
-<p><code>depth : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="group" href="#group">group</a></p>
-<p><code>group : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="primitive_type" href="#primitive_type">primitive_type</a></p>
-<p><code>primitive_type : phoenix.PrimitiveType</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="shader" href="#shader">shader</a></p>
-<p><code>shader : phoenix.Shader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="texture" href="#texture">texture</a></p>
-<p><code>texture : phoenix.Texture</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="clean" href="#clean">clean</a></p>
-<p><code>clean() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="clone_onto" href="#clone_onto">clone_onto</a></p>
-<p><code>clone_onto(_other:phoenix.geometry.GeometryState) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new()</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_clip" href="#set_clip">set_clip</a></p>
-<p><code>set_clip(val:Bool) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_clip_rect" href="#set_clip_rect">set_clip_rect</a></p>
-<p><code>set_clip_rect(val:phoenix.Rectangle) : phoenix.Rectangle</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_depth" href="#set_depth">set_depth</a></p>
-<p><code>set_depth(val:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_group" href="#set_group">set_group</a></p>
-<p><code>set_group(val:Int) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_primitive_type" href="#set_primitive_type">set_primitive_type</a></p>
-<p><code>set_primitive_type(val:phoenix.PrimitiveType) : phoenix.PrimitiveType</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_shader" href="#set_shader">set_shader</a></p>
-<p><code>set_shader(val:phoenix.Shader) : phoenix.Shader</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_texture" href="#set_texture">set_texture</a></p>
-<p><code>set_texture(val:phoenix.Texture) : phoenix.Texture</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="str" href="#str">str</a></p>
-<p><code>str() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="update" href="#update">update</a></p>
-<p><code>update(other:phoenix.geometry.GeometryState) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="dirty"><a class="lift" href="#dirty">dirty</a></a><code class="signature apipage">dirty : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="clean"><a class="lift" href="#clean">clean</a></a><code class="signature apipage">clean() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="clone_onto"><a class="lift" href="#clone_onto">clone_onto</a></a><code class="signature apipage">clone_onto(_other:<span><a href="#phoenix.geometry.GeometryState">phoenix.geometry.GeometryState</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_clip"><a class="lift" href="#set_clip">set_clip</a></a><code class="signature apipage">set_clip(val:<span><a href="http://api.haxe.org/Bool.html">Bool</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_clip_rect"><a class="lift" href="#set_clip_rect">set_clip_rect</a></a><code class="signature apipage">set_clip_rect(val:<span><a href="#phoenix.Rectangle">phoenix.Rectangle</a></span>) : <a href="#phoenix.Rectangle">phoenix.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_depth"><a class="lift" href="#set_depth">set_depth</a></a><code class="signature apipage">set_depth(val:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_group"><a class="lift" href="#set_group">set_group</a></a><code class="signature apipage">set_group(val:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_primitive_type"><a class="lift" href="#set_primitive_type">set_primitive_type</a></a><code class="signature apipage">set_primitive_type(val:<span><a href="#phoenix.PrimitiveType">phoenix.PrimitiveType</a></span>) : <a href="#phoenix.PrimitiveType">phoenix.PrimitiveType</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_shader"><a class="lift" href="#set_shader">set_shader</a></a><code class="signature apipage">set_shader(val:<span><a href="#phoenix.Shader">phoenix.Shader</a></span>) : <a href="#phoenix.Shader">phoenix.Shader</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_texture"><a class="lift" href="#set_texture">set_texture</a></a><code class="signature apipage">set_texture(val:<span><a href="#phoenix.Texture">phoenix.Texture</a></span>) : <a href="#phoenix.Texture">phoenix.Texture</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="str"><a class="lift" href="#str">str</a></a><code class="signature apipage">str() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(other:<span><a href="#phoenix.geometry.GeometryState">phoenix.geometry.GeometryState</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="clip"><a class="lift" href="#clip">clip</a></a><code class="signature apipage">clip : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="clip_rect"><a class="lift" href="#clip_rect">clip_rect</a></a><code class="signature apipage">clip_rect : <a href="">phoenix.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="depth"><a class="lift" href="#depth">depth</a></a><code class="signature apipage">depth : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="group"><a class="lift" href="#group">group</a></a><code class="signature apipage">group : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="primitive_type"><a class="lift" href="#primitive_type">primitive_type</a></a><code class="signature apipage">primitive_type : <a href="">phoenix.PrimitiveType</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="shader"><a class="lift" href="#shader">shader</a></a><code class="signature apipage">shader : <a href="">phoenix.Shader</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture : <a href="">phoenix.Texture</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

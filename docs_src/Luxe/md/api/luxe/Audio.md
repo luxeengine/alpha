@@ -1,161 +1,66 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Audio
-
----
 
 #Audio
 
 
----
-
-
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-&nbsp;   
+</span>
 
-&nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
 ---
-<a class="lift" name="create" href="#create">create</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>
 
-`create(_name:String, _file:String, ?_stream:Bool=false) : lime.helpers.Sound`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(\_name:<span>[String](http://api.haxe.org/String.html)</span>, \_file:<span>[String](http://api.haxe.org/String.html)</span>, ?\_stream:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [lime.helpers.Sound]()</code><br/><span class="small_desc_flat">Create a named audio reference, with optional stream flag   \n            **name** The name to assign this audio reference    \n            **file** The asset file id from which the audio is loaded/streamed    \n            **stream** Whether or not to stream the audio, default `false`   \n            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.</span>
+        </span>
+    <span class="method apipage">
+            <a name="exists"><a class="lift" href="#exists">exists</a></a><code class="signature apipage">exists(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Determine whether a named audio reference exists  \n            **name** The audio reference name to check    \n            **returns** true/false</span>
+        </span>
+    <span class="method apipage">
+            <a name="loop"><a class="lift" href="#loop">loop</a></a><code class="signature apipage">loop(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Loop a named audio reference indefinitely. Use `stop` if needed.  \n            **name** The audio reference name to loop    \n            **returns** nothing</span>
+        </span>
+    <span class="method apipage">
+            <a name="on_complete"><a class="lift" href="#on_complete">on\_complete</a></a><code class="signature apipage">on\_complete(\_name:<span>[String](http://api.haxe.org/String.html)</span>, handler:<span>[lime.helpers.Sound-&gt;Void]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Set the on complete handler for a named audio reference   \n            **name** The audio reference name to assign to   \n            **handler** The callback to call when playback is complete   \n            **returns** nothing</span>
+        </span>
+    <span class="method apipage">
+            <a name="pan"><a class="lift" href="#pan">pan</a></a><code class="signature apipage">pan(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_pan:<span>[Float](http://api.haxe.org/Float.html)=null</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat">get/set the pan of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pan** A new pan value (set), or leave empty (get)   \n            **returns** The pan of `name` IF pan is unspecified</span>
+        </span>
+    <span class="method apipage">
+            <a name="play"><a class="lift" href="#play">play</a></a><code class="signature apipage">play(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_number\_of\_times:<span>[Int](http://api.haxe.org/Int.html)=1</span>, ?\_start\_position\_in\_s:<span>[Float](http://api.haxe.org/Float.html)=0</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Play a named audio reference   \n            **name** The audio reference name to play    \n            **number_of_times** The exact number of times to play    \n            **start_position_in_s** The start time, in seconds    \n            **returns** nothing</span>
+        </span>
+    <span class="method apipage">
+            <a name="playing"><a class="lift" href="#playing">playing</a></a><code class="signature apipage">playing(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Determine whether a named audio reference is playing  \n            **name** The audio reference name to check    \n            **returns** true/false</span>
+        </span>
+    <span class="method apipage">
+            <a name="position"><a class="lift" href="#position">position</a></a><code class="signature apipage">position(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_pos:<span>[Float](http://api.haxe.org/Float.html)=null</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat">get/set the position of a named audio reference    \n            **name** The audio reference name to adjust    \n            **pos** A new position value (set), or leave empty (get)   \n            **returns** The position of `name` IF position is unspecified</span>
+        </span>
+    <span class="method apipage">
+            <a name="sound"><a class="lift" href="#sound">sound</a></a><code class="signature apipage">sound(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [lime.helpers.Sound]()</code><br/><span class="small_desc_flat">Fetch a named audio reference   \n            **name** The name to acquire audio reference    \n            **returns** The `Sound` instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="stop"><a class="lift" href="#stop">stop</a></a><code class="signature apipage">stop(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Stop a named audio reference from playing (or looping)   \n            **name** The audio reference name to stop    \n            **returns** nothing</span>
+        </span>
+    <span class="method apipage">
+            <a name="volume"><a class="lift" href="#volume">volume</a></a><code class="signature apipage">volume(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_volume:<span>[Float](http://api.haxe.org/Float.html)=null</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat">get/set the volume of a named audio reference    \n            **name** The audio reference name to adjust    \n            **volume** A new volume value (set), or leave empty (get)    \n            **returns** The volume of `name` IF volume is unspecified</span>
+        </span>
+    
 
-<span class="small_desc_flat"> Create a named audio reference, with optional stream flag   
-            **name** The name to assign this audio reference    
-            **file** The asset file id from which the audio is loaded/streamed    
-            **stream** Whether or not to stream the audio, default `false`   
-            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name. </span>   
-
-<a class="lift" name="exists" href="#exists">exists</a>
-
-
-
-`exists(_name:String) : Bool`
-
-<span class="small_desc_flat"> Determine whether a named audio reference exists  
-            **name** The audio reference name to check    
-            **returns** true/false </span>   
-
-<a class="lift" name="loop" href="#loop">loop</a>
-
-
-
-`loop(_name:String) : Void`
-
-<span class="small_desc_flat"> Loop a named audio reference indefinitely. Use `stop` if needed.  
-            **name** The audio reference name to loop    
-            **returns** nothing </span>   
-
-<a class="lift" name="on_complete" href="#on_complete">on_complete</a>
-
-
-
-`on_complete(_name:String, handler:lime.helpers.Sound->Void) : Void`
-
-<span class="small_desc_flat"> Set the on complete handler for a named audio reference   
-            **name** The audio reference name to assign to   
-            **handler** The callback to call when playback is complete   
-            **returns** nothing </span>   
-
-<a class="lift" name="pan" href="#pan">pan</a>
-
-
-
-`pan(_name:String, ?_pan:Float) : Float`
-
-<span class="small_desc_flat"> get/set the pan of a named audio reference    
-            **name** The audio reference name to adjust    
-            **pan** A new pan value (set), or leave empty (get)   
-            **returns** The pan of `name` IF pan is unspecified </span>   
-
-<a class="lift" name="play" href="#play">play</a>
-
-
-
-`play(_name:String, ?_number_of_times:Int=1, ?_start_position_in_s:Float=0) : Void`
-
-<span class="small_desc_flat"> Play a named audio reference   
-            **name** The audio reference name to play    
-            **number_of_times** The exact number of times to play    
-            **start_position_in_s** The start time, in seconds    
-            **returns** nothing </span>   
-
-<a class="lift" name="playing" href="#playing">playing</a>
-
-
-
-`playing(_name:String) : Bool`
-
-<span class="small_desc_flat"> Determine whether a named audio reference is playing  
-            **name** The audio reference name to check    
-            **returns** true/false </span>   
-
-<a class="lift" name="position" href="#position">position</a>
-
-
-
-`position(_name:String, ?_pos:Float) : Float`
-
-<span class="small_desc_flat"> get/set the position of a named audio reference    
-            **name** The audio reference name to adjust    
-            **pos** A new position value (set), or leave empty (get)   
-            **returns** The position of `name` IF position is unspecified </span>   
-
-<a class="lift" name="sound" href="#sound">sound</a>
-
-
-
-`sound(_name:String) : lime.helpers.Sound`
-
-<span class="small_desc_flat"> Fetch a named audio reference   
-            **name** The name to acquire audio reference    
-            **returns** The `Sound` instance </span>   
-
-<a class="lift" name="stop" href="#stop">stop</a>
-
-
-
-`stop(_name:String) : Void`
-
-<span class="small_desc_flat"> Stop a named audio reference from playing (or looping)   
-            **name** The audio reference name to stop    
-            **returns** nothing </span>   
-
-<a class="lift" name="volume" href="#volume">volume</a>
-
-
-
-`volume(_name:String, ?_volume:Float) : Float`
-
-<span class="small_desc_flat"> get/set the volume of a named audio reference    
-            **name** The audio reference name to adjust    
-            **volume** A new volume value (set), or leave empty (get)    
-            **returns** The volume of `name` IF volume is unspecified </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

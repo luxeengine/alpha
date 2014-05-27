@@ -1,66 +1,42 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#phoenix.utils)   
-[phoenix](../)     
-&emsp;&emsp;&emsp;[phoenix.utils](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Rendering
-
----
 
 #Rendering
 
 
----
-
-
-[StaticMethods](#StaticMethods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="StaticMethods" ></a>
-###StaticMethods   
+</span>
+
+
 ---
-<a class="lift" name="get_elements_for_type" href="#get_elements_for_type">get_elements_for_type</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members
 
-`get_elements_for_type(type:phoenix.PrimitiveType, length:Int) : Int`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_elements_for_type"><a class="lift" href="#get_elements_for_type">get\_elements\_for\_type</a></a><span class="inline-block static">static</span><code class="signature apipage">get\_elements\_for\_type(type:<span>[phoenix.PrimitiveType](#phoenix.PrimitiveType)</span>, length:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_opengl_primitive_type"><a class="lift" href="#get_opengl_primitive_type">get\_opengl\_primitive\_type</a></a><span class="inline-block static">static</span><code class="signature apipage">get\_opengl\_primitive\_type(type:<span>[phoenix.PrimitiveType](#phoenix.PrimitiveType)</span>) : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="gl_blend_mode_from_BlendMode"><a class="lift" href="#gl_blend_mode_from_BlendMode">gl\_blend\_mode\_from\_BlendMode</a></a><span class="inline-block static">static</span><code class="signature apipage">gl\_blend\_mode\_from\_BlendMode(\_b:<span>[phoenix.BlendMode](#phoenix.BlendMode)</span>) : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_opengl_primitive_type" href="#get_opengl_primitive_type">get_opengl_primitive_type</a>
-
-
-
-`get_opengl_primitive_type(type:phoenix.PrimitiveType) : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="gl_blend_mode_from_BlendMode" href="#gl_blend_mode_from_BlendMode">gl_blend_mode_from_BlendMode</a>
-
-
-
-`gl_blend_mode_from_BlendMode(_b:phoenix.BlendMode) : Int`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

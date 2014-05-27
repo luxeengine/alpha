@@ -1,104 +1,50 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#phoenix.geometry)   
-[phoenix](../)     
-&emsp;&emsp;&emsp;[phoenix.geometry](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextureCoord
-
----
 
 #TextureCoord
 
 
----
-
-
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="t" href="#t">t</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="t"><a class="lift" href="#t">t</a></a><code class="signature apipage">t : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="u"><a class="lift" href="#u">u</a></a><code class="signature apipage">u : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="v"><a class="lift" href="#v">v</a></a><code class="signature apipage">v : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`t : Float`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_u:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>, ?\_v:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>, ?\_t:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(?\_u:<span>[Float](http://api.haxe.org/Float.html)=null</span>, ?\_v:<span>[Float](http://api.haxe.org/Float.html)=null</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=null</span>, ?\_t:<span>[Float](http://api.haxe.org/Float.html)=null</span>) : [phoenix.geometry.TextureCoord](#phoenix.geometry.TextureCoord)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="u" href="#u">u</a>
-
-
-
-`u : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="v" href="#v">v</a>
-
-
-
-`v : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="w" href="#w">w</a>
-
-
-
-`w : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(?_u:Float=0.0f, ?_v:Float=0.0f, ?_w:Float=0.0f, ?_t:Float=0.0f) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set" href="#set">set</a>
-
-
-
-`set(?_u:Float, ?_v:Float, ?_w:Float, ?_t:Float) : phoenix.geometry.TextureCoord`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="toString" href="#toString">toString</a>
-
-
-
-`toString() : String`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

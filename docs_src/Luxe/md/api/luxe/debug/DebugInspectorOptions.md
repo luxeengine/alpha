@@ -1,80 +1,43 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.debug)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.debug](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;DebugInspectorOptions
-
----
 
 #DebugInspectorOptions
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="batcher" href="#batcher">batcher</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="batcher"><a class="lift" href="#batcher">batcher</a></a><code class="signature apipage">batcher : [phoenix.Batcher](#phoenix.Batcher)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="font"><a class="lift" href="#font">font</a></a><code class="signature apipage">font : [phoenix.BitmapFont](#phoenix.BitmapFont)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="size"><a class="lift" href="#size">size</a></a><code class="signature apipage">size : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="title"><a class="lift" href="#title">title</a></a><code class="signature apipage">title : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`batcher : phoenix.Batcher`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="font" href="#font">font</a>
-
-
-
-`font : phoenix.BitmapFont`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos" href="#pos">pos</a>
-
-
-
-`pos : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="size" href="#size">size</a>
-
-
-
-`size : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="title" href="#title">title</a>
-
-
-
-`title : String`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

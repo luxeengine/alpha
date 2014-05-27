@@ -1,55 +1,37 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;KeyValuePair
-
----
 
 #KeyValuePair
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="key" href="#key">key</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="key"><a class="lift" href="#key">key</a></a><code class="signature apipage">key : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="value"><a class="lift" href="#value">value</a></a><code class="signature apipage">value : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`key : String`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="value" href="#value">value</a>
-
-
-
-`value : String`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,60 +50,41 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Screen</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="screen">Screen</h1>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="core" href="#core">core</a></p>
-<p><code>core : luxe.Core</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="cursor" href="#cursor">cursor</a></p>
-<p><code>cursor : luxe.Cursor</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="h" href="#h">h</a></p>
-<p><code>h : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="w" href="#w">w</a></p>
-<p><code>w : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="x" href="#x">x</a></p>
-<p><code>x : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="y" href="#y">y</a></p>
-<p><code>y : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="mid" href="#mid">mid</a></p>
-<p><code>mid : luxe.Vector</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(?_core:luxe.Core, _x:Int, _y:Int, _w:Int, _h:Int)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="point_inside" href="#point_inside">point_inside</a></p>
-<p><code>point_inside(_p:luxe.Vector) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="core"><a class="lift" href="#core">core</a></a><code class="signature apipage">core : <a href="#luxe.Core">luxe.Core</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="cursor"><a class="lift" href="#cursor">cursor</a></a><code class="signature apipage">cursor : <a href="#luxe.Cursor">luxe.Cursor</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="h"><a class="lift" href="#h">h</a></a><code class="signature apipage">h : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?_core:<span><a href="#luxe.Core">luxe.Core</a>=null</span>, _x:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _y:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _w:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _h:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point_inside</a></a><code class="signature apipage">point_inside(_p:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="mid"><a class="lift" href="#mid">mid</a></a><code class="signature apipage">mid : <a href="">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

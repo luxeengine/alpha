@@ -1,95 +1,47 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TouchEvent
-
----
 
 #TouchEvent
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="ID" href="#ID">ID</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="flags"><a class="lift" href="#flags">flags</a></a><code class="signature apipage">flags : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ID"><a class="lift" href="#ID">ID</a></a><code class="signature apipage">ID : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="raw"><a class="lift" href="#raw">raw</a></a><code class="signature apipage">raw : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="state"><a class="lift" href="#state">state</a></a><code class="signature apipage">state : [lime.TouchState]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`ID : Int`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="flags" href="#flags">flags</a>
-
-
-
-`flags : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos" href="#pos">pos</a>
-
-
-
-`pos : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="raw" href="#raw">raw</a>
-
-
-
-`raw : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="state" href="#state">state</a>
-
-
-
-`state : lime.TouchState`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="x" href="#x">x</a>
-
-
-
-`x : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="y" href="#y">y</a>
-
-
-
-`y : Float`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

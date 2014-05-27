@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,33 +50,28 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LoadShaderInfo</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="loadshaderinfo">LoadShaderInfo</h1>
 <hr>
-<p><a href="#Members">Members</a>   </p>
+<p><code>typedef</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="onloaded" href="#onloaded">onloaded</a></p>
-<p><code>onloaded : phoenix.Shader-&gt;Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ps_id" href="#ps_id">ps_id</a></p>
-<p><code>ps_id : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vs_id" href="#vs_id">vs_id</a></p>
-<p><code>vs_id : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="onloaded"><a class="lift" href="#onloaded">onloaded</a></a><code class="signature apipage">onloaded : <a href="#phoenix.Shader-&gt;Void">phoenix.Shader-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ps_id"><a class="lift" href="#ps_id">ps_id</a></a><code class="signature apipage">ps_id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vs_id"><a class="lift" href="#vs_id">vs_id</a></a><code class="signature apipage">vs_id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

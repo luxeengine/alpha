@@ -1,51 +1,36 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Timer
-
----
 
 #Timer
 
 
----
-
-
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-&nbsp;   
+</span>
 
-&nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
 ---
-<a class="lift" name="schedule" href="#schedule">schedule</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>
 
-`schedule(_time_in_seconds:Float, _on_time:Void, ?repeat:Bool=false) : haxe.Timer`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="schedule"><a class="lift" href="#schedule">schedule</a></a><code class="signature apipage">schedule(\_time\_in\_seconds:<span>[Float](http://api.haxe.org/Float.html)</span>, \_on\_time:<span>[Void](http://api.haxe.org/Void.html)</span>, ?repeat:<span>[Bool](http://api.haxe.org/Bool.html)=alse</span>) : [haxe.Timer](http://api.haxe.org/haxe/Timer.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

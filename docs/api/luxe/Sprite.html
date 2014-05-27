@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,62 +50,40 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sprite</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="sprite">Sprite</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.Visual</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.Visual" href="../../api/luxe/Visual.html">luxe.Visual</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="geometry_quad" href="#geometry_quad">geometry_quad</a></p>
-<p><code>geometry_quad : phoenix.geometry.QuadGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="centered" href="#centered">centered</a></p>
-<p><code>centered : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="flipx" href="#flipx">flipx</a></p>
-<p><code>flipx : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="flipy" href="#flipy">flipy</a></p>
-<p><code>flipy : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="uv" href="#uv">uv</a></p>
-<p><code>uv : luxe.Rectangle</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new&lt;T&gt;(options:luxe.options.SpriteOptions&lt;new.T&gt;)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="point_inside" href="#point_inside">point_inside</a></p>
-<p><code>point_inside(_p:luxe.Vector) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="point_inside_exact" href="#point_inside_exact">point_inside_exact</a></p>
-<p><code>point_inside_exact(_p:luxe.Vector) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="geometry_quad"><a class="lift" href="#geometry_quad">geometry_quad</a></a><code class="signature apipage">geometry_quad : <a href="#phoenix.geometry.QuadGeometry">phoenix.geometry.QuadGeometry</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(options:<span><a href="#luxe.options.SpriteOptions">luxe.options.SpriteOptions</a>&lt;<a href="">new.T</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point_inside</a></a><code class="signature apipage">point_inside(_p:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside_exact"><a class="lift" href="#point_inside_exact">point_inside_exact</a></a><code class="signature apipage">point_inside_exact(_p:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="centered"><a class="lift" href="#centered">centered</a></a><code class="signature apipage">centered : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="flipx"><a class="lift" href="#flipx">flipx</a></a><code class="signature apipage">flipx : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="flipy"><a class="lift" href="#flipy">flipy</a></a><code class="signature apipage">flipy : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="uv"><a class="lift" href="#uv">uv</a></a><code class="signature apipage">uv : <a href="">luxe.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

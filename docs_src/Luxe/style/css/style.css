@@ -153,8 +153,8 @@ p {
     line-height: 1.5em;
     position: relative;
     display: block;
-    width: 40em;
-    margin-left:2em;
+    /*width: 40em;*/
+    margin-left:2.25em;
     font-size:0.9em;
     margin-bottom: 0.6em;
 }
@@ -162,22 +162,17 @@ p {
 .readmore {
     display: block;
     position: relative;
-    min-width:1.7em;    
-    min-height:1.7em;
-    background-repeat: no-repeat;
-    background-image:url('../more.png');
-    background-size: 1.7em 1.7em;   
-    margin: 1em;
-    color:#999;
-    opacity: 0.4;
-    margin-left: 1.5em;
-    margin-right: auto; 
-    padding-left: 1.8em;
-    padding-top: 0.3em; 
+    color:#121212;
+    opacity: 0.7;
+    margin-left: 1.25em;
 }
 .readmore:hover {
     cursor:pointer;
     opacity: 1;
+}
+.readmore h4 {
+    margin-top: 0em;
+    margin-left: 0.5em;
 }
 
 .more {
@@ -214,10 +209,10 @@ user-select: none;
 }
 
 .content {
-    max-width:50em;
-    width:40em;
+    max-width:45em;
+    width:50em;
     left:50%;
-    margin-left: -20em;
+    margin-left: -22.5em;
     position: relative;
     display: block;
 }
@@ -240,3 +235,71 @@ user-select: none;
     padding-right: 0.4em;
     border-radius: 0.2em;   
 }
+
+.member, .method, .property {
+    color:#666;
+    display: block;    
+    line-height: 1.3em;
+    font-size: 1em;
+}
+
+.signature.apipage {
+    margin-top:1.6em;
+    margin-left: 0.5em;
+    margin-bottom: 1.3em;
+}
+
+.small_desc_flat code {
+    color:#f6007b;
+    margin-top: -0.1em;
+}
+
+.meta {
+    font-size: 0.8em;
+    position: relative;
+    padding-bottom: 0.1em;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    border-radius: 0.2em;
+    color:#cecece;
+    top:0.6em;
+    border:solid 1px rgba(39,40,34,0.1);
+}
+
+.inherited {
+    cursor: pointer;
+    font-size:0.5em;
+    font-family:'dsm',monospace; 
+    border-radius:0.1em;
+    height:auto; margin: 0.1em; 
+    margin-right:0.1em;
+    padding-left: 0.5em; 
+    padding-right: 0.5em; 
+    color:#f6007b; border:solid 1px rgba(39,40,34,0.3);
+}
+
+.section_title {
+    font-size: 0.75em;
+    color:#ccc;
+    font-weight: normal;
+}
+
+.section_title:hover {
+    color:#444;
+}
+
+.class_title {
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    margin-left:0.5em;
+    font-family: helvetica;
+    margin-top:-1em;
+}
+
+.fullpage {
+    font-size: 0.7em;
+    padding-bottom: 0.15em;
+    display: inline-block;
+}
+

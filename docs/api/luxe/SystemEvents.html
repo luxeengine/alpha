@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="systemevents">SystemEvents</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="activate"><a class="lift" href="#activate">activate</a></a><span class="inline-block static">static</span><code class="signature apipage">activate : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="change"><a class="lift" href="#change">change</a></a><span class="inline-block static">static</span><code class="signature apipage">change : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="char"><a class="lift" href="#char">char</a></a><span class="inline-block static">static</span><code class="signature apipage">char : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="deactivate"><a class="lift" href="#deactivate">deactivate</a></a><span class="inline-block static">static</span><code class="signature apipage">deactivate : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="focus"><a class="lift" href="#focus">focus</a></a><span class="inline-block static">static</span><code class="signature apipage">focus : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="gotinputfocus"><a class="lift" href="#gotinputfocus">gotinputfocus</a></a><span class="inline-block static">static</span><code class="signature apipage">gotinputfocus : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="joyaxismove"><a class="lift" href="#joyaxismove">joyaxismove</a></a><span class="inline-block static">static</span><code class="signature apipage">joyaxismove : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="joyballmove"><a class="lift" href="#joyballmove">joyballmove</a></a><span class="inline-block static">static</span><code class="signature apipage">joyballmove : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="joybuttondown"><a class="lift" href="#joybuttondown">joybuttondown</a></a><span class="inline-block static">static</span><code class="signature apipage">joybuttondown : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="joybuttonup"><a class="lift" href="#joybuttonup">joybuttonup</a></a><span class="inline-block static">static</span><code class="signature apipage">joybuttonup : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="joyhatmove"><a class="lift" href="#joyhatmove">joyhatmove</a></a><span class="inline-block static">static</span><code class="signature apipage">joyhatmove : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="keydown"><a class="lift" href="#keydown">keydown</a></a><span class="inline-block static">static</span><code class="signature apipage">keydown : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="keyup"><a class="lift" href="#keyup">keyup</a></a><span class="inline-block static">static</span><code class="signature apipage">keyup : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="lostinputfocus"><a class="lift" href="#lostinputfocus">lostinputfocus</a></a><span class="inline-block static">static</span><code class="signature apipage">lostinputfocus : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="mouseclick"><a class="lift" href="#mouseclick">mouseclick</a></a><span class="inline-block static">static</span><code class="signature apipage">mouseclick : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="mousedown"><a class="lift" href="#mousedown">mousedown</a></a><span class="inline-block static">static</span><code class="signature apipage">mousedown : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="mousemove"><a class="lift" href="#mousemove">mousemove</a></a><span class="inline-block static">static</span><code class="signature apipage">mousemove : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="mouseup"><a class="lift" href="#mouseup">mouseup</a></a><span class="inline-block static">static</span><code class="signature apipage">mouseup : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="poll"><a class="lift" href="#poll">poll</a></a><span class="inline-block static">static</span><code class="signature apipage">poll : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="quit"><a class="lift" href="#quit">quit</a></a><span class="inline-block static">static</span><code class="signature apipage">quit : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="redraw"><a class="lift" href="#redraw">redraw</a></a><span class="inline-block static">static</span><code class="signature apipage">redraw : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="resize"><a class="lift" href="#resize">resize</a></a><span class="inline-block static">static</span><code class="signature apipage">resize : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shouldrotate"><a class="lift" href="#shouldrotate">shouldrotate</a></a><span class="inline-block static">static</span><code class="signature apipage">shouldrotate : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="syswm"><a class="lift" href="#syswm">syswm</a></a><span class="inline-block static">static</span><code class="signature apipage">syswm : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="touchbegin"><a class="lift" href="#touchbegin">touchbegin</a></a><span class="inline-block static">static</span><code class="signature apipage">touchbegin : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="touchend"><a class="lift" href="#touchend">touchend</a></a><span class="inline-block static">static</span><code class="signature apipage">touchend : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="touchmove"><a class="lift" href="#touchmove">touchmove</a></a><span class="inline-block static">static</span><code class="signature apipage">touchmove : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="touchtap"><a class="lift" href="#touchtap">touchtap</a></a><span class="inline-block static">static</span><code class="signature apipage">touchtap : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

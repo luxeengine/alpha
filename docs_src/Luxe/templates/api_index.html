@@ -4,17 +4,85 @@
 {{toplinks}}
 {{links}}
 
+
 {{#package_list}} 
+<a name="{{name}}"/><h2>[{{{name}}}](#{{{name}}})</h2></a>
 
-<a name="{{name}}"/>
-###[{{name}}](#{{name}}) 
-</a>
+{{~#items~}}
+    
+    <a name="{{name}}"><h3 class="class_title"><a href="#{{name}}">{{{name_short}}}</a></h3> 
+    <a href="{{{../../rel_path}}}api/{{type_path name}}.html" title="view full documentation for this type" class="tooltip inherited fullpage">view</a>
+    </a><br/>
 
-{{#items}} 
-<a href="{{{link}}}">{{{name}}}</a> <br/>
-{{/items}}
+    {{~#if members.length~}}
+        <div class="more">
+            <span class="readmore"><strong class="section_title">Members</strong></span>
+            <span class="section">
+                {{~#members}}
+                    {{~#ispublic~}}
+                        <span class="member">
+                            {{~#inherited~}}
+                                <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                            {{~/inherited~}}
+                            <code>{{#optional}}?{{/optional}}{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
+                        </span>
+                    {{~/ispublic}}
+                {{~/members~}}
+            </span>
+        </div>
+    {{~/if~}}
+
+    {{~#if values.length~}}
+        <div class="more">
+            <span class="readmore"><strong class="section_title">Values</strong></span>
+            <span class="section">
+                {{~#values~}}
+                    <span class="member">`{{name}}`<br/> </span> 
+                {{~/values~}}
+            </span>
+        </div>
+    {{~/if~}}
+
+    {{~#if methods.length~}}
+        <div class="more">
+            <span class="readmore"><strong class="section_title">Methods</strong></span>
+            <span class="section">
+                {{~#methods}}
+                    {{~#ispublic~}}
+                        <span class="method">
+                            {{~#inherited~}}
+                                <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                            {{~/inherited~}}
+
+                            <code>{{escape_markdown name}}({{>args}}) : {{#return_type}}{{>type}}{{/return_type}}</code>{{noop~}}
+                        </span>
+                    {{~/ispublic}}
+                {{~/methods~}}
+            </span>
+        </div>
+    {{~/if~}}
+
+    {{~#if properties.length~}}
+        <div class="more">
+            <span class="readmore"><strong class="section_title">Properties</strong></span>
+            <span class="section">
+                {{~#properties}}
+                    {{~#ispublic}}
+                        <span class="property">
+                            {{~#inherited~}}
+                                <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                            {{~/inherited~}} 
+
+                            <code>{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code>{{noop~}}
+                        </span> 
+                    {{~/ispublic}}
+                {{~/properties}}
+            </span>
+        </div>
+    {{~/if~}}
+
+{{~/items}}
 {{/package_list}} 
-
 
 &nbsp;
 &nbsp;

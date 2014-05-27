@@ -1,81 +1,38 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;TextAlign
-
----
 
 #TextAlign
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="bottom" href="#bottom">bottom</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`bottom`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`center`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`left`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`right`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`top`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`phoenix.TextAlign.bottom`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="center" href="#center">center</a>
-
-
-
-`phoenix.TextAlign.center`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="left" href="#left">left</a>
-
-
-
-`phoenix.TextAlign.left`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="right" href="#right">right</a>
-
-
-
-`phoenix.TextAlign.right`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="top" href="#top">top</a>
-
-
-
-`phoenix.TextAlign.top`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

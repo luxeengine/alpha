@@ -1,197 +1,77 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Rectangle
-
----
 
 #Rectangle
 
 
----
-
-
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="ignore_listeners" href="#ignore_listeners">ignore_listeners</a>
 
-
-
-`ignore_listeners : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="listen_h" href="#listen_h">listen_h</a>
-
-
-
-`listen_h : Float->Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="listen_w" href="#listen_w">listen_w</a>
-
-
-
-`listen_w : Float->Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="listen_x" href="#listen_x">listen_x</a>
-
-
-
-`listen_x : Float->Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="listen_y" href="#listen_y">listen_y</a>
-
-
-
-`listen_y : Float->Void`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="h" href="#h">h</a>
-
-
-
-`h : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="serialized" href="#serialized">serialized</a>
-
-
-
-`serialized : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="w" href="#w">w</a>
-
-
-
-`w : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="x" href="#x">x</a>
-
-
-
-`x : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="y" href="#y">y</a>
-
-
-
-`y : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="clone" href="#clone">clone</a>
-
-
-
-`clone() : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="copy_from" href="#copy_from">copy_from</a>
-
-
-
-`copy_from(_rect:phoenix.Rectangle) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="equal" href="#equal">equal</a>
-
-
-
-`equal(_other:phoenix.Rectangle) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(?_x:Float=0, ?_y:Float=0, ?_w:Float=0, ?_h:Float=0) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="overlaps" href="#overlaps">overlaps</a>
-
-
-
-`overlaps(_other:phoenix.Rectangle) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="point_inside" href="#point_inside">point_inside</a>
-
-
-
-`point_inside(_p:phoenix.Vector) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set" href="#set">set</a>
-
-
-
-`set(?_x:Float, ?_y:Float, ?_w:Float, ?_h:Float) : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="toString" href="#toString">toString</a>
-
-
-
-`toString() : String`
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore\_listeners</a></a><code class="signature apipage">ignore\_listeners : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_h"><a class="lift" href="#listen_h">listen\_h</a></a><code class="signature apipage">listen\_h : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_w"><a class="lift" href="#listen_w">listen\_w</a></a><code class="signature apipage">listen\_w : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_x"><a class="lift" href="#listen_x">listen\_x</a></a><code class="signature apipage">listen\_x : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_y"><a class="lift" href="#listen_y">listen\_y</a></a><code class="signature apipage">listen\_y : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="copy_from"><a class="lift" href="#copy_from">copy\_from</a></a><code class="signature apipage">copy\_from(\_rect:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="equal"><a class="lift" href="#equal">equal</a></a><code class="signature apipage">equal(\_other:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_x:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_y:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_h:<span>[Float](http://api.haxe.org/Float.html)=0</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="overlaps"><a class="lift" href="#overlaps">overlaps</a></a><code class="signature apipage">overlaps(\_other:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point\_inside</a></a><code class="signature apipage">point\_inside(\_p:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(?\_x:<span>[Float](http://api.haxe.org/Float.html)=null</span>, ?\_y:<span>[Float](http://api.haxe.org/Float.html)=null</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=null</span>, ?\_h:<span>[Float](http://api.haxe.org/Float.html)=null</span>) : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="h"><a class="lift" href="#h">h</a></a><code class="signature apipage">h : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><code class="signature apipage">serialized : [Dynamic]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

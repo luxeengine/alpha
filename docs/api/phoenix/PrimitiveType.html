@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,49 +50,31 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PrimitiveType</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="primitivetype">PrimitiveType</h1>
 <hr>
-<p><a href="#Values">Values</a>   </p>
+<p><code>enum</code>
+<span class="meta">
+<br/>meta: @:flatEnum
+</span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Values" ></a></p>
-<h3 id="values">Values</h3>
-<hr>
-<p><a class="lift" name="line_loop" href="#line_loop">line_loop</a></p>
-<p><code>phoenix.PrimitiveType.line_loop</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="line_strip" href="#line_strip">line_strip</a></p>
-<p><code>phoenix.PrimitiveType.line_strip</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="lines" href="#lines">lines</a></p>
-<p><code>phoenix.PrimitiveType.lines</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="none" href="#none">none</a></p>
-<p><code>phoenix.PrimitiveType.none</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="points" href="#points">points</a></p>
-<p><code>phoenix.PrimitiveType.points</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="triangle_fan" href="#triangle_fan">triangle_fan</a></p>
-<p><code>phoenix.PrimitiveType.triangle_fan</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="triangle_strip" href="#triangle_strip">triangle_strip</a></p>
-<p><code>phoenix.PrimitiveType.triangle_strip</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="triangles" href="#triangles">triangles</a></p>
-<p><code>phoenix.PrimitiveType.triangles</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage"><code>line_loop</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>line_strip</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>lines</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>none</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>points</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>triangle_fan</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>triangle_strip</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>triangles</code><br/> </span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

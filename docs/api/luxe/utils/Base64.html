@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,37 +50,33 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-utils-"><a href="../../../api/index.html#luxe.utils">API Index</a></h2>
-<p><a href="../">luxe</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.utils</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Base64</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="base64">Base64</h1>
 <hr>
-<p><a href="#StaticMethods">StaticMethods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="StaticMethods" ></a></p>
-<h3 id="staticmethods">StaticMethods</h3>
-<hr>
-<p><a class="lift" name="decode" href="#decode">decode</a></p>
-<p><code>decode(_string:String) : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="decodeBytesData" href="#decodeBytesData">decodeBytesData</a></p>
-<p><code>decodeBytesData(base64:String) : haxe.io.BytesData</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="encode" href="#encode">encode</a></p>
-<p><code>encode(_string:String) : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="encodeBytesData" href="#encodeBytesData">encodeBytesData</a></p>
-<p><code>encodeBytesData(bytesData:haxe.io.BytesData) : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members</p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="decode"><a class="lift" href="#decode">decode</a></a><span class="inline-block static">static</span><code class="signature apipage">decode(_string:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="decodeBytesData"><a class="lift" href="#decodeBytesData">decodeBytesData</a></a><span class="inline-block static">static</span><code class="signature apipage">decodeBytesData(base64:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/haxe/io/BytesData.html">haxe.io.BytesData</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="encode"><a class="lift" href="#encode">encode</a></a><span class="inline-block static">static</span><code class="signature apipage">encode(_string:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="encodeBytesData"><a class="lift" href="#encodeBytesData">encodeBytesData</a></a><span class="inline-block static">static</span><code class="signature apipage">encodeBytesData(bytesData:<span><a href="http://api.haxe.org/haxe/io/BytesData.html">haxe.io.BytesData</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

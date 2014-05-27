@@ -1,125 +1,53 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Screen
-
----
 
 #Screen
 
 
----
-
-
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="core" href="#core">core</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="core"><a class="lift" href="#core">core</a></a><code class="signature apipage">core : [luxe.Core](#luxe.Core)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="cursor"><a class="lift" href="#cursor">cursor</a></a><code class="signature apipage">cursor : [luxe.Cursor](#luxe.Cursor)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="h"><a class="lift" href="#h">h</a></a><code class="signature apipage">h : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`core : luxe.Core`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_core:<span>[luxe.Core](#luxe.Core)=null</span>, \_x:<span>[Int](http://api.haxe.org/Int.html)</span>, \_y:<span>[Int](http://api.haxe.org/Int.html)</span>, \_w:<span>[Int](http://api.haxe.org/Int.html)</span>, \_h:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point\_inside</a></a><code class="signature apipage">point\_inside(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="cursor" href="#cursor">cursor</a>
-
-
-
-`cursor : luxe.Cursor`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="h" href="#h">h</a>
-
-
-
-`h : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="w" href="#w">w</a>
-
-
-
-`w : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="x" href="#x">x</a>
-
-
-
-`x : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="y" href="#y">y</a>
-
-
-
-`y : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="mid" href="#mid">mid</a>
-
-
-
-`mid : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(?_core:luxe.Core, _x:Int, _y:Int, _w:Int, _h:Int) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="point_inside" href="#point_inside">point_inside</a>
-
-
-
-`point_inside(_p:luxe.Vector) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="mid"><a class="lift" href="#mid">mid</a></a><code class="signature apipage">mid : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

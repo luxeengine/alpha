@@ -1,0 +1,7 @@
+{{~#each args}}	
+	{{~#if @index}}, {{/if}}
+	{{~escape_markdown name}}:<span>
+		{{~#type}}
+			{{~>type}}
+		{{~/type}}{{#if value}}={{value}}{{/if}}</span>
+{{~/each~}}

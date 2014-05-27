@@ -1,76 +1,45 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.utils)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.utils](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;GeometryUtils
-
----
 
 #GeometryUtils
 
 
----
-
-
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-&nbsp;   
+</span>
 
-&nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
 ---
-<a class="lift" name="intersect_ray_plane" href="#intersect_ray_plane">intersect_ray_plane</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>
 
-`intersect_ray_plane(_ray_start:luxe.Vector, _ray_dir:luxe.Vector, _plane_normal:luxe.Vector, _plane_point:luxe.Vector) : luxe.Vector`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="intersect_ray_plane"><a class="lift" href="#intersect_ray_plane">intersect\_ray\_plane</a></a><code class="signature apipage">intersect\_ray\_plane(\_ray\_start:<span>[luxe.Vector](#luxe.Vector)</span>, \_ray\_dir:<span>[luxe.Vector](#luxe.Vector)</span>, \_plane\_normal:<span>[luxe.Vector](#luxe.Vector)</span>, \_plane\_point:<span>[luxe.Vector](#luxe.Vector)</span>) : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_in_polygon"><a class="lift" href="#point_in_polygon">point\_in\_polygon</a></a><code class="signature apipage">point\_in\_polygon(\_point:<span>[luxe.Vector](#luxe.Vector)</span>, \_offset:<span>[luxe.Vector](#luxe.Vector)</span>, \_verts:<span>[Array](http://api.haxe.org/Array.html)&lt;[luxe.Vector](#luxe.Vector)&gt;</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="random_point_in_unit_circle"><a class="lift" href="#random_point_in_unit_circle">random\_point\_in\_unit\_circle</a></a><code class="signature apipage">random\_point\_in\_unit\_circle() : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="segments_for_smooth_circle"><a class="lift" href="#segments_for_smooth_circle">segments\_for\_smooth\_circle</a></a><code class="signature apipage">segments\_for\_smooth\_circle(\_radius:<span>[Float](http://api.haxe.org/Float.html)</span>, ?\_smooth:<span>[Float](http://api.haxe.org/Float.html)=6</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="point_in_polygon" href="#point_in_polygon">point_in_polygon</a>
-
-
-
-`point_in_polygon(_point:luxe.Vector, _offset:luxe.Vector, _verts:Array<luxe.Vector>) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="random_point_in_unit_circle" href="#random_point_in_unit_circle">random_point_in_unit_circle</a>
-
-
-
-`random_point_in_unit_circle() : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="segments_for_smooth_circle" href="#segments_for_smooth_circle">segments_for_smooth_circle</a>
-
-
-
-`segments_for_smooth_circle(_radius:Float, ?_smooth:Float=6) : Float`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

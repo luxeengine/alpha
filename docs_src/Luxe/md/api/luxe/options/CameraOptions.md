@@ -1,128 +1,55 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.options)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.options](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;CameraOptions
-
----
 
 #CameraOptions
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="aspect" href="#aspect">aspect</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="aspect"><a class="lift" href="#aspect">aspect</a></a><code class="signature apipage">aspect : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="far"><a class="lift" href="#far">far</a></a><code class="signature apipage">far : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="fov"><a class="lift" href="#fov">fov</a></a><code class="signature apipage">fov : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="near"><a class="lift" href="#near">near</a></a><code class="signature apipage">near : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="projection"><a class="lift" href="#projection">projection</a></a><code class="signature apipage">projection : [phoenix.ProjectionType](#phoenix.ProjectionType)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="x1"><a class="lift" href="#x1">x1</a></a><code class="signature apipage">x1 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="x2"><a class="lift" href="#x2">x2</a></a><code class="signature apipage">x2 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="y1"><a class="lift" href="#y1">y1</a></a><code class="signature apipage">y1 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="y2"><a class="lift" href="#y2">y2</a></a><code class="signature apipage">y2 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`aspect : Null<Float>`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="far" href="#far">far</a>
-
-
-
-`far : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="fov" href="#fov">fov</a>
-
-
-
-`fov : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="name" href="#name">name</a>
-
-
-
-`name : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="near" href="#near">near</a>
-
-
-
-`near : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="projection" href="#projection">projection</a>
-
-
-
-`projection : phoenix.ProjectionType`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="viewport" href="#viewport">viewport</a>
-
-
-
-`viewport : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="x1" href="#x1">x1</a>
-
-
-
-`x1 : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="x2" href="#x2">x2</a>
-
-
-
-`x2 : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="y1" href="#y1">y1</a>
-
-
-
-`y1 : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="y2" href="#y2">y2</a>
-
-
-
-`y2 : Null<Float>`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

@@ -1,95 +1,47 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;RenderTexture
-
----
 
 #RenderTexture
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[phoenix.Texture]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="phoenix.Texture" href="{{{rel_path}}}api/phoenix/Texture.html">phoenix.Texture</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="fbo" href="#fbo">fbo</a>
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="fbo"><a class="lift" href="#fbo">fbo</a></a><code class="signature apipage">fbo : [lime.gl.GLFramebuffer]()</code><br/></span>
+        <span class="small_desc_flat"></span>
 
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="bindBuffer"><a class="lift" href="#bindBuffer">bindBuffer</a></a><code class="signature apipage">bindBuffer() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_manager:<span>[luxe.ResourceManager](#luxe.ResourceManager)</span>, ?\_size:<span>[phoenix.Vector](#phoenix.Vector)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="unbindBuffer"><a class="lift" href="#unbindBuffer">unbindBuffer</a></a><code class="signature apipage">unbindBuffer(?\_other:<span>[lime.gl.GLFramebuffer]()=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-`fbo : lime.gl.GLFramebuffer`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="bindBuffer" href="#bindBuffer">bindBuffer</a>
-
-
-
-`bindBuffer() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="destroy" href="#destroy">destroy</a>
-
-
-
-`destroy() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(_manager:luxe.ResourceManager, ?_size:phoenix.Vector) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="unbindBuffer" href="#unbindBuffer">unbindBuffer</a>
-
-
-
-`unbindBuffer(?_other:lime.gl.GLFramebuffer) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

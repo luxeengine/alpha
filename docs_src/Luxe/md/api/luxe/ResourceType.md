@@ -1,105 +1,41 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ResourceType
-
----
 
 #ResourceType
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="data" href="#data">data</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`data`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`font`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`render_texture`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`shader`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`sound`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`text`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`texture`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`unknown`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`luxe.ResourceType.data`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="font" href="#font">font</a>
-
-
-
-`luxe.ResourceType.font`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="render_texture" href="#render_texture">render_texture</a>
-
-
-
-`luxe.ResourceType.render_texture`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shader" href="#shader">shader</a>
-
-
-
-`luxe.ResourceType.shader`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="sound" href="#sound">sound</a>
-
-
-
-`luxe.ResourceType.sound`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="text" href="#text">text</a>
-
-
-
-`luxe.ResourceType.text`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="texture" href="#texture">texture</a>
-
-
-
-`luxe.ResourceType.texture`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="unknown" href="#unknown">unknown</a>
-
-
-
-`luxe.ResourceType.unknown`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

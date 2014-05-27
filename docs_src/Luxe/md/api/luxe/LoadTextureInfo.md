@@ -1,63 +1,39 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LoadTextureInfo
-
----
 
 #LoadTextureInfo
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="bytes" href="#bytes">bytes</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="bytes"><a class="lift" href="#bytes">bytes</a></a><code class="signature apipage">bytes : [lime.utils.ByteArray]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="onloaded"><a class="lift" href="#onloaded">onloaded</a></a><code class="signature apipage">onloaded : [phoenix.Texture-&gt;Void](#phoenix.Texture->Void)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`bytes : lime.utils.ByteArray`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="id" href="#id">id</a>
-
-
-
-`id : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="onloaded" href="#onloaded">onloaded</a>
-
-
-
-`onloaded : phoenix.Texture->Void`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

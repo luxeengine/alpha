@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,34 +50,30 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-utils-"><a href="../../../api/index.html#phoenix.utils">API Index</a></h2>
-<p><a href="../">phoenix</a><br>&emsp;&emsp;&emsp;<a href="./">phoenix.utils</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Rendering</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="rendering">Rendering</h1>
 <hr>
-<p><a href="#StaticMethods">StaticMethods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="StaticMethods" ></a></p>
-<h3 id="staticmethods">StaticMethods</h3>
-<hr>
-<p><a class="lift" name="get_elements_for_type" href="#get_elements_for_type">get_elements_for_type</a></p>
-<p><code>get_elements_for_type(type:phoenix.PrimitiveType, length:Int) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="get_opengl_primitive_type" href="#get_opengl_primitive_type">get_opengl_primitive_type</a></p>
-<p><code>get_opengl_primitive_type(type:phoenix.PrimitiveType) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="gl_blend_mode_from_BlendMode" href="#gl_blend_mode_from_BlendMode">gl_blend_mode_from_BlendMode</a></p>
-<p><code>gl_blend_mode_from_BlendMode(_b:phoenix.BlendMode) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members</p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_elements_for_type"><a class="lift" href="#get_elements_for_type">get_elements_for_type</a></a><span class="inline-block static">static</span><code class="signature apipage">get_elements_for_type(type:<span><a href="#phoenix.PrimitiveType">phoenix.PrimitiveType</a></span>, length:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_opengl_primitive_type"><a class="lift" href="#get_opengl_primitive_type">get_opengl_primitive_type</a></a><span class="inline-block static">static</span><code class="signature apipage">get_opengl_primitive_type(type:<span><a href="#phoenix.PrimitiveType">phoenix.PrimitiveType</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="gl_blend_mode_from_BlendMode"><a class="lift" href="#gl_blend_mode_from_BlendMode">gl_blend_mode_from_BlendMode</a></a><span class="inline-block static">static</span><code class="signature apipage">gl_blend_mode_from_BlendMode(_b:<span><a href="#phoenix.BlendMode">phoenix.BlendMode</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

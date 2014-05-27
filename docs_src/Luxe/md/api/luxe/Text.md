@@ -1,117 +1,48 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Text
-
----
 
 #Text
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.Visual]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.Visual" href="{{{rel_path}}}api/luxe/Visual.html">luxe.Visual</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="composite_geometry" href="#composite_geometry">composite_geometry</a>
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="composite_geometry"><a class="lift" href="#composite_geometry">composite\_geometry</a></a><code class="signature apipage">composite\_geometry : [phoenix.geometry.CompositeGeometry](#phoenix.geometry.CompositeGeometry)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="font"><a class="lift" href="#font">font</a></a><code class="signature apipage">font : [phoenix.BitmapFont](#phoenix.BitmapFont)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ready"><a class="lift" href="#ready">ready</a></a><code class="signature apipage">ready : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="text_options"><a class="lift" href="#text_options">text\_options</a></a><code class="signature apipage">text\_options : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-`composite_geometry : phoenix.geometry.CompositeGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="font" href="#font">font</a>
-
-
-
-`font : phoenix.BitmapFont`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="ready" href="#ready">ready</a>
-
-
-
-`ready : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="text_options" href="#text_options">text_options</a>
-
-
-
-`text_options : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="text" href="#text">text</a>
-
-
-
-`text : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="textsize" href="#textsize">textsize</a>
-
-
-
-`textsize : Float`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(_options:Dynamic) `
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text : [String]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="textsize"><a class="lift" href="#textsize">textsize</a></a><code class="signature apipage">textsize : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

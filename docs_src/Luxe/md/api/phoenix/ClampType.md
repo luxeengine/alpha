@@ -1,65 +1,36 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ClampType
-
----
 
 #ClampType
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="edge" href="#edge">edge</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`edge`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`mirror`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`repeat`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`phoenix.ClampType.edge`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="mirror" href="#mirror">mirror</a>
-
-
-
-`phoenix.ClampType.mirror`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="repeat" href="#repeat">repeat</a>
-
-
-
-`phoenix.ClampType.repeat`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

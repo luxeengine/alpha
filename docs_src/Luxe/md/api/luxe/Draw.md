@@ -1,123 +1,63 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Draw
-
----
 
 #Draw
 
 
----
-
-
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-&nbsp;   
+</span>
 
-&nbsp;   
 
-<a class="lift" name="Methods" ></a>
-###Methods   
 ---
-<a class="lift" name="arc" href="#arc">arc</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>
 
-`arc(options:Dynamic) : phoenix.geometry.ArcGeometry`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="arc"><a class="lift" href="#arc">arc</a></a><code class="signature apipage">arc(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.ArcGeometry](#phoenix.geometry.ArcGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="axis3D"><a class="lift" href="#axis3D">axis3D</a></a><code class="signature apipage">axis3D(?options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="box"><a class="lift" href="#box">box</a></a><code class="signature apipage">box(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.QuadGeometry](#phoenix.geometry.QuadGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="circle"><a class="lift" href="#circle">circle</a></a><code class="signature apipage">circle(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.CircleGeometry](#phoenix.geometry.CircleGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="line"><a class="lift" href="#line">line</a></a><code class="signature apipage">line(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.LineGeometry](#phoenix.geometry.LineGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ngon"><a class="lift" href="#ngon">ngon</a></a><code class="signature apipage">ngon(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="plane"><a class="lift" href="#plane">plane</a></a><code class="signature apipage">plane(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.PlaneGeometry](#phoenix.geometry.PlaneGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a><code class="signature apipage">rectangle(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.RectangleGeometry](#phoenix.geometry.RectangleGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ring"><a class="lift" href="#ring">ring</a></a><code class="signature apipage">ring(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.RingGeometry](#phoenix.geometry.RingGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="axis3D" href="#axis3D">axis3D</a>
-
-
-
-`axis3D(?options:Dynamic) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="box" href="#box">box</a>
-
-
-
-`box(options:Dynamic) : phoenix.geometry.QuadGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="circle" href="#circle">circle</a>
-
-
-
-`circle(options:Dynamic) : phoenix.geometry.CircleGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="line" href="#line">line</a>
-
-
-
-`line(options:Dynamic) : phoenix.geometry.LineGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="ngon" href="#ngon">ngon</a>
-
-
-
-`ngon(options:Dynamic) : phoenix.geometry.Geometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="plane" href="#plane">plane</a>
-
-
-
-`plane(options:Dynamic) : phoenix.geometry.PlaneGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="rectangle" href="#rectangle">rectangle</a>
-
-
-
-`rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="ring" href="#ring">ring</a>
-
-
-
-`ring(options:Dynamic) : phoenix.geometry.RingGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="text" href="#text">text</a>
-
-
-
-`text(options:Dynamic) : phoenix.geometry.Geometry`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

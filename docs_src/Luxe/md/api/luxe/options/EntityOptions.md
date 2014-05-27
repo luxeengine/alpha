@@ -1,96 +1,47 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.options)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.options](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;EntityOptions
-
----
 
 #EntityOptions
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="init_with" href="#init_with">init_with</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="init_with"><a class="lift" href="#init_with">init\_with</a></a><code class="signature apipage">init\_with : [luxe.options.EntityOptions.T](#luxe.options.EntityOptions.T)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="no_scene"><a class="lift" href="#no_scene">no\_scene</a></a><code class="signature apipage">no\_scene : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="parent"><a class="lift" href="#parent">parent</a></a><code class="signature apipage">parent : [luxe.Entity](#luxe.Entity)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [luxe.Vector](#luxe.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="scene"><a class="lift" href="#scene">scene</a></a><code class="signature apipage">scene : [luxe.Scene](#luxe.Scene)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`init_with : luxe.options.EntityOptions.T`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="name" href="#name">name</a>
-
-
-
-`name : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="no_scene" href="#no_scene">no_scene</a>
-
-
-
-`no_scene : Null<Bool>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="parent" href="#parent">parent</a>
-
-
-
-`parent : luxe.Entity`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos" href="#pos">pos</a>
-
-
-
-`pos : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="scale" href="#scale">scale</a>
-
-
-
-`scale : luxe.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="scene" href="#scene">scene</a>
-
-
-
-`scene : luxe.Scene`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

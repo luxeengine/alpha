@@ -1,63 +1,39 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MatrixTransform
-
----
 
 #MatrixTransform
 
 
----
-
-
-[Members](#Members)   
-
 
 ---
 
-&nbsp;   
+`typedef`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="pos" href="#pos">pos</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [phoenix.Vector](#phoenix.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [phoenix.Vector](#phoenix.Vector)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`pos : phoenix.Vector`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="rotation" href="#rotation">rotation</a>
-
-
-
-`rotation : phoenix.Quaternion`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="scale" href="#scale">scale</a>
-
-
-
-`scale : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

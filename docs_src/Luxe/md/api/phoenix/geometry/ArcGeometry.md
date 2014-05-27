@@ -1,58 +1,36 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#phoenix.geometry)   
-[phoenix](../)     
-&emsp;&emsp;&emsp;[phoenix.geometry](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;ArcGeometry
-
----
 
 #ArcGeometry
 
 
----
-
-
-[Extends](#Extends)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[phoenix.geometry.CircleGeometry]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="phoenix.geometry.CircleGeometry" href="{{{rel_path}}}api/phoenix/geometry/CircleGeometry.html">phoenix.geometry.CircleGeometry</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-&nbsp;   
+<h3>Members</h3> <hr/>no public members
 
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-
-`new(options:Dynamic) `
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

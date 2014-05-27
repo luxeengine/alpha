@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,56 +50,51 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Draw</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="draw">Draw</h1>
 <hr>
-<p><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="arc" href="#arc">arc</a></p>
-<p><code>arc(options:Dynamic) : phoenix.geometry.ArcGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="axis3D" href="#axis3D">axis3D</a></p>
-<p><code>axis3D(?options:Dynamic) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="box" href="#box">box</a></p>
-<p><code>box(options:Dynamic) : phoenix.geometry.QuadGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="circle" href="#circle">circle</a></p>
-<p><code>circle(options:Dynamic) : phoenix.geometry.CircleGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="line" href="#line">line</a></p>
-<p><code>line(options:Dynamic) : phoenix.geometry.LineGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ngon" href="#ngon">ngon</a></p>
-<p><code>ngon(options:Dynamic) : phoenix.geometry.Geometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="plane" href="#plane">plane</a></p>
-<p><code>plane(options:Dynamic) : phoenix.geometry.PlaneGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="rectangle" href="#rectangle">rectangle</a></p>
-<p><code>rectangle(options:Dynamic) : phoenix.geometry.RectangleGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ring" href="#ring">ring</a></p>
-<p><code>ring(options:Dynamic) : phoenix.geometry.RingGeometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="text" href="#text">text</a></p>
-<p><code>text(options:Dynamic) : phoenix.geometry.Geometry</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="arc"><a class="lift" href="#arc">arc</a></a><code class="signature apipage">arc(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.ArcGeometry">phoenix.geometry.ArcGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="axis3D"><a class="lift" href="#axis3D">axis3D</a></a><code class="signature apipage">axis3D(?options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="box"><a class="lift" href="#box">box</a></a><code class="signature apipage">box(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.QuadGeometry">phoenix.geometry.QuadGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="circle"><a class="lift" href="#circle">circle</a></a><code class="signature apipage">circle(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.CircleGeometry">phoenix.geometry.CircleGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="line"><a class="lift" href="#line">line</a></a><code class="signature apipage">line(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.LineGeometry">phoenix.geometry.LineGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ngon"><a class="lift" href="#ngon">ngon</a></a><code class="signature apipage">ngon(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="plane"><a class="lift" href="#plane">plane</a></a><code class="signature apipage">plane(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.PlaneGeometry">phoenix.geometry.PlaneGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a><code class="signature apipage">rectangle(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.RectangleGeometry">phoenix.geometry.RectangleGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ring"><a class="lift" href="#ring">ring</a></a><code class="signature apipage">ring(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.RingGeometry">phoenix.geometry.RingGeometry</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

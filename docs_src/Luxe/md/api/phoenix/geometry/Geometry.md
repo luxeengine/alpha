@@ -1,582 +1,201 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#phoenix.geometry)   
-[phoenix](../)     
-&emsp;&emsp;&emsp;[phoenix.geometry](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Geometry
-
----
 
 #Geometry
 
 
----
-
-
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="added" href="#added">added</a>
 
-
-
-`added : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="batchers" href="#batchers">batchers</a>
-
-
-
-`batchers : Array<phoenix.Batcher>`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="dropped" href="#dropped">dropped</a>
-
-
-
-`dropped : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="id" href="#id">id</a>
-
-
-
-`id : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="immediate" href="#immediate">immediate</a>
-
-
-
-`immediate : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="key" href="#key">key</a>
-
-
-
-`key : phoenix.geometry.GeometryKey`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="matrix" href="#matrix">matrix</a>
-
-
-
-`matrix : phoenix.Matrix4`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="state" href="#state">state</a>
-
-
-
-`state : phoenix.geometry.GeometryState`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="static_normal_buffer" href="#static_normal_buffer">static_normal_buffer</a>
-
-
-
-`static_normal_buffer : lime.gl.GLBuffer`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="static_tcoord_buffer" href="#static_tcoord_buffer">static_tcoord_buffer</a>
-
-
-
-`static_tcoord_buffer : lime.gl.GLBuffer`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="static_vcolor_buffer" href="#static_vcolor_buffer">static_vcolor_buffer</a>
-
-
-
-`static_vcolor_buffer : lime.gl.GLBuffer`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="static_vertex_buffer" href="#static_vertex_buffer">static_vertex_buffer</a>
-
-
-
-`static_vertex_buffer : lime.gl.GLBuffer`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="submitted" href="#submitted">submitted</a>
-
-
-
-`submitted : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="uuid" href="#uuid">uuid</a>
-
-
-
-`uuid : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="vertices" href="#vertices">vertices</a>
-
-
-
-`vertices : Array<phoenix.geometry.Vertex>`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="clip" href="#clip">clip</a>
-
-
-
-`clip : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a>
-
-
-
-`clip_rect : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="color" href="#color">color</a>
-
-
-
-`color : phoenix.Color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="depth" href="#depth">depth</a>
-
-
-
-`depth : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="dirty" href="#dirty">dirty</a>
-
-
-
-`dirty : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="group" href="#group">group</a>
-
-
-
-`group : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="locked" href="#locked">locked</a>
-
-
-
-`locked : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="origin" href="#origin">origin</a>
-
-
-
-`origin : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pos" href="#pos">pos</a>
-
-
-
-`pos : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="primitive_type" href="#primitive_type">primitive_type</a>
-
-
-
-`primitive_type : phoenix.PrimitiveType`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="rotation" href="#rotation">rotation</a>
-
-
-
-`rotation : phoenix.Quaternion`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="scale" href="#scale">scale</a>
-
-
-
-`scale : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="shader" href="#shader">shader</a>
-
-
-
-`shader : phoenix.Shader`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="texture" href="#texture">texture</a>
-
-
-
-`texture : phoenix.Texture`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="visible" href="#visible">visible</a>
-
-
-
-`visible : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="add" href="#add">add</a>
-
-
-
-`add(v:phoenix.geometry.Vertex) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="batch" href="#batch">batch</a>
-
-
-
-`batch(vertlist:Array<Float>, tcoordlist:Array<Float>, colorlist:Array<Float>, normallist:Array<Float>) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="batch_into_float32array" href="#batch_into_float32array">batch_into_float32array</a>
-
-
-
-`batch_into_float32array(vert_index:Int, tcoord_index:Int, color_index:Int, normal_index:Int, vertlist:lime.utils.Float32Array, tcoordlist:lime.utils.Float32Array, colorlist:lime.utils.Float32Array, normallist:lime.utils.Float32Array) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="drop" href="#drop">drop</a>
-
-
-
-`drop(?remove:Bool=true) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_clip" href="#get_clip">get_clip</a>
-
-
-
-`get_clip() : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_clip_rect" href="#get_clip_rect">get_clip_rect</a>
-
-
-
-`get_clip_rect() : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_depth" href="#get_depth">get_depth</a>
-
-
-
-`get_depth() : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_dirty" href="#get_dirty">get_dirty</a>
-
-
-
-`get_dirty() : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_group" href="#get_group">get_group</a>
-
-
-
-`get_group() : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_locked" href="#get_locked">get_locked</a>
-
-
-
-`get_locked() : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_pos" href="#get_pos">get_pos</a>
-
-
-
-`get_pos() : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_rotation" href="#get_rotation">get_rotation</a>
-
-
-
-`get_rotation() : phoenix.Quaternion`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_scale" href="#get_scale">get_scale</a>
-
-
-
-`get_scale() : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_shader" href="#get_shader">get_shader</a>
-
-
-
-`get_shader() : phoenix.Shader`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="get_texture" href="#get_texture">get_texture</a>
-
-
-
-`get_texture() : phoenix.Texture`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="key_string" href="#key_string">key_string</a>
-
-
-
-`key_string() : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(options:Dynamic) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="refresh_key" href="#refresh_key">refresh_key</a>
-
-
-
-`refresh_key() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="remove" href="#remove">remove</a>
-
-
-
-`remove(v:phoenix.geometry.Vertex) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_clip" href="#set_clip">set_clip</a>
-
-
-
-`set_clip(val:Bool) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_clip_rect" href="#set_clip_rect">set_clip_rect</a>
-
-
-
-`set_clip_rect(val:phoenix.Rectangle) : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_color" href="#set_color">set_color</a>
-
-
-
-`set_color(val:phoenix.Color) : phoenix.Color`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_depth" href="#set_depth">set_depth</a>
-
-
-
-`set_depth(val:Float) : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_dirty" href="#set_dirty">set_dirty</a>
-
-
-
-`set_dirty(_dirty:Bool) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_group" href="#set_group">set_group</a>
-
-
-
-`set_group(val:Int) : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_locked" href="#set_locked">set_locked</a>
-
-
-
-`set_locked(_locked:Bool) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_origin" href="#set_origin">set_origin</a>
-
-
-
-`set_origin(_origin:phoenix.Vector) : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_pos" href="#set_pos">set_pos</a>
-
-
-
-`set_pos(_position:phoenix.Vector) : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_rotation" href="#set_rotation">set_rotation</a>
-
-
-
-`set_rotation(_rotation:phoenix.Quaternion) : phoenix.Quaternion`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_scale" href="#set_scale">set_scale</a>
-
-
-
-`set_scale(_scale:phoenix.Vector) : phoenix.Vector`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_shader" href="#set_shader">set_shader</a>
-
-
-
-`set_shader(val:phoenix.Shader) : phoenix.Shader`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_texture" href="#set_texture">set_texture</a>
-
-
-
-`set_texture(val:phoenix.Texture) : phoenix.Texture`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="set_visible" href="#set_visible">set_visible</a>
-
-
-
-`set_visible(val:Bool) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="short_id" href="#short_id">short_id</a>
-
-
-
-`short_id() : String`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="str" href="#str">str</a>
-
-
-
-`str() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="translate" href="#translate">translate</a>
-
-
-
-`translate(_offset:phoenix.Vector) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="added"><a class="lift" href="#added">added</a></a><code class="signature apipage">added : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="batchers"><a class="lift" href="#batchers">batchers</a></a><code class="signature apipage">batchers : [Array](http://api.haxe.org/Array.html)&lt;[phoenix.Batcher](#phoenix.Batcher)&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="dropped"><a class="lift" href="#dropped">dropped</a></a><code class="signature apipage">dropped : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="immediate"><a class="lift" href="#immediate">immediate</a></a><code class="signature apipage">immediate : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="key"><a class="lift" href="#key">key</a></a><code class="signature apipage">key : [phoenix.geometry.GeometryKey](#phoenix.geometry.GeometryKey)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="matrix"><a class="lift" href="#matrix">matrix</a></a><code class="signature apipage">matrix : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="state"><a class="lift" href="#state">state</a></a><code class="signature apipage">state : [phoenix.geometry.GeometryState](#phoenix.geometry.GeometryState)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_normal_buffer"><a class="lift" href="#static_normal_buffer">static\_normal\_buffer</a></a><code class="signature apipage">static\_normal\_buffer : [lime.gl.GLBuffer]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_tcoord_buffer"><a class="lift" href="#static_tcoord_buffer">static\_tcoord\_buffer</a></a><code class="signature apipage">static\_tcoord\_buffer : [lime.gl.GLBuffer]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_vcolor_buffer"><a class="lift" href="#static_vcolor_buffer">static\_vcolor\_buffer</a></a><code class="signature apipage">static\_vcolor\_buffer : [lime.gl.GLBuffer]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="static_vertex_buffer"><a class="lift" href="#static_vertex_buffer">static\_vertex\_buffer</a></a><code class="signature apipage">static\_vertex\_buffer : [lime.gl.GLBuffer]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="submitted"><a class="lift" href="#submitted">submitted</a></a><code class="signature apipage">submitted : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="uuid"><a class="lift" href="#uuid">uuid</a></a><code class="signature apipage">uuid : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vertices"><a class="lift" href="#vertices">vertices</a></a><code class="signature apipage">vertices : [Array](http://api.haxe.org/Array.html)&lt;[phoenix.geometry.Vertex](#phoenix.geometry.Vertex)&gt;</code><br/></span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(v:<span>[phoenix.geometry.Vertex](#phoenix.geometry.Vertex)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="batch"><a class="lift" href="#batch">batch</a></a><code class="signature apipage">batch(vertlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, tcoordlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, colorlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, normallist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="batch_into_float32array"><a class="lift" href="#batch_into_float32array">batch\_into\_float32array</a></a><code class="signature apipage">batch\_into\_float32array(vert\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, tcoord\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, color\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, normal\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, vertlist:<span>[lime.utils.Float32Array]()</span>, tcoordlist:<span>[lime.utils.Float32Array]()</span>, colorlist:<span>[lime.utils.Float32Array]()</span>, normallist:<span>[lime.utils.Float32Array]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="drop"><a class="lift" href="#drop">drop</a></a><code class="signature apipage">drop(?remove:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_clip"><a class="lift" href="#get_clip">get\_clip</a></a><code class="signature apipage">get\_clip() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_clip_rect"><a class="lift" href="#get_clip_rect">get\_clip\_rect</a></a><code class="signature apipage">get\_clip\_rect() : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_depth"><a class="lift" href="#get_depth">get\_depth</a></a><code class="signature apipage">get\_depth() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_dirty"><a class="lift" href="#get_dirty">get\_dirty</a></a><code class="signature apipage">get\_dirty() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_group"><a class="lift" href="#get_group">get\_group</a></a><code class="signature apipage">get\_group() : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_locked"><a class="lift" href="#get_locked">get\_locked</a></a><code class="signature apipage">get\_locked() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_pos"><a class="lift" href="#get_pos">get\_pos</a></a><code class="signature apipage">get\_pos() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_rotation"><a class="lift" href="#get_rotation">get\_rotation</a></a><code class="signature apipage">get\_rotation() : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_scale"><a class="lift" href="#get_scale">get\_scale</a></a><code class="signature apipage">get\_scale() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_shader"><a class="lift" href="#get_shader">get\_shader</a></a><code class="signature apipage">get\_shader() : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_texture"><a class="lift" href="#get_texture">get\_texture</a></a><code class="signature apipage">get\_texture() : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="key_string"><a class="lift" href="#key_string">key\_string</a></a><code class="signature apipage">key\_string() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh_key"><a class="lift" href="#refresh_key">refresh\_key</a></a><code class="signature apipage">refresh\_key() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(v:<span>[phoenix.geometry.Vertex](#phoenix.geometry.Vertex)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_clip"><a class="lift" href="#set_clip">set\_clip</a></a><code class="signature apipage">set\_clip(val:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_clip_rect"><a class="lift" href="#set_clip_rect">set\_clip\_rect</a></a><code class="signature apipage">set\_clip\_rect(val:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>) : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_color"><a class="lift" href="#set_color">set\_color</a></a><code class="signature apipage">set\_color(val:<span>[phoenix.Color](#phoenix.Color)</span>) : [phoenix.Color](#phoenix.Color)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_depth"><a class="lift" href="#set_depth">set\_depth</a></a><code class="signature apipage">set\_depth(val:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_dirty"><a class="lift" href="#set_dirty">set\_dirty</a></a><code class="signature apipage">set\_dirty(\_dirty:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_group"><a class="lift" href="#set_group">set\_group</a></a><code class="signature apipage">set\_group(val:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_locked"><a class="lift" href="#set_locked">set\_locked</a></a><code class="signature apipage">set\_locked(\_locked:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_origin"><a class="lift" href="#set_origin">set\_origin</a></a><code class="signature apipage">set\_origin(\_origin:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_pos"><a class="lift" href="#set_pos">set\_pos</a></a><code class="signature apipage">set\_pos(\_position:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_rotation"><a class="lift" href="#set_rotation">set\_rotation</a></a><code class="signature apipage">set\_rotation(\_rotation:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_scale"><a class="lift" href="#set_scale">set\_scale</a></a><code class="signature apipage">set\_scale(\_scale:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_shader"><a class="lift" href="#set_shader">set\_shader</a></a><code class="signature apipage">set\_shader(val:<span>[phoenix.Shader](#phoenix.Shader)</span>) : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_texture"><a class="lift" href="#set_texture">set\_texture</a></a><code class="signature apipage">set\_texture(val:<span>[phoenix.Texture](#phoenix.Texture)</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_visible"><a class="lift" href="#set_visible">set\_visible</a></a><code class="signature apipage">set\_visible(val:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="short_id"><a class="lift" href="#short_id">short\_id</a></a><code class="signature apipage">short\_id() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="str"><a class="lift" href="#str">str</a></a><code class="signature apipage">str() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="translate"><a class="lift" href="#translate">translate</a></a><code class="signature apipage">translate(\_offset:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="clip"><a class="lift" href="#clip">clip</a></a><code class="signature apipage">clip : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><code class="signature apipage">clip\_rect : [phoenix.Rectangle]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="color"><a class="lift" href="#color">color</a></a><code class="signature apipage">color : [phoenix.Color]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="depth"><a class="lift" href="#depth">depth</a></a><code class="signature apipage">depth : [Float]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="dirty"><a class="lift" href="#dirty">dirty</a></a><code class="signature apipage">dirty : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="group"><a class="lift" href="#group">group</a></a><code class="signature apipage">group : [Int]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="locked"><a class="lift" href="#locked">locked</a></a><code class="signature apipage">locked : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="primitive_type"><a class="lift" href="#primitive_type">primitive\_type</a></a><code class="signature apipage">primitive\_type : [phoenix.PrimitiveType]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [phoenix.Quaternion]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="shader"><a class="lift" href="#shader">shader</a></a><code class="signature apipage">shader : [phoenix.Shader]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture : [phoenix.Texture]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="visible"><a class="lift" href="#visible">visible</a></a><code class="signature apipage">visible : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

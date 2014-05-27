@@ -1,125 +1,52 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#luxe)   
-&emsp;&emsp;&emsp;[luxe](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Sprite
-
----
 
 #Sprite
 
 
----
-
-
-[Extends](#Extends)   
-[Members](#Members)   
-[Properties](#Properties)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.Visual]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.Visual" href="{{{rel_path}}}api/luxe/Visual.html">luxe.Visual</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-<a class="lift" name="Members" ></a>
-###Members   
----
-<a class="lift" name="geometry_quad" href="#geometry_quad">geometry_quad</a>
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="geometry_quad"><a class="lift" href="#geometry_quad">geometry\_quad</a></a><code class="signature apipage">geometry\_quad : [phoenix.geometry.QuadGeometry](#phoenix.geometry.QuadGeometry)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(options:<span>[luxe.options.SpriteOptions](#luxe.options.SpriteOptions)&lt;[new.T]()&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point\_inside</a></a><code class="signature apipage">point\_inside(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside_exact"><a class="lift" href="#point_inside_exact">point\_inside\_exact</a></a><code class="signature apipage">point\_inside\_exact(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-`geometry_quad : phoenix.geometry.QuadGeometry`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-<a class="lift" name="Properties" ></a>
-###Properties   
----
-<a class="lift" name="centered" href="#centered">centered</a>
-
-
-
-`centered : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="flipx" href="#flipx">flipx</a>
-
-
-
-`flipx : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="flipy" href="#flipy">flipy</a>
-
-
-
-`flipy : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="uv" href="#uv">uv</a>
-
-
-
-`uv : luxe.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new<T>(options:luxe.options.SpriteOptions<new.T>) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="point_inside" href="#point_inside">point_inside</a>
-
-
-
-`point_inside(_p:luxe.Vector) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="point_inside_exact" href="#point_inside_exact">point_inside_exact</a>
-
-
-
-`point_inside_exact(_p:luxe.Vector) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="centered"><a class="lift" href="#centered">centered</a></a><code class="signature apipage">centered : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="flipx"><a class="lift" href="#flipx">flipx</a></a><code class="signature apipage">flipx : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="flipy"><a class="lift" href="#flipy">flipy</a></a><code class="signature apipage">flipy : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="uv"><a class="lift" href="#uv">uv</a></a><code class="signature apipage">uv : [luxe.Rectangle]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

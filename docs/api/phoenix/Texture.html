@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,131 +50,115 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Texture</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="texture">Texture</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.Resource</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.Resource" href="../../api/luxe/Resource.html">luxe.Resource</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="_onload_handlers" href="#_onload_handlers">_onload_handlers</a></p>
-<p><code>_onload_handlers : Array&lt;null&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="actual_height" href="#actual_height">actual_height</a></p>
-<p><code>actual_height : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="actual_width" href="#actual_width">actual_width</a></p>
-<p><code>actual_width : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="data" href="#data">data</a></p>
-<p><code>data : lime.utils.UInt8Array</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="height" href="#height">height</a></p>
-<p><code>height : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="loaded" href="#loaded">loaded</a></p>
-<p><code>loaded : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="slot" href="#slot">slot</a></p>
-<p><code>slot : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="texture" href="#texture">texture</a></p>
-<p><code>texture : lime.gl.GLTexture</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="width" href="#width">width</a></p>
-<p><code>width : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="clamp" href="#clamp">clamp</a></p>
-<p><code>clamp : phoenix.ClampType</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="filter" href="#filter">filter</a></p>
-<p><code>filter : phoenix.FilterType</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="filter_mag" href="#filter_mag">filter_mag</a></p>
-<p><code>filter_mag : phoenix.FilterType</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="filter_min" href="#filter_min">filter_min</a></p>
-<p><code>filter_min : phoenix.FilterType</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onload" href="#onload">onload</a></p>
-<p><code>onload : phoenix.Texture-&gt;Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="activate" href="#activate">activate</a></p>
-<p><code>activate(att:lime.gl.GLUniformLocation) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="bind" href="#bind">bind</a></p>
-<p><code>bind() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="create_from_bytes" href="#create_from_bytes">create_from_bytes</a></p>
-<p><code>create_from_bytes(_asset_name:String, _asset_bytes:haxe.io.Bytes) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="create_from_bytes_html" href="#create_from_bytes_html">create_from_bytes_html</a></p>
-<p><code>create_from_bytes_html(_asset_name:String, _asset_bytes:Dynamic, _width:Float, _height:Float) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="create_from_bytes_using_haxe" href="#create_from_bytes_using_haxe">create_from_bytes_using_haxe</a></p>
-<p><code>create_from_bytes_using_haxe(_asset_name:String, _asset_bytes:haxe.io.Bytes) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
-<p><code>destroy() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="do_onload" href="#do_onload">do_onload</a></p>
-<p><code>do_onload() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="drop" href="#drop">drop</a></p>
-<p><code>drop() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="estimated_memory" href="#estimated_memory">estimated_memory</a></p>
-<p><code>estimated_memory() : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="generate_mipmaps" href="#generate_mipmaps">generate_mipmaps</a></p>
-<p><code>generate_mipmaps() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="get_pixel" href="#get_pixel">get_pixel</a></p>
-<p><code>get_pixel(_pos:phoenix.Vector) : null&lt;null,null,null,null&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="lock" href="#lock">lock</a></p>
-<p><code>lock() : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_manager:luxe.ResourceManager, ?_type:luxe.ResourceType)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_onload" href="#set_onload">set_onload</a></p>
-<p><code>set_onload(f:phoenix.Texture-&gt;Void) : phoenix.Texture-&gt;Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="set_pixel" href="#set_pixel">set_pixel</a></p>
-<p><code>set_pixel(_pos:phoenix.Vector, _color:phoenix.Color) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="toString" href="#toString">toString</a></p>
-<p><code>toString() : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="unlock" href="#unlock">unlock</a></p>
-<p><code>unlock() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="_onload_handlers"><a class="lift" href="#_onload_handlers">_onload_handlers</a></a><code class="signature apipage">_onload_handlers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#phoenix.Texture-&gt;Void">phoenix.Texture-&gt;Void</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="actual_height"><a class="lift" href="#actual_height">actual_height</a></a><code class="signature apipage">actual_height : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="actual_width"><a class="lift" href="#actual_width">actual_width</a></a><code class="signature apipage">actual_width : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : <a href="">lime.utils.UInt8Array</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="height"><a class="lift" href="#height">height</a></a><code class="signature apipage">height : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="loaded"><a class="lift" href="#loaded">loaded</a></a><code class="signature apipage">loaded : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="slot"><a class="lift" href="#slot">slot</a></a><code class="signature apipage">slot : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture : <a href="">lime.gl.GLTexture</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="width"><a class="lift" href="#width">width</a></a><code class="signature apipage">width : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="dropped"><a class="lift" href="#dropped">dropped</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">dropped : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="manager"><a class="lift" href="#manager">manager</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">manager : <a href="#luxe.ResourceManager">luxe.ResourceManager</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="persistent"><a class="lift" href="#persistent">persistent</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">persistent : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="time_created"><a class="lift" href="#time_created">time_created</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">time_created : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="time_to_load"><a class="lift" href="#time_to_load">time_to_load</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">time_to_load : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="type"><a class="lift" href="#type">type</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">type : <a href="#luxe.ResourceType">luxe.ResourceType</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="activate"><a class="lift" href="#activate">activate</a></a><code class="signature apipage">activate(att:<span><a href="">lime.gl.GLUniformLocation</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="bind"><a class="lift" href="#bind">bind</a></a><code class="signature apipage">bind() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create_from_bytes"><a class="lift" href="#create_from_bytes">create_from_bytes</a></a><code class="signature apipage">create_from_bytes(_asset_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _asset_bytes:<span><a href="http://api.haxe.org/haxe/io/Bytes.html">haxe.io.Bytes</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create_from_bytes_html"><a class="lift" href="#create_from_bytes_html">create_from_bytes_html</a></a><code class="signature apipage">create_from_bytes_html(_asset_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _asset_bytes:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, _width:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _height:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create_from_bytes_using_haxe"><a class="lift" href="#create_from_bytes_using_haxe">create_from_bytes_using_haxe</a></a><code class="signature apipage">create_from_bytes_using_haxe(_asset_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _asset_bytes:<span><a href="http://api.haxe.org/haxe/io/Bytes.html">haxe.io.Bytes</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="do_onload"><a class="lift" href="#do_onload">do_onload</a></a><code class="signature apipage">do_onload() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="drop"><a class="lift" href="#drop">drop</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">drop() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="estimated_memory"><a class="lift" href="#estimated_memory">estimated_memory</a></a><code class="signature apipage">estimated_memory() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="generate_mipmaps"><a class="lift" href="#generate_mipmaps">generate_mipmaps</a></a><code class="signature apipage">generate_mipmaps() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_pixel"><a class="lift" href="#get_pixel">get_pixel</a></a><code class="signature apipage">get_pixel(_pos:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&lt;<a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;, <a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;, <a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;, <a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&lt;<a href="http://api.haxe.org/Float.html">Float</a>&gt;&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="lock"><a class="lift" href="#lock">lock</a></a><code class="signature apipage">lock() : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">new(_manager:<span><a href="#luxe.ResourceManager">luxe.ResourceManager</a></span>, ?_type:<span><a href="#luxe.ResourceType">luxe.ResourceType</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onload"><a class="lift" href="#onload">onload</a></a><code class="signature apipage">onload() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_onload"><a class="lift" href="#set_onload">set_onload</a></a><code class="signature apipage">set_onload(f:<span><a href="#phoenix.Texture-&gt;Void">phoenix.Texture-&gt;Void</a></span>) : <a href="#phoenix.Texture-&gt;Void">phoenix.Texture-&gt;Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_pixel"><a class="lift" href="#set_pixel">set_pixel</a></a><code class="signature apipage">set_pixel(_pos:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, _color:<span><a href="#phoenix.Color">phoenix.Color</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="unlock"><a class="lift" href="#unlock">unlock</a></a><code class="signature apipage">unlock() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="clamp"><a class="lift" href="#clamp">clamp</a></a><code class="signature apipage">clamp : <a href="">phoenix.ClampType</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="filter"><a class="lift" href="#filter">filter</a></a><code class="signature apipage">filter : <a href="">phoenix.FilterType</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="filter_mag"><a class="lift" href="#filter_mag">filter_mag</a></a><code class="signature apipage">filter_mag : <a href="">phoenix.FilterType</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="filter_min"><a class="lift" href="#filter_min">filter_min</a></a><code class="signature apipage">filter_min : <a href="">phoenix.FilterType</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

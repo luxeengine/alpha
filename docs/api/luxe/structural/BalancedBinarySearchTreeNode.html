@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,50 +50,36 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-structural-"><a href="../../../api/index.html#luxe.structural">API Index</a></h2>
-<p><a href="../">luxe</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.structural</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BalancedBinarySearchTreeNode</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="balancedbinarysearchtreenode">BalancedBinarySearchTreeNode</h1>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="color" href="#color">color</a></p>
-<p><code>color : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="key" href="#key">key</a></p>
-<p><code>key : luxe.structural.BalancedBinarySearchTreeNode.K</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="left" href="#left">left</a></p>
-<p><code>left : luxe.structural.BalancedBinarySearchTreeNode&lt;luxe.structural.BalancedBinarySearchTreeNode.K,luxe.structural.BalancedBinarySearchTreeNode.T&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="nodecount" href="#nodecount">nodecount</a></p>
-<p><code>nodecount : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="right" href="#right">right</a></p>
-<p><code>right : luxe.structural.BalancedBinarySearchTreeNode&lt;luxe.structural.BalancedBinarySearchTreeNode.K,luxe.structural.BalancedBinarySearchTreeNode.T&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="value" href="#value">value</a></p>
-<p><code>value : luxe.structural.BalancedBinarySearchTreeNode.T</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new(_key:luxe.structural.BalancedBinarySearchTreeNode.K, _value:luxe.structural.BalancedBinarySearchTreeNode.T, _nodecount:Int, _color:Bool)</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="color"><a class="lift" href="#color">color</a></a><code class="signature apipage">color : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="key"><a class="lift" href="#key">key</a></a><code class="signature apipage">key : <a href="#luxe.structural.BalancedBinarySearchTreeNode.K">luxe.structural.BalancedBinarySearchTreeNode.K</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="left"><a class="lift" href="#left">left</a></a><code class="signature apipage">left : <a href="#luxe.structural.BalancedBinarySearchTreeNode">luxe.structural.BalancedBinarySearchTreeNode</a>&lt;<a href="#luxe.structural.BalancedBinarySearchTreeNode.K">luxe.structural.BalancedBinarySearchTreeNode.K</a>, <a href="#luxe.structural.BalancedBinarySearchTreeNode.T">luxe.structural.BalancedBinarySearchTreeNode.T</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="nodecount"><a class="lift" href="#nodecount">nodecount</a></a><code class="signature apipage">nodecount : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="right"><a class="lift" href="#right">right</a></a><code class="signature apipage">right : <a href="#luxe.structural.BalancedBinarySearchTreeNode">luxe.structural.BalancedBinarySearchTreeNode</a>&lt;<a href="#luxe.structural.BalancedBinarySearchTreeNode.K">luxe.structural.BalancedBinarySearchTreeNode.K</a>, <a href="#luxe.structural.BalancedBinarySearchTreeNode.T">luxe.structural.BalancedBinarySearchTreeNode.T</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="value"><a class="lift" href="#value">value</a></a><code class="signature apipage">value : <a href="#luxe.structural.BalancedBinarySearchTreeNode.T">luxe.structural.BalancedBinarySearchTreeNode.T</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_key:<span><a href="#luxe.structural.BalancedBinarySearchTreeNode.K">luxe.structural.BalancedBinarySearchTreeNode.K</a></span>, _value:<span><a href="#luxe.structural.BalancedBinarySearchTreeNode.T">luxe.structural.BalancedBinarySearchTreeNode.T</a></span>, _nodecount:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _color:<span><a href="http://api.haxe.org/Bool.html">Bool</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

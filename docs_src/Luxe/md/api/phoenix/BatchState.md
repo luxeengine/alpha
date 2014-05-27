@@ -1,167 +1,68 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BatchState
-
----
 
 #BatchState
 
 
----
-
-
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="batcher" href="#batcher">batcher</a>
 
-
-
-`batcher : phoenix.Batcher`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="clip_rect" href="#clip_rect">clip_rect</a>
-
-
-
-`clip_rect : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="geom_state" href="#geom_state">geom_state</a>
-
-
-
-`geom_state : phoenix.geometry.GeometryState`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="is_clipping" href="#is_clipping">is_clipping</a>
-
-
-
-`is_clipping : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="last_clip_rect" href="#last_clip_rect">last_clip_rect</a>
-
-
-
-`last_clip_rect : phoenix.Rectangle`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="last_geom_state" href="#last_geom_state">last_geom_state</a>
-
-
-
-`last_geom_state : phoenix.geometry.GeometryState`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="last_group" href="#last_group">last_group</a>
-
-
-
-`last_group : Int`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="last_shader_id" href="#last_shader_id">last_shader_id</a>
-
-
-
-`last_shader_id : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="last_texture_id" href="#last_texture_id">last_texture_id</a>
-
-
-
-`last_texture_id : Dynamic`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="log" href="#log">log</a>
-
-
-
-`log : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="activate" href="#activate">activate</a>
-
-
-
-`activate(batcher:phoenix.Batcher) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="deactivate" href="#deactivate">deactivate</a>
-
-
-
-`deactivate(batcher:phoenix.Batcher) : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(_r:phoenix.Batcher) `
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="str" href="#str">str</a>
-
-
-
-`str() : Void`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="update" href="#update">update</a>
-
-
-
-`update(geom:phoenix.geometry.Geometry) : Bool`
-
-<span class="small_desc_flat">  </span>   
-
-
+&nbsp;
+&nbsp;
+
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="batcher"><a class="lift" href="#batcher">batcher</a></a><code class="signature apipage">batcher : [phoenix.Batcher](#phoenix.Batcher)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><code class="signature apipage">clip\_rect : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="geom_state"><a class="lift" href="#geom_state">geom\_state</a></a><code class="signature apipage">geom\_state : [phoenix.geometry.GeometryState](#phoenix.geometry.GeometryState)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="is_clipping"><a class="lift" href="#is_clipping">is\_clipping</a></a><code class="signature apipage">is\_clipping : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_clip_rect"><a class="lift" href="#last_clip_rect">last\_clip\_rect</a></a><code class="signature apipage">last\_clip\_rect : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_geom_state"><a class="lift" href="#last_geom_state">last\_geom\_state</a></a><code class="signature apipage">last\_geom\_state : [phoenix.geometry.GeometryState](#phoenix.geometry.GeometryState)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_group"><a class="lift" href="#last_group">last\_group</a></a><code class="signature apipage">last\_group : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_shader_id"><a class="lift" href="#last_shader_id">last\_shader\_id</a></a><code class="signature apipage">last\_shader\_id : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_texture_id"><a class="lift" href="#last_texture_id">last\_texture\_id</a></a><code class="signature apipage">last\_texture\_id : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="activate"><a class="lift" href="#activate">activate</a></a><code class="signature apipage">activate(batcher:<span>[phoenix.Batcher](#phoenix.Batcher)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deactivate"><a class="lift" href="#deactivate">deactivate</a></a><code class="signature apipage">deactivate(batcher:<span>[phoenix.Batcher](#phoenix.Batcher)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_r:<span>[phoenix.Batcher](#phoenix.Batcher)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="str"><a class="lift" href="#str">str</a></a><code class="signature apipage">str() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

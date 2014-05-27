@@ -1,50 +1,36 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#phoenix.defaults)   
-[phoenix](../)     
-&emsp;&emsp;&emsp;[phoenix.defaults](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;FontBytes
-
----
 
 #FontBytes
 
 
----
-
-
-[StaticMethods](#StaticMethods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="StaticMethods" ></a>
-###StaticMethods   
+</span>
+
+
 ---
-<a class="lift" name="data" href="#data">data</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members
 
-`data() : String`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="data"><a class="lift" href="#data">data</a></a><span class="inline-block static">static</span><code class="signature apipage">data() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

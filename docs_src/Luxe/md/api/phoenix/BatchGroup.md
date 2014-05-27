@@ -1,71 +1,40 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BatchGroup
-
----
 
 #BatchGroup
 
 
----
-
-
-[Members](#Members)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`
+<span class="meta">
 
-<a class="lift" name="Members" ></a>
-###Members   
+</span>
+
+
 ---
-<a class="lift" name="post_render" href="#post_render">post_render</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="post_render"><a class="lift" href="#post_render">post\_render</a></a><code class="signature apipage">post\_render : [phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="pre_render"><a class="lift" href="#pre_render">pre\_render</a></a><code class="signature apipage">pre\_render : [phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-`post_render : phoenix.Batcher->Void`
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_pre:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)</span>, \_post:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="pre_render" href="#pre_render">pre_render</a>
-
-
-
-`pre_render : phoenix.Batcher->Void`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-&nbsp;   
-
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(_pre:phoenix.Batcher->Void, _post:phoenix.Batcher->Void) `
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,83 +50,73 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-utils-"><a href="../../../api/index.html#luxe.utils">API Index</a></h2>
-<p><a href="../">luxe</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.utils</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Maths</p>
+            <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="maths">Maths</h1>
 <hr>
-<p><a href="#Members">Members</a><br><a href="#StaticMethods">StaticMethods</a>   </p>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="DEG2RAD" href="#DEG2RAD">DEG2RAD</a></p>
-<p><span class="inline-block static">static</span><code>DEG2RAD : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="RAD2DEG" href="#RAD2DEG">RAD2DEG</a></p>
-<p><span class="inline-block static">static</span><code>RAD2DEG : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="StaticMethods" ></a></p>
-<h3 id="staticmethods">StaticMethods</h3>
-<hr>
-<p><a class="lift" name="clamp" href="#clamp">clamp</a></p>
-<p><code>clamp(value:Float, a:Float, b:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="clamp_bottom" href="#clamp_bottom">clamp_bottom</a></p>
-<p><code>clamp_bottom(value:Float, a:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="degToRad" href="#degToRad">degToRad</a></p>
-<p><code>degToRad(deg:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="fixed" href="#fixed">fixed</a></p>
-<p><code>fixed(value:Float, precision:Int) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="map_linear" href="#map_linear">map_linear</a></p>
-<p><code>map_linear(value:Float, a1:Float, a2:Float, b1:Float, b2:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="nearest_power_of_two" href="#nearest_power_of_two">nearest_power_of_two</a></p>
-<p><code>nearest_power_of_two(_value:Int) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="radToDeg" href="#radToDeg">radToDeg</a></p>
-<p><code>radToDeg(rad:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="random16" href="#random16">random16</a></p>
-<p><code>random16() : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="random_float" href="#random_float">random_float</a></p>
-<p><code>random_float(low:Float, high:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="random_float_spread" href="#random_float_spread">random_float_spread</a></p>
-<p><code>random_float_spread(range:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="random_int" href="#random_int">random_int</a></p>
-<p><code>random_int(low:Int, high:Int) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="sign" href="#sign">sign</a></p>
-<p><code>sign(x:Float) : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="smootherstep" href="#smootherstep">smootherstep</a></p>
-<p><code>smootherstep(x:Float, min:Float, max:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="smoothstep" href="#smoothstep">smoothstep</a></p>
-<p><code>smoothstep(x:Float, min:Float, max:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="within_range" href="#within_range">within_range</a></p>
-<p><code>within_range(value:Float, start_range:Float, end_range:Float) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="wrap_angle" href="#wrap_angle">wrap_angle</a></p>
-<p><code>wrap_angle(degrees:Float, lower:Float, upper:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="DEG2RAD"><a class="lift" href="#DEG2RAD">DEG2RAD</a></a><span class="inline-block static">static</span><code class="signature apipage">DEG2RAD : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="RAD2DEG"><a class="lift" href="#RAD2DEG">RAD2DEG</a></a><span class="inline-block static">static</span><code class="signature apipage">RAD2DEG : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="clamp"><a class="lift" href="#clamp">clamp</a></a><span class="inline-block static">static</span><code class="signature apipage">clamp(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, a:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, b:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="clamp_bottom"><a class="lift" href="#clamp_bottom">clamp_bottom</a></a><span class="inline-block static">static</span><code class="signature apipage">clamp_bottom(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, a:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="degToRad"><a class="lift" href="#degToRad">degToRad</a></a><span class="inline-block static">static</span><code class="signature apipage">degToRad(deg:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="fixed"><a class="lift" href="#fixed">fixed</a></a><span class="inline-block static">static</span><code class="signature apipage">fixed(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, precision:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="map_linear"><a class="lift" href="#map_linear">map_linear</a></a><span class="inline-block static">static</span><code class="signature apipage">map_linear(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, a1:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, a2:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, b1:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, b2:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="nearest_power_of_two"><a class="lift" href="#nearest_power_of_two">nearest_power_of_two</a></a><span class="inline-block static">static</span><code class="signature apipage">nearest_power_of_two(_value:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="radToDeg"><a class="lift" href="#radToDeg">radToDeg</a></a><span class="inline-block static">static</span><code class="signature apipage">radToDeg(rad:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="random16"><a class="lift" href="#random16">random16</a></a><span class="inline-block static">static</span><code class="signature apipage">random16() : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="random_float"><a class="lift" href="#random_float">random_float</a></a><span class="inline-block static">static</span><code class="signature apipage">random_float(low:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, high:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="random_float_spread"><a class="lift" href="#random_float_spread">random_float_spread</a></a><span class="inline-block static">static</span><code class="signature apipage">random_float_spread(range:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="random_int"><a class="lift" href="#random_int">random_int</a></a><span class="inline-block static">static</span><code class="signature apipage">random_int(low:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, high:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sign"><a class="lift" href="#sign">sign</a></a><span class="inline-block static">static</span><code class="signature apipage">sign(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="smootherstep"><a class="lift" href="#smootherstep">smootherstep</a></a><span class="inline-block static">static</span><code class="signature apipage">smootherstep(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, min:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, max:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="smoothstep"><a class="lift" href="#smoothstep">smoothstep</a></a><span class="inline-block static">static</span><code class="signature apipage">smoothstep(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, min:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, max:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="within_range"><a class="lift" href="#within_range">within_range</a></a><span class="inline-block static">static</span><code class="signature apipage">within_range(value:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, start_range:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, end_range:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="wrap_angle"><a class="lift" href="#wrap_angle">wrap_angle</a></a><span class="inline-block static">static</span><code class="signature apipage">wrap_angle(degrees:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, lower:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, upper:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

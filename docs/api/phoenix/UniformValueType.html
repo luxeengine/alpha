@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,49 +50,31 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-phoenix-"><a href="../../api/index.html#phoenix">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">phoenix</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;UniformValueType</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="uniformvaluetype">UniformValueType</h1>
 <hr>
-<p><a href="#Values">Values</a>   </p>
+<p><code>enum</code>
+<span class="meta">
+<br/>meta: @:flatEnum
+</span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Values" ></a></p>
-<h3 id="values">Values</h3>
-<hr>
-<p><a class="lift" name="color" href="#color">color</a></p>
-<p><code>phoenix.UniformValueType.color</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="float" href="#float">float</a></p>
-<p><code>phoenix.UniformValueType.float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="int" href="#int">int</a></p>
-<p><code>phoenix.UniformValueType.int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="texture" href="#texture">texture</a></p>
-<p><code>phoenix.UniformValueType.texture</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="unknown" href="#unknown">unknown</a></p>
-<p><code>phoenix.UniformValueType.unknown</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vector2" href="#vector2">vector2</a></p>
-<p><code>phoenix.UniformValueType.vector2</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vector3" href="#vector3">vector3</a></p>
-<p><code>phoenix.UniformValueType.vector3</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="vector4" href="#vector4">vector4</a></p>
-<p><code>phoenix.UniformValueType.vector4</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage"><code>color</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>float</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>int</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>texture</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>unknown</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>vector2</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>vector3</code><br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage"><code>vector4</code><br/> </span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/>no public methods</p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

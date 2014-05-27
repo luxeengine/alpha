@@ -1,105 +1,41 @@
 
-[![Logo](../../images/logo.png)](../../index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
 
-##[API Index](../../api/index.html#phoenix)   
-&emsp;&emsp;&emsp;[phoenix](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;PrimitiveType
-
----
 
 #PrimitiveType
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="line_loop" href="#line_loop">line_loop</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`line_loop`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`line_strip`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`lines`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`none`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`points`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`triangle_fan`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`triangle_strip`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`triangles`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`phoenix.PrimitiveType.line_loop`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="line_strip" href="#line_strip">line_strip</a>
-
-
-
-`phoenix.PrimitiveType.line_strip`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="lines" href="#lines">lines</a>
-
-
-
-`phoenix.PrimitiveType.lines`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="none" href="#none">none</a>
-
-
-
-`phoenix.PrimitiveType.none`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="points" href="#points">points</a>
-
-
-
-`phoenix.PrimitiveType.points`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="triangle_fan" href="#triangle_fan">triangle_fan</a>
-
-
-
-`phoenix.PrimitiveType.triangle_fan`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="triangle_strip" href="#triangle_strip">triangle_strip</a>
-
-
-
-`phoenix.PrimitiveType.triangle_strip`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="triangles" href="#triangles">triangles</a>
-
-
-
-`phoenix.PrimitiveType.triangles`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

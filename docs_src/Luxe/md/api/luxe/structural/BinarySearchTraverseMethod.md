@@ -1,66 +1,36 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.structural)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.structural](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;BinarySearchTraverseMethod
-
----
 
 #BinarySearchTraverseMethod
 
 
----
-
-
-[Values](#Values)   
-
 
 ---
 
-&nbsp;   
+`enum`
+<span class="meta">
+<br/>meta: @:flatEnum
+</span>
 
-<a class="lift" name="Values" ></a>
-###Values   
+
 ---
-<a class="lift" name="InOrder" href="#InOrder">InOrder</a>
 
+&nbsp;
+&nbsp;
 
+<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`InOrder`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`PostOrder`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`PreOrder`<br/> </span>
+        <span class="small_desc_flat"></span>
 
-`luxe.structural.BinarySearchTraverseMethod.InOrder`
+<h3>Methods</h3> <hr/>no public methods
 
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="PostOrder" href="#PostOrder">PostOrder</a>
-
-
-
-`luxe.structural.BinarySearchTraverseMethod.PostOrder`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="PreOrder" href="#PreOrder">PreOrder</a>
-
-
-
-`luxe.structural.BinarySearchTraverseMethod.PreOrder`
-
-<span class="small_desc_flat">  </span>   
-
-&nbsp;   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

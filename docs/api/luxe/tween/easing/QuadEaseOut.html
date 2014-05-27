@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,39 +50,30 @@
 
     <body>
         <div class="content">
-            <p><a href="../../../../index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-tween-"><a href="../../../../api/index.html#luxe.tween">API Index</a></h2>
-<p><a href="../">luxe.tween</a><br>&emsp;&emsp;&emsp;<a href="./">luxe.tween.easing</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;QuadEaseOut</p>
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="quadeaseout">QuadEaseOut</h1>
 <hr>
-<p><a href="#Implements">Implements</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code><br/>implements <code><span><a href="">luxe.tween.easing.IEasing</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Implements" ></a></p>
-<h3 id="implements">Implements</h3>
-<hr>
-<p><a class="lift" name="luxe.tween.easing.IEasing" href="../../../../api/luxe/tween/easing/IEasing.html">luxe.tween.easing.IEasing</a></p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="calculate" href="#calculate">calculate</a></p>
-<p><code>calculate(k:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ease" href="#ease">ease</a></p>
-<p><code>ease(t:Float, b:Float, c:Float, d:Float) : Float</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new()</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/>no public members</p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="calculate"><a class="lift" href="#calculate">calculate</a></a><code class="signature apipage">calculate(k:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ease"><a class="lift" href="#ease">ease</a></a><code class="signature apipage">ease(t:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, b:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, c:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, d:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>

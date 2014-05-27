@@ -1,66 +1,45 @@
 
-[![Logo](../../../images/logo.png)](../../../index.html)
+[![Logo](../../../images/logo.png)](../../../api/index.html)
 
 ---
 
 
-##[API Index](../../../api/index.html#luxe.tween)   
-[luxe](../)     
-&emsp;&emsp;&emsp;[luxe.tween](./)   
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;LinearPath
-
----
 
 #LinearPath
 
 
----
-
-
-[Extends](#Extends)   
-[Methods](#Methods)   
-
 
 ---
 
-&nbsp;   
+`class`extends <code><span>[luxe.tween.BezierPath]()</span></code>
+<span class="meta">
 
-<a class="lift" name="Extends" ></a>
-###Extends   
+</span>
+
+
 ---
-<a class="lift" name="luxe.tween.BezierPath" href="{{{rel_path}}}api/luxe/tween/BezierPath.html">luxe.tween.BezierPath</a>
 
-&nbsp;   
+&nbsp;
+&nbsp;
 
-&nbsp;   
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="control"><a class="lift" href="#control">control</a></a><a title="inherited from luxe.tween.BezierPath" class="tooltip inherited">&gt;</a><code class="signature apipage">control : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="end"><a class="lift" href="#end">end</a></a><a title="inherited from luxe.tween.BezierPath" class="tooltip inherited">&gt;</a><code class="signature apipage">end : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="strength"><a class="lift" href="#strength">strength</a></a><a title="inherited from luxe.tween.BezierPath" class="tooltip inherited">&gt;</a><code class="signature apipage">strength : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span>
 
-<a class="lift" name="Methods" ></a>
-###Methods   
----
-<a class="lift" name="calculate" href="#calculate">calculate</a>
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="calculate"><a class="lift" href="#calculate">calculate</a></a><a title="inherited from luxe.tween.BezierPath" class="tooltip inherited">&gt;</a><code class="signature apipage">calculate(start:<span>[Float](http://api.haxe.org/Float.html)</span>, k:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.tween.BezierPath" class="tooltip inherited">&gt;</a><code class="signature apipage">new(end:<span>[Float](http://api.haxe.org/Float.html)</span>, strength:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
 
-
-
-`calculate(start:Float, k:Float) : Float`
-
-<span class="small_desc_flat">  </span>   
-
-<a class="lift" name="new" href="#new">new</a>
-
-
-
-`new(end:Float, strength:Float) `
-
-<span class="small_desc_flat">  </span>   
-
-
+<h3>Properties</h3> <hr/>no public properties
 
 &nbsp;
 &nbsp;
 &nbsp;
-
----  
-
-
-&nbsp;   
-&nbsp;   

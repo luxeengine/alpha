@@ -9,7 +9,11 @@
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
         
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
         <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
 
         <script>
 
@@ -21,9 +25,7 @@
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...');
                     } else {
-                        $(this).text('less ...');
                     }
                     _child.css('display', _opp);
                 });
@@ -37,6 +39,10 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
 
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
             }); //document.ready
 
         </script>
@@ -44,134 +50,117 @@
 
     <body>
         <div class="content">
-            <p><a href="../../index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
-<hr>
-<h2 id="-api-index-api-index-html-luxe-"><a href="../../api/index.html#luxe">API Index</a></h2>
-<p>&emsp;&emsp;&emsp;<a href="./">luxe</a><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Scene</p>
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="scene">Scene</h1>
 <hr>
-<p><a href="#Extends">Extends</a><br><a href="#Members">Members</a><br><a href="#Properties">Properties</a><br><a href="#Methods">Methods</a>   </p>
+<p><code>class</code>extends <code><span><a href="">luxe.Objects</a></span></code>
+<span class="meta"></p>
+<p></span></p>
 <hr>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Extends" ></a></p>
-<h3 id="extends">Extends</h3>
-<hr>
-<p><a class="lift" name="luxe.Objects" href="../../api/luxe/Objects.html">luxe.Objects</a></p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Members" ></a></p>
-<h3 id="members">Members</h3>
-<hr>
-<p><a class="lift" name="entities" href="#entities">entities</a></p>
-<p><code>entities : Map&lt;String,luxe.Entity&gt;</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="inited" href="#inited">inited</a></p>
-<p><code>inited : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="started" href="#started">started</a></p>
-<p><code>started : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Properties" ></a></p>
-<h3 id="properties">Properties</h3>
-<hr>
-<p><a class="lift" name="entitycount" href="#entitycount">entitycount</a></p>
-<p><code>entitycount : Int</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p>&nbsp;   </p>
-<p>&nbsp;   </p>
-<p><a class="lift" name="Methods" ></a></p>
-<h3 id="methods">Methods</h3>
-<hr>
-<p><a class="lift" name="add" href="#add">add</a></p>
-<p><code>add(entity:luxe.Entity) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="create" href="#create">create</a></p>
-<p><code>create&lt;T1,T2&gt;(type:Class&lt;create.T1&gt;, ?_name:String=&#39;&#39;, ?_data:create.T2) : create.T1</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="destroy" href="#destroy">destroy</a></p>
-<p><code>destroy() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="empty" href="#empty">empty</a></p>
-<p><code>empty() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="fixed_update" href="#fixed_update">fixed_update</a></p>
-<p><code>fixed_update() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="init" href="#init">init</a></p>
-<p><code>init() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="new" href="#new">new</a></p>
-<p><code>new()</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ongamepadaxis" href="#ongamepadaxis">ongamepadaxis</a></p>
-<p><code>ongamepadaxis(e:Dynamic) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ongamepadball" href="#ongamepadball">ongamepadball</a></p>
-<p><code>ongamepadball(e:Dynamic) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ongamepadbuttondown" href="#ongamepadbuttondown">ongamepadbuttondown</a></p>
-<p><code>ongamepadbuttondown(e:Dynamic) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ongamepadbuttonup" href="#ongamepadbuttonup">ongamepadbuttonup</a></p>
-<p><code>ongamepadbuttonup(e:Dynamic) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ongamepadhat" href="#ongamepadhat">ongamepadhat</a></p>
-<p><code>ongamepadhat(e:Dynamic) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="oninputdown" href="#oninputdown">oninputdown</a></p>
-<p><code>oninputdown(_name:String, e:luxe.InputEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="oninputup" href="#oninputup">oninputup</a></p>
-<p><code>oninputup(_name:String, e:luxe.InputEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onkeydown" href="#onkeydown">onkeydown</a></p>
-<p><code>onkeydown(e:luxe.KeyEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onkeyup" href="#onkeyup">onkeyup</a></p>
-<p><code>onkeyup(e:luxe.KeyEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onmousedown" href="#onmousedown">onmousedown</a></p>
-<p><code>onmousedown(e:luxe.MouseEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onmousemove" href="#onmousemove">onmousemove</a></p>
-<p><code>onmousemove(e:luxe.MouseEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onmouseup" href="#onmouseup">onmouseup</a></p>
-<p><code>onmouseup(e:luxe.MouseEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="onmousewheel" href="#onmousewheel">onmousewheel</a></p>
-<p><code>onmousewheel(e:luxe.MouseEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ontouchbegin" href="#ontouchbegin">ontouchbegin</a></p>
-<p><code>ontouchbegin(e:luxe.TouchEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ontouchend" href="#ontouchend">ontouchend</a></p>
-<p><code>ontouchend(e:luxe.TouchEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="ontouchmove" href="#ontouchmove">ontouchmove</a></p>
-<p><code>ontouchmove(e:luxe.TouchEvent) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="remove" href="#remove">remove</a></p>
-<p><code>remove(entity:luxe.Entity) : Bool</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="serialize_to_disk" href="#serialize_to_disk">serialize_to_disk</a></p>
-<p><code>serialize_to_disk(_destination_path:String) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="start" href="#start">start</a></p>
-<p><code>start() : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="toString" href="#toString">toString</a></p>
-<p><code>toString() : String</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
-<p><a class="lift" name="update" href="#update">update</a></p>
-<p><code>update(dt:Float) : Void</code></p>
-<p><span class="small_desc_flat">  </span>   </p>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="entities"><a class="lift" href="#entities">entities</a></a><code class="signature apipage">entities : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="#luxe.Entity">luxe.Entity</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="inited"><a class="lift" href="#inited">inited</a></a><code class="signature apipage">inited : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="started"><a class="lift" href="#started">started</a></a><code class="signature apipage">started : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">name : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(entity:<span><a href="#luxe.Entity">luxe.Entity</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(type:<span><a href="">Class</a>&lt;<a href="">create.T1</a>&gt;</span>, ?_name:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;&#x27;</span>, ?_data:<span><a href="">create.T2</a>=null</span>) : <a href="">create.T1</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="empty"><a class="lift" href="#empty">empty</a></a><code class="signature apipage">empty() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="fixed_update"><a class="lift" href="#fixed_update">fixed_update</a></a><code class="signature apipage">fixed_update() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a><code class="signature apipage">ongamepadaxis(e:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadball"><a class="lift" href="#ongamepadball">ongamepadball</a></a><code class="signature apipage">ongamepadball(e:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadbuttondown"><a class="lift" href="#ongamepadbuttondown">ongamepadbuttondown</a></a><code class="signature apipage">ongamepadbuttondown(e:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadbuttonup"><a class="lift" href="#ongamepadbuttonup">ongamepadbuttonup</a></a><code class="signature apipage">ongamepadbuttonup(e:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ongamepadhat"><a class="lift" href="#ongamepadhat">ongamepadhat</a></a><code class="signature apipage">ongamepadhat(e:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="oninputdown"><a class="lift" href="#oninputdown">oninputdown</a></a><code class="signature apipage">oninputdown(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, e:<span><a href="#luxe.InputEvent">luxe.InputEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="oninputup"><a class="lift" href="#oninputup">oninputup</a></a><code class="signature apipage">oninputup(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, e:<span><a href="#luxe.InputEvent">luxe.InputEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onkeydown"><a class="lift" href="#onkeydown">onkeydown</a></a><code class="signature apipage">onkeydown(e:<span><a href="#luxe.KeyEvent">luxe.KeyEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onkeyup"><a class="lift" href="#onkeyup">onkeyup</a></a><code class="signature apipage">onkeyup(e:<span><a href="#luxe.KeyEvent">luxe.KeyEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onmousedown"><a class="lift" href="#onmousedown">onmousedown</a></a><code class="signature apipage">onmousedown(e:<span><a href="#luxe.MouseEvent">luxe.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onmousemove"><a class="lift" href="#onmousemove">onmousemove</a></a><code class="signature apipage">onmousemove(e:<span><a href="#luxe.MouseEvent">luxe.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onmouseup"><a class="lift" href="#onmouseup">onmouseup</a></a><code class="signature apipage">onmouseup(e:<span><a href="#luxe.MouseEvent">luxe.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onmousewheel"><a class="lift" href="#onmousewheel">onmousewheel</a></a><code class="signature apipage">onmousewheel(e:<span><a href="#luxe.MouseEvent">luxe.MouseEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ontouchbegin"><a class="lift" href="#ontouchbegin">ontouchbegin</a></a><code class="signature apipage">ontouchbegin(e:<span><a href="#luxe.TouchEvent">luxe.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ontouchend"><a class="lift" href="#ontouchend">ontouchend</a></a><code class="signature apipage">ontouchend(e:<span><a href="#luxe.TouchEvent">luxe.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ontouchmove"><a class="lift" href="#ontouchmove">ontouchmove</a></a><code class="signature apipage">ontouchmove(e:<span><a href="#luxe.TouchEvent">luxe.TouchEvent</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(entity:<span><a href="#luxe.Entity">luxe.Entity</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="serialize_to_disk"><a class="lift" href="#serialize_to_disk">serialize_to_disk</a></a><code class="signature apipage">serialize_to_disk(_destination_path:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="start"><a class="lift" href="#start">start</a></a><code class="signature apipage">start() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(dt:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="entitycount"><a class="lift" href="#entitycount">entitycount</a></a><code class="signature apipage">entitycount : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
 <p>&nbsp;
 &nbsp;
 &nbsp;</p>
-<hr>
-<p>&nbsp;<br>&nbsp;   </p>
 
         </div>
     </body>
