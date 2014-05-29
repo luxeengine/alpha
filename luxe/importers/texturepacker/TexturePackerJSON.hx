@@ -54,6 +54,11 @@ class TexturePackerJSON {
             }
         } //json_type
 
+            //for now, sort the frames by name
+        frames.sort( function(a:TexturePackerFrame, b:TexturePackerFrame) {
+            return (a.filename < b.filename) ? -1 : 1;
+        });
+
         return {
             meta:meta, 
             frames:frames 
