@@ -8,6 +8,7 @@ import luxe.ResourceManager;
 enum ResourceType {
     unknown;
     text;
+    json;
     data;
     texture;
     sound;
@@ -69,6 +70,25 @@ class TextResource extends Resource {
 
 
 } //TextResource
+
+class JSONResource extends Resource {
+    
+
+    public var json : Dynamic;
+
+
+    public function new( _id:String, _json:Dynamic, _manager:ResourceManager ) {
+    
+        id = _id;
+                
+        super( _manager, ResourceType.json );
+        
+        json = _json;
+
+    } //new
+
+
+} //JSONResource
 
 class DataResource extends Resource {
 

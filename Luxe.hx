@@ -8,6 +8,7 @@ import phoenix.Shader;
 import phoenix.Batcher;
 
 import luxe.Resource.DataResource;
+import luxe.Resource.JSONResource;
 import luxe.Resource.TextResource;
 import luxe.Resource.SoundResource;
 
@@ -87,6 +88,20 @@ class Luxe {
     } //showConsole
 
         /** Load a text resource */
+    public static function loadJSON( _id:String, ?_onloaded:JSONResource->Void ) : JSONResource {
+
+        var raw = lime.utils.Assets.getText(_id);
+        var json = luxe.utils.JSON.parse(raw);
+        var res = new JSONResource( _id, json, Luxe.resources );
+
+            if(_onloaded != null) {
+                _onloaded( res );
+            } //_onloaded
+
+        return res;
+
+    } //loadJSON
+
     public static function loadText( _id:String, ?_onloaded:TextResource->Void ) : TextResource {
         
         var string = lime.utils.Assets.getText(_id);

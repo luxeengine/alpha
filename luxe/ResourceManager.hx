@@ -18,6 +18,7 @@ class ResourceStats {
     public var render_textures : Int = 0;
     public var shaders : Int = 0;
     public var texts : Int = 0;
+    public var jsons : Int = 0;
     public var datas : Int = 0;
     public var sounds : Int = 0;
     public var unknown : Int = 0;
@@ -38,6 +39,7 @@ class ResourceStats {
             '\tshaders : ' + shaders + '\n' +
             '\tsounds : ' + sounds + '\n' +
             '\ttext : ' + texts + '\n' +
+            '\tjson : ' + jsons + '\n' +
             '\tdata : ' + datas + '\n' +
             '\tunknown : ' + unknown;
 
@@ -51,6 +53,7 @@ class ResourceStats {
         render_textures = 0;
         shaders = 0;
         texts = 0;
+        jsons = 0;
         datas = 0;
         sounds = 0;
         unknown = 0;
@@ -71,6 +74,7 @@ class ResourceManager {
     public var fonts : Map<String,BitmapFont>;
     public var data : Map<String,ByteArray>;
     public var text : Map<String,String>;
+    public var json : Map<String,Dynamic>;
     public var sounds : Map<String,String>;
 
     public var stats : ResourceStats;
@@ -86,6 +90,7 @@ class ResourceManager {
         sounds = new Map();
         data = new Map();
         text = new Map();        
+        json = new Map();        
         stats = new ResourceStats();
 
     } //new
@@ -108,6 +113,8 @@ class ResourceManager {
                 stats.sounds++;                
             case ResourceType.text:
                 stats.texts++;
+            case ResourceType.json:
+                stats.jsons++;
             case ResourceType.data:
                 stats.datas++;
             case ResourceType.unknown:
@@ -138,6 +145,8 @@ class ResourceManager {
                 stats.sounds--;                
             case ResourceType.text:
                 stats.texts--;
+            case ResourceType.json:
+                stats.jsons--;
             case ResourceType.data:
                 stats.datas--;
             case ResourceType.unknown:
@@ -166,6 +175,8 @@ class ResourceManager {
                 data.remove(res.id);
             case ResourceType.text:
                 text.remove(res.id);
+            case ResourceType.json:
+                json.remove(res.id);
             case ResourceType.unknown:{}
 
         } //switch
@@ -188,6 +199,8 @@ class ResourceManager {
                 sounds.set(res.id, cast res);
             case ResourceType.text:
                 text.set(res.id, cast res);
+            case ResourceType.json:
+                json.set(res.id, cast res);
             case ResourceType.data:
                 data.set(res.id, cast res);
             case ResourceType.unknown:
@@ -219,6 +232,10 @@ class ResourceManager {
     public function find_text( _name:String ) {
         return text.get(_name);
     } //find_text
+
+    public function find_json( _name:String ) {
+        return json.get(_name);
+    } //find_json
 
     public function find_data( _name:String ) {
         return data.get(_name);
