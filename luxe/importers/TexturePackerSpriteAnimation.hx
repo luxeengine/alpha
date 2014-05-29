@@ -60,7 +60,7 @@ class TexturePackerSpriteAnimation {
 
         //given a single named animation sequence in the data, this will extract and return 
         //any frames specific to the named animation
-    @:noCompletion public static function parse_by_name( data:TexturePackerData, name:String ) : Dynamic {
+    @:noCompletion public static function parse_by_sequence( data:TexturePackerData, name:String ) : Dynamic {
             
             //these defaults are changed later
             //post parsing anyway, but should be exposed
@@ -112,12 +112,12 @@ class TexturePackerSpriteAnimation {
     } //parse_by_name
 
         //this returns multiple named animations as a single blob
-    public static function parse_by_names( data:TexturePackerData, names:Array<String> ) : Dynamic {
+    public static function parse_by_sequences( data:TexturePackerData, names:Array<String> ) : Dynamic {
         
         var frames : Array<Dynamic> = [];
 
         for(name in names) {
-            frames.push( {name:name, data:parse_by_name(data, name) });
+            frames.push( {name:name, data:parse_by_sequence(data, name) });
         }
 
         var final_json = {};
