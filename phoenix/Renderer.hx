@@ -263,7 +263,7 @@ class Renderer {
 
         _debug("have data array");
 
-        var texture_bytes = Luxe.utils.arrayToBytes( _int_array_data );
+        var texture_bytes = Luxe.utils.array_to_bytes( _int_array_data );
         var texture = new Texture(resource_manager);
 
         #if luxe_native 
