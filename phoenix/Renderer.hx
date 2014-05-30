@@ -386,9 +386,13 @@ class Renderer {
 #end //luxe_html5
 
 #if luxe_native
-        
+
         if(asset_bytes == null) {
-            asset_bytes = lime.utils.Assets.getBytes( _name );
+            if( Luxe.utils.path_is_relative(haxe.io.Path.normalize(_name)) ) {
+                asset_bytes = lime.utils.Assets.getBytes( _name ); 
+            } else {
+                asset_bytes = ByteArray.readFile( _name ); 
+            }
         }
 
         if(asset_bytes != null) {
