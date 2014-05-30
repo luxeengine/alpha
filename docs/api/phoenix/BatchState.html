@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="batchstate">BatchState</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="batcher"><a class="lift" href="#batcher">batcher</a></a><code class="signature apipage">batcher : <a href="#phoenix.Batcher">phoenix.Batcher</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="clip_rect"><a class="lift" href="#clip_rect">clip_rect</a></a><code class="signature apipage">clip_rect : <a href="#phoenix.Rectangle">phoenix.Rectangle</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="geom_state"><a class="lift" href="#geom_state">geom_state</a></a><code class="signature apipage">geom_state : <a href="#phoenix.geometry.GeometryState">phoenix.geometry.GeometryState</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="is_clipping"><a class="lift" href="#is_clipping">is_clipping</a></a><code class="signature apipage">is_clipping : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_clip_rect"><a class="lift" href="#last_clip_rect">last_clip_rect</a></a><code class="signature apipage">last_clip_rect : <a href="#phoenix.Rectangle">phoenix.Rectangle</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_geom_state"><a class="lift" href="#last_geom_state">last_geom_state</a></a><code class="signature apipage">last_geom_state : <a href="#phoenix.geometry.GeometryState">phoenix.geometry.GeometryState</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_group"><a class="lift" href="#last_group">last_group</a></a><code class="signature apipage">last_group : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_shader_id"><a class="lift" href="#last_shader_id">last_shader_id</a></a><code class="signature apipage">last_shader_id : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="last_texture_id"><a class="lift" href="#last_texture_id">last_texture_id</a></a><code class="signature apipage">last_texture_id : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="activate"><a class="lift" href="#activate">activate</a></a><code class="signature apipage">activate(batcher:<span><a href="#phoenix.Batcher">phoenix.Batcher</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="deactivate"><a class="lift" href="#deactivate">deactivate</a></a><code class="signature apipage">deactivate(batcher:<span><a href="#phoenix.Batcher">phoenix.Batcher</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_r:<span><a href="#phoenix.Batcher">phoenix.Batcher</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="str"><a class="lift" href="#str">str</a></a><code class="signature apipage">str() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

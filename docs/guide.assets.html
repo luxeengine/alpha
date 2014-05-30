@@ -3,25 +3,30 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" href="./favicon.png" />
+        <link rel="shortcut icon" href="./images/favicon.png" />
 
-        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
-        <script src="./jquery-2.0.3.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+        
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
         <script>
+
             $(document).ready(function() {
+
                 $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...')
                     } else {
-                        $(this).text('less ...')
                     }
-
                     _child.css('display', _opp);
                 });
 
@@ -33,7 +38,13 @@
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
-            });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
         </script>
     </head>
 
@@ -55,33 +66,23 @@ The following asset types are supported by the API for convenience :</p>
 <p>&nbsp;</p>
 <h3 id="loading-assets-via-the-luxe-api">Loading assets via the luxe API</h3>
 <p>&nbsp;</p>
-<pre><code><div class="highlight"><pre><span class="n">loadText</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">)</span> <span class="err">:</span> <span class="n">String</span>
-</pre></div>
-</code></pre>
-<p>Loads a text asset by id, and returns the data as string. If you are looking for binary files, see <code>loadData</code>.</p>
-<pre><code><div class="highlight"><pre><span class="n">loadTexture</span><span class="p">(</span><span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:<a href="phoenix.Texture.html">Texture</a>-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="phoenix.Texture.html">Texture</a></span>
-</pre></div>
-</code></pre>
-<p>Loads an image file ( png/jpg ) by id, and takes an optional callback for when the loading is complete. <strong>On native platforms loading is synchronous.</strong> The callback is especially helpful for html5.</p>
-<pre><code><div class="highlight"><pre><span class="n">loadFont</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_path</span><span class="err">:String</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:Void-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">BitmapFont</span>
+<pre><code>loadText(_id:String) : String
+</code></pre><p>Loads a text asset by id, and returns the data as string. If you are looking for binary files, see <code>loadData</code>.</p>
+<pre><code>loadTexture(_id:String, ?_onloaded:Texture-&gt;Void ) : Texture
+</code></pre><p>Loads an image file ( png/jpg ) by id, and takes an optional callback for when the loading is complete. <strong>On native platforms loading is synchronous.</strong> The callback is especially helpful for html5.</p>
+<pre><code>loadFont( _id:String, ?_path:String, ?_onloaded:Void-&gt;Void ) : BitmapFont
 
-<span class="kd">var</span> font <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadFont</span><span class="p">(</span><span class="s1">&#39;font.fnt&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/fonts/&#39;</span><span class="p">);</span>
-</pre></div>
-</code></pre>
-<p>Loads a bitmap font file by id, but the path must be specified separately at the moment because fonts store the images separately. Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5.</p>
-<pre><code><div class="highlight"><pre><span class="n">loadShader</span><span class="p">(</span> <span class="err">?</span><span class="n">_ps_id</span><span class="err">:String=&#39;default&#39;</span><span class="p">,</span> <span class="err">?</span><span class="n">_vs_id</span><span class="err">:String=&#39;default&#39;</span><span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:<a href="phoenix.Shader.html">Shader</a>-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n"><a href="phoenix.Shader.html">Shader</a></span>
+<span class="hljs-keyword">var</span> font = Luxe.loadFont(<span class="hljs-string">'font.fnt'</span>, <span class="hljs-string">'assets/fonts/'</span>);
+</code></pre><p>Loads a bitmap font file by id, but the path must be specified separately at the moment because fonts store the images separately. Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5.</p>
+<pre><code>loadShader( ?_ps_id:String=<span class="hljs-string">'default'</span>, ?_vs_id:String=<span class="hljs-string">'default'</span>, ?_onloaded:Shader-&gt;Void ) : Shader
 
-<span class="kd">var</span> shader <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;textured&#39;</span><span class="p">,</span> <span class="s1">&#39;assets/shaders/customvert.glsl&#39;</span><span class="p">);</span>
-<span class="kd">var</span> shader <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadShader</span><span class="p">(</span><span class="s1">&#39;assets/shaders/cooleffect.glsl&#39;</span><span class="p">);</span>
-</pre></div>
-</code></pre>
-<p>Loads a shader, with a pixel shader and vertex shader file. If the fragment id (<code>_ps_id</code>) is <code>default</code>, the untextured colored geometry shader is used. If the fragment id is <code>textured</code>, the default internal textured shader is used. If the vertex shader id (<code>_vs_id</code>) is <code>default</code> the default vertex shader is used. Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5.</p>
-<pre><code><div class="highlight"><pre><span class="n">loadData</span><span class="p">(</span> <span class="n">_id</span><span class="err">:String</span> <span class="p">,</span> <span class="err">?</span><span class="n">_onloaded</span><span class="err">:<a href="phoenix.Shader.html">Shader</a>-&gt;Void</span> <span class="p">)</span> <span class="err">:</span> <span class="n">ByteArray</span>
+<span class="hljs-keyword">var</span> shader = Luxe.loadShader(<span class="hljs-string">'textured'</span>, <span class="hljs-string">'assets/shaders/customvert.glsl'</span>);
+<span class="hljs-keyword">var</span> shader = Luxe.loadShader(<span class="hljs-string">'assets/shaders/cooleffect.glsl'</span>);
+</code></pre><p>Loads a shader, with a pixel shader and vertex shader file. If the fragment id (<code>_ps_id</code>) is <code>default</code>, the untextured colored geometry shader is used. If the fragment id is <code>textured</code>, the default internal textured shader is used. If the vertex shader id (<code>_vs_id</code>) is <code>default</code> the default vertex shader is used. Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5.</p>
+<pre><code>loadData( _id:String , ?_onloaded:Shader-&gt;Void ) : ByteArray
 
-<span class="kd">var</span> file_contents <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadData</span><span class="p">(</span><span class="s1">&#39;assets/binary_file.file&#39;</span><span class="p">);</span>    
-</pre></div>
-</code></pre>
-<p>Loads a binary file from the assets. <em>(to confirm this works with bytes —&gt; )</em> Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5 .</p>
+<span class="hljs-keyword">var</span> file_contents = Luxe.loadData(<span class="hljs-string">'assets/binary_file.file'</span>);    
+</code></pre><p>Loads a binary file from the assets. <em>(to confirm this works with bytes —&gt; )</em> Also takes an optional callback for when the loading is complete. <em>On native platforms loading is synchronous.</em> The callback is especially helpful for html5 .</p>
 <p>&nbsp;
 &nbsp;</p>
 

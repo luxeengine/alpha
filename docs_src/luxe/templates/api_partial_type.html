@@ -1,0 +1,11 @@
+[{{~name}}]({{{type_link}}})
+{{~^func}}
+	{{~#if params~}}
+		&lt; 
+		{{~#params~}} 
+			{{~#if @index}}, {{/if}}
+				{{~>type~}}
+		{{~/params~}}
+		&gt;
+	{{~/if}}
+{{~/func~}}

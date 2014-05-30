@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="camera">Camera</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="minimum_zoom"><a class="lift" href="#minimum_zoom">minimum_zoom</a></a><code class="signature apipage">minimum_zoom : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="ortho_options"><a class="lift" href="#ortho_options">ortho_options</a></a><code class="signature apipage">ortho_options : <a href="#luxe.options.ProjectionOptions">luxe.options.ProjectionOptions</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="perspective_options"><a class="lift" href="#perspective_options">perspective_options</a></a><code class="signature apipage">perspective_options : <a href="#luxe.options.ProjectionOptions">luxe.options.ProjectionOptions</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="projection"><a class="lift" href="#projection">projection</a></a><code class="signature apipage">projection : <a href="#phoenix.ProjectionType">phoenix.ProjectionType</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="projection_matrix"><a class="lift" href="#projection_matrix">projection_matrix</a></a><code class="signature apipage">projection_matrix : <a href="#phoenix.Matrix4">phoenix.Matrix4</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="target"><a class="lift" href="#target">target</a></a><code class="signature apipage">target : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="up"><a class="lift" href="#up">up</a></a><code class="signature apipage">up : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="view_matrix"><a class="lift" href="#view_matrix">view_matrix</a></a><code class="signature apipage">view_matrix : <a href="#phoenix.Matrix4">phoenix.Matrix4</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="apply_ortho"><a class="lift" href="#apply_ortho">apply_ortho</a></a><code class="signature apipage">apply_ortho() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="apply_perspective"><a class="lift" href="#apply_perspective">apply_perspective</a></a><code class="signature apipage">apply_perspective() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?options:<span><a href="#luxe.options.CameraOptions">luxe.options.CameraOptions</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="projectVector"><a class="lift" href="#projectVector">projectVector</a></a><code class="signature apipage">projectVector(_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="screen_point_to_ray"><a class="lift" href="#screen_point_to_ray">screen_point_to_ray</a></a><code class="signature apipage">screen_point_to_ray(_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Ray">phoenix.Ray</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="screen_point_to_world"><a class="lift" href="#screen_point_to_world">screen_point_to_world</a></a><code class="signature apipage">screen_point_to_world(_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_ortho"><a class="lift" href="#set_ortho">set_ortho</a></a><code class="signature apipage">set_ortho(options:<span><a href="#luxe.options.ProjectionOptions">luxe.options.ProjectionOptions</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_perspective"><a class="lift" href="#set_perspective">set_perspective</a></a><code class="signature apipage">set_perspective(options:<span><a href="#luxe.options.ProjectionOptions">luxe.options.ProjectionOptions</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="unprojectVector"><a class="lift" href="#unprojectVector">unprojectVector</a></a><code class="signature apipage">unprojectVector(_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update_look_at"><a class="lift" href="#update_look_at">update_look_at</a></a><code class="signature apipage">update_look_at() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="world_point_to_screen"><a class="lift" href="#world_point_to_screen">world_point_to_screen</a></a><code class="signature apipage">world_point_to_screen(_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, ?_viewport:<span><a href="#phoenix.Rectangle">phoenix.Rectangle</a>=null</span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="center"><a class="lift" href="#center">center</a></a><code class="signature apipage">center : <a href="">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : <a href="">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : <a href="">phoenix.Quaternion</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : <a href="">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport : <a href="">phoenix.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="zoom"><a class="lift" href="#zoom">zoom</a></a><code class="signature apipage">zoom : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

@@ -54,10 +54,12 @@ class TexturePackerJSON {
             }
         } //json_type
 
-        return {
-            meta:meta, 
-            frames:frames 
-        };
+            //for now, sort the frames by name
+        frames.sort( function(a:TexturePackerFrame, b:TexturePackerFrame) {
+            return (a.filename < b.filename) ? -1 : 1;
+        });
+
+        return new TexturePackerData(meta, frames);
 
     } //parse
 
@@ -78,7 +80,10 @@ class TexturePackerJSON {
             sourceSize          : _sourceSize,
             spriteSourceSize    : _spriteSourceSize,            
             rotated             : _rotated,
-            trimmed             : _trimmed
+            trimmed             : _trimmed,
+            uv                  : new luxe.Rectangle(_frame.x, _frame.y, _frame.w, _frame.h),
+            size                : new luxe.Vector(_spriteSourceSize.w, _spriteSourceSize.h),
+            origin              : new luxe.Vector(_sourceSize.w - _spriteSourceSize.w, _sourceSize.h - _spriteSourceSize.h)
         };
 
     } //parse_frame

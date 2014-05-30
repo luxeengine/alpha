@@ -1,6 +1,6 @@
 package luxe.physics;
 
-#ifdef box2D
+#if box2D
 
 class PhysicsBox2D extends luxe.Physics.PhysicsEngine {
 

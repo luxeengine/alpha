@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="resourcemanager">ResourceManager</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="">lime.utils.ByteArray</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="fonts"><a class="lift" href="#fonts">fonts</a></a><code class="signature apipage">fonts : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="#phoenix.BitmapFont">phoenix.BitmapFont</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="render_textures"><a class="lift" href="#render_textures">render_textures</a></a><code class="signature apipage">render_textures : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="#phoenix.RenderTexture">phoenix.RenderTexture</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="resourcelist"><a class="lift" href="#resourcelist">resourcelist</a></a><code class="signature apipage">resourcelist : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.Resource">luxe.Resource</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="shaders"><a class="lift" href="#shaders">shaders</a></a><code class="signature apipage">shaders : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="#phoenix.Shader">phoenix.Shader</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="sounds"><a class="lift" href="#sounds">sounds</a></a><code class="signature apipage">sounds : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="stats"><a class="lift" href="#stats">stats</a></a><code class="signature apipage">stats : <a href="#luxe.ResourceStats">luxe.ResourceStats</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="textures"><a class="lift" href="#textures">textures</a></a><code class="signature apipage">textures : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="#phoenix.Texture">phoenix.Texture</a>&gt;</code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(res:<span><a href="#luxe.Resource">luxe.Resource</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="cache"><a class="lift" href="#cache">cache</a></a><code class="signature apipage">cache(res:<span><a href="#luxe.Resource">luxe.Resource</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="clear"><a class="lift" href="#clear">clear</a></a><code class="signature apipage">clear(?and_persistent:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find"><a class="lift" href="#find">find</a></a><code class="signature apipage">find(id:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="#luxe.Resource">luxe.Resource</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_data"><a class="lift" href="#find_data">find_data</a></a><code class="signature apipage">find_data(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="">lime.utils.ByteArray</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_font"><a class="lift" href="#find_font">find_font</a></a><code class="signature apipage">find_font(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#phoenix.BitmapFont">phoenix.BitmapFont</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_render_texture"><a class="lift" href="#find_render_texture">find_render_texture</a></a><code class="signature apipage">find_render_texture(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#phoenix.RenderTexture">phoenix.RenderTexture</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_shader"><a class="lift" href="#find_shader">find_shader</a></a><code class="signature apipage">find_shader(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#phoenix.Shader">phoenix.Shader</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_sound"><a class="lift" href="#find_sound">find_sound</a></a><code class="signature apipage">find_sound(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_text"><a class="lift" href="#find_text">find_text</a></a><code class="signature apipage">find_text(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_texture"><a class="lift" href="#find_texture">find_texture</a></a><code class="signature apipage">find_texture(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#phoenix.Texture">phoenix.Texture</a>&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(res:<span><a href="#luxe.Resource">luxe.Resource</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="uncache"><a class="lift" href="#uncache">uncache</a></a><code class="signature apipage">uncache(res:<span><a href="#luxe.Resource">luxe.Resource</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

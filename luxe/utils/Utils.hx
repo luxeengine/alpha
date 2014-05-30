@@ -117,7 +117,7 @@ class Utils {
 
     } //bytes_to_string
 
-    public function arrayToBytes(array:Array<Int>):haxe.io.Bytes {
+    public function array_to_bytes(array:Array<Int>):haxe.io.Bytes {
 
         if (array == null) return null;
         var bytes:haxe.io.Bytes = haxe.io.Bytes.alloc(array.length);
@@ -125,7 +125,7 @@ class Utils {
 
         return bytes;
 
-    } //arrayToBytes
+    } //array_to_bytes
 
     public function file_bytes_to_class(_file:String, _outfile:String, ?_string_length:Int = 2048) {
 

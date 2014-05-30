@@ -3,25 +3,30 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" href="./favicon.png" />
+        <link rel="shortcut icon" href="./images/favicon.png" />
 
-        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
-        <script src="./jquery-2.0.3.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+        
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
         <script>
+
             $(document).ready(function() {
+
                 $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...')
                     } else {
-                        $(this).text('less ...')
                     }
-
                     _child.css('display', _opp);
                 });
 
@@ -33,7 +38,13 @@
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
-            });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
         </script>
     </head>
 
@@ -43,7 +54,7 @@
 <h3 id="-back-to-feature-guide-guide-html-camera-"><a href="guide.html#camera">Back to feature guide</a></h3>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <hr>
-<h2 id="the-luxe-camera-system">The luxe <a href="luxe.Camera.html">Camera</a> system</h2>
+<h2 id="the-luxe-camera-system">The luxe Camera system</h2>
 <hr>
 <p>todo</p>
 <hr>

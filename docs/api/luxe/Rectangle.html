@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="rectangle">Rectangle</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore_listeners</a></a><code class="signature apipage">ignore_listeners : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_h"><a class="lift" href="#listen_h">listen_h</a></a><code class="signature apipage">listen_h : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_w"><a class="lift" href="#listen_w">listen_w</a></a><code class="signature apipage">listen_w : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_x"><a class="lift" href="#listen_x">listen_x</a></a><code class="signature apipage">listen_x : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_y"><a class="lift" href="#listen_y">listen_y</a></a><code class="signature apipage">listen_y : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : <a href="#phoenix.Rectangle">phoenix.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="copy_from"><a class="lift" href="#copy_from">copy_from</a></a><code class="signature apipage">copy_from(_rect:<span><a href="#phoenix.Rectangle">phoenix.Rectangle</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="equal"><a class="lift" href="#equal">equal</a></a><code class="signature apipage">equal(_other:<span><a href="#phoenix.Rectangle">phoenix.Rectangle</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?_x:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>, ?_y:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>, ?_w:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>, ?_h:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="overlaps"><a class="lift" href="#overlaps">overlaps</a></a><code class="signature apipage">overlaps(_other:<span><a href="#phoenix.Rectangle">phoenix.Rectangle</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point_inside</a></a><code class="signature apipage">point_inside(_p:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(?_x:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_y:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_w:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_h:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>) : <a href="#phoenix.Rectangle">phoenix.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="h"><a class="lift" href="#h">h</a></a><code class="signature apipage">h : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><code class="signature apipage">serialized : <a href="">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

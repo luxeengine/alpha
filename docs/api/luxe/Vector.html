@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="vector">Vector</h1>
+<hr>
+<p><code>class</code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore_listeners</a></a><code class="signature apipage">ignore_listeners : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_x"><a class="lift" href="#listen_x">listen_x</a></a><code class="signature apipage">listen_x : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_y"><a class="lift" href="#listen_y">listen_y</a></a><code class="signature apipage">listen_y : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_z"><a class="lift" href="#listen_z">listen_z</a></a><code class="signature apipage">listen_z : <a href="">Float-&gt;Void</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="Add"><a class="lift" href="#Add">Add</a></a><span class="inline-block static">static</span><code class="signature apipage">Add(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="AddScalar"><a class="lift" href="#AddScalar">AddScalar</a></a><span class="inline-block static">static</span><code class="signature apipage">AddScalar(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="addScalar"><a class="lift" href="#addScalar">addScalar</a></a><code class="signature apipage">addScalar(v:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="applyMatrix4"><a class="lift" href="#applyMatrix4">applyMatrix4</a></a><code class="signature apipage">applyMatrix4(_m:<span><a href="#phoenix.Matrix4">phoenix.Matrix4</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="applyProjection"><a class="lift" href="#applyProjection">applyProjection</a></a><code class="signature apipage">applyProjection(m:<span><a href="#phoenix.Matrix4">phoenix.Matrix4</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="applyQuaternion"><a class="lift" href="#applyQuaternion">applyQuaternion</a></a><code class="signature apipage">applyQuaternion(q:<span><a href="#phoenix.Quaternion">phoenix.Quaternion</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="copy_from"><a class="lift" href="#copy_from">copy_from</a></a><code class="signature apipage">copy_from(_other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="Cross"><a class="lift" href="#Cross">Cross</a></a><span class="inline-block static">static</span><code class="signature apipage">Cross(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="cross"><a class="lift" href="#cross">cross</a></a><code class="signature apipage">cross(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="Divide"><a class="lift" href="#Divide">Divide</a></a><span class="inline-block static">static</span><code class="signature apipage">Divide(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="divide"><a class="lift" href="#divide">divide</a></a><code class="signature apipage">divide(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="divideScalar"><a class="lift" href="#divideScalar">divideScalar</a></a><code class="signature apipage">divideScalar(v:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="DivideVector"><a class="lift" href="#DivideVector">DivideVector</a></a><span class="inline-block static">static</span><code class="signature apipage">DivideVector(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="dot"><a class="lift" href="#dot">dot</a></a><code class="signature apipage">dot(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="equals"><a class="lift" href="#equals">equals</a></a><code class="signature apipage">equals(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="Multiply"><a class="lift" href="#Multiply">Multiply</a></a><span class="inline-block static">static</span><code class="signature apipage">Multiply(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="multiply"><a class="lift" href="#multiply">multiply</a></a><code class="signature apipage">multiply(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="multiplyScalar"><a class="lift" href="#multiplyScalar">multiplyScalar</a></a><code class="signature apipage">multiplyScalar(v:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="MultiplyVector"><a class="lift" href="#MultiplyVector">MultiplyVector</a></a><span class="inline-block static">static</span><code class="signature apipage">MultiplyVector(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?_x:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>, ?_y:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>, ?_z:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>, ?_w:<span><a href="http://api.haxe.org/Float.html">Float</a>=0</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="normalize"><a class="lift" href="#normalize">normalize</a></a><code class="signature apipage">normalize() : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="RotationTo"><a class="lift" href="#RotationTo">RotationTo</a></a><span class="inline-block static">static</span><code class="signature apipage">RotationTo(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="rotationTo"><a class="lift" href="#rotationTo">rotationTo</a></a><code class="signature apipage">rotationTo(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(?_x:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_y:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_z:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_w:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_xy"><a class="lift" href="#set_xy">set_xy</a></a><code class="signature apipage">set_xy(_x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_xyz"><a class="lift" href="#set_xyz">set_xyz</a></a><code class="signature apipage">set_xyz(_x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _z:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_xyzw"><a class="lift" href="#set_xyzw">set_xyzw</a></a><code class="signature apipage">set_xyzw(_x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _z:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, _w:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setEulerFromQuaternion"><a class="lift" href="#setEulerFromQuaternion">setEulerFromQuaternion</a></a><code class="signature apipage">setEulerFromQuaternion(q:<span><a href="#phoenix.Quaternion">phoenix.Quaternion</a></span>, ?order:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;XYZ&#x27;</span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="setEulerFromRotationMatrix"><a class="lift" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></a><code class="signature apipage">setEulerFromRotationMatrix(m:<span><a href="#phoenix.Matrix4">phoenix.Matrix4</a></span>, ?order:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;XYZ&#x27;</span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="Subtract"><a class="lift" href="#Subtract">Subtract</a></a><span class="inline-block static">static</span><code class="signature apipage">Subtract(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="subtract"><a class="lift" href="#subtract">subtract</a></a><code class="signature apipage">subtract(other:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="SubtractScalar"><a class="lift" href="#SubtractScalar">SubtractScalar</a></a><span class="inline-block static">static</span><code class="signature apipage">SubtractScalar(a:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>, b:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="subtractScalar"><a class="lift" href="#subtractScalar">subtractScalar</a></a><code class="signature apipage">subtractScalar(v:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ToDegrees"><a class="lift" href="#ToDegrees">ToDegrees</a></a><span class="inline-block static">static</span><code class="signature apipage">ToDegrees(_radian_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toDegrees"><a class="lift" href="#toDegrees">toDegrees</a></a><code class="signature apipage">toDegrees() : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ToRadians"><a class="lift" href="#ToRadians">ToRadians</a></a><span class="inline-block static">static</span><code class="signature apipage">ToRadians(_degree_vector:<span><a href="#phoenix.Vector">phoenix.Vector</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toRadians"><a class="lift" href="#toRadians">toRadians</a></a><code class="signature apipage">toRadians() : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="transformDirection"><a class="lift" href="#transformDirection">transformDirection</a></a><code class="signature apipage">transformDirection(m:<span><a href="#phoenix.Matrix4">phoenix.Matrix4</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="truncate"><a class="lift" href="#truncate">truncate</a></a><code class="signature apipage">truncate(max:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#phoenix.Vector">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="angle2D"><a class="lift" href="#angle2D">angle2D</a></a><code class="signature apipage">angle2D : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="inverted"><a class="lift" href="#inverted">inverted</a></a><code class="signature apipage">inverted : <a href="">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="lengthsq"><a class="lift" href="#lengthsq">lengthsq</a></a><code class="signature apipage">lengthsq : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="normalized"><a class="lift" href="#normalized">normalized</a></a><code class="signature apipage">normalized : <a href="">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><code class="signature apipage">serialized : <a href="">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="z"><a class="lift" href="#z">z</a></a><code class="signature apipage">z : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

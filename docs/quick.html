@@ -3,25 +3,30 @@
     
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="shortcut icon" href="./favicon.png" />
+        <link rel="shortcut icon" href="./images/favicon.png" />
 
-        <link rel="stylesheet" type="text/css" href="./style.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./code.css" media="all">
-        <link rel="stylesheet" type="text/css" href="./font.css" media="all">
-        <script src="./jquery-2.0.3.min.js"> </script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="./css/tooltipster-shadow.css" media="all">
+        
+        <script src="./js/jquery-2.0.3.min.js"> </script>
+        <script src="./js/jquery.tooltipster.min.js"> </script>
+
         <script>
+
             $(document).ready(function() {
+
                 $('.section').css('display','none');
                 $('.readmore').click(function(e){
                     var _child = $(this).parent().find('.section').first();
                     var _opp = 'block';
                     if( _child.css('display') == 'block' ) {
                         _opp = 'none';
-                        $(this).text('more ...')
                     } else {
-                        $(this).text('less ...')
                     }
-
                     _child.css('display', _opp);
                 });
 
@@ -33,7 +38,13 @@
                         //replace the content!
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
                 });
-            });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
         </script>
     </head>
 
@@ -46,53 +57,55 @@
 <h2 id="some-quick-examples-of-things-done-in-luxe">Some quick examples of things done in luxe</h2>
 <h3 id="creating-a-simple-sprite">Creating a simple sprite</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">luxe</span><span class="p">.</span><span class="nn"><a href="luxe.Vector.html">Vector</a></span><span class="p">;</span>
+<pre><code><span class="hljs-keyword">import</span> luxe.Sprite;
+<span class="hljs-keyword">import</span> luxe.Vector;
 
-<span class="kd">var</span> player <span class="o">=</span> <span class="k">new</span> <span class="n"><a href="luxe.Sprite.html">Sprite</a></span><span class="p">({</span>
-    <span class="n">depth</span> <span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">pos</span> <span class="p">:</span> <span class="k">new</span> <span class="n">Vector</span><span class="p">(</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="p">,</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="p">),</span>
-    <span class="n">texture</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">loadTexture</span><span class="p">(</span><span class="s1">&#39;assets/player.png&#39;</span><span class="p">)</span>
-<span class="p">});</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Example</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">luxe</span>.<span class="hljs-title">Game</span> </span>{
 
-<span class="n">player</span><span class="p">.</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">4</span><span class="p">;</span>
-</pre></div>
-</code></pre>
-<h3 id="create-an-entity-and-give-it-a-component">Create an entity and give it a component</h3>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-keyword">var</span> player = <span class="hljs-keyword">new</span> Sprite({
+            depth : <span class="hljs-number">4</span>,
+            pos : <span class="hljs-keyword">new</span> Vector( Luxe.screen.w, Luxe.screen.h ),
+            texture : Luxe.loadTexture(<span class="hljs-string">'assets/player.png'</span>)
+        });
+
+        player.pos.x = Luxe.screen.w/<span class="hljs-number">4</span>;
+
+    } <span class="hljs-comment">//ready</span>
+
+} <span class="hljs-comment">//Example</span>
+</code></pre><h3 id="create-an-entity-and-give-it-a-component">Create an entity and give it a component</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="kd">var</span> entity <span class="o">=</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">scene</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n"><a href="luxe.Entity.html">Entity</a></span><span class="p">,</span> <span class="s1">&#39;player&#39;</span><span class="p">);</span>
+<pre><code><span class="hljs-keyword">var</span> entity = Luxe.scene.create(Entity, <span class="hljs-string">'player'</span>);
 
-<span class="kd">var</span> move <span class="o">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">PlayerMovement</span><span class="p">,</span> <span class="s1">&#39;move&#39;</span><span class="p">);</span>
-        <span class="c1">//2.5x faster than default</span>
-    <span class="n">move</span><span class="p">.</span><span class="n">speed</span> <span class="o">*=</span> <span class="mf">2.5</span><span class="p">;</span>
-</pre></div>
-</code></pre>
-<h3 id="drawing-shapes">Drawing shapes</h3>
+<span class="hljs-keyword">var</span> move = entity.add(PlayerMovement, <span class="hljs-string">'move'</span>);
+        <span class="hljs-comment">//2.5x faster than default</span>
+    move.speed *= <span class="hljs-number">2.5</span>;
+</code></pre><h3 id="drawing-shapes">Drawing shapes</h3>
 <hr>
-<pre><code><div class="highlight"><pre><span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">rectangle</span><span class="p">({</span>
-    <span class="n">x</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="n">w</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> 
-    <span class="n">h</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.4</span><span class="p">)</span>
-<span class="p">});</span>
+<pre><code>Luxe.draw.rectangle({
+    x : <span class="hljs-number">10</span>, y : <span class="hljs-number">10</span>,
+    w : Luxe.screen.w - <span class="hljs-number">20</span>, 
+    h : Luxe.screen.h - <span class="hljs-number">20</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0.4</span>,<span class="hljs-number">0.4</span>,<span class="hljs-number">0.4</span>)
+});
 
-<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">circle</span><span class="p">({</span>
-    <span class="n">x</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">y</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">r</span> <span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">});</span> 
+Luxe.draw.circle({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">50</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">0.8</span>,<span class="hljs-number">0.3</span>,<span class="hljs-number">0.2</span>,<span class="hljs-number">1</span>)
+}); 
 
-<span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">draw</span><span class="p">.</span><span class="n">arc</span><span class="p">({</span>
-    <span class="n">x</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">y</span> <span class="p">:</span> <span class="n"><a href="api.html">Luxe</a></span><span class="p">.</span><span class="n">screen</span><span class="p">.</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>
-    <span class="n">r</span> <span class="p">:</span> <span class="mi">70</span><span class="p">,</span>
-    <span class="n">end_angle</span><span class="p">:</span><span class="mi">70</span><span class="p">,</span>
-    <span class="n">color</span> <span class="p">:</span> <span class="k">new</span> <span class="n"><a href="luxe.Color.html">Color</a></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">});</span>
-</pre></div>
-</code></pre>
-<hr>
+Luxe.draw.arc({
+    x : Luxe.screen.w/<span class="hljs-number">2</span>,
+    y : Luxe.screen.h/<span class="hljs-number">2</span>,
+    r : <span class="hljs-number">70</span>,
+    end_angle:<span class="hljs-number">70</span>,
+    color : <span class="hljs-keyword">new</span> Color(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)
+});
+</code></pre><hr>
 <p>&nbsp;<br>&nbsp;   </p>
 <h3 id="-view-all-guides-guide-html-"><a href="guide.html">View all guides</a></h3>
 <p>&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;   </p>

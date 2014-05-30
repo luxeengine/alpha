@@ -16,8 +16,8 @@ class Main extends luxe.Game {
 
         Luxe.renderer.clear_color = new Color().rgb(0xf0f0f0);
 
-        var json_source_1 : Dynamic = luxe.utils.JSON.parse(  Luxe.loadText('assets/player1.json').text );        
-        var json_source_2 : Dynamic = luxe.utils.JSON.parse(  Luxe.loadText('assets/player2.json').text );        
+        var json_source_1 : Dynamic = Luxe.loadJSON('assets/player1.json').json;        
+        var json_source_2 : Dynamic = Luxe.loadJSON('assets/player2.json').json;        
         
         var data1 : TexturePackerData = TexturePackerJSON.parse( json_source_1 );
         var data2 : TexturePackerData = TexturePackerJSON.parse( json_source_2 );

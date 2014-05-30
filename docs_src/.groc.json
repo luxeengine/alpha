@@ -1,6 +1,0 @@
-{
-  "glob": ["./Luxe/**/+(*.md)", "./index.md"],  
-  "github": false,
-  "out" : "../docs/",
-  "style" : "luxe"
-}

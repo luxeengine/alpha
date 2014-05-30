@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="sprite">Sprite</h1>
+<hr>
+<p><code>class</code>extends <code><span><a href="">luxe.Visual</a></span></code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="geometry_quad"><a class="lift" href="#geometry_quad">geometry_quad</a></a><code class="signature apipage">geometry_quad : <a href="#phoenix.geometry.QuadGeometry">phoenix.geometry.QuadGeometry</a></code><br/></span>
+        <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(options:<span><a href="#luxe.options.SpriteOptions">luxe.options.SpriteOptions</a>&lt;<a href="">new.T</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside"><a class="lift" href="#point_inside">point_inside</a></a><code class="signature apipage">point_inside(_p:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="point_inside_exact"><a class="lift" href="#point_inside_exact">point_inside_exact</a></a><code class="signature apipage">point_inside_exact(_p:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="centered"><a class="lift" href="#centered">centered</a></a><code class="signature apipage">centered : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="flipx"><a class="lift" href="#flipx">flipx</a></a><code class="signature apipage">flipx : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="flipy"><a class="lift" href="#flipy">flipy</a></a><code class="signature apipage">flipy : <a href="">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
+            <a name="uv"><a class="lift" href="#uv">uv</a></a><code class="signature apipage">uv : <a href="">luxe.Rectangle</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

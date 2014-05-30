@@ -135,16 +135,16 @@ class Visual extends Entity {
 
             //if they give a geometry, don't create one
         if(options.geometry == null) {
-            
+
             if(options.no_geometry == null || options.no_geometry == false) {
-                
+
                 _creating_geometry = true;
 
                     geometry = new QuadGeometry({
                         id:name + '.visual',
-                        x:pos.x, 
-                        y:pos.y, 
-                        w:size.x, 
+                        x:pos.x,
+                        y:pos.y,
+                        w:size.x,
                         h:size.y,
                         scale: scale.clone(),
                         texture : texture,
@@ -175,7 +175,7 @@ class Visual extends Entity {
             } //no_geometry is not present
 
         } else {
-            
+
             geometry = options.geometry;
 
         }

@@ -1,9 +1,12 @@
 -main ApplicationMain 
--lib luxe
--lib format
--lib lime
+-cp /Users/sven/dev/luxe/luxe/
+-D luxe=0.9.0
+-cp /Users/sven/dev/haxelib/format/3,0,5/
+-D format=3.0.5
+-cp /Users/sven/dev/lime/
+-D lime=0.9.7
 -cp src
--D tools=1.2.9
+-D tools=1.4.0
 -D lime_native
 -D no-compilation
 -D luxe_native
@@ -11,4 +14,4 @@
 -D desktop
 -cp bin/mac64/cpp/haxe
 -cpp bin/mac64/cpp/obj/
-
+--macro keep("Main")

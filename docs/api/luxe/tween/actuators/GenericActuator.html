@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<h1 id="genericactuator">GenericActuator</h1>
+<hr>
+<p><code>class</code><br/>implements <code><span><a href="">luxe.tween.actuators.IGenericActuator</a></span></code>
+<span class="meta"></p>
+<p></span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+            <a name="duration"><a class="lift" href="#duration">duration</a></a><code class="signature apipage">duration : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="properties"><a class="lift" href="#properties">properties</a></a><code class="signature apipage">properties : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="target"><a class="lift" href="#target">target</a></a><code class="signature apipage">target : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="timescaled"><a class="lift" href="#timescaled">timescaled</a></a><code class="signature apipage">timescaled : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
+        <span class="small_desc_flat"><em> Specify whether this should be scaled by the global timescale\n     </em> @param   _value      Whether or not it should be\n     * @return      The current actuator instance</span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="apply"><a class="lift" href="#apply">apply</a></a><code class="signature apipage">apply() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="autoVisible"><a class="lift" href="#autoVisible">autoVisible</a></a><code class="signature apipage">autoVisible(?value:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"><em> sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values\n     </em> @param   value       Whether autoVisible should be enabled (Default is true)\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="delay"><a class="lift" href="#delay">delay</a></a><code class="signature apipage">delay(duration:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Increases the delay before a tween is executed\n     <em> @param   duration        The amount of seconds to delay\n     </em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="ease"><a class="lift" href="#ease">ease</a></a><code class="signature apipage">ease(easing:<span><a href="#luxe.tween.easing.IEasing">luxe.tween.easing.IEasing</a></span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"><em> Sets the easing which is used when running the tween\n     </em> @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="move"><a class="lift" href="#move">move</a></a><code class="signature apipage">move() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(target:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, duration:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, properties:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="onComplete"><a class="lift" href="#onComplete">onComplete</a></a><code class="signature apipage">onComplete(handler:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?parameters:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&gt;=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Defines a function which will be called when the tween finishes\n     <em> @param   handler     The function you would like to be called\n     </em> @param   parameters      Parameters you would like to pass to the handler function when it is called\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="onRepeat"><a class="lift" href="#onRepeat">onRepeat</a></a><code class="signature apipage">onRepeat(handler:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?parameters:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&gt;=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Defines a function which will be called when the tween repeats\n     <em> @param   handler     The function you would like to be called\n     </em> @param   parameters      Parameters you would like to pass to the handler function when it is called\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="onUpdate"><a class="lift" href="#onUpdate">onUpdate</a></a><code class="signature apipage">onUpdate(handler:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, ?parameters:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Dynamic.html">Dynamic</a>&gt;=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Defines a function which will be called when the tween updates\n     <em> @param   handler     The function you would like to be called\n     </em> @param   parameters      Parameters you would like to pass to the handler function when it is called\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="pause"><a class="lift" href="#pause">pause</a></a><code class="signature apipage">pause() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="reflect"><a class="lift" href="#reflect">reflect</a></a><code class="signature apipage">reflect(?value:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect\n     <em> @param   value       Whether reflect should be enabled (Default is true)\n     </em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="repeat"><a class="lift" href="#repeat">repeat</a></a><code class="signature apipage">repeat(?times:<span><a href="http://api.haxe.org/Int.html">Int</a>=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"><em> Repeats the tween after it finishes\n     </em> @param   times       The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="resume"><a class="lift" href="#resume">resume</a></a><code class="signature apipage">resume() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="reverse"><a class="lift" href="#reverse">reverse</a></a><code class="signature apipage">reverse(?value:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Sets if the tween should be handled in reverse\n     <em> @param   value       Whether the tween should be reversed (Default is true)\n     </em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="smartRotation"><a class="lift" href="#smartRotation">smartRotation</a></a><code class="signature apipage">smartRotation(?value:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"><em> Enabling smartRotation can prevent undesired results when tweening rotation values\n     </em> @param   value       Whether smart rotation should be enabled (Default is true)\n     <em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="snapping"><a class="lift" href="#snapping">snapping</a></a><code class="signature apipage">snapping(?value:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=null</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></em> Snapping causes tween values to be rounded automatically\n     <em> @param   value       Whether tween values should be rounded (Default is true)\n     </em> @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="stop"><a class="lift" href="#stop">stop</a></a><code class="signature apipage">stop(properties:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>, complete:<span><a href="http://api.haxe.org/Bool.html">Bool</a></span>, sendEvent:<span><a href="http://api.haxe.org/Bool.html">Bool</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><code class="signature apipage">timescale(?_value:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<p><h3>Properties</h3> <hr/>no public properties</p>
+<p>&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>
