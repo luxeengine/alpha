@@ -65,6 +65,17 @@ class Utils {
 
     } //stacktrace
 
+    public function path_is_relative(_path:String) {
+        
+        return _path.charAt(0) != "#"
+          && _path.charAt(0) != "/"
+          && ( _path.indexOf("//") == -1 
+            || _path.indexOf("//") > _path.indexOf("#")
+            || _path.indexOf("//") > _path.indexOf("?")
+        );
+
+    } //path_is_relative
+
     public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
         
         var _final : Array<String> = [];
