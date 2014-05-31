@@ -70,6 +70,7 @@ class Utils {
         return _path.charAt(0) != "#"
           && _path.charAt(0) != "/"
           && _path.indexOf(":\\") == -1 
+          && _path.indexOf(":/") == -1 
           && ( _path.indexOf("//") == -1 
             || _path.indexOf("//") > _path.indexOf("#")
             || _path.indexOf("//") > _path.indexOf("?")
