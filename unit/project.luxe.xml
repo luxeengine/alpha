@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+    
+    <meta 
+          title="unit tests - tests" 
+          package="com.luxeengine.unittests" 
+          version="1.0.0" 
+          company="luxeengine" 
+    />
+
+    <app main="RunTests" path="bin" file="luxe_tests" />
+
+    <window width="100" height="100" orientation="landscape" fps="60" vsync="true" resizable="false" />
+    
+     <!-- <assets path="Assets" rename="assets" include="*"/> -->
+
+    <source path="src" />
+    
+    <haxelib name="lime" />
+    <haxelib name="luxe" />
+    <haxelib name="mohxa" />
+    
+</project>

@@ -229,7 +229,7 @@ class Geometry {
                 //the base position of the vert
             _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
                 //apply the transform to the vert
-            _final_vert_position.applyMatrix4( transform.world );
+            _final_vert_position.applyMatrix4( transform.world.matrix );
 
                     //submit vertex positions
                 vertlist[(vert_index+0)] = _final_vert_position.x;
@@ -292,7 +292,7 @@ class Geometry {
                 // the base position of the vert
             _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
                 // apply the transform to the vert
-            _final_vert_position.applyMatrix4( transform.world );
+            _final_vert_position.applyMatrix4( transform.world.matrix );
 
                 //submit vert positions
             vertlist.push( _final_vert_position.x );
