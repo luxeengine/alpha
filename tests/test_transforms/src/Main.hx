@@ -118,10 +118,9 @@ class Main extends luxe.Game {
 
         // if(e.key == KeyValue.space) {
         //     trace(Luxe.camera.transform.pos);
-        //     trace(Luxe.camera.transform.pos_world);
+        //     trace(Luxe.camera.transform.world.pos);
         //     trace(Luxe.camera.transform.rotation);
-        //     trace(Luxe.camera.transform.rotation_euler);
-        //     trace(Luxe.camera.transform.rotation_world);
+        //     trace(Luxe.camera.transform.world.rotation);
         // }
 
         if(e.key == KeyValue.key_P) {
@@ -155,24 +154,24 @@ class Main extends luxe.Game {
 
         Luxe.draw.ring({
             immediate : true,
-            x: p1.pos_world.x,
-            y: p1.pos_world.y,
+            x: p1.world.pos.x,
+            y: p1.world.pos.y,
             r: 10,
             color : new Color().rgb(0xff403b)
         });
 
         var g = Luxe.draw.box({
             immediate : true,
-            x: p2.pos_world.x,
-            y: p2.pos_world.y,
+            x: p2.world.pos.x,
+            y: p2.world.pos.y,
             w:16, h:16,
             color : new Color().rgb(0xff403b)
         });
 
         var g2 = Luxe.draw.rectangle({
             immediate : true,
-            x: p3.pos_world.x,
-            y: p3.pos_world.y,
+            x: p3.world.pos.x,
+            y: p3.world.pos.y,
             w: 6, h:6,
             color : new Color().rgb(0xffffff)
         });
