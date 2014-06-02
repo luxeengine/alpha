@@ -9,6 +9,7 @@ import phoenix.Matrix4;
 
 import phoenix.Quaternion;
 import phoenix.Rectangle;
+import phoenix.Transform;
 import phoenix.Vector;
 import phoenix.Ray;
 
@@ -29,9 +30,11 @@ class Camera {
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (default,set) : Float = 1.0;
 
-    @:isVar public var pos (get,set) : Vector;
-    @:isVar public var scale (get,set) : Vector;
-    @:isVar public var rotation (get,set) : Quaternion;
+    public var pos (get,set) : Vector;
+    public var scale (get,set) : Vector;
+    public var rotation (get,set) : Quaternion;
+
+    public var transform : Transform;
 
     public var minimum_zoom : Float = 0.01;
     public var projection_matrix : Matrix4;
@@ -75,14 +78,12 @@ class Camera {
             viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
         }
 
+        transform = new Transform();
+
             //init internals
         _origin_matrix_inv = new Matrix4();
         _pos_matrix = new Matrix4();
         _rot_matrix = new Matrix4();
-
-        pos = new Vector();
-        rotation = new Quaternion();
-        scale = new Vector(1,1,1);
 
         center = new Vector( viewport.w/2, viewport.h/2 );
         up = new Vector(0,1,0);
@@ -169,24 +170,27 @@ class Camera {
     function update_view_matrix() {
 
         switch(projection) {
+
             case ProjectionType.perspective:
                 
                 view_matrix = view_matrix.compose( pos, rotation, scale );
 
             case ProjectionType.ortho:
 
-                view_matrix
-                    .makeTranslation( center.x, center.y, center.z )
-                    .scale( scale )
-                    .multiply( _rot_matrix )
-                    .multiply( _origin_matrix_inv )
-                    .multiply( _pos_matrix );
+                // view_matrix
+                //     .makeTranslation( center.x, center.y, center.z )
+                //     .scale( scale )
+                //     .multiply( _rot_matrix )
+                //     .multiply( _origin_matrix_inv )
+                //     .multiply( _pos_matrix );
+
+                view_matrix = transform.world.matrix;
 
             case ProjectionType.custom:
                 //:todo: not sure what I had in mind here ...
         }
-        
-    }
+
+    } //update_view_matrix
 
     public function apply_ortho() {
 
@@ -355,19 +359,13 @@ class Camera {
             //update value
         center = _p;
 
-                //and adjust the position for the new center, in world space
-            pos.ignore_listeners = true;
-                    
-                pos.x = _p.x - (viewport.w/2);
-                pos.y = _p.y - (viewport.h/2);
+            //and adjust the position for the new center, in world space
+        transform.pos.x = _p.x - (viewport.w/2);
+        transform.pos.y = _p.y - (viewport.h/2);
 
-            pos.ignore_listeners = false;
-                
-            //make sure to update the position matrix
-        _pos_matrix.makeTranslation( pos.x, pos.y, pos.z );
-            //update the origin matrix for the view
-        _origin_matrix_inv.makeTranslation( -center.x, -center.y, -center.z );
-
+            //update the transform values
+        transform.origin = center;
+        
         return center;
     }
 
@@ -376,13 +374,15 @@ class Camera {
     }
 
     function get_pos() : Vector {
-        return pos;
+        return transform.pos;
     }
-    function get_scale() : Vector {
-        return scale;
-    }
+    
     function get_rotation() : Quaternion {
-        return rotation;
+        return transform.rotation;
+    }
+
+    function get_scale() : Vector {
+        return transform.scale;
     }
 
     function get_viewport() : Rectangle {
@@ -397,9 +397,8 @@ class Camera {
                 //update the center position
             center.x = ((_r.w/2) + pos.x);
             center.y = ((_r.h/2) + pos.y);
-
-                //update the origin matrix for the view
-            _origin_matrix_inv.makeTranslation( -center.x, -center.y, -center.z );
+                //propagate those changes to the transform
+            set_center(center);
 
         } //center != null
 
@@ -408,46 +407,24 @@ class Camera {
     } //set_viewport
 
     function set_rotation( _q:Quaternion ) : Quaternion {
-
-        rotation = _q;
-
-        _rot_matrix.makeRotationFromQuaternion( rotation );
-
-        return rotation;
-
+        return transform.rotation = _q;
     } //set_rotation
 
     function set_scale( _s:Vector ) : Vector {
-
-        scale = _s;
-
-        _attach_listener(scale, _scale_change);
-
-        return scale;
-
+        return transform.scale = _s;
     } //set_scale
 
     function set_pos( _p:Vector ) : Vector {
 
-        if(pos != null) {
+        transform.pos = _p;
 
-                //update the center accordingly 
-            center.x = ((viewport.w/2) + _p.x);
-            center.y = ((viewport.h/2) + _p.y);
+            //update the center accordingly 
+        center.x = ((viewport.w/2) + _p.x);
+        center.y = ((viewport.h/2) + _p.y);
+            //propagate those changes to the transform
+        set_center(center);
 
-                //update the origin matrix for the view
-            _origin_matrix_inv.makeTranslation( -center.x, -center.y, -center.z );
-
-        } //pos != null
-
-            //store the new value
-        pos = _p;
-            //update the position matrix
-        _pos_matrix.makeTranslation(pos.x, pos.y, pos.z);
-            //listen for propery changes
-        _attach_listener(pos, _pos_change);
-
-        return pos;
+        return transform.pos;
 
     } //set_pos
 
@@ -491,21 +468,5 @@ class Camera {
         }
 
     } //_merge_options
-
-        //An internal callback for when x y or z on a transform changes
-    private function _pos_change(_v:Float) { this.set_pos(pos); }
-        //An internal callback for when x y or z on a transform changes
-    private function _scale_change(_v:Float) { this.set_scale(scale); }
-        //An internal callback for when x y or z on a transform changes
-    // private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
-
-        //An internal function to attach position 
-        //changes to a vector, so we can listen for `pos.x` as well
-    private function _attach_listener( _v : Vector, listener ) {
-        _v.listen_x = listener; 
-        _v.listen_y = listener; 
-        _v.listen_z = listener;
-    } //_attach_listener
-
 
 } //Camera

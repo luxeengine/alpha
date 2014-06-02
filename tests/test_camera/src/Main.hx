@@ -179,7 +179,7 @@ class Main extends luxe.Game {
                 //do nothing
             }
     	} else if(e.button == MouseButton.right) {
-            Luxe.camera.focus( Vector.Add( e.pos, Luxe.camera.pos ) );
+            Luxe.camera.focus( world_mouse );
     	}  
     }
 

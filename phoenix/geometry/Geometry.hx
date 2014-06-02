@@ -35,8 +35,8 @@ class Geometry {
 
         //the positional transform information
     public var transform : Transform;
-        //The origin for the transform
-    @:isVar public var origin(default, set) : Vector;
+        //A shortcut to the origin of the transform
+    public var origin(get, set) : Vector;
      
         //The list of vertices
     public var vertices : Array<Vertex>;
@@ -218,16 +218,18 @@ class Geometry {
         vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
         vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
         ) {
-        
-        var origin_x : Float = origin.x;
-        var origin_y : Float = origin.y;
-        var origin_z : Float = origin.z;
-        var origin_w : Float = origin.w;
+            
+        var _origin = transform.origin;
+        var origin_x : Float = _origin.x;
+        var origin_y : Float = _origin.y;
+        var origin_z : Float = _origin.z;
+        var origin_w : Float = _origin.w;
 
-        for(v in vertices) {    
+        for(v in vertices) {
 
                 //the base position of the vert
-            _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
+            // _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
+            _final_vert_position.set_xyzw( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
                 //apply the transform to the vert
             _final_vert_position.applyMatrix4( transform.world.matrix );
 
@@ -290,7 +292,7 @@ class Geometry {
             // _final_vert_position.applyMatrix4( matrix );
 
                 // the base position of the vert
-            _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
+            // _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
                 // apply the transform to the vert
             _final_vert_position.applyMatrix4( transform.world.matrix );
 
@@ -326,9 +328,15 @@ class Geometry {
 
     } // translate
 
+    public function get_origin() : Vector {
+
+        return transform.origin;
+
+    } //get_origin
+
     public function set_origin( _origin:Vector ) : Vector {
 
-        return origin = _origin;
+        return transform.origin = _origin;
 
     } //set_origin
 

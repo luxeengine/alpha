@@ -15,8 +15,6 @@ typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
 
-
-
     @:isVar public var viewport (get,set) : Rectangle;
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (get,set) : Float = 1.0;
@@ -138,14 +136,16 @@ class Camera extends Entity {
         ///Focus the camera on a specific point, for Ortho atm
     public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {   
 
-        var center_point_x = (_p.x/view.scale.x) - (viewport.w/2);
-        var center_point_y = (_p.y/view.scale.y) - (viewport.h/2);
-
-        Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
+        Actuate.tween(center, _t, { x:_p.x, y:_p.y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut )
             .onUpdate( function() {
+                    //:todo: this needs to change when the camera mirrors the new transforms
+                view.center = center;
+                var new_pos = view.pos.clone();
+                pos.x = new_pos.x;
+                pos.y = new_pos.y;
+                pos.z = new_pos.z;
                 _final_pos.set_xyz( pos.x, pos.y, pos.z );
-                view.pos = _final_pos;
             });
 
     } //focus

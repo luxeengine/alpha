@@ -147,8 +147,9 @@ class Transform extends Objects {
 
     public var dirty : Bool = true;
 
-    @:isVar public var local (default,default) : Spatial;
-    @:isVar public var world (get,set): Spatial;
+    @:isVar public var local (get,set) : Spatial;
+    @:isVar public var world (get,set) : Spatial;
+    @:isVar public var origin (get,set) : Vector;
 
     var _setup : Bool = true;
     var _cleaning : Bool = false;
@@ -162,7 +163,12 @@ class Transform extends Objects {
 
     public var pos                  (get,set) : Vector;
     public var rotation             (get,set) : Quaternion;
-    public var scale                (get,set) : Vector;
+    public var scale                (get,set) : Vector;    
+
+    public var _origin_matrix : Matrix4;
+    public var _origin_undo_matrix : Matrix4;
+    public var _pos_matrix : Matrix4;
+    public var _rotation_matrix : Matrix4;
     
     public function new() {
 
@@ -173,7 +179,14 @@ class Transform extends Objects {
         children = [];
 
         local = new Spatial();
-        world = new Spatial();
+        world = new Spatial();        
+
+        _origin_matrix = new Matrix4();
+        _origin_undo_matrix = new Matrix4();
+        _pos_matrix = new Matrix4();
+        _rotation_matrix = new Matrix4();
+
+        origin = new Vector();
 
         local.pos_changed = on_local_pos_change;
         local.rotation_changed = on_local_rotation_change;
@@ -181,7 +194,7 @@ class Transform extends Objects {
 
         _setup = false;
 
-    }
+    } //new
 
         //when the local transforms change we become dirty
     function on_local_pos_change( v:Vector ) {
@@ -207,6 +220,24 @@ class Transform extends Objects {
         if(scale_changed != null) { scale_changed(s); }
 
     } //local scale changed
+
+    function get_local() : Spatial {
+
+        return local;
+
+    } //get_local
+
+    function set_local(l:Spatial) : Spatial {
+
+        dirty = true;
+
+        l.pos_changed = on_local_pos_change;
+        l.rotation_changed = on_local_rotation_change;
+        l.scale_changed = on_local_scale_change;
+
+        return local = l;
+
+    } //set_local
 
         //whenever the world transform is requested, make sure it's up to date
     function get_world() : Spatial {
@@ -236,15 +267,37 @@ class Transform extends Objects {
 
         _cleaning = true;
 
-            //update local matrix
-        local.matrix.compose(local.pos, local.rotation, local.scale);
+            //update local matrices
+            
+        _pos_matrix.makeTranslation(local.pos.x, local.pos.y, local.pos.z);
+        _rotation_matrix.makeRotationFromQuaternion(local.rotation);
+        _origin_undo_matrix.makeTranslation( -origin.x, -origin.y, -origin.z );
+
+            //translate to origin
+        local.matrix.identity();
+
+        // trace(origin + ' ' + name);
+        
+        local.matrix.makeTranslation( origin.x, origin.y, origin.z );
+                //rotation relative to origin
+            local.matrix.multiply(_rotation_matrix);
+                //scale up relative to origin
+            local.matrix.scale(local.scale);
+                //undo origin translation
+            local.matrix.multiply(_origin_undo_matrix);
+                //apply position
+            local.matrix.multiply(_pos_matrix);
+
+        // //     //update local matrix
+        // local.matrix.compose( local.pos, local.rotation, local.scale );
 
             //update world matrix
         if(parent != null) {
             world.matrix = world.matrix.multiplyMatrices( parent.world.matrix, local.matrix );
         } else {
-            world.matrix = local.matrix.clone();                
+            world.matrix = local.matrix.clone();
         }
+
             //update world spatial
         world.decompose();
 
@@ -253,6 +306,20 @@ class Transform extends Objects {
         _cleaning = false;
 
     } //clean
+
+    function get_origin() : Vector {
+
+        return origin;
+
+    } //get_origin
+
+    function set_origin(o:Vector) : Vector {
+
+        dirty = true;
+
+        return origin = o;
+
+    } //set_origin
 
     function set_world(w:Spatial) : Spatial {
         

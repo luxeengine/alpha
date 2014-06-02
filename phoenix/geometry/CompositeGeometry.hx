@@ -90,7 +90,7 @@ class CompositeGeometry extends Geometry {
                 geom.origin = _origin;
             }
         }
-        return origin = _origin;
+        return _origin;
     } //set_origin
 
     public function set_pos_from_transform( _position:Vector ) {
