@@ -10,9 +10,10 @@
 
 Tests are an ongoing endeavour in any code base and often require constant work, so there are likely gaps. You can help resolve this.
 
-This folder contains tests according to the followint basic structure :
-All tests demonstrate usage, validate correctness, and are usually extensively commented with rationale for insight into why things are a certain way. 
-Tests for features are usually created as an empty project, and a feature hacked in an isolated project, once confirmed to be correct and stable are merged back into the API, 
+This folder contains tests according to the followint basic structure :   
+
+- All tests demonstrate usage, validate correctness, and are usually extensively commented with rationale for insight into why things are a certain way.   
+- Tests for features are usually created as an empty project, and a feature hacked in an isolated project, once confirmed to be correct and stable are merged back into the API, 
 making the test case to use the new classes in the engine as a baseline test.
 
 --- 
