@@ -95,7 +95,9 @@ class PlayerShoot extends Component {
             var spawnx = weapon.spawn_offset * aim.direction.x;
             var spawny = weapon.spawn_offset * aim.direction.y; 
 
-            bullet.pos.set(entity.pos.x + spawnx, entity.pos.y + spawny);
+                //32 is offset for the sprite origin
+            bullet.pos.x = entity.transform.world.pos.x + spawnx + 32;
+            bullet.pos.y = entity.transform.world.pos.y + spawny + 32;
 
             bullet.visible = true;
             bullet.rotation_z = aim.rot+90;

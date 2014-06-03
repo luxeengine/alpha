@@ -77,9 +77,9 @@ class Spatial {
 
     function set_pos( _p:Vector ) {
 
-        pos = _p.clone();
+        pos = _p;
 
-        _attach_listener( pos, _pos_change );
+        Vector.listen( pos, _pos_change );
 
         propogate_pos(pos);
 
@@ -87,25 +87,23 @@ class Spatial {
 
     } //set_pos
 
-    var _refresh_rotation = false;
-
     function set_rotation( _r:Quaternion ) {
 
-        rotation = _r.clone();
+        rotation = _r;
 
-        _attach_listener_quat( rotation, _rotation_change );
+        Quaternion.listen( rotation, _rotation_change );
 
         propogate_rotation(rotation);
 
         return rotation;
 
     } //set_rotation
-
+    
     function set_scale( _s:Vector ) {
 
-        scale = _s.clone();
+        scale = _s;
 
-        _attach_listener( scale, _scale_change );
+        Vector.listen( scale, _scale_change );
 
         propogate_scale(scale);
 
@@ -113,7 +111,7 @@ class Spatial {
 
     } //set_scale
 
-//Sub component change listeners
+ //Sub component change listeners
 
         //An internal callback for when x y or z on a transform changes
     function _pos_change(_v:Float) { this.set_pos(pos); }
@@ -122,61 +120,42 @@ class Spatial {
         //An internal callback for when x y or z on a transform changes
     function _rotation_change(_v:Float) { this.set_rotation(rotation); }
 
-        //An internal function to attach position 
-        //changes to a vector, so we can listen for `pos.x` as well
-    function _attach_listener( _v : Vector, listener ) {
-        _v.listen_x = listener;
-        _v.listen_y = listener;
-        _v.listen_z = listener;
-    } //_attach_listener
-
-    function _attach_listener_quat( _v : Quaternion, listener ) {
-        _v.listen_x = listener;
-        _v.listen_y = listener;
-        _v.listen_z = listener;
-        _v.listen_w = listener;
-    } //_attach_listener_quat
-
 } //Spatial
 
 class Transform extends Objects {
 
+        //access
     @:isVar public var parent (get,set) : Transform;
-
-    public var children : Array<Transform>;
-
-    public var dirty : Bool = true;
-
     @:isVar public var local (get,set) : Spatial;
     @:isVar public var world (get,set) : Spatial;
     @:isVar public var origin (get,set) : Vector;
-
-    var _setup : Bool = true;
-    var _cleaning : Bool = false;
 
         //Called when local values are changed 
     public var pos_changed : Vector -> Void;
     public var rotation_changed : Quaternion -> Void;
     public var scale_changed : Vector -> Void;    
     public var origin_changed : Vector -> Void;    
+    public var parent_changed : Transform -> Void;    
 
         //alias to local.pos, local.rotation, local.scale
-
     public var pos                  (get,set) : Vector;
     public var rotation             (get,set) : Quaternion;
     public var scale                (get,set) : Vector;    
 
+        //true if the transform needs refreshing
+    public var dirty : Bool = true;
+
     var _origin_undo_matrix : Matrix4;
     var _pos_matrix : Matrix4;
     var _rotation_matrix : Matrix4;
-    
+    var _setup : Bool = true;
+    var _cleaning : Bool = false;
+
     public function new() {
 
         super();
 
         name = 'transform';
-
-        children = [];
 
         local = new Spatial();
         world = new Spatial();        
@@ -244,8 +223,8 @@ class Transform extends Objects {
             //make sure the parent is updated before 
             //trying to clean our values
         if(parent != null) {
-            if(parent.dirty) {
-                dirty = true;
+            dirty = true;
+            if(parent.dirty) {                
                 parent.clean();
             } //parent.dirty
         } //parent != null
@@ -337,9 +316,13 @@ class Transform extends Objects {
 
     function set_parent( _p:Transform ) {   
 
+        dirty = true;
+
         parent = _p;
 
-        dirty = true;
+        if(parent_changed != null) {
+            parent_changed(parent);
+        }
 
         return parent;
 

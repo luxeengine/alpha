@@ -282,7 +282,7 @@ class Stage1Level1 extends State {
 
         set_pos(90);
 
-        jumper.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));
+        jumper.transform.rotation = jumper.transform.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));
 
         p1 = new Vector();
 
@@ -398,7 +398,7 @@ class Stage1Level1 extends State {
     
             set_pos(90);
 
-            jumper.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));            
+            jumper.transform.rotation = jumper.transform.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));            
 
             reset_progress();
                 
@@ -422,7 +422,7 @@ class Stage1Level1 extends State {
         player.pos.y =  __y(r);
         player.rotation_z = r;
         power.p0 = player.pos;
-        finger.pos = player.pos;
+        finger.transform.pos = player.pos;
 
         rotation = r;
 
@@ -551,8 +551,8 @@ class Stage1Level1 extends State {
 
             var _opp_side = angle_player + 180;
             var _opp_off = _opp_side + (angle_opp*2);
-                dest.pos.x = __x( _opp_off );
-                dest.pos.y = __y( _opp_off );
+                dest.transform.pos.x = __x( _opp_off );
+                dest.transform.pos.y = __y( _opp_off );
 
             var _final_angle = luxe.utils.Maths.wrap_angle( _opp_off, 0, 360);
               
@@ -562,7 +562,7 @@ class Stage1Level1 extends State {
                 player.color.a = 1;
                 Luxe.camera.shake(1.4);
 
-            jumper.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));
+            jumper.transform.rotation = jumper.transform.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad(rotation)));
 
         }); //fade out
 
@@ -746,8 +746,8 @@ class Stage1Level1 extends State {
 
         var _opp_side = rotation + 180;
         var _opp_off = _opp_side + (range_o_angle * 2);
-            dest.pos.x = __x( _opp_off );
-            dest.pos.y = __y( _opp_off );
+            dest.transform.pos.x = __x( _opp_off );
+            dest.transform.pos.y = __y( _opp_off );
 
     }
 
@@ -783,8 +783,8 @@ class Stage1Level1 extends State {
         get_linepoint_on_arc(pos);
         // aim.rotation.setFromEuler(new Vector(0,0,luxe.utils.Maths.degToRad((aim.pos.rotationTo(player.pos)+90)) ));        
             //get the point on the circle the player is aiming at
-        aim.rotation.setFromEuler( new Vector(0,0,luxe.utils.Maths.degToRad( endpos.rotationTo(center)+90 )) );
-        aim_point.pos = endpos;
+        aim.transform.rotation = aim.transform.rotation.setFromEuler( new Vector(0,0,luxe.utils.Maths.degToRad( endpos.rotationTo(center)+90 )) );
+        aim_point.transform.pos = endpos;
 
         var range_spread : Float = 90;
 
@@ -940,8 +940,8 @@ class Stage1Level1 extends State {
 
             var _opp_side = rotation + 180;
             var _opp_off = _opp_side + (range_o_angle*2);
-                dest.pos.x = __x( _opp_off );
-                dest.pos.y = __y( _opp_off );            
+                dest.transform.pos.x = __x( _opp_off );
+                dest.transform.pos.y = __y( _opp_off );            
 
         } //dragging && in_range
 

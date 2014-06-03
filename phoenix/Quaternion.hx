@@ -13,6 +13,9 @@ class Quaternion {
 
     var euler : Vector;
 
+    public var serialized(get, null) : Dynamic;
+
+    function get_serialized() : Dynamic { return { x:x, y:y, z:z, w:w } };
 
     public var ignore_listeners : Bool = false;
 
@@ -408,6 +411,10 @@ class Quaternion {
 
     } //clone
 
+    public function toeuler() {
+        return new Vector().setEulerFromQuaternion(this).degrees();
+    }
+
     public static function Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) : Quaternion {
 
         return _qm.copy( _qa ).slerp( _qb, _t );
@@ -471,6 +478,15 @@ class Quaternion {
         return w;
 
     } //set_w
+
+    public static function listen( _q : Quaternion, listener ) {
+
+        _q.listen_x = listener;
+        _q.listen_y = listener;
+        _q.listen_z = listener;
+        _q.listen_w = listener;
+
+    } //listen
 
 } //Quaternion
 

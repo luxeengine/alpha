@@ -221,19 +221,19 @@ class Main extends luxe.Game {
         } //key_R
 
         if(e.key == KeyValue.key_1) {
-            cube_mesh_component.mesh.rotation = new Vector(0,0,0);
+            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,0,0).radians());
         } //key_4
         if(e.key == KeyValue.key_2) {
-            cube_mesh_component.mesh.rotation = new Vector(0,90,0);
+            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,90,0).radians());
         } //key_4
         if(e.key == KeyValue.key_3) {
-            cube_mesh_component.mesh.rotation = new Vector(0,-90,0);
+            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,-90,0).radians());
         } //key_4
         if(e.key == KeyValue.key_4) {
-            cube_mesh_component.mesh.rotation = new Vector(90,0,0);
+            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(90,0,0).radians());
         } //key_5
         if(e.key == KeyValue.key_5) {
-            cube_mesh_component.mesh.rotation = new Vector(0,0,90);
+            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,0,90).radians());
         } //key_5
 
         cam3d.onkeyup(e);

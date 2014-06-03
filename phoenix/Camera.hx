@@ -78,7 +78,7 @@ class Camera {
             viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
         }
 
-            //set the position explicitly so it can update the transform
+            //set the position/center explicitly so it can update the transform
         center = new Vector( viewport.w/2, viewport.h/2 );
         pos = new Vector();
         up = new Vector(0,1,0);
@@ -334,8 +334,8 @@ class Camera {
         }
 
             //scale the visual view based on the value
-        scale.x = 1/_new_zoom;
-        scale.y = 1/_new_zoom;
+        transform.scale.x = 1/_new_zoom;
+        transform.scale.y = 1/_new_zoom;
 
             //return the real value
         return zoom = _new_zoom;
@@ -373,9 +373,13 @@ class Camera {
 
     function set_viewport(_r:Rectangle) : Rectangle {
 
+        viewport = _r;
+
         transform.origin = new Vector( _r.w/2, _r.h/2 );
 
-        return viewport = _r;
+        set_pos(pos == null ? new Vector() : pos);
+
+        return viewport;
     
     } //set_viewport
 

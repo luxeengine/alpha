@@ -45,7 +45,11 @@ class Camera extends Entity {
             if(options.name != null) {
                 _name = options.name;
             }
-        } 
+        } else {
+            options = {
+                no_scene : false
+            }
+        }
 
             //Init the entity part
         super({
@@ -76,44 +80,9 @@ class Camera extends Entity {
     function set_center( _c:Vector ) : Vector {
 
         pos = new Vector(_c.x - (viewport.w/2), _c.y - (viewport.h/2));
-
         return view.center = _c;
 
     } //set_center
-
-    override function get_scale() : Vector {
-        return view == null ? scale : view.scale;
-    } //get_scale
-
-    override function set_scale( _c:Vector ) : Vector {
-        return view == null ? scale = _c : view.scale = _c;
-    } //set_scale
-
-    override function get_rotation() : Vector {
-
-        return rotation;
-        
-    } //get_rotation
-
-    override function set_rotation( _r:Vector ) : Vector {
-
-        _rotation_radian.set( Maths.degToRad(_r.x), Maths.degToRad(_r.y), Maths.degToRad(_r.z) );
-        _rotation_cache.setFromEuler( _rotation_radian );
-
-            //set only if the view exists
-        if(view != null) {
-            view.rotation = _rotation_cache;
-        }
-            
-            //store 
-        rotation = _r;
-
-            //listen for sub changes on properties
-        _attach_listener( rotation, _rotation_change );
-
-        return rotation;
-
-    } //set_rotation
 
     function get_minimum_zoom() : Float {
         return view.minimum_zoom;
@@ -140,9 +109,7 @@ class Camera extends Entity {
                     //:todo: this needs to change when the camera mirrors the new transforms
                 view.center = center;
                 var new_pos = view.pos.clone();
-                pos.x = new_pos.x;
-                pos.y = new_pos.y;
-                pos.z = new_pos.z;
+                    pos = new_pos;
                 _final_pos.set_xyz( pos.x, pos.y, pos.z );
             });
 
@@ -160,35 +127,43 @@ class Camera extends Entity {
 
     } //world_point_to_screen
 
+    override function set_pos_from_transform(_pos:Vector) {
 
-    @:noCompletion public override function get_pos() : Vector {
-        
-        return pos;
+        super.set_pos_from_transform(_pos);
 
-    } //get_pos
-
-    @:noCompletion public override function set_pos(v:Vector) : Vector {
-        
         if(view != null) {
 
             if(bounds != null) {
-                if(v.x < bounds.x) v.x = bounds.x;
-                if(v.y < bounds.y) v.y = bounds.y;
-                if(v.x > bounds.w-view.viewport.x) v.x = bounds.w-view.viewport.x;
-                if(v.y > bounds.h-view.viewport.y) v.y = bounds.h-view.viewport.y;
+                if(_pos.x < bounds.x) _pos.x = bounds.x;
+                if(_pos.y < bounds.y) _pos.y = bounds.y;
+                if(_pos.x > bounds.w-view.viewport.w) _pos.x = bounds.w-view.viewport.w;
+                if(_pos.y > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h;
             }
 
-            view.pos = v;
+            view.pos = _pos;
         }
 
-        pos = v;
+    } //set_pos_from_transform
 
-            //listen for sub changes on properties
-        _attach_listener( pos, _pos_change );
+    override function set_rotation_from_transform(_rotation:Quaternion) {
 
-        return pos;
+        super.set_rotation_from_transform(_rotation);
 
-    } //set_pos
+        if(view != null) {
+            view.rotation = _rotation;
+        }
+
+    } //set_scale_from_transform
+
+    override function set_scale_from_transform(_scale:Vector) {
+
+        super.set_scale_from_transform(_scale);
+
+        if(view != null) {
+            view.scale = _scale;
+        }
+
+    } //set_scale_from_transform
 
     public function shake(amount:Float) {
 

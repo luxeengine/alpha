@@ -266,7 +266,7 @@ class Manager extends State {
         map.texture.filter = phoenix.Texture.FilterType.nearest;
 
         Luxe.camera.bounds = new Rectangle(0,0,2048,2048);
-        Luxe.camera.pos = sign_list.get('university').clone().subtract( new Vector(Luxe.screen.w/2, Luxe.screen.h/2) );
+        Luxe.camera.pos = sign_list.get('university').clone().subtract( Luxe.screen.mid );
 
         beacon_texture = Luxe.loadTexture('assets/map/beacons/beacon_with_shadow.png');
 

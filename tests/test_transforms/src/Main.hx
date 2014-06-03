@@ -37,11 +37,11 @@ class Main extends luxe.Game {
         // var m = DualQuaternion.ToMatrix(dq);
 
         // trace( new Vector().applyMatrix4(m) );
-        // trace( new Vector().setEulerFromQuaternion(new Quaternion().setFromRotationMatrix(m)).toDegrees() );
-        // trace( new Vector().setEulerFromRotationMatrix(m).toDegrees() );
+        // trace( new Vector().setEulerFromQuaternion(new Quaternion().setFromRotationMatrix(m)).degrees() );
+        // trace( new Vector().setEulerFromRotationMatrix(m).degrees() );
 
-        // var r1 = new Quaternion().setFromEuler( new Vector( 180, 10, 0 ).toRadians() );
-        // var r2 = new Quaternion().setFromEuler( new Vector( 20, 0, 0 ).toRadians() );
+        // var r1 = new Quaternion().setFromEuler( new Vector( 180, 10, 0 ).radians() );
+        // var r2 = new Quaternion().setFromEuler( new Vector( 20, 0, 0 ).radians() );
 
         // var rs = new Quaternion().multiplyQuaternions(r1,r2);
         // var ri = new Quaternion().multiplyQuaternions(r2,r1);
@@ -49,8 +49,8 @@ class Main extends luxe.Game {
         // trace( r1 );
         // trace( r2 );
 
-        // var ts = new Vector().setEulerFromQuaternion(rs).toDegrees();
-        // var ti = new Vector().setEulerFromQuaternion(ri).toDegrees();
+        // var ts = new Vector().setEulerFromQuaternion(rs).degrees();
+        // var ti = new Vector().setEulerFromQuaternion(ri).degrees();
 
         // trace( ts );
         // trace( ti );
@@ -69,7 +69,7 @@ class Main extends luxe.Game {
         p3.parent = p2;
 
         p2.pos = new Vector(60,60);
-        p2.rotation = new Quaternion().setFromEuler( new Vector(0,0,90).toRadians() );
+        p2.rotation = new Quaternion().setFromEuler( new Vector(0,0,90).radians() );
 
         p3.pos = new Vector(15,15);
 
@@ -94,7 +94,7 @@ class Main extends luxe.Game {
         qg.transform.name = 'qg';
         qg.transform.origin = new Vector(25,25);
         qg.transform.scale = new Vector(1.5,1.5);
-        qg.transform.rotation = qg.transform.rotation.setFromEuler(new Vector(0,0,45).toRadians());
+        qg.transform.rotation = qg.transform.rotation.setFromEuler(new Vector(0,0,45).radians());
         qg.color = new Color().rgb(0xff403b);
 
         d1 = new Transform();
@@ -147,12 +147,12 @@ class Main extends luxe.Game {
 
         r += 100 * dt;
 
-        // d1.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*0.25).toRadians() );
-        qg.transform.rotation = new Quaternion().setFromEuler( new Vector(0,0,r).toRadians() );
+        // d1.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*0.25).radians() );
+        qg.transform.rotation = new Quaternion().setFromEuler( new Vector(0,0,r).radians() );
 
-        p1.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*0.25).toRadians() );
-        p2.rotation = new Quaternion().setFromEuler( new Vector(0,0,r).toRadians() );
-        p3.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*4).toRadians() );
+        p1.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*0.25).radians() );
+        p2.rotation = new Quaternion().setFromEuler( new Vector(0,0,r).radians() );
+        p3.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*4).radians() );
 
         Luxe.draw.ring({
             immediate : true,
@@ -179,10 +179,10 @@ class Main extends luxe.Game {
         });
 
         g.transform.origin = new Vector(8,8);
-        g.transform.rotation = g.transform.rotation.setFromEuler(new Vector(0,0,r).toRadians());
+        g.transform.rotation = g.transform.rotation.setFromEuler(new Vector(0,0,r).radians());
 
         g2.transform.origin = new Vector(3,3);
-        g2.transform.rotation = g2.transform.rotation.setFromEuler(new Vector(0,0,r*4).toRadians());
+        g2.transform.rotation = g2.transform.rotation.setFromEuler(new Vector(0,0,r*4).radians());
 
     } //update
 

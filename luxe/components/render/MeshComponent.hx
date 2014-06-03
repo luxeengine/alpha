@@ -28,18 +28,18 @@ class MeshComponent extends Component {
 
     } //init
     
-    public override function entity_pos_change( _p:Vector ) {
+    public override function entity_pos_change( _pos:Vector ) {
 
         if(mesh != null) {
-            mesh.pos = _p.clone();
+            mesh.pos = _pos;
         } //mesh
 
     } //entity_pos_change
 
-    public override function entity_rotation_change( _p:Vector ) {
+    public override function entity_rotation_change( _rotation:Quaternion ) {
 
         if(mesh != null) {
-            mesh.rotation = _p.clone();
+            mesh.rotation = _rotation;
         } //mesh
 
     } //entity_rotation_change

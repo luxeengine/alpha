@@ -15,7 +15,7 @@ class Vector {
     @:isVar public var normalized    (get, null) : Vector;
     @:isVar public var inverted      (get, null) : Vector;
     
-    @:isVar public var serialized(get, null) : Dynamic;
+    public var serialized(get, null) : Dynamic;
 
     function get_serialized() : Dynamic { return { x:x, y:y, z:z, w:w } };
 
@@ -190,7 +190,13 @@ class Vector {
 
     public static function RotationTo(a:Vector,b:Vector) {
         return a.rotationTo(b);     
-    } //RotationBetween
+    } //RotationTo
+
+    public static function listen( _v:Vector, listener ) {
+        _v.listen_x = listener;
+        _v.listen_y = listener;
+        _v.listen_z = listener;
+    } //Listen
 
 // Operations
 
@@ -591,7 +597,7 @@ class Vector {
 
     } //setEulerFromQuaternion
 
-    public function toDegrees() : Vector {
+    public function degrees() : Vector {
 
         x = Maths.radToDeg(x);
         y = Maths.radToDeg(y);
@@ -600,7 +606,7 @@ class Vector {
         return this;
     }
 
-    public function toRadians() : Vector {
+    public function radians() : Vector {
 
         x = Maths.degToRad(x);
         y = Maths.degToRad(y);
@@ -609,12 +615,12 @@ class Vector {
         return this;
     }
 
-    public static function ToDegrees( _radian_vector:Vector ) : Vector {
-        return _radian_vector.clone().toDegrees();
+    public static function Degrees( _radian_vector:Vector ) : Vector {
+        return _radian_vector.clone().degrees();
     }
     
-    public static function ToRadians( _degree_vector:Vector ) : Vector {
-        return _degree_vector.clone().toRadians();
+    public static function Radians( _degree_vector:Vector ) : Vector {
+        return _degree_vector.clone().radians();
     }
 
 } //Vector class

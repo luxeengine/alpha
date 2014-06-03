@@ -155,7 +155,7 @@ class Sprite extends Visual {
 
         uv = _uv;
 
-        _attach_rect_listener( uv, _uv_change );
+        Rectangle.listen( uv, _uv_change );
 
         return uv;
     } 
@@ -246,13 +246,5 @@ class Sprite extends Visual {
 
         //An internal callback for when x y or w or h on a transform changes
     private function _uv_change(_v:Float) { this.set_uv(uv); }
-        //The helper to attach all listeners
-    private function _attach_rect_listener( _v : Rectangle, listener ) {
-        _v.listen_x = listener;
-        _v.listen_y = listener;
-        _v.listen_w = listener;
-        _v.listen_h = listener;
-    } //_attach_rect_listener
-
 
 } //Sprite

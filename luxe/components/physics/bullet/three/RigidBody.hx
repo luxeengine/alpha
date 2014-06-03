@@ -59,13 +59,10 @@ package luxe.components.physics.bullet.three;
 
         private var construct_info : RigidBodyConstructInfo;
 
-        var _rotation_vector : Vector;
-
         public function init() {
 
             inertia = new Vector(0,0,0);
             _rotation = new Quaternion(0,0,0,1);
-            _rotation_vector = new Vector();
 
             if(collider == null) {
                 var _collider : ShapeCollider = get('collider');
@@ -110,10 +107,8 @@ package luxe.components.physics.bullet.three;
             if(mass > 0 && !kinematic) {
                     //apply origin
                 pos = rigid_body.origin;
-                    //apply rotation to cache
-                _rotation_vector.setEulerFromQuaternion( rigid_body.rotation );
                      //set to the entity
-                rotation = _rotation_vector;
+                rotation = rigid_body.rotation;
 
             } //only if not static
 

@@ -32,6 +32,13 @@ class Rectangle {
 
     } //toString
 
+    public static function listen( _r:Rectangle, listener ) {
+        _r.listen_x = listener;
+        _r.listen_y = listener;
+        _r.listen_w = listener;
+        _r.listen_h = listener;
+    } //listen
+
     public function point_inside( _p:Vector ) {
 
         if(_p.x < x) return false;

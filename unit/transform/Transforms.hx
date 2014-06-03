@@ -52,7 +52,7 @@ class Transforms extends Mohxa {
                         log('transform scale 2,2,2');
 
                         t1.pos = new luxe.Vector(10,10,10);
-                        t1.rotation = new luxe.Quaternion().setFromEuler(new luxe.Vector(0,90,0).toRadians());
+                        t1.rotation = new luxe.Quaternion().setFromEuler(new luxe.Vector(0,90,0).radians());
                         t1.scale = new luxe.Vector(2,2,2);
 
                             //watch out for round errors, especially on neko
@@ -106,7 +106,7 @@ class Transforms extends Mohxa {
                         
                         log('parent rotation set to 0,90,0');
 
-                        tparent.rotation = new luxe.Quaternion().setFromEuler(new luxe.Vector(0,90,0).toRadians());
+                        tparent.rotation = new luxe.Quaternion().setFromEuler(new luxe.Vector(0,90,0).radians());
 
                         equal(t1.world.pos.x, 120, 'world.pos.x = by parent rotation - 120');
                         equal(t1.world.pos.y, 120, 'world.pos.y = by parent rotation - 120');
