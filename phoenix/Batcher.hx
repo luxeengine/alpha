@@ -902,8 +902,8 @@ class Batcher {
     private function _enable_attributes() {
 
             //Update the GL Matrices
-        GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_matrix.float32array() );
-        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.view_matrix.inverse().float32array() );
+        GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_float32array );
+        GL.uniformMatrix4fv( modelviewmatrix_attribute, false, view.view_inverse_float32array );
 
     } //_enable_attributes
 

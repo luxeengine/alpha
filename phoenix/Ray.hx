@@ -39,8 +39,8 @@ class Ray {
         var start_ndc : Vector = new Vector( ndc_x, ndc_y, 0.0, 1.0 );
         var end_ndc : Vector = new Vector( ndc_x, ndc_y, 1.0, 1.0 );
             //So we have a near and a far clipping space coords for the mouse, now unproject it using the camera
-        origin = camera.unprojectVector(start_ndc);
-        end = camera.unprojectVector(end_ndc);
+        origin = camera.unproject(start_ndc);
+        end = camera.unproject(end_ndc);
         dir = Vector.Subtract(end, origin);
 
     } //refresh

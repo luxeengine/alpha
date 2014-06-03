@@ -26,7 +26,9 @@ typedef CameraOptions = {
     > ProjectionOptions,
 
     ? name : String,
-    ? projection : ProjectionType
+    ? projection : ProjectionType,
+    ? cull_backfaces : Bool,     //ortho: false, persp: true
+    ? depth_test : Bool         //ortho: false, persp: true
 
 }
 

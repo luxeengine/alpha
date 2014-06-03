@@ -41,7 +41,9 @@ class Camera {
     public var minimum_zoom : Float = 0.01;
     public var projection_matrix : Matrix4;
     public var view_matrix : Matrix4;
+    public var view_matrix_inverse : Matrix4;
 
+    public var options : CameraOptions;
     public var perspective_options : ProjectionOptions;
     public var ortho_options : ProjectionOptions;
     public var projection : ProjectionType;
@@ -49,10 +51,16 @@ class Camera {
     public var target:Vector;
     public var up:Vector;
 
+    @:noCompletion public var projection_float32array : Float32Array;
+    @:noCompletion public var view_inverse_float32array : Float32Array;
+
         //A phoenix camera will default to ortho set to screen size        
-    public function new( ?options:CameraOptions ) {
+    public function new( ?_options:CameraOptions ) {
 
         transform = new Transform();
+
+            //save for later
+        options = _options;
 
             //have sane defaults 
         if(options == null) {
@@ -85,21 +93,58 @@ class Camera {
         
         projection_matrix = new Matrix4();
         view_matrix = new Matrix4();
+        view_matrix_inverse = new Matrix4();
 
         ortho_options = default_ortho_options();
         perspective_options = default_perspective_options();
 
+            //finally apply the projection specific defaults to the options
+        apply_default_camera_options();
+
         switch (projection) {
+
             case ProjectionType.ortho:
                 set_ortho( options );
             case ProjectionType.perspective:
                 set_perspective( options );
-            case ProjectionType.custom:
-                //:todo: not sure what I had in mind here ...
+            case ProjectionType.custom: {}
         }
         
     } //new 
 
+    function apply_default_camera_options() {
+
+        switch (projection) {
+
+            case ProjectionType.ortho: {
+
+                if(options.cull_backfaces == null) {
+                    options.cull_backfaces = false;
+                }
+
+                if(options.depth_test == null) {
+                    options.depth_test = false;
+                }
+
+            } //ortho
+
+            case ProjectionType.perspective: {
+
+                if(options.cull_backfaces == null) {
+                    options.cull_backfaces = true;
+                }
+
+                if(options.depth_test == null) {
+                    options.depth_test = true;
+                }
+
+            } //perspective
+
+            case ProjectionType.custom: {}
+
+        } //switch
+
+    } //apply_default_camera_options
     function default_ortho_options() : ProjectionOptions {
 
         return {
@@ -117,6 +162,8 @@ class Camera {
 
         return {
             projection : ProjectionType.ortho,
+            depth_test : false,
+            cull_backfaces : false,
             x1 : 0, 
             y1 : 0,
             x2 : Luxe.screen.w, 
@@ -145,8 +192,7 @@ class Camera {
                 apply_perspective();
             case ProjectionType.ortho:
                 apply_ortho();
-            case ProjectionType.custom:
-                //:todo: not sure what I had in mind here ...
+            case ProjectionType.custom: {}
         }
 
     } //process
@@ -163,54 +209,74 @@ class Camera {
     } //update_look_at
 
     function update_view_matrix() {
+            
+            //:todo:#82: the float32array can be updated only when the transform changes
+            //which will also need to happen for when the parent is dirty, so transform.dirty is not enough
+        view_matrix = transform.world.matrix;
+        view_matrix_inverse = view_matrix.inverse();
+
+        view_inverse_float32array = view_matrix_inverse.float32array();
+
+    } //update_view_matrix
+
+    function update_projection_matrix() {
+            
+            //:todo:#82: This doesn't need to be rebuilt every frame
 
         switch(projection) {
 
             case ProjectionType.perspective:
                 
-                view_matrix = view_matrix.compose( pos, rotation, scale );
+                projection_matrix.makePerspective(perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
 
             case ProjectionType.ortho:
 
-                view_matrix = transform.world.matrix;
+                projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, ortho_options.near, ortho_options.far);
 
-            case ProjectionType.custom:
-                //:todo: not sure what I had in mind here ...
+            case ProjectionType.custom: {}
+
+        } //switch
+
+        projection_float32array = projection_matrix.float32array();
+
+    } //update_projection_matrix
+
+    function apply_state(state:Int, value:Bool) {
+        if(value) {
+            Luxe.renderer.state.enable(state);
+        } else {
+            Luxe.renderer.state.disable(state);
         }
-
-    } //update_view_matrix
+    } //apply_state
 
     public function apply_ortho() {
 
-        Luxe.renderer.state.disable(GL.CULL_FACE);
-            //2D doesn't usually want the depth to interfere
-        // GL.clear(GL.DEPTH_BUFFER_BIT);
-        Luxe.renderer.state.disable(GL.DEPTH_TEST);
-        
-            //:todo:This doesn't need to be rebuilt every frame
-        projection_matrix = projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, ortho_options.near, ortho_options.far);
-            //Rebuild the modelview, :todo:dirtify this
+            //rebuild the projection matrix if needed
+        update_projection_matrix();        
+            //rebuild the view matrix if needed
         update_view_matrix();
 
+            //apply states
+        apply_state(GL.CULL_FACE, options.cull_backfaces);
+        apply_state(GL.DEPTH_TEST, options.depth_test);
+        
     } //apply_ortho
 
     public function apply_perspective() {
-
-            //Make the perspective matrix based on perspective_options
-            //:todo: This doesn't need to be rebuilt every frame
-        projection_matrix = projection_matrix.makePerspective(perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
 
             //If we have a target, override the rotation BEFORE we update the matrix 
         if(target != null) {
             update_look_at();
         } //target not null
-
-            //Rebuild the modelview, todo:dirtify this
+            
+            //rebuild the projection matrix if needed
+        update_projection_matrix();
+            //rebuild the view matrix if needed
         update_view_matrix();
 
-            // Cull triangles which normal is not towards the camera
-        Luxe.renderer.state.enable(GL.CULL_FACE);
-        Luxe.renderer.state.enable(GL.DEPTH_TEST);
+            //apply states
+        apply_state(GL.CULL_FACE, options.cull_backfaces);
+        apply_state(GL.DEPTH_TEST, options.depth_test);
 
     } //apply_perspective
 
@@ -237,24 +303,24 @@ class Camera {
     } //set_perspective
 
         //from 3D to 2D
-    public function projectVector( _vector:Vector ) {
+    public function project( _vector:Vector ) {
 
         update_view_matrix();
 
-        var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
+        var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix_inverse );
         return _vector.clone().applyProjection( _transform );
 
-    } //projectVector
+    } //project
 
         //from 2D to 3D 
-    public function unprojectVector( _vector:Vector ) {
+    public function unproject( _vector:Vector ) {
 
         update_view_matrix();
         
-        var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix.inverse() );
-        return _vector.clone().applyProjection( _inverted.inverse() );
+        var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix_inverse );
+        return _vector.clone().applyProjection( _inverted.getInverse(_inverted) );
 
-    } //unprojectVector
+    } //unproject
 
     public function screen_point_to_ray( _vector:Vector ) : Ray {
         
@@ -300,7 +366,7 @@ class Camera {
 
         update_view_matrix();
 
-        return _vector.clone().applyMatrix4( view_matrix.inverse() );
+        return _vector.clone().applyMatrix4( view_matrix_inverse );
 
     } //ortho_world_to_screen
 
@@ -308,7 +374,7 @@ class Camera {
 
         if(_viewport == null) { _viewport = viewport; }
 
-        var _projected = projectVector( _vector );
+        var _projected = project( _vector );
         
         var width_half = _viewport.w/2;
         var height_half = _viewport.h/2;
@@ -322,20 +388,35 @@ class Camera {
 
 
         //0.5 = smaller , 2 = bigger
-    function set_zoom( _p:Float ) : Float {
-            
+    function set_zoom( _z:Float ) : Float {
+
             //a temp value to manipulate
-        var _new_zoom = _p;
+        var _new_zoom = _z;
 
             //new zoom value shouldn't be allowed beyond a minimum
             //but maybe this should be optional if you want negative zoom?
         if(_new_zoom < minimum_zoom) {
             _new_zoom = minimum_zoom;
-        }
+        } 
 
-            //scale the visual view based on the value
-        transform.scale.x = 1/_new_zoom;
-        transform.scale.y = 1/_new_zoom;
+        switch(projection) {
+
+            case ProjectionType.ortho:
+
+                    //scale the visual view based on the value
+                transform.scale.x = 1/_new_zoom;
+                transform.scale.y = 1/_new_zoom;
+                    
+            case ProjectionType.perspective: {
+
+                // :todo: what happens when zooming perspective
+
+            } 
+
+            case ProjectionType.custom: {}
+        
+        } //switch projection
+
 
             //return the real value
         return zoom = _new_zoom;
@@ -344,9 +425,19 @@ class Camera {
 
     function set_center( _p:Vector ) : Vector {
 
-            //setting the center is the same as setting the position relative to the viewport
-        pos = new Vector(_p.x - (viewport.w/2), _p.y - (viewport.h/2));
+        switch(projection) {
+
+            case ProjectionType.ortho:
+                
+                    //setting the center is the same as setting the position relative to the viewport
+                pos = new Vector(_p.x - (viewport.w/2), _p.y - (viewport.h/2));
+                    
+            case ProjectionType.perspective: {}
+
+            case ProjectionType.custom: {}
         
+        } //switch projection
+
         return center = _p;
 
     } //set_center
@@ -374,10 +465,20 @@ class Camera {
     function set_viewport(_r:Rectangle) : Rectangle {
 
         viewport = _r;
+        
+        switch(projection) {
 
-        transform.origin = new Vector( _r.w/2, _r.h/2 );
+            case ProjectionType.ortho:                
 
-        set_pos(pos == null ? new Vector() : pos);
+                transform.origin = new Vector( _r.w/2, _r.h/2 );
+
+                set_pos(pos == null ? new Vector() : pos);
+
+            case ProjectionType.perspective: {}
+
+            case ProjectionType.custom: {}
+        
+        } //switch projection
 
         return viewport;
     
@@ -393,10 +494,22 @@ class Camera {
 
     function set_pos( _p:Vector ) : Vector {
 
-        transform.pos.x = _p.x + (viewport.w/2);
-        transform.pos.y = _p.y + (viewport.h/2);
+        switch(projection) {
 
-        return pos = _p;
+            case ProjectionType.ortho:
+
+                transform.pos.x = _p.x + (viewport.w/2);
+                transform.pos.y = _p.y + (viewport.h/2);
+
+            case ProjectionType.perspective: 
+
+                transform.pos = pos = _p;
+
+            case ProjectionType.custom: {}
+        
+        } //switch projection
+
+        return pos;
 
     } //set_pos
 

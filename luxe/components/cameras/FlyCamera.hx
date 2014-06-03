@@ -117,7 +117,7 @@ class FlyCamera extends luxe.Camera {
             up.normalize();
 
                 //Apply it to the camera rotation
-            view.rotation.setFromRotationMatrix(final_rotation);
+            view.transform.rotation = view.transform.rotation.setFromRotationMatrix(final_rotation);
                 //Make sure this stays set
             mouse_delta.set(0,0);
                 //Lock the cursor center screen so we can go in circles
