@@ -27,15 +27,15 @@ class Visual extends Entity {
     @:isVar public var shader       (default,set) : Shader;
     @:isVar public var color        (default,set) : Color;
     @:isVar public var visible      (default,set) : Bool = true;
-    @:isVar public var rotation_z   (default,set) : Float = 0.0;
-    @:isVar public var radians      (default,set) : Float = 0.0;
     @:isVar public var depth        (default,set) : Float = 0.0;
     @:isVar public var group        (default,set) : Int = 0;
-    @:isVar public var origin       (default,set) : Vector;
     @:isVar public var clip         (default,set) : Bool = false;
     @:isVar public var clip_rect    (default,set) : Rectangle;
-
-    var _rotation_vector : Vector;
+    
+    @:isVar public var radians      (get,set) : Float = 0.0;
+    public var rotation_z           (get,set) : Float;
+    
+    var _rotation_euler : Vector;
     var _rotation_quat : Quaternion;
 
     var _has_custom_origin : Bool = false;
@@ -51,14 +51,13 @@ class Visual extends Entity {
 //cached values
             //these need to be before super as it calls into the set_pos etc 
             //and that makes it crash if these are not there yet
-        _rotation_vector = new Vector();
+        _rotation_euler = new Vector();
         _rotation_quat = new Quaternion();
 
             //call the entity constructor        
         super( _options );
 
             //create the position value so we can exploit it a bit
-        origin = new Vector();
         color = new Color();
         size = new Vector();
 
@@ -218,7 +217,7 @@ class Visual extends Entity {
 
 //Visibility properties
 
-    private function set_visible(_v:Bool) {
+    function set_visible(_v:Bool) {
 
         visible = _v;
 
@@ -231,7 +230,7 @@ class Visual extends Entity {
 
     } //set_visible
 
-    private function set_depth(_v:Float) {
+    function set_depth(_v:Float) {
         
         if(geometry != null) {
             geometry.depth = _v;
@@ -241,7 +240,7 @@ class Visual extends Entity {
 
     } //set_depth
 
-    private function set_group(_v:Int) {
+    function set_group(_v:Int) {
         
         if(geometry != null) {
             geometry.group = _v;
@@ -253,7 +252,7 @@ class Visual extends Entity {
 
 //Color properties
 
-    private function set_color(_c:Color) {
+    function set_color(_c:Color) {
 
         if(color != null && geometry != null) {
             geometry.color = _c;
@@ -283,13 +282,13 @@ class Visual extends Entity {
 
 //Origin
 
-    private function set_origin(_o:Vector) : Vector {
+    override function set_origin(_o:Vector) : Vector {
         
         if(geometry != null) {
-            geometry.origin = _o.clone();
+            geometry.transform.origin = _o.clone();
         }
 
-        return origin = _o;
+        return super.set_origin(_o);
         
     } //set_origin
 
@@ -297,7 +296,7 @@ class Visual extends Entity {
     
     var ignore_texture_on_geometry_change : Bool = false;
 
-    private function set_geometry(_g:Geometry) : Geometry {
+    function set_geometry(_g:Geometry) : Geometry {
         
         if(geometry != null) {
                 //kill the existing geometry first
@@ -310,10 +309,11 @@ class Visual extends Entity {
             //rebind it's colors and whatever else
         if(geometry != null && _creating_geometry == false) {            
             
-            geometry.pos = pos.clone();
-            geometry.origin = origin;
+            geometry.transform.pos = pos;
+            geometry.transform.scale = scale;
+            geometry.transform.origin = origin;
+            geometry.transform.rotation = rotation;
             geometry.color = color;            
-            geometry.scale = scale;
             geometry.group = group;
             geometry.depth = depth;            
             geometry.visible = visible;
@@ -330,99 +330,98 @@ class Visual extends Entity {
     } //set_origin
 
 
-//Position properties
-    
-    private override function set_pos(_p:Vector) : Vector {
+//Transforms
 
-        if(geometry != null) {            
-            geometry.pos = _p.clone();
+    override function set_pos_from_transform( _pos:Vector ) {
+        
+        super.set_pos_from_transform(_pos);
+
+        if(geometry != null) {
+            geometry.transform.pos = transform.pos;
         } //geometry ! null
 
-            //store the position
-        pos = _p;
-            //set pos in parent attaches listeners to .x, .y, .z
-        super.set_pos( pos );
-            //
-        return pos;
+    } //set_pos_from_transform
 
-    } //set_pos
+    override function set_rotation_from_transform( _rotation:Quaternion ) {
+
+        super.set_rotation_from_transform(_rotation);
+
+            //update caches
+        _rotation_euler.setEulerFromQuaternion(_rotation);
+        _rotation_quat.copy(_rotation);
+
+        if(geometry != null) {
+            geometry.transform.rotation = _rotation;
+        } //geometry ! null
+
+    } //set_rotation_from_transform
+    
+    override function set_scale_from_transform( _scale:Vector ) {
+
+        super.set_scale_from_transform(_scale);
+
+        if(geometry != null) {
+            geometry.transform.scale = transform.scale;
+        } //geometry ! null
+
+    } //set_scale_from_transform
+
+    override function set_parent_from_transform( _parent:Transform ) {
+
+        super.set_parent_from_transform(_parent);
+
+        if(geometry != null) {
+            geometry.transform.parent = _parent;
+        } //geometry != null
+
+    } //set_parent_from_transform
 
 //Size
     
-    private function set_size( _v:Vector ) : Vector {  
+    function set_size( _v:Vector ) : Vector {  
 
         size = _v;
 
-            _attach_listener( size, _size_change );
+        Vector.listen( size, _size_change );
 
-            //done
         return size;
 
     } //set_size
 
 //Rotation 
     
-    private function get_rotation_z() : Float {
+    function get_rotation_z() : Float {
 
         return Maths.radToDeg(radians);
 
     } //get_rotation
 
-    private function set_rotation_z( _r:Float ) : Float {
+    function set_rotation_z( _r:Float ) : Float {
 
         radians = Maths.degToRad(_r);
 
-        return rotation_z = _r;
+        return _r;
 
-    } // set_rotation_z
+    } //set_rotation_z
 
-    private function set_radians(_r:Float) : Float {
+    function set_radians(_r:Float) : Float {
 
-            //Visual only rotates this way
-        _rotation_vector.z = _r;
-        _rotation_quat.setFromEuler( _rotation_vector );
+        _rotation_euler.z = _r;
+        _rotation_quat.setFromEuler( _rotation_euler );
 
-        if(geometry != null) {
-                //send to the geometry
-            geometry.rotation = _rotation_quat;
-
-        } //geometry ! null
+        rotation = _rotation_quat.clone();
 
         return radians = _r;
 
-    } // set_radians
+    } //set_radians
 
-    private override function set_rotation( _r:Vector ) {
-
-        rotation = _r;
-
-        set_rotation_z(_r.z);
-
-        super.set_rotation(_r);
-
-        return _r;
-
-    } //set_rotation
-
-//Scale
-
-    private override function set_scale( _v:Vector ) : Vector {  
-
-        super.set_scale(_v);
-
-        if(geometry != null) {
-
-            geometry.scale = scale;
-
-        } //geometry != null
-
-        return scale;
-
-    } //set_scale
+    function get_radians() : Float {
+        return radians;
+    } //get_radians
 
 //Locked
 
-    private function set_locked(_l:Bool) : Bool {
+    function set_locked(_l:Bool) : Bool {
 
         if(geometry != null) {
             geometry.locked = _l;
@@ -435,18 +434,18 @@ class Visual extends Entity {
 
 //Geometry properties
 //Clip
-    private function set_clip(val : Bool) : Bool {
+    function set_clip(val : Bool) : Bool {
         return geometry.clip = val;
     }
 //Clip rect
-    private function set_clip_rect(val : Rectangle) : Rectangle {
+    function set_clip_rect(val : Rectangle) : Rectangle {
         return geometry.clip_rect = val;
     }
 
 //Size
 
         //An internal callback for when x y or z on a size changes
-    private function _size_change( _v:Float ) { this.set_size( size ); }
+    function _size_change( _v:Float ) { this.set_size( size ); }
 
     public override function get_serialize_data() : Dynamic {
 

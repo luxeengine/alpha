@@ -79,9 +79,9 @@ class ProfilerDebugView extends luxe.debug.DebugView {
 
         if(!_setup) {
             ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher');
-            ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher_view');
+            // ProfilerDebugView.add_offset('core.render' , 'batch.debug_batcher_view');
             // ProfilerDebugView.hide_item('batch.debug_batcher');
-            ProfilerDebugView.hide_item('batch.debug_batcher_view');
+            // ProfilerDebugView.hide_item('batch.debug_batcher_view');
             _setup = true;
         }
     }
@@ -306,19 +306,19 @@ private class ProfilerBar {
         }
 
         var nx = (width-2)*_p;
-        bar_geometry.pos = new Vector();
+        // bar_geometry.transform.pos = new Vector();
         bar_geometry.resize(new Vector(nx, height-2));
-        bar_geometry.pos = new Vector(bg_geometry.pos.x+1, bg_geometry.pos.y+1);
+        // bar_geometry.transform.pos = new Vector(bg_geometry.transform.pos.x+1, bg_geometry.transform.pos.y+1);
         
         return value = _v;
     }
 
     function set_pos(_p:Vector) {
-        bg_geometry.pos = _p;
-        bar_geometry.pos = new Vector(_p.x+1, _p.y+1);
+        bg_geometry.transform.pos = _p;
+        bar_geometry.transform.pos = new Vector(_p.x+1, _p.y+1);
         text_item.pos = new Vector(_p.x+(width*2)+10, _p.y-6);
-        graphbg_geometry.pos = new Vector(_p.x+width+2, _p.y-4);
-        graph_geometry.pos = graphbg_geometry.pos;
+        graphbg_geometry.transform.pos = new Vector(_p.x+width+2, _p.y-4);
+        graph_geometry.transform.pos = graphbg_geometry.transform.pos;
         return pos = _p;
     }
 

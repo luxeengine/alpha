@@ -7,20 +7,19 @@ import luxe.Quaternion;
 import phoenix.geometry.Vertex;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
+import phoenix.Transform;
 import luxe.utils.Maths;
 
 import luxe.options.MeshOptions;
 
 class Mesh {
 
-
     public var geometry : Geometry;
+    public var transform : Transform;
 
     public var pos      (default,set) : Vector;
     public var scale    (default,set) : Vector;
-    public var rotation (default,set) : Vector;    
-
-    var _rotation_quat : Quaternion;
+    public var rotation (default,set) : Quaternion;
 
     public function new( ?_options:MeshOptions ) {
 
@@ -28,9 +27,12 @@ class Mesh {
             throw "Mesh requires non-null options at the moment";
         }
 
-        var _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
+        transform = new Transform();
+        transform.pos_changed = set_pos_from_transform;
+        transform.rotation_changed = set_rotation_from_transform;
+        transform.scale_changed = set_scale_from_transform;
 
-        _rotation_quat = new Quaternion();   
+        var _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
 
         if(_options.file != null) {
 
@@ -44,7 +46,7 @@ class Mesh {
             } //switch ext
             
         } //options.file
-
+        
         if(geometry != null) {
 
             geometry.id = _options.file;
@@ -57,69 +59,61 @@ class Mesh {
 
         pos = (_options.pos == null) ? new Vector() : _options.pos;
         scale = (_options.scale == null) ? new Vector(1,1,1) : _options.scale;
-        rotation = (_options.rotation == null) ? new Vector() : _options.rotation;
+        rotation = (_options.rotation == null) ? new Quaternion() : _options.rotation;
 
     } //new
 
 //Position
+    
+    function set_pos( _pos:Vector ) {
+        
+        return transform.pos = _pos;
+        
+    } //set_pos
 
-    public function set_pos( _position:Vector ) : Vector {
-            
+    function set_pos_from_transform( _pos:Vector ) {
+        
+        // super.set_pos_from_transform(_pos);
+
         if(geometry != null) {            
-            geometry.pos = _position;
+            geometry.transform.pos = _pos;
         }
         
-        pos = _position;
-
-        _attach_listener(pos, _pos_change);
-
-        return pos;
-
     } //set_pos
 
 //Rotation
     
-    public function set_rotation( _rotation:Vector ) : Vector {
+    function set_rotation( _rotation:Quaternion ) {
+        
+        return transform.rotation = _rotation;
+        
+    } //set_rotation
 
-        if(rotation == null) {
-            rotation = _rotation;
-            _attach_listener(rotation, _rotation_change);
-            return rotation;
-        } //rotation is null
+    function set_rotation_from_transform( _rotation:Quaternion ) {
 
         if(geometry != null) {
-
-                //cache locally, avoids allocation
-            _rotation_quat.setFromEuler(_rotation);
-                //pass to the geometry
-            geometry.rotation = _rotation_quat;
-
+            geometry.transform.rotation = _rotation;
         } //geometry
-
-        rotation = _rotation;
-
-            //listen for property changes
-        _attach_listener(rotation, _rotation_change);
-
-        return rotation;
 
     } //set_rotation
 
 //Scale
 
-    public function set_scale( _scale:Vector ) : Vector {
-            
-        if(geometry != null) {            
-            geometry.scale = _scale;
-        }
+    function set_scale( _scale:Vector ) {
         
-        scale = _scale;
-
-        _attach_listener(scale, _scale_change);
-
-        return scale;
+        return transform.scale = _scale;
 
     } //set_scale
+
+    function set_scale_from_transform( _scale:Vector ) {
+            
+        if(geometry != null) {            
+            geometry.transform.scale = _scale;
+        }
+        
+    } //set_scale
+
+
 
 //Create a mesh from an Obj file 
     

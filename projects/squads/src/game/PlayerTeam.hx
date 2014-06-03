@@ -23,9 +23,9 @@ class PlayerTeam extends Component {
         flag = new Sprite({
             name : 'flag',
             texture : Luxe.loadTexture('assets/game/flag.png'),
-            // origin : new Vector(0,0),
             color : teamcolor,
             size : new Vector(96,96),
+            pos : new Vector(32,32),
             depth : 5
         });
 

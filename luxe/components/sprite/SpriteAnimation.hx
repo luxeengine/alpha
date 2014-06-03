@@ -739,11 +739,11 @@ class SpriteAnimation extends Component {
                 var _ratio_x = current_frame.frame_size.x / sprite.size.x;
                 var _ratio_y = current_frame.frame_size.y / sprite.size.y;
                     //resize the sprite non destructively, to fit the new frame size
-                sprite.geometry.scale.x = (current_frame.frame_source.w / (current_frame.frame_size.x)) * sprite.scale.x;
-                sprite.geometry.scale.y = (current_frame.frame_source.h / (current_frame.frame_size.y)) * sprite.scale.y;
+                sprite.geometry.transform.scale.x = (current_frame.frame_source.w / (current_frame.frame_size.x)) * sprite.scale.x;
+                sprite.geometry.transform.scale.y = (current_frame.frame_source.h / (current_frame.frame_size.y)) * sprite.scale.y;
                     //realign the sprite to match the new frame size, but also adjust for the new scale! otherwise it won't match
-                sprite.geometry.origin.x = ((sprite.origin.x - (current_frame.frame_pos.x / _ratio_x)) * sprite.scale.x) / sprite.geometry.scale.x;
-                sprite.geometry.origin.y = ((sprite.origin.y - (current_frame.frame_pos.y / _ratio_y)) * sprite.scale.y) / sprite.geometry.scale.y;
+                sprite.geometry.transform.origin.x = ((sprite.origin.x - (current_frame.frame_pos.x / _ratio_x)) * sprite.scale.x) / sprite.geometry.transform.scale.x;
+                sprite.geometry.transform.origin.y = ((sprite.origin.y - (current_frame.frame_pos.y / _ratio_y)) * sprite.scale.y) / sprite.geometry.transform.scale.y;
                     //and finally assign it to the sprite
                 sprite.uv = uv_cache;
         

@@ -114,7 +114,7 @@ class Menu extends State {
 
     public function enter() {
         play.visible = true;
-        back.visible = true;   
+        back.visible = true;
     }
 
     public function leave() {

@@ -5,6 +5,7 @@ import phoenix.geometry.Vertex;
 import phoenix.Matrix4;
 import phoenix.Quaternion;
 import phoenix.Rectangle;
+import phoenix.Transform;
 import phoenix.Vector;
 import phoenix.Shader;
 import phoenix.Texture;
@@ -32,6 +33,9 @@ typedef GeometryKey = {
 
 class Geometry {
 
+        //the positional transform information
+    public var transform : Transform;
+     
         //The list of vertices
     public var vertices : Array<Vertex>;
 
@@ -81,19 +85,7 @@ class Geometry {
     @:isVar public var dirty        (get, set) : Bool = false;
     @:isVar public var immediate    (default, default) : Bool;
     @:isVar public var color        (default, set) : Color;
-        //Transform
-    @:isVar public var pos      (get, set) : Vector;
-    @:isVar public var rotation (get, set) : Quaternion;
-    @:isVar public var scale    (get, set) : Vector;
 
-    var _pos_dirty : Bool = false;
-    var _rotation_dirty : Bool = false;
-    var _scale_dirty : Bool = false;
-
-        //The origin for the transform
-    @:isVar public var origin(default, set) : Vector;
-        //The transform matrix
-    public var matrix : Matrix4;
         //Private reuse value
     var _final_vert_position : Vector;
 
@@ -103,19 +95,14 @@ class Geometry {
 
         uuid = Luxe.utils.uniqueid();
         id = uuid;
+
         vertices = new Array<Vertex>();
         state = new GeometryState();
         batchers = new Array<Batcher>();
-            
-            //default transform properties
-        pos = new Vector();
-        rotation = new Quaternion();
-        scale = new Vector(1,1,1);
-            //offset for transform
-        origin = new Vector();
-            //default matrix for transform
-        matrix = new Matrix4();
-        matrix = matrix.identity();
+        
+            //init transforms
+        transform = new Transform();            
+
             //init the empty vertex reuse
         _final_vert_position = new Vector();
 
@@ -133,17 +120,17 @@ class Geometry {
             state.primitive_type    = options.type == null      ? state.primitive_type  : options.type;
             state.shader            = options.shader == null    ? state.shader          : options.shader;
 
+            id                      = (options.id == null)          ? uuid                : options.id;
 
-            id          = (options.id == null)          ? uuid      : options.id;
-            pos         = (options.pos == null)         ? pos       : options.pos;
-            rotation    = (options.rotation == null)    ? rotation  : options.rotation;
-            scale       = (options.scale == null)       ? scale     : options.scale;
+            transform.pos           = (options.pos == null)         ? transform.pos       : options.pos;
+            transform.rotation      = (options.rotation == null)    ? transform.rotation  : options.rotation;
+            transform.scale         = (options.scale == null)       ? transform.scale     : options.scale;
+            transform.origin        = (options.origin == null)      ? transform.origin    : options.origin;
 
-            origin      = (options.origin == null)      ? origin    : options.origin;
-            immediate   = (options.immediate == null)   ? false     : options.immediate;
-            visible     = (options.visible == null)     ? true      : options.visible;
+            immediate               = (options.immediate == null)   ? false     : options.immediate;
+            visible                 = (options.visible == null)     ? true      : options.visible;
 
-            color       = (options.color == null)       ? new Color() : options.color;
+            color                   = (options.color == null)       ? new Color() : options.color;
             
         } //options != null
 
@@ -157,6 +144,9 @@ class Geometry {
             depth : state.depth,
             clip : state.clip
         };
+
+        transform.id = uuid;
+        transform.name = id;
 
     } //new
 
@@ -222,25 +212,16 @@ class Geometry {
 
     } //remove 
 
-    public function batch_into_float32array( 
-        vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
-        vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
+    public function batch( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
+                           vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
         ) {
-        
-        var origin_x : Float = origin.x;
-        var origin_y : Float = origin.y;
-        var origin_z : Float = origin.z;
-        var origin_w : Float = origin.w;
-
-            //compose the final position matrix
-        matrix.compose( pos, rotation, scale ); 
-
-        for(v in vertices) {    
+            
+        for(v in vertices) {
 
                 //the base position of the vert
-            _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
+            _final_vert_position.set_xyzw( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
                 //apply the transform to the vert
-            _final_vert_position.applyMatrix4( matrix );
+            _final_vert_position.applyMatrix4( transform.world.matrix );
 
                     //submit vertex positions
                 vertlist[(vert_index+0)] = _final_vert_position.x;
@@ -278,34 +259,15 @@ class Geometry {
 
     } //batch
 
-    public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, 
+    public function batch_into_arrays( vertlist : Array<Float>, tcoordlist : Array<Float>, 
                            colorlist : Array<Float>, normallist : Array<Float> ) {
-
-        var origin_x = origin.x;
-        var origin_y = origin.y;
-        var origin_z = origin.z;
 
         for(v in vertices) {
 
-            // consider using cached matrices ?
-            //     //translate to the origin first
-            // matrix.makeTranslation( -origin_x, -origin_y, -origin_z );
-            //     //scale first
-            // matrix.scale( scale );
-            //     //then rotate
-            // matrix.multiply( new Matrix4().makeRotationFromQuaternion(rotation) );
-            //     //then translate back 
-            // matrix.multiply( new Matrix4().makeTranslation(origin_x, origin_y, origin_z) );
-            //     //then translate the position
-            // _final_vert_position.set(pos.x, pos.y, pos.z, pos.w);
-            // _final_vert_position.applyMatrix4( matrix );
-
                 // the base position of the vert
-            _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
-                // compose the final position matrix
-            matrix.compose( pos, rotation, scale );
+            _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z );
                 // apply the transform to the vert
-            _final_vert_position.applyMatrix4( matrix );
+            _final_vert_position.applyMatrix4( transform.world.matrix );
 
                 //submit vert positions
             vertlist.push( _final_vert_position.x );
@@ -329,34 +291,15 @@ class Geometry {
 
         } //each vertex
 
-    } //batch
+    } //batch_into_arrays
 
 //Transform
 
     public function translate( _offset:Vector ) {
 
-        pos.set( pos.x+_offset.x, pos.y+_offset.y, pos.x+_offset.z );
+        transform.pos.set( transform.pos.x+_offset.x, transform.pos.y+_offset.y, transform.pos.x+_offset.z );
 
     } // translate
-
-    public function set_origin( _origin:Vector ) : Vector {
-
-        return origin = _origin;
-
-    } //set_origin
-
-    public function set_pos( _position:Vector ) : Vector {
-
-        _pos_dirty = true;
-        return pos = _position;
-
-    } //set_pos
-
-    public function get_pos() : Vector {
-        
-        return pos;
-
-    } //get_pos
 
     public function set_locked( _locked:Bool ) : Bool {
 
@@ -381,42 +324,6 @@ class Geometry {
         return dirty;
 
     } //get_dirty
-
-    public function set_rotation( _rotation:Quaternion ) {
-
-        _rotation_dirty = true;
-
-        if(rotation == null) { 
-            return rotation = _rotation;
-        } //rotation == null            
-        
-        return rotation = _rotation;
-
-    } //set_rotation
-
-    public function get_rotation() : Quaternion {
-        
-        return rotation;
-        
-    } //get_rotation
-
-    public function set_scale( _scale:Vector ) {
-
-        _scale_dirty = true;
-
-        if(scale == null) { 
-            return scale = _scale;
-        } //rotation == null            
-        
-        return scale = _scale;
-
-    } //set_rotation
-
-    public function get_scale() : Vector {
-
-        return scale;
-
-    } //get_scale
 
 //Invariants that cause a shift in the geometry tree
 

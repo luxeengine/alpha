@@ -1,5 +1,6 @@
 
 import luxe.Input;
+import luxe.Quaternion;
 import luxe.Sprite;
 import luxe.Vector;
 import luxe.Color;
@@ -87,9 +88,9 @@ class Main extends luxe.Game {
         camera_3.pos.y = 640;
         camera_4.pos.y = 960;
 
-        camera_2.rotation.z = 12;
-        camera_3.rotation.z = 45;
-        camera_4.rotation.z = 30;
+        camera_2.rotation = z_rot(12);
+        camera_3.rotation = z_rot(45);
+        camera_4.rotation = z_rot(30);
 
         camera_2.zoom = 0.9;
         camera_3.zoom = 0.2;
@@ -157,6 +158,9 @@ class Main extends luxe.Game {
 
     } //create_hud
 
+    function z_rot(_r:Float) {
+        return new Quaternion().setFromEuler(new Vector(0,0,_r).radians());
+    }
 
     var drag_time : Float = 0;
     var drag_allowance : Float = 0.2;
@@ -183,7 +187,7 @@ class Main extends luxe.Game {
             dragging = true;
             drag_start = e.pos;
             drag_start_rotation = world_mouse.rotationTo(current_camera.center);
-            camera_start_rotation = current_camera.rotation.z;
+            camera_start_rotation = current_camera.rotation.toeuler().z;
         }
 
         if(dragging) {
@@ -197,7 +201,7 @@ class Main extends luxe.Game {
                 //now add to the original
             var new_r = camera_start_rotation - r_diff;
                 //and set the rotation on camera
-            current_camera.rotation.z = new_r;
+            current_camera.rotation = z_rot(new_r);
 
         } else {
             
@@ -298,16 +302,16 @@ class Main extends luxe.Game {
             current_camera.center = new Vector(240,160);
         }
         if(e.key == KeyValue.key_6) {
-            current_camera.rotation.z = 0;
+            current_camera.rotation = z_rot(0);
         }
         if(e.key == KeyValue.key_7) {
-            current_camera.rotation.z = 45;
+            current_camera.rotation = z_rot(45);
         }
         if(e.key == KeyValue.key_8) {
-            current_camera.rotation.z = 90;
+            current_camera.rotation = z_rot(90);
         }
         if(e.key == KeyValue.key_9) {
-            current_camera.rotation.z = 180;
+            current_camera.rotation = z_rot(180);
         }
 
         if(e.key == KeyValue.escape) {

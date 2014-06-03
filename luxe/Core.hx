@@ -487,7 +487,8 @@ import phoenix.Shader;
 
     public function onmousedown(e : MouseEvent) {
 
-        _mouse_pos.set( e.x, e.y );
+            //this has to be a new value because if it's cached it sends in references that get kept by user code
+        _mouse_pos = new luxe.Vector( e.x, e.y );
         e.pos = _mouse_pos;
         Luxe.mouse = _mouse_pos;
 
@@ -519,7 +520,7 @@ import phoenix.Shader;
 
     public function onmouseup(e : MouseEvent) {
 
-        _mouse_pos.set( e.x, e.y );
+        _mouse_pos = new luxe.Vector( e.x, e.y );
         e.pos = _mouse_pos;
         Luxe.mouse = _mouse_pos;
 
@@ -537,7 +538,7 @@ import phoenix.Shader;
 
     public function onmousemove(e : MouseEvent) {
 
-        _mouse_pos.set( e.x, e.y );
+        _mouse_pos = new luxe.Vector( e.x, e.y );
         e.pos = _mouse_pos;
         Luxe.mouse = _mouse_pos;
 
@@ -557,7 +558,7 @@ import phoenix.Shader;
 
     public function ontouchbegin(e : TouchEvent) {
 
-         _touch_pos.set( e.x, e.y );
+         _touch_pos = new luxe.Vector( e.x, e.y );
         e.pos = _touch_pos;
 
         if(!shutting_down) {
@@ -590,7 +591,7 @@ import phoenix.Shader;
 
     public function ontouchend(e : TouchEvent) {
 
-         _touch_pos.set( e.x, e.y );
+         _touch_pos = new luxe.Vector( e.x, e.y );
         e.pos = _touch_pos;
 
         if(!shutting_down) {
@@ -608,7 +609,7 @@ import phoenix.Shader;
 
     public function ontouchmove(e : TouchEvent) {
         
-        _touch_pos.set( e.x, e.y );
+        _touch_pos = new luxe.Vector( e.x, e.y );
         e.pos = _touch_pos;
 
         if(!shutting_down) {

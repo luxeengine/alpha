@@ -15,8 +15,6 @@ typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
 
-
-
     @:isVar public var viewport (get,set) : Rectangle;
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (get,set) : Float = 1.0;
@@ -47,7 +45,11 @@ class Camera extends Entity {
             if(options.name != null) {
                 _name = options.name;
             }
-        } 
+        } else {
+            options = {
+                no_scene : false
+            }
+        }
 
             //Init the entity part
         super({
@@ -76,48 +78,11 @@ class Camera extends Entity {
     } //get_center
 
     function set_center( _c:Vector ) : Vector {
+
+        pos = new Vector(_c.x - (viewport.w/2), _c.y - (viewport.h/2));
         return view.center = _c;
+
     } //set_center
-
-    override function get_scale() : Vector {
-        return view == null ? scale : view.scale;
-    } //get_scale
-
-    override function set_scale( _c:Vector ) : Vector {
-        return view == null ? scale = _c : view.scale = _c;
-    } //set_scale
-
-    override function get_rotation() : Vector {
-
-        // if(view != null) {
-        //     rotation.ignore_listeners = true;
-        //     rotation.setEulerFromQuaternion( view.rotation );
-        //     rotation.ignore_listeners = false;
-        // }
-
-        return rotation;
-        
-    } //get_rotation
-
-    override function set_rotation( _r:Vector ) : Vector {
-
-        _rotation_radian.set( Maths.degToRad(_r.x), Maths.degToRad(_r.y), Maths.degToRad(_r.z) );
-        _rotation_cache.setFromEuler( _rotation_radian );
-
-            //set only if the view exists
-        if(view != null) {
-            view.rotation = _rotation_cache;
-        }
-            
-            //store 
-        rotation = _r;
-
-            //listen for sub changes on properties
-        _attach_listener( rotation, _rotation_change );
-
-        return rotation;
-
-    } //set_rotation
 
     function get_minimum_zoom() : Float {
         return view.minimum_zoom;
@@ -138,14 +103,14 @@ class Camera extends Entity {
         ///Focus the camera on a specific point, for Ortho atm
     public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {   
 
-        var center_point_x = (_p.x/view.scale.x) - (viewport.w/2);
-        var center_point_y = (_p.y/view.scale.y) - (viewport.h/2);
-
-        Actuate.tween(pos, _t, { x:center_point_x, y:center_point_y }, true )
+        Actuate.tween(center, _t, { x:_p.x, y:_p.y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut )
             .onUpdate( function() {
+                    //:todo: this needs to change when the camera mirrors the new transforms
+                view.center = center;
+                var new_pos = view.pos.clone();
+                    pos = new_pos;
                 _final_pos.set_xyz( pos.x, pos.y, pos.z );
-                view.pos = _final_pos;
             });
 
     } //focus
@@ -162,35 +127,43 @@ class Camera extends Entity {
 
     } //world_point_to_screen
 
+    override function set_pos_from_transform(_pos:Vector) {
 
-    @:noCompletion public override function get_pos() : Vector {
-        
-        return pos;
+        super.set_pos_from_transform(_pos);
 
-    } //get_pos
-
-    @:noCompletion public override function set_pos(v:Vector) : Vector {
-        
         if(view != null) {
 
             if(bounds != null) {
-                if(v.x < bounds.x) v.x = bounds.x;
-                if(v.y < bounds.y) v.y = bounds.y;
-                if(v.x > bounds.w-view.viewport.x) v.x = bounds.w-view.viewport.x;
-                if(v.y > bounds.h-view.viewport.y) v.y = bounds.h-view.viewport.y;
+                if(_pos.x < bounds.x) _pos.x = bounds.x;
+                if(_pos.y < bounds.y) _pos.y = bounds.y;
+                if(_pos.x > bounds.w-view.viewport.w) _pos.x = bounds.w-view.viewport.w;
+                if(_pos.y > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h;
             }
 
-            view.pos = v;
+            view.pos = _pos;
         }
 
-        pos = v;
+    } //set_pos_from_transform
 
-            //listen for sub changes on properties
-        _attach_listener( pos, _pos_change );
+    override function set_rotation_from_transform(_rotation:Quaternion) {
 
-        return pos;
+        super.set_rotation_from_transform(_rotation);
 
-    } //set_pos
+        if(view != null) {
+            view.rotation = _rotation;
+        }
+
+    } //set_scale_from_transform
+
+    override function set_scale_from_transform(_scale:Vector) {
+
+        super.set_scale_from_transform(_scale);
+
+        if(view != null) {
+            view.scale = _scale;
+        }
+
+    } //set_scale_from_transform
 
     public function shake(amount:Float) {
 

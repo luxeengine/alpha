@@ -102,7 +102,7 @@ class Shape {
     private function set_rotation( v : Float ) : Float {
         _rotation_z = v;
         
-        _rotation.setFromEuler(new Vector(0,0,_rotation_z).toRadians());
+        _rotation.setFromEuler(new Vector(0,0,_rotation_z).radians());
         refresh_transform();
 
        return _rotation_z;

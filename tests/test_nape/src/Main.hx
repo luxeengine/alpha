@@ -199,7 +199,7 @@ class LuxeNapeDebug {
         if(_shape.isCircle()) {
             var circle = _shape.castCircle;
             drawCircle( circle.body.position, circle.radius, _draw_color, _immediate );
-            geometry[geometry.length-1].rotation.setFromEuler(new Vector(0,0,_shape.body.rotation));
+            geometry[geometry.length-1].transform.rotation.setFromEuler(new Vector(0,0,_shape.body.rotation));
         } else {
             //POLYGON
             var poly = _shape.castPolygon;

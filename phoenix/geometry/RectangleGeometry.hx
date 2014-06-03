@@ -42,7 +42,7 @@ class RectangleGeometry extends Geometry {
         color = (options.color == null) ? new Color() : options.color;
 
         	//finally translate it
-        pos.set(options.x, options.y);
+        transform.pos = new Vector(options.x, options.y);
 
 	}
 	

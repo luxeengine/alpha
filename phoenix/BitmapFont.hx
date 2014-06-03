@@ -506,8 +506,8 @@ class BitmapFont extends Resource {
                 _po.x = _pos.x - (_max_line_width);  
             }
                 //translate all of the new text according to the actual position
-            _final_geom.pos = _pos.clone();
-            _final_geom.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
+            _final_geom.transform.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
+            _final_geom.transform.pos = _pos.clone();
 
         } else {
 
@@ -526,8 +526,8 @@ class BitmapFont extends Resource {
                 _po.y = _po.y + ((_bounds.h) - (_dimensions.y));
             }
                 //translate all of the new text according to the actual position
-            _final_geom.pos = _pos.clone();
-            _final_geom.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
+            _final_geom.transform.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
+            _final_geom.transform.pos = _pos.clone();
 
 
         } //_bounds_based

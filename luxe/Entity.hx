@@ -1,5 +1,7 @@
 package luxe;
 
+import luxe.Quaternion;
+import luxe.Transform;
 import phoenix.Matrix4;
 
 import luxe.Input;
@@ -9,7 +11,6 @@ import luxe.components.Components;
 
 import luxe.options.EntityOptions;
 
-//Objects -> Entity
 class Entity extends Objects {
 
 
@@ -27,29 +28,29 @@ class Entity extends Objects {
     public var serialize : Bool = true;
 
         //The fixed rate timer if any
-    @:isVar public var fixed_rate (get,set) : Float = 0;
+    @:isVar public var fixed_rate       (get,set) : Float = 0;
         //The parent entity if any, set to null for no parent
     @:isVar public var parent           (get,set) : Entity;
-        //absolute position in world space
-    @:isVar public var pos              (get,set) : Vector;
-        //local position to parent 
-    @:isVar public var pos_local        (get,set) : Vector;
-        //absolute rotation in world space
-    @:isVar public var rotation         (get,set) : Vector;
-        //local rotation to parent 
-    @:isVar public var rotation_local   (get,set) : Vector;
-        //absolute scale in world space
-    @:isVar public var scale            (get,set) : Vector;
-        //local scale to parent 
-    @:isVar public var scale_local      (get,set) : Vector;
         //if the entity is in a scene
     @:isVar public var scene            (get,set) : Scene;
 
-    var _components : Components;
-    var fixed_rate_timer : haxe.Timer;
-    var _last_scale:Vector; //todo? legacy?        
-    var options : Dynamic;
+        //The spatial transform of the entity
+    public var transform : Transform;
+        //The local position of the transform
+    public var pos              (get,set) : Vector;
+        //The local rotation of the transform 
+    public var rotation         (get,set) : Quaternion;
+        //The local scale of the transform
+    public var scale            (get,set) : Vector;
+        //The local origin of the transform
+    public var origin           (get,set) : Vector;
 
+        //the system for the entity
+    var _components : Components;   
+        //the timer for the fixed update
+    var fixed_rate_timer : haxe.Timer;
+        //the options passed in for giving to the init function
+    var options : Dynamic;
 
     public function new<T>( ?_options:EntityOptions<T> ) {
 
@@ -64,15 +65,14 @@ class Entity extends Objects {
         _components = new Components( this );
         children = new Array<Entity>();
         events = new luxe.Events();
-        
-        pos = new Vector();
-        pos_local = new Vector();
-        _last_scale = new Vector(1,1,1);
-        scale = new Vector(1,1,1);
-        scale_local = new Vector(1,1,1);        
-        rotation = new Vector();
-        rotation_local = new Vector();
+        transform = new Transform();
 
+            //listen for transform changes
+        transform.pos_changed = set_pos_from_transform;
+        transform.scale_changed = set_scale_from_transform;
+        transform.origin_changed = set_origin_from_transform;
+        transform.parent_changed = set_parent_from_transform;
+        transform.rotation_changed = set_rotation_from_transform;
 
         if(options != null) {
     
@@ -86,13 +86,10 @@ class Entity extends Objects {
     //position
             if(options.pos != null) {
                 pos = options.pos.clone();
-                pos_local = pos.clone();
             }
     //scale
             if(options.scale != null) {
                 scale = options.scale.clone();
-                _last_scale = scale.clone();
-                scale_local = scale.clone();
             }
 
     //scene
@@ -221,7 +218,7 @@ class Entity extends Objects {
             //remove it from it's parent if any
         if(parent != null) {
             _debug("\t removing " + name + "/" + id + " from parent " + parent.name + " / " + parent.id );
-            parent.remove_child(this);
+            parent._remove_child(this);
         }
 
             //kill any fixed rate timers
@@ -620,6 +617,8 @@ class Entity extends Objects {
 
     } //_update
 
+//timing
+
     @:noCompletion public function _fixed_update() {
 
             //Not allowed post destroy
@@ -642,11 +641,13 @@ class Entity extends Objects {
 
     } //_fixed_update
 
-    private function get_fixed_rate() : Float {
+    function get_fixed_rate() : Float {
+
         return fixed_rate;
+
     } //get_fixed_rate
 
-    private function set_fixed_rate( _rate:Float ) : Float {
+    function set_fixed_rate( _rate:Float ) : Float {
 
         fixed_rate = _rate;
 
@@ -654,16 +655,17 @@ class Entity extends Objects {
         _start_fixed_rate_timer( _rate );
 
         return fixed_rate;
+
     } //set_fixed_rate
 
-    private function _stop_fixed_rate_timer() {
+    function _stop_fixed_rate_timer() {
         if(fixed_rate_timer != null) {
             fixed_rate_timer.stop();
             fixed_rate_timer = null;
         }
     } //_stop_fixed_rate_timer
 
-    private function _start_fixed_rate_timer( _rate:Float ) {
+    function _start_fixed_rate_timer( _rate:Float ) {
             //only top tier entities call this, all their children are fixed under the parent rate
             //for now, that is.
         if(_rate != 0 && parent == null && !_destroyed) {
@@ -672,6 +674,8 @@ class Entity extends Objects {
         } //_rate
 
     } //_start_fixed_rate_timer
+
+//components
 
     public function add<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
         return _components.add( type, _name, _data );
@@ -693,11 +697,13 @@ class Entity extends Objects {
         return _components.has( _name );
     } //has
 
-    private function get_components() {
+    function get_components() {
         return _components.components;
     } //get_components
 
-    private function _add_child( child:Entity ) {
+//children 
+
+    function _add_child( child:Entity ) {
         
         children.push(child);
 
@@ -711,238 +717,170 @@ class Entity extends Objects {
             _debug(name + " add child " + child.name + " being parented, but not from a scene");
         }
 
-    }
+    } //_add_child
 
-    public function add_child( child:Entity ) {
-
-            //and update the parent link
-        if(child.parent != this) {
-            child.parent = this;
-        }
-
-    } //addChild
-
-    public function remove_child(child:Entity) {
+        //internal function do not use directly 
+    @:noCompletion public function _remove_child(child:Entity) {
 
         children.remove(child);
 
     } //removeChild
 
-    private function set_pos_local(_p:Vector) { 
+//listeners
 
-        if(parent == null) {
-                //when setting the local position and we have no parent,
-                //it will instead just change our absolute position
-            pos = _p.clone();
-
-                //apply
-            return pos_local = _p;
-
-        } else {
-                //if we do have a parent, it needs to affect our position
-                //based on where the parent is sitting
-            pos = Vector.Add( parent.pos, _p );
-                //apply
-            return pos_local = _p; 
-        }
-
-    } //set_pos_local
-
-    private function set_rotation_local( _r:Vector ) { 
-
-        if(parent == null) {
-                //when setting the local rotation and we have no parent,
-                //it will instead just change our absolute rotation
-            rotation = _r.clone();
-
-                //apply
-            return rotation_local = _r;
-
-        } else {
-                //if we do have a parent, it needs to affect our rotation
-                //based on where the parent is sitting
-            rotation = Vector.Add( parent.rotation, _r );
-                //apply
-            return rotation_local = _r; 
-        }
-
-    } //set_pos_local    
-
-    private function set_scale_local( _s:Vector ) { 
-
-        if(parent == null) {
-                //when setting the local scale and we have no parent,
-                //it will instead just change our absolute scale
-            scale = _s.clone();
-
-                //apply
-            return scale_local = _s;
-
-        } else {
-            
-                //if we do have a parent, it needs to affect our scale
-                //based on where the parent is sitting
-            scale = Vector.MultiplyVector( parent.scale, _s );
-                //apply
-            return scale_local = _s; 
-        }
-
-    } //set_pos_local    
-
-    private function set_pos(_p:Vector) { 
-        
-            //if we have a parent, we adjust our local position to match
-        if(parent != null) {
-            pos_local.set( _p.x - parent.pos.x, _p.y - parent.pos.y, _p.z - parent.pos.z );
-        }
-        
-            //update the value before we propogate
-        pos = _p; 
-
-            //if we have children we must propogate the change to them
-        for(child in children) {
-            child.internal_parent_pos_changed( pos );
-        }
+    function set_pos_from_transform( _pos:Vector ) {
 
             //and we have to propogate the values to the components
         for(_component in components) {
-            _component.entity_pos_change( pos );
+            _component.entity_pos_change( _pos );
         } //for each _component
 
-        _attach_listener( pos, _pos_change );
+    } //set_pos_from_transform
 
-        return pos; 
+    function set_rotation_from_transform( _rotation:Quaternion ) {
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_rotation_change( _rotation );
+        } //for each _component
+
+    } //set_rotation_from_transform
+
+    function set_scale_from_transform( _scale:Vector ) {
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_scale_change( _scale );
+        } //for each _component
+
+    } //set_scale_from_transform
+
+    function set_origin_from_transform( _origin:Vector ) {
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_origin_change( _origin );
+        } //for each _component
+
+    } //set_origin_from_transform
+
+    function set_parent_from_transform( _parent:Transform ) {
+
+            //and we have to propogate the values to the components
+        for(_component in components) {
+            _component.entity_parent_change( _parent );
+        } //for each _component
+
+    } //set_parent_from_transform
+
+//pos
+
+    function set_pos(_p:Vector) {
+
+        return transform.pos = _p;
+
     } //set_pos
 
-    private function set_rotation( _r:Vector ) { 
+    function get_pos() { 
+        
+        return transform.pos; 
 
-            //if we have a parent, we adjust our local rotation to match
-        if(parent != null) {
-            rotation_local.set( _r.x - parent.rotation.x, _r.y - parent.rotation.y, _r.z - parent.rotation.z );
-        }
+    } //get_pos
 
-            //update the value before we propogate
-        rotation = _r; 
+//rotation
 
-            //if we have children we must propogate the change to them
-        for(child in children) {
-            child.internal_parent_rotation_changed( rotation );
-        } //child
+    function set_rotation( _r:Quaternion ) { 
 
-            //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_rotation_change( rotation );
-        } //for each _component
-
-            //attach each component
-        _attach_listener( rotation, _rotation_change );
-
-        return rotation; 
+        return transform.rotation = _r; 
 
     } //set_rotation
 
-    private function set_scale( _s:Vector ) { 
+    function get_rotation() { 
+        
+        return transform.rotation; 
 
-            //update the value before we propogate
-        scale = _s;
-        _last_scale = scale.clone();
+    } //get_rotation
 
-            //if we have children we must propogate the change to them
-        for(child in children) {
-            child.internal_parent_scale_changed( scale );
-        } //child
+//scale
 
-            //and we have to propogate the values to the components
-        for(_component in components) {
-            _component.entity_scale_change( scale );
-        } //for each _component
+    function set_scale( _s:Vector ) { 
 
-            //attach each component
-        _attach_listener( scale, _scale_change );
-
-        return scale; 
+        return transform.scale = _s;
 
     } //set_scale
 
-    @:noCompletion  public function internal_parent_pos_changed(_parent_pos:Vector) {
-            //our position is updated as parent_pos+localPos
-        pos = _parent_pos.clone().add( pos_local );
+    function get_scale() { 
+        
+        return transform.scale; 
 
-    }//internal_parent_pos_changed
+    } //get_scale
+    
+//origin
 
-    @:noCompletion  public function internal_parent_rotation_changed(_parent_rotation:Vector) {
-            //our rotation is updated as parent_rotation+local
-        rotation = _parent_rotation.clone().add( rotation_local );
+    function set_origin( _origin:Vector ) { 
 
-    }//internal_parent_pos_changed
+        return transform.origin = _origin; 
 
-    @:noCompletion  public function internal_parent_scale_changed(_parent_scale:Vector) {
+    } //set_origin
 
-            //our scale is updated as parent_scale+local
-        scale = _parent_scale.clone().multiply( scale_local );
 
-    }//internal_parent_pos_changed
+    function get_origin() { 
 
-    private function set_parent( other:Entity ) {
+        return transform.origin; 
+
+    } //get_origin
+
+//parent
+
+    function set_parent( other:Entity ) {
 
         _debug('>>  ' + name + ' calling set parent to ' + (other == null ? 'null' : other.name) );
-            //if we are parented already, remove ourselves from that parent
+
+            //if we are parented already, 
+            //remove ourselves from that parent
         if(parent != null) {
-            parent.remove_child(this);
+            parent._remove_child( this );
         } //remove
 
+            //store the new parent, even if it's null, that is ok
         parent = other;
 
-            //detaching parent
-        if(parent == null) {
-
-            pos = pos.clone();
-            rotation = rotation.clone();
-
-        } else {
-
-                //update absolute position
-            pos = parent.pos.clone().add( pos_local );
-                //update local rotation
-            rotation = parent.rotation.clone().add( rotation_local );
-                //add to parent as a child
+            //and if we are not detaching parent using null
+            //we add it to the parent directly and update its transform
+        if(parent != null) {
             parent._add_child(this);
-
-        } 
+            transform.parent = parent.transform;
+        } else {
+            transform.parent = null;
+        }
 
         return parent;
 
     } //set_parent
+        
+    function get_parent() { 
 
-    private function get_pos()      { return pos; }                         //get_pos
-    private function get_rotation() { return rotation; }                    //get_rotation
-    private function get_scale()    { return scale; }                       //get_scale
+        return parent; 
+
+    } //get_parent
+
+//scene
+
+    function set_scene(_scene:Scene) { 
+        
+        return scene = _scene; 
+
+    } //set_scene
     
-    private function get_scene() { return scene; }                          //get_scene
-    private function set_scene(_scene:Scene) { return scene = _scene; }     //set_scene
+    function get_scene() { 
+        
+        return scene; 
 
-    private function get_pos_local() { return pos_local; }              //get_pos_local
-    private function get_rotation_local() { return rotation_local; }    //get_rotation_local
-    private function get_scale_local() { return scale_local; }          //get_scale_local
+    } //get_scene
 
-    private function get_parent() { return parent; }                        //get_parent
 
-//Spatial transforms
+//serialization 
 
-        //An internal callback for when x y or z on a transform changes
-    private function _pos_change(_v:Float) { this.set_pos(pos); }
-        //An internal callback for when x y or z on a transform changes
-    private function _scale_change(_v:Float) { this.set_scale(scale); }
-        //An internal callback for when x y or z on a transform changes
-    private function _rotation_change(_v:Float) { this.set_rotation(rotation); }
-
-        //An internal function to attach position 
-        //changes to a vector, so we can listen for `pos.x` as well
-    private function _attach_listener( _v : Vector, listener ) {
-        _v.listen_x = listener; 
-        _v.listen_y = listener; 
-        _v.listen_z = listener;
-    } //_attach_listener
 
     public function get_serialize_data() : Dynamic {
         

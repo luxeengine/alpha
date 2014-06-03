@@ -13,6 +13,17 @@ class Quaternion {
 
     var euler : Vector;
 
+    public var serialized(get, null) : Dynamic;
+
+    function get_serialized() : Dynamic { return { x:x, y:y, z:z, w:w } };
+
+    public var ignore_listeners : Bool = false;
+
+    @:isVar public var listen_x(default,default) : Float -> Void;
+    @:isVar public var listen_y(default,default) : Float -> Void;
+    @:isVar public var listen_z(default,default) : Float -> Void;
+    @:isVar public var listen_w(default,default) : Float -> Void;
+
     public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
         
         euler = new Vector();
@@ -400,6 +411,10 @@ class Quaternion {
 
     } //clone
 
+    public function toeuler() {
+        return new Vector().setEulerFromQuaternion(this).degrees();
+    }
+
     public static function Slerp( _qa:Quaternion , _qb:Quaternion, _qm:Quaternion , _t:Float ) : Quaternion {
 
         return _qm.copy( _qa ).slerp( _qb, _t );
@@ -422,6 +437,8 @@ class Quaternion {
         
         update_euler();
 
+        if(listen_x != null && !ignore_listeners) listen_x(x);
+
         return x;
         
     } //set_x
@@ -432,29 +449,44 @@ class Quaternion {
         
         update_euler();
 
+        if(listen_y != null && !ignore_listeners) listen_y(y);
+
         return y;
         
     } //set_y
 
     function set_z( _v:Float ) {
-        
+
         z = _v;
-        
+
         update_euler();
+
+        if(listen_z != null && !ignore_listeners) listen_z(z);
 
         return z;
 
     } //set_z
 
     function set_w( _v:Float ) {
-        
+
         w = _v;
-        
+
         update_euler();
+
+        if(listen_w != null && !ignore_listeners) listen_w(w);
 
         return w;
 
     } //set_w
+
+    public static function listen( _q : Quaternion, listener ) {
+
+        _q.listen_x = listener;
+        _q.listen_y = listener;
+        _q.listen_z = listener;
+        _q.listen_w = listener;
+
+    } //listen
 
 } //Quaternion
 

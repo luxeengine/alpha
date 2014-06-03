@@ -24,6 +24,7 @@ class Main extends luxe.Game {
 
 
     public var sprite:Sprite;
+    public var sprite2:Sprite;
 
 
     public function ready() {
@@ -41,6 +42,16 @@ class Main extends luxe.Game {
             texture:Luxe.loadTexture('assets/dev.png'),
             pos : new Vector(480,320)
         });
+            //Actual entity classes (Sprite, Camera atm)
+        sprite2 = new Sprite({
+            name : 'test_sprite2',
+            texture:Luxe.loadTexture('assets/dev.png'),
+            pos : new Vector(480,320),
+            scale : new Vector(0.5,0.5)
+        });
+
+        sprite2.rotation_z = 90;
+        sprite2.radians = Math.PI;
         
         var child1 = sprite.add(Child1,'child1', { init_with:'Test string' });
         var child2 = child1.add(Child2,'child2', { init_with:565 });
@@ -177,8 +188,8 @@ class Child2 extends Component {
 
 
     public var dir : Float = 1;
+    public var z : Float = 0;
     public var oncerun : Bool = false;
-
 
     public function init( from_add_value:Int ) {
         trace('\t\t\tchild2 init with value ' + from_add_value);
@@ -197,10 +208,12 @@ class Child2 extends Component {
         if(!oncerun){
             trace('\t\t\tchild2 first update ' + dt);
             oncerun = true;
-        }        
+        }
 
-        entity.rotation.z += 25*dt;
+        z += 25*dt;
+        entity.rotation = entity.rotation.setFromEuler(new Vector(0,0,z).radians());
         entity.pos.x += 300*dir*dt;
+
         var swap = false;
         if(entity.pos.x > Luxe.screen.w) {
             entity.pos.x = Luxe.screen.w;
@@ -212,7 +225,7 @@ class Child2 extends Component {
         }     
 
         if(swap) {
-            dir = -dir;            
+            dir = -dir;
             var ns = 1+(Math.random());
             entity.scale = new Vector(ns,ns);
             Luxe.camera.get('shaker').shake( 8+9*Math.random() );

@@ -10,7 +10,7 @@ typedef MeshOptions = {
     ? file : String,
     ? texture : Texture,
     ? pos : Vector,
-    ? rotation : Vector,
+    ? rotation : Quaternion,
     ? scale : Vector
     
 }

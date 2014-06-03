@@ -65,7 +65,7 @@ class Debug {
         views = [
             new TraceDebugView(),
             new StatsDebugView(),
-            new BatcherDebugView(),
+            // new BatcherDebugView(),
             new ProfilerDebugView()
         ];
 
