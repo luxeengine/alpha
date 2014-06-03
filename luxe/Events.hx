@@ -216,7 +216,7 @@ class Events {
             var connections:Array<EventConnection> = event_slots.get(_event_name);
 
                 //store additional info about the events 
-                //todo
+                //:todo : is this needed anymore?
             // _properties = tag_properties(_properties, _event_name, connections.length);
 
                 //call each listener

@@ -119,7 +119,6 @@ class Sprite extends Visual {
     } //point_inside_exact
 
         //Returns true if a point is inside the default AABB 
-        //todo: Improve this to include origins of geom + rotation + scale
     public function point_inside(_p:Vector) : Bool {
 
         if(pos == null) return false;

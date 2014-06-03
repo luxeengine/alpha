@@ -22,7 +22,7 @@ class MotionPathActuator extends SimpleActuator {
         for (propertyName in Reflect.fields (properties)) {
             
             if (#if flash false && #end Reflect.hasField (target, propertyName)) {
-                    //todo:test in html5 and setProperty fixes
+                    
                 Reflect.setField (target, propertyName, cast (Reflect.field (properties, propertyName), IComponentPath).end);
                 
             } else {

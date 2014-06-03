@@ -231,7 +231,7 @@ class Geometry {
 
             vert_index += 4;
 
-                    //texture coordinates todo:multiple uv sets
+                    //texture coordinates :todo: multiple uv sets
                 tcoordlist[(tcoord_index+0)] = v.uv.uv0.u;
                 tcoordlist[(tcoord_index+1)] = v.uv.uv0.v;
                 tcoordlist[(tcoord_index+2)] = v.uv.uv0.w;
@@ -274,7 +274,7 @@ class Geometry {
             vertlist.push( _final_vert_position.y );
             vertlist.push( _final_vert_position.z );
 
-                //texture coordinates todo:multiple uv sets
+                //texture coordinates :todo: multiple uv sets
             tcoordlist.push( v.uv.uv0.u );
             tcoordlist.push( v.uv.uv0.v );
 

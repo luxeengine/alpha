@@ -669,8 +669,8 @@ class Batcher {
                 } //geom.visible
 
             } else { //!null && !dropped
-                //todo: If there is null or dropped geometry shouldn't they be removed or maybe
-                //stashed in a diff list? Although this is probably from the above
+                //:todo: If there is null (maybe dropped) geometry shouldn't they be removed or maybe
+                //stashed in a diff list? Dropped come from the above drop, but null is invalid state
             }
 
         } //geom list

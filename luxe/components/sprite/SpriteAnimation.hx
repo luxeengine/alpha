@@ -699,8 +699,6 @@ class SpriteAnimation extends Component {
 
     public function set_frame( _frame:Int ) {
             
-            //todo:this doesn't update the image_frame or current_frame values
-
         if(sprite == null) return;      
         if(current.type == SpriteAnimationType.animated_uv) {
 
@@ -722,6 +720,15 @@ class SpriteAnimation extends Component {
             }
 
         } //SpriteAnimationType.animated_texture
+        
+            //the current animation frame 
+        var _anim_frame = current.frameset[frame-1];
+
+            //set the image frame from the current frameset
+        image_frame = _anim_frame.image_frame;
+
+            //set the current frame frame
+        current_frame = _anim_frame;
 
     } //set_frame
 

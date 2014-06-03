@@ -114,7 +114,7 @@ class ParticleEmitter extends Component {
     public var zrotation : Float = 0;
     public var _position : Vector;
 
-        //todo? no idea why this radius stuff was here,
+        //:todo : no idea why this radius stuff was here,
         //it might be for spawning in a radial area idk
         //will have to figure out when cleaning this up
     public var radius : Float = 50;

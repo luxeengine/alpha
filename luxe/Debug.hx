@@ -242,8 +242,7 @@ class Debug {
 
             //keep knowledge of this
         last_view_index = current_view_index;
-            //then go up one, todo:make easier to jump to specific
-            //or cycle down etc
+            //then go up one, :todo : make easier to jump to specific view?
         current_view_index++;
             
             //handle looping

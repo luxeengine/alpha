@@ -61,7 +61,7 @@ class GenericActuator implements IGenericActuator {
         for (i in Reflect.fields (properties)) {
             
             if (#if flash false && #end Reflect.hasField (target, i)) {
-                    //todo : check this works with html5 properties
+                    
                 Reflect.setField (target, i, Reflect.field (properties, i));
                 
             } else {

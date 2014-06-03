@@ -446,7 +446,7 @@ class BitmapFont extends Resource {
                 // }
 
                 if( _char == '\t' ){
-                    _x_inc += spc.xadvance * 4; //todo, hardcoded 4 tab size
+                    _x_inc += spc.xadvance * 4; //:todo:, hardcoded 4 tab size
                 } 
 
                 _cumulative_x += _x_inc * _scale.x;

@@ -82,7 +82,7 @@ class Input {
     } //destroy
 
     @:noCompletion public function process() {
-        //todo, poll for gamepad disconnects and reconnects
+        
     } //process
 
 #if input_lazy

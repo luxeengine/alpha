@@ -186,7 +186,7 @@ import phoenix.Shader;
         renderer = new Renderer( this );
             //assign the globals
         Luxe.renderer = renderer;   
-            //store the size for access from API, todo:Window position should go here.
+            //store the size for access from API, :todo : Window position can go here.
         screen = new luxe.Screen( this, 0, 0, config.width, config.height );
 
             //Now make sure 

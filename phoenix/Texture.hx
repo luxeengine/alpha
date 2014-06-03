@@ -120,7 +120,7 @@ class Texture extends Resource {
 
             texture = GL.createTexture();
 
-            //upload it, todo, this was legacy code
+            //upload it, :todo:#88:, this was legacy code
             //from phoenix but it would be useful, to finish this.
 
         } //if size is valid
@@ -163,7 +163,7 @@ class Texture extends Resource {
         _set_clamp( ClampType.edge );
 
         // image_bytes = null;
-        // data = null; //todo - sven use lock/unlock
+        // data = null; //:todo : - sven use lock/unlock
 
     } //create_from_bytes_html
 
@@ -208,7 +208,7 @@ class Texture extends Resource {
         var image_length = width * height;
 
             //ARGB to RGBA cos format 
-            //todo : do inside nme side.
+            //:todo: do inside native (don't worry about this, new backend)
         
         for(i in 0 ... image_length) {
             // data[i] = ((data[i]>>24) | (data[i]<<8)); 
@@ -237,13 +237,14 @@ class Texture extends Resource {
         _set_clamp( ClampType.edge );
 
         image_bytes = null;
-        data = null; //todo - sven use lock/unlock
+        data = null; //:todo : - sven use lock/unlock
 
         // trace('texture.create took ' + (haxe.Timer.stamp() - start));
 
     } //create_from_bytes
 
         //Only used for memory array fonts on html5 atm (like the default font and ui)
+        //:todo: These functions should be isolated into the asset manager, not here
     public function create_from_bytes_using_haxe( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
 
         texture = GL.createTexture();
@@ -271,9 +272,6 @@ class Texture extends Resource {
         data = new UInt8Array(png_bytes.getData());
         var image_length = width * height;
 
-            //BGRA to RGBA cos format...yea I dunno.
-            //GL doesn't even have BGRA as a default format 
-            //on a ton of platforms.
         for(i in 0 ... image_length) {
 
             var b = data[i*4+0];
@@ -373,8 +371,7 @@ class Texture extends Resource {
 
     public function lock() {
         
-        //todo sven
-        // glGetTexImage is missing because it's not in WebGL
+        //:todo : this is related to glGetTexImage not in WebGL
 
         // data = new UInt8Array(new ArrayBuffer( width * height * 4));
         

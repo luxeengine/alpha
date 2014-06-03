@@ -148,7 +148,7 @@ class Mesh {
             texture : texture,
             type: PrimitiveType.triangles,
             immediate : false,
-            depth : 1 //todo optionise
+            depth : 1 //:todo : optionise
         });
 
         for(v in obj_mesh_data.vertices) {

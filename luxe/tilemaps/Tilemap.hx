@@ -277,7 +277,7 @@ class Tileset {
     } //texture_x
     
         //Returns the inner y-position of a texture with given _id
-        //todo : Is this making an assumption about the height of a tile?
+        //:todo : Is this making an assumption about the height of a tile?
     public function texture_y(_id):Int {
 
         return Std.int(_id / Std.int(texture.width / tile_width));

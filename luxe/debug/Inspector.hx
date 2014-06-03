@@ -40,7 +40,7 @@ typedef DebugInspectorOptions = {
 		size = new Vector( Std.int(Luxe.screen.w*0.2), Std.int(Luxe.screen.h*0.6) );
 		pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
 
-			//load the images from the classes, todo:make a single atlas
+			//load the images from the classes
 		default_box_texture = Luxe.renderer.load_texture_from_string_byte_array('default_ui_box', TinyBox.data(), 128,128 );
 		default_button_texture = Luxe.renderer.load_texture_from_string_byte_array('default_ui_button', TinyButton.data(), 64,32 );
 		
