@@ -129,22 +129,14 @@ class PlaneGeometry extends Geometry {
         //so that when geometry.pos is set it is translated accordingly
 
             //First triangle
-        var vert0 : Vertex = new Vertex( new Vector( 0, 0, 0 ) );
-        var vert1 : Vertex = new Vertex( new Vector( quad.w, 0, 0 ) );
-        var vert2 : Vertex = new Vertex( new Vector( quad.w, 0, quad.h ) );
+        var vert0 : Vertex = new Vertex( new Vector( 0, 0, 0 ), color );
+        var vert1 : Vertex = new Vertex( new Vector( quad.w, 0, 0 ), color );
+        var vert2 : Vertex = new Vertex( new Vector( quad.w, 0, quad.h ), color );
 
            //Second triangle
-        var vert3 : Vertex = new Vertex( new Vector( 0 , 0, quad.h ) );
-        var vert4 : Vertex = new Vertex( new Vector( 0 , 0, 0 ) );
-        var vert5 : Vertex = new Vertex( new Vector( quad.w , 0, quad.h ) );
-
-            //Apply the color to the vert
-        vert0.color = color;
-        vert1.color = color;
-        vert2.color = color;
-        vert3.color = color;
-        vert4.color = color;
-        vert5.color = color;
+        var vert3 : Vertex = new Vertex( new Vector( 0 , 0, quad.h ), color );
+        var vert4 : Vertex = new Vertex( new Vector( 0 , 0, 0 ), color );
+        var vert5 : Vertex = new Vertex( new Vector( quad.w , 0, quad.h ), color );
         
            //Add to the list
 

@@ -50,13 +50,11 @@ class LineGeometry extends Geometry {
 		vertices.splice(0, vertices.length);
 
 		//p0
-		var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ) );
+		var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ), options.color0 );
 			vert0.uv.uv0.set(0,0);
-			vert0.color = options.color0;
 
-		var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ) );
-			vert1.uv.uv0.set(1,0);
-			vert1.color = options.color1;
+		var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ), options.color1 );
+			vert1.uv.uv0.set(1,0);		
 
 		add(vert0);
 		add(vert1);
@@ -67,4 +65,4 @@ class LineGeometry extends Geometry {
 	}
 	
 	
-}
+} //LineGeometry

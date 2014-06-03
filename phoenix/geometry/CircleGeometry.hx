@@ -65,8 +65,7 @@ class CircleGeometry extends Geometry {
 		primitive_type = PrimitiveType.triangle_fan;
 
 			//add the center of the circle
-		var center : Vertex = new Vertex( new Vector( 0, 0 ) );
-			center.color = color;
+		var center : Vertex = new Vertex( new Vector( 0, 0 ), color );
 
             var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle);
             var _end_angle_rad = luxe.utils.Maths.degToRad(_end_angle);
@@ -91,8 +90,7 @@ class CircleGeometry extends Geometry {
 				var __x = x;
 				var __y = y / radial_ratio;
 
-				var vert = new Vertex(new Vector( __x,__y ));
-					vert.color = color;
+				var vert = new Vertex(new Vector( __x,__y ), color);
 
 				add(vert);
 		        

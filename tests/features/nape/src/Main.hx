@@ -85,20 +85,14 @@ class LuxeNapeDebug {
         geometry.push( g );
 
             //add a center point first
-        g.vertices.insert(0, 
-            new Vertex(
-                new Vector(0, 0),
-                new Vector(),
-                color
-            )
-        );
+        g.vertices.insert(0, new Vertex( new Vector(0, 0), color ) );
 
             //and duplicate the first vertex at the end
             //because line loops yo
         g.add( g.vertices[1] );
 
         
-    }
+    } //drawCircle
 
     function drawPoint( _p:nape.geom.Vec2, color:Color, _immediate:Bool = true ) {
         geometry.push(
@@ -132,13 +126,7 @@ class LuxeNapeDebug {
         g.primitive_type = phoenix.Batcher.PrimitiveType.line_loop;
         
         for(v in polygon.worldVerts) {
-            g.add(
-                new Vertex(
-                    new Vector(v.x, v.y),
-                    new Vector(),
-                    color
-                )
-            );
+            g.add( new Vertex( new Vector(v.x, v.y), color ) );
         }
 
         g.immediate = true;

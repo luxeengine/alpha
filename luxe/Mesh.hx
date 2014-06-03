@@ -125,10 +125,10 @@ class Mesh {
                 normal.set(v.normal.x, v.normal.y, v.normal.z);
            }
         
-       var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), normal );
+       var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), new Color(), normal );
 
                 //todo;multiple uv sets
-           if(v.uv != null) {                    
+           if(v.uv != null) {
                _v.uv.uv0.set( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space 
            }
        

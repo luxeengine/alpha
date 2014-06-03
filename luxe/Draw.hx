@@ -171,7 +171,6 @@ class Draw {
             _geometry.add(
                 new Vertex(
                     new Vector( _x, _y, 0 ), 
-                    new Vector(),
                     options.color
                 )
             ); //add
@@ -188,7 +187,6 @@ class Draw {
             _geometry.add(
                 new Vertex(
                     new Vector( _x + __x, _y + __y, 0 ), 
-                    new Vector(),
                     options.color
                 )
             ); //add

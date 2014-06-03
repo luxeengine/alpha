@@ -224,8 +224,7 @@ private class ProfilerBar {
         });
 
         for(i in 0 ... history) {
-            var _b = new Vertex(new Vector(segment*i, 0)) ;
-                _b.color = _color;
+            var _b = new Vertex(new Vector(segment*i, 0), _color);
             graph_geometry.add( _b );
         }
 
