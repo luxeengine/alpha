@@ -137,9 +137,6 @@ class QuadGeometry extends Geometry {
  		
  		vertices.splice(0, vertices.length);        
 
-        //Create the rectangle at it's origin,
-        //so that when geometry.pos is set it is translated accordingly
-
             //First triangle
         var vert0 : Vertex = new Vertex( new Vector( 0, 0 ) );
         var vert1 : Vertex = new Vertex( new Vector( quad.w, 0 ) );
@@ -176,9 +173,6 @@ class QuadGeometry extends Geometry {
 
         primitive_type = PrimitiveType.triangles;
         immediate = false;
-
-            // adjust for origin
-        // translate(origin.inverted);
 
             //And finally move it into place
         transform.pos = new Vector(quad.x, quad.y);

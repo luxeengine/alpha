@@ -111,7 +111,7 @@ class Sprite extends Visual {
         
         _hit_box_vert_list.splice(0,_hit_box_vert_list.length);
         for(_v in geometry.vertices) {
-            _hit_box_vert_list.push( _v.pos.clone().subtract(geometry.origin).applyMatrix4(geometry.transform.world.matrix) );
+            _hit_box_vert_list.push( _v.pos.clone().applyMatrix4(geometry.transform.world.matrix) );
         }
 
         return Luxe.utils.geometry.point_in_polygon( _p, _hit_origin_offset, _hit_box_vert_list );

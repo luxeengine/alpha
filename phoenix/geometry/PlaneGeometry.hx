@@ -165,9 +165,6 @@ class PlaneGeometry extends Geometry {
         primitive_type = PrimitiveType.triangles;
         immediate = false;
 
-            //adjust for origin
-        translate(origin.inverted);
-
             //And finally move it into place
         transform.pos = new Vector(quad.x, y, quad.y);
 

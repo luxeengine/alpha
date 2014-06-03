@@ -16,6 +16,7 @@ class CompositeGeometry extends Geometry {
 
         transform.pos_changed = set_pos_from_transform;
         transform.scale_changed = set_scale_from_transform;
+        transform.origin_changed = set_origin_from_transform;
         transform.rotation_changed = set_rotation_from_transform;
 
         geometry = new Array<Geometry>();
@@ -27,7 +28,8 @@ class CompositeGeometry extends Geometry {
     }
 
     public function clear() {
-            //todo profile these splices vs new assigns in haxe
+
+            //:todo: profile these splices vs new assigns in haxe
         geometry.splice(0,geometry.length);
 
     } //clear
@@ -84,16 +86,15 @@ class CompositeGeometry extends Geometry {
         }
     } //translate
 
-    public override function set_origin( _origin:Vector ) : Vector {
+    function set_origin_from_transform( _origin:Vector ) : Void {
         if(geometry != null) {
             for(geom in geometry) {
-                geom.origin = _origin;
+                geom.transform.origin = _origin;
             }
         }
-        return _origin;
     } //set_origin
 
-    public function set_pos_from_transform( _position:Vector ) {
+    function set_pos_from_transform( _position:Vector ) {
         if(geometry != null) {
             for(geom in geometry) {
                 geom.transform.pos = _position;
@@ -101,7 +102,7 @@ class CompositeGeometry extends Geometry {
         }
     } //set_pos
 
-    public function set_rotation_from_transform( _rotation:Quaternion ) {
+    function set_rotation_from_transform( _rotation:Quaternion ) {
         if(geometry != null) {
             for(geom in geometry) {
                 geom.transform.rotation = _rotation;
@@ -109,7 +110,7 @@ class CompositeGeometry extends Geometry {
         }
     } //set_rotation
 
-    public function set_scale_from_transform( _scale:Vector ) {
+    function set_scale_from_transform( _scale:Vector ) {
         if(geometry != null) {
             for(geom in geometry) {
                 geom.transform.scale = _scale;

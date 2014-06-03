@@ -74,7 +74,11 @@ class Camera extends Entity {
     } //get_center
 
     function set_center( _c:Vector ) : Vector {
+
+        pos = new Vector(_c.x - (viewport.w/2), _c.y - (viewport.h/2));
+
         return view.center = _c;
+
     } //set_center
 
     override function get_scale() : Vector {
@@ -86,12 +90,6 @@ class Camera extends Entity {
     } //set_scale
 
     override function get_rotation() : Vector {
-
-        // if(view != null) {
-        //     rotation.ignore_listeners = true;
-        //     rotation.setEulerFromQuaternion( view.rotation );
-        //     rotation.ignore_listeners = false;
-        // }
 
         return rotation;
         

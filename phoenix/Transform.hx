@@ -158,6 +158,7 @@ class Transform extends Objects {
     public var pos_changed : Vector -> Void;
     public var rotation_changed : Quaternion -> Void;
     public var scale_changed : Vector -> Void;    
+    public var origin_changed : Vector -> Void;    
 
         //alias to local.pos, local.rotation, local.scale
 
@@ -165,10 +166,9 @@ class Transform extends Objects {
     public var rotation             (get,set) : Quaternion;
     public var scale                (get,set) : Vector;    
 
-    public var _origin_matrix : Matrix4;
-    public var _origin_undo_matrix : Matrix4;
-    public var _pos_matrix : Matrix4;
-    public var _rotation_matrix : Matrix4;
+    var _origin_undo_matrix : Matrix4;
+    var _pos_matrix : Matrix4;
+    var _rotation_matrix : Matrix4;
     
     public function new() {
 
@@ -181,7 +181,6 @@ class Transform extends Objects {
         local = new Spatial();
         world = new Spatial();        
 
-        _origin_matrix = new Matrix4();
         _origin_undo_matrix = new Matrix4();
         _pos_matrix = new Matrix4();
         _rotation_matrix = new Matrix4();
@@ -265,31 +264,26 @@ class Transform extends Objects {
             return;
         }
 
+            //flag to avoid loops
         _cleaning = true;
 
             //update local matrices
-            
-        _pos_matrix.makeTranslation(local.pos.x, local.pos.y, local.pos.z);
-        _rotation_matrix.makeRotationFromQuaternion(local.rotation);
+        _pos_matrix.makeTranslation( local.pos.x, local.pos.y, local.pos.z );
+        _rotation_matrix.makeRotationFromQuaternion( local.rotation );
         _origin_undo_matrix.makeTranslation( -origin.x, -origin.y, -origin.z );
 
-            //translate to origin
-        local.matrix.identity();
-
-        // trace(origin + ' ' + name);
-        
+                //translate to origin
         local.matrix.makeTranslation( origin.x, origin.y, origin.z );
-                //rotation relative to origin
-            local.matrix.multiply(_rotation_matrix);
+
                 //scale up relative to origin
             local.matrix.scale(local.scale);
-                //undo origin translation
-            local.matrix.multiply(_origin_undo_matrix);
+                //rotation relative to origin
+            local.matrix.multiply(_rotation_matrix);
                 //apply position
-            local.matrix.multiply(_pos_matrix);
+            local.matrix.setPosition( local.pos );
 
-        // //     //update local matrix
-        // local.matrix.compose( local.pos, local.rotation, local.scale );
+            //undo origin translation
+        local.matrix.multiply(_origin_undo_matrix);
 
             //update world matrix
         if(parent != null) {
@@ -301,7 +295,7 @@ class Transform extends Objects {
             //update world spatial
         world.decompose();
 
-            //clear flag
+            //clear flags
         dirty = false;
         _cleaning = false;
 
@@ -317,7 +311,13 @@ class Transform extends Objects {
 
         dirty = true;
 
-        return origin = o;
+        origin = o;
+
+        if(origin_changed != null) {
+            origin_changed(origin);
+        }
+
+        return origin;
 
     } //set_origin
 

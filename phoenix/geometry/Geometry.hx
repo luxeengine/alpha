@@ -35,8 +35,6 @@ class Geometry {
 
         //the positional transform information
     public var transform : Transform;
-        //A shortcut to the origin of the transform
-    public var origin(get, set) : Vector;
      
         //The list of vertices
     public var vertices : Array<Vertex>;
@@ -104,7 +102,6 @@ class Geometry {
         
             //init transforms
         transform = new Transform();            
-        origin = new Vector();
 
             //init the empty vertex reuse
         _final_vert_position = new Vector();
@@ -124,11 +121,12 @@ class Geometry {
             state.shader            = options.shader == null    ? state.shader          : options.shader;
 
             id                      = (options.id == null)          ? uuid                : options.id;
+
             transform.pos           = (options.pos == null)         ? transform.pos       : options.pos;
             transform.rotation      = (options.rotation == null)    ? transform.rotation  : options.rotation;
             transform.scale         = (options.scale == null)       ? transform.scale     : options.scale;
+            transform.origin        = (options.origin == null)      ? transform.origin    : options.origin;
 
-            origin                  = (options.origin == null)      ? origin    : options.origin;
             immediate               = (options.immediate == null)   ? false     : options.immediate;
             visible                 = (options.visible == null)     ? true      : options.visible;
 
@@ -214,21 +212,13 @@ class Geometry {
 
     } //remove 
 
-    public function batch_into_float32array( 
-        vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
-        vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
+    public function batch( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
+                           vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
         ) {
             
-        var _origin = transform.origin;
-        var origin_x : Float = _origin.x;
-        var origin_y : Float = _origin.y;
-        var origin_z : Float = _origin.z;
-        var origin_w : Float = _origin.w;
-
         for(v in vertices) {
 
                 //the base position of the vert
-            // _final_vert_position.set_xyzw( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z, v.pos.w - origin_w );
             _final_vert_position.set_xyzw( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
                 //apply the transform to the vert
             _final_vert_position.applyMatrix4( transform.world.matrix );
@@ -269,30 +259,13 @@ class Geometry {
 
     } //batch
 
-    public function batch( vertlist : Array<Float>, tcoordlist : Array<Float>, 
+    public function batch_into_arrays( vertlist : Array<Float>, tcoordlist : Array<Float>, 
                            colorlist : Array<Float>, normallist : Array<Float> ) {
-
-        var origin_x = origin.x;
-        var origin_y = origin.y;
-        var origin_z = origin.z;
 
         for(v in vertices) {
 
-            // consider using cached matrices ?
-            //     //translate to the origin first
-            // matrix.makeTranslation( -origin_x, -origin_y, -origin_z );
-            //     //scale first
-            // matrix.scale( scale );
-            //     //then rotate
-            // matrix.multiply( new Matrix4().makeRotationFromQuaternion(rotation) );
-            //     //then translate back 
-            // matrix.multiply( new Matrix4().makeTranslation(origin_x, origin_y, origin_z) );
-            //     //then translate the position
-            // _final_vert_position.set(pos.x, pos.y, pos.z, pos.w);
-            // _final_vert_position.applyMatrix4( matrix );
-
                 // the base position of the vert
-            // _final_vert_position.set( v.pos.x - origin_x, v.pos.y - origin_y, v.pos.z - origin_z );
+            _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z );
                 // apply the transform to the vert
             _final_vert_position.applyMatrix4( transform.world.matrix );
 
@@ -318,7 +291,7 @@ class Geometry {
 
         } //each vertex
 
-    } //batch
+    } //batch_into_arrays
 
 //Transform
 
@@ -327,18 +300,6 @@ class Geometry {
         transform.pos.set( transform.pos.x+_offset.x, transform.pos.y+_offset.y, transform.pos.x+_offset.z );
 
     } // translate
-
-    public function get_origin() : Vector {
-
-        return transform.origin;
-
-    } //get_origin
-
-    public function set_origin( _origin:Vector ) : Vector {
-
-        return transform.origin = _origin;
-
-    } //set_origin
 
     public function set_locked( _locked:Bool ) : Bool {
 

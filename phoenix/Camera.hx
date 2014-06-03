@@ -30,19 +30,17 @@ class Camera {
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (default,set) : Float = 1.0;
 
-    public var pos (get,set) : Vector;
+        //we keep a local pos variable as an unaltered position
+        //to keep the center relative to the viewport, and allow setting position as 0,0 not center
+    @:isVar public var pos (get,set) : Vector;
+        //the other transforms defer directly to the transform so aren't variables
     public var scale (get,set) : Vector;
     public var rotation (get,set) : Quaternion;
-
     public var transform : Transform;
 
     public var minimum_zoom : Float = 0.01;
     public var projection_matrix : Matrix4;
     public var view_matrix : Matrix4;
-
-    var _origin_matrix_inv  : Matrix4;
-    var _pos_matrix         : Matrix4;
-    var _rot_matrix         : Matrix4;    
 
     public var perspective_options : ProjectionOptions;
     public var ortho_options : ProjectionOptions;
@@ -53,6 +51,8 @@ class Camera {
 
         //A phoenix camera will default to ortho set to screen size        
     public function new( ?options:CameraOptions ) {
+
+        transform = new Transform();
 
             //have sane defaults 
         if(options == null) {
@@ -78,14 +78,9 @@ class Camera {
             viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
         }
 
-        transform = new Transform();
-
-            //init internals
-        _origin_matrix_inv = new Matrix4();
-        _pos_matrix = new Matrix4();
-        _rot_matrix = new Matrix4();
-
+            //set the position explicitly so it can update the transform
         center = new Vector( viewport.w/2, viewport.h/2 );
+        pos = new Vector();
         up = new Vector(0,1,0);
         
         projection_matrix = new Matrix4();
@@ -176,13 +171,6 @@ class Camera {
                 view_matrix = view_matrix.compose( pos, rotation, scale );
 
             case ProjectionType.ortho:
-
-                // view_matrix
-                //     .makeTranslation( center.x, center.y, center.z )
-                //     .scale( scale )
-                //     .multiply( _rot_matrix )
-                //     .multiply( _origin_matrix_inv )
-                //     .multiply( _pos_matrix );
 
                 view_matrix = transform.world.matrix;
 
@@ -356,51 +344,36 @@ class Camera {
 
     function set_center( _p:Vector ) : Vector {
 
-            //update value
-        center = _p;
-
-            //and adjust the position for the new center, in world space
-        transform.pos.x = _p.x - (viewport.w/2);
-        transform.pos.y = _p.y - (viewport.h/2);
-
-            //update the transform values
-        transform.origin = center;
+            //setting the center is the same as setting the position relative to the viewport
+        pos = new Vector(_p.x - (viewport.w/2), _p.y - (viewport.h/2));
         
-        return center;
-    }
+        return center = _p;
+
+    } //set_center
 
     function get_center() : Vector {
         return center;
-    }
+    } //get_center
 
     function get_pos() : Vector {
-        return transform.pos;
-    }
+        return pos;
+    } //get_pos
     
     function get_rotation() : Quaternion {
         return transform.rotation;
-    }
+    } //get_rotation
 
     function get_scale() : Vector {
         return transform.scale;
-    }
+    } //get_scale
 
     function get_viewport() : Rectangle {
         return viewport;
-    }
+    } //get_viewport
 
     function set_viewport(_r:Rectangle) : Rectangle {
 
-            //rework out the center
-        if(center != null) {
-                
-                //update the center position
-            center.x = ((_r.w/2) + pos.x);
-            center.y = ((_r.h/2) + pos.y);
-                //propagate those changes to the transform
-            set_center(center);
-
-        } //center != null
+        transform.origin = new Vector( _r.w/2, _r.h/2 );
 
         return viewport = _r;
     
@@ -416,15 +389,10 @@ class Camera {
 
     function set_pos( _p:Vector ) : Vector {
 
-        transform.pos = _p;
+        transform.pos.x = _p.x + (viewport.w/2);
+        transform.pos.y = _p.y + (viewport.h/2);
 
-            //update the center accordingly 
-        center.x = ((viewport.w/2) + _p.x);
-        center.y = ((viewport.h/2) + _p.y);
-            //propagate those changes to the transform
-        set_center(center);
-
-        return transform.pos;
+        return pos = _p;
 
     } //set_pos
 

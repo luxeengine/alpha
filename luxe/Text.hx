@@ -11,7 +11,6 @@ typedef TextAlign = phoenix.BitmapFont.TextAlign;
 
 class Text extends Visual {
     
-
     public var font : BitmapFont;
     private var _batcher : Batcher;
 
@@ -171,7 +170,7 @@ class Text extends Visual {
             composite_geometry = font.draw_text(text_options);
 
                 //now we apply the new info to the visual first
-            origin  = composite_geometry.origin;
+            origin  = composite_geometry.transform.origin;
             pos     = composite_geometry.transform.pos;
             locked  = composite_geometry.locked;
             visible = composite_geometry.visible;

@@ -286,7 +286,7 @@ class Visual extends Entity {
     private function set_origin(_o:Vector) : Vector {
         
         if(geometry != null) {
-            geometry.origin = _o.clone();
+            geometry.transform.origin = _o.clone();
         }
 
         return origin = _o;
@@ -312,7 +312,8 @@ class Visual extends Entity {
             
             geometry.transform.pos = pos;
             geometry.transform.scale = scale;
-            geometry.origin = origin;
+            geometry.transform.origin = origin;
+            geometry.transform.rotation = _rotation_quat;
             geometry.color = color;            
             geometry.group = group;
             geometry.depth = depth;            

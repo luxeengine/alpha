@@ -871,7 +871,7 @@ class Batcher {
 
     private function geometry_batch( geom:Geometry ) {
 
-        geom.batch_into_float32array(
+        geom.batch(
             verts,      tcoords,        colors,     normals,
             vertlist,   tcoordlist,     colorlist,  normallist
         );
@@ -885,7 +885,7 @@ class Batcher {
 
     private function geometry_batch_static( geom:Geometry ) {
 
-        geom.batch_into_float32array(
+        geom.batch(
             static_verts,       static_tcoords,     static_colors,      static_normals,
             static_vertlist,    static_tcoordlist,  static_colorlist,   static_normallist
         );
