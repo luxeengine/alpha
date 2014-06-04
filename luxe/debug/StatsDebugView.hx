@@ -90,7 +90,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             depth : 999.3,
             no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(debug.padding.x*7,debug.padding.y*3),
+            pos : new Vector(debug.padding.x*2,debug.padding.y*7.5),
             font : Luxe.renderer.default_font,
             text : get_resource_stats_string(),
             size : 18,
@@ -102,7 +102,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             depth : 999.3,
             no_scene : true,
             color : new Color(0,0,0,1).rgb(0xf6007b),
-            pos : new Vector(debug.padding.x*7,debug.padding.y*9),
+            pos : new Vector(debug.padding.x*7,debug.padding.y*3),
             font : Luxe.renderer.default_font,
             text : '',
             size : 14,
@@ -235,9 +235,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         if(hide_debug) {
 
-            _render_stats.batchers = _render_stats.batchers - 2;
+            _render_stats.batchers = _render_stats.batchers - 1;
             _render_stats.geometry_count = _render_stats.geometry_count - debug_geometry_count;
-            _render_stats.visible_count = _render_stats.visible_count - _render_stats.visible_count;
+            _render_stats.visible_count = _render_stats.visible_count - Luxe.debug.batcher.visible_count;
             _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - Luxe.debug.batcher.dynamic_batched_count;// - Luxe.debug.batcher.static_batched_count;
             _render_stats.static_batched_count = _render_stats.static_batched_count - Luxe.debug.batcher.static_batched_count;
             _render_stats.draw_calls -= debug_draw_call_count;
