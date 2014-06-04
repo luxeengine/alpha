@@ -263,46 +263,46 @@ class Main extends luxe.Game {
 
     } //onmouseup
 
-    // var _lines:Array<LineGeometry>;
-    // var _first : Bool = true;
-    // public function prerender() {        
+    var _lines:Array<LineGeometry>;
+    var _first : Bool = true;
+    public function prerender() {        
 
-    //     if(_lines != null) {
-    //         _first = false;
-    //     } else {
-    //         _lines = [];
-    //     }
+        if(_lines != null) {
+            _first = false;
+        } else {
+            _lines = [];
+        }
 
-    //     Luxe.physics.dynamicsWorld.debugDrawWorld();
-    //     var verts = Luxe.physics.dynamicsWorld.getDebugDrawLineVertices();
+        Luxe.physics.bullet.dynamicsWorld.debugDrawWorld();
+        var verts = Luxe.physics.bullet.dynamicsWorld.getDebugDrawLineVertices();
 
-    //     var i = 0;
-    //     var _count = Std.int(verts.length/6);
-    //     for(i in 0 ... _count) {
-    //         //from.x,from.y,from.z 
-    //         //to.x,to.y,to.z
-    //         var _from = new Vector( verts[(i*6)+0], verts[(i*6)+1], verts[(i*6)+2] );
-    //         var _to = new Vector( verts[(i*6)+3], verts[(i*6)+4], verts[(i*6)+5] );
+        var i = 0;
+        var _count = Std.int(verts.length/6);
+        for(i in 0 ... _count) {
+            //from.x,from.y,from.z 
+            //to.x,to.y,to.z
+            var _from = new Vector( verts[(i*6)+0], verts[(i*6)+1], verts[(i*6)+2] );
+            var _to = new Vector( verts[(i*6)+3], verts[(i*6)+4], verts[(i*6)+5] );
 
-    //         if(_first) {
+            if(_first) {
                 
-    //             _lines.push(Luxe.draw.line({
-    //                 immediate : false,
-    //                 p0 : _from, p1 : _to,
-    //                 color : new Color(1,1,1,0.2),
-    //                 depth : 888,
-    //                 batcher : batch3d
-    //             }));
+                _lines.push(Luxe.draw.line({
+                    immediate : false,
+                    p0 : _from, p1 : _to,
+                    color : new Color(1,1,1,0.2),
+                    depth : 888,
+                    batcher : batch3d
+                }));
 
-    //         } else {
-    //             var _line = _lines[i];
-    //             _line.p0 = _from;
-    //             _line.p1 = _to;
-    //         }
+            } else {
+                var _line = _lines[i];
+                _line.p0 = _from;
+                _line.p1 = _to;
+            }
 
-    //     } //_v
+        } //_v
 
-    // } //postrender
+    } //postrender
 
     public function update(dt:Float) {
         
