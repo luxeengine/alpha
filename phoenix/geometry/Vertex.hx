@@ -25,4 +25,14 @@ class Vertex {
 
 	} //new
 
+	public function clone() : Vertex {
+
+		var _new = new Vertex( pos.clone(), color.clone(), normal.clone() );
+			_new.uv = uv.clone();
+
+		return _new;
+	
+	} //clone
+
+
 } //Vertex

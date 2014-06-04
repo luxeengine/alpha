@@ -21,11 +21,12 @@ class LineGeometry extends Geometry {
 			p0 = new Vector();
 			p1 = new Vector();
 
-
 		set(options);
-	}
+	
+	} //new
 
 	public function set_p0(_p:Vector) : Vector {
+
 		if(vertices.length == 0) return p0 = _p;
 
 			vertices[0].pos.x = _p.x;
@@ -33,9 +34,11 @@ class LineGeometry extends Geometry {
 			vertices[0].pos.z = _p.z;
 
 		return p0 = _p;
-	}
+
+	} //set_p0
 
 	public function set_p1(_p:Vector) : Vector {
+
 		if(vertices.length == 0) return p0 = _p;
 
 			vertices[1].pos.x = _p.x;
@@ -43,7 +46,8 @@ class LineGeometry extends Geometry {
 			vertices[1].pos.z = _p.z;
 
 		return p1 = _p;
-	}
+
+	} //set_p1
 
 	public function set(options:Dynamic) {
 
@@ -62,7 +66,7 @@ class LineGeometry extends Geometry {
         primitive_type = PrimitiveType.lines;
         immediate = options.immediate;
 
-	}
+	} //set
 	
 	
 } //LineGeometry

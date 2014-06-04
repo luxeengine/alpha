@@ -123,10 +123,21 @@ class LuxeNapeDebug {
         
         var g = new Geometry({});
 
-        g.primitive_type = phoenix.Batcher.PrimitiveType.line_loop;
-        
+        g.primitive_type = phoenix.Batcher.PrimitiveType.lines;
+            
+        var i = 0;
         for(v in polygon.worldVerts) {
+   
+
             g.add( new Vertex( new Vector(v.x, v.y), color ) );
+
+            if(i > 0) {
+                var vprev = polygon.worldVerts[i-1];
+                g.add( new Vertex( new Vector(vprev.x, vprev.y), color );
+            }
+
+            i++;
+
         }
 
         g.immediate = true;
