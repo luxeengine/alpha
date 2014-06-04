@@ -48,7 +48,7 @@ import phoenix.Shader;
 
 #end //!luxe_threading_disabled && luxe_native
 
-@:noCompletion class Core {
+@:noCompletion @:keep class Core {
 
         //core versioning
     public var version : String = '0.1';
