@@ -91,7 +91,7 @@ class Geometry {
 
     public var key : GeometryKey;
 
-    public function new( options:Dynamic ) {
+    public function new( ?options:Dynamic ) {
 
         uuid = Luxe.utils.uniqueid();
         id = uuid;
