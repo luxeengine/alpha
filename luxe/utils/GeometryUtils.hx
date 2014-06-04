@@ -2,6 +2,7 @@ package luxe.utils;
 
 import luxe.Core;
 import luxe.Vector;
+import phoenix.geometry.Geometry;
 
 
 class GeometryUtils {
@@ -51,6 +52,32 @@ class GeometryUtils {
         return c;
 
     } //point_in_polygon
+
+        //Note this function assumes _geometry is a 2D polygon and currently does 
+        //not take the geometry transform into account :todo:
+    public function point_in_geometry(_point:Vector, _geometry:Geometry ) : Bool {
+
+        var _offset = _geometry.transform.world.pos;
+        var _verts = _geometry.vertices;
+
+        var c : Bool = false;
+        var nvert : Int = _verts.length;
+        var j : Int = nvert - 1;
+
+        for(i in 0 ... nvert) {
+            
+            if ((( (_verts[i].pos.y+_offset.y) > _point.y) != ((_verts[j].pos.y+_offset.y) > _point.y)) &&
+               (_point.x < ( (_verts[j].pos.x+_offset.x) - (_verts[i].pos.x+_offset.x)) * (_point.y - (_verts[i].pos.y+_offset.y)) 
+                 / ( (_verts[j].pos.y+_offset.y) - (_verts[i].pos.y+_offset.y)) + (_verts[i].pos.x+_offset.x)) ) {
+                c = !c;
+            }
+            
+            j = i;
+        }
+
+        return c;
+
+    } //point_in_geometry
 
 
         //plane_point is a point on the plane (anywhere) , can be 0,0,0 for infinite plane.
