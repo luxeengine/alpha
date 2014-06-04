@@ -93,7 +93,7 @@ class Texture extends Resource {
         return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
     } //toString
 
-    @:noCompletion public function build(_size : Vector, _color: Color ) {
+    @:noCompletion public function build( _size : Vector, _color: Color ) {
 
         if(_size == null) _size = new Vector();
         if(_color == null) _color = new Color();
@@ -116,12 +116,24 @@ class Texture extends Resource {
                     _p.set(x,y);
                     set_pixel( _p, _color );
                 }
-            }
+            }   
 
+
+            // :todo : A test should be made for this
+
+                //Create
             texture = GL.createTexture();
+                //Now we can bind it
+            bind();
+                //And send GL the data
+            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
 
-            //upload it, :todo:#88:, this was legacy code
-            //from phoenix but it would be useful, to finish this.
+                //Set the properties
+            _set_filter( FilterType.linear );
+            _set_clamp( ClampType.edge );
+        
+                //clear up 
+            data = null;            
 
         } //if size is valid
 
