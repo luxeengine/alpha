@@ -54,7 +54,8 @@ class GeometryUtils {
     } //point_in_polygon
 
         //Note this function assumes _geometry is a 2D polygon,
-        //and doesn't
+        //and is currently slightly less efficient due to geometry not keeping 
+        //a transformed vert cache in it, which will be needed later :todo : 
     public function point_in_geometry( _point:Vector, _geometry:Geometry ) : Bool {
 
         var c : Bool = false;
