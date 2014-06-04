@@ -53,22 +53,22 @@ class GeometryUtils {
 
     } //point_in_polygon
 
-        //Note this function assumes _geometry is a 2D polygon and currently does 
-        //not take the geometry transform into account :todo:
-    public function point_in_geometry(_point:Vector, _geometry:Geometry ) : Bool {
-
-        var _offset = _geometry.transform.world.pos;
-        var _verts = _geometry.vertices;
+        //Note this function assumes _geometry is a 2D polygon,
+        //and doesn't
+    public function point_in_geometry( _point:Vector, _geometry:Geometry ) : Bool {
 
         var c : Bool = false;
-        var nvert : Int = _verts.length;
+        var nvert : Int = _geometry.vertices.length;
         var j : Int = nvert - 1;
 
         for(i in 0 ... nvert) {
+
+            var _vert_i_pos = _geometry.vertices[i].pos.clone().applyMatrix4( _geometry.transform.world.matrix );
+            var _vert_j_pos = _geometry.vertices[j].pos.clone().applyMatrix4( _geometry.transform.world.matrix );
             
-            if ((( (_verts[i].pos.y+_offset.y) > _point.y) != ((_verts[j].pos.y+_offset.y) > _point.y)) &&
-               (_point.x < ( (_verts[j].pos.x+_offset.x) - (_verts[i].pos.x+_offset.x)) * (_point.y - (_verts[i].pos.y+_offset.y)) 
-                 / ( (_verts[j].pos.y+_offset.y) - (_verts[i].pos.y+_offset.y)) + (_verts[i].pos.x+_offset.x)) ) {
+            if ((( (_vert_i_pos.y) > _point.y) != ((_vert_j_pos.y) > _point.y)) &&
+               (_point.x < ( (_vert_j_pos.x) - (_vert_i_pos.x)) * (_point.y - (_vert_i_pos.y)) 
+                 / ( (_vert_j_pos.y) - (_vert_i_pos.y)) + (_vert_i_pos.x)) ) {
                 c = !c;
             }
             
