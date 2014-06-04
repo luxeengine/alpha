@@ -112,13 +112,13 @@ class Geometry {
 
         if(options != null) {
             
-            state.depth             = options.depth == null     ? state.depth           : options.depth;
-            state.group             = options.group == null     ? state.group           : options.group;
-            state.texture           = options.texture == null   ? state.texture         : options.texture;          
-            state.clip              = options.clip == null      ? state.clip            : options.clip;
-            state.clip_rect         = options.clip_rect == null ? state.clip_rect       : options.clip_rect;
-            state.primitive_type    = options.type == null      ? state.primitive_type  : options.type;
-            state.shader            = options.shader == null    ? state.shader          : options.shader;
+            state.depth             = options.depth == null             ? state.depth           : options.depth;
+            state.group             = options.group == null             ? state.group           : options.group;
+            state.texture           = options.texture == null           ? state.texture         : options.texture;          
+            state.clip              = options.clip == null              ? state.clip            : options.clip;
+            state.clip_rect         = options.clip_rect == null         ? state.clip_rect       : options.clip_rect;
+            state.primitive_type    = options.primitive_type == null    ? state.primitive_type  : options.primitive_type;
+            state.shader            = options.shader == null            ? state.shader          : options.shader;
 
             id                      = (options.id == null)          ? uuid                : options.id;
 

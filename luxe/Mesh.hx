@@ -146,7 +146,7 @@ class Mesh {
 
         geometry = new Geometry({
             texture : texture,
-            type: PrimitiveType.triangles,
+            primitive_type: PrimitiveType.triangles,
             immediate : false,
             depth : 1 //:todo : optionise
         });
