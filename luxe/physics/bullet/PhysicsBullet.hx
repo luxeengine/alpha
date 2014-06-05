@@ -1,4 +1,4 @@
-package luxe.physics;
+package luxe.physics.bullet;
 
 #if haxebullet
 
@@ -9,24 +9,27 @@ package luxe.physics;
     import bullet.bulletDynamics.dynamics.BtDiscreteDynamicsWorld;
 
     import bullet.bulletDynamics.dynamics.BtRigidBody;
+    
+    import luxe.physics.bullet.DebugDraw;
 
     #if luxe_html5
 
         import bullet.AmmoBinding;
+        import luxe.Vector;
 
     #end //luxe_html5
 
     class PhysicsBullet extends luxe.Physics.PhysicsEngine {
 
+        public var debugdraw : DebugDraw;
         public var rate : Float = 0.0167;
         public var step_rate : Float = 0.0167;
         public var max_iterations : Int = 7;
-        public var do_debug_draw : Bool = true;
 
-        public var dynamicsWorld : BtDiscreteDynamicsWorld;
+        public var world : BtDiscreteDynamicsWorld;
 
         var broadphase : BtDbvtBroadphase;
-        var collisionConfiguration : BtDefaultCollisionConfiguration;
+        var config : BtDefaultCollisionConfiguration;
         var dispatcher : BtCollisionDispatcher;
         var solver : BtSequentialImpulseConstraintSolver;        
 
@@ -35,34 +38,36 @@ package luxe.physics;
                 // Build the broadphase
             broadphase = new BtDbvtBroadphase();
                 // Set up the collision configuration and dispatcher
-            collisionConfiguration = new BtDefaultCollisionConfiguration();
+            config = new BtDefaultCollisionConfiguration();
                 // And the collision dispatcher
-            dispatcher = new BtCollisionDispatcher( collisionConfiguration );
+            dispatcher = new BtCollisionDispatcher( config );
                 // The physics solver
             solver = new BtSequentialImpulseConstraintSolver();
                 // Create the world 
-            dynamicsWorld = new BtDiscreteDynamicsWorld( dispatcher, broadphase, solver, collisionConfiguration );
+            world = new BtDiscreteDynamicsWorld( dispatcher, broadphase, solver, config );
                 // Set the default gravity
-            dynamicsWorld.setGravity( new Vector( 0, -10, 0 ) );
+            gravity = new Vector( 0, -10, 0 );
+
+                // Create the debug draw
+            debugdraw = new DebugDraw();
 
         }  //init
 
-        public function setGravity( _gravity:luxe.Vector ) {
+        override function set_gravity( _gravity:Vector ) {
 
-            dynamicsWorld.setGravity( _gravity );
+            if(world != null) {
+                world.setGravity( _gravity );
+            }
+
+            return super.set_gravity(_gravity);
 
         } //setGravity
 
-        public function addRigidBody( _body:BtRigidBody ) {
+        public function add_rigidbody( _body:BtRigidBody ) {
 
-            dynamicsWorld.addRigidBody( _body );
+            world.addRigidBody( _body );
 
         } //addRigidBody
-
-        private function start_loop() {
-                //Set the fixed update to get started
-            // haxe.Timer.delay( fixedProcess, Std.int(rate*1000) );
-        } //start_loop
 
         public override function process() {
 
@@ -72,22 +77,28 @@ package luxe.physics;
 
                 Luxe.debug.start('physics');
                     //Update the simulation
-                dynamicsWorld.stepSimulation( rate, max_iterations, step_rate );       
+                world.stepSimulation( rate, max_iterations, step_rate );       
 
                 Luxe.debug.end('physics');
 
             } //paused 
 
-        } //fixedProcess
+            if(draw) {
+                debugdraw.clear();
+                debugdraw.draw( world );
+            }
+
+        } //process
 
         public override function destroy() {
 
             super.destroy();
 
-            dynamicsWorld.destroy();
+            debugdraw.destroy();
+            world.destroy();
             solver.destroy();
             dispatcher.destroy();
-            collisionConfiguration.destroy();
+            config.destroy();
             broadphase.destroy();            
 
         } //destroy

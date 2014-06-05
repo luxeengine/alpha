@@ -97,7 +97,7 @@ package luxe.components.physics.bullet.three;
             rigid_body = new BtRigidBody( collider.shape, mass, pos, _rotation, construct_info );
 
                 //Add to the world for updates
-            Luxe.physics.bullet.addRigidBody( rigid_body );
+            Luxe.physics.bullet.add_rigidbody( rigid_body );
 
         } //reset
 
