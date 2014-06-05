@@ -62,12 +62,16 @@ class Debug {
 
         trace_callbacks = new Map();
 
-        views = [
-            new TraceDebugView(),
-            new StatsDebugView(),
-            // new BatcherDebugView(),
-            new ProfilerDebugView()
-        ];
+        #if !no_debug_console
+            views = [
+                new TraceDebugView(),
+                new StatsDebugView(),
+                // new BatcherDebugView(),
+                new ProfilerDebugView()
+            ];
+        #else
+            views = [];
+        #end
 
         current_view = views[0];        
 
@@ -78,10 +82,14 @@ class Debug {
     } //init
 
     public function start(_name:String) {
-        ProfilerDebugView.start(_name);
+        #if !no_debug_console
+            ProfilerDebugView.start(_name);
+        #end
     }
     public function end(_name:String) {
-        ProfilerDebugView.end(_name);
+        #if !no_debug_console
+            ProfilerDebugView.end(_name);
+        #end
     }
 
     public function remove_trace_listener( _name:String ) {
@@ -110,45 +118,49 @@ class Debug {
 
     public function create_debug_console() {
 
-            //create the debug renderer and view
-        batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
-        view = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
-            //set the camera of the batcher
-        batcher.view = view;
-            //Also, set the layer so it renders last
-        batcher.layer = 999;
+        #if !no_debug_console
 
-        Luxe.renderer.add_batch( batcher );
+                //create the debug renderer and view
+            batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
+            view = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+                //set the camera of the batcher
+            batcher.view = view;
+                //Also, set the layer so it renders last
+            batcher.layer = 999;
 
-        overlay = new QuadGeometry({
-            x:0, y:0, 
-            w: Luxe.screen.w,  h: Luxe.screen.h,        
-            color : new Color(0,0,0,0.8),
-            depth : 999,    //debug depth
-            group : 999,    //debug group
-            visible : false //default invisible
-        });
+            Luxe.renderer.add_batch( batcher );
 
-            //add the geometry to the renderer
-        batcher.add(overlay);
+            overlay = new QuadGeometry({
+                x:0, y:0, 
+                w: Luxe.screen.w,  h: Luxe.screen.h,        
+                color : new Color(0,0,0,0.8),
+                depth : 999,    //debug depth
+                group : 999,    //debug group
+                visible : false //default invisible
+            });
 
-            //create the scene inspector
-        padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
-        debug_inspector = new Inspector({ 
-            title:'luxe debug', 
-            pos : new Vector(padding.x, padding.y),
-            size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
-            batcher : batcher
-        });
+                //add the geometry to the renderer
+            batcher.add(overlay);
 
-        debug_inspector.onrefresh = refresh;
+                //create the scene inspector
+            padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
+            debug_inspector = new Inspector({ 
+                title:'luxe debug', 
+                pos : new Vector(padding.x, padding.y),
+                size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
+                batcher : batcher
+            });
 
-            //no need to process this while we are here.
-        batcher.enabled = false;
+            debug_inspector.onrefresh = refresh;
 
-        for(view in views) {
-            view.create();
-        }
+                //no need to process this while we are here.
+            batcher.enabled = false;
+
+            for(view in views) {
+                view.create();
+            }
+
+        #end //no_debug_console
 
     } //create_debug_console
 
@@ -264,6 +276,10 @@ class Debug {
     var last_cursor_locked : Bool = false;
     
     public function show_console(_show:Bool = true) {
+
+        #if no_debug_console
+            return;
+        #end
 
         if(_show) {
             
