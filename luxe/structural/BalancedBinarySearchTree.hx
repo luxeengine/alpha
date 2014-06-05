@@ -299,15 +299,14 @@ class BalancedBinarySearchTree<K,T> {
 
     public function remove( _key:K ) : Bool {
 
-        // if both children of root are black, set root to red
+            // if both children of root are black, set root to red
         if( !is_red(root.left) && !is_red(root.right) ) {
             root.color = RED;
         }
 
-        //     //wondering about the search code of this 
-        // if(!contains(_key)) {
-        //     return false;
-        // }
+        if(!contains(_key)) {
+            return false;
+        }
 
         root = _remove(root, _key);
 
@@ -529,7 +528,7 @@ class BalancedBinarySearchTreeNode<K,T> {
 		nodecount = _nodecount;
 		color = _color;
         left = null;        
-        right = null;        
+        right = null;
 	} //new
 
 } //BalancedBinarySearchTreeNode

@@ -69,6 +69,13 @@ class Luxe {
 
     static function get_time() : Float { 
 
+            //:todo: Temporary until lumen
+        #if luxe_html5
+            if(js.Browser.window.performance != null) {
+                return js.Browser.window.performance.now()/1000.0;
+            }
+        #end 
+
         return haxe.Timer.stamp();
 
     } //get_time

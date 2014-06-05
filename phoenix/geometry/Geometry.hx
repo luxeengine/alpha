@@ -136,7 +136,7 @@ class Geometry {
 
         key = {
             uuid : uuid,
-            timestamp : haxe.Timer.stamp(),
+            timestamp : Luxe.time,
             primitive_type : state.primitive_type,
             texture : state.texture,
             shader : state.shader,
@@ -163,7 +163,7 @@ class Geometry {
 
     public function refresh_key() {
         key.uuid = uuid;
-        key.timestamp = haxe.Timer.stamp();
+        key.timestamp = Luxe.time;
         key.primitive_type = state.primitive_type;
         key.texture = state.texture;
         key.shader = state.shader;

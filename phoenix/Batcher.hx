@@ -302,6 +302,9 @@ class Batcher {
                 return "timestamp >";
             }
             case 17: {
+                return "timestamp ==";
+            }
+            case 18: {
                 return "fallback";
             }
         }
@@ -311,6 +314,7 @@ class Batcher {
     }
 
     public function compare_rule( a:GeometryKey, b:GeometryKey ) : Int {
+
         if(a.uuid == b.uuid) 
             { return 0; }
 
@@ -387,9 +391,11 @@ class Batcher {
             { return 15; }
         if( a.timestamp > b.timestamp ) 
             { return 16; }
+        if( a.timestamp == b.timestamp ) 
+            { return 17; }
 
             //otherwise push down the list because wtf
-        return 17;
+        return 18;
     }
 
     public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
@@ -475,7 +481,7 @@ class Batcher {
 
         if( a.timestamp < b.timestamp )
             { return -1; }
-        if( a.timestamp > b.timestamp )
+        if( a.timestamp >= b.timestamp )
             { return 1; }
 
             //otherwise push down the list because wtf
@@ -537,7 +543,7 @@ class Batcher {
         var countafter = geometry.size();
 
         if(countbefore == countafter) {
-            trace("GEOMETRY NOT REMOVED " + _geom.id);
+            trace("GEOMETRY NOT REMOVED " + _geom.key);
         }
 
         tree_changed = true;
