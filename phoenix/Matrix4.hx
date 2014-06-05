@@ -981,29 +981,30 @@ class Matrix4 {
 
     } //clone
 
-    public static function GetLeft( _m:Matrix4 ) : Vector {
-        return Matrix4.GetRight( _m ).inverted;
-    }
+    public function up() {
+        return new Vector( elements[4], elements[5], elements[10] );
+    } //up
 
-    public static function GetRight( _m:Matrix4 ) : Vector {
-        return new Vector( _m.elements[0], _m.elements[1], _m.elements[2] );
-    }
-     
-    public static function GetUp( _m:Matrix4 ) : Vector {
-        return new Vector( _m.elements[4], _m.elements[5], _m.elements[10] );
-    }
+    public function down() : Vector {
+        return up().inverted;
+    } //down
 
-    public static function GetDown( _m:Matrix4 ) : Vector {
-        return Matrix4.GetUp( _m ).inverted;
-    }
+    public function left() : Vector {
+        return right().inverted;
+    } //left
 
-    public static function GetForward( _m:Matrix4 ) : Vector {
-        return Matrix4.GetBackward( _m ).inverted;
-    }
+    public function right() : Vector {
+        return new Vector( elements[0], elements[1], elements[2] );
+    } //right
 
-    public static function GetBackward( _m:Matrix4 ) : Vector {
-        return new Vector( _m.elements[8], _m.elements[9], _m.elements[10] );
-    }
+    public function backward() {
+        return new Vector( elements[8], elements[9], elements[10] );
+    } //backward
+
+    public function forward() : Vector {
+        return backward().inverted;
+    } //forward
+
 
 } //Matrix4
 
