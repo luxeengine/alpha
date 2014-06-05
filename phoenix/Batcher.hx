@@ -543,7 +543,8 @@ class Batcher {
         var countafter = geometry.size();
 
         if(countbefore == countafter) {
-            trace("GEOMETRY NOT REMOVED " + _geom.key);
+            //:todo:#95: :temp: removing noise
+            // trace("GEOMETRY NOT REMOVED " + _geom.key);
         }
 
         tree_changed = true;
