@@ -15,8 +15,11 @@ import phoenix.RenderPath;
 import phoenix.geometry.Geometry;
     //default resources
 import phoenix.defaults.Shaders;
+
+#if !no_debug_console
 import phoenix.defaults.FontString;
 import phoenix.defaults.FontBytes;
+#end //no_debug_console
 
 import phoenix.Shader;
 import phoenix.Color;
@@ -106,6 +109,8 @@ class Renderer {
         default_batcher.layer = 1;
         add_batch(default_batcher);
 
+    #if !no_debug_console
+
             //create the default font
         default_font = new BitmapFont( resource_manager );
 
@@ -118,6 +123,8 @@ class Renderer {
 
         _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
             
+    #end //no_debug_console
+
         if(Luxe.core.lime.config.depth_buffer) {
                 // Enable z buffer use
             GL.enable(GL.DEPTH_TEST);
