@@ -142,8 +142,9 @@ class Draw {
         var _w = 0;
         var _h = 0;
 
-        var _tw = 1;
-        var _th = 1;
+            //this is an arbitrary default
+        var _tw = 64;
+        var _th = 64;
 
         if(options.texture != null) {
             _tw = options.texture.width;
@@ -171,8 +172,19 @@ class Draw {
 
         var _quad = new QuadGeometry(options);
 
-            //:todo : expose uv in options
-        _quad.uv( new Rectangle(0, 0, _tw, _th) );
+        var _ux = 0;
+        var _uy = 0;
+        var _uw = _tw;
+        var _uh = _th;
+
+        if(options.uv != null) {
+            _ux = options.uv.x;
+            _uy = options.uv.y;
+            _uw = options.uv.w;
+            _uh = options.uv.h;
+        }
+
+        _quad.uv( new Rectangle(_ux, _uy, _uw, _uh) );
 
             options.batcher.add(_quad, false);
 

@@ -1,4 +1,5 @@
 
+import luxe.Rectangle;
 import luxe.Text;
 import luxe.Vector;
 import luxe.Color;
@@ -9,6 +10,7 @@ import phoenix.geometry.RingGeometry;
 import phoenix.geometry.LineGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.RectangleGeometry;
+import phoenix.Texture;
 
 class Main extends luxe.Game {
 
@@ -137,7 +139,8 @@ class Main extends luxe.Game {
 
         });
 
-        var _texture = Luxe.loadTexture('assets/logo.png');
+        var _texture : Texture = Luxe.loadTexture('assets/logo.png');
+
         _texture.onload = function(t){
             Luxe.draw.texture({
                 pos : Luxe.screen.mid.subtract(new Vector(30,30)),
