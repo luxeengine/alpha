@@ -30,6 +30,12 @@ class Camera {
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (default,set) : Float = 1.0;
 
+    @:isVar public var near (default,set) : Float = 1000;
+    @:isVar public var far (default,set) : Float = -1000;
+        //specific to perspective
+    @:isVar public var fov (default,set) : Float = 60;
+    @:isVar public var aspect (default,set) : Float = 1.5;
+
         //we keep a local pos variable as an unaltered position
         //to keep the center relative to the viewport, and allow setting position as 0,0 not center
     @:isVar public var pos (get,set) : Vector;
@@ -42,17 +48,24 @@ class Camera {
     public var projection_matrix : Matrix4;
     public var view_matrix : Matrix4;
     public var view_matrix_inverse : Matrix4;
+        //if any, a rotation matrix for the look at rotation
+    public var look_at_matrix : Matrix4;
 
     public var options : CameraOptions;
-    public var perspective_options : ProjectionOptions;
-    public var ortho_options : ProjectionOptions;
     public var projection : ProjectionType;
 
-    public var target:Vector;
-    public var up:Vector;
+    @:isVar public var target (default,set) : Vector;
+    public var up : Vector;
 
     @:noCompletion public var projection_float32array : Float32Array;
     @:noCompletion public var view_inverse_float32array : Float32Array;
+
+        //when the transform changes, the camera needs to refresh the view matrix
+    var transform_dirty : Bool = true;
+        //when the projection changes we need to update refresh the matrix
+    var projection_dirty : Bool = true;
+        //when the target changes we can update the look at matrix
+    var look_at_dirty : Bool = true;
 
         //A phoenix camera will default to ortho set to screen size        
     public function new( ?_options:CameraOptions ) {
@@ -94,11 +107,10 @@ class Camera {
         projection_matrix = new Matrix4();
         view_matrix = new Matrix4();
         view_matrix_inverse = new Matrix4();
+        look_at_matrix = new Matrix4();
 
-        ortho_options = default_ortho_options();
-        perspective_options = default_perspective_options();
+        transform.listen(on_transform_cleaned);
 
-            //finally apply the projection specific defaults to the options
         apply_default_camera_options();
 
         switch (projection) {
@@ -107,198 +119,33 @@ class Camera {
                 set_ortho( options );
             case ProjectionType.perspective:
                 set_perspective( options );
-            case ProjectionType.custom: {}
-        }
+            case ProjectionType.custom: {
+
+            }
+
+        } //switch projection
         
     } //new 
 
-    function apply_default_camera_options() {
 
-        switch (projection) {
-
-            case ProjectionType.ortho: {
-
-                if(options.cull_backfaces == null) {
-                    options.cull_backfaces = false;
-                }
-
-                if(options.depth_test == null) {
-                    options.depth_test = false;
-                }
-
-            } //ortho
-
-            case ProjectionType.perspective: {
-
-                if(options.cull_backfaces == null) {
-                    options.cull_backfaces = true;
-                }
-
-                if(options.depth_test == null) {
-                    options.depth_test = true;
-                }
-
-            } //perspective
-
-            case ProjectionType.custom: {}
-
-        } //switch
-
-    } //apply_default_camera_options
-    function default_ortho_options() : ProjectionOptions {
-
-        return {
-            x1 : 0, 
-            y1 : 0,
-            x2 : Luxe.screen.w, 
-            y2 : Luxe.screen.h,
-            near : 1000, 
-            far: -1000
-        };
-
-    } //default_ortho_options 
-
-    function default_camera_options() : CameraOptions {
-
-        return {
-            projection : ProjectionType.ortho,
-            depth_test : false,
-            cull_backfaces : false,
-            x1 : 0, 
-            y1 : 0,
-            x2 : Luxe.screen.w, 
-            y2 : Luxe.screen.h,
-            near : 1000, 
-            far: -1000
-        };
-
-    } //default_camera_options 
-
-    function default_perspective_options() : ProjectionOptions {
-
-        return {
-            fov : 60,
-            aspect : 1.5,
-            near : 0.1,
-            far : 100
-        };
-
-    } //default_perspective_options
-    
-    public function process() {
-
-        switch(projection) {
-            case ProjectionType.perspective:
-                apply_perspective();
-            case ProjectionType.ortho:
-                apply_ortho();
-            case ProjectionType.custom: {}
-        }
-
-    } //process
+//Public API
 
 
-    public function update_look_at() {
-
-        var m1 = new Matrix4();
-        
-        m1.lookAt(target, pos, up);
-
-        rotation.setFromRotationMatrix( m1 );
-
-    } //update_look_at
-
-    function update_view_matrix() {
-            
-            //:todo:#82: the float32array can be updated only when the transform changes
-            //which will also need to happen for when the parent is dirty, so transform.dirty is not enough
-        view_matrix = transform.world.matrix;
-        view_matrix_inverse = view_matrix.inverse();
-
-        view_inverse_float32array = view_matrix_inverse.float32array();
-
-    } //update_view_matrix
-
-    function update_projection_matrix() {
-            
-            //:todo:#82: This doesn't need to be rebuilt every frame
-
-        switch(projection) {
-
-            case ProjectionType.perspective:
-                
-                projection_matrix.makePerspective(perspective_options.fov, perspective_options.aspect, perspective_options.near, perspective_options.far );
-
-            case ProjectionType.ortho:
-
-                projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, ortho_options.near, ortho_options.far);
-
-            case ProjectionType.custom: {}
-
-        } //switch
-
-        projection_float32array = projection_matrix.float32array();
-
-    } //update_projection_matrix
-
-    function apply_state(state:Int, value:Bool) {
-        if(value) {
-            Luxe.renderer.state.enable(state);
-        } else {
-            Luxe.renderer.state.disable(state);
-        }
-    } //apply_state
-
-    public function apply_ortho() {
-
-            //rebuild the projection matrix if needed
-        update_projection_matrix();        
-            //rebuild the view matrix if needed
-        update_view_matrix();
-
-            //apply states
-        apply_state(GL.CULL_FACE, options.cull_backfaces);
-        apply_state(GL.DEPTH_TEST, options.depth_test);
-        
-    } //apply_ortho
-
-    public function apply_perspective() {
-
-            //If we have a target, override the rotation BEFORE we update the matrix 
-        if(target != null) {
-            update_look_at();
-        } //target not null
-            
-            //rebuild the projection matrix if needed
-        update_projection_matrix();
-            //rebuild the view matrix if needed
-        update_view_matrix();
-
-            //apply states
-        apply_state(GL.CULL_FACE, options.cull_backfaces);
-        apply_state(GL.DEPTH_TEST, options.depth_test);
-
-    } //apply_perspective
-
-    public function set_ortho( options:ProjectionOptions ) {
+    public function set_ortho( _options:CameraOptions ) {
             
             //
-        _merge_options( ortho_options, options );
+        _merge_options( _options );
             //
         projection = ProjectionType.ortho;
-            //
-        apply_ortho();
 
     } //set_ortho
 
-    public function set_perspective( options:ProjectionOptions ) {
+    public function set_perspective( _options:CameraOptions ) {
 
             //
-        _merge_options( perspective_options, options );
+        _merge_options( _options );
             //
         projection = ProjectionType.perspective;
-            //
-        apply_perspective();
 
     } //set_perspective
 
@@ -354,6 +201,151 @@ class Camera {
 
     } //world_point_to_screen
 
+
+//Internal API
+
+
+    @:noCompletion public function process() {
+
+            //If we have a target, override the rotation
+            //before we update the matrix, so it can be applied immediately if changing
+            //:todo: target needs a test and should only update if the target changes
+        if(target != null) {
+            update_look_at();
+        } //target not null
+
+            //update transforms and projection
+        update_projection_matrix();
+        update_view_matrix();
+
+            //apply states
+        apply_state(GL.CULL_FACE, options.cull_backfaces);
+        apply_state(GL.DEPTH_TEST, options.depth_test);
+       
+    } //process
+
+//Transforms
+
+
+    function on_transform_cleaned( t:Transform ) {
+
+        transform_dirty = true;
+
+    } //on_transform_cleaned
+
+    function update_look_at() {        
+        
+        if(look_at_dirty && target != null) {
+
+            look_at_matrix.lookAt( target, pos, up );
+
+            rotation.setFromRotationMatrix( look_at_matrix );
+
+        } //dirty & !null
+
+    } //update_look_at
+
+    function update_view_matrix() {
+    
+        view_matrix = transform.world.matrix;
+
+        if(!transform_dirty) {
+            return;
+        }
+        
+        view_matrix_inverse = view_matrix.inverse();
+        view_inverse_float32array = view_matrix_inverse.float32array();
+
+        transform_dirty = false;
+
+    } //update_view_matrix
+
+    function update_projection_matrix() {
+            
+        if(!projection_dirty) {
+            return;
+        }
+
+        switch(projection) {
+
+            case ProjectionType.perspective:
+                projection_matrix.makePerspective( fov, aspect, near, far );
+            case ProjectionType.ortho:
+                projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, near, far );
+            case ProjectionType.custom: {}
+
+        } //switch
+
+        projection_float32array = projection_matrix.float32array();
+
+        projection_dirty = false;
+
+    } //update_projection_matrix
+
+
+//Helpers
+
+
+    function apply_state(state:Int, value:Bool) {
+
+        if(value) {
+            Luxe.renderer.state.enable(state);
+        } else {
+            Luxe.renderer.state.disable(state);
+        }
+
+    } //apply_state
+
+    function apply_default_camera_options() {
+
+        switch (projection) {
+
+            case ProjectionType.ortho: {
+
+                if(options.cull_backfaces == null) {
+                    options.cull_backfaces = false;
+                }
+
+                if(options.depth_test == null) {
+                    options.depth_test = false;
+                }
+
+            } //ortho
+
+            case ProjectionType.perspective: {
+
+                if(options.cull_backfaces == null) {
+                    options.cull_backfaces = true;
+                }
+
+                if(options.depth_test == null) {
+                    options.depth_test = true;
+                }
+
+            } //perspective
+
+            case ProjectionType.custom: {}
+
+        } //switch
+
+    } //apply_default_camera_options
+
+    function default_camera_options() : CameraOptions {
+
+        return {
+            projection : ProjectionType.ortho,
+            depth_test : false,
+            cull_backfaces : false,
+            near : 1000, 
+            far: -1000
+        };
+
+    } //default_camera_options 
+
+
+//Conversions
+
+
     function ortho_screen_to_world( _vector:Vector ) : Vector {
 
         update_view_matrix();
@@ -387,6 +379,55 @@ class Camera {
     } //persepective_world_point_to_screen
 
 
+//Properties
+
+    function set_target( _target:Vector ) : Vector {
+
+        if(_target != null) {
+            look_at_dirty = true;
+        }
+
+        return target = _target;
+
+    } //set_target
+    
+    function set_fov( _fov:Float ) : Float {
+
+        projection_dirty = true;
+        options.fov = _fov;
+
+        return fov = _fov;
+
+    } //set_fov
+
+    function set_aspect( _aspect:Float ) : Float {
+
+        projection_dirty = true;
+        options.aspect = _aspect;
+
+        return aspect = _aspect;
+
+    } //set_aspect
+
+    function set_near( _near:Float ) : Float {
+
+        projection_dirty = true;
+        options.near = _near;
+
+        return near = _near;
+
+    } //set_near
+
+    function set_far( _far:Float ) : Float {
+
+        projection_dirty = true;
+        options.far = _far;
+
+        return far = _far;
+
+    } //set_far
+
+
         //0.5 = smaller , 2 = bigger
     function set_zoom( _z:Float ) : Float {
 
@@ -417,7 +458,6 @@ class Camera {
         
         } //switch projection
 
-
             //return the real value
         return zoom = _new_zoom;
 
@@ -428,10 +468,10 @@ class Camera {
         switch(projection) {
 
             case ProjectionType.ortho:
-                
+
                     //setting the center is the same as setting the position relative to the viewport
                 pos = new Vector(_p.x - (viewport.w/2), _p.y - (viewport.h/2));
-                    
+
             case ProjectionType.perspective: {}
 
             case ProjectionType.custom: {}
@@ -494,6 +534,8 @@ class Camera {
 
     function set_pos( _p:Vector ) : Vector {
 
+        pos = _p;
+
         switch(projection) {
 
             case ProjectionType.ortho:
@@ -503,7 +545,7 @@ class Camera {
 
             case ProjectionType.perspective: 
 
-                transform.pos = pos = _p;
+                transform.pos = pos;
 
             case ProjectionType.custom: {}
         
@@ -514,42 +556,31 @@ class Camera {
     } //set_pos
 
 
-    private function _merge_options( projection_options:ProjectionOptions, options:ProjectionOptions ) {
+    function _merge_options( _options:CameraOptions ) {
 
         if(options.aspect != null) {
-            projection_options.aspect = options.aspect;
+            options.aspect = _options.aspect;
+            aspect = options.aspect;
         }
 
         if(options.far != null) {
-            projection_options.far = options.far;
+            options.far = _options.far;
+            far = options.far;
         }
 
         if(options.fov != null) {
-            projection_options.fov = options.fov;
+            options.fov = _options.fov;
+            fov = options.fov;
         }
 
         if(options.near != null) {
-            projection_options.near = options.near;
+            options.near = _options.near;
+            near = options.near;
         }
 
         if(options.viewport != null) {
-            projection_options.viewport = options.viewport;
-        }
-
-        if(options.x1 != null) {
-            projection_options.x1 = options.x1;
-        }
-
-        if(options.x2 != null) {
-            projection_options.x2 = options.x2;
-        }
-
-        if(options.y1 != null) {
-            projection_options.y1 = options.y1;
-        }
-
-        if(options.y2 != null) {
-            projection_options.y2 = options.y2;
+            options.viewport = _options.viewport;
+            viewport = options.viewport;
         }
 
     } //_merge_options

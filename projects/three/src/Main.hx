@@ -46,6 +46,7 @@ class Main extends luxe.Game {
     var rotation : Vector;
     var info : Text;
 
+    var follow : Bool = false;
 
     public function ready() {
 
@@ -71,6 +72,7 @@ class Main extends luxe.Game {
             projection: ProjectionType.perspective,
             fov:90, 
             near:0.01,
+            far:100,
             aspect:Luxe.screen.w/Luxe.screen.h
         });
 
@@ -217,6 +219,21 @@ class Main extends luxe.Game {
             create_cube();
         }
 
+        if(e.key == KeyValue.key_F) {
+            follow = !follow;
+            if(!follow) {
+                cam3d.view.target = null;
+            }
+        }
+
+        if(e.key == KeyValue.equals) {
+            cam3d.view.fov += 10;
+        }
+
+        if(e.key == KeyValue.minus) {
+            cam3d.view.fov -= 10;
+        }
+
         if(e.key == KeyValue.key_E) {
             ramp = !ramp;
             if(ramp) {
@@ -272,6 +289,10 @@ class Main extends luxe.Game {
 
     public function update(dt:Float) {
         
+        if(follow) {
+            cam3d.view.target = cube_rigidbody.rigid_body.origin;
+        }
+
     } //update
 
     public function destroyed() {

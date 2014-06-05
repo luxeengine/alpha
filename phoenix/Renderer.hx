@@ -85,7 +85,7 @@ class Renderer {
         // } );
 
             //The default view
-        default_camera = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+        default_camera = new Camera();
             //Create the default render path
         default_render_path = new RenderPath( this );
             //Apply it

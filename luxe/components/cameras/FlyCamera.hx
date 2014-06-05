@@ -88,37 +88,32 @@ class FlyCamera extends luxe.Camera {
                 //Update movement facing from mouse difference
             move_look(mouse_delta.x, mouse_delta.y);
 
-                //Make sure we clear values
-            pitch_rotation_matrix.identity();
-            yaw_rotation_matrix.identity();
+            var final_rotation : Matrix4 = null;
 
-                //rotating the yaw around the local Y (up) axis
-            // yaw_rotation_matrix.makeRotationAxis( up, yaw );
-            yaw_rotation_matrix.makeRotationY( yaw );
+                //Camera isn't looking at something
+            if(view.target == null) {
 
-                //update the right vector of our orientation
-            right.set(1,0,0);
-            right.applyMatrix4( yaw_rotation_matrix );
-            right.normalize();
+                    //Make sure we clear values
+                pitch_rotation_matrix.identity();
+                yaw_rotation_matrix.identity();
 
-                //Rotate the pitch around the right hand (local x) axis
-            pitch_rotation_matrix.makeRotationAxis( right, pitch );
+                    //rotating the yaw around the local Y (up) axis
+                yaw_rotation_matrix.makeRotationY( yaw );
 
-                //the combination of the yaw and pitch applied to a single rotation matrix
-            var final_rotation : Matrix4 = pitch_rotation_matrix.multiply(yaw_rotation_matrix);
+                    //update the right vector of our orientation
+                right = view.view_matrix.right();
 
-                //find the forward vector of our orientation
-            forward.set(0,0,-1);
-            forward.applyMatrix4( final_rotation );
-            forward.normalize();
+                    //Rotate the pitch around the right hand (local x) axis
+                pitch_rotation_matrix.makeRotationAxis( right, pitch );
 
-                //find the up vector of our orientation
-            up.set(0,1,0);
-            up.applyMatrix4( final_rotation );
-            up.normalize();
+                    //the combination of the yaw and pitch applied to a single rotation matrix
+                final_rotation = pitch_rotation_matrix.multiply(yaw_rotation_matrix);
 
-                //Apply it to the camera rotation
-            rotation = rotation.setFromRotationMatrix(final_rotation);
+                    //Apply it to the camera view
+                rotation = rotation.setFromRotationMatrix(final_rotation);
+
+            } 
+
                 //Make sure this stays set
             mouse_delta.set(0,0);
                 //Lock the cursor center screen so we can go in circles
@@ -144,6 +139,12 @@ class FlyCamera extends luxe.Camera {
 
             //update the position for the camera
         pos = newpos;
+
+            //once transform updates
+        right = view.view_matrix.right();
+        forward = view.view_matrix.forward();
+        up = view.view_matrix.up();
+
 
     } //update
 

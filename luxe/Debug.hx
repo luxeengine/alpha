@@ -122,7 +122,7 @@ class Debug {
 
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
-            view = new Camera({ projection:ProjectionType.ortho, x2 : Luxe.screen.w, y2 : Luxe.screen.h });
+            view = new Camera();
                 //set the camera of the batcher
             batcher.view = view;
                 //Also, set the layer so it renders last
@@ -242,8 +242,7 @@ class Debug {
     } //onkeydown
 
     public function onresize(e) {
-        view.set_ortho({ x2 : Luxe.screen.w, y2 : Luxe.screen.h });
-        //current_view.onresize(e);
+        view.viewport = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
     } //onresize
 
     function refresh() {

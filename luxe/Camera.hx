@@ -224,10 +224,9 @@ class Camera extends Entity {
             camera_type : view.projection.getName()            
         };
         
-        if(bounds != null)                                  _extra.bounds = bounds.serialized;
-        if(view.target != null)                             _extra.target = view.target.serialized;
-        if(view.projection == ProjectionType.ortho)         _extra.camera_options = view.perspective_options;
-        if(view.projection == ProjectionType.perspective)   _extra.camera_options = view.ortho_options;
+        if(bounds != null)          _extra.bounds = bounds.serialized;
+        if(view.target != null)     _extra.target = view.target.serialized;
+        if(options)                 _extra.options = view.options;
 
         return _merge_properties(_data, _extra);
 
