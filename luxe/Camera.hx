@@ -28,10 +28,11 @@ class Camera extends Entity {
     public var shaking : Bool = false;
     public var minimum_shake : Float = 0.1;
 
+    var update_view_pos : Vector;
+
     var _final_pos : Vector;
     var _rotation_radian : Vector;
     var _rotation_cache : Quaternion;
-
 
     public function new( ?options:LuxeCameraOptions ) {
 
@@ -60,7 +61,7 @@ class Camera extends Entity {
                 //Apply options
             view = options.view == null ? new phoenix.Camera( options ) : options.view;
 
-            //Update
+            //Start with the transform
         _final_pos = view.pos;
 
     } //new
@@ -140,7 +141,9 @@ class Camera extends Entity {
                 if(_pos.y > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h;
             }
 
-            view.pos = _pos;
+                //flag for update
+            update_view_pos = _pos;
+
         }
 
     } //set_pos_from_transform
@@ -179,7 +182,7 @@ class Camera extends Entity {
         if(shaking) {
 
                 //start at our base position
-            _final_pos.set_xyz( pos.x, pos.y, pos.z );
+            _final_pos.set_xyz( transform.pos.x, transform.pos.y, transform.pos.z );
 
                 //get a random direction
             shake_vector = Luxe.utils.geometry.random_point_in_unit_circle();
@@ -201,10 +204,15 @@ class Camera extends Entity {
                 //add the shake to the final position and apply it to the view
             _final_pos.set_xyz(_final_pos.x+shake_vector.x, _final_pos.y+shake_vector.y, _final_pos.z+shake_vector.z);
 
-                //finally set the position to the camera
-            view.pos = _final_pos;
+                //tell it to update the view
+            update_view_pos = _final_pos;
 
         } //shaking
+
+        if(update_view_pos != null) {
+            view.pos = update_view_pos;
+            update_view_pos = null;
+        }
 
     } //update
 
