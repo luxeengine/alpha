@@ -128,7 +128,58 @@ class Draw {
             options.batcher.add(_circle);
 
         return _circle;
+
     } //circle
+
+    public function texture(options:Dynamic) {
+
+        options = default_options(options);
+
+        if(options.id == null) { options.id = 'texture.geometry'; };
+
+        var _x = 0;
+        var _y = 0;
+        var _w = 0;
+        var _h = 0;
+
+        var _tw = 1;
+        var _th = 1;
+
+        if(options.texture != null) {
+            _tw = options.texture.width;
+            _th = options.texture.height;
+
+            if(options.size == null) {
+                _w = _tw;
+                _h = _th;
+            }
+        }
+
+        if(options.pos != null) {
+            _x = options.pos.x;
+            _y = options.pos.y;
+        }
+        if(options.size != null) {
+            _w = options.size.x;
+            _h = options.size.y;
+        }
+
+        options.x = _x;
+        options.y = _y;
+        options.w = _w;
+        options.h = _h;
+
+        var _quad = new QuadGeometry(options);
+
+            //:todo : expose uv in options
+        _quad.uv( new Rectangle(0, 0, _tw, _th) );
+
+            options.batcher.add(_quad, false);
+
+        return _quad;
+
+
+    } //texture
 
     public function ngon(options:Dynamic) : Geometry {
 

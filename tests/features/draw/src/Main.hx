@@ -125,7 +125,7 @@ class Main extends luxe.Game {
 
         Luxe.draw.text({
             color : new Color(1,1,1,1),
-            pos : Luxe.screen.mid,
+            pos : Luxe.screen.mid.add(new Vector(0,50)),
             size : 24,
             text : 
 "Luxe.draw.ring({
@@ -136,6 +136,15 @@ class Main extends luxe.Game {
 });\n"
 
         });
+
+        var _texture = Luxe.loadTexture('assets/logo.png');
+        _texture.onload = function(t){
+            Luxe.draw.texture({
+                pos : Luxe.screen.mid.subtract(new Vector(30,30)),
+                texture : _texture,
+                size : new Vector(60,60)
+            });
+        }
 
     } //ready
   
@@ -162,15 +171,16 @@ class Main extends luxe.Game {
         Luxe.draw.rectangle({
                 //this line is important, as each frame it will create new geometry!
             immediate : true,
-            x : mouse.x, y : mouse.y,
-            w : 120,
-            h : 120,
+            x : mouse.x-85, y : mouse.y,
+            w : 170,
+            h : 32,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5)
         });
 
         Luxe.draw.text({
                 //this line is important, as each frame it will create new geometry!
             immediate:true,
+            align : TextAlign.center,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5),
             pos : mouse,
             text : Luxe.dt
