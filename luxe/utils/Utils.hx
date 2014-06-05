@@ -24,7 +24,7 @@ class Utils {
     }  //new
 
     public function uniqueid() : String {
-        return haxe.crypto.Md5.encode(Std.string(haxe.Timer.stamp()*Math.random()));
+        return haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
     } //uniqueid
 
     public function uuid() : String {

@@ -115,7 +115,7 @@ class Main extends luxe.Game {
         world_mouse = Luxe.camera.screen_point_to_world( e.pos );
         view_mouse = Luxe.camera.world_point_to_screen( world_mouse );
 
-        if( mouse_down && !dragging && haxe.Timer.stamp() > drag_time ) {
+        if( mouse_down && !dragging && Luxe.time > drag_time ) {
             dragging = true;
             drag_start = e.pos;
             drag_start_rotation = e.pos.rotationTo(Luxe.screen.mid);
@@ -158,7 +158,7 @@ class Main extends luxe.Game {
     public function onmousedown( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             mouse_down = true;
-            drag_time = haxe.Timer.stamp() + drag_allowance;
+            drag_time = Luxe.time + drag_allowance;
         }
     }
 
@@ -178,7 +178,7 @@ class Main extends luxe.Game {
             mouse_down = false;
             dragging = false;
                 //did dragging time happen?
-            if(haxe.Timer.stamp() < drag_time) {
+            if(Luxe.time < drag_time) {
                 Luxe.camera.shake( 2+(Std.random(100) ));
             } else {
                 //do nothing

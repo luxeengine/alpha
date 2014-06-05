@@ -56,7 +56,7 @@ class TransientState extends State {
     public function enabled( duration:Float ) {
 
         trace("enabled transient state, will end in " + duration + 's' );
-        start = haxe.Timer.stamp();
+        start = Luxe.time;
         Luxe.timer.schedule( duration, function(){
             trace(" duration complete, disabling ");
             disable();
@@ -66,7 +66,7 @@ class TransientState extends State {
 
     public function update(dt:Float) {
 
-        trace("inside transient update : " + luxe.utils.Maths.fixed((haxe.Timer.stamp() - start),3) );
+        trace("inside transient update : " + luxe.utils.Maths.fixed((Luxe.time - start),3) );
 
     } //update
     

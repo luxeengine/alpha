@@ -182,7 +182,7 @@ class Texture extends Resource {
         //Create from the bytes from Assets.getBytes() or other method
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
 
-        var start = haxe.Timer.stamp();
+        var start = Luxe.time;
         // trace(_asset_bytes);
 
         var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
@@ -251,7 +251,7 @@ class Texture extends Resource {
         image_bytes = null;
         data = null; //:todo : - sven use lock/unlock
 
-        // trace('texture.create took ' + (haxe.Timer.stamp() - start));
+        // trace('texture.create took ' + (Luxe.time - start));
 
     } //create_from_bytes
 

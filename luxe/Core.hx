@@ -160,7 +160,7 @@ import phoenix.Shader;
         scene.reset();
 
             //otherwise we get a wild value for first hit
-        end_dt = haxe.Timer.stamp();
+        end_dt = Luxe.time;
 
     } //on_main_frame_created
 
@@ -268,7 +268,7 @@ import phoenix.Shader;
     public function update() { 
 
         #if luxe_fullprofile 
-            _debug('on_update ' + haxe.Timer.stamp(), true, true);
+            _debug('on_update ' + Luxe.time, true, true);
         #end //luxe_fullprofile
 
         if(has_shutdown) return;
@@ -353,11 +353,11 @@ import phoenix.Shader;
 //Update delta time
 
             //work out the last frame time
-        dt = (Luxe.fixed_timestep != 0) ? Luxe.fixed_timestep : (haxe.Timer.stamp() - end_dt);
+        dt = (Luxe.fixed_timestep != 0) ? Luxe.fixed_timestep : (Luxe.time - end_dt);
             //store the timescaled version for external
         Luxe.dt = dt * Luxe.timescale;
             //store the latest time frame
-        end_dt = haxe.Timer.stamp();
+        end_dt = Luxe.time;
 
     } //update
 

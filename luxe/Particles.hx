@@ -333,7 +333,7 @@ class ParticleEmitter extends Component {
         emit_next = 0;
 
         if(duration != -1) {
-            finish_time = haxe.Timer.stamp() + duration;
+            finish_time = Luxe.time + duration;
         }
     } 
 
@@ -461,7 +461,7 @@ class ParticleEmitter extends Component {
 
         if( active ) { // && emission_rate > 0
             // trace("updating " + name);
-            emit_timer = haxe.Timer.stamp();
+            emit_timer = Luxe.time;
 
             if( emit_timer > emit_next ) {                
                 emit_next = emit_timer + emit_time; 

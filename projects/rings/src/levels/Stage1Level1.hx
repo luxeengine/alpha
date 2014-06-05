@@ -510,7 +510,7 @@ class Stage1Level1 extends State {
         // trace("shooting at " + range_angle + ' with power ' + Vector.Subtract(p1,player.pos).length );
         if(success) return; 
 
-        var now = haxe.Timer.stamp();            
+        var now = Luxe.time;
         if(now >= shoot_time) {
             shoot_time = now + 0.4;                
         } else {

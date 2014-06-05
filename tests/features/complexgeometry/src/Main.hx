@@ -74,7 +74,7 @@ class Main extends luxe.Game {
                 //add to the renderer
             Luxe.addGeometry( geom );
 
-            next_anim = haxe.Timer.stamp() + anim_delay;
+            next_anim = Luxe.time + anim_delay;
 
             // geom.locked = true;
 
@@ -129,8 +129,8 @@ class Main extends luxe.Game {
         if(!loaded) return;
 
             //animate the tile
-        if(haxe.Timer.stamp() > next_anim) {
-            next_anim = haxe.Timer.stamp() + anim_delay;
+        if(Luxe.time > next_anim) {
+            next_anim = Luxe.time + anim_delay;
             geom.quad_uv( big_quad, new Rectangle( (rowx * 16), (rowy * 16), 16, 16));
             rowx++;
             if(rowx == 14) {

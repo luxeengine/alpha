@@ -87,7 +87,7 @@ class Parcel extends luxe.ResourceManager {
 
     public function load() {
 
-        time_start_load = haxe.Timer.stamp();
+        time_start_load = Luxe.time;
 
         total_items =
             texture_list.length +
@@ -803,7 +803,7 @@ class Parcel extends luxe.ResourceManager {
     function do_complete() {
 
             //figure out how long
-        time_to_load = haxe.Timer.stamp() - time_start_load;
+        time_to_load = Luxe.time - time_start_load;
 
             //tell the creator
         if( options.oncomplete != null ) {
@@ -816,7 +816,7 @@ class Parcel extends luxe.ResourceManager {
 
     function single_item_complete( item:Resource ) {
 
-        item.time_to_load = haxe.Timer.stamp() - item.time_created;
+        item.time_to_load = Luxe.time - item.time_created;
 
         current_count++;
 

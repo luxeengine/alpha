@@ -159,22 +159,22 @@ class Main extends luxe.Game {
 
     public function update(dt:Float) {
 
-        // Luxe.draw.rectangle({
-        //         //this line is important, as each frame it will create new geometry!
-        //     immediate : true,
-        //     x : mouse.x, y : mouse.y,
-        //     w : 120,
-        //     h : 120,
-        //     color : new Color(Math.random(),Math.random(),Math.random(),0.5)
-        // });
+        Luxe.draw.rectangle({
+                //this line is important, as each frame it will create new geometry!
+            immediate : true,
+            x : mouse.x, y : mouse.y,
+            w : 120,
+            h : 120,
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5)
+        });
 
-        // Luxe.draw.text({
-        //         //this line is important, as each frame it will create new geometry!
-        //     immediate:true,
-        //     color : new Color(Math.random(),Math.random(),Math.random(),0.5),
-        //     pos : mouse,
-        //     text : Luxe.dt
-        // });
+        Luxe.draw.text({
+                //this line is important, as each frame it will create new geometry!
+            immediate:true,
+            color : new Color(Math.random(),Math.random(),Math.random(),0.5),
+            pos : mouse,
+            text : Luxe.dt
+        });
 
     } //update
 

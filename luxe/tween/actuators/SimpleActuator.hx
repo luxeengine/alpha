@@ -50,7 +50,7 @@ class SimpleActuator extends GenericActuator {
         setVisible = false;
         toggleVisible = false;
         
-        startTime = haxe.Timer.stamp();
+        startTime = Luxe.time;
         
         super (target, duration, properties);
         
@@ -427,7 +427,7 @@ class SimpleActuator extends GenericActuator {
     private static function on_internal_update( dt : Float) : Void {
         
         update_timer += dt;
-        current_time = haxe.Timer.stamp();
+        current_time = Luxe.time;
 
         var currentTime = current_time;
         

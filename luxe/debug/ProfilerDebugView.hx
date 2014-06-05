@@ -58,7 +58,7 @@ class ProfilerDebugView extends luxe.debug.DebugView {
             lists.set(_id, _item);
         }
     
-        _item.start = haxe.Timer.stamp();
+        _item.start = Luxe.time;
     }
 
     public static function end(_id:String) {
@@ -113,7 +113,7 @@ private class ProfilerValue {
 
     public function set() {
 
-        var _t = haxe.Timer.stamp() - start;
+        var _t = Luxe.time - start;
 
             //adjust by any offsets
         for(_offset in offsets) {

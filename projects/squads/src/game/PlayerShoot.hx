@@ -76,9 +76,9 @@ class PlayerShoot extends Component {
 
     public function update() {
         if(firing) {
-            if(haxe.Timer.stamp() > next_fire) {
+            if(Luxe.time > next_fire) {
                 fire();
-                next_fire = haxe.Timer.stamp() + weapon.rate;
+                next_fire = Luxe.time + weapon.rate;
             } //if we passed the fire rate
         } //firing still true?
     } //update

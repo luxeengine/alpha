@@ -6,32 +6,32 @@ class Main extends luxe.Game {
 
     public function ready() {
         
-        var _time : Float = haxe.Timer.stamp();
+        var _time : Float = Luxe.time;
         
         for(i in 0 ... 10000) {
-            var _s = haxe.crypto.Sha1.encode(Std.string(haxe.Timer.stamp()*Math.random()));
+            var _s = haxe.crypto.Sha1.encode(Std.string(Luxe.time*Math.random()));
             // Sys.println(_s);
         }
 
-        trace('Sha1 ' + (haxe.Timer.stamp() - _time));
+        trace('Sha1 ' + (Luxe.time - _time));
 
-        _time = haxe.Timer.stamp();
+        _time = Luxe.time;
 
         for(i in 0 ... 10000) {
             var _s = Luxe.utils.uniqueid();
             // Sys.println(_s);
         }
         
-        trace('UUID ' + (haxe.Timer.stamp() - _time)); 
+        trace('UUID ' + (Luxe.time - _time)); 
 
-        _time = haxe.Timer.stamp();
+        _time = Luxe.time;
 
         for(i in 0 ... 10000) {
-            var _s = haxe.crypto.Md5.encode(Std.string(haxe.Timer.stamp()*Math.random()));
+            var _s = haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
             // Sys.println(_s);
         }
         
-        trace('md5 ' + (haxe.Timer.stamp() - _time));
+        trace('md5 ' + (Luxe.time - _time));
 
     } //ready
 

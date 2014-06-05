@@ -35,7 +35,7 @@ class Resource {
         type = _type;
         
         time_to_load = _load_time;
-        time_created = haxe.Timer.stamp();
+        time_created = Luxe.time;
 
         manager.add( this );
 

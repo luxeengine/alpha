@@ -112,11 +112,11 @@ class RandomCameraShaker extends Component {
     } //shake
 
     private function set_shake() {
-        next_shake = haxe.Timer.stamp() + (2+(Math.random()*3));   
+        next_shake = Luxe.time + (2+(Math.random()*3));   
     } //set_shake
 
     public function update(dt:Float) {
-        if(next_shake < haxe.Timer.stamp()) {
+        if(next_shake < Luxe.time) {
             Luxe.camera.shake(4);
             set_shake();
         }        
