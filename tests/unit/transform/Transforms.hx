@@ -123,18 +123,20 @@ class Transforms extends Mohxa {
                     var rot_callback = false;
                     var sca_callback = false;
 
-                    t1.pos_changed = function(v){
+                    t1.listen_pos(function(v){
                         log('pos changed ' + v);
                         pos_callback = true;
-                    }
-                    t1.rotation_changed = function(r){
+                    });
+
+                    t1.listen_rotation(function(r){
                         log('rotation changed ' + r);
                         rot_callback = true;
-                    }
-                    t1.scale_changed = function(s){
+                    });
+
+                    t1.listen_scale(function(s){
                         log('scale changed ' + s);
                         sca_callback = true;
-                    }
+                    });
 
                     log('resetting local transforms for callbacks to happen');
 

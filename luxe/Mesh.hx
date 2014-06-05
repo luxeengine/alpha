@@ -28,9 +28,9 @@ class Mesh {
         }
 
         transform = new Transform();
-        transform.pos_changed = set_pos_from_transform;
-        transform.rotation_changed = set_rotation_from_transform;
-        transform.scale_changed = set_scale_from_transform;
+        transform.listen_pos(set_pos_from_transform);
+        transform.listen_rotation(set_rotation_from_transform);
+        transform.listen_scale(set_scale_from_transform);
 
         var _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
 

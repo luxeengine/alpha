@@ -57,23 +57,23 @@ class Spatial {
 
     } //set_matrix
 
-    function propogate_pos( _p:Vector ) {
+    function propagate_pos( _p:Vector ) {
         if(pos_changed != null && !ignore_listeners) {
             pos_changed(_p);
         }
-    } //propogate pos
+    } //propagate pos
 
-    function propogate_rotation( _r:Quaternion ) {
+    function propagate_rotation( _r:Quaternion ) {
         if(rotation_changed != null && !ignore_listeners) {
             rotation_changed(_r);
         }
-    } //propogate rotation
+    } //propagate rotation
 
-    function propogate_scale( _s:Vector ) {
+    function propagate_scale( _s:Vector ) {
         if(scale_changed != null && !ignore_listeners) {
             scale_changed(_s);
         }
-    } //propogate scale
+    } //propagate scale
 
     function set_pos( _p:Vector ) {
 
@@ -81,7 +81,7 @@ class Spatial {
 
         Vector.listen( pos, _pos_change );
 
-        propogate_pos(pos);
+        propagate_pos(pos);
 
         return pos;
 
@@ -93,7 +93,7 @@ class Spatial {
 
         Quaternion.listen( rotation, _rotation_change );
 
-        propogate_rotation(rotation);
+        propagate_rotation(rotation);
 
         return rotation;
 
@@ -105,7 +105,7 @@ class Spatial {
 
         Vector.listen( scale, _scale_change );
 
-        propogate_scale(scale);
+        propagate_scale(scale);
 
         return scale;
 
@@ -130,19 +130,21 @@ class Transform extends Objects {
     @:isVar public var world (get,set) : Spatial;
     @:isVar public var origin (get,set) : Vector;
 
-        //Called when local values are changed 
-    public var pos_changed : Vector -> Void;
-    public var rotation_changed : Quaternion -> Void;
-    public var scale_changed : Vector -> Void;    
-    public var origin_changed : Vector -> Void;    
-    public var parent_changed : Transform -> Void;    
+    //     //Multiple of these can be assigned each
+    // public var on_changed           (never, set) : Transform -> Void;
+    // public var pos_changed          (never, set) : Vector -> Void;
+    // public var rotation_changed     (never, set) : Quaternion -> Void;
+    // public var scale_changed        (never, set) : Vector -> Void;    
+    // public var origin_changed       (never, set) : Vector -> Void;    
+    // public var parent_changed       (never, set) : Transform -> Void;
 
         //alias to local.pos, local.rotation, local.scale
     public var pos                  (get,set) : Vector;
     public var rotation             (get,set) : Quaternion;
     public var scale                (get,set) : Vector;    
-
-        //true if the transform needs refreshing
+    
+        //true if the transform needs refreshing,
+        //starts true since there are no values
     public var dirty : Bool = true;
 
     var _origin_undo_matrix : Matrix4;
@@ -150,6 +152,14 @@ class Transform extends Objects {
     var _rotation_matrix : Matrix4;
     var _setup : Bool = true;
     var _cleaning : Bool = false;
+
+        //List of handler functions
+    var _change_handlers : Array< Transform->Void >;
+    var _pos_handlers : Array< Vector->Void >;
+    var _rotation_handlers : Array< Quaternion->Void >;
+    var _scale_handlers : Array< Vector->Void >;
+    var _origin_handlers : Array< Vector->Void >;
+    var _parent_handlers : Array< Transform->Void >;
 
     public function new() {
 
@@ -164,8 +174,16 @@ class Transform extends Objects {
         _pos_matrix = new Matrix4();
         _rotation_matrix = new Matrix4();
 
+        _change_handlers = [];
+        _pos_handlers = [];
+        _rotation_handlers = [];
+        _scale_handlers = [];
+        _origin_handlers = [];
+        _parent_handlers = [];
+
         origin = new Vector();
 
+            //Whenever the local transform changes we need to know
         local.pos_changed = on_local_pos_change;
         local.rotation_changed = on_local_rotation_change;
         local.scale_changed = on_local_scale_change;
@@ -179,7 +197,7 @@ class Transform extends Objects {
         
         dirty = true;
         
-        if(pos_changed != null) { pos_changed(v); }
+        propagate_pos( v );
 
     } //local pos changed
         
@@ -187,7 +205,7 @@ class Transform extends Objects {
         
         dirty = true;
 
-        if(rotation_changed != null) { rotation_changed(r); }
+        propagate_rotation( r );
 
     } //local rotation changed
 
@@ -195,9 +213,15 @@ class Transform extends Objects {
 
         dirty = true;
 
-        if(scale_changed != null) { scale_changed(s); }
+        propagate_scale( s );
 
     } //local scale changed
+
+    function on_parent_cleaned( p:Transform ) {
+
+        dirty = true;
+
+    } //on_parent_cleaned
 
     function get_local() : Spatial {
 
@@ -220,13 +244,14 @@ class Transform extends Objects {
         //whenever the world transform is requested, make sure it's up to date
     function get_world() : Spatial {
 
-            //make sure the parent is updated before 
-            //trying to clean our values
+            //make sure the parent is updated 
+
         if(parent != null) {
-            dirty = true;
+
             if(parent.dirty) {                
                 parent.clean();
             } //parent.dirty
+
         } //parent != null
 
         if(dirty && !_cleaning) {
@@ -278,6 +303,8 @@ class Transform extends Objects {
         dirty = false;
         _cleaning = false;
 
+        propagate_change();
+
     } //clean
 
     function get_origin() : Vector {
@@ -292,9 +319,7 @@ class Transform extends Objects {
 
         origin = o;
 
-        if(origin_changed != null) {
-            origin_changed(origin);
-        }
+        propagate_origin( origin );
 
         return origin;
 
@@ -318,10 +343,19 @@ class Transform extends Objects {
 
         dirty = true;
 
+            //clear existing listener
+        if(parent != null) {
+            parent.unlisten(on_parent_cleaned);
+        }
+
         parent = _p;
 
-        if(parent_changed != null) {
-            parent_changed(parent);
+        propagate_parent( parent );
+
+        if(parent != null) {
+            //we need to know when the parent transform is changed, this makes us dirty,
+            //and since each full clean can clear the dirty flag, we use this to make sure it's always synced
+            parent.listen(on_parent_cleaned);
         }
 
         return parent;
@@ -330,22 +364,124 @@ class Transform extends Objects {
 
     function get_pos() {
         return local.pos;
-    }
+    } //get_pos
+
     function get_rotation() {
         return local.rotation;
-    }
+    } //get_rotation
+
     function get_scale() {
         return local.scale;
-    }
+    } //get_scale
+
 
     function set_pos(value:Vector) {
         return local.pos = value;
-    }
+    } //set_pos
+
     function set_rotation(value:Quaternion) {
         return local.rotation = value;
-    }
+    } //set_rotation
+
     function set_scale(value:Vector) {
         return local.scale = value;
-    }
+    } //set_scale
+
+
+    function propagate_change() {
+        for(_handler in _change_handlers) {
+            if(_handler != null) {
+                _handler(this);
+            }
+        }
+    } //propagate change
+
+    function propagate_pos( _pos:Vector ) {
+        for(_handler in _pos_handlers) {
+            if(_handler != null) {
+                _handler(_pos);
+            }
+        }
+    } //propagate pos
+
+    function propagate_rotation( _rotation:Quaternion ) {
+        for(_handler in _rotation_handlers) {
+            if(_handler != null) {
+                _handler(_rotation);
+            }
+        }
+    } //propagate rotation
+
+    function propagate_scale( _scale:Vector ) {
+        for(_handler in _scale_handlers) {
+            if(_handler != null) {
+                _handler(_scale);
+            }
+        }
+    } //propagate scale
+
+    function propagate_origin( _origin:Vector ) {
+        for(_handler in _origin_handlers) {
+            if(_handler != null) {
+                _handler(_origin);
+            }
+        }
+    } //propagate origin
+
+    function propagate_parent( _parent:Transform ) {
+        for(_handler in _parent_handlers) {
+            if(_handler != null) {
+                _handler(_parent);
+            }
+        }
+    } //propagate parent
+
+    public function listen( _handler : Transform->Void ) {
+        _change_handlers.push( _handler );
+    } //listen
+
+    public function unlisten( _handler : Transform->Void ) {
+        _change_handlers.remove( _handler );
+    } //unlisten
+
+    public function listen_pos( _handler : Vector->Void ) {
+        _pos_handlers.push( _handler );
+    } //listen_pos
+
+    public function unlisten_pos( _handler : Vector->Void ) {
+        return _pos_handlers.remove( _handler );
+    } //unlisten_pos
+
+    public function listen_scale( _handler : Vector->Void ) {
+        _scale_handlers.push( _handler );
+    } //listen_scale
+
+    public function unlisten_scale( _handler : Vector->Void ) {
+        return _scale_handlers.remove( _handler );
+    } //unlisten_scale
+
+    public function listen_rotation( _handler : Quaternion->Void ) {
+        _rotation_handlers.push( _handler );
+    } //listen_rotation
+
+    public function unlisten_rotation( _handler : Quaternion->Void ) {
+        return _rotation_handlers.remove( _handler );
+    } //unlisten_rotation
+
+    public function listen_origin( _handler : Vector->Void ) {
+        _origin_handlers.push( _handler );
+    } //listen_origin
+
+    public function unlisten_origin( _handler : Vector->Void ) {
+        return _origin_handlers.remove( _handler );
+    } //unlisten_origin
+
+    public function listen_parent( _handler : Transform->Void ) {
+        _parent_handlers.push( _handler );
+    } //listen_parent
+
+    public function unlisten_parent( _handler : Transform->Void ) {
+        _parent_handlers.remove( _handler );
+    } //unlisten_parent
 
 } //Transform

@@ -68,11 +68,11 @@ class Entity extends Objects {
         transform = new Transform();
 
             //listen for transform changes
-        transform.pos_changed = set_pos_from_transform;
-        transform.scale_changed = set_scale_from_transform;
-        transform.origin_changed = set_origin_from_transform;
-        transform.parent_changed = set_parent_from_transform;
-        transform.rotation_changed = set_rotation_from_transform;
+        transform.listen_pos(set_pos_from_transform);
+        transform.listen_scale(set_scale_from_transform);
+        transform.listen_origin(set_origin_from_transform);
+        transform.listen_parent(set_parent_from_transform);
+        transform.listen_rotation(set_rotation_from_transform);
 
         if(options != null) {
     
