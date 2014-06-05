@@ -69,14 +69,13 @@ class Luxe {
 
     static function get_time() : Float { 
 
-            //:todo:#95: :temp: Temporary fix for identical timestamps
-            //causing batcher removal to fail
+            //:todo:temp: until lumen timestamp, use higher precision on html5 where possible
         #if luxe_html5
 
             if(js.Browser.window.performance != null) {
                 return js.Browser.window.performance.now()/1000.0;
             }
-            
+
         #end //luxe_html5
 
         return haxe.Timer.stamp();

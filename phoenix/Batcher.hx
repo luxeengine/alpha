@@ -305,6 +305,12 @@ class Batcher {
                 return "timestamp ==";
             }
             case 18: {
+                return "sequence <";
+            }
+            case 19: {
+                return "sequence >";
+            }
+            case 20: {
                 return "fallback";
             }
         }
@@ -394,8 +400,13 @@ class Batcher {
         if( a.timestamp == b.timestamp ) 
             { return 17; }
 
+        if( a.sequence < b.sequence ) 
+            { return 18; }
+        if( a.sequence > b.sequence ) 
+            { return 19; }
+
             //otherwise push down the list because wtf
-        return 18;
+        return 20;
     }
 
     public function geometry_compare( a:GeometryKey, b:GeometryKey ) : Int {
@@ -407,6 +418,7 @@ class Batcher {
                 //primitive type
                 //clipping
                 //age
+                //sequence/fallback
 
             //check equality
         if(a.uuid == b.uuid) 
@@ -483,6 +495,10 @@ class Batcher {
             { return -1; }
         if( a.timestamp >= b.timestamp )
             { return 1; }
+        if( a.sequence < b.sequence ) 
+            { return -1; }
+        if( a.sequence > b.sequence ) 
+            { return 1; }
 
             //otherwise push down the list because wtf
         return 1;
@@ -543,8 +559,8 @@ class Batcher {
         var countafter = geometry.size();
 
         if(countbefore == countafter) {
-            //:todo:#95: :temp: removing noise
-            // trace("GEOMETRY NOT REMOVED " + _geom.key);
+            //:todo: this fail state should never happen but it comes up on html5 rarely
+            // throw("GEOMETRY NOT REMOVED " + _geom.key);
         }
 
         tree_changed = true;

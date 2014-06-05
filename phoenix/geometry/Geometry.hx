@@ -22,6 +22,7 @@ import lime.gl.GLBuffer;
 
 typedef GeometryKey = {
     var timestamp : Float;
+    var sequence : Int;
     var uuid : String;
     var primitive_type : PrimitiveType;
     var texture : Texture;
@@ -91,6 +92,10 @@ class Geometry {
 
     public var key : GeometryKey;
 
+        //This is a failsafe against all other geometry key values being identical
+        //causing comparisons in a binary tree to fail. This value is never reset intentionally.
+    static var _sequence_key : Int = -1;
+
     public function new( ?options:Dynamic ) {
 
         uuid = Luxe.utils.uniqueid();
@@ -134,16 +139,19 @@ class Geometry {
             
         } //options != null
 
+        _sequence_key++;
+
         key = {
             uuid : uuid,
             timestamp : Luxe.time,
+            sequence : _sequence_key,
             primitive_type : state.primitive_type,
             texture : state.texture,
             shader : state.shader,
             group : state.group,
             depth : state.depth,
             clip : state.clip
-        };
+        };        
 
         transform.id = uuid;
         transform.name = id;
@@ -153,6 +161,7 @@ class Geometry {
     public function key_string() {
         return 
             'ts: '+ key.timestamp + '\n' +
+            'sequence: '+ key.sequence + '\n' +
             'primitive_type: '+ key.primitive_type + '\n' +
             'texture: '+ (key.texture == null ? 'null' : key.texture.id) + '\n' +
             'shader: '+ (key.shader == null ? 'null' : key.shader.id) + '\n' +
@@ -162,8 +171,12 @@ class Geometry {
     }
 
     public function refresh_key() {
+        
+        // _sequence_key++;
+
         key.uuid = uuid;
         key.timestamp = Luxe.time;
+        key.sequence = _sequence_key;
         key.primitive_type = state.primitive_type;
         key.texture = state.texture;
         key.shader = state.shader;
