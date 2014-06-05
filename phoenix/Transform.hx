@@ -130,14 +130,6 @@ class Transform extends Objects {
     @:isVar public var world (get,set) : Spatial;
     @:isVar public var origin (get,set) : Vector;
 
-    //     //Multiple of these can be assigned each
-    // public var on_changed           (never, set) : Transform -> Void;
-    // public var pos_changed          (never, set) : Vector -> Void;
-    // public var rotation_changed     (never, set) : Quaternion -> Void;
-    // public var scale_changed        (never, set) : Vector -> Void;    
-    // public var origin_changed       (never, set) : Vector -> Void;    
-    // public var parent_changed       (never, set) : Transform -> Void;
-
         //alias to local.pos, local.rotation, local.scale
     public var pos                  (get,set) : Vector;
     public var rotation             (get,set) : Quaternion;
@@ -194,7 +186,7 @@ class Transform extends Objects {
 
         //when the local transforms change we become dirty
     function on_local_pos_change( v:Vector ) {
-        
+            
         dirty = true;
         
         propagate_pos( v );
