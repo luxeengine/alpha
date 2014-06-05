@@ -19,6 +19,7 @@ class FlyCamera extends luxe.Camera {
     public var move_right : Bool;
     
     public var move_speed : Float = 5;
+    public var move_speed_scale : Float = 1;
     public var sensitivity_x : Float = 0.0025;
     public var sensitivity_y : Float = 0.0025;
 
@@ -75,9 +76,9 @@ class FlyCamera extends luxe.Camera {
         }
 
             //start from our existing position
-        newpos.set(pos.x, pos.y, pos.z);        
+        newpos.set(pos.x, pos.y, pos.z);
 
-        var move_diff = move_speed * dt;
+        var move_diff = move_speed * move_speed_scale * dt;
 
         if(mouse_delta.x != 0 || mouse_delta.y != 0) {
 
@@ -117,7 +118,7 @@ class FlyCamera extends luxe.Camera {
             up.normalize();
 
                 //Apply it to the camera rotation
-            view.transform.rotation = view.transform.rotation.setFromRotationMatrix(final_rotation);
+            rotation = rotation.setFromRotationMatrix(final_rotation);
                 //Make sure this stays set
             mouse_delta.set(0,0);
                 //Lock the cursor center screen so we can go in circles
@@ -236,6 +237,10 @@ class FlyCamera extends luxe.Camera {
             move_right = true;
         }
 
+        if(e.value == Input.Keys.shift) {
+            move_speed_scale = 4;
+        }
+
     } //onkeydown
 
     public function onkeyup(e) {
@@ -251,6 +256,9 @@ class FlyCamera extends luxe.Camera {
         }
         if(e.value == Input.Keys.right || e.value == Input.Keys.key_D) {
             move_right = false;
+        }
+        if(e.value == Input.Keys.shift) {
+            move_speed_scale = 1;
         }
 
     } //onkeyup
