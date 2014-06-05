@@ -83,8 +83,10 @@ class Main extends luxe.Game {
 
             //Apply it to our mesh renderer
         batch3d.view = cam3d.view;
+            //Apply it to the physics handler debug view
+        batch3d.add(Luxe.physics.bullet.debugdraw.geometry);
             //Load the mesh files
-        load_level_into( batch3d );
+        load_level_into( );
             //Add camera to scene
         Luxe.scene.add( cam3d );
 
@@ -107,23 +109,26 @@ class Main extends luxe.Game {
             p0 : new Vector(0+10, 0, 0-10),
             p1 : new Vector(0+10, 0, 0+10),
             batcher : batch3d
-        });
+        });        
 
-    } //derp
+    } //ready
 
     var room_mesh : Entity;
-    var transform_mesh : Entity;
-    var cube_mesh : Entity;
+    var transform_mesh : Entity;    
     var plane_entity : Entity;
 
-    var cube_rigidbody_component : RigidBody;
-    var cube_mesh_component : MeshComponent;
+        //current rigidbody for interaction
+    var cube_rigidbody : RigidBody;
 
-    public function load_level_into(_batch:Batcher) {
-      
-        _batch.view.pos.x = 0;
-        _batch.view.pos.y = 0;
-        _batch.view.pos.z = 0;
+    var cubes : Array<Entity>;
+
+    public function load_level_into() {
+        
+        cubes = [];
+
+        batch3d.view.pos.x = 0;
+        batch3d.view.pos.y = 0;
+        batch3d.view.pos.z = 0;
 
         var roommesh = new Mesh({
             file: 'assets/test_scene_0.obj', 
@@ -153,37 +158,51 @@ class Main extends luxe.Game {
 
                 transform_mesh.get('mesh').file = 'assets/transform.obj';
                 transform_mesh.get('mesh').texture = tex2; 
-                transform_mesh.get('mesh').batcher = _batch;
+                transform_mesh.get('mesh').batcher = batch3d;
 
-        cube_mesh = Luxe.scene.create(Entity, 'sphere');
-
-            cube_mesh_component = cube_mesh.add(MeshComponent, 'mesh');
-
-                cube_mesh.get('mesh').file = 'assets/cube.obj';
-                cube_mesh.get('mesh').texture = tex4; 
-                cube_mesh.get('mesh').batcher = _batch;
-
-            //finally , add a cube collider and rigidbody to the cube entity
-         var block_collider = cube_mesh.add(BoxCollider, 'collider');
-
-            block_collider.width = 1;
-            block_collider.height = 1;
-            block_collider.depth = 1;
-
-         cube_rigidbody_component = cube_mesh.add(RigidBody, 'rigidbody');
-
-            cube_rigidbody_component.pos = new Vector(0,10,0);
-            cube_rigidbody_component.mass = 1;
-            cube_rigidbody_component.restitution = 1.3;
-            cube_rigidbody_component.friction = 1.5;
-            cube_rigidbody_component.linearDamping = 0.05;
+        create_cube();
 
     } //load level
+
+    function create_cube() {
+
+            //Add a cube
+        var cube = Luxe.scene.create(Entity, 'cube' + cubes.length);
+
+            var cube_mesh = cube.add(MeshComponent, 'mesh');
+
+                cube_mesh.file = 'assets/cube.obj';
+                cube_mesh.texture = tex4; 
+                cube_mesh.batcher = batch3d;
+
+                //Add a cube collider
+            var collider = cube.add(BoxCollider, 'collider');
+
+                collider.width = 1;
+                collider.height = 1;
+                collider.depth = 1;
+
+            //Add a cube rigidbody
+        var _cube_rigidbody = cube.add(RigidBody, 'rigidbody');
+
+            _cube_rigidbody.pos = new Vector(0,10,0);
+            _cube_rigidbody.mass = 1;
+            _cube_rigidbody.restitution = 1.3;
+            _cube_rigidbody.friction = 1.5;
+            _cube_rigidbody.linearDamping = 0.05;
+
+        if(cube_rigidbody == null) {
+            cube_rigidbody = _cube_rigidbody;
+        }
+
+        cubes.push(cube);
+
+    } //create_cube
 
     public function onkeydown( e:KeyEvent ) {
 
         if(e.key == KeyValue.key_Q) {
-            cam3d.shake(1);
+            cam3d.shake(2);
         }
 
         if(e.key == KeyValue.escape) {
@@ -191,7 +210,11 @@ class Main extends luxe.Game {
         }
 
         if(e.key == KeyValue.space) {
-            Luxe.physics.bullet.pause( !Luxe.physics.bullet.paused );
+            Luxe.physics.bullet.paused = !Luxe.physics.bullet.paused;
+        }
+
+        if(e.key == KeyValue.key_C) {
+            create_cube();
         }
 
         if(e.key == KeyValue.key_E) {
@@ -214,27 +237,11 @@ class Main extends luxe.Game {
     public function onkeyup(e:KeyEvent) {
 
         if(e.key == KeyValue.key_R) {
-            cube_rigidbody_component.rigid_body.origin = new Vector(0,10,0);
-            cube_rigidbody_component.rigid_body.linearVelocity = new Vector(0,0,0);
-            cube_rigidbody_component.rigid_body.angularVelocity = new Vector(0,0,0);
-            cube_rigidbody_component.rigid_body.activate();
+            cube_rigidbody.rigid_body.origin = new Vector(0,10,0);
+            cube_rigidbody.rigid_body.linearVelocity = new Vector(0,0,0);
+            cube_rigidbody.rigid_body.angularVelocity = new Vector(0,0,0);
+            cube_rigidbody.rigid_body.activate();
         } //key_R
-
-        if(e.key == KeyValue.key_1) {
-            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,0,0).radians());
-        } //key_4
-        if(e.key == KeyValue.key_2) {
-            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,90,0).radians());
-        } //key_4
-        if(e.key == KeyValue.key_3) {
-            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,-90,0).radians());
-        } //key_4
-        if(e.key == KeyValue.key_4) {
-            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(90,0,0).radians());
-        } //key_5
-        if(e.key == KeyValue.key_5) {
-            cube_mesh_component.mesh.rotation = new Quaternion().setFromEuler(new Vector(0,0,90).radians());
-        } //key_5
 
         cam3d.onkeyup(e);
 
@@ -249,8 +256,8 @@ class Main extends luxe.Game {
     public function onmousedown(e) {
 
         if(e.button == MouseButton.left) {
-            cube_rigidbody_component.rigid_body.activate();
-            cube_rigidbody_component.rigid_body.applyImpulse( Vector.MultiplyVector( cam3d.forward, new Vector(10,10,10)) , new Vector() );
+            cube_rigidbody.rigid_body.activate();
+            cube_rigidbody.rigid_body.applyImpulse( Vector.MultiplyVector( cam3d.forward, new Vector(10,10,10)) , new Vector() );
         } else {
             info.text = cam3d.pos + ' ' + cam3d.rotation; 
         }
@@ -262,47 +269,6 @@ class Main extends luxe.Game {
         cam3d.onmouseup(e);
 
     } //onmouseup
-
-    var _lines:Array<LineGeometry>;
-    var _first : Bool = true;
-    public function prerender() {        
-
-        if(_lines != null) {
-            _first = false;
-        } else {
-            _lines = [];
-        }
-
-        Luxe.physics.bullet.dynamicsWorld.debugDrawWorld();
-        var verts = Luxe.physics.bullet.dynamicsWorld.getDebugDrawLineVertices();
-
-        var i = 0;
-        var _count = Std.int(verts.length/6);
-        for(i in 0 ... _count) {
-            //from.x,from.y,from.z 
-            //to.x,to.y,to.z
-            var _from = new Vector( verts[(i*6)+0], verts[(i*6)+1], verts[(i*6)+2] );
-            var _to = new Vector( verts[(i*6)+3], verts[(i*6)+4], verts[(i*6)+5] );
-
-            if(_first) {
-                
-                _lines.push(Luxe.draw.line({
-                    immediate : false,
-                    p0 : _from, p1 : _to,
-                    color : new Color(1,1,1,0.2),
-                    depth : 888,
-                    batcher : batch3d
-                }));
-
-            } else {
-                var _line = _lines[i];
-                _line.p0 = _from;
-                _line.p1 = _to;
-            }
-
-        } //_v
-
-    } //postrender
 
     public function update(dt:Float) {
         
