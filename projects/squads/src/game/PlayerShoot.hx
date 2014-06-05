@@ -41,7 +41,7 @@ class PlayerShoot extends Component {
                     serialize : false,
                     texture : bullet_texture,
                     visible : false,
-                    depth : 7
+                    depth : 4
                 }); 
 
                     //set the bullet fixed rate
