@@ -157,7 +157,7 @@ import phoenix.Shader;
         scene.init();
             //We can also call start, for now, as this will be deferred later
             //when there is a restart etc
-        scene.start();
+        scene.reset();
 
             //otherwise we get a wild value for first hit
         end_dt = haxe.Timer.stamp();

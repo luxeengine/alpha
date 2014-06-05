@@ -1,6 +1,7 @@
 package luxe;
 
 import luxe.Input;
+import luxe.options.EntityOptions;
 
 class Scene extends Objects {
 
@@ -9,7 +10,7 @@ class Scene extends Objects {
     public var started : Bool = false;
 
     var _delayed_init_entities : Array<Entity>;
-    var _delayed_start_entities : Array<Entity>;
+    var _delayed_reset_entities : Array<Entity>;
 
     public var entitycount (get, null) : Int = 0;
 
@@ -18,7 +19,7 @@ class Scene extends Objects {
         name = 'Untitled Scene';
         entities = new Map<String,Entity>();        
         _delayed_init_entities = [];
-        _delayed_start_entities = [];
+        _delayed_reset_entities = [];
     }
 
     public function toString() {
@@ -31,7 +32,7 @@ class Scene extends Objects {
 
     } //entitycount
 
-    public function create<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
+    public function create<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:EntityOptions<T2> ) : T1 {
 
         var _temp_name = _name;
 
@@ -41,18 +42,29 @@ class Scene extends Objects {
             _temp_name = _name;
         }
 
+            //we need to force the entity not to add itself
+            //to any scene, because we want to add it manually
+            //below, for logging purposes it will have its name etc
+            //attached already. This is ok to force values
+            //because it was called on an existing scene.create()
+        if(_data == null) {
+            _data = { no_scene : true };
+        } else {
+            _data.no_scene = true;
+        }
+
             //create an instance
-        _debug("creating entity with " + type + " and data " + _data);
+        _debug("/ scene / creating entity with " + type + " and data " + _data);
+
         var _entity = Type.createInstance( type, [ _data ] );
             //cast to entity so we can set its name
         var _e_entity : Entity = cast _entity;
             //apply it!
         _e_entity.name = _temp_name;        
-
             //add it to this scene
         add(_e_entity);
 
-        _debug("scene: created and added entity to scene " + type + " named " + _temp_name + " with " + _data );
+        _debug("/ scene / created and added entity to scene " + type + " named " + _temp_name + " with " + _data );
 
             //entity
         return _entity;
@@ -61,26 +73,29 @@ class Scene extends Objects {
     public function add( entity:Entity ) {
 
         if(entity == null) {
-            throw "scene: can't put entity in a scene if the entity is null.";
+            throw "/ scene / can't put entity in a scene if the entity is null.";
         }
 
-        _debug("scene: adding entity to scene " + name + " called " + entity.name + " with id " + entity.id );
+        _debug("/ scene / adding entity to scene " + name + " called " + entity.name + " with id " + entity.id );
 
         entities.set( entity.id, entity );
 
         entity.scene = this;
 
         if(inited) {
+            _debug('/ scene / adding a delayed entity to init list ' + entity.name);
             _delayed_init_entities.push(entity);            
         } //inited
 
-        if(started) {            
-            _delayed_start_entities.push(entity);
+        if(started) {
+            _debug('/ scene / adding a delayed entity to reset list ' + entity.name);
+            _delayed_reset_entities.push(entity);
         } //started
 
     } //add
 
     function list_entities() {
+        trace("/ scene / entity list");
         for(entity in entities) {
             trace("\tentity : " + entity.name + " / " + entity.id);
         }
@@ -89,7 +104,7 @@ class Scene extends Objects {
     public function remove( entity:Entity ) : Bool {
 
         if(entity == null) {
-            throw "scene: can't remove entity from a scene if the entity is null.";
+            throw "/ scene / can't remove entity from a scene if the entity is null.";
         }
 
         if(entity.scene == this) {
@@ -98,7 +113,7 @@ class Scene extends Objects {
             return entities.remove( entity.id );
             
         } else {
-            _debug("scene: can't remove the entity from this scene, it is not mine (entity.scene != this)");
+            _debug("/ scene / can't remove the entity from this scene, it is not mine (entity.scene != this)");
             return false;
         }
 
@@ -107,7 +122,7 @@ class Scene extends Objects {
     } //remove
 
     public function empty() {
-        trace("scene : cleaning up entities in scene");
+        trace("/ scene / cleaning up entities in scene");
         for(entity in entities) {
             if(entity != null) {
                 remove(entity);
@@ -115,7 +130,7 @@ class Scene extends Objects {
                 entity = null;
             }
         }
-        trace("\tentities left " + Lambda.count(entities));
+        trace("/ scene / \tentities left " + Lambda.count(entities));
     }
 
 //Keys
@@ -253,7 +268,7 @@ class Scene extends Objects {
         for(entity in entities) {
             if(entity != null) {
                 if(!entity.inited) {
-                    _debug('calling init on ' + entity.name);
+                    _debug('/ scene / calling init on an entity : ' + entity.name);
                     entity._init();
                 }
             }
@@ -280,7 +295,7 @@ class Scene extends Objects {
 
         //If entities are created during start they will
         // be inited and started in the next available frame 
-    public function start() {        
+    public function reset() {
 
         for(entity in entities) {
             if(entity != null) {
@@ -290,7 +305,7 @@ class Scene extends Objects {
 
         started = true;
         
-    } //start
+    } //reset
 
     public function update(dt:Float) {
 
@@ -318,18 +333,24 @@ class Scene extends Objects {
 
     function handle_delayed_additions() {
             
+        if(_delayed_init_entities.length != 0 || _delayed_reset_entities.length != 0) {
+            _debug("/ scene / delayed entities in scene will init/reset now! " + _delayed_init_entities.length + ' / ' + _delayed_reset_entities.length);
+        }
+
         if(_delayed_init_entities.length > 0) {
             for(entity in _delayed_init_entities) {
+                _debug('/ scene / \t handling late entity init ' + entity.name);
                 entity._init();
             }
             _delayed_init_entities.splice(0, _delayed_init_entities.length);
         }
 
-        if(_delayed_start_entities.length > 0) {
-            for(entity in _delayed_start_entities) {
+        if(_delayed_reset_entities.length > 0) {
+            for(entity in _delayed_reset_entities) {
+                _debug('/ scene / \t handling late entity reset ' + entity.name);
                 entity._reset();
             }
-            _delayed_start_entities.splice(0, _delayed_start_entities.length);
+            _delayed_reset_entities.splice(0, _delayed_reset_entities.length);
         } 
 
     } //handle_delayed_additions
