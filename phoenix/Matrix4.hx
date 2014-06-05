@@ -378,7 +378,7 @@ class Matrix4 {
 
         var te = elements;
         
-        _z = Vector.Subtract( _eye, _target ).normalized;
+        _z = Vector.Subtract( _target, _eye ).normalized;
 
             if ( _z.length == 0 ) {
                 _z.z = 1;
