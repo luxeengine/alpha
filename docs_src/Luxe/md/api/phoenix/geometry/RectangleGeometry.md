@@ -35,8 +35,6 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="key"><a class="lift" href="#key">key</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">key : [phoenix.geometry.GeometryKey](#phoenix.geometry.GeometryKey)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="matrix"><a class="lift" href="#matrix">matrix</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">matrix : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="state"><a class="lift" href="#state">state</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">state : [phoenix.geometry.GeometryState](#phoenix.geometry.GeometryState)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="static_normal_buffer"><a class="lift" href="#static_normal_buffer">static\_normal\_buffer</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">static\_normal\_buffer : [lime.gl.GLBuffer]()</code><br/></span>
@@ -48,6 +46,8 @@
             <a name="static_vertex_buffer"><a class="lift" href="#static_vertex_buffer">static\_vertex\_buffer</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">static\_vertex\_buffer : [lime.gl.GLBuffer]()</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="submitted"><a class="lift" href="#submitted">submitted</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">submitted : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="transform"><a class="lift" href="#transform">transform</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">transform : [phoenix.Transform](#phoenix.Transform)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="uuid"><a class="lift" href="#uuid">uuid</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">uuid : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
@@ -64,10 +64,10 @@
             <a name="add"><a class="lift" href="#add">add</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">add(v:<span>[phoenix.geometry.Vertex](#phoenix.geometry.Vertex)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="batch"><a class="lift" href="#batch">batch</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">batch(vertlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, tcoordlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, colorlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, normallist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="batch"><a class="lift" href="#batch">batch</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">batch(vert\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, tcoord\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, color\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, normal\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, vertlist:<span>[lime.utils.Float32Array]()</span>, tcoordlist:<span>[lime.utils.Float32Array]()</span>, colorlist:<span>[lime.utils.Float32Array]()</span>, normallist:<span>[lime.utils.Float32Array]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="batch_into_float32array"><a class="lift" href="#batch_into_float32array">batch\_into\_float32array</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">batch\_into\_float32array(vert\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, tcoord\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, color\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, normal\_index:<span>[Int](http://api.haxe.org/Int.html)</span>, vertlist:<span>[lime.utils.Float32Array]()</span>, tcoordlist:<span>[lime.utils.Float32Array]()</span>, colorlist:<span>[lime.utils.Float32Array]()</span>, normallist:<span>[lime.utils.Float32Array]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="batch_into_arrays"><a class="lift" href="#batch_into_arrays">batch\_into\_arrays</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">batch\_into\_arrays(vertlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, tcoordlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, colorlist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>, normallist:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="drop"><a class="lift" href="#drop">drop</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">drop(?remove:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -89,15 +89,6 @@
         </span>
     <span class="method apipage">
             <a name="get_locked"><a class="lift" href="#get_locked">get\_locked</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">get\_locked() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_pos"><a class="lift" href="#get_pos">get\_pos</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">get\_pos() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_rotation"><a class="lift" href="#get_rotation">get\_rotation</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">get\_rotation() : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_scale"><a class="lift" href="#get_scale">get\_scale</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">get\_scale() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="get_shader"><a class="lift" href="#get_shader">get\_shader</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">get\_shader() : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat"></span>
@@ -136,18 +127,6 @@
             <a name="set_locked"><a class="lift" href="#set_locked">set\_locked</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">set\_locked(\_locked:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set_origin"><a class="lift" href="#set_origin">set\_origin</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">set\_origin(\_origin:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_pos"><a class="lift" href="#set_pos">set\_pos</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">set\_pos(\_position:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_rotation"><a class="lift" href="#set_rotation">set\_rotation</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">set\_rotation(\_rotation:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_scale"><a class="lift" href="#set_scale">set\_scale</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">set\_scale(\_scale:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="set_shader"><a class="lift" href="#set_shader">set\_shader</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">set\_shader(val:<span>[phoenix.Shader](#phoenix.Shader)</span>) : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -182,15 +161,7 @@
         </span><span class="property apipage">
             <a name="locked"><a class="lift" href="#locked">locked</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">locked : [Bool]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
-            <a name="origin"><a class="lift" href="#origin">origin</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">origin : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="pos"><a class="lift" href="#pos">pos</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">pos : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
             <a name="primitive_type"><a class="lift" href="#primitive_type">primitive\_type</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">primitive\_type : [phoenix.PrimitiveType]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">rotation : [phoenix.Quaternion]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="scale"><a class="lift" href="#scale">scale</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">scale : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="shader"><a class="lift" href="#shader">shader</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">shader : [phoenix.Shader]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">

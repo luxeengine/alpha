@@ -27,6 +27,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="fonts"><a class="lift" href="#fonts">fonts</a></a><code class="signature apipage">fonts : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="jsons"><a class="lift" href="#jsons">jsons</a></a><code class="signature apipage">jsons : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="render_textures"><a class="lift" href="#render_textures">render\_textures</a></a><code class="signature apipage">render\_textures : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="resources"><a class="lift" href="#resources">resources</a></a><code class="signature apipage">resources : [Int](http://api.haxe.org/Int.html)</code><br/></span>

@@ -25,6 +25,8 @@
 <h3>Members</h3> <hr/><span class="member apipage">
             <a name="audio"><a class="lift" href="#audio">audio</a></a><span class="inline-block static">static</span><code class="signature apipage">audio : [luxe.Audio](#luxe.Audio)</code><br/></span>
         <span class="small_desc_flat">Access to the audio features</span><span class="member apipage">
+            <a name="build"><a class="lift" href="#build">build</a></a><span class="inline-block static">static</span><code class="signature apipage">build : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat">The version + build meta information</span><span class="member apipage">
             <a name="camera"><a class="lift" href="#camera">camera</a></a><span class="inline-block static">static</span><code class="signature apipage">camera : [luxe.Camera](#luxe.Camera)</code><br/></span>
         <span class="small_desc_flat">Access to the default camera</span><span class="member apipage">
             <a name="core"><a class="lift" href="#core">core</a></a><span class="inline-block static">static</span><code class="signature apipage">core : [luxe.Core](#luxe.Core)</code><br/></span>
@@ -56,7 +58,9 @@
             <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><span class="inline-block static">static</span><code class="signature apipage">timescale : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat">The scale of time that affects the update rates and deltas</span><span class="member apipage">
             <a name="utils"><a class="lift" href="#utils">utils</a></a><span class="inline-block static">static</span><code class="signature apipage">utils : [luxe.utils.Utils](#luxe.utils.Utils)</code><br/></span>
-        <span class="small_desc_flat">Access to the different utilities</span>
+        <span class="small_desc_flat">Access to the different utilities</span><span class="member apipage">
+            <a name="version"><a class="lift" href="#version">version</a></a><span class="inline-block static">static</span><code class="signature apipage">version : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat">The version of the engine</span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="addGeometry"><a class="lift" href="#addGeometry">addGeometry</a></a><span class="inline-block static">static</span><code class="signature apipage">addGeometry(\_geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Add geometry to the default batcher</span>
@@ -83,13 +87,16 @@
             <a name="loadFont"><a class="lift" href="#loadFont">loadFont</a></a><span class="inline-block static">static</span><code class="signature apipage">loadFont(\_id:<span>[String](http://api.haxe.org/String.html)</span>, ?\_path:<span>[String](http://api.haxe.org/String.html)=null</span>, ?\_onloaded:<span>[phoenix.BitmapFont-&gt;Void](#phoenix.BitmapFont->Void)=null</span>) : [phoenix.BitmapFont](#phoenix.BitmapFont)</code><br/><span class="small_desc_flat">Load a font resource</span>
         </span>
     <span class="method apipage">
+            <a name="loadJSON"><a class="lift" href="#loadJSON">loadJSON</a></a><span class="inline-block static">static</span><code class="signature apipage">loadJSON(\_id:<span>[String](http://api.haxe.org/String.html)</span>, ?\_onloaded:<span>[luxe.JSONResource-&gt;Void](#luxe.JSONResource->Void)=null</span>) : [luxe.JSONResource](#luxe.JSONResource)</code><br/><span class="small_desc_flat">Load a text resource</span>
+        </span>
+    <span class="method apipage">
             <a name="loadShader"><a class="lift" href="#loadShader">loadShader</a></a><span class="inline-block static">static</span><code class="signature apipage">loadShader(?\_ps\_id:<span>[String](http://api.haxe.org/String.html)=&#x27;default&#x27;</span>, ?\_vs\_id:<span>[String](http://api.haxe.org/String.html)=&#x27;default&#x27;</span>, ?\_onloaded:<span>[phoenix.Shader-&gt;Void](#phoenix.Shader->Void)=null</span>) : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat">Load a shader resource</span>
         </span>
     <span class="method apipage">
             <a name="loadSound"><a class="lift" href="#loadSound">loadSound</a></a><span class="inline-block static">static</span><code class="signature apipage">loadSound(\_name:<span>[String](http://api.haxe.org/String.html)</span>, \_id:<span>[String](http://api.haxe.org/String.html)</span>, ?\_is\_music:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>, ?\_onloaded:<span>[luxe.SoundResource-&gt;Void](#luxe.SoundResource->Void)=null</span>) : [luxe.SoundResource](#luxe.SoundResource)</code><br/><span class="small_desc_flat">Load a sound resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadText"><a class="lift" href="#loadText">loadText</a></a><span class="inline-block static">static</span><code class="signature apipage">loadText(\_id:<span>[String](http://api.haxe.org/String.html)</span>, ?\_onloaded:<span>[luxe.TextResource-&gt;Void](#luxe.TextResource->Void)=null</span>) : [luxe.TextResource](#luxe.TextResource)</code><br/><span class="small_desc_flat">Load a text resource</span>
+            <a name="loadText"><a class="lift" href="#loadText">loadText</a></a><span class="inline-block static">static</span><code class="signature apipage">loadText(\_id:<span>[String](http://api.haxe.org/String.html)</span>, ?\_onloaded:<span>[luxe.TextResource-&gt;Void](#luxe.TextResource->Void)=null</span>) : [luxe.TextResource](#luxe.TextResource)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="loadTexture"><a class="lift" href="#loadTexture">loadTexture</a></a><span class="inline-block static">static</span><code class="signature apipage">loadTexture(\_id:<span>[String](http://api.haxe.org/String.html)</span>, ?\_onloaded:<span>[phoenix.Texture-&gt;Void](#phoenix.Texture->Void)=null</span>, ?\_silent:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>, ?\_asset\_bytes:<span>[lime.utils.ByteArray]()=null</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat">Load a texture/image resource</span>

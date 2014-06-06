@@ -54,6 +54,9 @@
     <span class="method apipage">
             <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</code><br/><span class="small_desc_flat"></span>
         </span>
+    <span class="method apipage">
+            <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture(options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)</span>) : [phoenix.geometry.QuadGeometry](#phoenix.geometry.QuadGeometry)</code><br/><span class="small_desc_flat"></span>
+        </span>
     
 
 <h3>Properties</h3> <hr/>no public properties

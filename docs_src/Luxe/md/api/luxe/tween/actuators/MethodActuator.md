@@ -7,7 +7,8 @@
 
 #MethodActuator
 
-* @author Joshua Granick\n * @version 1.2
+* @author Joshua Granick
+ * @version 1.2
 
 ---
 

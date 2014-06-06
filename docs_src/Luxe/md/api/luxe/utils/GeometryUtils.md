@@ -28,6 +28,9 @@
             <a name="intersect_ray_plane"><a class="lift" href="#intersect_ray_plane">intersect\_ray\_plane</a></a><code class="signature apipage">intersect\_ray\_plane(\_ray\_start:<span>[luxe.Vector](#luxe.Vector)</span>, \_ray\_dir:<span>[luxe.Vector](#luxe.Vector)</span>, \_plane\_normal:<span>[luxe.Vector](#luxe.Vector)</span>, \_plane\_point:<span>[luxe.Vector](#luxe.Vector)</span>) : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="point_in_geometry"><a class="lift" href="#point_in_geometry">point\_in\_geometry</a></a><code class="signature apipage">point\_in\_geometry(\_point:<span>[luxe.Vector](#luxe.Vector)</span>, \_geometry:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="point_in_polygon"><a class="lift" href="#point_in_polygon">point\_in\_polygon</a></a><code class="signature apipage">point\_in\_polygon(\_point:<span>[luxe.Vector](#luxe.Vector)</span>, \_offset:<span>[luxe.Vector](#luxe.Vector)</span>, \_verts:<span>[Array](http://api.haxe.org/Array.html)&lt;[luxe.Vector](#luxe.Vector)&gt;</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

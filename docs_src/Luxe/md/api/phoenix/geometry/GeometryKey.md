@@ -31,6 +31,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="primitive_type"><a class="lift" href="#primitive_type">primitive\_type</a></a><code class="signature apipage">primitive\_type : [phoenix.PrimitiveType](#phoenix.PrimitiveType)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="sequence"><a class="lift" href="#sequence">sequence</a></a><code class="signature apipage">sequence : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="shader"><a class="lift" href="#shader">shader</a></a><code class="signature apipage">shader : [phoenix.Shader](#phoenix.Shader)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture : [phoenix.Texture](#phoenix.Texture)</code><br/></span>

@@ -27,6 +27,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="fonts"><a class="lift" href="#fonts">fonts</a></a><code class="signature apipage">fonts : [Map](http://api.haxe.org/Map.html)&lt;[String](http://api.haxe.org/String.html), [phoenix.BitmapFont](#phoenix.BitmapFont)&gt;</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="json"><a class="lift" href="#json">json</a></a><code class="signature apipage">json : [Map](http://api.haxe.org/Map.html)&lt;[String](http://api.haxe.org/String.html), [Dynamic](http://api.haxe.org/Dynamic.html)&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="render_textures"><a class="lift" href="#render_textures">render\_textures</a></a><code class="signature apipage">render\_textures : [Map](http://api.haxe.org/Map.html)&lt;[String](http://api.haxe.org/String.html), [phoenix.RenderTexture](#phoenix.RenderTexture)&gt;</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="resourcelist"><a class="lift" href="#resourcelist">resourcelist</a></a><code class="signature apipage">resourcelist : [Array](http://api.haxe.org/Array.html)&lt;[luxe.Resource](#luxe.Resource)&gt;</code><br/></span>
@@ -59,6 +61,9 @@
         </span>
     <span class="method apipage">
             <a name="find_font"><a class="lift" href="#find_font">find\_font</a></a><code class="signature apipage">find\_font(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Null](http://api.haxe.org/Null.html)&lt;[phoenix.BitmapFont](#phoenix.BitmapFont)&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="find_json"><a class="lift" href="#find_json">find\_json</a></a><code class="signature apipage">find\_json(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Null](http://api.haxe.org/Null.html)&lt;[Dynamic](http://api.haxe.org/Dynamic.html)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="find_render_texture"><a class="lift" href="#find_render_texture">find\_render\_texture</a></a><code class="signature apipage">find\_render\_texture(\_name:<span>[String](http://api.haxe.org/String.html)</span>) : [Null](http://api.haxe.org/Null.html)&lt;[phoenix.RenderTexture](#phoenix.RenderTexture)&gt;</code><br/><span class="small_desc_flat"></span>

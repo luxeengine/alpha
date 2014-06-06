@@ -29,7 +29,7 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector](#luxe.Vector)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Vector](#luxe.Vector)</code><br/></span>
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Quaternion](#luxe.Quaternion)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [luxe.Vector](#luxe.Vector)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">

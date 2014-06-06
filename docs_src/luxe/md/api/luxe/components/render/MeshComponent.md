@@ -33,10 +33,10 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="entity_pos_change"><a class="lift" href="#entity_pos_change">entity\_pos\_change</a></a><code class="signature apipage">entity\_pos\_change(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="entity_pos_change"><a class="lift" href="#entity_pos_change">entity\_pos\_change</a></a><code class="signature apipage">entity\_pos\_change(\_pos:<span>[luxe.Vector](#luxe.Vector)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="entity_rotation_change"><a class="lift" href="#entity_rotation_change">entity\_rotation\_change</a></a><code class="signature apipage">entity\_rotation\_change(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="entity_rotation_change"><a class="lift" href="#entity_rotation_change">entity\_rotation\_change</a></a><code class="signature apipage">entity\_rotation\_change(\_rotation:<span>[luxe.Quaternion](#luxe.Quaternion)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

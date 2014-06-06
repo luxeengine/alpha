@@ -27,6 +27,9 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="backward"><a class="lift" href="#backward">backward</a></a><code class="signature apipage">backward() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -48,6 +51,9 @@
             <a name="determinant"><a class="lift" href="#determinant">determinant</a></a><code class="signature apipage">determinant() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="down"><a class="lift" href="#down">down</a></a><code class="signature apipage">down() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="extractRotation"><a class="lift" href="#extractRotation">extractRotation</a></a><code class="signature apipage">extractRotation(m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -60,22 +66,13 @@
             <a name="float32array"><a class="lift" href="#float32array">float32array</a></a><code class="signature apipage">float32array() : [lime.utils.Float32Array]()</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="forward"><a class="lift" href="#forward">forward</a></a><code class="signature apipage">forward() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="fromArray"><a class="lift" href="#fromArray">fromArray</a></a><code class="signature apipage">fromArray(\_from:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="GetBackward"><a class="lift" href="#GetBackward">GetBackward</a></a><span class="inline-block static">static</span><code class="signature apipage">GetBackward(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="GetDown"><a class="lift" href="#GetDown">GetDown</a></a><span class="inline-block static">static</span><code class="signature apipage">GetDown(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="GetForward"><a class="lift" href="#GetForward">GetForward</a></a><span class="inline-block static">static</span><code class="signature apipage">GetForward(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="getInverse"><a class="lift" href="#getInverse">getInverse</a></a><code class="signature apipage">getInverse(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="GetLeft"><a class="lift" href="#GetLeft">GetLeft</a></a><span class="inline-block static">static</span><code class="signature apipage">GetLeft(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="getMaxScaleOnAxis"><a class="lift" href="#getMaxScaleOnAxis">getMaxScaleOnAxis</a></a><code class="signature apipage">getMaxScaleOnAxis() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
@@ -84,16 +81,13 @@
             <a name="getPosition"><a class="lift" href="#getPosition">getPosition</a></a><code class="signature apipage">getPosition() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="GetRight"><a class="lift" href="#GetRight">GetRight</a></a><span class="inline-block static">static</span><code class="signature apipage">GetRight(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="GetUp"><a class="lift" href="#GetUp">GetUp</a></a><span class="inline-block static">static</span><code class="signature apipage">GetUp(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="identity"><a class="lift" href="#identity">identity</a></a><code class="signature apipage">identity() : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="inverse"><a class="lift" href="#inverse">inverse</a></a><code class="signature apipage">inverse() : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="left"><a class="lift" href="#left">left</a></a><code class="signature apipage">left() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="lookAt"><a class="lift" href="#lookAt">lookAt</a></a><code class="signature apipage">lookAt(\_eye:<span>[phoenix.Vector](#phoenix.Vector)</span>, \_target:<span>[phoenix.Vector](#phoenix.Vector)</span>, \_up:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
@@ -153,6 +147,9 @@
             <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?n11:<span>[Float](http://api.haxe.org/Float.html)=1</span>, ?n12:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n13:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n14:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n21:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n22:<span>[Float](http://api.haxe.org/Float.html)=1</span>, ?n23:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n24:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n31:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n32:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n33:<span>[Float](http://api.haxe.org/Float.html)=1</span>, ?n34:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n41:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n42:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n43:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?n44:<span>[Float](http://api.haxe.org/Float.html)=1</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="right"><a class="lift" href="#right">right</a></a><code class="signature apipage">right() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale(\_v:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -169,6 +166,9 @@
         </span>
     <span class="method apipage">
             <a name="transpose"><a class="lift" href="#transpose">transpose</a></a><code class="signature apipage">transpose() : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="up"><a class="lift" href="#up">up</a></a><code class="signature apipage">up() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

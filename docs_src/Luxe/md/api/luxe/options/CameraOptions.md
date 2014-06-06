@@ -25,6 +25,10 @@
 <h3>Members</h3> <hr/><span class="member apipage">
             <a name="aspect"><a class="lift" href="#aspect">aspect</a></a><code class="signature apipage">aspect : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="cull_backfaces"><a class="lift" href="#cull_backfaces">cull\_backfaces</a></a><code class="signature apipage">cull\_backfaces : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="depth_test"><a class="lift" href="#depth_test">depth\_test</a></a><code class="signature apipage">depth\_test : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="far"><a class="lift" href="#far">far</a></a><code class="signature apipage">far : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="fov"><a class="lift" href="#fov">fov</a></a><code class="signature apipage">fov : [Float](http://api.haxe.org/Float.html)</code><br/></span>
@@ -36,14 +40,6 @@
             <a name="projection"><a class="lift" href="#projection">projection</a></a><code class="signature apipage">projection : [phoenix.ProjectionType](#phoenix.ProjectionType)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="x1"><a class="lift" href="#x1">x1</a></a><code class="signature apipage">x1 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="x2"><a class="lift" href="#x2">x2</a></a><code class="signature apipage">x2 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="y1"><a class="lift" href="#y1">y1</a></a><code class="signature apipage">y1 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="y2"><a class="lift" href="#y2">y2</a></a><code class="signature apipage">y2 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/>no public methods

@@ -51,17 +51,13 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
             <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
-            <a name="pos_local"><a class="lift" href="#pos_local">pos\_local</a></a><code class="signature apipage">pos\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="rotation_local"><a class="lift" href="#rotation_local">rotation\_local</a></a><code class="signature apipage">rotation\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Quaternion]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="scale_local"><a class="lift" href="#scale_local">scale\_local</a></a><code class="signature apipage">scale\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span>
 
 &nbsp;

@@ -68,6 +68,12 @@
             <a name="cross"><a class="lift" href="#cross">cross</a></a><code class="signature apipage">cross(a:<span>[phoenix.Vector](#phoenix.Vector)</span>, b:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="Degrees"><a class="lift" href="#Degrees">Degrees</a></a><span class="inline-block static">static</span><code class="signature apipage">Degrees(\_radian\_vector:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="degrees"><a class="lift" href="#degrees">degrees</a></a><code class="signature apipage">degrees() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="Divide"><a class="lift" href="#Divide">Divide</a></a><span class="inline-block static">static</span><code class="signature apipage">Divide(a:<span>[phoenix.Vector](#phoenix.Vector)</span>, b:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -86,6 +92,9 @@
             <a name="equals"><a class="lift" href="#equals">equals</a></a><code class="signature apipage">equals(other:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="listen"><a class="lift" href="#listen">listen</a></a><span class="inline-block static">static</span><code class="signature apipage">listen(\_v:<span>[phoenix.Vector](#phoenix.Vector)</span>, listener:<span>[Float-&gt;Void]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="Multiply"><a class="lift" href="#Multiply">Multiply</a></a><span class="inline-block static">static</span><code class="signature apipage">Multiply(a:<span>[phoenix.Vector](#phoenix.Vector)</span>, b:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -102,6 +111,12 @@
         </span>
     <span class="method apipage">
             <a name="normalize"><a class="lift" href="#normalize">normalize</a></a><code class="signature apipage">normalize() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="Radians"><a class="lift" href="#Radians">Radians</a></a><span class="inline-block static">static</span><code class="signature apipage">Radians(\_degree\_vector:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="radians"><a class="lift" href="#radians">radians</a></a><code class="signature apipage">radians() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="RotationTo"><a class="lift" href="#RotationTo">RotationTo</a></a><span class="inline-block static">static</span><code class="signature apipage">RotationTo(a:<span>[phoenix.Vector](#phoenix.Vector)</span>, b:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
@@ -138,18 +153,6 @@
         </span>
     <span class="method apipage">
             <a name="subtractScalar"><a class="lift" href="#subtractScalar">subtractScalar</a></a><code class="signature apipage">subtractScalar(v:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="ToDegrees"><a class="lift" href="#ToDegrees">ToDegrees</a></a><span class="inline-block static">static</span><code class="signature apipage">ToDegrees(\_radian\_vector:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toDegrees"><a class="lift" href="#toDegrees">toDegrees</a></a><code class="signature apipage">toDegrees() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="ToRadians"><a class="lift" href="#ToRadians">ToRadians</a></a><span class="inline-block static">static</span><code class="signature apipage">ToRadians(\_degree\_vector:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toRadians"><a class="lift" href="#toRadians">toRadians</a></a><code class="signature apipage">toRadians() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>

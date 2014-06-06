@@ -1,6 +1,20 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [b2ec5bc182](https://github.com/underscorediscovery.com/luxe/commit/b2ec5bc182c0b9dbe5526decede8098c28d6e5b4)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 00:39:26 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; adding changes generator back separate from scriber</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [421e1a13bc](https://github.com/underscorediscovery.com/luxe/commit/421e1a13bcadd0fe070e2dd057cecee2cf1230cf)   
 author: underscorediscovery   
 date: Fri Jun 06 2014 00:24:39 GMT-0230 (NDT)   

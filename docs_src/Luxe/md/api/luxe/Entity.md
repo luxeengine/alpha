@@ -35,6 +35,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="started"><a class="lift" href="#started">started</a></a><code class="signature apipage">started : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="transform"><a class="lift" href="#transform">transform</a></a><code class="signature apipage">transform : [luxe.Transform](#luxe.Transform)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">id : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
@@ -42,9 +44,6 @@
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(type:<span>[Class]()&lt;[add.T1]()&gt;</span>, ?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[add.T2]()=null</span>) : [add.T1]()</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="add_child"><a class="lift" href="#add_child">add\_child</a></a><code class="signature apipage">add\_child(child:<span>[luxe.Entity](#luxe.Entity)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -68,9 +67,6 @@
             <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[remove.T]()=null</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="remove_child"><a class="lift" href="#remove_child">remove\_child</a></a><code class="signature apipage">remove\_child(child:<span>[luxe.Entity](#luxe.Entity)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="serialize_to_disk"><a class="lift" href="#serialize_to_disk">serialize\_to\_disk</a></a><code class="signature apipage">serialize\_to\_disk(\_destination\_path:<span>[String](http://api.haxe.org/String.html)</span>, ?\_parent\_write:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     
@@ -80,19 +76,15 @@
         </span><span class="property apipage">
             <a name="fixed_rate"><a class="lift" href="#fixed_rate">fixed\_rate</a></a><code class="signature apipage">fixed\_rate : [Float]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
+            <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
             <a name="parent"><a class="lift" href="#parent">parent</a></a><code class="signature apipage">parent : [luxe.Entity]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
-            <a name="pos_local"><a class="lift" href="#pos_local">pos\_local</a></a><code class="signature apipage">pos\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="rotation_local"><a class="lift" href="#rotation_local">rotation\_local</a></a><code class="signature apipage">rotation\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
+            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : [luxe.Quaternion]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="scale_local"><a class="lift" href="#scale_local">scale\_local</a></a><code class="signature apipage">scale\_local : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="scene"><a class="lift" href="#scene">scene</a></a><code class="signature apipage">scene : [luxe.Scene]()</code><br/><span class="small_desc_flat"></span>
         </span>

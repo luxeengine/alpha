@@ -22,7 +22,17 @@
 &nbsp;
 &nbsp;
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+            <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore\_listeners</a></a><code class="signature apipage">ignore\_listeners : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_w"><a class="lift" href="#listen_w">listen\_w</a></a><code class="signature apipage">listen\_w : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_x"><a class="lift" href="#listen_x">listen\_x</a></a><code class="signature apipage">listen\_x : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_y"><a class="lift" href="#listen_y">listen\_y</a></a><code class="signature apipage">listen\_y : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="listen_z"><a class="lift" href="#listen_z">listen\_z</a></a><code class="signature apipage">listen\_z : [Float-&gt;Void]()</code><br/></span>
+        <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(\_quaternion:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
@@ -61,6 +71,9 @@
             <a name="lengthSq"><a class="lift" href="#lengthSq">lengthSq</a></a><code class="signature apipage">lengthSq() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="listen"><a class="lift" href="#listen">listen</a></a><span class="inline-block static">static</span><code class="signature apipage">listen(\_q:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, listener:<span>[Float-&gt;Void]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="multiply"><a class="lift" href="#multiply">multiply</a></a><code class="signature apipage">multiply(\_quaternion:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -97,11 +110,16 @@
             <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><code class="signature apipage">toArray() : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="toeuler"><a class="lift" href="#toeuler">toeuler</a></a><code class="signature apipage">toeuler() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><code class="signature apipage">serialized : [Dynamic]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
             <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : [Float]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : [Float]()</code><br/><span class="small_desc_flat"></span>

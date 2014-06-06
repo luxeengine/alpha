@@ -27,7 +27,7 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="arrayToBytes"><a class="lift" href="#arrayToBytes">arrayToBytes</a></a><code class="signature apipage">arrayToBytes(array:<span>[Array](http://api.haxe.org/Array.html)&lt;[Int](http://api.haxe.org/Int.html)&gt;</span>) : [haxe.io.Bytes](http://api.haxe.org/haxe/io/Bytes.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="array_to_bytes"><a class="lift" href="#array_to_bytes">array\_to\_bytes</a></a><code class="signature apipage">array\_to\_bytes(array:<span>[Array](http://api.haxe.org/Array.html)&lt;[Int](http://api.haxe.org/Int.html)&gt;</span>) : [haxe.io.Bytes](http://api.haxe.org/haxe/io/Bytes.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="base64_decode"><a class="lift" href="#base64_decode">base64\_decode</a></a><code class="signature apipage">base64\_decode(\_string:<span>[String](http://api.haxe.org/String.html)</span>) : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
@@ -43,6 +43,9 @@
         </span>
     <span class="method apipage">
             <a name="find_assets_image_sequence"><a class="lift" href="#find_assets_image_sequence">find\_assets\_image\_sequence</a></a><code class="signature apipage">find\_assets\_image\_sequence(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_ext:<span>[String](http://api.haxe.org/String.html)=&#x27;.png&#x27;</span>, ?\_start:<span>[String](http://api.haxe.org/String.html)=&#x27;1&#x27;</span>) : [Array](http://api.haxe.org/Array.html)&lt;[String](http://api.haxe.org/String.html)&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="path_is_relative"><a class="lift" href="#path_is_relative">path\_is\_relative</a></a><code class="signature apipage">path\_is\_relative(\_path:<span>[String](http://api.haxe.org/String.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="stacktrace"><a class="lift" href="#stacktrace">stacktrace</a></a><code class="signature apipage">stacktrace(?\_depth:<span>[Int](http://api.haxe.org/Int.html)=100</span>) : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>

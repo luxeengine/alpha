@@ -35,6 +35,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="move_speed"><a class="lift" href="#move_speed">move\_speed</a></a><code class="signature apipage">move\_speed : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="move_speed_scale"><a class="lift" href="#move_speed_scale">move\_speed\_scale</a></a><code class="signature apipage">move\_speed\_scale : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="right"><a class="lift" href="#right">right</a></a><code class="signature apipage">right : [luxe.Vector](#luxe.Vector)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="sensitivity_x"><a class="lift" href="#sensitivity_x">sensitivity\_x</a></a><code class="signature apipage">sensitivity\_x : [Float](http://api.haxe.org/Float.html)</code><br/></span>

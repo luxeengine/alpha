@@ -44,6 +44,9 @@
             <a name="equal"><a class="lift" href="#equal">equal</a></a><code class="signature apipage">equal(\_other:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="listen"><a class="lift" href="#listen">listen</a></a><span class="inline-block static">static</span><code class="signature apipage">listen(\_r:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>, listener:<span>[Float-&gt;Void]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_x:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_y:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_h:<span>[Float](http://api.haxe.org/Float.html)=0</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

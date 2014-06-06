@@ -11,7 +11,7 @@
 
 ---
 
-`class`extends <code><span>[phoenix.geometry.CircleGeometry]()</span></code>
+`class`extends <code><span>[phoenix.geometry.RingGeometry]()</span></code>
 <span class="meta">
 
 </span>

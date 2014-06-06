@@ -33,11 +33,17 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_font"><a class="lift" href="#default_font">default\_font</a></a><code class="signature apipage">default\_font : [phoenix.BitmapFont](#phoenix.BitmapFont)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="default_frag_source"><a class="lift" href="#default_frag_source">default\_frag\_source</a></a><code class="signature apipage">default\_frag\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="default_frag_textured_source"><a class="lift" href="#default_frag_textured_source">default\_frag\_textured\_source</a></a><code class="signature apipage">default\_frag\_textured\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_render_path"><a class="lift" href="#default_render_path">default\_render\_path</a></a><code class="signature apipage">default\_render\_path : [phoenix.RenderPath](#phoenix.RenderPath)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_shader"><a class="lift" href="#default_shader">default\_shader</a></a><code class="signature apipage">default\_shader : [phoenix.Shader](#phoenix.Shader)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_shader_textured"><a class="lift" href="#default_shader_textured">default\_shader\_textured</a></a><code class="signature apipage">default\_shader\_textured : [phoenix.Shader](#phoenix.Shader)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="default_vert_source"><a class="lift" href="#default_vert_source">default\_vert\_source</a></a><code class="signature apipage">default\_vert\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="render_path"><a class="lift" href="#render_path">render\_path</a></a><code class="signature apipage">render\_path : [phoenix.RenderPath](#phoenix.RenderPath)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
@@ -76,7 +82,7 @@
             <a name="load_texture"><a class="lift" href="#load_texture">load\_texture</a></a><code class="signature apipage">load\_texture(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_onloaded:<span>[phoenix.Texture-&gt;Void](#phoenix.Texture->Void)=null</span>, ?\_silent:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>, ?asset\_bytes:<span>[lime.utils.ByteArray]()=null</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="load_texture_from_string_byte_array"><a class="lift" href="#load_texture_from_string_byte_array">load\_texture\_from\_string\_byte\_array</a></a><code class="signature apipage">load\_texture\_from\_string\_byte\_array(?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;untitled texture&#x27;</span>, \_string\_byte\_array:<span>[String](http://api.haxe.org/String.html)</span>, \_width:<span>[Int](http://api.haxe.org/Int.html)</span>, \_height:<span>[Int](http://api.haxe.org/Int.html)</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
+            <a name="load_texture_from_resource_bytes"><a class="lift" href="#load_texture_from_resource_bytes">load\_texture\_from\_resource\_bytes</a></a><code class="signature apipage">load\_texture\_from\_resource\_bytes(\_name:<span>[String](http://api.haxe.org/String.html)</span>, \_width:<span>[Int](http://api.haxe.org/Int.html)</span>, \_height:<span>[Int](http://api.haxe.org/Int.html)</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="load_textures"><a class="lift" href="#load_textures">load\_textures</a></a><code class="signature apipage">load\_textures(\_names:<span>[Array](http://api.haxe.org/Array.html)&lt;[String](http://api.haxe.org/String.html)&gt;</span>, ?\_onloaded:<span>[Array-&gt;Void]()=null</span>, ?\_silent:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

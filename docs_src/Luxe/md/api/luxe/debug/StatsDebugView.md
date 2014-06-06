@@ -31,6 +31,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="debug_geometry_count"><a class="lift" href="#debug_geometry_count">debug\_geometry\_count</a></a><code class="signature apipage">debug\_geometry\_count : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="font_size"><a class="lift" href="#font_size">font\_size</a></a><code class="signature apipage">font\_size : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="hide_debug"><a class="lift" href="#hide_debug">hide\_debug</a></a><code class="signature apipage">hide\_debug : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="render_stats_text"><a class="lift" href="#render_stats_text">render\_stats\_text</a></a><code class="signature apipage">render\_stats\_text : [luxe.Text](#luxe.Text)</code><br/></span>

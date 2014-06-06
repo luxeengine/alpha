@@ -47,8 +47,6 @@
         </span><span class="property apipage">
             <a name="locked"><a class="lift" href="#locked">locked</a></a><code class="signature apipage">locked : [Bool]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
-            <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
             <a name="radians"><a class="lift" href="#radians">radians</a></a><code class="signature apipage">radians : [Float]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="rotation_z"><a class="lift" href="#rotation_z">rotation\_z</a></a><code class="signature apipage">rotation\_z : [Float]()</code><br/><span class="small_desc_flat"></span>

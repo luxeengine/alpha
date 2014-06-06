@@ -38,7 +38,7 @@
             <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(entity:<span>[luxe.Entity](#luxe.Entity)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(type:<span>[Class]()&lt;[create.T1]()&gt;</span>, ?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[create.T2]()=null</span>) : [create.T1]()</code><br/><span class="small_desc_flat"></span>
+            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(type:<span>[Class]()&lt;[create.T1]()&gt;</span>, ?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[luxe.options.EntityOptions](#luxe.options.EntityOptions)&lt;[create.T2]()&gt;=null</span>) : [create.T1]()</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -107,10 +107,10 @@
             <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(entity:<span>[luxe.Entity](#luxe.Entity)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="serialize_to_disk"><a class="lift" href="#serialize_to_disk">serialize\_to\_disk</a></a><code class="signature apipage">serialize\_to\_disk(\_destination\_path:<span>[String](http://api.haxe.org/String.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="reset"><a class="lift" href="#reset">reset</a></a><code class="signature apipage">reset() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="start"><a class="lift" href="#start">start</a></a><code class="signature apipage">start() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="serialize_to_disk"><a class="lift" href="#serialize_to_disk">serialize\_to\_disk</a></a><code class="signature apipage">serialize\_to\_disk(\_destination\_path:<span>[String](http://api.haxe.org/String.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>

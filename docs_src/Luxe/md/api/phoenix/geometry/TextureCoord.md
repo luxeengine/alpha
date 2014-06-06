@@ -33,6 +33,9 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : [phoenix.geometry.TextureCoord](#phoenix.geometry.TextureCoord)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_u:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>, ?\_v:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>, ?\_t:<span>[Float](http://api.haxe.org/Float.html)=0.0</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
