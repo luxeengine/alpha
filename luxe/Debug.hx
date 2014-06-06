@@ -78,7 +78,7 @@ class Debug {
 
         haxe.Log.trace = internal_trace;
 
-        _debug('luxe / \t Debug Initialized.');
+        _debug('\t debug initialized.');
 
     } //init
 
@@ -102,12 +102,13 @@ class Debug {
 
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
+        var _line = StringTools.rpad(Std.string(inf.lineNumber), ' ', 4);
         #if luxe_native 
-            Sys.println('${inf.fileName}:${inf.lineNumber}: $v');
+            Sys.println('${inf.fileName}:$_line $v');
         #end
 
         #if luxe_html5
-            untyped console.log('${inf.fileName}:${inf.lineNumber}: $v');
+            untyped console.log('${inf.fileName}::$_line $v');
         #end
             
             //call listeners
@@ -210,7 +211,7 @@ class Debug {
                 if(e.key == KeyValue.key_P && profiling) {
                     cpp.vm.Profiler.stop();
                     profiling = false;
-                    trace("luxe :: profiling complete. Look for the results in " + profile_path );
+                    trace("profiling complete. Look for the results in " + profile_path );
                 }
             #end //luxe_native
         #end //profiler        
@@ -233,7 +234,7 @@ class Debug {
         #if profiler
             #if luxe_native
                 if(e.key == KeyValue.key_P && e.ctrl_down) {
-                    trace("luxe :: starting profiler ... let go of key to stop profiling.");
+                    trace("starting profiler ... let go of key to stop profiling.");
                     cpp.vm.Profiler.start( profile_path );                    
                     profiling = true;
                 }
@@ -318,7 +319,7 @@ class Debug {
     public function destroy() {
 
         shut_down = true;
-        _debug('luxe / \t Debug shut down.');
+        _debug('\t debug shut down.');
 
     } //destroy
 

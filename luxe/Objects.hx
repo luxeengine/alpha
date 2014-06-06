@@ -1,6 +1,5 @@
 package luxe;
 
-//@:autoBuild(luxe.components.ObjectsMacro.build()) 
 
 class Objects {
 
@@ -38,20 +37,6 @@ class Objects {
         return _properties;
 
     } //_merge_properties  
-
-    @:noCompletion public static var _show_debug : Bool = false;
-    @:noCompletion public static var _show_debug_verbose : Bool = false;
-    @:noCompletion private function _debug(v,?verbose=false){ 
-        if(_show_debug) { 
-            if(!verbose) {
-                trace(v); 
-            } else {
-                if(_show_debug_verbose) {
-                    trace(v); 
-                } 
-            }
-        } //_show_debug
-    } //_debug
 
 
 } //Objects

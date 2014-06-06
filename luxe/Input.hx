@@ -74,12 +74,12 @@ class Input {
             //Default to 360 for now
         Gamepad.apply_360_profile();
 
-        _debug(':: luxe :: \t Input Initialized.');
+        _debug('\t input initialized.');
 
     } //init
 
     @:noCompletion public function destroy() {
-        _debug(':: luxe :: \t Input shut down.');
+        _debug('\t input shut down.');
     } //destroy
 
     @:noCompletion public function process() {

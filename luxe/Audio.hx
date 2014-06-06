@@ -17,11 +17,11 @@ class Audio {
     } //new
 
     @:noCompletion public function init() {
-        _debug('luxe / \t Audio Initialized.');
+        _debug('\t audio initialized.');
     } //init
 
     @:noCompletion public function destroy() {
-        _debug('luxe / \t Audio shut down.');
+        _debug('\t audio shut down.');
     } //destroy
 
         /**

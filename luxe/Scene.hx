@@ -3,6 +3,10 @@ package luxe;
 import luxe.Input;
 import luxe.options.EntityOptions;
 
+import luxe.Log._verbose;
+import luxe.Log._debug;
+import luxe.Log.log;
+
 class Scene extends Objects {
 
     public var entities : Map<String,Entity>;    
@@ -54,7 +58,7 @@ class Scene extends Objects {
         }
 
             //create an instance
-        _debug("/ scene / creating entity with " + type + " and data " + _data);
+        _debug("creating entity with " + type + " and data " + _data);
 
         var _entity = Type.createInstance( type, [ _data ] );
             //cast to entity so we can set its name
@@ -64,7 +68,7 @@ class Scene extends Objects {
             //add it to this scene
         add(_e_entity);
 
-        _debug("/ scene / created and added entity to scene " + type + " named " + _temp_name + " with " + _data );
+        _debug("created and added entity to scene " + type + " named " + _temp_name + " with " + _data );
 
             //entity
         return _entity;
@@ -73,29 +77,29 @@ class Scene extends Objects {
     public function add( entity:Entity ) {
 
         if(entity == null) {
-            throw "/ scene / can't put entity in a scene if the entity is null.";
+            throw "can't put entity in a scene if the entity is null.";
         }
 
-        _debug("/ scene / adding entity to scene " + name + " called " + entity.name + " with id " + entity.id );
+        _debug('${name} / adding ${entity.name} with id ${entity.id}');
 
         entities.set( entity.id, entity );
 
         entity.scene = this;
 
         if(inited) {
-            _debug('/ scene / adding a delayed entity to init list ' + entity.name);
+            _debug('adding a delayed entity to init list ' + entity.name);
             _delayed_init_entities.push(entity);            
         } //inited
 
         if(started) {
-            _debug('/ scene / adding a delayed entity to reset list ' + entity.name);
+            _debug('adding a delayed entity to reset list ' + entity.name);
             _delayed_reset_entities.push(entity);
         } //started
 
     } //add
 
     function list_entities() {
-        trace("/ scene / entity list");
+        trace("entity list");
         for(entity in entities) {
             trace("\tentity : " + entity.name + " / " + entity.id);
         }
@@ -104,7 +108,7 @@ class Scene extends Objects {
     public function remove( entity:Entity ) : Bool {
 
         if(entity == null) {
-            throw "/ scene / can't remove entity from a scene if the entity is null.";
+            throw "can't remove entity from a scene if the entity is null.";
         }
 
         if(entity.scene == this) {
@@ -113,7 +117,7 @@ class Scene extends Objects {
             return entities.remove( entity.id );
             
         } else {
-            _debug("/ scene / can't remove the entity from this scene, it is not mine (entity.scene != this)");
+            _debug("can't remove the entity from this scene, it is not mine (entity.scene != this)");
             return false;
         }
 
@@ -122,7 +126,7 @@ class Scene extends Objects {
     } //remove
 
     public function empty() {
-        trace("/ scene / cleaning up entities in scene");
+        trace("cleaning up entities in scene");
         for(entity in entities) {
             if(entity != null) {
                 remove(entity);
@@ -130,7 +134,7 @@ class Scene extends Objects {
                 entity = null;
             }
         }
-        trace("/ scene / \tentities left " + Lambda.count(entities));
+        trace("\tentities left " + Lambda.count(entities));
     }
 
 //Keys
@@ -268,7 +272,7 @@ class Scene extends Objects {
         for(entity in entities) {
             if(entity != null) {
                 if(!entity.inited) {
-                    _debug('/ scene / calling init on an entity : ' + entity.name);
+                    _verbose('calling init on an entity : ' + entity.name);
                     entity._init();
                 }
             }
@@ -334,12 +338,12 @@ class Scene extends Objects {
     function handle_delayed_additions() {
             
         if(_delayed_init_entities.length != 0 || _delayed_reset_entities.length != 0) {
-            _debug("/ scene / delayed entities in scene will init/reset now! " + _delayed_init_entities.length + ' / ' + _delayed_reset_entities.length);
+            _debug("delayed entities in scene will init/reset now! " + _delayed_init_entities.length + ' / ' + _delayed_reset_entities.length);
         }
 
         if(_delayed_init_entities.length > 0) {
             for(entity in _delayed_init_entities) {
-                _debug('/ scene / \t handling late entity init ' + entity.name);
+                _debug('\t handling late entity init ' + entity.name);
                 entity._init();
             }
             _delayed_init_entities.splice(0, _delayed_init_entities.length);
@@ -347,7 +351,7 @@ class Scene extends Objects {
 
         if(_delayed_reset_entities.length > 0) {
             for(entity in _delayed_reset_entities) {
-                _debug('/ scene / \t handling late entity reset ' + entity.name);
+                _debug('\t handling late entity reset ' + entity.name);
                 entity._reset();
             }
             _delayed_reset_entities.splice(0, _delayed_reset_entities.length);

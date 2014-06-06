@@ -20,6 +20,7 @@ import phoenix.Shader;
 
 import luxe.Log._verbose;
 import luxe.Log._debug;
+import luxe.Log.log;
 
 #if (!luxe_threading_disabled && luxe_native) 
 
@@ -50,7 +51,10 @@ import luxe.Log._debug;
 
 #end //!luxe_threading_disabled && luxe_native
 
-@:noCompletion @:keep class Core {
+@:noCompletion 
+@:keep 
+@:log_as('luxe') 
+class Core {
 
         //the game object running the core
     public var host : Dynamic;  
@@ -143,12 +147,12 @@ import luxe.Log._debug;
             //Don't change this, it matches semantic versioning http://semver.org/
         Luxe.build = Luxe.version + haxe.Resource.getString('build');        
 
-        _debug('luxe / version ${Luxe.build}');
+        log('version ${Luxe.build}');
 
             //Create the subsystems
         init();
 
-        _debug('luxe / Ready.');
+        _debug('ready.');
 
             //Call the main ready function 
             //and send the ready event to the host
@@ -173,7 +177,7 @@ import luxe.Log._debug;
         config = lime.config;
 
             //Create the subsystems
-        _debug('luxe / Creating subsystems.');
+        _debug('creating subsystems...');
 
             //Order is important here
         
@@ -224,8 +228,7 @@ import luxe.Log._debug;
 
     public function shutdown() {        
 
-        _debug('---');
-        _debug('luxe / Shutting down...');
+        _debug('shutting down...');
 
             //Make sure all systems know we are going down
 
@@ -263,7 +266,7 @@ import luxe.Log._debug;
             //Flag it
         has_shutdown = true;
 
-        _debug('luxe / Goodbye.');
+        _debug('goodbye.');
 
     } //shutdown
 
@@ -271,7 +274,7 @@ import luxe.Log._debug;
     public function update() { 
 
         #if luxe_fullprofile 
-            _verbose('luxe / on_update ' + Luxe.time);
+            _verbose('on_update ' + Luxe.time);
         #end //luxe_fullprofile
 
         if(has_shutdown) return;

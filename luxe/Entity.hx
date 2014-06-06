@@ -11,6 +11,11 @@ import luxe.components.Components;
 
 import luxe.options.EntityOptions;
 
+import luxe.Log.log;
+import luxe.Log._debug;
+import luxe.Log._verbose;
+import luxe.Log._verboser;
+
 class Entity extends Objects {
 
 
@@ -56,7 +61,7 @@ class Entity extends Objects {
 
         super();
 
-        _debug('/ entity / create new entity with options : ' + _options );
+        _verbose('create new entity with options ' + options);
 
         options = _options;
 
@@ -93,7 +98,7 @@ class Entity extends Objects {
             }
 
     //scene
-            _debug('/ entity / \tnon null options, checking for scene placement no_scene:' + options.no_scene + ' scene:' + options.scene);
+            _verbose('\tnon null options, checking for scene placement no_scene:' + options.no_scene + ' scene:' + options.scene);
                 //if they haven't explicitly said "no scene management"
                 //we add to the scene they requested, or the default scene otherwise
             var _should_add:Bool = true;
@@ -101,7 +106,7 @@ class Entity extends Objects {
             if(options.no_scene != null) {
                 if(options.no_scene == true) {
                     _should_add = false;
-                    _debug("/ entity / \tno_scene flag requested, not adding to scene");
+                    _verbose(" \tno_scene flag requested");
                 }
             }
 
@@ -109,7 +114,7 @@ class Entity extends Objects {
 
                 _should_add = false;
                 parent = options.parent;
-                _debug("/ entity / \tparent specified, not adding to scene only to parent :" + options.parent.name);
+                _verbose(" \tparent specified, not adding to scene only to parent :" + options.parent.name);
 
             }
 
@@ -117,10 +122,10 @@ class Entity extends Objects {
 
                 if(options.scene != null) {                        
                     scene = options.scene;
-                    _debug("/ entity / \tscene specified, storing in scene named : " + options.scene.name );
+                    _verbose(" \tscene specified, storing in scene named : " + options.scene.name );
                 } else {
                     scene = Luxe.scene;
-                    _debug("/ entity / \tno scene specified, adding to default scene");
+                    _verbose(" \tno scene specified, adding to default scene");
                 }
 
             } //_should_add
@@ -129,27 +134,27 @@ class Entity extends Objects {
 
             scene = Luxe.scene;
             
-            _debug("/ entity / \tadding to default scene because no options were specified.");
+            _verbose(" \tadding to default scene because no options were specified.");
 
         } //options ! null
 
 
             //finally, add to the requested scene
         if(scene != null) {
-            _debug("/ entity / \tadding to scene " + scene.name);
+            _verbose(" \tadding to scene " + scene.name);
             scene.add( this );
         } else {
-            _debug("/ entity / \tnot adding to any scene.");
+            _verbose(" \tnot adding to any scene.");
         }
 
-        _debug("/ entity / created.");
+        _verbose(" created " + name);
 
     } //new
 
     @:noCompletion public function _init() {        
 
             //verbose debugging 
-        _debug(this + ' inside _init with options as ' + options, true );
+        _verbose('${this} inside _init with options as $options' );
 
             //init the parent first
         _call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
@@ -158,14 +163,13 @@ class Entity extends Objects {
 
             //init all the components attached directly to us
         for(_component in components) {
-            _debug("/ entity /          " + name + " calling init on component " + _component.name );
+            _verbose("          " + name + " calling init on component " + _component.name );
             _call(_component, '_init');
-            // _debug('\t- ');
         } //for each component
 
             //now init our children, so they do the same
         for(_child in children) {
-            _debug("/ entity /         parent " + name + " calling init on child " + _child.name );
+            _verbose("         parent " + name + " calling init on child " + _child.name );
             _child._init();
         } //for each child
 
@@ -176,23 +180,21 @@ class Entity extends Objects {
 
     @:noCompletion public function _reset() {
 
-        _debug('calling reset on ' + name, true);
+        _verbose('calling reset on ' + name);
 
             //reset the parent first
         _call(this, 'reset');
 
             //reset all the components attached directly to us
         for(_component in components) {
-            _debug("/ entity /         " + name + " calling reset on component " + _component.name );
+            _verbose("         " + name + " calling reset on component " + _component.name );
             _call(_component, 'reset');
-            // _debug('\t- ');
         } //for each component
 
             //now reset our children, so they do the same
         for(_child in children) {
             _child._reset();
-            _debug("/ entity /         parent " + name + " calling reset on child " + _child.name );
-            // _debug('\t- ');
+            _verbose("         parent " + name + " calling reset on child " + _child.name );
         } //for each child
 
             //start the fixed rate timer
@@ -205,11 +207,11 @@ class Entity extends Objects {
 
     public function destroy() {
 
-        _debug('calling destroy on ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
+        _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
             //first destroy children
         for(_child in children) {
-            _debug('/ entity /      calling destroy on child ' + _child.name);
+            _verbose('     calling destroy on child ' + _child.name);
             _child.destroy();
         } //for each child
         
@@ -223,7 +225,7 @@ class Entity extends Objects {
 
             //remove it from it's parent if any
         if(parent != null) {
-            _debug("/ entity /     removing " + name + "/" + id + " from parent " + parent.name + " / " + parent.id );
+            _verbose("     removing " + name + "/" + id + " from parent " + parent.name + " / " + parent.id );
             parent._remove_child(this);
         }
 
@@ -234,7 +236,7 @@ class Entity extends Objects {
         _destroyed = true;
 
             //remove from the scene it's in if any
-        _debug( "/ entity /     removing " + name + " / " + id + " from scene " + scene );
+        _verbose( "     removing " + name + " / " + id + " from scene " + scene );
 
         if(scene != null) {
             scene.remove(this);
@@ -252,7 +254,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeyup(e:KeyEvent) {
 
-        _debug('/ entity / calling _onkeyup on ' + name, true);
+        _verboser('calling _onkeyup on ' + name);
 
             //init the parent first
         _call(this, 'onkeyup', [e]);
@@ -273,7 +275,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeydown(e:KeyEvent) {
 
-        _debug('/ entity / calling _onkeydown on ' + name, true);
+        _verboser('calling _onkeydown on ' + name);
 
             //init the parent first
         _call(this, 'onkeydown', [e]);
@@ -296,7 +298,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousedown(e:MouseEvent) {
 
-        _debug('/ entity / calling _onmousedown on ' + name, true );
+        _verboser('calling _onmousedown on ' + name );
 
             //init the parent first
         _call(this, 'onmousedown', [e]);
@@ -318,7 +320,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmouseup(e:MouseEvent) {
 
-        _debug('/ entity / calling _onmouseup on ' + name, true);
+        _verboser('calling _onmouseup on ' + name);
 
             //init the parent first
         _call(this, 'onmouseup', [e]);
@@ -339,7 +341,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousewheel(e:MouseEvent) {
 
-        _debug('/ entity / calling _onmousewheel on ' + name, true);
+        _verboser('calling _onmousewheel on ' + name);
 
             //init the parent first
         _call(this, 'onmousewheel', [e]);
@@ -360,7 +362,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousemove(e:MouseEvent) {
 
-        _debug('/ entity / calling _onmousemove on ' + name, true);
+        _verboser('calling _onmousemove on ' + name);
 
             //init the parent first
         _call(this, 'onmousemove', [e]);
@@ -382,7 +384,7 @@ class Entity extends Objects {
 //Touch
     @:noCompletion public function _ontouchbegin(e:TouchEvent) {
 
-        _debug('/ entity / calling _ontouchbegin on ' + name, true);
+        _verboser('calling _ontouchbegin on ' + name);
 
             //init the parent first
         _call(this, 'ontouchbegin', [e]);
@@ -403,7 +405,7 @@ class Entity extends Objects {
     
     @:noCompletion public function _ontouchend(e:TouchEvent) {
 
-        _debug('/ entity / calling _ontouchend on ' + name, true);
+        _verboser('calling _ontouchend on ' + name);
 
             //init the parent first
         _call(this, 'ontouchend', [e]);
@@ -424,7 +426,7 @@ class Entity extends Objects {
    
     @:noCompletion public function _ontouchmove(e:TouchEvent) {
 
-        _debug('/ entity / calling _ontouchmove on ' + name, true);
+        _verboser('calling _ontouchmove on ' + name);
 
             //init the parent first
         _call(this, 'ontouchmove', [e]);
@@ -446,7 +448,7 @@ class Entity extends Objects {
 //Gamepad
     @:noCompletion public function _ongamepadaxis(e) {
 
-        _debug('/ entity / calling _ongamepadaxis on ' + name, true);
+        _verboser('calling _ongamepadaxis on ' + name);
 
             //init the parent first
         _call(this, 'ongamepadaxis', [e]);
@@ -467,7 +469,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadball(e) {
 
-        _debug('/ entity / calling _ongamepadball on ' + name, true);
+        _verboser('calling _ongamepadball on ' + name);
 
             //init the parent first
         _call(this, 'ongamepadball', [e]);
@@ -488,7 +490,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadhat(e) {
 
-        _debug('/ entity / calling _ongamepadhat on ' + name, true);
+        _verboser('calling _ongamepadhat on ' + name);
 
             //init the parent first
         _call(this, 'ongamepadhat', [e]);
@@ -509,7 +511,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttondown(e) {
 
-        _debug('/ entity / calling _ongamepadbuttondown on ' + name, true);
+        _verboser('calling _ongamepadbuttondown on ' + name);
 
             //init the parent first
         _call(this, 'ongamepadbuttondown', [e]);
@@ -530,7 +532,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttonup(e) {
 
-        _debug('/ entity / calling _ongamepadbuttonup on ' + name, true);
+        _verboser('calling _ongamepadbuttonup on ' + name);
 
             //init the parent first
         _call(this, 'ongamepadbuttonup', [e]);
@@ -553,7 +555,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputdown(_name:String, e:InputEvent) {
 
-        _debug('/ entity / calling _oninputdown on ' + name, true);
+        _verboser('calling _oninputdown on ' + name);
 
             //init the parent first
         _call(this, 'oninputdown', [e]);
@@ -574,7 +576,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputup(_name:String, e:InputEvent) {
 
-        _debug('/ entity / calling _oninputup on ' + name, true);
+        _verboser('calling _oninputup on ' + name);
 
             //init the parent first
         _call(this, 'oninputup', [e]);
@@ -597,11 +599,11 @@ class Entity extends Objects {
     @:noCompletion public function _update(dt:Float) {
         
         if(_destroyed) {
-            _debug("/ entity / calling update AFTER DESTROYED on " + name + " / " + id );
+            _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
             return;
         }
 
-        _debug('/ entity / calling update on ' + name, true);
+        _verboser('calling update on ' + name);
 
             //update the parent first
         _call(this, 'update', [dt]);
@@ -630,7 +632,7 @@ class Entity extends Objects {
             //Not allowed post destroy
         if(_destroyed) return;
 
-        _debug('/ entity / calling fixed_update on ' + name, true);
+        _verboser('calling fixed_update on ' + name);
 
             //fixed_update the parent first
         _call(this, 'fixed_update');
@@ -713,14 +715,14 @@ class Entity extends Objects {
         
         children.push(child);
 
-        _debug( '/ entity / ' + name + " : add child : " + child.name );
+        _debug( '' + name + " : add child : " + child.name );
 
             //children inherit the updates and such from the parent, so they shouldn't be in the root of the scene
         if(child.scene != null) {
-            _debug( '/ entity / ' + name + " add child " + child.name + " being parented, removing from scene root of " + child.scene.name);
+            _debug( '' + name + " add child " + child.name + " being parented, removing from scene root of " + child.scene.name);
             var removed = child.scene.remove( child );
         } else {
-            _debug('/ entity / ' + name + " add child " + child.name + " being parented, but not from a scene");
+            _debug('' + name + " add child " + child.name + " being parented, but not from a scene");
         }
 
     } //_add_child
@@ -840,7 +842,7 @@ class Entity extends Objects {
 
     function set_parent( other:Entity ) {
 
-        _debug('/ entity / >>  ' + name + ' calling set parent to ' + (other == null ? 'null' : other.name) );
+        _debug('>>  ' + name + ' calling set parent to ' + (other == null ? 'null' : other.name) );
 
             //if we are parented already, 
             //remove ourselves from that parent

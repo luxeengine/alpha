@@ -7,6 +7,8 @@ import lime.gl.GLTexture;
 import lime.utils.ByteArray;
 import lime.utils.Libs;
 
+import luxe.Log.log;
+import luxe.Log._debug;
 import luxe.Rectangle;
 import luxe.ResourceManager;
 
@@ -157,10 +159,6 @@ class Renderer {
         }
         
     } //clear
-
-    private function _debug(v:Dynamic) {
-        //trace(v);
-    }
 
     public function load_font( _fontid:String, ?_path:String = 'assets/', ?_onloaded:BitmapFont->Void ) : BitmapFont {
 
@@ -370,7 +368,7 @@ class Renderer {
                 //call all the onload listeners
             texture.do_onload();
 
-            if(!_silent) trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
+            if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
 
         } else {
 
@@ -419,6 +417,8 @@ class Renderer {
 
     function create_default_shaders() {
 
+        _debug('creating default shaders...');
+
         default_vert_source = haxe.Resource.getString('default.vert.glsl');
         default_frag_source = haxe.Resource.getString('default.frag.glsl');
         default_frag_textured_source = haxe.Resource.getString('default.frag.textured.glsl');
@@ -439,22 +439,24 @@ class Renderer {
         default_shader.load_from_string( default_vert_source, default_frag_source, false );
         default_shader_textured.load_from_string( default_vert_source, default_frag_textured_source, false );
 
+        _debug('done. ');
+
     } //create_default_shaders
 
     function create_default_font() {
 
-        default_font = new BitmapFont( resource_manager );
+        _debug("creating the default font...");
 
-        _debug("Creating the default font...");
+            default_font = new BitmapFont( resource_manager );
 
-            //create the font texture                    
-        var _font_texture = Luxe.renderer.load_texture_from_resource_bytes('din.png', 256, 256);
-            _font_texture.filter_min = FilterType.linear;
+                //create the font texture                    
+            var _font_texture = Luxe.renderer.load_texture_from_resource_bytes('din.png', 256, 256);
+                _font_texture.filter_min = FilterType.linear;
 
-            //load the font string data
-        default_font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.default_font', null, [_font_texture] );        
+                //load the font string data
+            default_font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.default_font', null, [_font_texture] );        
 
-        _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
+        _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
             
     } //create_default_font
 

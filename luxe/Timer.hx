@@ -15,11 +15,11 @@ class Timer {
     } //new
 
     @:noCompletion public function init() {
-        _debug('luxe / \t Timer Initialized.');
+        _debug('\t timer initialized.');
     } //init
 
     @:noCompletion public function destroy() {
-        _debug('luxe / \t Timer shut down.');
+        _debug('\t timer shut down.');
     } //destroy
 
     @:noCompletion public function process() {
