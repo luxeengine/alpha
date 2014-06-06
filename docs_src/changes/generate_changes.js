@@ -4,7 +4,7 @@ var git 		= require('nodegit'),
 	path        = require('path'),
 	fs        	= require('graceful-fs');
 
-	var project_git_url = 'https://github.com/underscorediscovery.com/luxe/';
+	var project_git_url = 'https://github.com/underscorediscovery/luxe/';
 	var md_path = '../luxe/md/';
 	
 	var write_file = function(_dest, _content) {
