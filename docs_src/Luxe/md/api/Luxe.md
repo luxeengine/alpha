@@ -26,7 +26,7 @@
             <a name="audio"><a class="lift" href="#audio">audio</a></a><span class="inline-block static">static</span><code class="signature apipage">audio : [luxe.Audio](#luxe.Audio)</code><br/></span>
         <span class="small_desc_flat">Access to the audio features</span><span class="member apipage">
             <a name="build"><a class="lift" href="#build">build</a></a><span class="inline-block static">static</span><code class="signature apipage">build : [String](http://api.haxe.org/String.html)</code><br/></span>
-        <span class="small_desc_flat">The version + build meta information</span><span class="member apipage">
+        <span class="small_desc_flat">The version + build meta information, generated at compile time from a macro (luxe.BuildVersion)</span><span class="member apipage">
             <a name="camera"><a class="lift" href="#camera">camera</a></a><span class="inline-block static">static</span><code class="signature apipage">camera : [luxe.Camera](#luxe.Camera)</code><br/></span>
         <span class="small_desc_flat">Access to the default camera</span><span class="member apipage">
             <a name="core"><a class="lift" href="#core">core</a></a><span class="inline-block static">static</span><code class="signature apipage">core : [luxe.Core](#luxe.Core)</code><br/></span>

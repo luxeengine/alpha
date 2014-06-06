@@ -1,6 +1,146 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [16d30f1129](https://github.com/underscorediscovery.com/luxe/commit/16d30f1129f411dc295886b52394a80d300a4752)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 19:00:38 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>SpriteAnimation; Fixing logging not compiling</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ddb736e74b](https://github.com/underscorediscovery.com/luxe/commit/ddb736e74babc32c3e791e07969ee8df87746c55)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 18:53:51 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Renderer; fixing inconsistent logging on html5</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [b8edec82c4](https://github.com/underscorediscovery.com/luxe/commit/b8edec82c41b09588238a15e3da92ee20bc4bc1b)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 18:50:13 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>BuildVersion; Fixing html5 builds, incorrect shielding is all</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [90528e4694](https://github.com/underscorediscovery.com/luxe/commit/90528e469491944ab6437063ee60d126119037c3)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 18:21:57 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Html5; fixing macro causing build failure</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [cafb7e3807](https://github.com/underscorediscovery.com/luxe/commit/cafb7e380714811ca0717090c3c4285dfb5fc122)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 18:13:44 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Log; cleanup of logging elsewhere #92</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [5ed2ef5306](https://github.com/underscorediscovery.com/luxe/commit/5ed2ef5306a381d67f80875daaebfced8db4dacc)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 17:53:30 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Log; added log spacing, context and cleaned up lots of logging. see first comment for more info</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [76f2d21483](https://github.com/underscorediscovery.com/luxe/commit/76f2d21483715ab1266d8994831ce031b1d092dd)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 07:16:40 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Log; for #92 - adding central logging macro for encapsulating all logging, and strip log code entirely (no string allocs, no empty function calls) when log level is set accordingly. To set the log level add <haxeflag name="--macro" value="luxe.Log.level(1)"/> to your project file. 1 = info, 2 = debug, 3 = verbose (these values might be changed slightly as this change has not been migrated to the core in full yet)</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [54cc932ddb](https://github.com/underscorediscovery.com/luxe/commit/54cc932ddb8b55b4104ece67ebb19e2d6300b50d)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 02:11:48 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Luxe; adding a build macro to get the latest git commit version of a build for the build version, like 1.0.0-alpha.1+effe61dc6a where the last bit is the master commit reference at the time of build</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [effe61dc6a](https://github.com/underscorediscovery.com/luxe/commit/effe61dc6af0ac3466b8eac641d2f36a9be8d936)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 00:47:45 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; Update</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [443094a8c3](https://github.com/underscorediscovery.com/luxe/commit/443094a8c3ab7018baa5839f531d1f11de453285)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 00:43:02 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; Fixing debug draw breaking doc gen</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [b2ec5bc182](https://github.com/underscorediscovery.com/luxe/commit/b2ec5bc182c0b9dbe5526decede8098c28d6e5b4)   
 author: underscorediscovery   
 date: Fri Jun 06 2014 00:39:26 GMT-0230 (NDT)   

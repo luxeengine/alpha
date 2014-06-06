@@ -4,6 +4,7 @@
     "luxe._Events.EventConnection",
     "luxe._Events.EventObject",
     "luxe.Audio",
+    "luxe.BuildVersion",
     "luxe.ButtonState",
     "luxe.Camera",
     "luxe.Circle",
@@ -67,6 +68,7 @@
     "luxe.KeyValue",
     "luxe.LoadShaderInfo",
     "luxe.LoadTextureInfo",
+    "luxe.Log",
     "luxe.Matrix4",
     "luxe.Mesh",
     "luxe.MouseButton",
@@ -10508,28 +10510,6 @@
       "ispublic": true,
       "members": [
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": false,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": false,
           "name": "components",
@@ -10629,38 +10609,6 @@
           "ispublic": false,
           "inherit_source": "",
           "signature": "_call(_object:Dynamic, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": false,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "_debug(v:String) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -12200,33 +12148,6 @@
         {
           "args": [
             {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "Dynamic",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "_debug(v:Dynamic) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
               "name": "batch",
               "type": {
                 "func": false,
@@ -13600,6 +13521,47 @@
         }
       ],
       "type_name": "BitmapFont",
+      "implement": []
+    },
+    "luxe.BuildVersion": {
+      "extend": [],
+      "meta": {},
+      "name": "luxe.BuildVersion",
+      "type": "class",
+      "properties": [],
+      "doc": "",
+      "ispublic": true,
+      "members": [],
+      "methods": [
+        {
+          "args": [
+            {
+              "name": "root",
+              "type": {
+                "func": false,
+                "name": "String",
+                "params": []
+              },
+              "value": null
+            }
+          ],
+          "meta": {},
+          "inherited": false,
+          "name": "try_git",
+          "return_type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "try_git(root:String) : String",
+          "isstatic": true,
+          "isinline": false
+        }
+      ],
+      "type_name": "BuildVersion",
       "implement": []
     },
     "luxe.tween.easing.Linear": {
@@ -27302,6 +27264,82 @@
       "type_name": "ParcelProgress",
       "implement": []
     },
+    "luxe.Log": {
+      "extend": [],
+      "meta": {},
+      "name": "luxe.Log",
+      "type": "class",
+      "properties": [],
+      "doc": "",
+      "ispublic": true,
+      "members": [
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "_level",
+          "type": {
+            "func": false,
+            "name": "Int",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": true,
+          "inherit_source": "",
+          "signature": "_level : Int",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "_log_width",
+          "type": {
+            "func": false,
+            "name": "Int",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": true,
+          "inherit_source": "",
+          "signature": "_log_width : Int",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        }
+      ],
+      "methods": [
+        {
+          "args": [
+            {
+              "name": "_file",
+              "type": {
+                "func": false,
+                "name": "String",
+                "params": []
+              },
+              "value": null
+            }
+          ],
+          "meta": {},
+          "inherited": false,
+          "name": "_get_spacing",
+          "return_type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "_get_spacing(_file:String) : String",
+          "isstatic": true,
+          "isinline": false
+        }
+      ],
+      "type_name": "Log",
+      "implement": []
+    },
     "luxe.Vec": {
       "meta": {},
       "name": "luxe.Vec",
@@ -28582,50 +28620,6 @@
           "signature": "transform : luxe.Transform",
           "optional": false,
           "isstatic": false,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
           "isinline": false
         },
         {
@@ -30223,47 +30217,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -34802,33 +34755,6 @@
       ],
       "methods": [
         {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "_debug(v:String) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
           "args": [],
           "meta": {},
           "inherited": false,
@@ -38042,50 +37968,6 @@
           "isinline": false
         },
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": true,
           "name": "id",
@@ -39237,47 +39119,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -52045,50 +51886,6 @@
           "isinline": false
         },
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": true,
           "name": "id",
@@ -52813,47 +52610,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -54008,33 +53764,6 @@
           "ispublic": true,
           "inherit_source": "phoenix.Batcher",
           "signature": "new(_r:phoenix.Renderer, ?_name:String) : ",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "phoenix.Batcher",
-          "signature": "_debug(v:String) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -67330,50 +67059,6 @@
           "isinline": false
         },
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": true,
           "name": "id",
@@ -67726,47 +67411,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -76179,50 +75823,6 @@
       "ispublic": true,
       "members": [
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": false,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": false,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": false,
           "name": "id",
@@ -76311,47 +75911,6 @@
           "ispublic": false,
           "inherit_source": "",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": false,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -83158,50 +82717,6 @@
           "isinline": false
         },
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": true,
           "name": "id",
@@ -84353,47 +83868,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -92689,6 +92163,10 @@
         "@:noCompletion": {
           "name": ":noCompletion",
           "value": ""
+        },
+        "@:log_as": {
+          "name": ":log_as",
+          "value": "luxe"
         }
       },
       "name": "luxe.Core",
@@ -92697,10 +92175,10 @@
         {
           "meta": {},
           "inherited": false,
-          "name": "core_tag_audio",
+          "name": "none",
           "type": {
             "func": false,
-            "name": "String",
+            "name": "Int",
             "params": []
           },
           "iswrite": false,
@@ -92709,169 +92187,7 @@
           "ispublic": false,
           "access": "read only",
           "inherit_source": "",
-          "signature": "core_tag_audio : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_debug",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_debug : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_events",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_events : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_input",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_input : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_physics",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_physics : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_render",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_render : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_scene",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_scene : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_time",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_time : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "core_tag_updates",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "core_tag_updates : String",
-          "isstatic": true
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "host_tag_update",
-          "type": {
-            "func": false,
-            "name": "String",
-            "params": []
-          },
-          "iswrite": false,
-          "isread": true,
-          "doc": "",
-          "ispublic": false,
-          "access": "read only",
-          "inherit_source": "",
-          "signature": "host_tag_update : String",
+          "signature": "none : Int",
           "isstatic": true
         }
       ],
@@ -93000,6 +92316,159 @@
           "signature": "console_visible : Bool",
           "optional": false,
           "isstatic": false,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_audio",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_audio : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_debug",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_debug : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_events",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_events : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_input",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_input : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_physics",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_physics : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_render",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_render : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_scene",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_scene : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_time",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_time : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
+          "name": "core_tag_updates",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "core_tag_updates : String",
+          "optional": false,
+          "isstatic": true,
           "isinline": false
         },
         {
@@ -93141,6 +92610,23 @@
         {
           "meta": {},
           "inherited": false,
+          "name": "host_tag_update",
+          "type": {
+            "func": false,
+            "name": "String",
+            "params": []
+          },
+          "doc": "",
+          "ispublic": false,
+          "inherit_source": "",
+          "signature": "host_tag_update : String",
+          "optional": false,
+          "isstatic": true,
+          "isinline": false
+        },
+        {
+          "meta": {},
+          "inherited": false,
           "name": "input",
           "type": {
             "func": false,
@@ -93168,40 +92654,6 @@
           "ispublic": true,
           "inherit_source": "",
           "signature": "lime : lime.Lime",
-          "optional": false,
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "log",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "log : Bool",
-          "optional": false,
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "more_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "more_verbose : Bool",
           "optional": false,
           "isstatic": false,
           "isinline": false
@@ -93352,71 +92804,9 @@
           "optional": false,
           "isstatic": false,
           "isinline": false
-        },
-        {
-          "meta": {},
-          "inherited": false,
-          "name": "verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "verbose : Bool",
-          "optional": false,
-          "isstatic": false,
-          "isinline": false
         }
       ],
       "methods": [
-        {
-          "args": [
-            {
-              "name": "value",
-              "type": {
-                "func": false,
-                "name": "Dynamic",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?_verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            },
-            {
-              "name": "?_more_verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "",
-          "signature": "_debug(value:Dynamic, ?_verbose:Bool=false, ?_more_verbose:Bool=false) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
         {
           "args": [
             {
@@ -95682,50 +95072,6 @@
           "isinline": false
         },
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": true,
           "name": "id",
@@ -96616,47 +95962,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
@@ -100018,7 +99323,7 @@
             "name": "String",
             "params": []
           },
-          "doc": "The version + build meta information",
+          "doc": "The version + build meta information, generated at compile time from a macro (luxe.BuildVersion)",
           "ispublic": true,
           "inherit_source": "",
           "signature": "build : String",
@@ -111602,50 +110907,6 @@
           "isinline": false
         },
         {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_show_debug_verbose",
-          "type": {
-            "func": false,
-            "name": "Bool",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": true,
-          "inherit_source": "luxe.Objects",
-          "signature": "_show_debug_verbose : Bool",
-          "optional": false,
-          "isstatic": true,
-          "isinline": false
-        },
-        {
           "meta": {},
           "inherited": true,
           "name": "id",
@@ -111875,47 +111136,6 @@
           "ispublic": false,
           "inherit_source": "luxe.Objects",
           "signature": "_call(_object:luxe.Objects, _name:String, ?args:Array<Dynamic>) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "v",
-              "type": {
-                "func": false,
-                "name": "String",
-                "params": []
-              },
-              "value": ""
-            },
-            {
-              "name": "?verbose",
-              "type": {
-                "func": false,
-                "name": "Bool",
-                "params": []
-              },
-              "value": "false"
-            }
-          ],
-          "meta": {
-            "@:noCompletion": {
-              "name": ":noCompletion",
-              "value": ""
-            }
-          },
-          "inherited": true,
-          "name": "_debug",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "luxe.Objects",
-          "signature": "_debug(v:String, ?verbose:Bool=false) : Void",
           "isstatic": false,
           "isinline": false
         },
