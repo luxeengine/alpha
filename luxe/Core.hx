@@ -18,6 +18,8 @@ import phoenix.Renderer;
 import phoenix.Texture;
 import phoenix.Shader;
 
+import luxe.Log._verbose;
+import luxe.Log._debug;
 
 #if (!luxe_threading_disabled && luxe_native) 
 
@@ -131,6 +133,7 @@ import phoenix.Shader;
         //This gets called once the create_main_frame call inside new() 
         //comes back with our window
 
+    static inline var none : Int = 4;
     private function ready( _lime : Lime ) {
             
             //Keep a reference
@@ -138,16 +141,14 @@ import phoenix.Shader;
 
         Luxe.version = haxe.Resource.getString('version');
             //Don't change this, it matches semantic versioning http://semver.org/
-        Luxe.build = Luxe.version + haxe.Resource.getString('build');
+        Luxe.build = Luxe.version + haxe.Resource.getString('build');        
 
-        _debug(':: luxe :: Version ${Luxe.version}+${Luxe.build}');
+        _debug('luxe / version ${Luxe.build}');
 
             //Create the subsystems
-
         init();
 
-        _debug(':: luxe :: Ready.');
-        _debug('');
+        _debug('luxe / Ready.');
 
             //Call the main ready function 
             //and send the ready event to the host
@@ -172,7 +173,7 @@ import phoenix.Shader;
         config = lime.config;
 
             //Create the subsystems
-        _debug(':: luxe :: Creating subsystems.');
+        _debug('luxe / Creating subsystems.');
 
             //Order is important here
         
@@ -223,8 +224,8 @@ import phoenix.Shader;
 
     public function shutdown() {        
 
-        _debug('');
-        _debug(':: luxe :: Shutting down...');
+        _debug('---');
+        _debug('luxe / Shutting down...');
 
             //Make sure all systems know we are going down
 
@@ -262,7 +263,7 @@ import phoenix.Shader;
             //Flag it
         has_shutdown = true;
 
-        _debug(':: luxe :: Goodbye.');
+        _debug('luxe / Goodbye.');
 
     } //shutdown
 
@@ -270,7 +271,7 @@ import phoenix.Shader;
     public function update() { 
 
         #if luxe_fullprofile 
-            _debug('on_update ' + Luxe.time, true, true);
+            _verbose('luxe / on_update ' + Luxe.time);
         #end //luxe_fullprofile
 
         if(has_shutdown) return;
@@ -699,26 +700,6 @@ import phoenix.Shader;
     private static var core_tag_input : String = 'core.input';
     private static var core_tag_time : String = 'core.time';
     private static var core_tag_scene : String = 'core.scene';
-
-//:todo:#92: temporary debugging with verbosity options
-
-    public var log : Bool = false;
-    public var verbose : Bool = true;
-    public var more_verbose : Bool = false;
-    public function _debug(value:Dynamic, _verbose:Bool = false, _more_verbose:Bool = false) { 
-        if(log) {            
-            if(verbose && _verbose && !_more_verbose) {
-                trace(value);
-            } else 
-            if(more_verbose && _more_verbose) {
-                trace(value);
-            } else {
-                if(!_verbose && !_more_verbose) {
-                    trace(value);
-                }
-            } //elses
-        } //log
-    } //_debug
 
 
 } //Core

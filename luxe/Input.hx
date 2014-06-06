@@ -1,6 +1,7 @@
 package luxe;
 
 import luxe.Core;
+import luxe.Log._debug;
 
     //Button and key types
 typedef KeyValue    = lime.helpers.Keys.KeyValue;
@@ -73,12 +74,12 @@ class Input {
             //Default to 360 for now
         Gamepad.apply_360_profile();
 
-        core._debug(':: luxe :: \t Input Initialized.');
+        _debug(':: luxe :: \t Input Initialized.');
 
     } //init
 
     @:noCompletion public function destroy() {
-        core._debug(':: luxe :: \t Input shut down.');
+        _debug(':: luxe :: \t Input shut down.');
     } //destroy
 
     @:noCompletion public function process() {

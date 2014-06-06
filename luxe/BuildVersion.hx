@@ -1,9 +1,10 @@
 package luxe;
 
-import haxe.io.Bytes;
-import haxe.io.Path;
 import haxe.macro.Expr;
 import haxe.macro.Context;
+
+import haxe.io.Bytes;
+import haxe.io.Path;
 import sys.io.File;
 import sys.FileSystem;
 

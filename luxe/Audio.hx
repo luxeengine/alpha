@@ -4,6 +4,8 @@ import luxe.Core;
 
 import lime.helpers.AudioHelper.Sound;
 
+import luxe.Log._debug;
+
 class Audio {
     
     @:noCompletion public var core : Core;
@@ -15,11 +17,11 @@ class Audio {
     } //new
 
     @:noCompletion public function init() {
-        core._debug(':: luxe :: \t Audio Initialized.');
+        _debug('luxe / \t Audio Initialized.');
     } //init
 
     @:noCompletion public function destroy() {
-        core._debug(':: luxe :: \t Audio shut down.');
+        _debug('luxe / \t Audio shut down.');
     } //destroy
 
         /**

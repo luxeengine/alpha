@@ -2,6 +2,7 @@ package luxe;
 
 import luxe.Core;
 import haxe.Timer;
+import luxe.Log._debug;
 
 class Timer {
     
@@ -14,11 +15,11 @@ class Timer {
     } //new
 
     @:noCompletion public function init() {
-        core._debug(':: luxe :: \t Timer Initialized.');
+        _debug('luxe / \t Timer Initialized.');
     } //init
 
     @:noCompletion public function destroy() {
-        core._debug(':: luxe :: \t Timer shut down.');
+        _debug('luxe / \t Timer shut down.');
     } //destroy
 
     @:noCompletion public function process() {

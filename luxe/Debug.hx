@@ -19,8 +19,9 @@ import luxe.debug.ProfilerDebugView;
 import luxe.debug.StatsDebugView;
 import luxe.debug.BatcherDebugView;
 
-class Debug {
+import luxe.Log._debug;
 
+class Debug {
 
     public var core : Core;
     public var visible : Bool = false;
@@ -77,7 +78,7 @@ class Debug {
 
         haxe.Log.trace = internal_trace;
 
-        core._debug(':: luxe :: \t Debug Initialized.');
+        _debug('luxe / \t Debug Initialized.');
 
     } //init
 
@@ -102,11 +103,11 @@ class Debug {
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
         #if luxe_native 
-            Sys.println( inf.fileName + ':' + inf.lineNumber + ' ' + v );
+            Sys.println('${inf.fileName}:${inf.lineNumber}: $v');
         #end
 
         #if luxe_html5
-            untyped console.log(inf.fileName + ':' + inf.lineNumber, v);
+            untyped console.log('${inf.fileName}:${inf.lineNumber}: $v');
         #end
             
             //call listeners
@@ -317,7 +318,7 @@ class Debug {
     public function destroy() {
 
         shut_down = true;
-        core._debug(':: luxe :: \t Debug shut down.');
+        _debug('luxe / \t Debug shut down.');
 
     } //destroy
 
@@ -347,5 +348,5 @@ class Debug {
         
     } //process
 
-
 } //Debug 
+
