@@ -3,6 +3,8 @@ package luxe.components;
 import luxe.options.ComponentOptions;
 import luxe.Quaternion;
 
+import luxe.Log._debug;
+
 class Component extends Objects {
 
         //the entity this component is attached to
@@ -300,8 +302,5 @@ class Component extends Objects {
         } //does function exist?
 
     } //_call
-
-    @:noCompletion public static var _show_debug : Bool = false;
-    @:noCompletion function _debug(v){ if(_show_debug) { trace(v); } }      
 
 } //Components

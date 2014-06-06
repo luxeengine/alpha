@@ -14,6 +14,9 @@ import lime.gl.GLUniformLocation;
 
 import luxe.structural.BalancedBinarySearchTree;
 
+import luxe.Log.log;
+import luxe.Log._debug;
+
 enum PrimitiveType {
     none;
     line_strip;
@@ -238,12 +241,6 @@ class Batcher {
         GL.blendFunc(_src, _dest);
 
     } //set blendmode
-
-    function _debug(v) {
-        if(name == "default_batcher") {
-            trace(v);
-        }
-    }
 
     public function compare_rule_to_string(r:Int) : String {
         switch(r) {
