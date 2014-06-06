@@ -9,6 +9,8 @@ import lime.utils.Libs;
 
 import luxe.Log.log;
 import luxe.Log._debug;
+import luxe.Log._verbose;
+
 import luxe.Rectangle;
 import luxe.ResourceManager;
 
@@ -213,7 +215,7 @@ class Renderer {
                 _onloaded( _shader );
             }
 
-            trace(":: Shader loaded " + _shader.id );
+            log("shader loaded " + _shader.id );
 
             return _shader;
         } else {
@@ -277,7 +279,7 @@ class Renderer {
         if(_exists != null) {
 
             if(_name != 'default_ui_button' && _name != 'default_ui_box') {
-                // trace(":: Texture loaded (cached) " + _exists.id ) ;
+                _verbose("texture loaded (cached) " + _exists.id ) ;
             }
 
             if(_onloaded != null) _onloaded(_exists);
@@ -313,7 +315,7 @@ class Renderer {
                 texture.width = image.width;
                 texture.height = image.height;            
 
-                if(!_silent) trace(":: Texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
+                if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
 
                 tmp_canvas = null;
                 tmp_context = null;
@@ -372,7 +374,7 @@ class Renderer {
 
         } else {
 
-            trace(":: Texture not found by asset name. " + _name );      
+            log("texture not found by asset name. " + _name );      
                 //Set the failed to load flagged
             texture.id = "Failed to load texture : " + _name;    
 
