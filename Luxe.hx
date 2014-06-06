@@ -61,8 +61,8 @@ class Luxe {
     @:isVar public static var screen(get, never) : Screen;
         /** The version of the engine  */
     public static var version : String = 'dev';
-        /** The version + build meta information */
-    public static var build : String = 'unknown';
+        /** The version + build meta information, generated at compile time from a macro (luxe.BuildVersion) */
+    public static var build : String = luxe.BuildVersion.latest();
 
 
     static function get_screen() {

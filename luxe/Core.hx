@@ -138,7 +138,7 @@ import phoenix.Shader;
 
         Luxe.version = haxe.Resource.getString('version');
             //Don't change this, it matches semantic versioning http://semver.org/
-        Luxe.build = Luxe.version + '+' + haxe.Resource.getString('build');
+        Luxe.build = Luxe.version + haxe.Resource.getString('build');
 
         _debug(':: luxe :: Version ${Luxe.version}+${Luxe.build}');
 
@@ -689,18 +689,18 @@ import phoenix.Shader;
 
 //Noisy stuff
 
-    private static inline var host_tag_update : String = 'host.update';
-    private static inline var core_tag_render : String = 'core.render';
-    private static inline var core_tag_debug : String = 'core.debug';
-    private static inline var core_tag_physics : String = 'core.physics';
-    private static inline var core_tag_updates : String = 'core.update_callbacks';
-    private static inline var core_tag_events : String = 'core.events';
-    private static inline var core_tag_audio : String = 'core.audio';
-    private static inline var core_tag_input : String = 'core.input';
-    private static inline var core_tag_time : String = 'core.time';
-    private static inline var core_tag_scene : String = 'core.scene';
+    private static var host_tag_update : String = 'host.update';
+    private static var core_tag_render : String = 'core.render';
+    private static var core_tag_debug : String = 'core.debug';
+    private static var core_tag_physics : String = 'core.physics';
+    private static var core_tag_updates : String = 'core.update_callbacks';
+    private static var core_tag_events : String = 'core.events';
+    private static var core_tag_audio : String = 'core.audio';
+    private static var core_tag_input : String = 'core.input';
+    private static var core_tag_time : String = 'core.time';
+    private static var core_tag_scene : String = 'core.scene';
 
-//temporary debugging with verbosity options
+//:todo:#92: temporary debugging with verbosity options
 
     public var log : Bool = false;
     public var verbose : Bool = true;
