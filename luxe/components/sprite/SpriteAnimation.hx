@@ -7,6 +7,10 @@ import luxe.Sprite;
 
 import phoenix.Texture;
 
+import luxe.Log.log;
+import luxe.Log._debug;
+
+
 typedef SpriteAnimationFrameEvent = {
     frame : Int,
     event : String
