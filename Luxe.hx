@@ -59,6 +59,10 @@ class Luxe {
     @:isVar public static var time(get, never) : Float;
         /** Access to information about the game window (sizes, cursor etc) */
     @:isVar public static var screen(get, never) : Screen;
+        /** The version of the engine  */
+    public static var version : String = 'dev';
+        /** The version + build meta information */
+    public static var build : String = 'unknown';
 
 
     static function get_screen() {

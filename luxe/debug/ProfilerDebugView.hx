@@ -190,7 +190,7 @@ private class ProfilerBar {
             name : 'profiler.text.' + _name,
             pos : new Vector(0,0),
             color : _color,
-            size : height*2.2,
+            size : height*1.8,
             depth : 999.3,
             text : '32ms',
             batcher : Luxe.debug.batcher
@@ -322,7 +322,7 @@ private class ProfilerBar {
     }
 
     function set_text(_t:String) {
-        text_item.text = name + '|' + _t + 'ms';
+        text_item.text = name + ' | ' + _t + 'ms';
         return text = _t;
     } 
 

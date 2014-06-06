@@ -332,7 +332,7 @@ class BitmapFont extends Resource {
          var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
          var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
-         var _size : Float = (options.size == null) ? 32 : options.size;
+         var _size : Float = (options.size == null) ? 22 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.default_batcher : options.batcher;
          var _visible : Bool = (options.visible == null) ? true : options.visible;
          var _immediate : Bool = (options.immediate == null) ? false : options.immediate;

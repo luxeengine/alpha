@@ -21,6 +21,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
     public var debug_draw_call_count : Int = 3;
     public var debug_geometry_count : Int = 13;
+    public var font_size : Int = 15;
 
         //stats console
     public var render_stats_text : luxe.Text;
@@ -81,7 +82,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             pos : new Vector(debug.padding.x*2,debug.padding.y*3),
             font : Luxe.renderer.default_font,
             text : get_render_stats_string(),
-            size : 18,
+            size : font_size,
             batcher : debug.batcher,
             visible : false
         });
@@ -93,7 +94,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             pos : new Vector(debug.padding.x*2,debug.padding.y*7.5),
             font : Luxe.renderer.default_font,
             text : get_resource_stats_string(),
-            size : 18,
+            size : font_size,
             batcher : debug.batcher,
             visible : false
         });
@@ -105,7 +106,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             pos : new Vector(debug.padding.x*7,debug.padding.y*3),
             font : Luxe.renderer.default_font,
             text : '',
-            size : 14,
+            size : font_size*0.8,
             batcher : debug.batcher,
             visible : false
         });
@@ -135,12 +136,12 @@ class StatsDebugView extends luxe.debug.DebugView  {
             }
         }
 
-        var lists = 'Textures\n';
-            lists += texture_lists;
-            lists += 'Fonts\n';
+        var lists = 'Fonts\n';
             lists += font_lists;
             lists += 'Shader\n';
             lists += shader_lists;
+            lists += 'Textures\n';
+            lists += texture_lists;
 
         resource_list_text.text = lists;
         resource_list_text.geometry.dirty = true;

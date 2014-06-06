@@ -50,8 +50,6 @@ import phoenix.Shader;
 
 @:noCompletion @:keep class Core {
 
-        //core versioning
-    public var version : String = '0.1';
         //the game object running the core
     public var host : Dynamic;  
         //the config passed to us on creation
@@ -138,7 +136,11 @@ import phoenix.Shader;
             //Keep a reference
         lime = _lime;
 
-        _debug(':: luxe :: Version ' + version);
+        Luxe.version = haxe.Resource.getString('version');
+            //Don't change this, it matches semantic versioning http://semver.org/
+        Luxe.build = Luxe.version + '+' + haxe.Resource.getString('build');
+
+        _debug(':: luxe :: Version ${Luxe.version}+${Luxe.build}');
 
             //Create the subsystems
 

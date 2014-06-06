@@ -13,13 +13,6 @@ import luxe.ResourceManager;
 import phoenix.Batcher;
 import phoenix.RenderPath;
 import phoenix.geometry.Geometry;
-    //default resources
-import phoenix.defaults.Shaders;
-
-#if !no_debug_console
-import phoenix.defaults.FontString;
-import phoenix.defaults.FontBytes;
-#end //no_debug_console
 
 import phoenix.Shader;
 import phoenix.Color;
@@ -48,6 +41,9 @@ class Renderer {
         //Default rendering
     public var default_shader : Shader;
     public var default_shader_textured : Shader;
+    public var default_vert_source : String;
+    public var default_frag_source : String;
+    public var default_frag_textured_source : String;
         //Default view and batching renderer
     public var default_batcher : Batcher;
     public var default_camera : Camera;
@@ -91,18 +87,8 @@ class Renderer {
             //Apply it
         render_path = default_render_path;
 
-            //create the default rendering shader
-        default_shader = new Shader( resource_manager );  
-        default_shader.id = 'default_shader';
-
-        default_shader_textured = new Shader( resource_manager );  
-        default_shader_textured.id = 'default_shader_textured';
-
-        default_shader.load_from_string( Shaders.vertex_shader(), 
-                                         Shaders.fragment_untextured(), false );
-
-        default_shader_textured.load_from_string( Shaders.vertex_shader(), 
-                                                  Shaders.fragment_textured(), false );
+            //init shaders
+        create_default_shaders();
 
             //create the default batcher
         default_batcher = new Batcher( this, 'default_batcher' );
@@ -111,18 +97,8 @@ class Renderer {
 
     #if !no_debug_console
 
-            //create the default font
-        default_font = new BitmapFont( resource_manager );
+        create_default_font();
 
-        _debug("Creating the default font...");
-            //create the font texture                    
-        var _font_texture = load_texture_from_string_byte_array('default_font', FontBytes.data(), 512,512 );
-            _font_texture.filter_min = FilterType.linear;
-
-        default_font.load_from_string( FontString.data(), 'phoenix.internal_data.default_font', null, [_font_texture] );
-
-        _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
-            
     #end //no_debug_console
 
         if(Luxe.core.lime.config.depth_buffer) {
@@ -203,15 +179,15 @@ class Renderer {
         var _vert_shader = '';
 
         if(_vsid == 'default' || _vsid == '') {
-            _vert_shader = Shaders.vertex_shader();
+            _vert_shader = default_vert_source;
         } else {
             _vert_shader = lime.utils.Assets.getText(_vsid);
         }
 
         if(_psid == 'default' || _psid == '') {
-            _frag_shader = Shaders.fragment_untextured();
+            _frag_shader = default_frag_source;
         } else if(_psid == 'textured') {
-            _frag_shader = Shaders.fragment_textured();
+            _frag_shader = default_frag_textured_source;
         } else {
             _frag_shader = lime.utils.Assets.getText(_psid);
         }
@@ -248,51 +224,34 @@ class Renderer {
 
     } //load_shader
 
+    public function load_texture_from_resource_bytes(_name:String, _width:Int, _height:Int ) {
 
-    public function load_texture_from_string_byte_array(_name:String = 'untitled texture', _string_byte_array:String, _width:Int, _height:Int) : Texture {
-        
-        _debug("Checking if the texture exists in the cache ..." + _name);
-        var _exists = resource_manager.find_texture(_name);
+        var texture_bytes : haxe.io.Bytes = haxe.Resource.getBytes(_name);
 
-        if(_exists != null) {
-            _debug("Yes, returning it instead");
-            return _exists;
-        } else {
-            _debug("Nope, continuing");
-        }
+        if(texture_bytes != null) {
 
-        var _array_data = _string_byte_array.split(' ');
-        var _int_array_data : Array<Int> = [];
-            //loop over the string items and parse them to int
-        for(_s in _array_data) {
-            _int_array_data.push( Std.parseInt( _s ) );
-        }
+            var texture = new Texture(resource_manager);
 
-        _debug("have data array");
+            #if luxe_native 
+                texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
+            #end //luxe_native
 
-        var texture_bytes = Luxe.utils.array_to_bytes( _int_array_data );
-        var texture = new Texture(resource_manager);
+            #if luxe_html5
+                texture.create_from_bytes_using_haxe( _name, texture_bytes );
+            #end //luxe_html5
 
-        #if luxe_native 
-            texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
-            _debug("created from bytes");
-        #end //luxe_native
-        #if luxe_html5
-            texture.create_from_bytes_using_haxe(_name, texture_bytes );
-        #end //luxe_html5
+            texture_bytes = null;
+            texture.loaded = true;
 
-        texture_bytes = null;
-        _array_data = null;
-        _int_array_data = null;
-        texture.loaded = true;
+            resource_manager.cache(texture);
 
-        _debug("add to cache");
-        resource_manager.cache(texture);
+            return texture;
 
-        return texture;        
+        } //texture_bytes != null
 
-    }
+        return null;
 
+    } //load_texture_from_resource_bytes
 
     public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
         
@@ -456,7 +415,48 @@ class Renderer {
 
     public function onresize(e:Dynamic) {
         
-    }
+    } //onresize
+
+    function create_default_shaders() {
+
+        default_vert_source = haxe.Resource.getString('default.vert.glsl');
+        default_frag_source = haxe.Resource.getString('default.frag.glsl');
+        default_frag_textured_source = haxe.Resource.getString('default.frag.textured.glsl');
+
+            //for html5 + mobile, these are required
+        #if !desktop
+            default_frag_source = "precision mediump float;\n" + default_frag_source;
+            default_frag_textured_source = "precision mediump float;\n" + default_frag_textured_source;
+        #end 
+
+            //create the default rendering shader
+        default_shader = new Shader( resource_manager );  
+        default_shader.id = 'default_shader';
+
+        default_shader_textured = new Shader( resource_manager );  
+        default_shader_textured.id = 'default_shader_textured';
+
+        default_shader.load_from_string( default_vert_source, default_frag_source, false );
+        default_shader_textured.load_from_string( default_vert_source, default_frag_textured_source, false );
+
+    } //create_default_shaders
+
+    function create_default_font() {
+
+        default_font = new BitmapFont( resource_manager );
+
+        _debug("Creating the default font...");
+
+            //create the font texture                    
+        var _font_texture = Luxe.renderer.load_texture_from_resource_bytes('din.png', 256, 256);
+            _font_texture.filter_min = FilterType.linear;
+
+            //load the font string data
+        default_font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.default_font', null, [_font_texture] );        
+
+        _debug("Done. " + _font_texture.width + 'x' + _font_texture.height );
+            
+    } //create_default_font
 
 } //renderer
 

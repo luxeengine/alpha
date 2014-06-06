@@ -15,6 +15,18 @@
 
 	<sample path="template_projects" />
 
+		<!-- Built in resources and data -->
+	<haxeflag name="-resource" value="version@version" />
+	<haxeflag name="-resource" value="build@build" />
+		<!-- UI and fonts -->
+	<haxeflag name="-resource" value="luxe/defaults/ui/tiny.ui.png@tiny.ui" />
+	<haxeflag name="-resource" value="luxe/defaults/fonts/din.png@din.png" />
+	<haxeflag name="-resource" value="luxe/defaults/fonts/din.fnt@din.fnt" />
+		<!-- Shaders -->
+	<haxeflag name="-resource" value="phoenix/defaults/shaders/vert.glsl@default.vert.glsl" />
+	<haxeflag name="-resource" value="phoenix/defaults/shaders/frag.glsl@default.frag.glsl" />
+	<haxeflag name="-resource" value="phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl" />
+
     <section if="setup">
         
         <haxelib name="format" />

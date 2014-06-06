@@ -16,10 +16,10 @@ class TraceDebugView extends luxe.debug.DebugView {
         Luxe.debug.add_trace_listener('TraceDebugView', on_trace);
 
         logged = new Array<String>();
-        
 
-        add_line('luxe version 0.0.1 Debug Log');
-    }
+        add_line('luxe version ${Luxe.build} Debug Log');
+
+    } //new
 
     public function on_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
         add_line( inf.fileName + ':' + inf.lineNumber + ' ' + v );
@@ -38,7 +38,7 @@ class TraceDebugView extends luxe.debug.DebugView {
             font : Luxe.renderer.default_font,
             text : '',
             align_vertical : luxe.Text.TextAlign.bottom,
-            size : 15,
+            size : 12,
             batcher : debug.batcher,
             visible : false
         });
