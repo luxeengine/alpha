@@ -56,7 +56,9 @@ class TraceDebugView extends luxe.debug.DebugView {
         logged.push(_t);
 
             //update the line geometry
-        if(!visible) return;
+        if(!visible) {
+            return;
+        }
 
         refresh_lines();
 
@@ -105,11 +107,13 @@ class TraceDebugView extends luxe.debug.DebugView {
     }
 
     public override function show() {
+        super.show();
         refresh_lines();
         lines.visible = true;          
     }
 
     public override function hide() {
+        super.hide();
         lines.visible = false;
     }
 
