@@ -11,7 +11,8 @@ typedef RenderStats = {
     static_batched_count : Int,
     visible_count : Int,
     draw_calls : Int,
-    group_count : Int     
+    vert_count : Int,
+    group_count : Int
 }
 
 class StatsDebugView extends luxe.debug.DebugView  {
@@ -41,6 +42,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             static_batched_count : 0,
             visible_count : 0,
             draw_calls : 0,
+            vert_count : 0,
             group_count : 0      
         };          
 
@@ -51,6 +53,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             static_batched_count : 0,
             visible_count : 0,
             draw_calls : 0,
+            vert_count : 0,
             group_count : 0
         };        
 
@@ -68,7 +71,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
             '\tvisible geometry : ' + _render_stats.visible_count + '\n' +
             '\tdynamic batch count : ' + _render_stats.dynamic_batched_count + '\n' +
             '\tstatic batch count : ' + _render_stats.static_batched_count + '\n' +
-            '\ttotal draw calls : ' + _render_stats.draw_calls;            
+            '\ttotal draw calls : ' + _render_stats.draw_calls + '\n' +
+            '\ttotal vert count : ' + _render_stats.vert_count;
     }
 
     public override function create() { 
@@ -172,6 +176,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
             { dirty = true; _last_render_stats.draw_calls = _render_stats.draw_calls; }
         if(_last_render_stats.group_count != _render_stats.group_count) 
             { dirty = true; _last_render_stats.group_count = _render_stats.group_count; }
+        if(_last_render_stats.vert_count != _render_stats.vert_count) 
+            { dirty = true; _last_render_stats.vert_count = _render_stats.vert_count; }
 
         if(dirty) {
             refresh_render_stats();
@@ -233,6 +239,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         _render_stats.dynamic_batched_count = Luxe.renderer.stats.dynamic_batched_count;
         _render_stats.static_batched_count = Luxe.renderer.stats.static_batched_count;
         _render_stats.draw_calls = Luxe.renderer.stats.draw_calls;
+        _render_stats.vert_count = Luxe.renderer.stats.vert_count;
 
         if(hide_debug) {
 
@@ -242,6 +249,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             _render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count - Luxe.debug.batcher.dynamic_batched_count;// - Luxe.debug.batcher.static_batched_count;
             _render_stats.static_batched_count = _render_stats.static_batched_count - Luxe.debug.batcher.static_batched_count;
             _render_stats.draw_calls -= debug_draw_call_count;
+            _render_stats.vert_count -= Luxe.debug.batcher.vert_count;
 
         } //hide debug stats?
         

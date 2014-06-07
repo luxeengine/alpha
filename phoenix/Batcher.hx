@@ -88,6 +88,8 @@ class Batcher {
 
         //the index we are on
     public var buffer_index : Int = 0;
+    public var max_verts : Int = 0;
+    public var vert_count : Int = 0;
 
     public var vertexBuffers : Array<GLBuffer>;
     public var tcoordBuffers : Array<GLBuffer>;
@@ -130,17 +132,17 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        var c : Int = Std.int(Math.pow(2, 18));
+        max_verts = Std.int(Math.pow(2, 18));
 
-        vertlist = new Float32Array(c);
-        tcoordlist = new Float32Array(c);
-        colorlist = new Float32Array(c);
-        normallist = new Float32Array(c);
+        vertlist = new Float32Array( max_verts );
+        tcoordlist = new Float32Array( max_verts );
+        colorlist = new Float32Array( max_verts );
+        normallist = new Float32Array( max_verts );
 
-        static_vertlist = new Float32Array(c);
-        static_tcoordlist = new Float32Array(c);
-        static_colorlist = new Float32Array(c);
-        static_normallist = new Float32Array(c);
+        static_vertlist = new Float32Array( max_verts );
+        static_tcoordlist = new Float32Array( max_verts );
+        static_colorlist = new Float32Array( max_verts );
+        static_normallist = new Float32Array( max_verts );
 
             //The default view so we see stuff
         view = renderer.default_camera;
@@ -643,7 +645,7 @@ class Batcher {
 
                 if(geom.visible) {
                         //try
-                    visible_count++;
+                    visible_count++;                    
 
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
@@ -656,6 +658,9 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_strip ||
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
+                                //increase counts
+                            vert_count += geom.vertices.length;
+
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
                             geometry_batch(geom);
@@ -664,12 +669,13 @@ class Batcher {
                     } //if it's unbatchable
 
                         // Accumulate, this is standard geometry
-                    else {
+                    else {  
+                            
+                            //increase counts
+                        vert_count += geom.vertices.length;
 
-                        // trace((geom.vertices.length*4)+(verts) + " / " + ((vertlist.byteLength/4)));
-                            //if we have breached the max per batch, send it now
-                        if((geom.vertices.length*4)+(verts) > ((vertlist.byteLength/4))) {
-                            // vertlist = new Float32Array((vertlist.byteLength/4) * 2);
+                            //submit the current batch if we exceed the max buffer size
+                        if((geom.vertices.length+verts) > max_verts) {
                             submit_current_vertex_list( geom.primitive_type );
                         }
 
@@ -689,7 +695,7 @@ class Batcher {
                 } //geom.visible
 
             } else { //!null && !dropped
-                //:todo: If there is null (maybe dropped) geometry shouldn't they be removed or maybe
+                //:todo : If there is null (maybe dropped) geometry shouldn't they be removed or maybe
                 //stashed in a diff list? Dropped come from the above drop, but null is invalid state
             }
 
@@ -718,6 +724,7 @@ class Batcher {
 
         //Reset the draw count
         draw_calls = 0;
+        vert_count = 0;
 
             //update camera if it changes anything
         view.process();

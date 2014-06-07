@@ -217,6 +217,10 @@ class Geometry {
 
         vertices.push( v );
 
+        if(vertices.length > Luxe.renderer.default_batcher.max_verts) {
+            throw "Currently a single geometry cannot exceed the maximum vert count of " + Luxe.renderer.default_batcher.max_verts;
+        }
+
     } //add
 
     public function remove( v : Vertex ) {

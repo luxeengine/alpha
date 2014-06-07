@@ -475,6 +475,7 @@ class RendererStats {
     public var visible_count : Int = 0;
     public var draw_calls : Int = 0;
     public var group_count : Int = 0;
+    public var vert_count : Int = 0;
 
     public function reset() {
         geometry_count = 0;
@@ -482,7 +483,8 @@ class RendererStats {
         static_batched_count = 0;
         visible_count = 0;
         group_count = 0;
-        draw_calls = 0;        
+        draw_calls = 0;
+        vert_count = 0;
     }
     public function toString() {
         return 
@@ -492,7 +494,8 @@ class RendererStats {
             '\tvisible geometry : ' + visible_count + '\n' +
             '\tdynamic batched geometry : ' + dynamic_batched_count + '\n' +
             '\tstatic batched geometry : ' + static_batched_count + '\n' +
-            '\ttotal draw calls : ' + draw_calls;
+            '\ttotal draw calls : ' + draw_calls + '\n' +
+            '\ttotal vertices : ' + vert_count;
     }
 }
     
