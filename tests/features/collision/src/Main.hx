@@ -154,7 +154,7 @@ class Main extends luxe.Game {
 
         if(!mouse_is_hexagon) {
             
-            mouse_collide = Collision.testShapes( circle_static, circle_mouse );
+            mouse_collide = Collision.test( circle_static, circle_mouse );
 
             if(mouse_collide != null) {
                 mouse_color = collide_color1;
@@ -163,7 +163,7 @@ class Main extends luxe.Game {
 
         } else { //mouse_is_hexagon
 
-            mouse_collide = Collision.testShapes( circle_static, hexagon_mouse );
+            mouse_collide = Collision.test( circle_static, hexagon_mouse );
 
             if(mouse_collide != null) {
                 mouse_color = collide_color1;
@@ -176,7 +176,7 @@ class Main extends luxe.Game {
 
         if(!mouse_is_hexagon) {
             
-            mouse_collide = Collision.testShapes( circle_mouse, oct_static );
+            mouse_collide = Collision.test( circle_mouse, oct_static );
 
             if(mouse_collide != null) {
                 mouse_color = collide_color5;
@@ -185,7 +185,7 @@ class Main extends luxe.Game {
 
         } else { //mouse_is_hexagon
 
-            mouse_collide = Collision.testShapes( hexagon_mouse, oct_static );
+            mouse_collide = Collision.test( hexagon_mouse, oct_static );
 
             if(mouse_collide != null) {
                 mouse_color = collide_color5;
@@ -197,7 +197,7 @@ class Main extends luxe.Game {
 //Test the static box
         if(!mouse_is_hexagon) {
             
-            mouse_collide = Collision.testShapes( box_static, circle_mouse );
+            mouse_collide = Collision.test( box_static, circle_mouse );
 
             if(mouse_collide != null) {
                 mouse_color = collide_color2;
@@ -206,7 +206,7 @@ class Main extends luxe.Game {
 
         } else { //mouse_is_hexagon
 
-            mouse_collide = Collision.testShapes( box_static, hexagon_mouse );
+            mouse_collide = Collision.test( box_static, hexagon_mouse );
 
             if(mouse_collide != null) {
                 mouse_color = collide_color2;
@@ -217,7 +217,7 @@ class Main extends luxe.Game {
             
 //Test mouse box and circle
 
-        mouse_collide = Collision.testShapes( circle_mouse, hexagon_mouse );
+        mouse_collide = Collision.test( circle_mouse, hexagon_mouse );
 
         if(mouse_collide != null) {
             mouse_color = collide_color3;
@@ -230,7 +230,7 @@ class Main extends luxe.Game {
 
 //Test the line and all the shapes
 
-        line_collide = Collision.rayCollision( line_start, line_end, [ box_static, hexagon_mouse, circle_static, circle_mouse ]);
+        line_collide = Collision.ray( line_start, line_end, [ box_static, hexagon_mouse, circle_static, circle_mouse ]);
 
 //Now draw them
 

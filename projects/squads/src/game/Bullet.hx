@@ -58,7 +58,7 @@ class Bullet extends Component {
         ignored_colliders = [];
         collider.x = _pos.x;
         collider.y = _pos.y;
-        var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.air_collision_shapes );
+        var results : Array<CollisionData> = Collision.testShapes(collider, Game.level.air_collision_shapes );
         for(collision in results) {
             ignored_colliders.push(collision.shape1);
         }
@@ -78,7 +78,7 @@ class Bullet extends Component {
                 //check if we have exited the ignored colliders first
             if(ignored_colliders.length > 0) {                
                 for(shape in ignored_colliders) {
-                    var result = Collision.testShapes(collider, shape);                    
+                    var result = Collision.test(collider, shape);                    
                     if(result == null) {
                         ignored_colliders.remove(shape);
                     } 
@@ -87,7 +87,7 @@ class Bullet extends Component {
 
             if(Game.manager.level_running) {
             
-                var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.air_collision_shapes );
+                var results : Array<CollisionData> = Collision.testShapes(collider, Game.level.air_collision_shapes );
                 if(results.length > 0) {
                     
                     var must_kill = true;

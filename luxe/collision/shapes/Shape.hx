@@ -2,68 +2,108 @@ package luxe.collision.shapes;
 
 import luxe.Quaternion;
 import luxe.Vector;
-import luxe.Matrix4;
+import luxe.Matrix;
 
+/** A base collision class shape */
 class Shape {
-    
-    private var _position : Vector;
-    private var _scale : Vector;
-    private var _rotation : Quaternion;
-    private var _rotation_z : Float = 0;
 
-    private var _scaleX : Float = 1;
-    private var _scaleY : Float = 1;
 
-    private var _transformed : Bool = false;
-    private var _transformMatrix : Matrix4;
-
-    private var _transformedVertices : Array<Vector>;
-    private var _vertices : Array<Vector>;
-
+        /** The state of this shape, if inactive can be ignored in results */
+    public var active : Bool = true;
+        /** The name of this shape, to help in debugging */
     public var name : String = 'shape';
+        /** A generic data object where you can store anything you want, for later use */
     public var data : Dynamic;
+        /** A list of tags to use for marking shapes with data for later use, by key/value */
+    public var tags : Map<String, String>;
+        /** The position of this shape */
+    public var position ( get, set ) : Vector;
+        /** The x position of this shape */
+    public var x ( get, set ) : Float;
+        /** The y position of this shape */
+    public var y ( get, set ) : Float;
+        /** The rotation of this shape, in degrees */
+    public var rotation ( get, set ) : Float;
+        /** The scale in the x direction of this shape */
+    public var scaleX ( get, set ) : Float;
+        /** The scale in the y direction of this shape */
+    public var scaleY ( get, set ) : Float;
+        /** The transformed (rotated/scale) vertices cache */
+    public var transformedVertices ( get, never ) : Array<Vector>;
+        /** The vertices of this shape */
+    public var vertices ( get, never ) : Array<Vector>;
 
-//Constructor
 
+    var _position : Vector;
+    var _rotation : Float = 0;
+    var _rotation_radians : Float = 0;
+    var _rotation_quat : Quaternion;
+    var _scale : Vector;
+
+    var _scaleX : Float = 1;
+    var _scaleY : Float = 1;
+
+    var _transformed : Bool = false;
+    var _transformMatrix : Matrix;
+
+    var _transformedVertices : Array<Vector>;
+    var _vertices : Array<Vector>;
+
+
+//Public API
+
+
+        /** Create a new shape at give position x,y */
     public function new( _x:Float, _y:Float ) {
 
+        tags = new Map();
+
         _position = new Vector(_x,_y);
-        _rotation = new Quaternion();
         _scale = new Vector(1,1);
+        _rotation_quat = new Quaternion();
+        _rotation = 0;
 
         _scaleX = 1;
         _scaleY = 1;
 
-        _transformMatrix = new Matrix4();
+        _transformMatrix = new Matrix();
         _transformMatrix.makeTranslation( _position.x, _position.y, 0 );
 
         _transformedVertices = new Array<Vector>();
         _vertices = new Array<Vector>();
-    }
 
-//Getters/Setters
+    } //new
+
+        /** clean up and destroy this shape */
+    public function destroy():Void {
     
-    public var position     ( get, set ) : Vector;
-    public var x            ( get, set ) : Float;
-    public var y            ( get, set ) : Float;
-    public var rotation     ( get, set ) : Float;
-    public var scaleX       ( get, set ) : Float;
-    public var scaleY       ( get, set ) : Float;
+        _position = null;
+        _scale = null;
+        _transformMatrix = null;
+        _transformedVertices = null;
+        _vertices = null;
+        // _rotation_quat = null;
 
-    public var transformedVertices  ( get, never ) : Array<Vector>;
-    public var vertices             ( get, never ) : Array<Vector>;
+    } //destroy
+    
+//Getters/Setters
 
     function refresh_transform() {
-        _transformMatrix.compose( _position, _rotation, _scale );
+
+        _rotation_quat.setFromEuler( new Vector(0,0,_rotation_radians) );
+
+        _transformMatrix.compose( _position, _rotation_quat, _scale );
         _transformed = false;
+
     }
+
 //.position
 
-    private function get_position() : Vector {
+    function get_position() : Vector {
         return _position;
     }
 
-    private function set_position( v : Vector ) : Vector {
+    function set_position( v : Vector ) : Vector {
         _position = v;
         refresh_transform();
         return _position;
@@ -71,11 +111,11 @@ class Shape {
 
 //.x 
 
-    private function get_x() : Float {
+    function get_x() : Float {
         return _position.x;
     }
     
-    private function set_x(x : Float) : Float {
+    function set_x(x : Float) : Float {
         _position.x = x;
         refresh_transform();
         return _position.x;
@@ -83,11 +123,11 @@ class Shape {
     
 //.y
 
-    private function get_y() : Float {
+    function get_y() : Float {
         return _position.y;
     }
     
-    private function set_y(y : Float) : Float {
+    function set_y(y : Float) : Float {
         _position.y = y;
         refresh_transform();
         return _position.y;
@@ -95,26 +135,27 @@ class Shape {
 
 //.rotation 
 
-    private function get_rotation() : Float {
-        return _rotation_z;
+    function get_rotation() : Float {
+        return _rotation;
     }
 
-    private function set_rotation( v : Float ) : Float {
-        _rotation_z = v;
+    function set_rotation( v : Float ) : Float {
         
-        _rotation.setFromEuler(new Vector(0,0,_rotation_z).radians());
+        _rotation_radians = v * (Math.PI / 180);
+
         refresh_transform();
 
-       return _rotation_z;
-    }
+        return _rotation = v;
+    
+    } //set_rotation
 
 //.scaleX 
 
-    private function get_scaleX():Float {
+    function get_scaleX():Float {
         return _scaleX;
     }
     
-    private function set_scaleX( scale : Float ) : Float {
+    function set_scaleX( scale : Float ) : Float {
         _scaleX = scale;
         _scale.x = _scaleX;
         refresh_transform();
@@ -123,11 +164,11 @@ class Shape {
 
 //.scaleY
 
-    private function get_scaleY():Float {
+    function get_scaleY():Float {
         return _scaleY;
     }
     
-    private function set_scaleY(scale:Float) : Float {
+    function set_scaleY(scale:Float) : Float {
         _scaleY = scale;
         _scale.y = _scaleY;
         refresh_transform();
@@ -136,17 +177,16 @@ class Shape {
 
 //.transformedVertices
 
-    private function get_transformedVertices() : Array<Vector> {
+    function get_transformedVertices() : Array<Vector> {
 
         if(!_transformed) {
-
             _transformedVertices = new Array<Vector>();
             _transformed = true;
 
             var _count : Int = _vertices.length;
 
             for(i in 0..._count) {
-                _transformedVertices.push( _vertices[i].clone().applyMatrix4( _transformMatrix ) );
+                _transformedVertices.push( _vertices[i].clone().transform( _transformMatrix ) );
             }
         }
 
@@ -155,21 +195,8 @@ class Shape {
 
 //.vertices 
 
-    private function get_vertices() : Array<Vector> {
+    function get_vertices() : Array<Vector> {
         return _vertices;
     }
 
-//Public Methods 
-
-    public function destroy():Void {
-
-        _position = null;
-        _rotation = null;
-        _scale = null;
-        _transformMatrix = null;
-        _transformedVertices = null;
-        _vertices = null;
-
-    } //destroy
-	
 }

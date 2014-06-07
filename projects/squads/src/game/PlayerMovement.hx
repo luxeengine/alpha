@@ -112,11 +112,10 @@ class PlayerMovement extends Component {
         //only test if we are in the level
         if(Game.manager.level_running) {
 
-            var results : Array<CollisionData> = Collision.testShapeList(collider, Game.level.ground_collision_shapes );
+            var results : Array<CollisionData> = Collision.testShapes(collider, Game.level.ground_collision_shapes );
             for(_result in results) {
-                var dir = (_result.overlap > 0) ? 1 : -1;
-                next_pos.x += _result.separation.x * dir;
-                next_pos.y += _result.separation.y * dir;
+                next_pos.x += _result.separation.x;
+                next_pos.y += _result.separation.y;
             }
             
             collider.x = next_pos.x; collider.y = next_pos.y + 16;

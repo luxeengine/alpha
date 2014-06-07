@@ -1,20 +1,23 @@
 package luxe.collision.shapes;
-    
+
 import luxe.collision.shapes.Shape;
 import luxe.Vector;
 
+/** A polygon collision shape */
 class Polygon extends Shape {
     
+        /** Create a new polygon with a given set of vertices at position x,y. */
     public function new( x:Float, y:Float, vertices:Array<Vector> ) {
 
         super( x,y );
         
         name = vertices.length + 'polygon';
 
-        _vertices = vertices; 
-
-    } //new
+        _vertices = vertices;           
     
+    } //new
+        
+        /** Destroy this polygon and clean up. */
     override public function destroy() : Void {
 
         var _count : Int = _vertices.length;
@@ -26,7 +29,9 @@ class Polygon extends Shape {
         super.destroy();
 
     } //destroy
-    
+
+        /** Helper to create an Ngon at x,y with given number of sides, and radius.
+            A default radius of 100 if unspecified. Returns a ready made `Polygon` collision `Shape` */    
     public static function create( x:Float, y:Float, sides:Int, radius:Float=100):Polygon {
 
         if(sides < 3) {
@@ -45,11 +50,13 @@ class Polygon extends Shape {
             vector.y = Math.sin(angle) * radius;
             vertices.push(vector);
         }
-
+        
         return new Polygon(x,y,vertices);
 
     } //create
-    
+
+        /** Helper generate a rectangle at x,y with a given width/height and centered state.
+            Centered by default. Returns a ready made `Polygon` collision `Shape` */    
     public static function rectangle(x:Float, y:Float, width:Float, height:Float, centered:Bool = true):Polygon {
         
         var vertices:Array<Vector> = new Array<Vector>();
@@ -71,13 +78,20 @@ class Polygon extends Shape {
         }
 
         return new Polygon(x,y,vertices);
-
+    
     } //rectangle
     
+        /** Helper generate a square at x,y with a given width/height with given centered state.
+            Centered by default. Returns a ready made `Polygon` collision `Shape` */
     public static function square(x:Float, y:Float, width:Float, centered:Bool = true):Polygon {
-        
         return rectangle(x, y, width, width, centered);
-
     } //square
 
+        /** Helper generate a triangle at x,y with a given radius. 
+            Returns a ready made `Polygon` collision `Shape` */
+    public static function triangle(x:Float, y:Float, radius:Float):Polygon {
+        return create(x, y, 3, radius);
+    } //triangle
+
 } //Polygon
+
