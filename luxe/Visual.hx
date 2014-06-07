@@ -141,8 +141,8 @@ class Visual extends Entity {
 
                     geometry = new QuadGeometry({
                         id:name + '.visual',
-                        x:pos.x,
-                        y:pos.y,
+                        x:0,
+                        y:0,
                         w:size.x,
                         h:size.y,
                         scale: scale.clone(),
@@ -212,7 +212,9 @@ class Visual extends Entity {
     } //destroyed
 
     function on_geometry_created() {
-        //nothing here for now
+
+        // geometry.transform.parent = transform;
+
     } //on_geometry_created
 
 //Visibility properties
@@ -280,18 +282,6 @@ class Visual extends Entity {
         return shader = _s;
     }
 
-//Origin
-
-    override function set_origin(_o:Vector) : Vector {
-        
-        if(geometry != null) {
-            geometry.transform.origin = _o.clone();
-        }
-
-        return super.set_origin(_o);
-        
-    } //set_origin
-
 //Geometry
     
     var ignore_texture_on_geometry_change : Bool = false;
@@ -307,23 +297,26 @@ class Visual extends Entity {
         geometry = _g;
 
             //rebind it's colors and whatever else
-        if(geometry != null && _creating_geometry == false) {            
+        if(geometry != null) {
             
-            geometry.transform.pos = pos;
-            geometry.transform.scale = scale;
-            geometry.transform.origin = origin;
-            geometry.transform.rotation = rotation;
-            geometry.color = color;            
-            geometry.group = group;
-            geometry.depth = depth;            
-            geometry.visible = visible;
-            geometry.shader = shader;
+                //make sure it's attached
+            geometry.transform.parent = transform;
 
-            if(!ignore_texture_on_geometry_change) {
-                geometry.texture = texture;
-            }
+            if(_creating_geometry == false) {
 
-        }
+                geometry.color = color;
+                geometry.group = group;
+                geometry.depth = depth;            
+                geometry.visible = visible;
+                geometry.shader = shader;
+
+                if(!ignore_texture_on_geometry_change) {
+                    geometry.texture = texture;
+                }
+
+            } //_creating_geometry == false
+
+        } //geometry != null
 
         return geometry;
         
@@ -331,16 +324,6 @@ class Visual extends Entity {
 
 
 //Transforms
-
-    override function set_pos_from_transform( _pos:Vector ) {
-        
-        super.set_pos_from_transform(_pos);
-
-        if(geometry != null) {
-            geometry.transform.pos = transform.pos;
-        } //geometry ! null
-
-    } //set_pos_from_transform
 
     override function set_rotation_from_transform( _rotation:Quaternion ) {
 
@@ -350,32 +333,8 @@ class Visual extends Entity {
         _rotation_euler.setEulerFromQuaternion(_rotation);
         _rotation_quat.copy(_rotation);
 
-        if(geometry != null) {
-            geometry.transform.rotation = _rotation;
-        } //geometry ! null
-
     } //set_rotation_from_transform
     
-    override function set_scale_from_transform( _scale:Vector ) {
-
-        super.set_scale_from_transform(_scale);
-
-        if(geometry != null) {
-            geometry.transform.scale = transform.scale;
-        } //geometry ! null
-
-    } //set_scale_from_transform
-
-    override function set_parent_from_transform( _parent:Transform ) {
-
-        super.set_parent_from_transform(_parent);
-
-        if(geometry != null) {
-            geometry.transform.parent = _parent;
-        } //geometry != null
-
-    } //set_parent_from_transform
-
 //Size
     
     function set_size( _v:Vector ) : Vector {  

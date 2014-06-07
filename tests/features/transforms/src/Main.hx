@@ -5,7 +5,9 @@ import luxe.Input;
 
 import luxe.Matrix;
 import luxe.Quaternion;
+import luxe.Sprite;
 import luxe.Transform;
+import luxe.tween.Actuate;
 import luxe.utils.Maths;
 import luxe.Vector;
 import luxe.Color;
@@ -54,6 +56,8 @@ class Main extends luxe.Game {
 
         // trace( ts );
         // trace( ti );
+
+
 
         p1 = new Transform();
         p2 = new Transform();
@@ -106,6 +110,35 @@ class Main extends luxe.Game {
 
         Luxe.addGeometry( qg );
 
+
+        var spr_tween_test = new Sprite({
+            pos : new Vector(0,Luxe.screen.h-16),
+            size : new Vector(16,16),
+            centered : false,
+            color : new Color().rgb(0xff403b)
+        });
+
+        Actuate.tween(spr_tween_test.pos, 6, {x:Luxe.screen.w-16}).repeat().reflect().ease(luxe.tween.easing.Linear.easeNone);
+
+        var spr_parent = new Sprite({
+            name : 'spr_parent',
+            pos : new Vector(0, Luxe.screen.h-32),
+            size : new Vector(16,16),
+            centered : false,
+            color : new Color().rgb(0xff403b)
+        });
+
+        var spr_child = new Sprite({
+            name : 'spr_child',
+            pos : new Vector(8,8),
+            size : new Vector(8,8),
+            color : new Color().rgb(0xffffff)
+        });
+
+        spr_child.parent = spr_parent;
+
+        Actuate.tween(spr_parent.pos, 8, {x:Luxe.screen.w-16}).repeat().reflect().ease(luxe.tween.easing.Linear.easeNone);
+
     } //ready
     
     var d1 : Transform;
@@ -113,17 +146,10 @@ class Main extends luxe.Game {
 
     public function onmousemove( e:MouseEvent ) {
         d1.pos = e.pos.clone().add(Luxe.camera.pos);
-        // trace(Luxe.camera.pos);
     }
 
     public function onkeydown( e:KeyEvent ) {
 
-        // if(e.key == KeyValue.space) {
-        //     trace(Luxe.camera.transform.pos);
-        //     trace(Luxe.camera.transform.world.pos);
-        //     trace(Luxe.camera.transform.rotation);
-        //     trace(Luxe.camera.transform.world.rotation);
-        // }
 
         if(e.key == KeyValue.key_P) {
             if(qg.transform.parent == null) {
@@ -147,7 +173,6 @@ class Main extends luxe.Game {
 
         r += 100 * dt;
 
-        // d1.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*0.25).radians() );
         qg.transform.rotation = new Quaternion().setFromEuler( new Vector(0,0,r).radians() );
 
         p1.rotation = new Quaternion().setFromEuler( new Vector(0,0,r*0.25).radians() );

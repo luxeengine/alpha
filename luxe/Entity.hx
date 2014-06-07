@@ -790,7 +790,7 @@ class Entity extends Objects {
     } //set_pos
 
     function get_pos() { 
-        
+
         return transform.pos; 
 
     } //get_pos

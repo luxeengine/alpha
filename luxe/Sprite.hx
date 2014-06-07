@@ -51,6 +51,8 @@ class Sprite extends Visual {
 
     override function on_geometry_created() {
 
+        super.on_geometry_created();
+
         if(texture != null) {
 
             texture.onload = function(t) {
