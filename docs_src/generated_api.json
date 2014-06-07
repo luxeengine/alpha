@@ -17102,87 +17102,6 @@
         {
           "args": [
             {
-              "name": "_o",
-              "type": {
-                "func": false,
-                "name": "luxe.Vector",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "set_origin",
-          "return_type": {
-            "func": false,
-            "name": "luxe.Vector",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "set_origin(_o:luxe.Vector) : luxe.Vector",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "_parent",
-              "type": {
-                "func": false,
-                "name": "luxe.Transform",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "set_parent_from_transform",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "set_parent_from_transform(_parent:luxe.Transform) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "_pos",
-              "type": {
-                "func": false,
-                "name": "luxe.Vector",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "set_pos_from_transform",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "set_pos_from_transform(_pos:luxe.Vector) : Void",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
               "name": "_r",
               "type": {
                 "func": false,
@@ -17258,33 +17177,6 @@
           "ispublic": false,
           "inherit_source": "",
           "signature": "set_rotation_z(_r:Float) : Float",
-          "isstatic": false,
-          "isinline": false
-        },
-        {
-          "args": [
-            {
-              "name": "_scale",
-              "type": {
-                "func": false,
-                "name": "luxe.Vector",
-                "params": []
-              },
-              "value": null
-            }
-          ],
-          "meta": {},
-          "inherited": false,
-          "name": "set_scale_from_transform",
-          "return_type": {
-            "func": false,
-            "name": "Void",
-            "params": []
-          },
-          "doc": "",
-          "ispublic": false,
-          "inherit_source": "",
-          "signature": "set_scale_from_transform(_scale:luxe.Vector) : Void",
           "isstatic": false,
           "isinline": false
         },

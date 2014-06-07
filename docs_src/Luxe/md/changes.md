@@ -1,6 +1,62 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [2a6f09d239](https://github.com/underscorediscovery/luxe/commit/2a6f09d23925f14276401d50d1557782288c89d9)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 08:12:43 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Debug; fix #97 trace view not updating when open</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [1306dcf48f](https://github.com/underscorediscovery/luxe/commit/1306dcf48fc6705d6a69fb00ae263cc08b881a7d)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 08:01:15 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Transform;  Entity; Visual; changing how transforms are managed in entity stack with geometry. instead of manually updating the geometry the geometry is childed to the entity, so its transform remains in tact. This also fixes #96</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [ef4ab34fb7](https://github.com/underscorediscovery/luxe/commit/ef4ab34fb762fdbf5954661c1e9796e7d1f33c8f)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 06:26:39 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; updating changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [3804746357](https://github.com/underscorediscovery/luxe/commit/3804746357050a929b0643a4a43fc65d78981ad5)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 06:26:31 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; updating docs and changes</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [73175256c3](https://github.com/underscorediscovery/luxe/commit/73175256c30e2961d44adad9bc3db3fd9d517c55)   
 author: underscorediscovery   
 date: Sat Jun 07 2014 05:50:16 GMT-0230 (NDT)   

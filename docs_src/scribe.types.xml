@@ -12649,86 +12649,70 @@
 		</_create_geometry>
 		<destroyed set="method" line="201"><f a=""><x path="Void"/></f></destroyed>
 		<on_geometry_created set="method" line="214"><f a=""><x path="Void"/></f></on_geometry_created>
-		<set_visible set="method" line="220"><f a="_v">
+		<set_visible set="method" line="222"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_visible>
-		<set_depth set="method" line="233"><f a="_v">
+		<set_depth set="method" line="235"><f a="_v">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_depth>
-		<set_group set="method" line="243"><f a="_v">
+		<set_group set="method" line="245"><f a="_v">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_group>
-		<set_color set="method" line="255"><f a="_c">
+		<set_color set="method" line="257"><f a="_c">
 	<t path="luxe.Color"/>
 	<t path="luxe.Color"/>
 </f></set_color>
-		<set_texture set="method" line="265"><f a="_t">
+		<set_texture set="method" line="267"><f a="_t">
 	<c path="phoenix.Texture"/>
 	<c path="phoenix.Texture"/>
 </f></set_texture>
-		<set_shader set="method" line="274"><f a="_s">
+		<set_shader set="method" line="276"><f a="_s">
 	<c path="phoenix.Shader"/>
 	<c path="phoenix.Shader"/>
 </f></set_shader>
-		<set_origin set="method" line="285" override="1"><f a="_o">
-	<t path="luxe.Vector"/>
-	<t path="luxe.Vector"/>
-</f></set_origin>
 		<ignore_texture_on_geometry_change><x path="Bool"/></ignore_texture_on_geometry_change>
-		<set_geometry set="method" line="299"><f a="_g">
+		<set_geometry set="method" line="289"><f a="_g">
 	<c path="phoenix.geometry.Geometry"/>
 	<c path="phoenix.geometry.Geometry"/>
 </f></set_geometry>
-		<set_pos_from_transform set="method" line="335" override="1"><f a="_pos">
-	<t path="luxe.Vector"/>
-	<x path="Void"/>
-</f></set_pos_from_transform>
-		<set_rotation_from_transform set="method" line="345" override="1"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="328" override="1"><f a="_rotation">
 	<c path="phoenix.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_scale_from_transform set="method" line="359" override="1"><f a="_scale">
-	<t path="luxe.Vector"/>
-	<x path="Void"/>
-</f></set_scale_from_transform>
-		<set_parent_from_transform set="method" line="369" override="1"><f a="_parent">
-	<t path="luxe.Transform"/>
-	<x path="Void"/>
-</f></set_parent_from_transform>
-		<set_size set="method" line="381"><f a="_v">
+		<set_size set="method" line="340"><f a="_v">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_size>
-		<get_rotation_z set="method" line="393"><f a=""><x path="Float"/></f></get_rotation_z>
-		<set_rotation_z set="method" line="399"><f a="_r">
+		<get_rotation_z set="method" line="352"><f a=""><x path="Float"/></f></get_rotation_z>
+		<set_rotation_z set="method" line="358"><f a="_r">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_rotation_z>
-		<set_radians set="method" line="407"><f a="_r">
+		<set_radians set="method" line="366"><f a="_r">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_radians>
-		<get_radians set="method" line="418"><f a=""><x path="Float"/></f></get_radians>
-		<set_locked set="method" line="424"><f a="_l">
+		<get_radians set="method" line="377"><f a=""><x path="Float"/></f></get_radians>
+		<set_locked set="method" line="383"><f a="_l">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_locked>
-		<set_clip set="method" line="437"><f a="val">
+		<set_clip set="method" line="396"><f a="val">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_clip>
-		<set_clip_rect set="method" line="441"><f a="val">
+		<set_clip_rect set="method" line="400"><f a="val">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_clip_rect>
-		<_size_change set="method" line="448"><f a="_v">
+		<_size_change set="method" line="407"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_size_change>
-		<get_serialize_data public="1" set="method" line="450" override="1"><f a=""><d/></f></get_serialize_data>
+		<get_serialize_data public="1" set="method" line="409" override="1"><f a=""><d/></f></get_serialize_data>
 		<new public="1" params="T" set="method" line="44"><f a="_options">
 	<t path="luxe.options.VisualOptions"><c path="new.T"/></t>
 	<x path="Void"/>
@@ -12754,45 +12738,45 @@
 		</uv>
 		<geometry_quad public="1"><c path="phoenix.geometry.QuadGeometry"/></geometry_quad>
 		<on_geometry_created set="method" line="52" override="1"><f a=""><x path="Void"/></f></on_geometry_created>
-		<set_geometry set="method" line="89" override="1"><f a="_g">
+		<set_geometry set="method" line="91" override="1"><f a="_g">
 	<c path="phoenix.geometry.Geometry"/>
 	<c path="phoenix.geometry.Geometry"/>
 </f></set_geometry>
 		<_hit_box_vert_list><c path="Array"><t path="luxe.Vector"/></c></_hit_box_vert_list>
 		<_hit_origin_offset><t path="luxe.Vector"/></_hit_origin_offset>
-		<point_inside_exact public="1" set="method" line="105"><f a="_p">
+		<point_inside_exact public="1" set="method" line="107"><f a="_p">
 	<t path="luxe.Vector"/>
 	<x path="Bool"/>
 </f></point_inside_exact>
-		<point_inside public="1" set="method" line="122"><f a="_p">
+		<point_inside public="1" set="method" line="124"><f a="_p">
 	<t path="luxe.Vector"/>
 	<x path="Bool"/>
 </f></point_inside>
-		<set_uv set="method" line="149"><f a="_uv">
+		<set_uv set="method" line="151"><f a="_uv">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_uv>
-		<set_flipy set="method" line="164"><f a="_v">
+		<set_flipy set="method" line="166"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_flipy>
-		<set_flipx set="method" line="174"><f a="_v">
+		<set_flipx set="method" line="176"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_flipx>
-		<set_size set="method" line="186" override="1"><f a="_v">
+		<set_size set="method" line="188" override="1"><f a="_v">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_size>
-		<set_centered set="method" line="211"><f a="_c">
+		<set_centered set="method" line="213"><f a="_c">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_centered>
-		<get_serialize_data public="1" set="method" line="229" override="1">
+		<get_serialize_data public="1" set="method" line="231" override="1">
 			<f a=""><d/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</get_serialize_data>
-		<_uv_change set="method" line="247"><f a="_v">
+		<_uv_change set="method" line="249"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_uv_change>
@@ -15025,11 +15009,11 @@
 	<x path="Void"/>
 </f></add_line>
 		<_last_logged_length><x path="Int"/></_last_logged_length>
-		<refresh_lines set="method" line="66"><f a=""><x path="Void"/></f></refresh_lines>
-		<refresh public="1" set="method" line="99" override="1"><f a=""><x path="Void"/></f></refresh>
-		<process public="1" set="method" line="103" override="1"><f a=""><x path="Void"/></f></process>
-		<show public="1" set="method" line="107" override="1"><f a=""><x path="Void"/></f></show>
-		<hide public="1" set="method" line="112" override="1"><f a=""><x path="Void"/></f></hide>
+		<refresh_lines set="method" line="68"><f a=""><x path="Void"/></f></refresh_lines>
+		<refresh public="1" set="method" line="101" override="1"><f a=""><x path="Void"/></f></refresh>
+		<process public="1" set="method" line="105" override="1"><f a=""><x path="Void"/></f></process>
+		<show public="1" set="method" line="109" override="1"><f a=""><x path="Void"/></f></show>
+		<hide public="1" set="method" line="115" override="1"><f a=""><x path="Void"/></f></hide>
 		<new public="1" set="method" line="10"><f a=""><x path="Void"/></f></new>
 	</class>
 	<class path="luxe.importers.TexturePackerSpriteAnimation" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/TexturePackerSpriteAnimation.hx">
