@@ -23,7 +23,7 @@
 &nbsp;
 
 <h3>Members</h3> <hr/><span class="member apipage">
-            <a name="look_at_matrix"><a class="lift" href="#look_at_matrix">look\_at\_matrix</a></a><code class="signature apipage">look\_at\_matrix : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/></span>
+            <a name="look_at_matrix"><a class="lift" href="#look_at_matrix">look\_at\_matrix</a></a><code class="signature apipage">look\_at\_matrix : [phoenix.Matrix](#phoenix.Matrix)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="minimum_zoom"><a class="lift" href="#minimum_zoom">minimum\_zoom</a></a><code class="signature apipage">minimum\_zoom : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
@@ -33,15 +33,15 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="projection"><a class="lift" href="#projection">projection</a></a><code class="signature apipage">projection : [phoenix.ProjectionType](#phoenix.ProjectionType)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="projection_matrix"><a class="lift" href="#projection_matrix">projection\_matrix</a></a><code class="signature apipage">projection\_matrix : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/></span>
+            <a name="projection_matrix"><a class="lift" href="#projection_matrix">projection\_matrix</a></a><code class="signature apipage">projection\_matrix : [phoenix.Matrix](#phoenix.Matrix)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="transform"><a class="lift" href="#transform">transform</a></a><code class="signature apipage">transform : [phoenix.Transform](#phoenix.Transform)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="up"><a class="lift" href="#up">up</a></a><code class="signature apipage">up : [phoenix.Vector](#phoenix.Vector)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="view_matrix"><a class="lift" href="#view_matrix">view\_matrix</a></a><code class="signature apipage">view\_matrix : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/></span>
+            <a name="view_matrix"><a class="lift" href="#view_matrix">view\_matrix</a></a><code class="signature apipage">view\_matrix : [phoenix.Matrix](#phoenix.Matrix)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="view_matrix_inverse"><a class="lift" href="#view_matrix_inverse">view\_matrix\_inverse</a></a><code class="signature apipage">view\_matrix\_inverse : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/></span>
+            <a name="view_matrix_inverse"><a class="lift" href="#view_matrix_inverse">view\_matrix\_inverse</a></a><code class="signature apipage">view\_matrix\_inverse : [phoenix.Matrix](#phoenix.Matrix)</code><br/></span>
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">

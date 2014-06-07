@@ -53,6 +53,8 @@
             <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
 <h1 id="shapedrawer">ShapeDrawer</h1>
+<p>To implement your own debug drawing class, you only need to override drawLine function and implement it
+    the rest is handled internally. You can override specifics if you want, but it’s not required</p>
 <hr>
 <p><code>class</code>
 <span class="meta"></p>
@@ -62,19 +64,22 @@
 &nbsp;</p>
 <p><h3>Members</h3> <hr/>no public members</p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="drawCircle"><a class="lift" href="#drawCircle">drawCircle</a></a><code class="signature apipage">drawCircle(circle:<span><a href="#luxe.collision.shapes.Circle">luxe.collision.shapes.Circle</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="drawCircle"><a class="lift" href="#drawCircle">drawCircle</a></a><code class="signature apipage">drawCircle(circle:<span><a href="#luxe.collision.shapes.Circle">luxe.collision.shapes.Circle</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Draw a circle <code>Shape</code></span>
         </span>
     <span class="method apipage">
-            <a name="drawLine"><a class="lift" href="#drawLine">drawLine</a></a><code class="signature apipage">drawLine(p0:<span><a href="#luxe.Vector">luxe.Vector</a></span>, p1:<span><a href="#luxe.Vector">luxe.Vector</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="drawLine"><a class="lift" href="#drawLine">drawLine</a></a><code class="signature apipage">drawLine(p0:<span><a href="#luxe.Vector">luxe.Vector</a></span>, p1:<span><a href="#luxe.Vector">luxe.Vector</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Draw a line between p0 and p1. Implement this function at minimum in custom drawing handlers</span>
         </span>
     <span class="method apipage">
-            <a name="drawPolygon"><a class="lift" href="#drawPolygon">drawPolygon</a></a><code class="signature apipage">drawPolygon(poly:<span><a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="drawPolygon"><a class="lift" href="#drawPolygon">drawPolygon</a></a><code class="signature apipage">drawPolygon(poly:<span><a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Draw a <code>Polygon</code></span>
         </span>
     <span class="method apipage">
-            <a name="drawVector"><a class="lift" href="#drawVector">drawVector</a></a><code class="signature apipage">drawVector(v:<span><a href="#luxe.Vector">luxe.Vector</a></span>, start:<span><a href="#luxe.Vector">luxe.Vector</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="drawShape"><a class="lift" href="#drawShape">drawShape</a></a><code class="signature apipage">drawShape(shape:<span><a href="#luxe.collision.shapes.Shape">luxe.collision.shapes.Shape</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Draw a <code>Shape</code>, it will determine the type and draw it for you.</span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="drawVector"><a class="lift" href="#drawVector">drawVector</a></a><code class="signature apipage">drawVector(v:<span><a href="#luxe.Vector">luxe.Vector</a></span>, start:<span><a href="#luxe.Vector">luxe.Vector</a></span>, ?color:<span><a href="#luxe.Color">luxe.Color</a>=null</span>, ?immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Draw a <code>Vector</code> (with magnitude)</span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">empty constructor</span>
         </span></p>
 <p><h3>Properties</h3> <hr/>no public properties</p>
 <p>&nbsp;

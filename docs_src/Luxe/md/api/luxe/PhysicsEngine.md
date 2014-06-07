@@ -22,12 +22,13 @@
 &nbsp;
 &nbsp;
 
-<h3>Members</h3> <hr/><span class="member apipage">
-            <a name="draw"><a class="lift" href="#draw">draw</a></a><code class="signature apipage">draw : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
-        <span class="small_desc_flat"></span>
+<h3>Members</h3> <hr/>no public members
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_draw"><a class="lift" href="#get_draw">get\_draw</a></a><code class="signature apipage">get\_draw() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="get_gravity"><a class="lift" href="#get_gravity">get\_gravity</a></a><code class="signature apipage">get\_gravity() : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
@@ -45,6 +46,9 @@
             <a name="process"><a class="lift" href="#process">process</a></a><code class="signature apipage">process() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="set_draw"><a class="lift" href="#set_draw">set\_draw</a></a><code class="signature apipage">set\_draw(\_draw:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="set_gravity"><a class="lift" href="#set_gravity">set\_gravity</a></a><code class="signature apipage">set\_gravity(\_gravity:<span>[luxe.Vector](#luxe.Vector)</span>) : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -53,6 +57,8 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="draw"><a class="lift" href="#draw">draw</a></a><code class="signature apipage">draw : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
             <a name="gravity"><a class="lift" href="#gravity">gravity</a></a><code class="signature apipage">gravity : [luxe.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="paused"><a class="lift" href="#paused">paused</a></a><code class="signature apipage">paused : [Bool]()</code><br/><span class="small_desc_flat"></span>

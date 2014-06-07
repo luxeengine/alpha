@@ -3,7 +3,7 @@
 -D luxe=0.9.0
 -cp /Users/sven/dev/haxelib/format/3,0,5/
 -D format=3.0.5
--cp /Users/sven/dev/lime/
+-cp /Users/sven/dev/haxelib/lime/1,0,0/
 -D lime=1.0.0
 -cp src
 -D tools=1.5.5
@@ -23,4 +23,3 @@
 -cp bin/mac64/cpp/haxe
 -cpp bin/mac64/cpp/obj/
 --macro keep("Main")
-

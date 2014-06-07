@@ -77,7 +77,7 @@
             <a name="setFromTranslationRotation"><a class="lift" href="#setFromTranslationRotation">setFromTranslationRotation</a></a><code class="signature apipage">setFromTranslationRotation(\_translation:<span>[phoenix.Vector](#phoenix.Vector)</span>, \_rotation:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.DualQuaternion](#phoenix.DualQuaternion)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ToMatrix"><a class="lift" href="#ToMatrix">ToMatrix</a></a><span class="inline-block static">static</span><code class="signature apipage">ToMatrix(\_dq:<span>[phoenix.DualQuaternion](#phoenix.DualQuaternion)</span>) : [phoenix.Matrix4](#phoenix.Matrix4)</code><br/><span class="small_desc_flat"></span>
+            <a name="ToMatrix"><a class="lift" href="#ToMatrix">ToMatrix</a></a><span class="inline-block static">static</span><code class="signature apipage">ToMatrix(\_dq:<span>[phoenix.DualQuaternion](#phoenix.DualQuaternion)</span>) : [phoenix.Matrix](#phoenix.Matrix)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

@@ -98,7 +98,7 @@
             <a name="setFromEuler"><a class="lift" href="#setFromEuler">setFromEuler</a></a><code class="signature apipage">setFromEuler(\_euler:<span>[phoenix.Vector](#phoenix.Vector)</span>, ?\_order:<span>[String](http://api.haxe.org/String.html)=&#x27;XYZ&#x27;</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="setFromRotationMatrix"><a class="lift" href="#setFromRotationMatrix">setFromRotationMatrix</a></a><code class="signature apipage">setFromRotationMatrix(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="setFromRotationMatrix"><a class="lift" href="#setFromRotationMatrix">setFromRotationMatrix</a></a><code class="signature apipage">setFromRotationMatrix(\_m:<span>[phoenix.Matrix](#phoenix.Matrix)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="Slerp"><a class="lift" href="#Slerp">Slerp</a></a><span class="inline-block static">static</span><code class="signature apipage">Slerp(\_qa:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_qb:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_qm:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_t:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>

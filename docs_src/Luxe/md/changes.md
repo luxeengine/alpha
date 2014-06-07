@@ -1,6 +1,90 @@
 &nbsp;   
 <div class="commit_info">
 
+commit [73175256c3](https://github.com/underscorediscovery/luxe/commit/73175256c30e2961d44adad9bc3db3fd9d517c55)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 05:50:16 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Collision; update to latest hxcollision repo and clear up differences between the library and the luxe implementation for future updates back and forth</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [fd71b74f15](https://github.com/underscorediscovery/luxe/commit/fd71b74f151ad04c98d83a0b7eca6cdae1448285)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 05:49:13 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>MAJOR CHANGE : Matrix4 renamed to Matrix. vector.applyMatrix4(m) renamed to .transform(m).</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [0b160d325b](https://github.com/underscorediscovery/luxe/commit/0b160d325b502a95a19af5a8f22795a30be5d7af)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 01:54:01 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Batcher; Geometry; Adding vert count and geometry limits with errors fixes #84</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [f0f400f706](https://github.com/underscorediscovery/luxe/commit/f0f400f70610a749edda50693a79ba4caa6ad4c0)   
+author: underscorediscovery   
+date: Sat Jun 07 2014 01:53:03 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Physics; adding flag to disable debug drawing in samples and making sure it clears the geometry</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [e5f0f745a1](https://github.com/underscorediscovery/luxe/commit/e5f0f745a19c0002f7c7944b9b4c7b7f52de6ede)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 23:12:47 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>HTML5; fixing builds breaking when a ttf exists in the assets folder</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
+commit [bb9e002b71](https://github.com/underscorediscovery/luxe/commit/bb9e002b7113feb795edc24b83db0b39c98d96c3)   
+author: underscorediscovery   
+date: Fri Jun 06 2014 19:04:39 GMT-0230 (NDT)   
+</div>
+
+&nbsp;   
+<div class="commit_message">
+
+<ul><li>Docs; fixing changes links being broken to the repo</li></ul>
+</div>
+&nbsp;   
+&nbsp;   
+<div class="commit_info">
+
 commit [3d70f5f524](https://github.com/underscorediscovery/luxe/commit/3d70f5f52427bb203099a9945ebba694dcad3d73)   
 author: underscorediscovery   
 date: Fri Jun 06 2014 19:01:14 GMT-0230 (NDT)   

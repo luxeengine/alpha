@@ -47,6 +47,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="log"><a class="lift" href="#log">log</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">log : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="max_verts"><a class="lift" href="#max_verts">max\_verts</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">max\_verts : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix\_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">modelviewmatrix\_attribute : [lime.gl.GLUniformLocation]()</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
@@ -110,6 +112,8 @@
             <a name="vcolorBuffers"><a class="lift" href="#vcolorBuffers">vcolorBuffers</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vcolorBuffers : [Array](http://api.haxe.org/Array.html)&lt;[lime.gl.GLBuffer]()&gt;</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="vert_attribute"><a class="lift" href="#vert_attribute">vert\_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vert\_attribute : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vert_count"><a class="lift" href="#vert_count">vert\_count</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vert\_count : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="vertexBuffers"><a class="lift" href="#vertexBuffers">vertexBuffers</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vertexBuffers : [Array](http://api.haxe.org/Array.html)&lt;[lime.gl.GLBuffer]()&gt;</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">

@@ -35,6 +35,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="static_batched_count"><a class="lift" href="#static_batched_count">static\_batched\_count</a></a><code class="signature apipage">static\_batched\_count : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vert_count"><a class="lift" href="#vert_count">vert\_count</a></a><code class="signature apipage">vert\_count : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="visible_count"><a class="lift" href="#visible_count">visible\_count</a></a><code class="signature apipage">visible\_count : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span>
 

@@ -35,7 +35,7 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="matrix"><a class="lift" href="#matrix">matrix</a></a><code class="signature apipage">matrix : [phoenix.Matrix4]()</code><br/><span class="small_desc_flat"></span>
+            <a name="matrix"><a class="lift" href="#matrix">matrix</a></a><code class="signature apipage">matrix : [phoenix.Matrix]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">

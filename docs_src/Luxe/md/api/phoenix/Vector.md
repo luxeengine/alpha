@@ -47,10 +47,7 @@
             <a name="addScalar"><a class="lift" href="#addScalar">addScalar</a></a><code class="signature apipage">addScalar(v:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="applyMatrix4"><a class="lift" href="#applyMatrix4">applyMatrix4</a></a><code class="signature apipage">applyMatrix4(\_m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="applyProjection"><a class="lift" href="#applyProjection">applyProjection</a></a><code class="signature apipage">applyProjection(m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+            <a name="applyProjection"><a class="lift" href="#applyProjection">applyProjection</a></a><code class="signature apipage">applyProjection(m:<span>[phoenix.Matrix](#phoenix.Matrix)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="applyQuaternion"><a class="lift" href="#applyQuaternion">applyQuaternion</a></a><code class="signature apipage">applyQuaternion(q:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
@@ -90,6 +87,9 @@
         </span>
     <span class="method apipage">
             <a name="equals"><a class="lift" href="#equals">equals</a></a><code class="signature apipage">equals(other:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="invert"><a class="lift" href="#invert">invert</a></a><code class="signature apipage">invert() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="listen"><a class="lift" href="#listen">listen</a></a><span class="inline-block static">static</span><code class="signature apipage">listen(\_v:<span>[phoenix.Vector](#phoenix.Vector)</span>, listener:<span>[Float-&gt;Void]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -140,7 +140,7 @@
             <a name="setEulerFromQuaternion"><a class="lift" href="#setEulerFromQuaternion">setEulerFromQuaternion</a></a><code class="signature apipage">setEulerFromQuaternion(q:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, ?order:<span>[String](http://api.haxe.org/String.html)=&#x27;XYZ&#x27;</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="setEulerFromRotationMatrix"><a class="lift" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></a><code class="signature apipage">setEulerFromRotationMatrix(m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>, ?order:<span>[String](http://api.haxe.org/String.html)=&#x27;XYZ&#x27;</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+            <a name="setEulerFromRotationMatrix"><a class="lift" href="#setEulerFromRotationMatrix">setEulerFromRotationMatrix</a></a><code class="signature apipage">setEulerFromRotationMatrix(m:<span>[phoenix.Matrix](#phoenix.Matrix)</span>, ?order:<span>[String](http://api.haxe.org/String.html)=&#x27;XYZ&#x27;</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="Subtract"><a class="lift" href="#Subtract">Subtract</a></a><span class="inline-block static">static</span><code class="signature apipage">Subtract(a:<span>[phoenix.Vector](#phoenix.Vector)</span>, b:<span>[phoenix.Vector](#phoenix.Vector)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
@@ -158,7 +158,10 @@
             <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="transformDirection"><a class="lift" href="#transformDirection">transformDirection</a></a><code class="signature apipage">transformDirection(m:<span>[phoenix.Matrix4](#phoenix.Matrix4)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+            <a name="transform"><a class="lift" href="#transform">transform</a></a><code class="signature apipage">transform(\_m:<span>[phoenix.Matrix](#phoenix.Matrix)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="transformDirection"><a class="lift" href="#transformDirection">transformDirection</a></a><code class="signature apipage">transformDirection(m:<span>[phoenix.Matrix](#phoenix.Matrix)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="truncate"><a class="lift" href="#truncate">truncate</a></a><code class="signature apipage">truncate(max:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
