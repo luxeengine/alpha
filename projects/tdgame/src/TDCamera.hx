@@ -3,7 +3,7 @@ import luxe.Camera;
 import luxe.Vector;
 import luxe.Input;
 
-import phoenix.Matrix4;
+import phoenix.Matrix;
 import luxe.components.Components.Component;
 
 class TDCamera extends Component {
@@ -49,9 +49,9 @@ class TDCamera extends Component {
     public function zoom( dir:Float ) {
 
         var _forward = new Vector(0,0,-1);
-        var rotmat = new Matrix4().makeRotationFromQuaternion(camera.view.rotation);
+        var rotmat = new Matrix().makeRotationFromQuaternion(camera.view.rotation);
 
-            _forward.applyMatrix4( rotmat );
+            _forward.transform( rotmat );
             _forward.normalize();
 
         camera.pos.z += _forward.z * dir;

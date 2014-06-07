@@ -3,7 +3,7 @@ import lime.utils.Float32Array;
 import luxe.Input;
 
 
-import luxe.Matrix4;
+import luxe.Matrix;
 import luxe.Quaternion;
 import luxe.Transform;
 import luxe.utils.Maths;
@@ -36,7 +36,7 @@ class Main extends luxe.Game {
 
         // var m = DualQuaternion.ToMatrix(dq);
 
-        // trace( new Vector().applyMatrix4(m) );
+        // trace( new Vector().transform(m) );
         // trace( new Vector().setEulerFromQuaternion(new Quaternion().setFromRotationMatrix(m)).degrees() );
         // trace( new Vector().setEulerFromRotationMatrix(m).degrees() );
 

@@ -2,7 +2,7 @@ package phoenix;
 
 import phoenix.Quaternion;
 import phoenix.Vector;
-import phoenix.Matrix4;
+import phoenix.Matrix;
 
 //http://wscg.zcu.cz/wscg2012/short/A29-full.pdf
 //Abstracted from Ben Kenwright's paper on A Beginners Guide To Dual Quaternions
@@ -129,7 +129,7 @@ class DualQuaternion {
             //normalize first
         var _q = _dq.clone().normalize();
 
-        var M = new Matrix4();
+        var M = new Matrix();
 
         var w:Float = _q.real.w; 
         var x:Float = _q.real.x; 

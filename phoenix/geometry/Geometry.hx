@@ -2,7 +2,6 @@ package phoenix.geometry;
 
 
 import phoenix.geometry.Vertex;
-import phoenix.Matrix4;
 import phoenix.Quaternion;
 import phoenix.Rectangle;
 import phoenix.Transform;
@@ -238,7 +237,7 @@ class Geometry {
                 //the base position of the vert
             _final_vert_position.set_xyzw( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
                 //apply the transform to the vert
-            _final_vert_position.applyMatrix4( transform.world.matrix );
+            _final_vert_position.transform( transform.world.matrix );
 
                     //submit vertex positions
                 vertlist[(vert_index+0)] = _final_vert_position.x;
@@ -284,7 +283,7 @@ class Geometry {
                 // the base position of the vert
             _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z );
                 // apply the transform to the vert
-            _final_vert_position.applyMatrix4( transform.world.matrix );
+            _final_vert_position.transform( transform.world.matrix );
 
                 //submit vert positions
             vertlist.push( _final_vert_position.x );

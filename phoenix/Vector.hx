@@ -9,9 +9,9 @@ class Vector {
     @:isVar public var z (default, set) : Float = 0;
     @:isVar public var w (default, default) : Float = 0;
 
-    @:isVar public var length        (get, set ) : Float;
-    @:isVar public var lengthsq      (get, null ) : Float;
-    @:isVar public var angle2D       (get, set ) : Float;
+    @:isVar public var length        (get, set) : Float;
+    @:isVar public var lengthsq      (get, null) : Float;
+    @:isVar public var angle2D       (get, set) : Float;
     @:isVar public var normalized    (get, null) : Vector;
     @:isVar public var inverted      (get, null) : Vector;
     
@@ -113,6 +113,16 @@ class Vector {
         return this;
 
     } //cross
+
+    public function invert() : Vector {
+
+            x = -x;
+            y = -y;
+            z = -z;
+
+        return this;
+
+    } //invert
 
 //Static Functions
 
@@ -429,7 +439,7 @@ class Vector {
 
     } //applyQuaternion
 
-    public function applyProjection( m:Matrix4 ) : Vector {
+    public function applyProjection( m:Matrix ) : Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
@@ -443,7 +453,7 @@ class Vector {
 
     } //applyProjection 
 
-    public function applyMatrix4( _m:Matrix4 ) : Vector {
+    public function transform( _m:Matrix ) : Vector {
         
         var _x = x;
         var _y = y;
@@ -457,9 +467,9 @@ class Vector {
 
         return this;
 
-    } //applyMatrix4
+    } //transform
 
-    public function transformDirection( m:Matrix4 ) : Vector {
+    public function transformDirection( m:Matrix ) : Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
@@ -474,7 +484,7 @@ class Vector {
 
     } //transformDirection
 
-    public function setEulerFromRotationMatrix (m:Matrix4, order:String = 'XYZ') : Vector {
+    public function setEulerFromRotationMatrix (m:Matrix, order:String = 'XYZ') : Vector {
 
         var te = m.elements;
         var m11 = te[0], m12 = te[4], m13 = te[8];

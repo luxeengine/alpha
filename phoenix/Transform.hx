@@ -4,7 +4,7 @@ import luxe.Objects;
 
 import phoenix.Vector;
 import phoenix.Quaternion;
-import phoenix.Matrix4;
+import phoenix.Matrix;
 
 class Spatial {
 
@@ -12,7 +12,7 @@ class Spatial {
     @:isVar public var rotation             (default,set) : Quaternion;
     @:isVar public var scale                (default,set) : Vector;
 
-    @:isVar public var matrix               (get,    set) : Matrix4;
+    @:isVar public var matrix               (get,    set) : Matrix;
 
     public var ignore_listeners : Bool = false;
     
@@ -24,7 +24,7 @@ class Spatial {
 
     public function new() {
 
-        matrix = new Matrix4();
+        matrix = new Matrix();
 
         pos = new Vector();
         rotation = new Quaternion();
@@ -45,13 +45,13 @@ class Spatial {
 
     } //decompose
 
-    function get_matrix() : Matrix4 {
+    function get_matrix() : Matrix {
 
         return matrix;
 
     } //get_matrix
 
-    function set_matrix(_m:Matrix4) {
+    function set_matrix(_m:Matrix) {
 
         return matrix = _m;
 
@@ -139,9 +139,9 @@ class Transform extends Objects {
         //starts true since there are no values
     public var dirty : Bool = true;
 
-    var _origin_undo_matrix : Matrix4;
-    var _pos_matrix : Matrix4;
-    var _rotation_matrix : Matrix4;
+    var _origin_undo_matrix : Matrix;
+    var _pos_matrix : Matrix;
+    var _rotation_matrix : Matrix;
     var _setup : Bool = true;
     var _cleaning : Bool = false;
 
@@ -162,9 +162,9 @@ class Transform extends Objects {
         local = new Spatial();
         world = new Spatial();        
 
-        _origin_undo_matrix = new Matrix4();
-        _pos_matrix = new Matrix4();
-        _rotation_matrix = new Matrix4();
+        _origin_undo_matrix = new Matrix();
+        _pos_matrix = new Matrix();
+        _rotation_matrix = new Matrix();
 
         _change_handlers = [];
         _pos_handlers = [];

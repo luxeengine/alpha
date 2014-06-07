@@ -5,7 +5,7 @@ import lime.gl.GL;
 import lime.gl.GLBuffer;
 import lime.utils.Float32Array;
 
-import phoenix.Matrix4;
+import phoenix.Matrix;
 
 import phoenix.Quaternion;
 import phoenix.Rectangle;
@@ -45,11 +45,11 @@ class Camera {
     public var transform : Transform;
 
     public var minimum_zoom : Float = 0.01;
-    public var projection_matrix : Matrix4;
-    public var view_matrix : Matrix4;
-    public var view_matrix_inverse : Matrix4;
+    public var projection_matrix : Matrix;
+    public var view_matrix : Matrix;
+    public var view_matrix_inverse : Matrix;
         //if any, a rotation matrix for the look at rotation
-    public var look_at_matrix : Matrix4;
+    public var look_at_matrix : Matrix;
 
     public var options : CameraOptions;
     public var projection : ProjectionType;
@@ -104,10 +104,10 @@ class Camera {
         pos = new Vector();
         up = new Vector(0,1,0);
         
-        projection_matrix = new Matrix4();
-        view_matrix = new Matrix4();
-        view_matrix_inverse = new Matrix4();
-        look_at_matrix = new Matrix4();
+        projection_matrix = new Matrix();
+        view_matrix = new Matrix();
+        view_matrix_inverse = new Matrix();
+        look_at_matrix = new Matrix();
 
         transform.listen(on_transform_cleaned);
 
@@ -154,7 +154,7 @@ class Camera {
 
         update_view_matrix();
 
-        var _transform = new Matrix4().multiplyMatrices( projection_matrix, view_matrix_inverse );
+        var _transform = new Matrix().multiplyMatrices( projection_matrix, view_matrix_inverse );
         return _vector.clone().applyProjection( _transform );
 
     } //project
@@ -164,7 +164,7 @@ class Camera {
 
         update_view_matrix();
         
-        var _inverted = new Matrix4().multiplyMatrices( projection_matrix, view_matrix_inverse );
+        var _inverted = new Matrix().multiplyMatrices( projection_matrix, view_matrix_inverse );
         return _vector.clone().applyProjection( _inverted.getInverse(_inverted) );
 
     } //unproject
@@ -350,7 +350,7 @@ class Camera {
 
         update_view_matrix();
 
-        return _vector.clone().applyMatrix4(view_matrix);
+        return _vector.clone().transform(view_matrix);
 
     } //ortho_screen_to_world
 
@@ -358,7 +358,7 @@ class Camera {
 
         update_view_matrix();
 
-        return _vector.clone().applyMatrix4( view_matrix_inverse );
+        return _vector.clone().transform( view_matrix_inverse );
 
     } //ortho_world_to_screen
 

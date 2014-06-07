@@ -12,7 +12,7 @@ typedef MatrixTransform = {
     scale : Vector
 }
 
-class Matrix4 {
+class Matrix {
 
     public var elements:Array<Float>;
 
@@ -60,7 +60,7 @@ class Matrix4 {
         n11:Float, n12:Float, n13:Float, n14:Float,
         n21:Float, n22:Float, n23:Float, n24:Float,
         n31:Float, n32:Float, n33:Float, n34:Float,
-        n41:Float, n42:Float, n43:Float, n44:Float) : Matrix4
+        n41:Float, n42:Float, n43:Float, n44:Float) : Matrix
     {
         
         var e = elements;
@@ -126,7 +126,7 @@ class Matrix4 {
         return new lime.utils.Float32Array(elements);
     }   
 
-    public function identity () : Matrix4 {
+    public function identity () : Matrix {
 
             set(
                 1, 0, 0, 0,
@@ -139,7 +139,7 @@ class Matrix4 {
     }
     
     
-    public function copy( m:Matrix4 ) : Matrix4 {
+    public function copy( m:Matrix ) : Matrix {
 
         var me = m.elements;
 
@@ -170,7 +170,7 @@ class Matrix4 {
    }    
     
     
-    public function copyPosition( m:Matrix4 ) : Matrix4 {
+    public function copyPosition( m:Matrix ) : Matrix {
 
         elements[12] = m.elements[12];
         elements[13] = m.elements[13];
@@ -184,7 +184,7 @@ class Matrix4 {
         return new Vector(elements[12], elements[13], elements[14],1);
     }
     
-    public function extractRotation( m:Matrix4 ) : Matrix4 {
+    public function extractRotation( m:Matrix ) : Matrix {
 
         var _temp = new Vector();
         var me = m.elements;
@@ -208,7 +208,7 @@ class Matrix4 {
         return this;
     }
     
-    public function makeRotationFromEuler( _v:Vector, _order:String = 'XYZ') : Matrix4 {
+    public function makeRotationFromEuler( _v:Vector, _order:String = 'XYZ') : Matrix {
 
         var te = elements;
 
@@ -333,7 +333,7 @@ class Matrix4 {
 
     } //makeRotationFromEuler
     
-    public function makeRotationFromQuaternion( q:Quaternion ) : Matrix4 {
+    public function makeRotationFromQuaternion( q:Quaternion ) : Matrix {
 
         var te = elements;
 
@@ -370,7 +370,7 @@ class Matrix4 {
     } //makeRotationFromQuaternion
     
     
-    public function lookAt( _eye:Vector, _target:Vector, _up:Vector ) : Matrix4 {
+    public function lookAt( _eye:Vector, _target:Vector, _up:Vector ) : Matrix {
 
         var _x = new Vector(); 
         var _y = new Vector(); 
@@ -402,14 +402,14 @@ class Matrix4 {
     } //lookAt
     
     
-    public function multiply( _m:Matrix4 ) : Matrix4 {
+    public function multiply( _m:Matrix ) : Matrix {
 
         return multiplyMatrices(this, _m);
 
     } //multiply
     
     
-    public function multiplyMatrices( _a:Matrix4, _b:Matrix4 ) : Matrix4 {
+    public function multiplyMatrices( _a:Matrix, _b:Matrix ) : Matrix {
 
         var ae = _a.elements;
         var be = _b.elements;
@@ -450,7 +450,7 @@ class Matrix4 {
     } //multiplyMatrices
     
     
-    public function multiplyToArray( _a:Matrix4, _b:Matrix4, _r:Array<Float> ) : Matrix4 {
+    public function multiplyToArray( _a:Matrix, _b:Matrix, _r:Array<Float> ) : Matrix {
 
         var te = elements;
 
@@ -466,7 +466,7 @@ class Matrix4 {
     } //multiplyToArray
     
     
-    public function multiplyScalar( _s:Float ) : Matrix4 {
+    public function multiplyScalar( _s:Float ) : Matrix {
 
         var te = elements;
 
@@ -551,7 +551,7 @@ class Matrix4 {
         );
     } //determinant
     
-    public function transpose() : Matrix4 {
+    public function transpose() : Matrix {
 
         var te = elements;
         var tmp:Float;
@@ -616,7 +616,7 @@ class Matrix4 {
     } //flattenToArrayOffset
     
     
-    public function setPosition( _v:Vector ) : Matrix4 {
+    public function setPosition( _v:Vector ) : Matrix {
 
         var te = elements;
 
@@ -628,11 +628,11 @@ class Matrix4 {
 
     } //setPosition
     
-    public function inverse() : Matrix4 {
+    public function inverse() : Matrix {
         return clone().getInverse(this);
     }
     
-    public function getInverse( _m:Matrix4 ) : Matrix4 {
+    public function getInverse( _m:Matrix ) : Matrix {
 
         // based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
 
@@ -665,7 +665,7 @@ class Matrix4 {
         
         if (det == 0) {
 
-            trace('Matrix4.getInverse: cant invert matrix, determinant is 0');
+            trace('Matrix.getInverse: cant invert matrix, determinant is 0');
 
             identity();
 
@@ -680,7 +680,7 @@ class Matrix4 {
     } //getInverse
     
     
-    public function scale( _v:Vector ) : Matrix4 {
+    public function scale( _v:Vector ) : Matrix {
 
         var te = elements;
 
@@ -711,7 +711,7 @@ class Matrix4 {
     } //getMaxScaleOnAxis
     
     
-    public function makeTranslation( _x:Float, _y:Float, _z:Float ) : Matrix4 {
+    public function makeTranslation( _x:Float, _y:Float, _z:Float ) : Matrix {
 
         set(
             1, 0, 0, _x,
@@ -725,7 +725,7 @@ class Matrix4 {
     } //makeTranslation
     
 
-    public function makeRotationX( _theta:Float ) : Matrix4 {
+    public function makeRotationX( _theta:Float ) : Matrix {
 
         var _c = Math.cos(_theta);
         var _s = Math.sin(_theta);
@@ -742,7 +742,7 @@ class Matrix4 {
     } //makeRotationX
     
 
-    public function makeRotationY(_theta:Float) : Matrix4 {
+    public function makeRotationY(_theta:Float) : Matrix {
 
         var _c = Math.cos(_theta);
         var _s = Math.sin(_theta);
@@ -759,7 +759,7 @@ class Matrix4 {
     } //makeRotationY
     
 
-    public function makeRotationZ(_theta:Float) : Matrix4 {
+    public function makeRotationZ(_theta:Float) : Matrix {
 
         var _c = Math.cos(_theta);
         var _s = Math.sin(_theta);
@@ -776,7 +776,7 @@ class Matrix4 {
     } //makeRotationZ
     
     
-    public function makeRotationAxis( _axis:Vector, _angle:Float ) : Matrix4 {
+    public function makeRotationAxis( _axis:Vector, _angle:Float ) : Matrix {
 
         var _c = Math.cos( _angle );
         var _s = Math.sin( _angle );
@@ -801,7 +801,7 @@ class Matrix4 {
     } //makeRotationAxis
     
     
-    public function makeScale( _x:Float, _y:Float, _z:Float) : Matrix4 {
+    public function makeScale( _x:Float, _y:Float, _z:Float) : Matrix {
 
             set(
                 _x,  0,  0,  0,
@@ -815,7 +815,7 @@ class Matrix4 {
     } //makeScale
     
     
-    public function compose_with_origin( _position:Vector, _origin:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix4 {
+    public function compose_with_origin( _position:Vector, _origin:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix {
         
         //translate to origin -> scale -> rotate -> translate -origin -> apply position
 
@@ -824,17 +824,17 @@ class Matrix4 {
             //scale ->
         scale(_scale);
             //rotation 
-        multiply( new Matrix4().makeRotationFromQuaternion(_quaternion) );
+        multiply( new Matrix().makeRotationFromQuaternion(_quaternion) );
             //translate -origin
-        multiply( new Matrix4().makeTranslation(-_origin.x, -_origin.y, -_origin.z) );
+        multiply( new Matrix().makeTranslation(-_origin.x, -_origin.y, -_origin.z) );
             //apply position
-        multiply( new Matrix4().makeTranslation(_position.x, _position.y, _position.z) );
+        multiply( new Matrix().makeTranslation(_position.x, _position.y, _position.z) );
 
         return this;
 
     }
 
-    public function compose( _position:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix4 {
+    public function compose( _position:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix {
 
             makeRotationFromQuaternion( _quaternion );
             scale( _scale );
@@ -852,7 +852,7 @@ class Matrix4 {
         var ay = new Vector(te[4], te[5], te[6]);
         var az = new Vector(te[8], te[9], te[10]);
 
-        var matrix = new Matrix4();
+        var matrix = new Matrix();
         
         if (_position == null)      _position = new Vector();
         if (_quaternion == null)    _quaternion = new Quaternion();
@@ -894,7 +894,7 @@ class Matrix4 {
     } //decompose
 
     
-    public function makeFrustum( _left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float ) : Matrix4 {
+    public function makeFrustum( _left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float ) : Matrix {
 
         var te = elements;
 
@@ -916,7 +916,7 @@ class Matrix4 {
     } //makeFrustum
     
     
-    public function makePerspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) : Matrix4 {
+    public function makePerspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) : Matrix {
 
         var ymax = _near * Math.tan( Maths.degToRad(_fov * 0.5) );
         var ymin = -ymax;
@@ -928,7 +928,7 @@ class Matrix4 {
     } //makePerspective
     
     
-    public function makeOrthographic( _left:Float, _right:Float, _top:Float, _bottom:Float, _near:Float, _far:Float ) : Matrix4 {
+    public function makeOrthographic( _left:Float, _right:Float, _top:Float, _bottom:Float, _near:Float, _far:Float ) : Matrix {
 
         var te = elements;
 
@@ -968,11 +968,11 @@ class Matrix4 {
 
     } //toArray
 
-    public function clone() : Matrix4 {
+    public function clone() : Matrix {
 
         var te = elements;
 
-            return new Matrix4(
+            return new Matrix(
                 te[0], te[4], te[8],  te[12],
                 te[1], te[5], te[9],  te[13],
                 te[2], te[6], te[10], te[14],
@@ -1006,5 +1006,5 @@ class Matrix4 {
     } //forward
 
 
-} //Matrix4
+} //Matrix
 

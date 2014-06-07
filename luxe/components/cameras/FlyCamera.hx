@@ -3,7 +3,7 @@ package luxe.components.cameras;
 import luxe.Vector;
 import luxe.Input;
 
-import phoenix.Matrix4;
+import phoenix.Matrix;
 import phoenix.Camera;
 
 import luxe.utils.Maths;
@@ -33,8 +33,8 @@ class FlyCamera extends luxe.Camera {
     var yaw : Float = 0;
     var pitch : Float = 0;
 
-    var pitch_rotation_matrix : Matrix4;
-    var yaw_rotation_matrix : Matrix4;
+    var pitch_rotation_matrix : Matrix;
+    var yaw_rotation_matrix : Matrix;
 
     var ready = false;
     var hide_cursor = false;
@@ -54,8 +54,8 @@ class FlyCamera extends luxe.Camera {
         right = new Vector(-1,0,0);
         up = new Vector(0,1,0);
 
-        pitch_rotation_matrix = new Matrix4();
-        yaw_rotation_matrix = new Matrix4();
+        pitch_rotation_matrix = new Matrix();
+        yaw_rotation_matrix = new Matrix();
     }
 
 
@@ -88,7 +88,7 @@ class FlyCamera extends luxe.Camera {
                 //Update movement facing from mouse difference
             move_look(mouse_delta.x, mouse_delta.y);
 
-            var final_rotation : Matrix4 = null;
+            var final_rotation : Matrix = null;
 
                 //Camera isn't looking at something
             if(view.target == null) {

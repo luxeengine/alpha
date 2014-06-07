@@ -64,8 +64,8 @@ class GeometryUtils {
 
         for(i in 0 ... nvert) {
 
-            var _vert_i_pos = _geometry.vertices[i].pos.clone().applyMatrix4( _geometry.transform.world.matrix );
-            var _vert_j_pos = _geometry.vertices[j].pos.clone().applyMatrix4( _geometry.transform.world.matrix );
+            var _vert_i_pos = _geometry.vertices[i].pos.clone().transform( _geometry.transform.world.matrix );
+            var _vert_j_pos = _geometry.vertices[j].pos.clone().transform( _geometry.transform.world.matrix );
             
             if ((( (_vert_i_pos.y) > _point.y) != ((_vert_j_pos.y) > _point.y)) &&
                (_point.x < ( (_vert_j_pos.x) - (_vert_i_pos.x)) * (_point.y - (_vert_i_pos.y)) 

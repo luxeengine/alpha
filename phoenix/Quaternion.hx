@@ -150,7 +150,7 @@ class Quaternion {
     } //setFromAxisAngle
 
     
-    public function setFromRotationMatrix( _m:Matrix4 ) : Quaternion {
+    public function setFromRotationMatrix( _m:Matrix ) : Quaternion {
 
         // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
         // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)     

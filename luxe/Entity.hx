@@ -2,7 +2,7 @@ package luxe;
 
 import luxe.Quaternion;
 import luxe.Transform;
-import phoenix.Matrix4;
+import luxe.Matrix;
 
 import luxe.Input;
 import luxe.Vector;
