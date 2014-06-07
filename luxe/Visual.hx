@@ -145,7 +145,7 @@ class Visual extends Entity {
                         y:0,
                         w:size.x,
                         h:size.y,
-                        scale: scale.clone(),
+                        scale: new Vector(1,1,1),
                         texture : texture,
                         color : color,
                         shader : shader,
