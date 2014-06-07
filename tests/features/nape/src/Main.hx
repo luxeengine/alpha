@@ -123,6 +123,10 @@ class Main extends luxe.Game {
             reset_world();
         }
 
+        if(e.key == KeyValue.key_G) {
+            Luxe.physics.nape.draw = !Luxe.physics.nape.draw;
+        }
+
         if(e.key == KeyValue.left) {
             ball.applyImpulse(new Vec2(-impulse, 0), ball.position);
         }

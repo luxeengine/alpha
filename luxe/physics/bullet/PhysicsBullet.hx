@@ -90,6 +90,17 @@ package luxe.physics.bullet;
 
         } //process
 
+        override function set_draw( _draw:Bool ) : Bool {
+
+                //clean up any potential geometry when disabling drawing
+            if(!_draw) {
+                debugdraw.clear();
+            }
+
+            return super.set_draw(_draw);
+
+        } //set_draw
+
         public override function destroy() {
 
             super.destroy();

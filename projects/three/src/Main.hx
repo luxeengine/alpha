@@ -138,6 +138,8 @@ class Main extends luxe.Game {
             batcher: batch3d
         });
 
+        roommesh.geometry.locked = true;
+
         room_mesh = Luxe.scene.create(Entity, 'room');
 
             var rmc = room_mesh.add(MeshComponent, 'mesh');
@@ -217,6 +219,10 @@ class Main extends luxe.Game {
 
         if(e.key == KeyValue.key_C) {
             create_cube();
+        }
+
+        if(e.key == KeyValue.key_G) {
+            Luxe.physics.bullet.draw = !Luxe.physics.bullet.draw;
         }
 
         if(e.key == KeyValue.key_F) {

@@ -88,7 +88,7 @@ class PhysicsEngine {
     @:isVar public var paused (get,set) : Bool = false;
     @:isVar public var gravity (get,set) : Vector;
 
-    public var draw : Bool = true;
+    @:isVar public var draw (get,set) : Bool = true;
 
     public function new() {
 
@@ -115,6 +115,18 @@ class PhysicsEngine {
         return paused = _pause;
 
     } //set_paused
+
+    public function get_draw() : Bool {
+        
+        return draw;
+
+    } //get_draw
+
+    public function set_draw( _draw:Bool ) : Bool {
+
+        return draw = _draw;
+
+    } //set_draw
 
     public function get_gravity() : Vector {
         
