@@ -4,7 +4,9 @@ import luxe.options.ComponentOptions;
 import luxe.Quaternion;
 
 import luxe.Log._debug;
+import luxe.Log._verbose;
 
+@:autoBuild(luxe.components.ComponentRules.apply())
 class Component extends Objects {
 
         //the entity this component is attached to
@@ -17,15 +19,7 @@ class Component extends Objects {
     public var origin           (get,set) : Vector;
 
         //the options for passing into init
-    @:noCompletion var options : Dynamic;
-
-    public function new<T>( ?_options:ComponentOptions<T> ) {
-        
-        super();
-            
-        options = _options;
-
-    } //new
+    @:noCompletion public var options : Dynamic;
 
 //Public API
 
@@ -46,6 +40,7 @@ class Component extends Objects {
     public function get_any<T>(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
         return entity.get_any( _name, in_children, first_only );
     } //get_any
+
 
 //transforms
 
@@ -89,10 +84,18 @@ class Component extends Objects {
 
 //internal api
 
+    @:noCompletion public function _create() {
+        _verbose('        component $name create');
+        _call(this, 'create');
+    }
+
     @:noCompletion public function _init() {
+        _verbose('        component $name init with options $options ');
         _call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
     }
+
     @:noCompletion public function _reset() {
+        _verbose('        component $name reset');
         _call(this, 'reset');
     }
 
@@ -154,9 +157,11 @@ class Component extends Objects {
         }
 
             //create an instance
-        var _component = Type.createInstance( type, [ _data ] );        
+        var _component = Type.createInstance( type, [] );
             //cast to Component so we can set its name
         var _e_component : Component = cast _component;
+            //store the options for init
+        _e_component.options = _data;
             //apply it!
         _e_component.name = _temp_name;
             //store the entity
@@ -164,7 +169,11 @@ class Component extends Objects {
             //store it in the component list
         components.set( _temp_name, _e_component );
             //debug stuff
-        _debug('adding a component to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
+        _debug('    adding to ' + entity.name + ' called ' + _temp_name + ', now at ' + Lambda.count(components) + ' components');
+
+
+        _debug("\t entity " + entity.name + " created, calling create on " + _e_component.name );
+        _call(_component, '_create');
 
             //now check against the entity already being init'ed and start'ed 
             //and if so, call them manually
