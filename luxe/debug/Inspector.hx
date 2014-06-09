@@ -24,8 +24,9 @@ typedef DebugInspectorOptions = {
 		//pieces
 	public var _title_text : Text;
 	public var _version_text : Text;
+	
 	public var uitexture : Texture;
-	public var default_button_texture : Texture;
+	public var uibutton : Texture;
 
 	public var _window : NineSlice;
 	private var _batcher : Batcher;
@@ -39,8 +40,9 @@ typedef DebugInspectorOptions = {
 		size = new Vector( Std.int(Luxe.screen.w*0.2), Std.int(Luxe.screen.h*0.6) );
 		pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
 
-			//load the image
-		uitexture = Luxe.renderer.load_texture_from_resource_bytes('tiny.ui', 128, 128);
+			//load the images
+		uitexture = Luxe.renderer.load_texture_from_resource_bytes('tiny.ui.png', 128, 128);
+		uibutton = Luxe.renderer.load_texture_from_resource_bytes('tiny.button.png', 32, 16);
 		
 			//default to the internal batcher
 		_batcher = Luxe.renderer.default_batcher;

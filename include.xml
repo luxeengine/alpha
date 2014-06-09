@@ -19,7 +19,8 @@
 	<haxeflag name="-resource" value="version@version" />
 	<haxeflag name="-resource" value="build@build" />
 		<!-- UI and fonts -->
-	<haxeflag name="-resource" value="luxe/defaults/ui/tiny.ui.png@tiny.ui" />
+	<haxeflag name="-resource" value="luxe/defaults/ui/tiny.ui.png@tiny.ui.png" />
+	<haxeflag name="-resource" value="luxe/defaults/ui/tiny.button.png@tiny.button.png" />
 	<haxeflag name="-resource" value="luxe/defaults/fonts/din.png@din.png" />
 	<haxeflag name="-resource" value="luxe/defaults/fonts/din.fnt@din.fnt" />
 		<!-- Shaders -->
