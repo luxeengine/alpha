@@ -22,8 +22,6 @@ class CompositeGeometry extends Geometry {
 
         geometry = new Array<Geometry>();
 
-        transform.listen_dirty(on_transform_dirty);
-
     } //new
 
     public function toString() {
@@ -204,15 +202,5 @@ class CompositeGeometry extends Geometry {
 
         return visible = val;
     } //set_visible
-
-    function on_transform_dirty( t:Transform ) {
-
-            //since compositegeometry never actually
-            //gets added to a batcher, it's transform is never requested,
-            //therefore never updated so its children don't get updated either
-        // log("update " + name);
-        transform.clean_check();
-
-    } //transform_dirty
 
 } //CompositeGeometry
