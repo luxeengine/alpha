@@ -56,7 +56,7 @@ class Text extends Visual {
             batcher : _batcher,
             color : _options.color,
             visible : _options.visible,
-            pos : _options.pos,
+            // pos : _options.pos,
             depth : _options.depth,
             group : _options.group,
             no_geometry : true
@@ -98,14 +98,13 @@ class Text extends Visual {
 
     } //onloaded
 
-    override function set_pos(v:Vector) : Vector {
-        
-        super.set_pos(v.clone());
-        text_options.pos = pos;
-        
-        return pos;
+    override function set_pos_from_transform( _p:Vector ) {
 
-    } //set_pos
+        super.set_pos_from_transform(_p);
+        text_options.pos = pos;
+
+    } //set_pos_from_transform
+
 
     function set_textsize(v:Float) : Float {
         
@@ -170,10 +169,15 @@ class Text extends Visual {
             composite_geometry = font.draw_text(text_options);
 
                 //now we apply the new info to the visual first
-            origin  = composite_geometry.transform.origin;
-            pos     = composite_geometry.transform.pos;
+            origin  = composite_geometry.transform.origin.clone();
+            pos     = composite_geometry.transform.pos.clone();
             locked  = composite_geometry.locked;
             visible = composite_geometry.visible;
+
+                //since the transform of the visual manages the position, origin
+                //the geometry cannot have it as well, this would apply it twice
+            composite_geometry.transform.origin = new Vector();
+            composite_geometry.transform.pos = new Vector();
 
                 //and then assign it
             ignore_texture_on_geometry_change = true;

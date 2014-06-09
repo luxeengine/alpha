@@ -17,6 +17,10 @@ import phoenix.Texture;
 
 import luxe.options.VisualOptions;
 
+import luxe.Log.log;
+import luxe.Log._verbose;
+import luxe.Log._debug;
+
 class Visual extends Entity {
 
 
@@ -49,8 +53,7 @@ class Visual extends Entity {
         }
 
 //cached values
-            //these need to be before super as it calls into the set_pos etc 
-            //and that makes it crash if these are not there yet
+            //these need to be before super
         _rotation_euler = new Vector();
         _rotation_quat = new Quaternion();
 
@@ -182,6 +185,7 @@ class Visual extends Entity {
             //default to the visual name
         if(geometry != null) {
             geometry.id = name + ".visual";
+            geometry.transform.id = name + ".visual.transform";
         }
 
             //custom provided origin will override any until now
@@ -301,6 +305,8 @@ class Visual extends Entity {
             
                 //make sure it's attached
             geometry.transform.parent = transform;
+            
+            _verbose('    assign geometry transform as child : $geometry.id to $name');
 
             if(_creating_geometry == false) {
 

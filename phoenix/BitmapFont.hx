@@ -14,6 +14,10 @@ import phoenix.geometry.Vertex;
 import phoenix.Rectangle;
 import phoenix.Texture;
 
+import luxe.Log.log;
+import luxe.Log._debug;
+import luxe.Log._verbose;
+
 enum TextAlign {
     left;
     right;
@@ -345,7 +349,7 @@ class BitmapFont extends Resource {
         
             //no texture? return empty geometry
         if(pages[0] == null) {
-            trace("Warning ; " + id + " font trying to draw without a texture.");
+            log("Warning ; " + id + " font trying to draw without a texture.");
             return _final_geom;
         }
 
@@ -354,7 +358,7 @@ class BitmapFont extends Resource {
         var _geoms : Array<Geometry> = new Array<Geometry>();
         var _page_count = Lambda.count(pages);
 
-        // trace('creating geometry for each unique texture : ' + _page_count + ' at ' + _depth + '\n with ' + _col + ' and ' + _align + ' and at ' + _pos );
+        _verbose('creating geometry for each unique texture : ' + _page_count + ' at ' + _depth + '\n with ' + _col + ' and ' + _align + ' and at ' + _pos );
 
         for(i in 0 ... _page_count ) {
 
@@ -525,8 +529,11 @@ class BitmapFont extends Resource {
 
 
         } //_bounds_based
+
+        _verbose('drew text ${_string.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
         
-        _final_geom.id = 'drawn_text- ' + _string;
+        _final_geom.id = 'drawn_text- ' + _string.substr(0,10);
+        _final_geom.transform.id = 'drawn_text- ' + _string.substr(0,10);
         _final_geom.immediate = _immediate;
         _final_geom.visible = _visible;
 

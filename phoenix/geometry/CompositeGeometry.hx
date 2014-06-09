@@ -1,10 +1,16 @@
 package phoenix.geometry;
 
+import luxe.Log;
 import phoenix.geometry.Geometry;
 import phoenix.Batcher;
 import phoenix.Quaternion;
 import phoenix.Shader;
 import phoenix.Texture;
+
+import luxe.Log.log;
+import luxe.Log._verbose;
+import luxe.Log._debug;
+
 
 class CompositeGeometry extends Geometry {
 
@@ -14,12 +20,9 @@ class CompositeGeometry extends Geometry {
 
         super(options);
 
-        transform.listen_pos(set_pos_from_transform);
-        transform.listen_scale(set_scale_from_transform);
-        transform.listen_origin(set_origin_from_transform);
-        transform.listen_rotation(set_rotation_from_transform);
-
         geometry = new Array<Geometry>();
+
+        transform.listen_dirty(on_transform_dirty);
 
     } //new
 
@@ -29,8 +32,11 @@ class CompositeGeometry extends Geometry {
 
     public function clear() {
 
+        for(geom in geometry) {
+            geom.transform.parent = null;
+        }
             //:todo: profile these splices vs new assigns in haxe
-        geometry.splice(0,geometry.length);
+        geometry.splice(0, geometry.length);
 
     } //clear
 
@@ -41,6 +47,10 @@ class CompositeGeometry extends Geometry {
         clear();
             //store the new geometry
         geometry = _geometry;
+            //change their parent to this
+        for(geom in geometry) {
+            geom.transform.parent = transform;
+        }
 
     } //replace
 
@@ -52,11 +62,19 @@ class CompositeGeometry extends Geometry {
 
     public function add_geometry( g:Geometry ) {
 
+        if(g != null) {
+            g.transform.parent = transform;
+        }
+        
         geometry.push(g);
 
     } //add_geometry
 
     public function remove_geometry( g:Geometry ) {
+
+        if(g != null) {
+            g.transform.parent = null;
+        }
 
         geometry.remove(g);
 
@@ -85,38 +103,6 @@ class CompositeGeometry extends Geometry {
             }
         }
     } //translate
-
-    function set_origin_from_transform( _origin:Vector ) : Void {
-        if(geometry != null) {
-            for(geom in geometry) {
-                geom.transform.origin = _origin;
-            }
-        }
-    } //set_origin
-
-    function set_pos_from_transform( _position:Vector ) {
-        if(geometry != null) {
-            for(geom in geometry) {
-                geom.transform.pos = _position;
-            }
-        }
-    } //set_pos
-
-    function set_rotation_from_transform( _rotation:Quaternion ) {
-        if(geometry != null) {
-            for(geom in geometry) {
-                geom.transform.rotation = _rotation;
-            }
-        }
-    } //set_rotation
-
-    function set_scale_from_transform( _scale:Vector ) {
-        if(geometry != null) {
-            for(geom in geometry) {
-                geom.transform.scale = _scale;
-            }
-        }
-    } //set_scale
 
     public override function set_color( _color:Color ) : Color {
         if(geometry != null) {
@@ -218,5 +204,15 @@ class CompositeGeometry extends Geometry {
 
         return visible = val;
     } //set_visible
+
+    function on_transform_dirty( t:Transform ) {
+
+            //since compositegeometry never actually
+            //gets added to a batcher, it's transform is never requested,
+            //therefore never updated so its children don't get updated either
+        log("update " + name);
+        transform.clean_check();
+
+    } //transform_dirty
 
 } //CompositeGeometry
