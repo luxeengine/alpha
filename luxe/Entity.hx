@@ -64,8 +64,6 @@ class Entity extends Objects {
         _verbose('create new entity with options ' + options);
 
         options = _options;
-
-        name = 'entity.' + id;
         
         _components = new Components( this );
         children = new Array<Entity>();
@@ -85,7 +83,7 @@ class Entity extends Objects {
             if(options.name != null) {
                 name = options.name;
             } else {
-                name = id; //default to the entity id
+                name = 'entity.' + id; //default to the entity id
             }
 
     //position

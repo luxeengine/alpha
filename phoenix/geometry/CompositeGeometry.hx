@@ -30,9 +30,6 @@ class CompositeGeometry extends Geometry {
 
     public function clear() {
 
-        for(geom in geometry) {
-            // geom.transform.parent = null;
-        }
             //:todo: profile these splices vs new assigns in haxe
         geometry.splice(0, geometry.length);
 
@@ -69,10 +66,6 @@ class CompositeGeometry extends Geometry {
     } //add_geometry
 
     public function remove_geometry( g:Geometry ) {
-
-        if(g != null) {
-            g.transform.parent = null;
-        }
 
         geometry.remove(g);
 

@@ -80,9 +80,9 @@ class Scene extends Objects {
             throw "can't put entity in a scene if the entity is null.";
         }
 
-        _debug('${name} / adding ${entity.name} with id ${entity.id}');
+        _debug('${name} / adding ${entity.name} with id : ${entity.id}');
 
-        entities.set( entity.id, entity );
+        entities.set( entity.name, entity );
 
         entity.scene = this;
 
@@ -114,7 +114,7 @@ class Scene extends Objects {
         if(entity.scene == this) {
             
             entity.scene = null;
-            return entities.remove( entity.id );
+            return entities.remove( entity.name );
             
         } else {
             _debug("can't remove the entity from this scene, it is not mine (entity.scene != this)");
