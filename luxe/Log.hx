@@ -8,6 +8,8 @@ class Log {
 
         //default to log
     public static var _level : Int = 1;
+    public static var _filter : Array<String>;
+    public static var _exclude : Array<String>;
 
     public static var _log_width : Int = 16;
 
@@ -20,6 +22,38 @@ class Log {
         return macro null;
 
     } //level
+    
+    macro public static function filter( __filter:String ) : haxe.macro.Expr {
+
+        trace("/ luxe / setting filter : " + __filter );
+
+        _filter = __filter.split(',');
+
+        var _index = 0;
+        for(_f in _filter) {            
+            _filter[_index] = StringTools.trim(_f);
+            _index++;
+        }
+
+        return macro null;
+
+    } //filter    
+
+    macro public static function exclude( __exclude:String ) : haxe.macro.Expr {
+
+        trace("/ luxe / setting exclude : " + __exclude );
+
+        _exclude = __exclude.split(',');
+
+        var _index = 0;
+        for(_e in _exclude) {            
+            _exclude[_index] = StringTools.trim(_e);
+            _index++;
+        }
+
+        return macro null;
+
+    } //exclude
 
     macro public static function width( _width:Int ) : haxe.macro.Expr {
 
@@ -49,7 +83,17 @@ class Log {
             }
         } //for each meta
 
-        if(_level > 0) {
+        var _log = (_level > 0);
+
+            if(_filter != null && (_filter.indexOf(_context) == -1)) {
+                _log = false;
+            }
+
+            if(_exclude != null && (_exclude.indexOf(_context) != -1)) {
+                _log = false;
+            }
+
+        if(_log) {
             return macro @:pos(Context.currentPos()) trace('${_spaces}i / $_context / ' + $value);
         } 
 
@@ -72,7 +116,17 @@ class Log {
             }
         } //for each meta
 
-        if(_level > 1) {
+        var _log = (_level > 1);
+
+            if(_filter != null && (_filter.indexOf(_context) == -1)) {
+                _log = false;
+            }
+
+            if(_exclude != null && (_exclude.indexOf(_context) != -1)) {
+                _log = false;
+            }
+
+        if(_log) {
             return macro @:pos(Context.currentPos()) trace('${_spaces}d / $_context / ' + $value);
         }
 
@@ -95,7 +149,17 @@ class Log {
             }
         } //for each meta
 
-        if(_level > 2) {
+        var _log = (_level > 2);
+
+            if(_filter != null && (_filter.indexOf(_context) == -1)) {
+                _log = false;
+            }
+
+            if(_exclude != null && (_exclude.indexOf(_context) != -1)) {
+                _log = false;
+            }
+
+        if(_log) {
             return macro @:pos(Context.currentPos()) trace('${_spaces}v / $_context / ' + $value);
         }
 
@@ -118,7 +182,17 @@ class Log {
             }
         } //for each meta
 
-        if(_level > 3) {
+        var _log = (_level > 3);
+
+            if(_filter != null && (_filter.indexOf(_context) == -1)) {
+                _log = false;
+            }
+
+            if(_exclude != null && (_exclude.indexOf(_context) != -1)) {
+                _log = false;
+            }
+
+        if(_log) {
             return macro @:pos(Context.currentPos()) trace('${_spaces}V / $_context / ' + $value);
         }
 
