@@ -33,7 +33,7 @@ class CompositeGeometry extends Geometry {
     public function clear() {
 
         for(geom in geometry) {
-            geom.transform.parent = null;
+            // geom.transform.parent = null;
         }
             //:todo: profile these splices vs new assigns in haxe
         geometry.splice(0, geometry.length);
@@ -49,24 +49,24 @@ class CompositeGeometry extends Geometry {
         geometry = _geometry;
             //change their parent to this
         for(geom in geometry) {
-            geom.transform.parent = transform;
+            geom.transform = transform;
         }
 
     } //replace
 
-    public function has_geometry( g:Geometry ) {
+    public function has_geometry( geom:Geometry ) {
 
-        return Lambda.has(geometry, g);
+        return Lambda.has(geometry, geom);
 
     } //has_geometry
 
-    public function add_geometry( g:Geometry ) {
+    public function add_geometry( geom:Geometry ) {
 
-        if(g != null) {
-            g.transform.parent = transform;
+        if(geom != null) {
+            geom.transform = transform;
         }
         
-        geometry.push(g);
+        geometry.push(geom);
 
     } //add_geometry
 
@@ -210,7 +210,7 @@ class CompositeGeometry extends Geometry {
             //since compositegeometry never actually
             //gets added to a batcher, it's transform is never requested,
             //therefore never updated so its children don't get updated either
-        // log("update " + id);
+        // log("update " + name);
         transform.clean_check();
 
     } //transform_dirty
