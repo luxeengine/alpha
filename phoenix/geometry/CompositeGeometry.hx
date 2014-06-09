@@ -210,7 +210,7 @@ class CompositeGeometry extends Geometry {
             //since compositegeometry never actually
             //gets added to a batcher, it's transform is never requested,
             //therefore never updated so its children don't get updated either
-        log("update " + name);
+        log("update " + id);
         transform.clean_check();
 
     } //transform_dirty
