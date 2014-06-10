@@ -1,4 +1,4 @@
-﻿package luxe.tween.actuators;
+package luxe.tween.actuators;
 
 
 import luxe.tween.actuators.GenericActuator;
@@ -17,6 +17,7 @@ import haxe.Timer;
  */
 class SimpleActuator extends GenericActuator {
     
+	
     private var timeOffset:Float;
     
     private static var actuators:Array <SimpleActuator> = new Array <SimpleActuator> ();
@@ -83,7 +84,7 @@ class SimpleActuator extends GenericActuator {
             
             if (setVisible) {
                 
-                target.visible = cacheVisible;
+				setField (target, "visible", cacheVisible);
                 
             }
             
@@ -105,8 +106,28 @@ class SimpleActuator extends GenericActuator {
         return this;
         
     }
+	
+	
+	private inline function getField (target:Dynamic, propertyName:String):Dynamic {
     
     
+		var value = null;
+		
+		if (Reflect.hasField (target, propertyName)) {
+			
+			value = Reflect.field (target, propertyName);
+			
+		} else {
+			
+			value = Reflect.getProperty (target, propertyName);
+			
+		}
+		
+		return value;
+		
+	}
+	
+	
     private function initialize ():Void {
         
         var details:PropertyDetails;
@@ -116,9 +137,9 @@ class SimpleActuator extends GenericActuator {
             
             var isField = true;
             
-            #if (haxe_209 || haxe3)
-            
-            if (#if flash false && #end Reflect.hasField (target, i)) {
+			if ( Reflect.hasField (target, i) 
+                    #if html5 && (!target.__properties__ || untyped !target.__properties__["set_" + i]) #end
+               ) {
                 
                 start = Reflect.field (target, i);
                 
@@ -129,14 +150,13 @@ class SimpleActuator extends GenericActuator {
                 
             }
             
-            #else
             
-            start = Reflect.field (target, i);
-            
-            #end
-            
-            details = new PropertyDetails (target, i, start, Reflect.field (properties, i) - start, isField);
+			if (Std.is (start, Float)) {
+				
+				details = new PropertyDetails (target, i, start, getField (properties, i) - start, isField);
             propertyDetails.push (details);
+				
+			}
             
         }
         
@@ -150,11 +170,11 @@ class SimpleActuator extends GenericActuator {
         
         toggleVisible = (Reflect.hasField (properties, "alpha") && Reflect.hasField (properties, "visible"));
         
-        if (toggleVisible && !target.visible && properties.alpha != 0) {
+		if (toggleVisible && properties.alpha != 0 && !getField (target, "visible")) {
             
             setVisible = true;
-            cacheVisible = target.visible;
-            target.visible = true;
+			cacheVisible = getField (target, "visible");
+			setField (target, "visible", true);
             
         }
         
@@ -171,7 +191,17 @@ class SimpleActuator extends GenericActuator {
     public override function onUpdate (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
         
         _onUpdate = handler;
+		
+		if (parameters == null) {
+			
+			_onUpdateParams = [];
+			
+		} else {
+			
         _onUpdateParams = parameters;
+			
+		}
+		
         sendChange = true;
         
         return this;
@@ -202,14 +232,23 @@ class SimpleActuator extends GenericActuator {
     }
     
     
-    private inline function setField (details:PropertyDetails, value:Dynamic):Void {
+	private inline function setField (target:Dynamic, propertyName:String, value:Dynamic):Void {
         
-        #if flash
+		if (Reflect.hasField (target, propertyName)) {
+			
+			Reflect.setField (target, propertyName, value);
         
-        untyped details.target[details.propertyName] = value;
+		} else {
         
-        #else
+			Reflect.setProperty (target, propertyName, value);
+			
+		}
+		
+	}
+	
         
+	private inline function setProperty (details:PropertyDetails, value:Dynamic):Void {
+		
         if (details.isField) {
             
             Reflect.setProperty (details.target, details.propertyName, value);
@@ -219,8 +258,6 @@ class SimpleActuator extends GenericActuator {
             Reflect.setProperty (details.target, details.propertyName, value);
             
         }
-        
-        #end
         
     }
     
@@ -267,7 +304,6 @@ class SimpleActuator extends GenericActuator {
         
     }
     
-    
     private function update( currentTime:Float ):Void {
         
         
@@ -298,7 +334,7 @@ class SimpleActuator extends GenericActuator {
                 for (i in 0...detailsLength) {
                     
                     details = propertyDetails[i];
-                    setField (details, details.start + (details.change * easing));
+					setProperty (details, details.start + (details.change * easing));
                     
                 }
                 
@@ -344,11 +380,11 @@ class SimpleActuator extends GenericActuator {
                     
                     if (!_snapping) {
                         
-                        setField (details, endValue);
+						setProperty (details, endValue);
                         
                     } else {
                         
-                        setField (details, Math.round (endValue));
+						setProperty (details, Math.round (endValue));
                         
                     }
                     
@@ -362,9 +398,9 @@ class SimpleActuator extends GenericActuator {
                     
                     active = false;
                     
-                    if (toggleVisible && target.alpha == 0) {
+					if (toggleVisible && getField (target, "alpha") == 0) {
                         
-                        target.visible = false;
+						setField (target, "visible", false);
                         
                     }
                     
@@ -375,16 +411,7 @@ class SimpleActuator extends GenericActuator {
                     
                     if (_onRepeat != null) {
                         
-                        #if (neko && (haxe_209 || haxe3))
-                        
-                        var args = _onRepeatParams != null ? _onRepeatParams : [];
-                        untyped __dollar__call (_onRepeat , _onRepeat, args.__neko ());
-                        
-                        #else
-                        
-                        Reflect.callMethod (_onRepeat, _onRepeat, _onRepeatParams);
-                        
-                        #end
+						callMethod (_onRepeat, _onRepeatParams);
                         
                     }
                     
@@ -440,7 +467,7 @@ class SimpleActuator extends GenericActuator {
             
             actuator = actuators[j];
             
-            if (actuator.active) {
+			if (actuator != null && actuator.active) {
 
                 currentTime = actuator.timescaled ? update_timer : current_time;
 

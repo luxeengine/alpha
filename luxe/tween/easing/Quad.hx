@@ -82,7 +82,7 @@ class QuadEaseInOut implements IEasing {
         if ((k *= 2) < 1) {
             return 1 / 2 * k * k;
         }
-        return -1 / 2 * ((--k) * (k - 2) - 1);
+		return -1 / 2 * ((k - 1) * (k - 3) - 1);
         
     }
     
@@ -92,7 +92,7 @@ class QuadEaseInOut implements IEasing {
         if ((t /= d / 2) < 1) {
             return c / 2 * t * t + b;
         }
-        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+		return -c / 2 * ((t - 1) * (t - 3) - 1) + b;
         
     }
     

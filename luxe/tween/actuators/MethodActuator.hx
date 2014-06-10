@@ -1,4 +1,4 @@
-﻿package luxe.tween.actuators;
+package luxe.tween.actuators;
 
 
 /**
@@ -42,15 +42,7 @@ class MethodActuator extends SimpleActuator {
     
     public override function apply ():Void {
         
-        #if (neko && (haxe_209 || haxe3))
-        
-        untyped __dollar__call (target , null, properties.end);
-        
-        #else
-        
-        Reflect.callMethod (null, target, properties.end);
-        
-        #end
+		callMethod (target, properties.end);
         
     }
     
@@ -63,15 +55,7 @@ class MethodActuator extends SimpleActuator {
             
         }
         
-        #if (neko && (haxe_209 || haxe3))
-        
-        untyped __dollar__call (target , null, currentParameters);
-        
-        #else
-        
-        Reflect.callMethod (null, target, currentParameters);
-        
-        #end
+		callMethod (target, currentParameters);
         
         super.complete (sendEvent);
         
@@ -118,15 +102,7 @@ class MethodActuator extends SimpleActuator {
                 
             }
             
-            #if (neko && (haxe_209 || haxe3))
-            
-            untyped __dollar__call (target , null, currentParameters);
-            
-            #else
-            
-            Reflect.callMethod (null, target, currentParameters);
-            
-            #end
+			callMethod (target, currentParameters);
             
         }
         

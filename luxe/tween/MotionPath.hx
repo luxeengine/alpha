@@ -1,15 +1,18 @@
-﻿package luxe.tween;
+package luxe.tween;
     
     
 /**
  * @author Joshua Granick
+ * @author Aleš Tomeček (for RotationPath)
  */
 class MotionPath {
     
     
+	public var rotation (get_rotation, null):RotationPath;
     public var x (get_x, null):IComponentPath;
     public var y (get_y, null):IComponentPath;
     
+	private var _rotation:RotationPath;
     private var _x:ComponentPath;
     private var _y:ComponentPath;
     
@@ -19,17 +22,19 @@ class MotionPath {
         _x = new ComponentPath ();
         _y = new ComponentPath ();
         
+		_rotation = null;
+		
     }
     
     
     /**
      * Adds a bezier curve to the current motion path
-     * @param   x  The x position of the end point for the curve
-     * @param   y  The y position of the end point for the curve
-     * @param   controlX  The x position of the control point for the curve, which affects the angle and midpoint
-     * @param   controlX  The x position of the control point for the curve, which affects the angle and midpoint
-     * @param   strength  The degree of emphasis that should be placed on this segment. If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
-     * @return  The current motion path instance
+	 * @param	x		The x position of the end point for the curve
+	 * @param	y		The y position of the end point for the curve
+	 * @param	controlX		The x position of the control point for the curve, which affects the angle and midpoint
+	 * @param	controlX		The x position of the control point for the curve, which affects the angle and midpoint
+	 * @param	strength		The degree of emphasis that should be placed on this segment. If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
+	 * @return		The current motion path instance
      */
     public function bezier (x:Float, y:Float, controlX:Float, controlY:Float, strength:Float = 1):MotionPath {
         
@@ -43,10 +48,10 @@ class MotionPath {
     
     /**
      * Adds a line to the current motion path
-     * @param   x  The x position of the end point for the line
-     * @param   x  The y position of the end point for the line
-     * @param   strength  The degree of emphasis that should be placed on this segment . If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
-     * @return  The current motion path instance
+	 * @param	x		The x position of the end point for the line
+	 * @param	x		The y position of the end point for the line
+	 * @param	strength		The degree of emphasis that should be placed on this segment . If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
+	 * @return		The current motion path instance
      */
     public function line (x:Float, y:Float, strength:Float = 1):MotionPath {
         
@@ -61,8 +66,21 @@ class MotionPath {
     
     
     // Get & Set Methods
+	
+	
+	
+	
+	private function get_rotation ():RotationPath {
+		
+		if (_rotation == null) {
+			
+			_rotation = new RotationPath (_x, _y);
+			
+		}
     
+		return _rotation;
     
+	}
     
     
     private function get_x ():IComponentPath {
@@ -179,8 +197,6 @@ class ComponentPath implements IComponentPath {
 }
 
 
-
-
 class BezierPath {
     
     
@@ -221,6 +237,60 @@ class LinearPath extends BezierPath {
     public override function calculate (start:Float, k:Float):Float {
         
         return start + k * (end - start);
+		
+	}
+	
+	
+}
+
+
+class RotationPath implements IComponentPath {
+	
+	
+	public var end (get_end, null):Float;
+	public var offset:Float;
+	public var start:Float;
+	
+	private var step = 0.01;
+	private var _x:ComponentPath;
+	private var _y:ComponentPath;
+	
+	
+	public function new (x:ComponentPath, y:ComponentPath) {
+		
+		_x = x;
+		_y = y;
+		
+		offset = 0;
+		
+		start = calculate (0.0);
+		
+	}
+	
+	
+	public function calculate (k:Float):Float {
+		
+		var dX = _x.calculate (k) - _x.calculate (k + step);
+		var dY = _y.calculate (k) - _y.calculate (k + step);
+		
+		var angle = Math.atan2(dY, dX) * (180 / Math.PI);
+		angle = (angle + offset) % 360;
+		
+		return angle;
+		
+	}
+	
+	
+	
+	
+	// Get & Set Methods
+	
+	
+	
+	
+	public function get_end ():Float {
+		
+		return calculate (1.0);
         
     }
     

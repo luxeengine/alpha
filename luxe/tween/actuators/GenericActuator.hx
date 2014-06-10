@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @author Joshua Granick
  * @version 1.2
  */
@@ -11,6 +11,7 @@ import luxe.tween.easing.IEasing;
 import luxe.tween.Actuate;
 
 
+@:keepSub
 class GenericActuator implements IGenericActuator {
     
     
@@ -76,9 +77,9 @@ class GenericActuator implements IGenericActuator {
     
     
     /**
-     * sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values
-     * @param   value       Whether autoVisible should be enabled (Default is true)
-     * @return      The current actuator instance
+	 * Sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values
+	 * @param	value		Whether autoVisible should be enabled (Default is true)
+	 * @return		The current actuator instance
      */
     public function autoVisible (?value:Null<Bool>):IGenericActuator {
         
@@ -94,21 +95,43 @@ class GenericActuator implements IGenericActuator {
         
     }
     
-    
+
+    private inline function callMethod (method:Dynamic, params:Array<Dynamic> = null):Dynamic {
+        
+        if (params == null) {
+            
+            params = [];
+            
+        }
+        
+        #if neko
+        
+        var diff = untyped ($nargs)(method) - params.length;
+        
+        if (diff > 0) {
+            
+            params = params.copy ();
+            
+            for (i in 0...diff) {
+                
+                params.push (null);
+                
+            }
+            
+        }
+        
+        #end
+        
+        return Reflect.callMethod (method, method, params);
+        
+    }
+
+        
     private function change ():Void {
         
         if (_onUpdate != null) {
             
-            #if (neko && (haxe_209 || haxe3))
-            
-            var args = _onUpdateParams != null ? _onUpdateParams : [];
-            untyped __dollar__call (_onUpdate , _onUpdate, args.__neko ());
-            
-            #else
-            
-            Reflect.callMethod (_onUpdate, _onUpdate, _onUpdateParams);
-            
-            #end
+			callMethod (_onUpdate, _onUpdateParams);
             
         }
         
@@ -123,16 +146,7 @@ class GenericActuator implements IGenericActuator {
             
             if (_onComplete != null) {
                 
-                #if (neko && (haxe_209 || haxe3))
-                
-                var args = _onCompleteParams != null ? _onCompleteParams : [];
-                untyped __dollar__call (_onComplete , _onComplete, args.__neko ());
-                
-                #else
-                
-                Reflect.callMethod (_onComplete, _onComplete, _onCompleteParams);
-                
-                #end
+				callMethod (_onComplete, _onCompleteParams);
                 
             }
             
@@ -145,8 +159,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Increases the delay before a tween is executed
-     * @param   duration        The amount of seconds to delay
-     * @return      The current actuator instance
+	 * @param	duration		The amount of seconds to delay
+	 * @return		The current actuator instance
      */
     public function delay (duration:Float):IGenericActuator {
         
@@ -159,8 +173,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Sets the easing which is used when running the tween
-     * @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut
-     * @return      The current actuator instance
+	 * @param	easing		An easing equation, like Elastic.easeIn or Quad.easeOut
+	 * @return		The current actuator instance
      */
     public function ease (easing:IEasing):IGenericActuator {
         
@@ -192,9 +206,9 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Defines a function which will be called when the tween finishes
-     * @param   handler     The function you would like to be called
-     * @param   parameters      Parameters you would like to pass to the handler function when it is called
-     * @return      The current actuator instance
+	 * @param	handler		The function you would like to be called
+	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
+	 * @return		The current actuator instance
      */
     public function onComplete (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
         
@@ -223,9 +237,9 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Defines a function which will be called when the tween repeats
-     * @param   handler     The function you would like to be called
-     * @param   parameters      Parameters you would like to pass to the handler function when it is called
-     * @return      The current actuator instance
+	 * @param	handler		The function you would like to be called
+	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
+	 * @return		The current actuator instance
      */
     public function onRepeat (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
         
@@ -248,9 +262,9 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Defines a function which will be called when the tween updates
-     * @param   handler     The function you would like to be called
-     * @param   parameters      Parameters you would like to pass to the handler function when it is called
-     * @return      The current actuator instance
+	 * @param	handler		The function you would like to be called
+	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
+	 * @return		The current actuator instance
      */
     public function onUpdate (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
         
@@ -280,8 +294,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect
-     * @param   value       Whether reflect should be enabled (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether reflect should be enabled (Default is true)
+	 * @return		The current actuator instance
      */
     public function reflect (?value:Null<Bool>):IGenericActuator {
         
@@ -301,8 +315,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Repeats the tween after it finishes
-     * @param   times       The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)
-     * @return      The current actuator instance
+	 * @param	times		The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)
+	 * @return		The current actuator instance
      */
     public function repeat (?times:Null<Int>):IGenericActuator {
         
@@ -328,8 +342,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Sets if the tween should be handled in reverse
-     * @param   value       Whether the tween should be reversed (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether the tween should be reversed (Default is true)
+	 * @return		The current actuator instance
      */
     public function reverse (?value:Null<Bool>):IGenericActuator {
         
@@ -349,8 +363,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Enabling smartRotation can prevent undesired results when tweening rotation values
-     * @param   value       Whether smart rotation should be enabled (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether smart rotation should be enabled (Default is true)
+	 * @return		The current actuator instance
      */
     public function smartRotation (?value:Null<Bool>):IGenericActuator {
         
@@ -370,8 +384,8 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Snapping causes tween values to be rounded automatically
-     * @param   value       Whether tween values should be rounded (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether tween values should be rounded (Default is true)
+	 * @return		The current actuator instance
      */
     public function snapping (?value:Null<Bool>):IGenericActuator {
         
@@ -403,67 +417,67 @@ class GenericActuator implements IGenericActuator {
     
     /**
      * Flash performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values
-     * @param   value       Whether autoVisible should be enabled (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether autoVisible should be enabled (Default is true)
+	 * @return		The current actuator instance
      */
     public function autoVisible (?value:Null<Bool>):IGenericActuator;
     
     /**
      * Increases the delay before a tween is executed
-     * @param   duration        The amount of seconds to delay
-     * @return      The current actuator instance
+	 * @param	duration		The amount of seconds to delay
+	 * @return		The current actuator instance
      */
     public function delay (duration:Float):IGenericActuator;
     
     /**
      * Sets the easing which is used when running the tween
-     * @param   easing      An easing equation, like Elastic.easeIn or Quad.easeOut
-     * @return      The current actuator instance
+	 * @param	easing		An easing equation, like Elastic.easeIn or Quad.easeOut
+	 * @return		The current actuator instance
      */
     public function ease (easing:IEasing):IGenericActuator;
     
     /**
      * Defines a function which will be called when the tween finishes
-     * @param   handler     The function you would like to be called
-     * @param   parameters      Parameters you would like to pass to the handler function when it is called
-     * @return      The current actuator instance
+	 * @param	handler		The function you would like to be called
+	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
+	 * @return		The current actuator instance
      */
     public function onComplete (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
     
     /**
      * Defines a function which will be called when the tween repeats
-     * @param   handler     The function you would like to be called
-     * @param   parameters      Parameters you would like to pass to the handler function when it is called
-     * @return      The current actuator instance
+	 * @param	handler		The function you would like to be called
+	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
+	 * @return		The current actuator instance
      */
     public function onRepeat (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
     
     /**
      * Defines a function which will be called when the tween updates
-     * @param   handler     The function you would like to be called
-     * @param   parameters      Parameters you would like to pass to the handler function when it is called
-     * @return      The current actuator instance
+	 * @param	handler		The function you would like to be called
+	 * @param	parameters		Parameters you would like to pass to the handler function when it is called
+	 * @return		The current actuator instance
      */
     public function onUpdate (handler:Dynamic, ?parameters:Array <Dynamic>):IGenericActuator;
     
     /**
      * Automatically changes the reverse value when the tween repeats. Repeat must be enabled for this to have any effect
-     * @param   value       Whether reflect should be enabled (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether reflect should be enabled (Default is true)
+	 * @return		The current actuator instance
      */
     public function reflect (?value:Null<Bool>):IGenericActuator;
     
     /**
      * Repeats the tween after it finishes
-     * @param   times       The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)
-     * @return      The current actuator instance
+	 * @param	times		The number of times you would like the tween to repeat, or -1 if you would like to repeat the tween indefinitely (Default is -1)
+	 * @return		The current actuator instance
      */
     public function repeat (?times:Null<Int>):IGenericActuator;
     
     /**
      * Sets if the tween should be handled in reverse
-     * @param   value       Whether the tween should be reversed (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether the tween should be reversed (Default is true)
+	 * @return		The current actuator instance
      */
     public function reverse (?value:Null<Bool>):IGenericActuator;
     
@@ -476,15 +490,15 @@ class GenericActuator implements IGenericActuator {
     public function timescale( _value:Bool = true ):IGenericActuator;
     /**
      * Enabling smartRotation can prevent undesired results when tweening rotation values
-     * @param   value       Whether smart rotation should be enabled (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether smart rotation should be enabled (Default is true)
+	 * @return		The current actuator instance
      */
     public function smartRotation (?value:Null<Bool>):IGenericActuator;
     
     /**
      * Snapping causes tween values to be rounded automatically
-     * @param   value       Whether tween values should be rounded (Default is true)
-     * @return      The current actuator instance
+	 * @param	value		Whether tween values should be rounded (Default is true)
+	 * @return		The current actuator instance
      */
     public function snapping (?value:Null<Bool>):IGenericActuator;
     

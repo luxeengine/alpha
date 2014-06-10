@@ -1,4 +1,4 @@
-﻿package luxe.tween.actuators;
+package luxe.tween.actuators;
 
 
 import luxe.tween.MotionPath;
@@ -166,9 +166,9 @@ class MotionPathActuator extends SimpleActuator {
                     
                     active = false;
                     
-                    if (toggleVisible && target.alpha == 0) {
+					if (toggleVisible && getField (target, "alpha") == 0) {
                         
-                        target.visible = false;
+						setField (target, "visible", false);
                         
                     }
                     
