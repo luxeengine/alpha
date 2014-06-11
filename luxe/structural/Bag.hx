@@ -8,11 +8,11 @@ package luxe.structural;
 
 // A generic bag or multiset, implemented using a linked list.
 //      A bag is a collection where removing items is not supported.
-//      Its purpose is to provide the ability to collect items and 
+//      Its purpose is to provide the ability to collect items and
 //      then to iterate through the collected items.
 
 class Bag<T> {
-    
+
     @:isVar public var length (default, null) : Int = 0;
     @:isVar public var empty (get, null) : Bool = true;
 
@@ -25,7 +25,7 @@ class Bag<T> {
     } //new
 
         //getter
-    private function get_empty() {
+    function get_empty() {
         return first == null;
     } //empty
 
@@ -36,7 +36,7 @@ class Bag<T> {
     public function add( item:T ) : Void {
 
         var oldfirst : BagNode<T> = first;
-            
+
             first = new BagNode<T>();
             first.item = item;
             first.next = oldfirst;
@@ -49,7 +49,7 @@ class Bag<T> {
     } //iterator
 
     public function toArray() : Array<T> {
-        
+
         if(empty) return [];
             //start at the top of the bag
         var a : Array<T> = [];
@@ -61,7 +61,7 @@ class Bag<T> {
 
         return a;
 
-    } //toArray    
+    } //toArray
 
 } //Bag
 

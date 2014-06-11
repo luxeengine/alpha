@@ -22,7 +22,7 @@ import luxe.Log._verbose;
 import luxe.Log._debug;
 import luxe.Log.log;
 
-#if (!luxe_threading_disabled && luxe_native) 
+#if (!luxe_threading_disabled && luxe_native)
 
     #if neko
         import neko.vm.Thread;
@@ -30,19 +30,19 @@ import luxe.Log.log;
     #else
         import cpp.vm.Thread;
         import cpp.vm.Mutex;
-    #end 
+    #end
 
     typedef LoadTextureInfo = {
         onloaded : Texture->Void,
         bytes : ByteArray,
         id : String
-    } 
+    }
 
     typedef LoadShaderInfo = {
         onloaded:Shader->Void,
         ps_id : String,
         vs_id : String
-    } 
+    }
 
     enum CoreThreadRequest {
         load_texture;
@@ -51,18 +51,18 @@ import luxe.Log.log;
 
 #end //!luxe_threading_disabled && luxe_native
 
-@:noCompletion 
-@:keep 
-@:log_as('luxe') 
+@:noCompletion
+@:keep
+@:log_as('luxe')
 class Core {
 
         //the game object running the core
-    public var host : Dynamic;  
+    public var host : Dynamic;
         //the config passed to us on creation
     public var config : LimeConfig;
 
-#if (luxe_native && !luxe_threading_disabled) 
-    
+#if (luxe_native && !luxe_threading_disabled)
+
     public var core_thread : Thread;
     public var thread_message : Dynamic;
 
@@ -86,7 +86,7 @@ class Core {
     public var screen   : luxe.Screen;
     public var physics  : Physics;
 
-//Delta times    
+//Delta times
     public var dt : Float = 0;
     var end_dt : Float = 0;
 
@@ -95,17 +95,17 @@ class Core {
     var _touch_pos : Vector;
 
 //Additional external internal updates
-        //the list of internal update handlers, for calling 
+        //the list of internal update handlers, for calling
     var _update_handlers : Map<String,Float->Void>;
         //add an internal update
-    public function add_internal_update( _update:Float->Void ) {    
+    public function add_internal_update( _update:Float->Void ) {
         var _uuid = Luxe.utils.uniqueid();
-        _update_handlers.set(_uuid,_update); 
+        _update_handlers.set(_uuid,_update);
         return _uuid;
     }
 
 //flags
-    
+
        //if we have started a shutdown
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
@@ -113,12 +113,12 @@ class Core {
 
         //constructor
     public function new( _host:Dynamic ) {
-            
+
             //Keep a reference for use
         host = _host;
 
             //make sure we know what thread we start in
-        #if (luxe_native && !luxe_threading_disabled) 
+        #if (luxe_native && !luxe_threading_disabled)
             core_thread = Thread.current();
         #end //luxe_native
 
@@ -133,19 +133,19 @@ class Core {
         Luxe.utils = new luxe.utils.Utils(this);
 
     } //new
-    
-        //This gets called once the create_main_frame call inside new() 
+
+        //This gets called once the create_main_frame call inside new()
         //comes back with our window
 
     static inline var none : Int = 4;
-    private function ready( _lime : Lime ) {
+    function ready( _lime : Lime ) {
 
             //Keep a reference
         lime = _lime;
 
         Luxe.version = haxe.Resource.getString('version');
             //Don't change this, it matches semantic versioning http://semver.org/
-        Luxe.build = Luxe.version + haxe.Resource.getString('build');        
+        Luxe.build = Luxe.version + haxe.Resource.getString('build');
 
         log('version ${Luxe.build}');
 
@@ -154,7 +154,7 @@ class Core {
 
         _debug('ready.');
 
-            //Call the main ready function 
+            //Call the main ready function
             //and send the ready event to the host
         if(host.ready != null) {
             host.ready();
@@ -180,34 +180,34 @@ class Core {
         _debug('creating subsystems...');
 
             //Order is important here
-        
+
         debug = new Debug( this ); Luxe.debug = debug;
         draw = new Draw( this );
         time = new Timer( this );
         events = new Events();
-        audio = new Audio( this );  
+        audio = new Audio( this );
         input = new Input( this );
         physics = new Physics( this );
 
             //create the renderer
         renderer = new Renderer( this );
             //assign the globals
-        Luxe.renderer = renderer;   
+        Luxe.renderer = renderer;
             //store the size for access from API, :todo : Window position can go here.
         screen = new luxe.Screen( this, 0, 0, config.width, config.height );
 
-            //Now make sure 
+            //Now make sure
             //they start up
-            
+
         debug.init();
         time.init();
         audio.init();
         input.init();
-        renderer.init();  
-        physics.init();      
+        renderer.init();
+        physics.init();
 
         Luxe.audio = audio;
-        Luxe.draw = draw;     
+        Luxe.draw = draw;
         Luxe.events = events;
         Luxe.timer = time;
         Luxe.input = input;
@@ -222,11 +222,11 @@ class Core {
         scene.add(Luxe.camera);
 
             //finally, create the debug console
-        debug.create_debug_console(); 
+        debug.create_debug_console();
 
     } //init
 
-    public function shutdown() {        
+    public function shutdown() {
 
         _debug('shutting down...');
 
@@ -240,7 +240,7 @@ class Core {
         }
 
             //shutdown the default scene
-        scene.destroy();        
+        scene.destroy();
 
             //Order is imporant here too
 
@@ -253,7 +253,7 @@ class Core {
         audio.destroy();
         time.destroy();
         events.destroy();
-        debug.destroy();        
+        debug.destroy();
 
             //Clear up for GC
         input = null;
@@ -271,9 +271,9 @@ class Core {
     } //shutdown
 
         //Called by Lime
-    public function update() { 
+    public function update() {
 
-        #if luxe_fullprofile 
+        #if luxe_fullprofile
             _verbose('on_update ' + Luxe.time);
         #end //luxe_fullprofile
 
@@ -282,19 +282,19 @@ class Core {
             //Update all the subsystems, again, order important
 //Timers first
             #if luxe_fullprofile debug.start(core_tag_time); #end
-        time.process();     
+        time.process();
             #if luxe_fullprofile debug.end(core_tag_time); #end
 //Input second
             #if luxe_fullprofile debug.start(core_tag_input); #end
-        input.process();    
+        input.process();
             #if luxe_fullprofile debug.end(core_tag_input); #end
 //Audio
             #if luxe_fullprofile debug.start(core_tag_audio); #end
-        audio.process();    
+        audio.process();
             #if luxe_fullprofile debug.end(core_tag_audio); #end
 //Events
             #if luxe_fullprofile debug.start(core_tag_events); #end
-        events.process();   
+        events.process();
             #if luxe_fullprofile debug.end(core_tag_events); #end
 
 //Physics
@@ -302,9 +302,9 @@ class Core {
         physics.process();
         debug.end(core_tag_physics);
 
-        #if (luxe_native && !luxe_threading_disabled) 
+        #if (luxe_native && !luxe_threading_disabled)
 //Background threads sending requests our way
-            
+
             thread_message = Thread.readMessage(false);
 
             if(thread_message != null) {
@@ -325,17 +325,17 @@ class Core {
 
             } //thread_message
 
-        #end //(luxe_native && !luxe_threading_disabled) 
+        #end //(luxe_native && !luxe_threading_disabled)
 
 //Run update callbacks
             #if luxe_fullprofile debug.start(core_tag_updates); #end
-        
+
         for(_update in _update_handlers) {
             _update(Luxe.dt);
         }
             #if luxe_fullprofile debug.end(core_tag_updates); #end
 
-//Update the default scene            
+//Update the default scene
             debug.start(core_tag_scene);
         scene.update(Luxe.dt);
             debug.end(core_tag_scene);
@@ -346,14 +346,14 @@ class Core {
             debug.start( host_tag_update );
 
             host.update(Luxe.dt);
-            
+
             debug.end( host_tag_update );
 
         } //host.update
 
 //And finally the debug stuff
             #if luxe_fullprofile debug.start(core_tag_debug); #end
-        debug.process(); 
+        debug.process();
             #if luxe_fullprofile debug.end(core_tag_debug); #end
 
 //Update delta time
@@ -368,7 +368,7 @@ class Core {
     } //update
 
         //called by Lime
-    public function render() {        
+    public function render() {
 
         debug.start(core_tag_render);
 
@@ -376,9 +376,9 @@ class Core {
         if(host.prerender != null) {
             host.prerender();
         }
-        
+
         if(renderer != null && renderer.process != null) {
-            renderer.process();   
+            renderer.process();
         }
 
         if(host.postrender != null) {
@@ -426,9 +426,9 @@ class Core {
 //input events
 //keys
     public function onkeydown( e:KeyEvent ) {
-            
+
         if(!shutting_down) {
-                //check for named input 
+                //check for named input
             input.check_named_keys(e, true);
                 //pass to scene
             scene.onkeydown(e);
@@ -447,16 +447,16 @@ class Core {
     } //onkeydown
 
     public function onkeyup( e:KeyEvent ) {
-            
+
         if(!shutting_down) {
-                //check for named input 
+                //check for named input
             input.check_named_keys(e);
                 //pass to scene
-            scene.onkeyup(e);            
+            scene.onkeyup(e);
                 //forward to debug module
             if(debug!=null)debug.onkeyup(e);
         }
-        
+
         if(host.onkeyup != null) {
             host.onkeyup(e);
         }
@@ -472,19 +472,19 @@ class Core {
         }
 
         if(host.oninputdown != null) {
-            host.oninputdown(_name,e); 
+            host.oninputdown(_name,e);
         }
 
     } //oninputdown
 
     public function oninputup( _name:String, e:InputEvent ) {
-        
+
         if(!shutting_down) {
             scene.oninputup(_name,e);
         }
 
         if(host.oninputup != null) {
-            host.oninputup(_name,e); 
+            host.oninputup(_name,e);
         }
 
     } //oninputup
@@ -509,7 +509,7 @@ class Core {
         }
 
     } //onmousedown
-    
+
     public function onmousewheel(e : MouseEvent) {
 
         if(!shutting_down) {
@@ -517,7 +517,7 @@ class Core {
             scene.onmousewheel(e);
             debug.onmousewheel(e);
         }
-        
+
         if(host.onmousewheel != null) {
             host.onmousewheel(e);
         }
@@ -558,7 +558,7 @@ class Core {
         }
 
     } //onmousemove
-    
+
 //touch
     var touches_down : Map<Int, TouchEvent>;
 
@@ -578,7 +578,7 @@ class Core {
         if(touches_down == null) {
             touches_down = new Map();
         }
-        
+
         touches_down.set(e.ID, e);
 
             //3 finger tap when console opens will switch tabs
@@ -589,7 +589,7 @@ class Core {
         }
 
             //4 finger tap toggles console
-        if(Lambda.count(touches_down) >= 4) {            
+        if(Lambda.count(touches_down) >= 4) {
             show_console( !console_visible );
         }
 
@@ -603,7 +603,7 @@ class Core {
         if(!shutting_down) {
                 //pass to scene
             scene.ontouchend(e);
-        }        
+        }
 
         if(host.ontouchend != null) {
             host.ontouchend(e);
@@ -614,7 +614,7 @@ class Core {
     } //ontouchend
 
     public function ontouchmove(e : TouchEvent) {
-        
+
         _touch_pos = new luxe.Vector( e.x, e.y );
         e.pos = _touch_pos;
 
@@ -626,7 +626,7 @@ class Core {
         if(host.ontouchmove != null) {
             host.ontouchmove(e);
         }
-        
+
     } //ontouchmove
 
 //joystick
@@ -684,7 +684,7 @@ class Core {
         if(!shutting_down) {
             scene.ongamepadbuttonup(e);
         }
-        
+
         if(host.ongamepadbuttonup != null) {
             host.ongamepadbuttonup(e);
         }
@@ -693,16 +693,16 @@ class Core {
 
 //Noisy stuff
 
-    private static var host_tag_update : String = 'host.update';
-    private static var core_tag_render : String = 'core.render';
-    private static var core_tag_debug : String = 'core.debug';
-    private static var core_tag_physics : String = 'core.physics';
-    private static var core_tag_updates : String = 'core.update_callbacks';
-    private static var core_tag_events : String = 'core.events';
-    private static var core_tag_audio : String = 'core.audio';
-    private static var core_tag_input : String = 'core.input';
-    private static var core_tag_time : String = 'core.time';
-    private static var core_tag_scene : String = 'core.scene';
+    static var host_tag_update : String = 'host.update';
+    static var core_tag_render : String = 'core.render';
+    static var core_tag_debug : String = 'core.debug';
+    static var core_tag_physics : String = 'core.physics';
+    static var core_tag_updates : String = 'core.update_callbacks';
+    static var core_tag_events : String = 'core.events';
+    static var core_tag_audio : String = 'core.audio';
+    static var core_tag_input : String = 'core.input';
+    static var core_tag_time : String = 'core.time';
+    static var core_tag_scene : String = 'core.scene';
 
 
 } //Core

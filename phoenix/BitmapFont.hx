@@ -66,10 +66,11 @@ class BitmapFont extends Resource {
     public var characters : Map<Int, Character>;
     public var kernings : Map< KerningKey, Int >;
     public var scale : Vector;
-    private var line_widths : Array<Float>;
     public var on_pages_loaded : Void -> Void;
     public var pages_loaded : Int = 0;
     public var onload : BitmapFont -> Void;
+
+    var line_widths : Array<Float>;
 
     public function new( ?_resource_manager : ResourceManager = null ) {
 
@@ -92,7 +93,7 @@ class BitmapFont extends Resource {
         return "BitmapFont(" + id + ")";
     }
 
-    private function _tokenize_font_line(_line_tokens:Array<String>) {
+    function _tokenize_font_line(_line_tokens:Array<String>) {
         var _item_map : Map<String, KeyValuePair> = new Map();
         for(_line_token in _line_tokens) {
             var _items = _line_token.split("=");
@@ -353,7 +354,6 @@ class BitmapFont extends Resource {
             return _final_geom;
         }
 
-
             //an array of geometry items, one for each unique texture
         var _geoms : Array<Geometry> = new Array<Geometry>();
         var _page_count = Lambda.count(pages);
@@ -532,12 +532,13 @@ class BitmapFont extends Resource {
 
         // _verbose('drew text ${_string.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
 
-        // _final_geom.id = 'drawn_text- ' + _string.substr(0,10);
+        _final_geom.id = 'drawn_text- ' + _string.substr(0,10);
         // _final_geom.transform.id = 'drawn_text- ' + _string.substr(0,10);
         _final_geom.immediate = _immediate;
         _final_geom.visible = _visible;
 
         return _final_geom;
+
     }
 
     public function set_character( _index:Int,  _char_info : Character ) {

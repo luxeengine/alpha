@@ -12,10 +12,10 @@ class Objects {
     	id = Luxe.utils.uniqueid();
     } //new
 
-//Private helper functions
+//Internal helper functions
 
-	@:noCompletion private function _call(_object:Objects, _name : String, ?args:Array<Dynamic> = null ) {
-		
+	function _call(_object:Objects, _name : String, ?args:Array<Dynamic> = null ) {
+
 		var _func = Reflect.field( _object, _name );
 		if(_func != null) {
 			Reflect.callMethod( _object, _func, args == null ? [] : args );
@@ -23,7 +23,7 @@ class Objects {
 
 	} //_call
 
-    @:noCompletion private function _merge_properties( _properties:Dynamic, _with:Dynamic) : Dynamic {
+    function _merge_properties( _properties:Dynamic, _with:Dynamic) : Dynamic {
 
         if(_with == null) {
             _with = {};
@@ -36,7 +36,7 @@ class Objects {
 
         return _properties;
 
-    } //_merge_properties  
+    } //_merge_properties
 
 
 } //Objects

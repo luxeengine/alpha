@@ -183,7 +183,7 @@ class Batcher {
 
         GL.enableVertexAttribArray( vert_attribute );
         GL.enableVertexAttribArray( tcoord_attribute );
-        GL.enableVertexAttribArray( color_attribute ); 
+        GL.enableVertexAttribArray( color_attribute );
         GL.enableVertexAttribArray( normal_attribute );
 
 
@@ -320,7 +320,7 @@ class Batcher {
 
     public function compare_rule( a:GeometryKey, b:GeometryKey ) : Int {
 
-        if(a.uuid == b.uuid) 
+        if(a.uuid == b.uuid)
             { return 0; }
 
             //sort by depth first
@@ -335,32 +335,32 @@ class Batcher {
         if(a.shader != null && b.shader != null) {
 
                 //sort shaders id's by gl id
-            if(a.shader.id < b.shader.id) 
+            if(a.shader.id < b.shader.id)
                 { return 3; }
-            if(a.shader.id > b.shader.id) 
+            if(a.shader.id > b.shader.id)
                 { return 4; }
 
         } else {
             if(a.shader != null && b.shader == null) {
                 return 5;
-            } else 
+            } else
             if(a.shader == null && b.shader != null) {
                 return 6;
-            } 
-        } 
+            }
+        }
 
         if(a.texture != null && b.texture != null) {
 
                 //sort textures id's by gl id
-            if(a.texture.id < b.texture.id) 
+            if(a.texture.id < b.texture.id)
                 { return 7; }
-            if(a.texture.id > b.texture.id) 
+            if(a.texture.id > b.texture.id)
                 { return 8; }
 
         } else {
             if(a.texture != null && b.texture == null) {
                 return 9;
-            } else 
+            } else
             if(a.texture == null && b.texture != null) {
                 return 10;
             }
@@ -371,9 +371,9 @@ class Batcher {
         var a_primitive_index = Type.enumIndex( a.primitive_type );
         var b_primitive_index = Type.enumIndex( b.primitive_type );
 
-        if( a_primitive_index < b_primitive_index ) 
+        if( a_primitive_index < b_primitive_index )
             { return 11; }
-        if( a_primitive_index > b_primitive_index ) 
+        if( a_primitive_index > b_primitive_index )
             { return 12; }
 
             //if not the same clipping, we want clipped geometry after, and not clipped before
@@ -381,7 +381,7 @@ class Batcher {
 
             if(a.clip == false && b.clip == true) {
                 return 13;
-            } else 
+            } else
 
             if(a.clip == true && b.clip == false) {
                 return 14;
@@ -389,19 +389,19 @@ class Batcher {
 
         } //clippin
 
-            //if all else is indistinguishable, 
+            //if all else is indistinguishable,
             //make sure older geometry is before
 
-        if( a.timestamp < b.timestamp ) 
+        if( a.timestamp < b.timestamp )
             { return 15; }
-        if( a.timestamp > b.timestamp ) 
+        if( a.timestamp > b.timestamp )
             { return 16; }
-        if( a.timestamp == b.timestamp ) 
+        if( a.timestamp == b.timestamp )
             { return 17; }
 
-        if( a.sequence < b.sequence ) 
+        if( a.sequence < b.sequence )
             { return 18; }
-        if( a.sequence > b.sequence ) 
+        if( a.sequence > b.sequence )
             { return 19; }
 
             //otherwise push down the list because wtf
@@ -420,7 +420,7 @@ class Batcher {
                 //sequence/fallback
 
             //check equality
-        if(a.uuid == b.uuid) 
+        if(a.uuid == b.uuid)
             { return 0; }
 
             //sort by depth first
@@ -479,7 +479,7 @@ class Batcher {
 
             if(a.clip == false && b.clip == true) {
                 return 1;
-            } else 
+            } else
 
             if(a.clip == true && b.clip == false) {
                 return -1;
@@ -494,9 +494,9 @@ class Batcher {
             { return -1; }
         if( a.timestamp >= b.timestamp )
             { return 1; }
-        if( a.sequence < b.sequence ) 
+        if( a.sequence < b.sequence )
             { return -1; }
-        if( a.sequence > b.sequence ) 
+        if( a.sequence > b.sequence )
             { return 1; }
 
             //otherwise push down the list because wtf
@@ -645,7 +645,7 @@ class Batcher {
 
                 if(geom.visible) {
                         //try
-                    visible_count++;                    
+                    visible_count++;
 
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
@@ -669,8 +669,8 @@ class Batcher {
                     } //if it's unbatchable
 
                         // Accumulate, this is standard geometry
-                    else {  
-                            
+                    else {
+
                             //increase counts
                         vert_count += geom.vertices.length;
 
@@ -814,9 +814,9 @@ class Batcher {
         }
 
             //Draw
-        GL.drawArrays( 
-            phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type), 0, 
-            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_verts) 
+        GL.drawArrays(
+            phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type), 0,
+            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_verts)
         );
 
             //Disable attributes
@@ -849,7 +849,7 @@ class Batcher {
     public function submit_current_vertex_list( type : PrimitiveType ) {
 
         if( verts == 0 ) {
-                //No verts? 
+                //No verts?
             return;
         }
 
@@ -896,7 +896,7 @@ class Batcher {
 
 //Batch related helper functions
 
-    private function geometry_batch( geom:Geometry ) {
+    function geometry_batch( geom:Geometry ) {
 
         geom.batch(
             verts,      tcoords,        colors,     normals,
@@ -910,7 +910,7 @@ class Batcher {
 
     } //geometry_batch
 
-    private function geometry_batch_static( geom:Geometry ) {
+    function geometry_batch_static( geom:Geometry ) {
 
         geom.batch(
             static_verts,       static_tcoords,     static_colors,      static_normals,
@@ -926,7 +926,7 @@ class Batcher {
 
 //Shader related attribute setup
 
-    private function _enable_attributes() {
+    function _enable_attributes() {
 
             //Update the GL Matrices
         GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_float32array );
@@ -934,7 +934,7 @@ class Batcher {
 
     } //_enable_attributes
 
-    private function _disable_attributes() {
+    function _disable_attributes() {
 
             //Unset
 

@@ -15,16 +15,16 @@ class Reader {
     }
 
     public function read() {
-        
+
         var file_string : String = i.readAll().toString();
         var lines = file_string.split('\n');
-        
+
         var data = parse(lines);
 
-        return data;        
+        return data;
     }
 
-    private function parse( lines : Array<String> )  {
+    function parse( lines : Array<String> )  {
 
         var data : phoenix.formats.obj.Data = {
             vertices : new Array<phoenix.formats.obj.Vertex>()
@@ -39,7 +39,7 @@ class Reader {
         var temp_normals : Array<phoenix.formats.obj.Normal> = new Array<phoenix.formats.obj.Normal>();
 
         for(line in lines) {
-            
+
             line = StringTools.trim(line);
 
             var type = line.split(' ')[0];
@@ -47,7 +47,7 @@ class Reader {
             switch(type) {
                 case "v":
                     temp_verts.push( parse_vert(line) );
-                case "vt":  
+                case "vt":
                     temp_uvs.push( parse_uv(line) );
                 case "vn":
                     temp_normals.push( parse_normal(line) );
@@ -65,14 +65,14 @@ class Reader {
                 var vertexIndex : Int = vertexIndices[i];
                 var uvIndex : Int = uvIndices[i];
                 var normalIndex : Int = normalIndices[i];
-                
+
                 // Get the attributes thanks to the index
                 var pos = temp_verts[ vertexIndex-1 ];
                 var uv = (uvIndex != -1) ? temp_uvs[ uvIndex-1 ] : { u:0.0, v:0.0 };
                 var normal = (normalIndex != -1) ? temp_normals[ normalIndex-1 ] : { x:0.0, y:0.0, z:0.0, w:0.0 };
 
                 // trace('\t pos : ' + pos);
-                // trace('\t uv : ' + uv);   
+                // trace('\t uv : ' + uv);
                 // trace('\t normal : ' + normal);
 
                 data.vertices.push({
@@ -85,12 +85,12 @@ class Reader {
         return data;
     }
 
-    private function parse_vert(line:String) : phoenix.formats.obj.Vector {
-            
+    function parse_vert(line:String) : phoenix.formats.obj.Vector {
+
             //note items[0] is the identifier
         var items = line.split(' ');
 
-            //remove any loose extra spaces 
+            //remove any loose extra spaces
             //that the exporter may have added
         for(element in items) {
             if( element.length == 0) {
@@ -109,12 +109,12 @@ class Reader {
 
     } //parse_vert
 
-    private function parse_uv(line:String) : phoenix.formats.obj.UV {
+    function parse_uv(line:String) : phoenix.formats.obj.UV {
 
             //note items[0] is the identifier
         var items = line.split(' ');
 
-            //remove any loose extra spaces 
+            //remove any loose extra spaces
             //that the exporter may have added
         for(element in items) {
             if( element.length == 0) {
@@ -130,12 +130,12 @@ class Reader {
         return uv;
     }
 
-    private function parse_normal(line:String) : phoenix.formats.obj.Normal {
-        
+    function parse_normal(line:String) : phoenix.formats.obj.Normal {
+
             //note items[0] is the identifier
         var items = line.split(' ');
 
-            //remove any loose extra spaces 
+            //remove any loose extra spaces
             //that the exporter may have added
         for(element in items) {
             if( element.length == 0) {
@@ -154,14 +154,14 @@ class Reader {
 
     } //parse_normal
 
-    private function parse_face(line:String) {
+    function parse_face(line:String) {
 
             //remove rogue endings from the line
         line = StringTools.trim(line);
             //split the parts up by spaces, f 1/1 2/2 3/3
         var items = line.split(' ');
 
-           //remove any loose extra spaces 
+           //remove any loose extra spaces
             //that the exporter may have added
         for(element in items) {
             if( element.length == 0) {
@@ -179,7 +179,7 @@ class Reader {
             //we need to allow extraneous items
             //in the f 1//2 type setup from the spec
         for(item in items) {
-                //if there is a basic 1/2/3 setup 
+                //if there is a basic 1/2/3 setup
             if(item.indexOf('//') == -1) {
 
                 var indices = item.split('/');
@@ -187,7 +187,7 @@ class Reader {
                     //Vertex indices
                 vertexIndices.push( Std.parseInt(indices[0]) );
 
-                    //UV's 
+                    //UV's
                 uvIndices.push( Std.parseInt(indices[1]) );
 
                     //it's possible no normals exist
@@ -200,7 +200,7 @@ class Reader {
             } else {
 
                 //if in this case it should be 1//3,
-                //meaning only normals and no uv coords                
+                //meaning only normals and no uv coords
 
                 var indices = item.split('/');
 
@@ -226,7 +226,7 @@ class Reader {
         // var vert2 = items[2].split('/');
         // var vert3 = items[3].split('/');
 
-        
+
 
         // vertexIndices.push( Std.parseInt(vert1[0]) );
         // vertexIndices.push( Std.parseInt(vert2[0]) );

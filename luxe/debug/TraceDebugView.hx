@@ -67,7 +67,7 @@ class TraceDebugView extends luxe.debug.DebugView {
     } //add_line
 
     var _last_logged_length : Int = 0;
-    private function refresh_lines() {
+    function refresh_lines() {
 
         if(_last_logged_length == logged.length) {
             return;

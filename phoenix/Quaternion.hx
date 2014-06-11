@@ -5,7 +5,7 @@ import phoenix.Vector;
     //Ported from Three.js https://github.com/mrdoob/three.js
 
 class Quaternion {
-    
+
     @:isVar public var x(default,set) : Float = 0.0;
     @:isVar public var y(default,set) : Float = 0.0;
     @:isVar public var z(default,set) : Float = 0.0;
@@ -25,7 +25,7 @@ class Quaternion {
     @:isVar public var listen_w(default,default) : Float -> Void;
 
     public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
-        
+
         euler = new Vector();
 
             x = _x;
@@ -40,7 +40,7 @@ class Quaternion {
         return "{ x:"+x + ", y:" + y + ", z:" + z  + ", w:" + w  +  " }" ;
 
     } //toString
-    
+
     public function set( _x:Float, _y:Float, _z:Float, _w:Float ) : Quaternion {
 
             x = _x;
@@ -51,8 +51,8 @@ class Quaternion {
         return this;
 
     } //set
-    
-    
+
+
     public function copy( _quaternion :Quaternion ) : Quaternion {
 
             x = _quaternion.x;
@@ -67,8 +67,8 @@ class Quaternion {
     public function dot( _other:Quaternion ) {
         return x * _other.x + y * _other.y + z * _other.z + w * _other.w;
     }
-    
-    
+
+
     public function setFromEuler( _euler:Vector, _order:String = 'XYZ' ) : Quaternion {
 
             // http://www.mathworks.com/matlabcentral/fileexchange/
@@ -130,8 +130,8 @@ class Quaternion {
         return this;
 
     } //setFromEuler
-    
-    
+
+
     public function setFromAxisAngle( _axis:Vector, _angle:Float ) : Quaternion {
 
         // from http://www.euclideanspace.com/maths/geometry/rotations/conversions/angleToQuaternion/index.htm
@@ -149,11 +149,11 @@ class Quaternion {
 
     } //setFromAxisAngle
 
-    
+
     public function setFromRotationMatrix( _m:Matrix ) : Quaternion {
 
         // http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
-        // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)     
+        // assumes the upper 3x3 of m is a pure rotation matrix (i.e, unscaled)
 
         var te = _m.elements;
 
@@ -164,7 +164,7 @@ class Quaternion {
         var tr = m11 + m22 + m33;
 
         var s : Float;
-        
+
             if (tr > 0) {
 
                 s = 0.5 / Math.sqrt( tr + 1.0 );
@@ -173,7 +173,7 @@ class Quaternion {
                 x = (m32 - m23) * s;
                 y = (m13 - m31) * s;
                 z = (m21 - m12) * s;
-                
+
             } else if (m11 > m22 && m11 > m33) {
 
                 s = 2.0 * Math.sqrt(1.0 + m11 - m22 - m33);
@@ -182,7 +182,7 @@ class Quaternion {
                 x = 0.25 * s;
                 y = (m12 + m21) / s;
                 z = (m13 + m31) / s;
-                
+
             } else if (m22 > m33) {
 
                 s = 2.0 * Math.sqrt(1.0 + m22 - m11 - m33);
@@ -191,7 +191,7 @@ class Quaternion {
                 x = (m12 + m21) / s;
                 y = 0.25 * s;
                 z = (m23 + m32) / s;
-                
+
             } else {
 
                 s = 2.0 * Math.sqrt(1.0 + m33 - m11 - m22);
@@ -202,19 +202,19 @@ class Quaternion {
                 z = 0.25 * s;
 
             }
-        
+
         return this;
 
     } //setFromRotationMatrix
-    
-    
+
+
     public function inverse() : Quaternion {
 
         return conjugate().normalize();
 
     } //inverse
-    
-    
+
+
     public function conjugate() : Quaternion {
 
             this.x *= -1;
@@ -225,21 +225,21 @@ class Quaternion {
 
     } //conjugate
 
-    
+
     public function lengthSq() : Float {
 
         return x * x + y * y + z * z + w * w;
 
     } //lengthSq
-    
-    
+
+
     public function length() : Float {
 
         return Math.sqrt(x * x + y * y + z * z + w * w);
 
     } //length
-    
-    
+
+
     public function normalize() : Quaternion {
 
         var l = length();
@@ -265,8 +265,8 @@ class Quaternion {
         return this;
 
     } //normalize
-    
-    
+
+
     public function multiply( _quaternion:Quaternion ) : Quaternion {
 
         return multiplyQuaternions( this, _quaternion );
@@ -289,7 +289,7 @@ class Quaternion {
         return this;
 
     } //addQuaternions
-        
+
     public function multiplyScalar( _scalar:Float ) : Quaternion {
 
             x *= _scalar;
@@ -297,15 +297,15 @@ class Quaternion {
             z *= _scalar;
             w *= _scalar;
 
-        return this;    
+        return this;
 
     } //multiply
-    
+
     public function multiplyQuaternions( _a:Quaternion, _b:Quaternion ) : Quaternion {
 
         var qax = _a.x, qay = _a.y, qaz = _a.z, qaw = _a.w;
         var qbx = _b.x, qby = _b.y, qbz = _b.z, qbw = _b.w;
-            
+
             x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
             y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
             z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
@@ -315,12 +315,12 @@ class Quaternion {
 
     } //multiplyQuaternions
 
-    
+
     public function slerp( _qb:Quaternion, _t:Float ) : Quaternion {
 
         var _x = x;
-        var _y = y; 
-        var _z = z; 
+        var _y = y;
+        var _z = z;
         var _w = w;
 
         // http://www.euclideanspace.com/maths/algebra/realNormedAlgebra/quaternions/slerp/
@@ -365,7 +365,7 @@ class Quaternion {
 
             return this;
 
-        } 
+        }
 
         var ratioA = Math.sin( ( 1 - _t ) * halfTheta ) / sinHalfTheta,
         ratioB = Math.sin( _t * halfTheta ) / sinHalfTheta;
@@ -378,8 +378,8 @@ class Quaternion {
         return this;
 
     } //slerp
-    
-    
+
+
     public function equals( _q:Quaternion ) : Bool {
 
         return ( (_q.x == x) && (_q.y == y) && (_q.z == z) && (_q.w == w) );
@@ -397,14 +397,14 @@ class Quaternion {
         return this;
 
     } //fromArray
-    
-    
+
+
     public function toArray() : Array<Float> {
 
         return [ x,y,z,w ];
 
     } //toArray
-    
+
     public function clone() : Quaternion {
 
         return new Quaternion( x, y, z, w );
@@ -425,34 +425,34 @@ class Quaternion {
         return new Quaternion(_a.x,_a.y,_a.z,_a.w).dot(_b);
     }
 
-    private function update_euler() {
+    function update_euler() {
 
         euler.setEulerFromQuaternion( this );
 
     } //update_euler
 
     function set_x( _v:Float ) {
-        
+
         x = _v;
-        
+
         update_euler();
 
         if(listen_x != null && !ignore_listeners) listen_x(x);
 
         return x;
-        
+
     } //set_x
 
     function set_y( _v:Float ) {
-        
+
         y = _v;
-        
+
         update_euler();
 
         if(listen_y != null && !ignore_listeners) listen_y(y);
 
         return y;
-        
+
     } //set_y
 
     function set_z( _v:Float ) {

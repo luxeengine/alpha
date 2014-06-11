@@ -1,32 +1,32 @@
 package luxe.utils.json;
 
 /*
-    
+
     Originated from hxJson2
 
   Copyright (c) 2008, Adobe Systems Incorporated
   Copyright (c) 2011, Philipp Klose
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without 
+  Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
   met:
 
-  * Redistributions of source code must retain the above copyright notice, 
+  * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
 
   * Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the 
+  notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
 
-  * Neither the name of Adobe Systems Incorporated nor the names of its 
+  * Neither the name of Adobe Systems Incorporated nor the names of its
   contributors and authors may be used to endorse or promote products
   derived from this software without specific prior written permission.
 
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
   IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
   THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
+  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
@@ -42,20 +42,20 @@ import luxe.utils.json.JSONDecoder;
 import haxe.Utf8;
 #end
 
-@:noCompletion class JSONTokenizer {    
+@:noCompletion class JSONTokenizer {
     /** The object that will get parsed from the JSON string */
-    private var obj:Dynamic;    
+    var obj:Dynamic;
     /** The JSON string to be parsed */
-    private var jsonString:String;  
+    var jsonString:String;
     /** The current parsing location in the JSON string */
-    private var loc:Int;    
+    var loc:Int;
     /** The current character in the JSON string during parsing */
-    private var ch:String;
-    
-    private var strict:Bool;
-    
+    var ch:String;
+
+    var strict:Bool;
+
     /**
-     * Constructs a new JSONDecoder to parse a JSON string 
+     * Constructs a new JSONDecoder to parse a JSON string
      * into a native object.
      *
      * @param s The JSON string to be converted
@@ -64,22 +64,22 @@ import haxe.Utf8;
     public function new(s:String,strict:Bool) {
         jsonString = s;
         this.strict = strict;
-        loc = 0;        
+        loc = 0;
         // prime the pump by getting the first character
         nextChar();
     }
-    
+
     /**
      * Gets the next token in the input sting and advances
     * the character to the next character after the token
      */
     public function getNextToken():JSONToken {
-        var token:JSONToken = new JSONToken();      
-        // skip any whitespace / comments since the last 
+        var token:JSONToken = new JSONToken();
+        // skip any whitespace / comments since the last
         // token was read
-        skipIgnored();                  
+        skipIgnored();
         // examine the new character and see what we have...
-        switch ( ch ) {         
+        switch ( ch ) {
             case '{':
                 token.type = tLEFT_BRACE;
                 token.value = '{';
@@ -91,15 +91,15 @@ import haxe.Utf8;
             case '[':
                 token.type = tLEFT_BRACKET;
                 token.value = '[';
-                nextChar();                 
+                nextChar();
             case ']':
                 token.type = tRIGHT_BRACKET;
                 token.value = ']';
-                nextChar();             
+                nextChar();
             case ',':
                 token.type = tCOMMA;
                 token.value = ',';
-                nextChar();                 
+                nextChar();
             case ':':
                 token.type = tCOLON;
                 token.value = ':';
@@ -129,7 +129,7 @@ import haxe.Utf8;
                 possibleFalse = possibleFalse + nextChar();
                 #else
                 var possibleFalse:String = "f" + nextChar() + nextChar() + nextChar() + nextChar();
-                #end                
+                #end
                 if ( possibleFalse == "false" ) {
                     token.type = tFALSE;
                     token.value = false;
@@ -144,7 +144,7 @@ import haxe.Utf8;
                 possibleNull = possibleNull + nextChar();
                 possibleNull = possibleNull + nextChar();
                 #else
-                var possibleNull:String = "n" + nextChar() + nextChar() + nextChar();               
+                var possibleNull:String = "n" + nextChar() + nextChar() + nextChar();
                 #end
                 if ( possibleNull == "null" ) {
                     token.type = tNULL;
@@ -171,22 +171,22 @@ import haxe.Utf8;
                 }
             case '"': // the start of a string
                 token = readString();
-            default: 
+            default:
                 // see if we can read a number
                 if ( isDigit( ch ) || ch == '-' ) {
                     token = readNumber();
                 } else if ( ch == '' ) {
                     // check for reading past the end of the string
                     return null;
-                } else {                        
+                } else {
                     // not sure what was in the input string - it's not
                     // anything we expected
                     parseError( "Unexpected " + ch + " encountered" );
                 }
-        }       
+        }
         return token;
     }
-    
+
     /**
      * Attempts to read a string from the input string.  Places
      * the character location at the first character after the
@@ -195,27 +195,27 @@ import haxe.Utf8;
      * @return the JSONToken with the string value if a string could
      *      be read.  Throws an error otherwise.
      */
-    private function readString():JSONToken {
+    function readString():JSONToken {
         // the string to store the string we'll try to read
-        var string:String = "";     
+        var string:String = "";
         // advance past the first "
         nextChar();
-        while ( ch != '"' && ch != '' ) {                           
+        while ( ch != '"' && ch != '' ) {
             //trace(ch);
             // unescape the escape sequences in the string
-            if ( ch == '\\' ) {             
+            if ( ch == '\\' ) {
                 // get the next character so we know what
                 // to unescape
-                nextChar();             
-                switch ( ch ) {                 
+                nextChar();
+                switch ( ch ) {
                     case '"': // quotation mark
-                        string += '"';                  
+                        string += '"';
                     case '/':   // solidus
                         string += "/";
                     case '\\/': // escaped solidus
                         string += "/";
                     case '\\':  // reverse solidus
-                        string += '\\';             
+                        string += '\\';
                     case 'n':   // newline
                         string += '\n';
                     case 'r':   // carriage return
@@ -225,9 +225,9 @@ import haxe.Utf8;
                     case 'u':
                         // convert a unicode escape sequence
                         // to it's character value - expecting
-                        // 4 hex digits                     
+                        // 4 hex digits
                         // save the characters as a string we'll convert to an int
-                        var hexValue:String = "";                       
+                        var hexValue:String = "";
                         // try to find 4 hex characters
                         for (i in 0...4) {
                             // get the next character and determine
@@ -257,32 +257,32 @@ import haxe.Utf8;
                     default:
                         // couldn't unescape the sequence, so just
                         // pass it through
-                        string += '\\' + ch;                    
-                }               
+                        string += '\\' + ch;
+                }
             } else {
                 // didn't have to unescape, so add the character to the string
-                string += ch;               
-            }           
+                string += ch;
+            }
             // move to the next character
-            nextChar();         
+            nextChar();
         }
-        
+
         // we read past the end of the string without closing it, which
         // is a parse error
         if ( ch == '' ) {
             parseError( "Unterminated string literal" );
-        }       
+        }
         // move past the closing " in the input string
-        nextChar();     
+        nextChar();
         // the token for the string we'll try to read
         var token:JSONToken = new JSONToken();
         token.type = tSTRING;
         // attach to the string to the token so we can return it
-        token.value = string;       
+        token.value = string;
         return token;
     }
-    
-    private inline function hexValToInt(hexVal:String):Int {
+
+    inline function hexValToInt(hexVal:String):Int {
         var ret:Int = 0;
         for (i in 0...hexVal.length) {
             ret = ret << 4;
@@ -306,33 +306,33 @@ import haxe.Utf8;
         }
         return ret;
     }
-    
+
     /**
      * Attempts to read a number from the input string.  Places
      * the character location at the first character after the
      * number.
-     * 
+     *
      * @return The JSONToken with the number value if a number could
      *      be read.  Throws an error otherwise.
      */
-    private function readNumber():JSONToken {
+    function readNumber():JSONToken {
         // the string to accumulate the number characters
         // into that we'll convert to a number at the end
-        var input:String = "";      
+        var input:String = "";
         // check for a negative number
         if ( ch == '-' ) {
             input += '-';
             nextChar();
-        }       
+        }
         // the number must start with a digit
         if ( !isDigit( ch ) ) {
             parseError( "Expecting a digit" );
-        }       
+        }
         // 0 can only be the first digit if it
         // is followed by a decimal point
         if ( ch == '0' ){
             input += ch;
-            nextChar();         
+            nextChar();
             // make sure no other digits come after 0
             if ( isDigit( ch ) ) {
                 parseError( "A digit cannot immediately follow 0" );
@@ -368,15 +368,15 @@ import haxe.Utf8;
                 input += ch;
                 nextChar();
             }
-        }       
+        }
         // check for a decimal value
         if ( ch == '.' ) {
             input += '.';
-            nextChar();         
+            nextChar();
             // after the decimal there has to be a digit
             if ( !isDigit( ch ) ){
                 parseError( "Expecting a digit" );
-            }           
+            }
             // read more numbers to get the decimal value
             while ( isDigit( ch ) ) {
                 input += ch;
@@ -396,15 +396,15 @@ import haxe.Utf8;
             // in this case
             if ( !isDigit( ch ) ){
                 parseError( "Scientific notation number needs exponent value" );
-            }                       
+            }
             // read in the exponent
             while ( isDigit( ch ) ) {
                 input += ch;
                 nextChar();
             }
-        }       
+        }
         // convert the string to a number value
-        var num:Float = Std.parseFloat(input);      
+        var num:Float = Std.parseFloat(input);
         if ( Math.isFinite( num ) && !Math.isNaN( num ) ) {
             // the token for the number we'll try to read
             var token:JSONToken = new JSONToken();
@@ -424,46 +424,46 @@ import haxe.Utf8;
      * @return The next character in the input string, or
      *      null if we've read past the end.
      */
-    private function nextChar():String {
+    function nextChar():String {
         return ch = jsonString.charAt( loc++ );
     }
-    
+
     /**
      * Advances the character location past any
      * sort of white space and comments
      */
-    private function skipIgnored():Void {
-        var originalLoc:Int;        
+    function skipIgnored():Void {
+        var originalLoc:Int;
         // keep trying to skip whitespace and comments as long
-        // as we keep advancing past the original location 
+        // as we keep advancing past the original location
         do {
             originalLoc = loc;
             skipWhite();
             skipComments();
         }while ( originalLoc != loc );
     }
-    
+
     /**
      * Skips comments in the input string, either
      * single-line or multi-line.  Advances the character
      * to the first position after the end of the comment.
      */
-    private function skipComments():Void {
+    function skipComments():Void {
         if ( ch == '/' ) {
             // Advance past the first / to find out what type of comment
             nextChar();
             switch ( ch ) {
-                case '/': // single-line comment, read through end of line                  
+                case '/': // single-line comment, read through end of line
                     // Loop over the characters until we find
                     // a newline or until there's no more characters left
                     do {
                         nextChar();
-                    } while ( ch != '\n' && ch != '' );                 
+                    } while ( ch != '\n' && ch != '' );
                     // move past the \n
-                    nextChar();             
+                    nextChar();
                 case '*': // multi-line comment, read until closing */
                     // move past the opening *
-                    nextChar();                 
+                    nextChar();
                     // try to find a trailing */
                     while ( true ) {
                         if ( ch == '*' ) {
@@ -477,67 +477,67 @@ import haxe.Utf8;
                         } else {
                             // move along, looking if the next character is a *
                             nextChar();
-                        }                       
-                        // when we're here we've read past the end of 
+                        }
+                        // when we're here we've read past the end of
                         // the string without finding a closing */, so error
                         if ( ch == '' ) {
                             parseError( "Multi-line comment not closed" );
                         }
-                    }               
+                    }
                 // Can't match a comment after a /, so it's a parsing error
                 default:
                     parseError( "Unexpected " + ch + " encountered (expecting '/' or '*' )" );
             }
-        }       
+        }
     }
-    
-    
+
+
     /**
      * Skip any whitespace in the input string and advances
      * the character to the first character after any possible
      * whitespace.
      */
-    private function skipWhite():Void {     
-        // As long as there are spaces in the input 
+    function skipWhite():Void {
+        // As long as there are spaces in the input
         // stream, advance the current location pointer
         // past them
         while ( isWhiteSpace( ch ) ) {
             nextChar();
-        }       
+        }
     }
-    
+
     /**
      * Determines if a character is whitespace or not.
      *
      * @return True if the character passed in is a whitespace
      *  character
      */
-    private function isWhiteSpace( ch:String ):Bool {
+    function isWhiteSpace( ch:String ):Bool {
         return ( ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' );
     }
-    
+
     /**
      * Determines if a character is a digit [0-9].
      *
      * @return True if the character passed in is a digit
      */
-    private function isDigit( ch:String ):Bool {
+    function isDigit( ch:String ):Bool {
         #if php
         return (ch >= '0' && ch <= '9' && ch!='');
         #else
         return ( ch >= '0' && ch <= '9' );
         #end
     }
-    
+
     /**
      * Determines if a character is a digit [0-9].
      *
      * @return True if the character passed in is a digit
      */
-    private function isHexDigit( ch:String ):Bool {
+    function isHexDigit( ch:String ):Bool {
         // get the uppercase value of ch so we only have
         // to compare the value between 'A' and 'F'
-        var uc:String = ch.toUpperCase();       
+        var uc:String = ch.toUpperCase();
         // a hex digit is a digit of A-F, inclusive ( using
         // our uppercase constraint )
         return ( isDigit( ch ) || ( uc >= 'A' && uc <= 'F' ) );

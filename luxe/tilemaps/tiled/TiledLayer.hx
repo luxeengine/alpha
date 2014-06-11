@@ -7,7 +7,7 @@ import lime.utils.ByteArray;
 import lime.utils.Endian;
 
 class TiledLayer {
-    
+
     public var opacity : Float = 1.0;
     public var visible : Bool = true;
 
@@ -42,7 +42,7 @@ class TiledLayer {
             var _visible = root.get("visible");
             opacity = (_opacity == null) ? 1.0 : Std.parseFloat(_opacity);
             visible = (_visible == "0") ? false : true;
-            
+
         for (child in root) {
 
             if(is_valid_xml_element(child)) {
@@ -52,8 +52,8 @@ class TiledLayer {
                     case "properties" : {
                         for (property in child) {
 
-                            if (!is_valid_xml_element(property)) { 
-                                continue; 
+                            if (!is_valid_xml_element(property)) {
+                                continue;
                             } //!valid
 
                             properties.set(property.get("name"), property.get("value"));
@@ -62,34 +62,34 @@ class TiledLayer {
                     } //properties
 
                     case "data": {
-                        
+
                         var encoding:String = (child.exists("encoding")) ? child.get("encoding") : "";
-                        
+
                         switch(encoding){
 
-                            case "base64": 
+                            case "base64":
 
                                 var base64_data : String = child.firstChild().nodeValue;
                                 var compression : String = 'none';
-                                
+
                                 if (child.exists("compression")){
                                     compression = child.get("compression");
                                 }
-                                
+
                                 tileGIDs = tiled_base64_to_IntArray(base64_data, width, compression);
 
-                            case "csv": 
-                                
+                            case "csv":
+
                                 var csv_data : String = child.firstChild().nodeValue;
-                                
+
                                 tileGIDs = csv_to_IntArray( csv_data );
-                            
+
                             default: //default is xml
 
                                 for( tile in child ) {
                                     if( is_valid_xml_element(tile) ) {
-                                        
-                                        var gid = Std.parseInt( tile.get("gid") );                                  
+
+                                        var gid = Std.parseInt( tile.get("gid") );
                                             tileGIDs.push(gid);
 
                                     } //if is valid
@@ -106,7 +106,7 @@ class TiledLayer {
         for(gid in tileGIDs) {
             tiles.push( new TiledTile(this, gid) );
         } //gid in tileGIDs
-            
+
     } //from_xml
 
     public function from_json( json:Dynamic ) {
@@ -118,7 +118,7 @@ class TiledLayer {
             height = Std.parseInt(Reflect.field(json, "height"));
             opacity = Std.parseFloat(Reflect.field(json, "opacity"));
             visible = Reflect.field(json, "visible") == "false" ? false : true;
-            
+
         var fields = Reflect.fields(json);
         for( nodename in fields ) {
             var child = Reflect.field(json, nodename);
@@ -142,11 +142,11 @@ class TiledLayer {
         for(gid in tileGIDs) {
             tiles.push( new TiledTile(this, gid) );
         } //gid in tileGIDs
-            
+
     } //from_json
 
-    function csv_to_IntArray( input:String ) : Array<Int> {   
-        
+    function csv_to_IntArray( input:String ) : Array<Int> {
+
         var result:Array<Int> = new Array<Int>();
         var rows:Array<String> = StringTools.trim(input).split("\n");
         var row:String;
@@ -168,15 +168,15 @@ class TiledLayer {
 
     } //csv_to_array
 
-    private static function tiled_base64_to_IntArray( base64_data:String, lineWidth:Int, compression:String ):Array<Int> {
+    static function tiled_base64_to_IntArray( base64_data:String, lineWidth:Int, compression:String ):Array<Int> {
 
         var result:Array<Int> = new Array<Int>();
         var data:ByteArray = tiled_base64_to_ByteArray( base64_data );
 
             //handle zip compression
         if(compression != 'none') {
-            #if js 
-                throw "No support for compressed maps in html5 target"; 
+            #if js
+                throw "No support for compressed maps in html5 target";
             #else
                 switch(compression) {
 
@@ -195,7 +195,7 @@ class TiledLayer {
                       //   var gz_reader = new format.gz.Reader( byte_input );
                       //    //The output reader
                       //   var out_bytes : haxe.io.BytesOutput = new haxe.io.BytesOutput();
-                      //    //the bytes can be fed into the output but 
+                      //    //the bytes can be fed into the output but
                       //   var read_bytes = gz_reader.readData( out_bytes );
                     } //gzip
 
@@ -213,9 +213,9 @@ class TiledLayer {
         return result;
 
     } //tiled_base64_to_IntArray
-    
-    private static inline var BASE64_CHARS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    private static function tiled_base64_to_ByteArray(data:String):ByteArray {
+
+    static inline var BASE64_CHARS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+    static function tiled_base64_to_ByteArray(data:String):ByteArray {
 
         var output:ByteArray = new ByteArray();
         var lookup:Array<Int> = new Array<Int>();
@@ -224,20 +224,20 @@ class TiledLayer {
             for (c in 0...BASE64_CHARS.length){
                 lookup[BASE64_CHARS.charCodeAt(c)] = c;
             }
-        
+
             var i:Int = 0;
             while (i < data.length - 3) {
                 // Ignore whitespace
                 if (data.charAt(i) == " " || data.charAt(i) == "\n"){
                     i++; continue;
                 }
-                
+
                 //read 4 bytes and look them up in the table
                 var a0:Int = lookup[data.charCodeAt(i)];
                 var a1:Int = lookup[data.charCodeAt(i + 1)];
                 var a2:Int = lookup[data.charCodeAt(i + 2)];
                 var a3:Int = lookup[data.charCodeAt(i + 3)];
-                
+
                 // convert to and write 3 bytes
                 if(a1 < 64)
                     output.writeByte((a0 << 2) + ((a1 & 0x30) >> 4));
@@ -245,10 +245,10 @@ class TiledLayer {
                     output.writeByte(((a1 & 0x0f) << 4) + ((a2 & 0x3c) >> 2));
                 if(a3 < 64)
                     output.writeByte(((a2 & 0x03) << 6) + a3);
-                
+
                 i += 4;
             }
-        
+
                 //Rewind & return decoded data
             output.position = 0;
 

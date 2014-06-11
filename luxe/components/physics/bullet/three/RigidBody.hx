@@ -34,7 +34,7 @@ package luxe.components.physics.bullet.three;
 
         public var rigid_body : BtRigidBody;
         public var collider : ShapeCollider;
-        
+
         public var inertia : Vector;
         public var mass : Float = 1;
         public var kinematic : Bool = false;
@@ -55,9 +55,9 @@ package luxe.components.physics.bullet.three;
         public var additionalDampingFactor : Float = 0.005;
         public var additionalLinearDampingThresholdSqr : Float = 0.01;
         public var additionalAngularDampingThresholdSqr : Float = 0.01;
-        public var additionalAngularDampingFactor : Float = 0.01; 
+        public var additionalAngularDampingFactor : Float = 0.01;
 
-        private var construct_info : RigidBodyConstructInfo;
+        var construct_info : RigidBodyConstructInfo;
 
         public function init() {
 

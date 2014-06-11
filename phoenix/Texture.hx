@@ -23,8 +23,8 @@ enum FilterType {
 
 enum ClampType {
     edge;
-    repeat;    
-    mirror;    
+    repeat;
+    mirror;
 }
 
 
@@ -35,11 +35,11 @@ class Texture extends Resource {
     public var data : UInt8Array;
 
     public var actual_width : Int = -1;
-    public var actual_height : Int = -1;   
+    public var actual_height : Int = -1;
     public var width : Int = -1;
-    public var height : Int = -1;   
+    public var height : Int = -1;
     public var loaded : Bool = false;
-    
+
     public var slot : Int = 0;
 
     public var _onload_handlers : Array<Texture -> Void>;
@@ -52,9 +52,9 @@ class Texture extends Resource {
 
 
     public function new( _manager : ResourceManager, ?_type : ResourceType = null ) {
-            
+
         if(_type == null) _type = ResourceType.texture;
-        
+
         super( _manager, _type );
         _onload_handlers = new Array<Texture -> Void>();
 
@@ -80,11 +80,11 @@ class Texture extends Resource {
     public function do_onload() {
 
         loaded = true;
-        
+
         for(f in _onload_handlers) {
             f(this);
         }
-        
+
         _onload_handlers.splice(0,_onload_handlers.length);
 
     } //do_onload
@@ -116,7 +116,7 @@ class Texture extends Resource {
                     _p.set(x,y);
                     set_pixel( _p, _color );
                 }
-            }   
+            }
 
 
             // :todo : A test should be made for this
@@ -131,18 +131,18 @@ class Texture extends Resource {
                 //Set the properties
             _set_filter( FilterType.linear );
             _set_clamp( ClampType.edge );
-        
-                //clear up 
-            data = null;            
+
+                //clear up
+            data = null;
 
         } //if size is valid
 
     } //build
 
     public function estimated_memory() {
-        
-        var _bytes = (actual_width * actual_height * 4);        
-        
+
+        var _bytes = (actual_width * actual_height * 4);
+
         return Luxe.utils.bytes_to_string(_bytes);
 
     } //estimated_memory
@@ -156,10 +156,10 @@ class Texture extends Resource {
             //if no problems
         id = _asset_name;
         width = Std.int(_width);
-        height = Std.int(_height);  
+        height = Std.int(_height);
 
         actual_width = width;
-        actual_height = height;     
+        actual_height = height;
 
         if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
         if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
@@ -192,11 +192,11 @@ class Texture extends Resource {
 
         var _width = lime_bitmap_data_width( nme_bitmap_handle );
         var _height = lime_bitmap_data_height( nme_bitmap_handle );
-        
+
             //The actual padded size (for NPOT strict renderers)
         actual_width = _width;
         actual_height = _height;
-        
+
         if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
         if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
 
@@ -208,22 +208,22 @@ class Texture extends Resource {
             trace(e);
             throw " fail!";
         }
-        
+
         texture = GL.createTexture();
 
             //if no problems
         id = _asset_name;
         width = Std.int(_width);
-        height = Std.int(_height);            
+        height = Std.int(_height);
 
         data = new UInt8Array( cast image_bytes );
         var image_length = width * height;
 
-            //ARGB to RGBA cos format 
+            //ARGB to RGBA cos format
             //:todo: do inside native (don't worry about this, new backend)
-        
+
         for(i in 0 ... image_length) {
-            // data[i] = ((data[i]>>24) | (data[i]<<8)); 
+            // data[i] = ((data[i]>>24) | (data[i]<<8));
 
             var a = data[i*4+0];
             var r = data[i*4+1];
@@ -271,14 +271,14 @@ class Texture extends Resource {
             //Extract the bytes from the png reader
         var png_bytes = format.png.Tools.extract32(png_data);
             //And the header information for infomation
-        var png_header = format.png.Tools.getHeader(png_data); 
+        var png_header = format.png.Tools.getHeader(png_data);
 
             //if no problems
         id = _asset_name;
         width = Std.int(png_header.width);
-        height = Std.int(png_header.height);    
+        height = Std.int(png_header.height);
         actual_width = width;
-        actual_height = height;   
+        actual_height = height;
         loaded = true;
 
         data = new UInt8Array(png_bytes.getData());
@@ -307,7 +307,7 @@ class Texture extends Resource {
             //Set the properties
         filter = FilterType.linear;
         clamp = ClampType.edge;
-        
+
         image_bytes = null;
         byte_input = null;
         png_bytes = null;
@@ -328,7 +328,7 @@ class Texture extends Resource {
     } //generate_mipmaps
 
     public function bind() {
-        
+
         switch(slot) {
             case 0:
                 Luxe.renderer.state.activeTexture(GL.TEXTURE0);
@@ -352,7 +352,7 @@ class Texture extends Resource {
     }
 
     public function get_pixel( _pos : Vector ) {
-        
+
         if(data == null) return null;
 
         var x : Int = Std.int(_pos.x);
@@ -368,7 +368,7 @@ class Texture extends Resource {
     } //get_pixel
 
     public function set_pixel( _pos:Vector, _color:Color ) {
-        
+
         if(data == null) return;
 
         var x : Int = Std.int(_pos.x);
@@ -382,11 +382,11 @@ class Texture extends Resource {
     } //set_pixel
 
     public function lock() {
-        
+
         //:todo : this is related to glGetTexImage not in WebGL
 
         // data = new UInt8Array(new ArrayBuffer( width * height * 4));
-        
+
         // glBindTexture(GL_TEXTURE_2D, texture);
         // glGetTexImage( GL_TEXTURE_2D , 0 , GL_RGBA , GL_UNSIGNED_BYTE, data );
 
@@ -394,7 +394,7 @@ class Texture extends Resource {
     }
 
     public function unlock() {
-        
+
         if (data != null) {
 
             Luxe.renderer.state.bindTexture2D(texture);
@@ -435,7 +435,7 @@ class Texture extends Resource {
            case ClampType.mirror:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_S, GL.MIRRORED_REPEAT );
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_WRAP_T, GL.MIRRORED_REPEAT );
-        }   
+        }
 
     } //_set_clamp
 
@@ -455,7 +455,7 @@ class Texture extends Resource {
 
     } //set_clamp
 
-    function _set_filter( _filter : FilterType ) {       
+    function _set_filter( _filter : FilterType ) {
 
         switch(_filter) {
 
@@ -465,18 +465,18 @@ class Texture extends Resource {
 
             case FilterType.nearest:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);  
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST);
 
         //mip filters
             case FilterType.mip_nearest_nearest:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_NEAREST);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);  
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_NEAREST);
             case FilterType.mip_linear_nearest:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_NEAREST);
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_NEAREST);
             case FilterType.mip_nearest_linear:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
-                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);            
+                GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.NEAREST_MIPMAP_LINEAR);
             case FilterType.mip_linear_linear:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MAG_FILTER, GL.LINEAR_MIPMAP_LINEAR);
@@ -485,7 +485,7 @@ class Texture extends Resource {
 
     } //set_filter
 
-    function _set_filter_min( _filter : FilterType ) {       
+    function _set_filter_min( _filter : FilterType ) {
 
         switch(_filter) {
 
@@ -503,12 +503,12 @@ class Texture extends Resource {
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.NEAREST_MIPMAP_LINEAR);
             case FilterType.mip_linear_linear:
                 GL.texParameteri(GL.TEXTURE_2D, GL.TEXTURE_MIN_FILTER, GL.LINEAR_MIPMAP_LINEAR);
-        
+
         } //switch _filter
 
     } //set_filter_min
 
-    function _set_filter_mag( _filter : FilterType ) {       
+    function _set_filter_mag( _filter : FilterType ) {
 
         switch(_filter) {
 
@@ -563,7 +563,7 @@ class Texture extends Resource {
     } //set_filter_min
 
     function set_filter_mag( _filter : FilterType ) {
-        
+
         if(loaded == false) {
             onload = function(t) {
                 bind();
@@ -573,15 +573,15 @@ class Texture extends Resource {
             bind();
             _set_filter_mag(_filter);
         }
-        
+
         return filter_mag = _filter;
 
     } //set_filter_mag
 
-    private static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
-    private static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
-    private static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
-    private static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2); 
+    static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
+    static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
+    static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
+    static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2);
 
 
 } //Texture

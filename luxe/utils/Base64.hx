@@ -10,67 +10,67 @@ import haxe.io.BytesData;
 class Base64 {
 
 
-	private static inline var BASE_64_ENCODINGS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-	private static inline var BASE_64_PADDING = "=";
+    static inline var BASE_64_ENCODINGS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    static inline var BASE_64_PADDING = "=";
 
 
-	public static function decode( _string:String ) : String {
+    public static function decode( _string:String ) : String {
 
-		#if !neko
-			var result = decodeBytesData( _string );
-			return result.toString();
-		#end
+        #if !neko
+            var result = decodeBytesData( _string );
+            return result.toString();
+        #end
 
-		return '';
+        return '';
 
-	} //decode
+    } //decode
 
-	public static function encode( _string:String ) : String {
+    public static function encode( _string:String ) : String {
 
-		return encodeBytesData( Bytes.ofString(_string).getData() );
+        return encodeBytesData( Bytes.ofString(_string).getData() );
 
-	} //encode
+    } //encode
 
-	public static function encodeBytesData( bytesData : BytesData ) : String {
+    public static function encodeBytesData( bytesData : BytesData ) : String {
 
-		var bytes = Bytes.ofData(bytesData);
-		var encodings = Bytes.ofString(BASE_64_ENCODINGS);
-		var base64 = new BaseCode(encodings).encodeBytes(bytes).toString();
-		
-		var remainder = base64.length % 4;
+        var bytes = Bytes.ofData(bytesData);
+        var encodings = Bytes.ofString(BASE_64_ENCODINGS);
+        var base64 = new BaseCode(encodings).encodeBytes(bytes).toString();
 
-		if (remainder > 1) {
-			base64 += BASE_64_PADDING;
-		}
+        var remainder = base64.length % 4;
 
-		if (remainder == 2) {
-			base64 += BASE_64_PADDING;
-		}
-		
-		return base64;
+        if (remainder > 1) {
+            base64 += BASE_64_PADDING;
+        }
 
-	} //encodeBytesData
+        if (remainder == 2) {
+            base64 += BASE_64_PADDING;
+        }
 
-	public static function decodeBytesData( base64 : String ) : BytesData {
+        return base64;
 
-		var paddingSize = -1;
-		if (base64.charAt(base64.length - 2) == BASE_64_PADDING) {
-			paddingSize = 2;
-		}
-		else if (base64.charAt(base64.length - 1) == BASE_64_PADDING) {
-			paddingSize = 1;
-		}
-		
-		if (paddingSize != -1) {
-			base64 = base64.substr(0, base64.length - paddingSize);
-		}
-		
-		var encodings = Bytes.ofString(BASE_64_ENCODINGS);
-		var bytes = new BaseCode(encodings).decodeBytes(Bytes.ofString(base64));
+    } //encodeBytesData
 
-		return bytes.getData();
+    public static function decodeBytesData( base64 : String ) : BytesData {
 
-	} //decodeBytesData
+        var paddingSize = -1;
+        if (base64.charAt(base64.length - 2) == BASE_64_PADDING) {
+            paddingSize = 2;
+        }
+        else if (base64.charAt(base64.length - 1) == BASE_64_PADDING) {
+            paddingSize = 1;
+        }
 
-	
+        if (paddingSize != -1) {
+            base64 = base64.substr(0, base64.length - paddingSize);
+        }
+
+        var encodings = Bytes.ofString(BASE_64_ENCODINGS);
+        var bytes = new BaseCode(encodings).decodeBytes(Bytes.ofString(base64));
+
+        return bytes.getData();
+
+    } //decodeBytesData
+
+
 } //Base64

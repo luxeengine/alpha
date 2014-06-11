@@ -31,7 +31,7 @@ class GeometryState {
 
         dirty = false;
 
-    }
+    } //new
 
     public function clone_onto( _other:GeometryState )  {
 
@@ -44,9 +44,10 @@ class GeometryState {
         _other.clip = clip;
         _other.clip_rect.copy_from( clip_rect );
 
-    }
+    } //clone_onto
 
     public function str() {
+
         if(!log) return;
 
         trace('\t+ GEOMETRYSTATE ' + dirty);
@@ -61,12 +62,14 @@ class GeometryState {
             trace("\t\tclip - "+ clip);
             trace("\t\tclip rect - "+ clip_rect );
         trace('\t- GEOMETRYSTATE');
-    }
+
+    } //str
 
     public function clean() {
+
         dirty = false;
         // trace('cleaned geometry state ');
-    }
+    } //clean
 
     public function update( other : GeometryState ) {
 
@@ -100,7 +103,7 @@ class GeometryState {
             }
         } //clip_rect
 
-    }
+    } //update
 
 //Primitive Type
     public function set_primitive_type(val : PrimitiveType) : PrimitiveType {

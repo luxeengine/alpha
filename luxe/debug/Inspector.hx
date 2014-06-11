@@ -29,9 +29,9 @@ typedef DebugInspectorOptions = {
     public var uibutton : Texture;
 
     public var _window : NineSlice;
-    private var _batcher : Batcher;
-
     public var onrefresh : Void->Void;
+
+    var _batcher : Batcher;
 
     public function new( _options:DebugInspectorOptions ) {
 
@@ -81,7 +81,8 @@ typedef DebugInspectorOptions = {
         _version_text.visible = false;
     }
 
-    private function _create_window() {
+    function _create_window() {
+
             //if already exists, clean up
         if(_window != null) {
             _window.destroy();

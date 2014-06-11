@@ -1,32 +1,32 @@
 package luxe.utils.json;
 
 /*
-    
+
     Originated from hxJson2
 
   Copyright (c) 2008, Adobe Systems Incorporated
   Copyright (c) 2011, Philipp Klose
   All rights reserved.
 
-  Redistribution and use in source and binary forms, with or without 
+  Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
   met:
 
-  * Redistributions of source code must retain the above copyright notice, 
+  * Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer.
 
   * Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the 
+  notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
 
-  * Neither the name of Adobe Systems Incorporated nor the names of its 
+  * Neither the name of Adobe Systems Incorporated nor the names of its
   contributors and authors may be used to endorse or promote products
   derived from this software without specific prior written permission.
 
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
   IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
   THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
+  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
   EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
@@ -36,37 +36,37 @@ package luxe.utils.json;
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-enum JSONTokenType {    
-    tUNKNOWN;   
-    tCOMMA; 
-    tLEFT_BRACE;        
-    tRIGHT_BRACE;       
-    tLEFT_BRACKET;      
-    tRIGHT_BRACKET;     
-    tCOLON;     
-    tTRUE;      
-    tFALSE;     
-    tNULL;      
-    tSTRING;        
+enum JSONTokenType {
+    tUNKNOWN;
+    tCOMMA;
+    tLEFT_BRACE;
+    tRIGHT_BRACE;
+    tLEFT_BRACKET;
+    tRIGHT_BRACKET;
+    tCOLON;
+    tTRUE;
+    tFALSE;
+    tNULL;
+    tSTRING;
     tNUMBER;
     tNAN;
 }
 
 @:noCompletion class JSONDecoder {
-    
-    private var strict:Bool;
+
+    var strict:Bool;
 
     /** The value that will get parsed from the JSON string */
-    private var value:Dynamic;
+    var value:Dynamic;
 
     /** The tokenizer designated to read the JSON string */
-    private var tokenizer:JSONTokenizer;
+    var tokenizer:JSONTokenizer;
 
     /** The current token from the tokenizer */
-    private var token:JSONToken;
+    var token:JSONToken;
 
     /**
-     * Constructs a new JSONDecoder to parse a JSON string 
+     * Constructs a new JSONDecoder to parse a JSON string
      * into a native object.
      *
      * @param s The JSON string to be converted into a native object
@@ -95,20 +95,20 @@ enum JSONTokenType {
      * Returns the next token from the tokenzier reading
      * the JSON string
      */
-    private function nextToken():JSONToken {
+    function nextToken():JSONToken {
         return token = tokenizer.getNextToken();
     }
 
     /**
      * Attempt to parse an array
      */
-    private function parseArray():Array < Dynamic > {
+    function parseArray():Array < Dynamic > {
         // create an array internally that we're going to attempt
         // to parse from the tokenizer
-        var a:Array<Dynamic> = new Array<Dynamic>();        
+        var a:Array<Dynamic> = new Array<Dynamic>();
         // grab the next token from the tokenizer to move
         // past the opening [
-        nextToken();        
+        nextToken();
         // check to see if we have an empty array
         if ( token.type == tRIGHT_BRACKET ) {
             // we're done reading the array, so return it
@@ -119,7 +119,7 @@ enum JSONTokenType {
                 nextToken();
                 // check to see if we're reached the end of the array
                 if ( token.type == JSONTokenType.tRIGHT_BRACKET ){
-                    return a;   
+                    return a;
                 }
                 else {
                     tokenizer.parseError( "Leading commas are not supported.  Expecting ']' but found " + token.value );
@@ -130,9 +130,9 @@ enum JSONTokenType {
         // loop because we could have any amount of elements
         while ( true ) {
             // read in the value and add it to the array
-            a.push ( parseValue() );        
+            a.push ( parseValue() );
             // after the value there should be a ] or a ,
-            nextToken();            
+            nextToken();
             if ( token.type == tRIGHT_BRACKET ) {
                 // we're done reading the array, so return it
                 return a;
@@ -157,25 +157,25 @@ enum JSONTokenType {
     /**
      * Attempt to parse an object
      */
-    private function parseObject():Dynamic {
+    function parseObject():Dynamic {
         // create the object internally that we're going to
         // attempt to parse from the tokenizer
-        var o:Dynamic = { };                    
+        var o:Dynamic = { };
         // store the string part of an object member so
         // that we can assign it a value in the object
-        var key:String;     
+        var key:String;
         // grab the next token from the tokenizer
-        nextToken();        
+        nextToken();
         // check to see if we have an empty object
         if ( token.type == tRIGHT_BRACE ) {
             // we're done reading the object, so return it
             return o;
         }   // in non-strict mode an empty object is also a comma
             // followed by a right bracket
-        else { 
+        else {
             if ( !strict && token.type == JSONTokenType.tCOMMA )    {
                 // move past the comma
-                nextToken();                
+                nextToken();
                 // check to see if we're reached the end of the object
                 if ( token.type == JSONTokenType.tRIGHT_BRACE )             {
                     return o;
@@ -187,27 +187,27 @@ enum JSONTokenType {
         }
         // deal with members of the object, and use an "infinite"
         // loop because we could have any amount of members
-        while ( true ) {        
+        while ( true ) {
             if ( token.type == tSTRING ) {
                 // the string value we read is the key for the object
-                key = Std.string(token.value);              
+                key = Std.string(token.value);
                 // move past the string to see what's next
-                nextToken();                
+                nextToken();
                 // after the string there should be a :
-                if ( token.type == tCOLON ) {                   
+                if ( token.type == tCOLON ) {
                     // move past the : and read/assign a value for the key
                     nextToken();
-                    Reflect.setField(o,key,parseValue());                   
+                    Reflect.setField(o,key,parseValue());
                     // move past the value to see what's next
-                    nextToken();                    
+                    nextToken();
                     // after the value there's either a } or a ,
                     if ( token.type == tRIGHT_BRACE ) {
                         // // we're done reading the object, so return it
-                        return o;                       
+                        return o;
                     } else if ( token.type == tCOMMA ) {
                         // skip past the comma and read another member
                         nextToken();
-                        
+
                         // Allow objects to have a comma after the last member
                         // if the decoder is not in strict mode
                         if ( !strict ){
@@ -215,7 +215,7 @@ enum JSONTokenType {
                             if ( token.type == JSONTokenType.tRIGHT_BRACE ) {
                                 return o;
                             }
-                        }                       
+                        }
                     } else {
                         tokenizer.parseError( "Expecting } or , but found " + token.value );
                     }
@@ -232,7 +232,7 @@ enum JSONTokenType {
     /**
      * Attempt to parse a value
      */
-    private function parseValue():Dynamic   {
+    function parseValue():Dynamic   {
         // Catch errors when the input stream ends abruptly
         if ( token == null )
             tokenizer.parseError( "Unexpected end of input" );
@@ -257,7 +257,7 @@ enum JSONTokenType {
                 else
                     tokenizer.parseError( "Unexpected " + token.value );
             default:
-                tokenizer.parseError( "Unexpected " + token.value );                
+                tokenizer.parseError( "Unexpected " + token.value );
         }
         return null;
     }

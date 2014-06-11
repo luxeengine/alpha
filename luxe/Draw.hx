@@ -17,18 +17,18 @@ class Draw {
     @:noCompletion public var core : Core;
     @:noCompletion public function new( _core:Core ) { core = _core; }
 
-    private function default_options(options:Dynamic) {
+    function default_options(options:Dynamic) {
 
-        options.font = (options.font == null) ? Luxe.renderer.font : options.font;
-        options.color = (options.color == null) ? new Color() : options.color;
-        options.depth = (options.depth == null) ? 0 : options.depth;
-        options.group = (options.group == null) ? 0 : options.group;
-        options.immediate = (options.immediate == null) ? false : options.immediate;
-        options.batcher = (options.batcher == null)  ? Luxe.renderer.batcher : options.batcher;
-        options.pos = (options.pos == null)  ? new Vector() : options.pos;
+        options.font        = (options.font == null)        ? Luxe.renderer.font    : options.font;
+        options.color       = (options.color == null)       ? new Color()           : options.color;
+        options.depth       = (options.depth == null)       ? 0                     : options.depth;
+        options.group       = (options.group == null)       ? 0                     : options.group;
+        options.immediate   = (options.immediate == null)   ? false                 : options.immediate;
+        options.batcher     = (options.batcher == null)     ? Luxe.renderer.batcher : options.batcher;
+        options.pos         = (options.pos == null)         ? new Vector()          : options.pos;
 
             //return
-        return options; 
+        return options;
 
     } //default_options
 
@@ -36,21 +36,21 @@ class Draw {
 
     	if(options.p0 == null) throw "draw.line requires p0:Vector, and p1:Vector";
     	if(options.p1 == null) throw "draw.line requires p0:Vector, and p1:Vector";
-    	
-    	options = default_options(options);
 
-        if(options.id == null) { options.id = 'line.geometry'; };
+        	options = default_options(options);
 
-    	var _line = new LineGeometry(options);
+            if(options.id == null) { options.id = 'line.geometry'; };
 
-    	options.batcher.add(_line, false);
+        	var _line = new LineGeometry(options);
+
+        	options.batcher.add(_line, false);
 
     	return _line;
 
     } // line
 
     public function box(options:Dynamic) {
-        
+
         options = default_options(options);
 
         if(options.id == null) { options.id = 'quad.geometry'; };
@@ -74,7 +74,7 @@ class Draw {
     	   options.batcher.add(_rect, false);
 
     	return _rect;
-    	
+
     } //rectangle
 
     public function text(options:Dynamic) {
@@ -83,7 +83,7 @@ class Draw {
 
         if(options.id == null) { options.id = 'text.geometry'; };
 
-        var _text = options.font.draw_text(options);  
+        var _text = options.font.draw_text(options);
 
         return _text;
     } //text
@@ -115,7 +115,7 @@ class Draw {
 
         return _arc;
 
-    } //arc    
+    } //arc
 
     public function circle(options:Dynamic) {
 
@@ -233,7 +233,7 @@ class Draw {
                 //add the center vertex
             _geometry.add(
                 new Vertex(
-                    new Vector( _x, _y, 0 ), 
+                    new Vector( _x, _y, 0 ),
                     options.color
                 )
             ); //add
@@ -249,7 +249,7 @@ class Draw {
 
             _geometry.add(
                 new Vertex(
-                    new Vector( _x + __x, _y + __y, 0 ), 
+                    new Vector( _x + __x, _y + __y, 0 ),
                     options.color
                 )
             ); //add
@@ -263,7 +263,7 @@ class Draw {
     }
 
     public function plane(options:Dynamic) {
-        
+
         options = default_options(options);
 
         if(options.id == null) { options.id = 'plane.geometry'; };
@@ -278,10 +278,10 @@ class Draw {
 
 
     public function axis3D(?options:Dynamic=null) {
-            
+
         if(options == null) options = {};
         var _scale = options.scale == null ? 100 : options.scale;
-        
+
         options = default_options(options);
 
 //X axis
@@ -307,9 +307,9 @@ class Draw {
             p1 : new Vector(_scale, 0, 0),
             color : new Color(0.6,0,0,1),
             batcher : options.batcher,
-        });   
+        });
 
     } //axis3D
 
-}
 
+} //Draw

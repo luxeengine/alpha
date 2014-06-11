@@ -45,7 +45,7 @@ class SpriteAnimationData {
     public static var frame_hold_prev_regex : EReg = ~/(\bhold\s)(\d*)/gi;
     public static var frame_regex : EReg = ~/(\d*)/gi;
 
-    public var name : String; 
+    public var name : String;
     public var type : SpriteAnimationType;
     public var filter_type : FilterType;
     public var frameset : Array<SpriteAnimationFrame>;
@@ -66,7 +66,7 @@ class SpriteAnimationData {
     }
 
     public function get_serialize_data() : Dynamic {
-        
+
         var _frameset = [];
 
         for(_set in frameset) {
@@ -118,19 +118,19 @@ class SpriteAnimationData {
         var _json_pingpong : Dynamic = _animdata.pingpong;
         var _json_loop : Dynamic = _animdata.loop;
         var _json_reverse : Dynamic = _animdata.reverse;
-        var _json_speed : Dynamic = _animdata.speed;        
-        var _json_image_sequence : String = cast _animdata.image_sequence;      
+        var _json_speed : Dynamic = _animdata.speed;
+        var _json_image_sequence : String = cast _animdata.image_sequence;
         var _json_filter_type : String = cast _animdata.filter_type;
-        var _json_events_list : Array<Dynamic> = cast _animdata.events; 
-        var _json_framesource_list : Array<Dynamic> = cast _animdata.frame_sources; 
-        
+        var _json_events_list : Array<Dynamic> = cast _animdata.events;
+        var _json_framesource_list : Array<Dynamic> = cast _animdata.frame_sources;
+
         //frameset
         if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset. In anim : " + name; }
 
         var _frameset : Array<Int> = parse_frameset( _json_frameset );
 
         type = SpriteAnimationType.animated_uv;
-        
+
         //filter type
         if(_json_filter_type != null) {
             switch (_json_filter_type) {
@@ -148,8 +148,8 @@ class SpriteAnimationData {
                 var _y : Float = Std.parseFloat(_json_frame_size.y);
                 _frame_size.set(_x, _y);
             }
-        
-        //pingpong                  
+
+        //pingpong
         var _pingpong : Bool = false;
             if(_json_pingpong != null) {
                 if(_json_pingpong == 'true') {
@@ -159,7 +159,7 @@ class SpriteAnimationData {
                 }
             } //_json_pingpong
 
-        //loop                  
+        //loop
         var _loop : Bool = false;
             if(_json_loop != null) {
                 if(_json_loop == 'true') {
@@ -168,8 +168,8 @@ class SpriteAnimationData {
                     _loop = false;
                 }
             } //_json_loop
-        
-        //_reverse                  
+
+        //_reverse
         var _reverse : Bool = false;
             if(_json_reverse != null) {
                 if(_json_reverse == 'true') {
@@ -178,7 +178,7 @@ class SpriteAnimationData {
                     _reverse = false;
                 }
             } //_json_loop
-        
+
         //speed
         var _speed : Float = 2;
             if(_json_speed != null) {
@@ -192,7 +192,7 @@ class SpriteAnimationData {
             }
 
         //frame_sources
-        
+
             //store the default frame size here so we can fill in blanks
             //after we pares the sources
         frame_size = _frame_size;
@@ -204,8 +204,8 @@ class SpriteAnimationData {
 
         //create from the animation data
         for( _frame in _frameset ) {
-            frameset.push({ 
-                image_frame : _frame, 
+            frameset.push({
+                image_frame : _frame,
                 events : parse_event_for_frame(_events,_frame),
                 frame_source : parse_source_for_frame(_frame_sources,_frame),
                 frame_size : parse_source_size_for_frame(_frame_sources, _frame),
@@ -214,7 +214,7 @@ class SpriteAnimationData {
             // trace("add frame : " + frameset[frameset.length-1]);
         }
 
-        //image sequence        
+        //image sequence
         if(_json_image_sequence != null) {
 
                 //ask for the textures
@@ -256,7 +256,7 @@ class SpriteAnimationData {
     } //parse_event_for_frame
 
     function parse_source_size_for_frame( _sources:Array<SpriteAnimationFrameSource>, _frame:Int ) : Vector {
-        
+
         if(_sources != null) {
             for(_source in _sources) {
                 if(_source.frame == _frame) {
@@ -270,7 +270,7 @@ class SpriteAnimationData {
     } //parse_source_size_for_frame
 
     function parse_source_pos_for_frame( _sources:Array<SpriteAnimationFrameSource>, _frame:Int ) : Vector {
-        
+
         if(_sources != null) {
             for(_source in _sources) {
                 if(_source.frame == _frame) {
@@ -302,7 +302,7 @@ class SpriteAnimationData {
 
             if(sprite.texture != null) {
                 switch(type) {
-                    
+
                     case SpriteAnimationType.animated_uv: {
 
                         sprite.texture.onload = function(t) {
@@ -310,7 +310,7 @@ class SpriteAnimationData {
                             var frames_per_row = ( sprite.texture.width - (sprite.texture.width % frame_size.x) ) / frame_size.x;
                             var image_row = Math.ceil( _frame / frames_per_row );
                             var image_x = ((_frame-1) * frame_size.x) % sprite.texture.width;
-                            var image_y = ((image_row-1) * frame_size.y);            
+                            var image_y = ((image_row-1) * frame_size.y);
 
                             result = new Rectangle( image_x, image_y, frame_size.x, frame_size.y );
 
@@ -406,14 +406,14 @@ class SpriteAnimationData {
         return resulting_events;
 
     } //parse_event_set
-    
+
     function parse_frameset_range( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
-        
+
         var _start : Int = Std.parseInt( regex.matched(1) );
         var _end : Int = Std.parseInt( regex.matched(3) );
         var _count : Int = Std.int(Math.abs( _start - _end ));
 
-            //If they are the same, that's a silly range but allow it       
+            //If they are the same, that's a silly range but allow it
         if(_count == 0) {
             _frameset.push( _start );
         } else {
@@ -434,9 +434,9 @@ class SpriteAnimationData {
     } //parse_frameset_range
 
     function parse_frameset_hold( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
-        
+
         var _frame_index : Int = Std.parseInt( regex.matched(1) );
-        var _amount : Int = Std.parseInt( regex.matched(3) );       
+        var _amount : Int = Std.parseInt( regex.matched(3) );
 
         for( _i in 0 ... _amount ) {
             _frameset.push( _frame_index );
@@ -445,7 +445,7 @@ class SpriteAnimationData {
     } //parse_frameset_range
 
     function parse_frameset_prev_hold( _frameset:Array<Int>, regex:EReg, _frame:String ) : Void {
-            
+
         if(_frameset.length < 1) {
             throw " Animation frames given a hold with no prior frame, if you want to do that you can use '1 hold 10` where 1 is the frame index, 10 is the amount. ";
         }
@@ -475,17 +475,17 @@ class SpriteAnimationData {
                 //match a range (frame)-(frame)
             if( frame_range_regex.match( _frame ) ) {
                 parse_frameset_range( _final_frameset, frame_range_regex, _frame );
-            } else 
+            } else
 
                 //match the (frame) hold (amount)
             if( frame_hold_regex.match( _frame ) ) {
                 parse_frameset_hold( _final_frameset, frame_hold_regex, _frame );
-            } else 
+            } else
 
                 //match the hold (amount) from previous frame
             if( frame_hold_prev_regex.match( _frame ) ) {
                 parse_frameset_prev_hold( _final_frameset, frame_hold_prev_regex, _frame );
-            } else 
+            } else
 
                 //match the single value frames
             if( frame_regex.match( _frame ) ) {
@@ -501,7 +501,7 @@ class SpriteAnimationData {
 
 class SpriteAnimation extends Component {
 
-    private var sprite : Sprite;
+    var sprite : Sprite;
 
     public var animation_list : Map<String,SpriteAnimationData>;
     public var current : SpriteAnimationData;
@@ -524,7 +524,7 @@ class SpriteAnimation extends Component {
     public var reverse : Bool = false;
 
     public var playing : Bool = false;
-    
+
     var uv_cache : Rectangle;
 
     public function init() {
@@ -547,16 +547,16 @@ class SpriteAnimation extends Component {
         if(animation_list == null) {
             animation_list = new Map();
         }
-        
+
         var anim_items = _json_object;
         var anims = Reflect.fields(anim_items);
 
         if(anims.length > 0) {
             for(anim in anims) {
-                
+
                 var animdata : Dynamic = Reflect.field(anim_items, anim);
                 var _anim = new SpriteAnimationData( cast entity, anim );
-                    
+
                     _anim.from_json( animdata );
 
                 animation_list.set( anim, _anim );
@@ -581,7 +581,7 @@ class SpriteAnimation extends Component {
             var _anim = animation_list.get(_animation);
             for(_anim_frame in _anim.frameset) {
                 if( _anim_frame.image_frame == _image_frame ) {
-                    for(_frame_event in _anim_frame.events) {       
+                    for(_frame_event in _anim_frame.events) {
                             //found an event for this frame, is it the same one?
                         if(_frame_event.frame == _image_frame && _frame_event.event == _event) {
                             _anim_frame.events.remove(_frame_event);
@@ -625,11 +625,11 @@ class SpriteAnimation extends Component {
 
             for(_anim_frame in _anim.frameset) {
                 if( _anim_frame.image_frame == _image_frame ) {
-                    
+
                         //matched image frame, now check if there isn't already an event named this way in the list
                         //so that we don't have multiples causing issues
                     var _add_event : Bool = true;
-                    for(_frame_event in _anim_frame.events) {       
+                    for(_frame_event in _anim_frame.events) {
                             //found an event for this frame, is it the same one?
                         if(_frame_event.frame == _image_frame && _frame_event.event == _event) {
                             _add_event = false;
@@ -637,7 +637,7 @@ class SpriteAnimation extends Component {
                         }
                     }
 
-                        //still? 
+                        //still?
                     if(_add_event) {
                         _anim_frame.events.push({ frame:_image_frame, event:_event });
                         _debug("anim event added : " + _image_frame + ":" + _event + " to " + _animation);
@@ -648,7 +648,7 @@ class SpriteAnimation extends Component {
 
         } else {
             trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' to add an event but it is not found in the component. ');
-        }        
+        }
 
     } //add_event
 
@@ -656,7 +656,7 @@ class SpriteAnimation extends Component {
         return speed;
     }
 
-    function set_speed( _speed:Float ) { 
+    function set_speed( _speed:Float ) {
         if(current != null) {
             current.frame_time = 1 / _speed;
         }
@@ -702,8 +702,8 @@ class SpriteAnimation extends Component {
     }
 
     public function set_frame( _frame:Int ) {
-            
-        if(sprite == null) return;      
+
+        if(sprite == null) return;
         if(current.type == SpriteAnimationType.animated_uv) {
 
             if(sprite.texture == null) return;
@@ -724,8 +724,8 @@ class SpriteAnimation extends Component {
             }
 
         } //SpriteAnimationType.animated_texture
-        
-            //the current animation frame 
+
+            //the current animation frame
         var _anim_frame = current.frameset[frame-1];
 
             //set the image frame from the current frameset
@@ -737,14 +737,14 @@ class SpriteAnimation extends Component {
     } //set_frame
 
         //sync the state to the sprite itself
-    private function refresh_sprite() {
+    function refresh_sprite() {
 
         if(sprite == null) return;
         if(current.type == SpriteAnimationType.animated_uv) {
 
             if(sprite.texture == null) return;
-                    
-                    //cache the uv so we don't allocate for no good reason            
+
+                    //cache the uv so we don't allocate for no good reason
                 uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
                     //ratio of scale between sprite size and frame size
                 var _ratio_x = current_frame.frame_size.x / sprite.size.x;
@@ -757,7 +757,7 @@ class SpriteAnimation extends Component {
                 sprite.geometry.transform.origin.y = ((sprite.origin.y - (current_frame.frame_pos.y / _ratio_y)) * sprite.scale.y) / sprite.geometry.transform.scale.y;
                     //and finally assign it to the sprite
                 sprite.uv = uv_cache;
-        
+
         } else if(current.type == SpriteAnimationType.animated_texture) {
 
             if( image_frame <= current.image_set.length ) {
@@ -793,40 +793,40 @@ class SpriteAnimation extends Component {
 
                 //check the logic for syncing
             if( !reverse ) {
-                if( frame > current.frame_count ) { 
-                    end = true;  
+                if( frame > current.frame_count ) {
+                    end = true;
                     if(!loop) {
-                        frame = current.frame_count; 
+                        frame = current.frame_count;
                     }
                 } //if at the end
             } else {
-                if( frame < 1 ) { 
-                    end = true; 
+                if( frame < 1 ) {
+                    end = true;
                     if(!loop) {
                         frame = 1;
-                    } 
+                    }
                 } //frame < 1
             } //!reverse
 
                 //check the end status
             if(end) {
                 if(loop) {
-                    if(pingpong) { 
+                    if(pingpong) {
                         reverse = !reverse;
                     }
-                    
+
                     if(!reverse) {
                         frame = 1;
                     } else {
                         frame = current.frame_count;
                     }
-                    
+
                 } else {
                     stop();
                 }
             } //if end
-                
-                //the current animation frame 
+
+                //the current animation frame
             var _anim_frame = current.frameset[frame-1];
 
                 //set the image frame from the current frameset
@@ -838,7 +838,7 @@ class SpriteAnimation extends Component {
                 //handle any frame events
             for(_event in _anim_frame.events) {
                 var _event_emit_name : String = _event.event;
-                
+
                     //default to animation.event.image_frame
                 if(_event_emit_name == '') {
                     _event_emit_name = animation + '.event.' + _anim_frame.image_frame;
@@ -847,7 +847,7 @@ class SpriteAnimation extends Component {
                     //fire the event into the holding entity
                 entity.events.fire( _event_emit_name, {
                     animation : animation,
-                    event: _event_emit_name, 
+                    event: _event_emit_name,
                     frame_event : _event,
                     frame: _anim_frame,
                     image_frame : _anim_frame.image_frame
@@ -870,9 +870,9 @@ class SpriteAnimation extends Component {
         for(anim in animation_list) {
             _animation_list.push(anim.get_serialize_data());
         }
-        
+
         var _extra : Dynamic = {
-            name : name, 
+            name : name,
             frame : frame,
             image_frame : image_frame,
             animation : animation,

@@ -44,7 +44,7 @@ class NineSlice extends luxe.Sprite {
     @:noCompletion public var nineslice_options : NineSliceOptions<Dynamic>;
     @:noCompletion public var _geometry : ComplexGeometry;
 
-    private var _batcher : Batcher;
+    var _batcher : Batcher;
 
     public function new<T>( _options:NineSliceOptions<T> ) {
 
@@ -408,7 +408,7 @@ class NineSlice extends luxe.Sprite {
 
     } //set_color
 
-    private function _create(_pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false) {
+    function _create(_pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false) {
 
         if(!is_set || _reset) {
             set(_w, _h);

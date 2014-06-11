@@ -11,14 +11,14 @@ import phoenix.geometry.QuadGeometry;
 import luxe.options.SpriteOptions;
 
 class Sprite extends Visual {
-    
 
-    @:isVar public var centered     (default,set    )   : Bool = true;    
+
+    @:isVar public var centered     (default,set    )   : Bool = true;
     @:isVar public var flipx        (default,set    )   : Bool = false;
     @:isVar public var flipy        (default,set    )   : Bool = false;
     @:isVar public var uv           (default,set    )   : Rectangle;
 
-    public var geometry_quad : QuadGeometry; 
+    public var geometry_quad : QuadGeometry;
 
 
     public function new<T>( options:SpriteOptions<T> ) {
@@ -75,10 +75,10 @@ class Sprite extends Visual {
                 if(texture.type == ResourceType.render_texture) {
                     flipy = true;
                 }
-                
+
             } //onload
 
-        } //texture !null 
+        } //texture !null
 
             //set the origin and centered once created
         centered = !!centered;
@@ -89,7 +89,7 @@ class Sprite extends Visual {
     } //on_geometry_created
 
     override function set_geometry( _g:Geometry ) {
-        
+
         geometry_quad = cast _g;
         return super.set_geometry(_g);
 
@@ -102,7 +102,7 @@ class Sprite extends Visual {
 
         //:todo: note that this function is a heavier alternative
         //plus they should be just one function and use dirty flags
-        //to only update things when things do change but 
+        //to only update things when things do change but
         //this is utilitarian for now
     public function point_inside_exact(_p:Vector) : Bool {
 
@@ -110,7 +110,7 @@ class Sprite extends Visual {
             _hit_box_vert_list = [];
             _hit_origin_offset = new Vector();
         }
-        
+
         _hit_box_vert_list.splice(0,_hit_box_vert_list.length);
         for(_v in geometry.vertices) {
             _hit_box_vert_list.push( _v.pos.clone().transform(geometry.transform.world.matrix) );
@@ -120,7 +120,7 @@ class Sprite extends Visual {
 
     } //point_inside_exact
 
-        //Returns true if a point is inside the default AABB 
+        //Returns true if a point is inside the default AABB
     public function point_inside(_p:Vector) : Bool {
 
         if(pos == null) return false;
@@ -140,7 +140,7 @@ class Sprite extends Visual {
         }
 
         return true;
-    
+
     } //point_inside
 
 //Properties
@@ -148,7 +148,7 @@ class Sprite extends Visual {
 
 //UV / source rect
 
-    private function set_uv(_uv:Rectangle) : Rectangle {
+    function set_uv(_uv:Rectangle) : Rectangle {
 
         if(geometry_quad != null) {
             geometry_quad.uv(_uv);
@@ -159,11 +159,11 @@ class Sprite extends Visual {
         Rectangle.listen( uv, _uv_change );
 
         return uv;
-    } 
+    }
 
 //Flipping
 
-    private function set_flipy(_v:Bool) {        
+    function set_flipy(_v:Bool) {
 
         if(geometry_quad != null) {
             geometry_quad.flipy = _v;
@@ -173,7 +173,7 @@ class Sprite extends Visual {
 
     } //set_flipy
 
-    private function set_flipx(_v:Bool) {        
+    function set_flipx(_v:Bool) {
 
         if(geometry_quad != null) {
             geometry_quad.flipx = _v;
@@ -185,14 +185,14 @@ class Sprite extends Visual {
 
 //Size
 
-    private override function set_size( _v:Vector ) : Vector {  
+    override function set_size( _v:Vector ) : Vector {
 
             //resize the mesh vertices themselves, as scale is relative to this size
             //if explicitly set
         if(geometry_quad != null) {
 
-            geometry_quad.resize( new Vector( _v.x, _v.y ) );            
-                
+            geometry_quad.resize( new Vector( _v.x, _v.y ) );
+
                 //If the user doesn't specify a custom origin, we try and work with the center
             if(!_has_custom_origin) {
                 if(centered) {
@@ -202,15 +202,15 @@ class Sprite extends Visual {
             }
 
         } //if geometry != null
-        
+
             //done
         return super.set_size(_v);
 
     } //set_size
 
-//Centered 
+//Centered
 
-    private function set_centered(_c:Bool) : Bool {
+    function set_centered(_c:Bool) : Bool {
 
             //centered geometry affects the origin directly
         if(size != null) {
@@ -222,20 +222,20 @@ class Sprite extends Visual {
         } //size != null
 
         return centered = _c;
-    
+
     } //set_centered
 
 
 //Serialize
 
     @:noCompletion public override function get_serialize_data() : Dynamic {
-        
+
         var _data : Dynamic = super.get_serialize_data();
 
-        var _extra : Dynamic = {            
+        var _extra : Dynamic = {
             centered    : centered,
         };
-        
+
         if(uv != null)      _extra.uv = uv.serialized;
         if(flipx)           _extra.flipx = true;
         if(flipy)           _extra.flipy = true;
@@ -246,6 +246,6 @@ class Sprite extends Visual {
 
 
         //An internal callback for when x y or w or h on a transform changes
-    private function _uv_change(_v:Float) { this.set_uv(uv); }
+    function _uv_change(_v:Float) { this.set_uv(uv); }
 
 } //Sprite

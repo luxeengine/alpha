@@ -98,7 +98,7 @@ class UUID {
 
     } //get
 
-    private static function hex( sbuf:StringBuf, n:Int ) {
+    static function hex( sbuf:StringBuf, n:Int ) {
 
         var s = new StringBuf();
         do {
@@ -136,7 +136,7 @@ class UUID {
     var cells : String;
     var cellsLength : Int;
 
-    private function new( cells : String ) {
+    function new( cells : String ) {
 
         this.cellsLength = cells.length;
         this.cells = untyped cells;

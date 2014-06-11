@@ -26,18 +26,18 @@ class BalancedBinarySearchTree<K,T> {
 		return _size(root);
 	} //size
 
-    public function height() { 
+    public function height() {
     	return _height(root);
    	} //height
 
-    private function _height( _node:BalancedBinarySearchTreeNode<K,T>  ) {
+    function _height( _node:BalancedBinarySearchTreeNode<K,T>  ) {
         if (_node == null) return 0;
 
         return 1 + Std.int(Math.max( _height(_node.left), _height(_node.right) ));
     } //_height
 
 //Node  size
-	private function _size( _node:BalancedBinarySearchTreeNode<K,T> ) {
+	function _size( _node:BalancedBinarySearchTreeNode<K,T> ) {
 		if(_node == null) {
 			return 0;
 		} else {
@@ -51,8 +51,8 @@ class BalancedBinarySearchTree<K,T> {
 		root.color = BLACK;
 	} //insert
 
-	private function _insert( _node:BalancedBinarySearchTreeNode<K,T>, _key:K, _value:T ) : BalancedBinarySearchTreeNode<K,T> {
-		
+	function _insert( _node:BalancedBinarySearchTreeNode<K,T>, _key:K, _value:T ) : BalancedBinarySearchTreeNode<K,T> {
+
 		if(_node == null) {
 			return new BalancedBinarySearchTreeNode<K,T>(_key, _value, 1, RED);
 		} //_node
@@ -86,7 +86,7 @@ class BalancedBinarySearchTree<K,T> {
 	} //_insert
 
 //Contains
-	public function contains( _key:K ) : Bool {        
+	public function contains( _key:K ) : Bool {
         var _found = find(_key) != null;
         return _found;
     } //contains
@@ -96,8 +96,8 @@ class BalancedBinarySearchTree<K,T> {
 		return _find( root, _key );
 	} //find
 
-	private function _find( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : T {
-		
+	function _find( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : T {
+
 		if(_node == null) {
 			return null;
 		} //_node
@@ -120,9 +120,9 @@ class BalancedBinarySearchTree<K,T> {
 		return _rank(_key, root);
 	} //rank
 
-	private function _rank( _key:K, _node:BalancedBinarySearchTreeNode<K,T> ) : Int {
+	function _rank( _key:K, _node:BalancedBinarySearchTreeNode<K,T> ) : Int {
 		if(_node == null) return 0;
-		
+
 		var comparison = compare(_key, _node.key);
 		if(comparison < 0) {
 			return _rank(_key, _node.left);
@@ -139,14 +139,14 @@ class BalancedBinarySearchTree<K,T> {
 		return _select(root,_rank).key;
 	} //select
 
-	private function _select( _node:BalancedBinarySearchTreeNode<K,T>, _rank:Int ) : BalancedBinarySearchTreeNode<K,T> {
-		
+	function _select( _node:BalancedBinarySearchTreeNode<K,T>, _rank:Int ) : BalancedBinarySearchTreeNode<K,T> {
+
 		if(_node == null) return null;
 		var _r = _size(_node.left);
 
 		if(_r > _rank) {
 			return _select(_node.left, _rank);
-		} else 
+		} else
 		if(_r < _rank) {
 			return _select(_node.right, _rank - _r - 1);
 		} else {
@@ -160,18 +160,18 @@ class BalancedBinarySearchTree<K,T> {
 		return _min(root).key;
 	} //min
 
-	private function _min( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+	function _min( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
 		if(_node.left == null) return _node;
 		return _min( _node.left );
 	} //_min
 //Max
 	public function max() : K {
         return _max(root).key;
-    } 
+    }
 
-    private function _max( _node : BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> { 
+    function _max( _node : BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
         if (_node.right == null) {
-        	return _node; 
+        	return _node;
         } else {
         	return _max(_node.right);
         }
@@ -181,17 +181,17 @@ class BalancedBinarySearchTree<K,T> {
 		var _node = _floor(root, _key);
 		if(_node == null) {
 			return null;
-		} 
+		}
 
 		return _node.key;
 	} //floor
 
-	private function _floor(_node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {
-		
+	function _floor(_node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {
+
 		if(_node == null) return null;
 
 		var comparison = compare(_key, _node.key);
-		
+
 		if(comparison == 0) return _node;
 		if(comparison < 0)  return _floor(_node.left, _key);
 
@@ -213,7 +213,7 @@ class BalancedBinarySearchTree<K,T> {
         }
     } //ceil
 
-    private function _ceil( _node:BalancedBinarySearchTreeNode<K,T> , _key:K ) : BalancedBinarySearchTreeNode<K,T> {
+    function _ceil( _node:BalancedBinarySearchTreeNode<K,T> , _key:K ) : BalancedBinarySearchTreeNode<K,T> {
 
         if (_node == null) return null;
 
@@ -221,19 +221,19 @@ class BalancedBinarySearchTree<K,T> {
 
         if(comparison == 0) return _node;
         if(comparison < 0) {
-            var _n = _ceil(_node.left, _key); 
+            var _n = _ceil(_node.left, _key);
             if (_n != null) {
             	return _n;
             } else {
             	return _node;
             }
         } //comparison < 0
-        return _ceil(_node.right, _key); 
+        return _ceil(_node.right, _key);
     } //_ceil
 
 //Delete
     public function deleteMin() {
-    	
+
     		// if both children of root are black, set root to red
         if( !is_red(root.left) && !is_red(root.right) ) {
             root.color = RED;
@@ -246,8 +246,8 @@ class BalancedBinarySearchTree<K,T> {
         }
     } //deleteMin
 
-    private function _deleteMin( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
-        
+    function _deleteMin( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+
         if(_node.left == null) {
         	return null;
         }
@@ -267,7 +267,7 @@ class BalancedBinarySearchTree<K,T> {
 			// if both children of root are black, set root to red
         if (!is_red(root.left) && !is_red(root.right)) {
             root.color = RED;
-        } 
+        }
 
         root = _deleteMax(root);
 
@@ -277,7 +277,7 @@ class BalancedBinarySearchTree<K,T> {
 
     } //deleteMax
 
-    private function _deleteMax( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+    function _deleteMax( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
 
 		if( is_red(_node.left) ) {
             _node = rotate_right(_node);
@@ -318,12 +318,12 @@ class BalancedBinarySearchTree<K,T> {
 
     } //remove
 
- 
-    private function _remove( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {        
+
+    function _remove( _node:BalancedBinarySearchTreeNode<K,T>, _key:K ) : BalancedBinarySearchTreeNode<K,T> {
 
     	var comparison = compare( _key, _node.key );
 		if( comparison < 0 )  {
-            
+
             if( !is_red(_node.left) && !is_red(_node.left.left) ) {
                 _node = move_red_left(_node);
             }
@@ -367,7 +367,7 @@ class BalancedBinarySearchTree<K,T> {
     } //_delete
 
 //Balanced changes
-	private function is_red( _node:BalancedBinarySearchTreeNode<K,T> ) {
+	function is_red( _node:BalancedBinarySearchTreeNode<K,T> ) {
 		if(_node == null) return BLACK;
 		return _node.color == RED;
 	} //is_red
@@ -402,11 +402,11 @@ class BalancedBinarySearchTree<K,T> {
 
     // Assuming that h is red and both h.left and h.left.left
     // are black, make h.left or one of its children red.
-    private function move_red_left( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+    function move_red_left( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
 
         flip_colors(_node);
 
-        if( is_red(_node.right.left) ) { 
+        if( is_red(_node.right.left) ) {
             _node.right = rotate_right(_node.right);
             _node = rotate_left(_node);
         }
@@ -416,11 +416,11 @@ class BalancedBinarySearchTree<K,T> {
 
     // Assuming that h is red and both h.right and h.right.left
     // are black, make h.right or one of its children red.
-    private function move_red_right( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
-        
+    function move_red_right( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+
         flip_colors(_node);
 
-        if (is_red(_node.left.left)) { 
+        if (is_red(_node.left.left)) {
             _node = rotate_right(_node);
         }
 
@@ -428,7 +428,7 @@ class BalancedBinarySearchTree<K,T> {
     }
 
     // restore red-black tree invariant
-    private function balance( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
+    function balance( _node:BalancedBinarySearchTreeNode<K,T> ) : BalancedBinarySearchTreeNode<K,T> {
 
         if (is_red(_node.right))	{
         	_node = rotate_left(_node);
@@ -467,29 +467,29 @@ class BalancedBinarySearchTree<K,T> {
 
   		return a;
     } //keys
-    
+
     public function iterator() : Iterator<T> {
-        
+
   		return toArray().iterator();
 
     } //iterator
 
 	public function traverse( _node:BalancedBinarySearchTreeNode<K,T>, _traverse_method:BalancedBinarySearchTraverseMethod, _process_node_function : BalancedBinarySearchTreeNode<K,T> ->Void ) {
-        
+
         if (_node != null) {
 
             switch(_traverse_method) {
-                
+
                 case PreOrder:
                     _process_node_function(_node);
                     traverse(_node.left, _traverse_method, _process_node_function);
                     traverse(_node.right, _traverse_method, _process_node_function);
-                    
+
                 case InOrder:
                     traverse(_node.left, _traverse_method, _process_node_function);
                     _process_node_function(_node);
                     traverse(_node.right, _traverse_method, _process_node_function);
-                    
+
                 case PostOrder:
                     traverse(_node.left, _traverse_method, _process_node_function);
                     traverse(_node.right, _traverse_method, _process_node_function);
@@ -507,7 +507,7 @@ class BalancedBinarySearchTree<K,T> {
 	// 	if(_key > _other_key)  return  1;
 	// 	if(_key == _other_key) return  0;
 	// 	return -1;
-	// } // compare	
+	// } // compare
 
 } //BinarySearchTree
 
@@ -527,7 +527,7 @@ class BalancedBinarySearchTreeNode<K,T> {
 		value = _value;
 		nodecount = _nodecount;
 		color = _color;
-        left = null;        
+        left = null;
         right = null;
 	} //new
 

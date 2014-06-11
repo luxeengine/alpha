@@ -12,7 +12,7 @@ typedef TextAlign = phoenix.BitmapFont.TextAlign;
 class Text extends Visual {
 
     public var font : BitmapFont;
-    private var _batcher : Batcher;
+    var _batcher : Batcher;
 
     public var composite_geometry : CompositeGeometry;
 
