@@ -10,6 +10,7 @@ import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.Batcher;
 
+import luxe.options.GeometryOptions;
 import luxe.structural.BinarySearchTree;
 
 import lime.utils.ByteArray;
@@ -20,6 +21,7 @@ import lime.gl.GL;
 import lime.gl.GLBuffer;
 
 typedef GeometryKey = {
+
     var timestamp : Float;
     var sequence : Int;
     var uuid : String;
@@ -29,7 +31,8 @@ typedef GeometryKey = {
     var group : Int;
     var depth : Float;
     var clip : Bool;
-}
+
+} //GeometryKey
 
 class Geometry {
 
@@ -64,19 +67,19 @@ class Geometry {
     @:isVar public var group (get, set) : Int;
     @:isVar public var clip_rect (get, set) : Rectangle;
 
-    private var shadow_primitive_type : PrimitiveType;
-    private var shadow_texture : Texture;
-    private var shadow_shader : Shader;
-    private var shadow_group : Int = 0;
-    private var shadow_depth : Float = 0.0;
-    private var shadow_clip : Bool = false;
+    var shadow_primitive_type : PrimitiveType;
+    var shadow_texture : Texture;
+    var shadow_shader : Shader;
+    var shadow_group : Int = 0;
+    var shadow_depth : Float = 0.0;
+    var shadow_clip : Bool = false;
 
-    private var dirty_primitive_type : Bool = false;
-    private var dirty_texture : Bool = false;
-    private var dirty_shader : Bool = false;
-    private var dirty_group : Bool = false;
-    private var dirty_depth : Bool = false;
-    private var dirty_clip : Bool = false;
+    var dirty_primitive_type : Bool = false;
+    var dirty_texture : Bool = false;
+    var dirty_shader : Bool = false;
+    var dirty_group : Bool = false;
+    var dirty_depth : Bool = false;
+    var dirty_clip : Bool = false;
 
         //Geometry properties
     @:isVar public var visible      (default, set) : Bool = true;
@@ -88,7 +91,7 @@ class Geometry {
         //internal bool flag for clip sorting and clipping state
     @:noCompletion @:isVar public var clip (get, set) : Bool;
 
-        //Private reuse value
+        //internal reuse cache value
     var _final_vert_position : Vector;
 
     public var key : GeometryKey;
@@ -97,7 +100,7 @@ class Geometry {
         //causing comparisons in a binary tree to fail. This value is never reset intentionally.
     static var _sequence_key : Int = -1;
 
-    public function new( ?options:Dynamic ) {
+    public function new( ?options:GeometryOptions ) {
 
         uuid = Luxe.utils.uniqueid();
         id = uuid;
