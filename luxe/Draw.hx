@@ -19,12 +19,12 @@ class Draw {
 
     private function default_options(options:Dynamic) {
 
-        options.font = (options.font == null) ? Luxe.renderer.default_font : options.font;
+        options.font = (options.font == null) ? Luxe.renderer.font : options.font;
         options.color = (options.color == null) ? new Color() : options.color;
         options.depth = (options.depth == null) ? 0 : options.depth;
         options.group = (options.group == null) ? 0 : options.group;
         options.immediate = (options.immediate == null) ? false : options.immediate;
-        options.batcher = (options.batcher == null)  ? Luxe.renderer.default_batcher : options.batcher;
+        options.batcher = (options.batcher == null)  ? Luxe.renderer.batcher : options.batcher;
         options.pos = (options.pos == null)  ? new Vector() : options.pos;
 
             //return

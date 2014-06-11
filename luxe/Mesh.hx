@@ -32,7 +32,7 @@ class Mesh {
         transform.listen_rotation(set_rotation_from_transform);
         transform.listen_scale(set_scale_from_transform);
 
-        var _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;
+        var _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
 
         if(_options.file != null) {
 

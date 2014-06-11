@@ -216,9 +216,9 @@ class Geometry {
 
         vertices.push( v );
 
-        if(vertices.length > Luxe.renderer.default_batcher.max_verts) {
+        if(vertices.length > Luxe.renderer.batcher.max_verts) {
             trace('from $id');
-            throw "Currently a single geometry cannot exceed the maximum vert count of " + Luxe.renderer.default_batcher.max_verts;
+            throw "Currently a single geometry cannot exceed the maximum vert count of " + Luxe.renderer.batcher.max_verts;
         }
 
     } //add

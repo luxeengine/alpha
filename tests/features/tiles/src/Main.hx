@@ -36,7 +36,7 @@ class Main extends luxe.Game {
          tile_text = new luxe.Text({
             color : new Color(1,1,1,1),
             pos : new Vector(10,10),
-            font : Luxe.renderer.default_font,
+            font : Luxe.renderer.font,
             size : 24, 
             text : "move the mouse"
         });

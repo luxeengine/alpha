@@ -8,6 +8,7 @@ import luxe.Input;
 import luxe.Vector;
 import luxe.Scene;
 import luxe.components.Components;
+import luxe.Component;
 
 import luxe.options.EntityOptions;
 

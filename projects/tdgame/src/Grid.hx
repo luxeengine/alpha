@@ -2,7 +2,7 @@
 import haxeAStar.AStar;
 import haxeAStar.IAStarClient;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 import luxe.Input.MouseEvent;
 import luxe.Vector;
 import luxe.Entity;

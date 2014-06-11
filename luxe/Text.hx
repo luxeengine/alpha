@@ -26,7 +26,7 @@ class Text extends Visual {
     public function new( _options : Dynamic ) {
 
             //pass off geometry properties up to super first
-        _batcher = (_options.batcher == null) ? Luxe.renderer.default_batcher : _options.batcher;        
+        _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;        
 
         if(_options.pos == null) {
             _options.pos = new Vector();
@@ -65,7 +65,7 @@ class Text extends Visual {
     //font   
         var _font : Dynamic = (_options.font == null) ? null : _options.font;
             
-        if(_font == null) _font = Luxe.renderer.default_font;
+        if(_font == null) _font = Luxe.renderer.font;
 
         textsize = (_options.size == null) ? 32 : _options.size;
 
@@ -164,6 +164,7 @@ class Text extends Visual {
 
                 //make sure its cleared
             geometry = null;
+            composite_geometry = null;
 
                 //now recreate the new text
             composite_geometry = font.draw_text(text_options);
@@ -174,8 +175,8 @@ class Text extends Visual {
             locked  = composite_geometry.locked;
             visible = composite_geometry.visible;
 
-                //since the transform of the visual manages the position, origin
-                //the geometry cannot have it as well, this would apply it twice
+                // since the transform of the visual manages the position, origin
+                // the geometry cannot have it as well, this would apply it twice
             composite_geometry.transform.origin = new Vector();
             composite_geometry.transform.pos = new Vector();
 

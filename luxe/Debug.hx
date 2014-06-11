@@ -55,11 +55,11 @@ class Debug {
 
     static var trace_callbacks : Map<String, Dynamic->?haxe.PosInfos->Void>;
 
-    public function new( _core:Core ) { 
-        core = _core; 
+    public function new( _core:Core ) {
+        core = _core;
     } //new
 
-    public function init() {        
+    public function init() {
 
         trace_callbacks = new Map();
 
@@ -74,7 +74,7 @@ class Debug {
             views = [];
         #end
 
-        current_view = views[0];        
+        current_view = views[0];
 
         haxe.Log.trace = internal_trace;
 
@@ -103,18 +103,18 @@ class Debug {
     public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
         var _line = StringTools.rpad(Std.string(inf.lineNumber), ' ', 4);
-        #if luxe_native 
+        #if luxe_native
             Sys.println('${inf.fileName}:$_line $v');
         #end
 
         #if luxe_html5
             untyped console.log('${inf.fileName}::$_line $v');
         #end
-            
+
             //call listeners
         for(_callback in trace_callbacks) {
             _callback(v, inf);
-        }        
+        }
 
     } //internal_trace
 
@@ -133,8 +133,8 @@ class Debug {
             Luxe.renderer.add_batch( batcher );
 
             overlay = new QuadGeometry({
-                x:0, y:0, 
-                w: Luxe.screen.w,  h: Luxe.screen.h,        
+                x:0, y:0,
+                w: Luxe.screen.w,  h: Luxe.screen.h,
                 color : new Color(0,0,0,0.8),
                 depth : 999,    //debug depth
                 group : 999,    //debug group
@@ -146,8 +146,8 @@ class Debug {
 
                 //create the scene inspector
             padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);
-            debug_inspector = new Inspector({ 
-                title:'luxe debug', 
+            debug_inspector = new Inspector({
+                title:'luxe debug',
                 pos : new Vector(padding.x, padding.y),
                 size : new Vector(Luxe.screen.w-(padding.x*2), Luxe.screen.h-(padding.y*2)),
                 batcher : batcher
@@ -189,7 +189,7 @@ class Debug {
             }
         }
     } //onmousewheel
-    
+
     public function onmousemove(e:MouseEvent) {
         if(visible) {
             for(view in views) {
@@ -214,11 +214,11 @@ class Debug {
                     trace("profiling complete. Look for the results in " + profile_path );
                 }
             #end //luxe_native
-        #end //profiler        
+        #end //profiler
     } //onkeyup
 
     public function onkeydown(e:KeyEvent) {
-    
+
         if(visible) {
 
             if(e.key == KeyValue.key_1 && core.console_visible) {
@@ -235,7 +235,7 @@ class Debug {
             #if luxe_native
                 if(e.key == KeyValue.key_P && e.ctrl_down) {
                     trace("starting profiler ... let go of key to stop profiling.");
-                    cpp.vm.Profiler.start( profile_path );                    
+                    cpp.vm.Profiler.start( profile_path );
                     profiling = true;
                 }
             #end //luxe_native
@@ -257,7 +257,7 @@ class Debug {
         last_view_index = current_view_index;
             //then go up one, :todo : make easier to jump to specific view?
         current_view_index++;
-            
+
             //handle looping
         if(current_view_index > views.length-1) {
             current_view_index = 0;
@@ -275,7 +275,7 @@ class Debug {
 
     var last_cursor_shown : Bool = true;
     var last_cursor_locked : Bool = false;
-    
+
     public function show_console(_show:Bool = true) {
 
         #if no_debug_console
@@ -283,10 +283,10 @@ class Debug {
         #end
 
         if(_show) {
-            
+
             last_cursor_shown = Luxe.screen.cursor.visible;
             last_cursor_locked = Luxe.screen.cursor.locked;
-            
+
             Luxe.screen.cursor.visible = true;
             Luxe.screen.cursor.locked = false;
 
@@ -295,7 +295,7 @@ class Debug {
             if(last_cursor_shown!=true) {
                 Luxe.screen.cursor.visible = last_cursor_shown;
             }
-            
+
             if(last_cursor_locked!=false) {
                 Luxe.screen.cursor.locked = last_cursor_locked;
             }
@@ -340,14 +340,14 @@ class Debug {
 
             //update the title
         debug_inspector._title_text.text = "[ " + current_view.name + " ] " + Maths.fixed(Luxe.dt,3) + ' / ' + Maths.fixed(dt_average,3);
-        
+
         // #if !luxe_native
             for(view in views) {
                 view.process();
             }
         // #end
-        
+
     } //process
 
-} //Debug 
+} //Debug
 

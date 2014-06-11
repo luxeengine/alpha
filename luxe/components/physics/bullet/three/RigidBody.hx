@@ -8,7 +8,7 @@ package luxe.components.physics.bullet.three;
     import bullet.bulletDynamics.dynamics.BtRigidBody;
 
     import luxe.components.physics.bullet.three.ShapeCollider;
-    import luxe.components.Components.Component;
+    import luxe.Component;
 
     import luxe.Quaternion;
     import luxe.Vector;

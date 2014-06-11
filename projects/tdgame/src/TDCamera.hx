@@ -4,7 +4,7 @@ import luxe.Vector;
 import luxe.Input;
 
 import phoenix.Matrix;
-import luxe.components.Components.Component;
+import luxe.Component;
 
 class TDCamera extends Component {
 

@@ -2,7 +2,7 @@
 import luxe.Vector;
 import luxe.Input;
 import luxe.Entity;
-import luxe.components.Components;
+import luxe.Component;
 
 
 import luxe.Color;

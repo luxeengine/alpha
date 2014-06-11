@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.components.Components;
+import luxe.Component;
 import phoenix.Texture;
 
 import luxe.options.ParticleOptions;

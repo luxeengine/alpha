@@ -25,7 +25,6 @@ typedef Slice = {
 
 class NineSlice extends luxe.Sprite {
 
-
     public var top : Float = 32;
     public var left : Float = 32;
     public var right : Float = 32;
@@ -48,9 +47,9 @@ class NineSlice extends luxe.Sprite {
     private var _batcher : Batcher;
 
     public function new<T>( _options:NineSliceOptions<T> ) {
-        
+
             //default to internal batcher
-        _batcher = Luxe.renderer.default_batcher;
+        _batcher = Luxe.renderer.batcher;
         slices = new Array<Slice>();
 
             //we need to tell the sprite not to create geometry ,
@@ -66,9 +65,9 @@ class NineSlice extends luxe.Sprite {
         }
 
         nineslice_options = _options;
-        
+
         if(_options.batcher != null)    _batcher = _options.batcher;
-        
+
             //sprite options to parent
         super(_options);
 
@@ -78,7 +77,7 @@ class NineSlice extends luxe.Sprite {
         if(_options.right != null) right = _options.right;
         if(_options.bottom != null) bottom = _options.bottom;
 
-        if(_options.source_x != null) { source_x = _options.source_x; } 
+        if(_options.source_x != null) { source_x = _options.source_x; }
         if(_options.source_y != null) { source_y = _options.source_y; }
         if(_options.source_w != null) {
             source_w = _options.source_w;
@@ -115,7 +114,7 @@ class NineSlice extends luxe.Sprite {
 
         midwidth = Math.abs(width - left - right);
         midheight = Math.abs(height - top - bottom);
-            
+
             //top left
             slices[0].source_width  = left;
             slices[0].source_height = top;
@@ -137,7 +136,7 @@ class NineSlice extends luxe.Sprite {
             //top right
             slices[2].source_width  = right;
             slices[2].source_height = top;
-            slices[2].source_x = source_x+ (source_w - right); 
+            slices[2].source_x = source_x+ (source_w - right);
             slices[2].source_y = source_y;
             slices[2].pos.set(left + midwidth,0);
             slices[2].width = right;
@@ -147,7 +146,7 @@ class NineSlice extends luxe.Sprite {
             //middle left
             slices[3].source_width  = left;
             slices[3].source_height = source_h - top - bottom;
-            slices[3].source_x = source_x; 
+            slices[3].source_x = source_x;
             slices[3].source_y = source_y+top;
             slices[3].pos.set(0,top);
             slices[3].width = left;
@@ -156,7 +155,7 @@ class NineSlice extends luxe.Sprite {
             //middle middle
             slices[4].source_width  = source_w - left - right;
             slices[4].source_height = source_h - top - bottom;
-            slices[4].source_x = source_x+left; 
+            slices[4].source_x = source_x+left;
             slices[4].source_y = source_y+top;
             slices[4].pos.set(left,top);
             slices[4].width = width - left - right;
@@ -165,7 +164,7 @@ class NineSlice extends luxe.Sprite {
             //middle right
             slices[5].source_width  = right;
             slices[5].source_height = source_h - top - bottom;
-            slices[5].source_x = source_x+(source_w - right); 
+            slices[5].source_x = source_x+(source_w - right);
             slices[5].source_y = source_y+top;
             slices[5].pos.set(left + midwidth,top);
             slices[5].width = right;
@@ -175,25 +174,25 @@ class NineSlice extends luxe.Sprite {
             //bottom left
             slices[6].source_width  = left;
             slices[6].source_height = bottom;
-            slices[6].source_x = source_x; 
+            slices[6].source_x = source_x;
             slices[6].source_y = source_y+ (source_h - bottom);
             slices[6].pos.set(0,top + midheight);
             slices[6].width = left;
-            slices[6].height = bottom;                     
+            slices[6].height = bottom;
 
             //bottom middle
             slices[7].source_width  = source_w - left - right;
             slices[7].source_height = bottom;
-            slices[7].source_x = source_x+left; 
+            slices[7].source_x = source_x+left;
             slices[7].source_y = source_y+(source_h - bottom);
             slices[7].pos.set(left,top + midheight);
             slices[7].width = width - left - right;
-            slices[7].height = bottom;            
+            slices[7].height = bottom;
 
             //bottom right
             slices[8].source_width  = right;
             slices[8].source_height = bottom;
-            slices[8].source_x = source_x+(source_w - right); 
+            slices[8].source_x = source_x+(source_w - right);
             slices[8].source_y = source_y+(source_h - bottom);
             slices[8].pos.set(left + midwidth, top + midheight);
             slices[8].width = right;
@@ -219,7 +218,7 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : left,
             source_height : top,
-            source_x : source_x, 
+            source_x : source_x,
             source_y : source_y,
             pos : new Vector(0,0),
             width : left,
@@ -230,7 +229,7 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : source_w - left - right,
             source_height : top,
-            source_x : source_x+left, 
+            source_x : source_x+left,
             source_y : source_y,
             pos : new Vector(left,0),
             width : width - left - right,
@@ -241,7 +240,7 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : right,
             source_height : top,
-            source_x : source_x+ (source_w - right), 
+            source_x : source_x+ (source_w - right),
             source_y : source_y,
             pos : new Vector(left + midwidth,0),
             width : right,
@@ -254,7 +253,7 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : left,
             source_height : source_h - top - bottom,
-            source_x : source_x, 
+            source_x : source_x,
             source_y : source_y+top,
             pos : new Vector(0,top),
             width : left,
@@ -265,7 +264,7 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : source_w - left - right,
             source_height : source_h - top - bottom,
-            source_x : source_x+left, 
+            source_x : source_x+left,
             source_y : source_y+top,
             pos : new Vector(left,top),
             width : width - left - right,
@@ -276,7 +275,7 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : right,
             source_height : source_h - top - bottom,
-            source_x : source_x+(source_w - right), 
+            source_x : source_x+(source_w - right),
             source_y : source_y+top,
             pos : new Vector(left + midwidth,top),
             width : right,
@@ -289,29 +288,29 @@ class NineSlice extends luxe.Sprite {
         slices.push({
             source_width  : left,
             source_height : bottom,
-            source_x : source_x, 
+            source_x : source_x,
             source_y : source_y+ (source_h - bottom),
             pos : new Vector(0,top + midheight),
             width : left,
             height : bottom,
-            geometry_id : ''                        
+            geometry_id : ''
         });
             //bottom middle
         slices.push({
             source_width  : source_w - left - right,
             source_height : bottom,
-            source_x : source_x+left, 
+            source_x : source_x+left,
             source_y : source_y+(source_h - bottom),
             pos : new Vector(left,top + midheight),
             width : width - left - right,
             height : bottom,
-            geometry_id : ''                    
+            geometry_id : ''
         });
             //bottom right
         slices.push({
             source_width  : right,
             source_height : bottom,
-            source_x : source_x+(source_w - right), 
+            source_x : source_x+(source_w - right),
             source_y : source_y+(source_h - bottom),
             pos : new Vector(left + midwidth, top + midheight),
             width : right,
@@ -324,7 +323,7 @@ class NineSlice extends luxe.Sprite {
     } //set
 
     override function set_size( _v : Vector ) {
-            
+
         if(!is_set) return _v;
             //update the values
         update_size(_v.x, _v.y);
@@ -340,7 +339,7 @@ class NineSlice extends luxe.Sprite {
     } //set_size
 
     override function set_pos( _v : Vector ) {
-        
+
         super.set_pos(_v);
 
         var _pv = _v.clone();
@@ -356,8 +355,8 @@ class NineSlice extends luxe.Sprite {
     override function destroyed() {
 
         super.destroyed();
-        
-        if(is_set) {            
+
+        if(is_set) {
             _geometry.drop();
         }
 
@@ -374,6 +373,18 @@ class NineSlice extends luxe.Sprite {
         return visible = _v;
 
     } //set_visible
+
+    override function set_depth(_d:Float) {
+
+        super.set_depth(_d);
+
+        if(is_set) {
+            _geometry.depth = _d;
+        }
+
+        return depth = _d;
+
+    } //set_depth
 
     override function set_clip(val : Bool) : Bool {
 
@@ -419,13 +430,13 @@ class NineSlice extends luxe.Sprite {
             color : _color,
             depth : nineslice_options.depth,
             group : nineslice_options.group,
-            visible : nineslice_options.visible            
+            visible : nineslice_options.visible
         });
 
         for(slice in slices) {
 
-            slice.geometry_id = _geometry.quad_add({ 
-                x: slice.pos.x, 
+            slice.geometry_id = _geometry.quad_add({
+                x: slice.pos.x,
                 y: slice.pos.y,
                 w: slice.width,
                 h: slice.height
@@ -447,7 +458,7 @@ class NineSlice extends luxe.Sprite {
     } // _create
 
     public function create( _pos:Vector, _w:Float, _h:Float, ?_reset:Bool = false ) {
-        
+
         if(!texture.loaded) {
             texture.onload = function(texture){
                 _create(_pos,_w,_h,_reset);

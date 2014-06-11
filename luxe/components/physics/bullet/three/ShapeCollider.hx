@@ -4,7 +4,7 @@ package luxe.components.physics.bullet.three;
 #if haxebullet
 
 
-    import luxe.components.Components.Component;
+    import luxe.Component;
 
 
     class ShapeCollider extends Component {

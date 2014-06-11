@@ -35,7 +35,7 @@ class TraceDebugView extends luxe.debug.DebugView {
             depth : 999.3,
             color : new Color().rgb(0x888888),
             bounds : new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 ),
-            font : Luxe.renderer.default_font,
+            font : Luxe.renderer.font,
             text : '',
             align_vertical : luxe.Text.TextAlign.bottom,
             size : 12,
@@ -43,7 +43,9 @@ class TraceDebugView extends luxe.debug.DebugView {
             visible : false
         });
 
-        lines.geometry.locked = true;        
+        if(lines.geometry != null) {
+            lines.geometry.locked = true;
+        }
     }
 
     public function add_line(_t:String) {

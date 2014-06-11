@@ -3,7 +3,7 @@ import luxe.Visual;
 import luxe.Vector;
 import luxe.Color;
 import luxe.tween.Actuate;
-import luxe.components.Components.Component;
+import luxe.Component;
 
 import Projectile;
 import levels.Stage1Level1;

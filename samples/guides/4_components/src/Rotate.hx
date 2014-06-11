@@ -1,7 +1,7 @@
 
 import luxe.Vector;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 
 //This component will rotate the entity that it is attached to a small amount each frame.
 //It is assumed that the entity is a Sprite! 

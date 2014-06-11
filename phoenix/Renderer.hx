@@ -49,10 +49,10 @@ class Renderer {
     public var default_frag_source : String;
     public var default_frag_textured_source : String;
         //Default view and batching renderer
-    public var default_batcher : Batcher;
-    public var default_camera : Camera;
+    public var batcher : Batcher;
+    public var camera : Camera;
         //Default font for debug stuff etc
-    public var default_font : BitmapFont;    
+    public var font : BitmapFont;    
         //Default render path is a forward renderer, and acts as a fallback for deferred
         //render path is the active render path, can replace it to render in a different manner
         //It will pass all batchers to be processed etc for you to do whatever with
@@ -85,7 +85,7 @@ class Renderer {
         // } );
 
             //The default view
-        default_camera = new Camera();
+        camera = new Camera();
             //Create the default render path
         default_render_path = new RenderPath( this );
             //Apply it
@@ -95,9 +95,9 @@ class Renderer {
         create_default_shaders();
 
             //create the default batcher
-        default_batcher = new Batcher( this, 'default_batcher' );
-        default_batcher.layer = 1;
-        add_batch(default_batcher);
+        batcher = new Batcher( this, 'default batcher' );
+        batcher.layer = 1;
+        add_batch(batcher);
 
     #if !no_debug_console
 
@@ -449,14 +449,14 @@ class Renderer {
 
         _debug("creating the default font...");
 
-            default_font = new BitmapFont( resource_manager );
+            font = new BitmapFont( resource_manager );
 
                 //create the font texture                    
             var _font_texture = Luxe.renderer.load_texture_from_resource_bytes('din.png', 256, 256);
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            default_font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.default_font', null, [_font_texture] );        
+            font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.font', null, [_font_texture] );        
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
             

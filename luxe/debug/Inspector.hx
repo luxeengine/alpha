@@ -36,7 +36,7 @@ typedef DebugInspectorOptions = {
 	public function new( _options:DebugInspectorOptions ) {
 
 		title = 'Inspector';
-		font = Luxe.renderer.default_font;
+		font = Luxe.renderer.font;
 		size = new Vector( Std.int(Luxe.screen.w*0.2), Std.int(Luxe.screen.h*0.6) );
 		pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
 
@@ -45,7 +45,7 @@ typedef DebugInspectorOptions = {
 		uibutton = Luxe.renderer.load_texture_from_resource_bytes('tiny.button.png', 32, 16);
 		
 			//default to the internal batcher
-		_batcher = Luxe.renderer.default_batcher;
+		_batcher = Luxe.renderer.batcher;
 
 		if(_options != null) {
 

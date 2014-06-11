@@ -4,7 +4,7 @@
 	 … var name : String;
 	 … var id : String;
 
-//luxe class : luxe.components.Component
+//luxe class : luxe.Component
 
 	 • function serialize_to_disk(_destination_path:String) : Void;
 	 • function get_serialize_data() : null;

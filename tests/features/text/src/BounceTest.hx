@@ -1,4 +1,4 @@
-import luxe.components.Components.Component;
+import luxe.Component;
 
 
 class BounceTest extends Component {

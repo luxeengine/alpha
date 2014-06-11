@@ -11,7 +11,7 @@ import luxe.Vector;
 import luxe.Sprite;
 import luxe.Color;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 
 class PlayerMovement extends Component {
     

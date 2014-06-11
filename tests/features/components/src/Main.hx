@@ -1,5 +1,5 @@
 
-import luxe.components.Components;
+import luxe.Component;
 import luxe.Entity;
 import luxe.Vector;
 import luxe.Input;

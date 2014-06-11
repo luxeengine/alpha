@@ -1,6 +1,6 @@
 package luxe.components.sprite;
 
-import luxe.components.Components;
+import luxe.Component;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Sprite;

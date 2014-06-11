@@ -139,7 +139,7 @@ class Core {
 
     static inline var none : Int = 4;
     private function ready( _lime : Lime ) {
-            
+
             //Keep a reference
         lime = _lime;
 
@@ -211,7 +211,7 @@ class Core {
         Luxe.events = events;
         Luxe.timer = time;
         Luxe.input = input;
-        Luxe.camera = new luxe.Camera({ name:'default_camera', view:renderer.default_camera });
+        Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
         Luxe.resources = renderer.resource_manager;
         Luxe.physics = physics;
 

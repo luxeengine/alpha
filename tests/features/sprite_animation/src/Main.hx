@@ -46,7 +46,7 @@ class Main extends luxe.Game {
             text : _text
         });
 
-        var _textsize = Luxe.renderer.default_font.get_text_dimensions(_text, new Vector(1,1));
+        var _textsize = Luxe.renderer.font.get_text_dimensions(_text, new Vector(1,1));
         
             textbounds = new Rectangle((Luxe.screen.w/2) - (_textsize.x/2), 90, _textsize.x, _textsize.y);
 

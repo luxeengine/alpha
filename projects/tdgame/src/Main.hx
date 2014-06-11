@@ -42,7 +42,7 @@ class Main extends luxe.Game {
         game_camera.view.rotation.setFromEuler(new Vector(Maths.degToRad(-60),0,0));
 
             //Set the default renderer to use this camera
-        Luxe.renderer.default_batcher.view = game_camera.view;
+        Luxe.renderer.batcher.view = game_camera.view;
 
         Luxe.debug.profile_path = '/Users/Sven/dev/luxe/profile.txt';
 

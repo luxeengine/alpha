@@ -43,7 +43,7 @@ typedef KerningKey = {
     var index : Int;
 }
 
-//this is not the best option 
+//this is not the best option
 typedef KeyValuePair = {
     var key : String;
     var value : String;
@@ -56,14 +56,14 @@ typedef PageInfo = {
 
 class BitmapFont extends Resource {
 
-        //  _font_name:String = '', _bitmap_file : String = '' 
+        //  _font_name:String = '', _bitmap_file : String = ''
     public var dimensions : Vector;
     public var spacing : Float = 0.0;
     public var line_height : Float = 0.0;
     public var font_size : Float = 0.0;
     public var font_character_count : Int = 0;
     public var pages : Map<Int, Texture>;
-    public var characters : Map<Int, Character>;    
+    public var characters : Map<Int, Character>;
     public var kernings : Map< KerningKey, Int >;
     public var scale : Vector;
     private var line_widths : Array<Float>;
@@ -72,14 +72,14 @@ class BitmapFont extends Resource {
     public var onload : BitmapFont -> Void;
 
     public function new( ?_resource_manager : ResourceManager = null ) {
-        
+
         super( _resource_manager, ResourceType.font);
 
         id  = 'Unnamed font';
 
         line_widths = new Array<Float>();
         dimensions = new Vector();
-        characters = new Map();        
+        characters = new Map();
         kernings = new Map();
         scale = new Vector(1,1);
         pages = new Map();
@@ -108,15 +108,15 @@ class BitmapFont extends Resource {
     }
 
     public function one_page_loaded(t:Texture) {
-        pages_loaded++;        
+        pages_loaded++;
         if(pages_loaded == Lambda.count(pages)) {
             on_all_pages_loaded();
         }
     }
 
-    public function load_from_string( _bitmap_file : String = '', 
-                                      _folder : String = 'assets/', 
-                                      ?onloaded : BitmapFont->Void = null, 
+    public function load_from_string( _bitmap_file : String = '',
+                                      _folder : String = 'assets/',
+                                      ?onloaded : BitmapFont->Void = null,
                                       ?custom_pages:Array<Texture> = null ) {
 
         var lines : Array<String> = _bitmap_file.split("\n");
@@ -148,7 +148,7 @@ class BitmapFont extends Resource {
 
                     _initial_tokens.remove("common");
                     var _items = _tokenize_font_line(_initial_tokens);
-                        
+
                             //parse the line height
                         line_height = Std.parseInt( _items["lineHeight"].value );
 
@@ -168,7 +168,7 @@ class BitmapFont extends Resource {
 
                             //remove arbitrary new lines
                         _file = StringTools.trim( _file );
-                        
+
                             //Store the texture id's in the list
                         _pages.push({ id:_id, file:_file });
                             //Set this so the count is maintained
@@ -199,14 +199,14 @@ class BitmapFont extends Resource {
                         xadvance : Std.parseInt(_items["xadvance"].value),
                         page : Std.parseInt(_items["page"].value)
                     };
-                    
+
                     set_character(_character_info.id, _character_info);
 
                 case "kerning":
 
                     _initial_tokens.remove("char");
                     var _items = _tokenize_font_line(_initial_tokens);
-                        
+
                         var first = Std.parseInt(_items["first"].value);
                         var second = Std.parseInt(_items["second"].value);
                         var amount = Std.parseInt(_items["amount"].value);
@@ -219,16 +219,16 @@ class BitmapFont extends Resource {
         //once all loaded, we can load up the pages textures
         //but only if the custom pages wasn't specified
         if(custom_pages == null) {
-            
+
             for(_page_item in _pages) {
                     //fetch the texture
                 var _t = Luxe.loadTexture( _folder + _page_item.file, one_page_loaded );
                     //store the texture in the map for use
-                _t.onload = function(t_t) { 
-                    pages.set(_page_item.id, _t); 
+                _t.onload = function(t_t) {
+                    pages.set(_page_item.id, _t);
                     // _t.generate_mipmaps();
                     _t.filter_min = FilterType.linear;
-                    // _t.filter_mag = FilterType.linear; 
+                    // _t.filter_mag = FilterType.linear;
                 }
 
             }
@@ -236,7 +236,7 @@ class BitmapFont extends Resource {
         } else {
 
             var _id : Int = 0;
-            
+
             for(_page in custom_pages) {
                 pages.set(_id, _page);
                 ++_id;
@@ -258,7 +258,7 @@ class BitmapFont extends Resource {
         if(kernings.exists(key)) {
             return kernings.get(key);
         } else {
-            return 0;            
+            return 0;
         }
     }
 
@@ -305,7 +305,7 @@ class BitmapFont extends Resource {
             // if( i < _string.length - 1 ){
             //     x_inc += get_kerning( glyph.charCodeAt(0), _string.charAt(i).charCodeAt(0) );
             // }
-            
+
             if( glyph == '\t' ){
                 x_inc += spc.xadvance * 4;
             }
@@ -318,8 +318,8 @@ class BitmapFont extends Resource {
         line_widths.push(cumulative_x);
         max_x = Math.max( max_x, cumulative_x );
 
-            //Add one line of height. We do this because we want the 
-            //total height and the culmative y is (at this point) 
+            //Add one line of height. We do this because we want the
+            //total height and the culmative y is (at this point)
             //the y at the *top* of the last line.
         cumulative_y += line_height * _scale.y;
 
@@ -337,7 +337,7 @@ class BitmapFont extends Resource {
          var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
          var _size : Float = (options.size == null) ? 22 : options.size;
-         var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.default_batcher : options.batcher;
+         var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.batcher : options.batcher;
          var _visible : Bool = (options.visible == null) ? true : options.visible;
          var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
          var _final_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
@@ -346,15 +346,15 @@ class BitmapFont extends Resource {
          if(_bounds != null) {
             _bounds_based = true;
          }
-        
+
             //no texture? return empty geometry
         if(pages[0] == null) {
             log("Warning ; " + id + " font trying to draw without a texture.");
             return _final_geom;
         }
 
-        
-            //an array of geometry items, one for each unique texture            
+
+            //an array of geometry items, one for each unique texture
         var _geoms : Array<Geometry> = new Array<Geometry>();
         var _page_count = Lambda.count(pages);
 
@@ -370,7 +370,7 @@ class BitmapFont extends Resource {
                 immediate : _immediate
             });
 
-            _g.id = 'text.page'+i+'.'+_string.substr(0,8);
+            _g.id = 'text.page'+i+'.'+_string;//.substr(0,8);
 
             _g.primitive_type = PrimitiveType.triangles;
             _g.immediate = _immediate;
@@ -396,7 +396,7 @@ class BitmapFont extends Resource {
         var _max_line_width : Float = _dimensions.x;
 
         var _lines = _string.split('\n');
-        
+
         for(_line in _lines) {
 
             var _align_x_offset : Float = 0.0;
@@ -451,7 +451,7 @@ class BitmapFont extends Resource {
 
                 if( _char == '\t' ){
                     _x_inc += spc.xadvance * 4; //:todo:, hardcoded 4 tab size
-                } 
+                }
 
                 _cumulative_x += _x_inc * _scale.x;
 
@@ -476,7 +476,7 @@ class BitmapFont extends Resource {
 
                 var vert5 : Vertex = new Vertex( new Vector( _x+_w, _y+_h), _col );
                     vert5.uv.uv0.set(_u2, _v2);
-                    
+
                    //Add to the geomery
 
                 _geom.add( vert0 ); _geom.add( vert1 );  _geom.add( vert2 );
@@ -487,8 +487,8 @@ class BitmapFont extends Resource {
                 //next line (if any)
             _line_number++;
 
-        } //line in lines        
-                
+        } //line in lines
+
             //replace the composite with the children geometry we just created
         _final_geom.replace( _geoms );
         _final_geom.add_to_batcher(_batcher);
@@ -501,7 +501,7 @@ class BitmapFont extends Resource {
             if( _align == TextAlign.center ) {
                 _po.x = _pos.x - (_max_line_width/2);
             } else if( _align == TextAlign.right ) {
-                _po.x = _pos.x - (_max_line_width);  
+                _po.x = _pos.x - (_max_line_width);
             }
                 //translate all of the new text according to the actual position
             _final_geom.transform.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
@@ -530,10 +530,10 @@ class BitmapFont extends Resource {
 
         } //_bounds_based
 
-        _verbose('drew text ${_string.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
-        
-        _final_geom.id = 'drawn_text- ' + _string.substr(0,10);
-        _final_geom.transform.id = 'drawn_text- ' + _string.substr(0,10);
+        // _verbose('drew text ${_string.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
+
+        // _final_geom.id = 'drawn_text- ' + _string.substr(0,10);
+        // _final_geom.transform.id = 'drawn_text- ' + _string.substr(0,10);
         _final_geom.immediate = _immediate;
         _final_geom.visible = _visible;
 

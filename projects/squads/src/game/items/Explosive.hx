@@ -6,7 +6,7 @@ import luxe.Vector;
 import luxe.Sprite;
 import luxe.Rectangle;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 
 class Explosive extends Component {
 

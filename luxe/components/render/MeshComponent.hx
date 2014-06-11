@@ -1,6 +1,6 @@
 package luxe.components.render;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 import luxe.Mesh;
 import luxe.Quaternion;
 import phoenix.Texture;

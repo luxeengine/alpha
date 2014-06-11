@@ -78,7 +78,7 @@ class Main extends luxe.Game {
         info = new luxe.Text({
             color : new Color().rgb(0xf6007b),
             pos : new Vector(10,10),
-            font : Luxe.renderer.default_font,
+            font : Luxe.renderer.font,
             size : 20
         });
 

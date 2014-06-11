@@ -5,7 +5,7 @@ import luxe.Vector;
 import luxe.Sprite;
 import luxe.Color;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 import phoenix.Texture;
 
 class PlayerTeam extends Component {

@@ -4,7 +4,7 @@ package game;
 import luxe.Vector;
 import luxe.Sprite;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 import phoenix.Texture;
 
 typedef WeaponDesc = { 

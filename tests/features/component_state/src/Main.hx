@@ -3,7 +3,7 @@ import luxe.Color;
 import luxe.Sprite;
 import luxe.Input;
 import luxe.Entity;
-import luxe.components.Components.Component;
+import luxe.Component;
 import luxe.Vector;
 
 //

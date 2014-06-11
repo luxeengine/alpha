@@ -102,7 +102,7 @@ class Board {
         delta_time_text = new luxe.Text({
             color : new Color(0,0,0,1).rgb(0xf6007b),
             pos : new Vector(30,30),
-            font : Luxe.renderer.default_font,
+            font : Luxe.renderer.font,
             size : 16 * game.ratio,
             depth : 20,
         });

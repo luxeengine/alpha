@@ -6,7 +6,7 @@ import game.PlayerWeapon;
 import luxe.Vector;
 import luxe.Sprite;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 import phoenix.Texture;
 
 import game.PlayerAim;

@@ -145,7 +145,7 @@ class Batcher {
         static_normallist = new Float32Array( max_verts );
 
             //The default view so we see stuff
-        view = renderer.default_camera;
+        view = renderer.camera;
 
             //Create the attribute buffers
         vertexBuffers = [];

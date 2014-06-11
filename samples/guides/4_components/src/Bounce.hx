@@ -1,5 +1,5 @@
 
-import luxe.components.Components.Component;
+import luxe.Component;
 
 
 class Bounce extends Component {

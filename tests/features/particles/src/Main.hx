@@ -84,7 +84,7 @@ class Main extends luxe.Game {
             emit_time : 0.3
         });
 
-        Luxe.renderer.default_batcher.add_group(5, 
+        Luxe.renderer.batcher.add_group(5, 
             function(b:Batcher){
                 b.blend_mode(BlendMode.src_alpha, BlendMode.one);
             }, 

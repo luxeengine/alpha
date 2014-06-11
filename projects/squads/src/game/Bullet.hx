@@ -11,7 +11,7 @@ import luxe.Entity;
 
 import luxe.Vector;
 import luxe.Rectangle;
-import luxe.components.Components.Component;
+import luxe.Component;
 
 class Bullet extends Component {
 

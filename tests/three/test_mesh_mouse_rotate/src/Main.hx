@@ -3,7 +3,7 @@ import luxe.Input;
 import luxe.Entity;
 import luxe.Vector;
 
-import luxe.components.Components.Component;
+import luxe.Component;
 import luxe.components.render.MeshComponent;
 
 class MouseRotate extends Component {
