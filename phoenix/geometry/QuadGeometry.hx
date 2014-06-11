@@ -6,6 +6,8 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import phoenix.Vector;
 
+import luxe.options.GeometryOptions.QuadGeometryOptions;
+
 class QuadGeometry extends Geometry {
 
     @:isVar public var flipx(default, set) : Bool = false;
@@ -15,10 +17,10 @@ class QuadGeometry extends Geometry {
 
     var is_set : Bool = false;
 
-	public function new( options : Dynamic ) {
+	public function new( ?options : QuadGeometryOptions ) {
 
 		super(options);
-        
+
         if(options == null) return;
 
             //Do these before set, so they can be applied
@@ -38,13 +40,13 @@ class QuadGeometry extends Geometry {
 
     public function uv( _rect:luxe.Rectangle ) {
 
-        if(texture == null) { 
+        if(texture == null) {
             trace("Warning : calling UV on a geometry with null texture.");
             return;
         }
 
         var tlx = _rect.x/texture.actual_width;
-        var tly = _rect.y/texture.actual_height;    
+        var tly = _rect.y/texture.actual_height;
         var szx = _rect.w/texture.actual_width;
         var szy = _rect.h/texture.actual_height;
 
@@ -74,7 +76,7 @@ class QuadGeometry extends Geometry {
             //bl
         var bl_x = tl_x;
         var bl_y = tl_y + sz_y;
-            
+
         var tmp_x = 0.0;
         var tmp_y = 0.0;
 
@@ -134,8 +136,8 @@ class QuadGeometry extends Geometry {
     }
 
  	public function set( quad:luxe.Rectangle ) {
- 		
- 		vertices.splice(0, vertices.length);        
+
+ 		vertices.splice(0, vertices.length);
 
             //First triangle
         var vert0 : Vertex = new Vertex( new Vector( 0, 0 ), color );
@@ -146,7 +148,7 @@ class QuadGeometry extends Geometry {
         var vert3 : Vertex = new Vertex( new Vector( 0 , quad.h ), color );
         var vert4 : Vertex = new Vertex( new Vector( 0 , 0 ), color );
         var vert5 : Vertex = new Vertex( new Vector( quad.w , quad.h ), color );
-        
+
            //Add to the list
 
             //tl
@@ -177,7 +179,7 @@ class QuadGeometry extends Geometry {
 
  	} //set
 
-    public function set_flipx(_val:Bool) {        
+    public function set_flipx(_val:Bool) {
             //set before calling uv_space
         flipx = _val;
 

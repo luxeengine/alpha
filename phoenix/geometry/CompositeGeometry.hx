@@ -11,14 +11,15 @@ import luxe.Log.log;
 import luxe.Log._verbose;
 import luxe.Log._debug;
 
+import luxe.options.GeometryOptions;
 
 class CompositeGeometry extends Geometry {
 
     public var geometry : Array<Geometry>;
 
-    public function new(?options:Dynamic = null) {
+    public function new( ?_options:GeometryOptions ) {
 
-        super(options);
+        super( _options );
 
         geometry = new Array<Geometry>();
 

@@ -11,31 +11,33 @@ import phoenix.Texture;
 import phoenix.Color;
 import phoenix.Vector;
 
+import luxe.options.GeometryOptions;
+
 typedef ComplexQuad = {
-	uuid : String, 
-	verts : Array<Vertex>,
+    uuid : String,
+    verts : Array<Vertex>,
     flipx : Bool,
     flipy : Bool,
-    _uv_cache : Rectangle	
+    _uv_cache : Rectangle
 }
 
 
-//Note that a complex geometry has only one texture, 
+//Note that a complex geometry has only one texture,
 // it is for optimising singular geometry that shares many quads
 // and share a shader and texture and state
 
 class ComplexGeometry extends Geometry {
 
-	public var quads : Map<String, ComplexQuad>;
+    public var quads : Map<String, ComplexQuad>;
 
-	public function new( _options : Dynamic ) {
+    public function new( ?_options : GeometryOptions ) {
 
-		super(_options);
-		primitive_type = PrimitiveType.triangles;
+        super( _options );
+        primitive_type = PrimitiveType.triangles;
 
-		quads = new Map();
+        quads = new Map();
 
-	}
+    }
 
     public function clear() {
         for(q in quads.keys()) {
@@ -43,9 +45,9 @@ class ComplexGeometry extends Geometry {
         }
     }
 
-	public function quad_add( _options:Dynamic ) : String {
+    public function quad_add( _options:Dynamic ) : String {
 
-		var _uuid : String = Luxe.utils.uniqueid();
+        var _uuid : String = Luxe.utils.uniqueid();
 
             //First triangle
         var vert0 : Vertex = new Vertex( new Vector( _options.x,            _options.y ) );
@@ -57,7 +59,7 @@ class ComplexGeometry extends Geometry {
         var vert4 : Vertex = new Vertex( new Vector( _options.x , _options.y ) );
         var vert5 : Vertex = new Vertex( new Vector( _options.x+_options.w , _options.y+_options.h ) );
 
-                //tl 	
+                //tl
             add( vert0 );
                 //tr
             add( vert1 );
@@ -88,16 +90,16 @@ class ComplexGeometry extends Geometry {
         quads.set( _uuid, _complex_quad );
 
                 //for locked geometry
-            dirty = true;        
+            dirty = true;
 
         return _uuid;
 
-	} //add_quad
+    } //add_quad
 
     public function quad_remove( _quad_id:String ) {
 
         var _complex_quad : ComplexQuad = quads.get( _quad_id );
-        
+
         if(_complex_quad != null) {
 
             remove( _complex_quad.verts[0] );
@@ -110,7 +112,7 @@ class ComplexGeometry extends Geometry {
             quads.remove( _quad_id );
 
                 //for locked geometry
-            dirty = true;            
+            dirty = true;
 
         } //_complex_quad
 
@@ -119,7 +121,7 @@ class ComplexGeometry extends Geometry {
     public function quad_hide( _quad_id:String ) {
 
         var _complex_quad : ComplexQuad = quads.get( _quad_id );
-        
+
         if(_complex_quad != null) {
 
             remove( _complex_quad.verts[0] );
@@ -130,7 +132,7 @@ class ComplexGeometry extends Geometry {
             remove( _complex_quad.verts[5] );
 
                 //for locked geometry
-            dirty = true;            
+            dirty = true;
 
         } //_complex_quad
 
@@ -140,9 +142,9 @@ class ComplexGeometry extends Geometry {
     public function quad_show( _quad_id:String ) {
 
         var _complex_quad : ComplexQuad = quads.get( _quad_id );
-        
+
         if(_complex_quad != null) {
-            
+
             add( _complex_quad.verts[0] );
             add( _complex_quad.verts[1] );
             add( _complex_quad.verts[2] );
@@ -151,16 +153,16 @@ class ComplexGeometry extends Geometry {
             add( _complex_quad.verts[5] );
 
                 //for locked geometry
-            dirty = true;            
+            dirty = true;
 
         } //_complex_quad
 
-    } //quad_hide    
+    } //quad_hide
 
     public function quad_resize( _quad_id:String, _quad : Rectangle ) {
 
         var _complex_quad : ComplexQuad = quads.get( _quad_id );
-        
+
         if(_complex_quad != null) {
 
             _complex_quad.verts[0].pos = new Vector( _quad.x,         _quad.y );
@@ -179,7 +181,7 @@ class ComplexGeometry extends Geometry {
     } //remove_quad
 
     public function quad_pos( _quad_id:String, _p:Vector ) {
-        
+
         var _complex_quad : ComplexQuad = quads.get( _quad_id );
 
         if(_complex_quad != null) {
@@ -271,7 +273,7 @@ class ComplexGeometry extends Geometry {
                 //bl
             var bl_x = tl_x;
             var bl_y = tl_y + sz_y;
-                
+
             var tmp_x = 0.0;
             var tmp_y = 0.0;
 
@@ -322,13 +324,13 @@ class ComplexGeometry extends Geometry {
 
     public function quad_uv( _quad_id:String, _uv : Rectangle ) {
 
-        if( texture == null ) { 
+        if( texture == null ) {
             trace("Warning : calling UV on a Complex Geometry with null texture.");
             return;
         }
 
         var tlx = _uv.x/texture.actual_width;
-        var tly = _uv.y/texture.actual_height;    
+        var tly = _uv.y/texture.actual_height;
         var szx = _uv.w/texture.actual_width;
         var szy = _uv.h/texture.actual_height;
 

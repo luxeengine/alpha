@@ -8,13 +8,15 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import phoenix.Circle;
 
+import luxe.options.GeometryOptions.CircleGeometryOptions;
+
 class ArcGeometry extends RingGeometry {
 
-	public function new( options : Dynamic ) {
+	public function new( ?options : CircleGeometryOptions ) {
 
 		super(options);
 
-			//remove the first center point 
+			//remove the first center point
 			//and the last extra vert
 		vertices.pop();
 		vertices.pop();

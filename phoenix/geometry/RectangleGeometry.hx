@@ -5,17 +5,24 @@ import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.geometry.Geometry;
 
+import luxe.options.GeometryOptions.RectangleGeometryOptions;
 
 class RectangleGeometry extends Geometry {
 
 
-    public function new( options : Dynamic ) {
+    public function new( ?options : RectangleGeometryOptions ) {
+
         super(options);
+
+        if(options == null) {
+            return;
+        }
+
         set(options);
-    }
 
+    } //new
 
-    public function set(options:Dynamic) {
+    public function set( options:RectangleGeometryOptions ) {
 
         vertices.splice(0, vertices.length);
 
@@ -48,7 +55,7 @@ class RectangleGeometry extends Geometry {
             vert7.uv.uv0.set(0,0);
 
         add(vert0); add(vert1); add(vert2); add(vert3);
-        add(vert4); add(vert5); add(vert6); add(vert7); 
+        add(vert4); add(vert5); add(vert6); add(vert7);
 
         primitive_type = PrimitiveType.lines;
         immediate = (options.immediate == null) ? false : options.immediate;
@@ -59,6 +66,6 @@ class RectangleGeometry extends Geometry {
         transform.pos = new Vector( options.x, options.y );
 
     } //set
-    
+
 
 } //RectangleGeometry

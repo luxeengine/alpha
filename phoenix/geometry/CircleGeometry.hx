@@ -7,12 +7,14 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import phoenix.Circle;
 
+import luxe.options.GeometryOptions.CircleGeometryOptions;
+
 class CircleGeometry extends Geometry {
 
-    public function new( options : Dynamic ) {
+    public function new( ?options : CircleGeometryOptions ) {
 
         super(options);
-        
+
         if(options == null) return;
 
             //some default values so that the circle is visible with no values
@@ -21,7 +23,7 @@ class CircleGeometry extends Geometry {
 
         if(options.end_angle == null) {
             options.end_angle = 360;
-        }        
+        }
 
         if(options.start_angle == null) {
             options.start_angle = 0;
@@ -51,7 +53,7 @@ class CircleGeometry extends Geometry {
             }
         }
 
-            //Apply the new options 
+            //Apply the new options
         set( options.x, options.y, _radius_x, _radius_y, options.steps, options.start_angle, options.end_angle );
 
         if(options.visible != null) visible = options.visible;
@@ -62,7 +64,7 @@ class CircleGeometry extends Geometry {
 
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml
-            
+
         primitive_type = PrimitiveType.triangles;
 
             var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle);
@@ -75,14 +77,14 @@ class CircleGeometry extends Geometry {
 
             var tangential_factor = Math.tan( theta );
             var radial_factor = Math.cos( theta );
-            
-            var x : Float = _rx * Math.cos(_start_angle_rad); 
+
+            var x : Float = _rx * Math.cos(_start_angle_rad);
             var y : Float = _rx * Math.sin(_start_angle_rad);
 
-            //now work out the ratio between _x and _y 
+            //now work out the ratio between _x and _y
             var radial_ratio : Float = _rx / _ry;
             if(radial_ratio == 0) radial_ratio = 0.000000001;
-            
+
             var _index = 0;
             var _segment_pos = [];
             for( i in 0 ... _steps ) {
@@ -110,11 +112,11 @@ class CircleGeometry extends Geometry {
                 var tx = -y;
                 var ty = x;
 
-                x += tx * tangential_factor; 
-                y += ty * tangential_factor; 
-                
+                x += tx * tangential_factor;
+                y += ty * tangential_factor;
+
                 x *= radial_factor;
-                y *= radial_factor;                    
+                y *= radial_factor;
 
                 _index++;
 
@@ -125,7 +127,7 @@ class CircleGeometry extends Geometry {
 
         //and finally, set the position
         transform.pos = new Vector( _x, _y );
-        
+
     } //set
 
 } //CircleGeometry

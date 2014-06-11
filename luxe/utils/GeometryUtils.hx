@@ -12,13 +12,15 @@ class GeometryUtils {
 
 
     @:noCompletion public function new(_luxe:Core) {
-        
+
         luxe = _luxe;
 
     } //new
 
-    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 6 ) {
-        return _smooth * Math.sqrt( _radius );
+    public function segments_for_smooth_circle( _radius:Float, _smooth:Float = 6 ) : Int {
+
+        return Std.int(_smooth * Math.sqrt( _radius ));
+
     } //segments_for_smooth_circle
 
     public function random_point_in_unit_circle() : Vector {
@@ -26,7 +28,7 @@ class GeometryUtils {
         var t = 2*Math.PI*Math.random();
         var u = Math.random()+Math.random();
         var r = (u > 1.0) ? (2.0 - u) : u;
-        
+
         return new Vector( Math.cos(t), Math.cos(u) );
 
     } //random_point_in_unit_circle
@@ -39,13 +41,13 @@ class GeometryUtils {
         var j : Int = nvert - 1;
 
         for(i in 0 ... nvert) {
-            
+
             if ((( (_verts[i].y+_offset.y) > _point.y) != ((_verts[j].y+_offset.y) > _point.y)) &&
-               (_point.x < ( (_verts[j].x+_offset.x) - (_verts[i].x+_offset.x)) * (_point.y - (_verts[i].y+_offset.y)) 
+               (_point.x < ( (_verts[j].x+_offset.x) - (_verts[i].x+_offset.x)) * (_point.y - (_verts[i].y+_offset.y))
                  / ( (_verts[j].y+_offset.y) - (_verts[i].y+_offset.y)) + (_verts[i].x+_offset.x)) ) {
                 c = !c;
             }
-            
+
             j = i;
         }
 
@@ -54,8 +56,8 @@ class GeometryUtils {
     } //point_in_polygon
 
         //Note this function assumes _geometry is a 2D polygon,
-        //and is currently slightly less efficient due to geometry not keeping 
-        //a transformed vert cache in it, which will be needed later :todo : 
+        //and is currently slightly less efficient due to geometry not keeping
+        //a transformed vert cache in it, which will be needed later :todo :
     public function point_in_geometry( _point:Vector, _geometry:Geometry ) : Bool {
 
         var c : Bool = false;
@@ -66,13 +68,13 @@ class GeometryUtils {
 
             var _vert_i_pos = _geometry.vertices[i].pos.clone().transform( _geometry.transform.world.matrix );
             var _vert_j_pos = _geometry.vertices[j].pos.clone().transform( _geometry.transform.world.matrix );
-            
+
             if ((( (_vert_i_pos.y) > _point.y) != ((_vert_j_pos.y) > _point.y)) &&
-               (_point.x < ( (_vert_j_pos.x) - (_vert_i_pos.x)) * (_point.y - (_vert_i_pos.y)) 
+               (_point.x < ( (_vert_j_pos.x) - (_vert_i_pos.x)) * (_point.y - (_vert_i_pos.y))
                  / ( (_vert_j_pos.y) - (_vert_i_pos.y)) + (_vert_i_pos.x)) ) {
                 c = !c;
             }
-            
+
             j = i;
         }
 
@@ -96,6 +98,6 @@ class GeometryUtils {
         return Vector.Add(_ray_start, Vector.Multiply(_ray_dir, T));
 
     } //intersect_ray_plane
-    
+
 
  } //GeometryUtils

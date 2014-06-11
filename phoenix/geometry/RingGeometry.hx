@@ -7,9 +7,11 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import phoenix.Circle;
 
+import luxe.options.GeometryOptions.CircleGeometryOptions;
+
 class RingGeometry extends CircleGeometry {
 
-	public function new( options : Dynamic ) {
+	public function new( ?options : CircleGeometryOptions ) {
 
 		super(options);
 
@@ -22,7 +24,7 @@ class RingGeometry extends CircleGeometry {
 
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml
-            
+
         primitive_type = PrimitiveType.triangles;
 
             var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle);
@@ -35,14 +37,14 @@ class RingGeometry extends CircleGeometry {
 
             var tangential_factor = Math.tan( theta );
             var radial_factor = Math.cos( theta );
-            
-            var x : Float = _rx * Math.cos(_start_angle_rad); 
+
+            var x : Float = _rx * Math.cos(_start_angle_rad);
             var y : Float = _rx * Math.sin(_start_angle_rad);
 
-            //now work out the ratio between _x and _y 
+            //now work out the ratio between _x and _y
             var radial_ratio : Float = _rx / _ry;
             if(radial_ratio == 0) radial_ratio = 0.000000001;
-            
+
             var _index = 0;
             var _segment_pos = [];
             for( i in 0 ... _steps ) {
@@ -67,11 +69,11 @@ class RingGeometry extends CircleGeometry {
                 var tx = -y;
                 var ty = x;
 
-                x += tx * tangential_factor; 
-                y += ty * tangential_factor; 
-                
+                x += tx * tangential_factor;
+                y += ty * tangential_factor;
+
                 x *= radial_factor;
-                y *= radial_factor;                    
+                y *= radial_factor;
 
                 _index++;
 
@@ -82,7 +84,7 @@ class RingGeometry extends CircleGeometry {
 
         //and finally, set the position
         transform.pos = new Vector( _x, _y );
-        
-    } //set	
+
+    } //set
 
 } //RingGeometry

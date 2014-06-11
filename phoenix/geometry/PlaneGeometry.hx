@@ -1,10 +1,13 @@
 package phoenix.geometry;
 
+import luxe.Rectangle;
 import phoenix.Vector;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.Batcher;
 import phoenix.Vector;
+
+import luxe.options.GeometryOptions.PlaneGeometryOptions;
 
 class PlaneGeometry extends Geometry {
 
@@ -15,10 +18,10 @@ class PlaneGeometry extends Geometry {
 
     var is_set : Bool = false;
 
-	public function new( options : Dynamic ) {
+	public function new( ?options : PlaneGeometryOptions ) {
 
 		super(options);
-        
+
         if(options == null) return;
 
             //Do these before set, so they can be applied
@@ -26,7 +29,7 @@ class PlaneGeometry extends Geometry {
         if(options.flipy != null) flipy = options.flipy;
 
             //Init
-        _uv_cache = new luxe.Rectangle(0,0,1,1);
+        _uv_cache = new Rectangle(0,0,1,1);
 
             //Apply the new options rect
 		set( new Rectangle(options.x, options.z, options.w, options.h), options.y );
@@ -34,17 +37,17 @@ class PlaneGeometry extends Geometry {
         if(options.visible != null) visible = options.visible;
         if(options.immediate != null) immediate = options.immediate;
 
-	}
+	} //new
 
     public function uv( _rect:luxe.Rectangle ) {
 
-        if(texture == null) { 
+        if(texture == null) {
             trace("Warning : calling UV on a geometry with null texture.");
             return;
         }
 
         var tlx = _rect.x/texture.actual_width;
-        var tly = _rect.y/texture.actual_height;    
+        var tly = _rect.y/texture.actual_height;
         var szx = _rect.w/texture.actual_width;
         var szy = _rect.h/texture.actual_height;
 
@@ -74,7 +77,7 @@ class PlaneGeometry extends Geometry {
             //bl
         var bl_x = tl_x;
         var bl_y = tl_y + sz_y;
-            
+
         var tmp_x = 0.0;
         var tmp_y = 0.0;
 
@@ -122,8 +125,8 @@ class PlaneGeometry extends Geometry {
     } //set uv in uv space directly
 
  	public function set( quad:luxe.Rectangle, y:Float ) {
- 		
- 		vertices.splice(0, vertices.length);        
+
+ 		vertices.splice(0, vertices.length);
 
         //Create the rectangle at it's origin,
         //so that when geometry.pos is set it is translated accordingly
@@ -137,7 +140,7 @@ class PlaneGeometry extends Geometry {
         var vert3 : Vertex = new Vertex( new Vector( 0 , 0, quad.h ), color );
         var vert4 : Vertex = new Vertex( new Vector( 0 , 0, 0 ), color );
         var vert5 : Vertex = new Vertex( new Vector( quad.w , 0, quad.h ), color );
-        
+
            //Add to the list
 
             //tl
@@ -168,7 +171,7 @@ class PlaneGeometry extends Geometry {
 
  	} //set
 
-    public function set_flipx(_val:Bool) {        
+    public function set_flipx(_val:Bool) {
             //set before calling uv_space
         flipx = _val;
 
