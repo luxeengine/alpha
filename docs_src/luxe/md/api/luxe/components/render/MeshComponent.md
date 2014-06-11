@@ -11,9 +11,9 @@
 
 ---
 
-`class`extends <code><span>[luxe.components.Component]()</span></code>
+`class`extends <code><span>[luxe.Component]()</span></code>
 <span class="meta">
-
+<br/>meta: @:build, @:autoBuild
 </span>
 
 
@@ -42,7 +42,7 @@
             <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_options:<span>[luxe.options.ComponentOptions](#luxe.options.ComponentOptions)&lt;[new.T]()&gt;</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(dt:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

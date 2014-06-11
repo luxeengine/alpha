@@ -1,5 +1,5 @@
 
-[![Logo](../../../images/logo.png)](../../../api/index.html)
+[![Logo](../../images/logo.png)](../../api/index.html)
 
 ---
 
@@ -13,7 +13,7 @@
 
 `class`extends <code><span>[luxe.Objects]()</span></code>
 <span class="meta">
-
+<br/>meta: @:autoBuild
 </span>
 
 
@@ -43,7 +43,7 @@
             <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get\_serialize\_data</a></a><code class="signature apipage">get\_serialize\_data() : [Dynamic](http://api.haxe.org/Dynamic.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">new(?\_options:<span>[luxe.options.ComponentOptions](#luxe.options.ComponentOptions)&lt;[new.T]()&gt;=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_data:<span>[remove.T]()=null</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>

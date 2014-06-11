@@ -14,7 +14,8 @@
 -D desktop
 -resource version@version
 -resource build@build
--resource luxe/defaults/ui/tiny.ui.png@tiny.ui
+-resource luxe/defaults/ui/tiny.ui.png@tiny.ui.png
+-resource luxe/defaults/ui/tiny.button.png@tiny.button.png
 -resource luxe/defaults/fonts/din.png@din.png
 -resource luxe/defaults/fonts/din.fnt@din.fnt
 -resource phoenix/defaults/shaders/vert.glsl@default.vert.glsl

@@ -57,7 +57,7 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="add_geometry"><a class="lift" href="#add_geometry">add\_geometry</a></a><code class="signature apipage">add\_geometry(g:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="add_geometry"><a class="lift" href="#add_geometry">add\_geometry</a></a><code class="signature apipage">add\_geometry(geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="add_to_batcher"><a class="lift" href="#add_to_batcher">add\_to\_batcher</a></a><code class="signature apipage">add\_to\_batcher(\_batcher:<span>[phoenix.Batcher](#phoenix.Batcher)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -69,7 +69,7 @@
             <a name="drop"><a class="lift" href="#drop">drop</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">drop(?remove:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="has_geometry"><a class="lift" href="#has_geometry">has\_geometry</a></a><code class="signature apipage">has\_geometry(g:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="has_geometry"><a class="lift" href="#has_geometry">has\_geometry</a></a><code class="signature apipage">has\_geometry(geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from phoenix.geometry.Geometry" class="tooltip inherited">&gt;</a><code class="signature apipage">new(?options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

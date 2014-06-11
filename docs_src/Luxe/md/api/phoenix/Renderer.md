@@ -23,15 +23,13 @@
 &nbsp;
 
 <h3>Members</h3> <hr/><span class="member apipage">
+            <a name="batcher"><a class="lift" href="#batcher">batcher</a></a><code class="signature apipage">batcher : [phoenix.Batcher](#phoenix.Batcher)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="batchers"><a class="lift" href="#batchers">batchers</a></a><code class="signature apipage">batchers : [Array](http://api.haxe.org/Array.html)&lt;[phoenix.Batcher](#phoenix.Batcher)&gt;</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="camera"><a class="lift" href="#camera">camera</a></a><code class="signature apipage">camera : [phoenix.Camera](#phoenix.Camera)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="clear_color"><a class="lift" href="#clear_color">clear\_color</a></a><code class="signature apipage">clear\_color : [phoenix.Color](#phoenix.Color)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="default_batcher"><a class="lift" href="#default_batcher">default\_batcher</a></a><code class="signature apipage">default\_batcher : [phoenix.Batcher](#phoenix.Batcher)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="default_camera"><a class="lift" href="#default_camera">default\_camera</a></a><code class="signature apipage">default\_camera : [phoenix.Camera](#phoenix.Camera)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="default_font"><a class="lift" href="#default_font">default\_font</a></a><code class="signature apipage">default\_font : [phoenix.BitmapFont](#phoenix.BitmapFont)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_frag_source"><a class="lift" href="#default_frag_source">default\_frag\_source</a></a><code class="signature apipage">default\_frag\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
@@ -44,6 +42,8 @@
             <a name="default_shader_textured"><a class="lift" href="#default_shader_textured">default\_shader\_textured</a></a><code class="signature apipage">default\_shader\_textured : [phoenix.Shader](#phoenix.Shader)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_vert_source"><a class="lift" href="#default_vert_source">default\_vert\_source</a></a><code class="signature apipage">default\_vert\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="font"><a class="lift" href="#font">font</a></a><code class="signature apipage">font : [phoenix.BitmapFont](#phoenix.BitmapFont)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="render_path"><a class="lift" href="#render_path">render\_path</a></a><code class="signature apipage">render\_path : [phoenix.RenderPath](#phoenix.RenderPath)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">

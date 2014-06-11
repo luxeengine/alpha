@@ -72,7 +72,7 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="components"><a class="lift" href="#components">components</a></a><code class="signature apipage">components : [Map]()&lt;[String](), [luxe.components.Component]()&gt;</code><br/><span class="small_desc_flat"></span>
+            <a name="components"><a class="lift" href="#components">components</a></a><code class="signature apipage">components : [Map]()&lt;[String](), [luxe.Component]()&gt;</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="fixed_rate"><a class="lift" href="#fixed_rate">fixed\_rate</a></a><code class="signature apipage">fixed\_rate : [Float]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">

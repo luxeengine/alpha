@@ -23,8 +23,6 @@
 &nbsp;
 
 <h3>Members</h3> <hr/><span class="member apipage">
-            <a name="dirty"><a class="lift" href="#dirty">dirty</a></a><code class="signature apipage">dirty : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">id : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">name : [String](http://api.haxe.org/String.html)</code><br/></span>
@@ -32,6 +30,9 @@
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="listen"><a class="lift" href="#listen">listen</a></a><code class="signature apipage">listen(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="listen_dirty"><a class="lift" href="#listen_dirty">listen\_dirty</a></a><code class="signature apipage">listen\_dirty(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="listen_origin"><a class="lift" href="#listen_origin">listen\_origin</a></a><code class="signature apipage">listen\_origin(\_handler:<span>[phoenix.Vector-&gt;Void](#phoenix.Vector->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -55,6 +56,9 @@
             <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="unlisten_dirty"><a class="lift" href="#unlisten_dirty">unlisten\_dirty</a></a><code class="signature apipage">unlisten\_dirty(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="unlisten_origin"><a class="lift" href="#unlisten_origin">unlisten\_origin</a></a><code class="signature apipage">unlisten\_origin(\_handler:<span>[phoenix.Vector-&gt;Void](#phoenix.Vector->Void)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -72,6 +76,8 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="dirty"><a class="lift" href="#dirty">dirty</a></a><code class="signature apipage">dirty : [Bool]()</code><br/><span class="small_desc_flat"></span>
+        </span><span class="property apipage">
             <a name="local"><a class="lift" href="#local">local</a></a><code class="signature apipage">local : [phoenix.Spatial]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [phoenix.Vector]()</code><br/><span class="small_desc_flat"></span>
