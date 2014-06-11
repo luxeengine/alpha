@@ -9,7 +9,7 @@ import phoenix.geometry.Geometry;
 
 
 class BatcherDebugView extends luxe.debug.DebugView {
-    
+
     public function new(  ) {
         super();
         name = 'Batcher Debug';
@@ -18,7 +18,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
     var batcher : Batcher;
 
     public override function create() {
-        
+
         var debug = Luxe.debug;
         batcher = Luxe.createBatcher('debug_batcher_view', new luxe.Camera({ name : 'batcher_debug_view', no_scene:true }));
         batcher.layer = 1000;
@@ -31,8 +31,8 @@ class BatcherDebugView extends luxe.debug.DebugView {
     }
 
     var dragging = false;
-    var dragstart : Vector; 
-    var dragmstart : Vector; 
+    var dragstart : Vector;
+    var dragmstart : Vector;
 
     public override function onmousedown(e:MouseEvent) {
         dragmstart = e.pos.clone();
@@ -68,7 +68,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
     }
 
     function keystr( key:GeometryKey, key2:GeometryKey) {
-         return 
+         return
             'ts: '+ key.timestamp + '\n' +
             'seq: '+ key.sequence + '\n' +
             'primitive_type: '+ key.primitive_type + " " + (Type.enumIndex( key.primitive_type )) + '\n' +
@@ -94,7 +94,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
             c = new Color(1,1,1,1).rgb(0xcc0000);
         }
 
-        _tree_geom.add_geometry( 
+        _tree_geom.add_geometry(
             Luxe.draw.rectangle({
                 immediate:as_immediate,
                 x:_p.x-_bwhalf, y:_p.y,
@@ -104,8 +104,8 @@ class BatcherDebugView extends luxe.debug.DebugView {
                 depth : 999.4
             })
         ); //node square
-        
-        _tree_geom.add_geometry( 
+
+        _tree_geom.add_geometry(
             Luxe.draw.text({
                 immediate:as_immediate,
                 bounds : new Rectangle(_p.x-_bwhalf, _p.y, _bw, _bh),
@@ -127,7 +127,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
             // talign = luxe.Text.TextAlign.right;
         // }
 
-        _tree_geom.add_geometry( 
+        _tree_geom.add_geometry(
             Luxe.draw.text({
                 immediate:as_immediate,
                 pos : t,
@@ -148,15 +148,15 @@ class BatcherDebugView extends luxe.debug.DebugView {
             notes_l = 'node';
             var compare = Luxe.renderer.batcher.compare_rule(_leaf.key, _leaf.left.key);
             notes_l = Luxe.renderer.batcher.compare_rule_to_string(compare);
-        } 
+        }
 
         if(_leaf.right != null) {
             notes_r = 'node';
             var compare = Luxe.renderer.batcher.compare_rule(_leaf.key, _leaf.right.key);
             notes_r = Luxe.renderer.batcher.compare_rule_to_string(compare);
-        } 
+        }
 
-        _tree_geom.add_geometry( 
+        _tree_geom.add_geometry(
             Luxe.draw.text({
                 immediate:as_immediate,
                 pos : t2,
@@ -185,18 +185,18 @@ class BatcherDebugView extends luxe.debug.DebugView {
         var c = new Color(1,1,1,0.4).rgb(0xffffff);
 
         if(_leaf != null) {
-            
+
             draw_geom_node(L, _leaf, _p, _bw);
 
             if(_leaf.left != null) {
-                
+
                 if( Luxe.renderer.batcher.geometry_compare( _leaf.left.key, _leaf.key ) < 0 ) {
                     c = new Color(1,1,1,1).rgb(0x00cc00);
                 } else {
                     c = new Color(1,1,1,1).rgb(0xcc0000);
                 }
 
-                _tree_geom.add_geometry( 
+                _tree_geom.add_geometry(
                     Luxe.draw.line({
                         immediate:as_immediate,
                         p0 : new Vector(_p.x-_bwhalf,_p.y+_bh),
@@ -217,7 +217,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
                     c = new Color(1,1,1,1).rgb(0xcc0000);
                 }
 
-                _tree_geom.add_geometry( 
+                _tree_geom.add_geometry(
                     Luxe.draw.line({
                         immediate:as_immediate,
                         p0 : new Vector(_p.x+_bwhalf,_p.y+_bh),
@@ -246,7 +246,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
         var _p : Vector = new Vector(Luxe.screen.w/2, (Luxe.debug.padding.y*2)+10);
 
         var _node = Luxe.renderer.batcher.geometry.root;
-            
+
             draw_geom_leaf(true, _node, _p);
 
     }

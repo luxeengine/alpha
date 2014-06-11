@@ -19,10 +19,10 @@ class Rectangle {
 
     public function new(?_x:Float = 0,?_y:Float = 0,?_w:Float = 0,?_h : Float = 0) {
 
-        x = _x; 
-        y = _y; 
-        w = _w; 
-        h = _h; 
+        x = _x;
+        y = _y;
+        w = _w;
+        h = _h;
 
     } //new
 
@@ -55,7 +55,7 @@ class Rectangle {
         if(_other == null) {
             return false;
         }
-        
+
             //only need to test extremes
         if( x < (_other.x + _other.w) &&
             y < (_other.y + _other.h) &&
@@ -76,7 +76,7 @@ class Rectangle {
 
         //:todo:, epsilon fp check version
     public function equal( _other:Rectangle ) {
-            
+
         if(_other == null) {
             return false;
         }
@@ -87,9 +87,9 @@ class Rectangle {
 
     public function copy_from( _rect:Rectangle ) {
 
-        x = _rect.x; 
-        y = _rect.y; 
-        w = _rect.w; 
+        x = _rect.x;
+        y = _rect.y;
+        w = _rect.w;
         h = _rect.h;
 
     } //copy_from
@@ -100,7 +100,7 @@ class Rectangle {
         var _sety = y;
         var _setw = w;
         var _seth = h;
-                
+
                     //assign new values
                 if(_x != null) _setx = _x;
                 if(_y != null) _sety = _y;
@@ -117,9 +117,9 @@ class Rectangle {
     } //set
 
     function set_x(_x:Float) : Float {
-        
+
         x = _x;
-        
+
             if(listen_x != null && !ignore_listeners) {
                 listen_x(_x);
             }
@@ -129,44 +129,44 @@ class Rectangle {
     } //set_x
 
     function set_y(_y:Float) : Float {
-        
+
         y = _y;
-        
+
             if(listen_y != null && !ignore_listeners) {
                 listen_y(_y);
             }
-        
+
         return y;
 
     } //set_y
 
     function set_w(_w:Float) : Float {
-        
+
         w = _w;
-        
+
             if(listen_w != null && !ignore_listeners) {
                 listen_w(_w);
             }
-        
+
         return w;
 
     } //set_w
 
     function set_h(_h:Float) : Float {
-        
+
         h = _h;
-        
+
             if(listen_h != null && !ignore_listeners) {
                 listen_h(_h);
             }
-        
+
         return h;
 
     } //set_h
 
-    function get_serialized() : Dynamic { 
+    function get_serialized() : Dynamic {
 
-        return { x:x, y:y, w:w, h:h } 
+        return { x:x, y:y, w:w, h:h }
 
     } //get_serialized
 

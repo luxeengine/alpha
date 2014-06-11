@@ -1,14 +1,14 @@
 package luxe.debug;
 
 class TraceDebugView extends luxe.debug.DebugView {
-    
+
         //log console
     public var logged : Array<String>;
     public var lines : luxe.Text;
     public var max_lines : Int = 35;
 
     public function new() {
-            
+
         super();
 
         name = 'Log';
@@ -26,7 +26,7 @@ class TraceDebugView extends luxe.debug.DebugView {
     }
 
     public override function create() {
-        
+
         var debug = Luxe.debug;
 
         lines = new luxe.Text({
@@ -53,7 +53,7 @@ class TraceDebugView extends luxe.debug.DebugView {
         if(logged == null) {
             return;
         }
-            
+
             //store in the list of pushed lines
         logged.push(_t);
 
@@ -67,14 +67,14 @@ class TraceDebugView extends luxe.debug.DebugView {
     } //add_line
 
     var _last_logged_length : Int = 0;
-    private function refresh_lines() {  
+    private function refresh_lines() {
 
         if(_last_logged_length == logged.length) {
             return;
         }
 
-            //we go though each line in the logged list, 
-            //and create a string from them. 
+            //we go though each line in the logged list,
+            //and create a string from them.
             //then we set the lines text to that
         var _final = '';
 
@@ -92,8 +92,11 @@ class TraceDebugView extends luxe.debug.DebugView {
         }//
 
         lines.text = _final;
-        lines.geometry.locked = true;
-        lines.geometry.dirty = true;
+
+        if(lines.geometry != null) {
+            lines.geometry.locked = true;
+            lines.geometry.dirty = true;
+        }
 
         _last_logged_length = logged.length;
 
@@ -101,17 +104,17 @@ class TraceDebugView extends luxe.debug.DebugView {
 
 
     public override function refresh() {
-        
+
     }
 
     public override function process() {
-        
+
     }
 
     public override function show() {
         super.show();
         refresh_lines();
-        lines.visible = true;          
+        lines.visible = true;
     }
 
     public override function hide() {

@@ -43,8 +43,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
             visible_count : 0,
             draw_calls : 0,
             vert_count : 0,
-            group_count : 0      
-        };          
+            group_count : 0
+        };
 
         _render_stats = {
             batchers : 0,
@@ -55,17 +55,17 @@ class StatsDebugView extends luxe.debug.DebugView  {
             draw_calls : 0,
             vert_count : 0,
             group_count : 0
-        };        
+        };
 
     }
 
-    public function get_resource_stats_string() {        
+    public function get_resource_stats_string() {
         return Std.string(Luxe.resources.stats);
     }
 
     public function get_render_stats_string() {
-        return 
-            'Renderer Statistics\n' + 
+        return
+            'Renderer Statistics\n' +
             '\tbatcher count : ' + _render_stats.batchers + '\n' +
             '\ttotal geometry : ' + _render_stats.geometry_count + '\n' +
             '\tvisible geometry : ' + _render_stats.visible_count + '\n' +
@@ -75,7 +75,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             '\ttotal vert count : ' + _render_stats.vert_count;
     }
 
-    public override function create() { 
+    public override function create() {
 
         var debug = Luxe.debug;
 
@@ -90,7 +90,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             batcher : debug.batcher,
             visible : false
         });
-        
+
         resource_stats_text = new luxe.Text({
             depth : 999.3,
             no_scene : true,
@@ -102,7 +102,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             batcher : debug.batcher,
             visible : false
         });
-        
+
         resource_list_text = new luxe.Text({
             depth : 999.3,
             no_scene : true,
@@ -122,11 +122,11 @@ class StatsDebugView extends luxe.debug.DebugView  {
     }
 
     public override function refresh() {
-        
+
         var texture_lists = '';
         var shader_lists = '';
         var font_lists = '';
-        
+
         for(res in Luxe.resources.resourcelist) {
             switch (res.type) {
                 case ResourceType.texture:
@@ -148,7 +148,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
             lists += texture_lists;
 
         resource_list_text.text = lists;
-        resource_list_text.geometry.dirty = true;
+        if(resource_list_text.geometry != null) {
+            resource_list_text.geometry.dirty = true;
+        }
     }
 
 
@@ -156,27 +158,27 @@ class StatsDebugView extends luxe.debug.DebugView  {
     public override function process() {
 
         if(!visible) return;
-        
+
         var dirty = false;
-        
+
             //Update the local statistics
         update_render_stats();
 
-        if(_last_render_stats.batchers != _render_stats.batchers) 
+        if(_last_render_stats.batchers != _render_stats.batchers)
             { dirty = true; _last_render_stats.batchers = _render_stats.batchers; }
-        if(_last_render_stats.geometry_count != _render_stats.geometry_count) 
+        if(_last_render_stats.geometry_count != _render_stats.geometry_count)
             { dirty = true; _last_render_stats.geometry_count = _render_stats.geometry_count; }
-        if(_last_render_stats.dynamic_batched_count != _render_stats.dynamic_batched_count) 
+        if(_last_render_stats.dynamic_batched_count != _render_stats.dynamic_batched_count)
             { dirty = true; _last_render_stats.dynamic_batched_count = _render_stats.dynamic_batched_count; }
-        if(_last_render_stats.static_batched_count != _render_stats.static_batched_count) 
+        if(_last_render_stats.static_batched_count != _render_stats.static_batched_count)
             { dirty = true; _last_render_stats.static_batched_count = _render_stats.static_batched_count; }
-        if(_last_render_stats.visible_count != _render_stats.visible_count) 
+        if(_last_render_stats.visible_count != _render_stats.visible_count)
             { dirty = true; _last_render_stats.visible_count = _render_stats.visible_count; }
-        if(_last_render_stats.draw_calls != _render_stats.draw_calls) 
+        if(_last_render_stats.draw_calls != _render_stats.draw_calls)
             { dirty = true; _last_render_stats.draw_calls = _render_stats.draw_calls; }
-        if(_last_render_stats.group_count != _render_stats.group_count) 
+        if(_last_render_stats.group_count != _render_stats.group_count)
             { dirty = true; _last_render_stats.group_count = _render_stats.group_count; }
-        if(_last_render_stats.vert_count != _render_stats.vert_count) 
+        if(_last_render_stats.vert_count != _render_stats.vert_count)
             { dirty = true; _last_render_stats.vert_count = _render_stats.vert_count; }
 
         if(dirty) {
@@ -196,7 +198,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
         refresh();
         render_stats_text.visible = true;
         resource_stats_text.visible = true;
-        resource_list_text.visible = true;        
+        resource_list_text.visible = true;
     } //show
 
     public override function hide() {
@@ -217,10 +219,12 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         resource_stats_text.locked = true;
         render_stats_text.locked = true;
-        
-        resource_stats_text.geometry.dirty = true;
-        render_stats_text.geometry.dirty = true;
-        
+
+        if(resource_stats_text.geometry != null) {
+            resource_stats_text.geometry.dirty = true;
+            render_stats_text.geometry.dirty = true;
+        }
+
     } //refresh_render_stats
 
     public var hide_debug : Bool = true;
@@ -252,9 +256,9 @@ class StatsDebugView extends luxe.debug.DebugView  {
             _render_stats.vert_count -= Luxe.debug.batcher.vert_count;
 
         } //hide debug stats?
-        
-    } //update_render_stats 
+
+    } //update_render_stats
 
 } //StatsDebugView
 
- 
+

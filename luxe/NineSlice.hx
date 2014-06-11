@@ -386,15 +386,6 @@ class NineSlice extends luxe.Sprite {
 
     } //set_depth
 
-    override function set_clip(val : Bool) : Bool {
-
-        if(is_set) {
-            _geometry.clip = val;
-        }
-
-        return clip = val;
-    } //set_clip
-
 //Clip rect
     override function set_clip_rect(val : Rectangle) : Rectangle {
 

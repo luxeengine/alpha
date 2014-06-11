@@ -33,12 +33,11 @@ class Visual extends Entity {
     @:isVar public var visible      (default,set) : Bool = true;
     @:isVar public var depth        (default,set) : Float = 0.0;
     @:isVar public var group        (default,set) : Int = 0;
-    @:isVar public var clip         (default,set) : Bool = false;
     @:isVar public var clip_rect    (default,set) : Rectangle;
-    
+
     @:isVar public var radians      (get,set) : Float = 0.0;
     public var rotation_z           (get,set) : Float;
-    
+
     var _rotation_euler : Vector;
     var _rotation_quat : Quaternion;
 
@@ -57,7 +56,7 @@ class Visual extends Entity {
         _rotation_euler = new Vector();
         _rotation_quat = new Quaternion();
 
-            //call the entity constructor        
+            //call the entity constructor
         super( _options );
 
             //create the position value so we can exploit it a bit
@@ -76,7 +75,7 @@ class Visual extends Entity {
         if(options.color != null) {
             color = options.color;
         }
-//depth        
+//depth
         if(options.depth != null) {
             depth = options.depth;
         }
@@ -87,7 +86,7 @@ class Visual extends Entity {
 //visible
         if(options.visible != null) {
             visible = options.visible;
-        }        
+        }
 
 //serialize
         if(options.serialize != null) {
@@ -95,15 +94,15 @@ class Visual extends Entity {
         }
 
 //size is interesting, as it's possibly based on texture
-    
-            //user specified a size            
+
+            //user specified a size
         if(options.size != null) {
 
             size = options.size;
                 //the size is explicit, so make the geometry
             _create_geometry();
 
-        } else {    
+        } else {
 
                 //if the texture isn't invalid entirely
             if(texture != null) {
@@ -114,7 +113,7 @@ class Visual extends Entity {
 
                 } else {
 
-                    texture.onload = function(_texture) {                        
+                    texture.onload = function(_texture) {
                         size = new Vector(texture.width, texture.height);
                         _create_geometry();
                     }
@@ -122,10 +121,10 @@ class Visual extends Entity {
 
             } else {
                     //default to a value big enough to see
-                size = new Vector(64,64); 
+                size = new Vector(64,64);
                 // trace('\t\tWarning : no texture, or size, handed to visual constructor so going with a default size.');
                 _create_geometry();
-                
+
             } //texture !=null
 
         } //
@@ -210,9 +209,9 @@ class Visual extends Entity {
         }
 
             //clear our references to these
-        geometry = null;        
+        geometry = null;
         texture = null;
-        
+
     } //destroyed
 
     function on_geometry_created() {
@@ -237,7 +236,7 @@ class Visual extends Entity {
     } //set_visible
 
     function set_depth(_v:Float) {
-        
+
         if(geometry != null) {
             geometry.depth = _v;
         } //geometry
@@ -247,7 +246,7 @@ class Visual extends Entity {
     } //set_depth
 
     function set_group(_v:Int) {
-        
+
         if(geometry != null) {
             geometry.group = _v;
         } //geometry
@@ -262,7 +261,7 @@ class Visual extends Entity {
 
         if(color != null && geometry != null) {
             geometry.color = _c;
-        } 
+        }
 
         return color = _c;
 
@@ -272,7 +271,7 @@ class Visual extends Entity {
 
         if(geometry != null) {
             geometry.texture = _t;
-        } //geometry!=null  
+        } //geometry!=null
 
         return texture = _t;
     }
@@ -281,20 +280,20 @@ class Visual extends Entity {
 
         if(geometry != null) {
             geometry.shader = _s;
-        } //geometry!=null  
+        } //geometry!=null
 
         return shader = _s;
     }
 
 //Geometry
-    
+
     var ignore_texture_on_geometry_change : Bool = false;
 
     function set_geometry(_g:Geometry) : Geometry {
-        
+
         if(geometry != null) {
                 //kill the existing geometry first
-            geometry.drop();            
+            geometry.drop();
         }
 
             //store the new one
@@ -302,17 +301,17 @@ class Visual extends Entity {
 
             //rebind it's colors and whatever else
         if(geometry != null) {
-            
+
                 //make sure it's attached
             geometry.transform.parent = transform;
-            
+
             _verbose('    assign geometry transform as child : $geometry.id to $name');
 
             if(_creating_geometry == false) {
 
                 geometry.color = color;
                 geometry.group = group;
-                geometry.depth = depth;            
+                geometry.depth = depth;
                 geometry.visible = visible;
                 geometry.shader = shader;
 
@@ -325,7 +324,7 @@ class Visual extends Entity {
         } //geometry != null
 
         return geometry;
-        
+
     } //set_origin
 
 
@@ -340,10 +339,10 @@ class Visual extends Entity {
         _rotation_quat.copy(_rotation);
 
     } //set_rotation_from_transform
-    
+
 //Size
-    
-    function set_size( _v:Vector ) : Vector {  
+
+    function set_size( _v:Vector ) : Vector {
 
         size = _v;
 
@@ -353,8 +352,8 @@ class Visual extends Entity {
 
     } //set_size
 
-//Rotation 
-    
+//Rotation
+
     function get_rotation_z() : Float {
 
         return Maths.radToDeg(radians);
@@ -398,10 +397,6 @@ class Visual extends Entity {
 
 
 //Geometry properties
-//Clip
-    function set_clip(val : Bool) : Bool {
-        return geometry.clip = val;
-    }
 //Clip rect
     function set_clip_rect(val : Rectangle) : Rectangle {
         return geometry.clip_rect = val;
@@ -420,12 +415,12 @@ class Visual extends Entity {
             color   : color.serialized,
             size    : size.serialized,
             locked  : locked,
-            visible : visible, 
+            visible : visible,
             radians : radians
         };
-        
+
         if(texture != null)             _extra.texture = texture.id;
-        if(clip && clip_rect!=null)     _extra.clip_rect = clip_rect.serialized;
+        if(clip_rect !=null)            _extra.clip_rect = clip_rect.serialized;
         if(origin != null)              _extra.origin = origin.serialized;
 
         return _merge_properties(_data, _extra);

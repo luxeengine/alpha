@@ -6,7 +6,7 @@ import phoenix.Shader;
 import phoenix.Batcher;
 
 class GeometryState {
-    
+
     public var dirty:Bool;
 
     @:isVar public var primitive_type(default, set) : PrimitiveType;
@@ -34,7 +34,7 @@ class GeometryState {
     }
 
     public function clone_onto( _other:GeometryState )  {
-        
+
         _other.dirty = dirty;
         _other.texture = texture;
         _other.shader = shader;
@@ -61,7 +61,7 @@ class GeometryState {
             trace("\t\tclip - "+ clip);
             trace("\t\tclip rect - "+ clip_rect );
         trace('\t- GEOMETRYSTATE');
-    }    
+    }
 
     public function clean() {
         dirty = false;
@@ -72,48 +72,48 @@ class GeometryState {
 
         if(depth != other.depth) {
             depth = other.depth;
-        } 
+        }
 
         if(group != other.group) {
             group = other.group;
-        } 
+        }
 
         if(texture != other.texture) {
             texture = other.texture;
-        } 
-        
+        }
+
         if(shader != other.shader) {
             shader = other.shader;
-        } 
-        
+        }
+
         if(primitive_type != other.primitive_type) {
             primitive_type = other.primitive_type;
-        } 
-        
+        }
+
         if(clip != other.clip) {
             clip = other.clip;
-        }   
+        }
 
         if(clip_rect != null) {
-            if(!clip_rect.equal(other.clip_rect)) {
-                clip_rect.set(other.clip_rect.x,other.clip_rect.y, other.clip_rect.w, other.clip_rect.h);
+            if(other.clip_rect != null && !clip_rect.equal(other.clip_rect)) {
+                clip_rect.set( other.clip_rect.x, other.clip_rect.y, other.clip_rect.w, other.clip_rect.h );
             }
         } //clip_rect
-        
+
     }
 
 //Primitive Type
-    public function set_primitive_type(val : PrimitiveType) : PrimitiveType {       
+    public function set_primitive_type(val : PrimitiveType) : PrimitiveType {
         dirty = true;
         return primitive_type = val;
     }
 //Texture
-    public function set_texture(val : Texture) : Texture {      
+    public function set_texture(val : Texture) : Texture {
         dirty = true;
         return texture = val;
     }
 //Shader
-    public function set_shader(val : Shader) : Shader {      
+    public function set_shader(val : Shader) : Shader {
         dirty = true;
         return shader = val;
     }
@@ -122,8 +122,8 @@ class GeometryState {
         return depth = val;
     }
 //Group
-    public function set_group(val : Int) : Int {        
-        dirty = true; 
+    public function set_group(val : Int) : Int {
+        dirty = true;
         return group = val;
     }
 //Clip

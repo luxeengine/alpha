@@ -35,7 +35,7 @@ class Geometry {
 
         //the positional transform information
     public var transform : Transform;
-     
+
         //The list of vertices
     public var vertices : Array<Vertex>;
 
@@ -44,7 +44,7 @@ class Geometry {
     public var static_vertex_buffer : GLBuffer;
     public var static_tcoord_buffer : GLBuffer;
     public var static_vcolor_buffer : GLBuffer;
-    public var static_normal_buffer : GLBuffer; 
+    public var static_normal_buffer : GLBuffer;
 
         //Batcher information
     public var added : Bool = false;
@@ -55,14 +55,13 @@ class Geometry {
     public var dropped : Bool = false;
     public var uuid : String = '';
     public var id : String = '';
-    
+
         //State properties
     @:isVar public var primitive_type (get, set) : PrimitiveType;
     @:isVar public var texture (get, set) : Texture;
     @:isVar public var shader (get, set) : Shader;
     @:isVar public var depth (get, set) : Float;
     @:isVar public var group (get, set) : Int;
-    @:isVar public var clip (get, set) : Bool;
     @:isVar public var clip_rect (get, set) : Rectangle;
 
     private var shadow_primitive_type : PrimitiveType;
@@ -79,12 +78,15 @@ class Geometry {
     private var dirty_depth : Bool = false;
     private var dirty_clip : Bool = false;
 
-        //Geometry properties   
+        //Geometry properties
     @:isVar public var visible      (default, set) : Bool = true;
     @:isVar public var locked       (get, set) : Bool = false;
     @:isVar public var dirty        (get, set) : Bool = false;
     @:isVar public var immediate    (default, default) : Bool;
     @:isVar public var color        (default, set) : Color;
+
+        //internal bool flag for clip sorting and clipping state
+    @:noCompletion @:isVar public var clip (get, set) : Bool;
 
         //Private reuse value
     var _final_vert_position : Vector;
@@ -103,39 +105,38 @@ class Geometry {
         vertices = new Array<Vertex>();
         state = new GeometryState();
         batchers = new Array<Batcher>();
-        
+
             //init transforms
-        transform = new Transform();            
+        transform = new Transform();
 
             //init the empty vertex reuse
         _final_vert_position = new Vector();
 
             //geometry clipping
+        clip_rect = null;
         clip = false;
-        clip_rect = new Rectangle();        
 
         if(options != null) {
-            
+
             state.depth             = options.depth == null             ? state.depth           : options.depth;
             state.group             = options.group == null             ? state.group           : options.group;
-            state.texture           = options.texture == null           ? state.texture         : options.texture;          
-            state.clip              = options.clip == null              ? state.clip            : options.clip;
+            state.texture           = options.texture == null           ? state.texture         : options.texture;
             state.clip_rect         = options.clip_rect == null         ? state.clip_rect       : options.clip_rect;
             state.primitive_type    = options.primitive_type == null    ? state.primitive_type  : options.primitive_type;
             state.shader            = options.shader == null            ? state.shader          : options.shader;
 
-            id                      = (options.id == null)          ? uuid                : options.id;
+            id                      = (options.id == null)              ? uuid                  : options.id;
 
-            transform.pos           = (options.pos == null)         ? transform.pos       : options.pos;
-            transform.rotation      = (options.rotation == null)    ? transform.rotation  : options.rotation;
-            transform.scale         = (options.scale == null)       ? transform.scale     : options.scale;
-            transform.origin        = (options.origin == null)      ? transform.origin    : options.origin;
+            transform.pos           = (options.pos == null)             ? transform.pos         : options.pos;
+            transform.rotation      = (options.rotation == null)        ? transform.rotation    : options.rotation;
+            transform.scale         = (options.scale == null)           ? transform.scale       : options.scale;
+            transform.origin        = (options.origin == null)          ? transform.origin      : options.origin;
 
-            immediate               = (options.immediate == null)   ? false     : options.immediate;
-            visible                 = (options.visible == null)     ? true      : options.visible;
+            immediate               = (options.immediate == null)       ? false                 : options.immediate;
+            visible                 = (options.visible == null)         ? true                  : options.visible;
 
-            color                   = (options.color == null)       ? new Color() : options.color;
-            
+            color                   = (options.color == null)           ? new Color()           : options.color;
+
         } //options != null
 
         _sequence_key++;
@@ -150,7 +151,7 @@ class Geometry {
             group : state.group,
             depth : state.depth,
             clip : state.clip
-        };        
+        };
 
         transform.id = uuid;
         transform.name = id;
@@ -158,7 +159,8 @@ class Geometry {
     } //new
 
     public function key_string() {
-        return 
+
+        return
             'ts: '+ key.timestamp + '\n' +
             'sequence: '+ key.sequence + '\n' +
             'primitive_type: '+ key.primitive_type + '\n' +
@@ -167,10 +169,11 @@ class Geometry {
             'group: '+ key.group + '\n' +
             'depth: '+ key.depth + '\n' +
             'clip: '+ key.clip;
-    }
+
+    } //key_string
 
     public function refresh_key() {
-        
+
         // _sequence_key++;
 
         key.uuid = uuid;
@@ -182,7 +185,8 @@ class Geometry {
         key.group = state.group;
         key.depth = state.depth;
         key.clip = state.clip;
-    }
+
+    } //refresh_key
 
     public function short_id() {
 
@@ -199,10 +203,10 @@ class Geometry {
     }
 
     public function drop( ?remove:Bool = true ) {
-        
+
         if( remove && added ) {
-            
-            for(b in batchers) {                
+
+            for(b in batchers) {
                 b.remove( this, true );
             } //for each batcher
 
@@ -227,12 +231,12 @@ class Geometry {
 
         vertices.remove(v);
 
-    } //remove 
+    } //remove
 
-    public function batch( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int, 
-                           vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array 
+    public function batch( vert_index : Int, tcoord_index:Int, color_index:Int, normal_index:Int,
+                           vertlist : Float32Array, tcoordlist : Float32Array, colorlist : Float32Array, normallist : Float32Array
         ) {
-            
+
         for(v in vertices) {
 
                 //the base position of the vert
@@ -276,13 +280,13 @@ class Geometry {
 
     } //batch
 
-    public function batch_into_arrays( vertlist : Array<Float>, tcoordlist : Array<Float>, 
+    public function batch_into_arrays( vertlist : Array<Float>, tcoordlist : Array<Float>,
                            colorlist : Array<Float>, normallist : Array<Float> ) {
 
         for(v in vertices) {
 
                 // the base position of the vert
-            _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z );
+            _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
                 // apply the transform to the vert
             _final_vert_position.transform( transform.world.matrix );
 
@@ -290,10 +294,13 @@ class Geometry {
             vertlist.push( _final_vert_position.x );
             vertlist.push( _final_vert_position.y );
             vertlist.push( _final_vert_position.z );
+            vertlist.push( _final_vert_position.w );
 
                 //texture coordinates :todo: multiple uv sets
             tcoordlist.push( v.uv.uv0.u );
             tcoordlist.push( v.uv.uv0.v );
+            tcoordlist.push( v.uv.uv0.w );
+            tcoordlist.push( v.uv.uv0.t );
 
                 //color values per vertex
             colorlist.push( v.color.r );
@@ -305,6 +312,7 @@ class Geometry {
             normallist.push( v.normal.x );
             normallist.push( v.normal.y );
             normallist.push( v.normal.z );
+            normallist.push( v.normal.w );
 
         } //each vertex
 
@@ -318,26 +326,26 @@ class Geometry {
 
     } // translate
 
-    public function set_locked( _locked:Bool ) : Bool {
+    function set_locked( _locked:Bool ) : Bool {
 
         return locked = _locked;
 
     } //set_locked
 
-    public function get_locked() : Bool {
-        
+    function get_locked() : Bool {
+
         return locked;
 
     } //get_locked
 
-    public function set_dirty( _dirty:Bool ) : Bool {
+    function set_dirty( _dirty:Bool ) : Bool {
 
         return dirty = _dirty;
 
     } //set_dirty
 
-    public function get_dirty() : Bool {
-        
+    function get_dirty() : Bool {
+
         return dirty;
 
     } //get_dirty
@@ -393,47 +401,47 @@ class Geometry {
 
 //Primitive Type
 
-    private function get_primitive_type() : PrimitiveType {
+    function get_primitive_type() : PrimitiveType {
 
         return state.primitive_type;
 
     } //get_primitive_type
 
-    private function set_primitive_type( val : PrimitiveType ) : PrimitiveType {    
+    function set_primitive_type( val : PrimitiveType ) : PrimitiveType {
 
         if(state.primitive_type != val) {
             shadow_primitive_type = val;
             dirty_primitive_type = true;
-            refresh();      
+            refresh();
         }
-        
+
         return primitive_type = val;
 
     } //set_primitive_type
 
 //Texture
 
-    public function get_texture() : Texture {
+    function get_texture() : Texture {
 
         return state.texture;
 
     } //get_texture
 
-    public function set_texture(val : Texture) : Texture {
-        
+    function set_texture(val : Texture) : Texture {
+
         if(state.texture != val) {
             shadow_texture = val;
             dirty_texture = true;
-            refresh();      
+            refresh();
         }
-        
+
         return texture = val;
 
     } //set_texture
 
 //Visibility
 
-    public function set_visible(val : Bool) : Bool {
+    function set_visible(val : Bool) : Bool {
 
         return visible = val;
 
@@ -441,7 +449,7 @@ class Geometry {
 
 //Color
 
-    public function set_color(val : Color) : Color {
+    function set_color(val : Color) : Color {
 
         for(v in vertices) {
             v.color = val;
@@ -450,37 +458,37 @@ class Geometry {
         return color = val;
 
     } //set_color
-    
+
 //Shader
 
-    public function get_shader() : Shader {
+    function get_shader() : Shader {
 
         return state.shader;
 
     } //get_shader
 
-    public function set_shader(val : Shader) : Shader {
+    function set_shader(val : Shader) : Shader {
 
         if(state.shader != val) {
             shadow_shader = val;
             dirty_shader = true;
             refresh();
         }
-        
+
         return shader = val;
 
     } //set_shader
 
 //Depth
 
-    public function get_depth() : Float {
+    function get_depth() : Float {
 
         return state.depth;
 
     } //get_depth
 
 
-    public function set_depth(val : Float) : Float {
+    function set_depth(val : Float) : Float {
 
         if(state.depth != val) {
             shadow_depth = val;
@@ -494,53 +502,59 @@ class Geometry {
 
 //Group
 
-    public function get_group() : Int {
+    function get_group() : Int {
 
         return state.group;
 
     } //get_group
 
-    public function set_group(val : Int) : Int {        
+    function set_group(val : Int) : Int {
 
         if(state.group != val) {
             shadow_group = val;
             dirty_group = true;
             refresh();
         }
-        
+
         return group = val;
 
     } //set_group
 
 //Clip
 
-    public function get_clip() : Bool {
+    function get_clip() : Bool {
 
         return state.clip;
 
     } //get_clip
 
-    public function set_clip(val : Bool) : Bool {       
+    function set_clip(val : Bool) : Bool {
 
         if(state.clip != val) {
             shadow_clip = val;
             dirty_clip = true;
-            refresh();      
+            refresh();
         }
-        
+
         return clip = val;
 
     } //set_clip
 
 //Clip rect
 
-    public function get_clip_rect() : Rectangle {
+    function get_clip_rect() : Rectangle {
 
         return state.clip_rect;
 
     } //get_clip_rect
 
-    public function set_clip_rect(val : Rectangle) : Rectangle {
+    function set_clip_rect(val : Rectangle) : Rectangle {
+
+        if(val == null) {
+            clip = false;
+        } else {
+            clip = true;
+        }
 
         return state.clip_rect = val;
 

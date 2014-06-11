@@ -10,7 +10,7 @@ import phoenix.geometry.CompositeGeometry;
 typedef TextAlign = phoenix.BitmapFont.TextAlign;
 
 class Text extends Visual {
-    
+
     public var font : BitmapFont;
     private var _batcher : Batcher;
 
@@ -26,7 +26,7 @@ class Text extends Visual {
     public function new( _options : Dynamic ) {
 
             //pass off geometry properties up to super first
-        _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;        
+        _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
 
         if(_options.pos == null) {
             _options.pos = new Vector();
@@ -61,10 +61,10 @@ class Text extends Visual {
             group : _options.group,
             no_geometry : true
         });
-             
-    //font   
+
+    //font
         var _font : Dynamic = (_options.font == null) ? null : _options.font;
-            
+
         if(_font == null) _font = Luxe.renderer.font;
 
         textsize = (_options.size == null) ? 32 : _options.size;
@@ -78,12 +78,12 @@ class Text extends Visual {
 
         } else {
 
-                //supplied a precreated font?            
+                //supplied a precreated font?
             font = _font;
             ready = true;
 
         }
-        
+
         text_options.size = textsize;
 
             //Apply the setter, which will draw the geometry
@@ -107,13 +107,13 @@ class Text extends Visual {
 
 
     function set_textsize(v:Float) : Float {
-        
+
         if(text_options != null) {
-            textsize = v;        
+            textsize = v;
             text_options.size = textsize;
             text = text+'';
         }
-        
+
         return textsize;
 
     } //set_textsize
@@ -140,7 +140,7 @@ class Text extends Visual {
 
 
     override function set_locked(l:Bool) : Bool {
-        
+
         super.set_locked(l);
 
         text_options.locked = locked;
@@ -182,11 +182,11 @@ class Text extends Visual {
 
                 //and then assign it
             ignore_texture_on_geometry_change = true;
-                
+
                 geometry = composite_geometry;
 
             ignore_texture_on_geometry_change = false;
-            
+
         }
 
         return text;

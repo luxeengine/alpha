@@ -7,128 +7,133 @@ import phoenix.Batcher;
 import phoenix.BitmapFont;
 
 typedef DebugInspectorOptions = {
-	? title : String,
-	? font : BitmapFont,
-	? pos  : Vector,
-	? size : Vector,
-	? batcher : Batcher
+    ? title : String,
+    ? font : BitmapFont,
+    ? pos  : Vector,
+    ? size : Vector,
+    ? batcher : Batcher
 }
 
 @:noCompletion class Inspector {
 
-	public var title:String;
-	public var font : BitmapFont;
-	public var pos:Vector;
-	public var size:Vector;
+    public var title:String;
+    public var font : BitmapFont;
+    public var pos:Vector;
+    public var size:Vector;
 
-		//pieces
-	public var _title_text : Text;
-	public var _version_text : Text;
-	
-	public var uitexture : Texture;
-	public var uibutton : Texture;
+        //pieces
+    public var _title_text : Text;
+    public var _version_text : Text;
 
-	public var _window : NineSlice;
-	private var _batcher : Batcher;
+    public var uitexture : Texture;
+    public var uibutton : Texture;
 
-	public var onrefresh : Void->Void;
+    public var _window : NineSlice;
+    private var _batcher : Batcher;
 
-	public function new( _options:DebugInspectorOptions ) {
+    public var onrefresh : Void->Void;
 
-		title = 'Inspector';
-		font = Luxe.renderer.font;
-		size = new Vector( Std.int(Luxe.screen.w*0.2), Std.int(Luxe.screen.h*0.6) );
-		pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
+    public function new( _options:DebugInspectorOptions ) {
 
-			//load the images
-		uitexture = Luxe.renderer.load_texture_from_resource_bytes('tiny.ui.png', 128, 128);
-		uibutton = Luxe.renderer.load_texture_from_resource_bytes('tiny.button.png', 32, 16);
-		
-			//default to the internal batcher
-		_batcher = Luxe.renderer.batcher;
+        title = 'Inspector';
+        font = Luxe.renderer.font;
+        size = new Vector( Std.int(Luxe.screen.w*0.2), Std.int(Luxe.screen.h*0.6) );
+        pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
 
-		if(_options != null) {
+            //load the images
+        uitexture = Luxe.renderer.load_texture_from_resource_bytes('tiny.ui.png', 128, 128);
+        uibutton = Luxe.renderer.load_texture_from_resource_bytes('tiny.button.png', 32, 16);
 
-			if(_options.title != null) title = _options.title;
-			if(_options.font != null) font = _options.font;
-			if(_options.pos != null) pos = _options.pos;
-			if(_options.size != null) size = _options.size;
-			if(_options.batcher != null) _batcher = _options.batcher;
-			
-		} //_options != null
+            //default to the internal batcher
+        _batcher = Luxe.renderer.batcher;
 
-	} //new
+        if(_options != null) {
 
-	public function refresh() {
-		if(_window == null) {
-			_create_window();
-		}
+            if(_options.title != null) title = _options.title;
+            if(_options.font != null) font = _options.font;
+            if(_options.pos != null) pos = _options.pos;
+            if(_options.size != null) size = _options.size;
+            if(_options.batcher != null) _batcher = _options.batcher;
 
-		if(onrefresh != null) {
-			onrefresh();
-		}
-	}
+        } //_options != null
 
-	public function show() { 
-		refresh();
-		_window.visible = true;
-		_title_text.visible = true;
-		_version_text.visible = true;
-	}
-	public function hide() { 
-		_window.visible = false;
-		_title_text.visible = false;
-		_version_text.visible = false;
-	}
+    } //new
 
-	private function _create_window() {
-			//if already exists, clean up
-		if(_window != null) {
-			_window.destroy();
-		}
+    public function refresh() {
+        if(_window == null) {
+            _create_window();
+        }
 
-		_window = new NineSlice({
-			depth : 999.1,
-			texture : uitexture,
-			batcher : _batcher
-		});	
+        if(onrefresh != null) {
+            onrefresh();
+        }
+    }
 
-		_window.create( pos, size.x, size.y );
-		_window._geometry.id = 'debug.Inspector';
+    public function show() {
+        refresh();
+        _window.visible = true;
+        _title_text.visible = true;
+        _version_text.visible = true;
+    }
+    public function hide() {
+        _window.visible = false;
+        _title_text.visible = false;
+        _version_text.visible = false;
+    }
 
-			//static batch
-		_window.lock();		
+    private function _create_window() {
+            //if already exists, clean up
+        if(_window != null) {
+            _window.destroy();
+        }
 
-		_title_text = new Text({
-			name : 'debug.title',
-			batcher : _batcher,
-			no_scene : true,
-			depth : 999.2,
-			color : new Color().rgb(0xf6007b),
-			pos : new Vector( pos.x+(size.x/2), pos.y+5 ),
-			align : TextAlign.center,
-			font : font,
-			text : title,
-			size : 16,
-			visible : false
-		});
+        _window = new NineSlice({
+            depth : 999.1,
+            texture : uitexture,
+            batcher : _batcher
+        });
 
-		_version_text = new Text({
-			name : 'debug.version',
-			batcher : _batcher,
-			no_scene : true,
-			depth : 999.2,
-			color : new Color().rgb(0x333333),
-			pos : new Vector( pos.x+(size.x-14), pos.y+5 ),
-			align : TextAlign.right,
-			font : font,
-			text : '${Luxe.build}',
-			size : 16,
-			visible : false
-		});
+        _window.create( pos, size.x, size.y );
+        _window._geometry.id = 'debug.Inspector';
 
-		_title_text.geometry.id = 'debug.title.text';
-		_version_text.geometry.id = 'debug.version.text';
+            //static batch
+        _window.lock();
 
-	}
+        _title_text = new Text({
+            name : 'debug.title',
+            batcher : _batcher,
+            no_scene : true,
+            depth : 999.2,
+            color : new Color().rgb(0xf6007b),
+            pos : new Vector( pos.x+(size.x/2), pos.y+5 ),
+            align : TextAlign.center,
+            font : font,
+            text : title,
+            size : 16,
+            visible : false
+        });
+
+        _version_text = new Text({
+            name : 'debug.version',
+            batcher : _batcher,
+            no_scene : true,
+            depth : 999.2,
+            color : new Color().rgb(0x333333),
+            pos : new Vector( pos.x+(size.x-14), pos.y+5 ),
+            align : TextAlign.right,
+            font : font,
+            text : '${Luxe.build}',
+            size : 16,
+            visible : false
+        });
+
+        if(_title_text.geometry != null) {
+            _title_text.geometry.id = 'debug.title.text';
+        }
+
+        if(_version_text.geometry != null) {
+            _version_text.geometry.id = 'debug.version.text';
+        }
+
+    }
 }
