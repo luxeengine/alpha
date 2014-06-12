@@ -10,7 +10,7 @@ import luxe.Resource;
     #else
         import cpp.vm.Thread;
         import cpp.vm.Mutex;
-    #end 
+    #end
 #end //parcel_thread_disabled
 
 
@@ -35,7 +35,7 @@ typedef ParcelOptions = {
     ? threaded : Bool,
     ? load_spacing : Float,
     ? start_spacing : Float,
-    ? oncomplete : Parcel->Void, 
+    ? oncomplete : Parcel->Void,
     ? onprogress : Resource->Void
 }
 
@@ -101,8 +101,8 @@ class Parcel extends luxe.ResourceManager {
 
         #if (luxe_native && !parcel_thread_disabled)
             Thread.create(function(){
-                Sys.println('background thread loading ' + options);
-        #end                
+                // Sys.println('background thread loading ' + options);
+        #end
                 if( !options.sequential ) {
 
                     start_textures_load();
@@ -119,12 +119,12 @@ class Parcel extends luxe.ResourceManager {
                 }
 
         #if (luxe_native && !parcel_thread_disabled)
-                Sys.println('background thread end');
+                // Sys.println('background thread end');
             }); //Thread
-        #end 
+        #end
 
         }); //timer schedule
-             
+
     } //load
 
     public function from_json( _json_object:Dynamic ) {
@@ -151,7 +151,7 @@ class Parcel extends luxe.ResourceManager {
                     if(item != null) {
                         var ps_id : String = item.ps_id == null ? 'default' : cast item.ps_id;
                         var vs_id : String = item.vs_id == null ? 'default' : cast item.vs_id;
-                            
+
                         add_shader(ps_id, vs_id);
 
                     } //item != null
@@ -233,7 +233,7 @@ class Parcel extends luxe.ResourceManager {
 
                     //load recursive so that it is sequential
                 recursive_load_textures( null );
-            
+
             } else {
 
                     //load all fonts immediately
@@ -244,7 +244,7 @@ class Parcel extends luxe.ResourceManager {
             } //sequential
 
         } else { //texture_list
-        
+
             if( options.sequential ) {
                 start_fonts_load();
             }
@@ -265,7 +265,7 @@ class Parcel extends luxe.ResourceManager {
 
                     //load recursive so that it is sequential
                 recursive_load_fonts( null );
-            
+
             } else {
 
                     //load all fonts immediately
@@ -296,7 +296,7 @@ class Parcel extends luxe.ResourceManager {
 
                     //load recursive so that it is sequential
                 recursive_load_shaders( null );
-            
+
             } else {
 
                     //load all fonts immediately
@@ -306,7 +306,7 @@ class Parcel extends luxe.ResourceManager {
             } //sequential
 
         } else { //shader_list > 0
-            
+
             if( options.sequential ) {
                 start_sounds_load();
             }
@@ -327,7 +327,7 @@ class Parcel extends luxe.ResourceManager {
 
                     //load recursive so that it is sequential
                 recursive_load_sounds( null );
-            
+
             } else {
 
                     //load all fonts immediately
@@ -346,7 +346,7 @@ class Parcel extends luxe.ResourceManager {
 
     } //start_sounds_load
 
-//Data 
+//Data
 
     function start_datas_load() {
 
@@ -358,7 +358,7 @@ class Parcel extends luxe.ResourceManager {
 
                     //load recursive so that it is sequential
                 recursive_load_datas( null );
-            
+
             } else {
 
                     //load all fonts immediately
@@ -368,7 +368,7 @@ class Parcel extends luxe.ResourceManager {
             } //sequential
 
         } else { //data_list > 0
-            
+
         }
 
     } //start_datas_load
@@ -385,7 +385,7 @@ class Parcel extends luxe.ResourceManager {
 
                     //load recursive so that it is sequential
                 recursive_load_texts( null );
-            
+
             } else {
 
                     //load all fonts immediately
@@ -456,7 +456,7 @@ class Parcel extends luxe.ResourceManager {
 
             single_item_complete( item );
 
-            if(index_textures == texture_list.length && options.sequential) {                
+            if(index_textures == texture_list.length && options.sequential) {
                 start_fonts_load();
             }
 
@@ -475,7 +475,7 @@ class Parcel extends luxe.ResourceManager {
 
             } //not past max length
 
-        // });  //schedule closing brace      
+        // });  //schedule closing brace
 
     } //recursive_load_textures
 
@@ -484,10 +484,10 @@ class Parcel extends luxe.ResourceManager {
     function recursive_load_shaders( item:Resource ) {
 
         if(item != null) {
-            
+
             single_item_complete( item );
 
-            if(index_shaders == shader_list.length && options.sequential) {                
+            if(index_shaders == shader_list.length && options.sequential) {
                 start_sounds_load();
             }
 
@@ -506,7 +506,7 @@ class Parcel extends luxe.ResourceManager {
 
             } //not past max length
 
-        // });  //schedule closing brace      
+        // });  //schedule closing brace
 
     } //recursive_load_shaders
 
@@ -518,7 +518,7 @@ class Parcel extends luxe.ResourceManager {
 
             single_item_complete( item );
 
-            if(index_fonts == font_list.length && options.sequential) {                
+            if(index_fonts == font_list.length && options.sequential) {
                 start_shaders_load();
             }
 
@@ -537,7 +537,7 @@ class Parcel extends luxe.ResourceManager {
 
             } //not past max length
 
-        // });  //schedule closing brace      
+        // });  //schedule closing brace
 
     } //recursive_load_fonts
 
@@ -549,7 +549,7 @@ class Parcel extends luxe.ResourceManager {
 
             single_item_complete( item );
 
-            if(index_sounds == sound_list.length && options.sequential) {                
+            if(index_sounds == sound_list.length && options.sequential) {
                 start_texts_load();
             }
 
@@ -568,7 +568,7 @@ class Parcel extends luxe.ResourceManager {
 
             } //not past max length
 
-        // });  //schedule closing brace      
+        // });  //schedule closing brace
 
     } //recursive_load_sounds
 
@@ -593,7 +593,7 @@ class Parcel extends luxe.ResourceManager {
 
             } //not past max length
 
-        // });  //schedule closing brace      
+        // });  //schedule closing brace
 
     } //recursive_load_datas
 
@@ -605,7 +605,7 @@ class Parcel extends luxe.ResourceManager {
 
             single_item_complete( item );
 
-            if(index_texts == text_list.length && options.sequential) {                
+            if(index_texts == text_list.length && options.sequential) {
                 start_datas_load();
             }
 
@@ -624,7 +624,7 @@ class Parcel extends luxe.ResourceManager {
 
             } //not past max length
 
-        // });  //schedule closing brace      
+        // });  //schedule closing brace
 
     } //recursive_load_texts
 
@@ -704,18 +704,18 @@ class Parcel extends luxe.ResourceManager {
 
 
 //Per item handlers
-    
+
     function load_texture( _tex:String, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading texture " + _tex ); #end 
-        
+        #if luxe_parcel_logging trace("\t parcel: loading texture " + _tex ); #end
+
         #if (luxe_native && !parcel_thread_disabled)
-            
-            Sys.println("loading from thread?");
+
+            // Sys.println("loading from thread?");
             var now = Luxe.time;
 
             var asset_bytes = lime.utils.Assets.getBytes( _tex );
 
-            Sys.println('done in ' + (Luxe.time - now) + '  ' + asset_bytes.length);
+            // Sys.println('done in ' + (Luxe.time - now) + '  ' + asset_bytes.length);
 
                 //textures require being uploaded to GL on the main thread
             Luxe.core.core_thread.sendMessage({
@@ -727,9 +727,9 @@ class Parcel extends luxe.ResourceManager {
                 }
             });
 
-        #else 
+        #else
 
-            Luxe.timer.schedule( options.load_spacing, function(){ 
+            Luxe.timer.schedule( options.load_spacing, function(){
                 Luxe.loadTexture( _tex, _complete );
             });
 
@@ -738,7 +738,7 @@ class Parcel extends luxe.ResourceManager {
     } //load_texture
 
     function load_shader( _shader:ShaderInfo, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading shader " + _shader.ps_id + _shader.vs_id ); #end 
+        #if luxe_parcel_logging trace("\t parcel: loading shader " + _shader.ps_id + _shader.vs_id ); #end
 
         #if (luxe_native && !parcel_thread_disabled)
 
@@ -752,9 +752,9 @@ class Parcel extends luxe.ResourceManager {
                 }
             });
 
-        #else 
+        #else
 
-            Luxe.timer.schedule( options.load_spacing, function(){ 
+            Luxe.timer.schedule( options.load_spacing, function(){
                 Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete );
             });
 
@@ -763,36 +763,36 @@ class Parcel extends luxe.ResourceManager {
     } //load_shader
 
     function load_font( _font:FontInfo, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading font " + _font.path + _font.id ); #end 
+        #if luxe_parcel_logging trace("\t parcel: loading font " + _font.path + _font.id ); #end
 
-        Luxe.timer.schedule( options.load_spacing, function(){ 
+        Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadFont( _font.id, _font.path, _complete );
         });
 
     } //load_font
 
     function load_data( _data_path:String, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading data " + _data_path ); #end 
+        #if luxe_parcel_logging trace("\t parcel: loading data " + _data_path ); #end
 
-        Luxe.timer.schedule( options.load_spacing, function(){ 
+        Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadData( _data_path, _complete );
         });
 
     } //load_data_path
 
     function load_text( _text_path:String, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading text " + _text_path ); #end 
+        #if luxe_parcel_logging trace("\t parcel: loading text " + _text_path ); #end
 
-        Luxe.timer.schedule( options.load_spacing, function(){ 
+        Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadText( _text_path, _complete );
         });
 
     } //load_datafile
 
     function load_sound( _sound:SoundInfo, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading sound " + _sound.id + " (" + _sound.name + ")" ); #end 
+        #if luxe_parcel_logging trace("\t parcel: loading sound " + _sound.id + " (" + _sound.name + ")" ); #end
 
-        Luxe.timer.schedule( options.load_spacing, function(){ 
+        Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadSound( _sound.name, _sound.id, _sound.is_music, _complete );
         });
 
@@ -821,14 +821,14 @@ class Parcel extends luxe.ResourceManager {
         current_count++;
 
         #if luxe_parcel_logging
-            trace( "\t parcel: item finished " + item.id + "( " + current_count + "/" + total_items + " )"); 
+            trace( "\t parcel: item finished " + item.id + "( " + current_count + "/" + total_items + " )");
         #end //luxe_parcel_logging
 
         if(options.onprogress != null) {
             options.onprogress( item );
         }
 
-            //There will always be a 0.1 second delay before 
+            //There will always be a 0.1 second delay before
             //oncomplete to allow for progress bar renders to complete
         if(current_count >= total_items) {
             Luxe.timer.schedule(0.1, function(){
