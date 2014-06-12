@@ -35,6 +35,9 @@ class Shader extends Resource {
     public var errors : String = '';
     public var log : String = '';
 
+    public var vertex_source_name : String = '';
+    public var fragment_source_name : String = '';
+
     public var vert_shader : GLShader;
     public var frag_shader : GLShader;
     public var program : GLProgram;
@@ -54,14 +57,14 @@ class Shader extends Resource {
     public var tex4_attribute : GLUniformLocation;
     public var tex5_attribute : GLUniformLocation;
     public var tex6_attribute : GLUniformLocation;
-    public var tex7_attribute : GLUniformLocation;    
+    public var tex7_attribute : GLUniformLocation;
 
     public var uniforms : Map<String, UniformValue<Dynamic> >;
-    
+
     var uniform_textures : Map<String,Texture>;
 
     public function new( _manager : ResourceManager ) {
-        
+
         super( _manager, ResourceType.shader );
         uniforms = new Map<String, UniformValue<Dynamic> >();
         uniform_textures = new Map();
@@ -115,7 +118,7 @@ class Shader extends Resource {
     } //set_uniform_float
 
     public function set_uniform_vector2( _name:String, _value:Vector ) : Void {
-        
+
         if(uniforms.exists(_name)) {
 
             var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
@@ -123,11 +126,11 @@ class Shader extends Resource {
 
         } else {
 
-            var _uniformvalue : UniformValue<Vector> = { 
-                name : _name, 
-                value : _value, 
-                type : UniformValueType.vector2, 
-                location : GL.getUniformLocation( program, _name ) 
+            var _uniformvalue : UniformValue<Vector> = {
+                name : _name,
+                value : _value,
+                type : UniformValueType.vector2,
+                location : GL.getUniformLocation( program, _name )
             }
 
             uniforms.set(_name, _uniformvalue);
@@ -135,7 +138,7 @@ class Shader extends Resource {
     } //set_uniform_vector2
 
     public function set_uniform_vector3( _name:String, _value:Vector ) : Void {
-        
+
         if(uniforms.exists(_name)) {
 
             var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
@@ -143,11 +146,11 @@ class Shader extends Resource {
 
         } else {
 
-            var _uniformvalue : UniformValue<Vector> = { 
-                name : _name, 
-                value : _value, 
-                type : UniformValueType.vector3, 
-                location : GL.getUniformLocation( program, _name ) 
+            var _uniformvalue : UniformValue<Vector> = {
+                name : _name,
+                value : _value,
+                type : UniformValueType.vector3,
+                location : GL.getUniformLocation( program, _name )
             }
 
             uniforms.set(_name, _uniformvalue);
@@ -164,12 +167,12 @@ class Shader extends Resource {
                 _uniformvalue.value = _value;
 
         } else {
-            
-            var _uniformvalue : UniformValue<Vector> = { 
-                name : _name, 
-                value : _value, 
-                type : UniformValueType.vector4, 
-                location : GL.getUniformLocation( program, _name ) 
+
+            var _uniformvalue : UniformValue<Vector> = {
+                name : _name,
+                value : _value,
+                type : UniformValueType.vector4,
+                location : GL.getUniformLocation( program, _name )
             }
 
             uniforms.set(_name, _uniformvalue);
@@ -187,13 +190,13 @@ class Shader extends Resource {
 
         } else {
 
-            var _uniformvalue : UniformValue<Color> = { 
-                name : _name, 
-                value : _value, 
-                type : UniformValueType.color, 
-                location : GL.getUniformLocation( program, _name ) 
+            var _uniformvalue : UniformValue<Color> = {
+                name : _name,
+                value : _value,
+                type : UniformValueType.color,
+                location : GL.getUniformLocation( program, _name )
             }
-                
+
             uniforms.set(_name, _uniformvalue);
 
         }
@@ -209,10 +212,10 @@ class Shader extends Resource {
 
         } else {
 
-            var _uniformvalue : UniformValue<Texture> = { 
-                name : _name, value : _value, 
-                type : UniformValueType.texture, 
-                location : GL.getUniformLocation( program, _name ) 
+            var _uniformvalue : UniformValue<Texture> = {
+                name : _name, value : _value,
+                type : UniformValueType.texture,
+                location : GL.getUniformLocation( program, _name )
             }
 
             uniforms.set(_name, _uniformvalue);
@@ -237,9 +240,9 @@ class Shader extends Resource {
             if(shader_log.length > 0) {
 
                 addLog("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
-                
+
                 addLog("\t\t" + shader_log + '\n');
-                
+
                 addLog("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
 
             } //shader_log.length
@@ -248,8 +251,11 @@ class Shader extends Resource {
 
         if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
 
-            addError("\tFailed to compile shader (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") : \n");
-                
+            var _info = ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" );
+                _info += ((_type == GL.FRAGMENT_SHADER) ? '($fragment_source_name)' : '($vertex_source_name)' );
+
+            addError("\tFailed to compile shader (" + _info + ") : \n");
+
                 //only fetch if we haven't already above
             if(!_verbose) {
                 shader_log = GL.getShaderInfoLog(_shader);
@@ -288,7 +294,7 @@ class Shader extends Resource {
             GL.deleteProgram(_program);
             _program = null;
             return null;
-        }        
+        }
 
             //first bind it
         activate();
@@ -297,7 +303,7 @@ class Shader extends Resource {
         // vert_attribute =    GL.getAttribLocation( _program ,   "vertexPosition");
         // tcoord_attribute =  GL.getAttribLocation( _program,  "vertexTCoord");
         // color_attribute =   GL.getAttribLocation( _program,   "vertexColor");
-        // normal_attribute =  GL.getAttribLocation( _program,  "vertexNormal");            
+        // normal_attribute =  GL.getAttribLocation( _program,  "vertexNormal");
 
             //Matrices
         projectionmatrix_attribute = GL.getUniformLocation( _program,   "projectionMatrix");
@@ -311,7 +317,7 @@ class Shader extends Resource {
         tex4_attribute = GL.getUniformLocation( _program, "tex4" );
         tex5_attribute = GL.getUniformLocation( _program, "tex5" );
         tex6_attribute = GL.getUniformLocation( _program, "tex6" );
-        tex7_attribute = GL.getUniformLocation( _program, "tex7" );        
+        tex7_attribute = GL.getUniformLocation( _program, "tex7" );
 
         return _program;
     }
@@ -324,14 +330,18 @@ class Shader extends Resource {
     public function destroy() {
         if( vert_shader != null ) GL.deleteShader( vert_shader );
         if( frag_shader != null ) GL.deleteShader( frag_shader );
-        if( program != null ) GL.deleteProgram( program );      
+        if( program != null ) GL.deleteProgram( program );
     }
 
     //! Loads shaders from a string, compiles, and links them */
-    public function load_from_string( _vertex_source:String, _fragment_source:String, _verbose:Bool = false ) {
-            
+    public function load_from_string( _vertex_source:String, _fragment_source:String, _frag_name:String='', _vertex_name:String='', _verbose:Bool = false ) {
+
             //First clean up
-        destroy();          
+        destroy();
+
+            //store the names
+        fragment_source_name = _frag_name;
+        vertex_source_name = _vertex_name;
 
             //compile the sources
         vert_shader = compile( GL.VERTEX_SHADER, _vertex_source, _verbose );
@@ -343,7 +353,7 @@ class Shader extends Resource {
                 throw "SHADER : " + id + " \n\n " + log + '\n' + errors;
             } else {
                 throw errors;
-            } 
+            }
             return false;
         }
 
@@ -356,8 +366,8 @@ class Shader extends Resource {
                 throw log + '\n' + errors;
             } else {
                 throw errors;
-            }            
-        } else {            
+            }
+        } else {
             if(_verbose && log.length > 0) {
                 trace(log);
             }
@@ -368,7 +378,7 @@ class Shader extends Resource {
 
 
 
-        return true;    
+        return true;
     }
 
     @:noCompletion public function apply_uniforms() {
@@ -441,4 +451,4 @@ class Shader extends Resource {
         errors += _error;
     }
 
-}   
+}

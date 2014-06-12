@@ -218,14 +218,17 @@ class Renderer {
         var _vert_shader = '';
 
         if(_vsid == 'default' || _vsid == '') {
+            _vsid = 'default shader';
             _vert_shader = default_vert_source;
         } else {
             _vert_shader = lime.utils.Assets.getText(_vsid);
         }
 
         if(_psid == 'default' || _psid == '') {
+            _psid = 'default shader';
             _frag_shader = default_frag_source;
         } else if(_psid == 'textured') {
+            _psid = 'default textured';
             _frag_shader = default_frag_textured_source;
         } else {
             _frag_shader = lime.utils.Assets.getText(_psid);
@@ -242,7 +245,7 @@ class Renderer {
             #end //luxe_html5
 
              _shader = new Shader( resource_manager );
-            _shader.load_from_string( _vert_shader , prefixes + _frag_shader, false );
+            _shader.load_from_string( _vert_shader , prefixes + _frag_shader, _vsid, _psid, false );
 
         } //
 
