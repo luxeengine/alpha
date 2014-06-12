@@ -14,7 +14,7 @@ class ProfilerDebugView extends luxe.debug.DebugView {
     public static var lists:Map<String,ProfilerValue>;
 
     public function new() {
-        
+
         super();
 
         name = 'Profiler';
@@ -52,12 +52,12 @@ class ProfilerDebugView extends luxe.debug.DebugView {
     public static function start(_id:String) {
         var _item = lists.get(_id);
         if(_item == null) {
-            //create it 
+            //create it
             _item = new ProfilerValue(_id, new ProfilerBar(_id, new Color().rgb(0xf6007b) ));
             _item.bar.pos = new Vector(Luxe.debug.padding.x*2,(Luxe.debug.padding.y*3) + (Lambda.count(lists) * 20) );
             lists.set(_id, _item);
         }
-    
+
         _item.start = Luxe.time;
     }
 
@@ -127,7 +127,7 @@ private class ProfilerValue {
             history.shift();
         }
 
-        count++;    
+        count++;
             //reset if maxed average
         if(count == avg) {
             var __t = accum / avg;
@@ -196,14 +196,14 @@ private class ProfilerBar {
             batcher : Luxe.debug.batcher
         });
 
-        bg_geometry = Luxe.draw.box({            
+        bg_geometry = Luxe.draw.box({
             color : new Color().rgb(0x090909),
             depth : 999.3,
             batcher : Luxe.debug.batcher,
             x:0, y:0, w:width, h:height
         });
 
-        graphbg_geometry = Luxe.draw.box({            
+        graphbg_geometry = Luxe.draw.box({
             color : new Color().rgb(0x222222),
             depth : 999.3,
             batcher : Luxe.debug.batcher,
@@ -211,16 +211,16 @@ private class ProfilerBar {
         });
 
         bar_geometry = Luxe.draw.box({
-            color : _color, 
+            color : _color,
             depth : 999.33,
             batcher : Luxe.debug.batcher,
             x:1, y:1, w:width-2, h:height-2
         });
 
         graph_geometry = new Geometry({
-            color : _color, 
+            color : _color,
             depth : 999.33,
-            batcher : Luxe.debug.batcher            
+            batcher : Luxe.debug.batcher
         });
 
         for(i in 0 ... history) {
@@ -229,7 +229,6 @@ private class ProfilerBar {
         }
 
         graph_geometry.primitive_type = PrimitiveType.line_strip;
-        Luxe.debug.batcher.add( graph_geometry);
 
         hide();
 
@@ -259,7 +258,7 @@ private class ProfilerBar {
 
             //shift every vertex left
         for(i in 0 ... history) {
-            //copy x from the next one 
+            //copy x from the next one
             var v = graph_geometry.vertices[i];
             if(i < (history-1)) {
                 var v1 = graph_geometry.vertices[i+1];
@@ -268,15 +267,15 @@ private class ProfilerBar {
                     v.color = v1.color;
                 }
             }
-        }        
+        }
 
         if(_p > 1) {
             _p = 1;
             graph_geometry.vertices[history-1].color = color_red;
-        } else if(_p < 0.2) { 
+        } else if(_p < 0.2) {
             graph_geometry.vertices[history-1].color = color_green;
-        } else { 
-            graph_geometry.vertices[history-1].color = color_normal; 
+        } else {
+            graph_geometry.vertices[history-1].color = color_normal;
         }
 
         if(_p < 0.001) {
@@ -295,7 +294,7 @@ private class ProfilerBar {
             _p = 1;
             bar_geometry.color = color_red;
         } else if(_p < 0.15) {
-            bar_geometry.color = color_green;            
+            bar_geometry.color = color_green;
         } else {
             bar_geometry.color = color_normal;
         }
@@ -308,7 +307,7 @@ private class ProfilerBar {
         // bar_geometry.transform.pos = new Vector();
         bar_geometry.resize(new Vector(nx, height-2));
         // bar_geometry.transform.pos = new Vector(bg_geometry.transform.pos.x+1, bg_geometry.transform.pos.y+1);
-        
+
         return value = _v;
     }
 
@@ -324,6 +323,6 @@ private class ProfilerBar {
     function set_text(_t:String) {
         text_item.text = name + ' | ' + _t + 'ms';
         return text = _t;
-    } 
+    }
 
 }

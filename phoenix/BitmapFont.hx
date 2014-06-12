@@ -376,8 +376,6 @@ class BitmapFont extends Resource {
             _g.immediate = _immediate;
             _geoms.push( _g );
 
-            // _batcher.add( _g );
-
         } //for each page
 
             //so, the font is a %

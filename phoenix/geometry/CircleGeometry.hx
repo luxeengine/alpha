@@ -9,13 +9,17 @@ import phoenix.Circle;
 
 import luxe.options.GeometryOptions.CircleGeometryOptions;
 
+
 class CircleGeometry extends Geometry {
+
 
     public function new( ?options : CircleGeometryOptions ) {
 
         super(options);
 
-        if(options == null) return;
+        if(options == null) {
+            return;
+        }
 
             //some default values so that the circle is visible with no values
         var _radius_x : Float = 32;
@@ -129,5 +133,6 @@ class CircleGeometry extends Geometry {
         transform.pos = new Vector( _x, _y );
 
     } //set
+
 
 } //CircleGeometry

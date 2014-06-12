@@ -83,9 +83,9 @@ class Geometry {
 
         //Geometry properties
     @:isVar public var visible      (default, set) : Bool = true;
+    @:isVar public var immediate    (default, default) : Bool = false;
     @:isVar public var locked       (get, set) : Bool = false;
     @:isVar public var dirty        (get, set) : Bool = false;
-    @:isVar public var immediate    (default, default) : Bool;
     @:isVar public var color        (default, set) : Color;
 
         //internal bool flag for clip sorting and clipping state
@@ -119,14 +119,17 @@ class Geometry {
         clip_rect = null;
         clip = false;
 
+            //this only applies if batcher is supplied, but is overriden with no_batcher_add
+        var _do_add = true;
+
         if(options != null) {
 
-            state.depth             = options.depth == null             ? state.depth           : options.depth;
-            state.group             = options.group == null             ? state.group           : options.group;
-            state.texture           = options.texture == null           ? state.texture         : options.texture;
-            state.clip_rect         = options.clip_rect == null         ? state.clip_rect       : options.clip_rect;
-            state.primitive_type    = options.primitive_type == null    ? state.primitive_type  : options.primitive_type;
-            state.shader            = options.shader == null            ? state.shader          : options.shader;
+            state.depth             = (options.depth == null)           ? state.depth           : options.depth;
+            state.group             = (options.group == null)           ? state.group           : options.group;
+            state.texture           = (options.texture == null)         ? state.texture         : options.texture;
+            state.clip_rect         = (options.clip_rect == null)       ? state.clip_rect       : options.clip_rect;
+            state.primitive_type    = (options.primitive_type == null)  ? state.primitive_type  : options.primitive_type;
+            state.shader            = (options.shader == null)          ? state.shader          : options.shader;
 
             id                      = (options.id == null)              ? uuid                  : options.id;
 
@@ -139,8 +142,14 @@ class Geometry {
             visible                 = (options.visible == null)         ? true                  : options.visible;
 
             color                   = (options.color == null)           ? new Color()           : options.color;
+            _do_add                 = (options.no_batcher_add == null)  ? true                  : options.no_batcher_add;
 
-        } //options != null
+        } else { //options != null
+
+                //assign required
+            color = new Color();
+
+        }
 
         _sequence_key++;
 
@@ -158,6 +167,12 @@ class Geometry {
 
         transform.id = uuid;
         transform.name = id;
+
+            //only add it to a batcher if explicitly requested,
+            //otherwise do not add to a batcher at all
+        if(options != null && options.batcher != null && _do_add) {
+            options.batcher.add( this );
+        }
 
     } //new
 

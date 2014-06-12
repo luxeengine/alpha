@@ -17,7 +17,7 @@ class Main extends luxe.Game {
     public function ready() {
 
         var level_texture = Luxe.loadTexture('assets/level.png');
-    	var luxe_texture = Luxe.loadTexture('assets/luxe.png');            
+    	var luxe_texture = Luxe.loadTexture('assets/luxe.png');
 
         level_sprite = new Sprite({
             texture : level_texture,
@@ -38,7 +38,7 @@ class Main extends luxe.Game {
 
         luxe_sprite1 = new Sprite({
             texture : luxe_texture,
-            pos : new Vector( a_third * 1, mid ), 
+            pos : new Vector( a_third * 1, mid ),
             size : new Vector( half_a_third, half_a_third ),
             group : 1
         });
@@ -58,26 +58,26 @@ class Main extends luxe.Game {
         });
 
             //for the first group, we set the blend mode to additive
-        Luxe.addGroup(1, 
+        Luxe.renderer.batcher.add_group(1,
             function(b:Batcher){
                 b.blend_mode(BlendMode.src_alpha, BlendMode.one);
             }
         );
 
             //for the second, we set it to negative
-        Luxe.addGroup(2, 
+        Luxe.renderer.batcher.add_group(2,
             function(b:Batcher){
                 b.blend_mode(BlendMode.one_minus_src_color, BlendMode.zero);
             }
         );
 
             //for the third one, we maks sure it is reset as well
-        Luxe.addGroup(3, 
+        Luxe.renderer.batcher.add_group(3,
             function(b:Batcher){
                 b.blend_mode(BlendMode.dst_color, BlendMode.one_minus_src_alpha);
-            }, 
+            },
             function(b:Batcher){
-                b.blend_mode(); 
+                b.blend_mode();
             }
         );
 
@@ -88,7 +88,7 @@ class Main extends luxe.Game {
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
     public function update(dt:Float) {

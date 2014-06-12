@@ -27,7 +27,7 @@ class GeometryState {
         shader = null;
         group = 0;
         depth = 0.0;
-        primitive_type = PrimitiveType.none;
+        primitive_type = PrimitiveType.points;
 
         dirty = false;
 

@@ -60,7 +60,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
     }
 
     public function get_resource_stats_string() {
-        return Std.string(Luxe.resources.stats);
+        return Std.string( Luxe.resources.stats );
     }
 
     public function get_render_stats_string() {

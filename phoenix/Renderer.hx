@@ -3,6 +3,7 @@ package phoenix;
 import lime.gl.GL;
 import lime.gl.GLProgram;
 import lime.gl.GLShader;
+import lime.gl.GLFramebuffer;
 import lime.gl.GLTexture;
 import lime.utils.ByteArray;
 import lime.utils.Libs;
@@ -18,6 +19,7 @@ import phoenix.Batcher;
 import phoenix.RenderPath;
 import phoenix.geometry.Geometry;
 
+import phoenix.RenderTexture;
 import phoenix.Shader;
 import phoenix.Color;
 import phoenix.Camera;
@@ -42,6 +44,7 @@ class Renderer {
     // public var batchers : BalancedBinarySearchTree<BatcherKey,Batcher>;
 
     public var state : RenderState;
+    public var default_fbo : GLFramebuffer;
         //Default rendering
     public var default_shader : Shader;
     public var default_shader_textured : Shader;
@@ -52,12 +55,15 @@ class Renderer {
     public var batcher : Batcher;
     public var camera : Camera;
         //Default font for debug stuff etc
-    public var font : BitmapFont;    
+    public var font : BitmapFont;
         //Default render path is a forward renderer, and acts as a fallback for deferred
         //render path is the active render path, can replace it to render in a different manner
         //It will pass all batchers to be processed etc for you to do whatever with
     public var render_path : RenderPath;
     public var default_render_path : RenderPath;
+
+    @:isVar public var target (get,set) : RenderTexture;
+    public var target_size : Vector;
 
     public var should_clear : Bool = true;
     public var stop : Bool = false;
@@ -76,15 +82,9 @@ class Renderer {
 
         resource_manager = new ResourceManager();
         batchers = [];
-        // batchers = new BalancedBinarySearchTree<BatcherKey,Batcher>( function(a:BatcherKey,b:BatcherKey){
-        //     trace("comparing " + a.uuid + '/' + b.uuid + " with layers " + a.layer + '/' + b.layer);
-        //     if(a.uuid == b.uuid) return 0;
-        //     if(a.layer < b.layer) return -1;
-        //     if(a.layer > b.layer) return 1;
-        //     return 1;
-        // } );
 
             //The default view
+        target_size = new Vector(Luxe.screen.w, Luxe.screen.h);
         camera = new Camera();
             //Create the default render path
         default_render_path = new RenderPath( this );
@@ -122,8 +122,8 @@ class Renderer {
         #if luxe_html5
             GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
         #end //luxe_html5
-        
-        // trace(':: renderer starting up');        
+
+        // trace(':: renderer starting up');
     }
 
     public function destroy() {
@@ -137,15 +137,54 @@ class Renderer {
     } //sort_batchers
 
     public function add_batch( batch:Batcher ) {
-        // batchers.insert( { layer:batch.layer, uuid:batch.id }, batch );
+
         batchers.push( batch );
         batchers.sort( sort_batchers );
+
     } //add_batch
 
     public function remove_batch( batch:Batcher ) {
-        // batchers.remove({ layer:batch.layer, uuid:batch.id });
+
         batchers.remove( batch );
+
     } //remove_batch
+
+        /** Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher. */
+    public function create_batcher( ? options:luxe.options.BatcherOptions ) : Batcher {
+
+        var _new_batcher_layer = 2;
+
+        if(options != null) {
+
+            if(options.name == null) {
+                options.name = 'batcher';
+            }
+            if(options.layer == null) {
+                options.layer = _new_batcher_layer;
+            }
+            if(options.camera == null) {
+                options.camera = new phoenix.Camera();
+            }
+
+        } else {
+            options = {
+                name : 'batcher',
+                camera : new phoenix.Camera(),
+                layer : _new_batcher_layer
+            }
+        }
+
+        var _batcher = new Batcher( this, options.name );
+            _batcher.view = options.camera;
+            _batcher.layer = options.layer;
+
+        if( options.no_add == null || options.no_add == false ) {
+            add_batch( _batcher );
+        }
+
+        return _batcher;
+
+    } //create_batcher
 
     public function clear( _color:Color ) {
 
@@ -159,14 +198,14 @@ class Renderer {
         } else {
             GL.clear( GL.COLOR_BUFFER_BIT );
         }
-        
+
     } //clear
 
     public function load_font( _fontid:String, ?_path:String = 'assets/', ?_onloaded:BitmapFont->Void ) : BitmapFont {
 
-        var new_font = new BitmapFont( resource_manager );        
+        var new_font = new BitmapFont( resource_manager );
         var font_data = Luxe.loadText(_path + _fontid);
-        
+
             new_font.load_from_string( font_data.text, _path, _onloaded );
 
         return new_font;
@@ -174,7 +213,7 @@ class Renderer {
     } //load_font
 
     public function load_shader( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
-        
+
         var _frag_shader = '';
         var _vert_shader = '';
 
@@ -191,7 +230,7 @@ class Renderer {
         } else {
             _frag_shader = lime.utils.Assets.getText(_psid);
         }
-            
+
         var _shader : Shader = null;
 
 
@@ -201,7 +240,7 @@ class Renderer {
             #if luxe_html5
                 prefixes += "precision mediump float;";
             #end //luxe_html5
-            
+
              _shader = new Shader( resource_manager );
             _shader.load_from_string( _vert_shader , prefixes + _frag_shader, false );
 
@@ -224,7 +263,7 @@ class Renderer {
 
     } //load_shader
 
-    public function load_texture_from_resource_bytes(_name:String, _width:Int, _height:Int ) {
+    public function load_texture_from_resource_bytes( _name:String, _width:Int, _height:Int, ?_cache:Bool = true ) {
 
         var texture_bytes : haxe.io.Bytes = haxe.Resource.getBytes(_name);
 
@@ -232,7 +271,7 @@ class Renderer {
 
             var texture = new Texture(resource_manager);
 
-            #if luxe_native 
+            #if luxe_native
                 texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
             #end //luxe_native
 
@@ -243,7 +282,9 @@ class Renderer {
             texture_bytes = null;
             texture.loaded = true;
 
-            resource_manager.cache(texture);
+            if(_cache) {
+                resource_manager.cache(texture);
+            }
 
             return texture;
 
@@ -254,7 +295,7 @@ class Renderer {
     } //load_texture_from_resource_bytes
 
     public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
-        
+
         var total_count : Int = _names.length;
         var loaded_count : Int = 0;
         var loaded : Array<Texture> = [];
@@ -293,7 +334,7 @@ class Renderer {
 #if luxe_html5
 
         var image: js.html.ImageElement = js.Browser.document.createImageElement();
-        
+
         image.onload = function(a) {
 
             try {
@@ -313,9 +354,9 @@ class Renderer {
 
                 texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
                 texture.width = image.width;
-                texture.height = image.height;            
+                texture.height = image.height;
 
-                if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;            
+                if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;
 
                 tmp_canvas = null;
                 tmp_context = null;
@@ -355,9 +396,9 @@ class Renderer {
 
         if(asset_bytes == null) {
             if( Luxe.utils.path_is_relative(haxe.io.Path.normalize(_name)) ) {
-                asset_bytes = lime.utils.Assets.getBytes( _name ); 
+                asset_bytes = lime.utils.Assets.getBytes( _name );
             } else {
-                asset_bytes = ByteArray.readFile( _name ); 
+                asset_bytes = ByteArray.readFile( _name );
             }
         }
 
@@ -374,26 +415,26 @@ class Renderer {
 
         } else {
 
-            log("texture not found by asset name. " + _name );      
+            log("texture not found by asset name. " + _name );
                 //Set the failed to load flagged
-            texture.id = "Failed to load texture : " + _name;    
+            texture.id = "Failed to load texture : " + _name;
 
         }
 
          asset_bytes = null;
 
 #end //luxe_native
-       
+
             //store a reference so we can check if it exists later
         resource_manager.cache( texture );
-       
+
         return texture;
 
     }
 
-        //The main render function 
+        //The main render function
     public function process() {
-        
+
         if(stop) { return; }
 
         if(should_clear) {
@@ -403,7 +444,7 @@ class Renderer {
         stats.batchers = batchers.length;
         stats.reset();
 
-            //render 
+            //render
         render_path.render( batchers, stats );
 
         // stop_count++;
@@ -414,8 +455,32 @@ class Renderer {
     } //process
 
     public function onresize(e:Dynamic) {
-        
+
     } //onresize
+
+    function get_target() : RenderTexture {
+        return target;
+    } //get_target
+
+    function set_target( _target:RenderTexture ) {
+
+        if(_target != null) {
+            target_size.x = _target.width;
+            target_size.y = _target.height;
+            state.bindFramebuffer( _target.fbo );
+        } else {
+            target_size.x = Luxe.screen.w;
+            target_size.y = Luxe.screen.h;
+                //:todo: On iOS and some platforms the default
+                //fbo id is not null/0, it is an actual value
+                //which needs to be queried at creation and stored
+                //for use here instead, but leaving it null works for most platforms
+            state.bindFramebuffer( default_fbo );
+        }
+
+        return target = _target;
+
+    } //set_target
 
     function create_default_shaders() {
 
@@ -429,13 +494,13 @@ class Renderer {
         #if !desktop
             default_frag_source = "precision mediump float;\n" + default_frag_source;
             default_frag_textured_source = "precision mediump float;\n" + default_frag_textured_source;
-        #end 
+        #end
 
             //create the default rendering shader
-        default_shader = new Shader( resource_manager );  
+        default_shader = new Shader( resource_manager );
         default_shader.id = 'default_shader';
 
-        default_shader_textured = new Shader( resource_manager );  
+        default_shader_textured = new Shader( resource_manager );
         default_shader_textured.id = 'default_shader_textured';
 
         default_shader.load_from_string( default_vert_source, default_frag_source, false );
@@ -451,15 +516,15 @@ class Renderer {
 
             font = new BitmapFont( resource_manager );
 
-                //create the font texture                    
+                //create the font texture
             var _font_texture = Luxe.renderer.load_texture_from_resource_bytes('din.png', 256, 256);
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.font', null, [_font_texture] );        
+            font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.font', null, [_font_texture] );
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
-            
+
     } //create_default_font
 
 } //renderer
@@ -487,8 +552,8 @@ class RendererStats {
         vert_count = 0;
     }
     public function toString() {
-        return 
-            'Renderer Statistics\n' + 
+        return
+            'Renderer Statistics\n' +
             '\tbatcher count : ' + batchers + '\n' +
             '\ttotal geometry : ' + geometry_count + '\n' +
             '\tvisible geometry : ' + visible_count + '\n' +
@@ -498,4 +563,4 @@ class RendererStats {
             '\ttotal vertices : ' + vert_count;
     }
 }
-    
+

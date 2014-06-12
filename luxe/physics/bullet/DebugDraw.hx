@@ -4,7 +4,7 @@ package luxe.physics.bullet;
 
     import bullet.bulletDynamics.dynamics.BtDiscreteDynamicsWorld;
 
-    	
+
     	//:todo : This class has a lack of options, and is really quick and dirty, since bullet features will be for 3D release
 
     import phoenix.geometry.Geometry;
@@ -12,14 +12,14 @@ package luxe.physics.bullet;
     import phoenix.Batcher.PrimitiveType;
 
     class DebugDraw {
-    	
-    		//NOTE: geometry is not added to a batcher! You have to add it to see it 
+
+    		//NOTE: geometry is not added to a batcher! You have to add it to see it
         public var geometry : Geometry;
         public var color : Color;
 
 
         public function new() {
-        	
+
         	color = new Color(1,1,1,1);
             geometry = new Geometry();
             geometry.primitive_type = PrimitiveType.lines;
@@ -51,14 +51,14 @@ package luxe.physics.bullet;
 
 
         public function clear() {
-            
+
             geometry.vertices = null;
             geometry.vertices = [];
 
         } //clear
 
         public function destroy() {
-        	
+
         	clear();
         	geometry.drop();
 

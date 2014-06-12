@@ -141,6 +141,15 @@ class Visual extends Entity {
 
                 _creating_geometry = true;
 
+                var _batcher : Batcher = null;
+                if(options.no_batcher_add == null || options.no_batcher_add == false) {
+                    if(options.batcher != null) {
+                        _batcher = options.batcher;
+                    } else {
+                        _batcher = Luxe.renderer.batcher;
+                    }
+                }
+
                     geometry = new QuadGeometry({
                         id:name + '.visual',
                         x:0,
@@ -151,24 +160,13 @@ class Visual extends Entity {
                         texture : texture,
                         color : color,
                         shader : shader,
+                        batcher : _batcher,
                         depth : (options.depth == null) ? 0 : options.depth,
                         group : (options.group == null) ? 0 : options.group,
                         visible : (options.visible == null) ? true : options.visible
                     });
 
                 _creating_geometry = false;
-
-                    //Only add to the batcher if requested
-                if(options.no_batcher_add == null || options.no_batcher_add != true) {
-
-                    if(options.batcher == null) {
-                        Luxe.addGeometry( geometry );
-                    } else {
-                        options.batcher.add( geometry );
-                    }
-
-                } //no_batcher_add
-
 
                     //call the geometry create listener
                 on_geometry_created();

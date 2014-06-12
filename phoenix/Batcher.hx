@@ -186,7 +186,6 @@ class Batcher {
         GL.enableVertexAttribArray( color_attribute );
         GL.enableVertexAttribArray( normal_attribute );
 
-
             //A default name
         if(_name.length == 0) {
             name = Luxe.utils.uniqueid();
@@ -222,7 +221,7 @@ class Batcher {
 
     } //compare
 
-    public function add_group(_group:Int, _pre_render:Batcher->Void, _post_render:Batcher->Void ) {
+    public function add_group(_group:Int, ?_pre_render:Batcher->Void, ?_post_render:Batcher->Void ) {
 
         if(!groups.exists(_group)) {
             groups.set(_group, new Array<BatchGroup>());
@@ -720,7 +719,7 @@ class Batcher {
 
     }
 
-    public function draw( persist_immediate:Bool = false ) {
+    public function draw( ?persist_immediate:Bool = false ) {
 
         //Reset the draw count
         draw_calls = 0;
@@ -729,7 +728,7 @@ class Batcher {
             //update camera if it changes anything
         view.process();
 
-        // trace("batcher " + name + " " + view.viewport );
+        // trace('batcher $name / view ${view.name} / viewport:${view.viewport}');
 
             //Set the viewport to the view
         renderer.state.viewport( view.viewport.x, view.viewport.y, view.viewport.w, view.viewport.h );

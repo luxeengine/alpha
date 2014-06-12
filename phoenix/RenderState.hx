@@ -3,6 +3,7 @@ package phoenix;
 import lime.gl.GL;
 import lime.gl.GLProgram;
 import lime.gl.GLTexture;
+import lime.gl.GLFramebuffer;
 
 class RenderState {
 
@@ -53,21 +54,40 @@ class RenderState {
 
     public function viewport( x:Float, y:Float, w:Float, h:Float ) {
 
-        if( 
-            _viewport.x != x || 
-            _viewport.y != y || 
-            _viewport.w != w || 
+        if(
+            _viewport.x != x ||
+            _viewport.y != y ||
+            _viewport.w != w ||
             _viewport.h != h
-          ) {
+        ) {
 
-                // trace("set viewport " + _viewport);
+            _viewport.x = x;
+            _viewport.y = y;
+            _viewport.w = w;
+            _viewport.h = h;
 
-            _viewport.x = x; _viewport.y = y; _viewport.w = w; _viewport.h = h;
-            GL.viewport( Std.int(x), Std.int((Luxe.screen.h - y)-h), Std.int(w), Std.int(h) );
+                //In OpenGL the viewport is bottom left origin, so we flip the y
+                //when submitting our top left based coordinates.
+                //We use the target size property of the renderer, which
+                //when rendering to the screen matches the window and when
+                //rendering to a texture/render target, matches the target.
+            var _y : Float = renderer.target_size.y - (y + h);
+
+            GL.viewport( Std.int(x), Std.int(_y), Std.int(w), Std.int(h) );
 
         }  //if it's changed
 
     } //viewport
+
+    var _current_fbo : GLFramebuffer = null;
+    public function bindFramebuffer( ?buffer:GLFramebuffer=null ) {
+
+        if(_current_fbo != buffer) {
+            GL.bindFramebuffer( GL.FRAMEBUFFER, buffer );
+            _current_fbo = buffer;
+        }
+
+    } //bindFrameBuffer
 
     var _used_program : GLProgram = null;
     public function useProgram( program:GLProgram ) {
@@ -82,7 +102,7 @@ class RenderState {
         if(_active_texture != val) {
             GL.activeTexture(val);
             _active_texture = val;
-        }        
+        }
     } //activeTexture
 
     var _bound_texture_2D : GLTexture = null;

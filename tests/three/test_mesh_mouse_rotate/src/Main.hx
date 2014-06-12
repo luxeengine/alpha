@@ -7,51 +7,51 @@ import luxe.Component;
 import luxe.components.render.MeshComponent;
 
 class MouseRotate extends Component {
-	
-	var dragging : Bool = false;
-	var mx : Float = 0;
-	var my : Float = 0;
-	var smooth : Float = 130;
-	var mouse : Vector;
-	var reference_rotation : Vector;
 
-	public function init() {
+    var dragging : Bool = false;
+    var mx : Float = 0;
+    var my : Float = 0;
+    var smooth : Float = 130;
+    var mouse : Vector;
+    var reference_rotation : Vector;
 
-		mouse = new Vector();
-		reference_rotation = new Vector();
+    public function init() {
 
-	} //init
-		
-	public function onmousedown(e:MouseEvent) {
-		mouse = e.pos;
-		dragging = true;
-		reference_rotation.x = rotation.x;
-		reference_rotation.y = rotation.y;
-	}
+        mouse = new Vector();
+        reference_rotation = new Vector();
 
-	public function onmouseup(e:MouseEvent) {
+    } //init
 
-		mouse = e.pos;
-		dragging = false;
+    public function onmousedown(e:MouseEvent) {
+        mouse = e.pos;
+        dragging = true;
+        reference_rotation.x = rotation.x;
+        reference_rotation.y = rotation.y;
+    }
 
-	} //onmouseup
+    public function onmouseup(e:MouseEvent) {
 
-	public function onmousemove(e:MouseEvent) {
+        mouse = e.pos;
+        dragging = false;
 
-		mouse = e.pos;
+    } //onmouseup
 
-	} //onmousemove
+    public function onmousemove(e:MouseEvent) {
 
-	public function update(dt:Float) {
+        mouse = e.pos;
 
-		if(dragging) {
-    		mx = (Luxe.screen.h / 2 - mouse.y) / smooth;
-			my = (Luxe.screen.w / 2 - mouse.x) / smooth;    	
-		    rotation.x = -mx;
-			rotation.y = -my;
-    	}
+    } //onmousemove
 
-	} //update
+    public function update(dt:Float) {
+
+        if(dragging) {
+            mx = (Luxe.screen.h / 2 - mouse.y) / smooth;
+            my = (Luxe.screen.w / 2 - mouse.x) / smooth;
+
+            rotation.setFromEuler(new Vector(-mx, -my));
+        }
+
+    } //update
 
 
 } //MouseRotate
@@ -60,28 +60,28 @@ class MouseRotate extends Component {
 class Main extends luxe.Game {
 
 
-	var tower:Entity;
+    var tower:Entity;
 
 
     public function ready() {
 
-    	Luxe.camera.view.set_perspective({
-    		far:1000, near:0.1, aspect:Luxe.screen.w/Luxe.screen.h
-    	});
+        Luxe.camera.view.set_perspective({
+            far:1000, near:0.1, aspect:Luxe.screen.w/Luxe.screen.h
+        });
 
-    		//move up and back a bit
-    	Luxe.camera.pos.set(0,0.5,2);
+            //move up and back a bit
+        Luxe.camera.pos.set(0,0.5,2);
 
-    		//create an empty entity
-    	tower = Luxe.scene.create(Entity, 'tower');
+            //create an empty entity
+        tower = Luxe.scene.create(Entity, 'tower');
 
-			//attach a mesh component
-    	var mesh = tower.add(MeshComponent, 'mesh');
-			mesh.file = 'assets/tower.obj';
-    		mesh.texture = Luxe.loadTexture('assets/tower.png');
+            //attach a mesh component
+        var mesh = tower.add(MeshComponent, 'mesh');
+            mesh.file = 'assets/tower.obj';
+            mesh.texture = Luxe.loadTexture('assets/tower.png');
 
-    		//attach a mouse rotate component
-    	var mouserotate = tower.add(MouseRotate, 'rotate');
+            //attach a mouse rotate component
+        var mouserotate = tower.add(MouseRotate, 'rotate');
 
     } //ready
 
@@ -90,7 +90,7 @@ class Main extends luxe.Game {
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
     public function update(dt:Float) {

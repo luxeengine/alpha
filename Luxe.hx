@@ -215,45 +215,5 @@ class Luxe {
 
     } //fileDialogSave
 
-//Batcher / Geometry managing
-
-        /** Add geometry to the default batcher */
-    public static function addGeometry(_geom:Geometry) {
-
-        renderer.batcher.add(_geom);
-
-    } //addGeometry
-
-        /** Remove geometry to the default batcher */
-    public static function removeGeometry(_geom:Geometry) {
-
-        renderer.batcher.remove(_geom);
-
-    } //removeGeometry
-
-        /** Add a geometry group to the default batcher */
-    public static function addGroup( _group : Int , ?_pre_render : (phoenix.Batcher -> Void) , ?_post_render : (phoenix.Batcher -> Void) ) {
-
-        return renderer.batcher.add_group( _group, _pre_render, _post_render );
-
-    } //addGroup
-
-        /** Create a batcher, convenience for create batcher, add batcher, and create camera for the batcher. */
-    public static function createBatcher( ?_name:String = 'batcher', ?_camera:luxe.Camera, ?_add:Bool=true ) {
-
-        var _batcher = new Batcher( renderer, _name );
-            _batcher.view = (_camera == null ? renderer.camera : _camera.view );
-                //above the default layer
-            _batcher.layer = 2;
-
-            //the add it to the renderer
-        if( _add ) {
-            renderer.add_batch( _batcher );
-        }
-
-        return _batcher;
-
-    } //createBatcher
-
 
 } //Luxe

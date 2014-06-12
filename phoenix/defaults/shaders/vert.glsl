@@ -1,7 +1,7 @@
-attribute vec3 vertexPosition;        
+attribute vec3 vertexPosition;
 attribute vec2 vertexTCoord;
 attribute vec4 vertexColor;
-attribute vec3 vertexNormal;                
+attribute vec3 vertexNormal;
 
 varying vec2 tcoord;
 varying vec4 color;
@@ -18,5 +18,5 @@ void main(void) {
         //that the shaders getVertexNormal attribute returns invalid (-1) values!
     vec3 n = vertexNormal;
     // gl_PointSize = 512.0;
-    
+
 }

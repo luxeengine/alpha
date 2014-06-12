@@ -20,7 +20,7 @@ import luxe.Log._verboser;
 class Entity extends Objects {
 
 
-    public var components (get,never) : Map<String, Component>;    
+    public var components (get,never) : Map<String, Component>;
     public var events : luxe.Events;
     public var children : Array<Entity>;
 
@@ -44,7 +44,7 @@ class Entity extends Objects {
     public var transform : Transform;
         //The local position of the transform
     public var pos              (get,set) : Vector;
-        //The local rotation of the transform 
+        //The local rotation of the transform
     public var rotation         (get,set) : Quaternion;
         //The local scale of the transform
     public var scale            (get,set) : Vector;
@@ -52,7 +52,7 @@ class Entity extends Objects {
     public var origin           (get,set) : Vector;
 
         //the system for the entity
-    var _components : Components;   
+    var _components : Components;
         //the timer for the fixed update
     var fixed_rate_timer : haxe.Timer;
         //the options passed in for giving to the init function
@@ -65,7 +65,7 @@ class Entity extends Objects {
         _verbose('create new entity with options ' + options);
 
         options = _options;
-        
+
         _components = new Components( this );
         children = new Array<Entity>();
         events = new luxe.Events();
@@ -79,7 +79,7 @@ class Entity extends Objects {
         transform.listen_rotation(set_rotation_from_transform);
 
         if(options != null) {
-    
+
     //name
             if(options.name != null) {
                 name = options.name;
@@ -119,7 +119,7 @@ class Entity extends Objects {
 
             if(_should_add) {
 
-                if(options.scene != null) {                        
+                if(options.scene != null) {
                     scene = options.scene;
                     _verbose(" \tscene specified, storing in scene named : " + options.scene.name );
                 } else {
@@ -128,11 +128,11 @@ class Entity extends Objects {
                 }
 
             } //_should_add
-        
+
         } else {
 
             scene = Luxe.scene;
-            
+
             _verbose(" \tadding to default scene because no options were specified.");
 
         } //options ! null
@@ -150,9 +150,9 @@ class Entity extends Objects {
 
     } //new
 
-    @:noCompletion public function _init() {        
+    @:noCompletion public function _init() {
 
-            //verbose debugging 
+            //verbose debugging
         _verbose('${this} inside _init with options as $options' );
 
             //init the parent first
@@ -213,7 +213,7 @@ class Entity extends Objects {
             _verbose('     calling destroy on child ' + _child.name);
             _child.destroy();
         } //for each child
-        
+
             //destroy all the components attached directly to us
         for(_component in components) {
             _call(_component, 'destroyed');
@@ -239,7 +239,7 @@ class Entity extends Objects {
 
         if(scene != null) {
             scene.remove(this);
-        } 
+        }
 
             //kill the events
         if(events != null) {
@@ -336,7 +336,7 @@ class Entity extends Objects {
             _child._onmouseup(e);
         } //for each child
 
-    } //_onmouseup    
+    } //_onmouseup
 
     @:noCompletion public function _onmousewheel(e:MouseEvent) {
 
@@ -357,7 +357,7 @@ class Entity extends Objects {
             _child._onmousewheel(e);
         } //for each child
 
-    } //_onmousewheel    
+    } //_onmousewheel
 
     @:noCompletion public function _onmousemove(e:MouseEvent) {
 
@@ -400,8 +400,8 @@ class Entity extends Objects {
             _child._ontouchbegin(e);
         } //for each child
 
-    } //_ontouchbegin    
-    
+    } //_ontouchbegin
+
     @:noCompletion public function _ontouchend(e:TouchEvent) {
 
         _verboser('calling _ontouchend on ' + name);
@@ -421,8 +421,8 @@ class Entity extends Objects {
             _child._ontouchend(e);
         } //for each child
 
-    } //_ontouchend    
-   
+    } //_ontouchend
+
     @:noCompletion public function _ontouchmove(e:TouchEvent) {
 
         _verboser('calling _ontouchmove on ' + name);
@@ -442,7 +442,7 @@ class Entity extends Objects {
             _child._ontouchmove(e);
         } //for each child
 
-    } //_ontouchmove    
+    } //_ontouchmove
 
 //Gamepad
     @:noCompletion public function _ongamepadaxis(e) {
@@ -464,7 +464,7 @@ class Entity extends Objects {
             _child._ongamepadaxis(e);
         } //for each child
 
-    } //_ongamepadaxis   
+    } //_ongamepadaxis
 
     @:noCompletion public function _ongamepadball(e) {
 
@@ -506,7 +506,7 @@ class Entity extends Objects {
             _child._ongamepadhat(e);
         } //for each child
 
-    } //_ongamepadhat 
+    } //_ongamepadhat
 
     @:noCompletion public function _ongamepadbuttondown(e) {
 
@@ -527,7 +527,7 @@ class Entity extends Objects {
             _child._ongamepadbuttondown(e);
         } //for each child
 
-    } //_ongamepadbuttondown    
+    } //_ongamepadbuttondown
 
     @:noCompletion public function _ongamepadbuttonup(e) {
 
@@ -548,7 +548,7 @@ class Entity extends Objects {
             _child._ongamepadbuttonup(e);
         } //for each child
 
-    } //_ongamepadbuttonup    
+    } //_ongamepadbuttonup
 
 //Input
 
@@ -596,7 +596,7 @@ class Entity extends Objects {
 
 
     @:noCompletion public function _update(dt:Float) {
-        
+
         if(_destroyed) {
             _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
             return;
@@ -708,10 +708,10 @@ class Entity extends Objects {
         return _components.components;
     } //get_components
 
-//children 
+//children
 
     function _add_child( child:Entity ) {
-        
+
         children.push(child);
 
         _debug( '' + name + " : add child : " + child.name );
@@ -726,7 +726,7 @@ class Entity extends Objects {
 
     } //_add_child
 
-        //internal function do not use directly 
+        //internal function do not use directly
     @:noCompletion public function _remove_child(child:Entity) {
 
         children.remove(child);
@@ -788,52 +788,52 @@ class Entity extends Objects {
 
     } //set_pos
 
-    function get_pos() { 
+    function get_pos() {
 
-        return transform.pos; 
+        return transform.pos;
 
     } //get_pos
 
 //rotation
 
-    function set_rotation( _r:Quaternion ) { 
+    function set_rotation( _r:Quaternion ) {
 
-        return transform.rotation = _r; 
+        return transform.rotation = _r;
 
     } //set_rotation
 
-    function get_rotation() { 
-        
-        return transform.rotation; 
+    function get_rotation() {
+
+        return transform.rotation;
 
     } //get_rotation
 
 //scale
 
-    function set_scale( _s:Vector ) { 
+    function set_scale( _s:Vector ) {
 
         return transform.scale = _s;
 
     } //set_scale
 
-    function get_scale() { 
-        
-        return transform.scale; 
+    function get_scale() {
+
+        return transform.scale;
 
     } //get_scale
-    
+
 //origin
 
-    function set_origin( _origin:Vector ) { 
+    function set_origin( _origin:Vector ) {
 
-        return transform.origin = _origin; 
+        return transform.origin = _origin;
 
     } //set_origin
 
 
-    function get_origin() { 
+    function get_origin() {
 
-        return transform.origin; 
+        return transform.origin;
 
     } //get_origin
 
@@ -843,7 +843,7 @@ class Entity extends Objects {
 
         _debug('>>  ' + name + ' calling set parent to ' + (other == null ? 'null' : other.name) );
 
-            //if we are parented already, 
+            //if we are parented already,
             //remove ourselves from that parent
         if(parent != null) {
             parent._remove_child( this );
@@ -864,33 +864,33 @@ class Entity extends Objects {
         return parent;
 
     } //set_parent
-        
-    function get_parent() { 
 
-        return parent; 
+    function get_parent() {
+
+        return parent;
 
     } //get_parent
 
 //scene
 
-    function set_scene(_scene:Scene) { 
-        
-        return scene = _scene; 
+    function set_scene(_scene:Scene) {
+
+        return scene = _scene;
 
     } //set_scene
-    
-    function get_scene() { 
-        
-        return scene; 
+
+    function get_scene() {
+
+        return scene;
 
     } //get_scene
 
 
-//serialization 
+//serialization
 
 
     public function get_serialize_data() : Dynamic {
-        
+
         var _type = Type.getClassName(Type.getClass(this));
 
         return {
@@ -911,7 +911,7 @@ class Entity extends Objects {
 
         if(!serialize) return;
         if(parent != null && !_parent_write) return;
-        
+
         var _type = Type.getClassName(Type.getClass(this));
         var _name_string = name ;//+ '.' +  id.substring(0,8);
         var _destpath = _destination_path + _name_string;

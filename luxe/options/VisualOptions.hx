@@ -11,10 +11,10 @@ import phoenix.geometry.Geometry;
 
 import luxe.options.EntityOptions;
 
-typedef VisualOptions<T> = { 
+typedef VisualOptions<T> = {
 
   > EntityOptions<T>,
-  
+
     ?size : Vector,
     ?origin : Vector,
     ?color : Color,
@@ -24,7 +24,7 @@ typedef VisualOptions<T> = {
     ?depth : Float,
     ?group : Int,
     ?rotation_z : Float,
-    ?visible : Bool,    
+    ?visible : Bool,
     ?serialize : Bool,
     ?geometry : Geometry,
     ?no_geometry : Bool,

@@ -124,6 +124,7 @@ class Debug {
 
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
+                //create a camera
             view = new Camera();
                 //set the camera of the batcher
             batcher.view = view;
@@ -138,11 +139,9 @@ class Debug {
                 color : new Color(0,0,0,0.8),
                 depth : 999,    //debug depth
                 group : 999,    //debug group
-                visible : false //default invisible
+                visible : false, //default invisible
+                batcher : batcher
             });
-
-                //add the geometry to the renderer
-            batcher.add(overlay);
 
                 //create the scene inspector
             padding = new Vector(Luxe.screen.w*0.05,Luxe.screen.h*0.05);

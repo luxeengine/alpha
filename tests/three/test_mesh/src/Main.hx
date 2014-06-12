@@ -1,6 +1,7 @@
 
 import luxe.Input;
 import luxe.Mesh;
+import luxe.Vector;
 
 class Main extends luxe.Game {
 
@@ -11,11 +12,13 @@ class Main extends luxe.Game {
     public function ready() {
 
     	Luxe.camera.view.set_perspective({
-    		far:1000, near:0.1, aspect:Luxe.screen.w/Luxe.screen.h
+    		far:1000,
+            near:0.1,
+            aspect : Luxe.screen.w/Luxe.screen.h
     	});
 
     		//move up and back a bit
-    	Luxe.camera.pos.set(0,0.5,2);
+    	Luxe.camera.pos.set_xyz(0,0.5,2);
 
     		//create the mesh
     	mesh = new Mesh({ file:'assets/tower.obj', texture:Luxe.loadTexture('assets/tower.png') });
@@ -27,14 +30,17 @@ class Main extends luxe.Game {
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
     var y = 0.0;
 
     public function update(dt:Float) {
 
-    	mesh.rotation.y += 1 * dt;
+            //90 degrees a second
+        y += 90 * dt;
+
+        mesh.rotation.setFromEuler(new Vector(0,y,0).radians());
 
     } //update
 

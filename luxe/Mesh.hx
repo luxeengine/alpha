@@ -17,9 +17,9 @@ class Mesh {
     public var geometry : Geometry;
     public var transform : Transform;
 
-    public var pos      (default,set) : Vector;
-    public var scale    (default,set) : Vector;
-    public var rotation (default,set) : Quaternion;
+    public var pos      (get,set) : Vector;
+    public var scale    (get,set) : Vector;
+    public var rotation (get,set) : Quaternion;
 
     public function new( ?_options:MeshOptions ) {
 
@@ -32,7 +32,9 @@ class Mesh {
         transform.listen_rotation(set_rotation_from_transform);
         transform.listen_scale(set_scale_from_transform);
 
-        var _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
+        if(_options.batcher == null) {
+            _options.batcher = Luxe.renderer.batcher;
+        }
 
         if(_options.file != null) {
 
@@ -40,7 +42,7 @@ class Mesh {
             var ext = haxe.io.Path.extension( _options.file );
             switch(ext) {
                 case 'obj':
-                    fromOBJFile( _options.file, _options.texture );
+                    fromOBJFile( _options.file, _options.texture, null, _options.batcher );
                 default:
                     throw 'cannot handle files with extension ' + ext + ' right now';
             } //switch ext
@@ -50,8 +52,6 @@ class Mesh {
         if(geometry != null) {
 
             geometry.id = _options.file;
-                //add to the batcher
-            _batcher.add(geometry);
 
         } else {
             throw 'Mesh component with null geometry';
@@ -70,6 +70,18 @@ class Mesh {
         return transform.pos = _pos;
 
     } //set_pos
+
+    function get_pos() {
+        return transform.pos;
+    } //get_pos
+
+    function get_rotation() {
+        return transform.rotation;
+    } //get_rotation
+
+    function get_scale() {
+        return transform.scale;
+    } //get_scale
 
     function set_pos_from_transform( _pos:Vector ) {
 
@@ -114,8 +126,8 @@ class Mesh {
     } //set_scale
 
 
-
 //Create a mesh from an Obj file
+
 
     function _obj_add_vert( v:phoenix.formats.obj.Data.Vertex, _scale:Vector ) {
 
@@ -136,7 +148,7 @@ class Mesh {
 
     } //_obj_add_vert
 
-    public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector  ) {
+    public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
         if(_scale == null) _scale = new Vector(1,1,1);
 
@@ -148,6 +160,7 @@ class Mesh {
             texture : texture,
             primitive_type: PrimitiveType.triangles,
             immediate : false,
+            batcher : _batcher,
             depth : 1 //:todo : optionise
         });
 
@@ -156,7 +169,6 @@ class Mesh {
             _obj_add_vert(v, _scale);
 
         } //for all verts
-
 
     } // from obj file
 

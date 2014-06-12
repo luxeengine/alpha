@@ -39,7 +39,7 @@ package luxe.physics.nape;
         } //process
 
         public override function destroy() {
-            
+
             debugdraw.destroy();
             space.clear();
             space = null;

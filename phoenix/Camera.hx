@@ -149,6 +149,8 @@ class Camera {
         _merge_options( _options );
             //
         projection = ProjectionType.perspective;
+            //reset the view origin
+        transform.origin.set_xyz(0,0,0);
 
     } //set_perspective
 

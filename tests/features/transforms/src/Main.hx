@@ -68,7 +68,7 @@ class Main extends luxe.Game {
         p3.name = 'child.orig';
 
         p1.pos = Luxe.screen.mid;
-        
+
         p2.parent = p1;
         p3.parent = p2;
 
@@ -92,7 +92,8 @@ class Main extends luxe.Game {
         Luxe.draw.line({ p0:new Vector(100, 0), p1:new Vector(100, 100), depth:9 });
 
         qg = new QuadGeometry({
-            x:0, y:0, w:50, h:50
+            x:0, y:0, w:50, h:50,
+            batcher : Luxe.renderer.batcher
         });
 
         qg.transform.name = 'qg';
@@ -107,8 +108,6 @@ class Main extends luxe.Game {
             d1.pos = new Vector(0,0,0);
 
         qg.transform.parent = d1;
-
-        Luxe.addGeometry( qg );
 
 
         var spr_tween_test = new Sprite({
@@ -140,7 +139,7 @@ class Main extends luxe.Game {
         Actuate.tween(spr_parent.pos, 8, {x:Luxe.screen.w-16}).repeat().reflect().ease(luxe.tween.easing.Linear.easeNone);
 
     } //ready
-    
+
     var d1 : Transform;
     var qg : QuadGeometry;
 
@@ -164,7 +163,7 @@ class Main extends luxe.Game {
         if(e.key == KeyValue.escape) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
     var r : Float = 0;

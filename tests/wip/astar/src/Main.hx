@@ -43,9 +43,7 @@ class Main extends luxe.Game {
 
     public function ready() {
 
-        geom = new ComplexGeometry({});
-        Luxe.addGeometry(geom);
-
+        geom = new ComplexGeometry({ batcher:Luxe.renderer.batcher });
     	grid = new Grid( 10,10 );
 
         grid.setWalkableAt(5,3, false);

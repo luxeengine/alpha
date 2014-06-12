@@ -12,6 +12,8 @@ import phoenix.Batcher;
 typedef GeometryOptions = {
 
     ? id : String,
+
+    ? no_batcher_add : Bool,
     ? batcher : Batcher,
 
     ? pos : Vector,

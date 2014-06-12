@@ -3,7 +3,7 @@ package phoenix;
 import luxe.utils.Maths;
 
 class Vector {
-    
+
     @:isVar public var x (default, set) : Float = 0;
     @:isVar public var y (default, set) : Float = 0;
     @:isVar public var z (default, set) : Float = 0;
@@ -14,7 +14,7 @@ class Vector {
     @:isVar public var angle2D       (get, set) : Float;
     @:isVar public var normalized    (get, null) : Vector;
     @:isVar public var inverted      (get, null) : Vector;
-    
+
     public var serialized(get, null) : Dynamic;
 
     function get_serialized() : Dynamic { return { x:x, y:y, z:z, w:w } };
@@ -33,7 +33,7 @@ class Vector {
         w = _w;
 
     } //new
-    
+
     public function copy_from( _other:Vector ) {
         x = _other.x;
         y = _other.y;
@@ -42,29 +42,29 @@ class Vector {
     }
 
     public function set_xyz( _x:Float, _y:Float, _z:Float ) {
-        x = _x; 
+        x = _x;
         y = _y;
         z = _z;
     }
     public function set_xyzw( _x:Float, _y:Float, _z:Float, _w:Float ) {
-        x = _x; 
+        x = _x;
         y = _y;
         z = _z;
         w = _w;
     }
 
     public function set_xy( _x:Float, _y:Float ) {
-        x = _x; 
+        x = _x;
         y = _y;
     }
 
     public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
-        
+
         var _setx = x;
         var _sety = y;
         var _setz = z;
         var _setw = w;
-            
+
             //assign new values
         if(_x != null) _setx = _x;
         if(_y != null) _sety = _y;
@@ -199,7 +199,7 @@ class Vector {
     } //Cross
 
     public static function RotationTo(a:Vector,b:Vector) {
-        return a.rotationTo(b);     
+        return a.rotationTo(b);
     } //RotationTo
 
     public static function listen( _v:Vector, listener ) {
@@ -223,7 +223,7 @@ class Vector {
         return this;
 
     } //add
-    
+
     public function subtract(other:Vector) {
 
         if(other == null) {
@@ -237,7 +237,7 @@ class Vector {
         return this;
 
     } //subtract
-    
+
     public function multiply(other:Vector) {
 
         if(other == null) {
@@ -251,7 +251,7 @@ class Vector {
         return this;
 
     } //multiply
-    
+
     public function divide(other:Vector) {
 
         if(other == null) {
@@ -343,31 +343,31 @@ class Vector {
     } //get_normalized
 
     function set_x(_x:Float) : Float {
-        
+
         x = _x;
-        
+
             if(listen_x != null && !ignore_listeners) listen_x(_x);
-        
+
         return x;
 
     } //set_x
 
     function set_y(_y:Float) : Float {
-        
+
         y = _y;
-        
+
             if(listen_y != null && !ignore_listeners) listen_y(_y);
-        
+
         return y;
 
     } //set_y
 
     function set_z(_z:Float) : Float {
-        
+
         z = _z;
-        
+
             if(listen_z != null && !ignore_listeners) listen_z(_z);
-        
+
         return z;
 
     } //set_z
@@ -378,8 +378,8 @@ class Vector {
 
     } //get_inverted
 
-    
-        //Changes the angle of the vector. 
+
+        //Changes the angle of the vector.
         //X and Y will change, length stays the same.
     function set_angle2D( value : Float ) : Float {
 
@@ -390,7 +390,7 @@ class Vector {
 
         return value;
     }
-    
+
         //Get the angle of this vector.
     function get_angle2D():Float {
 
@@ -399,14 +399,14 @@ class Vector {
     }
 
 //Convenience functions
-    
-        //Sets the length under the given value. 
+
+        //Sets the length under the given value.
         //Nothing is done if the vector is already shorter.
         //max The max length this vector can be.
     public function truncate( max:Float ) : Vector {
 
         length = Math.min(max, length);
-        
+
         return this;
 
     } //truncate
@@ -425,12 +425,12 @@ class Vector {
         var qy = q.y;
         var qz = q.z;
         var qw = q.w;
-        
+
         var ix = qw * x + qy * z - qz * y;
         var iy = qw * y + qz * x - qx * z;
         var iz = qw * z + qx * y - qy * x;
         var iw = -qx * x - qy * y - qz * z;
-        
+
             x = ix * qw + iw * -qx + iy * -qz - iz * -qy;
             y = iy * qw + iw * -qy + iz * -qx - ix * -qz;
             z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
@@ -451,10 +451,10 @@ class Vector {
 
         return this;
 
-    } //applyProjection 
+    } //applyProjection
 
     public function transform( _m:Matrix ) : Vector {
-        
+
         var _x = x;
         var _y = y;
         var _z = z;
@@ -473,11 +473,11 @@ class Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
-        
+
             this.x = e[0] * x + e[4] * y + e[8] * z;
             this.y = e[1] * x + e[5] * y + e[9] * z;
             this.z = e[2] * x + e[6] * y + e[10] * z;
-        
+
         normalize();
 
         return this;
@@ -490,11 +490,11 @@ class Vector {
         var m11 = te[0], m12 = te[4], m13 = te[8];
         var m21 = te[1], m22 = te[5], m23 = te[9];
         var m31 = te[2], m32 = te[6], m33 = te[10];
-        
+
         if (order == 'XYZ') {
 
             y = Math.asin( Maths.clamp( m13, -1, 1 ) );
-            
+
             if (Math.abs(m13) < 0.99999)
             {
                 x = Math.atan2( -m23, m33);
@@ -565,7 +565,7 @@ class Vector {
             }
 
         } //order
-        
+
         return this;
 
     } //setEulerFromRotationMatrix
@@ -576,11 +576,11 @@ class Vector {
         var sqy : Float = q.y * q.y;
         var sqz : Float = q.z * q.z;
         var sqw : Float = q.w * q.w;
-        
+
         if (order == 'XYZ') {
             x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );
             y = Math.asin(  Maths.clamp( 2 * ( q.x * q.z + q.y * q.w ), -1, 1 ) );
-            z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );         
+            z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );
         } else if ( order ==  'YXZ' ) {
             x = Math.asin(  Maths.clamp( 2 * ( q.x * q.w - q.y * q.z ), -1, 1 ) );
             y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw - sqx - sqy + sqz ) );
@@ -602,7 +602,7 @@ class Vector {
             y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw + sqx - sqy - sqz ) );
             z = Math.asin(  Maths.clamp( 2 * ( q.z * q.w - q.x * q.y ), -1, 1 ) );
         } //order
-        
+
         return this;
 
     } //setEulerFromQuaternion
@@ -628,7 +628,7 @@ class Vector {
     public static function Degrees( _radian_vector:Vector ) : Vector {
         return _radian_vector.clone().degrees();
     }
-    
+
     public static function Radians( _degree_vector:Vector ) : Vector {
         return _degree_vector.clone().radians();
     }
@@ -642,7 +642,7 @@ abstract Vec(Vector) from Vector to Vector {
     public inline function new(?_x,?_y,?_z,?_w) {
         this = new Vector(_x,_y,_z,_w);
     }
-//multiply    
+//multiply
     @:communitative @:op(A * B) static public function _multiply(lhs:Vec, rhs:Vec) : Vec {
         return Vector.MultiplyVector(lhs, rhs);
     }
@@ -662,7 +662,7 @@ abstract Vec(Vector) from Vector to Vector {
     @:communitative @:op(A / B) static public function _divide_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.Divide(lhs, rhs);
     }
-// add 
+// add
     @:communitative @:op(A + B) static public function _add(lhs:Vec, rhs:Vec) : Vec {
         return Vector.Add(lhs, rhs);
     }
@@ -672,7 +672,7 @@ abstract Vec(Vector) from Vector to Vector {
     @:communitative @:op(A + B) static public function _add_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.AddScalar(lhs, rhs);
     }
-// subract    
+// subract
     @:communitative @:op(A - B) static public function _subtract(lhs:Vec, rhs:Vec) : Vec {
         return Vector.Subtract(lhs,rhs);
     }

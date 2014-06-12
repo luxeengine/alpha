@@ -69,10 +69,7 @@ class Main extends luxe.Game {
 
             geom.quad_resize( big_quad, new Rectangle(64,64,64,64) );
             geom.quad_uv( big_quad, new Rectangle(112, 48, 16, 16));
-            geom.quad_uv(mouse_quad, new Rectangle(64, 32, 16, 16));                        
-            
-                //add to the renderer
-            Luxe.addGeometry( geom );
+            geom.quad_uv(mouse_quad, new Rectangle(64, 32, 16, 16));
 
             next_anim = Luxe.time + anim_delay;
 
@@ -91,6 +88,7 @@ class Main extends luxe.Game {
     }//random_int
 
     public function create_map() {
+
         map_tiles = new Array< Array<MapTile> >();
 
         for(_y in 0 ... maph) {
@@ -111,13 +109,13 @@ class Main extends luxe.Game {
             map_tiles.push(_row);
         } //_y
     } //create_map
-  
+
     public function onmousemove( e:MouseEvent ) {
         // geom.quad_pos( mouse_quad, new Vector(e.x-32, e.y-32) );
     }
 
     public function onkeyup( e:KeyEvent ) {
-        
+
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
         } //escape

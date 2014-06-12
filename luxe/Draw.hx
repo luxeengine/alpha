@@ -12,192 +12,80 @@ import phoenix.geometry.ArcGeometry;
 import phoenix.geometry.PlaneGeometry;
 import phoenix.geometry.Vertex;
 
+import luxe.options.GeometryOptions;
+
 class Draw {
 
+
     @:noCompletion public var core : Core;
-    @:noCompletion public function new( _core:Core ) { core = _core; }
 
-    function default_options(options:Dynamic) {
 
-        options.font        = (options.font == null)        ? Luxe.renderer.font    : options.font;
-        options.color       = (options.color == null)       ? new Color()           : options.color;
-        options.depth       = (options.depth == null)       ? 0                     : options.depth;
-        options.group       = (options.group == null)       ? 0                     : options.group;
-        options.immediate   = (options.immediate == null)   ? false                 : options.immediate;
-        options.batcher     = (options.batcher == null)     ? Luxe.renderer.batcher : options.batcher;
-        options.pos         = (options.pos == null)         ? new Vector()          : options.pos;
+    @:noCompletion public function new( _core:Core ) {
 
-            //return
-        return options;
+        core = _core;
 
-    } //default_options
+    } //new
 
-    public function line(options:Dynamic) {
+    public function line( options:LineGeometryOptions ) {
 
-    	if(options.p0 == null) throw "draw.line requires p0:Vector, and p1:Vector";
-    	if(options.p1 == null) throw "draw.line requires p0:Vector, and p1:Vector";
+        if(options.p0 == null) { throw "draw.line requires p0:Vector, and p1:Vector"; }
+        if(options.p1 == null) { throw "draw.line requires p0:Vector, and p1:Vector"; }
+        if(options.id == null) { options.id = 'line.geometry'; }
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        	options = default_options(options);
-
-            if(options.id == null) { options.id = 'line.geometry'; };
-
-        	var _line = new LineGeometry(options);
-
-        	options.batcher.add(_line, false);
-
-    	return _line;
+            return new LineGeometry(options);
 
     } // line
 
-    public function box(options:Dynamic) {
+    public function box( options:QuadGeometryOptions ) {
 
-        options = default_options(options);
+        if(options.id == null) { options.id = 'quad.geometry'; }
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        if(options.id == null) { options.id = 'quad.geometry'; };
-
-        var _box = new QuadGeometry(options);
-
-            options.batcher.add(_box, false);
-
-        return _box;
+        return new QuadGeometry(options);
 
     } //box
 
-    public function rectangle(options:Dynamic) {
-
-        options = default_options(options);
+    public function rectangle( options:RectangleGeometryOptions ) {
 
         if(options.id == null) { options.id = 'rectangle.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-    	var _rect = new RectangleGeometry(options);
-
-    	   options.batcher.add(_rect, false);
-
-    	return _rect;
+        return new RectangleGeometry(options);
 
     } //rectangle
 
-    public function text(options:Dynamic) {
-
-        options = default_options(options);
-
-        if(options.id == null) { options.id = 'text.geometry'; };
-
-        var _text = options.font.draw_text(options);
-
-        return _text;
-    } //text
-
-
-    public function ring(options:Dynamic) {
-
-        options = default_options(options);
+    public function ring( options:CircleGeometryOptions ) {
 
         if(options.id == null) { options.id = 'ring.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        var _ring = new RingGeometry(options);
-
-            options.batcher.add(_ring, false);
-
-        return _ring;
+        return new RingGeometry(options);
 
     } //ring
 
-    public function arc(options:Dynamic) {
-
-        options = default_options(options);
+    public function arc( options:CircleGeometryOptions ) {
 
         if(options.id == null) { options.id = 'arc.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        var _arc = new ArcGeometry(options);
-
-            options.batcher.add(_arc, false);
-
-        return _arc;
+        return new ArcGeometry(options);
 
     } //arc
 
-    public function circle(options:Dynamic) {
-
-        options = default_options(options);
+    public function circle( options:CircleGeometryOptions ) {
 
         if(options.id == null) { options.id = 'circle.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        var _circle = new CircleGeometry(options);
-
-            options.batcher.add(_circle);
-
-        return _circle;
+        return new CircleGeometry(options);
 
     } //circle
 
-    public function texture(options:Dynamic) {
-
-        options = default_options(options);
-
-        if(options.id == null) { options.id = 'texture.geometry'; };
-
-        var _x = 0;
-        var _y = 0;
-        var _w = 0;
-        var _h = 0;
-
-            //this is an arbitrary default
-        var _tw = 64;
-        var _th = 64;
-
-        if(options.texture != null) {
-            _tw = options.texture.width;
-            _th = options.texture.height;
-
-            if(options.size == null) {
-                _w = _tw;
-                _h = _th;
-            }
-        }
-
-        if(options.pos != null) {
-            _x = options.pos.x;
-            _y = options.pos.y;
-        }
-        if(options.size != null) {
-            _w = options.size.x;
-            _h = options.size.y;
-        }
-
-        options.x = _x;
-        options.y = _y;
-        options.w = _w;
-        options.h = _h;
-
-        var _quad = new QuadGeometry(options);
-
-        var _ux = 0;
-        var _uy = 0;
-        var _uw = _tw;
-        var _uh = _th;
-
-        if(options.uv != null) {
-            _ux = options.uv.x;
-            _uy = options.uv.y;
-            _uw = options.uv.w;
-            _uh = options.uv.h;
-        }
-
-        _quad.uv( new Rectangle(_ux, _uy, _uw, _uh) );
-
-            options.batcher.add(_quad, false);
-
-        return _quad;
-
-
-    } //texture
-
     public function ngon(options:Dynamic) : Geometry {
 
-        options = default_options(options);
-
         if(options.id == null) { options.id = 'ngon.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
         var _sides : Int = 3;
         var _radius : Float = 64;
@@ -256,60 +144,88 @@ class Draw {
 
         } //for all sides
 
-        options.batcher.add(_geometry);
-
         return _geometry;
 
-    }
+    } //ngon
 
-    public function plane(options:Dynamic) {
+    public function texture( options:Dynamic ) {
 
-        options = default_options(options);
+        if(options.id == null) { options.id = 'texture.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+
+        var _x = 0;
+        var _y = 0;
+        var _w = 0;
+        var _h = 0;
+
+            //this is an arbitrary default
+        var _tw = 64;
+        var _th = 64;
+
+            if(options.texture != null) {
+                _tw = options.texture.width;
+                _th = options.texture.height;
+
+                if(options.size == null) {
+                    _w = _tw;
+                    _h = _th;
+                }
+            }
+
+            if(options.pos != null) {
+                _x = options.pos.x;
+                _y = options.pos.y;
+            }
+            if(options.size != null) {
+                _w = options.size.x;
+                _h = options.size.y;
+            }
+
+            options.x = _x;
+            options.y = _y;
+            options.w = _w;
+            options.h = _h;
+
+            var _quad = new QuadGeometry(options);
+
+            var _ux = 0;
+            var _uy = 0;
+            var _uw = _tw;
+            var _uh = _th;
+
+            if(options.uv != null) {
+                _ux = options.uv.x;
+                _uy = options.uv.y;
+                _uw = options.uv.w;
+                _uh = options.uv.h;
+            }
+
+            _quad.uv( new Rectangle(_ux, _uy, _uw, _uh) );
+
+        return _quad;
+
+    } //texture
+
+    public function text( options:Dynamic ) {
+
+        if(options.id == null) { options.id = 'text.geometry'; };
+        if(options.font == null) { options.font = Luxe.renderer.font; }
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
+
+        var _text = options.font.draw_text(options);
+
+        return _text;
+
+    } //text
+
+    public function plane( ?options:PlaneGeometryOptions ) {
 
         if(options.id == null) { options.id = 'plane.geometry'; };
+        if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        var _plane = new PlaneGeometry(options);
-
-           options.batcher.add(_plane, false);
-
-        return _plane;
+        return new PlaneGeometry( options );
 
     } //_plane
-
-
-    public function axis3D(?options:Dynamic=null) {
-
-        if(options == null) options = {};
-        var _scale = options.scale == null ? 100 : options.scale;
-
-        options = default_options(options);
-
-//X axis
-        line({
-            immediate:options.immediate,
-            p0 : new Vector(0, _scale, 0),
-            p1 : new Vector(0, -_scale, 0),
-            color : new Color(0,0.6,0,0.2),
-            batcher : options.batcher,
-        });
-//Z axis
-        line({
-            immediate:options.immediate,
-            p0 : new Vector(0, 0, _scale),
-            p1 : new Vector(0, 0, -_scale),
-            color : new Color(0,0,0.6,1),
-            batcher : options.batcher,
-        });
-//X axis
-        line({
-            immediate:options.immediate,
-            p0 : new Vector(-_scale, 0, 0),
-            p1 : new Vector(_scale, 0, 0),
-            color : new Color(0.6,0,0,1),
-            batcher : options.batcher,
-        });
-
-    } //axis3D
 
 
 } //Draw

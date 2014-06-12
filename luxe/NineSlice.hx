@@ -49,7 +49,6 @@ class NineSlice extends luxe.Sprite {
     public function new<T>( _options:NineSliceOptions<T> ) {
 
             //default to internal batcher
-        _batcher = Luxe.renderer.batcher;
         slices = new Array<Slice>();
 
             //we need to tell the sprite not to create geometry ,
@@ -66,7 +65,9 @@ class NineSlice extends luxe.Sprite {
 
         nineslice_options = _options;
 
-        if(_options.batcher != null)    _batcher = _options.batcher;
+        if(_options.batcher != null) {
+            _batcher = _options.batcher;
+        }
 
             //sprite options to parent
         super(_options);
@@ -421,7 +422,8 @@ class NineSlice extends luxe.Sprite {
             color : _color,
             depth : nineslice_options.depth,
             group : nineslice_options.group,
-            visible : nineslice_options.visible
+            visible : nineslice_options.visible,
+            batcher : _batcher
         });
 
         for(slice in slices) {
@@ -436,12 +438,10 @@ class NineSlice extends luxe.Sprite {
             _geometry.quad_uv( slice.geometry_id, new Rectangle(slice.source_x, slice.source_y, slice.source_width, slice.source_height) );
             _geometry.quad_pos( slice.geometry_id, new Vector(slice.pos.x, slice.pos.y) );
 
-        }
+        } //each slice
 
         _geometry.transform.pos = _pos;
         _geometry.id = 'NineSlice';
-
-        _batcher.add( _geometry );
 
         added = true;
         is_set = true;

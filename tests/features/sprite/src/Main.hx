@@ -11,7 +11,7 @@ class Main extends luxe.Game {
 
 
     public function ready() {
-        
+
         test_sprite1 = new Sprite({
             texture : Luxe.loadTexture('assets/luxe.png'),
             pos : Luxe.screen.mid,
@@ -27,31 +27,30 @@ class Main extends luxe.Game {
         mouse = new Vector();
 
     } //ready
-    
+
     var inside = false;
     var mouse : Vector;
-    
+
     public function onmousemove( e:MouseEvent ) {
         mouse = e.pos;
     } //onmousemove
 
     public function hittest( e:Vector ) {
-        if( test_sprite1.point_inside_exact(e) ) {
+        if( test_sprite1.point_inside(e) ) {
             if(!inside) {
                 inside = true;
-                // test_sprite1.color.tween(0.1, {r:0.8, b:0, g:0});
-                test_sprite1.color.a = 0.2;
+                test_sprite1.color.tween(0.1, {r:0.8, b:0, g:0});
             }
         } else {
             if(inside) {
                 inside = false;
-                // test_sprite1.color.tween(0.1, {r:1, b:1, g:1});
-                test_sprite1.color.a = 1;
+                test_sprite1.color.tween(0.1, {r:1, b:1, g:1});
             }
         }
     } //hittest
 
     public function onmouseup( e:MouseEvent ) {
+        mouse = e.pos;
         test_sprite1.pos = e.pos;
     } //onmouseup
 
@@ -66,16 +65,16 @@ class Main extends luxe.Game {
         if(e.value == Input.Keys.key_R) {
 
             if(_sizes == null) {
-                _sizes = [                    
+                _sizes = [
                     new Vector(128,128),
                     new Vector(64,64),
                     new Vector(32,32),
-                    new Vector(512,512), 
+                    new Vector(512,512),
                     new Vector(256,256),
                     new Vector(196,196)
                 ];
             }
-            _next2++; 
+            _next2++;
             if(_next2 > _sizes.length-1) {
                 _next2 = 0;
             }
@@ -85,19 +84,23 @@ class Main extends luxe.Game {
 
         } //key_R
 
+        if(e.value == Input.Keys.key_F) {
+            test_sprite1.flipy = !test_sprite1.flipy;
+        }
+
         if(e.value == Input.Keys.key_S) {
 
             if(_scales == null) {
-                _scales = [                    
+                _scales = [
                     new Vector(1,1,1),
                     new Vector(0,0,0),
                     new Vector(2,2,2),
-                    new Vector(0.5,0.5,0.5), 
+                    new Vector(0.5,0.5,0.5),
                     new Vector(0.1,0.1,0.1),
                     new Vector(0.5,2,1)
                 ];
             }
-            _next++; 
+            _next++;
             if(_next > _scales.length-1) {
                 _next = 0;
             }
