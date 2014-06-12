@@ -15,11 +15,11 @@ typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
 
-    @:isVar public var viewport (get,set) : Rectangle;
-    @:isVar public var center (get,set) : Vector;
-    @:isVar public var zoom (get,set) : Float = 1.0;
-    @:isVar public var minimum_zoom (get,set) : Float = 0.01;
-    
+    public var viewport (get,set) : Rectangle;
+    public var center (get,set) : Vector;
+    public var zoom (get,set) : Float;
+    public var minimum_zoom (get,set) : Float;
+
     public var view : phoenix.Camera;
     public var bounds : Rectangle;
 
@@ -101,16 +101,14 @@ class Camera extends Entity {
         return view.zoom = _z;
     } //set_zoom
 
-        ///Focus the camera on a specific point, for Ortho atm
-    public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {   
+        //Focus the camera on a specific point, for Ortho only.
+        //Use .target : Vector for focus in perspective
+    public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {
 
-        Actuate.tween(center, _t, { x:_p.x, y:_p.y }, true )
+        Actuate.tween(view.center, _t, { x:_p.x, y:_p.y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut )
             .onUpdate( function() {
-                    //:todo: this needs to change when the camera mirrors the new transforms
-                view.center = center;
-                var new_pos = view.pos.clone();
-                    pos = new_pos;
+                pos = view.pos.clone();
                 _final_pos.set_xyz( pos.x, pos.y, pos.z );
             });
 
@@ -123,7 +121,7 @@ class Camera extends Entity {
     } //screen_point_to_world
 
     public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
-        
+
         return view.world_point_to_screen( _vector, _viewport );
 
     } //world_point_to_screen
@@ -132,19 +130,15 @@ class Camera extends Entity {
 
         super.set_pos_from_transform(_pos);
 
-        if(view != null) {
-
-            if(bounds != null) {
-                if(_pos.x < bounds.x) _pos.x = bounds.x;
-                if(_pos.y < bounds.y) _pos.y = bounds.y;
-                if(_pos.x > bounds.w-view.viewport.w) _pos.x = bounds.w-view.viewport.w;
-                if(_pos.y > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h;
-            }
-
-                //flag for update
-            update_view_pos = _pos;
-
+        if(bounds != null) {
+            if(_pos.x < bounds.x) _pos.x = bounds.x;
+            if(_pos.y < bounds.y) _pos.y = bounds.y;
+            if(_pos.x > bounds.w-view.viewport.w) _pos.x = bounds.w-view.viewport.w;
+            if(_pos.y > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h;
         }
+
+            //flag for update
+        update_view_pos = _pos;
 
     } //set_pos_from_transform
 
@@ -175,8 +169,8 @@ class Camera extends Entity {
 
     } //shake
 
-        //Called by the scene the camera belongs to, or manually if you want    
-    @:noCompletion public function update(dt:Float) {              
+        //Called by the scene the camera belongs to, or manually if you want
+    @:noCompletion public function update(dt:Float) {
 
             //add camera shake
         if(shaking) {
@@ -189,7 +183,7 @@ class Camera extends Entity {
 
                 //apply the shake amount scale
             shake_vector.x *= shake_amount;
-            shake_vector.y *= shake_amount; 
+            shake_vector.y *= shake_amount;
             shake_vector.z *= shake_amount;
 
                 //fade the shake down
@@ -209,8 +203,8 @@ class Camera extends Entity {
 
         } //shaking
 
-        if(update_view_pos != null) {
-            view.pos = update_view_pos;
+        if(update_view_pos != null && view != null) {
+            view.pos = update_view_pos.clone();
             update_view_pos = null;
         }
 
@@ -221,15 +215,15 @@ class Camera extends Entity {
         var _data : Dynamic = super.get_serialize_data();
 
         var _extra : Dynamic = {
-            camera_type : view.projection.getName()            
+            camera_type : view.projection.getName()
         };
-        
+
         if(bounds != null)          _extra.bounds = bounds.serialized;
         if(view.target != null)     _extra.target = view.target.serialized;
         if(options)                 _extra.options = view.options;
 
         return _merge_properties(_data, _extra);
 
-    } //get_serialize_data    
+    } //get_serialize_data
 
 } //Camera

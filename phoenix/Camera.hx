@@ -18,15 +18,15 @@ import luxe.options.CameraOptions;
 enum ProjectionType {
     ortho;
     perspective;
-    custom; 
+    custom;
 }
 
 
 class Camera {
-    
-    public var name : String = 'camera';    
 
-    @:isVar public var viewport (get,set) : Rectangle;    
+    public var name : String = 'camera';
+
+    @:isVar public var viewport (get,set) : Rectangle;
     @:isVar public var center (get,set) : Vector;
     @:isVar public var zoom (default,set) : Float = 1.0;
 
@@ -35,6 +35,7 @@ class Camera {
         //specific to perspective
     @:isVar public var fov (default,set) : Float = 60;
     @:isVar public var aspect (default,set) : Float = 1.5;
+    @:isVar public var target (default,set) : Vector;
 
         //we keep a local pos variable as an unaltered position
         //to keep the center relative to the viewport, and allow setting position as 0,0 not center
@@ -53,8 +54,6 @@ class Camera {
 
     public var options : CameraOptions;
     public var projection : ProjectionType;
-
-    @:isVar public var target (default,set) : Vector;
     public var up : Vector;
 
     @:noCompletion public var projection_float32array : Float32Array;
@@ -66,8 +65,10 @@ class Camera {
     var projection_dirty : Bool = true;
         //when the target changes we can update the look at matrix
     var look_at_dirty : Bool = true;
+        //when we are still busy setting up
+    var _setup : Bool = true;
 
-        //A phoenix camera will default to ortho set to screen size        
+        //A phoenix camera will default to ortho set to screen size
     public function new( ?_options:CameraOptions ) {
 
         transform = new Transform();
@@ -75,7 +76,7 @@ class Camera {
             //save for later
         options = _options;
 
-            //have sane defaults 
+            //have sane defaults
         if(options == null) {
             options = default_camera_options();
         }
@@ -92,18 +93,18 @@ class Camera {
             projection = ProjectionType.ortho;
         }
 
+        center = new Vector(Luxe.screen.w/2, Luxe.screen.h/2);
+        pos = new Vector();
+
             //default to screensize or use given viewport
         if(options.viewport != null) {
-            viewport = options.viewport;            
+            viewport = options.viewport;
         } else {
             viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
         }
 
-            //set the position/center explicitly so it can update the transform
-        center = new Vector( viewport.w/2, viewport.h/2 );
-        pos = new Vector();
         up = new Vector(0,1,0);
-        
+
         projection_matrix = new Matrix();
         view_matrix = new Matrix();
         view_matrix_inverse = new Matrix();
@@ -124,15 +125,17 @@ class Camera {
             }
 
         } //switch projection
-        
-    } //new 
+
+        _setup = false;
+
+    } //new
 
 
 //Public API
 
 
     public function set_ortho( _options:CameraOptions ) {
-            
+
             //
         _merge_options( _options );
             //
@@ -159,18 +162,18 @@ class Camera {
 
     } //project
 
-        //from 2D to 3D 
+        //from 2D to 3D
     public function unproject( _vector:Vector ) {
 
         update_view_matrix();
-        
+
         var _inverted = new Matrix().multiplyMatrices( projection_matrix, view_matrix_inverse );
         return _vector.clone().applyProjection( _inverted.getInverse(_inverted) );
 
     } //unproject
 
     public function screen_point_to_ray( _vector:Vector ) : Ray {
-        
+
         return new Ray( _vector, this );
 
     } //screen_point_as_ray
@@ -193,7 +196,7 @@ class Camera {
         if( projection == ProjectionType.ortho ) {
             return ortho_world_to_screen( _vector );
         } else if( projection == ProjectionType.perspective ) {
-            return persepective_world_to_screen(_vector, _viewport);            
+            return persepective_world_to_screen(_vector, _viewport);
         }
 
             //given the default is ortho, for now
@@ -221,7 +224,7 @@ class Camera {
             //apply states
         apply_state(GL.CULL_FACE, options.cull_backfaces);
         apply_state(GL.DEPTH_TEST, options.depth_test);
-       
+
     } //process
 
 //Transforms
@@ -233,8 +236,8 @@ class Camera {
 
     } //on_transform_cleaned
 
-    function update_look_at() {        
-        
+    function update_look_at() {
+
         if(look_at_dirty && target != null) {
 
             look_at_matrix.lookAt( target, pos, up );
@@ -246,13 +249,13 @@ class Camera {
     } //update_look_at
 
     function update_view_matrix() {
-    
+
         view_matrix = transform.world.matrix;
 
         if(!transform_dirty) {
             return;
         }
-        
+
         view_matrix_inverse = view_matrix.inverse();
         view_inverse_float32array = view_matrix_inverse.float32array();
 
@@ -261,7 +264,7 @@ class Camera {
     } //update_view_matrix
 
     function update_projection_matrix() {
-            
+
         if(!projection_dirty) {
             return;
         }
@@ -336,11 +339,11 @@ class Camera {
             projection : ProjectionType.ortho,
             depth_test : false,
             cull_backfaces : false,
-            near : 1000, 
+            near : 1000,
             far: -1000
         };
 
-    } //default_camera_options 
+    } //default_camera_options
 
 
 //Conversions
@@ -367,13 +370,13 @@ class Camera {
         if(_viewport == null) { _viewport = viewport; }
 
         var _projected = project( _vector );
-        
+
         var width_half = _viewport.w/2;
         var height_half = _viewport.h/2;
 
-        return new Vector( 
-             ( _projected.x * width_half ) + width_half, 
-            -( _projected.y * height_half ) + height_half 
+        return new Vector(
+             ( _projected.x * width_half ) + width_half,
+            -( _projected.y * height_half ) + height_half
         );
 
     } //persepective_world_point_to_screen
@@ -390,7 +393,7 @@ class Camera {
         return target = _target;
 
     } //set_target
-    
+
     function set_fov( _fov:Float ) : Float {
 
         projection_dirty = true;
@@ -438,7 +441,7 @@ class Camera {
             //but maybe this should be optional if you want negative zoom?
         if(_new_zoom < minimum_zoom) {
             _new_zoom = minimum_zoom;
-        } 
+        }
 
         switch(projection) {
 
@@ -447,15 +450,15 @@ class Camera {
                     //scale the visual view based on the value
                 transform.scale.x = 1/_new_zoom;
                 transform.scale.y = 1/_new_zoom;
-                    
+
             case ProjectionType.perspective: {
 
-                // :todo: what happens when zooming perspective
+                // :todo: nothing happens when zooming perspective
 
-            } 
+            }
 
             case ProjectionType.custom: {}
-        
+
         } //switch projection
 
             //return the real value
@@ -463,22 +466,34 @@ class Camera {
 
     } //set_zoom
 
+    var _refresh_pos : Bool = false;
     function set_center( _p:Vector ) : Vector {
+
+        center = _p;
 
         switch(projection) {
 
             case ProjectionType.ortho:
 
-                    //setting the center is the same as setting the position relative to the viewport
-                pos = new Vector(_p.x - (viewport.w/2), _p.y - (viewport.h/2));
+                if(!_refresh_pos && !_setup) {
+                        //setting the center is the same as setting
+                        //the position relative to the viewport
+                    pos.ignore_listeners = true;
+                        pos.x = _p.x - (viewport.w/2);
+                        pos.y = _p.y - (viewport.h/2);
+                    pos.ignore_listeners = false;
+
+                } //!_refresh_pos && !_setup
 
             case ProjectionType.perspective: {}
 
             case ProjectionType.custom: {}
-        
+
         } //switch projection
 
-        return center = _p;
+        Vector.listen(center, _center_changed);
+
+        return center;
 
     } //set_center
 
@@ -489,7 +504,7 @@ class Camera {
     function get_pos() : Vector {
         return pos;
     } //get_pos
-    
+
     function get_rotation() : Quaternion {
         return transform.rotation;
     } //get_rotation
@@ -505,23 +520,24 @@ class Camera {
     function set_viewport(_r:Rectangle) : Rectangle {
 
         viewport = _r;
-        
+
         switch(projection) {
 
-            case ProjectionType.ortho:                
+            case ProjectionType.ortho:
 
+                    //update the actual origin center of transform
                 transform.origin = new Vector( _r.w/2, _r.h/2 );
-
-                set_pos(pos == null ? new Vector() : pos);
+                    //refresh the position and center etc
+                set_pos(pos);
 
             case ProjectionType.perspective: {}
 
             case ProjectionType.custom: {}
-        
+
         } //switch projection
 
         return viewport;
-    
+
     } //set_viewport
 
     function set_rotation( _q:Quaternion ) : Quaternion {
@@ -540,16 +556,33 @@ class Camera {
 
             case ProjectionType.ortho:
 
-                transform.pos.x = _p.x + (viewport.w/2);
-                transform.pos.y = _p.y + (viewport.h/2);
+            var _cx = center.x;
+            var _cy = center.y;
 
-            case ProjectionType.perspective: 
+            if(viewport != null) {
+                _cx = _p.x + (viewport.w/2);
+                _cy = _p.y + (viewport.h/2);
+            }
+
+                _refresh_pos = true;
+                    center.ignore_listeners = true;
+                        center.x = _cx;
+                        center.y = _cy;
+                    center.ignore_listeners = false;
+                _refresh_pos = false;
+
+                transform.pos.x = _cx;
+                transform.pos.y = _cy;
+
+            case ProjectionType.perspective:
 
                 transform.pos = pos;
 
             case ProjectionType.custom: {}
-        
+
         } //switch projection
+
+        Vector.listen(pos, _pos_changed);
 
         return pos;
 
@@ -584,5 +617,17 @@ class Camera {
         }
 
     } //_merge_options
+
+    function _pos_changed(v:Float) {
+
+        set_pos(pos);
+
+    } //_pos_changed
+
+    function _center_changed(v:Float) {
+
+        set_center(center);
+
+    } //_center_changed
 
 } //Camera

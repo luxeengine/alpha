@@ -40,44 +40,45 @@ class Main extends luxe.Game {
         //We now set the camera bounds, so you can't escape past them
         var midx = Luxe.screen.w/4;
         var midy = Luxe.screen.h/4;
-        
+
         screen_mouse = new Vector();
         view_mouse = new Vector();
         world_mouse = new Vector();
 
-        // Luxe.camera.bounds = new Rectangle(-midx, -midy, Luxe.screen.w + midx, Luxe.screen.h+midy);
+        create_hud();
 
-        //To demonstrate multiple camera views, 
-        //first we create a second batcher, as this will use a new camera
+    } //ready
+
+    function create_hud() {
 
         hud_batcher = new Batcher(Luxe.renderer, 'hud_batcher');
-        	//we then create a second camera for it, default options
-       	var hud_view = new Camera();
-       		//then assign it
-       	hud_batcher.view = hud_view;
-       		//the default batcher is stored at layer 1, we want to be above it
-       	hud_batcher.layer = 2;
-       		//the add it to the renderer
-       	Luxe.renderer.add_batch(hud_batcher);
+            //we then create a second camera for it, default options
+        var hud_view = new Camera();
+            //then assign it
+        hud_batcher.view = hud_view;
+            //the default batcher is stored at layer 1, we want to be above it
+        hud_batcher.layer = 2;
+            //the add it to the renderer
+        Luxe.renderer.add_batch(hud_batcher);
 
-       		//Now draw some text and the bar
+            //Now draw some text and the bar
         var small_amount = Luxe.screen.h * 0.05;
 
         Luxe.draw.box({
-        	x : 0, y : Luxe.screen.h - small_amount,
-        	w : Luxe.screen.w, h: small_amount,
-        	color : new Color().rgb(0xf0f0f0),
-        		//here is the key, we don't store it in the default batcher, we make a second batcher with a different camera
-        	batcher : hud_batcher
+            x : 0, y : Luxe.screen.h - small_amount,
+            w : Luxe.screen.w, h: small_amount,
+            color : new Color().rgb(0xf0f0f0),
+                //here is the key, we don't store it in the default batcher, we make a second batcher with a different camera
+            batcher : hud_batcher
         });
 
         Luxe.draw.text({
-        	text : 'A HUD!',
-        	size : small_amount * 0.75,
-        	bounds : new Rectangle(small_amount/2, Luxe.screen.h - small_amount, Luxe.screen.w, small_amount),
-        	color : new Color().rgb(0xff4b03),
-        	batcher : hud_batcher,
-        	align_vertical : TextAlign.center
+            text : 'A HUD!',
+            size : small_amount * 0.75,
+            bounds : new Rectangle(small_amount/2, Luxe.screen.h - small_amount, Luxe.screen.w, small_amount),
+            color : new Color().rgb(0xff4b03),
+            batcher : hud_batcher,
+            align_vertical : TextAlign.center
         });
 
         Luxe.draw.line({
@@ -107,7 +108,7 @@ class Main extends luxe.Game {
             batcher : hud_batcher
         });
 
-    } //ready
+    } //create_hud
 
     public function onmousemove( e:MouseEvent ) {
 
@@ -130,14 +131,14 @@ class Main extends luxe.Game {
         line_two.p1 = new Vector( screen_mouse.x, Luxe.screen.h );
 
         if(dragging) {
-                //get the rotation to the mouse 
+                //get the rotation to the mouse
             var r_to_mouse = e.pos.rotationTo(Luxe.screen.mid);
                 //wrap it to 0, 360
             r_to_mouse = luxe.utils.Maths.wrap_angle(r_to_mouse, -720, 720);
                 //and the difference between them
             var r_diff = (r_to_mouse - drag_start_rotation) * 0.5;
                 //now add to the original
-            var new_r = camera_start_rotation - r_diff;            
+            var new_r = camera_start_rotation - r_diff;
                 //and set the rotation on camera
             Luxe.camera.rotation = z_rot(new_r);
         }
@@ -179,13 +180,14 @@ class Main extends luxe.Game {
             dragging = false;
                 //did dragging time happen?
             if(Luxe.time < drag_time) {
-                Luxe.camera.shake( 2+(Std.random(100) ));
+                // Luxe.camera.shake( 4+(Std.random(100) ));
+                Luxe.camera.shake( 100 );
             } else {
                 //do nothing
             }
     	} else if(e.button == MouseButton.right) {
             Luxe.camera.focus( world_mouse );
-    	}  
+    	}
     }
 
     public function onkeyup( e:KeyEvent ) {
@@ -236,7 +238,7 @@ class Main extends luxe.Game {
         }
 
         world_mouse = Luxe.camera.screen_point_to_world( screen_mouse );
-        
+
     } //onkeyup
 
     var screen_mouse : Vector;
@@ -252,7 +254,7 @@ class Main extends luxe.Game {
             color:new Color().rgb(0xff4b03),
             text : 'world mouse : ' + world_mouse.x + ',' + world_mouse.y + '\n' + 'view mouse : ' + view_mouse.x + ',' + view_mouse.y
         });
-        
+
     } //update
 
 

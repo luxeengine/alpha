@@ -17,7 +17,7 @@ class FlyCamera extends luxe.Camera {
     public var move_back : Bool;
     public var move_left : Bool;
     public var move_right : Bool;
-    
+
     public var move_speed : Float = 5;
     public var move_speed_scale : Float = 1;
     public var sensitivity_x : Float = 0.0025;
@@ -46,7 +46,7 @@ class FlyCamera extends luxe.Camera {
     public function new( _options:LuxeCameraOptions ) {
 
         super(_options);
-        
+
         mouse_delta = new Vector(0,0);
 
         newpos = new Vector();
@@ -56,7 +56,8 @@ class FlyCamera extends luxe.Camera {
 
         pitch_rotation_matrix = new Matrix();
         yaw_rotation_matrix = new Matrix();
-    }
+
+    } //new
 
 
     public function reset() {
@@ -64,7 +65,7 @@ class FlyCamera extends luxe.Camera {
         pos = new Vector(0, 1, 5);
 
     } //start
-    
+
     public override function update(dt:Float) {
 
             //Update the parent in case it's doing stuff
@@ -112,7 +113,7 @@ class FlyCamera extends luxe.Camera {
                     //Apply it to the camera view
                 rotation = rotation.setFromRotationMatrix(final_rotation);
 
-            } 
+            }
 
                 //Make sure this stays set
             mouse_delta.set(0,0);
@@ -123,17 +124,17 @@ class FlyCamera extends luxe.Camera {
         }
 
 
-        if(move_forward) {  
+        if(move_forward) {
             newpos.add( Vector.Multiply(forward, move_diff) );
         }
-        if(move_back) {  
+        if(move_back) {
             newpos.subtract( Vector.Multiply(forward, move_diff) );
         }
 
-        if(move_left) {  
+        if(move_left) {
             newpos.subtract( Vector.Multiply(right, move_diff) );
         }
-        if(move_right) {  
+        if(move_right) {
             newpos.add( Vector.Multiply(right, move_diff) );
         }
 
@@ -149,21 +150,32 @@ class FlyCamera extends luxe.Camera {
     } //update
 
     function move_look(xDelta:Float,yDelta:Float) {
+
             yaw -= xDelta*sensitivity_x;
-        while (yaw < 0)
+
+        while (yaw < 0) {
             yaw += twoPI;
-        while (yaw >= twoPI)
+        }
+
+        while (yaw >= twoPI) {
             yaw -= twoPI;
-                
+        }
+
             pitch -= yDelta*sensitivity_y;
-        while (pitch < - halfPI)
+
+        while (pitch < - halfPI) {
             pitch = -halfPI;
-        while (pitch > halfPI)
+        }
+
+        while (pitch > halfPI) {
             pitch = halfPI;
+        }
+
     } //move_look
 
     public function onmouseup(e:MouseEvent) {
-        if(e.button == MouseButton.left && !ready) {            
+
+        if(e.button == MouseButton.left && !ready) {
             enable();
         }
 
@@ -171,9 +183,10 @@ class FlyCamera extends luxe.Camera {
             Luxe.screen.cursor.locked = true;
             Luxe.screen.cursor.visible = false;
         }
-    }
 
-    public function enable() {        
+    } //onmouseup
+
+    public function enable() {
 
         mouse_delta.set( 0,0 );
 
@@ -191,7 +204,7 @@ class FlyCamera extends luxe.Camera {
     } //enable
 
     public function onmousemove(e:MouseEvent) {
-        
+
         if(!ready) return;
         if(Luxe.core.console_visible) {
             mouse_delta.set(0,0);
@@ -200,7 +213,7 @@ class FlyCamera extends luxe.Camera {
 
         #if luxe_native
                 //see notes in enable()
-            if(hide_cursor) {  
+            if(hide_cursor) {
                 hide_cursor = false;
                 return;
             }
@@ -219,7 +232,7 @@ class FlyCamera extends luxe.Camera {
 
         if(e.value == Input.Keys.tilde && Luxe.core.console_visible == true) {
             ignore_next_move = true;
-            
+
             Luxe.screen.cursor.pos = Luxe.screen.mid;
 
             mouse_delta.set(0,0);
