@@ -21,8 +21,8 @@ class Transform extends Objects {
         //alias to local.pos, local.rotation, local.scale
     public var pos                  (get,set) : Vector;
     public var rotation             (get,set) : Quaternion;
-    public var scale                (get,set) : Vector;    
-    
+    public var scale                (get,set) : Vector;
+
     var _origin_undo_matrix : Matrix;
     var _pos_matrix : Matrix;
     var _rotation_matrix : Matrix;
@@ -45,19 +45,11 @@ class Transform extends Objects {
         name = 'transform';
 
         local = new Spatial();
-        world = new Spatial();        
+        world = new Spatial();
 
         _origin_undo_matrix = new Matrix();
         _pos_matrix = new Matrix();
         _rotation_matrix = new Matrix();
-
-        _clean_handlers = [];
-        _dirty_handlers = [];
-        _pos_handlers = [];
-        _rotation_handlers = [];
-        _scale_handlers = [];
-        _origin_handlers = [];
-        _parent_handlers = [];
 
         origin = new Vector();
 
@@ -70,11 +62,40 @@ class Transform extends Objects {
 
     } //new
 
+    public function destroy() {
+
+            //no longer listening
+        if(parent != null) {
+            parent.unlisten(on_parent_cleaned);
+        }
+
+            //destroy resources and memory
+        _clean_handlers = null;
+        _dirty_handlers = null;
+        _pos_handlers = null;
+        _rotation_handlers = null;
+        _scale_handlers = null;
+        _origin_handlers = null;
+        _parent_handlers = null;
+
+            //clean up
+        local = null;
+        world = null;
+        _origin_undo_matrix = null;
+        _pos_matrix = null;
+        _rotation_matrix = null;
+
+    } //destroy
+
     function set_dirty( _dirty:Bool ) : Bool {
 
         dirty = _dirty;
 
-        if(dirty && !_setup) {
+        if(  dirty &&
+            !_setup &&
+            _dirty_handlers != null &&
+            _dirty_handlers.length > 0
+        ) {
             propagate_dirty();
         }
 
@@ -84,18 +105,24 @@ class Transform extends Objects {
 
         //when the local transforms change we become dirty
     function on_local_pos_change( v:Vector ) {
-            
+
         dirty = true;
-        
-        propagate_pos( v );
+
+        if(_pos_handlers != null &&
+           _pos_handlers.length > 0) {
+                propagate_pos( v );
+        }
 
     } //local pos changed
-        
+
     function on_local_rotation_change( r:Quaternion ) {
-        
+
         dirty = true;
 
-        propagate_rotation( r );
+        if(_rotation_handlers != null &&
+           _rotation_handlers.length > 0) {
+                propagate_rotation( r );
+        }
 
     } //local rotation changed
 
@@ -103,7 +130,10 @@ class Transform extends Objects {
 
         dirty = true;
 
-        propagate_scale( s );
+        if(_scale_handlers != null &&
+           _scale_handlers.length > 0) {
+                propagate_scale( s );
+        }
 
     } //local scale changed
 
@@ -120,6 +150,10 @@ class Transform extends Objects {
     } //get_local
 
     function set_local(l:Spatial) : Spatial {
+
+        if(l == null) {
+            return local = l;
+        }
 
         dirty = true;
 
@@ -141,11 +175,11 @@ class Transform extends Objects {
     } //get_world
 
     @:noCompletion public function clean_check() {
-            
-            //make sure the parent is updated 
+
+            //make sure the parent is updated
         if(parent != null) {
 
-            if(parent.dirty) {                
+            if(parent.dirty) {
                 parent.clean();
             } //parent.dirty
 
@@ -158,7 +192,7 @@ class Transform extends Objects {
     }//clean_check
 
     @:noCompletion public function clean() {
-        
+
         if(!dirty) {
             return;
         }
@@ -198,7 +232,10 @@ class Transform extends Objects {
         dirty = false;
         _cleaning = false;
 
-        propagate_clean();
+        if( _clean_handlers != null &&
+            _clean_handlers.length > 0) {
+                propagate_clean();
+        }
 
     } //clean
 
@@ -218,14 +255,21 @@ class Transform extends Objects {
 
         origin = o;
 
-        propagate_origin( origin );
+        if(_origin_handlers != null &&
+           _origin_handlers.length > 0) {
+            propagate_origin( origin );
+        }
 
         return origin;
 
     } //set_origin
 
     function set_world(w:Spatial) : Spatial {
-        
+
+        if(w == null) {
+            return world = w;
+        }
+
         dirty = true;
 
         return world = w;
@@ -238,7 +282,7 @@ class Transform extends Objects {
 
     } //get_parent
 
-    function set_parent( _p:Transform ) {   
+    function set_parent( _p:Transform ) {
 
         dirty = true;
 
@@ -249,7 +293,10 @@ class Transform extends Objects {
 
         parent = _p;
 
-        propagate_parent( parent );
+        if(_parent_handlers != null &&
+           _parent_handlers.length > 0) {
+                propagate_parent( parent );
+        }
 
         if(parent != null) {
             //we need to know when the parent transform is changed, this makes us dirty,
@@ -344,59 +391,143 @@ class Transform extends Objects {
     } //propagate parent
 
     public function listen( _handler : Transform->Void ) {
+
+        if(_clean_handlers == null) {
+            _clean_handlers = [];
+        }
+
         _clean_handlers.push( _handler );
+
     } //listen
 
     public function unlisten( _handler : Transform->Void ) {
-        _clean_handlers.remove( _handler );
+
+        if(_clean_handlers == null) {
+            return false;
+        }
+
+        return _clean_handlers.remove( _handler );
+
     } //unlisten
 
     public function listen_dirty( _handler : Transform->Void ) {
+
+        if(_dirty_handlers == null) {
+            _dirty_handlers = [];
+        }
+
         _dirty_handlers.push( _handler );
+
     } //listen_dirty
 
     public function unlisten_dirty( _handler : Transform->Void ) {
-        _dirty_handlers.remove( _handler );
+
+        if(_dirty_handlers == null) {
+            return false;
+        }
+
+        return _dirty_handlers.remove( _handler );
+
     } //unlisten_dirty
 
     public function listen_pos( _handler : Vector->Void ) {
+
+        if(_pos_handlers == null) {
+            _pos_handlers = [];
+        }
+
         _pos_handlers.push( _handler );
+
     } //listen_pos
 
     public function unlisten_pos( _handler : Vector->Void ) {
+
+        if(_pos_handlers == null) {
+            return false;
+        }
+
         return _pos_handlers.remove( _handler );
+
     } //unlisten_pos
 
     public function listen_scale( _handler : Vector->Void ) {
+
+        if(_scale_handlers == null) {
+            _scale_handlers = [];
+        }
+
         _scale_handlers.push( _handler );
+
     } //listen_scale
 
     public function unlisten_scale( _handler : Vector->Void ) {
+
+        if(_scale_handlers == null) {
+            return false;
+        }
+
         return _scale_handlers.remove( _handler );
+
     } //unlisten_scale
 
     public function listen_rotation( _handler : Quaternion->Void ) {
+
+        if(_rotation_handlers == null) {
+            _rotation_handlers = [];
+        }
+
         _rotation_handlers.push( _handler );
+
     } //listen_rotation
 
     public function unlisten_rotation( _handler : Quaternion->Void ) {
+
+        if(_rotation_handlers == null) {
+            return false;
+        }
+
         return _rotation_handlers.remove( _handler );
+
     } //unlisten_rotation
 
     public function listen_origin( _handler : Vector->Void ) {
+
+        if(_origin_handlers == null) {
+            _origin_handlers = [];
+        }
+
         _origin_handlers.push( _handler );
+
     } //listen_origin
 
     public function unlisten_origin( _handler : Vector->Void ) {
+
+        if(_origin_handlers == null) {
+            return false;
+        }
+
         return _origin_handlers.remove( _handler );
+
     } //unlisten_origin
 
     public function listen_parent( _handler : Transform->Void ) {
+
+        if(_parent_handlers == null) {
+            _parent_handlers = [];
+        }
+
         _parent_handlers.push( _handler );
+
     } //listen_parent
 
     public function unlisten_parent( _handler : Transform->Void ) {
-        _parent_handlers.remove( _handler );
+
+        if(_parent_handlers == null) {
+            return false;
+        }
+
+        return _parent_handlers.remove( _handler );
+
     } //unlisten_parent
 
 } //Transform
@@ -410,7 +541,7 @@ class Spatial {
     @:isVar public var matrix               (get,    set) : Matrix;
 
     public var ignore_listeners : Bool = false;
-    
+
     @:noCompletion public var pos_changed : Vector -> Void;
     @:noCompletion public var rotation_changed : Quaternion -> Void;
     @:noCompletion public var scale_changed : Vector -> Void;
@@ -493,7 +624,7 @@ class Spatial {
         return rotation;
 
     } //set_rotation
-    
+
     function set_scale( _s:Vector ) {
 
         scale = _s;

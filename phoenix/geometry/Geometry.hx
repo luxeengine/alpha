@@ -215,6 +215,11 @@ class Geometry {
 
         }
 
+        if(transform != null) {
+            transform.destroy();
+            transform = null;
+        }
+
         dropped = true;
 
     } //drop
