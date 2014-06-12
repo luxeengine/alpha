@@ -9,8 +9,8 @@ typedef CameraOptions = {
 
     ? projection : ProjectionType,
         //ortho: false, persp: true
-    ? cull_backfaces : Bool,    
-        //ortho: false, persp: true 
+    ? cull_backfaces : Bool,
+        //ortho: false, persp: true
     ? depth_test : Bool,
         //perspective only
     ? fov       : Float,
@@ -25,10 +25,10 @@ typedef CameraOptions = {
 
 } //CameraOptions
 
-    //Don't like this naming here, 
+    //Don't like this naming here,
     //but will have to do for now.
 typedef LuxeCameraOptions = {
-    
+
     > CameraOptions,
 
     ? view : phoenix.Camera,

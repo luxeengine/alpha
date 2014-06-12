@@ -137,18 +137,18 @@ class Camera {
     public function set_ortho( _options:CameraOptions ) {
 
             //
-        _merge_options( _options );
-            //
         projection = ProjectionType.ortho;
+            //
+        _merge_options( _options );
 
     } //set_ortho
 
     public function set_perspective( _options:CameraOptions ) {
 
             //
-        _merge_options( _options );
-            //
         projection = ProjectionType.perspective;
+            //
+        _merge_options( _options );
             //reset the view origin
         transform.origin.set_xyz(0,0,0);
 
@@ -616,6 +616,17 @@ class Camera {
         if(options.viewport != null) {
             options.viewport = _options.viewport;
             viewport = options.viewport;
+        }
+
+            //start at defaults
+        apply_default_camera_options();
+
+        if(_options.cull_backfaces != null) {
+            options.cull_backfaces = _options.cull_backfaces;
+        }
+
+        if(_options.depth_test != null) {
+            options.depth_test = _options.depth_test;
         }
 
     } //_merge_options
