@@ -67,6 +67,8 @@ class NineSlice extends luxe.Sprite {
 
         if(_options.batcher != null) {
             _batcher = _options.batcher;
+        } else {
+            _batcher = Luxe.renderer.batcher;
         }
 
             //sprite options to parent

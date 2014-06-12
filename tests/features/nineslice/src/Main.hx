@@ -20,14 +20,14 @@ class Main extends luxe.Game {
         Luxe.renderer.clear_color = new Color().rgb(0xefefef);
 
         geom = new NineSlice({
-            texture : Luxe.loadTexture('default_ui_box'),
+            texture : Luxe.loadTexture('tiny.ui.png'),
             top : 32, left : 32, right : 32, bottom : 32
         });
 
         geom.create( new Vector(100, 200), 500, 260 );
 
     } //ready
-  
+
     public function onmousemove( e:MouseEvent ) {
 
         var m = new Vector(e.x,e.y);
