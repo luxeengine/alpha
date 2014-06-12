@@ -29,6 +29,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="frag_shader"><a class="lift" href="#frag_shader">frag\_shader</a></a><code class="signature apipage">frag\_shader : [lime.gl.GLShader]()</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="fragment_source_name"><a class="lift" href="#fragment_source_name">fragment\_source\_name</a></a><code class="signature apipage">fragment\_source\_name : [String](http://api.haxe.org/String.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="log"><a class="lift" href="#log">log</a></a><code class="signature apipage">log : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix\_attribute</a></a><code class="signature apipage">modelviewmatrix\_attribute : [lime.gl.GLUniformLocation]()</code><br/></span>
@@ -64,6 +66,8 @@
             <a name="vert_attribute"><a class="lift" href="#vert_attribute">vert\_attribute</a></a><code class="signature apipage">vert\_attribute : [Int](http://api.haxe.org/Int.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="vert_shader"><a class="lift" href="#vert_shader">vert\_shader</a></a><code class="signature apipage">vert\_shader : [lime.gl.GLShader]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="vertex_source_name"><a class="lift" href="#vertex_source_name">vertex\_source\_name</a></a><code class="signature apipage">vertex\_source\_name : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="dropped"><a class="lift" href="#dropped">dropped</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">dropped : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
@@ -105,7 +109,7 @@
             <a name="link"><a class="lift" href="#link">link</a></a><code class="signature apipage">link() : [lime.gl.GLProgram]()</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="load_from_string"><a class="lift" href="#load_from_string">load\_from\_string</a></a><code class="signature apipage">load\_from\_string(\_vertex\_source:<span>[String](http://api.haxe.org/String.html)</span>, \_fragment\_source:<span>[String](http://api.haxe.org/String.html)</span>, ?\_verbose:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="load_from_string"><a class="lift" href="#load_from_string">load\_from\_string</a></a><code class="signature apipage">load\_from\_string(\_vertex\_source:<span>[String](http://api.haxe.org/String.html)</span>, \_fragment\_source:<span>[String](http://api.haxe.org/String.html)</span>, ?\_frag\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_vertex\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;&#x27;</span>, ?\_verbose:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">new(\_manager:<span>[luxe.ResourceManager](#luxe.ResourceManager)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

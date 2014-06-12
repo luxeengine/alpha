@@ -25,8 +25,6 @@
 <h3>Members</h3> <hr/><span class="member apipage">
             <a name="_position"><a class="lift" href="#_position">\_position</a></a><code class="signature apipage">\_position : [luxe.Vector](#luxe.Vector)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="active"><a class="lift" href="#active">active</a></a><code class="signature apipage">active : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="active_particles"><a class="lift" href="#active_particles">active\_particles</a></a><code class="signature apipage">active\_particles : [Array](http://api.haxe.org/Array.html)&lt;[luxe.Particle](#luxe.Particle)&gt;</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="cache_index"><a class="lift" href="#cache_index">cache\_index</a></a><code class="signature apipage">cache\_index : [Int](http://api.haxe.org/Int.html)</code><br/></span>
@@ -52,6 +50,8 @@
             <a name="emit_next"><a class="lift" href="#emit_next">emit\_next</a></a><code class="signature apipage">emit\_next : [Float](http://api.haxe.org/Float.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="emit_time"><a class="lift" href="#emit_time">emit\_time</a></a><code class="signature apipage">emit\_time : [Float](http://api.haxe.org/Float.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="enabled"><a class="lift" href="#enabled">enabled</a></a><code class="signature apipage">enabled : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="end_color"><a class="lift" href="#end_color">end\_color</a></a><code class="signature apipage">end\_color : [luxe.Color](#luxe.Color)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">

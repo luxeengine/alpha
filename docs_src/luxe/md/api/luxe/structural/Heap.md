@@ -19,10 +19,10 @@
 * copies of the Software, and to permit persons to whom the
 * Software is furnished to do so, subject to the following
 * conditions:
-* 
+*
 * The above copyright notice and this permission notice shall be
 * included in all copies or substantial portions of the Software.
-* 
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
 * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -76,7 +76,7 @@
             <a name="iterator"><a class="lift" href="#iterator">iterator</a></a><code class="signature apipage">iterator() : [Iterator]()&lt;[Null](http://api.haxe.org/Null.html)&lt;[luxe.structural.Heap.T](#luxe.structural.Heap.T)&gt;&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_size:<span>[Int](http://api.haxe.org/Int.html)</span>, \_compare:<span>[Null-&gt;Null-&gt;Float]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Initializes a new heap. 
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_size:<span>[Int](http://api.haxe.org/Int.html)</span>, \_compare:<span>[Null-&gt;Null-&gt;Float]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Initializes a new heap.
         [size] is the heap's maximum capacity.
         [compare] is a comparison function for sorting the heap's data.</span>
         </span>

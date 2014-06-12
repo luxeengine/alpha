@@ -33,8 +33,6 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="clip"><a class="lift" href="#clip">clip</a></a><code class="signature apipage">clip : [Bool]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
             <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><code class="signature apipage">clip\_rect : [luxe.Rectangle]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="color"><a class="lift" href="#color">color</a></a><code class="signature apipage">color : [luxe.Color]()</code><br/><span class="small_desc_flat"></span>

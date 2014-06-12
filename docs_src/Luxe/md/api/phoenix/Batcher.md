@@ -130,7 +130,7 @@
             <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(\_geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>, ?\_force\_add:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="add_group"><a class="lift" href="#add_group">add\_group</a></a><code class="signature apipage">add\_group(\_group:<span>[Int](http://api.haxe.org/Int.html)</span>, \_pre\_render:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)</span>, \_post\_render:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="add_group"><a class="lift" href="#add_group">add\_group</a></a><code class="signature apipage">add\_group(\_group:<span>[Int](http://api.haxe.org/Int.html)</span>, ?\_pre\_render:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)=null</span>, ?\_post\_render:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="batch"><a class="lift" href="#batch">batch</a></a><code class="signature apipage">batch(?persist\_immediate:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

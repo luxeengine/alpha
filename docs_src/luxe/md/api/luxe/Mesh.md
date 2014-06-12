@@ -29,7 +29,7 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="fromOBJFile"><a class="lift" href="#fromOBJFile">fromOBJFile</a></a><code class="signature apipage">fromOBJFile(asset\_id:<span>[String](http://api.haxe.org/String.html)</span>, texture:<span>[phoenix.Texture](#phoenix.Texture)</span>, ?\_scale:<span>[luxe.Vector](#luxe.Vector)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="fromOBJFile"><a class="lift" href="#fromOBJFile">fromOBJFile</a></a><code class="signature apipage">fromOBJFile(asset\_id:<span>[String](http://api.haxe.org/String.html)</span>, texture:<span>[phoenix.Texture](#phoenix.Texture)</span>, ?\_scale:<span>[luxe.Vector](#luxe.Vector)=null</span>, \_batcher:<span>[phoenix.Batcher](#phoenix.Batcher)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_options:<span>[luxe.options.MeshOptions](#luxe.options.MeshOptions)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>

@@ -29,6 +29,9 @@
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="listen"><a class="lift" href="#listen">listen</a></a><code class="signature apipage">listen(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -53,16 +56,16 @@
             <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">new() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="unlisten"><a class="lift" href="#unlisten">unlisten</a></a><code class="signature apipage">unlisten(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="unlisten_dirty"><a class="lift" href="#unlisten_dirty">unlisten\_dirty</a></a><code class="signature apipage">unlisten\_dirty(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="unlisten_dirty"><a class="lift" href="#unlisten_dirty">unlisten\_dirty</a></a><code class="signature apipage">unlisten\_dirty(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="unlisten_origin"><a class="lift" href="#unlisten_origin">unlisten\_origin</a></a><code class="signature apipage">unlisten\_origin(\_handler:<span>[phoenix.Vector-&gt;Void](#phoenix.Vector->Void)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="unlisten_parent"><a class="lift" href="#unlisten_parent">unlisten\_parent</a></a><code class="signature apipage">unlisten\_parent(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="unlisten_parent"><a class="lift" href="#unlisten_parent">unlisten\_parent</a></a><code class="signature apipage">unlisten\_parent(\_handler:<span>[phoenix.Transform-&gt;Void](#phoenix.Transform->Void)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="unlisten_pos"><a class="lift" href="#unlisten_pos">unlisten\_pos</a></a><code class="signature apipage">unlisten\_pos(\_handler:<span>[phoenix.Vector-&gt;Void](#phoenix.Vector->Void)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>

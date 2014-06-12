@@ -53,6 +53,159 @@
             <p>&nbsp;   </p>
 <div class="commit_info">
 
+commit <a href="https://github.com/underscorediscovery/luxe/commit/22c5172563658f48dcfedcb45780d56521d985b9">22c5172563</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 18:41:07 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Particles; fixing naming conflicts with entity active flag</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/ab795c478ea0be91ebfbd2b9c6922af4faf8478f">ab795c478e</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 18:36:26 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Draw; adding remaining draw options (fixing #77 for now) and documenting a bit</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/22031bbd1d6304e42f8115355611dcac7f8ea1a4">22031bbd1d</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 10:21:51 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Camera; more merging of options but still set_perspective seems to have an invalid leftover state from ortho, will investigate further</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/576ab7fa749682ff02940de65b3d6650ebfa68d3">576ab7fa74</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 09:57:37 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Shader; fixing order of parameters, where vertex shader name was used for fragment errors and vice versa</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/b8bc27db7a4049b4cb2828598ad7438825d7569c">b8bc27db7a</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 09:52:16 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Shader; adding logging of the source file name along with errors cos that’s like, needed lol</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/3abb72bbd1162df63f4b2969a50bedb5db5eae5c">3abb72bbd1</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 09:51:55 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Parcel; tidy up wild logging from thread</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/c4ccc0165f01e4dea23ebfd68af6c8967524671d">c4ccc0165f</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 09:07:05 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Entity; fixing potential null name values on custom extended Entities</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/d00ad46e1537a339c0c62af2348b0deffd412b63">d00ad46e15</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 07:12:17 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>NineSlice; fixing default batcher add and test sample</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/bec919585ec67bef5125b68bb076fdac130c20a5">bec919585e</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 06:51:34 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Entity; adding active flag to disable handlers being called from the scene/parents for #101 short term fix</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/ccbf8f1293553ea70747028813c6534611e69375">ccbf8f1293</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 05:13:00 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>IMPORTANT CHANGES :: Please read all of the commit message long description as a bunch of API has changed which will affect code directly. Again, I hate to do this but better earlier than later before public access.</li><li>MOST IMPORTANT OF ALL : addGeometry was removed, this is to make way for a simpler API, for example, now that geometry has typed options, it accepts a batcher:Batcher property. This means that your code of var geom = new Geometry();  Luxe.addGeometry(geom); becomes var geom = new Geometry({ batcher:Luxe.renderer.batcher });</li><li>API; removed addGeometry/removeGeometry/addGroup/removeGroup. Use Luxe.renderer.batcher.add(geom), Luxe.renderer.batcher.remove(geom), Luxe.renderer.batcher.add_group/remove_group instead. These are conflating the API and do not fit the purpose of the Luxe root.</li><li>API; removed createBatcher(..) from Luxe class. Better version with options now at Luxe.renderer.create_batcher({ name:String, camera:phoenix.Camera, layer:Int, no_add:Bool }). This means your code of Luxe.createBatcher(‘name’, luxe.Camera(this was a luxe camera, not a phoenix one!), false(this was do_add) ) becomes { name:’name’, camera:mycam.view (note the .view, this is the phoenix.Camera), no_add:true }</li><li>Draw; most options are now proper typed options (see <a href="https://github.com/underscorediscovery/luxe/issues/77">https://github.com/underscorediscovery/luxe/issues/77</a> #77 for state of affairs)</li><li>Draw; removed axis3D. This will come back in a 3d specific draw function and was just 3 lines anyway.</li><li>Sprite; changed point_inside_exact to be point_inside as this uses a more efficient method than before and will be “true” even when rotated/scale. point_inside_AABB can be used for optimal unrotated simple rectangle test if desired.</li><li>Circle; adding point_inside code body</li><li>Renderer; added renderer.target = phoenix.RenderTexture. This sets up important information regarding the render state, specifically the new renderer.target_size.x/y values for use in the viewport calls inside of RenderState. This means when no target is set, target_size should match the window area (not the viewport area! It handles this for you.) see tests/rendering/rtt for an up to date example with working viewports and rendering to texture</li><li>RenderState; adding bindFramebuffer cached state management</li><li>Tests; fixing rtt, camera, camera_views, three/mesh* tests, and more</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/4866adb159b5864df60a7cf071dc7289b9396e6a">4866adb159</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 02:03:05 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Text; Performance; Fix #99; This was caused by the transforms many arrays of listeners. now they are 1) deferred until actually needed before allocating, 2) destroyed when a geometry is dropped (the real leak) and 3) more rigorously about null setting, for finding leaks like this instead of leaking, it will crash (leading to a clear source)</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/9291413b9de2d10ff960d6cb40a81f7ebba3b7bb">9291413b9d</a><br>author: underscorediscovery<br>date: Thu Jun 12 2014 01:00:45 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Camera; fixing inconsistency between centre + pos with regards to focus and movement in general, esp between luxe.Camera and it’s phoenix.view</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/221a29efe9823a69877c18e6f96124fbbce72034">221a29efe9</a><br>author: underscorediscovery<br>date: Wed Jun 11 2014 16:41:46 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Geometry; options replacing Dynamic on all geometry types for #77</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/a592289bec34db29b855009fcc17048cfad8c448">a592289bec</a><br>author: underscorediscovery<br>date: Wed Jun 11 2014 16:14:18 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Geometry; adding GeometryOptions instead of Dynamic for #77</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/faaea2d03d7e9af50098b137a301fda92581f466">faaea2d03d</a><br>author: underscorediscovery<br>date: Wed Jun 11 2014 16:13:45 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>General; continued cleanup and removal of redundant private modifier code wide, and removing legacy templates and junk for #75 and #77</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/c4dec90f5830173282bc7782e42450dd489e5801">c4dec90f58</a><br>author: underscorediscovery<br>date: Wed Jun 11 2014 15:49:56 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Geometry; removing .clip bool value, set clip_rect to null to disable clipping instead. simplifies api and keeps clipping bugs at bay for missed flags. cleaning up public getters/setters and  spacing in general, and allowing the debug views to exist even if their text geometry is null (rather than a hard crash in case of failure)</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
+commit <a href="https://github.com/underscorediscovery/luxe/commit/9314e6b96acdb1e090910b85ec378e3a32dde102">9314e6b96a</a><br>author: underscorediscovery<br>date: Wed Jun 11 2014 06:51:23 GMT-0230 (NDT)<br></div>
+
+<p>&nbsp;   </p>
+<div class="commit_message">
+
+<ul><li>Docs; updating docs + changes</li></ul>
+</div>
+&nbsp;<br>&nbsp;<br><div class="commit_info">
+
 commit <a href="https://github.com/underscorediscovery/luxe/commit/009fe5e7c9dbcb807d632a4757e147b7531d1266">009fe5e7c9</a><br>author: underscorediscovery<br>date: Wed Jun 11 2014 06:46:19 GMT-0230 (NDT)<br></div>
 
 <p>&nbsp;   </p>

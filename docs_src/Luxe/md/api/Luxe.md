@@ -63,15 +63,6 @@
         <span class="small_desc_flat">The version of the engine</span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="addGeometry"><a class="lift" href="#addGeometry">addGeometry</a></a><span class="inline-block static">static</span><code class="signature apipage">addGeometry(\_geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Add geometry to the default batcher</span>
-        </span>
-    <span class="method apipage">
-            <a name="addGroup"><a class="lift" href="#addGroup">addGroup</a></a><span class="inline-block static">static</span><code class="signature apipage">addGroup(\_group:<span>[Int](http://api.haxe.org/Int.html)</span>, ?\_pre\_render:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)=null</span>, ?\_post\_render:<span>[phoenix.Batcher-&gt;Void](#phoenix.Batcher->Void)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Add a geometry group to the default batcher</span>
-        </span>
-    <span class="method apipage">
-            <a name="createBatcher"><a class="lift" href="#createBatcher">createBatcher</a></a><span class="inline-block static">static</span><code class="signature apipage">createBatcher(?\_name:<span>[String](http://api.haxe.org/String.html)=&#x27;batcher&#x27;</span>, ?\_camera:<span>[luxe.Camera](#luxe.Camera)=null</span>, ?\_add:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [phoenix.Batcher](#phoenix.Batcher)</code><br/><span class="small_desc_flat">Create a batcher, convenience for create batcher, add batcher, and create camera for the batcher.</span>
-        </span>
-    <span class="method apipage">
             <a name="fileDialogFolder"><a class="lift" href="#fileDialogFolder">fileDialogFolder</a></a><span class="inline-block static">static</span><code class="signature apipage">fileDialogFolder(\_title:<span>[String](http://api.haxe.org/String.html)</span>, \_text:<span>[String](http://api.haxe.org/String.html)</span>) : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat">Open the system folder dialog picker</span>
         </span>
     <span class="method apipage">
@@ -106,9 +97,6 @@
         </span>
     <span class="method apipage">
             <a name="openURL"><a class="lift" href="#openURL">openURL</a></a><span class="inline-block static">static</span><code class="signature apipage">openURL(\_url:<span>[String](http://api.haxe.org/String.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Open the system browser with the given URL</span>
-        </span>
-    <span class="method apipage">
-            <a name="removeGeometry"><a class="lift" href="#removeGeometry">removeGeometry</a></a><span class="inline-block static">static</span><code class="signature apipage">removeGeometry(\_geom:<span>[phoenix.geometry.Geometry](#phoenix.geometry.Geometry)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Remove geometry to the default batcher</span>
         </span>
     <span class="method apipage">
             <a name="showConsole"><a class="lift" href="#showConsole">showConsole</a></a><span class="inline-block static">static</span><code class="signature apipage">showConsole(\_show:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">show/hide the debug console programmatically</span>

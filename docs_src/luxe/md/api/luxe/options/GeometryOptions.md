@@ -23,7 +23,7 @@
 &nbsp;
 
 <h3>Members</h3> <hr/><span class="member apipage">
-            <a name="clip"><a class="lift" href="#clip">clip</a></a><code class="signature apipage">clip : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+            <a name="batcher"><a class="lift" href="#batcher">batcher</a></a><code class="signature apipage">batcher : [phoenix.Batcher](#phoenix.Batcher)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><code class="signature apipage">clip\_rect : [luxe.Rectangle](#luxe.Rectangle)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
@@ -36,6 +36,8 @@
             <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="immediate"><a class="lift" href="#immediate">immediate</a></a><code class="signature apipage">immediate : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="no_batcher_add"><a class="lift" href="#no_batcher_add">no\_batcher\_add</a></a><code class="signature apipage">no\_batcher\_add : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : [luxe.Vector](#luxe.Vector)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">

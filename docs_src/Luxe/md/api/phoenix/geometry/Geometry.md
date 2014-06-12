@@ -67,70 +67,16 @@
             <a name="drop"><a class="lift" href="#drop">drop</a></a><code class="signature apipage">drop(?remove:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_clip"><a class="lift" href="#get_clip">get\_clip</a></a><code class="signature apipage">get\_clip() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_clip_rect"><a class="lift" href="#get_clip_rect">get\_clip\_rect</a></a><code class="signature apipage">get\_clip\_rect() : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_depth"><a class="lift" href="#get_depth">get\_depth</a></a><code class="signature apipage">get\_depth() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_dirty"><a class="lift" href="#get_dirty">get\_dirty</a></a><code class="signature apipage">get\_dirty() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_group"><a class="lift" href="#get_group">get\_group</a></a><code class="signature apipage">get\_group() : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_locked"><a class="lift" href="#get_locked">get\_locked</a></a><code class="signature apipage">get\_locked() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_shader"><a class="lift" href="#get_shader">get\_shader</a></a><code class="signature apipage">get\_shader() : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="get_texture"><a class="lift" href="#get_texture">get\_texture</a></a><code class="signature apipage">get\_texture() : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="key_string"><a class="lift" href="#key_string">key\_string</a></a><code class="signature apipage">key\_string() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?options:<span>[Dynamic](http://api.haxe.org/Dynamic.html)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?options:<span>[luxe.options.GeometryOptions](#luxe.options.GeometryOptions)=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="refresh_key"><a class="lift" href="#refresh_key">refresh\_key</a></a><code class="signature apipage">refresh\_key() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(v:<span>[phoenix.geometry.Vertex](#phoenix.geometry.Vertex)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_clip"><a class="lift" href="#set_clip">set\_clip</a></a><code class="signature apipage">set\_clip(val:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_clip_rect"><a class="lift" href="#set_clip_rect">set\_clip\_rect</a></a><code class="signature apipage">set\_clip\_rect(val:<span>[phoenix.Rectangle](#phoenix.Rectangle)</span>) : [phoenix.Rectangle](#phoenix.Rectangle)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_color"><a class="lift" href="#set_color">set\_color</a></a><code class="signature apipage">set\_color(val:<span>[phoenix.Color](#phoenix.Color)</span>) : [phoenix.Color](#phoenix.Color)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_depth"><a class="lift" href="#set_depth">set\_depth</a></a><code class="signature apipage">set\_depth(val:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_dirty"><a class="lift" href="#set_dirty">set\_dirty</a></a><code class="signature apipage">set\_dirty(\_dirty:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_group"><a class="lift" href="#set_group">set\_group</a></a><code class="signature apipage">set\_group(val:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_locked"><a class="lift" href="#set_locked">set\_locked</a></a><code class="signature apipage">set\_locked(\_locked:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_shader"><a class="lift" href="#set_shader">set\_shader</a></a><code class="signature apipage">set\_shader(val:<span>[phoenix.Shader](#phoenix.Shader)</span>) : [phoenix.Shader](#phoenix.Shader)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_texture"><a class="lift" href="#set_texture">set\_texture</a></a><code class="signature apipage">set\_texture(val:<span>[phoenix.Texture](#phoenix.Texture)</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_visible"><a class="lift" href="#set_visible">set\_visible</a></a><code class="signature apipage">set\_visible(val:<span>[Bool](http://api.haxe.org/Bool.html)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="short_id"><a class="lift" href="#short_id">short\_id</a></a><code class="signature apipage">short\_id() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
@@ -144,8 +90,6 @@
     
 
 <h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="clip"><a class="lift" href="#clip">clip</a></a><code class="signature apipage">clip : [Bool]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
             <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><code class="signature apipage">clip\_rect : [phoenix.Rectangle]()</code><br/><span class="small_desc_flat"></span>
         </span><span class="property apipage">
             <a name="color"><a class="lift" href="#color">color</a></a><code class="signature apipage">color : [phoenix.Color]()</code><br/><span class="small_desc_flat"></span>

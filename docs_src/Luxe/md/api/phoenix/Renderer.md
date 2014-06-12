@@ -31,6 +31,8 @@
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="clear_color"><a class="lift" href="#clear_color">clear\_color</a></a><code class="signature apipage">clear\_color : [phoenix.Color](#phoenix.Color)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="default_fbo"><a class="lift" href="#default_fbo">default\_fbo</a></a><code class="signature apipage">default\_fbo : [lime.gl.GLFramebuffer]()</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_frag_source"><a class="lift" href="#default_frag_source">default\_frag\_source</a></a><code class="signature apipage">default\_frag\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="default_frag_textured_source"><a class="lift" href="#default_frag_textured_source">default\_frag\_textured\_source</a></a><code class="signature apipage">default\_frag\_textured\_source : [String](http://api.haxe.org/String.html)</code><br/></span>
@@ -58,6 +60,8 @@
             <a name="stop"><a class="lift" href="#stop">stop</a></a><code class="signature apipage">stop : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span><span class="member apipage">
             <a name="stop_count"><a class="lift" href="#stop_count">stop\_count</a></a><code class="signature apipage">stop\_count : [Int](http://api.haxe.org/Int.html)</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="target_size"><a class="lift" href="#target_size">target\_size</a></a><code class="signature apipage">target\_size : [phoenix.Vector](#phoenix.Vector)</code><br/></span>
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">
@@ -65,6 +69,9 @@
         </span>
     <span class="method apipage">
             <a name="clear"><a class="lift" href="#clear">clear</a></a><code class="signature apipage">clear(\_color:<span>[phoenix.Color](#phoenix.Color)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create_batcher"><a class="lift" href="#create_batcher">create\_batcher</a></a><code class="signature apipage">create\_batcher(?options:<span>[luxe.options.BatcherOptions](#luxe.options.BatcherOptions)=null</span>) : [phoenix.Batcher](#phoenix.Batcher)</code><br/><span class="small_desc_flat">Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher.</span>
         </span>
     <span class="method apipage">
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -82,7 +89,7 @@
             <a name="load_texture"><a class="lift" href="#load_texture">load\_texture</a></a><code class="signature apipage">load\_texture(\_name:<span>[String](http://api.haxe.org/String.html)</span>, ?\_onloaded:<span>[phoenix.Texture-&gt;Void](#phoenix.Texture->Void)=null</span>, ?\_silent:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>, ?asset\_bytes:<span>[lime.utils.ByteArray]()=null</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="load_texture_from_resource_bytes"><a class="lift" href="#load_texture_from_resource_bytes">load\_texture\_from\_resource\_bytes</a></a><code class="signature apipage">load\_texture\_from\_resource\_bytes(\_name:<span>[String](http://api.haxe.org/String.html)</span>, \_width:<span>[Int](http://api.haxe.org/Int.html)</span>, \_height:<span>[Int](http://api.haxe.org/Int.html)</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
+            <a name="load_texture_from_resource_bytes"><a class="lift" href="#load_texture_from_resource_bytes">load\_texture\_from\_resource\_bytes</a></a><code class="signature apipage">load\_texture\_from\_resource\_bytes(\_name:<span>[String](http://api.haxe.org/String.html)</span>, \_width:<span>[Int](http://api.haxe.org/Int.html)</span>, \_height:<span>[Int](http://api.haxe.org/Int.html)</span>, ?\_cache:<span>[Bool](http://api.haxe.org/Bool.html)=true</span>) : [phoenix.Texture](#phoenix.Texture)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="load_textures"><a class="lift" href="#load_textures">load\_textures</a></a><code class="signature apipage">load\_textures(\_names:<span>[Array](http://api.haxe.org/Array.html)&lt;[String](http://api.haxe.org/String.html)&gt;</span>, ?\_onloaded:<span>[Array-&gt;Void]()=null</span>, ?\_silent:<span>[Bool](http://api.haxe.org/Bool.html)=false</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
@@ -101,7 +108,9 @@
         </span>
     
 
-<h3>Properties</h3> <hr/>no public properties
+<h3>Properties</h3> <hr/><span class="property apipage">
+            <a name="target"><a class="lift" href="#target">target</a></a><code class="signature apipage">target : [phoenix.RenderTexture]()</code><br/><span class="small_desc_flat"></span>
+        </span>
 
 &nbsp;
 &nbsp;

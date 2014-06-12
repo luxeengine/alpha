@@ -33,7 +33,7 @@
             <a name="point_inside"><a class="lift" href="#point_inside">point\_inside</a></a><code class="signature apipage">point\_inside(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="point_inside_exact"><a class="lift" href="#point_inside_exact">point\_inside\_exact</a></a><code class="signature apipage">point\_inside\_exact(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="point_inside_AABB"><a class="lift" href="#point_inside_AABB">point\_inside\_AABB</a></a><code class="signature apipage">point\_inside\_AABB(\_p:<span>[luxe.Vector](#luxe.Vector)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

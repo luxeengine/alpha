@@ -23,9 +23,9 @@
 &nbsp;
 
 <h3>Members</h3> <hr/><span class="member apipage">
-            <a name="active"><a class="lift" href="#active">active</a></a><code class="signature apipage">active : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
             <a name="emitters"><a class="lift" href="#emitters">emitters</a></a><code class="signature apipage">emitters : [Map](http://api.haxe.org/Map.html)&lt;[String](http://api.haxe.org/String.html), [luxe.ParticleEmitter](#luxe.ParticleEmitter)&gt;</code><br/></span>
+        <span class="small_desc_flat"></span><span class="member apipage">
+            <a name="enabled"><a class="lift" href="#enabled">enabled</a></a><code class="signature apipage">enabled : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
         <span class="small_desc_flat"></span>
 
 <h3>Methods</h3> <hr/><span class="method apipage">

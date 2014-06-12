@@ -37,7 +37,7 @@
             <a name="random_point_in_unit_circle"><a class="lift" href="#random_point_in_unit_circle">random\_point\_in\_unit\_circle</a></a><code class="signature apipage">random\_point\_in\_unit\_circle() : [luxe.Vector](#luxe.Vector)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="segments_for_smooth_circle"><a class="lift" href="#segments_for_smooth_circle">segments\_for\_smooth\_circle</a></a><code class="signature apipage">segments\_for\_smooth\_circle(\_radius:<span>[Float](http://api.haxe.org/Float.html)</span>, ?\_smooth:<span>[Float](http://api.haxe.org/Float.html)=6</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="segments_for_smooth_circle"><a class="lift" href="#segments_for_smooth_circle">segments\_for\_smooth\_circle</a></a><code class="signature apipage">segments\_for\_smooth\_circle(\_radius:<span>[Float](http://api.haxe.org/Float.html)</span>, ?\_smooth:<span>[Float](http://api.haxe.org/Float.html)=6</span>) : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

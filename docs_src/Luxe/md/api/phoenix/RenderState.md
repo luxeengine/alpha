@@ -28,6 +28,9 @@
             <a name="activeTexture"><a class="lift" href="#activeTexture">activeTexture</a></a><code class="signature apipage">activeTexture(val:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="bindFramebuffer"><a class="lift" href="#bindFramebuffer">bindFramebuffer</a></a><code class="signature apipage">bindFramebuffer(?buffer:<span>[lime.gl.GLFramebuffer]()=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="bindTexture2D"><a class="lift" href="#bindTexture2D">bindTexture2D</a></a><code class="signature apipage">bindTexture2D(tex:<span>[lime.gl.GLTexture]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
