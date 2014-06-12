@@ -80,13 +80,13 @@ class Entity extends Objects {
         transform.listen_parent(set_parent_from_transform);
         transform.listen_rotation(set_rotation_from_transform);
 
+        name = 'entity.' + id; //default to the entity id
+
         if(options != null) {
 
     //name
             if(options.name != null) {
                 name = options.name;
-            } else {
-                name = 'entity.' + id; //default to the entity id
             }
 
     //position
