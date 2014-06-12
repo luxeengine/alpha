@@ -8,7 +8,7 @@ import luxe.options.ParticleOptions;
 class ParticleSystem extends Entity {
 
 
-    public var active : Bool = true;
+    public var enabled : Bool = true;
     public var emitters : Map<String, ParticleEmitter>;
 
 
@@ -43,14 +43,14 @@ class ParticleSystem extends Entity {
     } //add_emitter
 
     public function emit(duration:Float = -1) {
-        active = true;
+        enabled = true;
         for(emitter in emitters) {
             emitter.emit(duration);
         }
     } //emit
 
     public function stop() {
-        active = false;
+        enabled = false;
         for(emitter in emitters) {
             emitter.stop();
         }
@@ -63,7 +63,7 @@ class ParticleSystem extends Entity {
     } //destroy
 
     public function update(dt:Float) {
-        if(!active) return;
+        if(!enabled) return;
         // trace(">>> updating " + name);
         for(emitter in emitters) {
             emitter.update(dt);
@@ -83,7 +83,7 @@ class ParticleEmitter extends Component {
 
     public var particle_system : ParticleSystem;
 
-    public var active : Bool = true;
+    public var enabled : Bool = true;
     public var emit_count : Int = 1;
     public var active_particles : Array<Particle>;
 
@@ -327,7 +327,7 @@ class ParticleEmitter extends Component {
     public function emit(t:Float) {
 
         duration = t;
-        active = true;
+        enabled = true;
         emit_last = 0;
         emit_timer = 0;
         emit_next = 0;
@@ -338,7 +338,7 @@ class ParticleEmitter extends Component {
     }
 
     public function stop() {
-        active = false;
+        enabled = false;
         elapsed_time = 0;
         emit_timer = 0;
     }
@@ -459,7 +459,7 @@ class ParticleEmitter extends Component {
 
     public function update(dt:Float) {
 
-        if( active ) { // && emission_rate > 0
+        if( enabled ) { // && emission_rate > 0
             // trace("updating " + name);
             emit_timer = Luxe.time;
 
@@ -475,7 +475,7 @@ class ParticleEmitter extends Component {
                 stop();
             }
 
-        } //if active and still emitting
+        } //if enabled and still emitting
 
         var gravity_x = gravity.x;
         var gravity_y = gravity.y;

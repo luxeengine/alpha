@@ -106,7 +106,7 @@ class Main extends luxe.Game {
 
     public function onmousedown( e:MouseEvent ) {
         mouse.set(e.x,e.y);
-        if(particles.active) {
+        if(particles.enabled) {
             particles.stop();
         } else {
             particles.emit();
