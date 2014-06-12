@@ -245,7 +245,7 @@ class Renderer {
             #end //luxe_html5
 
              _shader = new Shader( resource_manager );
-            _shader.load_from_string( _vert_shader , prefixes + _frag_shader, _vsid, _psid, false );
+            _shader.load_from_string( _vert_shader , prefixes + _frag_shader, _psid, _vsid, false );
 
         } //
 
