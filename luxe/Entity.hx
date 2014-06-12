@@ -37,8 +37,10 @@ class Entity extends Objects {
     @:isVar public var fixed_rate       (get,set) : Float = 0;
         //The parent entity if any, set to null for no parent
     @:isVar public var parent           (get,set) : Entity;
-        //if the entity is in a scene
+        //if the entity is in a scene, this is not null
     @:isVar public var scene            (get,set) : Scene;
+        //if the entity is active in the scene or not
+    @:isVar public var active           (get,set) : Bool = true;
 
         //The spatial transform of the entity
     public var transform : Transform;
@@ -253,6 +255,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeyup(e:KeyEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _onkeyup on ' + name);
 
             //init the parent first
@@ -273,6 +279,10 @@ class Entity extends Objects {
     } //_onkeyup
 
     @:noCompletion public function _onkeydown(e:KeyEvent) {
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling _onkeydown on ' + name);
 
@@ -297,6 +307,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousedown(e:MouseEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _onmousedown on ' + name );
 
             //init the parent first
@@ -319,6 +333,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmouseup(e:MouseEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _onmouseup on ' + name);
 
             //init the parent first
@@ -340,6 +358,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousewheel(e:MouseEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _onmousewheel on ' + name);
 
             //init the parent first
@@ -360,6 +382,10 @@ class Entity extends Objects {
     } //_onmousewheel
 
     @:noCompletion public function _onmousemove(e:MouseEvent) {
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling _onmousemove on ' + name);
 
@@ -383,6 +409,10 @@ class Entity extends Objects {
 //Touch
     @:noCompletion public function _ontouchbegin(e:TouchEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _ontouchbegin on ' + name);
 
             //init the parent first
@@ -404,6 +434,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _ontouchend(e:TouchEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _ontouchend on ' + name);
 
             //init the parent first
@@ -424,6 +458,10 @@ class Entity extends Objects {
     } //_ontouchend
 
     @:noCompletion public function _ontouchmove(e:TouchEvent) {
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling _ontouchmove on ' + name);
 
@@ -447,6 +485,10 @@ class Entity extends Objects {
 //Gamepad
     @:noCompletion public function _ongamepadaxis(e) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _ongamepadaxis on ' + name);
 
             //init the parent first
@@ -467,6 +509,10 @@ class Entity extends Objects {
     } //_ongamepadaxis
 
     @:noCompletion public function _ongamepadball(e) {
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling _ongamepadball on ' + name);
 
@@ -489,6 +535,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadhat(e) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _ongamepadhat on ' + name);
 
             //init the parent first
@@ -510,6 +560,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttondown(e) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _ongamepadbuttondown on ' + name);
 
             //init the parent first
@@ -530,6 +584,10 @@ class Entity extends Objects {
     } //_ongamepadbuttondown
 
     @:noCompletion public function _ongamepadbuttonup(e) {
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling _ongamepadbuttonup on ' + name);
 
@@ -554,6 +612,10 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputdown(_name:String, e:InputEvent) {
 
+        if(active == false) {
+            return;
+        }
+
         _verboser('calling _oninputdown on ' + name);
 
             //init the parent first
@@ -574,6 +636,10 @@ class Entity extends Objects {
     } //_oninputdown
 
     @:noCompletion public function _oninputup(_name:String, e:InputEvent) {
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling _oninputup on ' + name);
 
@@ -599,6 +665,10 @@ class Entity extends Objects {
 
         if(_destroyed) {
             _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
+            return;
+        }
+
+        if(active == false) {
             return;
         }
 
@@ -629,7 +699,13 @@ class Entity extends Objects {
     @:noCompletion public function _fixed_update() {
 
             //Not allowed post destroy
-        if(_destroyed) return;
+        if(_destroyed) {
+            return;
+        }
+
+        if(active == false) {
+            return;
+        }
 
         _verboser('calling fixed_update on ' + name);
 
@@ -884,6 +960,20 @@ class Entity extends Objects {
         return scene;
 
     } //get_scene
+
+//active
+
+    function set_active(_active:Bool) : Bool {
+
+        return active = _active;
+
+    } //set_active
+
+    function get_active() {
+
+        return active;
+
+    } //get_active
 
 
 //serialization

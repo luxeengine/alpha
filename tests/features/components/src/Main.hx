@@ -7,7 +7,7 @@ import luxe.Sprite;
 
 
     /*
-        Things we want to test in components         
+        Things we want to test in components
 
         1) components having parents successfully bootstraps the children functions (init, destroyed, reset, update)
         2) components having a root transform aliases to the parent transform (pos,rotation,scale affect the root entity, not the child)
@@ -31,7 +31,7 @@ class Main extends luxe.Game {
 
             //game object is a fake class below just for testing
         var go = Luxe.scene.create(FakeGameObject, 'go');
-        
+
             //what we want to test is that more than one layer deep affect the parent transform
         var child1 = go.add(Child1,'child1');
         var child2 = child1.add(Child2,'child2');
@@ -52,15 +52,15 @@ class Main extends luxe.Game {
 
         sprite2.rotation_z = 90;
         sprite2.radians = Math.PI;
-        
+
         var child1 = sprite.add(Child1,'child1', { init_with:'Test string' });
         var child2 = child1.add(Child2,'child2', { init_with:565 });
 
             //default camera is an entity, so give it a component!
-        Luxe.camera.add(RandomCameraShaker,'shaker');        
+        Luxe.camera.add(RandomCameraShaker,'shaker');
 
     } //ready
-  
+
     public function onmousemove( e:MouseEvent ) {
 
         sprite.pos = e.pos;
@@ -73,9 +73,13 @@ class Main extends luxe.Game {
 
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();
-        } 
+        }
 
-        if(e.value == Input.Keys.space) {
+        if(e.value == Input.Keys.key_A) {
+            sprite.active = !sprite.active;
+        }
+
+        if(e.value == Input.Keys.key_T) {
             spam = !spam;
         }
 
@@ -98,7 +102,7 @@ class Main extends luxe.Game {
 
 class RandomCameraShaker extends Component {
 
-    
+
     public var amount : Float = 20;
     private var next_shake : Float = 0;
 
@@ -112,14 +116,20 @@ class RandomCameraShaker extends Component {
     } //shake
 
     private function set_shake() {
-        next_shake = Luxe.time + (2+(Math.random()*3));   
+        next_shake = Luxe.time + (5+(Math.random()*5));
     } //set_shake
+
+    public function onkeyup(e:KeyEvent) {
+        if(e.value == Input.Keys.space) {
+            shake();
+        }
+    }
 
     public function update(dt:Float) {
         if(next_shake < Luxe.time) {
             Luxe.camera.shake(4);
             set_shake();
-        }        
+        }
     } //update
 
 
@@ -155,7 +165,7 @@ class FakeGameObject extends Entity {
 } //FakeGameObject
 
 
-class Child1 extends Component {    
+class Child1 extends Component {
 
 
     public var oncerun : Bool = false;
@@ -222,7 +232,7 @@ class Child2 extends Component {
         if(entity.pos.x < 0) {
             entity.pos.x = 0;
             swap = true;
-        }     
+        }
 
         if(swap) {
             dir = -dir;

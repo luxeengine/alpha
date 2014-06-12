@@ -9,7 +9,7 @@ import luxe.Log.log;
 
 class Scene extends Objects {
 
-    public var entities : Map<String,Entity>;    
+    public var entities : Map<String,Entity>;
     public var inited : Bool = false;
     public var started : Bool = false;
 
@@ -21,17 +21,17 @@ class Scene extends Objects {
     public function new() {
         super();
         name = 'Untitled Scene';
-        entities = new Map<String,Entity>();        
+        entities = new Map<String,Entity>();
         _delayed_init_entities = [];
         _delayed_reset_entities = [];
     }
 
     public function toString() {
-        return "Luxe Scene: " + name + " entities:" + Lambda.count(entities) + " (" + id + ")"; 
+        return "Luxe Scene: " + name + " entities:" + Lambda.count(entities) + " (" + id + ")";
     }
 
     function get_entitycount() : Int {
-        
+
         return Lambda.count(entities);
 
     } //entitycount
@@ -64,7 +64,7 @@ class Scene extends Objects {
             //cast to entity so we can set its name
         var _e_entity : Entity = cast _entity;
             //apply it!
-        _e_entity.name = _temp_name;        
+        _e_entity.name = _temp_name;
             //add it to this scene
         add(_e_entity);
 
@@ -88,7 +88,7 @@ class Scene extends Objects {
 
         if(inited) {
             _debug('adding a delayed entity to init list ' + entity.name);
-            _delayed_init_entities.push(entity);            
+            _delayed_init_entities.push(entity);
         } //inited
 
         if(started) {
@@ -112,10 +112,10 @@ class Scene extends Objects {
         }
 
         if(entity.scene == this) {
-            
+
             entity.scene = null;
             return entities.remove( entity.name );
-            
+
         } else {
             _debug("can't remove the entity from this scene, it is not mine (entity.scene != this)");
             return false;
@@ -159,7 +159,7 @@ class Scene extends Objects {
                 entity._onmousedown(e);
             }
         }
-    } //onmousedown    
+    } //onmousedown
     public function onmousewheel(e:MouseEvent) {
         for(entity in entities) {
             if(entity != null) {
@@ -239,7 +239,7 @@ class Scene extends Objects {
             }
         }
     }
-//Input    
+//Input
     public function oninputdown(_name:String, e:InputEvent) {
         for(entity in entities) {
             if(entity != null) {
@@ -256,7 +256,7 @@ class Scene extends Objects {
     } //oninputup
 
     public function destroy() {
-        
+
         for(entity in entities) {
             if(entity != null) {
                 entity.destroy();
@@ -279,14 +279,14 @@ class Scene extends Objects {
         }
 
         var _after_count = Lambda.count(entities);
-            
+
         return _before_count != _after_count;
 
     } // _do_init
 
         //Entities themselves can create entities
         //inside of their init so we have to keep checking
-    public function init() {        
+    public function init() {
 
         var keep_going : Bool = true;
         while(keep_going) {
@@ -298,7 +298,7 @@ class Scene extends Objects {
     } //init
 
         //If entities are created during start they will
-        // be inited and started in the next available frame 
+        // be inited and started in the next available frame
     public function reset() {
 
         for(entity in entities) {
@@ -308,7 +308,7 @@ class Scene extends Objects {
         } //for each entity
 
         started = true;
-        
+
     } //reset
 
     public function update(dt:Float) {
@@ -336,7 +336,7 @@ class Scene extends Objects {
     } //fixed_update
 
     function handle_delayed_additions() {
-            
+
         if(_delayed_init_entities.length != 0 || _delayed_reset_entities.length != 0) {
             _debug("delayed entities in scene will init/reset now! " + _delayed_init_entities.length + ' / ' + _delayed_reset_entities.length);
         }
@@ -355,7 +355,7 @@ class Scene extends Objects {
                 entity._reset();
             }
             _delayed_reset_entities.splice(0, _delayed_reset_entities.length);
-        } 
+        }
 
     } //handle_delayed_additions
 
@@ -388,7 +388,7 @@ class Scene extends Objects {
 
                 trace('Done saving scene.');
 
-            
+
         } //serialize_to_disk
     #end //luxe_native
 
