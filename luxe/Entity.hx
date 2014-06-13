@@ -786,7 +786,7 @@ class Entity extends Objects {
 
 //children
 
-    function _add_child( child:Entity ) {
+    @:noCompletion public function _add_child( child:Entity ) {
 
         children.push(child);
 
