@@ -188,21 +188,23 @@ class Draw {
                 _h = options.size.y;
             }
 
-            if(options.x != null) {
+            if(options.x == null) {
                 options.x = _x;
             }
 
-            if(options.x != null) {
+            if(options.y == null) {
                 options.y = _y;
             }
 
-            if(options.x != null) {
+            if(options.w == null) {
                 options.w = _w;
             }
 
-            if(options.x != null) {
+            if(options.h == null) {
                 options.h = _h;
             }
+
+            trace(options);
 
 
             var _quad = new QuadGeometry(options);

@@ -44,7 +44,7 @@ class Texture extends Resource {
 
     public var _onload_handlers : Array<Texture -> Void>;
 
-    @:isVar public var onload(never,set) : Texture -> Void;
+    public var onload(never,set) : Texture -> Void;
     @:isVar public var filter(default,set) : FilterType;
     @:isVar public var filter_min(default,set) : FilterType;
     @:isVar public var filter_mag(default,set) : FilterType;
