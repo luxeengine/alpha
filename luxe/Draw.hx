@@ -204,9 +204,6 @@ class Draw {
                 options.h = _h;
             }
 
-            trace(options);
-
-
             var _quad = new QuadGeometry(options);
 
             var _ux : Float = 0;
