@@ -340,7 +340,6 @@ class Renderer {
 
         image.onload = function(a) {
 
-            try {
 
                 var width_pot = luxe.utils.Maths.nearest_power_of_two(image.width);
                 var height_pot = luxe.utils.Maths.nearest_power_of_two(image.height);
@@ -352,7 +351,30 @@ class Renderer {
                 tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
                 tmp_context.drawImage( image, 0, 0, image.width, image.height );
 
-                var image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+                var image_bytes = null;
+
+            try {
+                image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
+            } catch(e:Dynamic) {
+
+                var tips = '- textures served from file:/// throw security errors\n';
+                    tips += '- textures served over http:// work for cross origin';
+
+                Luxe.draw.text({
+                    text: e + '\n\n Tips: \n' + tips,
+                    size:20,
+                    color : new Color().rgb(0xff440b),
+                    pos : Luxe.screen.mid,
+                    align : luxe.Text.TextAlign.center,
+                    depth:9999
+                });
+
+            }
+
+                if(image_bytes == null) {
+                    return;
+                }
+
                 var haxe_bytes = new lime.utils.UInt8Array( image_bytes.data );
 
                 texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
@@ -367,24 +389,12 @@ class Renderer {
                 image_bytes = null;
 
                     //append the listener
-                if(_onloaded != null) texture.onload = _onloaded;
+                if(_onloaded != null) {
+                    texture.onload = _onloaded;
+                }
+
                     //and fire the handler
                 texture.do_onload();
-
-            } catch(e:Dynamic) {
-
-                var tips = '- textures served from file:/// throw security errors\n';
-                    tips += '- textures served over http:// work for cross origin';
-
-                Luxe.draw.text({
-                    text: e + '\n\n Tips: \n' + tips,
-                    size:20,
-                    color : new Color().rgb(0xff440b),
-                    pos : Luxe.screen.mid,
-                    align : luxe.Text.TextAlign.center,
-                    depth:9999
-                });
-            }
 
         } //image.onload
 
