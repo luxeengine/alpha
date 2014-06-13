@@ -72,16 +72,16 @@ class Batcher {
     public var static_normallist : Float32Array;
 
         //The current indexes into the memory buffers
-    public var verts    : Int = 0;
-    public var tcoords  : Int = 0;
-    public var colors   : Int = 0;
-    public var normals  : Int = 0;
+    public var vert_floats    : Int = 0;
+    public var tcoord_floats  : Int = 0;
+    public var color_floats   : Int = 0;
+    public var normal_floats  : Int = 0;
 
         //The current indexes into the memory buffers
-    public var static_verts    : Int = 0;
-    public var static_tcoords  : Int = 0;
-    public var static_colors   : Int = 0;
-    public var static_normals  : Int = 0;
+    public var static_vert_floats    : Int = 0;
+    public var static_tcoord_floats  : Int = 0;
+    public var static_color_floats   : Int = 0;
+    public var static_normal_floats  : Int = 0;
 
         //the current number of active buffers in the ring
     public var buffer_count : Int = 16;
@@ -89,6 +89,7 @@ class Batcher {
         //the index we are on
     public var buffer_index : Int = 0;
     public var max_verts : Int = 0;
+    public var max_floats : Int = 0;
     public var vert_count : Int = 0;
 
     public var vertexBuffers : Array<GLBuffer>;
@@ -132,17 +133,19 @@ class Batcher {
         geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
-        max_verts = Std.int(Math.pow(2, 18));
+        max_verts = Std.int(Math.pow(2, 16));
+        max_floats = max_verts << 2;
 
-        vertlist = new Float32Array( max_verts );
-        tcoordlist = new Float32Array( max_verts );
-        colorlist = new Float32Array( max_verts );
-        normallist = new Float32Array( max_verts );
+            //these are expecting elements in floats, so each vert etc has 4 floats
+        vertlist = new Float32Array( max_floats );
+        tcoordlist = new Float32Array( max_floats );
+        colorlist = new Float32Array( max_floats );
+        normallist = new Float32Array( max_floats );
 
-        static_vertlist = new Float32Array( max_verts );
-        static_tcoordlist = new Float32Array( max_verts );
-        static_colorlist = new Float32Array( max_verts );
-        static_normallist = new Float32Array( max_verts );
+        static_vertlist = new Float32Array( max_floats );
+        static_tcoordlist = new Float32Array( max_floats );
+        static_colorlist = new Float32Array( max_floats );
+        static_normallist = new Float32Array( max_floats );
 
             //The default view so we see stuff
         view = renderer.camera;
@@ -602,10 +605,10 @@ class Batcher {
         static_batched_count = 0;
         visible_count = 0;
 
-        verts = 0;
-        tcoords = 0;
-        colors = 0;
-        normals = 0;
+        vert_floats = 0;
+        tcoord_floats = 0;
+        color_floats = 0;
+        normal_floats = 0;
 
         #if luxe_native
             vertlist.clear();
@@ -633,7 +636,7 @@ class Batcher {
 
                         //Only submit if there are vertices in our list to draw
                         //but if there are the batch is dirty and needs to be submitted
-                    if(verts > 0) {
+                    if(vert_floats > 0) {
                         submit_current_vertex_list( state.last_geom_state.primitive_type );
                     } //if vertlist.length > 0
 
@@ -657,30 +660,24 @@ class Batcher {
                              geom.primitive_type == PrimitiveType.triangle_strip ||
                              geom.primitive_type == PrimitiveType.triangle_fan ) {
 
-                                //increase counts
-                            vert_count += geom.vertices.length;
-
                                 // doing this with the same list is fine because the primitive type causes a batch break anyways.
                                 // Send it on, this will also clear the list for the next geom so it doesn't acccumlate as usual.
                             geometry_batch(geom);
+                                //submit the geometry
                             submit_current_vertex_list( geom.primitive_type );
+                                //increase counts
+                            vert_count += geom.vertices.length;
 
                     } //if it's unbatchable
 
                         // Accumulate, this is standard geometry
                     else {
 
-                            //increase counts
-                        vert_count += geom.vertices.length;
-
-                            //submit the current batch if we exceed the max buffer size
-                        if((geom.vertices.length+verts) > max_verts) {
-                            submit_current_vertex_list( geom.primitive_type );
-                        }
-
                         geometry_batch( geom );
 
+                            //increase counts
                         dynamic_batched_count++;
+                        vert_count += geom.vertices.length;
 
                     } //standard geometry
 
@@ -701,7 +698,7 @@ class Batcher {
         } //geom list
 
             //If there is anything left in the vertex buffer, submit it.
-        if(verts > 0 && geom != null) {
+        if(vert_floats > 0 && geom != null) {
 
                 //Make sure the state matches this geometry
             state.update(geom);
@@ -753,7 +750,7 @@ class Batcher {
         #end //luxe_native
 
             //and counts
-        static_verts = 0; static_tcoords = 0; static_colors = 0; static_normals = 0;
+        static_vert_floats = 0; static_tcoord_floats = 0; static_color_floats = 0; static_normal_floats = 0;
 
         if(!geom.submitted || geom.dirty) {
 
@@ -762,10 +759,10 @@ class Batcher {
 
         } else {
 
-            static_verts    = geom.vertices.length * 4;
-            static_tcoords  = geom.vertices.length * 4;
-            static_colors   = geom.vertices.length * 4;
-            static_normals  = geom.vertices.length * 4;
+            static_vert_floats    = geom.vertices.length * 4;
+            static_tcoord_floats  = geom.vertices.length * 4;
+            static_color_floats   = geom.vertices.length * 4;
+            static_normal_floats  = geom.vertices.length * 4;
 
         }
 
@@ -815,7 +812,7 @@ class Batcher {
             //Draw
         GL.drawArrays(
             phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type), 0,
-            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_verts)
+            phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_vert_floats)
         );
 
             //Disable attributes
@@ -833,10 +830,10 @@ class Batcher {
         #end //luxe_native
 
             //and counts
-        static_verts = 0;
-        static_tcoords = 0;
-        static_colors = 0;
-        static_normals = 0;
+        static_vert_floats = 0;
+        static_tcoord_floats = 0;
+        static_color_floats = 0;
+        static_normal_floats = 0;
 
             //clear the geometry flags
         geom.dirty = false;
@@ -847,9 +844,13 @@ class Batcher {
 
     public function submit_current_vertex_list( type : PrimitiveType ) {
 
-        if( verts == 0 ) {
+        if( vert_floats == 0 ) {
                 //No verts?
             return;
+        }
+
+        if( vert_floats > max_floats ) {
+            throw "uh oh, somehow too many floats are being submitted (max:$max_floats, attempt:$vert_floats).";
         }
 
             //Enable atttributes
@@ -857,24 +858,24 @@ class Batcher {
 
         GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffers[buffer_index] );
         GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, (verts) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, (vert_floats) ) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffers[buffer_index] );
         GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, (tcoords) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, (tcoord_floats) ) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffers[buffer_index] );
         GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, (colors) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, (color_floats) ) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffers[buffer_index] );
         GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, (normals) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, (normal_floats) ) );
 
             //Draw
         GL.drawArrays(
             phoenix.utils.Rendering.get_opengl_primitive_type(type),     0,
-            phoenix.utils.Rendering.get_elements_for_type(type, verts)
+            phoenix.utils.Rendering.get_elements_for_type(type, vert_floats)
         );
 
             //Disable attributes
@@ -887,7 +888,7 @@ class Batcher {
         }
 
             //Reset counts
-        verts = 0; tcoords = 0; colors = 0; normals = 0;
+        vert_floats = 0; tcoord_floats = 0; color_floats = 0; normal_floats= 0;
             //Increase stats
         draw_calls++;
 
@@ -897,29 +898,37 @@ class Batcher {
 
     function geometry_batch( geom:Geometry ) {
 
+            //vert_floats is in element count (so/4)
+        var _count_after = geom.vertices.length+(vert_floats/4);
+
+            //submit the current batch if we exceed the max buffer size
+        if(_count_after > max_verts) {
+            submit_current_vertex_list( geom.primitive_type );
+        }
+
         geom.batch(
-            verts,      tcoords,        colors,     normals,
-            vertlist,   tcoordlist,     colorlist,  normallist
+            vert_floats,    tcoord_floats,  color_floats,   normal_floats,
+            vertlist,       tcoordlist,     colorlist,      normallist
         );
 
-        verts      += geom.vertices.length * 4;
-        tcoords    += geom.vertices.length * 4;
-        colors     += geom.vertices.length * 4;
-        normals    += geom.vertices.length * 4;
+        vert_floats      += geom.vertices.length * 4;
+        tcoord_floats    += geom.vertices.length * 4;
+        color_floats     += geom.vertices.length * 4;
+        normal_floats    += geom.vertices.length * 4;
 
     } //geometry_batch
 
     function geometry_batch_static( geom:Geometry ) {
 
         geom.batch(
-            static_verts,       static_tcoords,     static_colors,      static_normals,
-            static_vertlist,    static_tcoordlist,  static_colorlist,   static_normallist
+            static_vert_floats,     static_tcoord_floats,   static_color_floats,    static_normal_floats,
+            static_vertlist,        static_tcoordlist,      static_colorlist,       static_normallist
         );
 
-        static_verts      += geom.vertices.length * 4;
-        static_tcoords    += geom.vertices.length * 4;
-        static_colors     += geom.vertices.length * 4;
-        static_normals    += geom.vertices.length * 4;
+        static_vert_floats      += geom.vertices.length * 4;
+        static_tcoord_floats    += geom.vertices.length * 4;
+        static_color_floats     += geom.vertices.length * 4;
+        static_normal_floats    += geom.vertices.length * 4;
 
     } //geometry_batch_static
 
