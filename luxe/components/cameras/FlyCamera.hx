@@ -102,7 +102,7 @@ class FlyCamera extends luxe.Camera {
                 yaw_rotation_matrix.makeRotationY( yaw );
 
                     //update the right vector of our orientation
-                right = view.view_matrix.right();
+                right = yaw_rotation_matrix.right();
 
                     //Rotate the pitch around the right hand (local x) axis
                 pitch_rotation_matrix.makeRotationAxis( right, pitch );

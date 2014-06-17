@@ -17,10 +17,10 @@ class ShapeDrawer {
     public function new() {
 
     } //new
-        
+
         /** Draw a line between p0 and p1. Implement this function at minimum in custom drawing handlers */
     public function drawLine( p0:Vector, p1:Vector, ?color:Color, ?immediate:Bool = false ) {
-        
+
     } //drawLine
 
         /** Draw a `Shape`, it will determine the type and draw it for you. */
@@ -40,14 +40,14 @@ class ShapeDrawer {
     public function drawPolygon( poly:Polygon, ?color:Color, ?immediate:Bool = false ) {
 
         var v : Array<Vector> = poly.transformedVertices.copy();
-        
+
         drawVertList( v, color, immediate );
 
     } //drawPolygon
 
         /** Draw a `Vector` (with magnitude) */
     public function drawVector( v:Vector, start:Vector, ?color:Color, ?immediate:Bool = false  ) {
-        
+
         drawLine( start, v, color, immediate );
 
     } //drawVector
@@ -65,10 +65,10 @@ class ShapeDrawer {
 
         var tangential_factor = Math.tan( theta );
         var radial_factor = Math.cos( theta );
-        
-        var x : Float = circle.transformedRadius; 
-        var y : Float = 0; 
-        
+
+        var x : Float = circle.transformedRadius;
+        var y : Float = 0;
+
         var _verts : Array<Vector> = [];
 
         for( i in 0 ... _steps ) {
@@ -77,13 +77,13 @@ class ShapeDrawer {
             var __y = y + circle.y;
 
             _verts.push( new Vector(__x,__y));
-            
-                var tx = -y; 
-                var ty = x; 
-                
-                x += tx * tangential_factor; 
-                y += ty * tangential_factor; 
-                
+
+                var tx = -y;
+                var ty = x;
+
+                x += tx * tangential_factor;
+                y += ty * tangential_factor;
+
                 x *= radial_factor;
                 y *= radial_factor;
 

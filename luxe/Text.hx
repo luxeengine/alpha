@@ -25,7 +25,6 @@ class Text extends Visual {
 
     public function new( _options : Dynamic ) {
 
-            //pass off geometry properties up to super first
         _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
 
         if(_options.pos == null) {
@@ -67,7 +66,7 @@ class Text extends Visual {
 
         if(_font == null) _font = Luxe.renderer.font;
 
-        textsize = (_options.size == null) ? 32 : _options.size;
+        textsize = (_options.size == null) ? 24 : _options.size;
 
         if(Std.is(_font, String)) {
 

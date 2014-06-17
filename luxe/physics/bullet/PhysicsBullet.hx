@@ -9,7 +9,7 @@ package luxe.physics.bullet;
     import bullet.bulletDynamics.dynamics.BtDiscreteDynamicsWorld;
 
     import bullet.bulletDynamics.dynamics.BtRigidBody;
-    
+
     import luxe.physics.bullet.DebugDraw;
 
     #if luxe_html5
@@ -31,7 +31,7 @@ package luxe.physics.bullet;
         var broadphase : BtDbvtBroadphase;
         var config : BtDefaultCollisionConfiguration;
         var dispatcher : BtCollisionDispatcher;
-        var solver : BtSequentialImpulseConstraintSolver;        
+        var solver : BtSequentialImpulseConstraintSolver;
 
         public override function init() {
 
@@ -43,13 +43,15 @@ package luxe.physics.bullet;
             dispatcher = new BtCollisionDispatcher( config );
                 // The physics solver
             solver = new BtSequentialImpulseConstraintSolver();
-                // Create the world 
+                // Create the world
             world = new BtDiscreteDynamicsWorld( dispatcher, broadphase, solver, config );
                 // Set the default gravity
             gravity = new Vector( 0, -10, 0 );
 
                 // Create the debug draw
-            debugdraw = new DebugDraw();
+            #if !luxe_html5
+                debugdraw = new DebugDraw();
+            #end //luxe_html5
 
         }  //init
 
@@ -77,25 +79,29 @@ package luxe.physics.bullet;
 
                 Luxe.debug.start('physics');
                     //Update the simulation
-                world.stepSimulation( rate, max_iterations, step_rate );       
+                world.stepSimulation( rate, max_iterations, step_rate );
 
                 Luxe.debug.end('physics');
 
-            } //paused 
+            } //paused
 
-            if(draw) {
-                debugdraw.clear();
-                debugdraw.draw( world );
-            }
+            #if !luxe_html5
+                if(draw) {
+                    debugdraw.clear();
+                    debugdraw.draw( world );
+                }
+            #end
 
         } //process
 
         override function set_draw( _draw:Bool ) : Bool {
 
-                //clean up any potential geometry when disabling drawing
-            if(!_draw) {
-                debugdraw.clear();
-            }
+            #if !luxe_html5
+                    //clean up any potential geometry when disabling drawing
+                if(!_draw) {
+                    debugdraw.clear();
+                }
+            #end
 
             return super.set_draw(_draw);
 
@@ -105,12 +111,15 @@ package luxe.physics.bullet;
 
             super.destroy();
 
-            debugdraw.destroy();
+            #if !luxe_html5
+                debugdraw.destroy();
+            #end //luxe_html5
+
             world.destroy();
             solver.destroy();
             dispatcher.destroy();
             config.destroy();
-            broadphase.destroy();            
+            broadphase.destroy();
 
         } //destroy
 

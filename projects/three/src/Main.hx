@@ -69,7 +69,7 @@ class Main extends luxe.Game {
             //The camera for the scene
         cam3d = new FlyCamera({
             projection: ProjectionType.perspective,
-            fov:90, 
+            fov:90,
             near:0.01,
             far:100,
             aspect:Luxe.screen.w/Luxe.screen.h
@@ -84,8 +84,10 @@ class Main extends luxe.Game {
 
             //Apply it to our mesh renderer
         batch3d.view = cam3d.view;
+#if !luxe_html5
             //Apply it to the physics handler debug view
         batch3d.add(Luxe.physics.bullet.debugdraw.geometry);
+#end
             //Load the mesh files
         load_level_into( );
             //Add camera to scene
@@ -110,12 +112,12 @@ class Main extends luxe.Game {
             p0 : new Vector(0+10, 0, 0-10),
             p1 : new Vector(0+10, 0, 0+10),
             batcher : batch3d
-        });        
+        });
 
     } //ready
 
     var room_mesh : Entity;
-    var transform_mesh : Entity;    
+    var transform_mesh : Entity;
     var plane_entity : Entity;
 
         //current rigidbody for interaction
@@ -124,7 +126,7 @@ class Main extends luxe.Game {
     var cubes : Array<Entity>;
 
     public function load_level_into() {
-        
+
         cubes = [];
 
         batch3d.view.pos.x = 0;
@@ -132,8 +134,8 @@ class Main extends luxe.Game {
         batch3d.view.pos.z = 0;
 
         var roommesh = new Mesh({
-            file: 'assets/test_scene_0.obj', 
-            texture: tex, 
+            file: 'assets/test_scene_0.obj',
+            texture: tex,
             batcher: batch3d
         });
 
@@ -160,7 +162,7 @@ class Main extends luxe.Game {
             transform_mesh.add(MeshComponent, 'mesh');
 
                 transform_mesh.get('mesh').file = 'assets/transform.obj';
-                transform_mesh.get('mesh').texture = tex2; 
+                transform_mesh.get('mesh').texture = tex2;
                 transform_mesh.get('mesh').batcher = batch3d;
 
         create_cube();
@@ -175,7 +177,7 @@ class Main extends luxe.Game {
             var cube_mesh = cube.add(MeshComponent, 'mesh');
 
                 cube_mesh.file = 'assets/cube.obj';
-                cube_mesh.texture = tex4; 
+                cube_mesh.texture = tex4;
                 cube_mesh.batcher = batch3d;
 
                 //Add a cube collider
@@ -281,7 +283,7 @@ class Main extends luxe.Game {
             cube_rigidbody.rigid_body.activate();
             cube_rigidbody.rigid_body.applyImpulse( Vector.MultiplyVector( cam3d.forward, new Vector(10,10,10)) , new Vector() );
         } else {
-            info.text = cam3d.pos + ' ' + cam3d.rotation; 
+            info.text = cam3d.pos + ' ' + cam3d.rotation;
         }
 
     } //onmousedown
@@ -293,7 +295,7 @@ class Main extends luxe.Game {
     } //onmouseup
 
     public function update(dt:Float) {
-        
+
         if(follow) {
             cam3d.view.target = cube_rigidbody.rigid_body.origin;
         }
