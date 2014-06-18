@@ -1,0 +1,24 @@
+
+{{#unless (hidden_package .) }}
+
+<div class="indent">
+
+<a name="{{.}}"><h3> [{{without_package (escape_markdown .)}}](#{{.}}) </h3></a>
+
+{{#each (names_in_package . ) ~}}
+    &bull; [{{ without_package (escape_markdown .) }}]( {{type_path .}}.html ) <br/>
+{{~/each}}
+
+{{#with (get_type 'packages' . )~}}
+    {{#each packages~}}
+        {{#with (get_type 'packages' . )~}}
+            <div class="indent">
+                {{>package_node~}}
+            </div>
+        {{~/with~}}
+    {{/each~}}
+{{/with}}
+
+</div>
+
+{{/unless}}

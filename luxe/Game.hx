@@ -7,7 +7,7 @@ import luxe.Core;
 
         //local handle to the core engine
     public var luxecore : Core;
-    
+
     public function new(){
 
     } //new

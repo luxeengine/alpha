@@ -1291,6 +1291,7 @@
 			</f>
 			<haxe_doc>Open the system file save dialog picker</haxe_doc>
 		</fileDialogSave>
+		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.Game" params="" file="/Users/sven/dev/luxe/luxe/luxe/Game.hx">
 		<luxecore public="1"><c path="luxe.Core"/></luxecore>
@@ -11543,10 +11544,13 @@
 	<c path="String"/>
 	<c path="luxe.Component"/>
 </x></f></get_components>
-		<_add_child set="method" line="789"><f a="child">
-	<c path="luxe.Entity"/>
-	<x path="Void"/>
-</f></_add_child>
+		<_add_child public="1" set="method" line="789">
+			<f a="child">
+				<c path="luxe.Entity"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</_add_child>
 		<_remove_child public="1" set="method" line="806">
 			<f a="child">
 				<c path="luxe.Entity"/>
@@ -12183,14 +12187,14 @@
 			</f>
 			<haxe_doc>Draw a textured `box` with image `texture` at `x`,`y`,`w`,`h` OR with `pos` and `size`, and `uv` with options</haxe_doc>
 		</texture>
-		<text public="1" set="method" line="229">
+		<text public="1" set="method" line="228">
 			<f a="options">
 				<d/>
 				<c path="phoenix.geometry.Geometry"/>
 			</f>
 			<haxe_doc>Draw `text` at `pos` using `font` (or no font for default font) with options</haxe_doc>
 		</text>
-		<plane public="1" set="method" line="243">
+		<plane public="1" set="method" line="242">
 			<f a="?options" v="null">
 				<t path="luxe.options.DrawPlaneOptions"/>
 				<c path="phoenix.geometry.PlaneGeometry"/>
@@ -12202,7 +12206,7 @@
 			<c path="luxe.Core"/>
 			<meta><m n=":noCompletion"/></meta>
 		</core>
-		<new public="1" set="method" line="256">
+		<new public="1" set="method" line="255">
 			<f a="_core">
 				<c path="luxe.Core"/>
 				<x path="Void"/>
@@ -19863,17 +19867,18 @@
 		<static_tcoordlist public="1"><c path="lime.utils.Float32Array"/></static_tcoordlist>
 		<static_colorlist public="1"><c path="lime.utils.Float32Array"/></static_colorlist>
 		<static_normallist public="1"><c path="lime.utils.Float32Array"/></static_normallist>
-		<verts public="1"><x path="Int"/></verts>
-		<tcoords public="1"><x path="Int"/></tcoords>
-		<colors public="1"><x path="Int"/></colors>
-		<normals public="1"><x path="Int"/></normals>
-		<static_verts public="1"><x path="Int"/></static_verts>
-		<static_tcoords public="1"><x path="Int"/></static_tcoords>
-		<static_colors public="1"><x path="Int"/></static_colors>
-		<static_normals public="1"><x path="Int"/></static_normals>
+		<vert_floats public="1"><x path="Int"/></vert_floats>
+		<tcoord_floats public="1"><x path="Int"/></tcoord_floats>
+		<color_floats public="1"><x path="Int"/></color_floats>
+		<normal_floats public="1"><x path="Int"/></normal_floats>
+		<static_vert_floats public="1"><x path="Int"/></static_vert_floats>
+		<static_tcoord_floats public="1"><x path="Int"/></static_tcoord_floats>
+		<static_color_floats public="1"><x path="Int"/></static_color_floats>
+		<static_normal_floats public="1"><x path="Int"/></static_normal_floats>
 		<buffer_count public="1"><x path="Int"/></buffer_count>
 		<buffer_index public="1"><x path="Int"/></buffer_index>
 		<max_verts public="1"><x path="Int"/></max_verts>
+		<max_floats public="1"><x path="Int"/></max_floats>
 		<vert_count public="1"><x path="Int"/></vert_count>
 		<vertexBuffers public="1"><c path="Array"><c path="lime.gl.GLBuffer"/></c></vertexBuffers>
 		<tcoordBuffers public="1"><c path="Array"><c path="lime.gl.GLBuffer"/></c></tcoordBuffers>
@@ -19901,16 +19906,16 @@
 		<visible_count public="1"><x path="Int"/></visible_count>
 		<log public="1"><x path="Bool"/></log>
 		<name public="1"><c path="String"/></name>
-		<set_layer public="1" set="method" line="198"><f a="_layer">
+		<set_layer public="1" set="method" line="201"><f a="_layer">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_layer>
-		<toString public="1" set="method" line="210"><f a=""><c path="String"/></f></toString>
-		<compare public="1" set="method" line="215"><f a="other">
+		<toString public="1" set="method" line="213"><f a=""><c path="String"/></f></toString>
+		<compare public="1" set="method" line="218"><f a="other">
 	<c path="phoenix.Batcher"/>
 	<x path="Int"/>
 </f></compare>
-		<add_group public="1" set="method" line="224"><f a="_group:?_pre_render:?_post_render" v=":null:null">
+		<add_group public="1" set="method" line="227"><f a="_group:?_pre_render:?_post_render" v=":null:null">
 	<x path="Int"/>
 	<f a="">
 		<c path="phoenix.Batcher"/>
@@ -19922,67 +19927,67 @@
 	</f>
 	<x path="Void"/>
 </f></add_group>
-		<blend_mode public="1" set="method" line="234"><f a="?_src_mode:?_dst_mode" v="null:null">
+		<blend_mode public="1" set="method" line="237"><f a="?_src_mode:?_dst_mode" v="null:null">
 	<e path="phoenix.BlendMode"/>
 	<e path="phoenix.BlendMode"/>
 	<x path="Void"/>
 </f></blend_mode>
-		<compare_rule_to_string public="1" set="method" line="246"><f a="r">
+		<compare_rule_to_string public="1" set="method" line="249"><f a="r">
 	<x path="Int"/>
 	<c path="String"/>
 </f></compare_rule_to_string>
-		<compare_rule public="1" set="method" line="320"><f a="a:b">
+		<compare_rule public="1" set="method" line="323"><f a="a:b">
 	<t path="phoenix.geometry.GeometryKey"/>
 	<t path="phoenix.geometry.GeometryKey"/>
 	<x path="Int"/>
 </f></compare_rule>
-		<geometry_compare public="1" set="method" line="410"><f a="a:b">
+		<geometry_compare public="1" set="method" line="413"><f a="a:b">
 	<t path="phoenix.geometry.GeometryKey"/>
 	<t path="phoenix.geometry.GeometryKey"/>
 	<x path="Int"/>
 </f></geometry_compare>
-		<list_geometry set="method" line="506"><f a=""><x path="Void"/></f></list_geometry>
-		<add public="1" set="method" line="513"><f a="_geom:?_force_add" v=":false">
+		<list_geometry set="method" line="509"><f a=""><x path="Void"/></f></list_geometry>
+		<add public="1" set="method" line="516"><f a="_geom:?_force_add" v=":false">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></add>
-		<remove public="1" set="method" line="544"><f a="_geom:?_remove_batcher_from_geometry" v=":true">
+		<remove public="1" set="method" line="547"><f a="_geom:?_remove_batcher_from_geometry" v=":true">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></remove>
-		<shader_activate public="1" set="method" line="568"><f a="_shader">
+		<shader_activate public="1" set="method" line="571"><f a="_shader">
 	<c path="phoenix.Shader"/>
 	<x path="Void"/>
 </f></shader_activate>
-		<batch public="1" set="method" line="598"><f a="?persist_immediate" v="false">
+		<batch public="1" set="method" line="601"><f a="?persist_immediate" v="false">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></batch>
-		<draw public="1" set="method" line="722"><f a="?persist_immediate" v="false">
+		<draw public="1" set="method" line="719"><f a="?persist_immediate" v="false">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></draw>
-		<submit_static_geometry public="1" set="method" line="741"><f a="geom">
+		<submit_static_geometry public="1" set="method" line="738"><f a="geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></submit_static_geometry>
-		<submit_current_vertex_list public="1" set="method" line="848"><f a="type">
+		<submit_current_vertex_list public="1" set="method" line="845"><f a="type">
 	<e path="phoenix.PrimitiveType"/>
 	<x path="Void"/>
 </f></submit_current_vertex_list>
-		<geometry_batch set="method" line="898"><f a="geom">
+		<geometry_batch set="method" line="899"><f a="geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></geometry_batch>
-		<geometry_batch_static set="method" line="912"><f a="geom">
+		<geometry_batch_static set="method" line="921"><f a="geom">
 	<c path="phoenix.geometry.Geometry"/>
 	<x path="Void"/>
 </f></geometry_batch_static>
-		<_enable_attributes set="method" line="928"><f a=""><x path="Void"/></f></_enable_attributes>
-		<_disable_attributes set="method" line="936"><f a=""><x path="Void"/></f></_disable_attributes>
-		<new public="1" set="method" line="127"><f a="_r:?_name" v=":''">
+		<_enable_attributes set="method" line="937"><f a=""><x path="Void"/></f></_enable_attributes>
+		<_disable_attributes set="method" line="945"><f a=""><x path="Void"/></f></_disable_attributes>
+		<new public="1" set="method" line="128"><f a="_r:?_name" v=":''">
 	<c path="phoenix.Renderer"/>
 	<c path="String"/>
 	<x path="Void"/>
@@ -21342,13 +21347,10 @@
 	<c path="phoenix.Texture"/>
 	<x path="Void"/>
 </f></c></_onload_handlers>
-		<onload public="1" get="null" set="accessor">
-			<f a="">
-				<c path="phoenix.Texture"/>
-				<x path="Void"/>
-			</f>
-			<meta><m n=":isVar"/></meta>
-		</onload>
+		<onload public="1" get="null" set="accessor"><f a="">
+	<c path="phoenix.Texture"/>
+	<x path="Void"/>
+</f></onload>
 		<filter public="1" set="accessor">
 			<e path="phoenix.FilterType"/>
 			<meta><m n=":isVar"/></meta>
@@ -21582,18 +21584,18 @@
 	<t path="lime.utils.ByteArray"/>
 	<c path="phoenix.Texture"/>
 </f></load_texture>
-		<process public="1" set="method" line="439"><f a=""><x path="Void"/></f></process>
-		<onresize public="1" set="method" line="460"><f a="e">
+		<process public="1" set="method" line="449"><f a=""><x path="Void"/></f></process>
+		<onresize public="1" set="method" line="470"><f a="e">
 	<d/>
 	<x path="Void"/>
 </f></onresize>
-		<get_target set="method" line="464"><f a=""><c path="phoenix.RenderTexture"/></f></get_target>
-		<set_target set="method" line="468"><f a="_target">
+		<get_target set="method" line="474"><f a=""><c path="phoenix.RenderTexture"/></f></get_target>
+		<set_target set="method" line="478"><f a="_target">
 	<c path="phoenix.RenderTexture"/>
 	<c path="phoenix.RenderTexture"/>
 </f></set_target>
-		<create_default_shaders set="method" line="488"><f a=""><x path="Void"/></f></create_default_shaders>
-		<create_default_font set="method" line="516"><f a=""><x path="Void"/></f></create_default_font>
+		<create_default_shaders set="method" line="498"><f a=""><x path="Void"/></f></create_default_shaders>
+		<create_default_font set="method" line="526"><f a=""><x path="Void"/></f></create_default_font>
 		<new public="1" set="method" line="75"><f a="_core">
 	<c path="luxe.Core"/>
 	<x path="Void"/>
@@ -21608,9 +21610,9 @@
 		<draw_calls public="1"><x path="Int"/></draw_calls>
 		<group_count public="1"><x path="Int"/></group_count>
 		<vert_count public="1"><x path="Int"/></vert_count>
-		<reset public="1" set="method" line="548"><f a=""><x path="Void"/></f></reset>
-		<toString public="1" set="method" line="557"><f a=""><c path="String"/></f></toString>
-		<new public="1" set="method" line="538"><f a=""><x path="Void"/></f></new>
+		<reset public="1" set="method" line="558"><f a=""><x path="Void"/></f></reset>
+		<toString public="1" set="method" line="567"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method" line="548"><f a=""><x path="Void"/></f></new>
 	</class>
 	<enum path="phoenix.UniformValueType" params="" file="/Users/sven/dev/luxe/luxe/phoenix/Shader.hx" module="phoenix.Shader">
 		<int/>

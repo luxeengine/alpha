@@ -1,5 +1,5 @@
 {
-    "project_name" : "luxe",    
+    "project_name" : "luxe",
     "project_git_url" : "http://github.com/underscorediscovery/luxe/",
 
     "style_path" : "./luxe/style/",
@@ -9,7 +9,7 @@
     "apis_path" : "./luxe/apis/api/",
     "md_path" : "./luxe/md/",
 
-    "md_input": ["**/+(*.md)"], 
+    "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
 
     "output_path" : "../docs/",
@@ -25,7 +25,11 @@
     "api_packages" : ["luxe","phoenix"],
     "api_partials" : [
         { "name": "type", "path":"api_partial_type.html"},
-        { "name": "args", "path":"api_partial_args.html"}
+        { "name": "args", "path":"api_partial_args.html"},
+        { "name": "package_node", "path":"api_partial_package_node.html"},
+        { "name": "package_list", "path":"api_partial_package_list.html"},
+        { "name": "package_list_items", "path":"api_partial_package_list_items.html"},
+        { "name": "package", "path":"api_partial_package.html"}
     ],
 
     "git_features" : true,

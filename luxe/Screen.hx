@@ -3,7 +3,7 @@ package luxe;
 import luxe.Vector;
 
 class Cursor {
-    
+
 
     var screen : Screen;
 
@@ -84,7 +84,7 @@ class Screen {
     @:isVar public var mid (get,null) : Vector;
 
     public function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
-        
+
         core = _core;
         cursor = new Cursor(this);
 
@@ -93,7 +93,7 @@ class Screen {
         w = _w;
         h = _h;
 
-        mid = new Vector( Math.round(w/2), Math.round(h/2) );        
+        mid = new Vector( Math.round(w/2), Math.round(h/2) );
 
     } //new
 

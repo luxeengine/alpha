@@ -1,7 +1,8 @@
-{ 
-	"input":"scribe.types.xml", 
-	"lime_project":"../samples/simplest/project.luxe.xml", 
-	"output":"generated_api.json", 
+{
+	"input":"scribe.types.xml",
+	"lime_project":"../samples/simplest/project.luxe.xml",
+	"output":"generated_api.json",
 	"force":true,
-	"allowed_packages":"luxe,phoenix" 
+    "allowed_packages":"luxe,phoenix",
+	"allowed_from_empty_package":"Luxe"
 }

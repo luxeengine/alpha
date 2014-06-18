@@ -33,9 +33,9 @@ class Main extends luxe.Game {
         var t3 = Luxe.loadTexture('assets/embers.png');
 
         particles = Luxe.scene.create(ParticleSystem, 'particles');
-                
+
         particles.add_emitter({
-            name : 'flames', 
+            name : 'flames',
             particle_image:t1,
             pos : new Vector(0,0),
             start_size:new Vector(96,64),
@@ -84,24 +84,24 @@ class Main extends luxe.Game {
             emit_time : 0.3
         });
 
-        Luxe.renderer.batcher.add_group(5, 
+        Luxe.renderer.batcher.add_group(5,
             function(b:Batcher){
                 b.blend_mode(BlendMode.src_alpha, BlendMode.one);
-            }, 
+            },
             function(b:Batcher){
                 b.blend_mode();
             }
         );
 
     } //ready
-  
+
     public function onmousemove( e:MouseEvent ) {
 
         mouse.set(e.x,e.y);
-        particles.pos = mouse; 
+        particles.pos = mouse;
 
         ss.pos = mouse;
-        
+
     } //onmousemove
 
     public function onmousedown( e:MouseEvent ) {

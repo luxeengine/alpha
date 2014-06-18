@@ -5,7 +5,7 @@
 
 {{#item}}
 
-#{{{type_name}}}
+<h1>{{{type_name}}}</h1>
 
 {{{doc}}}
 
@@ -30,7 +30,7 @@
 {{#each meta~}}    
     {{~#unless @index}}<br/>meta: {{/unless~}}
     {{~#if @index}}, {{/if~}}
-    {{@key}}
+    {{@key}}{{#if value}}('{{value}}'){{/if}}
 {{~/each}}
 </span>
 {{/if}}
