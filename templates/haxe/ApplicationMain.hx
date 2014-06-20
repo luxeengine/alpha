@@ -1,50 +1,58 @@
 import ::APP_MAIN::;
 
 import luxe.Core;
-import lime.Lime;
+import lumen.Lumen;
+import lumen.types.Types;
 
 class ApplicationMain {
-		
-	public static var _main_ : ::APP_MAIN::;
+
+    public static var _game : ::APP_MAIN::;
 	public static var _core : Core;
-	public static var _lime : Lime;
+    public static var _lumen : Lumen;
 
 	public static function main () {
 
-			//Create the lime layer
-		_lime = new Lime();
-			//Create the game class, give it the runtime
-		_main_ = new ::APP_MAIN::();
-			//Create the haxeluxe runtime, pass it the lime reference
-		_core = new Core( _main_ );
-			//Store the core for reference in the game
-		_main_.luxecore = _core;
+			//Create the runtime
+        _lumen = new Lumen();
+            //Create the app class, give it to the bootstrapper
+        _game = new ::APP_MAIN::();
+			//Create the core luxe runtime
+		_core = new Core( _lumen, _game );
 
-			//The creation configuration
-		var config : LimeConfig = {
+		    //Create the window config
+        var _window_config = {
 
-			host 			: _main_,
-			fullscreen		: ::WIN_FULLSCREEN::,
-			resizable 		: ::WIN_RESIZABLE::,
-			borderless		: ::WIN_BORDERLESS::,
-			antialiasing	: Std.int(::WIN_ANTIALIASING::),
-			stencil_buffer 	: ::WIN_STENCIL_BUFFER::,
-			depth_buffer 	: ::WIN_DEPTH_BUFFER::,
-			vsync 			: ::WIN_VSYNC::,
-			fps				: Std.int(::WIN_FPS::),
-			width 			: Std.int(::WIN_WIDTH::), 
-			height 			: Std.int(::WIN_HEIGHT::), 
-			orientation     : "::WIN_ORIENTATION::",
-			title 			: "::APP_TITLE::"
-			
-		};
+            fullscreen      : ::WIN_FULLSCREEN::,
+            resizable       : ::WIN_RESIZABLE::,
+            borderless      : ::WIN_BORDERLESS::,
+            antialiasing    : Std.int(::WIN_ANTIALIASING::),
+            stencil_buffer  : ::WIN_STENCIL_BUFFER::,
+            depth_buffer    : ::WIN_DEPTH_BUFFER::,
+            vsync           : ::WIN_VSYNC::,
+            fps             : Std.int(::WIN_FPS::),
+            x               : Std.int(0x1FFF0000), 
+            y               : Std.int(0x1FFF0000), 
+            width           : Std.int(::WIN_WIDTH::), 
+            height          : Std.int(::WIN_HEIGHT::), 
+            title           : "::APP_TITLE::",
 
-			//Start up lime, but give it the core library 
-			//as the host instead of the main,
-			//so we intercept the ready event and can tell the
-			//game main when we are done!
-		_lime.init( _core, config );
+            orientation     : "::WIN_ORIENTATION::"
+
+        } //_window_config
+
+            //Create the main config
+        var _config : LumenConfig = {
+
+            host            : _core,
+            window_config   : _window_config,
+            runtime_config  : {},
+            run_loop        : true
+
+        };
+
+            //Start up, but give the host as the luxe core
+        _lumen.init( _core, _config );
 
 	} //main
-	
+
 } //ApplicationMain

@@ -1,10 +1,9 @@
 package phoenix;
 
-import lime.gl.GL;
-import lime.gl.GLTexture;
-import lime.utils.UInt8Array;
-import lime.utils.Libs;
-import lime.utils.ArrayBuffer;
+import lumen.render.gl.GL;
+import lumen.utils.UInt8Array;
+import lumen.utils.Libs;
+import lumen.utils.ArrayBuffer;
 
 import phoenix.Color;
 import phoenix.Vector;
@@ -183,75 +182,77 @@ class Texture extends Resource {
     public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
 
         var start = Luxe.time;
-        // trace(_asset_bytes);
+        // // trace(_asset_bytes);
 
-        var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
+        // var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
 
-        var nme_bitmap_handle = lime_bitmap_data_from_bytes(_asset_bytes, null);
-        if(nme_bitmap_handle == null) throw "cannot create bitmap " + _asset_name;
+        // var nme_bitmap_handle = lime_bitmap_data_from_bytes(_asset_bytes, null);
+        // if(nme_bitmap_handle == null) throw "cannot create bitmap " + _asset_name;
 
-        var _width = lime_bitmap_data_width( nme_bitmap_handle );
-        var _height = lime_bitmap_data_height( nme_bitmap_handle );
+        // // var _width = lime_bitmap_data_width( nme_bitmap_handle );
+        // // var _height = lime_bitmap_data_height( nme_bitmap_handle );
+        // var _width = 256;
+        // var _height = 256;
 
-            //The actual padded size (for NPOT strict renderers)
-        actual_width = _width;
-        actual_height = _height;
+        //     //The actual padded size (for NPOT strict renderers)
+        // actual_width = _width;
+        // actual_height = _height;
 
-        if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
-        if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+        // if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+        // if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
 
-        var image_bytes : lime.utils.ByteArray;
+        // var image_bytes : lumen.utils.ByteArray;
 
-        try {
-            image_bytes = cast lime_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
-        } catch(e:Dynamic) {
-            trace(e);
-            throw " fail!";
-        }
+        // try {
+        //     image_bytes = cast lime_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
+        // } catch(e:Dynamic) {
+        //     trace(e);
+        //     throw " fail!";
+        // }
 
-        texture = GL.createTexture();
+        // texture = GL.createTexture();
 
-            //if no problems
-        id = _asset_name;
-        width = Std.int(_width);
-        height = Std.int(_height);
+        //     //if no problems
+        // id = _asset_name;
+        // width = Std.int(_width);
+        // height = Std.int(_height);
 
-        data = new UInt8Array( cast image_bytes );
-        var image_length = width * height;
+        // data = new UInt8Array( cast image_bytes );
+        // var image_length = width * height;
 
-            //ARGB to RGBA cos format
-            //:todo: do inside native (don't worry about this, new backend)
+        //     //ARGB to RGBA cos format
+        //     //:todo: do inside native (don't worry about this, new backend)
 
-        for(i in 0 ... image_length) {
-            // data[i] = ((data[i]>>24) | (data[i]<<8));
+        // for(i in 0 ... image_length) {
+        //     // data[i] = ((data[i]>>24) | (data[i]<<8));
 
-            var a = data[i*4+0];
-            var r = data[i*4+1];
-            var g = data[i*4+2];
-            var b = data[i*4+3];
+        //     var a = data[i*4+0];
+        //     var r = data[i*4+1];
+        //     var g = data[i*4+2];
+        //     var b = data[i*4+3];
 
-            //rgba would then be
+        //     //rgba would then be
 
-            data[i*4+0] = r;
-            data[i*4+1] = g;
-            data[i*4+2] = b;
-            data[i*4+3] = a;
-        }
+        //     data[i*4+0] = r;
+        //     data[i*4+1] = g;
+        //     data[i*4+2] = b;
+        //     data[i*4+3] = a;
+        // }
 
 
-            //Now we can bind it
-        bind();
-            //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
+        //     //Now we can bind it
+        // bind();
+        //     //And send GL the data
+        // GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
 
-            //Set the properties
-        _set_filter( FilterType.linear );
-        _set_clamp( ClampType.edge );
+        //     //Set the properties
+        // _set_filter( FilterType.linear );
+        // _set_clamp( ClampType.edge );
 
-        image_bytes = null;
-        data = null; //:todo : - sven use lock/unlock
+        // image_bytes = null;
+        // data = null; //:todo : - sven use lock/unlock
 
-        // trace('texture.create took ' + (Luxe.time - start));
+        trace('texture.create took ' + (Luxe.time - start));
 
     } //create_from_bytes
 
@@ -578,10 +579,10 @@ class Texture extends Resource {
 
     } //set_filter_mag
 
-    static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
-    static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
-    static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
-    static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2);
+    // static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
+    // static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
+    // static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
+    // static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2);
 
 
 } //Texture

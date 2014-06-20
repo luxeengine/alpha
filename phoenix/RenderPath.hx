@@ -1,6 +1,6 @@
 package phoenix;
 
-import lime.gl.GL;
+import lumen.render.gl.GL;
 import phoenix.Renderer;
 import phoenix.Batcher;
 import luxe.structural.BalancedBinarySearchTree;

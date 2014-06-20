@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"tags": [],
 	"description": "A cross platform haxe based game development engine",
-	"version": "0.9.0",
+	"version": "1.0.0-alpha.2",
 	"releasenote": " Unreleased",
 	"contributors": [ "underscorediscovery" ],
 	"dependencies": {}

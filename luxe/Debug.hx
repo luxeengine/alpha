@@ -207,7 +207,7 @@ class Debug {
 
         #if profiler
             #if luxe_native
-                if(e.key == KeyValue.key_P && profiling) {
+                if(e.keycode == Key.KEY_p && profiling) {
                     cpp.vm.Profiler.stop();
                     profiling = false;
                     trace("profiling complete. Look for the results in " + profile_path );
@@ -220,7 +220,7 @@ class Debug {
 
         if(visible) {
 
-            if(e.key == KeyValue.key_1 && core.console_visible) {
+            if(e.keycode == Key.KEY_1 && core.console_visible) {
                 switch_view();
             }
 
@@ -232,7 +232,7 @@ class Debug {
 
         #if profiler
             #if luxe_native
-                if(e.key == KeyValue.key_P && e.ctrl_down) {
+                if(e.keycode == Key.KEY_p && e.mod.ctrl) {
                     trace("starting profiler ... let go of key to stop profiling.");
                     cpp.vm.Profiler.start( profile_path );
                     profiling = true;

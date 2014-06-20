@@ -188,7 +188,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
     } //process
 
     public override function onkeydown(e:KeyEvent) {
-        if(e.key == KeyValue.key_2 && visible ) {
+        if(e.keycode == Key.KEY_2 && visible ) {
             toggle_debug_stats();
         }
     } //onkeydown

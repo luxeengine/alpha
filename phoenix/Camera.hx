@@ -1,9 +1,8 @@
 package phoenix;
 
 
-import lime.gl.GL;
-import lime.gl.GLBuffer;
-import lime.utils.Float32Array;
+import lumen.render.gl.GL;
+import lumen.utils.Float32Array;
 
 import phoenix.Matrix;
 

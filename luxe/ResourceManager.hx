@@ -1,6 +1,6 @@
 package luxe;
 
-import lime.utils.ByteArray;
+import lumen.utils.ByteArray;
 
 import phoenix.BitmapFont;
 import phoenix.Shader;

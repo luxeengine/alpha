@@ -27,7 +27,7 @@ class Cursor {
 
     function set_visible( _visible:Bool ) : Bool {
 
-        screen.core.lime.window.set_cursor_visible( _visible );
+        // screen.core.lime.window.set_cursor_visible( _visible );
 
         return visible = _visible;
 
@@ -41,7 +41,7 @@ class Cursor {
 
     function set_locked( _lock:Bool ) : Bool {
 
-        screen.core.lime.window.constrain_cursor_to_window_frame( _lock );
+        // screen.core.lime.window.constrain_cursor_to_window_frame( _lock );
 
         return locked = _lock;
 
@@ -61,7 +61,7 @@ class Cursor {
 
         if(pos != null) {
 
-            screen.core.lime.window.set_cursor_position_in_window( Std.int(_p.x), Std.int(_p.y) );
+            // screen.core.lime.window.set_cursor_position_in_window( Std.int(_p.x), Std.int(_p.y) );
 
         }
 

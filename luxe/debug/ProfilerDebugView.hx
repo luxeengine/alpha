@@ -180,7 +180,8 @@ private class ProfilerBar {
         color_green = new Color().rgb(0x228844);
         color_normal = new Color().rgb(0xf0f0f0);
 
-        max = (1/Luxe.core.config.fps) * 1000;
+            //:todo:lumen:
+        max = (1/60) * 1000;
         name = _name;
         segment = (width/history);
         height2 = height*2;

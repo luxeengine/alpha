@@ -1,13 +1,12 @@
 package phoenix;
 
-import lime.gl.GLFramebuffer;
+import lumen.render.gl.GL;
 import phoenix.Batcher;
 import phoenix.Texture;
 
 import luxe.Resource;
 import luxe.ResourceManager;
 
-import lime.gl.GL;
 
     //A render texture just extends texture so it can be assigned to meshes etc
 class RenderTexture extends Texture {

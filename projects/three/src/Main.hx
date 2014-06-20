@@ -18,7 +18,7 @@ import luxe.Entity;
 import luxe.Mesh;
 import luxe.utils.Maths;
 
-import lime.gl.GL;
+import lumen.render.gl.GL;
 
 import phoenix.formats.obj.Reader;
 

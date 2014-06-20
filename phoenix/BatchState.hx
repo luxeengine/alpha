@@ -6,7 +6,7 @@ import phoenix.Batcher;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 
-import lime.gl.GL;
+import lumen.render.gl.GL;
 
 class BatchState {
 

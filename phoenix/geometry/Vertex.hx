@@ -4,7 +4,7 @@ import phoenix.geometry.TextureCoord;
 import phoenix.Vector;
 import phoenix.Color;
 
-import lime.utils.Float32Array;
+import lumen.utils.Float32Array;
 
 class Vertex {
 

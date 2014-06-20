@@ -7,10 +7,7 @@ import luxe.ResourceManager;
 import phoenix.Vector;
 import phoenix.Texture;
 
-import lime.gl.GL;
-import lime.gl.GLShader;
-import lime.gl.GLProgram;
-import lime.gl.GLUniformLocation;
+import lumen.render.gl.GL;
 
 enum UniformValueType {
     int;

@@ -52,7 +52,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
     }
 
     public override function onmousewheel(e:MouseEvent) {
-        if(e.button == luxe.Input.MouseButton.wheel_up) {
+        if(e.y < 0) {
             batcher.view.zoom -= 0.1;
         } else {
             batcher.view.zoom += 0.1;

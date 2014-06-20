@@ -13,12 +13,11 @@ import phoenix.Batcher;
 import luxe.options.GeometryOptions;
 import luxe.structural.BinarySearchTree;
 
-import lime.utils.ByteArray;
-import lime.utils.Float32Array;
-import lime.utils.IMemoryRange;
+import lumen.utils.ByteArray;
+import lumen.utils.Float32Array;
+import lumen.utils.IMemoryRange;
 
-import lime.gl.GL;
-import lime.gl.GLBuffer;
+import lumen.render.gl.GL;
 
 typedef GeometryKey = {
 

@@ -1,9 +1,6 @@
 package phoenix;
 
-import lime.gl.GL;
-import lime.gl.GLProgram;
-import lime.gl.GLTexture;
-import lime.gl.GLFramebuffer;
+import lumen.render.gl.GL;
 
 class RenderState {
 
@@ -26,7 +23,7 @@ class RenderState {
                     GL.enable(GL.CULL_FACE);
                 } //!cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.lime.config.depth_buffer) {
+                if(true) { //:todo:lumen:Luxe.core.lime.config.depth_buffer
                     if(!depth_test) {
                         depth_test = true;
                         GL.enable(GL.DEPTH_TEST);
@@ -43,7 +40,7 @@ class RenderState {
                     GL.disable(GL.CULL_FACE);
                 } //cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.lime.config.depth_buffer) {
+                if(true) { //:todo:lumen:Luxe.core.lime.config.depth_buffer
                     if(depth_test) {
                         depth_test = false;
                         GL.disable(GL.DEPTH_TEST);
@@ -117,7 +114,7 @@ class RenderState {
     public function lineWidth( _width:Float ) {
         if(_last_line_width != _width) {
             _last_line_width = _width;
-            lime.gl.GL.lineWidth( _width );
+            GL.lineWidth( _width );
         }
     }
 

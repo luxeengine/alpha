@@ -3,9 +3,6 @@ import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
 
-import lime.gl.GL;
-import lime.gl.GL.Ext;
-
 class Main extends luxe.Game {
 
 
@@ -23,9 +20,9 @@ class Main extends luxe.Game {
         });
 
     } //ready
-  
+
     public function onkeyup( e:KeyEvent ) {
-        
+
             //quit when we press escape
         if(e.value == Input.Keys.escape) {
             Luxe.shutdown();

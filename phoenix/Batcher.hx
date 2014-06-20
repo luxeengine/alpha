@@ -1,16 +1,14 @@
 package phoenix;
 
-import lime.utils.ByteArray;
+import lumen.utils.ByteArray;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 import phoenix.geometry.Vertex;
 import phoenix.Renderer;
 import phoenix.BatchState;
 
-import lime.gl.GL;
-import lime.gl.GLBuffer;
-import lime.utils.Float32Array;
-import lime.gl.GLUniformLocation;
+import lumen.render.gl.GL;
+import lumen.utils.Float32Array;
 
 import luxe.structural.BalancedBinarySearchTree;
 
@@ -611,10 +609,10 @@ class Batcher {
         normal_floats = 0;
 
         #if luxe_native
-            vertlist.clear();
-            tcoordlist.clear();
-            colorlist.clear();
-            normallist.clear();
+            // vertlist.clear();
+            // tcoordlist.clear();
+            // colorlist.clear();
+            // normallist.clear(); :todo:lumen:
         #end //luxe_native
 
             //The current batch state values
@@ -743,10 +741,10 @@ class Batcher {
         }
 
         #if luxe_native
-            static_vertlist.clear();
-            static_tcoordlist.clear();
-            static_colorlist.clear();
-            static_normallist.clear();
+            // static_vertlist.clear();
+            // static_tcoordlist.clear();
+            // static_colorlist.clear();
+            // static_normallist.clear(); //:todo:lumen:
         #end //luxe_native
 
             //and counts
@@ -823,10 +821,10 @@ class Batcher {
 
             //reset static state
         #if luxe_native
-            static_vertlist.clear();
-            static_tcoordlist.clear();
-            static_colorlist.clear();
-            static_normallist.clear();
+            // static_vertlist.clear();
+            // static_tcoordlist.clear();
+            // static_colorlist.clear();
+            // static_normallist.clear(); //:todo:lumen:
         #end //luxe_native
 
             //and counts

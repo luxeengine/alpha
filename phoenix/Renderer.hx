@@ -1,17 +1,14 @@
 package phoenix;
 
-import lime.gl.GL;
-import lime.gl.GLProgram;
-import lime.gl.GLShader;
-import lime.gl.GLFramebuffer;
-import lime.gl.GLTexture;
-import lime.utils.ByteArray;
-import lime.utils.Libs;
+import lumen.render.gl.GL;
+import lumen.utils.ByteArray;
+import lumen.utils.Libs;
 
 import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
+import luxe.Core;
 import luxe.Rectangle;
 import luxe.ResourceManager;
 
@@ -26,8 +23,8 @@ import phoenix.Camera;
 import phoenix.Texture;
 import phoenix.BitmapFont;
 
-import lime.utils.UInt8Array;
-import lime.utils.ArrayBuffer;
+import lumen.utils.UInt8Array;
+import lumen.utils.ArrayBuffer;
 
 import luxe.structural.BalancedBinarySearchTree;
 
@@ -43,6 +40,7 @@ class Renderer {
     public var batchers : Array<Batcher>;
     // public var batchers : BalancedBinarySearchTree<BatcherKey,Batcher>;
 
+    public var core : Core;
     public var state : RenderState;
     public var default_fbo : GLFramebuffer;
         //Default rendering
@@ -72,7 +70,9 @@ class Renderer {
 
     public var stats : RendererStats;
 
-    public function new( _core:luxe.Core ) { }
+    public function new( _core:luxe.Core ) {
+        core = _core;
+    }
 
     public function init() {
 
@@ -105,7 +105,7 @@ class Renderer {
 
     #end //no_debug_console
 
-        if(Luxe.core.lime.config.depth_buffer) {
+        if(true) { //:todo:lumen: Luxe.core.lime.config.depth_buffer
                 // Enable z buffer use
             GL.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -192,7 +192,7 @@ class Renderer {
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( Luxe.core.lime.config.depth_buffer ) {
+        if( true ) { //:todo:lumen Luxe.core.lime.config.depth_buffer 
             GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
             GL.clearDepth(1.0);
         } else {
@@ -221,7 +221,7 @@ class Renderer {
             _vsid = 'default shader';
             _vert_shader = default_vert_source;
         } else {
-            _vert_shader = lime.utils.Assets.getText(_vsid);
+            _vert_shader = core.lumen.assets.get_text(_vsid).text;
         }
 
         if(_psid == 'default' || _psid == '') {
@@ -231,7 +231,7 @@ class Renderer {
             _psid = 'default textured';
             _frag_shader = default_frag_textured_source;
         } else {
-            _frag_shader = lime.utils.Assets.getText(_psid);
+            _frag_shader = core.lumen.assets.get_text(_psid).text;
         }
 
         var _shader : Shader = null;
@@ -275,7 +275,7 @@ class Renderer {
             var texture = new Texture(resource_manager);
 
             #if luxe_native
-                texture.create_from_bytes( _name , lime.utils.ByteArray.fromBytes(texture_bytes) );
+                texture.create_from_bytes( _name , lumen.utils.ByteArray.fromBytes(texture_bytes) );
             #end //luxe_native
 
             #if luxe_html5
@@ -375,7 +375,7 @@ class Renderer {
                     return;
                 }
 
-                var haxe_bytes = new lime.utils.UInt8Array( image_bytes.data );
+                var haxe_bytes = new lumen.utils.UInt8Array( image_bytes.data );
 
                 texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
                 texture.width = image.width;
@@ -409,7 +409,7 @@ class Renderer {
 
         if(asset_bytes == null) {
             if( Luxe.utils.path_is_relative(haxe.io.Path.normalize(_name)) ) {
-                asset_bytes = lime.utils.Assets.getBytes( _name );
+                asset_bytes = core.lumen.assets.get_bytes( _name ).data;
             } else {
                 asset_bytes = ByteArray.readFile( _name );
             }

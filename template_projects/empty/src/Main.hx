@@ -3,20 +3,19 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
-
-    public function ready() {
+    override function ready() {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
     } //update
 

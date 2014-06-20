@@ -3,16 +3,16 @@ package luxe;
 import luxe.Core;
 
 class Events {
-    
+
 
     @:noCompletion public var event_queue : Map< String, EventObject>;
     @:noCompletion public var event_connections : Map< String, EventConnection>; //event id, connect
     @:noCompletion public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
     @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
-    @:noCompletion public var event_schedules : Map< String, haxe.Timer >; //event id, timer
-    
+    @:noCompletion public var event_schedules : Map< String, lumen.utils.Timer >; //event id, timer
 
-    public function new( ) { 
+
+    public function new( ) {
             //create the queue, lists and map
         event_connections = new Map();
         event_slots = new Map();
@@ -20,7 +20,7 @@ class Events {
         event_queue = new Map();
         event_schedules = new Map();
     }
-    
+
     public function destroy() {
         clear();
     }
@@ -58,7 +58,7 @@ class Events {
         var _final_search : EReg = new EReg(_final_filter, 'gi');
 
         return _final_search.match( _event );
-    
+
     } //does_filter_event
 
 
@@ -71,7 +71,7 @@ class Events {
         var id : String = Luxe.utils.uniqueid();
         var connection : EventConnection = new EventConnection( id, _event_name, _listener );
 
-            //now we store it in the map       
+            //now we store it in the map
         event_connections.set( id, connection );
 
             //first check if the event name in question has a * wildcard,
@@ -83,18 +83,18 @@ class Events {
                 //also store the listener inside the slots
             if(!event_filters.exists(_event_name)) {
                     //no slot exists yet? make one!
-                event_filters.set(_event_name, new Array<EventConnection>() );         
+                event_filters.set(_event_name, new Array<EventConnection>() );
             }
 
                 //it should exist by now, lets store the connection by event name
             event_filters.get(_event_name).push( connection );
-            
+
         } else {
 
                 //also store the listener inside the slots
             if(!event_slots.exists(_event_name)) {
                     //no slot exists yet? make one!
-                event_slots.set(_event_name, new Array<EventConnection>() );         
+                event_slots.set(_event_name, new Array<EventConnection>() );
             }
 
                 //it should exist by now, lets store the connection by event name
@@ -111,10 +111,10 @@ class Events {
             //event connection id, returned from connect()
             //returns true if the event existed and was removed
     public function disconnect( event_id : String ) : Bool {
-        
+
         if(event_connections.exists(event_id)) {
 
-            var connection = event_connections.get(event_id);               
+            var connection = event_connections.get(event_id);
             var event_slot = event_slots.get(connection.event_name);
 
             if(event_slot != null) {
@@ -157,9 +157,9 @@ class Events {
     } //queue
 
     public function dequeue( event_id: String ) {
-        
+
         if(event_queue.exists(event_id)) {
-            
+
             var event = event_queue.get(event_id);
             event = null;
             event_queue.remove( event_id );
@@ -183,11 +183,11 @@ class Events {
             event_queue = new Map();
         }
 
-    } //update    
+    } //update
 
-        //Fire an event immediately, bypassing the queue. 
+        //Fire an event immediately, bypassing the queue.
             //event_name : The event (register listeners with connect())
-            //properties : A dynamic pass-through value to hand off data        
+            //properties : A dynamic pass-through value to hand off data
             //  -- Returns a Bool, true if event existed, false otherwise
     public function fire<T>( _event_name : String, ?_properties : T ) : Bool {
 
@@ -211,11 +211,11 @@ class Events {
         } //for each of our filters
 
         if(event_slots.exists( _event_name )) {
-            
+
                 //we have an event by this name
             var connections:Array<EventConnection> = event_slots.get(_event_name);
 
-                //store additional info about the events 
+                //store additional info about the events
                 //:todo : is this needed anymore?
             // _properties = tag_properties(_properties, _event_name, connections.length);
 
@@ -241,7 +241,7 @@ class Events {
 
         var id : String = Luxe.utils.uniqueid();
 
-            var _timer = haxe.Timer.delay(function(){
+            var _timer = lumen.utils.Timer.delay(function(){
                 fire( event_name, properties );
             }, Std.int(time*1000) );
 
@@ -269,17 +269,17 @@ class Events {
 
         return false;
 
-    } //unschedule    
+    } //unschedule
 
     function tag_properties(_properties:Dynamic, _name:String,_count:Int) {
-        
+
         if(_properties == null) {
             _properties = {};
         }
 
             //tag these information slots, with _ so they don't clobber other stuff
         Reflect.setField(_properties,'_event_name_', _name);
-            //tag a listener count 
+            //tag a listener count
         Reflect.setField(_properties,'_event_connection_count_', _count);
 
         return _properties;
@@ -288,7 +288,7 @@ class Events {
 } // Events
 
 private class EventConnection {
-    
+
 
     public var listener : Dynamic -> Void;
     public var id : String;
@@ -296,7 +296,7 @@ private class EventConnection {
 
 
     public function new( _id:String, _event_name:String, _listener : Dynamic -> Void ) {
-        
+
         id = _id;
         listener = _listener;
         event_name = _event_name;

@@ -1,6 +1,6 @@
 package ;
 
-import lime.utils.ByteArray;
+import lumen.utils.ByteArray;
 import phoenix.BitmapFont;
 import phoenix.geometry.Geometry;
 import phoenix.Texture;
@@ -19,15 +19,11 @@ import luxe.Screen;
 
 class Luxe {
 
-        /** The time the last frame took, this value can be altered or fixed using `Luxe.timescale` or `Luxe.fixed_timestep` */
-    public static var dt                : Float = 0.016;
-        /** The scale of time that affects the update rates and deltas */
-    public static var timescale         : Float = 1;
-        /** Set this for a fixed timestep value */
-    public static var fixed_timestep    : Float = 0;//0.016666666667;
         /** The last known mouse position */
     public static var mouse             : Vector;
 
+        /** The time the last frame took to run */
+    public static var dt        : Float;
         /** Direct access to the core engine */
     public static var core      : luxe.Core;
         /** Access to the core debug features */
@@ -73,23 +69,15 @@ class Luxe {
 
     static function get_time() : Float {
 
-            //:todo:temp: until lumen timestamp, use higher precision on html5 where possible
-        #if luxe_html5
 
-            if(js.Browser.window.performance != null) {
-                return js.Browser.window.performance.now()/1000.0;
-            }
-
-        #end //luxe_html5
-
-        return haxe.Timer.stamp();
+        return core.lumen.time;
 
     } //get_time
 
         /** shutdown the engine and quit */
     public static function shutdown() {
 
-        core.lime.shutdown();
+        core.lumen.shutdown();
 
     } //shutdown
 
@@ -103,7 +91,7 @@ class Luxe {
         /** Load a text resource */
     public static function loadJSON( _id:String, ?_onloaded:JSONResource->Void ) : JSONResource {
 
-        var raw = lime.utils.Assets.getText(_id);
+        var raw = core.lumen.assets.get_text(_id).text;
         var json = luxe.utils.JSON.parse(raw);
         var res = new JSONResource( _id, json, Luxe.resources );
 
@@ -117,7 +105,7 @@ class Luxe {
 
     public static function loadText( _id:String, ?_onloaded:TextResource->Void ) : TextResource {
 
-        var string = lime.utils.Assets.getText(_id);
+        var string = core.lumen.assets.get_text(_id).text;
         var res = new TextResource( _id, string, Luxe.resources );
 
             if(_onloaded != null) {
@@ -131,7 +119,7 @@ class Luxe {
         /** Load a bytes/data resource */
     public static function loadData( _id:String, ?_onloaded:DataResource->Void ) : DataResource {
 
-        var bytes = lime.utils.Assets.getBytes(_id);
+        var bytes = core.lumen.assets.get_bytes(_id).data;
         var res = new DataResource( _id, bytes, Luxe.resources);
 
             if(_onloaded != null) {
@@ -145,15 +133,16 @@ class Luxe {
         /** Load a sound resource */
     public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onloaded:SoundResource->Void ) : SoundResource {
 
-        Luxe.audio.create( _name, _id, _is_music );
+        // Luxe.audio.create( _name, _id, _is_music );
 
-        var res = new SoundResource( _name, _id, Luxe.resources );
+        // var res = new SoundResource( _name, _id, Luxe.resources );
 
-            if(_onloaded != null) {
-                _onloaded( res );
-            } //_onloaded
+        //     if(_onloaded != null) {
+        //         _onloaded( res );
+        //     } //_onloaded
 
-        return res;
+        // return res;
+        return null;
 
     } //loadData
 
@@ -190,28 +179,31 @@ class Luxe {
         /** Open the system browser with the given URL */
     public static function openURL( _url:String ) {
 
-        core.lime.window.openURL( _url );
+        // core.lime.window.openURL( _url );
 
     } //openURL
 
         /** Open the system folder dialog picker */
     public static function fileDialogFolder(_title:String, _text:String) : String {
 
-        return core.lime.window.fileDialogFolder(_title,_text);
+        // return core.lime.window.fileDialogFolder(_title,_text);
+        return '';
 
     } //fileDialogFolder
 
         /** Open the system file open dialog picker */
     public static function fileDialogOpen(_title:String, _text:String) : String {
 
-        return core.lime.window.fileDialogOpen(_title,_text);
+        // return core.lime.window.fileDialogOpen(_title,_text);
+        return '';
 
     } //fileDialogOpen
 
         /** Open the system file save dialog picker */
     public static function fileDialogSave(_title:String, _text:String) : String {
 
-        return core.lime.window.fileDialogSave(_title,_text);
+        // return core.lime.window.fileDialogSave(_title,_text);
+        return '';
 
     } //fileDialogSave
 

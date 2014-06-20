@@ -2,7 +2,7 @@
 <extension>
 
 	<haxelib name="format" />
-	<haxelib name="lime" />
+	<haxelib name="lumen" />
 
 	<templatePath name="templates" />
 
@@ -28,10 +28,4 @@
 	<haxeflag name="-resource" value="phoenix/defaults/shaders/frag.glsl@default.frag.glsl" />
 	<haxeflag name="-resource" value="phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl" />
 
-    <section if="setup">
-        
-        <haxelib name="format" />
-            
-    </section>
-	
 </extension>

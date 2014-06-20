@@ -1,6 +1,6 @@
 
-import lime.utils.ByteArray;
-import lime.utils.Float32Array;
+import lumen.utils.ByteArray;
+import lumen.utils.Float32Array;
 
 import luxe.Vector;
 import luxe.Color;
