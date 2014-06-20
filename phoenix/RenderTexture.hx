@@ -51,7 +51,7 @@ class RenderTexture extends Texture {
         GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT16, width, height);
             //Attach the framebuffer texture to the buffer
         GL.framebufferTexture2D( GL.FRAMEBUFFER, GL.COLOR_ATTACHMENT0, GL.TEXTURE_2D, texture, 0 );
-            //Attach the depth buffer to the frame buffer
+            //Attach the depth buffer to the render buffer
         GL.framebufferRenderbuffer( GL.FRAMEBUFFER, GL.DEPTH_ATTACHMENT, GL.RENDERBUFFER, renderbuffer);
 
 
@@ -88,6 +88,7 @@ class RenderTexture extends Texture {
     public override function destroy() {
 
         GL.deleteFramebuffer( fbo );
+        GL.deleteRenderbuffer( renderbuffer );
 
         super.destroy();
 
