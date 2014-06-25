@@ -126,6 +126,8 @@ class Luxe {
                 _onloaded( res );
             } //_onloaded
 
+        Luxe.resources.cache(res);
+
         return res;
 
     } //loadText
