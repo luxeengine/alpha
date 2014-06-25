@@ -111,6 +111,8 @@ class Luxe {
                 _onloaded( res );
             } //_onloaded
 
+        Luxe.resources.cache(res);
+
         return res;
 
     } //loadJSON
@@ -138,6 +140,8 @@ class Luxe {
                 _onloaded( res );
             } //_onloaded
 
+        Luxe.resources.cache(res);
+
         return res;
 
     } //loadData
@@ -152,6 +156,8 @@ class Luxe {
             if(_onloaded != null) {
                 _onloaded( res );
             } //_onloaded
+
+        Luxe.resources.cache(res);
 
         return res;
 

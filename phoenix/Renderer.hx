@@ -208,6 +208,8 @@ class Renderer {
 
             new_font.load_from_string( font_data.text, _path, _onloaded );
 
+        resource_manager.cache(new_font);
+
         return new_font;
 
     } //load_font
@@ -258,6 +260,8 @@ class Renderer {
             }
 
             log("shader loaded " + _shader.id );
+
+            resource_manager.cache(_shader);
 
             return _shader;
         } else {
