@@ -54,6 +54,7 @@ class Text extends Visual {
             no_scene : _options.no_scene,
             batcher : _batcher,
             color : _options.color,
+            parent : _options.parent,
             visible : _options.visible,
             // pos : _options.pos,
             depth : _options.depth,

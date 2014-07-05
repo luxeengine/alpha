@@ -5,7 +5,7 @@ import phoenix.Batcher.PrimitiveType;
 import phoenix.Batcher.BlendMode;
 
 class Rendering {
-	
+
 	public static function gl_blend_mode_from_BlendMode(_b:BlendMode) {
 
         switch(_b) {
@@ -48,7 +48,7 @@ class Rendering {
                 return Std.int(length/4);
             case triangle_strip:
                 return Std.int(length/4);
-            case triangle_fan:            
+            case triangle_fan:
                 return Std.int(length/4);
             default:
                 return Std.int(length/4);
@@ -69,11 +69,11 @@ class Rendering {
                 return GL.TRIANGLE_STRIP;
             case triangles:
                 return GL.TRIANGLES;
-            case triangle_fan:            
+            case triangle_fan:
                 return GL.TRIANGLE_FAN;
             case none:
                 return GL.TRIANGLE_STRIP;
         }
-    }    
+    }
 
 } //Rendering
