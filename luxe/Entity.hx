@@ -206,15 +206,19 @@ class Entity extends Objects {
 
     } //_reset
 
-    public function destroy() {
+    public function destroy( ?_from_parent:Bool=false ) {
 
         _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
             //first destroy children
         for(_child in children) {
             _verbose('     calling destroy on child ' + _child.name);
-            _child.destroy();
+            _child.destroy(true);
         } //for each child
+
+            //clear the list
+        children = null;
+        children = [];
 
             //destroy all the components attached directly to us
         for(_component in components) {
@@ -225,7 +229,7 @@ class Entity extends Objects {
         _call(this, 'destroyed');
 
             //remove it from it's parent if any
-        if(parent != null) {
+        if(parent != null && !_from_parent) {
             _verbose("     removing " + name + "/" + id + " from parent " + parent.name + " / " + parent.id );
             parent._remove_child(this);
         }
