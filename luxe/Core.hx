@@ -531,9 +531,9 @@ class Core {
         Luxe.mouse = _mouse_pos;
 
         if(!shutting_down) {
+            debug.onmouseup(e);
             input.check_named_mouse(e);
             scene.onmouseup(e);
-            debug.onmouseup(e);
         }
 
         if(host.onmouseup != null) {
