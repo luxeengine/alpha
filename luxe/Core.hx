@@ -1,8 +1,8 @@
 package luxe;
 
-import lumen.Lumen;
-import lumen.types.Types;
-import lumen.utils.ByteArray;
+import snow.Snow;
+import snow.types.Types;
+import snow.utils.ByteArray;
 
 import Luxe;
 import luxe.Audio;
@@ -56,12 +56,12 @@ import luxe.Log.log;
 @:noCompletion
 @:keep
 @:log_as('luxe')
-class Core extends lumen.App {
+class Core extends snow.App {
 
         //the game object running the core
     public var game : Game;
         //the config passed to us on creation
-    public var config : LumenConfig;
+    public var config : SnowConfig;
 
 // #if (luxe_native && !luxe_threading_disabled)
 
@@ -73,8 +73,8 @@ class Core extends lumen.App {
         //if the console is displayed atm
     public var console_visible : Bool = false;
 
-        //the reference to the underlying lumen framework
-    public var lumen : Lumen;
+        //the reference to the underlying snow framework
+    public var snow : Snow;
 
 //Sub Systems, mostly in order of importance
     public var debug    : Debug;
@@ -109,11 +109,11 @@ class Core extends lumen.App {
     public var has_shutdown : Bool = false;
 
 
-    public function new( _lumen:Lumen, _game:Game ) {
+    public function new( _snow:Snow, _game:Game ) {
 
         super();
 
-        lumen = _lumen;
+        snow = _snow;
         game = _game;
 
             //Store the core for reference in the game
@@ -136,7 +136,7 @@ class Core extends lumen.App {
 
     } //new
 
-        //This gets called once lumen has booted us
+        //This gets called once snow has booted us
     override function ready() {
 
         Luxe.version = haxe.Resource.getString('version');
@@ -164,7 +164,7 @@ class Core extends lumen.App {
     public function init() {
 
             //Cache the settings locally
-        config = lumen.config;
+        config = snow.config;
 
             //Create the subsystems
         _debug('creating subsystems...');
@@ -214,9 +214,9 @@ class Core extends lumen.App {
             //finally, create the debug console
         debug.create_debug_console();
 
-            //and even more finally, tell lumen we want to
+            //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
-        lumen.main_window.window_render_handler = render;
+        snow.main_window.window_render_handler = render;
 
     } //init
 
@@ -325,7 +325,7 @@ class Core extends lumen.App {
 
     } //update
 
-    function render( window:lumen.window.Window ) {
+    function render( window:snow.window.Window ) {
 
         debug.start(core_tag_render);
 
@@ -432,7 +432,7 @@ class Core extends lumen.App {
 
 // //mouse
 
-    override function onmousedown( _event : lumen.types.Types.MouseEvent ) {
+    override function onmousedown( _event : snow.types.Types.MouseEvent ) {
 
         var e : MouseEvent = cast _event;
 
@@ -451,7 +451,7 @@ class Core extends lumen.App {
 
     } //onmousedown
 
-    override function onmousewheel( _event : lumen.types.Types.MouseEvent ) {
+    override function onmousewheel( _event : snow.types.Types.MouseEvent ) {
 
         if(!shutting_down) {
             input.check_named_mouse(e, false);
@@ -463,7 +463,7 @@ class Core extends lumen.App {
 
     } //onmousewheel
 
-    override function onmouseup( _event : lumen.types.Types.MouseEvent ) {
+    override function onmouseup( _event : snow.types.Types.MouseEvent ) {
 
         _mouse_pos = new luxe.Vector( e.x, e.y );
         e.pos = _mouse_pos;

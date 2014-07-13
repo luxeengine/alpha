@@ -3,24 +3,24 @@ package luxe;
 import luxe.Core;
 import luxe.Log._debug;
 
-typedef Key         =   lumen.input.Keycodes.Keycodes;
-typedef Scan        =   lumen.input.Keycodes.Scancodes;
+typedef Key         =   snow.input.Keycodes.Keycodes;
+typedef Scan        =   snow.input.Keycodes.Scancodes;
 
-typedef MouseButton     =   lumen.types.Types.MouseButton;
-typedef PressedState    =   lumen.types.Types.PressedState;
-typedef TouchState      =   lumen.types.Types.TouchState;
+typedef MouseButton     =   snow.types.Types.MouseButton;
+typedef PressedState    =   snow.types.Types.PressedState;
+typedef TouchState      =   snow.types.Types.TouchState;
 
     //Event types
-typedef KeyEvent = lumen.types.Types.KeyEvent;
-typedef GamepadEvent = lumen.types.Types.GamepadEvent;
+typedef KeyEvent = snow.types.Types.KeyEvent;
+typedef GamepadEvent = snow.types.Types.GamepadEvent;
 
 typedef TouchEvent = {
-    > lumen.types.Types.TouchEvent,
+    > snow.types.Types.TouchEvent,
     var pos : luxe.Vector;
 } //TouchEvent
 
 typedef MouseEvent = {
-    > lumen.types.Types.MouseEvent,
+    > snow.types.Types.MouseEvent,
     var pos : luxe.Vector;
 } //MouseEvent
 

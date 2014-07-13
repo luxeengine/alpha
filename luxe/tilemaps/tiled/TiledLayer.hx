@@ -3,7 +3,7 @@ package luxe.tilemaps.tiled;
 import luxe.tilemaps.tiled.TiledTile;
 import luxe.tilemaps.tiled.TiledMapData;
 
-import lumen.utils.ByteArray;
+import snow.utils.ByteArray;
 import lime.utils.Endian;
 
 class TiledLayer {

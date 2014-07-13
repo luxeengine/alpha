@@ -122,8 +122,8 @@ class Matrix {
     function set_M43( _value:Float ) : Float { elements[14] = _value; return _value; }
     function set_M44( _value:Float ) : Float { elements[15] = _value; return _value; }
 
-    public function float32array() : lumen.utils.Float32Array {
-        return new lumen.utils.Float32Array(elements);
+    public function float32array() : snow.utils.Float32Array {
+        return new snow.utils.Float32Array(elements);
     }
 
     public function identity () : Matrix {

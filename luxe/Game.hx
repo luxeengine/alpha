@@ -3,7 +3,7 @@ package luxe;
 import luxe.Core;
 import luxe.Input;
 
-@:noCompletion @:keepSub class Game extends lumen.App {
+@:noCompletion @:keepSub class Game extends snow.App {
 
     @:noCompletion public var _luxe : Core;
 

@@ -1,6 +1,6 @@
 
-import lumen.utils.ByteArray;
-import lumen.utils.Float32Array;
+import snow.utils.ByteArray;
+import snow.utils.Float32Array;
 
 import luxe.Vector;
 import luxe.Color;

@@ -9,7 +9,7 @@ class Events {
     @:noCompletion public var event_connections : Map< String, EventConnection>; //event id, connect
     @:noCompletion public var event_slots : Map< String, Array<EventConnection> >; //event name, array of connections
     @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
-    @:noCompletion public var event_schedules : Map< String, lumen.utils.Timer >; //event id, timer
+    @:noCompletion public var event_schedules : Map< String, snow.utils.Timer >; //event id, timer
 
 
     public function new( ) {
@@ -241,7 +241,7 @@ class Events {
 
         var id : String = Luxe.utils.uniqueid();
 
-            var _timer = lumen.utils.Timer.delay(function(){
+            var _timer = snow.utils.Timer.delay(function(){
                 fire( event_name, properties );
             }, Std.int(time*1000) );
 

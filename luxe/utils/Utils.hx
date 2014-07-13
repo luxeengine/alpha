@@ -94,13 +94,13 @@ class Utils {
         //     var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
 
         //         //check name0 ->
-        //     if(Lambda.indexOf(luxe.lumen.assets.list, _type0) != -1) {
+        //     if(Lambda.indexOf(luxe.snow.assets.list, _type0) != -1) {
         //         _sequence_type = _type0;
         //         _pattern_regex = _type0_re;
-        //     } else if(Lambda.indexOf(luxe.lumen.assets.list, _type1) != -1) {
+        //     } else if(Lambda.indexOf(luxe.snow.assets.list, _type1) != -1) {
         //         _sequence_type = _type1;
         //         _pattern_regex = _type1_re;
-        //     } else if(Lambda.indexOf(luxe.lumen.assets.list, _type2) != -1) {
+        //     } else if(Lambda.indexOf(luxe.snow.assets.list, _type2) != -1) {
         //         _sequence_type = _type2;
         //         _pattern_regex = _type2_re;
         //     } else {
@@ -108,7 +108,7 @@ class Utils {
         //     }
 
         // if(_sequence_type != '') {
-        //     for(_asset in luxe.lumen.assets.list) {
+        //     for(_asset in luxe.snow.assets.list) {
         //         //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
         //         if(_pattern_regex.match(_asset)) {
         //             _final.push( _asset );
@@ -145,7 +145,7 @@ class Utils {
 
         #if luxe_native
 
-            var file_bytes : haxe.io.Bytes = luxe.lumen.assets.get_bytes(_file).data;
+            var file_bytes : haxe.io.Bytes = luxe.snow.assets.get_bytes(_file).data;
             var _class = new haxe.io.Path(_file).file;
             _class = StringTools.replace(_class, '.','_');
             _class = StringTools.replace(_class, ' ','_');

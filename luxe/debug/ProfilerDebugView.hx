@@ -180,7 +180,7 @@ private class ProfilerBar {
         color_green = new Color().rgb(0x228844);
         color_normal = new Color().rgb(0xf0f0f0);
 
-            //:todo:lumen:
+            //:todo:snow:
         max = (1/60) * 1000;
         name = _name;
         segment = (width/history);

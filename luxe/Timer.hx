@@ -26,9 +26,9 @@ class Timer {
 
     } //process
 
-    public function schedule( _time_in_seconds:Float, _on_time:Void->Void, ?repeat:Bool = false ) : lumen.utils.Timer {
+    public function schedule( _time_in_seconds:Float, _on_time:Void->Void, ?repeat:Bool = false ) : snow.utils.Timer {
 
-        var t = new lumen.utils.Timer( Std.int(_time_in_seconds * 1000));
+        var t = new snow.utils.Timer( Std.int(_time_in_seconds * 1000));
 
         t.run = function () {
             if(!repeat) t.stop ();

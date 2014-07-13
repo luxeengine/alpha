@@ -1,6 +1,6 @@
 package luxe;
 
-import lumen.utils.ByteArray;
+import snow.utils.ByteArray;
 
 import luxe.ResourceManager;
     

@@ -1,8 +1,8 @@
 package phoenix;
 
 
-import lumen.render.gl.GL;
-import lumen.utils.Float32Array;
+import snow.render.gl.GL;
+import snow.utils.Float32Array;
 
 import phoenix.Matrix;
 

@@ -1,9 +1,9 @@
 package phoenix;
 
-import lumen.render.gl.GL;
-import lumen.utils.UInt8Array;
-import lumen.utils.Libs;
-import lumen.utils.ArrayBuffer;
+import snow.render.gl.GL;
+import snow.utils.UInt8Array;
+import snow.utils.Libs;
+import snow.utils.ArrayBuffer;
 
 import phoenix.Color;
 import phoenix.Vector;
@@ -201,7 +201,7 @@ class Texture extends Resource {
         // if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
         // if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
 
-        // var image_bytes : lumen.utils.ByteArray;
+        // var image_bytes : snow.utils.ByteArray;
 
         // try {
         //     image_bytes = cast lime_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );

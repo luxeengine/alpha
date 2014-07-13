@@ -1,6 +1,6 @@
 package phoenix;
 
-import lumen.render.gl.GL;
+import snow.render.gl.GL;
 import phoenix.Batcher;
 import phoenix.Texture;
 

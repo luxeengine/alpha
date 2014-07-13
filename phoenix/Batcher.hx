@@ -1,14 +1,14 @@
 package phoenix;
 
-import lumen.utils.ByteArray;
+import snow.utils.ByteArray;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 import phoenix.geometry.Vertex;
 import phoenix.Renderer;
 import phoenix.BatchState;
 
-import lumen.render.gl.GL;
-import lumen.utils.Float32Array;
+import snow.render.gl.GL;
+import snow.utils.Float32Array;
 
 import luxe.structural.BalancedBinarySearchTree;
 
@@ -612,7 +612,7 @@ class Batcher {
             // vertlist.clear();
             // tcoordlist.clear();
             // colorlist.clear();
-            // normallist.clear(); :todo:lumen:
+            // normallist.clear(); :todo:snow:
         #end //luxe_native
 
             //The current batch state values
@@ -744,7 +744,7 @@ class Batcher {
             // static_vertlist.clear();
             // static_tcoordlist.clear();
             // static_colorlist.clear();
-            // static_normallist.clear(); //:todo:lumen:
+            // static_normallist.clear(); //:todo:snow:
         #end //luxe_native
 
             //and counts
@@ -824,7 +824,7 @@ class Batcher {
             // static_vertlist.clear();
             // static_tcoordlist.clear();
             // static_colorlist.clear();
-            // static_normallist.clear(); //:todo:lumen:
+            // static_normallist.clear(); //:todo:snow:
         #end //luxe_native
 
             //and counts
