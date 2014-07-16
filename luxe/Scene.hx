@@ -182,20 +182,20 @@ class Scene extends Objects {
         }
     } //onmousemove
 //Touch
-    public function ontouchbegin(e : TouchEvent) {
+    public function ontouchdown(e : TouchEvent) {
         for(entity in entities) {
             if(entity != null) {
-                entity._ontouchbegin(e);
+                entity._ontouchdown(e);
             }
         }
-    } //ontouchbegin
-    public function ontouchend(e : TouchEvent) {
+    } //ontouchdown
+    public function ontouchup(e : TouchEvent) {
         for(entity in entities) {
             if(entity != null) {
-                entity._ontouchend(e);
+                entity._ontouchup(e);
             }
         }
-    } //ontouchend
+    } //ontouchup
     public function ontouchmove(e : TouchEvent) {
         for(entity in entities) {
             if(entity != null) {

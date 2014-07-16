@@ -407,55 +407,55 @@ class Entity extends Objects {
     } //_onmousemove
 
 //Touch
-    @:noCompletion public function _ontouchbegin(e:TouchEvent) {
+    @:noCompletion public function _ontouchdown(e:TouchEvent) {
 
         if(active == false) {
             return;
         }
 
-        _verboser('calling _ontouchbegin on ' + name);
+        _verboser('calling _ontouchdown on ' + name);
 
             //init the parent first
-        _call(this, 'ontouchbegin', [e]);
+        _call(this, 'ontouchdown', [e]);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ontouchbegin', [e]);
+            _call(_component, 'ontouchdown', [e]);
         } //for each component
 
             //now init our children, so they do the same
         for(_child in children) {
-            _child._ontouchbegin(e);
+            _child._ontouchdown(e);
         } //for each child
 
-    } //_ontouchbegin
+    } //_ontouchdown
 
-    @:noCompletion public function _ontouchend(e:TouchEvent) {
+    @:noCompletion public function _ontouchup(e:TouchEvent) {
 
         if(active == false) {
             return;
         }
 
-        _verboser('calling _ontouchend on ' + name);
+        _verboser('calling _ontouchup on ' + name);
 
             //init the parent first
-        _call(this, 'ontouchend', [e]);
+        _call(this, 'ontouchup', [e]);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ontouchend', [e]);
+            _call(_component, 'ontouchup', [e]);
         } //for each component
 
             //now init our children, so they do the same
         for(_child in children) {
-            _child._ontouchend(e);
+            _child._ontouchup(e);
         } //for each child
 
-    } //_ontouchend
+    } //_ontouchup
 
     @:noCompletion public function _ontouchmove(e:TouchEvent) {
 

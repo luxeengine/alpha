@@ -17,9 +17,9 @@ class SystemEvents {
     static public var shouldrotate      = 12;
 
     static public var redraw            = 14;
-    static public var touchbegin        = 15;
+    static public var touchdown         = 15;
     static public var touchmove         = 16;
-    static public var touchend          = 17;
+    static public var touchup           = 17;
     static public var touchtap          = 18;
     static public var change            = 19;
     static public var activate          = 20;

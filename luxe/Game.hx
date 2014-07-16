@@ -35,4 +35,20 @@ import luxe.Input;
         /** Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc. */
     public function textinput( event:TextEvent ) {}
 
+        /** Called for you when a touch is released, use the `touch_id` to track which */
+    public function touchdown( event:TouchEvent ) {}
+        /** Called for you when a touch is first pressed, use the `touch_id` to track which */
+    public function touchup( event:TouchEvent ) {}
+        /** Called for you when a touch is moved, use the `touch_id` to track which */
+    public function touchmove( event:TouchEvent ) {}
+
+        /** Called for you when a connected gamepad axis moves, use `gamepad` to determine gamepad id */
+    public function gamepadaxis( event:GamepadEvent ) {}
+        /** Called for you when a connected gamepad button is pressed, use `gamepad` to determine gamepad id */
+    public function gamepadbuttondown( event:GamepadEvent ) {}
+        /** Called for you when a connected gamepad button is released, use `gamepad` to determine gamepad id */
+    public function gamepadbuttonup( event:GamepadEvent ) {}
+        /** Called for you when a gamepad is connected or disconnected, use `gamepad` to determine gamepad id */
+    public function gamepaddevice( event:GamepadEvent ) {}
+
 } //Game

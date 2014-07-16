@@ -175,8 +175,8 @@
 
 //luxe class : luxe.States
 
-	 • function ontouchbegin(e:luxe.TouchEvent) : Void;
-	 • function ontouchend(e:luxe.TouchEvent) : Void;
+	 • function ontouchdown(e:luxe.TouchEvent) : Void;
+	 • function ontouchup(e:luxe.TouchEvent) : Void;
 	 • function ontouchmove(e:luxe.TouchEvent) : Void;
 	 • function onmousemove(e:luxe.MouseEvent) : Void;
 	 • function onmouseup(e:luxe.MouseEvent) : Void;

@@ -23,7 +23,7 @@ class RenderState {
                     GL.enable(GL.CULL_FACE);
                 } //!cull_face
             case GL.DEPTH_TEST:
-                if(true) { //:todo:snow:Luxe.core.lime.config.depth_buffer
+                if(Luxe.core.snow.config.window.depth_buffer) {
                     if(!depth_test) {
                         depth_test = true;
                         GL.enable(GL.DEPTH_TEST);
@@ -40,7 +40,7 @@ class RenderState {
                     GL.disable(GL.CULL_FACE);
                 } //cull_face
             case GL.DEPTH_TEST:
-                if(true) { //:todo:snow:Luxe.core.lime.config.depth_buffer
+                if(Luxe.core.snow.config.window.depth_buffer) {
                     if(depth_test) {
                         depth_test = false;
                         GL.disable(GL.DEPTH_TEST);

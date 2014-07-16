@@ -214,23 +214,23 @@ class States {
         }
     } //onmousemove
 
+    public function ontouchdown( e:TouchEvent ) {
+        for (state in active_states) {
+            _call(state, 'ontouchdown', [e]);
+        }
+    } //ontouchdown
+
+    public function ontouchup( e:TouchEvent ) {
+        for (state in active_states) {
+            _call(state, 'ontouchup', [e]);
+        }
+    } //ontouchup
+
     public function ontouchmove( e:TouchEvent ) {
         for (state in active_states) {
             _call(state, 'ontouchmove', [e]);
         }
     } //ontouchmove
-
-    public function ontouchend( e:TouchEvent ) {
-        for (state in active_states) {
-            _call(state, 'ontouchend', [e]);
-        }
-    } //ontouchend
-
-    public function ontouchbegin( e:TouchEvent ) {
-        for (state in active_states) {
-            _call(state, 'ontouchbegin', [e]);
-        }
-    } //ontouchbegin
 
 
 } //States

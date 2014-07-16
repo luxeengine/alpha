@@ -62,11 +62,11 @@ class Base extends State {
 	} //leave
 
 
-	public function ontouchbegin(e:TouchEvent) {
-		board.ontouchbegin(e);
+	public function ontouchdown(e:TouchEvent) {
+		board.ontouchdown(e);
 	}
-	public function ontouchend(e:TouchEvent) {
-		board.ontouchend(e);
+	public function ontouchup(e:TouchEvent) {
+		board.ontouchup(e);
 	}
 	public function ontouchmove(e:TouchEvent) {
 		board.ontouchmove(e);

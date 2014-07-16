@@ -31,6 +31,8 @@ enum InteractState {
 
 /** An unknown state */
     unknown;
+/** An none state */
+    none;
 /** In a pressed state */
     down;
 /** In a released state */
@@ -39,6 +41,8 @@ enum InteractState {
     move;
 /** A mouse wheel state */
     wheel;
+/** A gamepad axis state */
+    axis;
 
 } //MouseState
 
@@ -83,8 +87,6 @@ typedef TouchEvent = {
     var timestamp : Float;
         /** The id of the touch that this event comes from, a finger id */
     var touch_id : Int;
-        /** The device id this touch comes from */
-    var device_id : Int;
         /** The x position in the window of the touch event */
     var x : Float;
         /** The x position in the window of the touch event */
@@ -144,7 +146,7 @@ typedef GamepadEvent = {
         /** The state this event is in */
     var state : InteractState;
         /** The id of the gamepad this event comes from */
-    var which : Int;
+    var gamepad : Int;
         /** The button id, if the event `type` is `button` */
     var button : Int;
         /** The axis id, if the event `type` is `button` */

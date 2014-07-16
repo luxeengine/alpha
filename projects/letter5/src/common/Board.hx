@@ -449,7 +449,7 @@ class Board {
     var mousedown : Bool;
     var touchpos : Vector;
 
-    public function ontouchbegin(e:TouchEvent) {
+    public function ontouchdown(e:TouchEvent) {
         
         if(mousedown == false) {
             released = false;
@@ -460,7 +460,7 @@ class Board {
 
         ondrag( touchpos, ActionType.down );
     }
-    public function ontouchend(e:TouchEvent) {
+    public function ontouchup(e:TouchEvent) {
 
         released = true;
         mousedown = false;

@@ -31,26 +31,26 @@ class Main extends luxe.Game {
         Luxe.fixed_timestep = 0.01666667;
 
         states.init();
-        
+
         Luxe.audio.create('distant_explode', 'assets/distant_explode.ogg');
         Luxe.audio.create('enemy_explode', 'assets/enemy_explode.ogg');
-        Luxe.audio.create('take_damage', 'assets/take_damage.ogg');        
-        Luxe.audio.create('die', 'assets/die.ogg');      
-        Luxe.audio.create('jump', 'assets/jump.ogg');      
+        Luxe.audio.create('take_damage', 'assets/take_damage.ogg');
+        Luxe.audio.create('die', 'assets/die.ogg');
+        Luxe.audio.create('jump', 'assets/jump.ogg');
         Luxe.audio.create('shoot', 'assets/shoot.ogg');
         Luxe.audio.create('shoot2', 'assets/shoot2.ogg');
         Luxe.audio.create('music', 'assets/UMBRA_ANDRIO.ogg', true);
 
             //create the geometries
         left_geom = Luxe.draw.box({
-            x:0,               y:-Luxe.screen.h, 
+            x:0,               y:-Luxe.screen.h,
             w:Luxe.screen.w/4, h:Luxe.screen.h,
             color: new Color(0,0,0,1).rgb(0x141615),
             depth:10
         });
 
         right_geom = Luxe.draw.box({
-            x:Luxe.screen.w*0.75, y:Luxe.screen.h*2, 
+            x:Luxe.screen.w*0.75, y:Luxe.screen.h*2,
             w:Luxe.screen.w/4, h:Luxe.screen.h,
             color: new Color(0,0,0,1).rgb(0xfafeff),
             depth:10
@@ -101,10 +101,10 @@ class Main extends luxe.Game {
         Actuate.tween( left_geom.transform.pos, 0.3, { y:0 } );
         Actuate.tween( right_geom.transform.pos, 0.4, { y:0 } ).onComplete(function(){
             text.color.tween(0.2, {a:1}, true);
-            next_tap = function(){ 
+            next_tap = function(){
                 hide_start(50, function(){
                     states.set('stage1.level1');
-                });      
+                });
             }
         });
 
@@ -130,7 +130,7 @@ class Main extends luxe.Game {
             next_tap = function() {
                 // if(_next != '') {
                     hide_start(0, function(){
-                        states.set('stage1.level1', true); 
+                        states.set('stage1.level1', true);
                     });
                 // }
             }
@@ -147,12 +147,12 @@ class Main extends luxe.Game {
         });
     }
 
-    public function ontouchend(e:TouchEvent) {
-        states.ontouchend(e);
+    public function ontouchup(e:TouchEvent) {
+        states.ontouchup(e);
     }
-    
-    public function ontouchbegin(e:TouchEvent) {
-        states.ontouchbegin(e);
+
+    public function ontouchdown(e:TouchEvent) {
+        states.ontouchdown(e);
     }
 
     public function ontouchmove(e:TouchEvent) {

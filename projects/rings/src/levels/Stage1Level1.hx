@@ -568,11 +568,11 @@ class Stage1Level1 extends State {
 
     } //move_player
 
-    public function ontouchbegin( e:TouchEvent ) {
+    public function ontouchdown( e:TouchEvent ) {
         holding = true;
         on_down(e.pos);
     }
-    public function ontouchend( e:TouchEvent ) {
+    public function ontouchup( e:TouchEvent ) {
         holding = false;
         downmode = PlayMode.none;
     }

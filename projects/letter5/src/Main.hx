@@ -86,11 +86,11 @@ class Main extends luxe.Game {
     public function ontouchmove(e:TouchEvent) {
         states.ontouchmove(e);
     } //ontouchmove
-    public function ontouchbegin(e:TouchEvent) {
-        states.ontouchbegin(e);
+    public function ontouchdown(e:TouchEvent) {
+        states.ontouchdown(e);
     } //ontouchmove
-    public function ontouchend(e:TouchEvent) {
-        states.ontouchend(e);
+    public function ontouchup(e:TouchEvent) {
+        states.ontouchup(e);
     } //ontouchmove
 
     public function update(dt:Float) {

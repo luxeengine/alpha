@@ -150,7 +150,7 @@ class Core extends snow.App {
         _debug('ready.');
 
             //Call the main ready function
-            //and send the ready event to the host
+            //and send the ready event to the game
         game.ready();
 
             //After we are ready we can init the scene
@@ -183,8 +183,8 @@ class Core extends snow.App {
         renderer = new Renderer( this );
             //assign the globals
         Luxe.renderer = renderer;
-            //store the size for access from API, :todo : Window position can go here.
-        screen = new luxe.Screen( this, 0, 0, config.window.width, config.window.height );
+            //store the size for access from API
+        screen = new luxe.Screen( this, snow.window.x, snow.window.y, config.window.width, config.window.height );
 
             //Now make sure
             //they start up
@@ -229,7 +229,7 @@ class Core extends snow.App {
         shutting_down = true;
 
             //shutdown the game class
-        //host.destroyed(); //:todo:
+        game.destroyed();
 
             //shutdown the default scene
         scene.destroy();
@@ -313,10 +313,10 @@ class Core extends snow.App {
         scene.update(dt);
             debug.end(core_tag_scene);
 
-//Update the game class for the host
-            debug.start( host_tag_update );
+//Update the game class for the game
+            debug.start( game_tag_update );
         game.update(dt);
-            debug.end( host_tag_update );
+            debug.end( game_tag_update );
 
 //And finally the debug stuff
             #if luxe_fullprofile debug.start(core_tag_debug); #end
@@ -357,7 +357,7 @@ class Core extends snow.App {
 
     } //show_console
 
-// //window events
+//window events
 //     public function onresize(e) {
 //             //update the screen sizes
 //         Luxe.screen.w = e.x;
@@ -367,8 +367,8 @@ class Core extends snow.App {
 //         debug.onresize(e);
 //             //and the defaults
 //         renderer.onresize(e);
-//             //and then the host
-//         if(host.onresize != null) host.onresize(e);
+//             //and then the game
+//         if(game.onresize != null) game.onresize(e);
 
 //     } // onresize
 
@@ -578,136 +578,180 @@ class Core extends snow.App {
     } //onmousewheel
 
 //touch
-//     var touches_down : Map<Int, TouchEvent>;
 
-//     public function ontouchbegin(e : TouchEvent) {
+    override function ontouchdown( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
-//          _touch_pos = new luxe.Vector( e.x, e.y );
-//         e.pos = _touch_pos;
+         _touch_pos = new luxe.Vector( x, y );
 
-//         if(!shutting_down) {
-//             scene.ontouchbegin(e);
-//         }
+        var event : TouchEvent = {
+            state : InteractState.down,
+            timestamp : timestamp,
+            touch_id : touch_id,
+            x : x,
+            y : y,
+            dx : x,
+            dy : y,
+            pos : _touch_pos
+        }
 
-//         if(host.ontouchbegin != null) {
-//             host.ontouchbegin(e);
-//         }
+        if(!shutting_down) {
+            scene.ontouchdown(event);
+        }
 
-//         if(touches_down == null) {
-//             touches_down = new Map();
-//         }
+        game.touchdown(event);
 
-//         touches_down.set(e.ID, e);
+            //3 finger tap when console opens will switch tabs
+        if(touch_id == 3) {
+            if(console_visible) {
+                debug.switch_view();
+            }
+        }
 
-//             //3 finger tap when console opens will switch tabs
-//         if(Lambda.count(touches_down) >= 3) {
-//             if(console_visible) {
-//                 debug.switch_view();
-//             }
-//         }
+            //4 finger tap toggles console
+        if(touch_id == 4) {
+            show_console( !console_visible );
+        }
 
-//             //4 finger tap toggles console
-//         if(Lambda.count(touches_down) >= 4) {
-//             show_console( !console_visible );
-//         }
+    } //ontouchdown
 
-//     } //ontouchbegin
+    override function ontouchup( x:Float, y:Float, touch_id:Int, timestamp:Float ) {
 
-//     public function ontouchend(e : TouchEvent) {
+         _touch_pos = new luxe.Vector( x, y );
 
-//          _touch_pos = new luxe.Vector( e.x, e.y );
-//         e.pos = _touch_pos;
+        var event : TouchEvent = {
+            state : InteractState.up,
+            timestamp : timestamp,
+            touch_id : touch_id,
+            x : x,
+            y : y,
+            dx : x,
+            dy : y,
+            pos : _touch_pos
+        }
 
-//         if(!shutting_down) {
-//                 //pass to scene
-//             scene.ontouchend(e);
-//         }
+        if(!shutting_down) {
+                //pass to scene
+            scene.ontouchup( event );
+        }
 
-//         if(host.ontouchend != null) {
-//             host.ontouchend(e);
-//         }
+        game.touchup( event );
 
-//         touches_down.remove(e.ID);
+    } //ontouchup
 
-//     } //ontouchend
+    override function ontouchmove( x:Float, y:Float, dx:Float, dy:Float, touch_id:Int, timestamp:Float ) {
 
-//     public function ontouchmove(e : TouchEvent) {
+        _touch_pos = new luxe.Vector( x, y );
 
-//         _touch_pos = new luxe.Vector( e.x, e.y );
-//         e.pos = _touch_pos;
+        var event : TouchEvent = {
+            state : InteractState.move,
+            timestamp : timestamp,
+            touch_id : touch_id,
+            x : x,
+            y : y,
+            dx : dx,
+            dy : dy,
+            pos : _touch_pos
+        }
 
-//         if(!shutting_down) {
-//                 //pass to scene
-//             scene.ontouchmove(e);
-//         }
+        if(!shutting_down) {
+                //pass to scene
+            scene.ontouchmove(event);
+        }
 
-//         if(host.ontouchmove != null) {
-//             host.ontouchmove(e);
-//         }
+        game.touchmove(event);
 
-//     } //ontouchmove
+    } //ontouchmove
 
-// //joystick
+//gamepad
 
-//     public function ongamepadaxis(e) {
+    override function ongamepadaxis( gamepad:Int, axis:Int, value:Float, timestamp:Float ) {
 
-//         if(!shutting_down) {
-//             scene.ongamepadaxis(e);
-//         }
+        var event : GamepadEvent = {
+            timestamp : timestamp,
+            type : GamepadEventType.axis,
+            state : InteractState.axis,
+            gamepad : gamepad,
+            button : -1,
+            axis : axis,
+            value : value
+        }
 
-//         if(host.ongamepadaxis != null) {
-//             host.ongamepadaxis(e);
-//         }
+        if(!shutting_down) {
+            scene.ongamepadaxis(event);
+        }
 
-//     } //ongamepadaxis
+        game.gamepadaxis(event);
 
-//     public function ongamepadball(e) {
+    } //ongamepadaxis
 
-//         if(!shutting_down) {
-//             scene.ongamepadball(e);
-//         }
+    override function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
-//         if(host.ongamepadball != null) {
-//             host.ongamepadball(e);
-//         }
+        var event : GamepadEvent = {
+            timestamp : timestamp,
+            type : GamepadEventType.button,
+            state : InteractState.down,
+            gamepad : gamepad,
+            button : button,
+            axis : -1,
+            value : value
+        }
 
-//     } //ongamepadball
+        if(!shutting_down) {
+            scene.ongamepadbuttondown(event);
+        }
 
-//     public function ongamepadhat(e) {
+        game.gamepadbuttondown(event);
 
-//         if(!shutting_down) {
-//             scene.ongamepadhat(e);
-//         }
+    } //ongamepadbuttondown
 
-//         if(host.ongamepadhat != null) {
-//             host.ongamepadhat(e);
-//         }
+    override function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
-//     } //ongamepadhat
+        var event : GamepadEvent = {
+            timestamp : timestamp,
+            type : GamepadEventType.button,
+            state : InteractState.up,
+            gamepad : gamepad,
+            button : button,
+            axis : -1,
+            value : value
+        }
 
-//     public function ongamepadbuttondown(e) {
+        if(!shutting_down) {
+            scene.ongamepadbuttonup(event);
+        }
 
-//         if(!shutting_down) {
-//             scene.ongamepadbuttondown(e);
-//         }
+        game.gamepadbuttonup(event);
 
-//         if(host.ongamepadbuttondown != null) {
-//             host.ongamepadbuttondown(e);
-//         }
+    } //ongamepadbuttonup
 
-//     } //ongamepadbuttondown
+    override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
 
-//     public function ongamepadbuttonup(e) {
+        var _event_type : GamepadEventType = GamepadEventType.unknown;
 
-//         if(!shutting_down) {
-//             scene.ongamepadbuttonup(e);
-//         }
+        switch(type) {
+            case GamepadDeviceEventType.device_added:
+                _event_type = GamepadEventType.device_added;
+            case GamepadDeviceEventType.device_removed:
+                _event_type = GamepadEventType.device_removed;
+            case GamepadDeviceEventType.device_remapped:
+                _event_type = GamepadEventType.device_remapped;
+            default:
+        }
 
-//         if(host.ongamepadbuttonup != null) {
-//             host.ongamepadbuttonup(e);
-//         }
 
-//     } //ongamepadbuttonup
+        var event : GamepadEvent = {
+            timestamp : timestamp,
+            type : _event_type,
+            state : InteractState.none,
+            gamepad : gamepad,
+            button : -1,
+            axis : -1,
+            value : 0
+        }
+
+        game.gamepaddevice(event);
+
+    }
 
 //     function process_loading_thread() {
 //         #if (luxe_native && !luxe_threading_disabled)
@@ -738,7 +782,7 @@ class Core extends snow.App {
 
 //Noisy stuff
 
-    static var host_tag_update : String = 'host.update';
+    static var game_tag_update : String = 'game.update';
     static var core_tag_render : String = 'core.render';
     static var core_tag_debug : String = 'core.debug';
     static var core_tag_physics : String = 'core.physics';
