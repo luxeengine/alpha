@@ -329,26 +329,17 @@ class Core extends snow.App {
 
         debug.start(core_tag_render);
 
-        // game.prerender();
+        game.pre_render();
 
         if(renderer != null && renderer.process != null) {
             renderer.process();
         }
 
-        // game.postrender();
-
-        window.swap();
+        game.post_render();
 
         debug.end(core_tag_render);
 
     } //render
-
-// //External overrides
-//     public function set_renderer( _renderer:Renderer ) {
-//         if(_renderer != null) {
-//             renderer = _renderer;
-//         }
-//     } //set_renderer
 
     public function show_console(_show:Bool = true) {
 
