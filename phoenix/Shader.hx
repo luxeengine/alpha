@@ -7,7 +7,7 @@ import luxe.ResourceManager;
 import phoenix.Vector;
 import phoenix.Texture;
 
-import snow.render.gl.GL;
+import snow.render.opengl.GL;
 
 enum UniformValueType {
     int;

@@ -1,6 +1,6 @@
 package phoenix;
 
-import snow.render.gl.GL;
+import snow.render.opengl.GL;
 import snow.utils.UInt8Array;
 import snow.utils.Libs;
 import snow.utils.ArrayBuffer;

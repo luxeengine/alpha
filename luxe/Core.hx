@@ -184,7 +184,7 @@ class Core extends snow.App {
             //assign the globals
         Luxe.renderer = renderer;
             //store the size for access from API, :todo : Window position can go here.
-        screen = new luxe.Screen( this, 0, 0, config.window_config.width, config.window_config.height );
+        screen = new luxe.Screen( this, 0, 0, config.window.width, config.window.height );
 
             //Now make sure
             //they start up
@@ -216,7 +216,7 @@ class Core extends snow.App {
 
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
-        snow.main_window.window_render_handler = render;
+        snow.window.onrender = render;
 
     } //init
 
@@ -372,43 +372,67 @@ class Core extends snow.App {
 
 //     } // onresize
 
-// //input events
-// //keys
-    override function onkeydown( e:KeyEvent ) {
+//input events
+//keys
+    override function onkeydown( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
+
+        var event : KeyEvent = {
+            scancode : scancode,
+            keycode : keycode,
+            state : InteractState.down,
+            mod : mod,
+            repeat : repeat,
+            timestamp : timestamp,
+            window_id : window_id
+        }
 
         if(!shutting_down) {
                 //check for named input
-            input.check_named_keys(e, true);
+            input.check_named_keys(event, true);
                 //pass to scene
-            scene.onkeydown(e);
+            scene.onkeydown(event);
                 //forward to debug module
-            debug.onkeydown(e);
+            if(debug != null) {
+                debug.onkeydown(event);
+            }
         }
 
-        game.onkeydown(e);
+        game.keydown(event);
 
-        if(e.keycode == Key.BACKQUOTE) {
+        if(keycode == Key.BACKQUOTE) {
             show_console( !console_visible );
         }
 
     } //onkeydown
 
-    override function onkeyup( e:KeyEvent ) {
+    override function onkeyup( keycode:Int, scancode:Int, repeat:Bool, mod:ModState, timestamp:Float, window_id:Int ) {
+
+        var event : KeyEvent = {
+            scancode : scancode,
+            keycode : keycode,
+            state : InteractState.up,
+            mod : mod,
+            repeat : repeat,
+            timestamp : timestamp,
+            window_id : window_id
+        }
 
         if(!shutting_down) {
                 //check for named input
-            input.check_named_keys(e);
+            input.check_named_keys(event);
                 //pass to scene
-            scene.onkeyup(e);
+            scene.onkeyup(event);
                 //forward to debug module
-            if(debug!=null)debug.onkeyup(e);
+            if(debug != null) {
+                debug.onkeyup(event);
+            }
         }
 
-        game.onkeyup(e);
+        game.keyup(event);
 
     } //onkeyup
 
-// //input
+//input
 
     public function oninputdown( _name:String, e:InputEvent ) {
 
@@ -416,7 +440,7 @@ class Core extends snow.App {
             scene.oninputdown(_name,e);
         }
 
-        game.oninputdown(_name,e);
+        game.inputdown(_name,e);
 
     } //oninputdown
 
@@ -426,75 +450,134 @@ class Core extends snow.App {
             scene.oninputup(_name,e);
         }
 
-        game.oninputup(_name,e);
+        game.inputup(_name,e);
 
     } //oninputup
 
-// //mouse
+//mouse
+    function mouse_button_from_number( button : Int ) : MouseButton {
 
-    override function onmousedown( _event : snow.types.Types.MouseEvent ) {
+        switch(button) {
 
-        var e : MouseEvent = cast _event;
+            case    1 : return MouseButton.left;
+            case    2 : return MouseButton.middle;
+            case    3 : return MouseButton.right;
+            case    4 : return MouseButton.extra1;
+            case    5 : return MouseButton.extra2;
+            default   : return MouseButton.none;
 
-            //this has to be a new value because if it's cached it sends in references that get kept by user code
-        _mouse_pos = new luxe.Vector( e.x, e.y );
-        e.pos = _mouse_pos;
-        Luxe.mouse = _mouse_pos;
-
-        if(!shutting_down) {
-            input.check_named_mouse(e, true);
-            scene.onmousedown(e);
-            debug.onmousedown(e);
         }
 
-        game.onmousedown(e);
+        return MouseButton.none;
+
+    } //mouse_button_from_number
+
+    override function onmousedown( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
+
+            //this has to be a new value because if it's cached it sends in references that get kept by user code
+        _mouse_pos = new luxe.Vector( x, y );
+        Luxe.mouse = _mouse_pos;
+
+        var event : MouseEvent = {
+            timestamp : timestamp,
+            window_id : window_id,
+            state : InteractState.down,
+            button : mouse_button_from_number(button),
+            x : x,
+            y : y,
+            xrel : x,
+            yrel : y,
+            pos : _mouse_pos,
+        }
+
+        if(!shutting_down) {
+            input.check_named_mouse(event, true);
+            scene.onmousedown(event);
+            debug.onmousedown(event);
+        }
+
+        game.mousedown(event);
 
     } //onmousedown
 
-    override function onmousewheel( _event : snow.types.Types.MouseEvent ) {
+    override function onmouseup( x:Int, y:Int, button:Int, timestamp:Float, window_id:Int ) {
 
-        if(!shutting_down) {
-            input.check_named_mouse(e, false);
-            scene.onmousewheel(e);
-            debug.onmousewheel(e);
-        }
-
-        game.onmousewheel(e);
-
-    } //onmousewheel
-
-    override function onmouseup( _event : snow.types.Types.MouseEvent ) {
-
-        _mouse_pos = new luxe.Vector( e.x, e.y );
-        e.pos = _mouse_pos;
+        _mouse_pos = new luxe.Vector( x, y );
         Luxe.mouse = _mouse_pos;
 
-        if(!shutting_down) {
-            input.check_named_mouse(e);
-            scene.onmouseup(e);
-            debug.onmouseup(e);
+        var event : MouseEvent = {
+            timestamp : timestamp,
+            window_id : window_id,
+            state : InteractState.up,
+            button : mouse_button_from_number(button),
+            x : x,
+            y : y,
+            xrel : x,
+            yrel : y,
+            pos : _mouse_pos,
         }
 
-        game.onmouseup(e);
+        if(!shutting_down) {
+            input.check_named_mouse(event);
+            scene.onmouseup(event);
+            debug.onmouseup(event);
+        }
+
+        game.mouseup(event);
 
     } //onmouseup
 
-    override function onmousemove(e : MouseEvent) {
+    override function onmousemove( x:Int, y:Int, xrel:Int, yrel:Int, timestamp:Float, window_id:Int ) {
 
-        _mouse_pos = new luxe.Vector( e.x, e.y );
-        e.pos = _mouse_pos;
+        _mouse_pos = new luxe.Vector( x, y );
         Luxe.mouse = _mouse_pos;
 
-        if(!shutting_down) {
-            scene.onmousemove(e);
-            debug.onmousemove(e);
+        var event : MouseEvent = {
+            timestamp : timestamp,
+            window_id : window_id,
+            state : InteractState.move,
+            button : MouseButton.none,
+            x : x,
+            y : y,
+            xrel : x,
+            yrel : y,
+            pos : _mouse_pos,
         }
 
-        game.onmousemove(e);
+        if(!shutting_down) {
+            scene.onmousemove(event);
+            debug.onmousemove(event);
+        }
+
+        game.mousemove(event);
 
     } //onmousemove
 
-// //touch
+    override function onmousewheel( x:Int, y:Int, timestamp:Float, window_id:Int ) {
+
+        var event : MouseEvent = {
+            timestamp : timestamp,
+            window_id : window_id,
+            state : InteractState.wheel,
+            button : MouseButton.none,
+            x : x,
+            y : y,
+            xrel : x,
+            yrel : y,
+            pos : _mouse_pos,
+        }
+
+        if(!shutting_down) {
+            input.check_named_mouse(event, false);
+            scene.onmousewheel(event);
+            debug.onmousewheel(event);
+        }
+
+        game.mousewheel(event);
+
+    } //onmousewheel
+
+//touch
 //     var touches_down : Map<Int, TouchEvent>;
 
 //     public function ontouchbegin(e : TouchEvent) {

@@ -18,7 +18,7 @@ import luxe.Entity;
 import luxe.Mesh;
 import luxe.utils.Maths;
 
-import snow.render.gl.GL;
+import snow.render.opengl.GL;
 
 import phoenix.formats.obj.Reader;
 

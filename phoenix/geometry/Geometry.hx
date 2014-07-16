@@ -17,7 +17,7 @@ import snow.utils.ByteArray;
 import snow.utils.Float32Array;
 import snow.utils.IMemoryRange;
 
-import snow.render.gl.GL;
+import snow.render.opengl.GL;
 
 typedef GeometryKey = {
 

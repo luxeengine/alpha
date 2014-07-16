@@ -9,7 +9,7 @@ class Main extends luxe.Game {
     public var delta_time_text : luxe.Text;
 
 
-    public function ready() {
+    override function ready() {
 
             //Create some text!
         delta_time_text = new luxe.Text({
@@ -21,23 +21,23 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function keyup( e:KeyEvent ) {
 
             //quit when we press escape
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
             //Update the text each frame
         delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
 
     } //update
 
-    public function destroyed() {
+    override function destroyed() {
 
     } //destroyed
 

@@ -1,6 +1,6 @@
 package phoenix;
 
-import snow.render.gl.GL;
+import snow.render.opengl.GL;
 import snow.utils.ByteArray;
 import snow.utils.Libs;
 
@@ -105,7 +105,7 @@ class Renderer {
 
     #end //no_debug_console
 
-        if(true) { //:todo:snow: Luxe.core.lime.config.depth_buffer
+        if(core.snow.config.window.depth_buffer) {
                 // Enable z buffer use
             GL.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -188,11 +188,13 @@ class Renderer {
 
     public function clear( _color:Color ) {
 
-        if(_color == null) _color = clear_color;
+        if(_color == null) {
+            _color = clear_color;
+        }
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( true ) { //:todo:snow Luxe.core.lime.config.depth_buffer 
+        if( core.snow.config.window.depth_buffer ) {
             GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
             GL.clearDepth(1.0);
         } else {

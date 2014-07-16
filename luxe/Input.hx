@@ -2,44 +2,194 @@ package luxe;
 
 import luxe.Core;
 import luxe.Log._debug;
+import snow.types.Types;
 
-typedef Key         =   snow.input.Keycodes.Keycodes;
-typedef Scan        =   snow.input.Keycodes.Scancodes;
+typedef ModState        =   snow.types.Types.ModState;
+typedef Key             =   snow.input.Keycodes.Keycodes;
+typedef Scan            =   snow.input.Keycodes.Scancodes;
 
-typedef MouseButton     =   snow.types.Types.MouseButton;
-typedef PressedState    =   snow.types.Types.PressedState;
-typedef TouchState      =   snow.types.Types.TouchState;
+/** A typed mouse button id */
+enum MouseButton {
 
-    //Event types
-typedef KeyEvent = snow.types.Types.KeyEvent;
-typedef GamepadEvent = snow.types.Types.GamepadEvent;
+/** no mouse buttons */
+    none;
+/** left mouse button */
+    left;
+/** middle mouse button */
+    middle;
+/** right mouse button */
+    right;
+/** extra button pressed (4) */
+    extra1;
+/** extra button pressed (5) */
+    extra2;
 
+} //MouseButton
+
+/** A typed state for mouse, touch, or pressed/similar */
+enum InteractState {
+
+/** An unknown state */
+    unknown;
+/** In a pressed state */
+    down;
+/** In a released state */
+    up;
+/** In a moving state */
+    move;
+/** A mouse wheel state */
+    wheel;
+
+} //MouseState
+
+/** A typed text event type */
+enum TextEventType {
+
+/** An unknown event */
+    unknown;
+/** An edit text typing event */
+    edit;
+/** An input text typing event */
+    input;
+
+} //TextEventType
+
+/** Information about a keyboard event */
+typedef KeyEvent = {
+
+        /** The `snow.input.Scan` code value for this event */
+    var scancode : Int;
+        /** The `snow.input.Key` code value for this event */
+    var keycode : Int;
+        /** The state of the key in this event */
+    var state : InteractState;
+        /** The modifier state of this event */
+    var mod : ModState;
+        /** If this value is bigger than 0 this is a key repeat event of a key held down */
+    var repeat : Bool;
+        /** The time in seconds when this touch event occurred, use for deltas */
+    var timestamp : Float;
+        /** The window id this event originated from */
+    var window_id : Int;
+
+} //KeyEvent
+
+/** Information about a touch event */
 typedef TouchEvent = {
-    > snow.types.Types.TouchEvent,
+
+        /** The state this touch event is in */
+    var state : InteractState;
+        /** The time in seconds when this touch event occurred, use for deltas */
+    var timestamp : Float;
+        /** The id of the touch that this event comes from, a finger id */
+    var touch_id : Int;
+        /** The device id this touch comes from */
+    var device_id : Int;
+        /** The x position in the window of the touch event */
+    var x : Float;
+        /** The x position in the window of the touch event */
+    var y : Float;
+        /** The delta x value of the touch event, if the state is `moving` */
+    var dx : Float;
+        /** The delta y value of the touch event, if the state is `moving` */
+    var dy : Float;
+        /** A convenience vector access of the x and y position */
     var pos : luxe.Vector;
+
 } //TouchEvent
 
+/** Information about a text input event */
+typedef TextEvent = {
+
+        /** The text that this event has generated */
+    var text : String;
+        /** The type of text event */
+    var type : TextEventType;
+        /** The time in seconds when this touch event occurred, use for deltas */
+    var timestamp : Float;
+        /** The window id this event originated from */
+    var window_id : Int;
+        /** The start position, if the `type` is `edit` */
+    var start : Int;
+        /** The length position, if the `type` is `edit` */
+    var length : Int;
+
+} //TextEvent
+
+/** A typed gamepad event type */
+enum GamepadEventType {
+
+/** An unknown event */
+    unknown;
+/** An axis change event */
+    axis;
+/** A button event */
+    button;
+/** A device added event */
+    device_added;
+/** A device removed event */
+    device_removed;
+/** A device was remapped */
+    device_remapped;
+
+} //GamepadEventType
+
+/** Information about a gamepad event */
+typedef GamepadEvent = {
+
+        /** The time in seconds when this gamepad event occurred, use for deltas */
+    var timestamp : Float;
+        /** The type of gamepad event that this corresponds with */
+    var type : GamepadEventType;
+        /** The state this event is in */
+    var state : InteractState;
+        /** The id of the gamepad this event comes from */
+    var which : Int;
+        /** The button id, if the event `type` is `button` */
+    var button : Int;
+        /** The axis id, if the event `type` is `button` */
+    var axis : Int;
+        /** The axis value, if the event `type` is `axis` */
+    var value : Float;
+
+} //GamepadEvent
+
 typedef MouseEvent = {
-    > snow.types.Types.MouseEvent,
+
+        /** The time in seconds when this touch event occurred, use for deltas */
+    var timestamp : Float;
+        /** The window id this event originated from */
+    var window_id : Int;
+        /** The state this event is in */
+    var state : InteractState;
+        /** The button id, if the event `state` is `down` or `up` */
+    var button : MouseButton;
+        /** The x position in the window of the mouse event */
+    var x : Int;
+        /** The y position in the window of the mouse event */
+    var y : Int;
+        /** The relative x position if `state` is `move` or a window has grabbed state */
+    var xrel : Int;
+        /** The relative y position if `state` is `move` or a window has grabbed state */
+    var yrel : Int;
+        /** A convenience vector access of the x and y position */
     var pos : luxe.Vector;
+
 } //MouseEvent
 
 enum InputType {
+
     mouse;
     touch;
     keys;
     gamepad;
-}
 
-enum InputState {
-    down;
-    up;
-}
+} //InputType
 
 typedef InputEvent = {
     name             : String,
     type             : InputType,
-    state            : InputState,
+    state            : InteractState,
     ?touch_event     : TouchEvent,
     ?mouse_event     : MouseEvent,
     ?key_event       : KeyEvent,
@@ -132,14 +282,14 @@ class Input {
                 // core.oninputdown( _f, {
                 //     name : _f,
                 //     type : InputType.keys,
-                //     state : InputState.down,
+                //     state : InteractState.down,
                 //     key_event : e
                 // });
             } else {
                 // core.oninputup( _f, {
                 //     name : _f,
                 //     type : InputType.keys,
-                //     state : InputState.up,
+                //     state : InteractState.up,
                 //     key_event : e
                 // });
             }
@@ -166,14 +316,14 @@ class Input {
                 // core.oninputdown( _f, {
                 //     name : _f,
                 //     type : InputType.mouse,
-                //     state : InputState.down,
+                //     state : InteractState.down,
                 //     mouse_event : e
                 // });
             } else {
                 // core.oninputup( _f, {
                 //     name : _f,
                 //     type : InputType.mouse,
-                //     state : InputState.up,
+                //     state : InteractState.up,
                 //     mouse_event : e
                 // });
             }

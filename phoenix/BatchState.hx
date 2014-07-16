@@ -6,7 +6,7 @@ import phoenix.Batcher;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.GeometryState;
 
-import snow.render.gl.GL;
+import snow.render.opengl.GL;
 
 class BatchState {
 
