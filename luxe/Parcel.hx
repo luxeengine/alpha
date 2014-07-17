@@ -88,6 +88,7 @@ class Parcel extends luxe.ResourceManager {
     public function load() {
 
         time_start_load = Luxe.time;
+        current_count = 0;
 
         total_items =
             texture_list.length +
