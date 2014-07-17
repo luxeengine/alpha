@@ -125,6 +125,7 @@ class States {
                 _debug('removed ${current_state.name}, now at ${Lambda.count(active_states)} active_states');
 
             _call(current_state, 'leave',[_leave_with] );
+
             current_state = null;
 
         } //current_state != null
@@ -134,8 +135,9 @@ class States {
                 _debug('found state named $name, calling enter');
 
             current_state = _states.get(name);
+            active_states.push( current_state );
+
             _call(current_state, 'enter',[_enter_with] );
-            active_states.push (current_state);
 
                 _debug('enter called on $name, now at ${Lambda.count(active_states)} active_states');
 
