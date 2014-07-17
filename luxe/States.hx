@@ -3,6 +3,10 @@ package luxe;
 import luxe.Input;
 import luxe.Objects;
 
+import luxe.Log.log;
+import luxe.Log._debug;
+import luxe.Log._verbose;
+
 import luxe.options.StateOptions;
 
 class State extends Objects {
@@ -66,7 +70,7 @@ class States {
 
         if(_temp_name.length == 0) {
             _temp_name = Luxe.utils.uniqueid();
-            trace("warning ; State being added with no name " + type);
+            trace("warning ; State being added with no name " + type + ", this means setting it by name requires using a uniqueid : " + _temp_name);
         } else {
             _temp_name = _name;
         }
@@ -82,7 +86,7 @@ class States {
             //store reference of the owner
         _state_instance.machine = this;
             //debug stuff
-        //trace('adding a state to ' + name + ' called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
+        _debug('adding a state called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
 
             //return the state instance
         return _state;
@@ -92,6 +96,7 @@ class States {
     public function enable<T>( _name:String, ?_enable_with:T ) {
         var state = _states.get( _name );
         if(state != null) {
+            _debug('enabling a state ' + _name );
             _call(state, 'enabled',[_enable_with] );
             active_states.push(state);
         }
@@ -100,6 +105,7 @@ class States {
     public function disable<T>( _name:String, ?_disable_with:T  ) {
         var state = _states.get( _name );
         if(state != null) {
+            _debug('disabling a state ' + _name );
             _call(state, 'disabled',[_disable_with] );
             active_states.remove( state );
         }
@@ -107,9 +113,17 @@ class States {
 
     public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2 ) {
 
+        _debug('attempt to set state to $name');
+
         if (current_state != null) {
 
+                _debug('current state was valid, leaving current state : ${current_state.name} (${current_state.active})');
+                _debug('currently at ${Lambda.count(active_states)} active_states');
+
             active_states.remove( current_state );
+
+                _debug('removed ${current_state.name}, now at ${Lambda.count(active_states)} active_states');
+
             _call(current_state, 'leave',[_leave_with] );
             current_state = null;
 
@@ -117,9 +131,13 @@ class States {
 
         if (_states.exists(name)) {
 
+                _debug('found state named $name, calling enter');
+
             current_state = _states.get(name);
             _call(current_state, 'enter',[_enter_with] );
             active_states.push (current_state);
+
+                _debug('enter called on $name, now at ${Lambda.count(active_states)} active_states');
 
         } //if states.exists(name)
 
