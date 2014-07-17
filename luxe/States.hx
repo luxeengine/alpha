@@ -137,9 +137,9 @@ class States {
             current_state = _states.get(name);
             active_states.push( current_state );
 
-            _call(current_state, 'enter',[_enter_with] );
+                _debug('calling enter on $name, now at ${Lambda.count(active_states)} active_states');
 
-                _debug('enter called on $name, now at ${Lambda.count(active_states)} active_states');
+            _call(current_state, 'enter',[_enter_with] );
 
         } //if states.exists(name)
 
