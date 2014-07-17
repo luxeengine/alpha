@@ -43,7 +43,7 @@ class TexturePackerJSON {
 
         } //json_type
 
-        trace("Parsing json with type : " + json_type);
+        luxe.Log._verbose("Parsing json with type : " + json_type);
 
         switch(json_type) {
             case hash: {
