@@ -237,8 +237,10 @@ class Entity extends Objects {
             //kill any fixed rate timers
         _stop_fixed_rate_timer();
 
-            //mark the flag
+            //mark the flags
         _destroyed = true;
+        inited = false;
+        started = false;
 
             //remove from the scene it's in if any
         _verbose( "     removing " + name + " / " + id + " from scene " + scene );
@@ -259,7 +261,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeyup(e:KeyEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -284,7 +286,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeydown(e:KeyEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -311,7 +313,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousedown(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -337,7 +339,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmouseup(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -362,7 +364,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousewheel(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -387,7 +389,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousemove(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -413,7 +415,7 @@ class Entity extends Objects {
 //Touch
     @:noCompletion public function _ontouchbegin(e:TouchEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -438,7 +440,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ontouchend(e:TouchEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -463,7 +465,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ontouchmove(e:TouchEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -489,7 +491,7 @@ class Entity extends Objects {
 //Gamepad
     @:noCompletion public function _ongamepadaxis(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -514,7 +516,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadball(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -539,7 +541,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadhat(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -564,7 +566,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttondown(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -589,7 +591,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttonup(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -616,7 +618,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputdown(_name:String, e:InputEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -641,7 +643,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputup(_name:String, e:InputEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -672,7 +674,7 @@ class Entity extends Objects {
             return;
         }
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -707,7 +709,7 @@ class Entity extends Objects {
             return;
         }
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
