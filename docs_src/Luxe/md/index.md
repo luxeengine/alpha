@@ -55,14 +55,37 @@ You code once in haxe, and deploy to all available platforms.
 
 ##Documentation
 
-###[View API](api.html)   
-###[View All Types](types.html) 
+###[View API](api/index.html) 
 
 ---
 
-#### [ View full class index ](api/index.html)   
+##Games being developed with luxe
+
 &nbsp;
 &nbsp;
+
+###Equilibrium 
+[news page](https://twitter.com/bennpowell) | wip title
+
+![eq_menu](images/games/eq/eq_menu.png)
+
+---
+
+![eq_ingame](images/games/eq/eq_ingame.png)
+
+&nbsp;
+&nbsp;
+
+---
+
+###Westport Independent
+[news page](https://twitter.com/0010_Games)
+
+![eq_menu](images/games/wpi/wpi_logo.png)
+
+---
+
+![eq_ingame](images/games/wpi/wpi_ingame.png)
 
 &nbsp;
 

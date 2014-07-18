@@ -52,169 +52,19 @@
         <div class="content">
             <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="renderpass">RenderPass</h1>
+<p><h1>RenderPass</h1>
+<small><code>phoenix.RenderPass</code></small></p>
 <hr>
-<p><code>class</code>extends <code><span><a href="">phoenix.Batcher</a></span></code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code>extends <code><span>phoenix.Batcher</span></code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
-<p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="buffer_count"><a class="lift" href="#buffer_count">buffer_count</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">buffer_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="buffer_index"><a class="lift" href="#buffer_index">buffer_index</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">buffer_index : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="color_attribute"><a class="lift" href="#color_attribute">color_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">color_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="colorlist"><a class="lift" href="#colorlist">colorlist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">colorlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="colors"><a class="lift" href="#colors">colors</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">colors : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="draw_calls"><a class="lift" href="#draw_calls">draw_calls</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">draw_calls : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="dynamic_batched_count"><a class="lift" href="#dynamic_batched_count">dynamic_batched_count</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">dynamic_batched_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="enabled"><a class="lift" href="#enabled">enabled</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">enabled : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="geometry"><a class="lift" href="#geometry">geometry</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">geometry : <a href="#luxe.structural.BalancedBinarySearchTree">luxe.structural.BalancedBinarySearchTree</a>&lt;<a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a>, <a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="groups"><a class="lift" href="#groups">groups</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">groups : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>, <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#phoenix.BatchGroup">phoenix.BatchGroup</a>&gt;&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="log"><a class="lift" href="#log">log</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">log : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="max_verts"><a class="lift" href="#max_verts">max_verts</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">max_verts : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">modelviewmatrix_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">name : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="normal_attribute"><a class="lift" href="#normal_attribute">normal_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">normal_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="normalBuffers"><a class="lift" href="#normalBuffers">normalBuffers</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">normalBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="normallist"><a class="lift" href="#normallist">normallist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">normallist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="normals"><a class="lift" href="#normals">normals</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">normals : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="projectionmatrix_attribute"><a class="lift" href="#projectionmatrix_attribute">projectionmatrix_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">projectionmatrix_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="renderer"><a class="lift" href="#renderer">renderer</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">renderer : <a href="#phoenix.Renderer">phoenix.Renderer</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_batched_count"><a class="lift" href="#static_batched_count">static_batched_count</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_batched_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_colorlist"><a class="lift" href="#static_colorlist">static_colorlist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_colorlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_colors"><a class="lift" href="#static_colors">static_colors</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_colors : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_normallist"><a class="lift" href="#static_normallist">static_normallist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_normallist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_normals"><a class="lift" href="#static_normals">static_normals</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_normals : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_tcoordlist"><a class="lift" href="#static_tcoordlist">static_tcoordlist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_tcoordlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_tcoords"><a class="lift" href="#static_tcoords">static_tcoords</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_tcoords : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_vertlist"><a class="lift" href="#static_vertlist">static_vertlist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_vertlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="static_verts"><a class="lift" href="#static_verts">static_verts</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">static_verts : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tcoord_attribute"><a class="lift" href="#tcoord_attribute">tcoord_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tcoord_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tcoordBuffers"><a class="lift" href="#tcoordBuffers">tcoordBuffers</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tcoordBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tcoordlist"><a class="lift" href="#tcoordlist">tcoordlist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tcoordlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tcoords"><a class="lift" href="#tcoords">tcoords</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tcoords : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex0_attribute"><a class="lift" href="#tex0_attribute">tex0_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex0_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex1_attribute"><a class="lift" href="#tex1_attribute">tex1_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex1_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex2_attribute"><a class="lift" href="#tex2_attribute">tex2_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex2_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex3_attribute"><a class="lift" href="#tex3_attribute">tex3_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex3_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex4_attribute"><a class="lift" href="#tex4_attribute">tex4_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex4_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex5_attribute"><a class="lift" href="#tex5_attribute">tex5_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex5_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex6_attribute"><a class="lift" href="#tex6_attribute">tex6_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex6_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tex7_attribute"><a class="lift" href="#tex7_attribute">tex7_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tex7_attribute : <a href="">lime.gl.GLUniformLocation</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="tree_changed"><a class="lift" href="#tree_changed">tree_changed</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">tree_changed : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="vcolorBuffers"><a class="lift" href="#vcolorBuffers">vcolorBuffers</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vcolorBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="vert_attribute"><a class="lift" href="#vert_attribute">vert_attribute</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vert_attribute : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="vert_count"><a class="lift" href="#vert_count">vert_count</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vert_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="vertexBuffers"><a class="lift" href="#vertexBuffers">vertexBuffers</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vertexBuffers : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">lime.gl.GLBuffer</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="vertlist"><a class="lift" href="#vertlist">vertlist</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">vertlist : <a href="">lime.utils.Float32Array</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="verts"><a class="lift" href="#verts">verts</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">verts : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="view"><a class="lift" href="#view">view</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">view : <a href="#phoenix.Camera">phoenix.Camera</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="visible_count"><a class="lift" href="#visible_count">visible_count</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">visible_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">new(_r:<span><a href="#phoenix.Renderer">phoenix.Renderer</a></span>, ?_name:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="add"><a class="lift" href="#add">add</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">add(_geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>, ?_force_add:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="add_group"><a class="lift" href="#add_group">add_group</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">add_group(_group:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?_pre_render:<span><a href="#phoenix.Batcher-&gt;Void">phoenix.Batcher-&gt;Void</a>=null</span>, ?_post_render:<span><a href="#phoenix.Batcher-&gt;Void">phoenix.Batcher-&gt;Void</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="batch"><a class="lift" href="#batch">batch</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">batch(?persist_immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="blend_mode"><a class="lift" href="#blend_mode">blend_mode</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">blend_mode(?_src_mode:<span><a href="#phoenix.BlendMode">phoenix.BlendMode</a>=null</span>, ?_dst_mode:<span><a href="#phoenix.BlendMode">phoenix.BlendMode</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="compare"><a class="lift" href="#compare">compare</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">compare(other:<span><a href="#phoenix.Batcher">phoenix.Batcher</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="compare_rule"><a class="lift" href="#compare_rule">compare_rule</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">compare_rule(a:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>, b:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="compare_rule_to_string"><a class="lift" href="#compare_rule_to_string">compare_rule_to_string</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">compare_rule_to_string(r:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="draw"><a class="lift" href="#draw">draw</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">draw(?persist_immediate:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="geometry_compare"><a class="lift" href="#geometry_compare">geometry_compare</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">geometry_compare(a:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>, b:<span><a href="#phoenix.geometry.GeometryKey">phoenix.geometry.GeometryKey</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="remove"><a class="lift" href="#remove">remove</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">remove(_geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>, ?_remove_batcher_from_geometry:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_layer"><a class="lift" href="#set_layer">set_layer</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">set_layer(_layer:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="shader_activate"><a class="lift" href="#shader_activate">shader_activate</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">shader_activate(_shader:<span><a href="#phoenix.Shader">phoenix.Shader</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="submit_current_vertex_list"><a class="lift" href="#submit_current_vertex_list">submit_current_vertex_list</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">submit_current_vertex_list(type:<span><a href="#phoenix.PrimitiveType">phoenix.PrimitiveType</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="submit_static_geometry"><a class="lift" href="#submit_static_geometry">submit_static_geometry</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">submit_static_geometry(geom:<span><a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_r:phoenix.Renderer<span></span>, _name:String<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span></p>
-<p><h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="layer"><a class="lift" href="#layer">layer</a></a><a title="inherited from phoenix.Batcher" class="tooltip inherited">&gt;</a><code class="signature apipage">layer : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
-        </span></p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

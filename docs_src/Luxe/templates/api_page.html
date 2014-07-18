@@ -5,32 +5,33 @@
 
 {{#item}}
 
-<h1>{{{type_name}}}</h1>
+<h1>{{{name}}}</h1>
+<small>`{{{path}}}`</small>
 
 {{{doc}}}
 
 ---
 
-`{{type}}` 
+`{{type}}`
 
-{{~#each extend}}
+{{~#with superClass}}
     {{~#unless @index}}extends {{/unless~}}
     {{#if @index}}, {{/if~}}
-    <code><span>{{>type}}</span></code>
-{{~/each~}} 
+    <code><span>{{path}}</span></code>
+{{~/with~}}
 
-{{~#each implement}}
+{{~#each interfaces}}
     {{~#unless @index}}<br/>implements {{/unless~}}
     {{#if @index}}, {{/if~}}
-    <code><span>{{>type}}</span></code>
-{{~/each~}} 
+    <code><span>{{path}}</span></code>
+{{~/each~}}
 
 {{#if meta}}
 <span class="meta">
-{{#each meta~}}    
+{{#each meta~}}
     {{~#unless @index}}<br/>meta: {{/unless~}}
     {{~#if @index}}, {{/if~}}
-    {{@key}}{{#if value}}('{{value}}'){{/if}}
+    @{{name}}{{#if params.length}}({{params}}){{/if}}
 {{~/each}}
 </span>
 {{/if}}
@@ -40,36 +41,65 @@
 &nbsp;
 &nbsp;
 
-<h3>Members</h3> <hr/>
-{{~#each members~}}
-    {{~#is_visible this~}}
-        <span class="member apipage">
-            <a name="{{~name~}}"><a class="lift" href="#{{name}}">
-                {{~escape_markdown name~}}
-            </a></a>
-            {{~#inherited~}}
-                <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
-            {{~/inherited~}}
-            {{#isstatic}}<span class="inline-block static">static</span>{{/isstatic~}}
-            <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
-        </span>
-        <span class="small_desc_flat">{{{doc}}}</span>
-    {{~/is_visible}}
-{{~else~}}
-    no public members
-{{~/each~}}
+{{#if members.length}}
 
-{{~#if values.length~}}
+<h3>Members</h3> <hr/>
+    {{~#each members~}}
+        {{~#if (member_visible ../path 'members' name)~}}
+            <span class="member apipage">
+                <a name="{{~name~}}"><a class="lift" href="#{{name}}">
+                    {{~escape_markdown name~}}
+                </a></a>
+                {{~#inherited~}}
+                    <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                {{~/inherited~}}
+                {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
+                <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
+            </span>
+            <span class="small_desc_flat">{{{doc}}}</span>
+        {{~/if}}
+    {{~else~}}
+        no public members
+    {{~/each~}}
+
+{{/if}}
+
+{{~#if constructors.length~}}
 <h3>Values</h3> <hr/>
-    {{~#values~}}
+    {{~#constructors~}}
         <span class="member signature apipage">`{{name}}`<br/> </span>
         <span class="small_desc_flat">{{{doc}}}</span> 
-    {{~/values~}}
+    {{~/constructors~}}
 {{~/if}}
+
+{{#if properties.length}}
+
+<h3>Properties</h3> <hr/>
+    {{~#each properties~}}
+        {{~#if (member_visible ../path 'properties' name)~}}
+            <span class="member apipage">
+                <a name="{{~name~}}"><a class="lift" href="#{{name}}">
+                    {{~escape_markdown name~}}
+                </a></a>
+                {{~#inherited~}}
+                    <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                {{~/inherited~}}
+                {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
+                <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
+            </span>
+            <span class="small_desc_flat">{{{doc}}}</span>
+        {{~/if}}
+    {{~else~}}
+        no public properties
+    {{~/each~}}
+
+{{/if}}
+
+{{#if methods.length}}
 
 <h3>Methods</h3> <hr/>
 {{~#each methods~}}
-    {{~#is_visible this~}}
+    {{~#if (member_visible ../path 'methods' name)~}}
         <span class="method apipage">
             <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                 {{~escape_markdown name~}}
@@ -77,36 +107,22 @@
             {{~#inherited~}}
                 <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
             {{~/inherited~}}
-            {{#isstatic}}<span class="inline-block static">static</span>{{/isstatic~}}
-            <code class="signature apipage">{{escape_markdown name}}({{>args}}) : {{#return_type}}{{>type}}{{/return_type}}</code><br/>{{noop~}}
+            {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
+            <code class="signature apipage">{{escape_markdown name}}({{>args}}) : {{#type.return_type.name}}{{{.}}}{{else}}Dynamic{{/type.return_type.name}}</code><br/>{{noop~}}
             <span class="small_desc_flat">{{{doc}}}</span>
         </span>
-    {{/is_visible}}
+    {{/if}}
 {{~else~}}
     no public methods
 {{~/each}}
 
-<h3>Properties</h3> <hr/>
-{{~#each properties~}}
-    {{~#is_visible this~}}
-        <span class="property apipage">
-            <a name="{{~name~}}"><a class="lift" href="#{{name}}">
-                {{~escape_markdown name~}}
-            </a></a>
-            {{~#inherited~}}
-                <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
-            {{~/inherited~}} 
-            {{#isstatic}}<span class="inline-block static">static</span>{{/isstatic~}}
-            <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
-            <span class="small_desc_flat">{{{doc}}}</span>
-        </span> 
-    {{~/is_visible}}
-{{~else~}}
-    no public properties
-{{~/each~}}
+{{/if}}
 
 {{/item}}
 
+---
+
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;

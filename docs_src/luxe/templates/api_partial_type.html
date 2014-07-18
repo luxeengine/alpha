@@ -1,1 +1,19 @@
-[{{~json .}}](#)
+{{#if fields.length~}}
+{ {{#each fields~}}
+{{#if @index}}, {{/if~}}
+[{{~name}} : {{type.name}}](#)
+{{~/each}} }
+{{~else~}}
+    {{#if args.length~}}
+
+    {{#each args~}}
+        {{#if @index}} -&gt; {{/if~}}
+        {{t.name~}}
+    {{/each~}}
+    -&gt; {{~return_type.name~}}
+
+    {{~else~}}
+[{{~name}}](#)
+    {{~/if}}
+
+{{~/if~}}

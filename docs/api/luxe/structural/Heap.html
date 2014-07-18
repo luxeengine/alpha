@@ -52,7 +52,8 @@
         <div class="content">
             <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="heap">Heap</h1>
+<p><h1>Heap</h1>
+<small><code>luxe.structural.Heap</code></small></p>
 <ul>
 <li>Copyright (c) 2008 Chase Kernan, Laurence Taylor</li>
 <li>chase.kernan@gmail.com, polysemantic@gmail.com</li>
@@ -80,60 +81,60 @@
 <li>OTHER DEALINGS IN THE SOFTWARE.</li>
 </ul>
 <hr>
-<p><code>class</code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/></p>
+<p><h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="clear"><a class="lift" href="#clear">clear</a></a><code class="signature apipage">clear() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="getFront"><a class="lift" href="#getFront">getFront</a></a><code class="signature apipage">getFront() : Null</code><br/><span class="small_desc_flat">The heap’s front item.</span>
         </span>
     <span class="method apipage">
-            <a name="contains"><a class="lift" href="#contains">contains</a></a><code class="signature apipage">contains(obj:<span><a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#luxe.structural.Heap.T">luxe.structural.Heap.T</a>&gt;</span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Checks if a given item exists in the heap</span>
+            <a name="getMaxSize"><a class="lift" href="#getMaxSize">getMaxSize</a></a><code class="signature apipage">getMaxSize() : Int</code><br/><span class="small_desc_flat">The heap’s maximum capacity.</span>
         </span>
     <span class="method apipage">
-            <a name="dequeue"><a class="lift" href="#dequeue">dequeue</a></a><code class="signature apipage">dequeue() : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#luxe.structural.Heap.T">luxe.structural.Heap.T</a>&gt;</code><br/><span class="small_desc_flat">Dequeues and returns the front item. If the hash is empty, this returns
+            <a name="enqueue"><a class="lift" href="#enqueue">enqueue</a></a><code class="signature apipage">enqueue(obj:Null<span></span>) : Bool</code><br/><span class="small_desc_flat">Enqueues an object. Returns false if the hash is full, otherwise true.</span>
+        </span>
+    <span class="method apipage">
+            <a name="reset"><a class="lift" href="#reset">reset</a></a><code class="signature apipage">reset() : Void</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="dequeue"><a class="lift" href="#dequeue">dequeue</a></a><code class="signature apipage">dequeue() : Null</code><br/><span class="small_desc_flat">Dequeues and returns the front item. If the hash is empty, this returns
         null.</span>
         </span>
     <span class="method apipage">
-            <a name="dump"><a class="lift" href="#dump">dump</a></a><code class="signature apipage">dump() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat">Prints out all elements (for debug/demo purposes).</span>
+            <a name="contains"><a class="lift" href="#contains">contains</a></a><code class="signature apipage">contains(obj:Null<span></span>) : Bool</code><br/><span class="small_desc_flat">Checks if a given item exists in the heap</span>
         </span>
     <span class="method apipage">
-            <a name="enqueue"><a class="lift" href="#enqueue">enqueue</a></a><code class="signature apipage">enqueue(obj:<span><a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#luxe.structural.Heap.T">luxe.structural.Heap.T</a>&gt;</span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Enqueues an object. Returns false if the hash is full, otherwise true.</span>
+            <a name="clear"><a class="lift" href="#clear">clear</a></a><code class="signature apipage">clear() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getFront"><a class="lift" href="#getFront">getFront</a></a><code class="signature apipage">getFront() : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#luxe.structural.Heap.T">luxe.structural.Heap.T</a>&gt;</code><br/><span class="small_desc_flat">The heap’s front item.</span>
+            <a name="iterator"><a class="lift" href="#iterator">iterator</a></a><code class="signature apipage">iterator() : Iterator</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="getMaxSize"><a class="lift" href="#getMaxSize">getMaxSize</a></a><code class="signature apipage">getMaxSize() : <a href="http://api.haxe.org/Int.html">Int</a></code><br/><span class="small_desc_flat">The heap’s maximum capacity.</span>
+            <a name="isEmpty"><a class="lift" href="#isEmpty">isEmpty</a></a><code class="signature apipage">isEmpty() : Bool</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="isEmpty"><a class="lift" href="#isEmpty">isEmpty</a></a><code class="signature apipage">isEmpty() : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+            <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><code class="signature apipage">toArray() : Array</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="iterator"><a class="lift" href="#iterator">iterator</a></a><code class="signature apipage">iterator() : <a href="">Iterator</a>&lt;<a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#luxe.structural.Heap.T">luxe.structural.Heap.T</a>&gt;&gt;</code><br/><span class="small_desc_flat"></span>
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : String</code><br/><span class="small_desc_flat">Prints out a string representing the current object.
+        Example: “[Heap, max_size=4]”</span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_size:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _compare:<span><a href="">Null-&gt;Null-&gt;Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Initializes a new heap.
+            <a name="dump"><a class="lift" href="#dump">dump</a></a><code class="signature apipage">dump() : String</code><br/><span class="small_desc_flat">Prints out all elements (for debug/demo purposes).</span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_size:Int<span></span>, _compare:<span></span>) : Void</code><br/><span class="small_desc_flat">Initializes a new heap.
         [size] is the heap’s maximum capacity.
         [compare] is a comparison function for sorting the heap’s data.</span>
-        </span>
-    <span class="method apipage">
-            <a name="reset"><a class="lift" href="#reset">reset</a></a><code class="signature apipage">reset() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><code class="signature apipage">toArray() : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="#luxe.structural.Heap.T">luxe.structural.Heap.T</a>&gt;&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat">Prints out a string representing the current object.
-        Example: “[Heap, max_size=4]”</span>
         </span></p>
-<p><h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length : <a href="">Int</a></code><br/><span class="small_desc_flat"></span>
-        </span></p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

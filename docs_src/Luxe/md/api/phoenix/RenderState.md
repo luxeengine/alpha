@@ -5,56 +5,67 @@
 
 
 
-#RenderState
+<h1>RenderState</h1>
+<small>`phoenix.RenderState`</small>
 
 
 
 ---
 
 `class`
-<span class="meta">
-
-</span>
-
 
 ---
 
 &nbsp;
 &nbsp;
 
+
+
 <h3>Members</h3> <hr/>
 
+
+
+
+
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="activeTexture"><a class="lift" href="#activeTexture">activeTexture</a></a><code class="signature apipage">activeTexture(val:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="enable"><a class="lift" href="#enable">enable</a></a><code class="signature apipage">enable(what:Int<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="bindFramebuffer"><a class="lift" href="#bindFramebuffer">bindFramebuffer</a></a><code class="signature apipage">bindFramebuffer(?buffer:<span>[lime.gl.GLFramebuffer]()=null</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="disable"><a class="lift" href="#disable">disable</a></a><code class="signature apipage">disable(what:Int<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="bindTexture2D"><a class="lift" href="#bindTexture2D">bindTexture2D</a></a><code class="signature apipage">bindTexture2D(tex:<span>[lime.gl.GLTexture]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport(x:Float<span></span>, y:Float<span></span>, w:Float<span></span>, h:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="disable"><a class="lift" href="#disable">disable</a></a><code class="signature apipage">disable(what:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="bindFramebuffer"><a class="lift" href="#bindFramebuffer">bindFramebuffer</a></a><code class="signature apipage">bindFramebuffer(buffer:lime.gl.GLFramebuffer<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="enable"><a class="lift" href="#enable">enable</a></a><code class="signature apipage">enable(what:<span>[Int](http://api.haxe.org/Int.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="bindRenderbuffer"><a class="lift" href="#bindRenderbuffer">bindRenderbuffer</a></a><code class="signature apipage">bindRenderbuffer(buffer:lime.gl.GLRenderbuffer<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="lineWidth"><a class="lift" href="#lineWidth">lineWidth</a></a><code class="signature apipage">lineWidth(\_width:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="useProgram"><a class="lift" href="#useProgram">useProgram</a></a><code class="signature apipage">useProgram(program:lime.gl.GLProgram<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_renderer:<span>[phoenix.Renderer](#phoenix.Renderer)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="activeTexture"><a class="lift" href="#activeTexture">activeTexture</a></a><code class="signature apipage">activeTexture(val:Int<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="useProgram"><a class="lift" href="#useProgram">useProgram</a></a><code class="signature apipage">useProgram(program:<span>[lime.gl.GLProgram]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="bindTexture2D"><a class="lift" href="#bindTexture2D">bindTexture2D</a></a><code class="signature apipage">bindTexture2D(tex:lime.gl.GLTexture<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><code class="signature apipage">viewport(x:<span>[Float](http://api.haxe.org/Float.html)</span>, y:<span>[Float](http://api.haxe.org/Float.html)</span>, w:<span>[Float](http://api.haxe.org/Float.html)</span>, h:<span>[Float](http://api.haxe.org/Float.html)</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="lineWidth"><a class="lift" href="#lineWidth">lineWidth</a></a><code class="signature apipage">lineWidth(\_width:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_renderer:phoenix.Renderer<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     
 
-<h3>Properties</h3> <hr/>no public properties
 
+
+
+
+---
+
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;

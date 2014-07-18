@@ -52,131 +52,133 @@
         <div class="content">
             <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="particleemitter">ParticleEmitter</h1>
+<p><h1>ParticleEmitter</h1>
+<small><code>luxe.ParticleEmitter</code></small></p>
 <hr>
-<p><code>class</code>extends <code><span><a href="">luxe.Component</a></span></code>
+<p><code>class</code>extends <code><span>luxe.Component</span></code>
 <span class="meta">
-<br/>meta: @:build, @:autoBuild
+<br/>meta: @:build(&#x27;???&#x27;), @:autoBuild(&#x27;???&#x27;)
 </span></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="_position"><a class="lift" href="#_position">_position</a></a><code class="signature apipage">_position : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="active_particles"><a class="lift" href="#active_particles">active_particles</a></a><code class="signature apipage">active_particles : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.Particle">luxe.Particle</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="cache_index"><a class="lift" href="#cache_index">cache_index</a></a><code class="signature apipage">cache_index : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="cache_size"><a class="lift" href="#cache_size">cache_size</a></a><code class="signature apipage">cache_size : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="depth"><a class="lift" href="#depth">depth</a></a><code class="signature apipage">depth : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="direction"><a class="lift" href="#direction">direction</a></a><code class="signature apipage">direction : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="direction_random"><a class="lift" href="#direction_random">direction_random</a></a><code class="signature apipage">direction_random : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="duration"><a class="lift" href="#duration">duration</a></a><code class="signature apipage">duration : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="elapsed_time"><a class="lift" href="#elapsed_time">elapsed_time</a></a><code class="signature apipage">elapsed_time : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="emission_rate"><a class="lift" href="#emission_rate">emission_rate</a></a><code class="signature apipage">emission_rate : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="emit_count"><a class="lift" href="#emit_count">emit_count</a></a><code class="signature apipage">emit_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="emit_last"><a class="lift" href="#emit_last">emit_last</a></a><code class="signature apipage">emit_last : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="emit_next"><a class="lift" href="#emit_next">emit_next</a></a><code class="signature apipage">emit_next : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="emit_time"><a class="lift" href="#emit_time">emit_time</a></a><code class="signature apipage">emit_time : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="enabled"><a class="lift" href="#enabled">enabled</a></a><code class="signature apipage">enabled : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_color"><a class="lift" href="#end_color">end_color</a></a><code class="signature apipage">end_color : <a href="#luxe.Color">luxe.Color</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_color_random"><a class="lift" href="#end_color_random">end_color_random</a></a><code class="signature apipage">end_color_random : <a href="#luxe.Color">luxe.Color</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_rotation"><a class="lift" href="#end_rotation">end_rotation</a></a><code class="signature apipage">end_rotation : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_rotation_random"><a class="lift" href="#end_rotation_random">end_rotation_random</a></a><code class="signature apipage">end_rotation_random : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_size"><a class="lift" href="#end_size">end_size</a></a><code class="signature apipage">end_size : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_size_random"><a class="lift" href="#end_size_random">end_size_random</a></a><code class="signature apipage">end_size_random : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="end_speed"><a class="lift" href="#end_speed">end_speed</a></a><code class="signature apipage">end_speed : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="gravity"><a class="lift" href="#gravity">gravity</a></a><code class="signature apipage">gravity : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="group"><a class="lift" href="#group">group</a></a><code class="signature apipage">group : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="life"><a class="lift" href="#life">life</a></a><code class="signature apipage">life : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="life_random"><a class="lift" href="#life_random">life_random</a></a><code class="signature apipage">life_random : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="particle_cache"><a class="lift" href="#particle_cache">particle_cache</a></a><code class="signature apipage">particle_cache : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.Sprite">luxe.Sprite</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="particle_image"><a class="lift" href="#particle_image">particle_image</a></a><code class="signature apipage">particle_image : <a href="#phoenix.Texture">phoenix.Texture</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="particle_index"><a class="lift" href="#particle_index">particle_index</a></a><code class="signature apipage">particle_index : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="particle_system"><a class="lift" href="#particle_system">particle_system</a></a><code class="signature apipage">particle_system : <a href="#luxe.ParticleSystem">luxe.ParticleSystem</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="pos_offset"><a class="lift" href="#pos_offset">pos_offset</a></a><code class="signature apipage">pos_offset : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="pos_random"><a class="lift" href="#pos_random">pos_random</a></a><code class="signature apipage">pos_random : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="pos_value"><a class="lift" href="#pos_value">pos_value</a></a><code class="signature apipage">pos_value : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="radius"><a class="lift" href="#radius">radius</a></a><code class="signature apipage">radius : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="radius_random"><a class="lift" href="#radius_random">radius_random</a></a><code class="signature apipage">radius_random : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="rotation_offset"><a class="lift" href="#rotation_offset">rotation_offset</a></a><code class="signature apipage">rotation_offset : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="rotation_random"><a class="lift" href="#rotation_random">rotation_random</a></a><code class="signature apipage">rotation_random : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="rotation_value"><a class="lift" href="#rotation_value">rotation_value</a></a><code class="signature apipage">rotation_value : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="speed"><a class="lift" href="#speed">speed</a></a><code class="signature apipage">speed : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="speed_random"><a class="lift" href="#speed_random">speed_random</a></a><code class="signature apipage">speed_random : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="start_color"><a class="lift" href="#start_color">start_color</a></a><code class="signature apipage">start_color : <a href="#luxe.Color">luxe.Color</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="start_color_random"><a class="lift" href="#start_color_random">start_color_random</a></a><code class="signature apipage">start_color_random : <a href="#luxe.Color">luxe.Color</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="start_size"><a class="lift" href="#start_size">start_size</a></a><code class="signature apipage">start_size : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="start_size_random"><a class="lift" href="#start_size_random">start_size_random</a></a><code class="signature apipage">start_size_random : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="template"><a class="lift" href="#template">template</a></a><code class="signature apipage">template : <a href="#luxe.options.ParticleEmitterOptions">luxe.options.ParticleEmitterOptions</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="zrotation"><a class="lift" href="#zrotation">zrotation</a></a><code class="signature apipage">zrotation : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span></p>
+                <a name="particle_system"><a class="lift" href="#particle_system">particle_system</a></a><code class="signature apipage">particle_system : <a href="#">luxe.ParticleSystem</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="enabled"><a class="lift" href="#enabled">enabled</a></a><code class="signature apipage">enabled : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="emit_count"><a class="lift" href="#emit_count">emit_count</a></a><code class="signature apipage">emit_count : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="active_particles"><a class="lift" href="#active_particles">active_particles</a></a><code class="signature apipage">active_particles : <a href="#">Array</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="elapsed_time"><a class="lift" href="#elapsed_time">elapsed_time</a></a><code class="signature apipage">elapsed_time : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="duration"><a class="lift" href="#duration">duration</a></a><code class="signature apipage">duration : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="emission_rate"><a class="lift" href="#emission_rate">emission_rate</a></a><code class="signature apipage">emission_rate : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="emit_next"><a class="lift" href="#emit_next">emit_next</a></a><code class="signature apipage">emit_next : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="emit_last"><a class="lift" href="#emit_last">emit_last</a></a><code class="signature apipage">emit_last : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="particle_index"><a class="lift" href="#particle_index">particle_index</a></a><code class="signature apipage">particle_index : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="particle_cache"><a class="lift" href="#particle_cache">particle_cache</a></a><code class="signature apipage">particle_cache : <a href="#">Array</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="cache_size"><a class="lift" href="#cache_size">cache_size</a></a><code class="signature apipage">cache_size : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="cache_index"><a class="lift" href="#cache_index">cache_index</a></a><code class="signature apipage">cache_index : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="depth"><a class="lift" href="#depth">depth</a></a><code class="signature apipage">depth : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="group"><a class="lift" href="#group">group</a></a><code class="signature apipage">group : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="particle_image"><a class="lift" href="#particle_image">particle_image</a></a><code class="signature apipage">particle_image : <a href="#">phoenix.Texture</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="pos_value"><a class="lift" href="#pos_value">pos_value</a></a><code class="signature apipage">pos_value : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="pos_offset"><a class="lift" href="#pos_offset">pos_offset</a></a><code class="signature apipage">pos_offset : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="pos_random"><a class="lift" href="#pos_random">pos_random</a></a><code class="signature apipage">pos_random : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="emit_time"><a class="lift" href="#emit_time">emit_time</a></a><code class="signature apipage">emit_time : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="direction"><a class="lift" href="#direction">direction</a></a><code class="signature apipage">direction : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="direction_random"><a class="lift" href="#direction_random">direction_random</a></a><code class="signature apipage">direction_random : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="gravity"><a class="lift" href="#gravity">gravity</a></a><code class="signature apipage">gravity : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="zrotation"><a class="lift" href="#zrotation">zrotation</a></a><code class="signature apipage">zrotation : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_position"><a class="lift" href="#_position">_position</a></a><code class="signature apipage">_position : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="radius"><a class="lift" href="#radius">radius</a></a><code class="signature apipage">radius : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="radius_random"><a class="lift" href="#radius_random">radius_random</a></a><code class="signature apipage">radius_random : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="start_size"><a class="lift" href="#start_size">start_size</a></a><code class="signature apipage">start_size : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="start_size_random"><a class="lift" href="#start_size_random">start_size_random</a></a><code class="signature apipage">start_size_random : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_size"><a class="lift" href="#end_size">end_size</a></a><code class="signature apipage">end_size : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_size_random"><a class="lift" href="#end_size_random">end_size_random</a></a><code class="signature apipage">end_size_random : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="speed"><a class="lift" href="#speed">speed</a></a><code class="signature apipage">speed : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_speed"><a class="lift" href="#end_speed">end_speed</a></a><code class="signature apipage">end_speed : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="speed_random"><a class="lift" href="#speed_random">speed_random</a></a><code class="signature apipage">speed_random : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="life"><a class="lift" href="#life">life</a></a><code class="signature apipage">life : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="life_random"><a class="lift" href="#life_random">life_random</a></a><code class="signature apipage">life_random : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="rotation_value"><a class="lift" href="#rotation_value">rotation_value</a></a><code class="signature apipage">rotation_value : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="rotation_random"><a class="lift" href="#rotation_random">rotation_random</a></a><code class="signature apipage">rotation_random : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_rotation"><a class="lift" href="#end_rotation">end_rotation</a></a><code class="signature apipage">end_rotation : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_rotation_random"><a class="lift" href="#end_rotation_random">end_rotation_random</a></a><code class="signature apipage">end_rotation_random : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="rotation_offset"><a class="lift" href="#rotation_offset">rotation_offset</a></a><code class="signature apipage">rotation_offset : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="start_color"><a class="lift" href="#start_color">start_color</a></a><code class="signature apipage">start_color : <a href="#">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="start_color_random"><a class="lift" href="#start_color_random">start_color_random</a></a><code class="signature apipage">start_color_random : <a href="#">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_color"><a class="lift" href="#end_color">end_color</a></a><code class="signature apipage">end_color : <a href="#">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="end_color_random"><a class="lift" href="#end_color_random">end_color_random</a></a><code class="signature apipage">end_color_random : <a href="#">luxe.Color</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="template"><a class="lift" href="#template">template</a></a><code class="signature apipage">template : <a href="#">luxe.options.ParticleEmitterOptions</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="apply"><a class="lift" href="#apply">apply</a></a><code class="signature apipage">apply(_template:<span><a href="#luxe.options.ParticleEmitterOptions">luxe.options.ParticleEmitterOptions</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init(_data:luxe.ParticleEmitterInitData<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="apply"><a class="lift" href="#apply">apply</a></a><code class="signature apipage">apply(_template:luxe.options.ParticleEmitterOptions<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="emit"><a class="lift" href="#emit">emit</a></a><code class="signature apipage">emit(t:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="init"><a class="lift" href="#init">init</a></a><code class="signature apipage">init(_data:<span><a href="#luxe.ParticleEmitterInitData">luxe.ParticleEmitterInitData</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="emit"><a class="lift" href="#emit">emit</a></a><code class="signature apipage">emit(t:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="stop"><a class="lift" href="#stop">stop</a></a><code class="signature apipage">stop() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="stop"><a class="lift" href="#stop">stop</a></a><code class="signature apipage">stop() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(dt:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="update"><a class="lift" href="#update">update</a></a><code class="signature apipage">update(dt:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new() : Void</code><br/><span class="small_desc_flat"></span>
         </span></p>
-<p><h3>Properties</h3> <hr/>no public properties</p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

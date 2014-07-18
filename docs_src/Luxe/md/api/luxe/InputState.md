@@ -5,7 +5,8 @@
 
 
 
-#InputState
+<h1>InputState</h1>
+<small>`luxe.InputState`</small>
 
 
 
@@ -22,14 +23,19 @@
 &nbsp;
 &nbsp;
 
-<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`down`<br/> </span>
+<h3>Values</h3> <hr/><span class="member signature apipage">`down`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`up`<br/> </span>
         <span class="small_desc_flat"></span>
 
-<h3>Methods</h3> <hr/>no public methods
 
-<h3>Properties</h3> <hr/>no public properties
 
+
+
+
+
+---
+
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;

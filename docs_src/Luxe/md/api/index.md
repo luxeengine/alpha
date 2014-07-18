@@ -6,10 +6,6 @@
 ## Packages
 
 
-#### [_empty_](#_empty_)
-
-&emsp;&emsp;
-<br/>
 #### [luxe](#luxe)
 
 &emsp;&emsp;
@@ -24,17 +20,6 @@
 ## Types
 
 
-
-<a name="_empty_"><h3> [\_empty\_](#_empty_) </h3></a>
-
-
-
-
-
-
-
-
-<br/>
 
 <a name="luxe"><h3> [luxe](#luxe) </h3></a>&bull; [Audio](luxe/Audio.html) <br/>&bull; [BuildVersion](luxe/BuildVersion.html) <br/>&bull; [ButtonState](luxe/ButtonState.html) <br/>&bull; [Camera](luxe/Camera.html) <br/>&bull; [Circle](luxe/Circle.html) <br/>&bull; [Color](luxe/Color.html) <br/>&bull; [ColorHSL](luxe/ColorHSL.html) <br/>&bull; [ColorHSV](luxe/ColorHSV.html) <br/>&bull; [Component](luxe/Component.html) <br/>&bull; [CoreThreadRequest](luxe/CoreThreadRequest.html) <br/>&bull; [Cursor](luxe/Cursor.html) <br/>&bull; [DataResource](luxe/DataResource.html) <br/>&bull; [Debug](luxe/Debug.html) <br/>&bull; [Draw](luxe/Draw.html) <br/>&bull; [Entity](luxe/Entity.html) <br/>&bull; [Events](luxe/Events.html) <br/>&bull; [FontInfo](luxe/FontInfo.html) <br/>&bull; [GamepadAxisEvent](luxe/GamepadAxisEvent.html) <br/>&bull; [GamepadButtonEvent](luxe/GamepadButtonEvent.html) <br/>&bull; [GamepadEvent](luxe/GamepadEvent.html) <br/>&bull; [Input](luxe/Input.html) <br/>&bull; [InputEvent](luxe/InputEvent.html) <br/>&bull; [InputState](luxe/InputState.html) <br/>&bull; [InputType](luxe/InputType.html) <br/>&bull; [JSONResource](luxe/JSONResource.html) <br/>&bull; [KeyEvent](luxe/KeyEvent.html) <br/>&bull; [KeyValue](luxe/KeyValue.html) <br/>&bull; [LoadShaderInfo](luxe/LoadShaderInfo.html) <br/>&bull; [LoadTextureInfo](luxe/LoadTextureInfo.html) <br/>&bull; [Log](luxe/Log.html) <br/>&bull; [Matrix](luxe/Matrix.html) <br/>&bull; [Mesh](luxe/Mesh.html) <br/>&bull; [MouseButton](luxe/MouseButton.html) <br/>&bull; [MouseEvent](luxe/MouseEvent.html) <br/>&bull; [MouseState](luxe/MouseState.html) <br/>&bull; [NineSlice](luxe/NineSlice.html) <br/>&bull; [Objects](luxe/Objects.html) <br/>&bull; [Parcel](luxe/Parcel.html) <br/>&bull; [ParcelOptions](luxe/ParcelOptions.html) <br/>&bull; [ParcelProgress](luxe/ParcelProgress.html) <br/>&bull; [Particle](luxe/Particle.html) <br/>&bull; [ParticleEmitter](luxe/ParticleEmitter.html) <br/>&bull; [ParticleEmitterInitData](luxe/ParticleEmitterInitData.html) <br/>&bull; [ParticleSystem](luxe/ParticleSystem.html) <br/>&bull; [Physics](luxe/Physics.html) <br/>&bull; [PhysicsEngine](luxe/PhysicsEngine.html) <br/>&bull; [ProjectionType](luxe/ProjectionType.html) <br/>&bull; [Quaternion](luxe/Quaternion.html) <br/>&bull; [Rectangle](luxe/Rectangle.html) <br/>&bull; [Resource](luxe/Resource.html) <br/>&bull; [ResourceManager](luxe/ResourceManager.html) <br/>&bull; [ResourceStats](luxe/ResourceStats.html) <br/>&bull; [ResourceType](luxe/ResourceType.html) <br/>&bull; [Scene](luxe/Scene.html) <br/>&bull; [Screen](luxe/Screen.html) <br/>&bull; [ShaderInfo](luxe/ShaderInfo.html) <br/>&bull; [Slice](luxe/Slice.html) <br/>&bull; [SoundInfo](luxe/SoundInfo.html) <br/>&bull; [SoundResource](luxe/SoundResource.html) <br/>&bull; [Sprite](luxe/Sprite.html) <br/>&bull; [State](luxe/State.html) <br/>&bull; [States](luxe/States.html) <br/>&bull; [SystemEvents](luxe/SystemEvents.html) <br/>&bull; [Text](luxe/Text.html) <br/>&bull; [TextAlign](luxe/TextAlign.html) <br/>&bull; [TextResource](luxe/TextResource.html) <br/>&bull; [Timer](luxe/Timer.html) <br/>&bull; [TouchEvent](luxe/TouchEvent.html) <br/>&bull; [TouchState](luxe/TouchState.html) <br/>&bull; [Transform](luxe/Transform.html) <br/>&bull; [Vec](luxe/Vec.html) <br/>&bull; [Vector](luxe/Vector.html) <br/>&bull; [Visual](luxe/Visual.html) <br/>
 

@@ -5,7 +5,8 @@
 
 
 
-#InputType
+<h1>InputType</h1>
+<small>`luxe.InputType`</small>
 
 
 
@@ -22,16 +23,21 @@
 &nbsp;
 &nbsp;
 
-<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`gamepad`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`keys`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`mouse`<br/> </span>
+<h3>Values</h3> <hr/><span class="member signature apipage">`mouse`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`touch`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`keys`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`gamepad`<br/> </span>
         <span class="small_desc_flat"></span>
 
-<h3>Methods</h3> <hr/>no public methods
 
-<h3>Properties</h3> <hr/>no public properties
 
+
+
+
+
+---
+
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;

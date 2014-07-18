@@ -5,130 +5,140 @@
 
 
 
-#Quaternion
+<h1>Quaternion</h1>
+<small>`phoenix.Quaternion`</small>
 
 
 
 ---
 
 `class`
-<span class="meta">
-
-</span>
-
 
 ---
 
 &nbsp;
 &nbsp;
 
+
+
 <h3>Members</h3> <hr/><span class="member apipage">
-            <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore\_listeners</a></a><code class="signature apipage">ignore\_listeners : [Bool](http://api.haxe.org/Bool.html)</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="listen_w"><a class="lift" href="#listen_w">listen\_w</a></a><code class="signature apipage">listen\_w : [Float-&gt;Void]()</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="listen_x"><a class="lift" href="#listen_x">listen\_x</a></a><code class="signature apipage">listen\_x : [Float-&gt;Void]()</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="listen_y"><a class="lift" href="#listen_y">listen\_y</a></a><code class="signature apipage">listen\_y : [Float-&gt;Void]()</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="listen_z"><a class="lift" href="#listen_z">listen\_z</a></a><code class="signature apipage">listen\_z : [Float-&gt;Void]()</code><br/></span>
-        <span class="small_desc_flat"></span>
+                <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore\_listeners</a></a><code class="signature apipage">ignore\_listeners : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="listen_x"><a class="lift" href="#listen_x">listen\_x</a></a><code class="signature apipage">listen\_x : Float-&gt;Void</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="listen_y"><a class="lift" href="#listen_y">listen\_y</a></a><code class="signature apipage">listen\_y : Float-&gt;Void</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="listen_z"><a class="lift" href="#listen_z">listen\_z</a></a><code class="signature apipage">listen\_z : Float-&gt;Void</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="listen_w"><a class="lift" href="#listen_w">listen\_w</a></a><code class="signature apipage">listen\_w : Float-&gt;Void</code><br/></span>
+            <span class="small_desc_flat"></span>
+
+
+
+<h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="z"><a class="lift" href="#z">z</a></a><code class="signature apipage">z : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><code class="signature apipage">serialized : [](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
+
+
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(\_quaternion:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : String</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="addQuaternions"><a class="lift" href="#addQuaternions">addQuaternions</a></a><code class="signature apipage">addQuaternions(\_a:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_b:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(\_x:Float<span></span>, \_y:Float<span></span>, \_z:Float<span></span>, \_w:Float<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="copy"><a class="lift" href="#copy">copy</a></a><code class="signature apipage">copy(\_quaternion:phoenix.Quaternion<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="conjugate"><a class="lift" href="#conjugate">conjugate</a></a><code class="signature apipage">conjugate() : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="dot"><a class="lift" href="#dot">dot</a></a><code class="signature apipage">dot(\_other:phoenix.Quaternion<span></span>) : Float</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="copy"><a class="lift" href="#copy">copy</a></a><code class="signature apipage">copy(\_quaternion:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="setFromEuler"><a class="lift" href="#setFromEuler">setFromEuler</a></a><code class="signature apipage">setFromEuler(\_euler:phoenix.Vector<span></span>, \_order:String<span>=&#x27;XYZ&#x27;</span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="Dot"><a class="lift" href="#Dot">Dot</a></a><span class="inline-block static">static</span><code class="signature apipage">Dot(\_a:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_b:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="setFromAxisAngle"><a class="lift" href="#setFromAxisAngle">setFromAxisAngle</a></a><code class="signature apipage">setFromAxisAngle(\_axis:phoenix.Vector<span></span>, \_angle:Float<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="dot"><a class="lift" href="#dot">dot</a></a><code class="signature apipage">dot(\_other:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="setFromRotationMatrix"><a class="lift" href="#setFromRotationMatrix">setFromRotationMatrix</a></a><code class="signature apipage">setFromRotationMatrix(\_m:phoenix.Matrix<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="equals"><a class="lift" href="#equals">equals</a></a><code class="signature apipage">equals(\_q:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="inverse"><a class="lift" href="#inverse">inverse</a></a><code class="signature apipage">inverse() : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="fromArray"><a class="lift" href="#fromArray">fromArray</a></a><code class="signature apipage">fromArray(\_a:<span>[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="conjugate"><a class="lift" href="#conjugate">conjugate</a></a><code class="signature apipage">conjugate() : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="inverse"><a class="lift" href="#inverse">inverse</a></a><code class="signature apipage">inverse() : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="lengthSq"><a class="lift" href="#lengthSq">lengthSq</a></a><code class="signature apipage">lengthSq() : Float</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="length"><a class="lift" href="#length">length</a></a><code class="signature apipage">length() : Float</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="lengthSq"><a class="lift" href="#lengthSq">lengthSq</a></a><code class="signature apipage">lengthSq() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="normalize"><a class="lift" href="#normalize">normalize</a></a><code class="signature apipage">normalize() : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="listen"><a class="lift" href="#listen">listen</a></a><span class="inline-block static">static</span><code class="signature apipage">listen(\_q:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, listener:<span>[Float-&gt;Void]()</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="multiply"><a class="lift" href="#multiply">multiply</a></a><code class="signature apipage">multiply(\_quaternion:phoenix.Quaternion<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="multiply"><a class="lift" href="#multiply">multiply</a></a><code class="signature apipage">multiply(\_quaternion:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(\_quaternion:phoenix.Quaternion<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="multiplyQuaternions"><a class="lift" href="#multiplyQuaternions">multiplyQuaternions</a></a><code class="signature apipage">multiplyQuaternions(\_a:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_b:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="addQuaternions"><a class="lift" href="#addQuaternions">addQuaternions</a></a><code class="signature apipage">addQuaternions(\_a:phoenix.Quaternion<span></span>, \_b:phoenix.Quaternion<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="multiplyScalar"><a class="lift" href="#multiplyScalar">multiplyScalar</a></a><code class="signature apipage">multiplyScalar(\_scalar:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="multiplyScalar"><a class="lift" href="#multiplyScalar">multiplyScalar</a></a><code class="signature apipage">multiplyScalar(\_scalar:Float<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(?\_x:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_y:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_z:<span>[Float](http://api.haxe.org/Float.html)=0</span>, ?\_w:<span>[Float](http://api.haxe.org/Float.html)=1</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="multiplyQuaternions"><a class="lift" href="#multiplyQuaternions">multiplyQuaternions</a></a><code class="signature apipage">multiplyQuaternions(\_a:phoenix.Quaternion<span></span>, \_b:phoenix.Quaternion<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="normalize"><a class="lift" href="#normalize">normalize</a></a><code class="signature apipage">normalize() : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="slerp"><a class="lift" href="#slerp">slerp</a></a><code class="signature apipage">slerp(\_qb:phoenix.Quaternion<span></span>, \_t:Float<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(\_x:<span>[Float](http://api.haxe.org/Float.html)</span>, \_y:<span>[Float](http://api.haxe.org/Float.html)</span>, \_z:<span>[Float](http://api.haxe.org/Float.html)</span>, \_w:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="equals"><a class="lift" href="#equals">equals</a></a><code class="signature apipage">equals(\_q:phoenix.Quaternion<span></span>) : Bool</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="setFromAxisAngle"><a class="lift" href="#setFromAxisAngle">setFromAxisAngle</a></a><code class="signature apipage">setFromAxisAngle(\_axis:<span>[phoenix.Vector](#phoenix.Vector)</span>, \_angle:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="fromArray"><a class="lift" href="#fromArray">fromArray</a></a><code class="signature apipage">fromArray(\_a:Array<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="setFromEuler"><a class="lift" href="#setFromEuler">setFromEuler</a></a><code class="signature apipage">setFromEuler(\_euler:<span>[phoenix.Vector](#phoenix.Vector)</span>, ?\_order:<span>[String](http://api.haxe.org/String.html)=&#x27;XYZ&#x27;</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><code class="signature apipage">toArray() : Array</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="setFromRotationMatrix"><a class="lift" href="#setFromRotationMatrix">setFromRotationMatrix</a></a><code class="signature apipage">setFromRotationMatrix(\_m:<span>[phoenix.Matrix](#phoenix.Matrix)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="Slerp"><a class="lift" href="#Slerp">Slerp</a></a><span class="inline-block static">static</span><code class="signature apipage">Slerp(\_qa:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_qb:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_qm:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_t:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="toeuler"><a class="lift" href="#toeuler">toeuler</a></a><code class="signature apipage">toeuler() : phoenix.Vector</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="slerp"><a class="lift" href="#slerp">slerp</a></a><code class="signature apipage">slerp(\_qb:<span>[phoenix.Quaternion](#phoenix.Quaternion)</span>, \_t:<span>[Float](http://api.haxe.org/Float.html)</span>) : [phoenix.Quaternion](#phoenix.Quaternion)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_x:Float<span>=0</span>, \_y:Float<span>=0</span>, \_z:Float<span>=0</span>, \_w:Float<span>=1</span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><code class="signature apipage">toArray() : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/><span class="small_desc_flat"></span>
+            <a name="Slerp"><a class="lift" href="#Slerp">Slerp</a></a><span class="inline-block static">static</span><code class="signature apipage">Slerp(\_qa:phoenix.Quaternion<span></span>, \_qb:phoenix.Quaternion<span></span>, \_qm:phoenix.Quaternion<span></span>, \_t:Float<span></span>) : phoenix.Quaternion</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toeuler"><a class="lift" href="#toeuler">toeuler</a></a><code class="signature apipage">toeuler() : [phoenix.Vector](#phoenix.Vector)</code><br/><span class="small_desc_flat"></span>
+            <a name="Dot"><a class="lift" href="#Dot">Dot</a></a><span class="inline-block static">static</span><code class="signature apipage">Dot(\_a:phoenix.Quaternion<span></span>, \_b:phoenix.Quaternion<span></span>) : Float</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat"></span>
+            <a name="listen"><a class="lift" href="#listen">listen</a></a><span class="inline-block static">static</span><code class="signature apipage">listen(\_q:phoenix.Quaternion<span></span>, listener:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     
 
-<h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><code class="signature apipage">serialized : [Dynamic]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="w"><a class="lift" href="#w">w</a></a><code class="signature apipage">w : [Float]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="x"><a class="lift" href="#x">x</a></a><code class="signature apipage">x : [Float]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="y"><a class="lift" href="#y">y</a></a><code class="signature apipage">y : [Float]()</code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="z"><a class="lift" href="#z">z</a></a><code class="signature apipage">z : [Float]()</code><br/><span class="small_desc_flat"></span>
-        </span>
 
+
+
+
+---
+
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;

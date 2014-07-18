@@ -52,81 +52,47 @@
         <div class="content">
             <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="colorhsl">ColorHSL</h1>
+<p><h1>ColorHSL</h1>
+<small><code>phoenix.ColorHSL</code></small></p>
 <hr>
-<p><code>class</code>extends <code><span><a href="">phoenix.Color</a></span></code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code>extends <code><span>phoenix.Color</span></code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
-<p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="a"><a class="lift" href="#a">a</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">a : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span></p>
+<p><h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="h"><a class="lift" href="#h">h</a></a><code class="signature apipage">h : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="s"><a class="lift" href="#s">s</a></a><code class="signature apipage">s : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="l"><a class="lift" href="#l">l</a></a><code class="signature apipage">l : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="_refresh"><a class="lift" href="#_refresh">_refresh</a></a><code class="signature apipage">_refresh() : <a href="#phoenix.ColorHSL">phoenix.ColorHSL</a></code><br/><span class="small_desc_flat"></span>
+            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(_h:Float<span>=null</span>, _s:Float<span>=null</span>, _l:Float<span>=null</span>, _a:Float<span>=null</span>) : phoenix.ColorHSL</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="clone"><a class="lift" href="#clone">clone</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">clone() : <a href="#phoenix.ColorHSL">phoenix.ColorHSL</a></code><br/><span class="small_desc_flat"></span>
+            <a name="tween"><a class="lift" href="#tween">tween</a></a><code class="signature apipage">tween(_time_in_seconds:Float<span>=0.5f</span>, _dest:luxe.options.ColorOptions<span>=null</span>, _override:Bool<span>=true</span>) : luxe.tween.actuators.IGenericActuator</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="fromColor"><a class="lift" href="#fromColor">fromColor</a></a><code class="signature apipage">fromColor(_color:<span><a href="#phoenix.Color">phoenix.Color</a></span>) : <a href="#phoenix.ColorHSL">phoenix.ColorHSL</a></code><br/><span class="small_desc_flat"></span>
+            <a name="_refresh"><a class="lift" href="#_refresh">_refresh</a></a><code class="signature apipage">_refresh() : phoenix.ColorHSL</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">new(?_h:<span><a href="http://api.haxe.org/Float.html">Float</a>=0.0</span>, ?_s:<span><a href="http://api.haxe.org/Float.html">Float</a>=1.0</span>, ?_l:<span><a href="http://api.haxe.org/Float.html">Float</a>=1.0</span>, ?_a:<span><a href="http://api.haxe.org/Float.html">Float</a>=1.0</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="clone"><a class="lift" href="#clone">clone</a></a><code class="signature apipage">clone() : phoenix.ColorHSL</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set"><a class="lift" href="#set">set</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">set(?_h:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_s:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_l:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>, ?_a:<span><a href="http://api.haxe.org/Float.html">Float</a>=null</span>) : <a href="#phoenix.ColorHSL">phoenix.ColorHSL</a></code><br/><span class="small_desc_flat"></span>
+            <a name="toColor"><a class="lift" href="#toColor">toColor</a></a><code class="signature apipage">toColor() : phoenix.Color</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toColor"><a class="lift" href="#toColor">toColor</a></a><code class="signature apipage">toColor() : <a href="#phoenix.Color">phoenix.Color</a></code><br/><span class="small_desc_flat"></span>
+            <a name="fromColor"><a class="lift" href="#fromColor">fromColor</a></a><code class="signature apipage">fromColor(_color:phoenix.Color<span></span>) : phoenix.ColorHSL</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : String</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="tween"><a class="lift" href="#tween">tween</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">tween(?_time_in_seconds:<span><a href="http://api.haxe.org/Float.html">Float</a>=0.5</span>, ?_dest:<span><a href="#luxe.options.ColorOptions">luxe.options.ColorOptions</a>=null</span>, ?_override:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="#luxe.tween.actuators.IGenericActuator">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="fromColorHSL"><a class="lift" href="#fromColorHSL">fromColorHSL</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">fromColorHSL(_color_hsl:<span><a href="#phoenix.ColorHSL">phoenix.ColorHSL</a></span>) : <a href="#phoenix.Color">phoenix.Color</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="fromColorHSV"><a class="lift" href="#fromColorHSV">fromColorHSV</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">fromColorHSV(_color_hsv:<span><a href="#phoenix.ColorHSV">phoenix.ColorHSV</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="maxRGB"><a class="lift" href="#maxRGB">maxRGB</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">maxRGB() : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="minRGB"><a class="lift" href="#minRGB">minRGB</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">minRGB() : <a href="http://api.haxe.org/Float.html">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="random"><a class="lift" href="#random">random</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><span class="inline-block static">static</span><code class="signature apipage">random(?_include_alpha:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="#phoenix.Color">phoenix.Color</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="rgb"><a class="lift" href="#rgb">rgb</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">rgb(?_rgb:<span><a href="http://api.haxe.org/Int.html">Int</a>=16777215</span>) : <a href="#phoenix.Color">phoenix.Color</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toColorHSL"><a class="lift" href="#toColorHSL">toColorHSL</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">toColorHSL() : <a href="#phoenix.ColorHSL">phoenix.ColorHSL</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="toColorHSV"><a class="lift" href="#toColorHSV">toColorHSV</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">toColorHSV() : <a href="#phoenix.ColorHSV">phoenix.ColorHSV</a></code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_h:Float<span>=0.0f</span>, _s:Float<span>=1.0f</span>, _l:Float<span>=1.0f</span>, _a:Float<span>=1.0f</span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span></p>
-<p><h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="h"><a class="lift" href="#h">h</a></a><code class="signature apipage">h : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="l"><a class="lift" href="#l">l</a></a><code class="signature apipage">l : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="s"><a class="lift" href="#s">s</a></a><code class="signature apipage">s : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="b"><a class="lift" href="#b">b</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">b : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="g"><a class="lift" href="#g">g</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">g : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="r"><a class="lift" href="#r">r</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">r : <a href="">Float</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><a title="inherited from phoenix.Color" class="tooltip inherited">&gt;</a><code class="signature apipage">serialized : <a href="">Dynamic</a></code><br/><span class="small_desc_flat"></span>
-        </span></p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

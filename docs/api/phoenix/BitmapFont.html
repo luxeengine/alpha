@@ -52,88 +52,71 @@
         <div class="content">
             <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="bitmapfont">BitmapFont</h1>
+<p><h1>BitmapFont</h1>
+<small><code>phoenix.BitmapFont</code></small></p>
 <hr>
-<p><code>class</code>extends <code><span><a href="">luxe.Resource</a></span></code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code>extends <code><span>luxe.Resource</span></code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="characters"><a class="lift" href="#characters">characters</a></a><code class="signature apipage">characters : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>, <a href="#phoenix.Character">phoenix.Character</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="dimensions"><a class="lift" href="#dimensions">dimensions</a></a><code class="signature apipage">dimensions : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="font_character_count"><a class="lift" href="#font_character_count">font_character_count</a></a><code class="signature apipage">font_character_count : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="font_size"><a class="lift" href="#font_size">font_size</a></a><code class="signature apipage">font_size : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="kernings"><a class="lift" href="#kernings">kernings</a></a><code class="signature apipage">kernings : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="#phoenix.KerningKey">phoenix.KerningKey</a>, <a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="line_height"><a class="lift" href="#line_height">line_height</a></a><code class="signature apipage">line_height : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="on_pages_loaded"><a class="lift" href="#on_pages_loaded">on_pages_loaded</a></a><code class="signature apipage">on_pages_loaded : <a href="http://api.haxe.org/Void.html">Void</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="onload"><a class="lift" href="#onload">onload</a></a><code class="signature apipage">onload : <a href="#phoenix.BitmapFont-&gt;Void">phoenix.BitmapFont-&gt;Void</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="pages"><a class="lift" href="#pages">pages</a></a><code class="signature apipage">pages : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>, <a href="#phoenix.Texture">phoenix.Texture</a>&gt;</code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="pages_loaded"><a class="lift" href="#pages_loaded">pages_loaded</a></a><code class="signature apipage">pages_loaded : <a href="http://api.haxe.org/Int.html">Int</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="spacing"><a class="lift" href="#spacing">spacing</a></a><code class="signature apipage">spacing : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="dropped"><a class="lift" href="#dropped">dropped</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">dropped : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="manager"><a class="lift" href="#manager">manager</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">manager : <a href="#luxe.ResourceManager">luxe.ResourceManager</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="persistent"><a class="lift" href="#persistent">persistent</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">persistent : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="time_created"><a class="lift" href="#time_created">time_created</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">time_created : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="time_to_load"><a class="lift" href="#time_to_load">time_to_load</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">time_to_load : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="type"><a class="lift" href="#type">type</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">type : <a href="#luxe.ResourceType">luxe.ResourceType</a></code><br/></span>
-        <span class="small_desc_flat"></span></p>
+                <a name="dimensions"><a class="lift" href="#dimensions">dimensions</a></a><code class="signature apipage">dimensions : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="spacing"><a class="lift" href="#spacing">spacing</a></a><code class="signature apipage">spacing : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="line_height"><a class="lift" href="#line_height">line_height</a></a><code class="signature apipage">line_height : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="font_size"><a class="lift" href="#font_size">font_size</a></a><code class="signature apipage">font_size : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="font_character_count"><a class="lift" href="#font_character_count">font_character_count</a></a><code class="signature apipage">font_character_count : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="pages"><a class="lift" href="#pages">pages</a></a><code class="signature apipage">pages : <a href="#">Map</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="characters"><a class="lift" href="#characters">characters</a></a><code class="signature apipage">characters : <a href="#">Map</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="kernings"><a class="lift" href="#kernings">kernings</a></a><code class="signature apipage">kernings : <a href="#">Map</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="on_pages_loaded"><a class="lift" href="#on_pages_loaded">on_pages_loaded</a></a><code class="signature apipage">on_pages_loaded : <a href="#"></a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="pages_loaded"><a class="lift" href="#pages_loaded">pages_loaded</a></a><code class="signature apipage">pages_loaded : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="onload"><a class="lift" href="#onload">onload</a></a><code class="signature apipage">onload : phoenix.BitmapFont-&gt;Void</code><br/></span>
+            <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="draw_text"><a class="lift" href="#draw_text">draw_text</a></a><code class="signature apipage">draw_text(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.CompositeGeometry">phoenix.geometry.CompositeGeometry</a></code><br/><span class="small_desc_flat"></span>
+            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : String</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_kerning"><a class="lift" href="#get_kerning">get_kerning</a></a><code class="signature apipage">get_kerning(_glyph:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _index:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Null.html">Null</a>&lt;<a href="http://api.haxe.org/Int.html">Int</a>&gt;</code><br/><span class="small_desc_flat"></span>
+            <a name="on_all_pages_loaded"><a class="lift" href="#on_all_pages_loaded">on_all_pages_loaded</a></a><code class="signature apipage">on_all_pages_loaded() : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_text_dimensions"><a class="lift" href="#get_text_dimensions">get_text_dimensions</a></a><code class="signature apipage">get_text_dimensions(_string:<span><a href="http://api.haxe.org/String.html">String</a></span>, _scale:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="#luxe.Vector">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
+            <a name="one_page_loaded"><a class="lift" href="#one_page_loaded">one_page_loaded</a></a><code class="signature apipage">one_page_loaded(t:phoenix.Texture<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="load_from_string"><a class="lift" href="#load_from_string">load_from_string</a></a><code class="signature apipage">load_from_string(?_bitmap_file:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;&#x27;</span>, ?_folder:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;assets/&#x27;</span>, ?onloaded:<span><a href="#phoenix.BitmapFont-&gt;Void">phoenix.BitmapFont-&gt;Void</a>=null</span>, ?custom_pages:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#phoenix.Texture">phoenix.Texture</a>&gt;=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="load_from_string"><a class="lift" href="#load_from_string">load_from_string</a></a><code class="signature apipage">load_from_string(_bitmap_file:String<span>=&#x27;&#x27;</span>, _folder:String<span>=&#x27;assets/&#x27;</span>, onloaded:<span>=null</span>, custom_pages:Array<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">new(?_resource_manager:<span><a href="#luxe.ResourceManager">luxe.ResourceManager</a>=null</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="set_kerning"><a class="lift" href="#set_kerning">set_kerning</a></a><code class="signature apipage">set_kerning(_glyph:Int<span></span>, _index:Int<span></span>, _amount:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="on_all_pages_loaded"><a class="lift" href="#on_all_pages_loaded">on_all_pages_loaded</a></a><code class="signature apipage">on_all_pages_loaded() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="get_kerning"><a class="lift" href="#get_kerning">get_kerning</a></a><code class="signature apipage">get_kerning(_glyph:Int<span></span>, _index:Int<span></span>) : Null</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="one_page_loaded"><a class="lift" href="#one_page_loaded">one_page_loaded</a></a><code class="signature apipage">one_page_loaded(t:<span><a href="#phoenix.Texture">phoenix.Texture</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="get_text_dimensions"><a class="lift" href="#get_text_dimensions">get_text_dimensions</a></a><code class="signature apipage">get_text_dimensions(_string:String<span></span>, _scale:luxe.Vector<span></span>) : phoenix.Vector</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set_character"><a class="lift" href="#set_character">set_character</a></a><code class="signature apipage">set_character(_index:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _char_info:<span><a href="#phoenix.Character">phoenix.Character</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="draw_text"><a class="lift" href="#draw_text">draw_text</a></a><code class="signature apipage">draw_text(options:<span></span>) : phoenix.geometry.CompositeGeometry</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set_kerning"><a class="lift" href="#set_kerning">set_kerning</a></a><code class="signature apipage">set_kerning(_glyph:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _index:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, _amount:<span><a href="http://api.haxe.org/Int.html">Int</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="set_character"><a class="lift" href="#set_character">set_character</a></a><code class="signature apipage">set_character(_index:Int<span></span>, _char_info:phoenix.Character<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="drop"><a class="lift" href="#drop">drop</a></a><a title="inherited from luxe.Resource" class="tooltip inherited">&gt;</a><code class="signature apipage">drop() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_resource_manager:luxe.ResourceManager<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
         </span></p>
-<p><h3>Properties</h3> <hr/>no public properties</p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

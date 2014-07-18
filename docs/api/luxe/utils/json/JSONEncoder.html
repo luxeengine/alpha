@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<p><h1>JSONEncoder</h1>
+<small><code>luxe.utils.json.JSONEncoder</code></small></p>
+<hr>
+<p><code>class</code>
+<span class="meta">
+<br/>meta: @:noCompletion
+</span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="debug"><a class="lift" href="#debug">debug</a></a><code class="signature apipage">debug : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="getString"><a class="lift" href="#getString">getString</a></a><code class="signature apipage">getString() : String</code><br/><span class="small_desc_flat"><em> Gets the JSON string from the encoder.
+     </em></p>
+<pre><code> * @<span class="hljs-keyword">return</span> The JSON string representation of the object
+ *      that was passed to the constructor&lt;/span&gt;
+    &lt;/span&gt;
+&lt;span <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="_<span class="hljs-title">trace</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#_<span class="hljs-title">trace</span>"&gt;\_<span class="hljs-title">trace</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;\_<span class="hljs-title">trace</span>(<span class="hljs-title">e</span>:<span class="hljs-title">String</span>&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;) : <span class="hljs-title">Void</span>&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">new</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">new</span>"&gt;<span class="hljs-title">new</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">new</span>(<span class="hljs-title">value</span>:&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;) : <span class="hljs-title">Void</span>&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Creates</span> <span class="hljs-title">a</span> <span class="hljs-title">new</span> <span class="hljs-title">JSONEncoder</span>.
+ *
+ * @<span class="hljs-title">param</span> <span class="hljs-title">o</span> <span class="hljs-title">The</span> <span class="hljs-title">object</span> <span class="hljs-title">to</span> <span class="hljs-title">encode</span> <span class="hljs-title">as</span> <span class="hljs-title">a</span> <span class="hljs-title">JSON</span> <span class="hljs-title">string</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;</span>
+</code></pre><hr>
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

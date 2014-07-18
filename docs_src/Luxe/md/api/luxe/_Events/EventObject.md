@@ -1,0 +1,50 @@
+
+[![Logo](../../../images/logo.png)](../../../api/index.html)
+
+---
+
+
+
+<h1>EventObject</h1>
+<small>`luxe._Events.EventObject`</small>
+
+
+
+---
+
+`class`
+
+---
+
+&nbsp;
+&nbsp;
+
+
+
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="id"><a class="lift" href="#id">id</a></a><code class="signature apipage">id : [String](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : [String](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="properties"><a class="lift" href="#properties">properties</a></a><code class="signature apipage">properties : [](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
+
+
+
+
+
+<h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_id:String<span></span>, \_event\_name:String<span></span>, \_event\_properties:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+        </span>
+    
+
+
+
+
+
+---
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;

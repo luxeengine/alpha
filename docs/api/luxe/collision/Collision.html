@@ -52,37 +52,36 @@
         <div class="content">
             <p><a href="../../../api/index.html"><img src="../../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="collision">Collision</h1>
+<p><h1>Collision</h1>
+<small><code>luxe.collision.Collision</code></small></p>
 <hr>
-<p><code>class</code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
-<p><h3>Members</h3> <hr/>no public members</p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="pointInPoly"><a class="lift" href="#pointInPoly">pointInPoly</a></a><span class="inline-block static">static</span><code class="signature apipage">pointInPoly(point:<span><a href="#luxe.Vector">luxe.Vector</a></span>, poly:<span><a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Test if a given point lands inside the given polygon</span>
-        </span>
-    <span class="method apipage">
-            <a name="ray"><a class="lift" href="#ray">ray</a></a><span class="inline-block static">static</span><code class="signature apipage">ray(lineStart:<span><a href="#luxe.Vector">luxe.Vector</a></span>, lineEnd:<span><a href="#luxe.Vector">luxe.Vector</a></span>, shapes:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.collision.shapes.Shape">luxe.collision.shapes.Shape</a>&gt;</span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Test a line between two points against a list of shapes. 
-            If a collision is found, returns true, otherwise false.</span>
-        </span>
-    <span class="method apipage">
-            <a name="test"><a class="lift" href="#test">test</a></a><span class="inline-block static">static</span><code class="signature apipage">test(shape1:<span><a href="#luxe.collision.shapes.Shape">luxe.collision.shapes.Shape</a></span>, shape2:<span><a href="#luxe.collision.shapes.Shape">luxe.collision.shapes.Shape</a></span>) : <a href="#luxe.collision.CollisionData">luxe.collision.CollisionData</a></code><br/><span class="small_desc_flat">Test a single shape against another shape. 
+            <a name="test"><a class="lift" href="#test">test</a></a><span class="inline-block static">static</span><code class="signature apipage">test(shape1:luxe.collision.shapes.Shape<span></span>, shape2:luxe.collision.shapes.Shape<span></span>) : luxe.collision.CollisionData</code><br/><span class="small_desc_flat">Test a single shape against another shape. 
             When no collision is found between them, this function returns null.
             Returns a <code>CollisionData</code> if a collision is found.</span>
         </span>
     <span class="method apipage">
-            <a name="testCircleLine"><a class="lift" href="#testCircleLine">testCircleLine</a></a><span class="inline-block static">static</span><code class="signature apipage">testCircleLine(circle:<span><a href="#luxe.collision.shapes.Circle">luxe.collision.shapes.Circle</a></span>, lineStart:<span><a href="#luxe.Vector">luxe.Vector</a></span>, lineEnd:<span><a href="#luxe.Vector">luxe.Vector</a></span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat">Test a circle vs a line between two points</span>
-        </span>
-    <span class="method apipage">
-            <a name="testShapes"><a class="lift" href="#testShapes">testShapes</a></a><span class="inline-block static">static</span><code class="signature apipage">testShapes(shape1:<span><a href="#luxe.collision.shapes.Shape">luxe.collision.shapes.Shape</a></span>, shapes:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.collision.shapes.Shape">luxe.collision.shapes.Shape</a>&gt;</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.collision.CollisionData">luxe.collision.CollisionData</a>&gt;</code><br/><span class="small_desc_flat">Test a single shape against multiple other shapes. 
+            <a name="testShapes"><a class="lift" href="#testShapes">testShapes</a></a><span class="inline-block static">static</span><code class="signature apipage">testShapes(shape1:luxe.collision.shapes.Shape<span></span>, shapes:Array<span></span>) : Array</code><br/><span class="small_desc_flat">Test a single shape against multiple other shapes. 
             Will never return null, always length 0 array. 
             Returns a list of <code>CollisionData</code> information for each collision found.</span>
+        </span>
+    <span class="method apipage">
+            <a name="ray"><a class="lift" href="#ray">ray</a></a><span class="inline-block static">static</span><code class="signature apipage">ray(lineStart:luxe.Vector<span></span>, lineEnd:luxe.Vector<span></span>, shapes:Array<span></span>) : Bool</code><br/><span class="small_desc_flat">Test a line between two points against a list of shapes. 
+            If a collision is found, returns true, otherwise false.</span>
+        </span>
+    <span class="method apipage">
+            <a name="testCircleLine"><a class="lift" href="#testCircleLine">testCircleLine</a></a><span class="inline-block static">static</span><code class="signature apipage">testCircleLine(circle:luxe.collision.shapes.Circle<span></span>, lineStart:luxe.Vector<span></span>, lineEnd:luxe.Vector<span></span>) : Bool</code><br/><span class="small_desc_flat">Test a circle vs a line between two points</span>
+        </span>
+    <span class="method apipage">
+            <a name="pointInPoly"><a class="lift" href="#pointInPoly">pointInPoly</a></a><span class="inline-block static">static</span><code class="signature apipage">pointInPoly(point:luxe.Vector<span></span>, poly:luxe.collision.shapes.Polygon<span></span>) : Bool</code><br/><span class="small_desc_flat">Test if a given point lands inside the given polygon</span>
         </span></p>
-<p><h3>Properties</h3> <hr/>no public properties</p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

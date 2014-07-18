@@ -40,6 +40,10 @@ b {
     color:#3c3c3c;
 }
 
+div.content img {
+    max-width:45em
+}
+
 .highlight {
     overflow: hidden;
 }

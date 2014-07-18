@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<p><h1>ProfilerBar</h1>
+<small><code>luxe.debug._ProfilerDebugView.ProfilerBar</code></small></p>
+<hr>
+<p><code>class</code></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="bar_geometry"><a class="lift" href="#bar_geometry">bar_geometry</a></a><code class="signature apipage">bar_geometry : <a href="#">phoenix.geometry.QuadGeometry</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="bg_geometry"><a class="lift" href="#bg_geometry">bg_geometry</a></a><code class="signature apipage">bg_geometry : <a href="#">phoenix.geometry.QuadGeometry</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="graphbg_geometry"><a class="lift" href="#graphbg_geometry">graphbg_geometry</a></a><code class="signature apipage">graphbg_geometry : <a href="#">phoenix.geometry.QuadGeometry</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="graph_geometry"><a class="lift" href="#graph_geometry">graph_geometry</a></a><code class="signature apipage">graph_geometry : <a href="#">phoenix.geometry.Geometry</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="text_item"><a class="lift" href="#text_item">text_item</a></a><code class="signature apipage">text_item : <a href="#">luxe.Text</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="name"><a class="lift" href="#name">name</a></a><code class="signature apipage">name : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="width"><a class="lift" href="#width">width</a></a><code class="signature apipage">width : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="height"><a class="lift" href="#height">height</a></a><code class="signature apipage">height : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="height2"><a class="lift" href="#height2">height2</a></a><code class="signature apipage">height2 : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="max"><a class="lift" href="#max">max</a></a><code class="signature apipage">max : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="history"><a class="lift" href="#history">history</a></a><code class="signature apipage">history : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="visible"><a class="lift" href="#visible">visible</a></a><code class="signature apipage">visible : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<p><h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="value"><a class="lift" href="#value">value</a></a><code class="signature apipage">value : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="ping"><a class="lift" href="#ping">ping</a></a><code class="signature apipage">ping : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="hide"><a class="lift" href="#hide">hide</a></a><code class="signature apipage">hide() : Void</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="show"><a class="lift" href="#show">show</a></a><code class="signature apipage">show() : Void</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(_name:String<span></span>, _color:luxe.Color<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+        </span></p>
+<hr>
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>
