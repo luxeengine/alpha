@@ -14,41 +14,45 @@ import sys.FileSystem;
 
 class BuildVersion {
 
-		//This is always called from Luxe.hx in the root folder,
-		//which contains the .git repo, and build file directly
-	macro public static function latest() {
+        //This is always called from Luxe.hx in the root folder,
+        //which contains the .git repo, and build file directly
+    macro public static function latest() {
 
-		var location : String = Context.getPosInfos(Context.currentPos()).file;
-		var root : String = Path.addTrailingSlash(Path.directory(location));
-		var out : String = Path.join([root,'build']);
+        var location : String = Context.getPosInfos(Context.currentPos()).file;
+        var root : String = Path.addTrailingSlash(Path.directory(location));
+        var out : String = Path.join([root,'build']);
 
-		var build : String = try_git( root );
+        var build : String = try_git( root );
 
-		if(build != '') {
-				//the + is for semantic versioning
-			build = '+' + build.substr(0,10);
-			File.saveContent(out, build);
-			Context.addResource('build', Bytes.ofString(build));
-		}
+        if(build != '') {
+                //the + is for semantic versioning
+            build = '+' + build.substr(0,10);
+            File.saveContent(out, build);
+            Context.addResource('build', Bytes.ofString(build));
+        }
 
-		return Context.makeExpr(build, Context.currentPos());
+        return Context.makeExpr(build, Context.currentPos());
 
-	} //latest
+    } //latest
 
-	static function try_git(root:String) {
+    static function try_git(root:String) {
 
-		#if macro
-			var git_path : String = Path.join([root,'.git/']);
-				git_path = Path.normalize(git_path);
-		
-			if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
-				var ref_file = Path.normalize(Path.join([git_path,'refs/heads/master']));
-				return File.getContent(ref_file);
-			}
-		#end
+        #if macro
+            var git_path : String = Path.join([root,'.git/']);
+                git_path = Path.normalize(git_path);
 
-		return '';
+            if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
+                var ref_file = Path.normalize(Path.join([git_path,'refs/heads/snow']));
+                if(FileSystem.exists(ref_file)) {
+                    return File.getContent(ref_file);
+                } else {
+                    return '';
+                }
+            }
+        #end
 
-	} //try_git
-	
+        return '';
+
+    } //try_git
+
 } //BuildVersion
