@@ -3,6 +3,7 @@ package luxe;
 import snow.Snow;
 import snow.types.Types;
 import snow.utils.ByteArray;
+import snow.window.Window;
 
 import Luxe;
 import luxe.Audio;
@@ -23,6 +24,7 @@ import luxe.Game;
 import luxe.Log._verbose;
 import luxe.Log._debug;
 import luxe.Log.log;
+
 
 // #if (!luxe_threading_disabled && luxe_native)
 
@@ -73,8 +75,6 @@ class Core extends snow.App {
         //if the console is displayed atm
     public var console_visible : Bool = false;
 
-        //the reference to the underlying snow framework
-    public var snow : Snow;
 
 //Sub Systems, mostly in order of importance
     public var debug    : Debug;
@@ -109,11 +109,10 @@ class Core extends snow.App {
     public var has_shutdown : Bool = false;
 
 
-    public function new( _snow:Snow, _game:Game ) {
+    public function new( _game:Game ) {
 
         super();
 
-        snow = _snow;
         game = _game;
 
             //Store the core for reference in the game
@@ -164,7 +163,7 @@ class Core extends snow.App {
     public function init() {
 
             //Cache the settings locally
-        config = snow.config;
+        config = app.config;
 
             //Create the subsystems
         _debug('creating subsystems...');
@@ -184,7 +183,7 @@ class Core extends snow.App {
             //assign the globals
         Luxe.renderer = renderer;
             //store the size for access from API
-        screen = new luxe.Screen( this, snow.window.x, snow.window.y, config.window.width, config.window.height );
+        screen = new luxe.Screen( this, app.window.x, app.window.y, app.window.width, app.window.height );
 
             //Now make sure
             //they start up
@@ -216,7 +215,7 @@ class Core extends snow.App {
 
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
-        snow.window.onrender = render;
+        app.window.onrender = render;
 
     } //init
 
@@ -325,7 +324,7 @@ class Core extends snow.App {
 
     } //update
 
-    function render( window:snow.window.Window ) {
+    function render( window:Window ) {
 
         debug.start(core_tag_render);
 

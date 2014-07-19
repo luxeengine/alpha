@@ -9,7 +9,7 @@ import phoenix.RenderTexture;
 
 import luxe.Resource;
 
-class ResourceStats {    
+class ResourceStats {
 
 
     public var resources : Int = 0;
@@ -30,8 +30,8 @@ class ResourceStats {
 
     public function toString() {
 
-        return 
-            'Resource Statistics\n' + 
+        return
+            'Resource Statistics\n' +
             '\ttotal resources : ' + resources + '\n' +
             '\ttextures : ' + textures + ' \n' + '' +
             '\trender textures : ' + render_textures + ' \n' +
@@ -64,7 +64,7 @@ class ResourceStats {
 } //ResourceStats
 
 class ResourceManager {
-    
+
 
     public var resourcelist : Array<Resource>;
         //cache lists for creating
@@ -89,28 +89,28 @@ class ResourceManager {
         shaders = new Map();
         sounds = new Map();
         data = new Map();
-        text = new Map();        
-        json = new Map();        
+        text = new Map();
+        json = new Map();
         stats = new ResourceStats();
 
     } //new
 
     public function add( res:Resource ) {
-        
+
         resourcelist.push(res);
 
         switch (res.type) {
 
             case ResourceType.texture:
-                stats.textures++;               
+                stats.textures++;
             case ResourceType.render_texture:
-                stats.render_textures++;                
+                stats.render_textures++;
             case ResourceType.font:
                 stats.fonts++;
             case ResourceType.shader:
                 stats.shaders++;
             case ResourceType.sound:
-                stats.sounds++;                
+                stats.sounds++;
             case ResourceType.text:
                 stats.texts++;
             case ResourceType.json:
@@ -119,7 +119,7 @@ class ResourceManager {
                 stats.datas++;
             case ResourceType.unknown:
                 stats.unknown++;
-        
+
         } //switch
 
         stats.resources++;
@@ -142,7 +142,7 @@ class ResourceManager {
             case ResourceType.shader:
                 stats.shaders--;
             case ResourceType.sound:
-                stats.sounds--;                
+                stats.sounds--;
             case ResourceType.text:
                 stats.texts--;
             case ResourceType.json:
@@ -242,11 +242,11 @@ class ResourceManager {
     } //find_data
 
     public function clear( ?and_persistent : Bool = false ) {
-        
+
         var keep = [];
         for(res in resourcelist) {
             if(!res.persistent || and_persistent) {
-                res.drop();     
+                res.drop();
             } else {
                 keep.push(res);
             }
@@ -268,7 +268,7 @@ class ResourceManager {
     } //clear
 
     public function find( id : String ) : Resource {
-        
+
         for(resource in resourcelist) {
             if(resource.id == id) {
                 return resource;
@@ -279,5 +279,5 @@ class ResourceManager {
 
     } //find
 
-    
+
 } //ResourceManager

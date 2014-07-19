@@ -105,7 +105,7 @@ class Renderer {
 
     #end //no_debug_console
 
-        if(core.snow.config.window.depth_buffer) {
+        if(core.app.config.window.depth_buffer) {
                 // Enable z buffer use
             GL.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -194,7 +194,7 @@ class Renderer {
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( core.snow.config.window.depth_buffer ) {
+        if( core.app.config.window.depth_buffer ) {
             GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
             GL.clearDepth(1.0);
         } else {
@@ -223,7 +223,7 @@ class Renderer {
             _vsid = 'default shader';
             _vert_shader = default_vert_source;
         } else {
-            _vert_shader = core.snow.assets.get_text(_vsid).text;
+            _vert_shader = core.app.assets.get_text(_vsid).text;
         }
 
         if(_psid == 'default' || _psid == '') {
@@ -233,7 +233,7 @@ class Renderer {
             _psid = 'default textured';
             _frag_shader = default_frag_textured_source;
         } else {
-            _frag_shader = core.snow.assets.get_text(_psid).text;
+            _frag_shader = core.app.assets.get_text(_psid).text;
         }
 
         var _shader : Shader = null;
@@ -411,7 +411,7 @@ class Renderer {
 
         if(asset_bytes == null) {
             if( Luxe.utils.path_is_relative(haxe.io.Path.normalize(_name)) ) {
-                asset_bytes = core.snow.assets.get_bytes( _name ).data;
+                asset_bytes = core.app.assets.get_bytes( _name ).data;
             } else {
                 asset_bytes = ByteArray.readFile( _name );
             }

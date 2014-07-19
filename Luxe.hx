@@ -70,14 +70,14 @@ class Luxe {
     static function get_time() : Float {
 
 
-        return core.snow.time;
+        return core.app.time;
 
     } //get_time
 
         /** shutdown the engine and quit */
     public static function shutdown() {
 
-        core.snow.shutdown();
+        core.app.shutdown();
 
     } //shutdown
 
@@ -91,7 +91,7 @@ class Luxe {
         /** Load a text resource */
     public static function loadJSON( _id:String, ?_onloaded:JSONResource->Void ) : JSONResource {
 
-        var raw = core.snow.assets.get_text(_id).text;
+        var raw = core.app.assets.get_text(_id).text;
         var json = luxe.utils.JSON.parse(raw);
         var res = new JSONResource( _id, json, Luxe.resources );
 
@@ -105,7 +105,7 @@ class Luxe {
 
     public static function loadText( _id:String, ?_onloaded:TextResource->Void ) : TextResource {
 
-        var string = core.snow.assets.get_text(_id).text;
+        var string = core.app.assets.get_text(_id).text;
         var res = new TextResource( _id, string, Luxe.resources );
 
             if(_onloaded != null) {
@@ -119,7 +119,7 @@ class Luxe {
         /** Load a bytes/data resource */
     public static function loadData( _id:String, ?_onloaded:DataResource->Void ) : DataResource {
 
-        var bytes = core.snow.assets.get_bytes(_id).data;
+        var bytes = core.app.assets.get_bytes(_id).data;
         var res = new DataResource( _id, bytes, Luxe.resources);
 
             if(_onloaded != null) {

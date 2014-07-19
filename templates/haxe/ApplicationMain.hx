@@ -17,7 +17,7 @@ class ApplicationMain {
             //Create the app class, give it to the bootstrapper
         _game = new ::APP_MAIN::();
 			//Create the core luxe runtime
-		_core = new Core( _snow, _game );
+		_core = new Core( _game );
 
             //Create the main config
         var _config : SnowConfig = {
@@ -28,7 +28,7 @@ class ApplicationMain {
         };
 
             //Start up, but give the host as the luxe core
-        _snow.init( _core, _config );
+        _snow.init( _config );
 
 	} //main
 
