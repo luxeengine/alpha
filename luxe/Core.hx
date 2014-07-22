@@ -135,7 +135,7 @@ class Core extends snow.App {
 
     } //new
 
-        //This gets called once snow has booted us
+        //This gets called once snow has booted us - this is
     override function ready() {
 
         Luxe.version = haxe.Resource.getString('version');
@@ -387,7 +387,7 @@ class Core extends snow.App {
             }
         }
 
-        game.keydown(event);
+        game.onkeydown(event);
 
         if(keycode == Key.BACKQUOTE) {
             show_console( !console_visible );
@@ -418,7 +418,7 @@ class Core extends snow.App {
             }
         }
 
-        game.keyup(event);
+        game.onkeyup(event);
 
     } //onkeyup
 
@@ -430,7 +430,7 @@ class Core extends snow.App {
             scene.oninputdown(_name,e);
         }
 
-        game.inputdown(_name,e);
+        game.oninputdown(_name,e);
 
     } //oninputdown
 
@@ -440,7 +440,7 @@ class Core extends snow.App {
             scene.oninputup(_name,e);
         }
 
-        game.inputup(_name,e);
+        game.oninputup(_name,e);
 
     } //oninputup
 
@@ -486,7 +486,7 @@ class Core extends snow.App {
             debug.onmousedown(event);
         }
 
-        game.mousedown(event);
+        game.onmousedown(event);
 
     } //onmousedown
 
@@ -513,7 +513,7 @@ class Core extends snow.App {
             debug.onmouseup(event);
         }
 
-        game.mouseup(event);
+        game.onmouseup(event);
 
     } //onmouseup
 
@@ -539,7 +539,7 @@ class Core extends snow.App {
             debug.onmousemove(event);
         }
 
-        game.mousemove(event);
+        game.onmousemove(event);
 
     } //onmousemove
 
@@ -563,7 +563,7 @@ class Core extends snow.App {
             debug.onmousewheel(event);
         }
 
-        game.mousewheel(event);
+        game.onmousewheel(event);
 
     } //onmousewheel
 
@@ -588,7 +588,7 @@ class Core extends snow.App {
             scene.ontouchdown(event);
         }
 
-        game.touchdown(event);
+        game.ontouchdown(event);
 
             //3 finger tap when console opens will switch tabs
         if(touch_id == 3) {
@@ -624,7 +624,7 @@ class Core extends snow.App {
             scene.ontouchup( event );
         }
 
-        game.touchup( event );
+        game.ontouchup( event );
 
     } //ontouchup
 
@@ -648,7 +648,7 @@ class Core extends snow.App {
             scene.ontouchmove(event);
         }
 
-        game.touchmove(event);
+        game.ontouchmove(event);
 
     } //ontouchmove
 
@@ -670,7 +670,7 @@ class Core extends snow.App {
             scene.ongamepadaxis(event);
         }
 
-        game.gamepadaxis(event);
+        game.ongamepadaxis(event);
 
     } //ongamepadaxis
 
@@ -690,7 +690,7 @@ class Core extends snow.App {
             scene.ongamepadbuttondown(event);
         }
 
-        game.gamepadbuttondown(event);
+        game.ongamepadbuttondown(event);
 
     } //ongamepadbuttondown
 
@@ -710,7 +710,7 @@ class Core extends snow.App {
             scene.ongamepadbuttonup(event);
         }
 
-        game.gamepadbuttonup(event);
+        game.ongamepadbuttonup(event);
 
     } //ongamepadbuttonup
 
@@ -739,7 +739,7 @@ class Core extends snow.App {
             value : 0
         }
 
-        game.gamepaddevice(event);
+        game.ongamepaddevice(event);
 
     }
 

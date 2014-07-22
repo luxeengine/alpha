@@ -21,7 +21,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    override function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
             //quit when we press escape
         if(e.keycode == Key.ESCAPE) {
