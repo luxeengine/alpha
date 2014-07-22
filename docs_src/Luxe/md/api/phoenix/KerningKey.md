@@ -22,9 +22,9 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="index"><a class="lift" href="#index">index</a></a><code class="signature apipage">index : [Int](#)</code><br/></span>
+                <a name="index"><a class="lift" href="#index">index</a></a><div class="clear"></div><code class="signature apipage">index : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="glyph"><a class="lift" href="#glyph">glyph</a></a><code class="signature apipage">glyph : [Int](#)</code><br/></span>
+                <a name="glyph"><a class="lift" href="#glyph">glyph</a></a><div class="clear"></div><code class="signature apipage">glyph : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

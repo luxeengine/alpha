@@ -22,7 +22,7 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="init_with"><a class="lift" href="#init_with">init\_with</a></a><code class="signature apipage">init\_with : [luxe.options.StateOptions.T](#)</code><br/></span>
+                <a name="init_with"><a class="lift" href="#init_with">init\_with</a></a><div class="clear"></div><code class="signature apipage">init\_with : [luxe.options.StateOptions.T](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

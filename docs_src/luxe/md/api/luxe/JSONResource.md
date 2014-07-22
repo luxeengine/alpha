@@ -22,7 +22,7 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="json"><a class="lift" href="#json">json</a></a><code class="signature apipage">json : [](#)</code><br/></span>
+                <a name="json"><a class="lift" href="#json">json</a></a><div class="clear"></div><code class="signature apipage">json : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -30,7 +30,7 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_id:String<span></span>, \_json:<span></span>, \_manager:luxe.ResourceManager<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_id:[String](#)<span></span>, \_json:[Dynamic](#)<span></span>, \_manager:[luxe.ResourceManager](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

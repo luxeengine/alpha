@@ -19,6 +19,11 @@ h4 { font-size: 1.1em; }
 h5 { font-size: 1em; }
 h6 { font-size: 0.9em; }
 
+
+.clear {
+    clear: both;
+}
+
 img {
     clear: both;
     display: block;
@@ -36,12 +41,12 @@ li {
     color:#999;
 }
 
-b {
-    color:#3c3c3c;
+img {
+    max-width: 45em;
 }
 
-div.content img {
-    max-width:45em
+b {
+    color:#3c3c3c;
 }
 
 .highlight {
@@ -85,13 +90,13 @@ a:hover {
     display: inline-block;
     margin-left:1em;
     font-size:0.9em;
-    margin-bottom: 0.6em;    
+    margin-bottom: 0.6em;
 }
 
 
 .lift {
-    margin-bottom: -0.4em;
-    display: block;
+    display: inline-block;
+    position: relative;
     margin-left: -0.5em;
 }
 
@@ -141,7 +146,7 @@ a.liftsmall {
 }
 
 .indent {
-    margin-left: 1.2em;
+    padding-left: 1.5em;
     display: block;
 }
 
@@ -186,9 +191,9 @@ p {
 
 
 .sample {
-    width:645px; 
-    height:450px; 
-    background:#ff4b03; 
+    width:645px;
+    height:450px;
+    background:#ff4b03;
 }
 
 .sample p {
@@ -197,7 +202,7 @@ p {
 -khtml-user-select: none;
 -moz-user-select: none;
 -ms-user-select: none;
-user-select: none;  
+user-select: none;
     color:#f0f0f0;
     font-size: 2em;
     font-family: osp;
@@ -234,21 +239,23 @@ user-select: none;
     color:#242424;
     border:solid 1px rgba(0,0,0,0.1);
     font-size: 0.9em;
-    padding-bottom: 0.1em;
+    padding-bottom: 0.05em;
     padding-left: 0.4em;
     padding-right: 0.4em;
-    border-radius: 0.2em;   
+    border-radius: 0.2em;
+    margin-left:0.5em;
+    vertical-align: bottom;
 }
 
 .member, .method, .property {
     color:#666;
-    display: block;    
+    display: block;
     line-height: 1.3em;
     font-size: 1em;
 }
 
 .signature.apipage {
-    margin-top:1.6em;
+    margin-top:0.4em;
     margin-left: 0.5em;
     margin-bottom: 1.3em;
 }
@@ -273,12 +280,12 @@ user-select: none;
 .inherited {
     cursor: pointer;
     font-size:0.5em;
-    font-family:'dsm',monospace; 
+    font-family:'dsm',monospace;
     border-radius:0.1em;
-    height:auto; margin: 0.1em; 
+    height:auto; margin: 0.1em;
     margin-right:0.1em;
-    padding-left: 0.5em; 
-    padding-right: 0.5em; 
+    padding-left: 0.5em;
+    padding-right: 0.5em;
     color:#f6007b; border:solid 1px rgba(39,40,34,0.3);
 }
 

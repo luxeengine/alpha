@@ -26,10 +26,10 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="create"><a class="lift" href="#create">create</a></a><code class="signature apipage">create(options:luxe.options.TilemapVisualOptions<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(options:[luxe.options.TilemapVisualOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_map:luxe.tilemaps.Tilemap<span></span>, options:<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_map:[luxe.tilemaps.Tilemap](#)<span></span>, options:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

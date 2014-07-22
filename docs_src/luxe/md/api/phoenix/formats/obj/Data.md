@@ -22,7 +22,7 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="vertices"><a class="lift" href="#vertices">vertices</a></a><code class="signature apipage">vertices : [Array](#)</code><br/></span>
+                <a name="vertices"><a class="lift" href="#vertices">vertices</a></a><div class="clear"></div><code class="signature apipage">vertices : [Array](#)&lt;[phoenix.formats.obj.Vertex](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

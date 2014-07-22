@@ -1,13 +1,14 @@
 
 {{#unless (hidden_package .) }}
-
 <div class="indent">
 
 <a name="{{.}}"><h3> [{{without_package (escape_markdown .)}}](#{{.}}) </h3></a>
 
-{{#each (names_in_package . ) ~}}
-    &bull; [{{ without_package (escape_markdown .) }}]( {{type_path .}}.html ) <br/>
-{{~/each}}
+    {{~#each (names_in_package .) ~}}
+        {{#name_visible .~}}
+            &bull; [{{ without_package (escape_markdown .) }}]({{type_path .}}.html) <br/>
+        {{~/name_visible}}
+    {{~/each}}
 
 {{#with (get_type 'packages' . )~}}
     {{#each packages~}}

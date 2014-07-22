@@ -22,91 +22,91 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture : [lime.gl.GLTexture](#)</code><br/></span>
+                <a name="texture"><a class="lift" href="#texture">texture</a></a><div class="clear"></div><code class="signature apipage">texture : [lime.gl.GLTexture](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="data"><a class="lift" href="#data">data</a></a><code class="signature apipage">data : [lime.utils.UInt8Array](#)</code><br/></span>
+                <a name="data"><a class="lift" href="#data">data</a></a><div class="clear"></div><code class="signature apipage">data : [lime.utils.UInt8Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="actual_width"><a class="lift" href="#actual_width">actual\_width</a></a><code class="signature apipage">actual\_width : [Int](#)</code><br/></span>
+                <a name="actual_width"><a class="lift" href="#actual_width">actual\_width</a></a><div class="clear"></div><code class="signature apipage">actual\_width : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="actual_height"><a class="lift" href="#actual_height">actual\_height</a></a><code class="signature apipage">actual\_height : [Int](#)</code><br/></span>
+                <a name="actual_height"><a class="lift" href="#actual_height">actual\_height</a></a><div class="clear"></div><code class="signature apipage">actual\_height : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="width"><a class="lift" href="#width">width</a></a><code class="signature apipage">width : [Int](#)</code><br/></span>
+                <a name="width"><a class="lift" href="#width">width</a></a><div class="clear"></div><code class="signature apipage">width : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="height"><a class="lift" href="#height">height</a></a><code class="signature apipage">height : [Int](#)</code><br/></span>
+                <a name="height"><a class="lift" href="#height">height</a></a><div class="clear"></div><code class="signature apipage">height : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="loaded"><a class="lift" href="#loaded">loaded</a></a><code class="signature apipage">loaded : [Bool](#)</code><br/></span>
+                <a name="loaded"><a class="lift" href="#loaded">loaded</a></a><div class="clear"></div><code class="signature apipage">loaded : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="slot"><a class="lift" href="#slot">slot</a></a><code class="signature apipage">slot : [Int](#)</code><br/></span>
+                <a name="slot"><a class="lift" href="#slot">slot</a></a><div class="clear"></div><code class="signature apipage">slot : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="_onload_handlers"><a class="lift" href="#_onload_handlers">\_onload\_handlers</a></a><code class="signature apipage">\_onload\_handlers : [Array](#)</code><br/></span>
+                <a name="_onload_handlers"><a class="lift" href="#_onload_handlers">\_onload\_handlers</a></a><div class="clear"></div><code class="signature apipage">\_onload\_handlers : [Array](#)&lt;[](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="onload"><a class="lift" href="#onload">onload</a></a><code class="signature apipage">onload : phoenix.Texture-&gt;Void</code><br/></span>
+                <a name="onload"><a class="lift" href="#onload">onload</a></a><div class="clear"></div><code class="signature apipage">onload : [phoenix.Texture](#)&nbsp;-&gt; [Void](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="filter"><a class="lift" href="#filter">filter</a></a><code class="signature apipage">filter : [phoenix.FilterType](#)</code><br/></span>
+                <a name="filter"><a class="lift" href="#filter">filter</a></a><div class="clear"></div><code class="signature apipage">filter : [phoenix.FilterType](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="filter_min"><a class="lift" href="#filter_min">filter\_min</a></a><code class="signature apipage">filter\_min : [phoenix.FilterType](#)</code><br/></span>
+                <a name="filter_min"><a class="lift" href="#filter_min">filter\_min</a></a><div class="clear"></div><code class="signature apipage">filter\_min : [phoenix.FilterType](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="filter_mag"><a class="lift" href="#filter_mag">filter\_mag</a></a><code class="signature apipage">filter\_mag : [phoenix.FilterType](#)</code><br/></span>
+                <a name="filter_mag"><a class="lift" href="#filter_mag">filter\_mag</a></a><div class="clear"></div><code class="signature apipage">filter\_mag : [phoenix.FilterType](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="clamp"><a class="lift" href="#clamp">clamp</a></a><code class="signature apipage">clamp : [phoenix.ClampType](#)</code><br/></span>
+                <a name="clamp"><a class="lift" href="#clamp">clamp</a></a><div class="clear"></div><code class="signature apipage">clamp : [phoenix.ClampType](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="set_onload"><a class="lift" href="#set_onload">set\_onload</a></a><code class="signature apipage">set\_onload(f:<span></span>) : Dynamic</code><br/><span class="small_desc_flat"></span>
+            <a name="set_onload"><a class="lift" href="#set_onload">set\_onload</a></a> <div class="clear"></div><code class="signature apipage">set\_onload(f:[phoenix.Texture](#)&nbsp;-&gt; [Void](#)<span></span>) : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="do_onload"><a class="lift" href="#do_onload">do\_onload</a></a><code class="signature apipage">do\_onload() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="do_onload"><a class="lift" href="#do_onload">do\_onload</a></a> <div class="clear"></div><code class="signature apipage">do\_onload() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><code class="signature apipage">toString() : String</code><br/><span class="small_desc_flat"></span>
+            <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="estimated_memory"><a class="lift" href="#estimated_memory">estimated\_memory</a></a><code class="signature apipage">estimated\_memory() : String</code><br/><span class="small_desc_flat"></span>
+            <a name="estimated_memory"><a class="lift" href="#estimated_memory">estimated\_memory</a></a> <div class="clear"></div><code class="signature apipage">estimated\_memory() : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="create_from_bytes_html"><a class="lift" href="#create_from_bytes_html">create\_from\_bytes\_html</a></a><code class="signature apipage">create\_from\_bytes\_html(\_asset\_name:String<span></span>, \_asset\_bytes:<span></span>, \_width:Float<span></span>, \_height:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="create_from_bytes_html"><a class="lift" href="#create_from_bytes_html">create\_from\_bytes\_html</a></a> <div class="clear"></div><code class="signature apipage">create\_from\_bytes\_html(\_asset\_name:[String](#)<span></span>, \_asset\_bytes:[Dynamic](#)<span></span>, \_width:[Float](#)<span></span>, \_height:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="create_from_bytes"><a class="lift" href="#create_from_bytes">create\_from\_bytes</a></a><code class="signature apipage">create\_from\_bytes(\_asset\_name:String<span></span>, \_asset\_bytes:haxe.io.Bytes<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="create_from_bytes"><a class="lift" href="#create_from_bytes">create\_from\_bytes</a></a> <div class="clear"></div><code class="signature apipage">create\_from\_bytes(\_asset\_name:[String](#)<span></span>, \_asset\_bytes:[haxe.io.Bytes](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="create_from_bytes_using_haxe"><a class="lift" href="#create_from_bytes_using_haxe">create\_from\_bytes\_using\_haxe</a></a><code class="signature apipage">create\_from\_bytes\_using\_haxe(\_asset\_name:String<span></span>, \_asset\_bytes:haxe.io.Bytes<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="create_from_bytes_using_haxe"><a class="lift" href="#create_from_bytes_using_haxe">create\_from\_bytes\_using\_haxe</a></a> <div class="clear"></div><code class="signature apipage">create\_from\_bytes\_using\_haxe(\_asset\_name:[String](#)<span></span>, \_asset\_bytes:[haxe.io.Bytes](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="generate_mipmaps"><a class="lift" href="#generate_mipmaps">generate\_mipmaps</a></a><code class="signature apipage">generate\_mipmaps() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="generate_mipmaps"><a class="lift" href="#generate_mipmaps">generate\_mipmaps</a></a> <div class="clear"></div><code class="signature apipage">generate\_mipmaps() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="bind"><a class="lift" href="#bind">bind</a></a><code class="signature apipage">bind() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="bind"><a class="lift" href="#bind">bind</a></a> <div class="clear"></div><code class="signature apipage">bind() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_pixel"><a class="lift" href="#get_pixel">get\_pixel</a></a><code class="signature apipage">get\_pixel(\_pos:phoenix.Vector<span></span>) : Dynamic</code><br/><span class="small_desc_flat"></span>
+            <a name="get_pixel"><a class="lift" href="#get_pixel">get\_pixel</a></a> <div class="clear"></div><code class="signature apipage">get\_pixel(\_pos:[phoenix.Vector](#)<span></span>) : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set_pixel"><a class="lift" href="#set_pixel">set\_pixel</a></a><code class="signature apipage">set\_pixel(\_pos:phoenix.Vector<span></span>, \_color:phoenix.Color<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="set_pixel"><a class="lift" href="#set_pixel">set\_pixel</a></a> <div class="clear"></div><code class="signature apipage">set\_pixel(\_pos:[phoenix.Vector](#)<span></span>, \_color:[phoenix.Color](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="lock"><a class="lift" href="#lock">lock</a></a><code class="signature apipage">lock() : Bool</code><br/><span class="small_desc_flat"></span>
+            <a name="lock"><a class="lift" href="#lock">lock</a></a> <div class="clear"></div><code class="signature apipage">lock() : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="unlock"><a class="lift" href="#unlock">unlock</a></a><code class="signature apipage">unlock() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="unlock"><a class="lift" href="#unlock">unlock</a></a> <div class="clear"></div><code class="signature apipage">unlock() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="drop"><a class="lift" href="#drop">drop</a></a><code class="signature apipage">drop() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="drop"><a class="lift" href="#drop">drop</a></a> <div class="clear"></div><code class="signature apipage">drop() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="activate"><a class="lift" href="#activate">activate</a></a><code class="signature apipage">activate(att:lime.gl.GLUniformLocation<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="activate"><a class="lift" href="#activate">activate</a></a> <div class="clear"></div><code class="signature apipage">activate(att:[lime.gl.GLUniformLocation](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><code class="signature apipage">destroy() : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a> <div class="clear"></div><code class="signature apipage">destroy() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(\_manager:luxe.ResourceManager<span></span>, \_type:luxe.ResourceType<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_manager:[luxe.ResourceManager](#)<span></span>, \_type:[luxe.ResourceType](#)<span>=null</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

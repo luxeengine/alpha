@@ -26,30 +26,30 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="flipx"><a class="lift" href="#flipx">flipx</a></a><code class="signature apipage">flipx : [Bool](#)</code><br/></span>
+                <a name="flipx"><a class="lift" href="#flipx">flipx</a></a><div class="clear"></div><code class="signature apipage">flipx : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="flipy"><a class="lift" href="#flipy">flipy</a></a><code class="signature apipage">flipy : [Bool](#)</code><br/></span>
+                <a name="flipy"><a class="lift" href="#flipy">flipy</a></a><div class="clear"></div><code class="signature apipage">flipy : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="uv"><a class="lift" href="#uv">uv</a></a><code class="signature apipage">uv(\_rect:luxe.Rectangle<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="uv"><a class="lift" href="#uv">uv</a></a> <div class="clear"></div><code class="signature apipage">uv(\_rect:[luxe.Rectangle](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="uv_space"><a class="lift" href="#uv_space">uv\_space</a></a><code class="signature apipage">uv\_space(\_rect:luxe.Rectangle<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="uv_space"><a class="lift" href="#uv_space">uv\_space</a></a> <div class="clear"></div><code class="signature apipage">uv\_space(\_rect:[luxe.Rectangle](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set"><a class="lift" href="#set">set</a></a><code class="signature apipage">set(quad:luxe.Rectangle<span></span>, y:Float<span></span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="set"><a class="lift" href="#set">set</a></a> <div class="clear"></div><code class="signature apipage">set(quad:[luxe.Rectangle](#)<span></span>, y:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set_flipx"><a class="lift" href="#set_flipx">set\_flipx</a></a><code class="signature apipage">set\_flipx(\_val:Bool<span></span>) : Bool</code><br/><span class="small_desc_flat"></span>
+            <a name="set_flipx"><a class="lift" href="#set_flipx">set\_flipx</a></a> <div class="clear"></div><code class="signature apipage">set\_flipx(\_val:[Bool](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="set_flipy"><a class="lift" href="#set_flipy">set\_flipy</a></a><code class="signature apipage">set\_flipy(\_val:Bool<span></span>) : Bool</code><br/><span class="small_desc_flat"></span>
+            <a name="set_flipy"><a class="lift" href="#set_flipy">set\_flipy</a></a> <div class="clear"></div><code class="signature apipage">set\_flipy(\_val:[Bool](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><code class="signature apipage">new(options:luxe.options.PlaneGeometryOptions<span>=null</span>) : Void</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(options:[luxe.options.PlaneGeometryOptions](#)<span>=null</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

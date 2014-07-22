@@ -30,12 +30,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.collision"><h3> [collision](#luxe.collision) </h3></a>
-
-&bull; [Collision]( luxe/collision/Collision.html ) <br/>&bull; [CollisionData]( luxe/collision/CollisionData.html ) <br/>&bull; [ShapeDrawer]( luxe/collision/ShapeDrawer.html ) <br/>&bull; [ShapeDrawerLuxe]( luxe/collision/ShapeDrawerLuxe.html ) <br/>
+<a name="luxe.collision"><h3> [collision](#luxe.collision) </h3></a>&bull; [Collision](luxe/collision/Collision.html) <br/>&bull; [CollisionData](luxe/collision/CollisionData.html) <br/>&bull; [ShapeDrawer](luxe/collision/ShapeDrawer.html) <br/>&bull; [ShapeDrawerLuxe](luxe/collision/ShapeDrawerLuxe.html) <br/>
 
 <div class="indent">
                 
@@ -56,12 +53,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.components"><h3> [components](#luxe.components) </h3></a>
-
-&bull; [ComponentRules]( luxe/components/ComponentRules.html ) <br/>&bull; [Components]( luxe/components/Components.html ) <br/>
+<a name="luxe.components"><h3> [components](#luxe.components) </h3></a>&bull; [ComponentRules](luxe/components/ComponentRules.html) <br/>
 
 <div class="indent">
                 
@@ -106,12 +100,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.debug"><h3> [debug](#luxe.debug) </h3></a>
-
-&bull; [BatcherDebugView]( luxe/debug/BatcherDebugView.html ) <br/>&bull; [DebugInspectorOptions]( luxe/debug/DebugInspectorOptions.html ) <br/>&bull; [DebugView]( luxe/debug/DebugView.html ) <br/>&bull; [Inspector]( luxe/debug/Inspector.html ) <br/>&bull; [ProfilerDebugView]( luxe/debug/ProfilerDebugView.html ) <br/>&bull; [RenderStats]( luxe/debug/RenderStats.html ) <br/>&bull; [StatsDebugView]( luxe/debug/StatsDebugView.html ) <br/>&bull; [TraceDebugView]( luxe/debug/TraceDebugView.html ) <br/>
+<a name="luxe.debug"><h3> [debug](#luxe.debug) </h3></a>&bull; [BatcherDebugView](luxe/debug/BatcherDebugView.html) <br/>&bull; [DebugInspectorOptions](luxe/debug/DebugInspectorOptions.html) <br/>&bull; [DebugView](luxe/debug/DebugView.html) <br/>&bull; [ProfilerDebugView](luxe/debug/ProfilerDebugView.html) <br/>&bull; [RenderStats](luxe/debug/RenderStats.html) <br/>&bull; [StatsDebugView](luxe/debug/StatsDebugView.html) <br/>&bull; [TraceDebugView](luxe/debug/TraceDebugView.html) <br/>
 
 <div class="indent">
                 
@@ -122,12 +113,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.importers"><h3> [importers](#luxe.importers) </h3></a>
-
-&bull; [TexturePackerSpriteAnimation]( luxe/importers/TexturePackerSpriteAnimation.html ) <br/>
+<a name="luxe.importers"><h3> [importers](#luxe.importers) </h3></a>&bull; [TexturePackerSpriteAnimation](luxe/importers/TexturePackerSpriteAnimation.html) <br/>
 
 <div class="indent">
                 
@@ -148,12 +136,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.options"><h3> [options](#luxe.options) </h3></a>
-
-&bull; [BatcherOptions]( luxe/options/BatcherOptions.html ) <br/>&bull; [CameraOptions]( luxe/options/CameraOptions.html ) <br/>&bull; [CircleGeometryOptions]( luxe/options/CircleGeometryOptions.html ) <br/>&bull; [ColorOptions]( luxe/options/ColorOptions.html ) <br/>&bull; [ComponentOptions]( luxe/options/ComponentOptions.html ) <br/>&bull; [DrawArcOptions]( luxe/options/DrawArcOptions.html ) <br/>&bull; [DrawBoxOptions]( luxe/options/DrawBoxOptions.html ) <br/>&bull; [DrawCircleOptions]( luxe/options/DrawCircleOptions.html ) <br/>&bull; [DrawLineOptions]( luxe/options/DrawLineOptions.html ) <br/>&bull; [DrawNgonOptions]( luxe/options/DrawNgonOptions.html ) <br/>&bull; [DrawOptions]( luxe/options/DrawOptions.html ) <br/>&bull; [DrawPlaneOptions]( luxe/options/DrawPlaneOptions.html ) <br/>&bull; [DrawRectangleOptions]( luxe/options/DrawRectangleOptions.html ) <br/>&bull; [DrawRingOptions]( luxe/options/DrawRingOptions.html ) <br/>&bull; [DrawTextureOptions]( luxe/options/DrawTextureOptions.html ) <br/>&bull; [EntityOptions]( luxe/options/EntityOptions.html ) <br/>&bull; [FontOptions]( luxe/options/FontOptions.html ) <br/>&bull; [GeometryOptions]( luxe/options/GeometryOptions.html ) <br/>&bull; [LineGeometryOptions]( luxe/options/LineGeometryOptions.html ) <br/>&bull; [LuxeCameraOptions]( luxe/options/LuxeCameraOptions.html ) <br/>&bull; [MeshOptions]( luxe/options/MeshOptions.html ) <br/>&bull; [NineSliceOptions]( luxe/options/NineSliceOptions.html ) <br/>&bull; [ParcelProgressOptions]( luxe/options/ParcelProgressOptions.html ) <br/>&bull; [ParticleEmitterOptions]( luxe/options/ParticleEmitterOptions.html ) <br/>&bull; [ParticleOptions]( luxe/options/ParticleOptions.html ) <br/>&bull; [PlaneGeometryOptions]( luxe/options/PlaneGeometryOptions.html ) <br/>&bull; [QuadGeometryOptions]( luxe/options/QuadGeometryOptions.html ) <br/>&bull; [RectangleGeometryOptions]( luxe/options/RectangleGeometryOptions.html ) <br/>&bull; [ResourceOptions]( luxe/options/ResourceOptions.html ) <br/>&bull; [SpriteOptions]( luxe/options/SpriteOptions.html ) <br/>&bull; [StateOptions]( luxe/options/StateOptions.html ) <br/>&bull; [TextureOptions]( luxe/options/TextureOptions.html ) <br/>&bull; [TileLayerOptions]( luxe/options/TileLayerOptions.html ) <br/>&bull; [TileOptions]( luxe/options/TileOptions.html ) <br/>&bull; [TilemapOptions]( luxe/options/TilemapOptions.html ) <br/>&bull; [TilemapVisualOptions]( luxe/options/TilemapVisualOptions.html ) <br/>&bull; [TilesetOptions]( luxe/options/TilesetOptions.html ) <br/>&bull; [VisualOptions]( luxe/options/VisualOptions.html ) <br/>
+<a name="luxe.options"><h3> [options](#luxe.options) </h3></a>&bull; [BatcherOptions](luxe/options/BatcherOptions.html) <br/>&bull; [CameraOptions](luxe/options/CameraOptions.html) <br/>&bull; [CircleGeometryOptions](luxe/options/CircleGeometryOptions.html) <br/>&bull; [ColorOptions](luxe/options/ColorOptions.html) <br/>&bull; [ComponentOptions](luxe/options/ComponentOptions.html) <br/>&bull; [DrawArcOptions](luxe/options/DrawArcOptions.html) <br/>&bull; [DrawBoxOptions](luxe/options/DrawBoxOptions.html) <br/>&bull; [DrawCircleOptions](luxe/options/DrawCircleOptions.html) <br/>&bull; [DrawLineOptions](luxe/options/DrawLineOptions.html) <br/>&bull; [DrawNgonOptions](luxe/options/DrawNgonOptions.html) <br/>&bull; [DrawRectangleOptions](luxe/options/DrawRectangleOptions.html) <br/>&bull; [DrawRingOptions](luxe/options/DrawRingOptions.html) <br/>&bull; [DrawTextureOptions](luxe/options/DrawTextureOptions.html) <br/>&bull; [EntityOptions](luxe/options/EntityOptions.html) <br/>&bull; [FontOptions](luxe/options/FontOptions.html) <br/>&bull; [GeometryOptions](luxe/options/GeometryOptions.html) <br/>&bull; [LineGeometryOptions](luxe/options/LineGeometryOptions.html) <br/>&bull; [LuxeCameraOptions](luxe/options/LuxeCameraOptions.html) <br/>&bull; [MeshOptions](luxe/options/MeshOptions.html) <br/>&bull; [NineSliceOptions](luxe/options/NineSliceOptions.html) <br/>&bull; [ParcelProgressOptions](luxe/options/ParcelProgressOptions.html) <br/>&bull; [ParticleEmitterOptions](luxe/options/ParticleEmitterOptions.html) <br/>&bull; [ParticleOptions](luxe/options/ParticleOptions.html) <br/>&bull; [PlaneGeometryOptions](luxe/options/PlaneGeometryOptions.html) <br/>&bull; [QuadGeometryOptions](luxe/options/QuadGeometryOptions.html) <br/>&bull; [RectangleGeometryOptions](luxe/options/RectangleGeometryOptions.html) <br/>&bull; [ResourceOptions](luxe/options/ResourceOptions.html) <br/>&bull; [SpriteOptions](luxe/options/SpriteOptions.html) <br/>&bull; [StateOptions](luxe/options/StateOptions.html) <br/>&bull; [TextureOptions](luxe/options/TextureOptions.html) <br/>&bull; [TileLayerOptions](luxe/options/TileLayerOptions.html) <br/>&bull; [TileOptions](luxe/options/TileOptions.html) <br/>&bull; [TilemapOptions](luxe/options/TilemapOptions.html) <br/>&bull; [TilemapVisualOptions](luxe/options/TilemapVisualOptions.html) <br/>&bull; [TilesetOptions](luxe/options/TilesetOptions.html) <br/>&bull; [VisualOptions](luxe/options/VisualOptions.html) <br/>
 
 
 
@@ -162,12 +147,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.structural"><h3> [structural](#luxe.structural) </h3></a>
-
-&bull; [Bag]( luxe/structural/Bag.html ) <br/>&bull; [BalancedBinarySearchTraverseMethod]( luxe/structural/BalancedBinarySearchTraverseMethod.html ) <br/>&bull; [BalancedBinarySearchTree]( luxe/structural/BalancedBinarySearchTree.html ) <br/>&bull; [BalancedBinarySearchTreeNode]( luxe/structural/BalancedBinarySearchTreeNode.html ) <br/>&bull; [BinarySearchTraverseMethod]( luxe/structural/BinarySearchTraverseMethod.html ) <br/>&bull; [BinarySearchTree]( luxe/structural/BinarySearchTree.html ) <br/>&bull; [BinarySearchTreeNode]( luxe/structural/BinarySearchTreeNode.html ) <br/>&bull; [Heap]( luxe/structural/Heap.html ) <br/>&bull; [Pool]( luxe/structural/Pool.html ) <br/>&bull; [Stack]( luxe/structural/Stack.html ) <br/>&bull; [StackNode]( luxe/structural/StackNode.html ) <br/>
+<a name="luxe.structural"><h3> [structural](#luxe.structural) </h3></a>&bull; [Bag](luxe/structural/Bag.html) <br/>&bull; [BalancedBinarySearchTraverseMethod](luxe/structural/BalancedBinarySearchTraverseMethod.html) <br/>&bull; [BalancedBinarySearchTree](luxe/structural/BalancedBinarySearchTree.html) <br/>&bull; [BalancedBinarySearchTreeNode](luxe/structural/BalancedBinarySearchTreeNode.html) <br/>&bull; [BinarySearchTraverseMethod](luxe/structural/BinarySearchTraverseMethod.html) <br/>&bull; [BinarySearchTree](luxe/structural/BinarySearchTree.html) <br/>&bull; [BinarySearchTreeNode](luxe/structural/BinarySearchTreeNode.html) <br/>&bull; [Heap](luxe/structural/Heap.html) <br/>&bull; [Pool](luxe/structural/Pool.html) <br/>&bull; [Stack](luxe/structural/Stack.html) <br/>&bull; [StackNode](luxe/structural/StackNode.html) <br/>
 
 <div class="indent">
                 
@@ -178,12 +160,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.tilemaps"><h3> [tilemaps](#luxe.tilemaps) </h3></a>
-
-&bull; [Isometric]( luxe/tilemaps/Isometric.html ) <br/>&bull; [IsometricVisuals]( luxe/tilemaps/IsometricVisuals.html ) <br/>&bull; [Ortho]( luxe/tilemaps/Ortho.html ) <br/>&bull; [OrthoVisuals]( luxe/tilemaps/OrthoVisuals.html ) <br/>&bull; [Tile]( luxe/tilemaps/Tile.html ) <br/>&bull; [TileArray]( luxe/tilemaps/TileArray.html ) <br/>&bull; [TileLayer]( luxe/tilemaps/TileLayer.html ) <br/>&bull; [TileOffset]( luxe/tilemaps/TileOffset.html ) <br/>&bull; [TiledMap]( luxe/tilemaps/TiledMap.html ) <br/>&bull; [TiledMapOptions]( luxe/tilemaps/TiledMapOptions.html ) <br/>&bull; [Tilemap]( luxe/tilemaps/Tilemap.html ) <br/>&bull; [TilemapOrientation]( luxe/tilemaps/TilemapOrientation.html ) <br/>&bull; [TilemapVisuals]( luxe/tilemaps/TilemapVisuals.html ) <br/>&bull; [TilemapVisualsLayerGeometry]( luxe/tilemaps/TilemapVisualsLayerGeometry.html ) <br/>&bull; [Tileset]( luxe/tilemaps/Tileset.html ) <br/>
+<a name="luxe.tilemaps"><h3> [tilemaps](#luxe.tilemaps) </h3></a>&bull; [Isometric](luxe/tilemaps/Isometric.html) <br/>&bull; [IsometricVisuals](luxe/tilemaps/IsometricVisuals.html) <br/>&bull; [Ortho](luxe/tilemaps/Ortho.html) <br/>&bull; [OrthoVisuals](luxe/tilemaps/OrthoVisuals.html) <br/>&bull; [Tile](luxe/tilemaps/Tile.html) <br/>&bull; [TileArray](luxe/tilemaps/TileArray.html) <br/>&bull; [TileLayer](luxe/tilemaps/TileLayer.html) <br/>&bull; [TileOffset](luxe/tilemaps/TileOffset.html) <br/>&bull; [TiledMap](luxe/tilemaps/TiledMap.html) <br/>&bull; [TiledMapOptions](luxe/tilemaps/TiledMapOptions.html) <br/>&bull; [Tilemap](luxe/tilemaps/Tilemap.html) <br/>&bull; [TilemapOrientation](luxe/tilemaps/TilemapOrientation.html) <br/>&bull; [TilemapVisuals](luxe/tilemaps/TilemapVisuals.html) <br/>&bull; [TilemapVisualsLayerGeometry](luxe/tilemaps/TilemapVisualsLayerGeometry.html) <br/>&bull; [Tileset](luxe/tilemaps/Tileset.html) <br/>
 
 <div class="indent">
                 
@@ -204,12 +183,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.tween"><h3> [tween](#luxe.tween) </h3></a>
-
-&bull; [Actuate]( luxe/tween/Actuate.html ) <br/>&bull; [BezierPath]( luxe/tween/BezierPath.html ) <br/>&bull; [ComponentPath]( luxe/tween/ComponentPath.html ) <br/>&bull; [IComponentPath]( luxe/tween/IComponentPath.html ) <br/>&bull; [LinearPath]( luxe/tween/LinearPath.html ) <br/>&bull; [MotionPath]( luxe/tween/MotionPath.html ) <br/>&bull; [ObjectHash]( luxe/tween/ObjectHash.html ) <br/>&bull; [RotationPath]( luxe/tween/RotationPath.html ) <br/>
+<a name="luxe.tween"><h3> [tween](#luxe.tween) </h3></a>&bull; [Actuate](luxe/tween/Actuate.html) <br/>&bull; [BezierPath](luxe/tween/BezierPath.html) <br/>&bull; [ComponentPath](luxe/tween/ComponentPath.html) <br/>&bull; [LinearPath](luxe/tween/LinearPath.html) <br/>&bull; [MotionPath](luxe/tween/MotionPath.html) <br/>&bull; [ObjectHash](luxe/tween/ObjectHash.html) <br/>&bull; [RotationPath](luxe/tween/RotationPath.html) <br/>
 
 <div class="indent">
                 
@@ -244,12 +220,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="luxe.utils"><h3> [utils](#luxe.utils) </h3></a>
-
-&bull; [Base64]( luxe/utils/Base64.html ) <br/>&bull; [GeometryUtils]( luxe/utils/GeometryUtils.html ) <br/>&bull; [JSON]( luxe/utils/JSON.html ) <br/>&bull; [Maths]( luxe/utils/Maths.html ) <br/>&bull; [UUID]( luxe/utils/UUID.html ) <br/>&bull; [Utils]( luxe/utils/Utils.html ) <br/>
+<a name="luxe.utils"><h3> [utils](#luxe.utils) </h3></a>&bull; [Base64](luxe/utils/Base64.html) <br/>&bull; [GeometryUtils](luxe/utils/GeometryUtils.html) <br/>&bull; [JSON](luxe/utils/JSON.html) <br/>&bull; [Maths](luxe/utils/Maths.html) <br/>&bull; [UUID](luxe/utils/UUID.html) <br/>&bull; [Utils](luxe/utils/Utils.html) <br/>
 
 <div class="indent">
                 
@@ -285,12 +258,9 @@
 
 
 
-
 <div class="indent">
 
 <a name="phoenix.formats"><h3> [formats](#phoenix.formats) </h3></a>
-
-
 
 <div class="indent">
                 
@@ -311,12 +281,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="phoenix.geometry"><h3> [geometry](#phoenix.geometry) </h3></a>
-
-&bull; [ArcGeometry]( phoenix/geometry/ArcGeometry.html ) <br/>&bull; [CircleGeometry]( phoenix/geometry/CircleGeometry.html ) <br/>&bull; [ComplexGeometry]( phoenix/geometry/ComplexGeometry.html ) <br/>&bull; [ComplexQuad]( phoenix/geometry/ComplexQuad.html ) <br/>&bull; [CompositeGeometry]( phoenix/geometry/CompositeGeometry.html ) <br/>&bull; [Geometry]( phoenix/geometry/Geometry.html ) <br/>&bull; [GeometryKey]( phoenix/geometry/GeometryKey.html ) <br/>&bull; [GeometryState]( phoenix/geometry/GeometryState.html ) <br/>&bull; [LineGeometry]( phoenix/geometry/LineGeometry.html ) <br/>&bull; [PlaneGeometry]( phoenix/geometry/PlaneGeometry.html ) <br/>&bull; [QuadGeometry]( phoenix/geometry/QuadGeometry.html ) <br/>&bull; [RectangleGeometry]( phoenix/geometry/RectangleGeometry.html ) <br/>&bull; [RingGeometry]( phoenix/geometry/RingGeometry.html ) <br/>&bull; [TextGeometry]( phoenix/geometry/TextGeometry.html ) <br/>&bull; [TextureCoord]( phoenix/geometry/TextureCoord.html ) <br/>&bull; [TextureCoordSet]( phoenix/geometry/TextureCoordSet.html ) <br/>&bull; [Vertex]( phoenix/geometry/Vertex.html ) <br/>
+<a name="phoenix.geometry"><h3> [geometry](#phoenix.geometry) </h3></a>&bull; [ArcGeometry](phoenix/geometry/ArcGeometry.html) <br/>&bull; [CircleGeometry](phoenix/geometry/CircleGeometry.html) <br/>&bull; [ComplexGeometry](phoenix/geometry/ComplexGeometry.html) <br/>&bull; [ComplexQuad](phoenix/geometry/ComplexQuad.html) <br/>&bull; [CompositeGeometry](phoenix/geometry/CompositeGeometry.html) <br/>&bull; [Geometry](phoenix/geometry/Geometry.html) <br/>&bull; [GeometryKey](phoenix/geometry/GeometryKey.html) <br/>&bull; [GeometryState](phoenix/geometry/GeometryState.html) <br/>&bull; [LineGeometry](phoenix/geometry/LineGeometry.html) <br/>&bull; [PlaneGeometry](phoenix/geometry/PlaneGeometry.html) <br/>&bull; [QuadGeometry](phoenix/geometry/QuadGeometry.html) <br/>&bull; [RectangleGeometry](phoenix/geometry/RectangleGeometry.html) <br/>&bull; [RingGeometry](phoenix/geometry/RingGeometry.html) <br/>&bull; [TextGeometry](phoenix/geometry/TextGeometry.html) <br/>&bull; [TextureCoord](phoenix/geometry/TextureCoord.html) <br/>&bull; [TextureCoordSet](phoenix/geometry/TextureCoordSet.html) <br/>&bull; [Vertex](phoenix/geometry/Vertex.html) <br/>
 
 
 
@@ -325,12 +292,9 @@
 
 
 
-
 <div class="indent">
 
-<a name="phoenix.utils"><h3> [utils](#phoenix.utils) </h3></a>
-
-&bull; [Rendering]( phoenix/utils/Rendering.html ) <br/>
+<a name="phoenix.utils"><h3> [utils](#phoenix.utils) </h3></a>&bull; [Rendering](phoenix/utils/Rendering.html) <br/>
 
 
 

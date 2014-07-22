@@ -22,11 +22,11 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : [Null](#)</code><br/></span>
+                <a name="scale"><a class="lift" href="#scale">scale</a></a><div class="clear"></div><code class="signature apipage">scale : [Null](#)&lt;[Float](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="grid"><a class="lift" href="#grid">grid</a></a><code class="signature apipage">grid : [Null](#)</code><br/></span>
+                <a name="grid"><a class="lift" href="#grid">grid</a></a><div class="clear"></div><code class="signature apipage">grid : [Null](#)&lt;[Bool](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="filter"><a class="lift" href="#filter">filter</a></a><code class="signature apipage">filter : [phoenix.FilterType](#)</code><br/></span>
+                <a name="filter"><a class="lift" href="#filter">filter</a></a><div class="clear"></div><code class="signature apipage">filter : [phoenix.FilterType](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

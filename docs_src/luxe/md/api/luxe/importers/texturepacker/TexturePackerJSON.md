@@ -26,7 +26,7 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="parse"><a class="lift" href="#parse">parse</a></a><span class="inline-block static">static</span><code class="signature apipage">parse(json:<span></span>, json\_type:luxe.importers.texturepacker.TexturePackerJSONType<span>=null</span>) : luxe.importers.texturepacker.TexturePackerData</code><br/><span class="small_desc_flat"></span>
+            <a name="parse"><a class="lift" href="#parse">parse</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">parse(json:[Dynamic](#)<span></span>, json\_type:[luxe.importers.texturepacker.TexturePackerJSONType](#)<span>=null</span>) : [luxe.importers.texturepacker.TexturePackerData](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

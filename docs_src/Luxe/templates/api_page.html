@@ -49,7 +49,7 @@
             <span class="member apipage">
                 <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                     {{~escape_markdown name~}}
-                </a></a>
+                </a></a><div class="clear"></div>
                 {{~#inherited~}}
                     <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
@@ -80,7 +80,7 @@
             <span class="member apipage">
                 <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                     {{~escape_markdown name~}}
-                </a></a>
+                </a></a><div class="clear"></div>
                 {{~#inherited~}}
                     <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
@@ -103,12 +103,12 @@
         <span class="method apipage">
             <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                 {{~escape_markdown name~}}
-            </a></a>
+            </a></a> {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
+            <div class="clear"></div>
             {{~#inherited~}}
                 <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
             {{~/inherited~}}
-            {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
-            <code class="signature apipage">{{escape_markdown name}}({{>args}}) : {{#type.return_type.name}}{{{.}}}{{else}}Dynamic{{/type.return_type.name}}</code><br/>{{noop~}}
+            <code class="signature apipage">{{escape_markdown name}}({{>args}}) : {{#if type.return_type.name~}} {{#with type.return_type}}{{>type}}{{/with}} {{~else}}[Dynamic](#){{/if}}</code><br/>{{noop~}}
             <span class="small_desc_flat">{{{doc}}}</span>
         </span>
     {{/if}}
