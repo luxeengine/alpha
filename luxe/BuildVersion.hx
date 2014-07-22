@@ -43,7 +43,11 @@ class BuildVersion {
 		
 			if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
 				var ref_file = Path.normalize(Path.join([git_path,'refs/heads/master']));
-				return File.getContent(ref_file);
+				if(FileSystem.exists(ref_file)) {
+                    return File.getContent(ref_file);
+                } else {
+                    return '';
+                }
 			}
 		#end
 
