@@ -115,7 +115,7 @@ class BitmapFont extends Resource {
         }
     }
 
-    public function load_from_string( _bitmap_file : String = '',
+    public function from_string( _bitmap_file : String = '',
                                       _folder : String = 'assets/',
                                       ?onloaded : BitmapFont->Void = null,
                                       ?custom_pages:Array<Texture> = null ) {
@@ -248,7 +248,7 @@ class BitmapFont extends Resource {
 
         } //if custom pages
 
-    } //load_from_string
+    } //from_string
 
     public function set_kerning(_glyph:Int, _index:Int, _amount:Int) {
         kernings.set({ glyph:_glyph, index:_index}, _amount);

@@ -208,7 +208,7 @@ class Renderer {
         var new_font = new BitmapFont( resource_manager );
         var font_data = Luxe.loadText(_path + _fontid);
 
-            new_font.load_from_string( font_data.text, _path, _onloaded );
+            new_font.from_string( font_data.text, _path, _onloaded );
 
         return new_font;
 
@@ -247,7 +247,7 @@ class Renderer {
             #end //luxe_html5
 
              _shader = new Shader( resource_manager );
-            _shader.load_from_string( _vert_shader , prefixes + _frag_shader, _psid, _vsid, false );
+            _shader.from_string( _vert_shader , prefixes + _frag_shader, _psid, _vsid, false );
 
         } //
 
@@ -518,8 +518,8 @@ class Renderer {
         default_shader_textured = new Shader( resource_manager );
         default_shader_textured.id = 'default_shader_textured';
 
-        default_shader.load_from_string( default_vert_source, default_frag_source, false );
-        default_shader_textured.load_from_string( default_vert_source, default_frag_textured_source, false );
+        default_shader.from_string( default_vert_source, default_frag_source, false );
+        default_shader_textured.from_string( default_vert_source, default_frag_textured_source, false );
 
         _debug('done. ');
 
@@ -536,7 +536,7 @@ class Renderer {
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            font.load_from_string( haxe.Resource.getString('din.fnt'), 'luxe.font', null, [_font_texture] );
+            font.from_string( haxe.Resource.getString('din.fnt'), 'luxe.font', null, [_font_texture] );
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 
@@ -547,6 +547,7 @@ class Renderer {
 
 
 class RendererStats {
+
     public function new(){}
     public var batchers : Int = 0;
     public var geometry_count : Int = 0;
@@ -566,6 +567,7 @@ class RendererStats {
         draw_calls = 0;
         vert_count = 0;
     }
+
     public function toString() {
         return
             'Renderer Statistics\n' +
@@ -577,5 +579,6 @@ class RendererStats {
             '\ttotal draw calls : ' + draw_calls + '\n' +
             '\ttotal vertices : ' + vert_count;
     }
+
 }
 

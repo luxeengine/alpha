@@ -331,7 +331,7 @@ class Shader extends Resource {
     }
 
     //! Loads shaders from a string, compiles, and links them */
-    public function load_from_string( _vertex_source:String, _fragment_source:String, _frag_name:String='', _vertex_name:String='', _verbose:Bool = false ) {
+    public function from_string( _vertex_source:String, _fragment_source:String, _frag_name:String='', _vertex_name:String='', _verbose:Bool = false ) {
 
             //First clean up
         destroy();

@@ -608,13 +608,6 @@ class Batcher {
         color_floats = 0;
         normal_floats = 0;
 
-        #if luxe_native
-            // vertlist.clear();
-            // tcoordlist.clear();
-            // colorlist.clear();
-            // normallist.clear(); :todo:snow:
-        #end //luxe_native
-
             //The current batch state values
         var state : BatchState = new BatchState(this);
             //The current geometry in the set
@@ -740,13 +733,6 @@ class Batcher {
             return;
         }
 
-        #if luxe_native
-            // static_vertlist.clear();
-            // static_tcoordlist.clear();
-            // static_colorlist.clear();
-            // static_normallist.clear(); //:todo:snow:
-        #end //luxe_native
-
             //and counts
         static_vert_floats = 0; static_tcoord_floats = 0; static_color_floats = 0; static_normal_floats = 0;
 
@@ -818,14 +804,6 @@ class Batcher {
             //increase the stats
         draw_calls++;
         static_batched_count++;
-
-            //reset static state
-        #if luxe_native
-            // static_vertlist.clear();
-            // static_tcoordlist.clear();
-            // static_colorlist.clear();
-            // static_normallist.clear(); //:todo:snow:
-        #end //luxe_native
 
             //and counts
         static_vert_floats = 0;
