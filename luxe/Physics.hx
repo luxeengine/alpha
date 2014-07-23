@@ -16,17 +16,26 @@ import luxe.Core;
 class Physics {
 
 
-    #if haxebullet    
+    #if haxebullet
         public var bullet : PhysicsBullet;
     #end //haxebullet
 
-    #if nape 
+    #if nape
         public var nape : PhysicsNape;
     #end //nape
-        
+
     public var core : Core;
     public var engines : Array<PhysicsEngine>;
 
+        //how often to update
+    public var fixed_rate (default,set) : Float = 1/60;
+        //how many steps per update
+    public var steps (default,set) : Int = 1;
+        //how much is a single step. This is set from fixed_rate/steps
+    public var step_size : Float = 1/60;
+
+//Physics fixed updates
+    @:noCompletion public var timer : haxe.Timer;
 
     public function new( _core:Core ) {
 
@@ -48,9 +57,35 @@ class Physics {
 
     } //init
 
+    public function reset() {
+
+            //stop any existing loop
+        if(timer != null) {
+            timer.stop();
+            timer = null;
+        }
+
+            //Start the physics update loop
+        timer = Luxe.timer.schedule( fixed_rate, fixed_update, true );
+
+    } //reset
+
+    static var tag_physics : String = 'physics';
+
+        //called by the timer at a fixed rate
+    function fixed_update() {
+
+            Luxe.debug.start(tag_physics);
+
+        update();
+
+            Luxe.debug.end(tag_physics);
+
+    } //fixed_update
+
     @:noCompletion public function add_engine<T1,T2>( type:Class<T1>, ?_data:T2 ) : T1 {
 
-        var _engine_instance = Type.createInstance( type, [ _data ] );        
+        var _engine_instance = Type.createInstance( type, [ _data ] );
         var _physics_engine : PhysicsEngine = cast _engine_instance;
 
             //start with init
@@ -64,24 +99,59 @@ class Physics {
 
     } //add_engine
 
+    function update() {
+        for(engine in engines) {
+            engine.update();
+        }
+    }
+
     public function process() {
         for(engine in engines) {
             engine.process();
         }
     } //process
-    
+
     public function destroy() {
+
+        timer.stop();
+        timer = null;
+
         for(engine in engines) {
             engine.destroy();
         }
+
     } //destroy
+
+        //on changing the fixed rate, update the physics timer
+    function set_fixed_rate( _rate:Float ) {
+
+            //update the step size
+        step_size = _rate/steps;
+
+            //reset the timer so it runs at the new rate
+        reset();
+
+        return fixed_rate = _rate;
+
+    } //set_fixed_rate
+
+
+        //on changing the fixed rate, update the physics timer
+    function set_steps( _steps:Int ) {
+
+            //update the step size
+        step_size = fixed_rate/_steps;
+
+        return steps = _steps;
+
+    } //set_steps
 
 
 } //Physics
 
 
 
-    //base class for simple physics world 
+    //base class for simple physics world
     //updates and access
 class PhysicsEngine {
 
@@ -98,14 +168,18 @@ class PhysicsEngine {
 
     public function init() {
 
-    } //innit
+    } //init
 
     public function process() {
 
     } //process
 
+    public function update() {
+
+    } //update
+
     public function get_paused() : Bool {
-        
+
         return paused;
 
     } //get_paused
@@ -117,7 +191,7 @@ class PhysicsEngine {
     } //set_paused
 
     public function get_draw() : Bool {
-        
+
         return draw;
 
     } //get_draw
@@ -129,7 +203,7 @@ class PhysicsEngine {
     } //set_draw
 
     public function get_gravity() : Vector {
-        
+
         return gravity;
 
     } //get_gravity

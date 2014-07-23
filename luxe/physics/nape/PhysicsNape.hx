@@ -13,7 +13,6 @@ package luxe.physics.nape;
         public var space : Space;
         public var debugdraw : DebugDraw;
 
-        public var rate : Float = 0.0167;
         public var velocity_iterations : Int = 18;
         public var position_iterations : Int = 18;
 
@@ -27,9 +26,11 @@ package luxe.physics.nape;
 
         } //init
 
+            //called from the core to update during main loop
+            //mainly used to render outside of the fixed loop
         public override function process() {
 
-            space.step( rate, velocity_iterations, position_iterations );
+            super.process();
 
             if(draw) {
                 debugdraw.clear();
@@ -37,6 +38,19 @@ package luxe.physics.nape;
             }
 
         } //process
+
+            //update the actual physics
+        public override function update() {
+
+            if(!paused) {
+
+                for(i in 0 ... Luxe.physics.steps) {
+                    space.step( Luxe.physics.step_size, velocity_iterations, position_iterations );
+                }
+
+            } //paused
+
+        } //update
 
         public override function destroy() {
 

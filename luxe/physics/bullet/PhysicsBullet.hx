@@ -75,16 +75,6 @@ package luxe.physics.bullet;
 
             super.process();
 
-            if(!paused) {
-
-                Luxe.debug.start('physics');
-                    //Update the simulation
-                world.stepSimulation( rate, max_iterations, step_rate );
-
-                Luxe.debug.end('physics');
-
-            } //paused
-
             #if !luxe_html5
                 if(draw) {
                     debugdraw.clear();
@@ -93,6 +83,21 @@ package luxe.physics.bullet;
             #end
 
         } //process
+
+        public override function update() {
+
+            super.update();
+
+            if(!paused) {
+
+                    //Update the simulation
+                for(i in 0 ... Luxe.physics.steps) {
+                    world.stepSimulation( Luxe.physics.step_size, max_iterations, step_rate );
+                }
+
+            } //paused
+
+        } //update
 
         override function set_draw( _draw:Bool ) : Bool {
 

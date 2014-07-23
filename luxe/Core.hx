@@ -77,7 +77,7 @@ class Core {
 //Sub Systems, mostly in order of importance
     public var debug    : Debug;
     public var draw     : Draw;
-    public var time     : Timer;
+    public var timer    : Timer;
     public var events   : Events;
     public var input    : Input;
     public var audio    : Audio;
@@ -166,6 +166,9 @@ class Core {
             //when there is a restart etc
         scene.reset();
 
+            //Reset the physics (starts the timer etc)
+        physics.reset();
+
             //otherwise we get a wild value for first hit
         end_dt = Luxe.time;
 
@@ -183,7 +186,7 @@ class Core {
 
         debug = new Debug( this ); Luxe.debug = debug;
         draw = new Draw( this );
-        time = new Timer( this );
+        timer = new Timer( this );
         events = new Events();
         audio = new Audio( this );
         input = new Input( this );
@@ -200,7 +203,7 @@ class Core {
             //they start up
 
         debug.init();
-        time.init();
+        timer.init();
         audio.init();
         input.init();
         renderer.init();
@@ -209,7 +212,7 @@ class Core {
         Luxe.audio = audio;
         Luxe.draw = draw;
         Luxe.events = events;
-        Luxe.timer = time;
+        Luxe.timer = timer;
         Luxe.input = input;
         Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
         Luxe.resources = renderer.resource_manager;
@@ -251,7 +254,7 @@ class Core {
         physics.destroy();
         input.destroy();
         audio.destroy();
-        time.destroy();
+        timer.destroy();
         events.destroy();
         debug.destroy();
 
@@ -259,7 +262,7 @@ class Core {
         input = null;
         audio = null;
         events = null;
-        time = null;
+        timer = null;
         debug = null;
         Luxe.utils = null;
 
@@ -282,7 +285,7 @@ class Core {
             //Update all the subsystems, again, order important
 //Timers first
             #if luxe_fullprofile debug.start(core_tag_time); #end
-        time.process();
+        timer.process();
             #if luxe_fullprofile debug.end(core_tag_time); #end
 //Input second
             #if luxe_fullprofile debug.start(core_tag_input); #end
@@ -296,11 +299,12 @@ class Core {
             #if luxe_fullprofile debug.start(core_tag_events); #end
         events.process();
             #if luxe_fullprofile debug.end(core_tag_events); #end
-
 //Physics
-        debug.start(core_tag_physics);
+
+            //note that this does not update the physics, simply processes the active engines
+            //which for example, might want to draw during the main loop, separate from the fixed loop
         physics.process();
-        debug.end(core_tag_physics);
+
 
         #if (luxe_native && !luxe_threading_disabled)
 //Background threads sending requests our way
@@ -696,13 +700,13 @@ class Core {
     static var host_tag_update : String = 'host.update';
     static var core_tag_render : String = 'core.render';
     static var core_tag_debug : String = 'core.debug';
-    static var core_tag_physics : String = 'core.physics';
     static var core_tag_updates : String = 'core.update_callbacks';
     static var core_tag_events : String = 'core.events';
     static var core_tag_audio : String = 'core.audio';
     static var core_tag_input : String = 'core.input';
-    static var core_tag_time : String = 'core.time';
+    static var core_tag_time : String = 'core.timer';
     static var core_tag_scene : String = 'core.scene';
 
 
 } //Core
+ 
