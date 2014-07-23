@@ -22,8 +22,6 @@ package luxe.physics.bullet;
     class PhysicsBullet extends luxe.Physics.PhysicsEngine {
 
         public var debugdraw : DebugDraw;
-        public var rate : Float = 0.0167;
-        public var step_rate : Float = 0.0167;
         public var max_iterations : Int = 7;
 
         public var world : BtDiscreteDynamicsWorld;
@@ -92,7 +90,7 @@ package luxe.physics.bullet;
 
                     //Update the simulation
                 for(i in 0 ... Luxe.physics.steps) {
-                    world.stepSimulation( Luxe.physics.step_size, max_iterations, step_rate );
+                    world.stepSimulation( Luxe.physics.step_size, max_iterations, Luxe.physics.step_size );
                 }
 
             } //paused
