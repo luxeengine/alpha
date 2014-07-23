@@ -22,6 +22,9 @@ package luxe.physics.bullet;
     class PhysicsBullet extends luxe.Physics.PhysicsEngine {
 
         public var debugdraw : DebugDraw;
+            //read http://bulletphysics.org/mediawiki-1.5.8/index.php/Stepping_The_World
+            //for information on this parameter.
+        public var fixed_timestep : Float = 1/60;
         public var max_iterations : Int = 7;
 
         public var world : BtDiscreteDynamicsWorld;
@@ -90,7 +93,7 @@ package luxe.physics.bullet;
 
                     //Update the simulation
                 for(i in 0 ... Luxe.physics.steps) {
-                    world.stepSimulation( Luxe.physics.step_size, max_iterations, Luxe.physics.step_size );
+                    world.stepSimulation( Luxe.physics.step_size, max_iterations, fixed_timestep );
                 }
 
             } //paused
