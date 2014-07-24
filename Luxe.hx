@@ -91,7 +91,7 @@ class Luxe {
         /** Load a text resource */
     public static function loadJSON( _id:String, ?_onloaded:JSONResource->Void ) : JSONResource {
 
-        var raw = core.app.assets.get_text(_id).text;
+        var raw = core.app.assets.text(_id).text;
         var json = luxe.utils.JSON.parse(raw);
         var res = new JSONResource( _id, json, Luxe.resources );
 
@@ -105,7 +105,7 @@ class Luxe {
 
     public static function loadText( _id:String, ?_onloaded:TextResource->Void ) : TextResource {
 
-        var string = core.app.assets.get_text(_id).text;
+        var string = core.app.assets.text(_id).text;
         var res = new TextResource( _id, string, Luxe.resources );
 
             if(_onloaded != null) {
@@ -119,7 +119,7 @@ class Luxe {
         /** Load a bytes/data resource */
     public static function loadData( _id:String, ?_onloaded:DataResource->Void ) : DataResource {
 
-        var bytes = core.app.assets.get_bytes(_id).data;
+        var bytes = core.app.assets.bytes(_id).bytes;
         var res = new DataResource( _id, bytes, Luxe.resources);
 
             if(_onloaded != null) {
@@ -147,9 +147,9 @@ class Luxe {
     } //loadData
 
         /** Load a texture/image resource */
-    public static function loadTexture( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false, ?_asset_bytes:ByteArray ) : Texture {
+    public static function loadTexture( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
 
-        return renderer.load_texture( _id, _onloaded, _silent, _asset_bytes );
+        return Texture.load( _id, _onloaded, _silent );
 
     } //loadTexture
 
@@ -163,14 +163,14 @@ class Luxe {
         /** Load a font resource */
     public static function loadFont( _id:String, ?_path:String, ?_onloaded : BitmapFont->Void ) : BitmapFont {
 
-        return renderer.load_font(_id, _path, _onloaded);
+        return BitmapFont.load(_id, _path, _onloaded);
 
     } //loadFont
 
         /** Load a shader resource */
     public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:Shader->Void ) : Shader {
 
-        return renderer.load_shader(_ps_id, _vs_id, _onloaded);
+        return Shader.load(_ps_id, _vs_id, _onloaded);
 
     } //loadShader
 

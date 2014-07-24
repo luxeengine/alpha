@@ -93,6 +93,19 @@ class BitmapFont extends Resource {
         return "BitmapFont(" + id + ")";
     }
 
+
+    public static function load( _fontid:String, ?_path:String = 'assets/', ?_onloaded:BitmapFont->Void ) : BitmapFont {
+
+            //:todo: which resource manager...
+        var new_font = new BitmapFont( Luxe.resources );
+        var font_data = Luxe.loadText( haxe.io.Path.join([_path, _fontid]) );
+
+            new_font.from_string( font_data.text, _path, _onloaded );
+
+        return new_font;
+
+    } //load
+
     function _tokenize_font_line(_line_tokens:Array<String>) {
         var _item_map : Map<String, KeyValuePair> = new Map();
         for(_line_token in _line_tokens) {
@@ -429,8 +442,8 @@ class BitmapFont extends Resource {
                 var _geom = _geoms[c.page];
 
                     //Texture size for this page
-                var _tw = pages[c.page].actual_width;
-                var _th = pages[c.page].actual_height;
+                var _tw = pages[c.page].width_actual;
+                var _th = pages[c.page].height_actual;
 
                     //work out the coordinates for the uv's
                 var _u  : Float = c.x/_tw;

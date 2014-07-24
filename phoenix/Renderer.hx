@@ -71,8 +71,10 @@ class Renderer {
     public var stats : RendererStats;
 
     public function new( _core:luxe.Core ) {
+
         core = _core;
-    }
+
+    } //new
 
     public function init() {
 
@@ -99,11 +101,11 @@ class Renderer {
         batcher.layer = 1;
         add_batch(batcher);
 
-    #if !no_debug_console
+        #if !no_debug_console
 
-        create_default_font();
+            create_default_font();
 
-    #end //no_debug_console
+        #end //no_debug_console
 
         if(core.app.config.window.depth_buffer) {
                 // Enable z buffer use
@@ -123,11 +125,12 @@ class Renderer {
             GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
         #end //luxe_html5
 
-        // trace(':: renderer starting up');
-    }
+    } //init
 
     public function destroy() {
+
         clear( new luxe.Color().rgb(0xff440b) );
+
     } //destroy
 
     @:noCompletion public function sort_batchers( a:Batcher, b:Batcher ) {
@@ -203,102 +206,6 @@ class Renderer {
 
     } //clear
 
-    public function load_font( _fontid:String, ?_path:String = 'assets/', ?_onloaded:BitmapFont->Void ) : BitmapFont {
-
-        var new_font = new BitmapFont( resource_manager );
-        var font_data = Luxe.loadText(_path + _fontid);
-
-            new_font.from_string( font_data.text, _path, _onloaded );
-
-        return new_font;
-
-    } //load_font
-
-    public function load_shader( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
-
-        var _frag_shader = '';
-        var _vert_shader = '';
-
-        if(_vsid == 'default' || _vsid == '') {
-            _vsid = 'default shader';
-            _vert_shader = default_vert_source;
-        } else {
-            _vert_shader = core.app.assets.get_text(_vsid).text;
-        }
-
-        if(_psid == 'default' || _psid == '') {
-            _psid = 'default shader';
-            _frag_shader = default_frag_source;
-        } else if(_psid == 'textured') {
-            _psid = 'default textured';
-            _frag_shader = default_frag_textured_source;
-        } else {
-            _frag_shader = core.app.assets.get_text(_psid).text;
-        }
-
-        var _shader : Shader = null;
-
-
-        if(_frag_shader.length > 0 && _vert_shader.length > 0) {
-
-            var prefixes = '';
-            #if luxe_html5
-                prefixes += "precision mediump float;";
-            #end //luxe_html5
-
-             _shader = new Shader( resource_manager );
-            _shader.from_string( _vert_shader , prefixes + _frag_shader, _psid, _vsid, false );
-
-        } //
-
-        if(_shader != null) {
-
-            _shader.id = _psid + '|' + _vsid;
-
-            if(_onloaded != null) {
-                _onloaded( _shader );
-            }
-
-            log("shader loaded " + _shader.id );
-
-            return _shader;
-        } else {
-            return null;
-        }
-
-    } //load_shader
-
-    public function load_texture_from_resource_bytes( _name:String, _width:Int, _height:Int, ?_cache:Bool = true ) {
-
-        var texture_bytes : haxe.io.Bytes = haxe.Resource.getBytes(_name);
-
-        if(texture_bytes != null) {
-
-            var texture = new Texture(resource_manager);
-
-            #if luxe_native
-                texture.create_from_bytes( _name , snow.utils.ByteArray.fromBytes(texture_bytes) );
-            #end //luxe_native
-
-            #if luxe_html5
-                texture.create_from_bytes_using_haxe( _name, texture_bytes );
-            #end //luxe_html5
-
-            texture_bytes = null;
-            texture.loaded = true;
-
-            if(_cache) {
-                resource_manager.cache(texture);
-            }
-
-            return texture;
-
-        } //texture_bytes != null
-
-        return null;
-
-    } //load_texture_from_resource_bytes
-
     public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
 
         var total_count : Int = _names.length;
@@ -320,23 +227,9 @@ class Renderer {
 
     public function load_texture( _name : String, ?_onloaded:Texture->Void, ?_silent:Bool=false, ?asset_bytes:ByteArray ) : Texture {
 
-        var _exists = resource_manager.find_texture(_name);
-
-        if(_exists != null) {
-
-            if(_name != 'default_ui_button' && _name != 'default_ui_box') {
-                _verbose("texture loaded (cached) " + _exists.id ) ;
-            }
-
-            if(_onloaded != null) _onloaded(_exists);
-
-            return _exists;
-
-        } //found existing texture in the resource cache
-
         var texture : Texture = new Texture( resource_manager );
 
-#if luxe_html5
+    #if luxe_html5
 
         var image: js.html.ImageElement = js.Browser.document.createImageElement();
 
@@ -383,7 +276,7 @@ class Renderer {
                 texture.width = image.width;
                 texture.height = image.height;
 
-                if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.actual_width + 'x' + texture.actual_height +')') ;
+                if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')') ;
 
                 tmp_canvas = null;
                 tmp_context = null;
@@ -405,13 +298,13 @@ class Renderer {
 
         texture.id = _name;
 
-#end //luxe_html5
+    #end //luxe_html5
 
-#if luxe_native
+     #if luxe_native
 
         if(asset_bytes == null) {
             if( Luxe.utils.path_is_relative(haxe.io.Path.normalize(_name)) ) {
-                asset_bytes = core.app.assets.get_bytes( _name ).data;
+                asset_bytes = core.app.assets.bytes( _name ).bytes;
             } else {
                 asset_bytes = ByteArray.readFile( _name );
             }
@@ -419,7 +312,7 @@ class Renderer {
 
         if(asset_bytes != null) {
 
-            texture.create_from_bytes( _name, asset_bytes );
+            texture.create_from_bytes( _name, asset_bytes, 16, 16 );
 
                 //append the listener
             if(_onloaded != null) texture.onload = _onloaded;
@@ -438,12 +331,12 @@ class Renderer {
 
          asset_bytes = null;
 
-#end //luxe_native
+     #end //luxe_native
 
             //store a reference so we can check if it exists later
         resource_manager.cache( texture );
 
-        return texture;
+        return texture;*/
 
     }
 
@@ -474,16 +367,22 @@ class Renderer {
     } //onresize
 
     function get_target() : RenderTexture {
+
         return target;
+
     } //get_target
 
     function set_target( _target:RenderTexture ) {
 
         if(_target != null) {
+
             target_size.x = _target.width;
             target_size.y = _target.height;
+
             state.bindFramebuffer( _target.fbo );
+
         } else {
+
             target_size.x = Luxe.screen.w;
             target_size.y = Luxe.screen.h;
                 //:todo: On iOS and some platforms the default
@@ -491,6 +390,7 @@ class Renderer {
                 //which needs to be queried at creation and stored
                 //for use here instead, but leaving it null works for most platforms
             state.bindFramebuffer( default_fbo );
+
         }
 
         return target = _target;
@@ -532,7 +432,7 @@ class Renderer {
             font = new BitmapFont( resource_manager );
 
                 //create the font texture
-            var _font_texture = Luxe.renderer.load_texture_from_resource_bytes('din.png', 256, 256);
+            var _font_texture = Texture.load_from_resource('din.png', 256, 256);
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data

@@ -61,7 +61,7 @@ class Sprite extends Visual {
                     //textures are padded (like on html5)
                 if(options.uv == null) {
 
-                    // if(texture.actual_width != texture.width || texture.actual_height != texture.height) {
+                    // if(texture.width_actual != texture.width || texture.height_actual != texture.height) {
                         uv = new Rectangle(0,0,texture.width,texture.height);
                     // }
 

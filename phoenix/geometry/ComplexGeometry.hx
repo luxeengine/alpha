@@ -329,10 +329,10 @@ class ComplexGeometry extends Geometry {
             return;
         }
 
-        var tlx = _uv.x/texture.actual_width;
-        var tly = _uv.y/texture.actual_height;
-        var szx = _uv.w/texture.actual_width;
-        var szy = _uv.h/texture.actual_height;
+        var tlx = _uv.x/texture.width_actual;
+        var tly = _uv.y/texture.height_actual;
+        var szx = _uv.w/texture.width_actual;
+        var szy = _uv.h/texture.height_actual;
 
         quad_uv_space( _quad_id, new luxe.Rectangle( tlx, tly, szx, szy ) );
 

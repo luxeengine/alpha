@@ -20,8 +20,8 @@ class RenderTexture extends Texture {
             //Set it to the buffer
         _size == null ? new Vector( Luxe.screen.w, Luxe.screen.h ) : _size ;
             //Width and height of this texture item
-        width = actual_width = Std.int(_size.x);
-        height = actual_height = Std.int(_size.y);
+        width = width_actual = Std.int(_size.x);
+        height = height_actual = Std.int(_size.y);
 
             //Create the render texture for the fbo
         texture = GL.createTexture();

@@ -4,6 +4,10 @@ package phoenix;
 import luxe.Resource;
 import luxe.ResourceManager;
 
+import luxe.Log.log;
+import luxe.Log._debug;
+import luxe.Log._verbose;
+
 import phoenix.Vector;
 import phoenix.Texture;
 
@@ -330,7 +334,62 @@ class Shader extends Resource {
         if( program != null ) GL.deleteProgram( program );
     }
 
-    //! Loads shaders from a string, compiles, and links them */
+    public static function load( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
+
+        var _frag_shader = '';
+        var _vert_shader = '';
+
+        if(_vsid == 'default' || _vsid == '') {
+            _vsid = 'default shader';
+            _vert_shader = Luxe.renderer.default_vert_source;
+        } else {
+            _vert_shader = Luxe.loadText(_vsid).text;
+        }
+
+        if(_psid == 'default' || _psid == '') {
+            _psid = 'default shader';
+            _frag_shader = Luxe.renderer.default_frag_source;
+        } else if(_psid == 'textured') {
+            _psid = 'default textured';
+            _frag_shader = Luxe.renderer.default_frag_textured_source;
+        } else {
+            _frag_shader = Luxe.loadText(_psid).text;
+        }
+
+        var _shader : Shader = null;
+
+        if(_frag_shader.length > 0 && _vert_shader.length > 0) {
+
+            var prefixes = '';
+            #if luxe_html5
+                prefixes += "precision mediump float;";
+            #end //luxe_html5
+
+                //:todo: which resource manager...
+            _shader = new Shader( Luxe.resources );
+            _shader.from_string( _vert_shader , prefixes + _frag_shader, _psid, _vsid, false );
+
+        } //
+
+        if(_shader != null) {
+
+            _shader.id = _psid + '|' + _vsid;
+
+            if(_onloaded != null) {
+                _onloaded( _shader );
+            }
+
+            log("shader loaded " + _shader.id );
+
+            return _shader;
+
+        } else {
+            return null;
+        }
+
+    } //load_shader
+
+        /** Loads shaders from a string, compiles, and links them */
     public function from_string( _vertex_source:String, _fragment_source:String, _frag_name:String='', _vertex_name:String='', _verbose:Bool = false ) {
 
             //First clean up

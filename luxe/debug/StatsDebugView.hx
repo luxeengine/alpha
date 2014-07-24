@@ -131,7 +131,7 @@ class StatsDebugView extends luxe.debug.DebugView  {
             switch (res.type) {
                 case ResourceType.texture:
                     var t : phoenix.Texture = cast res;
-                    texture_lists += '\t' + t.id + '    (' +  t.actual_width + 'x' + t.actual_height + '  '+ t.estimated_memory() +' )\n';
+                    texture_lists += '\t' + t.id + '    (' +  t.width_actual + 'x' + t.height_actual + '  '+ t.estimated_memory() +' )\n';
                 case ResourceType.font:
                     font_lists += '\t' + res.id + '\n';
                 case ResourceType.shader:

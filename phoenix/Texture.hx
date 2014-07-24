@@ -1,5 +1,6 @@
 package phoenix;
 
+import snow.assets.AssetImage;
 import snow.render.opengl.GL;
 import snow.utils.UInt8Array;
 import snow.utils.Libs;
@@ -29,12 +30,11 @@ enum ClampType {
 
 class Texture extends Resource {
 
-
     public var texture : GLTexture;
-    public var data : UInt8Array;
+    public var asset : AssetImage;
 
-    public var actual_width : Int = -1;
-    public var actual_height : Int = -1;
+    public var width_actual : Int = -1;
+    public var height_actual : Int = -1;
     public var width : Int = -1;
     public var height : Int = -1;
     public var loaded : Bool = false;
@@ -89,58 +89,12 @@ class Texture extends Resource {
     } //do_onload
 
     public function toString() {
-        return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ actual_width + 'x' + actual_height +') ' + filter + ' filtering. id: ' + id;
+        return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ width_actual + 'x' + height_actual +') ' + filter + ' filtering. id: ' + id;
     } //toString
-
-    @:noCompletion public function build( _size : Vector, _color: Color ) {
-
-        if(_size == null) _size = new Vector();
-        if(_color == null) _color = new Color();
-        if(_size.x > 0 && _size.y > 0) {
-
-            width = Std.int(_size.x);
-            height = Std.int(_size.y);
-            actual_width = width;
-            actual_height = height;
-
-                //clear up old data in case
-            data = null;
-                //create a new set of pixels data
-            data = new UInt8Array( cast new ArrayBuffer(  ) ); //width * height * 4
-                //fill it up!
-            var _p = new Vector();
-
-            for(x in 0 ... width) {
-                for(y in 0 ... height) {
-                    _p.set(x,y);
-                    set_pixel( _p, _color );
-                }
-            }
-
-
-            // :todo : A test should be made for this
-
-                //Create
-            texture = GL.createTexture();
-                //Now we can bind it
-            bind();
-                //And send GL the data
-            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
-
-                //Set the properties
-            _set_filter( FilterType.linear );
-            _set_clamp( ClampType.edge );
-
-                //clear up
-            data = null;
-
-        } //if size is valid
-
-    } //build
 
     public function estimated_memory() {
 
-        var _bytes = (actual_width * actual_height * 4);
+        var _bytes = (width_actual * height_actual * 4);
 
         return Luxe.utils.bytes_to_string(_bytes);
 
@@ -157,8 +111,8 @@ class Texture extends Resource {
         width = Std.int(_width);
         height = Std.int(_height);
 
-        actual_width = width;
-        actual_height = height;
+        width_actual = width;
+        height_actual = height;
 
         if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
         if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
@@ -178,144 +132,110 @@ class Texture extends Resource {
 
     } //create_from_bytes_html
 
-        //Create from the bytes from Assets.getBytes() or other method
-    public function create_from_bytes( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
+    public static function load( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) {
 
-        var start = Luxe.time;
-        // // trace(_asset_bytes);
+            //:todo:which resources
+        var resources = Luxe.resources;
 
-        // var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
+            //Check for existing texture in resource manager
+        var _exists = resources.find_texture(_name);
 
-        // var nme_bitmap_handle = lime_bitmap_data_from_bytes(_asset_bytes, null);
-        // if(nme_bitmap_handle == null) throw "cannot create bitmap " + _asset_name;
+        if(_exists != null) {
 
-        // // var _width = lime_bitmap_data_width( nme_bitmap_handle );
-        // // var _height = lime_bitmap_data_height( nme_bitmap_handle );
-        // var _width = 256;
-        // var _height = 256;
+            _verbose("texture loaded (cached) " + _exists.id ) ;
 
-        //     //The actual padded size (for NPOT strict renderers)
-        // actual_width = _width;
-        // actual_height = _height;
+            if(_onloaded != null) {
+                _onloaded(_exists);
+            }
 
-        // if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
-        // if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
+            return _exists;
 
-        // var image_bytes : snow.utils.ByteArray;
+        } //_exists != null
 
-        // try {
-        //     image_bytes = cast lime_bitmap_data_get_pixels( nme_bitmap_handle, {x:0, y:0, width:_width, height:_height } );
-        // } catch(e:Dynamic) {
-        //     trace(e);
-        //     throw " fail!";
-        // }
+        //if not found, create a new Texture
 
-        // texture = GL.createTexture();
+        var texture : Texture = new Texture( resources );
 
-        //     //if no problems
-        // id = _asset_name;
-        // width = Std.int(_width);
-        // height = Std.int(_height);
-
-        // data = new UInt8Array( cast image_bytes );
-        // var image_length = width * height;
-
-        //     //ARGB to RGBA cos format
-        //     //:todo: do inside native (don't worry about this, new backend)
-
-        // for(i in 0 ... image_length) {
-        //     // data[i] = ((data[i]>>24) | (data[i]<<8));
-
-        //     var a = data[i*4+0];
-        //     var r = data[i*4+1];
-        //     var g = data[i*4+2];
-        //     var b = data[i*4+3];
-
-        //     //rgba would then be
-
-        //     data[i*4+0] = r;
-        //     data[i*4+1] = g;
-        //     data[i*4+2] = b;
-        //     data[i*4+3] = a;
-        // }
-
-
-        //     //Now we can bind it
-        // bind();
-        //     //And send GL the data
-        // GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
-
-        //     //Set the properties
-        // _set_filter( FilterType.linear );
-        // _set_clamp( ClampType.edge );
-
-        // image_bytes = null;
-        // data = null; //:todo : - sven use lock/unlock
-
-        trace('texture.create took ' + (Luxe.time - start));
-
-    } //create_from_bytes
-
-        //Only used for memory array fonts on html5 atm (like the default font and ui)
-        //:todo: These functions should be isolated into the asset manager, not here
-    public function create_from_bytes_using_haxe( _asset_name:String, _asset_bytes:haxe.io.Bytes ) {
-
-        texture = GL.createTexture();
-
-            //First we have to convert to haxe.io.bytes for use with format.png
-        var image_bytes = haxe.io.Bytes.ofData( _asset_bytes.getData() );
-            //Then we need it to be a BytesInput haxe.io.Input
-        var byte_input = new haxe.io.BytesInput(image_bytes,0,image_bytes.length);
-
-            //NOW we can read the png from it
-        var png_data = new format.png.Reader(byte_input).read();
-            //Extract the bytes from the png reader
-        var png_bytes = format.png.Tools.extract32(png_data);
-            //And the header information for infomation
-        var png_header = format.png.Tools.getHeader(png_data);
-
-            //if no problems
-        id = _asset_name;
-        width = Std.int(png_header.width);
-        height = Std.int(png_header.height);
-        actual_width = width;
-        actual_height = height;
-        loaded = true;
-
-        data = new UInt8Array(png_bytes.getData());
-        var image_length = width * height;
-
-        for(i in 0 ... image_length) {
-
-            var b = data[i*4+0];
-            var g = data[i*4+1];
-            var r = data[i*4+2];
-            var a = data[i*4+3];
-
-            //rgba would then be
-
-            data[i*4+0] = r;
-            data[i*4+1] = g;
-            data[i*4+2] = b;
-            data[i*4+3] = a;
+        Luxe.core.app.assets.image(_id, {
+            onload : function( asset:AssetImage ){}
         }
 
-            //Now we can bind it
+        resources.cache(texture);
+
+    } //load
+
+    public static function load_from_resource( _name:String, _width:Int, _height:Int, ?_cache:Bool = true ) {
+
+        var texture_bytes : haxe.io.Bytes = haxe.Resource.getBytes(_name);
+
+        if(texture_bytes != null) {
+
+                //:todo: which resource manager...
+            var resources = Luxe.renderer.resource_manager;
+            var texture = new Texture(resources);
+
+            var _asset = Luxe.core.app.assets.image(_name, {
+                bytes:snow.utils.ByteArray.fromBytes(texture_bytes)
+            });
+
+            texture.from_asset(_asset);
+
+            texture_bytes = null;
+            texture.loaded = true;
+
+            if(_cache) {
+                resources.cache(texture);
+            }
+
+            return texture;
+
+        } //texture_bytes != null
+
+        return null;
+
+    } //load_texture_from_resource_bytes
+
+    function check_size() {
+
+        var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
+
+        if(asset.image.width_actual > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + asset.id;
+        if(asset.image.height_actual > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + asset.id;
+
+    } //check_size
+
+    public function from_asset( _asset:AssetImage ) {
+
+        if(_asset == null) {
+            throw "null asset passed to Texture.from_asset";
+        }
+
+            //store the asset for later use
+        asset = _asset;
+            //Store the asset id as our resource id
+        id = asset.id;
+
+            //check for size limitations
+        check_size();
+
+            //assign sizes
+        width = asset.image.width;
+        height = asset.image.height;
+        width_actual = asset.image.width_actual;
+        height_actual = asset.image.height_actual;
+
+            //Create the GL id
+        texture = GL.createTexture();
+            //Now we can bind it,
         bind();
             //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data );
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
 
-            //Set the properties
-        filter = FilterType.linear;
-        clamp = ClampType.edge;
+            //Set the default properties
+        _set_filter( FilterType.linear );
+        _set_clamp( ClampType.edge );
 
-        image_bytes = null;
-        byte_input = null;
-        png_bytes = null;
-        png_header = null;
-        data = null; //todo - sven use lock/unlock
-
-    } //create_from_bytes_using_haxe
+    } //from_asset
 
     public function generate_mipmaps() {
 
@@ -354,31 +274,31 @@ class Texture extends Resource {
 
     public function get_pixel( _pos : Vector ) {
 
-        if(data == null) return null;
+        if(asset.image.data == null) return null;
 
         var x : Int = Std.int(_pos.x);
         var y : Int = Std.int(_pos.y);
 
         return {
-            r: data[ (((y*width)+x)*4)  ]/255.0,
-            g: data[ (((y*width)+x)*4)+1]/255.0,
-            b: data[ (((y*width)+x)*4)+2]/255.0,
-            a: data[ (((y*width)+x)*4)+3]/255.0
+            r: asset.image.data[ (((y*width)+x)*4)  ]/255.0,
+            g: asset.image.data[ (((y*width)+x)*4)+1]/255.0,
+            b: asset.image.data[ (((y*width)+x)*4)+2]/255.0,
+            a: asset.image.data[ (((y*width)+x)*4)+3]/255.0
         };
 
     } //get_pixel
 
     public function set_pixel( _pos:Vector, _color:Color ) {
 
-        if(data == null) return;
+        if(asset.image.data == null) return;
 
         var x : Int = Std.int(_pos.x);
         var y : Int = Std.int(_pos.y);
 
-        data[ (((y*width)+x)*4)  ] = Std.int(_color.r*255);
-        data[ (((y*width)+x)*4)+1] = Std.int(_color.g*255);
-        data[ (((y*width)+x)*4)+2] = Std.int(_color.b*255);
-        data[ (((y*width)+x)*4)+3] = Std.int(_color.a*255);
+        asset.image.data[ (((y*width)+x)*4)  ] = Std.int(_color.r*255);
+        asset.image.data[ (((y*width)+x)*4)+1] = Std.int(_color.g*255);
+        asset.image.data[ (((y*width)+x)*4)+2] = Std.int(_color.b*255);
+        asset.image.data[ (((y*width)+x)*4)+3] = Std.int(_color.a*255);
 
     } //set_pixel
 
@@ -396,12 +316,12 @@ class Texture extends Resource {
 
     public function unlock() {
 
-        if (data != null) {
+        if (asset.image.data != null) {
 
             Luxe.renderer.state.bindTexture2D(texture);
-            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, data);
+            GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data);
 
-            data = null;
+            asset.image.data = null;
 
         }
 
@@ -419,7 +339,7 @@ class Texture extends Resource {
     public function destroy() {
 
         GL.deleteTexture(texture);
-        data = null;
+        // asset.destroy(); :todo:
 
     } //destroy
 
@@ -578,11 +498,5 @@ class Texture extends Resource {
         return filter_mag = _filter;
 
     } //set_filter_mag
-
-    // static var lime_bitmap_data_from_bytes  = Libs.load("lime", "lime_bitmap_data_from_bytes", 2);
-    // static var lime_bitmap_data_height      = Libs.load("lime", "lime_bitmap_data_height", 1);
-    // static var lime_bitmap_data_width       = Libs.load("lime", "lime_bitmap_data_width", 1);
-    // static var lime_bitmap_data_get_pixels  = Libs.load("lime", "lime_bitmap_data_get_pixels", 2);
-
 
 } //Texture

@@ -45,10 +45,10 @@ class QuadGeometry extends Geometry {
             return;
         }
 
-        var tlx = _rect.x/texture.actual_width;
-        var tly = _rect.y/texture.actual_height;
-        var szx = _rect.w/texture.actual_width;
-        var szy = _rect.h/texture.actual_height;
+        var tlx = _rect.x/texture.width_actual;
+        var tly = _rect.y/texture.height_actual;
+        var szx = _rect.w/texture.width_actual;
+        var szy = _rect.h/texture.height_actual;
 
         uv_space( new luxe.Rectangle( tlx, tly, szx, szy ) );
 
