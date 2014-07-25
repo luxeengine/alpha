@@ -179,7 +179,24 @@ class Luxe {
         /** Load multiple texture/image resources, useful for preloading */
     public static function loadTextures( _ids:Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
 
-        // renderer.load_textures( _ids, _onloaded, _silent );
+        var total_count : Int = _ids.length;
+        var loaded_count : Int = 0;
+        var loaded : Array<Texture> = [];
+
+        var on_single_texture_complete = function( texture:Texture ) {
+
+            loaded.push( texture );
+            loaded_count++;
+
+            if(loaded_count == total_count) {
+                _onloaded(loaded);
+            }
+
+        }
+
+        for(_id in _ids) {
+            loadTexture( _id, on_single_texture_complete, _silent );
+        }
 
     } //loadTextures
 
