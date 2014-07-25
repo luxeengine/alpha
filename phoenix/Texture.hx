@@ -13,6 +13,7 @@ import luxe.Resource;
 import luxe.ResourceManager;
 
 import luxe.Log._verbose;
+import luxe.Log.log;
 
 enum FilterType {
     nearest;
@@ -85,7 +86,9 @@ class Texture extends Resource {
         loaded = true;
 
         for(f in _onload_handlers) {
-            f(this);
+            if(f != null) {
+                f(this);
+            }
         }
 
         _onload_handlers.splice(0,_onload_handlers.length);
@@ -93,7 +96,7 @@ class Texture extends Resource {
     } //do_onload
 
     public function toString() {
-        return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ width_actual + 'x' + height_actual +') ' + filter + ' filtering. id: ' + id;
+        return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ width_actual + 'x' + height_actual +') ' + filter + ' filtering. ' + clamp + ' clamp. id: ' + id;
     } //toString
 
     public function estimated_memory() {
@@ -160,12 +163,22 @@ class Texture extends Resource {
 
         var texture : Texture = new Texture( resources );
 
+            //append the onload handler
+        if(_onloaded != null) {
+            texture.onload = _onloaded;
+        }
+
         var _asset = Luxe.core.app.assets.image(_id, {
             onload : function( asset:AssetImage ) {
                 if(asset != null) {
                     texture.from_asset(asset);
                     texture.reset();
                     texture.do_onload();
+
+                    if(!_silent) {
+                        log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')') ;
+                    }
+
                 }
             }
         });
