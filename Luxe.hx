@@ -22,8 +22,6 @@ class Luxe {
         /** The last known mouse position */
     public static var mouse             : Vector;
 
-        /** The time the last frame took to run */
-    public static var dt        : Float;
         /** Direct access to the core engine */
     public static var core      : luxe.Core;
         /** Access to the core debug features */
@@ -59,6 +57,32 @@ class Luxe {
     public static var version : String = 'dev';
         /** The version + build meta information, generated at compile time from a macro (luxe.BuildVersion) */
     public static var build : String = luxe.BuildVersion.latest();
+
+//Timing information proxy to the snow App timing
+
+        /** the scale of time */
+    public static var timescale (get,set) : Float;
+        /** if this is non zero this will be passed in */
+    public static var fixed_delta (get,set) : Float;
+        /** if this is non zero, updates will be forced to this rate */
+    public static var fixed_rate (get,set) : Float;
+        /** the maximum frame time */
+    public static var max_frame_time (get,set) : Float;
+
+//Timing information
+
+        /** the time the last frame took to run */
+    public static var dt (get,set) : Float;
+        /** the simulated time the last frame took to run, relative to scale etc */
+    public static var delta_sim (get,set) : Float;
+        /** the start time of the last frame */
+    public static var last_frame_start (get,set) : Float;
+        /** the current simulation time */
+    public static var current_time (get,set) : Float;
+        /** the start time of this frame */
+    public static var cur_frame_start (get,set) : Float;
+        /** the alpha time for a render between frame updates */
+    public static var alpha (get,set) : Float;
 
 
     static function get_screen() {
@@ -206,6 +230,93 @@ class Luxe {
         return '';
 
     } //fileDialogSave
+
+
+//Internal
+
+        /** the scale of time */
+    static function get_timescale() : Float {
+        return core.timescale;
+    }
+        /** if this is non zero this will be passed in */
+    static function get_fixed_delta() : Float {
+        return core.fixed_delta;
+    }
+        /** if this is non zero, updates will be forced to this rate */
+    static function get_fixed_rate() : Float {
+        return core.fixed_rate;
+    }
+        /** the maximum frame time */
+    static function get_max_frame_time() : Float {
+        return core.max_frame_time;
+    }
+        /** the time the last frame took to run */
+    static function get_dt() : Float {
+        return core.delta_time;
+    }
+        /** the simulated time the last frame took to run, relative to scale etc */
+    static function get_delta_sim() : Float {
+        return core.delta_sim;
+    }
+        /** the start time of the last frame */
+    static function get_last_frame_start() : Float {
+        return core.last_frame_start;
+    }
+        /** the current simulation time */
+    static function get_current_time() : Float {
+        return core.current_time;
+    }
+        /** the start time of this frame */
+    static function get_cur_frame_start() : Float {
+        return core.cur_frame_start;
+    }
+        /** the alpha time for a render between frame updates */
+    static function get_alpha() : Float {
+        return core.alpha;
+    };
+
+
+        /** the scale of time */
+    static function set_timescale( value:Float ) : Float {
+        return core.timescale = value;
+    }
+        /** if this is non zero this will be passed in */
+    static function set_fixed_delta( value:Float ) : Float {
+        return core.fixed_delta = value;
+    }
+        /** if this is non zero, updates will be forced to this rate */
+    static function set_fixed_rate( value:Float ) : Float {
+        return core.fixed_rate = value;
+    }
+        /** the maximum frame time */
+    static function set_max_frame_time( value:Float ) : Float {
+        return core.max_frame_time = value;
+    }
+        /** the time the last frame took to run */
+    static function set_dt( value:Float ) : Float {
+        return core.delta_time = value;
+    }
+        /** the simulated time the last frame took to run, relative to scale etc */
+    static function set_delta_sim( value:Float ) : Float {
+        return core.delta_sim = value;
+    }
+        /** the start time of the last frame */
+    static function set_last_frame_start( value:Float ) : Float {
+        return core.last_frame_start = value;
+    }
+        /** the current simulation time */
+    static function set_current_time( value:Float ) : Float {
+        return core.current_time = value;
+    }
+        /** the start time of this frame */
+    static function set_cur_frame_start( value:Float ) : Float {
+        return core.cur_frame_start = value;
+    }
+        /** the alpha time for a render between frame updates */
+    static function set_alpha( value:Float ) : Float {
+        return core.alpha = value;
+    };
+
 
 
 } //Luxe
