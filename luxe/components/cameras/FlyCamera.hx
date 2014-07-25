@@ -196,7 +196,7 @@ class FlyCamera extends luxe.Camera {
             //Hiding the cursor seems to keep one latent mousemove event in the stack,
             //so we set a flag that ignores the next two moves (one for the SetCursorPosition above,)
             //and the very next mousemove is the position at which the mouse was before it was moved.
-            //SDL bug : todo, remove this when not using SDL.
+            //SDL bug : todo, test this against new sdl
         ignore_next_move = true;
         hide_cursor = true;
         ready = true;

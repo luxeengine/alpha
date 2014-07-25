@@ -206,25 +206,6 @@ class Renderer {
 
     } //clear
 
-    // public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
-
-    //     var total_count : Int = _names.length;
-    //     var loaded_count : Int = 0;
-    //     var loaded : Array<Texture> = [];
-    //     var on_single_texture_complete = function(texture) {
-    //         loaded.push( texture );
-    //         loaded_count++;
-    //         if(loaded_count == total_count) {
-    //             _onloaded(loaded);
-    //         }
-    //     }
-
-    //     for(_name in _names) {
-    //         load_texture( _name, on_single_texture_complete, _silent );
-    //     }
-
-    // } //load_textures
-
         //The main render function
     public function process() {
 
