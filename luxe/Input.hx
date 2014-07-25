@@ -228,6 +228,20 @@ class Input {
 
     } //process
 
+//Input query
+
+    public function keypressed( _code:Int ) : Bool {
+        return core.app.input.keypressed( _code );
+    } //keypressed
+
+    public function keyreleased( _code:Int ) : Bool{
+        return core.app.input.keyreleased( _code );
+    } //keyreleased
+
+    public function keydown( _code:Int ) : Bool{
+        return core.app.input.keydown( _code );
+    } //keydown
+
 //Named event handlers
 
     function add_key_binding( _name:String, _value:Int ) {
@@ -271,7 +285,7 @@ class Input {
         for(_name in key_bindings.keys()) {
 
             var _b = key_bindings.get(_name);
-            if(_b.exists(e.keycode)) {
+            if(_b.exists(e.keycode) && !e.repeat) {
                 if( !Lambda.has(_fired, _name)) {
                     _fired.push(_name);
                 }
@@ -281,19 +295,19 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
-                // core.oninputdown( _f, {
-                //     name : _f,
-                //     type : InputType.keys,
-                //     state : InteractState.down,
-                //     key_event : e
-                // });
+                core.oninputdown( _f, {
+                    name : _f,
+                    type : InputType.keys,
+                    state : InteractState.down,
+                    key_event : e
+                });
             } else {
-                // core.oninputup( _f, {
-                //     name : _f,
-                //     type : InputType.keys,
-                //     state : InteractState.up,
-                //     key_event : e
-                // });
+                core.oninputup( _f, {
+                    name : _f,
+                    type : InputType.keys,
+                    state : InteractState.up,
+                    key_event : e
+                });
             }
         } //_f in _fired
 
@@ -315,19 +329,19 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
-                // core.oninputdown( _f, {
-                //     name : _f,
-                //     type : InputType.mouse,
-                //     state : InteractState.down,
-                //     mouse_event : e
-                // });
+                core.oninputdown( _f, {
+                    name : _f,
+                    type : InputType.mouse,
+                    state : InteractState.down,
+                    mouse_event : e
+                });
             } else {
-                // core.oninputup( _f, {
-                //     name : _f,
-                //     type : InputType.mouse,
-                //     state : InteractState.up,
-                //     mouse_event : e
-                // });
+                core.oninputup( _f, {
+                    name : _f,
+                    type : InputType.mouse,
+                    state : InteractState.up,
+                    mouse_event : e
+                });
             }
         } //_f in _fired
 
