@@ -12,6 +12,8 @@
 
 	<haxedef name="luxe_html5" if="html5" />
 	<haxedef name="luxe_native" if="native" />
+	<haxedef name="parcel_thread_disabled" if="native" />
+	<haxedef name="luxe_parcel_logging" if="native" />
 
 	<sample path="template_projects" />
 

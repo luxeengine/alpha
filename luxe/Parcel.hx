@@ -2,6 +2,9 @@ package luxe;
 
 import luxe.Resource;
 
+import luxe.Log._verbose;
+import luxe.Log._debug;
+import luxe.Log.log;
 
 #if (!parcel_thread_disabled && luxe_native)
     #if neko
@@ -97,7 +100,11 @@ class Parcel extends luxe.ResourceManager {
             text_list.length    +
             data_list.length;
 
+        log('loading parcel in ${options.start_spacing}s');
+
         Luxe.timer.schedule(options.start_spacing, function(){
+
+            log("starting load");
 
         #if (luxe_native && !parcel_thread_disabled)
             Thread.create(function(){
@@ -139,7 +146,7 @@ class Parcel extends luxe.ResourceManager {
                         if(id != '') {
                             add_texture( id );
                         } else {
-                            trace("parcel: texture not added due to incomplete info: " + item);
+                            log("texture not added due to incomplete info: " + item);
                         }
                     } //item != null
                 } //item in textures
@@ -167,7 +174,7 @@ class Parcel extends luxe.ResourceManager {
                         if(id != '' && path != '') {
                             add_font(id, path);
                         } else {
-                            trace("parcel: font not added due to incomplete info: " + item);
+                            log("font not added due to incomplete info: " + item);
                         }
                     } //item != null
                 } //item in fonts
@@ -183,7 +190,7 @@ class Parcel extends luxe.ResourceManager {
                         if(id != '' && name != '') {
                             add_sound( id, name, is_music);
                         } else {
-                            trace("parcel: sounds not added due to incomplete info: " + item);
+                            log("sounds not added due to incomplete info: " + item);
                         }
                     } //item != null
                 } //each sounds
@@ -197,7 +204,7 @@ class Parcel extends luxe.ResourceManager {
                         if(id != '') {
                             add_text( id );
                         }  else {
-                            trace("parcel: text not added due to incomplete info: " + item);
+                            log("text not added due to incomplete info: " + item);
                         }//id != ''
                     } //item != null
                 } //each text
@@ -211,7 +218,7 @@ class Parcel extends luxe.ResourceManager {
                         if(id != '') {
                             add_data( id );
                         } else {
-                            trace("parcel: data not added due to incomplete info: " + item);
+                            log("data not added due to incomplete info: " + item);
                         }
                     }
                 }
@@ -706,7 +713,7 @@ class Parcel extends luxe.ResourceManager {
 //Per item handlers
 
     function load_texture( _tex:String, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading texture " + _tex ); #end
+        #if luxe_parcel_logging log("    loading texture " + _tex ); #end
 
         #if (luxe_native && !parcel_thread_disabled)
 
@@ -738,7 +745,7 @@ class Parcel extends luxe.ResourceManager {
     } //load_texture
 
     function load_shader( _shader:ShaderInfo, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading shader " + _shader.ps_id + _shader.vs_id ); #end
+        #if luxe_parcel_logging log("    loading shader " + _shader.ps_id + _shader.vs_id ); #end
 
         #if (luxe_native && !parcel_thread_disabled)
 
@@ -763,7 +770,7 @@ class Parcel extends luxe.ResourceManager {
     } //load_shader
 
     function load_font( _font:FontInfo, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading font " + _font.path + _font.id ); #end
+        #if luxe_parcel_logging log("    loading font " + _font.path + _font.id ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadFont( _font.id, _font.path, _complete );
@@ -772,7 +779,7 @@ class Parcel extends luxe.ResourceManager {
     } //load_font
 
     function load_data( _data_path:String, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading data " + _data_path ); #end
+        #if luxe_parcel_logging log("    loading data " + _data_path ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadData( _data_path, _complete );
@@ -781,7 +788,7 @@ class Parcel extends luxe.ResourceManager {
     } //load_data_path
 
     function load_text( _text_path:String, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading text " + _text_path ); #end
+        #if luxe_parcel_logging log("    loading text " + _text_path ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadText( _text_path, _complete );
@@ -790,7 +797,7 @@ class Parcel extends luxe.ResourceManager {
     } //load_datafile
 
     function load_sound( _sound:SoundInfo, _complete ) {
-        #if luxe_parcel_logging trace("\t parcel: loading sound " + _sound.id + " (" + _sound.name + ")" ); #end
+        #if luxe_parcel_logging log("    loading sound " + _sound.id + " (" + _sound.name + ")" ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
             Luxe.loadSound( _sound.name, _sound.id, _sound.is_music, _complete );
@@ -821,7 +828,7 @@ class Parcel extends luxe.ResourceManager {
         current_count++;
 
         #if luxe_parcel_logging
-            trace( "\t parcel: item finished " + item.id + "( " + current_count + "/" + total_items + " )");
+            log( "    parcel: item finished " + item.id + "( " + current_count + "/" + total_items + " )");
         #end //luxe_parcel_logging
 
         if(options.onprogress != null) {
