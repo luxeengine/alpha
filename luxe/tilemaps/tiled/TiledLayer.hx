@@ -4,7 +4,6 @@ import luxe.tilemaps.tiled.TiledTile;
 import luxe.tilemaps.tiled.TiledMapData;
 
 import snow.utils.ByteArray;
-import lime.utils.Endian;
 
 class TiledLayer {
 
@@ -204,7 +203,7 @@ class TiledLayer {
         }
 
             //tiled is always little endian
-        data.endian = Endian.LITTLE_ENDIAN;
+        data.endian = ByteArray.LITTLE_ENDIAN;
             //read back into the array
         while(data.position < data.length){
             result.push(data.readInt());
