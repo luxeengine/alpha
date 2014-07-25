@@ -8,7 +8,7 @@ import luxe.Rectangle;
 class Main extends luxe.Game {
 
 
-    public function ready() {
+    override function ready() {
 
             //The first three don't need to exist in the default scene
             //so we can tell it not to add them there with no_scene : true
@@ -47,7 +47,7 @@ class Main extends luxe.Game {
         Luxe.draw.rectangle({x:250,y:50,w:200,h:100});
         Luxe.draw.rectangle({x:450,y:50,w:200,h:100});
 
-            //This one wants to be in the scene, so that 
+            //This one wants to be in the scene, so that
             //it can update its components
 
         var text_with_component = new Text({
@@ -62,25 +62,15 @@ class Main extends luxe.Game {
 
         text_with_component.add(BounceTest, 'bounce');
 
-        trace( Luxe.scene.entitycount );
-
     } //ready
-  
-    public function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.escape) {
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
-
-    public function update( dt:Float ) {
-
-    } //update
-
-    public function destroyed() {
-
-    } //destroyed
 
 
 } //Main

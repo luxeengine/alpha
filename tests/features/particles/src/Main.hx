@@ -15,7 +15,7 @@ import phoenix.Batcher;
 class Main extends luxe.Game {
 
 
-    public var mouse : Vector;
+    var mouse : Vector;
 
     var particle_system : Entity;
     var particles : ParticleSystem;
@@ -23,7 +23,7 @@ class Main extends luxe.Game {
     var ss : Sprite;
 
 
-    public function ready() {
+    override function ready() {
 
         mouse = new Vector();
 
@@ -95,7 +95,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         mouse.set(e.x,e.y);
         particles.pos = mouse;
@@ -104,7 +104,7 @@ class Main extends luxe.Game {
 
     } //onmousemove
 
-    public function onmousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         mouse.set(e.x,e.y);
         if(particles.enabled) {
             particles.stop();
@@ -113,23 +113,15 @@ class Main extends luxe.Game {
         }
     } //onmousedown
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
         mouse.set(e.x,e.y);
     } //onmouseup
 
-    public function onkeyup( e:KeyEvent ) {
-        if(e.value == Input.Keys.escape) {
+    override function onkeyup( e:KeyEvent ) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
-
-    public function destroyed() {
-
-    } //destroyed
 
 
 } //Main

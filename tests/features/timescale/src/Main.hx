@@ -23,7 +23,7 @@ class Main extends luxe.Game {
     var right : Bool = false;
 
 
-    public function ready() {
+    override function ready() {
 
             //draw a line for the ground
         Luxe.draw.line({
@@ -42,7 +42,7 @@ class Main extends luxe.Game {
             color : new Color().rgb(0xf6007b),
             text : 'Press S to toggle time scale control\nMouse x position controls scale',
             size : 18
-        }); 
+        });
 
         player = new Sprite({
             pos : new Vector( Luxe.screen.w / 2, floor_y ),
@@ -51,19 +51,19 @@ class Main extends luxe.Game {
             origin : new Vector( 10, 40 )
         });
 
-        Luxe.input.add('jump', KeyValue.key_W );
-        Luxe.input.add('jump', KeyValue.key_Z );
-        Luxe.input.add('jump', KeyValue.space );
-        Luxe.input.add('jump', KeyValue.up );
+        Luxe.input.add('jump', Key.KEY_w );
+        Luxe.input.add('jump', Key.KEY_z );
+        Luxe.input.add('jump', Key.SPACE );
+        Luxe.input.add('jump', Key.UP );
 
         vel = new Vector(0,0);
 
-        Luxe.fixed_timestep = 1/Luxe.core.config.fps;
+        // Luxe.fixed_timestep = 1/Luxe.core.config.fps;
 
     } //ready
-  
-    public function oninputdown( name:String, e:InputEvent ) {
-        
+
+    override function oninputdown( name:String, e:InputEvent ) {
+
         if(name == 'jump') {
             jump();
         } //jump pressed
@@ -78,8 +78,8 @@ class Main extends luxe.Game {
 
     } //jump
 
-    public function onmousemove( e:MouseEvent ) {
-        
+    override function onmousemove( e:MouseEvent ) {
+
         if(shift_scale) {
             var _scale = (e.x/Luxe.screen.w);
             Luxe.timescale = _scale;
@@ -87,10 +87,10 @@ class Main extends luxe.Game {
 
     } //onmousemove
 
-    public function ongamepadaxis( e:GamepadAxisEvent ) {
+    override function ongamepadaxis( e:GamepadEvent ) {
 
         var dead = 0.21;
-        
+
         if((e.value > dead && e.value > 0) || (e.value < 0 && e.value < -dead) ) {
                 //left
             if(e.axis == 0) {
@@ -107,28 +107,28 @@ class Main extends luxe.Game {
 
     } //ongamepadaxis
 
-    public function ongamepadbuttonup( e:GamepadButtonEvent ) {
+    override function ongamepadbuttonup( e:GamepadEvent ) {
         if(e.button == 0) {
             jump();
         }
     } //ongamepadbuttonup
 
-    public function ongamepadbuttondown( e:GamepadButtonEvent ) {
+    override function ongamepadbuttondown( e:GamepadEvent ) {
     } //ongamepadbuttondown
 
-    public function onkeydown( e:KeyEvent ) {
+    override function onkeydown( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.left || e.value == Input.Keys.key_A) { left = true; }
-        if(e.value == Input.Keys.right || e.value == Input.Keys.key_D) { right = true; }
+        if(e.keycode == Key.LEFT || e.keycode == Key.KEY_a) { left = true; }
+        if(e.keycode == Key.RIGHT || e.keycode == Key.KEY_d) { right = true; }
 
     } //onkeydown
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.left || e.value == Input.Keys.key_A) { left = false; }
-        if(e.value == Input.Keys.right || e.value == Input.Keys.key_D) { right = false; }
+        if(e.keycode == Key.LEFT || e.keycode == Key.KEY_a) { left = false; }
+        if(e.keycode == Key.RIGHT || e.keycode == Key.KEY_d) { right = false; }
 
-        if(e.value == Input.Keys.key_S) {
+        if(e.keycode == Key.KEY_s) {
             shift_scale = !shift_scale;
             if(shift_scale) {
                 box.color.rgb(0x00cc00);
@@ -138,13 +138,13 @@ class Main extends luxe.Game {
             }
         }
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
         if(left) {
             vel.x = -movespeed;
@@ -155,7 +155,7 @@ class Main extends luxe.Game {
 
         if(vel.x != 0) {
             vel.x *= ( 0.85 );
-            
+
             player.pos.x += (vel.x * dt);
 
             if(player.pos.x < 10) {
@@ -167,7 +167,7 @@ class Main extends luxe.Game {
         }
 
         if(vel.y != 0) {
-            
+
             if(player.pos.y < floor_y) {
                 vel.y -= -980.0 * dt;
             }
@@ -183,7 +183,7 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function destroyed() {
+    override function destroyed() {
 
     } //destroyed
 

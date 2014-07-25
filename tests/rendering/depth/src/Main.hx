@@ -49,7 +49,7 @@ class Main extends luxe.Game {
 
     public function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 

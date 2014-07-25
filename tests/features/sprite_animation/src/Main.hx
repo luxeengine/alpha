@@ -20,7 +20,7 @@ class Main extends luxe.Game {
     var textbounds : Rectangle;
 
 
-    public function ready() {
+    override function ready() {
 
     	var block_back = new Sprite({
     		centered : false,
@@ -47,7 +47,7 @@ class Main extends luxe.Game {
         });
 
         var _textsize = Luxe.renderer.font.get_text_dimensions(_text, new Vector(1,1));
-        
+
             textbounds = new Rectangle((Luxe.screen.w/2) - (_textsize.x/2), 90, _textsize.x, _textsize.y);
 
     	var texture = Luxe.loadTexture('assets/carapace.png');
@@ -68,7 +68,7 @@ class Main extends luxe.Game {
 			var animation_json = '
 				{
 					"walk" : {
-                        "frame_size":{ "x":"48", "y":"48" },                        
+                        "frame_size":{ "x":"48", "y":"48" },
                         "frameset": ["1-12"],
                         "events" : [{"frame":8, "event":"foot.1"}, {"frame":1, "event":"foot.2"}, { "frame": 6 }],
                         "pingpong":"false",
@@ -115,8 +115,8 @@ class Main extends luxe.Game {
 
             sprite.events.listen('foot.1', function(e){ Luxe.audio.play('step1'); });
             sprite.events.listen('foot.2', function(e){ Luxe.audio.play('step2'); });
-            sprite.events.listen('*', function(e){ 
-                //uncomment to see all the events remaining after the above messing 
+            sprite.events.listen('*', function(e){
+                //uncomment to see all the events remaining after the above messing
                 // trace( e.event + " fired on " + e.animation + ":" + e.image_frame );
             });
 
@@ -134,7 +134,7 @@ class Main extends luxe.Game {
                 {
                     "idle" : {
                         "frame_size":{ "x":"16", "y":"16" },
-                        "frameset": ["1-2","3 hold 5","4","1 hold 7"], 
+                        "frameset": ["1-2","3 hold 5","4","1 hold 7"],
                         "image_sequence" : "assets/idle/swat_idle",
                         "loop": "true",
                         "filter_type" : "nearest",
@@ -151,7 +151,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
 
         if(textbounds.point_inside(e.pos)) {
             Luxe.openURL('http://meetcartographer.com/carapace/');
@@ -159,17 +159,13 @@ class Main extends luxe.Game {
 
     } //onmouseup
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 
 } //Main

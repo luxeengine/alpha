@@ -10,7 +10,7 @@ class Main extends luxe.Game {
     var test_sprite1 : Sprite;
 
 
-    public function ready() {
+    override function ready() {
 
         test_sprite1 = new Sprite({
             texture : Luxe.loadTexture('assets/luxe.png'),
@@ -31,11 +31,11 @@ class Main extends luxe.Game {
     var inside = false;
     var mouse : Vector;
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
         mouse = e.pos;
     } //onmousemove
 
-    public function hittest( e:Vector ) {
+    function hittest( e:Vector ) {
         if( test_sprite1.point_inside(e) ) {
             if(!inside) {
                 inside = true;
@@ -49,7 +49,7 @@ class Main extends luxe.Game {
         }
     } //hittest
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
         mouse = e.pos;
         test_sprite1.pos = e.pos;
     } //onmouseup
@@ -60,9 +60,9 @@ class Main extends luxe.Game {
     var _scales : Array<Vector>;
     var _sizes : Array<Vector>;
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.key_R) {
+        if(e.keycode == Key.KEY_r) {
 
             if(_sizes == null) {
                 _sizes = [
@@ -84,11 +84,11 @@ class Main extends luxe.Game {
 
         } //key_R
 
-        if(e.value == Input.Keys.key_F) {
+        if(e.keycode == Key.KEY_f) {
             test_sprite1.flipy = !test_sprite1.flipy;
         }
 
-        if(e.value == Input.Keys.key_S) {
+        if(e.keycode == Key.KEY_s) {
 
             if(_scales == null) {
                 _scales = [
@@ -110,20 +110,20 @@ class Main extends luxe.Game {
 
         } //key_S
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         } //escape
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         test_sprite1.rotation_z += 50 * dt;
         hittest(mouse);
 
     } //update
 
-    public function destroyed() {
+    override function destroyed() {
 
     } //destroyed
 

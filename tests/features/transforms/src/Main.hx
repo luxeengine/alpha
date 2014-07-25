@@ -26,7 +26,7 @@ class Main extends luxe.Game {
     var p2 : Transform;
     var p3 : Transform;
 
-    public function ready() {
+    override function ready() {
 
         // var pos = new Vector(100,200,300);
         // var rot = new Quaternion().setFromEuler(new Vector( Maths.degToRad(180),Maths.degToRad(45),Maths.degToRad(90)));
@@ -143,14 +143,14 @@ class Main extends luxe.Game {
     var d1 : Transform;
     var qg : QuadGeometry;
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
         d1.pos = e.pos.clone().add(Luxe.camera.pos);
     }
 
-    public function onkeydown( e:KeyEvent ) {
+    override function onkeydown( e:KeyEvent ) {
 
 
-        if(e.key == KeyValue.key_P) {
+        if(e.keycode == Key.KEY_p) {
             if(qg.transform.parent == null) {
                 qg.transform.parent = d1;
                 qg.transform.pos = new Vector();
@@ -160,7 +160,7 @@ class Main extends luxe.Game {
             }
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
@@ -168,7 +168,7 @@ class Main extends luxe.Game {
 
     var r : Float = 0;
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         r += 100 * dt;
 

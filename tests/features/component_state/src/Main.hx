@@ -23,13 +23,13 @@ class Toggler extends Component {
 
     public function reset() {
         trace('reset toggler');
-       
+
         sprite.color = new Color().rgb(0xcc0000);
     } //reset
 
     public function removed() {
         sprite.color = new Color();
-        trace('removed toggler');        
+        trace('removed toggler');
     } //removed
 
 
@@ -43,17 +43,31 @@ class Main extends luxe.Game {
     var toggle_value : Bool = false;
 
 
-    public function ready() {
+    override function ready() {
 
         entity_one = new Sprite({
             name : "entity_one",
             size : new Vector(64,64),
             pos : Luxe.screen.mid
-        }); 
+        });
 
     } //ready
 
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.KEY_a) {
+            toggle_value = !toggle_value;
+            toggle_component( toggle_value );
+        }
+
+        if(e.keycode == Key.ESCAPE) {
+            Luxe.shutdown();
+        }
+
+    } //onkeyup
+
     function toggle_component( new_value:Bool ) {
+
         if(new_value) {
             //add component again
             entity_one.add(Toggler, 'toggler');
@@ -61,24 +75,7 @@ class Main extends luxe.Game {
             //remove component again
             trace( 'removed? ' + entity_one.remove('toggler') );
         }
-    }
 
-    public function onkeyup( e:KeyEvent ) {
-
-        if(e.key == KeyValue.key_A) {
-            toggle_value = !toggle_value;
-            toggle_component( toggle_value );
-        }
-
-        if(e.key == KeyValue.escape) {
-            Luxe.shutdown();
-        }
-        
-    } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
-
+    } //toggle_component
 
 } //Main

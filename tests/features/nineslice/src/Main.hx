@@ -15,7 +15,7 @@ class Main extends luxe.Game {
     var sy : Int = 260;
 
 
-    public function ready() {
+    override function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xefefef);
 
@@ -28,40 +28,31 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         var m = new Vector(e.x,e.y);
         geom.pos = m;
 
     } //onmousemove
 
-    private function sizechange() {
+    function sizechange() {
 
         geom.size = new Vector(sx,sy);
 
     } //sizechange
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.space) {
+        if(e.keycode == Key.SPACE) {
             var nsx : Int = Math.round( 100+(Math.random()*600) );
             var nsy : Int = Math.round( 100+(Math.random()*600) );
             Actuate.tween( this , 0.2 , { sx:nsx, sy:nsy } , true ).onUpdate(sizechange);
         }
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
-
-    public function destroyed() {
-
-    } //destroyed
-
 
 } //Main

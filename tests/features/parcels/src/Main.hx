@@ -11,7 +11,7 @@ import luxe.ParcelProgress;
 class Main extends luxe.Game {
 
 
-    public function ready() {
+    override function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xf0f0f0);
 
@@ -28,7 +28,7 @@ class Main extends luxe.Game {
                     { "ps_id":"assets/shader1.glsl" },
                     { "ps_id":"assets/shader2.glsl" },
                     { "ps_id":"assets/shader3.glsl" }
-                ],               
+                ],
                 "fonts" : [
                     { "id" : "font1.fnt", "path" : "assets/fonts/" },
                     { "id" : "font2.fnt", "path" : "assets/fonts/" },
@@ -56,7 +56,7 @@ class Main extends luxe.Game {
                     { "id" : "assets/bytes3" },
                     { "id" : "assets/bytes4" },
                     { "id" : "assets/bytes5" }
-                ]                
+                ]
             }
         ';
 
@@ -86,7 +86,7 @@ class Main extends luxe.Game {
         }
 
         var progress = new ParcelProgress({
-            parcel      : parcel1, 
+            parcel      : parcel1,
             background  : new Color(1,1,1,0.85),
             oncomplete  : onloaded
         });
@@ -94,26 +94,22 @@ class Main extends luxe.Game {
         parcel1.load();
 
     } //ready
-    
+
     var sprites : Array<Sprite>;
 
     var s : Float = 0;
 
-    function onloaded( p:Parcel ) { 
+    function onloaded( p:Parcel ) {
         trace("All complete :  Total time took " + p.time_to_load);
     } //onloaded
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
-
-    public function update( dt:Float ) {
-
-    } //update
 
 
 } //Main

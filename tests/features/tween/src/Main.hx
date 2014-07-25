@@ -8,7 +8,7 @@ import luxe.tween.Actuate;
 class Main extends luxe.Game {
 
 
-    public function ready() {
+    override function ready() {
 
     	var size = Luxe.screen.h*0.1;
     	var midx = Luxe.screen.w/2;
@@ -62,17 +62,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update( dt:Float ) {
-
-    } //update
 
 
 } //Main

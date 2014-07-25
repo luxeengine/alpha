@@ -13,7 +13,7 @@ class Main extends luxe.Game {
     var mousetext : Text;
 
 
-    public function ready() {
+    override function ready() {
 
         var ratio = Luxe.screen.w / Luxe.screen.h;
 
@@ -41,21 +41,21 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         mousetext.text = 'mouse pos' + e.pos;
 
     } //onmousemove
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         stars.uv.y -= 0.2;
         stars.uv.x += 0.4;

@@ -4,36 +4,27 @@ import luxe.Input;
 
 class Main extends luxe.Game {
 
+    override function ready() {
 
-    public function ready() {
-
-        Luxe.input.add('fire', KeyValue.space);
-        Luxe.input.add('fire', KeyValue.key_Z);
+        Luxe.input.add('fire', Key.SPACE);
+        Luxe.input.add('fire', Key.KEY_z);
         Luxe.input.add('fire', MouseButton.left);
 
     } //ready
 
-    public function oninputup( _input:String, e:InputEvent ) {
+    override function oninputup( _input:String, e:InputEvent ) {
         trace( 'named input up : ' + _input );
     } //oninputup
 
-    public function oninputdown( _input:String, e:InputEvent ) {
+    override function oninputdown( _input:String, e:InputEvent ) {
         trace( 'named input down : ' + _input );
     } //oninputdown
-  
-    public function onkeyup( e:KeyEvent ) {
-        if(e.value == Input.Keys.escape) {
+
+    override function onkeyup( e:KeyEvent ) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
-
-    public function destroyed() {
-
-    } //destroyed
 
 
 } //Main

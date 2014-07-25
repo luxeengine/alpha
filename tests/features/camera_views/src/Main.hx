@@ -29,7 +29,7 @@ class Main extends luxe.Game {
     var current_camera : Camera;
 
 
-    public function ready() {
+    override function ready() {
 
     	var level_texture = Luxe.loadTexture('assets/level.png');
 
@@ -111,7 +111,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function create_hud() {
+    function create_hud() {
 
             //For the hud, it has a unique batcher, layer 4 is > the batcher_1, and the default(1)
         hud_batcher = Luxe.renderer.create_batcher({ name:'hud_batcher', layer:4 });
@@ -167,7 +167,7 @@ class Main extends luxe.Game {
 
     var view_move : Bool = false;
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         if(view_move) {
             camera_1.viewport.x = e.pos.x;
@@ -217,26 +217,26 @@ class Main extends luxe.Game {
 
     }
 
-    public function onmousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             mouse_down = true;
             drag_time = Luxe.time + drag_allowance;
         }
     }
 
-    public function onmousewheel( e:MouseEvent ) {
+    override function onmousewheel( e:MouseEvent ) {
 
-        if(e.button == MouseButton.wheel_up ) {
+        if(e.y < 0) {
                 //wheel_up
             current_camera.zoom += 0.1;
-        } else if(e.button == MouseButton.wheel_down ) {
+        } else if(e.y > 0) {
                 //wheel_down
             current_camera.zoom -= 0.1;
         }
 
     } //onmousewheel
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
             mouse_down = false;
@@ -253,63 +253,63 @@ class Main extends luxe.Game {
 
     } //onmouseup
 
-    public function onkeydown( e:KeyEvent ) {
-        if(e.key == KeyValue.space) {
+    override function onkeydown( e:KeyEvent ) {
+        if(e.keycode == Key.SPACE) {
             view_move = true;
         }
     }
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.space) {
+        if(e.keycode == Key.SPACE) {
             view_move = false;
             camera_1.viewport.x = 0;
             camera_1.viewport.y = 0;
         }
 
 
-        if(e.key == KeyValue.left) {
+        if(e.keycode == Key.LEFT) {
             current_camera.pos.x -= 480;
         }
-        if(e.key == KeyValue.right) {
+        if(e.keycode == Key.RIGHT) {
             current_camera.pos.x += 480;
         }
-        if(e.key == KeyValue.up) {
+        if(e.keycode == Key.UP) {
             current_camera.pos.y -= 320;
         }
-        if(e.key == KeyValue.down) {
+        if(e.keycode == Key.DOWN) {
             current_camera.pos.y += 320;
         }
 
-        if(e.key == KeyValue.key_1) {
+        if(e.keycode == Key.KEY_1) {
             current_camera.zoom = 1;
         }
-        if(e.key == KeyValue.key_2) {
+        if(e.keycode == Key.KEY_2) {
             current_camera.zoom = 2;
         }
-        if(e.key == KeyValue.key_3) {
+        if(e.keycode == Key.KEY_3) {
             current_camera.zoom = 0.5;
         }
-        if(e.key == KeyValue.key_4) {
+        if(e.keycode == Key.KEY_4) {
             current_camera.center = new Vector(240,480);
         }
-        if(e.key == KeyValue.key_5) {
+        if(e.keycode == Key.KEY_5) {
             current_camera.center = new Vector(240,160);
         }
-        if(e.key == KeyValue.key_6) {
+        if(e.keycode == Key.KEY_6) {
             current_camera.rotation = z_rot(0);
         }
-        if(e.key == KeyValue.key_7) {
+        if(e.keycode == Key.KEY_7) {
             current_camera.rotation = z_rot(45);
         }
-        if(e.key == KeyValue.key_8) {
+        if(e.keycode == Key.KEY_8) {
             current_camera.rotation = z_rot(90);
         }
-        if(e.key == KeyValue.key_9) {
+        if(e.keycode == Key.KEY_9) {
             current_camera.rotation = z_rot(180);
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
@@ -321,7 +321,7 @@ class Main extends luxe.Game {
     var view_mouse : Vector;
     var world_mouse : Vector;
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         Luxe.draw.text({
             batcher : hud_batcher,

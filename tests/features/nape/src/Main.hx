@@ -21,7 +21,7 @@ class Main extends luxe.Game {
     var impulse = 900;
 
 
-    public function ready() {
+    override function ready() {
 
         reset_world();
 
@@ -52,8 +52,8 @@ class Main extends luxe.Game {
                     box.shapes.add(new Polygon(Polygon.box(16, 32)));
                     box.position.setxy((w / 2), ((h - 50) - 32 * (i + 0.5)));
                     box.space = Luxe.physics.nape.space;
-            
-            } //for 
+
+            } //for
 
             ball = new Body(BodyType.DYNAMIC);
 
@@ -64,13 +64,13 @@ class Main extends luxe.Game {
 
     } //reset_world
 
-    function onmouseup( e:MouseEvent ) {
-        
+    override function onmouseup( e:MouseEvent ) {
+
         mouseJoint.active = false;
 
     } //onmouseup
 
-    function onmousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
 
         var mousePoint = Vec2.get(e.pos.x, e.pos.y);
 
@@ -81,7 +81,7 @@ class Main extends luxe.Game {
             }
 
             mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
- 
+
             // Configure hand joint to drag this body.
             //   We initialise the anchor point on this body so that
             //   constraint is satisfied.
@@ -91,10 +91,10 @@ class Main extends luxe.Game {
             //   pool when setting the mouseJoint's anchor2 property.
             mouseJoint.body2 = body;
             mouseJoint.anchor2.set( body.worldPointToLocal(mousePoint, true));
- 
+
             // Enable hand joint!
             mouseJoint.active = true;
- 
+
             break;
         }
 
@@ -102,50 +102,46 @@ class Main extends luxe.Game {
 
     } //onmousedown
 
-    function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
         if (mouseJoint.active) {
             mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
         }
     }
-    
-    function ontouchmove( e:MouseEvent ) {
-        
+
+    override function ontouchmove( e:TouchEvent ) {
+
         if (mouseJoint.active) {
             mouseJoint.anchor1.setxy(e.pos.x, e.pos.y);
         }
 
     } //ontouchmove
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.key_R) {
+        if(e.keycode == Key.KEY_r) {
             Luxe.physics.nape.space.clear();
             reset_world();
         }
 
-        if(e.key == KeyValue.key_G) {
+        if(e.keycode == Key.KEY_g) {
             Luxe.physics.nape.draw = !Luxe.physics.nape.draw;
         }
 
-        if(e.key == KeyValue.left) {
+        if(e.keycode == Key.LEFT) {
             ball.applyImpulse(new Vec2(-impulse, 0), ball.position);
         }
-        if(e.key == KeyValue.up) {
+        if(e.keycode == Key.UP) {
             ball.applyImpulse(new Vec2(0, -impulse), ball.position);
         }
-        if(e.key == KeyValue.right) {
+        if(e.keycode == Key.RIGHT) {
             ball.applyImpulse(new Vec2(impulse, 0), ball.position);
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 
 } //Main

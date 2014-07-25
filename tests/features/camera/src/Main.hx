@@ -19,7 +19,7 @@ class Main extends luxe.Game {
     var line_two : LineGeometry;
 
 
-    public function ready() {
+    override function ready() {
 
     	var level_texture = Luxe.loadTexture('assets/level.png');
 
@@ -110,7 +110,7 @@ class Main extends luxe.Game {
 
     } //create_hud
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         screen_mouse = e.pos;
         world_mouse = Luxe.camera.screen_point_to_world( e.pos );
@@ -156,24 +156,24 @@ class Main extends luxe.Game {
     var drag_start_rotation : Float;
     var camera_start_rotation : Float;
 
-    public function onmousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             mouse_down = true;
             drag_time = Luxe.time + drag_allowance;
         }
     }
 
-    public function onmousewheel( e:MouseEvent ) {
-        if(e.button == MouseButton.wheel_up ) {
+    override function onmousewheel( e:MouseEvent ) {
+        if(e.y < 0) {
                 //wheel_up
             Luxe.camera.zoom += 0.1;
-        } else if(e.button == MouseButton.wheel_down ) {
+        } else if(e.y > 0) {
                 //wheel_down
             Luxe.camera.zoom -= 0.1;
         }
     }
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
             mouse_down = false;
@@ -190,50 +190,50 @@ class Main extends luxe.Game {
     	}
     }
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.left) {
+        if(e.keycode == Key.LEFT) {
             Luxe.camera.pos.x -= 960;
         }
-        if(e.key == KeyValue.right) {
+        if(e.keycode == Key.RIGHT) {
             Luxe.camera.pos.x += 960;
         }
-        if(e.key == KeyValue.up) {
+        if(e.keycode == Key.UP) {
             Luxe.camera.pos.y -= 640;
         }
-        if(e.key == KeyValue.down) {
+        if(e.keycode == Key.DOWN) {
             Luxe.camera.pos.y += 640;
         }
 
-        if(e.key == KeyValue.key_1) {
+        if(e.keycode == Key.KEY_1) {
             Luxe.camera.zoom = 1;
         }
-        if(e.key == KeyValue.key_2) {
+        if(e.keycode == Key.KEY_2) {
             Luxe.camera.zoom = 2;
         }
-        if(e.key == KeyValue.key_3) {
+        if(e.keycode == Key.KEY_3) {
             Luxe.camera.zoom = 0.5;
         }
-        if(e.key == KeyValue.key_4) {
+        if(e.keycode == Key.KEY_4) {
             Luxe.camera.center = new Vector(480,960);
         }
-        if(e.key == KeyValue.key_5) {
+        if(e.keycode == Key.KEY_5) {
             Luxe.camera.center = new Vector(480,320);
         }
-        if(e.key == KeyValue.key_6) {
+        if(e.keycode == Key.KEY_6) {
             Luxe.camera.rotation = z_rot(0);
         }
-        if(e.key == KeyValue.key_7) {
+        if(e.keycode == Key.KEY_7) {
             Luxe.camera.rotation = z_rot(45);
         }
-        if(e.key == KeyValue.key_8) {
+        if(e.keycode == Key.KEY_8) {
             Luxe.camera.rotation = z_rot(90);
         }
-        if(e.key == KeyValue.key_9) {
+        if(e.keycode == Key.KEY_9) {
             Luxe.camera.rotation = z_rot(180);
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
@@ -245,7 +245,7 @@ class Main extends luxe.Game {
     var view_mouse : Vector;
     var world_mouse : Vector;
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         Luxe.draw.text({
             batcher : hud_batcher,

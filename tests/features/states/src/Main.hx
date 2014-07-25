@@ -19,7 +19,7 @@ class State1 extends State {
     public function leave( value:Int ) {
         trace("State 1 LEAVE with value " + value);
     } //leave
-    
+
     public function enter( value:Int ) {
         trace("State 1 ENTER with value " + value);
     } //enter
@@ -69,7 +69,7 @@ class TransientState extends State {
         trace("inside transient update : " + luxe.utils.Maths.fixed((Luxe.time - start),3) );
 
     } //update
-    
+
 } //TransientState
 
 
@@ -79,7 +79,7 @@ class Main extends luxe.Game {
 	var machine : States;
 
 
-    public function ready() {
+    override function ready() {
 
     	machine = new States();
         machine.add_state(State1, 'state1', { init_with:5} );
@@ -98,20 +98,20 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.space) {
+        if(e.keycode == Key.SPACE) {
             var _duration = (Std.random(2)+1) * Math.random();
             machine.enable('transient', _duration);
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         machine.update(dt);
 

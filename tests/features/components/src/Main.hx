@@ -27,7 +27,7 @@ class Main extends luxe.Game {
     public var sprite2:Sprite;
 
 
-    public function ready() {
+    override function ready() {
 
             //game object is a fake class below just for testing
         var go = Luxe.scene.create(FakeGameObject, 'go');
@@ -61,7 +61,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         sprite.pos = e.pos;
 
@@ -69,34 +69,29 @@ class Main extends luxe.Game {
 
     private var spam = false;
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
-        if(e.value == Input.Keys.key_A) {
+        if(e.keycode == Key.KEY_a) {
             sprite.active = !sprite.active;
         }
 
-        if(e.value == Input.Keys.key_T) {
+        if(e.keycode == Key.KEY_t) {
             spam = !spam;
         }
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         if(spam) {
             trace(dt);
         }
 
     } //update
-
-    public function destroyed() {
-
-    } //destroyed
-
 
 } //Main
 
@@ -120,7 +115,7 @@ class RandomCameraShaker extends Component {
     } //set_shake
 
     public function onkeyup(e:KeyEvent) {
-        if(e.value == Input.Keys.space) {
+        if(e.keycode == Key.SPACE) {
             shake();
         }
     }

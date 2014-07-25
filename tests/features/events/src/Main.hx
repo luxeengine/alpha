@@ -21,7 +21,7 @@ class Main extends luxe.Game {
     var entity : Entity;
 
 
-    public function ready() {
+    override function ready() {
 
             //Global events connections
         Luxe.events.listen( 'global event' , function(e){
@@ -73,15 +73,15 @@ class Main extends luxe.Game {
         trace( Luxe.events.does_filter_event('(player)*(house)', 'player inside house') );
 
     } //ready
-  
-    public function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.escape) {
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
-        if(e.value == Input.Keys.space) {
-            
+        if(e.keycode == Key.SPACE) {
+
             Luxe.events.fire( 'global event' );
             entity.events.fire( 'local event' );
 

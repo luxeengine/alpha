@@ -12,26 +12,26 @@ import luxe.importers.TexturePackerSpriteAnimation;
 class Main extends luxe.Game {
 
 
-    public function ready() {
+    override function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xf0f0f0);
 
-        var json_source_1 : Dynamic = Luxe.loadJSON('assets/player1.json').json;        
-        var json_source_2 : Dynamic = Luxe.loadJSON('assets/player2.json').json;        
-        
+        var json_source_1 : Dynamic = Luxe.loadJSON('assets/player1.json').json;
+        var json_source_2 : Dynamic = Luxe.loadJSON('assets/player2.json').json;
+
         var data1 : TexturePackerData = TexturePackerJSON.parse( json_source_1 );
         var data2 : TexturePackerData = TexturePackerJSON.parse( json_source_2 );
 
         trace("data1 : from " + data1.meta);
         trace("data2 : from " + data2.meta);
 
-        var json_sprite_1 = TexturePackerSpriteAnimation.parse( data1, 'all' ); 
-        var json_sprite_2 = TexturePackerSpriteAnimation.parse( data2, 'all' ); 
+        var json_sprite_1 = TexturePackerSpriteAnimation.parse( data1, 'all' );
+        var json_sprite_2 = TexturePackerSpriteAnimation.parse( data2, 'all' );
 
         var texture = Luxe.loadTexture('assets/playertest.png');
 
         texture.onload = function(t) {
-            
+
             //create 2 sprites with the 2 diff importer types
 
             var sprite1 = new Sprite({
@@ -68,17 +68,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 
 } //Main

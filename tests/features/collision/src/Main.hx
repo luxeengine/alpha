@@ -54,7 +54,7 @@ class Main extends luxe.Game {
     var line_collide = false;
 
 
-    public function ready() {
+    override function ready() {
 
             //the shape drawer
         drawer = new ShapeDrawerLuxe();
@@ -63,7 +63,7 @@ class Main extends luxe.Game {
         mouse_pos = new Vector();
 
             //Create the collider shapes
-        circle_static = new Circle( 300, 200, 50 );        
+        circle_static = new Circle( 300, 200, 50 );
         box_static = Polygon.rectangle( 0, 0, 50, 150 );
         oct_static = Polygon.create( 70,70, 8,60 );
             //and the noes that will follow the mouse
@@ -75,7 +75,7 @@ class Main extends luxe.Game {
         box_static.x = 150;
         box_static.y = 300;
 
-            //the horizontal line for the raycast tests, 
+            //the horizontal line for the raycast tests,
             //starting at the top of the screen
         line_start = new Vector(0,0);
         line_end = new Vector(500,0);
@@ -85,11 +85,11 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         mouse_is_hexagon = !mouse_is_hexagon;
     } //onmousedown
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         mouse_pos = e.pos;
 
@@ -103,13 +103,13 @@ class Main extends luxe.Game {
 
     } //onmousemove
 
-    public function update_line(dt:Float) {
+    function update_line(dt:Float) {
 
             //move the line up or down based on direction
         line_y += 50 * line_dir * dt;
 
             //going down and hit the bottom?
-        if(line_dir == 1 && line_y >= 500) {    
+        if(line_dir == 1 && line_y >= 500) {
             line_dir = -1;
         } else  //going up and hit the top?
         if(line_dir == -1 && line_y <= 0) {
@@ -120,31 +120,31 @@ class Main extends luxe.Game {
         line_start.y = line_y;
         line_end.y = line_y;
 
-    } //update_line   
+    } //update_line
 
     var _main_color : Color;
 
-    public function draw_collision_response( pos:Vector, collision_response:CollisionData, _color:Int ) {
+    function draw_collision_response( pos:Vector, collision_response:CollisionData, _color:Int ) {
 
         if(_main_color == null) {
             _main_color = new Color();
         }
 
         _main_color.rgb(_color);
-        
+
         drawer.drawLine( new Vector(pos.x, pos.y), new Vector( pos.x+(collision_response.unitVector.x*20), pos.y+(collision_response.unitVector.y*20) ), _main_color, true );
 
     } //draw_collision_response
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         update_line(dt);
 
@@ -153,7 +153,7 @@ class Main extends luxe.Game {
 //Test the static circle
 
         if(!mouse_is_hexagon) {
-            
+
             mouse_collide = Collision.test( circle_static, circle_mouse );
 
             if(mouse_collide != null) {
@@ -175,7 +175,7 @@ class Main extends luxe.Game {
 //Test the static octagon, but do it inversely (mouse->static) so we can test the resultant collision data
 
         if(!mouse_is_hexagon) {
-            
+
             mouse_collide = Collision.test( circle_mouse, oct_static );
 
             if(mouse_collide != null) {
@@ -196,7 +196,7 @@ class Main extends luxe.Game {
 
 //Test the static box
         if(!mouse_is_hexagon) {
-            
+
             mouse_collide = Collision.test( box_static, circle_mouse );
 
             if(mouse_collide != null) {
@@ -212,9 +212,9 @@ class Main extends luxe.Game {
                 mouse_color = collide_color2;
                 draw_collision_response(new Vector(box_static.x, box_static.y), mouse_collide, mouse_color);
             }
-            
+
         } //!mouse_is_hexagon else
-            
+
 //Test mouse box and circle
 
         mouse_collide = Collision.test( circle_mouse, hexagon_mouse );
@@ -261,7 +261,7 @@ class Main extends luxe.Game {
             if(line_collide) {
                 // visualise.graphics.lineStyle( 2, collide_color4 );
                 c.rgb( collide_color4 );
-            } 
+            }
 
             drawer.drawLine(line_start, line_end, c , true);
 

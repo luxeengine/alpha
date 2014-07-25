@@ -4,31 +4,31 @@ import luxe.Input;
 class Main extends luxe.Game {
 
 
-    public function ready() {
+    override function ready() {
 
         Luxe.showConsole( true );
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
-        if(Luxe.input.keypressed(KeyValue.key_R)) {
+        if(Luxe.input.keypressed(Key.KEY_r)) {
             trace('key R was pressed');
         }
-        
-        if(Luxe.input.keyreleased(KeyValue.key_R)) {
+
+        if(Luxe.input.keyreleased(Key.KEY_r)) {
             trace('key R was released');
         }
 
-        if(Luxe.input.keydown(KeyValue.key_R)) {
+        if(Luxe.input.keydown(Key.KEY_r)) {
             trace('key R is down');
         }
 

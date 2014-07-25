@@ -16,14 +16,14 @@ class Main extends luxe.Game {
 
 
     public var mouse    : Vector;
-    public var line     : LineGeometry; 
-    public var rect     : RectangleGeometry; 
-    public var box      : QuadGeometry; 
-    public var circle   : CircleGeometry; 
-    public var ring     : RingGeometry; 
+    public var line     : LineGeometry;
+    public var rect     : RectangleGeometry;
+    public var box      : QuadGeometry;
+    public var circle   : CircleGeometry;
+    public var ring     : RingGeometry;
 
 
-    public function ready() {
+    override function ready() {
 
         mouse = new Vector();
 
@@ -35,12 +35,12 @@ class Main extends luxe.Game {
 
         rect = Luxe.draw.rectangle({
             x : 10, y : 10,
-            w : Luxe.screen.w - 20, 
+            w : Luxe.screen.w - 20,
             h : Luxe.screen.h - 20,
             color : new Color(0.4,0.4,0.4)
         });
 
-        
+
         Luxe.draw.ngon({
             r:200, sides : 3,
             solid : true,
@@ -82,7 +82,7 @@ class Main extends luxe.Game {
 
         box = Luxe.draw.box({
             x : 40, y : 40,
-            w : Luxe.screen.w - 80, 
+            w : Luxe.screen.w - 80,
             h : Luxe.screen.h - 80,
             color : new Color(0,0,0,0.5)
         });
@@ -129,7 +129,7 @@ class Main extends luxe.Game {
             color : new Color(1,1,1,1),
             pos : Luxe.screen.mid.add(new Vector(0,50)),
             size : 24,
-            text : 
+            text :
 "Luxe.draw.ring({
         x : Luxe.screen.mid.x,
         y : Luxe.screen.mid.y,
@@ -150,26 +150,26 @@ class Main extends luxe.Game {
         }
 
     } //ready
-  
-    public function onmousemove( e:MouseEvent ) {
+
+    override function onmousemove( e:MouseEvent ) {
         mouse.set(e.x,e.y);
     } //onmousemove
 
-    public function onmousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         mouse.set(e.x,e.y);
     } //onmousedown
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
         mouse.set(e.x,e.y);
     } //onmouseup
 
-    public function onkeyup( e:KeyEvent ) {
-        if(e.value == Input.Keys.escape) {
+    override function onkeyup( e:KeyEvent ) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         Luxe.draw.rectangle({
                 //this line is important, as each frame it will create new geometry!

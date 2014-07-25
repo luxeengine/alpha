@@ -18,11 +18,11 @@ class Main extends luxe.Game {
 
     var sprite_test_pad : Sprite;
     var mouse : Vector;
-    
+
     var bar_color : ColorHSV;
 
 
-    public function ready() {
+    override function ready() {
 
         sprite = new Sprite({
             pos : new Vector(480,320),
@@ -53,7 +53,7 @@ class Main extends luxe.Game {
             color : new ColorHSV(0, 0.5, 1),
             depth : 0,
             centered : false
-        });        
+        });
 
         hsb_strip_bottom = new Sprite({
             pos : new Vector(0,Luxe.screen.h-(Luxe.screen.h*0.1)),
@@ -74,9 +74,9 @@ class Main extends luxe.Game {
         bar_color = new ColorHSV(0,0.5,1);
 
     } //ready
-    
-    
-    public function onmousemove( e:MouseEvent ) {
+
+
+    override function onmousemove( e:MouseEvent ) {
 
         mouse.set(e.x, e.y);
 
@@ -85,34 +85,34 @@ class Main extends luxe.Game {
         bar_color.h = 360 * (mouse.x/Luxe.screen.w);
         bar_color.v = 1.0 - (mouse.y/Luxe.screen.h);
 
-        hsb_strip_top.color = bar_color;        
+        hsb_strip_top.color = bar_color;
         hsb_strip_bottom.color = bar_color;
 
     } //onmousemove
 
-    public function onmousedown( e:MouseEvent ) {
-        
-        sprite.color.tween(1.5, { 
-            r:Math.random(), 
-            g:Math.random(), 
-            b:Math.random(), 
-            a: Maths.clamp(0.5+(Math.random()),0,1) 
+    override function onmousedown( e:MouseEvent ) {
+
+        sprite.color.tween(1.5, {
+            r:Math.random(),
+            g:Math.random(),
+            b:Math.random(),
+            a: Maths.clamp(0.5+(Math.random()),0,1)
         }); //tween
 
     } //onmousedown
 
-    public function onkeyup( e:KeyEvent ) {
-        
-        if(e.value == Input.Keys.space) {
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.SPACE) {
             bar_color.tween( 1, { h : 0.5, v : 0 } ).onUpdate(
                 function(){
-                    hsb_strip_top.color = bar_color;        
+                    hsb_strip_top.color = bar_color;
                     hsb_strip_bottom.color = bar_color;
                 }
             );
         }
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 

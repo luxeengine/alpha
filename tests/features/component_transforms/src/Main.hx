@@ -7,7 +7,7 @@ import luxe.Component;
 
 import luxe.Color;
 
-class FakeRigidBody extends Components.Component {
+class FakeRigidBody extends Component {
 
 
     public function init() {
@@ -27,7 +27,7 @@ class FakeRigidBody extends Components.Component {
 } //FakeRigidBody
 
 
-class FakeMeshComponent extends Components.Component {
+class FakeMeshComponent extends Component {
 
 
     public function init() {
@@ -45,7 +45,7 @@ class FakeMeshComponent extends Components.Component {
 
 } //FakeMeshComponent
 
-class FakeCollider extends Components.Component {
+class FakeCollider extends Component {
 
 
     public function init() {
@@ -53,7 +53,7 @@ class FakeCollider extends Components.Component {
     } //init
 
     public function reset() {
-        trace('reset FakeCollider');        
+        trace('reset FakeCollider');
     } //reset
 
     public function destroyed() {
@@ -76,7 +76,7 @@ class Main extends luxe.Game {
     var od : Bool = true;
 
 
-    public function ready() {
+    override function ready() {
 
         root = new Entity();
         root.pos = new Vector(10,10,10);
@@ -87,15 +87,15 @@ class Main extends luxe.Game {
         child_of_child.parent = child;
         child.parent = root;
 
-        child.pos_local = new Vector(10,10,10);
-        child_of_child.pos_local = new Vector(50,0,10);
+        child.pos = new Vector(10,10,10);
+        child_of_child.pos = new Vector(50,0,10);
 
         spherething = new Entity();
         spherething.name = 'sphere';
         spherechild = new Entity();
-        spherechild.name = 'childmesh';    
+        spherechild.name = 'childmesh';
 
-        spherechild.parent = spherething;    
+        spherechild.parent = spherething;
 
             //physics on the parent
         spherething.add( FakeRigidBody, 'rigidbody');
@@ -117,32 +117,32 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function draw_entities_transforms() {
+    function draw_entities_transforms() {
 
         Luxe.draw.rectangle({
             x : root.pos.x - 2, y : root.pos.y - 2,
             w : 4, h : 4,
             color : new Color(0.2,0.6,1),
             immediate : true
-        }); 
-        
+        });
+
         Luxe.draw.rectangle({
-            x : child.pos.x - 2, y : child.pos.y - 2,
+            x : child.transform.world.pos.x - 2, y : child.transform.world.pos.y - 2,
             w : 4, h : 4,
             color : new Color(1,0.6,0.2),
             immediate : true
         });
 
         Luxe.draw.rectangle({
-            x : child_of_child.pos.x - 2, y : child_of_child.pos.y - 2,
+            x : child_of_child.transform.world.pos.x - 2, y : child_of_child.transform.world.pos.y - 2,
             w : 4, h : 4,
             color : new Color(0.6,1,0.2),
             immediate : true
-        }); 
+        });
 
     } //draw_entities_transforms
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         if(od) {
             root.pos = new Vector(e.x,e.y);
@@ -151,17 +151,17 @@ class Main extends luxe.Game {
         }
 
     } //onmousemove
-  
-    public function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.key_R) {
+    override function onkeyup( e:KeyEvent ) {
 
-            child.pos_local = new Vector(10,10,10);
-            child_of_child.pos_local = new Vector(50,0,10);
+        if(e.keycode == Key.KEY_r) {
 
-        } //key_R
+            child.pos = new Vector(10,10,10);
+            child_of_child.pos = new Vector(50,0,10);
 
-        if(e.value == Input.Keys.key_P) {
+        } //R key
+
+        if(e.keycode == Key.KEY_p) {
 
             if(child.parent != null) {
                 child.parent = null;
@@ -170,29 +170,26 @@ class Main extends luxe.Game {
                 child.parent = root;
                 trace('parent');
             }
-            
-            trace('absolute: ' + child.pos);
-            trace('relative: ' + child.pos_local);
+
+            trace('absolute: ' + child.transform.world.pos);
+            trace('relative: ' + child.pos);
 
         } //key_P
 
-        if(e.value == Input.Keys.space) {
+        if(e.keycode == Key.SPACE) {
             od = !od;
         } //space
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         } //escape
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
         draw_entities_transforms();
     } //update
 
-    public function destroyed() {
-
-    } //destroyed
 
 
 } //Main

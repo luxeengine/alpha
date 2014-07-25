@@ -30,10 +30,11 @@ class Main extends luxe.Game {
     var map_tiles : Array< Array<MapTile> >;
 
 
-    public function ready() {
+    override function ready() {
 
         geom = new phoenix.geometry.ComplexGeometry({
-            texture : Luxe.loadTexture('assets/tileset.png')
+            texture : Luxe.loadTexture('assets/tileset.png'),
+            batcher : Luxe.renderer.batcher
         });
 
         geom.texture.filter = phoenix.Texture.FilterType.nearest;
@@ -81,13 +82,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function random_int( max:Int ) {
+    function random_int( max:Int ) {
 
         return Math.floor(max*Math.random());
 
     }//random_int
 
-    public function create_map() {
+    function create_map() {
 
         map_tiles = new Array< Array<MapTile> >();
 
@@ -110,19 +111,19 @@ class Main extends luxe.Game {
         } //_y
     } //create_map
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
         // geom.quad_pos( mouse_quad, new Vector(e.x-32, e.y-32) );
     }
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.value == Input.Keys.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         } //escape
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         if(!loaded) return;
 
@@ -141,7 +142,7 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function destroyed() {
+    override function destroyed() {
 
     } //destroyed
 

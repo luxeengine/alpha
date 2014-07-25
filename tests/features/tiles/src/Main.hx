@@ -22,14 +22,14 @@ class Main extends luxe.Game {
     public var tile_text : luxe.Text;
 
 
-    public function ready() {
-        
+    override function ready() {
+
         Luxe.renderer.clear_color = new Color().rgb(0xaf663a);
 
-            //we create a custom tilemap 
-        create_small_handmade_tilemap();        
+            //we create a custom tilemap
+        create_small_handmade_tilemap();
 
-            //now we load a few tiled maps from the Tiled editor 
+            //now we load a few tiled maps from the Tiled editor
         load_ortho_tiledmap();
         load_isometric_tiledmap();
 
@@ -37,14 +37,14 @@ class Main extends luxe.Game {
             color : new Color(1,1,1,1),
             pos : new Vector(10,10),
             font : Luxe.renderer.font,
-            size : 24, 
+            size : 24,
             text : "move the mouse"
         });
 
     } //ready
 
     function load_isometric_tiledmap() {
-        
+
         tiled_iso = new TiledMap( { file:'assets/isotiles.tmx', pos : new Vector(256,128) } );
         tiled_iso.display({ scale:1, grid:true});
 
@@ -59,7 +59,7 @@ class Main extends luxe.Game {
     } //load_isometric_tiledmap
 
     function load_ortho_tiledmap() {
-        
+
             //create from xml file, with various encodings, or from JSON
         tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
         // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx'} );
@@ -68,7 +68,7 @@ class Main extends luxe.Game {
 
         var scale = 2;
 
-            //tell the map to display 
+            //tell the map to display
         tiled_ortho.display({ scale:scale, grid:true });
 
             //draw the additional objects
@@ -91,21 +91,21 @@ class Main extends luxe.Game {
             //manually create ourselves an ortho tilemap
         small_tiles = new Tilemap({
                 //world x/y position
-            x           : 512, 
-            y           : 0, 
+            x           : 512,
+            y           : 0,
                 //tilemap width/height
-            w           : 6,  
-            h           : 6, 
+            w           : 6,
+            h           : 6,
                 //tiles width/height
-            tile_width  : 16, 
-            tile_height : 16,   
+            tile_width  : 16,
+            tile_height : 16,
                 //orientation of map
             orientation : TilemapOrientation.ortho
         });
 
             //create a tileset for the map
-        small_tiles.add_tileset({ 
-            name:'tiles', 
+        small_tiles.add_tileset({
+            name:'tiles',
             texture:Luxe.loadTexture('assets/tileset.png'),
             tile_width: 16, tile_height: 16
         });
@@ -113,8 +113,8 @@ class Main extends luxe.Game {
             //create some layers to add tiles in
             //note we add them out of order with the index, just for testing that
         small_tiles.add_layer({ name:'fg', layer:1, opacity:1, visible:true });
-        small_tiles.add_layer({ name:'bg', layer:0, opacity:1, visible:true });        
-        small_tiles.add_layer({ name:'removed', layer:2, opacity:1, visible:true });        
+        small_tiles.add_layer({ name:'bg', layer:0, opacity:1, visible:true });
+        small_tiles.add_layer({ name:'removed', layer:2, opacity:1, visible:true });
 
             //create them by filling the layer with a fixed id, in this case 21
         small_tiles.add_tiles_fill_by_id( 'bg', 21 );
@@ -128,7 +128,7 @@ class Main extends luxe.Game {
 
             //let's change a tile before we display it
         small_tiles.tile_at('fg', 0, 0).id = 1;
-        
+
             //finally, tell it to display
         small_tiles.display({ scale:1 });
 
@@ -140,22 +140,22 @@ class Main extends luxe.Game {
         small_tiles.tile_at('fg', 5, 0).id = 1;
 
     } //create_small_handmade_tilemap
-  
-    public function onkeyup( e:KeyEvent ) {
-        
-        if(e.value == Input.Keys.escape) {
+
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
-        if(e.key == KeyValue.key_1) { Luxe.camera.zoom = 1.0; }
-        if(e.key == KeyValue.key_2) { Luxe.camera.zoom = 2.0; }
-        if(e.key == KeyValue.key_3) { Luxe.camera.zoom = 0.5; }
+        if(e.keycode == Key.KEY_1) { Luxe.camera.zoom = 1.0; }
+        if(e.keycode == Key.KEY_2) { Luxe.camera.zoom = 2.0; }
+        if(e.keycode == Key.KEY_3) { Luxe.camera.zoom = 0.5; }
 
-        if(e.key == KeyValue.key_A || e.key == KeyValue.left) {
+        if(e.keycode == Key.KEY_a || e.keycode == Key.LEFT) {
             left_down = false;
         }
 
-        if(e.key == KeyValue.key_D || e.key == KeyValue.right) {
+        if(e.keycode == Key.KEY_d || e.keycode == Key.RIGHT) {
             right_down = false;
         }
 
@@ -164,31 +164,31 @@ class Main extends luxe.Game {
     var left_down = false;
     var right_down = false;
 
-    public function onkeydown( e:KeyEvent ) {
+    override function onkeydown( e:KeyEvent ) {
 
-        if(e.key == KeyValue.key_A || e.key == KeyValue.left) {
+        if(e.keycode == Key.KEY_a || e.keycode == Key.LEFT) {
             left_down = true;
         }
 
-        if(e.key == KeyValue.key_D || e.key == KeyValue.right) {
+        if(e.keycode == Key.KEY_d || e.keycode == Key.RIGHT) {
             right_down = true;
         }
 
     } //onkeydown
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
             // Get the tile position that the mouse is hovering.
         var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
-        
+
         var tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos );
         var world = tiled_iso.worldpos_to_map( mouse_pos );
-        
+
         tile_text.text = world + "\n" + tile;
 
     } //onmousemove
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
         if(left_down) {
             Luxe.camera.pos.x -= 150 / Luxe.camera.zoom * dt;
@@ -197,14 +197,14 @@ class Main extends luxe.Game {
         if(right_down) {
             Luxe.camera.pos.x += 150 / Luxe.camera.zoom * dt;
         } //right_down
-		
+
     } //update
 
     function draw_tiled_object_groups( _scale:Float = 1) {
 
             //now we can look at the objects layers in the tilemap and draw them
         for(group in tiled_ortho.tiledmap_data.object_groups) {
-            
+
             for(object in group.objects) {
                 Luxe.draw.text({ text:object.name, size:14, pos:object.pos.clone().multiplyScalar(_scale).add(tiled_ortho.pos) });
                 switch(object.object_type) {
@@ -221,7 +221,7 @@ class Main extends luxe.Game {
                             last = p.clone();
                         } //each point
 
-                    } //polyline 
+                    } //polyline
 
                     case TiledObjectType.polygon: {
 
@@ -249,9 +249,9 @@ class Main extends luxe.Game {
                         var _r = (object.width/2)*_scale;
                         Luxe.draw.ring({
                             x : (object.pos.x*_scale) + tiled_ortho.pos.x,
-                            y : (object.pos.y*_scale) + tiled_ortho.pos.y, 
-                            r : _r, 
-                            depth : 2  
+                            y : (object.pos.y*_scale) + tiled_ortho.pos.y,
+                            r : _r,
+                            depth : 2
                         });
 
                     } //ellipse
@@ -260,8 +260,8 @@ class Main extends luxe.Game {
 
 
                         Luxe.draw.rectangle({
-                            x : (object.pos.x*_scale) + tiled_ortho.pos.x, y : (object.pos.y*_scale) + tiled_ortho.pos.y, 
-                            w : object.width*_scale, h:object.height*_scale, 
+                            x : (object.pos.x*_scale) + tiled_ortho.pos.x, y : (object.pos.y*_scale) + tiled_ortho.pos.y,
+                            w : object.width*_scale, h:object.height*_scale,
                             depth : 2
                         });
 
