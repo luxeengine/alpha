@@ -82,41 +82,40 @@ class Utils {
 
         var _final : Array<String> = [];
 
-            //:todo:
-        //     var _sequence_type = '';
-        //     var _pattern_regex : EReg = null;
+            var _sequence_type = '';
+            var _pattern_regex : EReg = null;
 
-        //     var _type0 = _name + _start + _ext;
-        //     var _type0_re : EReg = new EReg('('+_name+')(\\d\\b)', 'gi');
-        //     var _type1 = _name + '_' + _start + _ext;
-        //     var _type1_re : EReg  = new EReg('('+_name+')(_\\d\\b)', 'gi');
-        //     var _type2 = _name + '-' + _start + _ext;
-        //     var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
+            var _type0 = _name + _start + _ext;
+            var _type0_re : EReg = new EReg('('+_name+')(\\d\\b)', 'gi');
+            var _type1 = _name + '_' + _start + _ext;
+            var _type1_re : EReg  = new EReg('('+_name+')(_\\d\\b)', 'gi');
+            var _type2 = _name + '-' + _start + _ext;
+            var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
 
-        //         //check name0 ->
-        //     if(Lambda.indexOf(luxe.app.assets.list, _type0) != -1) {
-        //         _sequence_type = _type0;
-        //         _pattern_regex = _type0_re;
-        //     } else if(Lambda.indexOf(luxe.app.assets.list, _type1) != -1) {
-        //         _sequence_type = _type1;
-        //         _pattern_regex = _type1_re;
-        //     } else if(Lambda.indexOf(luxe.app.assets.list, _type2) != -1) {
-        //         _sequence_type = _type2;
-        //         _pattern_regex = _type2_re;
-        //     } else {
-        //         trace("Sequence requested from " + _name + " but no assets found like `" + _type0 + "` or `" + _type1 + "` or `" + _type2 + "`" );
-        //     }
+                //check name0 ->
+            if(luxe.app.assets.listed(_type0)) {
+                _sequence_type = _type0;
+                _pattern_regex = _type0_re;
+            } else if(luxe.app.assets.listed(_type1)) {
+                _sequence_type = _type1;
+                _pattern_regex = _type1_re;
+            } else if(luxe.app.assets.listed(_type2)) {
+                _sequence_type = _type2;
+                _pattern_regex = _type2_re;
+            } else {
+                trace("Sequence requested from " + _name + " but no assets found like `" + _type0 + "` or `" + _type1 + "` or `" + _type2 + "`" );
+            }
 
-        // if(_sequence_type != '') {
-        //     for(_asset in luxe.app.assets.list) {
-        //         //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
-        //         if(_pattern_regex.match(_asset)) {
-        //             _final.push( _asset );
-        //         }
-        //     }
+        if(_sequence_type != '') {
+            for(_asset in luxe.app.assets.list) {
+                //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
+                if(_pattern_regex.match(_asset.id)) {
+                    _final.push( _asset.id );
+                }
+            }
 
-        //     _final.sort(function(a:String,b:String):Int { if(a == b) return 0; if(a < b) return -1; return 1; });
-        // }
+            _final.sort(function(a:String,b:String):Int { if(a == b) return 0; if(a < b) return -1; return 1; });
+        }
 
         return _final;
 
