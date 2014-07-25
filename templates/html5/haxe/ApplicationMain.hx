@@ -1,46 +1,35 @@
+import ::APP_MAIN::;
 
-import ::APP_MAIN_PACKAGE::::APP_MAIN_CLASS::;
-import lime.Lime;
 import luxe.Core;
+import snow.Snow;
+import snow.types.Types;
 
 class ApplicationMain {
 
-    public static var _main_ : ::APP_MAIN::;
+    public static var _game : ::APP_MAIN::;
     public static var _core : Core;
-    public static var _lime : Lime;
+    public static var _snow : Snow;
 
     public static function main () {
 
-        _lime = new Lime();
-            //Create the game class, give it the runtime
-         _main_ = Type.createInstance (::APP_MAIN::, []);
-            //Create the luxe runtime, pass it the lime reference
-        _core = new Core( _main_ );
-            //Store the core for reference in the game
-        _main_.luxecore = _core;
+            //Create the runtime
+        _snow = new Snow();
+            //Create the app class, give it to the bootstrapper
+        _game = new ::APP_MAIN::();
+            //Create the core luxe runtime
+        _core = new Core( _game );
 
-            //Create a config
-        var config : LimeConfig = {
-            host            : _main_,
-            fullscreen      : ::WIN_FULLSCREEN::,
-            resizable       : ::WIN_RESIZABLE::,
-            borderless      : ::WIN_BORDERLESS::,
-            antialiasing    : Std.int(::WIN_ANTIALIASING::),
-            stencil_buffer  : ::WIN_STENCIL_BUFFER::,
-            depth_buffer    : ::WIN_DEPTH_BUFFER::,
-            vsync           : ::WIN_VSYNC::,
-            fps             : Std.int(::WIN_FPS::),
-            width           : Std.int(::WIN_WIDTH::),
-            height          : Std.int(::WIN_HEIGHT::),
-            orientation     : "::WIN_ORIENTATION::",
-            title           : "::APP_TITLE::",
+            //Create the main config
+        var _config : SnowConfig = {
+
+            host            : _core,
+            run_loop        : true
+
         };
 
-            //Start up lime, but give it the core library
-            //as the host instead of the main,
-            //so we intercept the ready event and can tell the
-            //game main when we are done!
-        _lime.init( _core, config );
+            //Start up, but give the host as the luxe core
+        _snow.init( _config );
 
     } //main
+
 } //ApplicationMain
