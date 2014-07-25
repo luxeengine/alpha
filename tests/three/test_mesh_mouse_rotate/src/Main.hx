@@ -63,7 +63,7 @@ class Main extends luxe.Game {
     var tower:Entity;
 
 
-    public function ready() {
+    override function ready() {
 
         Luxe.camera.view.set_perspective({
             far:1000, near:0.1, aspect:Luxe.screen.w/Luxe.screen.h
@@ -85,15 +85,15 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
     } //update
 

@@ -9,7 +9,7 @@ class Main extends luxe.Game {
 	var mesh : Mesh;
 
 
-    public function ready() {
+    override function ready() {
 
     	Luxe.camera.view.set_perspective({
     		far:1000,
@@ -25,9 +25,9 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
@@ -35,7 +35,7 @@ class Main extends luxe.Game {
 
     var y = 0.0;
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
             //90 degrees a second
         y += 90 * dt;
