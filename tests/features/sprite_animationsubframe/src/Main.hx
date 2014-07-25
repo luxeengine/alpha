@@ -18,8 +18,8 @@ class Main extends luxe.Game {
     var subanimation : Sprite;
 
 
-    public function ready() {
-            
+    override function ready() {
+
         Luxe.renderer.clear_color = new Color().rgb(0xf0f0f0);
 
         var texture = Luxe.loadTexture('assets/player_grid.png');
@@ -31,7 +31,7 @@ class Main extends luxe.Game {
             p1 : new Vector(Luxe.screen.w/2, Luxe.screen.h),
             color : new Color(0,0,0,0.3),
         });
-        
+
         Luxe.draw.line({
             p0 : new Vector(0, Luxe.screen.h/2),
             p1 : new Vector(Luxe.screen.w, Luxe.screen.h/2),
@@ -42,9 +42,9 @@ class Main extends luxe.Game {
         texture2.onload = function(t) {
 
             texture2.filter = FilterType.nearest;
-            texture.filter = FilterType.nearest;            
+            texture.filter = FilterType.nearest;
 
-                //the sub animation sprite, 
+                //the sub animation sprite,
                 //none of the sprite transform (size, scale or origin) should affect the sub animation working
             subanimation = new Sprite({
                 name : "subanimation",
@@ -88,7 +88,7 @@ class Main extends luxe.Game {
            var sub_anim_json = '
                 {
                     "walk" : {
-                        "frame_size":{ "x":"64", "y":"64" },                        
+                        "frame_size":{ "x":"64", "y":"64" },
                         "frameset": ["1-12"],
                         "frame_sources": [
                             { "frame":1,  "source": { "x":0,    "y":0,      "w":28,     "h":46 }, "pos":{ "x":17,"y":11 }, "size":{ "x":64, "y":64 }  },
@@ -114,7 +114,7 @@ class Main extends luxe.Game {
             var anim_json = '
                 {
                     "walk" : {
-                        "frame_size":{ "x":"64", "y":"64" },                        
+                        "frame_size":{ "x":"64", "y":"64" },
                         "frameset": ["1-12"],
                         "pingpong":"false",
                         "loop": "true",
@@ -135,20 +135,16 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
 
     } //onmouseup
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 } //Main
