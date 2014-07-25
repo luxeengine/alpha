@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-    
-    <meta 
-          title="luxe - getting started" 
-          package="com.luxeengine.luxeguidegettingstarted" 
-          version="1.0.0" 
-          company="luxeengine" 
+
+    <meta
+          title="luxe - getting started"
+          package="com.luxeengine.luxeguidegettingstarted"
+          version="1.0.0"
+          company="luxeengine"
     />
 
     <app main="Main" path="bin" file="luxe_guide_getting_started" />
 
     <window width="960" height="640" orientation="landscape" fps="60" vsync="true" resizable="false" />
-    
+
      <assets path="Assets" rename="assets" include="*"/>
 
     <source path="src" />
-    
-    <haxelib name="lime" />
+
     <haxelib name="luxe" />
-    
+
 </project>

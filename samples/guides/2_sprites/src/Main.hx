@@ -12,9 +12,9 @@ class Main extends luxe.Game {
     var sprite_block : Sprite;
 
 
-    public function ready() {
+    override function ready() {
 
-            //create a sprite with an image 
+            //create a sprite with an image
         sprite_image = new Sprite({
             pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
             texture : Luxe.loadTexture('assets/luxelogo.png'),
@@ -31,25 +31,21 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         if(sprite_image.texture.loaded) {
             sprite_image.pos = e.pos;
         }
 
     } //onmousemove
-  
-    public function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
-
-    public function update( dt:Float ) {
-        
-    } //update
 
 
 } //Main
