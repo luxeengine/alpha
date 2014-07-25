@@ -152,8 +152,8 @@ class Mesh {
 
         if(_scale == null) _scale = new Vector(1,1,1);
 
-        var obj_file = lime.utils.Assets.getText(asset_id);
-        var file_input = new haxe.io.StringInput( obj_file );
+        var obj_file = Luxe.loadText(asset_id);
+        var file_input = new haxe.io.StringInput( obj_file.text );
         var obj_mesh_data = new phoenix.formats.obj.Reader(file_input).read();
 
         geometry = new Geometry({
