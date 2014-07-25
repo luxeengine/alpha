@@ -26,51 +26,51 @@ import luxe.Log._debug;
 import luxe.Log.log;
 
 
-// #if (!luxe_threading_disabled && luxe_native)
+#if (!luxe_threading_disabled && luxe_native)
 
-//     #if neko
-//         import neko.vm.Thread;
-//         import neko.vm.Mutex;
-//     #else
-//         import cpp.vm.Thread;
-//         import cpp.vm.Mutex;
-//     #end
+    #if neko
+        import neko.vm.Thread;
+        import neko.vm.Mutex;
+    #else
+        import cpp.vm.Thread;
+        import cpp.vm.Mutex;
+    #end
 
-//     typedef LoadTextureInfo = {
-//         onloaded : Texture->Void,
-//         bytes : ByteArray,
-//         id : String
-//     }
+    typedef LoadTextureInfo = {
+        onloaded : Texture->Void,
+        bytes : ByteArray,
+        id : String
+    }
 
-//     typedef LoadShaderInfo = {
-//         onloaded:Shader->Void,
-//         ps_id : String,
-//         vs_id : String
-//     }
+    typedef LoadShaderInfo = {
+        onloaded:Shader->Void,
+        ps_id : String,
+        vs_id : String
+    }
 
-//     enum CoreThreadRequest {
-//         load_texture;
-//         load_shader;
-//     }
+    enum CoreThreadRequest {
+        load_texture;
+        load_shader;
+    }
 
-// #end //!luxe_threading_disabled && luxe_native
+#end //!luxe_threading_disabled && luxe_native
 
 @:noCompletion
 @:keep
 @:log_as('luxe')
-class Core extends snow.App {
+class Core extends snow.App.AppFixedTimestep {
 
         //the game object running the core
     public var game : Game;
         //the config passed to us on creation
     public var config : SnowConfig;
 
-// #if (luxe_native && !luxe_threading_disabled)
+#if (luxe_native && !luxe_threading_disabled)
 
-//     public var core_thread : Thread;
-//     public var thread_message : Dynamic;
+    public var core_thread : Thread;
+    public var thread_message : Dynamic;
 
-// #end //luxe_native
+#end //luxe_native
 
         //if the console is displayed atm
     public var console_visible : Bool = false;
@@ -79,7 +79,7 @@ class Core extends snow.App {
 //Sub Systems, mostly in order of importance
     public var debug    : Debug;
     public var draw     : Draw;
-    public var timer     : Timer;
+    public var timer    : Timer;
     public var events   : Events;
     public var input    : Input;
     public var audio    : Audio;
@@ -118,10 +118,10 @@ class Core extends snow.App {
             //Store the core for reference in the game
         game._luxe = this;
 
-//             //make sure we know what thread we start in
-//         #if (luxe_native && !luxe_threading_disabled)
-//             core_thread = Thread.current();
-//         #end //luxe_native
+            //make sure we know what thread we start in
+        #if (luxe_native && !luxe_threading_disabled)
+            core_thread = Thread.current();
+        #end //luxe_native
 
             //Create internal stuff
         _update_handlers = new Map();
@@ -261,10 +261,8 @@ class Core extends snow.App {
 
     } //shutdown
 
-        //Called by Lime
+        //called by snow
     override function update( dt:Float ) {
-
-        Luxe.dt = dt;
 
         #if luxe_fullprofile
             _verbose('on_update ' + Luxe.time);
@@ -297,7 +295,7 @@ class Core extends snow.App {
 
 //Loading thread
 
-        // process_loading_thread();
+        process_loading_thread();
 
 //Run update callbacks
             #if luxe_fullprofile debug.start(core_tag_updates); #end
@@ -764,32 +762,32 @@ class Core extends snow.App {
 
     } //get_asset_list
 
-//     function process_loading_thread() {
-//         #if (luxe_native && !luxe_threading_disabled)
-// //Background threads sending requests our way
+    function process_loading_thread() {
+        #if (luxe_native && !luxe_threading_disabled)
+//Background threads sending requests our way
 
-//             thread_message = Thread.readMessage(false);
+            thread_message = Thread.readMessage(false);
 
-//             if(thread_message != null) {
+            if(thread_message != null) {
 
-//                 var type : CoreThreadRequest = thread_message.type;
-//                 switch( type ) {
-//                     case CoreThreadRequest.load_texture: {
-//                         var info : LoadTextureInfo = cast thread_message.info;
-//                         Luxe.loadTexture( info.id, info.onloaded, false, info.bytes );
-//                     } //load_texture
+                var type : CoreThreadRequest = thread_message.type;
+                switch( type ) {
+                    case CoreThreadRequest.load_texture: {
+                        var info : LoadTextureInfo = cast thread_message.info;
+                        Luxe.loadTexture( info.id, info.onloaded, false ); //, info.bytes :todo:snow:
+                    } //load_texture
 
-//                     case CoreThreadRequest.load_shader: {
-//                         var info : LoadShaderInfo = cast thread_message.info;
-//                         Luxe.loadShader( info.ps_id, info.vs_id, info.onloaded );
-//                     } //load_shader
+                    case CoreThreadRequest.load_shader: {
+                        var info : LoadShaderInfo = cast thread_message.info;
+                        Luxe.loadShader( info.ps_id, info.vs_id, info.onloaded );
+                    } //load_shader
 
-//                 } //switch type
+                } //switch type
 
-//             } //thread_message
+            } //thread_message
 
-//         #end //(luxe_native && !luxe_threading_disabled)
-//     } //process_loading_thread
+        #end //(luxe_native && !luxe_threading_disabled)
+    } //process_loading_thread
 
 //Noisy stuff
 
