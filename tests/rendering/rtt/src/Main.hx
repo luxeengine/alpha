@@ -22,7 +22,7 @@ class Main extends luxe.Game {
         //In this test, we render 'example' into a render texture,
         //and then display that texture on 'display'.
 
-    public function ready() {
+    override function ready() {
 
             //create a render target of a fixed size
         target_texture = new RenderTexture( Luxe.resources, new Vector( 512, 512 ) );
@@ -63,7 +63,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
@@ -71,7 +71,7 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    public function prerender() {
+    override function pre_render() {
 
             //Set the current rendering target
         Luxe.renderer.target = target_texture;
@@ -84,9 +84,9 @@ class Main extends luxe.Game {
             //reset the target back to no target (i.e the screen)
         Luxe.renderer.target = null;
 
-    } //prerender
+    } //pre_render
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
             //we can rotate the example sprite,
             // it would be "inside" the texture rotating
@@ -94,7 +94,7 @@ class Main extends luxe.Game {
 
     } //update
 
-    public function destroyed() {
+    override function destroyed() {
 
     } //destroyed
 

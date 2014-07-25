@@ -14,7 +14,7 @@ class Main extends luxe.Game {
     var luxe_sprite3 : Sprite;
 
 
-    public function ready() {
+    override function ready() {
 
         var level_texture = Luxe.loadTexture('assets/level.png');
     	var luxe_texture = Luxe.loadTexture('assets/luxe.png');
@@ -83,17 +83,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 
 } //Main

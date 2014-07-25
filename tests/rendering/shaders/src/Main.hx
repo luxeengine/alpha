@@ -21,15 +21,15 @@ class Main extends luxe.Game {
 	var loaded_logo : Bool = false;
 
 
-    public function ready() {
+    override function ready() {
 
     	var luxe_tex = Luxe.loadTexture('assets/luxe.png');
-    	
+
     	var level_texture = Luxe.loadTexture('assets/level.png');
     		level_texture.filter = phoenix.Texture.FilterType.nearest;
 
     	var distort_map = Luxe.loadTexture('assets/distort.png');
-    		
+
 
         var _size = Luxe.screen.h * 0.8;
         if(_size > 512) _size = 512;
@@ -68,9 +68,9 @@ class Main extends luxe.Game {
     	} //luxe_tex on load
 
     	level_texture.onload = function(tt) {
-    		
+
             level_sprite.scale = new Vector(Luxe.screen.w/240,Luxe.screen.h/160);
-            
+
             // #if !mobile
     		  level_tiltshift = Luxe.loadShader('assets/gray_tilt_shift.glsl');
 	    	  level_sprite.shader = level_tiltshift;
@@ -79,7 +79,7 @@ class Main extends luxe.Game {
     	} //level tex on load
 
     	distort_map.onload = function(tt) {
-	    	
+
 	    	distort_shader = Luxe.loadShader('assets/distort.glsl');
 	    	distort_sprite.shader = distort_shader;
 
@@ -94,7 +94,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function ontouchmove( e:TouchEvent ) {
+    override function ontouchmove( e:TouchEvent ) {
 
         if(loaded && loaded_logo) {
 
@@ -103,13 +103,13 @@ class Main extends luxe.Game {
 
                 //distort based on mouse x
             distort_shader.set_uniform_float('distortamount', percent);
-                //hue based on mouse x 
+                //hue based on mouse x
             hue_shader.set_uniform_float('in_hue', hue);
         }
 
     } //ontouchmove
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
     	if(loaded && loaded_logo) {
 
@@ -118,15 +118,15 @@ class Main extends luxe.Game {
 
     			//distort based on mouse x
     		distort_shader.set_uniform_float('distortamount', percent);
-    			//hue based on mouse x 
+    			//hue based on mouse x
     		hue_shader.set_uniform_float('in_hue', hue);
     	}
 
     } //onmousemove
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 

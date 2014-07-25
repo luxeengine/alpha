@@ -7,10 +7,10 @@ import luxe.Rectangle;
 class Main extends luxe.Game {
 
 
-    public function ready() {
+    override function ready() {
 
     	//Fonts are currently created with BMFont compatible generators
-    	//But soon more options will be added 
+    	//But soon more options will be added
     	//www.angelcode.com/products/bmfont/
         //http://renderhjs.net/shoebox/bitmapFont.htm
 
@@ -44,17 +44,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 
 } //Main

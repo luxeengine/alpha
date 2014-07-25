@@ -10,7 +10,7 @@ class Main extends luxe.Game {
     public var sprites : Array<Sprite>;
 
 
-    public function ready() {
+    override function ready() {
 
         var image = Luxe.loadTexture('assets/image.png');
         var image2 = Luxe.loadTexture('assets/luxe.png');
@@ -38,45 +38,37 @@ class Main extends luxe.Game {
             }));
 
         } //for loop
-       
+
     } //ready
-  
-    public function onmousemove( e:MouseEvent ) {
+
+    override function onmousemove( e:MouseEvent ) {
 
         sprites[0].pos = e.pos;
 
     } //onmousemove
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
-        if(e.value == Input.Keys.space) {
+        if(e.keycode == Key.SPACE) {
             var d= sprites[0].depth;
             sprites[0].depth = d;
         }
 
-        if(e.value == Input.Keys.equals) {
+        if(e.keycode == Key.EQUALS) {
             sprites[0].depth+=1;
             trace(sprites[0].depth);
         }
 
-        if(e.value == Input.Keys.minus) {
+        if(e.keycode == Key.MINUS) {
             sprites[0].depth-=1;
             trace(sprites[0].depth);
         }
 
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
-
-    public function destroyed() {
-
-    } //destroyed
 
 
 } //Main

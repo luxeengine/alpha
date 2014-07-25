@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
-    
-    <meta 
-          title="luxemark" 
-          package="com.luxeengine.luxemark" 
-          version="1.0.0" 
-          company="luxeengine" 
+
+    <meta
+          title="luxemark"
+          package="com.luxeengine.luxemark"
+          version="1.0.0"
+          company="luxeengine"
     />
 
     <app main="Main" path="bin" file="luxemark" />
 
+    <!-- <haxedef name="luxemark_threads" value="1"/> -->
+
     <window width="960" height="640" orientation="landscape" fps="88880" vsync="false" resizable="false" />
-    
+
      <assets path="Assets" rename="assets" include="*"/>
 
     <source path="src" />
-    
-    <haxelib name="lime" />
+
     <haxelib name="luxe" />
-    
+
 </project>

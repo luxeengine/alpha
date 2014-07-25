@@ -45,7 +45,7 @@ class Main extends luxe.Game {
 	var speed : Int = 2;
 
 
-    public function ready() {
+    override function ready() {
 
         list = [];
         list2 = [];
@@ -55,17 +55,17 @@ class Main extends luxe.Game {
     	tex = Luxe.loadTexture('assets/luxe.png');
 
         for(i in 0 ... num) {
-            list.push(new Item(tex));           
-        }  
+            list.push(new Item(tex));
+        }
         for(i in 0 ... num) {
-            list2.push(new Item(tex));           
-        }  
+            list2.push(new Item(tex));
+        }
         for(i in 0 ... num) {
-            list3.push(new Item(tex));           
-        }  
+            list3.push(new Item(tex));
+        }
     	for(i in 0 ... num) {
-    		list4.push(new Item(tex));    		
-    	}  
+    		list4.push(new Item(tex));
+    	}
 
         #if (luxe_native && luxemark_threads)
             cpp.vm.Thread.create(_update);
@@ -76,7 +76,7 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
         #if (!luxemark_threads)
             _update();
             _update2();
@@ -85,12 +85,12 @@ class Main extends luxe.Game {
         #end
     } //update
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
 
     var continued : Bool = true;
