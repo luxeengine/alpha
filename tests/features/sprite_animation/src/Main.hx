@@ -97,8 +97,8 @@ class Main extends luxe.Game {
 			anim.play();
 
                 //create the sound to use
-            Luxe.audio.create('step1', 'assets/samulis_footstep_on_stone_2.ogg');
-            Luxe.audio.create('step2', 'assets/samulis_footstep_on_stone_1.ogg');
+            // Luxe.audio.create('assets/samulis_footstep_on_stone_2.ogg', 'step1');
+            // Luxe.audio.create('assets/samulis_footstep_on_stone_1.ogg', 'step2');
 
                 //create an event manually
             anim.add_event('walk', 7, 'frame7');
@@ -113,8 +113,12 @@ class Main extends luxe.Game {
             anim.remove_event('walk', 8);
             anim.remove_events('walk', 6);
 
-            sprite.events.listen('foot.1', function(e){ Luxe.audio.play('step1'); });
-            sprite.events.listen('foot.2', function(e){ Luxe.audio.play('step2'); });
+            sprite.events.listen('foot.1', function(e){
+                // Luxe.audio.play('step1'); //:todo:
+            });
+            sprite.events.listen('foot.2', function(e){
+                // Luxe.audio.play('step2'); //:todo:
+            });
             sprite.events.listen('*', function(e){
                 //uncomment to see all the events remaining after the above messing
                 // trace( e.event + " fired on " + e.animation + ":" + e.image_frame );
