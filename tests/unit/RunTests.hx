@@ -2,7 +2,7 @@
 
 class RunTests extends luxe.Game {
 
-	function ready() {
+	override function ready() {
 			
 			//run tests
 		new transform.Transforms();

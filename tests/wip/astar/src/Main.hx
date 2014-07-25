@@ -20,7 +20,7 @@ class Main extends luxe.Game {
     var gridh : Int = 32;
     var grid_space : Int = 2;
 
-    public function draw_grid( _geom:ComplexGeometry, _grid:Grid ) {
+    function draw_grid( _geom:ComplexGeometry, _grid:Grid ) {
         if(geom_quads == null) { geom_quads = new Map(); }
         _geom.clear();
         for( y in 0 ... _grid.height ) {
@@ -41,7 +41,7 @@ class Main extends luxe.Game {
         }
     }
 
-    public function ready() {
+    override function ready() {
 
         geom = new ComplexGeometry({ batcher:Luxe.renderer.batcher });
     	grid = new Grid( 10,10 );
@@ -66,17 +66,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
     } //onkeyup
-
-    public function update(dt:Float) {
-
-    } //update
 
 
 } //Main

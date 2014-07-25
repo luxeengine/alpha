@@ -7,10 +7,10 @@ class Main extends luxe.Game {
     var pan : Float = 1;
 
 
-    public function ready() {
+    override function ready() {
 
-        Luxe.audio.create('sound', 'assets/sound.ogg');
-        Luxe.audio.create('music', 'assets/ambience.ogg');
+        Luxe.audio.create('assets/sound.ogg', 'sound');
+        Luxe.audio.create('assets/ambience.ogg', 'music');
 
         Luxe.audio.loop('music');
 
@@ -21,43 +21,37 @@ class Main extends luxe.Game {
         //     .onUpdate(function(){
         //         Luxe.audio.pan('music', pan);
         //     });
-        
+
     } //ready
 
-    public function onmouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
-            Luxe.audio.play('sound', 3);
-        } else {
             Luxe.audio.play('sound');
-        }        
+        }
     }
 
-    public function onkeyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
-        if(e.key == KeyValue.key_R) {
-            Luxe.audio.position('music', 0);
+        if(e.keycode == Key.KEY_r) {
+            // Luxe.audio.position('music', 0);
         }
 
-        if(e.key == KeyValue.key_L) {
-            Luxe.audio.play('sound', 2);
+        if(e.keycode == Key.KEY_l) {
+            Luxe.audio.play('sound');
         }
 
-        if(e.key == KeyValue.key_S) {
+        if(e.keycode == Key.KEY_s) {
             Luxe.audio.stop('music');
         }
-        if(e.key == KeyValue.key_P) {
+        if(e.keycode == Key.KEY_p) {
             Luxe.audio.play('music');
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
-        
+
     } //onkeyup
-
-    public function update(dt:Float) {        
-
-    } //update
 
 
 } //Main
