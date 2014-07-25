@@ -156,7 +156,7 @@ class Luxe {
         /** Load multiple texture/image resources, useful for preloading */
     public static function loadTextures( _ids:Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
 
-        renderer.load_textures( _ids, _onloaded, _silent );
+        // renderer.load_textures( _ids, _onloaded, _silent );
 
     } //loadTextures
 

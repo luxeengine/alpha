@@ -12,6 +12,8 @@ import phoenix.Vector;
 import luxe.Resource;
 import luxe.ResourceManager;
 
+import luxe.Log._verbose;
+
 enum FilterType {
     nearest;
     linear;
@@ -58,6 +60,8 @@ class Texture extends Resource {
         _onload_handlers = new Array<Texture -> Void>();
 
         id = 'Untitled';
+        filter = FilterType.linear;
+        clamp = ClampType.edge;
 
     } //new
 
@@ -138,7 +142,7 @@ class Texture extends Resource {
         var resources = Luxe.resources;
 
             //Check for existing texture in resource manager
-        var _exists = resources.find_texture(_name);
+        var _exists = resources.find_texture(_id);
 
         if(_exists != null) {
 
@@ -152,17 +156,34 @@ class Texture extends Resource {
 
         } //_exists != null
 
-        //if not found, create a new Texture
+        //if not found already, create a new Texture
 
         var texture : Texture = new Texture( resources );
 
-        Luxe.core.app.assets.image(_id, {
-            onload : function( asset:AssetImage ){}
-        }
+        var _asset = Luxe.core.app.assets.image(_id, {
+            onload : function( asset:AssetImage ) {
+                if(asset != null) {
+                    texture.from_asset(asset);
+                    texture.reset();
+                    texture.do_onload();
+                }
+            }
+        });
 
-        resources.cache(texture);
+        if(_asset != null) {
+
+            texture.id = _id;
+
+            resources.cache(texture);
+
+            return texture;
+
+        } //_asset != null
+
+        return null;
 
     } //load
+
 
     public static function load_from_resource( _name:String, _width:Int, _height:Int, ?_cache:Bool = true ) {
 
@@ -178,16 +199,21 @@ class Texture extends Resource {
                 bytes:snow.utils.ByteArray.fromBytes(texture_bytes)
             });
 
-            texture.from_asset(_asset);
+            if(_asset != null) {
 
-            texture_bytes = null;
-            texture.loaded = true;
+                texture.from_asset(_asset);
 
-            if(_cache) {
-                resources.cache(texture);
-            }
+                texture_bytes = null;
+                texture.reset();
+                texture.do_onload();
 
-            return texture;
+                if(_cache) {
+                    resources.cache(texture);
+                }
+
+                return texture;
+
+            } //_asset != null
 
         } //texture_bytes != null
 
@@ -204,25 +230,9 @@ class Texture extends Resource {
 
     } //check_size
 
-    public function from_asset( _asset:AssetImage ) {
-
-        if(_asset == null) {
-            throw "null asset passed to Texture.from_asset";
-        }
-
-            //store the asset for later use
-        asset = _asset;
-            //Store the asset id as our resource id
-        id = asset.id;
-
-            //check for size limitations
-        check_size();
-
-            //assign sizes
-        width = asset.image.width;
-        height = asset.image.height;
-        width_actual = asset.image.width_actual;
-        height_actual = asset.image.height_actual;
+        //create and submit the asset information to GL,
+        //generating a valid id as well
+    public function reset() {
 
             //Create the GL id
         texture = GL.createTexture();
@@ -231,9 +241,32 @@ class Texture extends Resource {
             //And send GL the data
         GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
 
-            //Set the default properties
-        _set_filter( FilterType.linear );
-        _set_clamp( ClampType.edge );
+            //Set the existing properties on the new texture
+        _set_filter( filter );
+        _set_clamp( clamp );
+
+    } //reset
+
+    public function from_asset( _asset:AssetImage ) {
+
+        if(_asset == null) {
+            throw "null asset passed to Texture.from_asset";
+        }
+
+            //store the asset for later use
+        asset = _asset;
+
+            //check for size limitations
+        check_size();
+
+            //Store the asset id as our resource id
+        id = asset.id;
+
+            //assign sizes
+        width = asset.image.width;
+        height = asset.image.height;
+        width_actual = asset.image.width_actual;
+        height_actual = asset.image.height_actual;
 
     } //from_asset
 
@@ -362,6 +395,10 @@ class Texture extends Resource {
 
     function set_clamp( _clamp : ClampType ) {
 
+        if(clamp == null) {
+            return clamp = _clamp;
+        }
+
         if(loaded == false) {
             onload = function(t) {
                 bind();
@@ -452,6 +489,10 @@ class Texture extends Resource {
     } //set_filter_min
 
     function set_filter( _filter : FilterType ) {
+
+        if(filter == null) {
+            return filter = _filter;
+        }
 
         if(loaded == false) {
             onload = function(t) {

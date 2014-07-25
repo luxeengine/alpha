@@ -206,139 +206,24 @@ class Renderer {
 
     } //clear
 
-    public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
+    // public function load_textures( _names : Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
 
-        var total_count : Int = _names.length;
-        var loaded_count : Int = 0;
-        var loaded : Array<Texture> = [];
-        var on_single_texture_complete = function(texture) {
-            loaded.push( texture );
-            loaded_count++;
-            if(loaded_count == total_count) {
-                _onloaded(loaded);
-            }
-        }
+    //     var total_count : Int = _names.length;
+    //     var loaded_count : Int = 0;
+    //     var loaded : Array<Texture> = [];
+    //     var on_single_texture_complete = function(texture) {
+    //         loaded.push( texture );
+    //         loaded_count++;
+    //         if(loaded_count == total_count) {
+    //             _onloaded(loaded);
+    //         }
+    //     }
 
-        for(_name in _names) {
-            load_texture( _name, on_single_texture_complete, _silent );
-        }
+    //     for(_name in _names) {
+    //         load_texture( _name, on_single_texture_complete, _silent );
+    //     }
 
-    } //load_textures
-
-    public function load_texture( _name : String, ?_onloaded:Texture->Void, ?_silent:Bool=false, ?asset_bytes:ByteArray ) : Texture {
-
-        var texture : Texture = new Texture( resource_manager );
-
-    #if luxe_html5
-
-        var image: js.html.ImageElement = js.Browser.document.createImageElement();
-
-        image.onload = function(a) {
-
-
-                var width_pot = luxe.utils.Maths.nearest_power_of_two(image.width);
-                var height_pot = luxe.utils.Maths.nearest_power_of_two(image.height);
-
-                var tmp_canvas = js.Browser.document.createCanvasElement();
-                tmp_canvas.width = width_pot; tmp_canvas.height = height_pot;
-
-                var tmp_context = tmp_canvas.getContext2d();
-                tmp_context.clearRect( 0,0, tmp_canvas.width, tmp_canvas.height );
-                tmp_context.drawImage( image, 0, 0, image.width, image.height );
-
-                var image_bytes = null;
-
-            try {
-                image_bytes = tmp_context.getImageData( 0, 0, tmp_canvas.width, tmp_canvas.height );
-            } catch(e:Dynamic) {
-
-                var tips = '- textures served from file:/// throw security errors\n';
-                    tips += '- textures served over http:// work for cross origin';
-
-                Luxe.draw.text({
-                    text: e + '\n\n Tips: \n' + tips,
-                    size:20,
-                    color : new Color().rgb(0xff440b),
-                    pos : Luxe.screen.mid,
-                    align : luxe.Text.TextAlign.center,
-                    depth:9999
-                });
-
-            }
-
-                if(image_bytes == null) {
-                    return;
-                }
-
-                var haxe_bytes = new snow.utils.UInt8Array( image_bytes.data );
-
-                texture.create_from_bytes_html(image.src, haxe_bytes, tmp_canvas.width, tmp_canvas.height);
-                texture.width = image.width;
-                texture.height = image.height;
-
-                if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')') ;
-
-                tmp_canvas = null;
-                tmp_context = null;
-                haxe_bytes = null;
-                image_bytes = null;
-
-                    //append the listener
-                if(_onloaded != null) {
-                    texture.onload = _onloaded;
-                }
-
-                    //and fire the handler
-                texture.do_onload();
-
-        } //image.onload
-
-            //source comes after the onload being set, for race conditions
-        image.src = './' + _name;
-
-        texture.id = _name;
-
-    #end //luxe_html5
-
-     #if luxe_native
-
-        if(asset_bytes == null) {
-            if( Luxe.utils.path_is_relative(haxe.io.Path.normalize(_name)) ) {
-                asset_bytes = core.app.assets.bytes( _name ).bytes;
-            } else {
-                asset_bytes = ByteArray.readFile( _name );
-            }
-        }
-
-        if(asset_bytes != null) {
-
-            texture.create_from_bytes( _name, asset_bytes, 16, 16 );
-
-                //append the listener
-            if(_onloaded != null) texture.onload = _onloaded;
-                //call all the onload listeners
-            texture.do_onload();
-
-            if(!_silent) log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ')') ;
-
-        } else {
-
-            log("texture not found by asset name. " + _name );
-                //Set the failed to load flagged
-            texture.id = "Failed to load texture : " + _name;
-
-        }
-
-         asset_bytes = null;
-
-     #end //luxe_native
-
-            //store a reference so we can check if it exists later
-        resource_manager.cache( texture );
-
-        return texture;*/
-
-    }
+    // } //load_textures
 
         //The main render function
     public function process() {
