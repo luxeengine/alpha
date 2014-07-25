@@ -241,9 +241,9 @@ class Events {
 
         var id : String = Luxe.utils.uniqueid();
 
-            var _timer = snow.utils.Timer.delay(function(){
+            var _timer = Luxe.timer.schedule(time, function(){
                 fire( event_name, properties );
-            }, Std.int(time*1000) );
+            });
 
             event_schedules.set( id, _timer );
 
