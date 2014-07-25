@@ -26,8 +26,8 @@ class StatsDebugView extends luxe.debug.DebugView  {
 
         //stats console
     public var render_stats_text : luxe.Text;
-    // public var resource_stats_text : luxe.Text;
-    // public var resource_list_text : luxe.Text;
+    public var resource_stats_text : luxe.Text;
+    public var resource_list_text : luxe.Text;
 
     public function new() {
 
@@ -91,33 +91,33 @@ class StatsDebugView extends luxe.debug.DebugView  {
             visible : false
         });
 
-        // resource_stats_text = new luxe.Text({
-        //     depth : 999.3,
-        //     no_scene : true,
-        //     color : new Color(0,0,0,1).rgb(0xf6007b),
-        //     pos : new Vector(debug.padding.x*2,debug.padding.y*7.5),
-        //     font : Luxe.renderer.font,
-        //     text : get_resource_stats_string(),
-        //     size : font_size,
-        //     batcher : debug.batcher,
-        //     visible : false
-        // });
+        resource_stats_text = new luxe.Text({
+            depth : 999.3,
+            no_scene : true,
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(debug.padding.x*2,debug.padding.y*7.5),
+            font : Luxe.renderer.font,
+            text : get_resource_stats_string(),
+            size : font_size,
+            batcher : debug.batcher,
+            visible : false
+        });
 
-        // resource_list_text = new luxe.Text({
-        //     depth : 999.3,
-        //     no_scene : true,
-        //     color : new Color(0,0,0,1).rgb(0xf6007b),
-        //     pos : new Vector(debug.padding.x*7,debug.padding.y*3),
-        //     font : Luxe.renderer.font,
-        //     text : '',
-        //     size : font_size*0.8,
-        //     batcher : debug.batcher,
-        //     visible : false
-        // });
+        resource_list_text = new luxe.Text({
+            depth : 999.3,
+            no_scene : true,
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(debug.padding.x*7,debug.padding.y*3),
+            font : Luxe.renderer.font,
+            text : '',
+            size : font_size*0.8,
+            batcher : debug.batcher,
+            visible : false
+        });
 
 
-        // resource_list_text.locked = true;
-        // resource_stats_text.locked = true;
+        resource_list_text.locked = true;
+        resource_stats_text.locked = true;
 
     }
 
@@ -147,10 +147,10 @@ class StatsDebugView extends luxe.debug.DebugView  {
             lists += 'Textures\n';
             lists += texture_lists;
 
-        // resource_list_text.text = lists;
-        // if(resource_list_text.geometry != null) {
-            // resource_list_text.geometry.dirty = true;
-        // }
+        resource_list_text.text = lists;
+        if(resource_list_text.geometry != null) {
+            resource_list_text.geometry.dirty = true;
+        }
     }
 
 
@@ -197,15 +197,15 @@ class StatsDebugView extends luxe.debug.DebugView  {
         super.show();
         refresh();
         render_stats_text.visible = true;
-        // resource_stats_text.visible = true;
-        // resource_list_text.visible = true;
+        resource_stats_text.visible = true;
+        resource_list_text.visible = true;
     } //show
 
     public override function hide() {
         super.hide();
         render_stats_text.visible = false;
-        // resource_stats_text.visible = false;
-        // resource_list_text.visible = false;
+        resource_stats_text.visible = false;
+        resource_list_text.visible = false;
     } //hide
 
    public function refresh_render_stats() {
@@ -215,13 +215,13 @@ class StatsDebugView extends luxe.debug.DebugView  {
         }
 
         render_stats_text.text = get_render_stats_string();
-        // resource_stats_text.text = get_resource_stats_string();
+        resource_stats_text.text = get_resource_stats_string();
 
-        // resource_stats_text.locked = true;
-        // render_stats_text.locked = true;
+        resource_stats_text.locked = true;
+        render_stats_text.locked = true;
 
         if(render_stats_text.geometry != null) {
-            // resource_stats_text.geometry.dirty = true;
+            resource_stats_text.geometry.dirty = true;
             render_stats_text.geometry.dirty = true;
         }
 
