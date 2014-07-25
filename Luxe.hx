@@ -157,16 +157,15 @@ class Luxe {
         /** Load a sound resource */
     public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onloaded:SoundResource->Void ) : SoundResource {
 
-        // Luxe.audio.create( _name, _id, _is_music );
+        Luxe.audio.create( _name, _id, _is_music );
 
-        // var res = new SoundResource( _name, _id, Luxe.resources );
+        var res = new SoundResource( _name, _id, Luxe.resources );
 
-        //     if(_onloaded != null) {
-        //         _onloaded( res );
-        //     } //_onloaded
+            if(_onloaded != null) {
+                _onloaded( res );
+            } //_onloaded
 
-        // return res;
-        return null;
+        return res;
 
     } //loadData
 
