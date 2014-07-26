@@ -49,8 +49,7 @@ class Main extends luxe.Game {
 
     public function ready() {
 
-        Luxe.screen.cursor.locked = false;
-        Luxe.screen.cursor.visible = true;
+        Luxe.screen.cursor.grab = false;
         Luxe.screen.cursor.visible = true;
 
         Luxe.renderer.clear_color = new Color().rgb(0x990099);

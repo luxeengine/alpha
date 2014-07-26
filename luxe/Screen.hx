@@ -8,7 +8,7 @@ class Cursor {
     var screen : Screen;
 
     @:isVar public var visible (get,set): Bool = true;
-    @:isVar public var locked (get,set): Bool = false;
+    @:isVar public var grab (get,set): Bool = false;
     @:isVar public var pos (get,set): Vector;
 
 
@@ -27,25 +27,25 @@ class Cursor {
 
     function set_visible( _visible:Bool ) : Bool {
 
-        // screen.core.lime.window.set_cursor_visible( _visible );
+        screen.core.app.windowing.enable_cursor( _visible );
 
         return visible = _visible;
 
     } //set_visible
 
-    function get_locked() : Bool {
+    function get_grab() : Bool {
 
-        return locked;
+        return grab;
 
-    } //get_locked
+    } //get_grab
 
-    function set_locked( _lock:Bool ) : Bool {
+    function set_grab( _lock:Bool ) : Bool {
 
-        // screen.core.lime.window.constrain_cursor_to_window_frame( _lock );
+        screen.core.app.window.grab = _lock;
 
-        return locked = _lock;
+        return grab = _lock;
 
-    } //set_locked
+    } //set_grab
 
     function get_pos() : Vector {
 

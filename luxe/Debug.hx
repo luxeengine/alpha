@@ -273,7 +273,7 @@ class Debug {
     } //switch_view
 
     var last_cursor_shown : Bool = true;
-    var last_cursor_locked : Bool = false;
+    var last_cursor_grab : Bool = false;
 
     public function show_console(_show:Bool = true) {
 
@@ -284,10 +284,10 @@ class Debug {
         if(_show) {
 
             last_cursor_shown = Luxe.screen.cursor.visible;
-            last_cursor_locked = Luxe.screen.cursor.locked;
+            last_cursor_grab = Luxe.screen.cursor.grab;
 
             Luxe.screen.cursor.visible = true;
-            Luxe.screen.cursor.locked = false;
+            Luxe.screen.cursor.grab = false;
 
         } else {
 
@@ -295,8 +295,8 @@ class Debug {
                 Luxe.screen.cursor.visible = last_cursor_shown;
             }
 
-            if(last_cursor_locked!=false) {
-                Luxe.screen.cursor.locked = last_cursor_locked;
+            if(last_cursor_grab!=false) {
+                Luxe.screen.cursor.grab = last_cursor_grab;
             }
         }
 

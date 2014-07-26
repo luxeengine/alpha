@@ -180,7 +180,7 @@ class FlyCamera extends luxe.Camera {
         }
 
         if(e.button == MouseButton.left && !Luxe.screen.cursor.visible ) {
-            Luxe.screen.cursor.locked = true;
+            Luxe.screen.cursor.grab = true;
             Luxe.screen.cursor.visible = false;
         }
 
@@ -191,7 +191,7 @@ class FlyCamera extends luxe.Camera {
         mouse_delta.set( 0,0 );
 
         Luxe.screen.cursor.pos = Luxe.screen.mid;
-        Luxe.screen.cursor.locked = true;
+        Luxe.screen.cursor.grab = true;
         Luxe.screen.cursor.visible = false;
             //Hiding the cursor seems to keep one latent mousemove event in the stack,
             //so we set a flag that ignores the next two moves (one for the SetCursorPosition above,)
