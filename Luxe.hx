@@ -216,37 +216,12 @@ class Luxe {
 
 //Utility features
 
-        /** Open the system browser with the given URL */
+        /** Open the system default browser with the given URL */
     public static function openURL( _url:String ) {
 
-        // core.lime.window.openURL( _url );
+        snow.io.IO.url_open( _url );
 
     } //openURL
-
-        /** Open the system folder dialog picker */
-    public static function fileDialogFolder(_title:String, _text:String) : String {
-
-        // return core.lime.window.fileDialogFolder(_title,_text);
-        return '';
-
-    } //fileDialogFolder
-
-        /** Open the system file open dialog picker */
-    public static function fileDialogOpen(_title:String, _text:String) : String {
-
-        // return core.lime.window.fileDialogOpen(_title,_text);
-        return '';
-
-    } //fileDialogOpen
-
-        /** Open the system file save dialog picker */
-    public static function fileDialogSave(_title:String, _text:String) : String {
-
-        // return core.lime.window.fileDialogSave(_title,_text);
-        return '';
-
-    } //fileDialogSave
-
 
 //Internal
 
