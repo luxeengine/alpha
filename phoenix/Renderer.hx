@@ -107,7 +107,7 @@ class Renderer {
 
         #end //no_debug_console
 
-        if(core.app.config.window.depth_buffer) {
+        if(core.app.window.config.depth_bits > 0) {
                 // Enable z buffer use
             GL.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -197,7 +197,7 @@ class Renderer {
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( core.app.config.window.depth_buffer ) {
+        if( core.app.window.config.depth_bits > 0 ) {
             GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
             GL.clearDepth(1.0);
         } else {

@@ -68,13 +68,13 @@ class Utils {
     public function path_is_relative(_path:String) {
 
         return _path.charAt(0) != "#"
-          && _path.charAt(0) != "/"
-          && _path.indexOf(":\\") == -1
-          && _path.indexOf(":/") == -1
+            && _path.charAt(0) != "/"
+            && _path.indexOf(":\\") == -1
+            && _path.indexOf(":/") == -1
+
           && ( _path.indexOf("//") == -1
             || _path.indexOf("//") > _path.indexOf("#")
-            || _path.indexOf("//") > _path.indexOf("?")
-        );
+            || _path.indexOf("//") > _path.indexOf("?"));
 
     } //path_is_relative
 
