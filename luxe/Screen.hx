@@ -9,6 +9,7 @@ class Cursor {
 
     @:isVar public var visible (get,set): Bool = true;
     @:isVar public var grab (get,set): Bool = false;
+    @:isVar public var lock (get,set): Bool = false;
     @:isVar public var pos (get,set): Vector;
 
 
@@ -39,13 +40,27 @@ class Cursor {
 
     } //get_grab
 
-    function set_grab( _lock:Bool ) : Bool {
+    function get_lock() : Bool {
 
-        screen.core.app.window.grab = _lock;
+        return lock;
 
-        return grab = _lock;
+    } //get_lock
+
+    function set_grab( _grab:Bool ) : Bool {
+
+        screen.core.app.window.grab = _grab;
+
+        return grab = _grab;
 
     } //set_grab
+
+    function set_lock( _lock:Bool ) : Bool {
+
+        screen.core.app.windowing.enable_cursor_lock(_lock);
+
+        return lock = _lock;
+
+    } //set_lock
 
     function get_pos() : Vector {
 
@@ -61,7 +76,7 @@ class Cursor {
 
         if(pos != null) {
 
-            // screen.core.lime.window.set_cursor_position_in_window( Std.int(_p.x), Std.int(_p.y) );
+            screen.core.app.window.set_cursor_position( Std.int(_p.x), Std.int(_p.y) );
 
         }
 
