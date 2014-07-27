@@ -3,8 +3,7 @@ package luxe;
 import luxe.Core;
 import luxe.Input;
 import snow.App;
-import snow.types.Types.AppConfig;
-import snow.types.Types.AssetInfo;
+import luxe.AppConfig;
 
 @:noCompletion
 @:keepSub

@@ -60,6 +60,7 @@ class Renderer {
     public var render_path : RenderPath;
     public var default_render_path : RenderPath;
 
+    @:isVar public var vsync (get,set) : Bool;
     @:isVar public var target (get,set) : RenderTexture;
     public var target_size : Vector;
 
@@ -232,7 +233,21 @@ class Renderer {
 
     } //onresize
 
-    function get_target() : RenderTexture {
+    function set_vsync( _vsync:Bool ) : Bool {
+
+        Luxe.core.app.windowing.enable_vsync( _vsync );
+
+        return vsync = _vsync;
+
+    } //set_vsync
+
+    function get_vsync() : Bool {
+
+        return vsync;
+
+    } //get_vsync
+
+function get_target() : RenderTexture {
 
         return target;
 

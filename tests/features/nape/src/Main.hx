@@ -8,8 +8,8 @@ import nape.phys.BodyType;
 import nape.shape.Polygon;
 import nape.shape.Circle;
 import nape.constraint.PivotJoint;
-import snow.types.Types;
 
+import luxe.AppConfig;
 
 class Main extends luxe.Game {
 
@@ -24,6 +24,7 @@ class Main extends luxe.Game {
     var end : Float = 0;
     override function ready() {
 
+        Luxe.renderer.vsync = false;
         Luxe.physics.fixed_rate = 1/240;
         Luxe.physics.steps = 4;
         Luxe.core.fixed_rate = 1/60;
@@ -33,8 +34,6 @@ class Main extends luxe.Game {
             // Sys.println(Luxe.time - end);
             end = Luxe.time;
         }, true);
-
-        Luxe.core.app.windowing.enable_vsync(false);
 
         reset_world();
 
