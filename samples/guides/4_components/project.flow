@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - guide - components',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_guide_4',
+      title : 'luxe guide 4',
+      package : 'com.luxeengine.guide4'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

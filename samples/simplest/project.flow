@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - sample - simplest',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_simplest',
+      title : 'luxe simplest',
+      package : 'com.luxeengine.simplest'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

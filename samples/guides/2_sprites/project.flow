@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - guide - sprites',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_guide_2',
+      title : 'luxe guide 2',
+      package : 'com.luxeengine.guide2'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
