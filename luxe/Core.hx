@@ -62,8 +62,6 @@ class Core extends snow.App.AppFixedTimestep {
 
         //the game object running the core
     public var game : Game;
-        //the config passed to us on creation
-    public var config : SnowConfig;
 
 #if (luxe_native && !luxe_threading_disabled)
 
@@ -143,6 +141,7 @@ class Core extends snow.App.AppFixedTimestep {
         Luxe.build = Luxe.version + haxe.Resource.getString('build');
 
         log('version ${Luxe.build}');
+
             //Create the subsystems
         init();
 
@@ -165,9 +164,6 @@ class Core extends snow.App.AppFixedTimestep {
 
 
     public function init() {
-
-            //Cache the settings locally
-        config = app.config;
 
             //Create the subsystems
         _debug('creating subsystems...');

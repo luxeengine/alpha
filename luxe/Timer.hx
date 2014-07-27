@@ -31,7 +31,9 @@ class Timer {
         var t = new snow.utils.Timer( _time_in_seconds );
 
         t.run = function () {
-            if(!repeat) t.stop ();
+            if(!repeat) {
+                t.stop ();
+            }
             _on_time();
         };
 
