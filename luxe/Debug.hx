@@ -338,7 +338,7 @@ class Debug {
         }
 
             //update the title
-        debug_inspector._title_text.text = "[ " + current_view.name + " ] " + Maths.fixed(Luxe.dt,3) + ' / ' + Maths.fixed(dt_average,3);
+        debug_inspector._title_text.text = "[ " + current_view.name + " ] " + Maths.fixed(Luxe.dt,5) + ' / ' + Maths.fixed(dt_average,5);
 
         // #if !luxe_native
             for(view in views) {
