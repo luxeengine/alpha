@@ -19,16 +19,15 @@ class ApplicationMain {
             //Create the core luxe runtime
         _core = new Core( _game );
 
-            //Create the main config
-        var _config : SnowConfig = {
-
-            host            : _core,
-            run_loop        : true
-
+        var _snow_config : SnowConfig = {
+            config_custom_assets : false,
+            config_custom_runtime : false,
+            config_runtime_path : 'config.json',
+            config_assets_path : 'manifest'
         };
 
-            //Start up, but give the host as the luxe core
-        _snow.init( _config );
+            //Start up, giving luxe as the host
+        _snow.init( _snow_config, _core );
 
     } //main
 

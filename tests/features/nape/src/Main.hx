@@ -41,32 +41,23 @@ class Main extends luxe.Game {
     } //ready
 
         //overriding the built in function to configure the default window
-    override function get_window_config() : WindowConfig {
+    override function config( config:AppConfig ) : AppConfig {
 
-        var config : WindowConfig = snow.App.get_default_window_config( Luxe.core.app );
-
-        config.title = "nape physics sample";
-
-        trace(Luxe.core.app.config.runtime);
-
-        if(Luxe.core.app.config.runtime.window != null) {
-            if(Luxe.core.app.config.runtime.window.width != null) {
-                config.width = Std.int(Luxe.core.app.config.runtime.window.width);
+        if(config.runtime.window != null) {
+            if(config.runtime.window.width != null) {
+                config.window.width = Std.int(config.runtime.window.width);
             }
-            if(Luxe.core.app.config.runtime.window.height != null) {
-                config.height = Std.int(Luxe.core.app.config.runtime.window.height);
+            if(config.runtime.window.height != null) {
+                config.window.height = Std.int(config.runtime.window.height);
             }
         }
 
-        #if mobile
-            config.fullscreen = true;
-        #end
-
-        config.antialiasing = 2;
+        config.window.title = "nape physics sample";
+        // config.window.antialiasing = 2;
 
         return config;
 
-    } //get_window_config
+    } //config
 
     function reset_world() {
 
