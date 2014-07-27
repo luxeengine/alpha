@@ -52,16 +52,6 @@ class BuildVersion {
 			}
 		#end
 
-            if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
-                var ref_file = Path.normalize(Path.join([git_path,'refs/heads/snow']));
-                if(FileSystem.exists(ref_file)) {
-                    return File.getContent(ref_file);
-                } else {
-                    return '';
-                }
-            }
-        #end
-
         return '';
 
     } //try_git
