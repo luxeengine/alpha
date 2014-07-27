@@ -126,12 +126,13 @@ class Physics {
     function set_fixed_rate( _rate:Float ) {
 
             //update the step size
-        step_size = _rate/steps;
+        fixed_rate = _rate;
+        step_size = fixed_rate/steps;
 
             //reset the timer so it runs at the new rate
         reset();
 
-        return fixed_rate = _rate;
+        return fixed_rate;
 
     } //set_fixed_rate
 
@@ -140,9 +141,10 @@ class Physics {
     function set_steps( _steps:Int ) {
 
             //update the step size
-        step_size = fixed_rate/_steps;
+        steps = _steps;
+        step_size = fixed_rate/steps;
 
-        return steps = _steps;
+        return steps;
 
     } //set_steps
 
@@ -155,9 +157,10 @@ class Physics {
     //updates and access
 class PhysicsEngine {
 
+    public var name : String = 'engine';
+
     @:isVar public var paused (get,set) : Bool = false;
     @:isVar public var gravity (get,set) : Vector;
-
     @:isVar public var draw (get,set) : Bool = true;
 
     public function new() {
