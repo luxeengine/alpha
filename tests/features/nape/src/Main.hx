@@ -25,6 +25,12 @@ class Main extends luxe.Game {
 
         Luxe.physics.fixed_rate = 1/240;
         Luxe.physics.steps = 4;
+        Luxe.core.render_rate = 1/240;
+
+        Luxe.timer.schedule(1/240, function(){
+            // Sys.println(Luxe.time - end);
+            end = Luxe.time;
+        }, true);
 
         Luxe.core.app.windowing.enable_vsync(true);
 
