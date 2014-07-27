@@ -213,6 +213,10 @@ class Core extends snow.App.AppFixedTimestep {
             //finally, create the debug console
         debug.create_debug_console();
 
+            //start here because end is called first below
+        debug.start(core_tag_update);
+        debug.start(core_tag_renderdt);
+
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
         app.window.onrender = render;
@@ -263,6 +267,9 @@ class Core extends snow.App.AppFixedTimestep {
 
         //called by snow
     override function update( dt:Float ) {
+
+        debug.end(core_tag_update);
+        debug.start(core_tag_update);
 
         #if luxe_fullprofile
             _verbose('on_update ' + Luxe.time);
@@ -318,6 +325,9 @@ class Core extends snow.App.AppFixedTimestep {
     } //update
 
     function render( window:Window ) {
+
+        debug.end(core_tag_renderdt);
+        debug.start(core_tag_renderdt);
 
         debug.start(core_tag_render);
 
@@ -787,6 +797,8 @@ class Core extends snow.App.AppFixedTimestep {
 
 //Noisy stuff
 
+    static var core_tag_update : String = 'real dt';
+    static var core_tag_renderdt : String = 'render dt';
     static var game_tag_update : String = 'game.update';
     static var core_tag_render : String = 'core.render';
     static var core_tag_debug : String = 'core.debug';
