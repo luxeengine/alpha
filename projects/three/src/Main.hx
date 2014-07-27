@@ -47,7 +47,7 @@ class Main extends luxe.Game {
 
     var follow : Bool = false;
 
-    public function ready() {
+    override function ready() {
 
         Luxe.screen.cursor.grab = false;
         Luxe.screen.cursor.visible = true;
@@ -124,7 +124,7 @@ class Main extends luxe.Game {
 
     var cubes : Array<Entity>;
 
-    public function load_level_into() {
+    function load_level_into() {
 
         cubes = [];
 
@@ -203,44 +203,44 @@ class Main extends luxe.Game {
 
     } //create_cube
 
-    public function onkeydown( e:KeyEvent ) {
+    override function onkeydown( e:KeyEvent ) {
 
-        if(e.key == KeyValue.key_Q) {
+        if(e.keycode == Key.KEY_q) {
             cam3d.shake(2);
         }
 
-        if(e.key == KeyValue.escape) {
+        if(e.keycode == Key.ESCAPE) {
             Luxe.shutdown();
         }
 
-        if(e.key == KeyValue.space) {
+        if(e.keycode == Key.SPACE) {
             Luxe.physics.bullet.paused = !Luxe.physics.bullet.paused;
         }
 
-        if(e.key == KeyValue.key_C) {
+        if(e.keycode == Key.KEY_c) {
             create_cube();
         }
 
-        if(e.key == KeyValue.key_G) {
+        if(e.keycode == Key.KEY_g) {
             Luxe.physics.bullet.draw = !Luxe.physics.bullet.draw;
         }
 
-        if(e.key == KeyValue.key_F) {
+        if(e.keycode == Key.KEY_f) {
             follow = !follow;
             if(!follow) {
                 cam3d.view.target = null;
             }
         }
 
-        if(e.key == KeyValue.equals) {
+        if(e.keycode == Key.EQUALS) {
             cam3d.view.fov += 10;
         }
 
-        if(e.key == KeyValue.minus) {
+        if(e.keycode == Key.MINUS) {
             cam3d.view.fov -= 10;
         }
 
-        if(e.key == KeyValue.key_E) {
+        if(e.keycode == Key.KEY_e) {
             ramp = !ramp;
             if(ramp) {
                 luxe.tween.Actuate.tween( Luxe.physics.bullet, 0.8, { step_rate:0.00167, rate:0.00167 });
@@ -257,9 +257,9 @@ class Main extends luxe.Game {
     var hidden = false;
     var locked = false;
 
-    public function onkeyup(e:KeyEvent) {
+    override function onkeyup(e:KeyEvent) {
 
-        if(e.key == KeyValue.key_R) {
+        if(e.keycode == Key.KEY_r) {
             cube_rigidbody.rigid_body.origin = new Vector(0,10,0);
             cube_rigidbody.rigid_body.linearVelocity = new Vector(0,0,0);
             cube_rigidbody.rigid_body.angularVelocity = new Vector(0,0,0);
@@ -270,13 +270,13 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    public function onmousemove(e:MouseEvent) {
+    override function onmousemove(e:MouseEvent) {
 
         cam3d.onmousemove(e);
 
     } //onmousemove
 
-    public function onmousedown(e) {
+    override function onmousedown(e) {
 
         if(e.button == MouseButton.left) {
             cube_rigidbody.rigid_body.activate();
@@ -287,23 +287,19 @@ class Main extends luxe.Game {
 
     } //onmousedown
 
-    public function onmouseup(e) {
+    override function onmouseup(e) {
 
         cam3d.onmouseup(e);
 
     } //onmouseup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         if(follow) {
             cam3d.view.target = cube_rigidbody.rigid_body.origin;
         }
 
     } //update
-
-    public function destroyed() {
-
-    } //destroyed
 
 } //Main
 
