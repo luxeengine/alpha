@@ -35,7 +35,7 @@ class Main extends luxe.Game {
     override function onmousemove( e:MouseEvent ) {
 
             //move the ring to the mouse position
-        ring.pos = e.pos;
+        ring.transform.pos = e.pos;
 
     } //onmousemove
 
