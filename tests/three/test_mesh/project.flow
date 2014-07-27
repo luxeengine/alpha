@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - mesh',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_mesh',
+      title : 'luxe test mesh',
+      package : 'com.luxeengine.testmesh'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

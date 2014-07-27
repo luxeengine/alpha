@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - mesh mouse rotate',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_mesh_mouse',
+      title : 'luxe test mesh mouse',
+      package : 'com.luxeengine.test_mesh_mouse'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
