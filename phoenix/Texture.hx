@@ -295,26 +295,7 @@ class Texture extends Resource {
     } //generate_mipmaps
 
     public function bind() {
-
-        switch(slot) {
-            case 0:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE0);
-            case 1:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE1);
-            case 2:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE2);
-            case 3:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE3);
-            case 4:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE4);
-            case 5:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE5);
-            case 6:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE6);
-            case 7:
-                Luxe.renderer.state.activeTexture(GL.TEXTURE7);
-        }
-
+        Luxe.renderer.state.activeTexture( GL.TEXTURE0+slot );
         Luxe.renderer.state.bindTexture2D( texture );
     }
 

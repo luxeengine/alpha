@@ -37,9 +37,20 @@ class BuildVersion {
 
     static function try_git(root:String) {
 
-        #if macro
-            var git_path : String = Path.join([root,'.git/']);
-                git_path = Path.normalize(git_path);
+
+		#if macro
+			var git_path : String = Path.join([root,'.git/']);
+				git_path = Path.normalize(git_path);
+
+			if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
+				var ref_file = Path.normalize(Path.join([git_path,'refs/heads/master']));
+				if(FileSystem.exists(ref_file)) {
+                    return File.getContent(ref_file);
+                } else {
+                    return '';
+                }
+			}
+		#end
 
             if(FileSystem.exists(git_path) && FileSystem.isDirectory(git_path)) {
                 var ref_file = Path.normalize(Path.join([git_path,'refs/heads/snow']));

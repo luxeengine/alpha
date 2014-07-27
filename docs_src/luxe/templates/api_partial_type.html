@@ -1,1 +1,34 @@
-[{{~json .}}](#)
+{{#if fields.length~}}
+
+    { {{#each fields~}}
+        {{#if @index}}, {{/if~}}
+        {{~name}} : [{{type.name}}](#)
+      {{~/each}} }
+
+{{~else~}}
+    {{#if args.length~}}
+
+    {{#each args~}}
+        {{#if @index}} -&gt; {{/if~}}
+        [{{t.name}}](#)&nbsp;
+    {{~/each~}}
+    -&gt; [{{~return_type.name~}}](#)
+    {{~else~}}
+
+        {{#if params.length~}}
+            [{{name}}](#)&lt;
+            {{~#each params~}}
+                {{#if @index}}, {{/if~}}
+                [{{~name}}](#)
+            {{~/each~}}&gt;
+        {{~else~}}
+            {{#if name~}}
+                [{{name}}](#)
+            {{~else~}}
+                [Dynamic](#)
+            {{~/if}}
+        {{~/if}}
+
+    {{~/if}}
+
+{{~/if~}}

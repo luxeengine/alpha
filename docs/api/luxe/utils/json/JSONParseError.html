@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="shortcut icon" href="../../../../images/favicon.png" />
+
+        <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
+        
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
+        <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
+        
+        <script src="../../../../js/jquery-2.0.3.min.js"> </script>
+        <script src="../../../../js/jquery.tooltipster.min.js"> </script>
+
+        <script>
+
+            $(document).ready(function() {
+
+                $('.section').css('display','none');
+                $('.readmore').click(function(e){
+                    var _child = $(this).parent().find('.section').first();
+                    var _opp = 'block';
+                    if( _child.css('display') == 'block' ) {
+                        _opp = 'none';
+                    } else {
+                    }
+                    _child.css('display', _opp);
+                });
+
+                $('div.sample').on('click', function(e){
+                        //get the data tag
+                    var content = $(this).attr('data-content');
+                        //remove clicking handler
+                    $(this).off('click');
+                        //replace the content!
+                    $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:645px; height:450px;"></iframe> ')
+                });
+
+                $('.tooltip').tooltipster({
+                    theme:'tooltipster-shadow'
+                });
+
+            }); //document.ready
+
+        </script>
+    </head>
+
+    <body>
+        <div class="content">
+            <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
+<hr>
+<p><h1>JSONParseError</h1>
+<small><code>luxe.utils.json.JSONParseError</code></small></p>
+<hr>
+<p><code>class</code>
+<span class="meta">
+<br/>meta: @:noCompletion
+</span></p>
+<hr>
+<p>&nbsp;
+&nbsp;</p>
+<p><h3>Members</h3> <hr/></p>
+<p><h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div><code class="signature apipage">text : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="location"><a class="lift" href="#location">location</a></a><div class="clear"></div><code class="signature apipage">location : <a href="#">Int</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_location"><a class="lift" href="#get_location">get_location</a></a> <div class="clear"></div><code class="signature apipage">get_location() : <a href="#">Int</a></code><br/><span class="small_desc_flat"><em> Provides read-only access to the location variable.
+     </em></p>
+<pre><code> * @<span class="hljs-keyword">return</span> The location <span class="hljs-keyword">in</span> the string where the error occurred&lt;/span&gt;
+    &lt;/span&gt;
+&lt;span <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">get_text</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">get_text</span>"&gt;<span class="hljs-title">get</span>\_<span class="hljs-title">text</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">get</span>\_<span class="hljs-title">text</span>() : [<span class="hljs-title">String</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Provides</span> <span class="hljs-title">read</span>-<span class="hljs-title">only</span> <span class="hljs-title">access</span> <span class="hljs-title">to</span> <span class="hljs-title">the</span> <span class="hljs-title">text</span> <span class="hljs-title">variable</span>.
+ *
+ * @<span class="hljs-title">return</span> <span class="hljs-title">The</span> <span class="hljs-title">string</span> <span class="hljs-title">in</span> <span class="hljs-title">which</span> <span class="hljs-title">the</span> <span class="hljs-title">error</span> <span class="hljs-title">occurred</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">toString</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">toString</span>"&gt;<span class="hljs-title">toString</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">toString</span>() : [<span class="hljs-title">String</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">new</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">new</span>"&gt;<span class="hljs-title">new</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">new</span>(<span class="hljs-title">message</span>:[<span class="hljs-title">String</span>](#)&lt;<span class="hljs-title">span</span>&gt;=&amp;#<span class="hljs-title">x27</span>;&amp;#<span class="hljs-title">x27</span>;&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">location</span>:[<span class="hljs-title">Int</span>](#)&lt;<span class="hljs-title">span</span>&gt;=0&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">text</span>:[<span class="hljs-title">String</span>](#)&lt;<span class="hljs-title">span</span>&gt;=&amp;#<span class="hljs-title">x27</span>;&amp;#<span class="hljs-title">x27</span>;&lt;/<span class="hljs-title">span</span>&gt;) : [<span class="hljs-title">Void</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Constructs</span> <span class="hljs-title">a</span> <span class="hljs-title">new</span> <span class="hljs-title">JSONParseError</span>.
+ *
+ * @<span class="hljs-title">param</span> <span class="hljs-title">message</span> <span class="hljs-title">The</span> <span class="hljs-title">error</span> <span class="hljs-title">message</span> <span class="hljs-title">that</span> <span class="hljs-title">occured</span> <span class="hljs-title">during</span> <span class="hljs-title">parsing</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;</span>
+</code></pre><hr>
+<p>&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;</p>
+
+        </div>
+    </body>
+
+</html>

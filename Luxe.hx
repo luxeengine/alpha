@@ -123,6 +123,8 @@ class Luxe {
                 _onloaded( res );
             } //_onloaded
 
+        Luxe.resources.cache(res);
+
         return res;
 
     } //loadJSON
@@ -135,6 +137,8 @@ class Luxe {
             if(_onloaded != null) {
                 _onloaded( res );
             } //_onloaded
+
+        Luxe.resources.cache(res);
 
         return res;
 
@@ -150,12 +154,26 @@ class Luxe {
                 _onloaded( res );
             } //_onloaded
 
+        Luxe.resources.cache(res);
+
         return res;
 
     } //loadData
 
         /** Load a sound resource */
     public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onloaded:SoundResource->Void ) : SoundResource {
+
+        var existing = Luxe.resources.find_sound(_id);
+        if(existing != null) {
+
+            luxe.Log.log('sound at ${_id} was already a registered resource, returning existing instance');
+
+            if(_onloaded != null) {
+                _onloaded( existing );
+            } //_onloaded
+
+            return existing;
+        }
 
         Luxe.audio.create( _name, _id, _is_music );
 
@@ -164,6 +182,8 @@ class Luxe {
             if(_onloaded != null) {
                 _onloaded( res );
             } //_onloaded
+
+        Luxe.resources.cache(res);
 
         return res;
 

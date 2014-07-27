@@ -52,50 +52,49 @@
         <div class="content">
             <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="component">Component</h1>
+<p><h1>Component</h1>
+<small><code>luxe.Component</code></small></p>
 <hr>
-<p><code>class</code>extends <code><span><a href="">luxe.Objects</a></span></code>
+<p><code>class</code>extends <code><span>luxe.Objects</span></code>
 <span class="meta">
-<br/>meta: @:autoBuild
+<br/>meta: @:autoBuild(&#x27;???&#x27;)
 </span></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="entity"><a class="lift" href="#entity">entity</a></a><code class="signature apipage">entity : <a href="#luxe.Entity">luxe.Entity</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">id : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat"></span><span class="member apipage">
-            <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">name : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat"></span></p>
+                <a name="entity"><a class="lift" href="#entity">entity</a></a><div class="clear"></div><code class="signature apipage">entity : <a href="#">luxe.Entity</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
+<p><h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="pos"><a class="lift" href="#pos">pos</a></a><div class="clear"></div><code class="signature apipage">pos : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><div class="clear"></div><code class="signature apipage">rotation : <a href="#">luxe.Quaternion</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="scale"><a class="lift" href="#scale">scale</a></a><div class="clear"></div><code class="signature apipage">scale : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="origin"><a class="lift" href="#origin">origin</a></a><div class="clear"></div><code class="signature apipage">origin : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="add"><a class="lift" href="#add">add</a></a><code class="signature apipage">add(type:<span><a href="">Class</a>&lt;<a href="">add.T1</a>&gt;</span>, ?_name:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;&#x27;</span>, ?_data:<span><a href="">add.T2</a>=null</span>) : <a href="">add.T1</a></code><br/><span class="small_desc_flat"></span>
+            <a name="add"><a class="lift" href="#add">add</a></a> <div class="clear"></div><code class="signature apipage">add(type:<a href="#">Class</a>&lt;<a href="#">add.T1</a>&gt;<span></span>, _name:<a href="#">String</a><span>=&#x27;&#x27;</span>, _data:<a href="#">add.T2</a><span>=null</span>) : <a href="#">add.T1</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get"><a class="lift" href="#get">get</a></a><code class="signature apipage">get(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?in_children:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="">get.T</a></code><br/><span class="small_desc_flat"></span>
+            <a name="remove"><a class="lift" href="#remove">remove</a></a> <div class="clear"></div><code class="signature apipage">remove(_name:<a href="#">String</a><span>=&#x27;&#x27;</span>, _data:<a href="#">remove.T</a><span>=null</span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_any"><a class="lift" href="#get_any">get_any</a></a><code class="signature apipage">get_any(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?in_children:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>, ?first_only:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="">get_any.T</a>&gt;</code><br/><span class="small_desc_flat"></span>
+            <a name="get"><a class="lift" href="#get">get</a></a> <div class="clear"></div><code class="signature apipage">get(_name:<a href="#">String</a><span></span>, in_children:<a href="#">Bool</a><span>=false</span>) : <a href="#">get.T</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get_serialize_data</a></a><code class="signature apipage">get_serialize_data() : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+            <a name="get_any"><a class="lift" href="#get_any">get_any</a></a> <div class="clear"></div><code class="signature apipage">get_any(_name:<a href="#">String</a><span></span>, in_children:<a href="#">Bool</a><span>=false</span>, first_only:<a href="#">Bool</a><span>=true</span>) : <a href="#">Array</a>&lt;<a href="#">get_any.T</a>&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><code class="signature apipage">new() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get_serialize_data</a></a> <div class="clear"></div><code class="signature apipage">get_serialize_data() : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="remove"><a class="lift" href="#remove">remove</a></a><code class="signature apipage">remove(?_name:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;&#x27;</span>, ?_data:<span><a href="">remove.T</a>=null</span>) : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span></p>
-<p><h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="origin"><a class="lift" href="#origin">origin</a></a><code class="signature apipage">origin : <a href="">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="pos"><a class="lift" href="#pos">pos</a></a><code class="signature apipage">pos : <a href="">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><code class="signature apipage">rotation : <a href="">luxe.Quaternion</a></code><br/><span class="small_desc_flat"></span>
-        </span><span class="property apipage">
-            <a name="scale"><a class="lift" href="#scale">scale</a></a><code class="signature apipage">scale : <a href="">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
-        </span></p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

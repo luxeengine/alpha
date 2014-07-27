@@ -439,14 +439,14 @@ class Shader extends Resource {
 
     @:noCompletion public function apply_uniforms() {
 
-        GL.uniform1i( tex0_attribute, 0);
-        GL.uniform1i( tex1_attribute, 1);
-        GL.uniform1i( tex2_attribute, 2);
-        GL.uniform1i( tex3_attribute, 3);
-        GL.uniform1i( tex4_attribute, 4);
-        GL.uniform1i( tex5_attribute, 5);
-        GL.uniform1i( tex6_attribute, 6);
-        GL.uniform1i( tex7_attribute, 7);
+        GL.uniform1i( tex0_attribute, 0 );
+        GL.uniform1i( tex1_attribute, 1 );
+        GL.uniform1i( tex2_attribute, 2 );
+        GL.uniform1i( tex3_attribute, 3 );
+        GL.uniform1i( tex4_attribute, 4 );
+        GL.uniform1i( tex5_attribute, 5 );
+        GL.uniform1i( tex6_attribute, 6 );
+        GL.uniform1i( tex7_attribute, 7 );
 
         for(uniform in uniforms) {
 
@@ -494,9 +494,8 @@ class Shader extends Resource {
         GL.uniform4f( location, value.r, value.g, value.b, value.a );
     }
     @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:GLUniformLocation = null ) {
-        value.bind();
         GL.uniform1i( location, value.slot );
-        Luxe.renderer.state.activeTexture(GL.TEXTURE0);
+        value.bind();
     }
 
     public function addLog( _log:String ) {

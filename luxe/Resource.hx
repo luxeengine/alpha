@@ -3,7 +3,7 @@ package luxe;
 import snow.utils.ByteArray;
 
 import luxe.ResourceManager;
-    
+
 
 enum ResourceType {
     unknown;
@@ -15,11 +15,11 @@ enum ResourceType {
     render_texture;
     font;
     shader;
-} 
+}
 
 class Resource {
-    
-    
+
+
     public var manager : ResourceManager;
     public var type : ResourceType;
     public var id : String;
@@ -33,7 +33,7 @@ class Resource {
 
         manager = _manager == null ? Luxe.resources : _manager;
         type = _type;
-        
+
         time_to_load = _load_time;
         time_created = Luxe.time;
 
@@ -53,17 +53,17 @@ class Resource {
 
 
 class TextResource extends Resource {
-    
+
 
     public var text : String;
 
 
     public function new( _id:String, _text:String, _manager:ResourceManager ) {
-    
+
         id = _id;
-                
+
         super( _manager, ResourceType.text );
-        
+
         text = _text;
 
     } //new
@@ -72,17 +72,17 @@ class TextResource extends Resource {
 } //TextResource
 
 class JSONResource extends Resource {
-    
+
 
     public var json : Dynamic;
 
 
     public function new( _id:String, _json:Dynamic, _manager:ResourceManager ) {
-    
+
         id = _id;
-                
+
         super( _manager, ResourceType.json );
-        
+
         json = _json;
 
     } //new
@@ -97,7 +97,7 @@ class DataResource extends Resource {
 
 
     public function new( _id:String, _data:ByteArray, _manager:ResourceManager ) {
-        
+
         id = _id;
 
         super( _manager, ResourceType.data );
@@ -106,7 +106,7 @@ class DataResource extends Resource {
 
     } //new
 
-    
+
 } //DataResource
 
 
@@ -117,14 +117,14 @@ class SoundResource extends Resource {
 
 
     public function new( _name:String, _id:String, _manager:ResourceManager ) {
-            
+
         id = _id;
 
         super( _manager, ResourceType.sound );
 
-        name = _name;        
+        name = _name;
 
     } //new
 
-    
-} //DataResource
+
+} //SoundResource

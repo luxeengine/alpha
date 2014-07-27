@@ -86,6 +86,16 @@ class RenderState {
 
     } //bindFrameBuffer
 
+    var _current_rbo : GLRenderbuffer = null;
+    public function bindRenderbuffer( ?buffer:GLRenderbuffer=null ) {
+
+        if(_current_rbo != buffer) {
+            GL.bindRenderbuffer( GL.RENDERBUFFER, buffer );
+            _current_rbo = buffer;
+        }
+
+    } //bindRenderbuffer
+
     var _used_program : GLProgram = null;
     public function useProgram( program:GLProgram ) {
         if(_used_program != program) {

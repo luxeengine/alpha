@@ -52,64 +52,39 @@
         <div class="content">
             <p><a href="../../../../api/index.html"><img src="../../../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="polygon">Polygon</h1>
+<p><h1>Polygon</h1>
+<small><code>luxe.collision.shapes.Polygon</code></small></p>
 <p>A polygon collision shape</p>
 <hr>
-<p><code>class</code>extends <code><span><a href="">luxe.collision.shapes.Shape</a></span></code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code>extends <code><span>luxe.collision.shapes.Shape</span></code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
-<p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="active"><a class="lift" href="#active">active</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">active : <a href="http://api.haxe.org/Bool.html">Bool</a></code><br/></span>
-        <span class="small_desc_flat">The state of this shape, if inactive can be ignored in results</span><span class="member apipage">
-            <a name="data"><a class="lift" href="#data">data</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">data : <a href="http://api.haxe.org/Dynamic.html">Dynamic</a></code><br/></span>
-        <span class="small_desc_flat">A generic data object where you can store anything you want, for later use</span><span class="member apipage">
-            <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">name : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat">The name of this shape, to help in debugging</span><span class="member apipage">
-            <a name="tags"><a class="lift" href="#tags">tags</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">tags : <a href="http://api.haxe.org/Map.html">Map</a>&lt;<a href="http://api.haxe.org/String.html">String</a>, <a href="http://api.haxe.org/String.html">String</a>&gt;</code><br/></span>
-        <span class="small_desc_flat">A list of tags to use for marking shapes with data for later use, by key/value</span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="create"><a class="lift" href="#create">create</a></a><span class="inline-block static">static</span><code class="signature apipage">create(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, sides:<span><a href="http://api.haxe.org/Int.html">Int</a></span>, ?radius:<span><a href="http://api.haxe.org/Float.html">Float</a>=100</span>) : <a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper to create an Ngon at x,y with given number of sides, and radius.
+            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a> <div class="clear"></div><code class="signature apipage">destroy() : <a href="#">Void</a></code><br/><span class="small_desc_flat">Destroy this polygon and clean up.</span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, vertices:<a href="#">Array</a>&lt;<a href="#">luxe.Vector</a>&gt;<span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Create a new polygon with a given set of vertices at position x,y.</span>
+        </span>
+    <span class="method apipage">
+            <a name="create"><a class="lift" href="#create">create</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">create(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, sides:<a href="#">Int</a><span></span>, radius:<a href="#">Float</a><span>=100</span>) : <a href="#">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper to create an Ngon at x,y with given number of sides, and radius.
             A default radius of 100 if unspecified. Returns a ready made <code>Polygon</code> collision <code>Shape</code></span>
         </span>
     <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">destroy() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Destroy this polygon and clean up.</span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">new(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, vertices:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="#luxe.Vector">luxe.Vector</a>&gt;</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Create a new polygon with a given set of vertices at position x,y.</span>
-        </span>
-    <span class="method apipage">
-            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a><span class="inline-block static">static</span><code class="signature apipage">rectangle(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, width:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, height:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, ?centered:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper generate a rectangle at x,y with a given width/height and centered state.
+            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">rectangle(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, width:<a href="#">Float</a><span></span>, height:<a href="#">Float</a><span></span>, centered:<a href="#">Bool</a><span>=true</span>) : <a href="#">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper generate a rectangle at x,y with a given width/height and centered state.
             Centered by default. Returns a ready made <code>Polygon</code> collision <code>Shape</code></span>
         </span>
     <span class="method apipage">
-            <a name="square"><a class="lift" href="#square">square</a></a><span class="inline-block static">static</span><code class="signature apipage">square(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, width:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, ?centered:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=true</span>) : <a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper generate a square at x,y with a given width/height with given centered state.
+            <a name="square"><a class="lift" href="#square">square</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">square(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, width:<a href="#">Float</a><span></span>, centered:<a href="#">Bool</a><span>=true</span>) : <a href="#">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper generate a square at x,y with a given width/height with given centered state.
             Centered by default. Returns a ready made <code>Polygon</code> collision <code>Shape</code></span>
         </span>
     <span class="method apipage">
-            <a name="triangle"><a class="lift" href="#triangle">triangle</a></a><span class="inline-block static">static</span><code class="signature apipage">triangle(x:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, y:<span><a href="http://api.haxe.org/Float.html">Float</a></span>, radius:<span><a href="http://api.haxe.org/Float.html">Float</a></span>) : <a href="#luxe.collision.shapes.Polygon">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper generate a triangle at x,y with a given radius. 
+            <a name="triangle"><a class="lift" href="#triangle">triangle</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">triangle(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, radius:<a href="#">Float</a><span></span>) : <a href="#">luxe.collision.shapes.Polygon</a></code><br/><span class="small_desc_flat">Helper generate a triangle at x,y with a given radius. 
             Returns a ready made <code>Polygon</code> collision <code>Shape</code></span>
         </span></p>
-<p><h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="position"><a class="lift" href="#position">position</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">position : <a href="">luxe.Vector</a></code><br/><span class="small_desc_flat">The position of this shape</span>
-        </span><span class="property apipage">
-            <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">rotation : <a href="">Float</a></code><br/><span class="small_desc_flat">The rotation of this shape, in degrees</span>
-        </span><span class="property apipage">
-            <a name="scaleX"><a class="lift" href="#scaleX">scaleX</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">scaleX : <a href="">Float</a></code><br/><span class="small_desc_flat">The scale in the x direction of this shape</span>
-        </span><span class="property apipage">
-            <a name="scaleY"><a class="lift" href="#scaleY">scaleY</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">scaleY : <a href="">Float</a></code><br/><span class="small_desc_flat">The scale in the y direction of this shape</span>
-        </span><span class="property apipage">
-            <a name="transformedVertices"><a class="lift" href="#transformedVertices">transformedVertices</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">transformedVertices : <a href="">Array</a>&lt;<a href="">luxe.Vector</a>&gt;</code><br/><span class="small_desc_flat">The transformed (rotated/scale) vertices cache</span>
-        </span><span class="property apipage">
-            <a name="vertices"><a class="lift" href="#vertices">vertices</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">vertices : <a href="">Array</a>&lt;<a href="">luxe.Vector</a>&gt;</code><br/><span class="small_desc_flat">The vertices of this shape</span>
-        </span><span class="property apipage">
-            <a name="x"><a class="lift" href="#x">x</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">x : <a href="">Float</a></code><br/><span class="small_desc_flat">The x position of this shape</span>
-        </span><span class="property apipage">
-            <a name="y"><a class="lift" href="#y">y</a></a><a title="inherited from luxe.collision.shapes.Shape" class="tooltip inherited">&gt;</a><code class="signature apipage">y : <a href="">Float</a></code><br/><span class="small_desc_flat">The y position of this shape</span>
-        </span></p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

@@ -52,48 +52,48 @@
         <div class="content">
             <p><a href="../../api/index.html"><img src="../../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="draw">Draw</h1>
+<p><h1>Draw</h1>
+<small><code>luxe.Draw</code></small></p>
 <p>The <code>Luxe.draw</code> API class implementation.
     This class handles quick access to drawing common geometry options,
     and is a facilitator for higher level drawing. These can be used given to a <code>Visual</code> to convert
     them into a higher level entity for use with the default scene.</p>
 <hr>
-<p><code>class</code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="arc"><a class="lift" href="#arc">arc</a></a><code class="signature apipage">arc(options:<span><a href="#luxe.options.DrawArcOptions">luxe.options.DrawArcOptions</a></span>) : <a href="#phoenix.geometry.ArcGeometry">phoenix.geometry.ArcGeometry</a></code><br/><span class="small_desc_flat">Draw an arc (open circle) at the specified <code>x</code>,<code>y</code>, between <code>start_angle</code> and <code>end_angle</code> with radius <code>r</code> (or <code>rx</code>,<code>ry</code> optionally for an ellipsical arc), with options</span>
+            <a name="line"><a class="lift" href="#line">line</a></a> <div class="clear"></div><code class="signature apipage">line(options:<a href="#">luxe.options.DrawLineOptions</a><span></span>) : <a href="#">phoenix.geometry.LineGeometry</a></code><br/><span class="small_desc_flat">Draw a line geometry between points <code>p0</code> and <code>p1</code> with options</span>
         </span>
     <span class="method apipage">
-            <a name="box"><a class="lift" href="#box">box</a></a><code class="signature apipage">box(options:<span><a href="#luxe.options.DrawBoxOptions">luxe.options.DrawBoxOptions</a></span>) : <a href="#phoenix.geometry.QuadGeometry">phoenix.geometry.QuadGeometry</a></code><br/><span class="small_desc_flat">Draw a solid rectangle box at the specified <code>x</code>,<code>y</code>,<code>w</code>,<code>h</code> with options</span>
+            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a> <div class="clear"></div><code class="signature apipage">rectangle(options:<a href="#">luxe.options.DrawRectangleOptions</a><span></span>) : <a href="#">phoenix.geometry.RectangleGeometry</a></code><br/><span class="small_desc_flat">Draw a rectangle outline at the specified <code>x</code>,<code>y</code>,<code>w</code>,<code>h</code> with options</span>
         </span>
     <span class="method apipage">
-            <a name="circle"><a class="lift" href="#circle">circle</a></a><code class="signature apipage">circle(options:<span><a href="#luxe.options.DrawCircleOptions">luxe.options.DrawCircleOptions</a></span>) : <a href="#phoenix.geometry.CircleGeometry">phoenix.geometry.CircleGeometry</a></code><br/><span class="small_desc_flat">Draw a solid circle at the specified <code>x</code>,<code>y</code> with radius <code>r</code> (or <code>rx</code>,<code>ry</code> optionally for an ellipse), with options</span>
+            <a name="box"><a class="lift" href="#box">box</a></a> <div class="clear"></div><code class="signature apipage">box(options:<a href="#">luxe.options.DrawBoxOptions</a><span></span>) : <a href="#">phoenix.geometry.QuadGeometry</a></code><br/><span class="small_desc_flat">Draw a solid rectangle box at the specified <code>x</code>,<code>y</code>,<code>w</code>,<code>h</code> with options</span>
         </span>
     <span class="method apipage">
-            <a name="line"><a class="lift" href="#line">line</a></a><code class="signature apipage">line(options:<span><a href="#luxe.options.DrawLineOptions">luxe.options.DrawLineOptions</a></span>) : <a href="#phoenix.geometry.LineGeometry">phoenix.geometry.LineGeometry</a></code><br/><span class="small_desc_flat">Draw a line geometry between points <code>p0</code> and <code>p1</code> with options</span>
+            <a name="ring"><a class="lift" href="#ring">ring</a></a> <div class="clear"></div><code class="signature apipage">ring(options:<a href="#">luxe.options.DrawRingOptions</a><span></span>) : <a href="#">phoenix.geometry.RingGeometry</a></code><br/><span class="small_desc_flat">Draw a circle outline at the specified <code>x</code>,<code>y</code> with radius <code>r</code> (or <code>rx</code>,<code>ry</code> optionally for an ellipse), with options</span>
         </span>
     <span class="method apipage">
-            <a name="ngon"><a class="lift" href="#ngon">ngon</a></a><code class="signature apipage">ngon(options:<span><a href="#luxe.options.DrawNgonOptions">luxe.options.DrawNgonOptions</a></span>) : <a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></code><br/><span class="small_desc_flat">Draw an n-sided polygon (3 sides for triangle, 6 for hexagon etc) at <code>x</code>,<code>y</code> with a radius <code>r</code> and <code>sides</code> with options</span>
+            <a name="circle"><a class="lift" href="#circle">circle</a></a> <div class="clear"></div><code class="signature apipage">circle(options:<a href="#">luxe.options.DrawCircleOptions</a><span></span>) : <a href="#">phoenix.geometry.CircleGeometry</a></code><br/><span class="small_desc_flat">Draw a solid circle at the specified <code>x</code>,<code>y</code> with radius <code>r</code> (or <code>rx</code>,<code>ry</code> optionally for an ellipse), with options</span>
         </span>
     <span class="method apipage">
-            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a><code class="signature apipage">rectangle(options:<span><a href="#luxe.options.DrawRectangleOptions">luxe.options.DrawRectangleOptions</a></span>) : <a href="#phoenix.geometry.RectangleGeometry">phoenix.geometry.RectangleGeometry</a></code><br/><span class="small_desc_flat">Draw a rectangle outline at the specified <code>x</code>,<code>y</code>,<code>w</code>,<code>h</code> with options</span>
+            <a name="arc"><a class="lift" href="#arc">arc</a></a> <div class="clear"></div><code class="signature apipage">arc(options:<a href="#">luxe.options.DrawArcOptions</a><span></span>) : <a href="#">phoenix.geometry.ArcGeometry</a></code><br/><span class="small_desc_flat">Draw an arc (open circle) at the specified <code>x</code>,<code>y</code>, between <code>start_angle</code> and <code>end_angle</code> with radius <code>r</code> (or <code>rx</code>,<code>ry</code> optionally for an ellipsical arc), with options</span>
         </span>
     <span class="method apipage">
-            <a name="ring"><a class="lift" href="#ring">ring</a></a><code class="signature apipage">ring(options:<span><a href="#luxe.options.DrawRingOptions">luxe.options.DrawRingOptions</a></span>) : <a href="#phoenix.geometry.RingGeometry">phoenix.geometry.RingGeometry</a></code><br/><span class="small_desc_flat">Draw a circle outline at the specified <code>x</code>,<code>y</code> with radius <code>r</code> (or <code>rx</code>,<code>ry</code> optionally for an ellipse), with options</span>
+            <a name="ngon"><a class="lift" href="#ngon">ngon</a></a> <div class="clear"></div><code class="signature apipage">ngon(options:<a href="#">luxe.options.DrawNgonOptions</a><span></span>) : <a href="#">phoenix.geometry.Geometry</a></code><br/><span class="small_desc_flat">Draw an n-sided polygon (3 sides for triangle, 6 for hexagon etc) at <code>x</code>,<code>y</code> with a radius <code>r</code> and <code>sides</code> with options</span>
         </span>
     <span class="method apipage">
-            <a name="text"><a class="lift" href="#text">text</a></a><code class="signature apipage">text(options:<span><a href="http://api.haxe.org/Dynamic.html">Dynamic</a></span>) : <a href="#phoenix.geometry.Geometry">phoenix.geometry.Geometry</a></code><br/><span class="small_desc_flat">Draw <code>text</code> at <code>pos</code> using <code>font</code> (or no font for default font) with options</span>
+            <a name="texture"><a class="lift" href="#texture">texture</a></a> <div class="clear"></div><code class="signature apipage">texture(options:<a href="#">luxe.options.DrawTextureOptions</a><span></span>) : <a href="#">phoenix.geometry.QuadGeometry</a></code><br/><span class="small_desc_flat">Draw a textured <code>box</code> with image <code>texture</code> at <code>x</code>,<code>y</code>,<code>w</code>,<code>h</code> OR with <code>pos</code> and <code>size</code>, and <code>uv</code> with options</span>
         </span>
     <span class="method apipage">
-            <a name="texture"><a class="lift" href="#texture">texture</a></a><code class="signature apipage">texture(options:<span><a href="#luxe.options.DrawTextureOptions">luxe.options.DrawTextureOptions</a></span>) : <a href="#phoenix.geometry.QuadGeometry">phoenix.geometry.QuadGeometry</a></code><br/><span class="small_desc_flat">Draw a textured <code>box</code> with image <code>texture</code> at <code>x</code>,<code>y</code>,<code>w</code>,<code>h</code> OR with <code>pos</code> and <code>size</code>, and <code>uv</code> with options</span>
+            <a name="text"><a class="lift" href="#text">text</a></a> <div class="clear"></div><code class="signature apipage">text(options:<a href="#">Dynamic</a><span></span>) : <a href="#">phoenix.geometry.Geometry</a></code><br/><span class="small_desc_flat">Draw <code>text</code> at <code>pos</code> using <code>font</code> (or no font for default font) with options</span>
         </span></p>
-<p><h3>Properties</h3> <hr/>no public properties</p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

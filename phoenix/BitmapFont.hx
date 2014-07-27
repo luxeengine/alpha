@@ -28,13 +28,13 @@ enum TextAlign {
 
 typedef Character = {
     var id : Int;
-    var x : Int;
-    var y : Int;
-    var width : Int;
-    var height : Int;
-    var xoffset : Int;
-    var yoffset : Int;
-    var xadvance : Int;
+    var x : Float;
+    var y : Float;
+    var width : Float;
+    var height : Float;
+    var xoffset : Float;
+    var yoffset : Float;
+    var xadvance : Float;
     var page : Int;
 }
 
@@ -64,7 +64,7 @@ class BitmapFont extends Resource {
     public var font_character_count : Int = 0;
     public var pages : Map<Int, Texture>;
     public var characters : Map<Int, Character>;
-    public var kernings : Map< KerningKey, Int >;
+    public var kernings : Map< KerningKey, Float >;
     public var scale : Vector;
     public var on_pages_loaded : Void -> Void;
     public var pages_loaded : Int = 0;
@@ -154,7 +154,7 @@ class BitmapFont extends Resource {
                     }
 
                         //font size value for scale later
-                    font_size = Std.parseInt(_items["size"].value);
+                    font_size = Std.parseFloat(_items["size"].value);
 
                     id = _id;
 
@@ -164,7 +164,8 @@ class BitmapFont extends Resource {
                     var _items = _tokenize_font_line(_initial_tokens);
 
                             //parse the line height
-                        line_height = Std.parseInt( _items["lineHeight"].value );
+                        line_height = Std.parseFloat( _items["lineHeight"].value );
+                        // font_size = Std.parseFloat(_items["base"].value);
 
                 case "page":
 
@@ -204,13 +205,13 @@ class BitmapFont extends Resource {
                     //parse character info
                     var _character_info : Character = {
                         id : Std.parseInt(_items["id"].value),
-                        x : Std.parseInt(_items["x"].value),
-                        y : Std.parseInt(_items["y"].value),
-                        width : Std.parseInt(_items["width"].value),
-                        height : Std.parseInt(_items["height"].value),
-                        xoffset : Std.parseInt(_items["xoffset"].value),
-                        yoffset : Std.parseInt(_items["yoffset"].value),
-                        xadvance : Std.parseInt(_items["xadvance"].value),
+                        x : Std.parseFloat(_items["x"].value),
+                        y : Std.parseFloat(_items["y"].value),
+                        width : Std.parseFloat(_items["width"].value),
+                        height : Std.parseFloat(_items["height"].value),
+                        xoffset : Std.parseFloat(_items["xoffset"].value),
+                        yoffset : Std.parseFloat(_items["yoffset"].value),
+                        xadvance : Std.parseFloat(_items["xadvance"].value),
                         page : Std.parseInt(_items["page"].value)
                     };
 
@@ -223,7 +224,7 @@ class BitmapFont extends Resource {
 
                         var first = Std.parseInt(_items["first"].value);
                         var second = Std.parseInt(_items["second"].value);
-                        var amount = Std.parseInt(_items["amount"].value);
+                        var amount = Std.parseFloat(_items["amount"].value);
 
                         set_kerning( first, second, amount );
 
@@ -263,7 +264,7 @@ class BitmapFont extends Resource {
 
     } //from_string
 
-    public function set_kerning(_glyph:Int, _index:Int, _amount:Int) {
+    public function set_kerning(_glyph:Int, _index:Int, _amount:Float) {
         kernings.set({ glyph:_glyph, index:_index}, _amount);
     }
 
@@ -316,9 +317,9 @@ class BitmapFont extends Resource {
 
                 //adjust culmative x value
             var x_inc : Float = _x_advance;
-            // if( i < _string.length - 1 ){
-            //     x_inc += get_kerning( glyph.charCodeAt(0), _string.charAt(i).charCodeAt(0) );
-            // }
+            if( i < _string.length - 1 ){
+                x_inc += get_kerning( glyph.charCodeAt(0), _string.charAt(i).charCodeAt(0) );
+            }
 
             if( glyph == '\t' ){
                 x_inc += spc.xadvance * 4;
@@ -392,9 +393,13 @@ class BitmapFont extends Resource {
         } //for each page
 
             //so, the font is a %
-        var point_size = _size/font_size;
-        point_size = luxe.utils.Maths.fixed(point_size, 3);
+        var point_size : Float = _size/font_size;
+        // point_size = luxe.utils.Maths.fixed(point_size, 3);
         var _scale : Vector = new Vector(point_size,point_size);
+
+        if(!_immediate) {
+            // trace('$_string font_size:$font_size    size:$_size    point_size:$point_size');
+        }
 
         var _cumulative_x : Float = 0.0;
         var _cumulative_y : Float = 0.0;
@@ -456,15 +461,18 @@ class BitmapFont extends Resource {
                 var _h  : Float = c.height * _scale.y;
 
                 var _x_inc : Float = c.xadvance;
-                // if( i < _line.length-1 ){
-                //     // _x_inc += get_kerning( c.id, _char.charCodeAt(0) );
-                // }
+                if( i < _line.length-1 ){
+                    _x_inc += get_kerning( c.id, _char.charCodeAt(0) );
+                }
 
                 if( _char == '\t' ){
                     _x_inc += spc.xadvance * 4; //:todo:, hardcoded 4 tab size
                 }
 
                 _cumulative_x += _x_inc * _scale.x;
+
+                // _x = Math.round(_x);
+                // _y = Math.round(_y);
 
                     //First triangle
 

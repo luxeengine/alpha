@@ -72,10 +72,10 @@ class ResourceManager {
     public var textures : Map<String,Texture>;
     public var shaders : Map<String,Shader>;
     public var fonts : Map<String,BitmapFont>;
-    public var data : Map<String,ByteArray>;
-    public var text : Map<String,String>;
-    public var json : Map<String,Dynamic>;
-    public var sounds : Map<String,String>;
+    public var data : Map<String,DataResource>;
+    public var text : Map<String,TextResource>;
+    public var json : Map<String,JSONResource>;
+    public var sounds : Map<String,SoundResource>;
 
     public var stats : ResourceStats;
 

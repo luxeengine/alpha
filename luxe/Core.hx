@@ -158,7 +158,11 @@ class Core extends snow.App.AppFixedTimestep {
             //when there is a restart etc
         scene.reset();
 
+            //Reset the physics (starts the timer etc)
+        physics.reset();
+
     } //ready
+
 
     public function init() {
 
@@ -287,11 +291,12 @@ class Core extends snow.App.AppFixedTimestep {
             #if luxe_fullprofile debug.start(core_tag_events); #end
         events.process();
             #if luxe_fullprofile debug.end(core_tag_events); #end
-
 //Physics
-        debug.start(core_tag_physics);
+
+            //note that this does not update the physics, simply processes the active engines
+            //which for example, might want to draw during the main loop, separate from the fixed loop
         physics.process();
-        debug.end(core_tag_physics);
+
 
 //Loading thread
 
@@ -502,13 +507,13 @@ class Core extends snow.App.AppFixedTimestep {
             y : y,
             xrel : x,
             yrel : y,
-            pos : _mouse_pos,
+            pos : _mouse_pos
         }
 
         if(!shutting_down) {
+            debug.onmouseup(event);
             input.check_named_mouse(event);
             scene.onmouseup(event);
-            debug.onmouseup(event);
         }
 
         game.onmouseup(event);
@@ -794,7 +799,6 @@ class Core extends snow.App.AppFixedTimestep {
     static var game_tag_update : String = 'game.update';
     static var core_tag_render : String = 'core.render';
     static var core_tag_debug : String = 'core.debug';
-    static var core_tag_physics : String = 'core.physics';
     static var core_tag_updates : String = 'core.update_callbacks';
     static var core_tag_events : String = 'core.events';
     static var core_tag_audio : String = 'core.audio';

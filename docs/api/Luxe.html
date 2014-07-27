@@ -52,101 +52,97 @@
         <div class="content">
             <p><a href="../api/index.html"><img src="../images/logo.png" alt="Logo"></a></p>
 <hr>
-<h1 id="luxe">Luxe</h1>
+<p><h1>Luxe</h1>
+<small><code>Luxe</code></small></p>
 <hr>
-<p><code>class</code>
-<span class="meta"></p>
-<p></span></p>
+<p><code>class</code></p>
 <hr>
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-            <a name="audio"><a class="lift" href="#audio">audio</a></a><span class="inline-block static">static</span><code class="signature apipage">audio : <a href="#luxe.Audio">luxe.Audio</a></code><br/></span>
-        <span class="small_desc_flat">Access to the audio features</span><span class="member apipage">
-            <a name="build"><a class="lift" href="#build">build</a></a><span class="inline-block static">static</span><code class="signature apipage">build : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat">The version + build meta information, generated at compile time from a macro (luxe.BuildVersion)</span><span class="member apipage">
-            <a name="camera"><a class="lift" href="#camera">camera</a></a><span class="inline-block static">static</span><code class="signature apipage">camera : <a href="#luxe.Camera">luxe.Camera</a></code><br/></span>
-        <span class="small_desc_flat">Access to the default camera</span><span class="member apipage">
-            <a name="core"><a class="lift" href="#core">core</a></a><span class="inline-block static">static</span><code class="signature apipage">core : <a href="#luxe.Core">luxe.Core</a></code><br/></span>
-        <span class="small_desc_flat">Direct access to the core engine</span><span class="member apipage">
-            <a name="debug"><a class="lift" href="#debug">debug</a></a><span class="inline-block static">static</span><code class="signature apipage">debug : <a href="#luxe.Debug">luxe.Debug</a></code><br/></span>
-        <span class="small_desc_flat">Access to the core debug features</span><span class="member apipage">
-            <a name="draw"><a class="lift" href="#draw">draw</a></a><span class="inline-block static">static</span><code class="signature apipage">draw : <a href="#luxe.Draw">luxe.Draw</a></code><br/></span>
-        <span class="small_desc_flat">Access to the drawing features</span><span class="member apipage">
-            <a name="dt"><a class="lift" href="#dt">dt</a></a><span class="inline-block static">static</span><code class="signature apipage">dt : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat">The time the last frame took, this value can be altered or fixed using <code>Luxe.timescale</code> or <code>Luxe.fixed_timestep</code></span><span class="member apipage">
-            <a name="events"><a class="lift" href="#events">events</a></a><span class="inline-block static">static</span><code class="signature apipage">events : <a href="#luxe.Events">luxe.Events</a></code><br/></span>
-        <span class="small_desc_flat">Access to the global event system</span><span class="member apipage">
-            <a name="fixed_timestep"><a class="lift" href="#fixed_timestep">fixed_timestep</a></a><span class="inline-block static">static</span><code class="signature apipage">fixed_timestep : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat">Set this for a fixed timestep value</span><span class="member apipage">
-            <a name="input"><a class="lift" href="#input">input</a></a><span class="inline-block static">static</span><code class="signature apipage">input : <a href="#luxe.Input">luxe.Input</a></code><br/></span>
-        <span class="small_desc_flat">Access to the input features</span><span class="member apipage">
-            <a name="mouse"><a class="lift" href="#mouse">mouse</a></a><span class="inline-block static">static</span><code class="signature apipage">mouse : <a href="#luxe.Vector">luxe.Vector</a></code><br/></span>
-        <span class="small_desc_flat">The last known mouse position</span><span class="member apipage">
-            <a name="physics"><a class="lift" href="#physics">physics</a></a><span class="inline-block static">static</span><code class="signature apipage">physics : <a href="#luxe.Physics">luxe.Physics</a></code><br/></span>
-        <span class="small_desc_flat">Access to the physics bindings, if any</span><span class="member apipage">
-            <a name="renderer"><a class="lift" href="#renderer">renderer</a></a><span class="inline-block static">static</span><code class="signature apipage">renderer : <a href="#phoenix.Renderer">phoenix.Renderer</a></code><br/></span>
-        <span class="small_desc_flat">Access to the rendering system</span><span class="member apipage">
-            <a name="resources"><a class="lift" href="#resources">resources</a></a><span class="inline-block static">static</span><code class="signature apipage">resources : <a href="#luxe.ResourceManager">luxe.ResourceManager</a></code><br/></span>
-        <span class="small_desc_flat">Access to the default resource manager</span><span class="member apipage">
-            <a name="scene"><a class="lift" href="#scene">scene</a></a><span class="inline-block static">static</span><code class="signature apipage">scene : <a href="#luxe.Scene">luxe.Scene</a></code><br/></span>
-        <span class="small_desc_flat">Access to the default luxe scene</span><span class="member apipage">
-            <a name="timer"><a class="lift" href="#timer">timer</a></a><span class="inline-block static">static</span><code class="signature apipage">timer : <a href="#luxe.Timer">luxe.Timer</a></code><br/></span>
-        <span class="small_desc_flat">Access to the timing features</span><span class="member apipage">
-            <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><span class="inline-block static">static</span><code class="signature apipage">timescale : <a href="http://api.haxe.org/Float.html">Float</a></code><br/></span>
-        <span class="small_desc_flat">The scale of time that affects the update rates and deltas</span><span class="member apipage">
-            <a name="utils"><a class="lift" href="#utils">utils</a></a><span class="inline-block static">static</span><code class="signature apipage">utils : <a href="#luxe.utils.Utils">luxe.utils.Utils</a></code><br/></span>
-        <span class="small_desc_flat">Access to the different utilities</span><span class="member apipage">
-            <a name="version"><a class="lift" href="#version">version</a></a><span class="inline-block static">static</span><code class="signature apipage">version : <a href="http://api.haxe.org/String.html">String</a></code><br/></span>
-        <span class="small_desc_flat">The version of the engine</span></p>
+                <a name="dt"><a class="lift" href="#dt">dt</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">dt : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat">The time the last frame took, this value can be altered or fixed using <code>Luxe.timescale</code> or <code>Luxe.fixed_timestep</code></span><span class="member apipage">
+                <a name="timescale"><a class="lift" href="#timescale">timescale</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">timescale : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat">The scale of time that affects the update rates and deltas</span><span class="member apipage">
+                <a name="fixed_timestep"><a class="lift" href="#fixed_timestep">fixed_timestep</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">fixed_timestep : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat">Set this for a fixed timestep value</span><span class="member apipage">
+                <a name="mouse"><a class="lift" href="#mouse">mouse</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">mouse : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat">The last known mouse position</span><span class="member apipage">
+                <a name="core"><a class="lift" href="#core">core</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">core : <a href="#">luxe.Core</a></code><br/></span>
+            <span class="small_desc_flat">Direct access to the core engine</span><span class="member apipage">
+                <a name="debug"><a class="lift" href="#debug">debug</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">debug : <a href="#">luxe.Debug</a></code><br/></span>
+            <span class="small_desc_flat">Access to the core debug features</span><span class="member apipage">
+                <a name="draw"><a class="lift" href="#draw">draw</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">draw : <a href="#">luxe.Draw</a></code><br/></span>
+            <span class="small_desc_flat">Access to the drawing features</span><span class="member apipage">
+                <a name="audio"><a class="lift" href="#audio">audio</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">audio : <a href="#">luxe.Audio</a></code><br/></span>
+            <span class="small_desc_flat">Access to the audio features</span><span class="member apipage">
+                <a name="timer"><a class="lift" href="#timer">timer</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">timer : <a href="#">luxe.Timer</a></code><br/></span>
+            <span class="small_desc_flat">Access to the timing features</span><span class="member apipage">
+                <a name="events"><a class="lift" href="#events">events</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">events : <a href="#">luxe.Events</a></code><br/></span>
+            <span class="small_desc_flat">Access to the global event system</span><span class="member apipage">
+                <a name="input"><a class="lift" href="#input">input</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">input : <a href="#">luxe.Input</a></code><br/></span>
+            <span class="small_desc_flat">Access to the input features</span><span class="member apipage">
+                <a name="scene"><a class="lift" href="#scene">scene</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">scene : <a href="#">luxe.Scene</a></code><br/></span>
+            <span class="small_desc_flat">Access to the default luxe scene</span><span class="member apipage">
+                <a name="utils"><a class="lift" href="#utils">utils</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">utils : <a href="#">luxe.utils.Utils</a></code><br/></span>
+            <span class="small_desc_flat">Access to the different utilities</span><span class="member apipage">
+                <a name="physics"><a class="lift" href="#physics">physics</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">physics : <a href="#">luxe.Physics</a></code><br/></span>
+            <span class="small_desc_flat">Access to the physics bindings, if any</span><span class="member apipage">
+                <a name="camera"><a class="lift" href="#camera">camera</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">camera : <a href="#">luxe.Camera</a></code><br/></span>
+            <span class="small_desc_flat">Access to the default camera</span><span class="member apipage">
+                <a name="resources"><a class="lift" href="#resources">resources</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">resources : <a href="#">luxe.ResourceManager</a></code><br/></span>
+            <span class="small_desc_flat">Access to the default resource manager</span><span class="member apipage">
+                <a name="renderer"><a class="lift" href="#renderer">renderer</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">renderer : <a href="#">phoenix.Renderer</a></code><br/></span>
+            <span class="small_desc_flat">Access to the rendering system</span><span class="member apipage">
+                <a name="version"><a class="lift" href="#version">version</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">version : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat">The version of the engine</span><span class="member apipage">
+                <a name="build"><a class="lift" href="#build">build</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">build : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat">The version + build meta information, generated at compile time from a macro (luxe.BuildVersion)</span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="fileDialogFolder"><a class="lift" href="#fileDialogFolder">fileDialogFolder</a></a><span class="inline-block static">static</span><code class="signature apipage">fileDialogFolder(_title:<span><a href="http://api.haxe.org/String.html">String</a></span>, _text:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat">Open the system folder dialog picker</span>
+            <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">shutdown() : <a href="#">Void</a></code><br/><span class="small_desc_flat">shutdown the engine and quit</span>
         </span>
     <span class="method apipage">
-            <a name="fileDialogOpen"><a class="lift" href="#fileDialogOpen">fileDialogOpen</a></a><span class="inline-block static">static</span><code class="signature apipage">fileDialogOpen(_title:<span><a href="http://api.haxe.org/String.html">String</a></span>, _text:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat">Open the system file open dialog picker</span>
+            <a name="showConsole"><a class="lift" href="#showConsole">showConsole</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">showConsole(_show:<a href="#">Bool</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">show/hide the debug console programmatically</span>
         </span>
     <span class="method apipage">
-            <a name="fileDialogSave"><a class="lift" href="#fileDialogSave">fileDialogSave</a></a><span class="inline-block static">static</span><code class="signature apipage">fileDialogSave(_title:<span><a href="http://api.haxe.org/String.html">String</a></span>, _text:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/String.html">String</a></code><br/><span class="small_desc_flat">Open the system file save dialog picker</span>
+            <a name="loadJSON"><a class="lift" href="#loadJSON">loadJSON</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadJSON(_id:<a href="#">String</a><span></span>, _onloaded:<a href="#">luxe.JSONResource</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">luxe.JSONResource</a></code><br/><span class="small_desc_flat">Load a text resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadData"><a class="lift" href="#loadData">loadData</a></a><span class="inline-block static">static</span><code class="signature apipage">loadData(_id:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_onloaded:<span><a href="#luxe.DataResource-&gt;Void">luxe.DataResource-&gt;Void</a>=null</span>) : <a href="#luxe.DataResource">luxe.DataResource</a></code><br/><span class="small_desc_flat">Load a bytes/data resource</span>
+            <a name="loadText"><a class="lift" href="#loadText">loadText</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadText(_id:<a href="#">String</a><span></span>, _onloaded:<a href="#">luxe.TextResource</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">luxe.TextResource</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="loadFont"><a class="lift" href="#loadFont">loadFont</a></a><span class="inline-block static">static</span><code class="signature apipage">loadFont(_id:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_path:<span><a href="http://api.haxe.org/String.html">String</a>=null</span>, ?_onloaded:<span><a href="#phoenix.BitmapFont-&gt;Void">phoenix.BitmapFont-&gt;Void</a>=null</span>) : <a href="#phoenix.BitmapFont">phoenix.BitmapFont</a></code><br/><span class="small_desc_flat">Load a font resource</span>
+            <a name="loadData"><a class="lift" href="#loadData">loadData</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadData(_id:<a href="#">String</a><span></span>, _onloaded:<a href="#">luxe.DataResource</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">luxe.DataResource</a></code><br/><span class="small_desc_flat">Load a bytes/data resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadJSON"><a class="lift" href="#loadJSON">loadJSON</a></a><span class="inline-block static">static</span><code class="signature apipage">loadJSON(_id:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_onloaded:<span><a href="#luxe.JSONResource-&gt;Void">luxe.JSONResource-&gt;Void</a>=null</span>) : <a href="#luxe.JSONResource">luxe.JSONResource</a></code><br/><span class="small_desc_flat">Load a text resource</span>
+            <a name="loadSound"><a class="lift" href="#loadSound">loadSound</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadSound(_name:<a href="#">String</a><span></span>, _id:<a href="#">String</a><span></span>, _is_music:<a href="#">Bool</a><span>=false</span>, _onloaded:<a href="#">luxe.SoundResource</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">luxe.SoundResource</a></code><br/><span class="small_desc_flat">Load a sound resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadShader"><a class="lift" href="#loadShader">loadShader</a></a><span class="inline-block static">static</span><code class="signature apipage">loadShader(?_ps_id:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;default&#x27;</span>, ?_vs_id:<span><a href="http://api.haxe.org/String.html">String</a>=&#x27;default&#x27;</span>, ?_onloaded:<span><a href="#phoenix.Shader-&gt;Void">phoenix.Shader-&gt;Void</a>=null</span>) : <a href="#phoenix.Shader">phoenix.Shader</a></code><br/><span class="small_desc_flat">Load a shader resource</span>
+            <a name="loadTexture"><a class="lift" href="#loadTexture">loadTexture</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadTexture(_id:<a href="#">String</a><span></span>, _onloaded:<a href="#">phoenix.Texture</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>, _silent:<a href="#">Bool</a><span>=false</span>, _asset_bytes:<a href="#">lime.utils.ByteArray</a><span>=null</span>) : <a href="#">phoenix.Texture</a></code><br/><span class="small_desc_flat">Load a texture/image resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadSound"><a class="lift" href="#loadSound">loadSound</a></a><span class="inline-block static">static</span><code class="signature apipage">loadSound(_name:<span><a href="http://api.haxe.org/String.html">String</a></span>, _id:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_is_music:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>, ?_onloaded:<span><a href="#luxe.SoundResource-&gt;Void">luxe.SoundResource-&gt;Void</a>=null</span>) : <a href="#luxe.SoundResource">luxe.SoundResource</a></code><br/><span class="small_desc_flat">Load a sound resource</span>
+            <a name="loadTextures"><a class="lift" href="#loadTextures">loadTextures</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadTextures(_ids:<a href="#">Array</a>&lt;<a href="#">String</a>&gt;<span></span>, _onloaded:<a href="#">Array</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>, _silent:<a href="#">Bool</a><span>=false</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Load multiple texture/image resources, useful for preloading</span>
         </span>
     <span class="method apipage">
-            <a name="loadText"><a class="lift" href="#loadText">loadText</a></a><span class="inline-block static">static</span><code class="signature apipage">loadText(_id:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_onloaded:<span><a href="#luxe.TextResource-&gt;Void">luxe.TextResource-&gt;Void</a>=null</span>) : <a href="#luxe.TextResource">luxe.TextResource</a></code><br/><span class="small_desc_flat"></span>
+            <a name="loadFont"><a class="lift" href="#loadFont">loadFont</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadFont(_id:<a href="#">String</a><span></span>, _path:<a href="#">String</a><span>=null</span>, _onloaded:<a href="#">phoenix.BitmapFont</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">phoenix.BitmapFont</a></code><br/><span class="small_desc_flat">Load a font resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadTexture"><a class="lift" href="#loadTexture">loadTexture</a></a><span class="inline-block static">static</span><code class="signature apipage">loadTexture(_id:<span><a href="http://api.haxe.org/String.html">String</a></span>, ?_onloaded:<span><a href="#phoenix.Texture-&gt;Void">phoenix.Texture-&gt;Void</a>=null</span>, ?_silent:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>, ?_asset_bytes:<span><a href="">lime.utils.ByteArray</a>=null</span>) : <a href="#phoenix.Texture">phoenix.Texture</a></code><br/><span class="small_desc_flat">Load a texture/image resource</span>
+            <a name="loadShader"><a class="lift" href="#loadShader">loadShader</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">loadShader(_ps_id:<a href="#">String</a><span>=&#x27;default&#x27;</span>, _vs_id:<a href="#">String</a><span>=&#x27;default&#x27;</span>, _onloaded:<a href="#">phoenix.Shader</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">phoenix.Shader</a></code><br/><span class="small_desc_flat">Load a shader resource</span>
         </span>
     <span class="method apipage">
-            <a name="loadTextures"><a class="lift" href="#loadTextures">loadTextures</a></a><span class="inline-block static">static</span><code class="signature apipage">loadTextures(_ids:<span><a href="http://api.haxe.org/Array.html">Array</a>&lt;<a href="http://api.haxe.org/String.html">String</a>&gt;</span>, ?_onloaded:<span><a href="">Array-&gt;Void</a>=null</span>, ?_silent:<span><a href="http://api.haxe.org/Bool.html">Bool</a>=false</span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Load multiple texture/image resources, useful for preloading</span>
+            <a name="openURL"><a class="lift" href="#openURL">openURL</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">openURL(_url:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Open the system browser with the given URL</span>
         </span>
     <span class="method apipage">
-            <a name="openURL"><a class="lift" href="#openURL">openURL</a></a><span class="inline-block static">static</span><code class="signature apipage">openURL(_url:<span><a href="http://api.haxe.org/String.html">String</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">Open the system browser with the given URL</span>
+            <a name="fileDialogFolder"><a class="lift" href="#fileDialogFolder">fileDialogFolder</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fileDialogFolder(_title:<a href="#">String</a><span></span>, _text:<a href="#">String</a><span></span>) : <a href="#">String</a></code><br/><span class="small_desc_flat">Open the system folder dialog picker</span>
         </span>
     <span class="method apipage">
-            <a name="showConsole"><a class="lift" href="#showConsole">showConsole</a></a><span class="inline-block static">static</span><code class="signature apipage">showConsole(_show:<span><a href="http://api.haxe.org/Bool.html">Bool</a></span>) : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">show/hide the debug console programmatically</span>
+            <a name="fileDialogOpen"><a class="lift" href="#fileDialogOpen">fileDialogOpen</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fileDialogOpen(_title:<a href="#">String</a><span></span>, _text:<a href="#">String</a><span></span>) : <a href="#">String</a></code><br/><span class="small_desc_flat">Open the system file open dialog picker</span>
         </span>
     <span class="method apipage">
-            <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a><span class="inline-block static">static</span><code class="signature apipage">shutdown() : <a href="http://api.haxe.org/Void.html">Void</a></code><br/><span class="small_desc_flat">shutdown the engine and quit</span>
+            <a name="fileDialogSave"><a class="lift" href="#fileDialogSave">fileDialogSave</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">fileDialogSave(_title:<a href="#">String</a><span></span>, _text:<a href="#">String</a><span></span>) : <a href="#">String</a></code><br/><span class="small_desc_flat">Open the system file save dialog picker</span>
         </span></p>
-<p><h3>Properties</h3> <hr/><span class="property apipage">
-            <a name="screen"><a class="lift" href="#screen">screen</a></a><span class="inline-block static">static</span><code class="signature apipage">screen : <a href="">luxe.Screen</a></code><br/><span class="small_desc_flat">Access to information about the game window (sizes, cursor etc)</span>
-        </span><span class="property apipage">
-            <a name="time"><a class="lift" href="#time">time</a></a><span class="inline-block static">static</span><code class="signature apipage">time : <a href="">Float</a></code><br/><span class="small_desc_flat">The current time in seconds, highest precision from the platform</span>
-        </span></p>
+<hr>
 <p>&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;</p>
 

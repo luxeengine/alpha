@@ -5,7 +5,8 @@
 
 
 
-#ResourceType
+<h1>ResourceType</h1>
+<small>`luxe.ResourceType`</small>
 
 
 
@@ -22,21 +23,26 @@
 &nbsp;
 &nbsp;
 
-<h3>Members</h3> <hr/>no public members<h3>Values</h3> <hr/><span class="member signature apipage">`data`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`font`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`json`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`render_texture`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`shader`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`sound`<br/> </span>
+<h3>Values</h3> <hr/><span class="member signature apipage">`unknown`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`text`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`json`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`data`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`texture`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`unknown`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`sound`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`render_texture`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`font`<br/> </span>
+        <span class="small_desc_flat"></span><span class="member signature apipage">`shader`<br/> </span>
         <span class="small_desc_flat"></span>
 
-<h3>Methods</h3> <hr/>no public methods
 
-<h3>Properties</h3> <hr/>no public properties
 
+
+
+
+
+---
+
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;

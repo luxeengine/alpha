@@ -12,6 +12,7 @@ import luxe.ResourceManager;
 class RenderTexture extends Texture {
 
     public var fbo : GLFramebuffer;
+    public var renderbuffer : GLRenderbuffer;
 
     public function new( _manager:ResourceManager, ?_size:Vector = null ) {
 
@@ -37,11 +38,25 @@ class RenderTexture extends Texture {
         fbo = GL.createFramebuffer();
             //Bind the FBO
         bindBuffer();
+
+            //create the render buffer
+        renderbuffer = GL.createRenderbuffer();
+            //Bind it so we can attach stuff
+        bindRenderBuffer();
+
+
+            //Create storage for the depth buffer :todo: optionize
+        GL.renderbufferStorage(GL.RENDERBUFFER, GL.DEPTH_COMPONENT16, width, height);
             //Attach the framebuffer texture to the buffer
         GL.framebufferTexture2D( GL.FRAMEBUFFER, GL.COLOR_ATTACHMENT0, GL.TEXTURE_2D, texture, 0 );
+            //Attach the depth buffer to the render buffer
+        GL.framebufferRenderbuffer( GL.FRAMEBUFFER, GL.DEPTH_ATTACHMENT, GL.RENDERBUFFER, renderbuffer);
+
 
         var status = GL.checkFramebufferStatus( GL.FRAMEBUFFER );
+
         switch (status) {
+
             case GL.FRAMEBUFFER_COMPLETE:
 
             case GL.FRAMEBUFFER_INCOMPLETE_ATTACHMENT:
@@ -62,6 +77,7 @@ class RenderTexture extends Texture {
 
             //no lingering
         unbindBuffer();
+        unbindRenderBuffer();
 
         loaded = true;
 
@@ -70,20 +86,33 @@ class RenderTexture extends Texture {
     public override function destroy() {
 
         GL.deleteFramebuffer( fbo );
+        GL.deleteRenderbuffer( renderbuffer );
 
         super.destroy();
 
     } //destroy
 
-    public function bindBuffer() {
+    @:noCompletion public function bindBuffer() {
 
         Luxe.renderer.state.bindFramebuffer(fbo);
 
     } //bind
 
-    public function unbindBuffer( ?_other:GLFramebuffer=null ) {
+    @:noCompletion public function unbindBuffer( ?_other:GLFramebuffer=null ) {
 
         Luxe.renderer.state.bindFramebuffer( _other );
+
+    } //unbind
+
+    @:noCompletion public function bindRenderBuffer() {
+
+        Luxe.renderer.state.bindRenderbuffer( renderbuffer );
+
+    } //bind
+
+    @:noCompletion public function unbindRenderBuffer( ?_other:GLRenderbuffer=null ) {
+
+        Luxe.renderer.state.bindRenderbuffer( _other );
 
     } //unbind
 

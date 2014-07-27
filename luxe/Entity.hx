@@ -206,15 +206,19 @@ class Entity extends Objects {
 
     } //_reset
 
-    public function destroy() {
+    public function destroy( ?_from_parent:Bool=false ) {
 
         _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);
 
             //first destroy children
         for(_child in children) {
             _verbose('     calling destroy on child ' + _child.name);
-            _child.destroy();
+            _child.destroy(true);
         } //for each child
+
+            //clear the list
+        children = null;
+        children = [];
 
             //destroy all the components attached directly to us
         for(_component in components) {
@@ -225,7 +229,7 @@ class Entity extends Objects {
         _call(this, 'destroyed');
 
             //remove it from it's parent if any
-        if(parent != null) {
+        if(parent != null && !_from_parent) {
             _verbose("     removing " + name + "/" + id + " from parent " + parent.name + " / " + parent.id );
             parent._remove_child(this);
         }
@@ -233,8 +237,10 @@ class Entity extends Objects {
             //kill any fixed rate timers
         _stop_fixed_rate_timer();
 
-            //mark the flag
+            //mark the flags
         _destroyed = true;
+        inited = false;
+        started = false;
 
             //remove from the scene it's in if any
         _verbose( "     removing " + name + " / " + id + " from scene " + scene );
@@ -255,7 +261,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeyup(e:KeyEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -280,7 +286,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onkeydown(e:KeyEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -307,7 +313,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousedown(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -333,7 +339,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmouseup(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -358,7 +364,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousewheel(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -383,7 +389,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _onmousemove(e:MouseEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -409,7 +415,7 @@ class Entity extends Objects {
 //Touch
     @:noCompletion public function _ontouchdown(e:TouchEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -434,7 +440,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ontouchup(e:TouchEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -459,7 +465,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ontouchmove(e:TouchEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -485,7 +491,7 @@ class Entity extends Objects {
 //Gamepad
     @:noCompletion public function _ongamepadaxis(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -510,7 +516,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadball(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -535,7 +541,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadhat(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -560,7 +566,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttondown(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -585,7 +591,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _ongamepadbuttonup(e) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -612,7 +618,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputdown(_name:String, e:InputEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -637,7 +643,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _oninputup(_name:String, e:InputEvent) {
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -668,7 +674,7 @@ class Entity extends Objects {
             return;
         }
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
@@ -703,7 +709,7 @@ class Entity extends Objects {
             return;
         }
 
-        if(active == false) {
+        if(!active || !inited || !started) {
             return;
         }
 
