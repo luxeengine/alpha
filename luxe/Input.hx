@@ -149,7 +149,7 @@ typedef GamepadEvent = {
     var gamepad : Int;
         /** The button id, if the event `type` is `button` */
     var button : Int;
-        /** The axis id, if the event `type` is `button` */
+        /** The axis id, if the event `type` is `axis` */
     var axis : Int;
         /** The axis value, if the event `type` is `axis` */
     var value : Float;

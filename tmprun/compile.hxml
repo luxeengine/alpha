@@ -1,0 +1,3 @@
+-main Run.hx
+-neko ../run.n
+-lib lime-tools
