@@ -1,0 +1,55 @@
+{
+  flow : {
+    build : {
+      boot : 'LuxeApp'
+    }
+  },
+
+  project : {
+
+    name : 'luxe',
+    version : '1.0.0-alpha.1',
+    author : 'luxeengine',
+
+    build : {
+      flags : [
+          "-resource version@version",
+          "-resource build@build",
+
+          "-resource luxe/defaults/ui/tiny.ui.png@tiny.ui.png",
+          "-resource luxe/defaults/ui/tiny.button.png@tiny.button.png",
+          "-resource luxe/defaults/fonts/din.png@din.png",
+          "-resource luxe/defaults/fonts/din.fnt@din.fnt",
+
+          "-resource phoenix/defaults/shaders/vert.glsl@default.vert.glsl",
+          "-resource phoenix/defaults/shaders/frag.glsl@default.frag.glsl",
+          "-resource phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl"
+      ],
+      dependencies : {
+        snow : '*'
+      },
+      files : {
+        boot : { path:'flowtemplates/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:'project' },
+      }
+    }
+
+ },
+
+ if : {
+    profiler : {
+      build : {
+        defines : ['DHXCPP_STACK_TRACE', 'HXCPP_STACK_LINE', 'HXCPP_CHECK_POINTER']
+      }
+    },
+    snow_native : {
+      build:{
+        defines:['luxe_native', 'luxe_parcel_logging', 'parcel_thread_disabled']
+      }
+    },
+    snow_html5 : {
+      build:{
+        defines:['luxe_html5']
+      }
+    }
+ }
+}

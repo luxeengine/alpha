@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'empty',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_empty',
+      title : 'luxe empty',
+      package : 'org.luxeengine.empty'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
