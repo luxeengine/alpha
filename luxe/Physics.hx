@@ -1,7 +1,8 @@
 package luxe;
 
 import luxe.Core;
-
+import luxe.Vector;
+import snow.utils.Timer;
 
 #if haxebullet
     import luxe.physics.bullet.PhysicsBullet;
@@ -9,7 +10,6 @@ import luxe.Core;
 
 #if nape
     import luxe.physics.nape.PhysicsNape;
-    import luxe.Vector;
 #end //nape
 
 
@@ -35,7 +35,7 @@ class Physics {
     public var step_size : Float = 1/60;
 
 //Physics fixed updates
-    @:noCompletion public var timer : haxe.Timer;
+    @:noCompletion public var timer : Timer;
 
     public function new( _core:Core ) {
 
