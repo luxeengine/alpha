@@ -29,7 +29,7 @@
         snow : '*'
       },
       files : {
-        boot : { path:'flowtemplates/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:'project' },
+        boot : { path:'flowtemplates/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow'] },
       }
     }
 
