@@ -72,9 +72,9 @@ package luxe.physics.bullet;
 
         } //addRigidBody
 
-        public override function process() {
+        public override function render() {
 
-            super.process();
+            super.render();
 
             #if !luxe_html5
                 if(draw) {
@@ -83,7 +83,7 @@ package luxe.physics.bullet;
                 }
             #end
 
-        } //process
+        } //render
 
         public override function update() {
 

@@ -111,6 +111,12 @@ class Physics {
         }
     } //process
 
+    public function render() {
+        for(engine in engines) {
+            engine.render();
+        }
+    } //render
+
     public function destroy() {
 
         timer.stop();
@@ -180,6 +186,10 @@ class PhysicsEngine {
     public function update() {
 
     } //update
+
+    public function render() {
+
+    } //render
 
     public function get_paused() : Bool {
 

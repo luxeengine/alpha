@@ -28,20 +28,16 @@ package luxe.physics.nape;
 
             //called from the core to update during main loop
             //mainly used to render outside of the fixed loop
-        public override function process() {
+        public override function render() {
 
-                //time the render update
-            // Sys.println(Luxe.time - end);
-            // end = Luxe.time;
-
-            super.process();
+            super.render();
 
             if(draw) {
                 debugdraw.clear();
                 debugdraw.draw( space );
             }
 
-        } //process
+        } //render
 
             //update the actual physics
         var end : Float = 0.0;

@@ -294,6 +294,9 @@ class Core extends snow.App.AppFixedTimestep {
             #if luxe_fullprofile debug.start(core_tag_events); #end
         events.process();
             #if luxe_fullprofile debug.end(core_tag_events); #end
+//Physics
+            //note that this does not update the physics, simply processes the active engines
+        physics.process();
 
 //Loading thread
 
@@ -332,9 +335,9 @@ class Core extends snow.App.AppFixedTimestep {
         debug.start(core_tag_render);
 
         game.pre_render();
+
             //note that this does not update the physics, simply processes the active engines
-            //which for example, might want to draw during the main loop, separate from the fixed loop
-        physics.process();
+        physics.render();
 
             renderer.process();
 
