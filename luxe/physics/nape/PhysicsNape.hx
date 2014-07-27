@@ -30,6 +30,10 @@ package luxe.physics.nape;
             //mainly used to render outside of the fixed loop
         public override function process() {
 
+                //time the render update
+            // Sys.println(Luxe.time - end);
+            // end = Luxe.time;
+
             super.process();
 
             if(draw) {
@@ -40,7 +44,12 @@ package luxe.physics.nape;
         } //process
 
             //update the actual physics
+        var end : Float = 0.0;
         public override function update() {
+
+                //time the fixed update
+            // Sys.println(Luxe.time - end);
+            // end = Luxe.time;
 
             if(!paused) {
 
