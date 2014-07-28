@@ -1,0 +1,27 @@
+{
+
+  project : {
+    name : 'threedee',
+    version : '1.0.0',
+    author : 'underscorediscovery',
+
+    app : {
+      name : 'threedee',
+      title : 'threedee',
+      package : 'com.underscorediscovery.threedee'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+        haxebullet : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
