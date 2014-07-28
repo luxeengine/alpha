@@ -65,7 +65,7 @@ class Luxe {
         /** if this is non zero this will be passed in */
     public static var fixed_delta (get,set) : Float;
         /** if this is non zero, updates will be forced to this rate */
-    public static var fixed_rate (get,set) : Float;
+    public static var update_rate (get,set) : Float;
         /** the maximum frame time */
     public static var max_frame_time (get,set) : Float;
 
@@ -254,8 +254,8 @@ class Luxe {
         return core.fixed_delta;
     }
         /** if this is non zero, updates will be forced to this rate */
-    static function get_fixed_rate() : Float {
-        return core.fixed_rate;
+    static function get_update_rate() : Float {
+        return core.update_rate;
     }
         /** the maximum frame time */
     static function get_max_frame_time() : Float {
@@ -296,8 +296,8 @@ class Luxe {
         return core.fixed_delta = value;
     }
         /** if this is non zero, updates will be forced to this rate */
-    static function set_fixed_rate( value:Float ) : Float {
-        return core.fixed_rate = value;
+    static function set_update_rate( value:Float ) : Float {
+        return core.update_rate = value;
     }
         /** the maximum frame time */
     static function set_max_frame_time( value:Float ) : Float {
