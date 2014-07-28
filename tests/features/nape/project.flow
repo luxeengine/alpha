@@ -14,10 +14,12 @@
     build : {
       dependencies : {
         luxe : '*',
+        nape : '*'
       }
     },
 
     files : {
+      config : 'config.json',
       assets : 'assets/'
     }
 

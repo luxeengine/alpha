@@ -58,7 +58,7 @@ import luxe.Log.log;
 @:noCompletion
 @:keep
 @:log_as('luxe')
-class Core extends snow.App.AppFixedTimestep {
+class Core extends snow.App {
 
         //the game object running the core
     public var game : Game;
@@ -268,12 +268,6 @@ class Core extends snow.App.AppFixedTimestep {
 
     public function shutdown() {
 
-        app.shutdown();
-
-    } //shutdown
-
-    override function destroyed() {
-
         _debug('shutting down...');
 
             //Make sure all systems know we are going down
@@ -311,19 +305,23 @@ class Core extends snow.App.AppFixedTimestep {
 
         _debug('goodbye.');
 
+            //shutdown snow
+        app.shutdown();
+
     } //shutdown
 
         //called by snow
     override function update( dt:Float ) {
 
-        debug.end(core_tag_update);
-        debug.start(core_tag_update);
 
         #if luxe_fullprofile
             _verbose('on_update ' + Luxe.time);
         #end //luxe_fullprofile
 
         if(has_shutdown) return;
+
+        debug.end(core_tag_update);
+        debug.start(core_tag_update);
 
             //Update all the subsystems, again, order important
 //Timers first
