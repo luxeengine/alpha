@@ -1,0 +1,32 @@
+{
+
+  snow : {
+    config : {
+      has_loop : false
+    }
+  },
+
+  project : {
+    name : 'luxe - test - unit tests',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      main : 'RunTests',
+      codepaths : ['./'],
+      name : 'luxe_unittest',
+      title : 'luxe unittest',
+      package : 'com.luxeengine.unittest'
+    },
+
+    build : {
+      flags : ['--macro luxe.Log.level(6)'],
+      dependencies : {
+        luxe : '*',
+        mohxa : '*'
+      }
+    },
+
+  }
+
+}
