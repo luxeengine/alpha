@@ -72,6 +72,8 @@ class Core extends snow.App.AppFixedTimestep {
 
         //if the console is displayed atm
     public var console_visible : Bool = false;
+        /** Set to true if the app is running without a window */
+    public var headless : Bool = false;
 
 
 //Sub Systems, mostly in order of importance
@@ -145,6 +147,7 @@ class Core extends snow.App.AppFixedTimestep {
             //Create the subsystems
         init();
 
+            //
         _debug('ready.');
 
             //Call the main ready function
@@ -159,6 +162,11 @@ class Core extends snow.App.AppFixedTimestep {
 
             //Reset the physics (starts the timer etc)
         physics.reset();
+
+            //Now, if no main loop is requested we should immediately shutdown
+        if(!app.snow_config.has_loop) {
+            shutdown();
+        }
 
     } //ready
 
@@ -178,12 +186,33 @@ class Core extends snow.App.AppFixedTimestep {
         input = new Input( this );
         physics = new Physics( this );
 
-            //create the renderer
-        renderer = new Renderer( this );
-            //assign the globals
-        Luxe.renderer = renderer;
+            //flag for later
+        if(app.window == null) {
+            headless = true;
+        }
+
+        if(!headless) {
+                //create the renderer
+            renderer = new Renderer( this );
+                //assign the globals
+            Luxe.renderer = renderer;
+        }
+
+            //if there is a window, store the sizes
+        var _window_x = 0;
+        var _window_y = 0;
+        var _window_w = 0;
+        var _window_h = 0;
+
+        if(app.window != null) {
+            _window_x = app.window.x;
+            _window_y = app.window.y;
+            _window_w = app.window.width;
+            _window_h = app.window.height;
+        }
+
             //store the size for access from API
-        screen = new luxe.Screen( this, app.window.x, app.window.y, app.window.width, app.window.height );
+        screen = new luxe.Screen( this, _window_x, _window_y, _window_w, _window_h );
 
             //Now make sure
             //they start up
@@ -192,7 +221,11 @@ class Core extends snow.App.AppFixedTimestep {
         timer.init();
         audio.init();
         input.init();
-        renderer.init();
+
+        if(!headless) {
+            renderer.init();
+        }
+
         physics.init();
 
         Luxe.audio = audio;
@@ -200,35 +233,50 @@ class Core extends snow.App.AppFixedTimestep {
         Luxe.events = events;
         Luxe.timer = timer;
         Luxe.input = input;
-        Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
-        Luxe.resources = renderer.resource_manager;
+
+        if(!headless) {
+            Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
+            Luxe.resources = renderer.resource_manager;
+        }
+
         Luxe.physics = physics;
 
         scene = new Scene();
         scene.name = 'default scene';
         Luxe.scene = scene;
 
-        scene.add(Luxe.camera);
+        if(!headless) scene.add(Luxe.camera);
 
             //finally, create the debug console
-        debug.create_debug_console();
-
-            //start here because end is called first below
-        debug.start(core_tag_update);
-        debug.start(core_tag_renderdt);
+        if(!headless) {
+            debug.create_debug_console();
+        }
 
             //and even more finally, tell snow we want to
             //know when it's rendering the window so we can draw
-        app.window.onrender = render;
+        if(app.window != null && !headless) {
+
+            app.window.onrender = render;
+
+                //start here because end is called first below
+            debug.start(core_tag_update);
+            debug.start(core_tag_renderdt);
+
+        } //app.window != null && !headless
 
     } //init
 
     public function shutdown() {
 
+        app.shutdown();
+
+    } //shutdown
+
+    override function destroyed() {
+
         _debug('shutting down...');
 
             //Make sure all systems know we are going down
-
         shutting_down = true;
 
             //shutdown the game class
@@ -238,8 +286,7 @@ class Core extends snow.App.AppFixedTimestep {
         scene.destroy();
 
             //Order is imporant here too
-
-        if(renderer != null && renderer.destroy != null) {
+        if(renderer != null) {
             renderer.destroy();
         }
 
@@ -249,6 +296,7 @@ class Core extends snow.App.AppFixedTimestep {
         timer.destroy();
         events.destroy();
         debug.destroy();
+
 
             //Clear up for GC
         input = null;
@@ -339,7 +387,9 @@ class Core extends snow.App.AppFixedTimestep {
             //note that this does not update the physics, simply processes the active engines
         physics.render();
 
+        if(!headless) {
             renderer.process();
+        }
 
         game.post_render();
 
