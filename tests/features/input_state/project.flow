@@ -1,14 +1,14 @@
 {
 
   project : {
-    name : 'luxe - test - keystate',
+    name : 'luxe - test - inputstate',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_test_keystate',
-      title : 'luxe test keystate',
-      package : 'com.luxeengine.testfonts'
+      name : 'luxe_test_inputstate',
+      title : 'luxe test inputstate',
+      package : 'com.luxeengine.inputstate'
     },
 
     build : {

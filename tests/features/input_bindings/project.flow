@@ -1,14 +1,14 @@
 {
 
   project : {
-    name : 'luxe - test - namedbinding',
+    name : 'luxe - test - inputbinding',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_test_namedbinding',
-      title : 'luxe test namedbinding',
-      package : 'com.luxeengine.testnamedbinding'
+      name : 'luxe_test_inputbinding',
+      title : 'luxe test inputbinding',
+      package : 'com.luxeengine.testinputbinding'
     },
 
     build : {
