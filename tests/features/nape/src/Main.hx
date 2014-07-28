@@ -30,11 +30,6 @@ class Main extends luxe.Game {
         Luxe.core.update_rate = 1/60;
         Luxe.core.render_rate = 1/60;
 
-        Luxe.timer.schedule(1/240, function(){
-            // Sys.println(Luxe.time - end);
-            end = Luxe.time;
-        }, true);
-
         reset_world();
 
     } //ready
@@ -147,11 +142,21 @@ class Main extends luxe.Game {
 
     } //ontouchmove
 
+    var ramp = false;
     override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.KEY_r) {
             Luxe.physics.nape.space.clear();
             reset_world();
+        }
+
+        if(e.keycode == Key.KEY_e) {
+            ramp = !ramp;
+            if(ramp) {
+                luxe.tween.Actuate.tween( Luxe, 0.8, { timescale:0.3 });
+            } else {
+                luxe.tween.Actuate.tween( Luxe, 0.8, { timescale:1 });
+            }
         }
 
         if(e.keycode == Key.KEY_g) {

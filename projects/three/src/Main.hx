@@ -47,6 +47,14 @@ class Main extends luxe.Game {
 
     var follow : Bool = false;
 
+    override function config( config:luxe.AppConfig ) {
+        
+        config.window.depth_bits = 32;
+        config.window.antialiasing = 4;
+
+        return config;
+    }
+
     override function ready() {
 
         Luxe.screen.cursor.grab = false;
@@ -243,9 +251,9 @@ class Main extends luxe.Game {
         if(e.keycode == Key.KEY_e) {
             ramp = !ramp;
             if(ramp) {
-                luxe.tween.Actuate.tween( Luxe.physics.bullet, 0.8, { step_rate:0.00167, rate:0.00167 });
+                luxe.tween.Actuate.tween( Luxe, 0.8, { timescale:0.3 });
             } else {
-                luxe.tween.Actuate.tween( Luxe.physics.bullet, 0.8, { step_rate:0.0167, rate:0.0167 });
+                luxe.tween.Actuate.tween( Luxe, 0.8, { timescale:1 });
             }
         }
 

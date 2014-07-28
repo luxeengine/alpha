@@ -204,8 +204,8 @@ class FlyCamera extends luxe.Camera {
             return;
         }
 
-        trace('${e.x} / ${e.y}   ${e.xrel} / ${e.yrel}');
-        mouse_delta.set(e.xrel, e.yrel);
+        // trace('${e.x} / ${e.y}   ${e.xrel} / ${e.yrel}');
+        // mouse_delta.set(e.xrel, e.yrel);
 
     } //onmousemove
 
