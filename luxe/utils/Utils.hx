@@ -24,20 +24,16 @@ class Utils {
     }  //new
 
     public function uniqueid() : String {
+
         return haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
+
     } //uniqueid
 
     public function uuid() : String {
+
     	return UUID.get();
+
     } //uuid
-
-    public function base64_encode(_string:String) {
-        return Base64.encode(_string);
-    } //base64_encode
-
-    public function base64_decode(_string:String) {
-        return Base64.decode(_string);
-    } //base64_decode
 
     public function stacktrace( ?_depth:Int = 100 ) : String {
 

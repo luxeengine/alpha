@@ -170,7 +170,7 @@ class TiledLayer {
     static function tiled_base64_to_IntArray( base64_data:String, lineWidth:Int, compression:String ):Array<Int> {
 
         var result:Array<Int> = new Array<Int>();
-        var data:ByteArray = tiled_base64_to_ByteArray( base64_data );
+        var data:ByteArray = ByteArray.fromBytes( haxe.crypto.Base64.decode(base64_data) );
 
             //handle zip compression
         if(compression != 'none') {
@@ -212,46 +212,5 @@ class TiledLayer {
         return result;
 
     } //tiled_base64_to_IntArray
-
-    static inline var BASE64_CHARS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-    static function tiled_base64_to_ByteArray(data:String):ByteArray {
-
-        var output:ByteArray = new ByteArray();
-        var lookup:Array<Int> = new Array<Int>();
-        var c:Int;
-
-            for (c in 0...BASE64_CHARS.length){
-                lookup[BASE64_CHARS.charCodeAt(c)] = c;
-            }
-
-            var i:Int = 0;
-            while (i < data.length - 3) {
-                // Ignore whitespace
-                if (data.charAt(i) == " " || data.charAt(i) == "\n"){
-                    i++; continue;
-                }
-
-                //read 4 bytes and look them up in the table
-                var a0:Int = lookup[data.charCodeAt(i)];
-                var a1:Int = lookup[data.charCodeAt(i + 1)];
-                var a2:Int = lookup[data.charCodeAt(i + 2)];
-                var a3:Int = lookup[data.charCodeAt(i + 3)];
-
-                // convert to and write 3 bytes
-                if(a1 < 64)
-                    output.writeByte((a0 << 2) + ((a1 & 0x30) >> 4));
-                if(a2 < 64)
-                    output.writeByte(((a1 & 0x0f) << 4) + ((a2 & 0x3c) >> 2));
-                if(a3 < 64)
-                    output.writeByte(((a2 & 0x03) << 6) + a3);
-
-                i += 4;
-            }
-
-                //Rewind & return decoded data
-            output.position = 0;
-
-        return output;
-    } //tiled_base64_to_ByteArray
 
 }
