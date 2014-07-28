@@ -20,6 +20,7 @@ class ApplicationMain {
 		_core = new Core( _game );
 
         var _snow_config : SnowConfig = {
+            has_loop : true,
             config_custom_assets : false,
             config_custom_runtime : false,
             config_runtime_path : 'config.json',
