@@ -252,7 +252,7 @@ class Texture extends Resource {
             //Now we can bind it,
         bind();
             //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
+        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width_actual, height_actual, 0, GL.RGBA, GL.UNSIGNED_BYTE, asset.image.data );
 
             //Set the existing properties on the new texture
         _set_filter( filter );
