@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - particles',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_particles',
+      title : 'luxe test particles',
+      package : 'com.luxeengine.testfonts'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

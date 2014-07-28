@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - texturepacker',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_texturepacker',
+      title : 'luxe test texturepacker',
+      package : 'com.luxeengine.testtexturepacker'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

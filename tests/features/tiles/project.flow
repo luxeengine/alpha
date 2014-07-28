@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - tiles',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_tiles',
+      title : 'luxe test tiles',
+      package : 'com.luxeengine.testtiles'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

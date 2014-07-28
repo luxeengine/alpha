@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - groups',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_groups',
+      title : 'luxe test groups',
+      package : 'com.luxeengine.testgroups'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

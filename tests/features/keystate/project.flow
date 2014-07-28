@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - keystate',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_keystate',
+      title : 'luxe test keystate',
+      package : 'com.luxeengine.testfonts'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

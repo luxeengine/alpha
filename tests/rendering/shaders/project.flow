@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - shaders',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_shaders',
+      title : 'luxe test shaders',
+      package : 'com.luxeengine.testshaders'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

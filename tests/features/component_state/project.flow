@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - componentstate',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_componentstate',
+      title : 'luxe test componentstate',
+      package : 'com.luxeengine.testcomponentstate'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

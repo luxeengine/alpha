@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - nineslice',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_nineslice',
+      title : 'luxe test nineslice',
+      package : 'com.luxeengine.testnineslice'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

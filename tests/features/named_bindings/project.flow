@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - namedbinding',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_namedbinding',
+      title : 'luxe test namedbinding',
+      package : 'com.luxeengine.testnamedbinding'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

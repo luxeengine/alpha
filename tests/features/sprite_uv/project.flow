@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - spriteuv',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_spriteuv',
+      title : 'luxe test spriteuv',
+      package : 'com.luxeengine.testspriteuv'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

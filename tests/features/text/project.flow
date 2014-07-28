@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - text',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_text',
+      title : 'luxe test text',
+      package : 'com.luxeengine.testfonts'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

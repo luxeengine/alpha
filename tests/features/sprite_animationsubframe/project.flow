@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - spriteanimsf',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_spriteanimsf',
+      title : 'luxe test spriteanimsf',
+      package : 'com.luxeengine.testspriteanimsf'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

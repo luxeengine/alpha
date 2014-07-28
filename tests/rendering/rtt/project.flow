@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - rtt',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_rtt',
+      title : 'luxe test rtt',
+      package : 'com.luxeengine.testrtt'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

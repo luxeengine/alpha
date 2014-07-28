@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - states',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_states',
+      title : 'luxe test states',
+      package : 'com.luxeengine.teststates'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

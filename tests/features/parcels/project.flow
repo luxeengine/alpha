@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - parcel',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_parcel',
+      title : 'luxe test parcel',
+      package : 'com.luxeengine.testparcel'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

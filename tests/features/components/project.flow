@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - components',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_components',
+      title : 'luxe test components',
+      package : 'com.luxeengine.testcomponents'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

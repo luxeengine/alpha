@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - cameraviews',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_cameraviews',
+      title : 'luxe test cameraviews',
+      package : 'com.luxeengine.testcameraviews'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

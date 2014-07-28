@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - tween',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_tween',
+      title : 'luxe test tween',
+      package : 'com.luxeengine.testtween'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

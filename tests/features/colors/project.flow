@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - colors',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_colors',
+      title : 'luxe test colors',
+      package : 'com.luxeengine.testcolors'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

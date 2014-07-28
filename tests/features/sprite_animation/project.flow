@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - spriteanim',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_spriteanim',
+      title : 'luxe test spriteanim',
+      package : 'com.luxeengine.testspriteanim'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

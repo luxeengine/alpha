@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - transforms',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_transforms',
+      title : 'luxe test transforms',
+      package : 'com.luxeengine.testtransforms'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

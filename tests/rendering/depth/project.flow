@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - depth',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_depth',
+      title : 'luxe test depth',
+      package : 'com.luxeengine.testdepth'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

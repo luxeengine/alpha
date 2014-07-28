@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - luxemark',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_luxemark',
+      title : 'luxe test luxemark',
+      package : 'com.luxeengine.testluxemark'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

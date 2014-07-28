@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - audio',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_audio',
+      title : 'luxe test audio',
+      package : 'com.luxeengine.testaudio'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

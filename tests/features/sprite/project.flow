@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - sprite',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_sprite',
+      title : 'luxe test sprite',
+      package : 'com.luxeengine.testsprite'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

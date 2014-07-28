@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'luxe - test - complexgeometry',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_complexgeometry',
+      title : 'luxe test complexgeometry',
+      package : 'com.luxeengine.testcomplexgeometry'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
