@@ -24,7 +24,7 @@ class Main extends luxe.Game {
     var end : Float = 0;
     override function ready() {
 
-        Luxe.renderer.vsync = false;
+        Luxe.renderer.vsync = true;
         Luxe.physics.step_rate = 1/240;
         Luxe.physics.steps = 4;
         Luxe.core.update_rate = 1/60;
