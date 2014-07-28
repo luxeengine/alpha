@@ -36,6 +36,9 @@ class Main extends luxe.Game {
     } //onmousemove
 
     function hittest( e:Vector ) {
+            //wait for loading on web
+        if(test_sprite1.geometry == null) return;
+
         if( test_sprite1.point_inside(e) ) {
             if(!inside) {
                 inside = true;
