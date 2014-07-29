@@ -11,6 +11,9 @@
     version : '1.0.0-alpha.1',
     author : 'luxeengine',
 
+    app : {
+      icon : 'flowtemplates/icons/ => luxe'
+    },
     build : {
       flags : [
           "-resource version@version",
