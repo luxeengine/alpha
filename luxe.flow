@@ -12,7 +12,7 @@
     author : 'luxeengine',
 
     app : {
-      icon : 'flowtemplates/icons/ => luxe'
+      icon : 'flow/icons/ => luxe'
     },
     build : {
       flags : [
@@ -32,7 +32,7 @@
         snow : '*'
       },
       files : {
-        boot : { path:'flowtemplates/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow'] },
+        boot : { path:'flow/boot/LuxeApp.hx => haxe/LuxeApp.hx', template:['project','snow'] },
       }
     }
 
