@@ -80,6 +80,11 @@ class RenderState {
     public function bindFramebuffer( ?buffer:GLFramebuffer=null ) {
 
         if(_current_fbo != buffer) {
+
+            if(buffer == null) {
+                buffer = renderer.default_fbo;
+            }
+
             GL.bindFramebuffer( GL.FRAMEBUFFER, buffer );
             _current_fbo = buffer;
         }
@@ -90,6 +95,11 @@ class RenderState {
     public function bindRenderbuffer( ?buffer:GLRenderbuffer=null ) {
 
         if(_current_rbo != buffer) {
+
+            if(buffer == null) {
+                buffer = renderer.default_rbo;
+            }
+
             GL.bindRenderbuffer( GL.RENDERBUFFER, buffer );
             _current_rbo = buffer;
         }

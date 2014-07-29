@@ -43,6 +43,7 @@ class Renderer {
     public var core : Core;
     public var state : RenderState;
     public var default_fbo : GLFramebuffer;
+    public var default_rbo : GLRenderbuffer;
         //Default rendering
     public var default_shader : Shader;
     public var default_shader_textured : Shader;
@@ -80,7 +81,11 @@ class Renderer {
         var default_fbo_id : Int = GL.getParameter(GL.FRAMEBUFFER_BINDING);
             default_fbo = new GLFramebuffer( default_fbo_id );
 
-        log("default FBO set to " + default_fbo);
+        var default_rbo_id : Int = GL.getParameter(GL.RENDERBUFFER_BINDING);
+            default_rbo = new GLRenderbuffer( default_rbo_id );
+
+        log("default Framebuffer set to " + default_fbo);
+        log("default Renderbuffer set to " + default_fbo);
 
     } //new
 
@@ -274,7 +279,7 @@ function get_target() : RenderTexture {
             target_size.x = Luxe.screen.w;
             target_size.y = Luxe.screen.h;
 
-            state.bindFramebuffer( default_fbo );
+            state.bindFramebuffer();
 
         }
 
