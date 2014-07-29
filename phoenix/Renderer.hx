@@ -75,6 +75,13 @@ class Renderer {
 
         core = _core;
 
+            //store the default FBO as on some platforms
+            //it is not the same as 0
+        var default_fbo_id : Int = GL.getParameter(GL.FRAMEBUFFER_BINDING);
+            default_fbo = new GLFramebuffer( default_fbo_id );
+
+        log("default FBO set to " + default_fbo);
+
     } //new
 
     public function init() {
@@ -266,10 +273,7 @@ function get_target() : RenderTexture {
 
             target_size.x = Luxe.screen.w;
             target_size.y = Luxe.screen.h;
-                //:todo: On iOS and some platforms the default
-                //fbo id is not null/0, it is an actual value
-                //which needs to be queried at creation and stored
-                //for use here instead, but leaving it null works for most platforms
+
             state.bindFramebuffer( default_fbo );
 
         }
