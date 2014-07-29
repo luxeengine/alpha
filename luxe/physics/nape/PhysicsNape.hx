@@ -40,19 +40,11 @@ package luxe.physics.nape;
         } //render
 
             //update the actual physics
-        var end : Float = 0.0;
         public override function update() {
-
-                //time the fixed update
-            // Sys.println(Luxe.time - end);
-            // end = Luxe.time;
 
             if(!paused) {
 
-                for(i in 0 ... Luxe.physics.steps) {
-                    var ts_step = Luxe.physics.step_size * Luxe.timescale;
-                    space.step( ts_step, velocity_iterations, position_iterations );
-                }
+                space.step( Luxe.physics.step_delta * Luxe.timescale, velocity_iterations, position_iterations );
 
             } //paused
 

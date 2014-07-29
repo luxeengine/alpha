@@ -29,10 +29,8 @@ class Physics {
 
         //how often to update
     public var step_rate (default,set) : Float = 1/60;
-        //how many steps per update
-    public var steps (default,set) : Int = 1;
-        //how much is a single step. This is set from step_rate/steps
-    public var step_size : Float = 1/60;
+        //how much is a single step. This is set from step_rate initially, but can be changed manually
+    public var step_delta : Float = 1/60;
 
 //Physics fixed updates
     @:noCompletion public var timer : Timer;
@@ -65,8 +63,12 @@ class Physics {
             timer = null;
         }
 
-            //Start the physics update loop
-        timer = Luxe.timer.schedule( step_rate, fixed_update, true );
+        if(step_rate != 0) {
+
+                //Start the physics update loop
+            timer = Luxe.timer.schedule( step_rate, fixed_update, true );
+
+        } //only if there is a step rate
 
     } //reset
 
@@ -99,7 +101,8 @@ class Physics {
 
     } //add_engine
 
-    function update() {
+        /** Only call this manually if step_rate is 0! */
+    public function update() {
         for(engine in engines) {
             engine.update();
         }
@@ -133,7 +136,7 @@ class Physics {
 
             //update the step size
         step_rate = _rate;
-        step_size = step_rate/steps;
+        step_delta = step_rate;
 
             //reset the timer so it runs at the new rate
         reset();
@@ -141,18 +144,6 @@ class Physics {
         return step_rate;
 
     } //set_step_rate
-
-
-        //on changing the fixed rate, update the physics timer
-    function set_steps( _steps:Int ) {
-
-            //update the step size
-        steps = _steps;
-        step_size = step_rate/steps;
-
-        return steps;
-
-    } //set_steps
 
 
 } //Physics
