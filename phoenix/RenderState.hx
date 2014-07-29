@@ -12,7 +12,7 @@ class RenderState {
 
     public function new( _renderer:Renderer ) {
         renderer = _renderer;
-        _viewport = new Rectangle( 0, 0, Luxe.screen.w, Luxe.screen.h );
+        _viewport = new Rectangle( 0, 0, 0, 0 );
     }
 
     public function enable( what:Int ) {
