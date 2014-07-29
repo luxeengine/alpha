@@ -91,7 +91,8 @@ package luxe.physics.bullet;
             if(!paused) {
 
                     //Update the simulation
-                world.stepSimulation( Luxe.physics.step_delta * Luxe.timescale, max_iterations, ts_step );
+                var ts_step : Float = Luxe.physics.step_delta * Luxe.timescale;
+                world.stepSimulation( ts_step, max_iterations, ts_step );
 
             } //paused
 
