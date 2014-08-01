@@ -20,7 +20,7 @@ import luxe.Screen;
 class Luxe {
 
         /** The last known mouse position */
-    public static var mouse             : Vector;
+    public static var mouse     : Vector;
 
         /** Direct access to the core engine */
     public static var core      : luxe.Core;
@@ -239,7 +239,7 @@ class Luxe {
         /** Open the system default browser with the given URL */
     public static function openURL( _url:String ) {
 
-        snow.io.IO.url_open( _url );
+        core.app.io.url_open( _url );
 
     } //openURL
 
