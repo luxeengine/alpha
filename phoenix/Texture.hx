@@ -170,15 +170,20 @@ class Texture extends Resource {
 
         var _asset = Luxe.core.app.assets.image(_id, {
             onload : function( asset:AssetImage ) {
-                if(asset != null) {
+                if(asset != null && asset.image != null) {
+
                     texture.from_asset(asset);
                     texture.reset();
                     texture.do_onload();
 
                     if(!_silent) {
-                        log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')') ;
+                        log("texture loaded " + texture.id + ' (' + texture.width + 'x' + texture.height + ') real size ('+ texture.width_actual + 'x' + texture.height_actual +')');
                     }
 
+                } else { //asset != null
+                    if(!_silent) {
+                        log("texture failed to load! " + _id);
+                    }
                 }
             }
         });
