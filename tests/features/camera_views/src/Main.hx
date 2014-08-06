@@ -254,62 +254,62 @@ class Main extends luxe.Game {
     } //onmouseup
 
     override function onkeydown( e:KeyEvent ) {
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             view_move = true;
         }
     }
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             view_move = false;
             camera_1.viewport.x = 0;
             camera_1.viewport.y = 0;
         }
 
 
-        if(e.keycode == Key.LEFT) {
+        if(e.keycode == Key.left) {
             current_camera.pos.x -= 480;
         }
-        if(e.keycode == Key.RIGHT) {
+        if(e.keycode == Key.right) {
             current_camera.pos.x += 480;
         }
-        if(e.keycode == Key.UP) {
+        if(e.keycode == Key.up) {
             current_camera.pos.y -= 320;
         }
-        if(e.keycode == Key.DOWN) {
+        if(e.keycode == Key.down) {
             current_camera.pos.y += 320;
         }
 
-        if(e.keycode == Key.KEY_1) {
+        if(e.keycode == Key.key_1) {
             current_camera.zoom = 1;
         }
-        if(e.keycode == Key.KEY_2) {
+        if(e.keycode == Key.key_2) {
             current_camera.zoom = 2;
         }
-        if(e.keycode == Key.KEY_3) {
+        if(e.keycode == Key.key_3) {
             current_camera.zoom = 0.5;
         }
-        if(e.keycode == Key.KEY_4) {
+        if(e.keycode == Key.key_4) {
             current_camera.center = new Vector(240,480);
         }
-        if(e.keycode == Key.KEY_5) {
+        if(e.keycode == Key.key_5) {
             current_camera.center = new Vector(240,160);
         }
-        if(e.keycode == Key.KEY_6) {
+        if(e.keycode == Key.key_6) {
             current_camera.rotation = z_rot(0);
         }
-        if(e.keycode == Key.KEY_7) {
+        if(e.keycode == Key.key_7) {
             current_camera.rotation = z_rot(45);
         }
-        if(e.keycode == Key.KEY_8) {
+        if(e.keycode == Key.key_8) {
             current_camera.rotation = z_rot(90);
         }
-        if(e.keycode == Key.KEY_9) {
+        if(e.keycode == Key.key_9) {
             current_camera.rotation = z_rot(180);
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

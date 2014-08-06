@@ -43,13 +43,13 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             var nsx : Int = Math.round( 100+(Math.random()*600) );
             var nsy : Int = Math.round( 100+(Math.random()*600) );
             Actuate.tween( this , 0.2 , { sx:nsx, sy:nsy } , true ).onUpdate(sizechange);
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

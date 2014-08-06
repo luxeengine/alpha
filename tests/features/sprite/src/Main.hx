@@ -65,7 +65,7 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_r) {
+        if(e.keycode == Key.key_r) {
 
             if(_sizes == null) {
                 _sizes = [
@@ -87,11 +87,11 @@ class Main extends luxe.Game {
 
         } //key_R
 
-        if(e.keycode == Key.KEY_f) {
+        if(e.keycode == Key.key_f) {
             test_sprite1.flipy = !test_sprite1.flipy;
         }
 
-        if(e.keycode == Key.KEY_s) {
+        if(e.keycode == Key.key_s) {
 
             if(_scales == null) {
                 _scales = [
@@ -113,7 +113,7 @@ class Main extends luxe.Game {
 
         } //key_S
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         } //escape
 

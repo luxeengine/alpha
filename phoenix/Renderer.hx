@@ -79,24 +79,11 @@ class Renderer {
             //store the default FBO as on some platforms
             //it is not the same as 0
 
-            //:todo: fix this in snow level
-        #if snow_html5
-
-            default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
-            default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
-
-        #else
-
-            var def_fbo_id : Int = GL.getParameter(GL.FRAMEBUFFER_BINDING);
-            var def_rbo_id : Int = GL.getParameter(GL.RENDERBUFFER_BINDING);
-
-                default_fbo = new GLFramebuffer(def_fbo_id);
-                default_rbo = new GLRenderbuffer(def_rbo_id);
-
-        #end //
+        default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
+        default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
 
         log("default Framebuffer set to " + default_fbo);
-        log("default Renderbuffer set to " + default_fbo);
+        log("default Renderbuffer set to " + default_rbo);
 
     } //new
 

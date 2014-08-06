@@ -154,14 +154,14 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_r) {
+        if(e.keycode == Key.key_r) {
 
             child.pos = new Vector(10,10,10);
             child_of_child.pos = new Vector(50,0,10);
 
         } //R key
 
-        if(e.keycode == Key.KEY_p) {
+        if(e.keycode == Key.key_p) {
 
             if(child.parent != null) {
                 child.parent = null;
@@ -176,11 +176,11 @@ class Main extends luxe.Game {
 
         } //key_P
 
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             od = !od;
         } //space
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         } //escape
 

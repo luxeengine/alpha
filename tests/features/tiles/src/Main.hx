@@ -143,19 +143,19 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.KEY_1) { Luxe.camera.zoom = 1.0; }
-        if(e.keycode == Key.KEY_2) { Luxe.camera.zoom = 2.0; }
-        if(e.keycode == Key.KEY_3) { Luxe.camera.zoom = 0.5; }
+        if(e.keycode == Key.key_1) { Luxe.camera.zoom = 1.0; }
+        if(e.keycode == Key.key_2) { Luxe.camera.zoom = 2.0; }
+        if(e.keycode == Key.key_3) { Luxe.camera.zoom = 0.5; }
 
-        if(e.keycode == Key.KEY_a || e.keycode == Key.LEFT) {
+        if(e.keycode == Key.key_a || e.keycode == Key.left) {
             left_down = false;
         }
 
-        if(e.keycode == Key.KEY_d || e.keycode == Key.RIGHT) {
+        if(e.keycode == Key.key_d || e.keycode == Key.right) {
             right_down = false;
         }
 
@@ -166,11 +166,11 @@ class Main extends luxe.Game {
 
     override function onkeydown( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_a || e.keycode == Key.LEFT) {
+        if(e.keycode == Key.key_a || e.keycode == Key.left) {
             left_down = true;
         }
 
-        if(e.keycode == Key.KEY_d || e.keycode == Key.RIGHT) {
+        if(e.keycode == Key.key_d || e.keycode == Key.right) {
             right_down = true;
         }
 

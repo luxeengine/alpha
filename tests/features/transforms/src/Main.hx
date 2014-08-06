@@ -150,7 +150,7 @@ class Main extends luxe.Game {
     override function onkeydown( e:KeyEvent ) {
 
 
-        if(e.keycode == Key.KEY_p) {
+        if(e.keycode == Key.key_p) {
             if(qg.transform.parent == null) {
                 qg.transform.parent = d1;
                 qg.transform.pos = new Vector();
@@ -160,7 +160,7 @@ class Main extends luxe.Game {
             }
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

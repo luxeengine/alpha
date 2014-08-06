@@ -6,8 +6,8 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        Luxe.input.add('fire', Key.SPACE);
-        Luxe.input.add('fire', Key.KEY_z);
+        Luxe.input.add('fire', Key.space);
+        Luxe.input.add('fire', Key.key_z);
         Luxe.input.add('fire', MouseButton.left);
 
     } //ready
@@ -21,7 +21,7 @@ class Main extends luxe.Game {
     } //oninputdown
 
     override function onkeyup( e:KeyEvent ) {
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
     } //onkeyup

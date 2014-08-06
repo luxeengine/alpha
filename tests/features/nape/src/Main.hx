@@ -147,12 +147,12 @@ class Main extends luxe.Game {
     var ramp = false;
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_r) {
+        if(e.keycode == Key.key_r) {
             Luxe.physics.nape.space.clear();
             reset_world();
         }
 
-        if(e.keycode == Key.KEY_e) {
+        if(e.keycode == Key.key_e) {
             ramp = !ramp;
             if(ramp) {
                 luxe.tween.Actuate.tween( Luxe, 0.8, { timescale:0.3 });
@@ -161,21 +161,21 @@ class Main extends luxe.Game {
             }
         }
 
-        if(e.keycode == Key.KEY_g) {
+        if(e.keycode == Key.key_g) {
             Luxe.physics.nape.draw = !Luxe.physics.nape.draw;
         }
 
-        if(e.keycode == Key.LEFT) {
+        if(e.keycode == Key.left) {
             ball.applyImpulse(new Vec2(-impulse, 0), ball.position);
         }
-        if(e.keycode == Key.UP) {
+        if(e.keycode == Key.up) {
             ball.applyImpulse(new Vec2(0, -impulse), ball.position);
         }
-        if(e.keycode == Key.RIGHT) {
+        if(e.keycode == Key.right) {
             ball.applyImpulse(new Vec2(impulse, 0), ball.position);
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

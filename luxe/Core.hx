@@ -444,7 +444,7 @@ class Core extends snow.App {
 
         game.onkeydown(event);
 
-        if(keycode == Key.BACKQUOTE) {
+        if(keycode == Key.backquote) {
             show_console( !console_visible );
         }
 

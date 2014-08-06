@@ -71,15 +71,15 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.KEY_a) {
+        if(e.keycode == Key.key_a) {
             sprite.active = !sprite.active;
         }
 
-        if(e.keycode == Key.KEY_t) {
+        if(e.keycode == Key.key_t) {
             spam = !spam;
         }
 
@@ -115,7 +115,7 @@ class RandomCameraShaker extends Component {
     } //set_shake
 
     public function onkeyup(e:KeyEvent) {
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             shake();
         }
     }

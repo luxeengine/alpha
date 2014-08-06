@@ -24,7 +24,7 @@ class Main extends luxe.Game {
     override function onkeyup( e:KeyEvent ) {
 
             //quit when we press escape
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

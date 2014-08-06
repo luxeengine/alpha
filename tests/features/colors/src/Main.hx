@@ -103,7 +103,7 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             bar_color.tween( 1, { h : 0.5, v : 0 } ).onUpdate(
                 function(){
                     hsb_strip_top.color = bar_color;
@@ -112,7 +112,7 @@ class Main extends luxe.Game {
             );
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

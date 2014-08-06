@@ -55,12 +55,12 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_a) {
+        if(e.keycode == Key.key_a) {
             toggle_value = !toggle_value;
             toggle_component( toggle_value );
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

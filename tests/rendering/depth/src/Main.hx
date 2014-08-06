@@ -49,21 +49,21 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             var d= sprites[0].depth;
             sprites[0].depth = d;
         }
 
-        if(e.keycode == Key.EQUALS) {
+        if(e.keycode == Key.equals) {
             sprites[0].depth+=1;
             trace(sprites[0].depth);
         }
 
-        if(e.keycode == Key.MINUS) {
+        if(e.keycode == Key.minus) {
             sprites[0].depth-=1;
             trace(sprites[0].depth);
         }

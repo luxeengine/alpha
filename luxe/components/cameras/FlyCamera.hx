@@ -217,20 +217,20 @@ class FlyCamera extends luxe.Camera {
             mouse_delta.set(0,0);
         }
 
-        if(e.keycode == Key.UP || e.keycode == Key.KEY_w) {
+        if(e.keycode == Key.up || e.keycode == Key.key_w) {
             move_forward = true;
         }
-        if(e.keycode == Key.DOWN || e.keycode == Key.KEY_s) {
+        if(e.keycode == Key.down || e.keycode == Key.key_s) {
             move_back = true;
         }
-        if(e.keycode == Key.LEFT || e.keycode == Key.KEY_a) {
+        if(e.keycode == Key.left || e.keycode == Key.key_a) {
             move_left = true;
         }
-        if(e.keycode == Key.RIGHT || e.keycode == Key.KEY_d) {
+        if(e.keycode == Key.right || e.keycode == Key.key_d) {
             move_right = true;
         }
 
-        if(e.keycode == Key.LSHIFT || e.keycode == Key.RSHIFT) {
+        if(e.keycode == Key.lshift || e.keycode == Key.rshift) {
             move_speed_scale = 4;
         }
 
@@ -238,19 +238,19 @@ class FlyCamera extends luxe.Camera {
 
     public function onkeyup(e) {
 
-        if(e.keycode == Key.UP || e.keycode == Key.KEY_w) {
+        if(e.keycode == Key.up || e.keycode == Key.key_w) {
             move_forward = false;
         }
-        if(e.keycode == Key.DOWN || e.keycode == Key.KEY_s) {
+        if(e.keycode == Key.down || e.keycode == Key.key_s) {
             move_back = false;
         }
-        if(e.keycode == Key.LEFT || e.keycode == Key.KEY_a) {
+        if(e.keycode == Key.left || e.keycode == Key.key_a) {
             move_left = false;
         }
-        if(e.keycode == Key.RIGHT || e.keycode == Key.KEY_d) {
+        if(e.keycode == Key.right || e.keycode == Key.key_d) {
             move_right = false;
         }
-        if(e.keycode == Key.LSHIFT || e.keycode == Key.RSHIFT) {
+        if(e.keycode == Key.lshift || e.keycode == Key.rshift) {
             move_speed_scale = 1;
         }
 

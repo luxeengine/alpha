@@ -213,42 +213,42 @@ class Main extends luxe.Game {
 
     override function onkeydown( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_q) {
+        if(e.keycode == Key.key_q) {
             cam3d.shake(2);
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
-        if(e.keycode == Key.SPACE) {
+        if(e.keycode == Key.space) {
             Luxe.physics.bullet.paused = !Luxe.physics.bullet.paused;
         }
 
-        if(e.keycode == Key.KEY_c) {
+        if(e.keycode == Key.key_c) {
             create_cube();
         }
 
-        if(e.keycode == Key.KEY_g) {
+        if(e.keycode == Key.key_g) {
             Luxe.physics.bullet.draw = !Luxe.physics.bullet.draw;
         }
 
-        if(e.keycode == Key.KEY_f) {
+        if(e.keycode == Key.key_f) {
             follow = !follow;
             if(!follow) {
                 cam3d.view.target = null;
             }
         }
 
-        if(e.keycode == Key.EQUALS) {
+        if(e.keycode == Key.equals) {
             cam3d.view.fov += 10;
         }
 
-        if(e.keycode == Key.MINUS) {
+        if(e.keycode == Key.minus) {
             cam3d.view.fov -= 10;
         }
 
-        if(e.keycode == Key.KEY_e) {
+        if(e.keycode == Key.key_e) {
             ramp = !ramp;
             if(ramp) {
                 luxe.tween.Actuate.tween( Luxe, 0.8, { timescale:0.3 });
@@ -267,7 +267,7 @@ class Main extends luxe.Game {
 
     override function onkeyup(e:KeyEvent) {
 
-        if(e.keycode == Key.KEY_r) {
+        if(e.keycode == Key.key_r) {
             cube_rigidbody.rigid_body.origin = new Vector(0,10,0);
             cube_rigidbody.rigid_body.linearVelocity = new Vector(0,0,0);
             cube_rigidbody.rigid_body.angularVelocity = new Vector(0,0,0);

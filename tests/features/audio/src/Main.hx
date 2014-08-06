@@ -32,22 +32,22 @@ class Main extends luxe.Game {
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.KEY_r) {
+        if(e.keycode == Key.key_r) {
             // Luxe.audio.position('music', 0);
         }
 
-        if(e.keycode == Key.KEY_l) {
+        if(e.keycode == Key.key_l) {
             Luxe.audio.play('sound');
         }
 
-        if(e.keycode == Key.KEY_s) {
+        if(e.keycode == Key.key_s) {
             Luxe.audio.stop('music');
         }
-        if(e.keycode == Key.KEY_p) {
+        if(e.keycode == Key.key_p) {
             Luxe.audio.play('music');
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 

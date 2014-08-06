@@ -51,10 +51,10 @@ class Main extends luxe.Game {
             origin : new Vector( 10, 40 )
         });
 
-        Luxe.input.add('jump', Key.KEY_w );
-        Luxe.input.add('jump', Key.KEY_z );
-        Luxe.input.add('jump', Key.SPACE );
-        Luxe.input.add('jump', Key.UP );
+        Luxe.input.add('jump', Key.key_w );
+        Luxe.input.add('jump', Key.key_z );
+        Luxe.input.add('jump', Key.space );
+        Luxe.input.add('jump', Key.up );
 
         vel = new Vector(0,0);
 
@@ -118,17 +118,17 @@ class Main extends luxe.Game {
 
     override function onkeydown( e:KeyEvent ) {
 
-        if(e.keycode == Key.LEFT || e.keycode == Key.KEY_a) { left = true; }
-        if(e.keycode == Key.RIGHT || e.keycode == Key.KEY_d) { right = true; }
+        if(e.keycode == Key.left || e.keycode == Key.key_a) { left = true; }
+        if(e.keycode == Key.right || e.keycode == Key.key_d) { right = true; }
 
     } //onkeydown
 
     override function onkeyup( e:KeyEvent ) {
 
-        if(e.keycode == Key.LEFT || e.keycode == Key.KEY_a) { left = false; }
-        if(e.keycode == Key.RIGHT || e.keycode == Key.KEY_d) { right = false; }
+        if(e.keycode == Key.left || e.keycode == Key.key_a) { left = false; }
+        if(e.keycode == Key.right || e.keycode == Key.key_d) { right = false; }
 
-        if(e.keycode == Key.KEY_s) {
+        if(e.keycode == Key.key_s) {
             shift_scale = !shift_scale;
             if(shift_scale) {
                 box.color.rgb(0x00cc00);
@@ -138,7 +138,7 @@ class Main extends luxe.Game {
             }
         }
 
-        if(e.keycode == Key.ESCAPE) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
