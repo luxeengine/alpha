@@ -31,7 +31,24 @@ class Audio {
         */
     public function create( _name:String, _file:String, ?_stream:Bool = false ) : snow.audio.Sound {
         return core.app.audio.create( _name, _file, _stream );
-    } //create
+    } //create      
+
+        /**
+            Destroy a named audio reference.
+            Use the reference directly with sound.destroy if you have an instance. */
+    public function uncreate( _name:String ) {
+        return core.app.audio.uncreate( _name );
+    } //uncreate
+
+        /** Listen for an event on a named sound. `load` and `end` are valid */
+    public function on(_name:String, _event:String, _handler:snow.audio.Sound->Void) {
+        return core.app.audio.on(_name, _event, _handler);
+    } //on
+
+        /** Stop listening for an event on a named sound. See `on` */
+    public function off(_name:String, _event:String, _handler:snow.audio.Sound->Void) {
+        return core.app.audio.off(_name, _event, _handler);
+    } //off
 
         /**
             Fetch a named audio reference   

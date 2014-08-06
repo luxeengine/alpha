@@ -12,7 +12,9 @@ class Main extends luxe.Game {
         Luxe.audio.create('assets/sound.ogg', 'sound');
         Luxe.audio.create('assets/ambience.ogg', 'music');
 
-        Luxe.audio.loop('music');
+        Luxe.audio.on('music', 'load', function(s:snow.audio.Sound) {
+            Luxe.audio.loop('music');
+        });
 
         // //pan from left to right and back
         // luxe.tween.Actuate.tween(this, 20, { pan:-1 })
