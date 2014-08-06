@@ -104,30 +104,50 @@ class Audio {
     } //toggle
 
         /**
-            set the volume of a named audio reference   
+            get/set the volume of a named audio reference,   
+            leave the second argument empty for get   
             **name** The audio reference name to adjust   
             **volume** A new volume value
         */
-    public function volume( _name:String, _volume:Float ) : Void {
+    public function volume( _name:String, ?_volume:Float ) : Float {
         return core.app.audio.volume(_name, _volume);
     } //volume
 
         /**
-            set the pan of a named audio reference   
+            get/set the pan of a named audio reference,   
+            leave the second argument empty for get   
             **name** The audio reference name to adjust   
             **pan** A new pan value
         */
-    public function pan( _name:String, _pan:Float ) : Void  {
+    public function pan( _name:String, ?_pan:Float ) : Float  {
         return core.app.audio.pan(_name,_pan);
     } //pan
 
         /**
-            set the pitch of a named audio reference   
+            get/set the pitch of a named audio reference,   
+            leave the second argument empty for get   
             **name** The audio reference name to adjust   
             **pitch** A new pitch value
         */
-    public function pitch( _name:String, _pitch:Float ) : Void {
+    public function pitch( _name:String, ?_pitch:Float ) : Float {
         return core.app.audio.pitch( _name, _pitch );
+    } //pitch
+        /**
+            get/set the position in `seconds` of a named audio reference,   
+            leave the second argument empty for get   
+            **name** The audio reference name to adjust   
+            **pan** A new pan value
+        */
+    public function position( _name:String, ?_position:Float ) : Float  {
+        return core.app.audio.position(_name, _position);
+    } //pan
+
+        /**
+            get the position in seconds of a named audio reference   
+            **name** The audio reference name to get   
+        */
+    public function duration( _name:String ) : Float {
+        return core.app.audio.duration( _name );
     } //pitch
 
     @:noCompletion public function process() {
