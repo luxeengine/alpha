@@ -118,10 +118,6 @@ class FlyCamera extends luxe.Camera {
 
         }
 
-            //Lock the cursor center screen so we can go in circles
-        Luxe.screen.cursor.pos = Luxe.screen.mid;
-
-
         if(move_forward) {
             newpos.add( Vector.Multiply(forward, move_diff) );
         }
@@ -177,9 +173,9 @@ class FlyCamera extends luxe.Camera {
             enable();
         }
 
-        if(e.button == MouseButton.left && !Luxe.screen.cursor.visible ) {
+        if(e.button == MouseButton.left && !Luxe.screen.cursor.lock) {
             Luxe.screen.cursor.lock = true;
-        } else if(e.button == MouseButton.right && !Luxe.screen.cursor.visible) {
+        } else if(e.button == MouseButton.right && Luxe.screen.cursor.lock) {
             Luxe.screen.cursor.lock = false;
             ready = false;
         }
@@ -189,9 +185,6 @@ class FlyCamera extends luxe.Camera {
     public function enable() {
 
         mouse_delta.set( 0,0 );
-
-        Luxe.screen.cursor.pos = Luxe.screen.mid;
-        Luxe.screen.cursor.lock = true;
 
         ready = true;
 
@@ -204,16 +197,14 @@ class FlyCamera extends luxe.Camera {
             return;
         }
 
-        // trace('${e.x} / ${e.y}   ${e.xrel} / ${e.yrel}');
-        // mouse_delta.set(e.xrel, e.yrel);
+        mouse_delta.set(e.xrel, e.yrel);
 
     } //onmousemove
 
     public function onkeydown(e) {
 
             //disabling console, don't allow spinning to new position
-        if(e.scancode == Scan.GRAVE && Luxe.core.console_visible == true) {
-            Luxe.screen.cursor.pos = Luxe.screen.mid;
+        if(e.scancode == Scan.grave && Luxe.core.console_visible == true) {
             mouse_delta.set(0,0);
         }
 

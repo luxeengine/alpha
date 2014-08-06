@@ -584,8 +584,8 @@ class Core extends snow.App {
             button : MouseButton.none,
             x : x,
             y : y,
-            xrel : x,
-            yrel : y,
+            xrel : xrel,
+            yrel : yrel,
             pos : _mouse_pos,
         }
 
