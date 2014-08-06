@@ -229,6 +229,7 @@ class Input {
     } //process
 
 //Input query
+//Keys
 
     public function keypressed( _code:Int ) : Bool {
         return core.app.input.keypressed( _code );
@@ -241,6 +242,52 @@ class Input {
     public function keydown( _code:Int ) : Bool{
         return core.app.input.keydown( _code );
     } //keydown
+
+
+    public function scanpressed( _code:Int ) : Bool {
+        return core.app.input.scanpressed( _code );
+    } //scanpressed
+
+    public function scanreleased( _code:Int ) : Bool{
+        return core.app.input.scanreleased( _code );
+    } //scanreleased
+
+    public function scandown( _code:Int ) : Bool{
+        return core.app.input.scandown( _code );
+    } //scandown
+
+//Mouse
+
+    public function mousepressed( _button:Int ) : Bool {
+        return core.app.input.mousepressed( _button );
+    } //mousepressed
+
+    public function mousereleased( _button:Int ) : Bool{
+        return core.app.input.mousereleased( _button );
+    } //mousereleased
+
+    public function mousedown( _button:Int ) : Bool{
+        return core.app.input.mousedown( _button );
+    } //mousedown
+
+//Gamepad
+
+    public function gamepadpressed( _gamepad:Int, _button:Int ) : Bool {
+        return core.app.input.gamepadpressed( _gamepad, _button );
+    } //gamepadpressed
+
+    public function gamepadreleased( _gamepad:Int, _button:Int ) : Bool{
+        return core.app.input.gamepadreleased( _gamepad, _button );
+    } //gamepadreleased
+
+    public function gamepaddown( _gamepad:Int, _button:Int ) : Bool{
+        return core.app.input.gamepaddown( _gamepad, _button );
+    } //gamepaddown
+
+    public function gamepadaxis( _gamepad:Int, _axis:Int ) : Float {
+        return core.app.input.gamepadaxis( _gamepad, _axis );
+    } //gamepadaxis
+
 
 //Named event handlers
 
