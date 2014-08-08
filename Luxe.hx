@@ -175,9 +175,9 @@ class Luxe {
             return existing;
         }
 
-        Luxe.audio.create( _name, _id, _is_music );
+        Luxe.audio.create( _id, _name, _is_music );
 
-        var res = new SoundResource( _name, _id, Luxe.resources );
+        var res = new SoundResource( _id, _name, Luxe.resources );
 
             if(_onloaded != null) {
                 _onloaded( res );

@@ -116,7 +116,7 @@ class SoundResource extends Resource {
     public var name : String;
 
 
-    public function new( _name:String, _id:String, _manager:ResourceManager ) {
+    public function new( _id:String, _name:String, _manager:ResourceManager ) {
 
         id = _id;
 
