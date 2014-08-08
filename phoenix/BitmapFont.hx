@@ -102,6 +102,8 @@ class BitmapFont extends Resource {
 
             new_font.from_string( font_data.text, _path, _onloaded );
 
+            Luxe.resources.cache(new_font);
+
         return new_font;
 
     } //load
