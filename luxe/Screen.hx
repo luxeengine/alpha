@@ -20,6 +20,7 @@ class Cursor {
 
     } //new
 
+
     function get_visible() : Bool {
 
         return visible;
@@ -111,6 +112,11 @@ class Screen {
         mid = new Vector( Math.round(w/2), Math.round(h/2) );
 
     } //new
+
+    function toString() {
+        return '{ x:$x, y:$y, w:$w, h:$h }';
+    }
+
 
     function get_mid() : Vector {
 
