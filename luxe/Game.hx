@@ -10,7 +10,7 @@ import luxe.AppConfig;
 class Game {
 
 
-    @:noCompletion public var _luxe : Core;
+    @:noCompletion public var app : Core;
 
         /** Empty constructor. Use `ready` instead. */
     public function new() {}

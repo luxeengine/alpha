@@ -116,7 +116,7 @@ class Core extends snow.App {
         game = _game;
 
             //Store the core for reference in the game
-        game._luxe = this;
+        game.app = this;
 
             //make sure we know what thread we start in
         #if (luxe_native && !luxe_threading_disabled)
