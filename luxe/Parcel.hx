@@ -30,7 +30,7 @@ typedef FontInfo = {
 typedef SoundInfo = {
     id : String,
     name : String,
-    is_music : Bool
+    is_stream : Bool
 }
 
 typedef ParcelOptions = {
@@ -187,9 +187,9 @@ class Parcel extends luxe.ResourceManager {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
                         var name : String = item.name == null ? '' : cast item.name;
-                        var is_music : Bool = item.is_music == null ? false : cast item.is_music;
+                        var is_stream : Bool = item.is_stream == null ? false : cast item.is_stream;
                         if(id != '' && name != '') {
-                            add_sound( id, name, is_music);
+                            add_sound( id, name, is_stream);
                         } else {
                             log("sounds not added due to incomplete info: " + item);
                         }
@@ -676,8 +676,8 @@ class Parcel extends luxe.ResourceManager {
 
 //Sound
 
-    public function add_sound( _id:String, _name:String, _is_music:Bool = false ) {
-        sound_list.push( { id:_id, name:_name, is_music:_is_music });
+    public function add_sound( _id:String, _name:String, _is_stream:Bool = false ) {
+        sound_list.push( { id:_id, name:_name, is_stream:_is_stream });
     } //add_sound
 
     public function add_sounds( list:Array<SoundInfo> ) {
@@ -801,7 +801,7 @@ class Parcel extends luxe.ResourceManager {
         #if luxe_parcel_logging log("    loading sound " + _sound.id + " (" + _sound.name + ")" ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadSound( _sound.name, _sound.id, _sound.is_music, _complete );
+            Luxe.loadSound( _sound.name, _sound.id, _sound.is_stream, _complete );
         });
 
     } //load_sound

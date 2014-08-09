@@ -37,11 +37,11 @@ class Main extends luxe.Game {
                     { "id" : "font5.fnt", "path" : "assets/fonts/" },
                 ],
                 "sounds" : [
-                    { "id" : "assets/sound1.ogg", "name" : "sound1", "is_music" : false },
-                    { "id" : "assets/sound2.ogg", "name" : "sound2", "is_music" : false },
-                    { "id" : "assets/sound3.ogg", "name" : "sound3", "is_music" : false },
-                    { "id" : "assets/sound4.ogg", "name" : "sound4", "is_music" : false },
-                    { "id" : "assets/sound5.ogg", "name" : "sound5", "is_music" : false }
+                    { "id" : "assets/sound1.ogg", "name" : "sound1", "is_stream" : false },
+                    { "id" : "assets/sound2.ogg", "name" : "sound2", "is_stream" : false },
+                    { "id" : "assets/sound3.ogg", "name" : "sound3", "is_stream" : false },
+                    { "id" : "assets/sound4.ogg", "name" : "sound4", "is_stream" : false },
+                    { "id" : "assets/sound5.ogg", "name" : "sound5", "is_stream" : false }
                 ],
                 "text" : [
                     { "id" : "assets/text1.txt" },

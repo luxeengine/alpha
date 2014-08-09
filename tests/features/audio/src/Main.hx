@@ -35,7 +35,7 @@ class Main extends luxe.Game {
     override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_r) {
-            // Luxe.audio.position('music', 0);
+            Luxe.audio.position('music', 0);
         }
 
         if(e.keycode == Key.key_l) {
@@ -46,7 +46,7 @@ class Main extends luxe.Game {
             Luxe.audio.stop('music');
         }
         if(e.keycode == Key.key_p) {
-            Luxe.audio.play('music');
+            Luxe.audio.toggle('music');
         }
 
         if(e.keycode == Key.escape) {
