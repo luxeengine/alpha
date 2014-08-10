@@ -49,7 +49,7 @@ class Main extends luxe.Game {
 
     override function config( config:luxe.AppConfig ) {
         
-        config.window.depth_bits = 32;
+        config.window.depth_bits = 16;
         config.window.antialiasing = 4;
 
         return config;
