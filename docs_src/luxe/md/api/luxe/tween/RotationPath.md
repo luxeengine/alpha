@@ -25,12 +25,18 @@
                 <a name="offset"><a class="lift" href="#offset">offset</a></a><div class="clear"></div><code class="signature apipage">offset : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="start"><a class="lift" href="#start">start</a></a><div class="clear"></div><code class="signature apipage">start : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="step"><a class="lift" href="#step">step</a></a><div class="clear"></div><code class="signature apipage">step : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_x"><a class="lift" href="#_x">\_x</a></a><div class="clear"></div><code class="signature apipage">\_x : [luxe.tween.ComponentPath](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_y"><a class="lift" href="#_y">\_y</a></a><div class="clear"></div><code class="signature apipage">\_y : [luxe.tween.ComponentPath](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="end"><a class="lift" href="#end">end</a></a><div class="clear"></div><code class="signature apipage">end : [Float](#)</code><br/></span>
+                <a name="end"><a class="lift" href="#end">end</a></a> <div class="clear"></div><code class="signature apipage">end : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

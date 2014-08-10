@@ -44,13 +44,22 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="is_valid_xml_element"><a class="lift" href="#is_valid_xml_element">is\_valid\_xml\_element</a></a> <div class="clear"></div><code class="signature apipage">is\_valid\_xml\_element(element:[Xml](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="from_xml"><a class="lift" href="#from_xml">from\_xml</a></a> <div class="clear"></div><code class="signature apipage">from\_xml(xml:[Xml](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="from_json"><a class="lift" href="#from_json">from\_json</a></a> <div class="clear"></div><code class="signature apipage">from\_json(json:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="csv_to_IntArray"><a class="lift" href="#csv_to_IntArray">csv\_to\_IntArray</a></a> <div class="clear"></div><code class="signature apipage">csv\_to\_IntArray(input:[String](#)<span></span>) : [Array](#)&lt;[Int](#)&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_map:[luxe.tilemaps.tiled.TiledMapData](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="tiled_base64_to_IntArray"><a class="lift" href="#tiled_base64_to_IntArray">tiled\_base64\_to\_IntArray</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">tiled\_base64\_to\_IntArray(base64\_data:[String](#)<span></span>, lineWidth:[Int](#)<span></span>, compression:[String](#)<span></span>) : [Array](#)&lt;[Int](#)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

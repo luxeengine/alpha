@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -59,9 +60,32 @@
 <hr>
 <p>&nbsp;
 &nbsp;</p>
-<p><h3>Members</h3> <hr/></p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="i"><a class="lift" href="#i">i</a></a><div class="clear"></div><code class="signature apipage">i : <a href="#">haxe.io.Input</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="vertexIndices"><a class="lift" href="#vertexIndices">vertexIndices</a></a><div class="clear"></div><code class="signature apipage">vertexIndices : <a href="#">Array</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="uvIndices"><a class="lift" href="#uvIndices">uvIndices</a></a><div class="clear"></div><code class="signature apipage">uvIndices : <a href="#">Array</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="normalIndices"><a class="lift" href="#normalIndices">normalIndices</a></a><div class="clear"></div><code class="signature apipage">normalIndices : <a href="#">Array</a>&lt;<a href="#">Int</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="read"><a class="lift" href="#read">read</a></a> <div class="clear"></div><code class="signature apipage">read() : <a href="#">phoenix.formats.obj.Data</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="parse"><a class="lift" href="#parse">parse</a></a> <div class="clear"></div><code class="signature apipage">parse(lines:<a href="#">Array</a>&lt;<a href="#">String</a>&gt;<span></span>) : <a href="#">phoenix.formats.obj.Data</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="parse_vert"><a class="lift" href="#parse_vert">parse_vert</a></a> <div class="clear"></div><code class="signature apipage">parse_vert(line:<a href="#">String</a><span></span>) : <a href="#">phoenix.formats.obj.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="parse_uv"><a class="lift" href="#parse_uv">parse_uv</a></a> <div class="clear"></div><code class="signature apipage">parse_uv(line:<a href="#">String</a><span></span>) : <a href="#">phoenix.formats.obj.UV</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="parse_normal"><a class="lift" href="#parse_normal">parse_normal</a></a> <div class="clear"></div><code class="signature apipage">parse_normal(line:<a href="#">String</a><span></span>) : <a href="#">phoenix.formats.obj.Normal</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="parse_face"><a class="lift" href="#parse_face">parse_face</a></a> <div class="clear"></div><code class="signature apipage">parse_face(line:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(input:<a href="#">haxe.io.Input</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>

@@ -22,32 +22,24 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="state"><a class="lift" href="#state">state</a></a><div class="clear"></div><code class="signature apipage">state : [lime.MouseState](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="shift_down"><a class="lift" href="#shift_down">shift\_down</a></a><div class="clear"></div><code class="signature apipage">shift\_down : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="raw"><a class="lift" href="#raw">raw</a></a><div class="clear"></div><code class="signature apipage">raw : [Dynamic](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="yrel"><a class="lift" href="#yrel">yrel</a></a><div class="clear"></div><code class="signature apipage">yrel : [Int](#)</code><br/></span>
+            <span class="small_desc_flat">The relative y position if `state` is `move` or a window has grabbed state</span><span class="member apipage">
+                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : [Int](#)</code><br/></span>
+            <span class="small_desc_flat">The y position in the window of the mouse event</span><span class="member apipage">
+                <a name="xrel"><a class="lift" href="#xrel">xrel</a></a><div class="clear"></div><code class="signature apipage">xrel : [Int](#)</code><br/></span>
+            <span class="small_desc_flat">The relative x position if `state` is `move` or a window has grabbed state</span><span class="member apipage">
+                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : [Int](#)</code><br/></span>
+            <span class="small_desc_flat">The x position in the window of the mouse event</span><span class="member apipage">
+                <a name="window_id"><a class="lift" href="#window_id">window\_id</a></a><div class="clear"></div><code class="signature apipage">window\_id : [Int](#)</code><br/></span>
+            <span class="small_desc_flat">The window id this event originated from</span><span class="member apipage">
+                <a name="timestamp"><a class="lift" href="#timestamp">timestamp</a></a><div class="clear"></div><code class="signature apipage">timestamp : [Float](#)</code><br/></span>
+            <span class="small_desc_flat">The time in seconds when this touch event occurred, use for deltas</span><span class="member apipage">
+                <a name="state"><a class="lift" href="#state">state</a></a><div class="clear"></div><code class="signature apipage">state : [luxe.InteractState](#)</code><br/></span>
+            <span class="small_desc_flat">The state this event is in</span><span class="member apipage">
                 <a name="pos"><a class="lift" href="#pos">pos</a></a><div class="clear"></div><code class="signature apipage">pos : [luxe.Vector](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="meta_down"><a class="lift" href="#meta_down">meta\_down</a></a><div class="clear"></div><code class="signature apipage">meta\_down : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="flags"><a class="lift" href="#flags">flags</a></a><div class="clear"></div><code class="signature apipage">flags : [Int](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="deltaY"><a class="lift" href="#deltaY">deltaY</a></a><div class="clear"></div><code class="signature apipage">deltaY : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="deltaX"><a class="lift" href="#deltaX">deltaX</a></a><div class="clear"></div><code class="signature apipage">deltaX : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ctrl_down"><a class="lift" href="#ctrl_down">ctrl\_down</a></a><div class="clear"></div><code class="signature apipage">ctrl\_down : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="button"><a class="lift" href="#button">button</a></a><div class="clear"></div><code class="signature apipage">button : [lime.MouseButton](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="alt_down"><a class="lift" href="#alt_down">alt\_down</a></a><div class="clear"></div><code class="signature apipage">alt\_down : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span>
+            <span class="small_desc_flat">A convenience vector access of the x and y position</span><span class="member apipage">
+                <a name="button"><a class="lift" href="#button">button</a></a><div class="clear"></div><code class="signature apipage">button : [luxe.MouseButton](#)</code><br/></span>
+            <span class="small_desc_flat">The button id, if the event `state` is `down` or `up`</span>
 
 
 

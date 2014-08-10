@@ -117,6 +117,18 @@
                 <a name="end_color_random"><a class="lift" href="#end_color_random">end\_color\_random</a></a><div class="clear"></div><code class="signature apipage">end\_color\_random : [luxe.Color](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="template"><a class="lift" href="#template">template</a></a><div class="clear"></div><code class="signature apipage">template : [luxe.options.ParticleEmitterOptions](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="emit_timer"><a class="lift" href="#emit_timer">emit\_timer</a></a><div class="clear"></div><code class="signature apipage">emit\_timer : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="finish_time"><a class="lift" href="#finish_time">finish\_time</a></a><div class="clear"></div><code class="signature apipage">finish\_time : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="direction_vector"><a class="lift" href="#direction_vector">direction\_vector</a></a><div class="clear"></div><code class="signature apipage">direction\_vector : [luxe.Vector](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="has_end_rotation"><a class="lift" href="#has_end_rotation">has\_end\_rotation</a></a><div class="clear"></div><code class="signature apipage">has\_end\_rotation : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_temp_speed"><a class="lift" href="#_temp_speed">\_temp\_speed</a></a><div class="clear"></div><code class="signature apipage">\_temp\_speed : [luxe.Vector](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_to_remove"><a class="lift" href="#_to_remove">\_to\_remove</a></a><div class="clear"></div><code class="signature apipage">\_to\_remove : [Array](#)&lt;[luxe.Particle](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -137,6 +149,15 @@
         </span>
     <span class="method apipage">
             <a name="stop"><a class="lift" href="#stop">stop</a></a> <div class="clear"></div><code class="signature apipage">stop() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="spawn"><a class="lift" href="#spawn">spawn</a></a> <div class="clear"></div><code class="signature apipage">spawn() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="random_1_to_1"><a class="lift" href="#random_1_to_1">random\_1\_to\_1</a></a> <div class="clear"></div><code class="signature apipage">random\_1\_to\_1() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="init_particle"><a class="lift" href="#init_particle">init\_particle</a></a> <div class="clear"></div><code class="signature apipage">init\_particle(particle:[luxe.Particle](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update(dt:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

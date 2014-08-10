@@ -25,14 +25,16 @@
                 <a name="real"><a class="lift" href="#real">real</a></a><div class="clear"></div><code class="signature apipage">real : [phoenix.Quaternion](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="dual"><a class="lift" href="#dual">dual</a></a><div class="clear"></div><code class="signature apipage">dual : [phoenix.Quaternion](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_temp"><a class="lift" href="#_temp">\_temp</a></a><div class="clear"></div><code class="signature apipage">\_temp : [phoenix.Quaternion](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><div class="clear"></div><code class="signature apipage">rotation : [phoenix.Quaternion](#)</code><br/></span>
+                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a> <div class="clear"></div><code class="signature apipage">rotation : [phoenix.Quaternion](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="translation"><a class="lift" href="#translation">translation</a></a><div class="clear"></div><code class="signature apipage">translation : [phoenix.Vector](#)</code><br/></span>
+                <a name="translation"><a class="lift" href="#translation">translation</a></a> <div class="clear"></div><code class="signature apipage">translation : [phoenix.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -60,6 +62,12 @@
         </span>
     <span class="method apipage">
             <a name="multiply"><a class="lift" href="#multiply">multiply</a></a> <div class="clear"></div><code class="signature apipage">multiply(\_other:[phoenix.DualQuaternion](#)<span></span>) : [phoenix.DualQuaternion](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_rotation"><a class="lift" href="#get_rotation">get\_rotation</a></a> <div class="clear"></div><code class="signature apipage">get\_rotation() : [phoenix.Quaternion](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_translation"><a class="lift" href="#get_translation">get\_translation</a></a> <div class="clear"></div><code class="signature apipage">get\_translation() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>

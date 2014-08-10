@@ -44,6 +44,9 @@
             <a name="stop"><a class="lift" href="#stop">stop</a></a> <div class="clear"></div><code class="signature apipage">stop() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="destroyed"><a class="lift" href="#destroyed">destroyed</a></a> <div class="clear"></div><code class="signature apipage">destroyed() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update(dt:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

@@ -45,6 +45,8 @@
                 <a name="_window"><a class="lift" href="#_window">\_window</a></a><div class="clear"></div><code class="signature apipage">\_window : [luxe.NineSlice](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="onrefresh"><a class="lift" href="#onrefresh">onrefresh</a></a><div class="clear"></div><code class="signature apipage">onrefresh : [Dynamic](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_batcher"><a class="lift" href="#_batcher">\_batcher</a></a><div class="clear"></div><code class="signature apipage">\_batcher : [phoenix.Batcher](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -59,6 +61,9 @@
         </span>
     <span class="method apipage">
             <a name="hide"><a class="lift" href="#hide">hide</a></a> <div class="clear"></div><code class="signature apipage">hide() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_create_window"><a class="lift" href="#_create_window">\_create\_window</a></a> <div class="clear"></div><code class="signature apipage">\_create\_window() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_options:[luxe.debug.DebugInspectorOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

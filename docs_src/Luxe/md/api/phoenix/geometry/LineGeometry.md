@@ -24,9 +24,9 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="p0"><a class="lift" href="#p0">p0</a></a><div class="clear"></div><code class="signature apipage">p0 : [luxe.Vector](#)</code><br/></span>
+                <a name="p0"><a class="lift" href="#p0">p0</a></a> <div class="clear"></div><code class="signature apipage">p0 : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="p1"><a class="lift" href="#p1">p1</a></a><div class="clear"></div><code class="signature apipage">p1 : [luxe.Vector](#)</code><br/></span>
+                <a name="p1"><a class="lift" href="#p1">p1</a></a> <div class="clear"></div><code class="signature apipage">p1 : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

@@ -22,6 +22,8 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
+                <a name="euler"><a class="lift" href="#euler">euler</a></a><div class="clear"></div><code class="signature apipage">euler : [phoenix.Vector](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="ignore_listeners"><a class="lift" href="#ignore_listeners">ignore\_listeners</a></a><div class="clear"></div><code class="signature apipage">ignore\_listeners : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="listen_x"><a class="lift" href="#listen_x">listen\_x</a></a><div class="clear"></div><code class="signature apipage">listen\_x : [Float](#)&nbsp;-&gt; [Void](#)</code><br/></span>
@@ -36,20 +38,23 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
+                <a name="x"><a class="lift" href="#x">x</a></a> <div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
+                <a name="y"><a class="lift" href="#y">y</a></a> <div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="z"><a class="lift" href="#z">z</a></a><div class="clear"></div><code class="signature apipage">z : [Float](#)</code><br/></span>
+                <a name="z"><a class="lift" href="#z">z</a></a> <div class="clear"></div><code class="signature apipage">z : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="w"><a class="lift" href="#w">w</a></a><div class="clear"></div><code class="signature apipage">w : [Float](#)</code><br/></span>
+                <a name="w"><a class="lift" href="#w">w</a></a> <div class="clear"></div><code class="signature apipage">w : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><div class="clear"></div><code class="signature apipage">serialized : [Dynamic](#)</code><br/></span>
+                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a> <div class="clear"></div><code class="signature apipage">serialized : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_serialized"><a class="lift" href="#get_serialized">get\_serialized</a></a> <div class="clear"></div><code class="signature apipage">get\_serialized() : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -117,6 +122,21 @@
         </span>
     <span class="method apipage">
             <a name="toeuler"><a class="lift" href="#toeuler">toeuler</a></a> <div class="clear"></div><code class="signature apipage">toeuler() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update_euler"><a class="lift" href="#update_euler">update\_euler</a></a> <div class="clear"></div><code class="signature apipage">update\_euler() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_x"><a class="lift" href="#set_x">set\_x</a></a> <div class="clear"></div><code class="signature apipage">set\_x(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_y"><a class="lift" href="#set_y">set\_y</a></a> <div class="clear"></div><code class="signature apipage">set\_y(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_z"><a class="lift" href="#set_z">set\_z</a></a> <div class="clear"></div><code class="signature apipage">set\_z(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_w"><a class="lift" href="#set_w">set\_w</a></a> <div class="clear"></div><code class="signature apipage">set\_w(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_x:[Float](#)<span>=0</span>, \_y:[Float](#)<span>=0</span>, \_z:[Float](#)<span>=0</span>, \_w:[Float](#)<span>=1</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -64,9 +65,13 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="batchers"><a class="lift" href="#batchers">batchers</a></a><div class="clear"></div><code class="signature apipage">batchers : <a href="#">Array</a>&lt;<a href="#">phoenix.Batcher</a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core"><a class="lift" href="#core">core</a></a><div class="clear"></div><code class="signature apipage">core : <a href="#">luxe.Core</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="state"><a class="lift" href="#state">state</a></a><div class="clear"></div><code class="signature apipage">state : <a href="#">phoenix.RenderState</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="default_fbo"><a class="lift" href="#default_fbo">default_fbo</a></a><div class="clear"></div><code class="signature apipage">default_fbo : <a href="#">lime.gl.GLFramebuffer</a></code><br/></span>
+                <a name="default_fbo"><a class="lift" href="#default_fbo">default_fbo</a></a><div class="clear"></div><code class="signature apipage">default_fbo : <a href="#">snow.render.opengl.GLFramebuffer</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="default_rbo"><a class="lift" href="#default_rbo">default_rbo</a></a><div class="clear"></div><code class="signature apipage">default_rbo : <a href="#">snow.render.opengl.GLRenderbuffer</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="default_shader"><a class="lift" href="#default_shader">default_shader</a></a><div class="clear"></div><code class="signature apipage">default_shader : <a href="#">phoenix.Shader</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -101,7 +106,9 @@
                 <a name="stats"><a class="lift" href="#stats">stats</a></a><div class="clear"></div><code class="signature apipage">stats : <a href="#">phoenix.RendererStats</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="target"><a class="lift" href="#target">target</a></a><div class="clear"></div><code class="signature apipage">target : <a href="#">phoenix.RenderTexture</a></code><br/></span>
+                <a name="vsync"><a class="lift" href="#vsync">vsync</a></a> <div class="clear"></div><code class="signature apipage">vsync : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="target"><a class="lift" href="#target">target</a></a> <div class="clear"></div><code class="signature apipage">target : <a href="#">phoenix.RenderTexture</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="init"><a class="lift" href="#init">init</a></a> <div class="clear"></div><code class="signature apipage">init() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -122,25 +129,28 @@
             <a name="clear"><a class="lift" href="#clear">clear</a></a> <div class="clear"></div><code class="signature apipage">clear(_color:<a href="#">phoenix.Color</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="load_font"><a class="lift" href="#load_font">load_font</a></a> <div class="clear"></div><code class="signature apipage">load_font(_fontid:<a href="#">String</a><span></span>, _path:<a href="#">String</a><span>=&#x27;assets/&#x27;</span>, _onloaded:<a href="#">phoenix.BitmapFont</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">phoenix.BitmapFont</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="load_shader"><a class="lift" href="#load_shader">load_shader</a></a> <div class="clear"></div><code class="signature apipage">load_shader(_psid:<a href="#">String</a><span></span>, _vsid:<a href="#">String</a><span>=null</span>, _onloaded:<a href="#">phoenix.Shader</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">phoenix.Shader</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="load_texture_from_resource_bytes"><a class="lift" href="#load_texture_from_resource_bytes">load_texture_from_resource_bytes</a></a> <div class="clear"></div><code class="signature apipage">load_texture_from_resource_bytes(_name:<a href="#">String</a><span></span>, _width:<a href="#">Int</a><span></span>, _height:<a href="#">Int</a><span></span>, _cache:<a href="#">Bool</a><span>=true</span>) : <a href="#">phoenix.Texture</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="load_textures"><a class="lift" href="#load_textures">load_textures</a></a> <div class="clear"></div><code class="signature apipage">load_textures(_names:<a href="#">Array</a>&lt;<a href="#">String</a>&gt;<span></span>, _onloaded:<a href="#">Array</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>, _silent:<a href="#">Bool</a><span>=false</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="load_texture"><a class="lift" href="#load_texture">load_texture</a></a> <div class="clear"></div><code class="signature apipage">load_texture(_name:<a href="#">String</a><span></span>, _onloaded:<a href="#">phoenix.Texture</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>, _silent:<a href="#">Bool</a><span>=false</span>, asset_bytes:<a href="#">lime.utils.ByteArray</a><span>=null</span>) : <a href="#">phoenix.Texture</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="process"><a class="lift" href="#process">process</a></a> <div class="clear"></div><code class="signature apipage">process() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="onresize"><a class="lift" href="#onresize">onresize</a></a> <div class="clear"></div><code class="signature apipage">onresize(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_vsync"><a class="lift" href="#set_vsync">set_vsync</a></a> <div class="clear"></div><code class="signature apipage">set_vsync(_vsync:<a href="#">Bool</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_vsync"><a class="lift" href="#get_vsync">get_vsync</a></a> <div class="clear"></div><code class="signature apipage">get_vsync() : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_target"><a class="lift" href="#get_target">get_target</a></a> <div class="clear"></div><code class="signature apipage">get_target() : <a href="#">phoenix.RenderTexture</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_target"><a class="lift" href="#set_target">set_target</a></a> <div class="clear"></div><code class="signature apipage">set_target(_target:<a href="#">phoenix.RenderTexture</a><span></span>) : <a href="#">phoenix.RenderTexture</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create_default_shaders"><a class="lift" href="#create_default_shaders">create_default_shaders</a></a> <div class="clear"></div><code class="signature apipage">create_default_shaders() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="create_default_font"><a class="lift" href="#create_default_font">create_default_font</a></a> <div class="clear"></div><code class="signature apipage">create_default_font() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(_core:<a href="#">luxe.Core</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>

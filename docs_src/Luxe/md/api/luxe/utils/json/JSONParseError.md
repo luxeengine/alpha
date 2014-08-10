@@ -25,14 +25,22 @@
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="_location"><a class="lift" href="#_location">\_location</a></a><div class="clear"></div><code class="signature apipage">\_location : [Int](#)</code><br/></span>
+            <span class="small_desc_flat">The location in the string where the error occurred</span><span class="member apipage">
+                <a name="_text"><a class="lift" href="#_text">\_text</a></a><div class="clear"></div><code class="signature apipage">\_text : [String](#)</code><br/></span>
+            <span class="small_desc_flat">The string in which the parse error occurred</span><span class="member apipage">
+                <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div><code class="signature apipage">name : [String](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="message"><a class="lift" href="#message">message</a></a><div class="clear"></div><code class="signature apipage">message : [String](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
+                <a name="text"><a class="lift" href="#text">text</a></a> <div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="location"><a class="lift" href="#location">location</a></a><div class="clear"></div><code class="signature apipage">location : [Int](#)</code><br/></span>
+                <a name="location"><a class="lift" href="#location">location</a></a> <div class="clear"></div><code class="signature apipage">location : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

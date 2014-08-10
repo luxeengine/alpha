@@ -29,6 +29,12 @@
             <a name="apply"><a class="lift" href="#apply">apply</a></a> <div class="clear"></div><code class="signature apipage">apply() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="initialize"><a class="lift" href="#initialize">initialize</a></a> <div class="clear"></div><code class="signature apipage">initialize() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update(currentTime:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(target:[Dynamic](#)<span></span>, duration:[Float](#)<span></span>, properties:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     

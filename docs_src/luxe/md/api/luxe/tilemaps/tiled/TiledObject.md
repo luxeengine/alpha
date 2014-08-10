@@ -50,6 +50,15 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="is_valid_xml_element"><a class="lift" href="#is_valid_xml_element">is\_valid\_xml\_element</a></a> <div class="clear"></div><code class="signature apipage">is\_valid\_xml\_element(element:[Xml](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="polyobject_from_xml"><a class="lift" href="#polyobject_from_xml">polyobject\_from\_xml</a></a> <div class="clear"></div><code class="signature apipage">polyobject\_from\_xml(xml:[Xml](#)<span></span>) : [luxe.tilemaps.tiled.TiledPolyObject](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="polyobject_from_json"><a class="lift" href="#polyobject_from_json">polyobject\_from\_json</a></a> <div class="clear"></div><code class="signature apipage">polyobject\_from\_json(json:[Dynamic](#)<span></span>) : [luxe.tilemaps.tiled.TiledPolyObject](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="from_xml"><a class="lift" href="#from_xml">from\_xml</a></a> <div class="clear"></div><code class="signature apipage">from\_xml(xml:[Xml](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

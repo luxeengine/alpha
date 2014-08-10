@@ -32,7 +32,7 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="end"><a class="lift" href="#end">end</a></a><div class="clear"></div><code class="signature apipage">end : [Float](#)</code><br/></span>
+                <a name="end"><a class="lift" href="#end">end</a></a> <div class="clear"></div><code class="signature apipage">end : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

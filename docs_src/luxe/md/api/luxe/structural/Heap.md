@@ -44,12 +44,20 @@
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="heap"><a class="lift" href="#heap">heap</a></a><div class="clear"></div><code class="signature apipage">heap : [Array](#)&lt;[Null](#)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="size"><a class="lift" href="#size">size</a></a><div class="clear"></div><code class="signature apipage">size : [Int](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="count"><a class="lift" href="#count">count</a></a><div class="clear"></div><code class="signature apipage">count : [Int](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="compare"><a class="lift" href="#compare">compare</a></a><div class="clear"></div><code class="signature apipage">compare : [Null](#)&nbsp; -&gt; [Null](#)&nbsp;-&gt; [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
+                <a name="length"><a class="lift" href="#length">length</a></a> <div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -78,6 +86,9 @@
         </span>
     <span class="method apipage">
             <a name="iterator"><a class="lift" href="#iterator">iterator</a></a> <div class="clear"></div><code class="signature apipage">iterator() : [Iterator](#)&lt;[Null](#)&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_length"><a class="lift" href="#get_length">get\_length</a></a> <div class="clear"></div><code class="signature apipage">get\_length() : [Int](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="isEmpty"><a class="lift" href="#isEmpty">isEmpty</a></a> <div class="clear"></div><code class="signature apipage">isEmpty() : [Bool](#)</code><br/><span class="small_desc_flat"></span>

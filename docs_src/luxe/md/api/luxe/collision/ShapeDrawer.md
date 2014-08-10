@@ -42,6 +42,9 @@ To implement your own debug drawing class, you only need to override drawLine fu
             <a name="drawCircle"><a class="lift" href="#drawCircle">drawCircle</a></a> <div class="clear"></div><code class="signature apipage">drawCircle(circle:[luxe.collision.shapes.Circle](#)<span></span>, color:[luxe.Color](#)<span>=null</span>, immediate:[Bool](#)<span>=false</span>) : [Void](#)</code><br/><span class="small_desc_flat">Draw a circle `Shape`</span>
         </span>
     <span class="method apipage">
+            <a name="drawVertList"><a class="lift" href="#drawVertList">drawVertList</a></a> <div class="clear"></div><code class="signature apipage">drawVertList(\_verts:[Array](#)&lt;[luxe.Vector](#)&gt;<span></span>, color:[luxe.Color](#)<span>=null</span>, immediate:[Bool](#)<span>=false</span>) : [Void](#)</code><br/><span class="small_desc_flat">Draw a list of points as lines</span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat">empty constructor</span>
         </span>
     

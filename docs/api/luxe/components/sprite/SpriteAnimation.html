@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -63,6 +64,8 @@
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="sprite"><a class="lift" href="#sprite">sprite</a></a><div class="clear"></div><code class="signature apipage">sprite : <a href="#">luxe.Sprite</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="animation_list"><a class="lift" href="#animation_list">animation_list</a></a><div class="clear"></div><code class="signature apipage">animation_list : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">luxe.components.sprite.SpriteAnimationData</a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="current"><a class="lift" href="#current">current</a></a><div class="clear"></div><code class="signature apipage">current : <a href="#">luxe.components.sprite.SpriteAnimationData</a></code><br/></span>
@@ -73,6 +76,8 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="image_frame"><a class="lift" href="#image_frame">image_frame</a></a><div class="clear"></div><code class="signature apipage">image_frame : <a href="#">Int</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="time"><a class="lift" href="#time">time</a></a><div class="clear"></div><code class="signature apipage">time : <a href="#">Float</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="frame_time"><a class="lift" href="#frame_time">frame_time</a></a><div class="clear"></div><code class="signature apipage">frame_time : <a href="#">Float</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="loop"><a class="lift" href="#loop">loop</a></a><div class="clear"></div><code class="signature apipage">loop : <a href="#">Bool</a></code><br/></span>
@@ -82,11 +87,13 @@
                 <a name="reverse"><a class="lift" href="#reverse">reverse</a></a><div class="clear"></div><code class="signature apipage">reverse : <a href="#">Bool</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="playing"><a class="lift" href="#playing">playing</a></a><div class="clear"></div><code class="signature apipage">playing : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="uv_cache"><a class="lift" href="#uv_cache">uv_cache</a></a><div class="clear"></div><code class="signature apipage">uv_cache : <a href="#">luxe.Rectangle</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="animation"><a class="lift" href="#animation">animation</a></a><div class="clear"></div><code class="signature apipage">animation : <a href="#">String</a></code><br/></span>
+                <a name="animation"><a class="lift" href="#animation">animation</a></a> <div class="clear"></div><code class="signature apipage">animation : <a href="#">String</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="speed"><a class="lift" href="#speed">speed</a></a><div class="clear"></div><code class="signature apipage">speed : <a href="#">Float</a></code><br/></span>
+                <a name="speed"><a class="lift" href="#speed">speed</a></a> <div class="clear"></div><code class="signature apipage">speed : <a href="#">Float</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="init"><a class="lift" href="#init">init</a></a> <div class="clear"></div><code class="signature apipage">init() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -107,6 +114,18 @@
             <a name="add_event"><a class="lift" href="#add_event">add_event</a></a> <div class="clear"></div><code class="signature apipage">add_event(_animation:<a href="#">String</a><span></span>, _image_frame:<a href="#">Int</a><span></span>, _event:<a href="#">String</a><span>=&#x27;&#x27;</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="get_speed"><a class="lift" href="#get_speed">get_speed</a></a> <div class="clear"></div><code class="signature apipage">get_speed() : <a href="#">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_speed"><a class="lift" href="#set_speed">set_speed</a></a> <div class="clear"></div><code class="signature apipage">set_speed(_speed:<a href="#">Float</a><span></span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_animation"><a class="lift" href="#get_animation">get_animation</a></a> <div class="clear"></div><code class="signature apipage">get_animation() : <a href="#">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_animation"><a class="lift" href="#set_animation">set_animation</a></a> <div class="clear"></div><code class="signature apipage">set_animation(_name:<a href="#">String</a><span></span>) : <a href="#">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="restart"><a class="lift" href="#restart">restart</a></a> <div class="clear"></div><code class="signature apipage">restart() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -117,6 +136,9 @@
         </span>
     <span class="method apipage">
             <a name="set_frame"><a class="lift" href="#set_frame">set_frame</a></a> <div class="clear"></div><code class="signature apipage">set_frame(_frame:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh_sprite"><a class="lift" href="#refresh_sprite">refresh_sprite</a></a> <div class="clear"></div><code class="signature apipage">refresh_sprite() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get_serialize_data</a></a> <div class="clear"></div><code class="signature apipage">get_serialize_data() : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat"></span>

@@ -61,6 +61,9 @@
             <a name="unschedule"><a class="lift" href="#unschedule">unschedule</a></a> <div class="clear"></div><code class="signature apipage">unschedule(schedule\_id:[String](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="tag_properties"><a class="lift" href="#tag_properties">tag\_properties</a></a> <div class="clear"></div><code class="signature apipage">tag\_properties(\_properties:[Dynamic](#)<span></span>, \_name:[String](#)<span></span>, \_count:[Int](#)<span></span>) : [fire.T](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     

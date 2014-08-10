@@ -22,16 +22,22 @@
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="_rotation"><a class="lift" href="#_rotation">\_rotation</a></a><div class="clear"></div><code class="signature apipage">\_rotation : [luxe.tween.RotationPath](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_x"><a class="lift" href="#_x">\_x</a></a><div class="clear"></div><code class="signature apipage">\_x : [luxe.tween.ComponentPath](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_y"><a class="lift" href="#_y">\_y</a></a><div class="clear"></div><code class="signature apipage">\_y : [luxe.tween.ComponentPath](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><div class="clear"></div><code class="signature apipage">rotation : [luxe.tween.RotationPath](#)</code><br/></span>
+                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a> <div class="clear"></div><code class="signature apipage">rotation : [luxe.tween.RotationPath](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : [luxe.tween.IComponentPath](#)</code><br/></span>
+                <a name="x"><a class="lift" href="#x">x</a></a> <div class="clear"></div><code class="signature apipage">x : [luxe.tween.IComponentPath](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : [luxe.tween.IComponentPath](#)</code><br/></span>
+                <a name="y"><a class="lift" href="#y">y</a></a> <div class="clear"></div><code class="signature apipage">y : [luxe.tween.IComponentPath](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -51,6 +57,15 @@
      * @param   x       The y position of the end point for the line
      * @param   strength        The degree of emphasis that should be placed on this segment . If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
      * @return      The current motion path instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="get_rotation"><a class="lift" href="#get_rotation">get\_rotation</a></a> <div class="clear"></div><code class="signature apipage">get\_rotation() : [luxe.tween.RotationPath](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_x"><a class="lift" href="#get_x">get\_x</a></a> <div class="clear"></div><code class="signature apipage">get\_x() : [luxe.tween.IComponentPath](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_y"><a class="lift" href="#get_y">get\_y</a></a> <div class="clear"></div><code class="signature apipage">get\_y() : [luxe.tween.IComponentPath](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>

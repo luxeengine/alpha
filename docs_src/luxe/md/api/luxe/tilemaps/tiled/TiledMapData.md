@@ -53,6 +53,12 @@
             <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="is_valid_xml_element"><a class="lift" href="#is_valid_xml_element">is\_valid\_xml\_element</a></a> <div class="clear"></div><code class="signature apipage">is\_valid\_xml\_element(element:[Xml](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="orientation_from_string"><a class="lift" href="#orientation_from_string">orientation\_from\_string</a></a> <div class="clear"></div><code class="signature apipage">orientation\_from\_string(\_orientation\_string:[String](#)<span></span>) : [luxe.tilemaps.TilemapOrientation](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="parseFromXML"><a class="lift" href="#parseFromXML">parseFromXML</a></a> <div class="clear"></div><code class="signature apipage">parseFromXML(xml:[Xml](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

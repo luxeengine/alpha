@@ -34,6 +34,36 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="target"><a class="lift" href="#target">target</a></a><div class="clear"></div><code class="signature apipage">target : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_autoVisible"><a class="lift" href="#_autoVisible">\_autoVisible</a></a><div class="clear"></div><code class="signature apipage">\_autoVisible : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_delay"><a class="lift" href="#_delay">\_delay</a></a><div class="clear"></div><code class="signature apipage">\_delay : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_ease"><a class="lift" href="#_ease">\_ease</a></a><div class="clear"></div><code class="signature apipage">\_ease : [luxe.tween.easing.IEasing](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_onComplete"><a class="lift" href="#_onComplete">\_onComplete</a></a><div class="clear"></div><code class="signature apipage">\_onComplete : [Dynamic](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_onCompleteParams"><a class="lift" href="#_onCompleteParams">\_onCompleteParams</a></a><div class="clear"></div><code class="signature apipage">\_onCompleteParams : [Array](#)&lt;[](#)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_onRepeat"><a class="lift" href="#_onRepeat">\_onRepeat</a></a><div class="clear"></div><code class="signature apipage">\_onRepeat : [Dynamic](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_onRepeatParams"><a class="lift" href="#_onRepeatParams">\_onRepeatParams</a></a><div class="clear"></div><code class="signature apipage">\_onRepeatParams : [Array](#)&lt;[](#)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_onUpdate"><a class="lift" href="#_onUpdate">\_onUpdate</a></a><div class="clear"></div><code class="signature apipage">\_onUpdate : [Dynamic](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_onUpdateParams"><a class="lift" href="#_onUpdateParams">\_onUpdateParams</a></a><div class="clear"></div><code class="signature apipage">\_onUpdateParams : [Array](#)&lt;[](#)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_reflect"><a class="lift" href="#_reflect">\_reflect</a></a><div class="clear"></div><code class="signature apipage">\_reflect : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_repeat"><a class="lift" href="#_repeat">\_repeat</a></a><div class="clear"></div><code class="signature apipage">\_repeat : [Int](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_reverse"><a class="lift" href="#_reverse">\_reverse</a></a><div class="clear"></div><code class="signature apipage">\_reverse : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_smartRotation"><a class="lift" href="#_smartRotation">\_smartRotation</a></a><div class="clear"></div><code class="signature apipage">\_smartRotation : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_snapping"><a class="lift" href="#_snapping">\_snapping</a></a><div class="clear"></div><code class="signature apipage">\_snapping : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="special"><a class="lift" href="#special">special</a></a><div class="clear"></div><code class="signature apipage">special : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="timescaled"><a class="lift" href="#timescaled">timescaled</a></a><div class="clear"></div><code class="signature apipage">timescaled : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">* Specify whether this should be scaled by the global timescale
      * @param   _value      Whether or not it should be
@@ -41,7 +71,9 @@
 
 
 
-<h3>Properties</h3> <hr/>
+<h3>Properties</h3> <hr/><span class="member apipage">
+                <a name="callMethod"><a class="lift" href="#callMethod">callMethod</a></a> <div class="clear"></div><code class="signature apipage">callMethod : [](#)&nbsp; -&gt; [Array](#)&nbsp;-&gt; [](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
@@ -52,6 +84,12 @@
             <a name="autoVisible"><a class="lift" href="#autoVisible">autoVisible</a></a> <div class="clear"></div><code class="signature apipage">autoVisible(value:[Bool](#)<span>=null</span>) : [luxe.tween.actuators.IGenericActuator](#)</code><br/><span class="small_desc_flat">* Sometimes drawing performs faster when objects are set to visible = false rather than only alpha = 0. autoVisible toggles automatically based on alpha values
      * @param   value       Whether autoVisible should be enabled (Default is true)
      * @return      The current actuator instance</span>
+        </span>
+    <span class="method apipage">
+            <a name="change"><a class="lift" href="#change">change</a></a> <div class="clear"></div><code class="signature apipage">change() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="complete"><a class="lift" href="#complete">complete</a></a> <div class="clear"></div><code class="signature apipage">complete(sendEvent:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="delay"><a class="lift" href="#delay">delay</a></a> <div class="clear"></div><code class="signature apipage">delay(duration:[Float](#)<span></span>) : [luxe.tween.actuators.IGenericActuator](#)</code><br/><span class="small_desc_flat">* Increases the delay before a tween is executed

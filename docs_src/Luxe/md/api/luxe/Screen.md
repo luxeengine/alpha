@@ -38,12 +38,18 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="mid"><a class="lift" href="#mid">mid</a></a><div class="clear"></div><code class="signature apipage">mid : [luxe.Vector](#)</code><br/></span>
+                <a name="mid"><a class="lift" href="#mid">mid</a></a> <div class="clear"></div><code class="signature apipage">mid : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_mid"><a class="lift" href="#get_mid">get\_mid</a></a> <div class="clear"></div><code class="signature apipage">get\_mid() : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="point_inside"><a class="lift" href="#point_inside">point\_inside</a></a> <div class="clear"></div><code class="signature apipage">point\_inside(\_p:[luxe.Vector](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

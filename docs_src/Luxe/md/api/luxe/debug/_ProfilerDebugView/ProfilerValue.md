@@ -35,6 +35,10 @@
                 <a name="avg"><a class="lift" href="#avg">avg</a></a><div class="clear"></div><code class="signature apipage">avg : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="hidden"><a class="lift" href="#hidden">hidden</a></a><div class="clear"></div><code class="signature apipage">hidden : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="count"><a class="lift" href="#count">count</a></a><div class="clear"></div><code class="signature apipage">count : [Int](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="accum"><a class="lift" href="#accum">accum</a></a><div class="clear"></div><code class="signature apipage">accum : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

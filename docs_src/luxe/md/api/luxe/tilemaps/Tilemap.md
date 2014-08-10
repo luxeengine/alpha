@@ -48,11 +48,11 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="total_width"><a class="lift" href="#total_width">total\_width</a></a><div class="clear"></div><code class="signature apipage">total\_width : [Int](#)</code><br/></span>
+                <a name="total_width"><a class="lift" href="#total_width">total\_width</a></a> <div class="clear"></div><code class="signature apipage">total\_width : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="total_height"><a class="lift" href="#total_height">total\_height</a></a><div class="clear"></div><code class="signature apipage">total\_height : [Int](#)</code><br/></span>
+                <a name="total_height"><a class="lift" href="#total_height">total\_height</a></a> <div class="clear"></div><code class="signature apipage">total\_height : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="bounds"><a class="lift" href="#bounds">bounds</a></a><div class="clear"></div><code class="signature apipage">bounds : [luxe.Rectangle](#)</code><br/></span>
+                <a name="bounds"><a class="lift" href="#bounds">bounds</a></a> <div class="clear"></div><code class="signature apipage">bounds : [luxe.Rectangle](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -88,6 +88,12 @@
             <a name="add_tileset"><a class="lift" href="#add_tileset">add\_tileset</a></a> <div class="clear"></div><code class="signature apipage">add\_tileset(options:[luxe.options.TilesetOptions](#)<span></span>) : [luxe.tilemaps.Tileset](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="_sort_layers"><a class="lift" href="#_sort_layers">\_sort\_layers</a></a> <div class="clear"></div><code class="signature apipage">\_sort\_layers(a:[luxe.tilemaps.TileLayer](#)<span></span>, b:[luxe.tilemaps.TileLayer](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="sort_layers"><a class="lift" href="#sort_layers">sort\_layers</a></a> <div class="clear"></div><code class="signature apipage">sort\_layers() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="tileset_from_id"><a class="lift" href="#tileset_from_id">tileset\_from\_id</a></a> <div class="clear"></div><code class="signature apipage">tileset\_from\_id(\_id:[Int](#)<span></span>) : [luxe.tilemaps.Tileset](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -107,6 +113,15 @@
         </span>
     <span class="method apipage">
             <a name="add_tiles_from_grid"><a class="lift" href="#add_tiles_from_grid">add\_tiles\_from\_grid</a></a> <div class="clear"></div><code class="signature apipage">add\_tiles\_from\_grid(layer\_name:[String](#)<span></span>, grid:[Array](#)&lt;[Array](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_total_width"><a class="lift" href="#get_total_width">get\_total\_width</a></a> <div class="clear"></div><code class="signature apipage">get\_total\_width() : [Int](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_total_height"><a class="lift" href="#get_total_height">get\_total\_height</a></a> <div class="clear"></div><code class="signature apipage">get\_total\_height() : [Int](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_bounds"><a class="lift" href="#get_bounds">get\_bounds</a></a> <div class="clear"></div><code class="signature apipage">get\_bounds() : [luxe.Rectangle](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(options:[luxe.options.TilemapOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

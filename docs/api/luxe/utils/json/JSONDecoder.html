@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -62,7 +63,15 @@
 <hr>
 <p>&nbsp;
 &nbsp;</p>
-<p><h3>Members</h3> <hr/></p>
+<p><h3>Members</h3> <hr/><span class="member apipage">
+                <a name="strict"><a class="lift" href="#strict">strict</a></a><div class="clear"></div><code class="signature apipage">strict : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="value"><a class="lift" href="#value">value</a></a><div class="clear"></div><code class="signature apipage">value : <a href="#">Dynamic</a></code><br/></span>
+            <span class="small_desc_flat">The value that will get parsed from the JSON string</span><span class="member apipage">
+                <a name="tokenizer"><a class="lift" href="#tokenizer">tokenizer</a></a><div class="clear"></div><code class="signature apipage">tokenizer : <a href="#">luxe.utils.json.JSONTokenizer</a></code><br/></span>
+            <span class="small_desc_flat">The tokenizer designated to read the JSON string</span><span class="member apipage">
+                <a name="token"><a class="lift" href="#token">token</a></a><div class="clear"></div><code class="signature apipage">token : <a href="#">luxe.utils.json.JSONToken</a></code><br/></span>
+            <span class="small_desc_flat">The current token from the tokenizer</span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="getValue"><a class="lift" href="#getValue">getValue</a></a> <div class="clear"></div><code class="signature apipage">getValue() : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat">* Gets the internal object that was created by parsing</p>
 <pre><code> * the JSON string passed to the constructor.
@@ -71,6 +80,19 @@
  *      string that was passed to the constructor&lt;/span&gt;
     &lt;/span&gt;
 &lt;span <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">nextToken</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">nextToken</span>"&gt;<span class="hljs-title">nextToken</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">nextToken</span>() : [<span class="hljs-title">luxe</span>.<span class="hljs-title">utils</span>.<span class="hljs-title">json</span>.<span class="hljs-title">JSONToken</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Returns</span> <span class="hljs-title">the</span> <span class="hljs-title">next</span> <span class="hljs-title">token</span> <span class="hljs-title">from</span> <span class="hljs-title">the</span> <span class="hljs-title">tokenzier</span> <span class="hljs-title">reading</span>
+ * <span class="hljs-title">the</span> <span class="hljs-title">JSON</span> <span class="hljs-title">string</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">parseArray</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">parseArray</span>"&gt;<span class="hljs-title">parseArray</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">parseArray</span>() : [<span class="hljs-title">Array</span>](#)&amp;<span class="hljs-title">lt</span>;[](#)&amp;<span class="hljs-title">gt</span>;&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Attempt</span> <span class="hljs-title">to</span> <span class="hljs-title">parse</span> <span class="hljs-title">an</span> <span class="hljs-title">array</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">parseObject</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">parseObject</span>"&gt;<span class="hljs-title">parseObject</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">parseObject</span>() : [<span class="hljs-title">Dynamic</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Attempt</span> <span class="hljs-title">to</span> <span class="hljs-title">parse</span> <span class="hljs-title">an</span> <span class="hljs-title">object</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">parseValue</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">parseValue</span>"&gt;<span class="hljs-title">parseValue</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">parseValue</span>() : [<span class="hljs-title">Dynamic</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Attempt</span> <span class="hljs-title">to</span> <span class="hljs-title">parse</span> <span class="hljs-title">a</span> <span class="hljs-title">value</span>&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
         &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">new</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">new</span>"&gt;<span class="hljs-title">new</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">new</span>(<span class="hljs-title">s</span>:[<span class="hljs-title">String</span>](#)&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">strict</span>:[<span class="hljs-title">Bool</span>](#)&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;) : [<span class="hljs-title">Void</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Constructs</span> <span class="hljs-title">a</span> <span class="hljs-title">new</span> <span class="hljs-title">JSONDecoder</span> <span class="hljs-title">to</span> <span class="hljs-title">parse</span> <span class="hljs-title">a</span> <span class="hljs-title">JSON</span> <span class="hljs-title">string</span>
  * <span class="hljs-title">into</span> <span class="hljs-title">a</span> <span class="hljs-title">native</span> <span class="hljs-title">object</span>.
  *

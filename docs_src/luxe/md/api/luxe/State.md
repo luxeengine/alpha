@@ -25,6 +25,8 @@
                 <a name="machine"><a class="lift" href="#machine">machine</a></a><div class="clear"></div><code class="signature apipage">machine : [luxe.States](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="active"><a class="lift" href="#active">active</a></a><div class="clear"></div><code class="signature apipage">active : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="options"><a class="lift" href="#options">options</a></a><div class="clear"></div><code class="signature apipage">options : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

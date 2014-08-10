@@ -28,7 +28,7 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div><code class="signature apipage">name : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="location"><a class="lift" href="#location">location</a></a><div class="clear"></div><code class="signature apipage">location : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="location"><a class="lift" href="#location">location</a></a><div class="clear"></div><code class="signature apipage">location : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

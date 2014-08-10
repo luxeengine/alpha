@@ -24,16 +24,25 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="h"><a class="lift" href="#h">h</a></a><div class="clear"></div><code class="signature apipage">h : [Float](#)</code><br/></span>
+                <a name="h"><a class="lift" href="#h">h</a></a> <div class="clear"></div><code class="signature apipage">h : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="s"><a class="lift" href="#s">s</a></a><div class="clear"></div><code class="signature apipage">s : [Float](#)</code><br/></span>
+                <a name="s"><a class="lift" href="#s">s</a></a> <div class="clear"></div><code class="signature apipage">s : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="v"><a class="lift" href="#v">v</a></a><div class="clear"></div><code class="signature apipage">v : [Float](#)</code><br/></span>
+                <a name="v"><a class="lift" href="#v">v</a></a> <div class="clear"></div><code class="signature apipage">v : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="set_h"><a class="lift" href="#set_h">set\_h</a></a> <div class="clear"></div><code class="signature apipage">set\_h(\_h:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_s"><a class="lift" href="#set_s">set\_s</a></a> <div class="clear"></div><code class="signature apipage">set\_s(\_s:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_v"><a class="lift" href="#set_v">set\_v</a></a> <div class="clear"></div><code class="signature apipage">set\_v(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="set"><a class="lift" href="#set">set</a></a> <div class="clear"></div><code class="signature apipage">set(\_h:[Float](#)<span>=null</span>, \_s:[Float](#)<span>=null</span>, \_v:[Float](#)<span>=null</span>, \_a:[Float](#)<span>=null</span>) : [phoenix.Color](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

@@ -6,7 +6,7 @@
 
     {{~#each (names_in_package .) ~}}
         {{#name_visible .~}}
-            &bull; [{{ without_package (escape_markdown .) }}]({{type_path .}}.html) <br/>
+            <div class="package-node">&bull; [{{ without_package (escape_markdown .) }}]({{type_path .}}.html) </div> <br/>
         {{~/name_visible}}
     {{~/each}}
 

@@ -21,14 +21,18 @@
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="_uv_cache"><a class="lift" href="#_uv_cache">\_uv\_cache</a></a><div class="clear"></div><code class="signature apipage">\_uv\_cache : [luxe.Rectangle](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="is_set"><a class="lift" href="#is_set">is\_set</a></a><div class="clear"></div><code class="signature apipage">is\_set : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="flipx"><a class="lift" href="#flipx">flipx</a></a><div class="clear"></div><code class="signature apipage">flipx : [Bool](#)</code><br/></span>
+                <a name="flipx"><a class="lift" href="#flipx">flipx</a></a> <div class="clear"></div><code class="signature apipage">flipx : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="flipy"><a class="lift" href="#flipy">flipy</a></a><div class="clear"></div><code class="signature apipage">flipy : [Bool](#)</code><br/></span>
+                <a name="flipy"><a class="lift" href="#flipy">flipy</a></a> <div class="clear"></div><code class="signature apipage">flipy : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

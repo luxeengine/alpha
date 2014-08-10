@@ -49,11 +49,11 @@
             <span class="member apipage">
                 <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                     {{~escape_markdown name~}}
-                </a></a><div class="clear"></div>
+                </a></a>{{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
+                <div class="clear"></div>
                 {{~#inherited~}}
                     <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
-                {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
                 <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
             </span>
             <span class="small_desc_flat">{{{doc}}}</span>
@@ -80,11 +80,12 @@
             <span class="member apipage">
                 <a name="{{~name~}}"><a class="lift" href="#{{name}}">
                     {{~escape_markdown name~}}
-                </a></a><div class="clear"></div>
+                </a></a> {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}} 
+                <div class="clear"></div>
                 {{~#inherited~}}
                     <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
-                {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
+                
                 <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
             </span>
             <span class="small_desc_flat">{{{doc}}}</span>

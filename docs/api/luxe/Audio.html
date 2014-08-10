@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -61,67 +62,56 @@
 &nbsp;</p>
 <p><h3>Members</h3> <hr/></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(_name:<a href="#">String</a><span></span>, _file:<a href="#">String</a><span></span>, _stream:<a href="#">Bool</a><span>=false</span>) : <a href="#">lime.helpers.Sound</a></code><br/><span class="small_desc_flat">Create a named audio reference, with optional stream flag
-            <strong>name</strong> The name to assign this audio reference
-            <strong>file</strong> The asset file id from which the audio is loaded/streamed
-            <strong>stream</strong> Whether or not to stream the audio, default <code>false</code>
-            <strong>returns</strong> The <code>Sound</code> instance, but the audio API stores this, use the API to manipulate it by name.</span>
+            <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(_name:<a href="#">String</a><span></span>, _file:<a href="#">String</a><span></span>, _stream:<a href="#">Bool</a><span>=false</span>) : <a href="#">snow.audio.Sound</a></code><br/><span class="small_desc_flat">Create a named audio reference, with optional stream flag<br>            <strong>name</strong> The name to assign this audio reference<br>            <strong>file</strong> The asset file id from which the audio is loaded/streamed<br>            <strong>stream</strong> Whether or not to stream the audio, default <code>false</code><br>            <strong>returns</strong> The <code>Sound</code> instance, but the audio API stores this, use the API to manipulate it by name.</span>
         </span>
     <span class="method apipage">
-            <a name="sound"><a class="lift" href="#sound">sound</a></a> <div class="clear"></div><code class="signature apipage">sound(_name:<a href="#">String</a><span></span>) : <a href="#">lime.helpers.Sound</a></code><br/><span class="small_desc_flat">Fetch a named audio reference
-            <strong>name</strong> The name to acquire audio reference
-            <strong>returns</strong> The <code>Sound</code> instance</span>
+            <a name="uncreate"><a class="lift" href="#uncreate">uncreate</a></a> <div class="clear"></div><code class="signature apipage">uncreate(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Destroy a named audio reference.
+            Use the reference directly with sound.destroy if you have an instance.</span>
         </span>
     <span class="method apipage">
-            <a name="exists"><a class="lift" href="#exists">exists</a></a> <div class="clear"></div><code class="signature apipage">exists(_name:<a href="#">String</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat">Determine whether a named audio reference exists
-            <strong>name</strong> The audio reference name to check
-            <strong>returns</strong> true/false</span>
+            <a name="on"><a class="lift" href="#on">on</a></a> <div class="clear"></div><code class="signature apipage">on(_name:<a href="#">String</a><span></span>, _event:<a href="#">String</a><span></span>, _handler:<a href="#">snow.audio.Sound</a>&nbsp;-&gt; <a href="#">Void</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Listen for an event on a named sound. <code>load</code> and <code>end</code> are valid</span>
         </span>
     <span class="method apipage">
-            <a name="playing"><a class="lift" href="#playing">playing</a></a> <div class="clear"></div><code class="signature apipage">playing(_name:<a href="#">String</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat">Determine whether a named audio reference is playing
-            <strong>name</strong> The audio reference name to check
-            <strong>returns</strong> true/false</span>
+            <a name="off"><a class="lift" href="#off">off</a></a> <div class="clear"></div><code class="signature apipage">off(_name:<a href="#">String</a><span></span>, _event:<a href="#">String</a><span></span>, _handler:<a href="#">snow.audio.Sound</a>&nbsp;-&gt; <a href="#">Void</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Stop listening for an event on a named sound. See <code>on</code></span>
         </span>
     <span class="method apipage">
-            <a name="on_complete"><a class="lift" href="#on_complete">on_complete</a></a> <div class="clear"></div><code class="signature apipage">on_complete(_name:<a href="#">String</a><span></span>, handler:<a href="#">lime.helpers.Sound</a>&nbsp;-&gt; <a href="#">Void</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Set the on complete handler for a named audio reference
-            <strong>name</strong> The audio reference name to assign to
-            <strong>handler</strong> The callback to call when playback is complete
-            <strong>returns</strong> nothing</span>
+            <a name="get"><a class="lift" href="#get">get</a></a> <div class="clear"></div><code class="signature apipage">get(_name:<a href="#">String</a><span></span>) : <a href="#">snow.audio.Sound</a></code><br/><span class="small_desc_flat">Fetch a named audio reference<br>            <strong>name</strong> The name to acquire audio reference<br>            <strong>returns</strong> The <code>Sound</code> instance</span>
         </span>
     <span class="method apipage">
-            <a name="loop"><a class="lift" href="#loop">loop</a></a> <div class="clear"></div><code class="signature apipage">loop(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Loop a named audio reference indefinitely. Use <code>stop</code> if needed.
-            <strong>name</strong> The audio reference name to loop
-            <strong>returns</strong> nothing</span>
+            <a name="exists"><a class="lift" href="#exists">exists</a></a> <div class="clear"></div><code class="signature apipage">exists(_name:<a href="#">String</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat">Determine whether a named audio reference exists<br>            <strong>name</strong> The audio reference name to check<br>            <strong>returns</strong> true/false</span>
         </span>
     <span class="method apipage">
-            <a name="stop"><a class="lift" href="#stop">stop</a></a> <div class="clear"></div><code class="signature apipage">stop(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Stop a named audio reference from playing (or looping)
-            <strong>name</strong> The audio reference name to stop
-            <strong>returns</strong> nothing</span>
+            <a name="on_complete"><a class="lift" href="#on_complete">on_complete</a></a> <div class="clear"></div><code class="signature apipage">on_complete(_name:<a href="#">String</a><span></span>, handler:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Set the on complete handler for a named audio reference<br>            <strong>name</strong> The audio reference name to assign to<br>            <strong>handler</strong> The callback to call when playback is complete<br>            <strong>returns</strong> nothing</span>
         </span>
     <span class="method apipage">
-            <a name="play"><a class="lift" href="#play">play</a></a> <div class="clear"></div><code class="signature apipage">play(_name:<a href="#">String</a><span></span>, _number_of_times:<a href="#">Int</a><span>=1</span>, _start_position_in_s:<a href="#">Float</a><span>=0</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Play a named audio reference
-            <strong>name</strong> The audio reference name to play
-            <strong>number_of_times</strong> The exact number of times to play
-            <strong>start_position_in_s</strong> The start time, in seconds
-            <strong>returns</strong> nothing</span>
+            <a name="loop"><a class="lift" href="#loop">loop</a></a> <div class="clear"></div><code class="signature apipage">loop(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Loop a named audio reference indefinitely. Use <code>stop</code> if needed.<br>            <strong>name</strong> The audio reference name to loop<br>            <strong>returns</strong> nothing</span>
         </span>
     <span class="method apipage">
-            <a name="volume"><a class="lift" href="#volume">volume</a></a> <div class="clear"></div><code class="signature apipage">volume(_name:<a href="#">String</a><span></span>, _volume:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the volume of a named audio reference
-            <strong>name</strong> The audio reference name to adjust
-            <strong>volume</strong> A new volume value (set), or leave empty (get)
-            <strong>returns</strong> The volume of <code>name</code> IF volume is unspecified</span>
+            <a name="stop"><a class="lift" href="#stop">stop</a></a> <div class="clear"></div><code class="signature apipage">stop(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Stop a named audio reference from playing (or looping)<br>            <strong>name</strong> The audio reference name to stop<br>            <strong>returns</strong> nothing</span>
         </span>
     <span class="method apipage">
-            <a name="pan"><a class="lift" href="#pan">pan</a></a> <div class="clear"></div><code class="signature apipage">pan(_name:<a href="#">String</a><span></span>, _pan:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the pan of a named audio reference
-            <strong>name</strong> The audio reference name to adjust
-            <strong>pan</strong> A new pan value (set), or leave empty (get)
-            <strong>returns</strong> The pan of <code>name</code> IF pan is unspecified</span>
+            <a name="play"><a class="lift" href="#play">play</a></a> <div class="clear"></div><code class="signature apipage">play(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Play a named audio reference<br>            <strong>name</strong> The audio reference name to play<br>            <strong>returns</strong> nothing</span>
         </span>
     <span class="method apipage">
-            <a name="position"><a class="lift" href="#position">position</a></a> <div class="clear"></div><code class="signature apipage">position(_name:<a href="#">String</a><span></span>, _pos:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the position of a named audio reference
-            <strong>name</strong> The audio reference name to adjust
-            <strong>pos</strong> A new position value (set), or leave empty (get)
-            <strong>returns</strong> The position of <code>name</code> IF position is unspecified</span>
+            <a name="pause"><a class="lift" href="#pause">pause</a></a> <div class="clear"></div><code class="signature apipage">pause(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Pause a named audio reference<br>            <strong>name</strong> The audio reference name to pause<br>            <strong>returns</strong> nothing</span>
+        </span>
+    <span class="method apipage">
+            <a name="toggle"><a class="lift" href="#toggle">toggle</a></a> <div class="clear"></div><code class="signature apipage">toggle(_name:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat">Toggle a sound instance by name, pausing the sound or resuming it</span>
+        </span>
+    <span class="method apipage">
+            <a name="volume"><a class="lift" href="#volume">volume</a></a> <div class="clear"></div><code class="signature apipage">volume(_name:<a href="#">String</a><span></span>, _volume:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the volume of a named audio reference,<br>            leave the second argument empty for get<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>volume</strong> A new volume value</span>
+        </span>
+    <span class="method apipage">
+            <a name="pan"><a class="lift" href="#pan">pan</a></a> <div class="clear"></div><code class="signature apipage">pan(_name:<a href="#">String</a><span></span>, _pan:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the pan of a named audio reference,<br>            leave the second argument empty for get<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>pan</strong> A new pan value</span>
+        </span>
+    <span class="method apipage">
+            <a name="pitch"><a class="lift" href="#pitch">pitch</a></a> <div class="clear"></div><code class="signature apipage">pitch(_name:<a href="#">String</a><span></span>, _pitch:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the pitch of a named audio reference,<br>            leave the second argument empty for get<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>pitch</strong> A new pitch value</span>
+        </span>
+    <span class="method apipage">
+            <a name="position"><a class="lift" href="#position">position</a></a> <div class="clear"></div><code class="signature apipage">position(_name:<a href="#">String</a><span></span>, _position:<a href="#">Float</a><span>=null</span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get/set the position in <code>seconds</code> of a named audio reference,<br>            leave the second argument empty for get<br>            <strong>name</strong> The audio reference name to adjust<br>            <strong>pan</strong> A new pan value</span>
+        </span>
+    <span class="method apipage">
+            <a name="duration"><a class="lift" href="#duration">duration</a></a> <div class="clear"></div><code class="signature apipage">duration(_name:<a href="#">String</a><span></span>) : <a href="#">Float</a></code><br/><span class="small_desc_flat">get the position in seconds of a named audio reference<br>            <strong>name</strong> The audio reference name to get</span>
         </span></p>
 <hr>
 <p>&nbsp;

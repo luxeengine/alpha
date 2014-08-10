@@ -26,7 +26,7 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="touch_event"><a class="lift" href="#touch_event">touch\_event</a></a><div class="clear"></div><code class="signature apipage">touch\_event : [luxe.TouchEvent](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="state"><a class="lift" href="#state">state</a></a><div class="clear"></div><code class="signature apipage">state : [luxe.InputState](#)</code><br/></span>
+                <a name="state"><a class="lift" href="#state">state</a></a><div class="clear"></div><code class="signature apipage">state : [luxe.InteractState](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div><code class="signature apipage">name : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">

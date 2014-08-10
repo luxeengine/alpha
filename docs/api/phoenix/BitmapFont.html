@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -83,9 +84,14 @@
                 <a name="pages_loaded"><a class="lift" href="#pages_loaded">pages_loaded</a></a><div class="clear"></div><code class="signature apipage">pages_loaded : <a href="#">Int</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="onload"><a class="lift" href="#onload">onload</a></a><div class="clear"></div><code class="signature apipage">onload : <a href="#">phoenix.BitmapFont</a>&nbsp;-&gt; <a href="#">Void</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="line_widths"><a class="lift" href="#line_widths">line_widths</a></a><div class="clear"></div><code class="signature apipage">line_widths : <a href="#">Array</a>&lt;<a href="#">Float</a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : <a href="#">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_tokenize_font_line"><a class="lift" href="#_tokenize_font_line">_tokenize_font_line</a></a> <div class="clear"></div><code class="signature apipage">_tokenize_font_line(_line_tokens:<a href="#">Array</a>&lt;<a href="#">String</a>&gt;<span></span>) : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#">phoenix.KeyValuePair</a>&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="on_all_pages_loaded"><a class="lift" href="#on_all_pages_loaded">on_all_pages_loaded</a></a> <div class="clear"></div><code class="signature apipage">on_all_pages_loaded() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -94,7 +100,7 @@
             <a name="one_page_loaded"><a class="lift" href="#one_page_loaded">one_page_loaded</a></a> <div class="clear"></div><code class="signature apipage">one_page_loaded(t:<a href="#">phoenix.Texture</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="load_from_string"><a class="lift" href="#load_from_string">load_from_string</a></a> <div class="clear"></div><code class="signature apipage">load_from_string(_bitmap_file:<a href="#">String</a><span>=&#x27;&#x27;</span>, _folder:<a href="#">String</a><span>=&#x27;assets/&#x27;</span>, onloaded:<a href="#">phoenix.BitmapFont</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>, custom_pages:<a href="#">Array</a>&lt;<a href="#">phoenix.Texture</a>&gt;<span>=null</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="from_string"><a class="lift" href="#from_string">from_string</a></a> <div class="clear"></div><code class="signature apipage">from_string(_bitmap_file:<a href="#">String</a><span>=&#x27;&#x27;</span>, _folder:<a href="#">String</a><span>=&#x27;assets/&#x27;</span>, onloaded:<a href="#">phoenix.BitmapFont</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>, custom_pages:<a href="#">Array</a>&lt;<a href="#">phoenix.Texture</a>&gt;<span>=null</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="set_kerning"><a class="lift" href="#set_kerning">set_kerning</a></a> <div class="clear"></div><code class="signature apipage">set_kerning(_glyph:<a href="#">Int</a><span></span>, _index:<a href="#">Int</a><span></span>, _amount:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -103,7 +109,7 @@
             <a name="get_kerning"><a class="lift" href="#get_kerning">get_kerning</a></a> <div class="clear"></div><code class="signature apipage">get_kerning(_glyph:<a href="#">Int</a><span></span>, _index:<a href="#">Int</a><span></span>) : <a href="#">Null</a>&lt;<a href="#">Float</a>&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_text_dimensions"><a class="lift" href="#get_text_dimensions">get_text_dimensions</a></a> <div class="clear"></div><code class="signature apipage">get_text_dimensions(_string:<a href="#">String</a><span></span>, _scale:<a href="#">luxe.Vector</a><span></span>) : <a href="#">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+            <a name="get_text_dimensions"><a class="lift" href="#get_text_dimensions">get_text_dimensions</a></a> <div class="clear"></div><code class="signature apipage">get_text_dimensions(_string:<a href="#">String</a><span></span>, _scale:<a href="#">luxe.Vector</a><span></span>) : <a href="#">luxe.Vector</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="draw_text"><a class="lift" href="#draw_text">draw_text</a></a> <div class="clear"></div><code class="signature apipage">draw_text(options:<a href="#">Dynamic</a><span></span>) : <a href="#">phoenix.geometry.CompositeGeometry</a></code><br/><span class="small_desc_flat"></span>
@@ -113,6 +119,9 @@
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(_resource_manager:<a href="#">luxe.ResourceManager</a><span>=null</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="load"><a class="lift" href="#load">load</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">load(_fontid:<a href="#">String</a><span></span>, _path:<a href="#">String</a><span>=&#x27;assets/&#x27;</span>, _onloaded:<a href="#">phoenix.BitmapFont</a>&nbsp;-&gt; <a href="#">Void</a><span>=null</span>) : <a href="#">phoenix.BitmapFont</a></code><br/><span class="small_desc_flat"></span>
         </span></p>
 <hr>
 <p>&nbsp;

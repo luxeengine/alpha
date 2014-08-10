@@ -40,13 +40,16 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="id"><a class="lift" href="#id">id</a></a><div class="clear"></div><code class="signature apipage">id : [Int](#)</code><br/></span>
+                <a name="id"><a class="lift" href="#id">id</a></a> <div class="clear"></div><code class="signature apipage">id : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_id"><a class="lift" href="#set_id">set\_id</a></a> <div class="clear"></div><code class="signature apipage">set\_id(\_id:[Int](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(options:[luxe.options.TileOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

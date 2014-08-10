@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -65,18 +66,28 @@
                 <a name="inited"><a class="lift" href="#inited">inited</a></a><div class="clear"></div><code class="signature apipage">inited : <a href="#">Bool</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="started"><a class="lift" href="#started">started</a></a><div class="clear"></div><code class="signature apipage">started : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_delayed_init_entities"><a class="lift" href="#_delayed_init_entities">_delayed_init_entities</a></a><div class="clear"></div><code class="signature apipage">_delayed_init_entities : <a href="#">Array</a>&lt;<a href="#">luxe.Entity</a>&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_delayed_reset_entities"><a class="lift" href="#_delayed_reset_entities">_delayed_reset_entities</a></a><div class="clear"></div><code class="signature apipage">_delayed_reset_entities : <a href="#">Array</a>&lt;<a href="#">luxe.Entity</a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="entitycount"><a class="lift" href="#entitycount">entitycount</a></a><div class="clear"></div><code class="signature apipage">entitycount : <a href="#">Int</a></code><br/></span>
+                <a name="entitycount"><a class="lift" href="#entitycount">entitycount</a></a> <div class="clear"></div><code class="signature apipage">entitycount : <a href="#">Int</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : <a href="#">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_entitycount"><a class="lift" href="#get_entitycount">get_entitycount</a></a> <div class="clear"></div><code class="signature apipage">get_entitycount() : <a href="#">Int</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(type:<a href="#">Class</a>&lt;<a href="#">create.T1</a>&gt;<span></span>, _name:<a href="#">String</a><span>=&#x27;&#x27;</span>, _data:<a href="#">luxe.options.EntityOptions</a>&lt;<a href="#">create.T2</a>&gt;<span>=null</span>) : <a href="#">create.T1</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="add"><a class="lift" href="#add">add</a></a> <div class="clear"></div><code class="signature apipage">add(entity:<a href="#">luxe.Entity</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="list_entities"><a class="lift" href="#list_entities">list_entities</a></a> <div class="clear"></div><code class="signature apipage">list_entities() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="remove"><a class="lift" href="#remove">remove</a></a> <div class="clear"></div><code class="signature apipage">remove(entity:<a href="#">luxe.Entity</a><span></span>) : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
@@ -103,16 +114,16 @@
             <a name="onmousemove"><a class="lift" href="#onmousemove">onmousemove</a></a> <div class="clear"></div><code class="signature apipage">onmousemove(e:<a href="#">luxe.MouseEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ontouchbegin"><a class="lift" href="#ontouchbegin">ontouchbegin</a></a> <div class="clear"></div><code class="signature apipage">ontouchbegin(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ontouchdown"><a class="lift" href="#ontouchdown">ontouchdown</a></a> <div class="clear"></div><code class="signature apipage">ontouchdown(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ontouchend"><a class="lift" href="#ontouchend">ontouchend</a></a> <div class="clear"></div><code class="signature apipage">ontouchend(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ontouchup"><a class="lift" href="#ontouchup">ontouchup</a></a> <div class="clear"></div><code class="signature apipage">ontouchup(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="ontouchmove"><a class="lift" href="#ontouchmove">ontouchmove</a></a> <div class="clear"></div><code class="signature apipage">ontouchmove(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a> <div class="clear"></div><code class="signature apipage">ongamepadaxis(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a> <div class="clear"></div><code class="signature apipage">ongamepadaxis(e:<a href="#">luxe.GamepadEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="ongamepadball"><a class="lift" href="#ongamepadball">ongamepadball</a></a> <div class="clear"></div><code class="signature apipage">ongamepadball(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -121,10 +132,10 @@
             <a name="ongamepadhat"><a class="lift" href="#ongamepadhat">ongamepadhat</a></a> <div class="clear"></div><code class="signature apipage">ongamepadhat(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadbuttonup"><a class="lift" href="#ongamepadbuttonup">ongamepadbuttonup</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttonup(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepadbuttonup"><a class="lift" href="#ongamepadbuttonup">ongamepadbuttonup</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttonup(e:<a href="#">luxe.GamepadEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadbuttondown"><a class="lift" href="#ongamepadbuttondown">ongamepadbuttondown</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttondown(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepadbuttondown"><a class="lift" href="#ongamepadbuttondown">ongamepadbuttondown</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttondown(e:<a href="#">luxe.GamepadEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="oninputdown"><a class="lift" href="#oninputdown">oninputdown</a></a> <div class="clear"></div><code class="signature apipage">oninputdown(_name:<a href="#">String</a><span></span>, e:<a href="#">luxe.InputEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -134,6 +145,9 @@
         </span>
     <span class="method apipage">
             <a name="destroy"><a class="lift" href="#destroy">destroy</a></a> <div class="clear"></div><code class="signature apipage">destroy() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_do_init"><a class="lift" href="#_do_init">_do_init</a></a> <div class="clear"></div><code class="signature apipage">_do_init() : <a href="#">Bool</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="init"><a class="lift" href="#init">init</a></a> <div class="clear"></div><code class="signature apipage">init() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -146,6 +160,9 @@
         </span>
     <span class="method apipage">
             <a name="fixed_update"><a class="lift" href="#fixed_update">fixed_update</a></a> <div class="clear"></div><code class="signature apipage">fixed_update() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="handle_delayed_additions"><a class="lift" href="#handle_delayed_additions">handle_delayed_additions</a></a> <div class="clear"></div><code class="signature apipage">handle_delayed_additions() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="serialize_to_disk"><a class="lift" href="#serialize_to_disk">serialize_to_disk</a></a> <div class="clear"></div><code class="signature apipage">serialize_to_disk(_destination_path:<a href="#">String</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>

@@ -30,19 +30,19 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="primitive_type"><a class="lift" href="#primitive_type">primitive\_type</a></a><div class="clear"></div><code class="signature apipage">primitive\_type : [phoenix.PrimitiveType](#)</code><br/></span>
+                <a name="primitive_type"><a class="lift" href="#primitive_type">primitive\_type</a></a> <div class="clear"></div><code class="signature apipage">primitive\_type : [phoenix.PrimitiveType](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="shader"><a class="lift" href="#shader">shader</a></a><div class="clear"></div><code class="signature apipage">shader : [phoenix.Shader](#)</code><br/></span>
+                <a name="shader"><a class="lift" href="#shader">shader</a></a> <div class="clear"></div><code class="signature apipage">shader : [phoenix.Shader](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="texture"><a class="lift" href="#texture">texture</a></a><div class="clear"></div><code class="signature apipage">texture : [phoenix.Texture](#)</code><br/></span>
+                <a name="texture"><a class="lift" href="#texture">texture</a></a> <div class="clear"></div><code class="signature apipage">texture : [phoenix.Texture](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="depth"><a class="lift" href="#depth">depth</a></a><div class="clear"></div><code class="signature apipage">depth : [Float](#)</code><br/></span>
+                <a name="depth"><a class="lift" href="#depth">depth</a></a> <div class="clear"></div><code class="signature apipage">depth : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="group"><a class="lift" href="#group">group</a></a><div class="clear"></div><code class="signature apipage">group : [Int](#)</code><br/></span>
+                <a name="group"><a class="lift" href="#group">group</a></a> <div class="clear"></div><code class="signature apipage">group : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="clip"><a class="lift" href="#clip">clip</a></a><div class="clear"></div><code class="signature apipage">clip : [Bool](#)</code><br/></span>
+                <a name="clip"><a class="lift" href="#clip">clip</a></a> <div class="clear"></div><code class="signature apipage">clip : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><div class="clear"></div><code class="signature apipage">clip\_rect : [phoenix.Rectangle](#)</code><br/></span>
+                <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a> <div class="clear"></div><code class="signature apipage">clip\_rect : [phoenix.Rectangle](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

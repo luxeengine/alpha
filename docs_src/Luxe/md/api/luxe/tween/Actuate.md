@@ -22,9 +22,11 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="defaultActuator"><a class="lift" href="#defaultActuator">defaultActuator</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">defaultActuator : [Class](#)&lt;[luxe.tween.actuators.GenericActuator](#)&gt;</code><br/></span>
+                <a name="defaultActuator"><a class="lift" href="#defaultActuator">defaultActuator</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">defaultActuator : [Class](#)&lt;[luxe.tween.actuators.GenericActuator](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="defaultEase"><a class="lift" href="#defaultEase">defaultEase</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">defaultEase : [luxe.tween.easing.IEasing](#)</code><br/></span>
+                <a name="defaultEase"><a class="lift" href="#defaultEase">defaultEase</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">defaultEase : [luxe.tween.easing.IEasing](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="targetLibraries"><a class="lift" href="#targetLibraries">targetLibraries</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">targetLibraries : [luxe.tween.ObjectHash](#)&lt;[Array](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -38,6 +40,9 @@
      * @param   properties      The object to copy from
      * @param   customActuator      A custom actuator to use instead of the default (Optional)
      * @return      The current actuator instance, which can be used to apply properties like onComplete or onUpdate handlers</span>
+        </span>
+    <span class="method apipage">
+            <a name="getLibrary"><a class="lift" href="#getLibrary">getLibrary</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">getLibrary(target:[Dynamic](#)<span></span>, allowCreation:[Bool](#)<span>=true</span>) : [Array](#)&lt;[luxe.tween.actuators.GenericActuator](#)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="motionPath"><a class="lift" href="#motionPath">motionPath</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">motionPath(target:[Dynamic](#)<span></span>, duration:[Float](#)<span></span>, properties:[Dynamic](#)<span></span>, overwrite:[Bool](#)<span>=true</span>) : [luxe.tween.actuators.IGenericActuator](#)</code><br/><span class="small_desc_flat">* Creates a new MotionPath tween

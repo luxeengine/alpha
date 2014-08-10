@@ -2,20 +2,64 @@
 
 @font-face {
     font-family: 'dsm';
-    src: url('droidsansmono.eot');
-    src: url('droidsansmono.eot?#iefix') format('embedded-opentype'),
-         url('droidsansmono.woff') format('woff'),
-         url('droidsansmono.ttf') format('truetype');
+    src: url('./font/droidsansmono.eot');
+    src: url('./font/droidsansmono.eot?#iefix') format('embedded-opentype'),
+         url('./font/droidsansmono.woff') format('woff'),
+         url('./font/droidsansmono.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
+
 @font-face {
-    font-family: 'osp';
-    src: url('font.eot');
-    src: url('font.eot?#iefix') format('embedded-opentype'),
-         url('font.woff') format('woff'),
-         url('font.ttf') format('truetype');
+    font-family: 'cabin';
+    src: url('./font/cabin-regular-webfont.eot');
+    src: url('./font/cabin-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./font/cabin-regular-webfont.woff') format('woff'),
+         url('./font/cabin-regular-webfont.ttf') format('truetype'),
+         url('./font/cabin-regular-webfont.svg#cabinregular') format('svg');
     font-weight: normal;
     font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'cabin';
+    src: url('./font/cabin-semibold-webfont.eot');
+    src: url('./font/cabin-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./font/cabin-semibold-webfont.woff') format('woff'),
+         url('./font/cabin-semibold-webfont.ttf') format('truetype'),
+         url('./font/cabin-semibold-webfont.svg#cabinsemibold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'cabin';
+    src: url('./font/cabin-medium-webfont.eot');
+    src: url('./font/cabin-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./font/cabin-medium-webfont.woff') format('woff'),
+         url('./font/cabin-medium-webfont.ttf') format('truetype'),
+         url('./font/cabin-medium-webfont.svg#cabinmedium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'cabin';
+    src: url('./font/cabin-bold-webfont.eot');
+    src: url('./font/cabin-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./font/cabin-bold-webfont.woff') format('woff'),
+         url('./font/cabin-bold-webfont.ttf') format('truetype'),
+         url('./font/cabin-bold-webfont.svg#cabinbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
 }

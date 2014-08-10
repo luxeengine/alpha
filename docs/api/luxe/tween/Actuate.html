@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../../js/jquery.tooltipster.min.js"> </script>
 
@@ -60,9 +61,11 @@
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-                <a name="defaultActuator"><a class="lift" href="#defaultActuator">defaultActuator</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">defaultActuator : <a href="#">Class</a>&lt;<a href="#">luxe.tween.actuators.GenericActuator</a>&gt;</code><br/></span>
+                <a name="defaultActuator"><a class="lift" href="#defaultActuator">defaultActuator</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">defaultActuator : <a href="#">Class</a>&lt;<a href="#">luxe.tween.actuators.GenericActuator</a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="defaultEase"><a class="lift" href="#defaultEase">defaultEase</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">defaultEase : <a href="#">luxe.tween.easing.IEasing</a></code><br/></span>
+                <a name="defaultEase"><a class="lift" href="#defaultEase">defaultEase</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">defaultEase : <a href="#">luxe.tween.easing.IEasing</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="targetLibraries"><a class="lift" href="#targetLibraries">targetLibraries</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">targetLibraries : <a href="#">luxe.tween.ObjectHash</a>&lt;<a href="#">Array</a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="apply"><a class="lift" href="#apply">apply</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">apply(target:<a href="#">Dynamic</a><span></span>, properties:<a href="#">Dynamic</a><span></span>, customActuator:<a href="#">Class</a>&lt;<a href="#">luxe.tween.actuators.GenericActuator</a>&gt;<span>=null</span>) : <a href="#">luxe.tween.actuators.IGenericActuator</a></code><br/><span class="small_desc_flat">* Copies properties from one object to another. Conflicting tweens are stopped automatically</p>
@@ -73,6 +76,9 @@
  * @<span class="hljs-keyword">return</span>      The current actuator instance, which can be used to apply properties like onComplete or onUpdate handlers&lt;/span&gt;
     &lt;/span&gt;
 &lt;span <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
+        &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">getLibrary</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">getLibrary</span>"&gt;<span class="hljs-title">getLibrary</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">inline</span>-<span class="hljs-title">block</span> <span class="hljs-title">static</span>"&gt;<span class="hljs-title">static</span>&lt;/<span class="hljs-title">span</span>&gt;&lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">getLibrary</span>(<span class="hljs-title">target</span>:[<span class="hljs-title">Dynamic</span>](#)&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">allowCreation</span>:[<span class="hljs-title">Bool</span>](#)&lt;<span class="hljs-title">span</span>&gt;=<span class="hljs-title">true</span>&lt;/<span class="hljs-title">span</span>&gt;) : [<span class="hljs-title">Array</span>](#)&amp;<span class="hljs-title">lt</span>;[<span class="hljs-title">luxe</span>.<span class="hljs-title">tween</span>.<span class="hljs-title">actuators</span>.<span class="hljs-title">GenericActuator</span>](#)&amp;<span class="hljs-title">gt</span>;&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;&lt;/<span class="hljs-title">span</span>&gt;
+    &lt;/<span class="hljs-title">span</span>&gt;
+&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">method</span> <span class="hljs-title">apipage</span>"&gt;
         &lt;<span class="hljs-title">a</span> <span class="hljs-title">name</span>="<span class="hljs-title">motionPath</span>"&gt;&lt;<span class="hljs-title">a</span> <span class="hljs-title">class</span>="<span class="hljs-title">lift</span>" <span class="hljs-title">href</span>="#<span class="hljs-title">motionPath</span>"&gt;<span class="hljs-title">motionPath</span>&lt;/<span class="hljs-title">a</span>&gt;&lt;/<span class="hljs-title">a</span>&gt; &lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">inline</span>-<span class="hljs-title">block</span> <span class="hljs-title">static</span>"&gt;<span class="hljs-title">static</span>&lt;/<span class="hljs-title">span</span>&gt;&lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">clear</span>"&gt;&lt;/<span class="hljs-title">div</span>&gt;&lt;<span class="hljs-title">code</span> <span class="hljs-title">class</span>="<span class="hljs-title">signature</span> <span class="hljs-title">apipage</span>"&gt;<span class="hljs-title">motionPath</span>(<span class="hljs-title">target</span>:[<span class="hljs-title">Dynamic</span>](#)&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">duration</span>:[<span class="hljs-title">Float</span>](#)&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">properties</span>:[<span class="hljs-title">Dynamic</span>](#)&lt;<span class="hljs-title">span</span>&gt;&lt;/<span class="hljs-title">span</span>&gt;, <span class="hljs-title">overwrite</span>:[<span class="hljs-title">Bool</span>](#)&lt;<span class="hljs-title">span</span>&gt;=<span class="hljs-title">true</span>&lt;/<span class="hljs-title">span</span>&gt;) : [<span class="hljs-title">luxe</span>.<span class="hljs-title">tween</span>.<span class="hljs-title">actuators</span>.<span class="hljs-title">IGenericActuator</span>](#)&lt;/<span class="hljs-title">code</span>&gt;&lt;<span class="hljs-title">br</span>/&gt;&lt;<span class="hljs-title">span</span> <span class="hljs-title">class</span>="<span class="hljs-title">small_desc_flat</span>"&gt;* <span class="hljs-title">Creates</span> <span class="hljs-title">a</span> <span class="hljs-title">new</span> <span class="hljs-title">MotionPath</span> <span class="hljs-title">tween</span>
  * @<span class="hljs-title">param</span>   <span class="hljs-title">target</span>      <span class="hljs-title">The</span> <span class="hljs-title">object</span> <span class="hljs-title">to</span> <span class="hljs-title">tween</span>
  * @<span class="hljs-title">param</span>   <span class="hljs-title">duration</span>        <span class="hljs-title">The</span> <span class="hljs-title">length</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">tween</span> <span class="hljs-title">in</span> <span class="hljs-title">seconds</span>

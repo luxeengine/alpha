@@ -58,9 +58,15 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="profiling"><a class="lift" href="#profiling">profiling</a></a><div class="clear"></div><code class="signature apipage">profiling : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="shut_down"><a class="lift" href="#shut_down">shut\_down</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">shut\_down : [Bool](#)</code><br/></span>
+                <a name="last_cursor_shown"><a class="lift" href="#last_cursor_shown">last\_cursor\_shown</a></a><div class="clear"></div><code class="signature apipage">last\_cursor\_shown : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="views"><a class="lift" href="#views">views</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">views : [Array](#)&lt;[luxe.debug.DebugView](#)&gt;</code><br/></span>
+                <a name="last_cursor_grab"><a class="lift" href="#last_cursor_grab">last\_cursor\_grab</a></a><div class="clear"></div><code class="signature apipage">last\_cursor\_grab : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="shut_down"><a class="lift" href="#shut_down">shut\_down</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">shut\_down : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="views"><a class="lift" href="#views">views</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">views : [Array](#)&lt;[luxe.debug.DebugView](#)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="trace_callbacks"><a class="lift" href="#trace_callbacks">trace\_callbacks</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">trace\_callbacks : [Map](#)&lt;[String](#), [](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -105,6 +111,9 @@
         </span>
     <span class="method apipage">
             <a name="onresize"><a class="lift" href="#onresize">onresize</a></a> <div class="clear"></div><code class="signature apipage">onresize(e:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="refresh"><a class="lift" href="#refresh">refresh</a></a> <div class="clear"></div><code class="signature apipage">refresh() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="switch_view"><a class="lift" href="#switch_view">switch\_view</a></a> <div class="clear"></div><code class="signature apipage">switch\_view() : [Void](#)</code><br/><span class="small_desc_flat"></span>

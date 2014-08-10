@@ -22,9 +22,9 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="fbo"><a class="lift" href="#fbo">fbo</a></a><div class="clear"></div><code class="signature apipage">fbo : [lime.gl.GLFramebuffer](#)</code><br/></span>
+                <a name="fbo"><a class="lift" href="#fbo">fbo</a></a><div class="clear"></div><code class="signature apipage">fbo : [snow.render.opengl.GLFramebuffer](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="renderbuffer"><a class="lift" href="#renderbuffer">renderbuffer</a></a><div class="clear"></div><code class="signature apipage">renderbuffer : [lime.gl.GLRenderbuffer](#)</code><br/></span>
+                <a name="renderbuffer"><a class="lift" href="#renderbuffer">renderbuffer</a></a><div class="clear"></div><code class="signature apipage">renderbuffer : [snow.render.opengl.GLRenderbuffer](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

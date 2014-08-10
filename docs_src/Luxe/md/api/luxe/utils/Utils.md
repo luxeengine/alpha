@@ -23,6 +23,8 @@
 
 <h3>Members</h3> <hr/><span class="member apipage">
                 <a name="geometry"><a class="lift" href="#geometry">geometry</a></a><div class="clear"></div><code class="signature apipage">geometry : [luxe.utils.GeometryUtils](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_byte_levels"><a class="lift" href="#_byte_levels">\_byte\_levels</a></a><div class="clear"></div><code class="signature apipage">\_byte\_levels : [Array](#)&lt;[String](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -34,12 +36,6 @@
         </span>
     <span class="method apipage">
             <a name="uuid"><a class="lift" href="#uuid">uuid</a></a> <div class="clear"></div><code class="signature apipage">uuid() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="base64_encode"><a class="lift" href="#base64_encode">base64\_encode</a></a> <div class="clear"></div><code class="signature apipage">base64\_encode(\_string:[String](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="base64_decode"><a class="lift" href="#base64_decode">base64\_decode</a></a> <div class="clear"></div><code class="signature apipage">base64\_decode(\_string:[String](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="stacktrace"><a class="lift" href="#stacktrace">stacktrace</a></a> <div class="clear"></div><code class="signature apipage">stacktrace(\_depth:[Int](#)<span>=100</span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
@@ -55,9 +51,6 @@
         </span>
     <span class="method apipage">
             <a name="array_to_bytes"><a class="lift" href="#array_to_bytes">array\_to\_bytes</a></a> <div class="clear"></div><code class="signature apipage">array\_to\_bytes(array:[Array](#)&lt;[Int](#)&gt;<span></span>) : [haxe.io.Bytes](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="file_bytes_to_class"><a class="lift" href="#file_bytes_to_class">file\_bytes\_to\_class</a></a> <div class="clear"></div><code class="signature apipage">file\_bytes\_to\_class(\_file:[String](#)<span></span>, \_outfile:[String](#)<span></span>, \_string\_length:[Int](#)<span>=2048</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

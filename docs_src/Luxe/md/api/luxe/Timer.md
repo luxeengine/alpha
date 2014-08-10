@@ -28,7 +28,7 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="schedule"><a class="lift" href="#schedule">schedule</a></a> <div class="clear"></div><code class="signature apipage">schedule(\_time\_in\_seconds:[Float](#)<span></span>, \_on\_time:[Dynamic](#)<span></span>, repeat:[Bool](#)<span>=false</span>) : [haxe.Timer](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="schedule"><a class="lift" href="#schedule">schedule</a></a> <div class="clear"></div><code class="signature apipage">schedule(\_time\_in\_seconds:[Float](#)<span></span>, \_on\_time:[Dynamic](#)<span></span>, repeat:[Bool](#)<span>=false</span>) : [snow.utils.Timer](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
 

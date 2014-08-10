@@ -36,15 +36,15 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
+                <a name="x"><a class="lift" href="#x">x</a></a> <div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
+                <a name="y"><a class="lift" href="#y">y</a></a> <div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="w"><a class="lift" href="#w">w</a></a><div class="clear"></div><code class="signature apipage">w : [Float](#)</code><br/></span>
+                <a name="w"><a class="lift" href="#w">w</a></a> <div class="clear"></div><code class="signature apipage">w : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="h"><a class="lift" href="#h">h</a></a><div class="clear"></div><code class="signature apipage">h : [Float](#)</code><br/></span>
+                <a name="h"><a class="lift" href="#h">h</a></a> <div class="clear"></div><code class="signature apipage">h : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><div class="clear"></div><code class="signature apipage">serialized : [Dynamic](#)</code><br/></span>
+                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a> <div class="clear"></div><code class="signature apipage">serialized : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -69,6 +69,21 @@
         </span>
     <span class="method apipage">
             <a name="set"><a class="lift" href="#set">set</a></a> <div class="clear"></div><code class="signature apipage">set(\_x:[Float](#)<span>=null</span>, \_y:[Float](#)<span>=null</span>, \_w:[Float](#)<span>=null</span>, \_h:[Float](#)<span>=null</span>) : [phoenix.Rectangle](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_x"><a class="lift" href="#set_x">set\_x</a></a> <div class="clear"></div><code class="signature apipage">set\_x(\_x:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_y"><a class="lift" href="#set_y">set\_y</a></a> <div class="clear"></div><code class="signature apipage">set\_y(\_y:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_w"><a class="lift" href="#set_w">set\_w</a></a> <div class="clear"></div><code class="signature apipage">set\_w(\_w:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_h"><a class="lift" href="#set_h">set\_h</a></a> <div class="clear"></div><code class="signature apipage">set\_h(\_h:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_serialized"><a class="lift" href="#get_serialized">get\_serialized</a></a> <div class="clear"></div><code class="signature apipage">get\_serialized() : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_x:[Float](#)<span>=0</span>, \_y:[Float](#)<span>=0</span>, \_w:[Float](#)<span>=0</span>, \_h:[Float](#)<span>=0</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

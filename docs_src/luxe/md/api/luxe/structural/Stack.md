@@ -28,7 +28,7 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
+                <a name="length"><a class="lift" href="#length">length</a></a> <div class="clear"></div><code class="signature apipage">length : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

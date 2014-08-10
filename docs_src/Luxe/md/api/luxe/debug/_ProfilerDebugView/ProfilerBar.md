@@ -45,18 +45,26 @@
                 <a name="history"><a class="lift" href="#history">history</a></a><div class="clear"></div><code class="signature apipage">history : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="visible"><a class="lift" href="#visible">visible</a></a><div class="clear"></div><code class="signature apipage">visible : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="segment"><a class="lift" href="#segment">segment</a></a><div class="clear"></div><code class="signature apipage">segment : [Float](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="color_red"><a class="lift" href="#color_red">color\_red</a></a><div class="clear"></div><code class="signature apipage">color\_red : [luxe.Color](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="color_green"><a class="lift" href="#color_green">color\_green</a></a><div class="clear"></div><code class="signature apipage">color\_green : [luxe.Color](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="color_normal"><a class="lift" href="#color_normal">color\_normal</a></a><div class="clear"></div><code class="signature apipage">color\_normal : [luxe.Color](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
+                <a name="text"><a class="lift" href="#text">text</a></a> <div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="pos"><a class="lift" href="#pos">pos</a></a><div class="clear"></div><code class="signature apipage">pos : [luxe.Vector](#)</code><br/></span>
+                <a name="pos"><a class="lift" href="#pos">pos</a></a> <div class="clear"></div><code class="signature apipage">pos : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="value"><a class="lift" href="#value">value</a></a><div class="clear"></div><code class="signature apipage">value : [Float](#)</code><br/></span>
+                <a name="value"><a class="lift" href="#value">value</a></a> <div class="clear"></div><code class="signature apipage">value : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="ping"><a class="lift" href="#ping">ping</a></a><div class="clear"></div><code class="signature apipage">ping : [Float](#)</code><br/></span>
+                <a name="ping"><a class="lift" href="#ping">ping</a></a> <div class="clear"></div><code class="signature apipage">ping : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -66,6 +74,18 @@
         </span>
     <span class="method apipage">
             <a name="show"><a class="lift" href="#show">show</a></a> <div class="clear"></div><code class="signature apipage">show() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_ping"><a class="lift" href="#set_ping">set\_ping</a></a> <div class="clear"></div><code class="signature apipage">set\_ping(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_value"><a class="lift" href="#set_value">set\_value</a></a> <div class="clear"></div><code class="signature apipage">set\_value(\_v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_pos"><a class="lift" href="#set_pos">set\_pos</a></a> <div class="clear"></div><code class="signature apipage">set\_pos(\_p:[luxe.Vector](#)<span></span>) : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_text"><a class="lift" href="#set_text">set\_text</a></a> <div class="clear"></div><code class="signature apipage">set\_text(\_t:[String](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_name:[String](#)<span></span>, \_color:[luxe.Color](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

@@ -29,6 +29,9 @@
             <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(options:[luxe.options.TilemapVisualOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="create_tile_for_layer"><a class="lift" href="#create_tile_for_layer">create\_tile\_for\_layer</a></a> <div class="clear"></div><code class="signature apipage">create\_tile\_for\_layer(layer:[luxe.tilemaps.TileLayer](#)<span></span>, x:[Int](#)<span></span>, y:[Int](#)<span></span>, \_scale:[Float](#)<span>=1</span>, \_filter:[phoenix.FilterType](#)<span>=null</span>) : [phoenix.geometry.QuadGeometry](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_map:[luxe.tilemaps.Tilemap](#)<span></span>, options:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     

@@ -22,7 +22,9 @@
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="lists"><a class="lift" href="#lists">lists</a></a><div class="clear"></div><span class="inline-block static">static</span><code class="signature apipage">lists : [Map](#)&lt;[String](#), [luxe.debug._ProfilerDebugView.ProfilerValue](#)&gt;</code><br/></span>
+                <a name="_setup"><a class="lift" href="#_setup">\_setup</a></a><div class="clear"></div><code class="signature apipage">\_setup : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="lists"><a class="lift" href="#lists">lists</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">lists : [Map](#)&lt;[String](#), [luxe.debug._ProfilerDebugView.ProfilerValue](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

@@ -24,6 +24,8 @@
 <h3>Members</h3> <hr/><span class="member apipage">
                 <a name="font"><a class="lift" href="#font">font</a></a><div class="clear"></div><code class="signature apipage">font : [phoenix.BitmapFont](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_batcher"><a class="lift" href="#_batcher">\_batcher</a></a><div class="clear"></div><code class="signature apipage">\_batcher : [phoenix.Batcher](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="composite_geometry"><a class="lift" href="#composite_geometry">composite\_geometry</a></a><div class="clear"></div><code class="signature apipage">composite\_geometry : [phoenix.geometry.CompositeGeometry](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="ready"><a class="lift" href="#ready">ready</a></a><div class="clear"></div><code class="signature apipage">ready : [Bool](#)</code><br/></span>
@@ -34,14 +36,32 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
+                <a name="text"><a class="lift" href="#text">text</a></a> <div class="clear"></div><code class="signature apipage">text : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="textsize"><a class="lift" href="#textsize">textsize</a></a><div class="clear"></div><code class="signature apipage">textsize : [Float](#)</code><br/></span>
+                <a name="textsize"><a class="lift" href="#textsize">textsize</a></a> <div class="clear"></div><code class="signature apipage">textsize : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="set_pos_from_transform"><a class="lift" href="#set_pos_from_transform">set\_pos\_from\_transform</a></a> <div class="clear"></div><code class="signature apipage">set\_pos\_from\_transform(\_p:[luxe.Vector](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_textsize"><a class="lift" href="#set_textsize">set\_textsize</a></a> <div class="clear"></div><code class="signature apipage">set\_textsize(v:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_color"><a class="lift" href="#set_color">set\_color</a></a> <div class="clear"></div><code class="signature apipage">set\_color(c:[luxe.Color](#)<span></span>) : [luxe.Color](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_visible"><a class="lift" href="#set_visible">set\_visible</a></a> <div class="clear"></div><code class="signature apipage">set\_visible(b:[Bool](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_locked"><a class="lift" href="#set_locked">set\_locked</a></a> <div class="clear"></div><code class="signature apipage">set\_locked(l:[Bool](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_text"><a class="lift" href="#set_text">set\_text</a></a> <div class="clear"></div><code class="signature apipage">set\_text(t:[String](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_options:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     

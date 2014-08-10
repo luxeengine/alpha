@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -55,7 +56,7 @@
 <p><h1>Core</h1>
 <small><code>luxe.Core</code></small></p>
 <hr>
-<p><code>class</code>
+<p><code>class</code>extends <code><span>snow.App</span></code>
 <span class="meta">
 <br/>meta: @:noCompletion, @:keep, @:log_as(&quot;luxe&quot;)
 </span></p>
@@ -63,9 +64,7 @@
 <p>&nbsp;
 &nbsp;</p>
 <p><h3>Members</h3> <hr/><span class="member apipage">
-                <a name="host"><a class="lift" href="#host">host</a></a><div class="clear"></div><code class="signature apipage">host : <a href="#">Dynamic</a></code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="config"><a class="lift" href="#config">config</a></a><div class="clear"></div><code class="signature apipage">config : <a href="#">lime.LimeConfig</a></code><br/></span>
+                <a name="game"><a class="lift" href="#game">game</a></a><div class="clear"></div><code class="signature apipage">game : <a href="#">luxe.Game</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="core_thread"><a class="lift" href="#core_thread">core_thread</a></a><div class="clear"></div><code class="signature apipage">core_thread : <a href="#">cpp.vm.Thread</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -73,13 +72,13 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="console_visible"><a class="lift" href="#console_visible">console_visible</a></a><div class="clear"></div><code class="signature apipage">console_visible : <a href="#">Bool</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="lime"><a class="lift" href="#lime">lime</a></a><div class="clear"></div><code class="signature apipage">lime : <a href="#">lime.Lime</a></code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="headless"><a class="lift" href="#headless">headless</a></a><div class="clear"></div><code class="signature apipage">headless : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat">Set to true if the app is running without a window</span><span class="member apipage">
                 <a name="debug"><a class="lift" href="#debug">debug</a></a><div class="clear"></div><code class="signature apipage">debug : <a href="#">luxe.Debug</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="draw"><a class="lift" href="#draw">draw</a></a><div class="clear"></div><code class="signature apipage">draw : <a href="#">luxe.Draw</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="time"><a class="lift" href="#time">time</a></a><div class="clear"></div><code class="signature apipage">time : <a href="#">luxe.Timer</a></code><br/></span>
+                <a name="timer"><a class="lift" href="#timer">timer</a></a><div class="clear"></div><code class="signature apipage">timer : <a href="#">luxe.Timer</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="events"><a class="lift" href="#events">events</a></a><div class="clear"></div><code class="signature apipage">events : <a href="#">luxe.Events</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -95,14 +94,43 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="physics"><a class="lift" href="#physics">physics</a></a><div class="clear"></div><code class="signature apipage">physics : <a href="#">luxe.Physics</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="dt"><a class="lift" href="#dt">dt</a></a><div class="clear"></div><code class="signature apipage">dt : <a href="#">Float</a></code><br/></span>
+                <a name="_mouse_pos"><a class="lift" href="#_mouse_pos">_mouse_pos</a></a><div class="clear"></div><code class="signature apipage">_mouse_pos : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_touch_pos"><a class="lift" href="#_touch_pos">_touch_pos</a></a><div class="clear"></div><code class="signature apipage">_touch_pos : <a href="#">luxe.Vector</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_update_handlers"><a class="lift" href="#_update_handlers">_update_handlers</a></a><div class="clear"></div><code class="signature apipage">_update_handlers : <a href="#">Map</a>&lt;<a href="#">String</a>, <a href="#"></a>&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="shutting_down"><a class="lift" href="#shutting_down">shutting_down</a></a><div class="clear"></div><code class="signature apipage">shutting_down : <a href="#">Bool</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="has_shutdown"><a class="lift" href="#has_shutdown">has_shutdown</a></a><div class="clear"></div><code class="signature apipage">has_shutdown : <a href="#">Bool</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_update"><a class="lift" href="#core_tag_update">core_tag_update</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_update : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_renderdt"><a class="lift" href="#core_tag_renderdt">core_tag_renderdt</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_renderdt : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="game_tag_update"><a class="lift" href="#game_tag_update">game_tag_update</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">game_tag_update : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_render"><a class="lift" href="#core_tag_render">core_tag_render</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_render : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_debug"><a class="lift" href="#core_tag_debug">core_tag_debug</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_debug : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_updates"><a class="lift" href="#core_tag_updates">core_tag_updates</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_updates : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_events"><a class="lift" href="#core_tag_events">core_tag_events</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_events : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_audio"><a class="lift" href="#core_tag_audio">core_tag_audio</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_audio : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_input"><a class="lift" href="#core_tag_input">core_tag_input</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_input : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_timer"><a class="lift" href="#core_tag_timer">core_tag_timer</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_timer : <a href="#">String</a></code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="core_tag_scene"><a class="lift" href="#core_tag_scene">core_tag_scene</a></a><span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">core_tag_scene : <a href="#">String</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
             <a name="add_internal_update"><a class="lift" href="#add_internal_update">add_internal_update</a></a> <div class="clear"></div><code class="signature apipage">add_internal_update(_update:<a href="#">Float</a>&nbsp;-&gt; <a href="#">Void</a><span></span>) : <a href="#">String</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="ready"><a class="lift" href="#ready">ready</a></a> <div class="clear"></div><code class="signature apipage">ready() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="init"><a class="lift" href="#init">init</a></a> <div class="clear"></div><code class="signature apipage">init() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -111,25 +139,19 @@
             <a name="shutdown"><a class="lift" href="#shutdown">shutdown</a></a> <div class="clear"></div><code class="signature apipage">shutdown() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update(dt:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="render"><a class="lift" href="#render">render</a></a> <div class="clear"></div><code class="signature apipage">render() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="set_renderer"><a class="lift" href="#set_renderer">set_renderer</a></a> <div class="clear"></div><code class="signature apipage">set_renderer(_renderer:<a href="#">phoenix.Renderer</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="render"><a class="lift" href="#render">render</a></a> <div class="clear"></div><code class="signature apipage">render(window:<a href="#">snow.window.Window</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="show_console"><a class="lift" href="#show_console">show_console</a></a> <div class="clear"></div><code class="signature apipage">show_console(_show:<a href="#">Bool</a><span>=true</span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="onresize"><a class="lift" href="#onresize">onresize</a></a> <div class="clear"></div><code class="signature apipage">onresize(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="onkeydown"><a class="lift" href="#onkeydown">onkeydown</a></a> <div class="clear"></div><code class="signature apipage">onkeydown(keycode:<a href="#">Int</a><span></span>, scancode:<a href="#">Int</a><span></span>, repeat:<a href="#">Bool</a><span></span>, mod:<a href="#">luxe.ModState</a><span></span>, timestamp:<a href="#">Float</a><span></span>, window_id:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="onkeydown"><a class="lift" href="#onkeydown">onkeydown</a></a> <div class="clear"></div><code class="signature apipage">onkeydown(e:<a href="#">luxe.KeyEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="onkeyup"><a class="lift" href="#onkeyup">onkeyup</a></a> <div class="clear"></div><code class="signature apipage">onkeyup(e:<a href="#">luxe.KeyEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="onkeyup"><a class="lift" href="#onkeyup">onkeyup</a></a> <div class="clear"></div><code class="signature apipage">onkeyup(keycode:<a href="#">Int</a><span></span>, scancode:<a href="#">Int</a><span></span>, repeat:<a href="#">Bool</a><span></span>, mod:<a href="#">luxe.ModState</a><span></span>, timestamp:<a href="#">Float</a><span></span>, window_id:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="oninputdown"><a class="lift" href="#oninputdown">oninputdown</a></a> <div class="clear"></div><code class="signature apipage">oninputdown(_name:<a href="#">String</a><span></span>, e:<a href="#">luxe.InputEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
@@ -138,46 +160,49 @@
             <a name="oninputup"><a class="lift" href="#oninputup">oninputup</a></a> <div class="clear"></div><code class="signature apipage">oninputup(_name:<a href="#">String</a><span></span>, e:<a href="#">luxe.InputEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="onmousedown"><a class="lift" href="#onmousedown">onmousedown</a></a> <div class="clear"></div><code class="signature apipage">onmousedown(e:<a href="#">luxe.MouseEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="mouse_button_from_number"><a class="lift" href="#mouse_button_from_number">mouse_button_from_number</a></a> <div class="clear"></div><code class="signature apipage">mouse_button_from_number(button:<a href="#">Int</a><span></span>) : <a href="#">luxe.MouseButton</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="onmousewheel"><a class="lift" href="#onmousewheel">onmousewheel</a></a> <div class="clear"></div><code class="signature apipage">onmousewheel(e:<a href="#">luxe.MouseEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="onmousedown"><a class="lift" href="#onmousedown">onmousedown</a></a> <div class="clear"></div><code class="signature apipage">onmousedown(x:<a href="#">Int</a><span></span>, y:<a href="#">Int</a><span></span>, button:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>, window_id:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="onmouseup"><a class="lift" href="#onmouseup">onmouseup</a></a> <div class="clear"></div><code class="signature apipage">onmouseup(e:<a href="#">luxe.MouseEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="onmouseup"><a class="lift" href="#onmouseup">onmouseup</a></a> <div class="clear"></div><code class="signature apipage">onmouseup(x:<a href="#">Int</a><span></span>, y:<a href="#">Int</a><span></span>, button:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>, window_id:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="onmousemove"><a class="lift" href="#onmousemove">onmousemove</a></a> <div class="clear"></div><code class="signature apipage">onmousemove(e:<a href="#">luxe.MouseEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="onmousemove"><a class="lift" href="#onmousemove">onmousemove</a></a> <div class="clear"></div><code class="signature apipage">onmousemove(x:<a href="#">Int</a><span></span>, y:<a href="#">Int</a><span></span>, xrel:<a href="#">Int</a><span></span>, yrel:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>, window_id:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ontouchbegin"><a class="lift" href="#ontouchbegin">ontouchbegin</a></a> <div class="clear"></div><code class="signature apipage">ontouchbegin(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="onmousewheel"><a class="lift" href="#onmousewheel">onmousewheel</a></a> <div class="clear"></div><code class="signature apipage">onmousewheel(x:<a href="#">Int</a><span></span>, y:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>, window_id:<a href="#">Int</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ontouchend"><a class="lift" href="#ontouchend">ontouchend</a></a> <div class="clear"></div><code class="signature apipage">ontouchend(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ontouchdown"><a class="lift" href="#ontouchdown">ontouchdown</a></a> <div class="clear"></div><code class="signature apipage">ontouchdown(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, touch_id:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ontouchmove"><a class="lift" href="#ontouchmove">ontouchmove</a></a> <div class="clear"></div><code class="signature apipage">ontouchmove(e:<a href="#">luxe.TouchEvent</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ontouchup"><a class="lift" href="#ontouchup">ontouchup</a></a> <div class="clear"></div><code class="signature apipage">ontouchup(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, touch_id:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a> <div class="clear"></div><code class="signature apipage">ongamepadaxis(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ontouchmove"><a class="lift" href="#ontouchmove">ontouchmove</a></a> <div class="clear"></div><code class="signature apipage">ontouchmove(x:<a href="#">Float</a><span></span>, y:<a href="#">Float</a><span></span>, dx:<a href="#">Float</a><span></span>, dy:<a href="#">Float</a><span></span>, touch_id:<a href="#">Int</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadball"><a class="lift" href="#ongamepadball">ongamepadball</a></a> <div class="clear"></div><code class="signature apipage">ongamepadball(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a> <div class="clear"></div><code class="signature apipage">ongamepadaxis(gamepad:<a href="#">Int</a><span></span>, axis:<a href="#">Int</a><span></span>, value:<a href="#">Float</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadhat"><a class="lift" href="#ongamepadhat">ongamepadhat</a></a> <div class="clear"></div><code class="signature apipage">ongamepadhat(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepadbuttondown"><a class="lift" href="#ongamepadbuttondown">ongamepadbuttondown</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttondown(gamepad:<a href="#">Int</a><span></span>, button:<a href="#">Int</a><span></span>, value:<a href="#">Float</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadbuttondown"><a class="lift" href="#ongamepadbuttondown">ongamepadbuttondown</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttondown(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepadbuttonup"><a class="lift" href="#ongamepadbuttonup">ongamepadbuttonup</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttonup(gamepad:<a href="#">Int</a><span></span>, button:<a href="#">Int</a><span></span>, value:<a href="#">Float</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ongamepadbuttonup"><a class="lift" href="#ongamepadbuttonup">ongamepadbuttonup</a></a> <div class="clear"></div><code class="signature apipage">ongamepadbuttonup(e:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="ongamepaddevice"><a class="lift" href="#ongamepaddevice">ongamepaddevice</a></a> <div class="clear"></div><code class="signature apipage">ongamepaddevice(gamepad:<a href="#">Int</a><span></span>, type:<a href="#">snow.types.GamepadDeviceEventType</a><span></span>, timestamp:<a href="#">Float</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(_host:<a href="#">Dynamic</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+            <a name="config"><a class="lift" href="#config">config</a></a> <div class="clear"></div><code class="signature apipage">config(config:<a href="#">snow.types.AppConfig</a><span></span>) : <a href="#">snow.types.AppConfig</a></code><br/><span class="small_desc_flat">return what the game decides for runtime config</span>
         </span>
     <span class="method apipage">
-            <a name="load"><a class="lift" href="#load">load</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">load(library:<a href="#">String</a><span></span>, method:<a href="#">String</a><span></span>, args:<a href="#">Int</a><span>=0</span>) : <a href="#">Dynamic</a></code><br/><span class="small_desc_flat"></span>
+            <a name="process_loading_thread"><a class="lift" href="#process_loading_thread">process_loading_thread</a></a> <div class="clear"></div><code class="signature apipage">process_loading_thread() : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(_game:<a href="#">luxe.Game</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span></p>
 <hr>
 <p>&nbsp;

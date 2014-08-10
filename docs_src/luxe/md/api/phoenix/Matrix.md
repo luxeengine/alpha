@@ -28,37 +28,37 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="M11"><a class="lift" href="#M11">M11</a></a><div class="clear"></div><code class="signature apipage">M11 : [Float](#)</code><br/></span>
+                <a name="M11"><a class="lift" href="#M11">M11</a></a> <div class="clear"></div><code class="signature apipage">M11 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M21"><a class="lift" href="#M21">M21</a></a><div class="clear"></div><code class="signature apipage">M21 : [Float](#)</code><br/></span>
+                <a name="M21"><a class="lift" href="#M21">M21</a></a> <div class="clear"></div><code class="signature apipage">M21 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M31"><a class="lift" href="#M31">M31</a></a><div class="clear"></div><code class="signature apipage">M31 : [Float](#)</code><br/></span>
+                <a name="M31"><a class="lift" href="#M31">M31</a></a> <div class="clear"></div><code class="signature apipage">M31 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M41"><a class="lift" href="#M41">M41</a></a><div class="clear"></div><code class="signature apipage">M41 : [Float](#)</code><br/></span>
+                <a name="M41"><a class="lift" href="#M41">M41</a></a> <div class="clear"></div><code class="signature apipage">M41 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M12"><a class="lift" href="#M12">M12</a></a><div class="clear"></div><code class="signature apipage">M12 : [Float](#)</code><br/></span>
+                <a name="M12"><a class="lift" href="#M12">M12</a></a> <div class="clear"></div><code class="signature apipage">M12 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M22"><a class="lift" href="#M22">M22</a></a><div class="clear"></div><code class="signature apipage">M22 : [Float](#)</code><br/></span>
+                <a name="M22"><a class="lift" href="#M22">M22</a></a> <div class="clear"></div><code class="signature apipage">M22 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M32"><a class="lift" href="#M32">M32</a></a><div class="clear"></div><code class="signature apipage">M32 : [Float](#)</code><br/></span>
+                <a name="M32"><a class="lift" href="#M32">M32</a></a> <div class="clear"></div><code class="signature apipage">M32 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M42"><a class="lift" href="#M42">M42</a></a><div class="clear"></div><code class="signature apipage">M42 : [Float](#)</code><br/></span>
+                <a name="M42"><a class="lift" href="#M42">M42</a></a> <div class="clear"></div><code class="signature apipage">M42 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M13"><a class="lift" href="#M13">M13</a></a><div class="clear"></div><code class="signature apipage">M13 : [Float](#)</code><br/></span>
+                <a name="M13"><a class="lift" href="#M13">M13</a></a> <div class="clear"></div><code class="signature apipage">M13 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M23"><a class="lift" href="#M23">M23</a></a><div class="clear"></div><code class="signature apipage">M23 : [Float](#)</code><br/></span>
+                <a name="M23"><a class="lift" href="#M23">M23</a></a> <div class="clear"></div><code class="signature apipage">M23 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M33"><a class="lift" href="#M33">M33</a></a><div class="clear"></div><code class="signature apipage">M33 : [Float](#)</code><br/></span>
+                <a name="M33"><a class="lift" href="#M33">M33</a></a> <div class="clear"></div><code class="signature apipage">M33 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M43"><a class="lift" href="#M43">M43</a></a><div class="clear"></div><code class="signature apipage">M43 : [Float](#)</code><br/></span>
+                <a name="M43"><a class="lift" href="#M43">M43</a></a> <div class="clear"></div><code class="signature apipage">M43 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M14"><a class="lift" href="#M14">M14</a></a><div class="clear"></div><code class="signature apipage">M14 : [Float](#)</code><br/></span>
+                <a name="M14"><a class="lift" href="#M14">M14</a></a> <div class="clear"></div><code class="signature apipage">M14 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M24"><a class="lift" href="#M24">M24</a></a><div class="clear"></div><code class="signature apipage">M24 : [Float](#)</code><br/></span>
+                <a name="M24"><a class="lift" href="#M24">M24</a></a> <div class="clear"></div><code class="signature apipage">M24 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M34"><a class="lift" href="#M34">M34</a></a><div class="clear"></div><code class="signature apipage">M34 : [Float](#)</code><br/></span>
+                <a name="M34"><a class="lift" href="#M34">M34</a></a> <div class="clear"></div><code class="signature apipage">M34 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="M44"><a class="lift" href="#M44">M44</a></a><div class="clear"></div><code class="signature apipage">M44 : [Float](#)</code><br/></span>
+                <a name="M44"><a class="lift" href="#M44">M44</a></a> <div class="clear"></div><code class="signature apipage">M44 : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -70,7 +70,103 @@
             <a name="toString"><a class="lift" href="#toString">toString</a></a> <div class="clear"></div><code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="float32array"><a class="lift" href="#float32array">float32array</a></a> <div class="clear"></div><code class="signature apipage">float32array() : [lime.utils.Float32Array](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="get_M11"><a class="lift" href="#get_M11">get\_M11</a></a> <div class="clear"></div><code class="signature apipage">get\_M11() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M12"><a class="lift" href="#get_M12">get\_M12</a></a> <div class="clear"></div><code class="signature apipage">get\_M12() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M13"><a class="lift" href="#get_M13">get\_M13</a></a> <div class="clear"></div><code class="signature apipage">get\_M13() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M14"><a class="lift" href="#get_M14">get\_M14</a></a> <div class="clear"></div><code class="signature apipage">get\_M14() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M21"><a class="lift" href="#get_M21">get\_M21</a></a> <div class="clear"></div><code class="signature apipage">get\_M21() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M22"><a class="lift" href="#get_M22">get\_M22</a></a> <div class="clear"></div><code class="signature apipage">get\_M22() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M23"><a class="lift" href="#get_M23">get\_M23</a></a> <div class="clear"></div><code class="signature apipage">get\_M23() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M24"><a class="lift" href="#get_M24">get\_M24</a></a> <div class="clear"></div><code class="signature apipage">get\_M24() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M31"><a class="lift" href="#get_M31">get\_M31</a></a> <div class="clear"></div><code class="signature apipage">get\_M31() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M32"><a class="lift" href="#get_M32">get\_M32</a></a> <div class="clear"></div><code class="signature apipage">get\_M32() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M33"><a class="lift" href="#get_M33">get\_M33</a></a> <div class="clear"></div><code class="signature apipage">get\_M33() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M34"><a class="lift" href="#get_M34">get\_M34</a></a> <div class="clear"></div><code class="signature apipage">get\_M34() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M41"><a class="lift" href="#get_M41">get\_M41</a></a> <div class="clear"></div><code class="signature apipage">get\_M41() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M42"><a class="lift" href="#get_M42">get\_M42</a></a> <div class="clear"></div><code class="signature apipage">get\_M42() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M43"><a class="lift" href="#get_M43">get\_M43</a></a> <div class="clear"></div><code class="signature apipage">get\_M43() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_M44"><a class="lift" href="#get_M44">get\_M44</a></a> <div class="clear"></div><code class="signature apipage">get\_M44() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M11"><a class="lift" href="#set_M11">set\_M11</a></a> <div class="clear"></div><code class="signature apipage">set\_M11(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M12"><a class="lift" href="#set_M12">set\_M12</a></a> <div class="clear"></div><code class="signature apipage">set\_M12(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M13"><a class="lift" href="#set_M13">set\_M13</a></a> <div class="clear"></div><code class="signature apipage">set\_M13(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M14"><a class="lift" href="#set_M14">set\_M14</a></a> <div class="clear"></div><code class="signature apipage">set\_M14(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M21"><a class="lift" href="#set_M21">set\_M21</a></a> <div class="clear"></div><code class="signature apipage">set\_M21(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M22"><a class="lift" href="#set_M22">set\_M22</a></a> <div class="clear"></div><code class="signature apipage">set\_M22(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M23"><a class="lift" href="#set_M23">set\_M23</a></a> <div class="clear"></div><code class="signature apipage">set\_M23(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M24"><a class="lift" href="#set_M24">set\_M24</a></a> <div class="clear"></div><code class="signature apipage">set\_M24(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M31"><a class="lift" href="#set_M31">set\_M31</a></a> <div class="clear"></div><code class="signature apipage">set\_M31(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M32"><a class="lift" href="#set_M32">set\_M32</a></a> <div class="clear"></div><code class="signature apipage">set\_M32(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M33"><a class="lift" href="#set_M33">set\_M33</a></a> <div class="clear"></div><code class="signature apipage">set\_M33(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M34"><a class="lift" href="#set_M34">set\_M34</a></a> <div class="clear"></div><code class="signature apipage">set\_M34(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M41"><a class="lift" href="#set_M41">set\_M41</a></a> <div class="clear"></div><code class="signature apipage">set\_M41(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M42"><a class="lift" href="#set_M42">set\_M42</a></a> <div class="clear"></div><code class="signature apipage">set\_M42(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M43"><a class="lift" href="#set_M43">set\_M43</a></a> <div class="clear"></div><code class="signature apipage">set\_M43(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_M44"><a class="lift" href="#set_M44">set\_M44</a></a> <div class="clear"></div><code class="signature apipage">set\_M44(\_value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="float32array"><a class="lift" href="#float32array">float32array</a></a> <div class="clear"></div><code class="signature apipage">float32array() : [snow.utils.Float32Array](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="identity"><a class="lift" href="#identity">identity</a></a> <div class="clear"></div><code class="signature apipage">identity() : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>

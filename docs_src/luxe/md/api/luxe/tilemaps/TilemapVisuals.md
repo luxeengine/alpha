@@ -35,6 +35,9 @@
             <a name="create"><a class="lift" href="#create">create</a></a> <div class="clear"></div><code class="signature apipage">create(options:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="create_tile_for_layer"><a class="lift" href="#create_tile_for_layer">create\_tile\_for\_layer</a></a> <div class="clear"></div><code class="signature apipage">create\_tile\_for\_layer(layer:[luxe.tilemaps.TileLayer](#)<span></span>, x:[Int](#)<span></span>, y:[Int](#)<span></span>, \_scale:[Float](#)<span>=1</span>, \_filter:[phoenix.FilterType](#)<span>=null</span>) : [phoenix.geometry.QuadGeometry](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="refresh_tile_id"><a class="lift" href="#refresh_tile_id">refresh\_tile\_id</a></a> <div class="clear"></div><code class="signature apipage">refresh\_tile\_id(\_layer\_name:[String](#)<span></span>, \_x:[Int](#)<span></span>, \_y:[Int](#)<span></span>, \_id:[Int](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

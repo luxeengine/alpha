@@ -21,14 +21,18 @@
 
 
 
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div><code class="signature apipage">name : [String](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
+
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="paused"><a class="lift" href="#paused">paused</a></a><div class="clear"></div><code class="signature apipage">paused : [Bool](#)</code><br/></span>
+                <a name="paused"><a class="lift" href="#paused">paused</a></a> <div class="clear"></div><code class="signature apipage">paused : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="gravity"><a class="lift" href="#gravity">gravity</a></a><div class="clear"></div><code class="signature apipage">gravity : [luxe.Vector](#)</code><br/></span>
+                <a name="gravity"><a class="lift" href="#gravity">gravity</a></a> <div class="clear"></div><code class="signature apipage">gravity : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="draw"><a class="lift" href="#draw">draw</a></a><div class="clear"></div><code class="signature apipage">draw : [Bool](#)</code><br/></span>
+                <a name="draw"><a class="lift" href="#draw">draw</a></a> <div class="clear"></div><code class="signature apipage">draw : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -38,6 +42,12 @@
         </span>
     <span class="method apipage">
             <a name="process"><a class="lift" href="#process">process</a></a> <div class="clear"></div><code class="signature apipage">process() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="update"><a class="lift" href="#update">update</a></a> <div class="clear"></div><code class="signature apipage">update() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="render"><a class="lift" href="#render">render</a></a> <div class="clear"></div><code class="signature apipage">render() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="get_paused"><a class="lift" href="#get_paused">get\_paused</a></a> <div class="clear"></div><code class="signature apipage">get\_paused() : [Bool](#)</code><br/><span class="small_desc_flat"></span>

@@ -27,6 +27,10 @@
                 <a name="items"><a class="lift" href="#items">items</a></a><div class="clear"></div><code class="signature apipage">items : [Array](#)&lt;[luxe.structural.Pool.T](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="index"><a class="lift" href="#index">index</a></a><div class="clear"></div><code class="signature apipage">index : [Int](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="precache"><a class="lift" href="#precache">precache</a></a><div class="clear"></div><code class="signature apipage">precache : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_create"><a class="lift" href="#_create">\_create</a></a><div class="clear"></div><code class="signature apipage">\_create : [Int](#)&nbsp; -&gt; [Int](#)&nbsp;-&gt; [luxe.structural.Pool.T](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 

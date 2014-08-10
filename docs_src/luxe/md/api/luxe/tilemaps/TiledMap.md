@@ -30,6 +30,12 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="_load_tilesets"><a class="lift" href="#_load_tilesets">\_load\_tilesets</a></a> <div class="clear"></div><code class="signature apipage">\_load\_tilesets(options:[luxe.tilemaps.TiledMapOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_load_layers"><a class="lift" href="#_load_layers">\_load\_layers</a></a> <div class="clear"></div><code class="signature apipage">\_load\_layers(options:[luxe.tilemaps.TiledMapOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(options:[luxe.tilemaps.TiledMapOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     

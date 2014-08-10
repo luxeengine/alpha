@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-    
+
     <head>
+        <title>snow - </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="shortcut icon" href="../../images/favicon.png" />
 
         <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/code.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/font.css" media="all">
-        
+
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster.css" media="all">
         <link rel="stylesheet" type="text/css" href="../../css/tooltipster-shadow.css" media="all">
-        
+
         <script src="../../js/jquery-2.0.3.min.js"> </script>
         <script src="../../js/jquery.tooltipster.min.js"> </script>
 
@@ -65,13 +66,43 @@
                 <a name="transform"><a class="lift" href="#transform">transform</a></a><div class="clear"></div><code class="signature apipage">transform : <a href="#">phoenix.Transform</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="pos"><a class="lift" href="#pos">pos</a></a><div class="clear"></div><code class="signature apipage">pos : <a href="#">luxe.Vector</a></code><br/></span>
+                <a name="pos"><a class="lift" href="#pos">pos</a></a> <div class="clear"></div><code class="signature apipage">pos : <a href="#">luxe.Vector</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="scale"><a class="lift" href="#scale">scale</a></a><div class="clear"></div><code class="signature apipage">scale : <a href="#">luxe.Vector</a></code><br/></span>
+                <a name="scale"><a class="lift" href="#scale">scale</a></a> <div class="clear"></div><code class="signature apipage">scale : <a href="#">luxe.Vector</a></code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><div class="clear"></div><code class="signature apipage">rotation : <a href="#">luxe.Quaternion</a></code><br/></span>
+                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a> <div class="clear"></div><code class="signature apipage">rotation : <a href="#">luxe.Quaternion</a></code><br/></span>
             <span class="small_desc_flat"></span></p>
 <p><h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="set_pos"><a class="lift" href="#set_pos">set_pos</a></a> <div class="clear"></div><code class="signature apipage">set_pos(_pos:<a href="#">luxe.Vector</a><span></span>) : <a href="#">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_pos"><a class="lift" href="#get_pos">get_pos</a></a> <div class="clear"></div><code class="signature apipage">get_pos() : <a href="#">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_rotation"><a class="lift" href="#get_rotation">get_rotation</a></a> <div class="clear"></div><code class="signature apipage">get_rotation() : <a href="#">phoenix.Quaternion</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_scale"><a class="lift" href="#get_scale">get_scale</a></a> <div class="clear"></div><code class="signature apipage">get_scale() : <a href="#">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_pos_from_transform"><a class="lift" href="#set_pos_from_transform">set_pos_from_transform</a></a> <div class="clear"></div><code class="signature apipage">set_pos_from_transform(_pos:<a href="#">luxe.Vector</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_rotation"><a class="lift" href="#set_rotation">set_rotation</a></a> <div class="clear"></div><code class="signature apipage">set_rotation(_rotation:<a href="#">luxe.Quaternion</a><span></span>) : <a href="#">phoenix.Quaternion</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_rotation_from_transform"><a class="lift" href="#set_rotation_from_transform">set_rotation_from_transform</a></a> <div class="clear"></div><code class="signature apipage">set_rotation_from_transform(_rotation:<a href="#">luxe.Quaternion</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_scale"><a class="lift" href="#set_scale">set_scale</a></a> <div class="clear"></div><code class="signature apipage">set_scale(_scale:<a href="#">luxe.Vector</a><span></span>) : <a href="#">phoenix.Vector</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_scale_from_transform"><a class="lift" href="#set_scale_from_transform">set_scale_from_transform</a></a> <div class="clear"></div><code class="signature apipage">set_scale_from_transform(_scale:<a href="#">luxe.Vector</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_obj_add_vert"><a class="lift" href="#_obj_add_vert">_obj_add_vert</a></a> <div class="clear"></div><code class="signature apipage">_obj_add_vert(v:<a href="#">phoenix.formats.obj.Vertex</a><span></span>, _scale:<a href="#">luxe.Vector</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="fromOBJFile"><a class="lift" href="#fromOBJFile">fromOBJFile</a></a> <div class="clear"></div><code class="signature apipage">fromOBJFile(asset_id:<a href="#">String</a><span></span>, texture:<a href="#">phoenix.Texture</a><span></span>, _scale:<a href="#">luxe.Vector</a><span>=null</span>, _batcher:<a href="#">phoenix.Batcher</a><span></span>) : <a href="#">Void</a></code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

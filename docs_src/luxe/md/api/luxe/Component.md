@@ -32,13 +32,13 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="pos"><a class="lift" href="#pos">pos</a></a><div class="clear"></div><code class="signature apipage">pos : [luxe.Vector](#)</code><br/></span>
+                <a name="pos"><a class="lift" href="#pos">pos</a></a> <div class="clear"></div><code class="signature apipage">pos : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a><div class="clear"></div><code class="signature apipage">rotation : [luxe.Quaternion](#)</code><br/></span>
+                <a name="rotation"><a class="lift" href="#rotation">rotation</a></a> <div class="clear"></div><code class="signature apipage">rotation : [luxe.Quaternion](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="scale"><a class="lift" href="#scale">scale</a></a><div class="clear"></div><code class="signature apipage">scale : [luxe.Vector](#)</code><br/></span>
+                <a name="scale"><a class="lift" href="#scale">scale</a></a> <div class="clear"></div><code class="signature apipage">scale : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="origin"><a class="lift" href="#origin">origin</a></a><div class="clear"></div><code class="signature apipage">origin : [luxe.Vector](#)</code><br/></span>
+                <a name="origin"><a class="lift" href="#origin">origin</a></a> <div class="clear"></div><code class="signature apipage">origin : [luxe.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -54,6 +54,30 @@
         </span>
     <span class="method apipage">
             <a name="get_any"><a class="lift" href="#get_any">get\_any</a></a> <div class="clear"></div><code class="signature apipage">get\_any(\_name:[String](#)<span></span>, in\_children:[Bool](#)<span>=false</span>, first\_only:[Bool](#)<span>=true</span>) : [Array](#)&lt;[get_any.T](#)&gt;</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_pos"><a class="lift" href="#set_pos">set\_pos</a></a> <div class="clear"></div><code class="signature apipage">set\_pos(\_p:[luxe.Vector](#)<span></span>) : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_pos"><a class="lift" href="#get_pos">get\_pos</a></a> <div class="clear"></div><code class="signature apipage">get\_pos() : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_rotation"><a class="lift" href="#set_rotation">set\_rotation</a></a> <div class="clear"></div><code class="signature apipage">set\_rotation(\_r:[luxe.Quaternion](#)<span></span>) : [luxe.Quaternion](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_rotation"><a class="lift" href="#get_rotation">get\_rotation</a></a> <div class="clear"></div><code class="signature apipage">get\_rotation() : [luxe.Quaternion](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_scale"><a class="lift" href="#set_scale">set\_scale</a></a> <div class="clear"></div><code class="signature apipage">set\_scale(\_s:[luxe.Vector](#)<span></span>) : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_scale"><a class="lift" href="#get_scale">get\_scale</a></a> <div class="clear"></div><code class="signature apipage">get\_scale() : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_origin"><a class="lift" href="#set_origin">set\_origin</a></a> <div class="clear"></div><code class="signature apipage">set\_origin(\_o:[luxe.Vector](#)<span></span>) : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_origin"><a class="lift" href="#get_origin">get\_origin</a></a> <div class="clear"></div><code class="signature apipage">get\_origin() : [luxe.Vector](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="get_serialize_data"><a class="lift" href="#get_serialize_data">get\_serialize\_data</a></a> <div class="clear"></div><code class="signature apipage">get\_serialize\_data() : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>

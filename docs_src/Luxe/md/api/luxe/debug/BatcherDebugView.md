@@ -21,7 +21,19 @@
 
 
 
-<h3>Members</h3> <hr/>
+<h3>Members</h3> <hr/><span class="member apipage">
+                <a name="batcher"><a class="lift" href="#batcher">batcher</a></a><div class="clear"></div><code class="signature apipage">batcher : [phoenix.Batcher](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="dragging"><a class="lift" href="#dragging">dragging</a></a><div class="clear"></div><code class="signature apipage">dragging : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="dragstart"><a class="lift" href="#dragstart">dragstart</a></a><div class="clear"></div><code class="signature apipage">dragstart : [luxe.Vector](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="dragmstart"><a class="lift" href="#dragmstart">dragmstart</a></a><div class="clear"></div><code class="signature apipage">dragmstart : [luxe.Vector](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="_tree_geom"><a class="lift" href="#_tree_geom">\_tree\_geom</a></a><div class="clear"></div><code class="signature apipage">\_tree\_geom : [phoenix.geometry.CompositeGeometry](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="as_immediate"><a class="lift" href="#as_immediate">as\_immediate</a></a><div class="clear"></div><code class="signature apipage">as\_immediate : [Bool](#)</code><br/></span>
+            <span class="small_desc_flat"></span>
 
 
 
@@ -47,6 +59,9 @@
         </span>
     <span class="method apipage">
             <a name="clear_batcher_tree"><a class="lift" href="#clear_batcher_tree">clear\_batcher\_tree</a></a> <div class="clear"></div><code class="signature apipage">clear\_batcher\_tree() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="keystr"><a class="lift" href="#keystr">keystr</a></a> <div class="clear"></div><code class="signature apipage">keystr(key:[phoenix.geometry.GeometryKey](#)<span></span>, key2:[phoenix.geometry.GeometryKey](#)<span></span>) : [String](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="draw_geom_node"><a class="lift" href="#draw_geom_node">draw\_geom\_node</a></a> <div class="clear"></div><code class="signature apipage">draw\_geom\_node(l:[Bool](#)<span></span>, \_leaf:[luxe.structural.BalancedBinarySearchTreeNode](#)&lt;[phoenix.geometry.GeometryKey](#), [phoenix.geometry.Geometry](#)&gt;<span></span>, \_p:[luxe.Vector](#)<span></span>, \_bbw:[Float](#)<span>=20</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

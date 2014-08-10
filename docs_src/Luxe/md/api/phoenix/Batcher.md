@@ -32,21 +32,21 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="tree_changed"><a class="lift" href="#tree_changed">tree\_changed</a></a><div class="clear"></div><code class="signature apipage">tree\_changed : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="vertlist"><a class="lift" href="#vertlist">vertlist</a></a><div class="clear"></div><code class="signature apipage">vertlist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="vertlist"><a class="lift" href="#vertlist">vertlist</a></a><div class="clear"></div><code class="signature apipage">vertlist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tcoordlist"><a class="lift" href="#tcoordlist">tcoordlist</a></a><div class="clear"></div><code class="signature apipage">tcoordlist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="tcoordlist"><a class="lift" href="#tcoordlist">tcoordlist</a></a><div class="clear"></div><code class="signature apipage">tcoordlist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="colorlist"><a class="lift" href="#colorlist">colorlist</a></a><div class="clear"></div><code class="signature apipage">colorlist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="colorlist"><a class="lift" href="#colorlist">colorlist</a></a><div class="clear"></div><code class="signature apipage">colorlist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="normallist"><a class="lift" href="#normallist">normallist</a></a><div class="clear"></div><code class="signature apipage">normallist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="normallist"><a class="lift" href="#normallist">normallist</a></a><div class="clear"></div><code class="signature apipage">normallist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="static_vertlist"><a class="lift" href="#static_vertlist">static\_vertlist</a></a><div class="clear"></div><code class="signature apipage">static\_vertlist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="static_vertlist"><a class="lift" href="#static_vertlist">static\_vertlist</a></a><div class="clear"></div><code class="signature apipage">static\_vertlist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="static_tcoordlist"><a class="lift" href="#static_tcoordlist">static\_tcoordlist</a></a><div class="clear"></div><code class="signature apipage">static\_tcoordlist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="static_tcoordlist"><a class="lift" href="#static_tcoordlist">static\_tcoordlist</a></a><div class="clear"></div><code class="signature apipage">static\_tcoordlist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="static_colorlist"><a class="lift" href="#static_colorlist">static\_colorlist</a></a><div class="clear"></div><code class="signature apipage">static\_colorlist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="static_colorlist"><a class="lift" href="#static_colorlist">static\_colorlist</a></a><div class="clear"></div><code class="signature apipage">static\_colorlist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="static_normallist"><a class="lift" href="#static_normallist">static\_normallist</a></a><div class="clear"></div><code class="signature apipage">static\_normallist : [lime.utils.Float32Array](#)</code><br/></span>
+                <a name="static_normallist"><a class="lift" href="#static_normallist">static\_normallist</a></a><div class="clear"></div><code class="signature apipage">static\_normallist : [snow.utils.Float32Array](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="vert_floats"><a class="lift" href="#vert_floats">vert\_floats</a></a><div class="clear"></div><code class="signature apipage">vert\_floats : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -74,17 +74,17 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="vert_count"><a class="lift" href="#vert_count">vert\_count</a></a><div class="clear"></div><code class="signature apipage">vert\_count : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="vertexBuffers"><a class="lift" href="#vertexBuffers">vertexBuffers</a></a><div class="clear"></div><code class="signature apipage">vertexBuffers : [Array](#)&lt;[lime.gl.GLBuffer](#)&gt;</code><br/></span>
+                <a name="vertexBuffers"><a class="lift" href="#vertexBuffers">vertexBuffers</a></a><div class="clear"></div><code class="signature apipage">vertexBuffers : [Array](#)&lt;[snow.render.opengl.GLBuffer](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tcoordBuffers"><a class="lift" href="#tcoordBuffers">tcoordBuffers</a></a><div class="clear"></div><code class="signature apipage">tcoordBuffers : [Array](#)&lt;[lime.gl.GLBuffer](#)&gt;</code><br/></span>
+                <a name="tcoordBuffers"><a class="lift" href="#tcoordBuffers">tcoordBuffers</a></a><div class="clear"></div><code class="signature apipage">tcoordBuffers : [Array](#)&lt;[snow.render.opengl.GLBuffer](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="vcolorBuffers"><a class="lift" href="#vcolorBuffers">vcolorBuffers</a></a><div class="clear"></div><code class="signature apipage">vcolorBuffers : [Array](#)&lt;[lime.gl.GLBuffer](#)&gt;</code><br/></span>
+                <a name="vcolorBuffers"><a class="lift" href="#vcolorBuffers">vcolorBuffers</a></a><div class="clear"></div><code class="signature apipage">vcolorBuffers : [Array](#)&lt;[snow.render.opengl.GLBuffer](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="normalBuffers"><a class="lift" href="#normalBuffers">normalBuffers</a></a><div class="clear"></div><code class="signature apipage">normalBuffers : [Array](#)&lt;[lime.gl.GLBuffer](#)&gt;</code><br/></span>
+                <a name="normalBuffers"><a class="lift" href="#normalBuffers">normalBuffers</a></a><div class="clear"></div><code class="signature apipage">normalBuffers : [Array](#)&lt;[snow.render.opengl.GLBuffer](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="projectionmatrix_attribute"><a class="lift" href="#projectionmatrix_attribute">projectionmatrix\_attribute</a></a><div class="clear"></div><code class="signature apipage">projectionmatrix\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="projectionmatrix_attribute"><a class="lift" href="#projectionmatrix_attribute">projectionmatrix\_attribute</a></a><div class="clear"></div><code class="signature apipage">projectionmatrix\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix\_attribute</a></a><div class="clear"></div><code class="signature apipage">modelviewmatrix\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="modelviewmatrix_attribute"><a class="lift" href="#modelviewmatrix_attribute">modelviewmatrix\_attribute</a></a><div class="clear"></div><code class="signature apipage">modelviewmatrix\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="vert_attribute"><a class="lift" href="#vert_attribute">vert\_attribute</a></a><div class="clear"></div><code class="signature apipage">vert\_attribute : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -94,21 +94,21 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="normal_attribute"><a class="lift" href="#normal_attribute">normal\_attribute</a></a><div class="clear"></div><code class="signature apipage">normal\_attribute : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex0_attribute"><a class="lift" href="#tex0_attribute">tex0\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex0\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex0_attribute"><a class="lift" href="#tex0_attribute">tex0\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex0\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex1_attribute"><a class="lift" href="#tex1_attribute">tex1\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex1\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex1_attribute"><a class="lift" href="#tex1_attribute">tex1\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex1\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex2_attribute"><a class="lift" href="#tex2_attribute">tex2\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex2\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex2_attribute"><a class="lift" href="#tex2_attribute">tex2\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex2\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex3_attribute"><a class="lift" href="#tex3_attribute">tex3\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex3\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex3_attribute"><a class="lift" href="#tex3_attribute">tex3\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex3\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex4_attribute"><a class="lift" href="#tex4_attribute">tex4\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex4\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex4_attribute"><a class="lift" href="#tex4_attribute">tex4\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex4\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex5_attribute"><a class="lift" href="#tex5_attribute">tex5\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex5\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex5_attribute"><a class="lift" href="#tex5_attribute">tex5\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex5\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex6_attribute"><a class="lift" href="#tex6_attribute">tex6\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex6\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex6_attribute"><a class="lift" href="#tex6_attribute">tex6\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex6\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="tex7_attribute"><a class="lift" href="#tex7_attribute">tex7\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex7\_attribute : [lime.gl.GLUniformLocation](#)</code><br/></span>
+                <a name="tex7_attribute"><a class="lift" href="#tex7_attribute">tex7\_attribute</a></a><div class="clear"></div><code class="signature apipage">tex7\_attribute : [snow.render.opengl.GLUniformLocation](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="renderer"><a class="lift" href="#renderer">renderer</a></a><div class="clear"></div><code class="signature apipage">renderer : [phoenix.Renderer](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -130,7 +130,7 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="layer"><a class="lift" href="#layer">layer</a></a><div class="clear"></div><code class="signature apipage">layer : [Int](#)</code><br/></span>
+                <a name="layer"><a class="lift" href="#layer">layer</a></a> <div class="clear"></div><code class="signature apipage">layer : [Int](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -160,6 +160,9 @@
             <a name="geometry_compare"><a class="lift" href="#geometry_compare">geometry\_compare</a></a> <div class="clear"></div><code class="signature apipage">geometry\_compare(a:[phoenix.geometry.GeometryKey](#)<span></span>, b:[phoenix.geometry.GeometryKey](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
+            <a name="list_geometry"><a class="lift" href="#list_geometry">list\_geometry</a></a> <div class="clear"></div><code class="signature apipage">list\_geometry() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="add"><a class="lift" href="#add">add</a></a> <div class="clear"></div><code class="signature apipage">add(\_geom:[phoenix.geometry.Geometry](#)<span></span>, \_force\_add:[Bool](#)<span>=false</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -179,6 +182,18 @@
         </span>
     <span class="method apipage">
             <a name="submit_current_vertex_list"><a class="lift" href="#submit_current_vertex_list">submit\_current\_vertex\_list</a></a> <div class="clear"></div><code class="signature apipage">submit\_current\_vertex\_list(type:[phoenix.PrimitiveType](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="geometry_batch"><a class="lift" href="#geometry_batch">geometry\_batch</a></a> <div class="clear"></div><code class="signature apipage">geometry\_batch(geom:[phoenix.geometry.Geometry](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="geometry_batch_static"><a class="lift" href="#geometry_batch_static">geometry\_batch\_static</a></a> <div class="clear"></div><code class="signature apipage">geometry\_batch\_static(geom:[phoenix.geometry.Geometry](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_enable_attributes"><a class="lift" href="#_enable_attributes">\_enable\_attributes</a></a> <div class="clear"></div><code class="signature apipage">\_enable\_attributes() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="_disable_attributes"><a class="lift" href="#_disable_attributes">\_disable\_attributes</a></a> <div class="clear"></div><code class="signature apipage">\_disable\_attributes() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_r:[phoenix.Renderer](#)<span></span>, \_name:[String](#)<span>=&#x27;&#x27;</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>

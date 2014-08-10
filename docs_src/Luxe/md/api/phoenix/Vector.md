@@ -36,28 +36,31 @@
 
 
 <h3>Properties</h3> <hr/><span class="member apipage">
-                <a name="x"><a class="lift" href="#x">x</a></a><div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
+                <a name="x"><a class="lift" href="#x">x</a></a> <div class="clear"></div><code class="signature apipage">x : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="y"><a class="lift" href="#y">y</a></a><div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
+                <a name="y"><a class="lift" href="#y">y</a></a> <div class="clear"></div><code class="signature apipage">y : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="z"><a class="lift" href="#z">z</a></a><div class="clear"></div><code class="signature apipage">z : [Float](#)</code><br/></span>
+                <a name="z"><a class="lift" href="#z">z</a></a> <div class="clear"></div><code class="signature apipage">z : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div><code class="signature apipage">length : [Float](#)</code><br/></span>
+                <a name="length"><a class="lift" href="#length">length</a></a> <div class="clear"></div><code class="signature apipage">length : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="lengthsq"><a class="lift" href="#lengthsq">lengthsq</a></a><div class="clear"></div><code class="signature apipage">lengthsq : [Float](#)</code><br/></span>
+                <a name="lengthsq"><a class="lift" href="#lengthsq">lengthsq</a></a> <div class="clear"></div><code class="signature apipage">lengthsq : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="angle2D"><a class="lift" href="#angle2D">angle2D</a></a><div class="clear"></div><code class="signature apipage">angle2D : [Float](#)</code><br/></span>
+                <a name="angle2D"><a class="lift" href="#angle2D">angle2D</a></a> <div class="clear"></div><code class="signature apipage">angle2D : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="normalized"><a class="lift" href="#normalized">normalized</a></a><div class="clear"></div><code class="signature apipage">normalized : [phoenix.Vector](#)</code><br/></span>
+                <a name="normalized"><a class="lift" href="#normalized">normalized</a></a> <div class="clear"></div><code class="signature apipage">normalized : [phoenix.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="inverted"><a class="lift" href="#inverted">inverted</a></a><div class="clear"></div><code class="signature apipage">inverted : [phoenix.Vector](#)</code><br/></span>
+                <a name="inverted"><a class="lift" href="#inverted">inverted</a></a> <div class="clear"></div><code class="signature apipage">inverted : [phoenix.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a><div class="clear"></div><code class="signature apipage">serialized : [Dynamic](#)</code><br/></span>
+                <a name="serialized"><a class="lift" href="#serialized">serialized</a></a> <div class="clear"></div><code class="signature apipage">serialized : [Dynamic](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
+            <a name="get_serialized"><a class="lift" href="#get_serialized">get\_serialized</a></a> <div class="clear"></div><code class="signature apipage">get\_serialized() : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
             <a name="copy_from"><a class="lift" href="#copy_from">copy\_from</a></a> <div class="clear"></div><code class="signature apipage">copy\_from(\_other:[phoenix.Vector](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
@@ -116,6 +119,36 @@
         </span>
     <span class="method apipage">
             <a name="divideScalar"><a class="lift" href="#divideScalar">divideScalar</a></a> <div class="clear"></div><code class="signature apipage">divideScalar(v:[Float](#)<span></span>) : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_length"><a class="lift" href="#set_length">set\_length</a></a> <div class="clear"></div><code class="signature apipage">set\_length(value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_length"><a class="lift" href="#get_length">get\_length</a></a> <div class="clear"></div><code class="signature apipage">get\_length() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_lengthsq"><a class="lift" href="#get_lengthsq">get\_lengthsq</a></a> <div class="clear"></div><code class="signature apipage">get\_lengthsq() : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_normalized"><a class="lift" href="#get_normalized">get\_normalized</a></a> <div class="clear"></div><code class="signature apipage">get\_normalized() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_x"><a class="lift" href="#set_x">set\_x</a></a> <div class="clear"></div><code class="signature apipage">set\_x(\_x:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_y"><a class="lift" href="#set_y">set\_y</a></a> <div class="clear"></div><code class="signature apipage">set\_y(\_y:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_z"><a class="lift" href="#set_z">set\_z</a></a> <div class="clear"></div><code class="signature apipage">set\_z(\_z:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_inverted"><a class="lift" href="#get_inverted">get\_inverted</a></a> <div class="clear"></div><code class="signature apipage">get\_inverted() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="set_angle2D"><a class="lift" href="#set_angle2D">set\_angle2D</a></a> <div class="clear"></div><code class="signature apipage">set\_angle2D(value:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+        </span>
+    <span class="method apipage">
+            <a name="get_angle2D"><a class="lift" href="#get_angle2D">get\_angle2D</a></a> <div class="clear"></div><code class="signature apipage">get\_angle2D() : [Float](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="truncate"><a class="lift" href="#truncate">truncate</a></a> <div class="clear"></div><code class="signature apipage">truncate(max:[Float](#)<span></span>) : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>

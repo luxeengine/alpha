@@ -27,6 +27,10 @@
                 <a name="end"><a class="lift" href="#end">end</a></a><div class="clear"></div><code class="signature apipage">end : [phoenix.Vector](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="dir"><a class="lift" href="#dir">dir</a></a><div class="clear"></div><code class="signature apipage">dir : [phoenix.Vector](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="camera"><a class="lift" href="#camera">camera</a></a><div class="clear"></div><code class="signature apipage">camera : [phoenix.Camera](#)</code><br/></span>
+            <span class="small_desc_flat"></span><span class="member apipage">
+                <a name="viewport"><a class="lift" href="#viewport">viewport</a></a><div class="clear"></div><code class="signature apipage">viewport : [phoenix.Rectangle](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
