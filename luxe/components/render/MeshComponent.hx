@@ -24,6 +24,8 @@ class MeshComponent extends Component {
             });
 
             mesh.pos = entity.pos;
+            mesh.rotation = entity.rotation;
+            mesh.scale = entity.scale;
         }
 
     } //init
@@ -43,6 +45,13 @@ class MeshComponent extends Component {
         } //mesh
 
     } //entity_rotation_change
+
+    public override function entity_scale_change( _scale:Vector ) {
+
+        if(mesh != null){
+            mesh.scale = _scale;
+        } //mesh
+    } // entity_scale_change
 
     public function update(dt:Float) {
 
