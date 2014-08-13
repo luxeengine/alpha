@@ -49,6 +49,10 @@ class Mesh {
 
         } //options.file
 
+        if(_options.geometry != null){
+            geometry = _options.geometry;
+        }
+
         if(geometry != null) {
 
             geometry.id = _options.file;
