@@ -20,18 +20,8 @@ class Main extends luxe.Game {
         //the impulse to apply when pressing arrows
     var impulse = 900;
 
-    var end : Float = 0.0;
+
     public function ready() {
-
-        Luxe.physics.fixed_rate = 1/240;
-        Luxe.physics.steps = 4;
-
-        // Luxe.core.app.windowing.enable_vsync(true);
-
-        Luxe.timer.schedule(1/60, function(){
-            Sys.println(Luxe.time - end);
-            end = Luxe.time;
-        }, true);
 
         reset_world();
 
