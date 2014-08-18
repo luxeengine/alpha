@@ -25,13 +25,13 @@ class Main extends luxe.Game {
 
     var level : Level;
 
-    public function ready() {
+    override function ready() {
 
-            //Create the camera, low FOV for ortho-like perspective 
+            //Create the camera, low FOV for ortho-like perspective
         game_camera = new Camera({ name:'game_camera' });
         game_camera.view = new phoenix.Camera({
             projection: ProjectionType.perspective,
-            fov:30, 
+            fov:30,
             near:0.1, far:1000,
             aspect:Luxe.screen.w/Luxe.screen.h
         });
@@ -70,27 +70,27 @@ class Main extends luxe.Game {
         Luxe.scene.add(game_camera);
 
             //Draw an axis for debug
-        Luxe.draw.axis3D();
+        // Luxe.draw.axis3D(); :todo : this was removed for beta
 
         trace(luxe.utils.Maths.nearest_power_of_two(25));
 
     } //ready
 
-    public function onkeydown( e:KeyEvent ) {
-        
+    override function onkeydown( e:KeyEvent ) {
+
     }
 
-    public function onkeyup( e:KeyEvent ) {
-        
-        if(e.key == KeyValue.escape) {
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
 
     } //onkeyup
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
-        
+
 
     } //update
 

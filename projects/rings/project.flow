@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'rings',
+    version : '1.0.0',
+    author : 'underscorediscovery',
+
+    app : {
+      name : 'rings',
+      package : 'com.underscorediscovery.rings'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*'
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

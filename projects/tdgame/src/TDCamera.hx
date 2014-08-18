@@ -26,14 +26,14 @@ class TDCamera extends Component {
     public function init() {
 
             //Listen for input so we can move around
-        Luxe.input.add('left', KeyValue.left);
-        Luxe.input.add('left', KeyValue.key_A);
-        Luxe.input.add('right', KeyValue.right);
-        Luxe.input.add('right', KeyValue.key_D);
-        Luxe.input.add('forward', KeyValue.up);
-        Luxe.input.add('forward', KeyValue.key_W);
-        Luxe.input.add('back', KeyValue.down);
-        Luxe.input.add('back', KeyValue.key_S);
+        Luxe.input.add('left', Key.left);
+        Luxe.input.add('left', Key.key_a);
+        Luxe.input.add('right', Key.right);
+        Luxe.input.add('right', Key.key_d);
+        Luxe.input.add('forward', Key.up);
+        Luxe.input.add('forward', Key.key_w);
+        Luxe.input.add('back', Key.down);
+        Luxe.input.add('back', Key.key_s);
 
     }
 
@@ -60,13 +60,7 @@ class TDCamera extends Component {
     } //zoom
 
     public function onmousewheel( e:MouseEvent ) {
-        switch(e.button) {
-            case MouseButton.wheel_down:
-                zoom(-1);
-            case MouseButton.wheel_up:
-                zoom(1);
-            default:
-        } //switch
+        zoom(e.y);
     } //onmousedown
 
     public function oninputdown( name:String, e:InputEvent ) {

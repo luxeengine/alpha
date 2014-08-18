@@ -8,7 +8,7 @@ import levels.Stage1Level1;
 
 class Projectile extends Component {
 
-	public var vel : Vector;	
+	public var vel : Vector;
 	public var alive : Bool = false;
 	public var stage : Stage1Level1;
 	public var damage : Float = 1;
@@ -21,7 +21,7 @@ class Projectile extends Component {
 		stage = _stage;
 		vel = new Vector();
 		test = new Vector();
-	} 
+	}
 
 	public function live(_vel:Vector) {
 
@@ -42,7 +42,7 @@ class Projectile extends Component {
 	public function kill(remove:Bool = true) {
 
 
-		Luxe.audio.play('distant_explode');	
+		Luxe.audio.play('distant_explode');
 
 		var s:Visual = cast entity;
 			alive = false;
@@ -63,19 +63,20 @@ class Projectile extends Component {
 
 		if(!alive) return;
 
+
 		alive_time += dt;
 
 		pos = pos.clone().add( Vector.Multiply(vel,dt) );
 
-		if( !Luxe.screen.point_inside( pos ) ) {			
-			kill();			
+		if( !Luxe.screen.point_inside( pos ) ) {
+			kill();
 			if(bullettype == 'player') {
 				stage.lose_progress();
 				stage.lose_progress();
 				stage.lose_progress();
-			}			
+			}
 		}
-		
+
 		if(bullettype == 'player') {
 			for(enemy in stage.enemies) {
 				var s : Visual = cast enemy.entity;
@@ -104,7 +105,7 @@ class Projectile extends Component {
 			var _fs : Float = (bullettype == 'enemy') ? 0.27 : 0.32;
 			var s = stage.finger_size * _fs;
 			if(test.length < (s)) {
-				stage.take_damage(1);				
+				stage.take_damage(1);
 				kill();
 			}
 		}

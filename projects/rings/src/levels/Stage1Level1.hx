@@ -260,11 +260,11 @@ class Stage1Level1 extends State {
 
         // aim.visible = false;
 
-        Luxe.renderer.add_group(2,
+        Luxe.renderer.batcher.add_group(2,
             function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.05 ); },
             function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.02 ); }
         );
-        Luxe.renderer.add_group(4,
+        Luxe.renderer.batcher.add_group(4,
             function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.03 ); },
             function(b:Batcher){ Luxe.renderer.state.lineWidth( finger_size*0.02 ); }
         );
@@ -303,7 +303,7 @@ class Stage1Level1 extends State {
             success = false;
             reset_progress();
         } else {
-            Luxe.audio.play('music', 999999);
+            Luxe.audio.loop('music');
         }
 
         power.p1 = player.pos;

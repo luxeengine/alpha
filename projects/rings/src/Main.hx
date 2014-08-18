@@ -23,23 +23,30 @@ class Main extends luxe.Game {
     var next_tap : Dynamic;
     public var rot : Float = 0;
 
-    public function ready() {
+    override function config(config:luxe.AppConfig) {
+        config.window.antialiasing = 2;
+
+        return config;
+    }
+
+    override function ready() {
+
+        Luxe.update_rate = 1/60;
+        Luxe.fixed_delta = 1/60;
 
         states = new States();
         states.add_state(Stage1Level1, 'stage1.level1', { init_with:this });
 
-        Luxe.fixed_timestep = 0.01666667;
-
         states.init();
 
-        Luxe.audio.create('distant_explode', 'assets/distant_explode.ogg');
-        Luxe.audio.create('enemy_explode', 'assets/enemy_explode.ogg');
-        Luxe.audio.create('take_damage', 'assets/take_damage.ogg');
-        Luxe.audio.create('die', 'assets/die.ogg');
-        Luxe.audio.create('jump', 'assets/jump.ogg');
-        Luxe.audio.create('shoot', 'assets/shoot.ogg');
-        Luxe.audio.create('shoot2', 'assets/shoot2.ogg');
-        Luxe.audio.create('music', 'assets/UMBRA_ANDRIO.ogg', true);
+        Luxe.audio.create('assets/distant_explode.ogg', 'distant_explode');
+        Luxe.audio.create('assets/enemy_explode.ogg', 'enemy_explode');
+        Luxe.audio.create('assets/take_damage.ogg', 'take_damage');
+        Luxe.audio.create('assets/die.ogg', 'die');
+        Luxe.audio.create('assets/jump.ogg', 'jump');
+        Luxe.audio.create('assets/shoot.ogg', 'shoot');
+        Luxe.audio.create('assets/shoot2.ogg', 'shoot2');
+        Luxe.audio.create('assets/UMBRA_ANDRIO.ogg', 'music', true);
 
             //create the geometries
         left_geom = Luxe.draw.box({
@@ -102,7 +109,7 @@ class Main extends luxe.Game {
         Actuate.tween( right_geom.transform.pos, 0.4, { y:0 } ).onComplete(function(){
             text.color.tween(0.2, {a:1}, true);
             next_tap = function(){
-                hide_start(50, function(){
+                hide_start(0.050, function(){
                     states.set('stage1.level1');
                 });
             }
@@ -138,36 +145,36 @@ class Main extends luxe.Game {
 
     } //show_start
 
-    public function hide_start( t:Int, _complete ) {
+    public function hide_start( t:Float, _complete ) {
         text.color.tween(0.2, {a:0}, true).onComplete(function(){
             Actuate.tween( left_geom.transform.pos, 0.4, { y:-Luxe.screen.h } , true).onComplete(function(){
-                haxe.Timer.delay(_complete, t);
+                snow.utils.Timer.delay(t, _complete);
             });
             Actuate.tween( right_geom.transform.pos, 0.3, { y:Luxe.screen.h*2 }, true );
         });
     }
 
-    public function ontouchup(e:TouchEvent) {
+    override function ontouchup(e:TouchEvent) {
         states.ontouchup(e);
     }
 
-    public function ontouchdown(e:TouchEvent) {
+    override function ontouchdown(e:TouchEvent) {
         states.ontouchdown(e);
     }
 
-    public function ontouchmove(e:TouchEvent) {
+    override function ontouchmove(e:TouchEvent) {
         states.ontouchmove(e);
     } //ontouchmove
 
-    public function onmousedown(e:MouseEvent) {
+    override function onmousedown(e:MouseEvent) {
         states.onmousedown(e);
     } //onmousedown
 
-    public function onmousemove(e:MouseEvent) {
+    override function onmousemove(e:MouseEvent) {
         states.onmousemove(e);
     } //onmousemove
 
-    public function onmouseup(e:MouseEvent) {
+    override function onmouseup(e:MouseEvent) {
 
         if(next_tap != null) {
             next_tap();
@@ -179,13 +186,13 @@ class Main extends luxe.Game {
 
     } //onmouseup
 
-    public function onkeyup( e:KeyEvent ) {
-        if(e.key == KeyValue.escape) {
+    override function onkeyup( e:KeyEvent ) {
+        if(e.keycode == Key.escape) {
             Luxe.shutdown();
         }
     }
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
         states.update(dt);
     }
 

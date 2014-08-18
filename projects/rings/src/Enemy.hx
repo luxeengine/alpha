@@ -10,160 +10,161 @@ import levels.Stage1Level1;
 
 class Enemy extends Component {
 
-	public var alive : Bool = false;
-	public var spawnpos : Float = 0;
-	public var destpos : Float = 0;
-	public var curr_dest : Float = 0;
-	public var destdir : Int = 1;
-	public var cpos : Float = 0;
-	public var speed : Float = 0;
-	public var stage : Stage1Level1;
-	public var health : Float = 1;
-	public var shoot_speed : Float = 100;
-	public var fire_rate : Float = 10;
-	public var alive_time : Float = 0;
-	public var next_fire : Float = 0;
+    public var alive : Bool = false;
+    public var spawnpos : Float = 0;
+    public var destpos : Float = 0;
+    public var curr_dest : Float = 0;
+    public var destdir : Int = 1;
+    public var cpos : Float = 0;
+    public var speed : Float = 0;
+    public var stage : Stage1Level1;
+    public var health : Float = 1;
+    public var shoot_speed : Float = 100;
+    public var fire_rate : Float = 10;
+    public var alive_time : Float = 0;
+    public var next_fire : Float = 0;
 
-	public function init( _main:Stage1Level1 ) {
+    public function init( _main:Stage1Level1 ) {
 
-		stage = _main;
+        stage = _main;
 
-		test = new Vector();
+        test = new Vector();
 
-    	shoot_speed = 30 + (Math.random() * 40);
-    	fire_rate = 0.4 + (Math.random() * 2);
-    	next_fire = 0.5;
+        shoot_speed = 30 + (Math.random() * 40);
+        fire_rate = 0.4 + (Math.random() * 2);
+        next_fire = 0.5;
 
-	} //init
+    } //init
 
-	public function take_damage(amount:Float) {
-		health -= amount;
-		if(health <= 0) {
-			health = 0;			
-			kill();
-			stage.kill_enemy();
-		}
-	}
+    public function take_damage(amount:Float) {
+        health -= amount;
+        if(health <= 0) {
+            health = 0;
+            kill();
+            stage.kill_enemy();
+        }
+    }
 
-	public function do_fire() {
+    public function do_fire() {
 
-		if(alive) {
-			fire();
-			next_fire = alive_time + fire_rate;
-		}
+        if(alive) {
+            fire();
+            next_fire = alive_time + fire_rate;
+        }
 
-	}
+    }
 
-	public function fire() {
-		Luxe.audio.play('shoot');
-		var b = stage.enemy_bullets.get();
-			b.pos.x = pos.x;
-	    	b.pos.y = pos.y;
-	    var d = Vector.Subtract(pos,stage.player.pos);
-	    	b.get('projectile').live( d.inverted.normalized.multiplyScalar(shoot_speed) );
-	}
+    public function fire() {
+        return;
+        Luxe.audio.play('shoot');
+        var b = stage.enemy_bullets.get();
+            b.pos.x = pos.x;
+            b.pos.y = pos.y;
+        var d = Vector.Subtract(pos,stage.player.pos);
+            b.get('projectile').live( d.inverted.normalized.multiplyScalar(shoot_speed) );
+    }
 
-	public function kill(remove:Bool = true) {	
+    public function kill(remove:Bool = true) {
 
-		Luxe.audio.play('enemy_explode');	
+        Luxe.audio.play('enemy_explode');
 
-		var s:Visual = cast entity;
-			
-			Actuate.tween(s.scale, 0.2, {x:3,y:3});
+        var s:Visual = cast entity;
 
-			s.color.tween( 0.1, { a:0 }).timescale().onComplete(function(){
-				s.visible = false;
-			});
+            Actuate.tween(s.scale, 0.2, {x:3,y:3});
 
-			alive = false;
-			if(remove) {
-				stage.enemies.remove(this);
-			}
-	}
+            s.color.tween( 0.1, { a:0 }).timescale().onComplete(function(){
+                s.visible = false;
+            });
 
-	public function live() {
+            alive = false;
+            if(remove) {
+                stage.enemies.remove(this);
+            }
+    }
 
-		var s:Visual = cast entity;
-			s.scale.x = 1;
-			s.scale.y = 1;
-			s.color.tween(0.2, {a:1}, true);
-			s.visible = true;
+    public function live() {
 
-		alive = true;
+        var s:Visual = cast entity;
+            s.scale.x = 1;
+            s.scale.y = 1;
+            s.color.tween(0.2, {a:1}, true);
+            s.visible = true;
 
-		var _angle_opp = 45 - Math.round(Math.random() * 90);
-		var _angle_dest = 45 - Math.round(Math.random() * 90);
-		var _opp_side = stage.rotation + 180;
-    	var _opp_off = luxe.utils.Maths.wrap_angle(_opp_side + (_angle_opp*2), 0, 360);
+        alive = true;
 
-		spawnpos = _opp_off;
-		destpos = luxe.utils.Maths.wrap_angle(_opp_off + _opp_side, 0, 360);
-		curr_dest = destpos;
-		destdir = ((destpos - spawnpos) > 0) ? 1 : -1;
+        var _angle_opp = 45 - Math.round(Math.random() * 90);
+        var _angle_dest = 45 - Math.round(Math.random() * 90);
+        var _opp_side = stage.rotation + 180;
+        var _opp_off = luxe.utils.Maths.wrap_angle(_opp_side + (_angle_opp*2), 0, 360);
 
-		speed = 15 + (Math.round(Math.random()*10));
+        spawnpos = _opp_off;
+        destpos = luxe.utils.Maths.wrap_angle(_opp_off + _opp_side, 0, 360);
+        curr_dest = destpos;
+        destdir = ((destpos - spawnpos) > 0) ? 1 : -1;
 
-		pos = new Vector( stage.__x(spawnpos), stage.__y(spawnpos) );
+        speed = 15 + (Math.round(Math.random()*10));
 
-		cpos = spawnpos;
+        pos = new Vector( stage.__x(spawnpos), stage.__y(spawnpos) );
 
-		// Actuate.tween(this, (speed), { cpos:destpos }, true).ease(luxe.tween.easing.Linear.easeNone).onUpdate(function(){
-		// 	pos.x = stage.__x(cpos);
-		// 	pos.y = stage.__y(cpos);
-		// }).reflect().repeat();
+        cpos = spawnpos;
 
-		stage.enemies.push(this);
-		next_fire = 0.5;
-		alive_time = 0;
+        // Actuate.tween(this, (speed), { cpos:destpos }, true).ease(luxe.tween.easing.Linear.easeNone).onUpdate(function(){
+        //  pos.x = stage.__x(cpos);
+        //  pos.y = stage.__y(cpos);
+        // }).reflect().repeat();
 
-		// haxe.Timer.delay(do_fire, Std.int((3+fire_rate)*1000) );
-	}
+        stage.enemies.push(this);
+        next_fire = 0.5;
+        alive_time = 0;
 
-		//shoot?
-	var test :Vector;
+        // haxe.Timer.delay(do_fire, Std.int((3+fire_rate)*1000) );
+    }
 
-	function toggle_dest() {
-		if(curr_dest == spawnpos) {
-			curr_dest = destpos;
-		} else {
-			curr_dest = spawnpos;
-		}	
-	}
-	function update_movement(dt:Float) {
+        //shoot?
+    var test :Vector;
 
-		cpos += dt * speed * destdir;
-		if(cpos < curr_dest && destdir < 0) {
-			destdir = 1;
-			toggle_dest();
-		} 
-		if(cpos > curr_dest && destdir > 0) {
-			destdir = -1;
-			toggle_dest();
-		}
+    function toggle_dest() {
+        if(curr_dest == spawnpos) {
+            curr_dest = destpos;
+        } else {
+            curr_dest = spawnpos;
+        }
+    }
+    function update_movement(dt:Float) {
 
-		pos.x = stage.__x(cpos);
-		pos.y = stage.__y(cpos);
-	}
+        cpos += dt * speed * destdir;
+        if(cpos < curr_dest && destdir < 0) {
+            destdir = 1;
+            toggle_dest();
+        }
+        if(cpos > curr_dest && destdir > 0) {
+            destdir = -1;
+            toggle_dest();
+        }
 
-	public function update( dt:Float ) {
+        pos.x = stage.__x(cpos);
+        pos.y = stage.__y(cpos);
+    }
 
-		if(!alive) return;
+    public function update( dt:Float ) {
 
-		alive_time += dt;
+        if(!alive) return;
 
-		if(alive_time > next_fire) {
-			do_fire();
-		}
+        alive_time += dt;
 
-		update_movement(dt);
+        if(alive_time > next_fire) {
+            do_fire();
+        }
 
-		var dx = stage.player.pos.x - pos.x;
-		var dy = stage.player.pos.y - pos.y;
-			test.set(dx,dy);
-		if(test.length < (stage.finger_size*0.3) ) {
-			stage.take_damage(1);
-			kill();
-		}
-	}
+        update_movement(dt);
+
+        var dx = stage.player.pos.x - pos.x;
+        var dy = stage.player.pos.y - pos.y;
+            test.set(dx,dy);
+        if(test.length < (stage.finger_size*0.3) ) {
+            stage.take_damage(1);
+            kill();
+        }
+    }
 
 }
