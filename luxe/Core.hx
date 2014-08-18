@@ -198,21 +198,18 @@ class Core extends snow.App {
             Luxe.renderer = renderer;
         }
 
-            //if there is a window, store the sizes
-        var _window_x = 0;
-        var _window_y = 0;
+            //if there is a window,
+            //store the size
         var _window_w = 0;
         var _window_h = 0;
 
         if(app.window != null) {
-            _window_x = app.window.x;
-            _window_y = app.window.y;
             _window_w = app.window.width;
             _window_h = app.window.height;
         }
 
             //store the size for access from API
-        screen = new luxe.Screen( this, _window_x, _window_y, _window_w, _window_h );
+        screen = new luxe.Screen( this, 0, 0, _window_w, _window_h );
 
             //Now make sure
             //they start up
