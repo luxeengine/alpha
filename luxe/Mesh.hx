@@ -176,5 +176,12 @@ class Mesh {
 
     } // from obj file
 
+    public function destroy() {
+        if(geometry != null) {
+            geometry.drop();
+            geometry = null;
+        }
+    }
+
 
 } //Mesh
