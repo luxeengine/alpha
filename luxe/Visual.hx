@@ -328,6 +328,17 @@ class Visual extends Entity {
 
 //Transforms
 
+    override function set_parent_from_transform( _parent:Transform ) {
+
+        super.set_parent_from_transform( _parent );
+
+        if(geometry != null) {
+                //make sure it's attached
+            geometry.transform.parent = transform;
+        }
+
+    } //set_parent_from_transform
+
     override function set_rotation_from_transform( _rotation:Quaternion ) {
 
         super.set_rotation_from_transform(_rotation);

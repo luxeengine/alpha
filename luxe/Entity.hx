@@ -680,6 +680,9 @@ class Entity extends Objects {
 
         _verboser('calling update on ' + name);
 
+            //make sure transforms are resolved
+        transform.clean_check();
+
             //update the parent first
         _call(this, 'update', [dt]);
 
@@ -694,9 +697,11 @@ class Entity extends Objects {
         } //for each component
 
             //now update our children, so they do the same
-        for(_child in children) {
-            _child._update(dt);
-        } //for each child
+        if(children.length > 0) {
+            for(_child in children) {
+                _child._update(dt);
+            } //for each child
+        }
 
     } //_update
 
