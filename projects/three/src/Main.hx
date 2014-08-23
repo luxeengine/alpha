@@ -91,7 +91,7 @@ class Main extends luxe.Game {
 
             //Apply it to our mesh renderer
         batch3d.view = cam3d.view;
-#if !luxe_html5
+#if !luxe_web
             //Apply it to the physics handler debug view
         batch3d.add(Luxe.physics.bullet.debugdraw.geometry);
 #end

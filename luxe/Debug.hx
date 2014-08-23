@@ -107,7 +107,7 @@ class Debug {
             Sys.println('${inf.fileName}:$_line $v');
         #end
 
-        #if luxe_html5
+        #if luxe_web
             untyped console.log('${inf.fileName}::$_line $v');
         #end
 

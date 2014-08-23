@@ -132,9 +132,9 @@ class Renderer {
         GL.blendFunc(GL.SRC_ALPHA, GL.ONE_MINUS_SRC_ALPHA);
 
             //Make sure that we aren't premultiplying the backbuffer
-        #if luxe_html5
+        #if luxe_web
             GL.pixelStorei(GL.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
-        #end //luxe_html5
+        #end //luxe_web
 
     } //init
 

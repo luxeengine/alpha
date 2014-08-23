@@ -13,10 +13,10 @@ import luxe.options.SpriteOptions;
 class Sprite extends Visual {
 
 
-    @:isVar public var centered     (default,set    )   : Bool = true;
-    @:isVar public var flipx        (default,set    )   : Bool = false;
-    @:isVar public var flipy        (default,set    )   : Bool = false;
-    @:isVar public var uv           (default,set    )   : Rectangle;
+    @:isVar public var centered     (default, set) : Bool = true;
+    @:isVar public var flipx        (default, set) : Bool = false;
+    @:isVar public var flipy        (default, set) : Bool = false;
+    @:isVar public var uv           (default, set) : Rectangle;
 
     public var geometry_quad : QuadGeometry;
 

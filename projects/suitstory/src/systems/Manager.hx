@@ -298,11 +298,11 @@ class Manager extends State {
 
     } //add_beacon
 
-    public function prerender() {
+    public function pre_render() {
         map_view_texture.bindBuffer();
         map_batch.draw( false );
         map_view_texture.unbindBuffer();
-    } //prerender
+    } //pre_render
 
     var showing_dialog : Bool = false;
     var text_alpha : Float = 0;

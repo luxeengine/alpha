@@ -49,9 +49,9 @@
         defines:['luxe_native', 'luxe_parcel_logging', 'parcel_thread_disabled']
       }
     },
-    snow_html5 : {
+    snow_web : {
       build:{
-        defines:['luxe_html5']
+        defines:['luxe_web']
       }
     }
  }

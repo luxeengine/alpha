@@ -62,9 +62,8 @@ class CompositeGeometry extends Geometry {
 
         if(geom != null) {
             geom.transform = transform;
+            geometry.push(geom);
         }
-
-        geometry.push(geom);
 
     } //add_geometry
 

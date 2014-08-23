@@ -79,14 +79,16 @@ class States {
         var _state = Type.createInstance( type, [_construct_with] );
             //create a state typed instance
         var _state_instance : State = cast _state;
-            //set the name of the instance
-        _state_instance.name = _temp_name;
-            //store it in the state list
-        _states.set(_temp_name, _state_instance );
-            //store reference of the owner
-        _state_instance.machine = this;
-            //debug stuff
-        _debug('adding a state called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
+
+                //set the name of the instance
+            _state_instance.name = _temp_name;
+                //store it in the state list
+            _states.set(_temp_name, _state_instance );
+                //store reference of the owner
+            _state_instance.machine = this;
+
+                    //debug stuff
+                _debug('adding a state called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
 
             //return the state instance
         return _state;
@@ -166,16 +168,16 @@ class States {
             _call(state, 'destroyed', []);
         }
     } //destroy
-    public function prerender() {
+    public function pre_render() {
         for (state in active_states) {
-            _call(state, 'prerender', []);
+            _call(state, 'pre_render', []);
         }
-    } //prerender
-    public function postrender() {
+    } //pre_render
+    public function post_render() {
         for (state in active_states) {
-            _call(state, 'postrender', []);
+            _call(state, 'post_render', []);
         }
-    } //postrender
+    } //post_render
 
 //Internal helper functions
 

@@ -12,12 +12,12 @@ package luxe.physics.bullet;
 
     import luxe.physics.bullet.DebugDraw;
 
-    #if luxe_html5
+    #if luxe_web
 
         import bullet.AmmoBinding;
         import luxe.Vector;
 
-    #end //luxe_html5
+    #end //luxe_web
 
     class PhysicsBullet extends luxe.Physics.PhysicsEngine {
 
@@ -49,9 +49,9 @@ package luxe.physics.bullet;
             gravity = new Vector( 0, -10, 0 );
 
                 // Create the debug draw
-            #if !luxe_html5
+            #if !luxe_web
                 debugdraw = new DebugDraw();
-            #end //luxe_html5
+            #end //luxe_web
 
         }  //init
 
@@ -75,7 +75,7 @@ package luxe.physics.bullet;
 
             super.render();
 
-            #if !luxe_html5
+            #if !luxe_web
                 if(draw) {
                     debugdraw.clear();
                     debugdraw.draw( world );
@@ -100,7 +100,7 @@ package luxe.physics.bullet;
 
         override function set_draw( _draw:Bool ) : Bool {
 
-            #if !luxe_html5
+            #if !luxe_web
                     //clean up any potential geometry when disabling drawing
                 if(!_draw) {
                     debugdraw.clear();
@@ -115,9 +115,9 @@ package luxe.physics.bullet;
 
             super.destroy();
 
-            #if !luxe_html5
+            #if !luxe_web
                 debugdraw.destroy();
-            #end //luxe_html5
+            #end //luxe_web
 
             world.destroy();
             solver.destroy();

@@ -32,8 +32,8 @@ class Game extends luxe.Game {
 
     }   
 
-    public function prerender() {
-        states.prerender();
+    public function pre_render() {
+        states.pre_render();
     }
  
     public function onkeydown(e) {

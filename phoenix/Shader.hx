@@ -361,9 +361,9 @@ class Shader extends Resource {
         if(_frag_shader.length > 0 && _vert_shader.length > 0) {
 
             var prefixes = '';
-            #if luxe_html5
+            #if luxe_web
                 prefixes += "precision mediump float;";
-            #end //luxe_html5
+            #end //luxe_web
 
                 //:todo: which resource manager...
             _shader = new Shader( Luxe.resources );
