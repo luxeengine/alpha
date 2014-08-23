@@ -10,6 +10,7 @@ class GeometryUtils {
 
     @:noCompletion public var luxe:Core;
 
+    static inline var two_pi : Float = 6.283185307179586;
 
     @:noCompletion public function new(_luxe:Core) {
 
@@ -25,11 +26,15 @@ class GeometryUtils {
 
     public function random_point_in_unit_circle() : Vector {
 
-        var t = 2*Math.PI*Math.random();
-        var u = Math.random()+Math.random();
-        var r = (u > 1.0) ? (2.0 - u) : u;
+            //first get a smoothly distributed point in the radius
+        var _r:Float = Math.sqrt( Math.random() );
+            //then rotate that point randomly around 360 degrees,
+            //the -1 + 2 * means that it shifts from -1 + [0..2] = -1,1 range
+            //this centers it around the origin
+        var _t:Float = (-1 + (2 * Math.random())) * two_pi;
 
-        return new Vector( Math.cos(t), Math.cos(u) );
+            //finally, work out the x and y
+        return new Vector( _r*Math.cos(_t), _r*Math.sin(_t) );
 
     } //random_point_in_unit_circle
 
