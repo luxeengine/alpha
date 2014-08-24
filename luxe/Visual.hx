@@ -323,7 +323,7 @@ class Visual extends Entity {
 
         return geometry;
 
-    } //set_origin
+    } //set_geometry
 
 
 //Transforms
