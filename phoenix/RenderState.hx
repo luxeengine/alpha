@@ -6,6 +6,7 @@ class RenderState {
 
     var cull_face : Bool = false;
     var depth_test : Bool = false;
+    var depth_mask : Bool = true;
     var renderer : Renderer;
     var _viewport : Rectangle;
 
@@ -135,6 +136,14 @@ class RenderState {
         if(_last_line_width != _width) {
             _last_line_width = _width;
             GL.lineWidth( _width );
+        }
+    }
+
+    var _last_depth_mask:Bool = true;
+    public function depthMask( _enable:Bool ) {
+        if(_last_depth_mask != _enable) {
+            _last_depth_mask = _enable;
+            GL.depthMask( _enable );
         }
     }
 
