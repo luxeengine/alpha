@@ -131,6 +131,8 @@ class CircleGeometry extends Geometry {
 
             } //for
 
+        add(new Vertex( _segment_pos[_steps], color )); //1
+
             //and finally, set the position
         transform.pos = new Vector( _x, _y );
 
