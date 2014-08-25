@@ -87,11 +87,20 @@ class Main extends luxe.Game {
             color : new Color(0,0,0,0.5)
         });
 
+        Luxe.draw.circle({
+            x : Luxe.screen.w/2,
+            y : Luxe.screen.h/2,
+            r : 100,
+            start_angle:120,
+            end_angle:240,
+            color : new Color(0,0,0,0.1).rgb(0xffffff)
+        });
+
         circle = Luxe.draw.circle({
             x : Luxe.screen.w/2,
             y : Luxe.screen.h/2,
             r : 50,
-            color : new Color().rgb(0xff4b03)
+            color : new Color(0,0,0,1).rgb(0xff4b03)
         });
 
         ring = Luxe.draw.ring({
