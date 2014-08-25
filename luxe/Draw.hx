@@ -113,7 +113,7 @@ class Draw {
         var _geometry = new Geometry(options);
 
         if(!_solid) {
-            _geometry.primitive_type = PrimitiveType.line_loop;
+            _geometry.primitive_type = PrimitiveType.lines;
         } else {
             _geometry.primitive_type = PrimitiveType.triangle_fan;
         }
@@ -125,30 +125,34 @@ class Draw {
 
         if(_solid) {
                 //add the center vertex
-            _geometry.add(
-                new Vertex(
-                    new Vector( _x, _y, 0 ),
-                    options.color
-                )
-            ); //add
+            _geometry.add( new Vertex( new Vector( _x, _y ), options.color ) );
         }
 
-        var _count : Int = _sides+1;
-        var _start : Int = (_solid == false) ? 1 : 0;
+        var _count : Int = (_solid == false) ? _sides : _sides+1;
+        var _points:Array<Vector> = [];
 
-        for(i in _start ... _count ) {
+        for(i in 0 ... _count ) {
 
-            var __x = (_radius * Math.sin(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
-            var __y = (_radius * Math.cos(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
+            var __x   = (_radius * Math.sin(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
+            var __y   = (_radius * Math.cos(_angle_rad + (_sides_over_pi) + (i * (_sides_over_twopi))));
+            var __pos = new Vector( _x + __x, _y + __y, 0 );
 
-            _geometry.add(
-                new Vertex(
-                    new Vector( _x + __x, _y + __y, 0 ),
-                    options.color
-                )
-            ); //add
+            _geometry.add( new Vertex( __pos, options.color ) );
+
+            if(!_solid) {
+                if(i > 0) {
+                    var _last = _points[i - 1];
+                    _geometry.add( new Vertex( __pos, options.color ) );
+                }
+            }
+
+            _points.push(__pos);
 
         } //for all sides
+
+        if(!_solid) {
+            _geometry.add( new Vertex( _points[0], options.color ) );
+        }
 
         return _geometry;
 
