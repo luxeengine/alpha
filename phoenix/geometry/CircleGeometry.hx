@@ -71,10 +71,14 @@ class CircleGeometry extends Geometry {
 
         primitive_type = PrimitiveType.triangles;
 
-            var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle);
-            var _end_angle_rad = luxe.utils.Maths.degToRad(_end_angle);
+            var half_pi : Float = Math.PI/2;
+            var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle) - half_pi;
+            var _end_angle_rad = luxe.utils.Maths.degToRad(_end_angle) - half_pi;
 
             var _range = _end_angle_rad - _start_angle_rad;
+
+                //how much % of 360 is this, to limit step count?
+            _steps = Math.ceil((Math.abs(_range)/(Math.PI*2)) * _steps );
 
                 //Precompute the value based on segments
             var theta = _range / _steps;
@@ -87,11 +91,13 @@ class CircleGeometry extends Geometry {
 
             //now work out the ratio between _x and _y
             var radial_ratio : Float = _rx / _ry;
-            if(radial_ratio == 0) radial_ratio = 0.000000001;
+            if(radial_ratio == 0) {
+                radial_ratio = 0.000000001;
+            }
 
             var _index = 0;
             var _segment_pos = [];
-            for( i in 0 ... _steps ) {
+            for( i in 0 ... _steps+1 ) {
 
                 var __x = x;
                 var __y = y / radial_ratio;
@@ -101,17 +107,16 @@ class CircleGeometry extends Geometry {
                     //we store them to reference them behind
                 _segment_pos.push(_seg);
 
-                    //one for the segment position
-                add(new Vertex( _seg, color ));
+                    //and if past first node, close the prev tri with new seg pos
+                if(_index > 0) {
+                    add(new Vertex( _seg, color )); //2
+                }
 
                     //one for the center point
-                add( new Vertex( new Vector( 0,0 ), color ) );
+                add( new Vertex( new Vector( 0,0 ), color ) ); //0
 
-                    //and if past 0, one for the prev segment to close the tri
-                if(_index > 0) {
-                    var prevvert = _segment_pos[_index];
-                    add(new Vertex( prevvert.clone(), color ));
-                }
+                    //one for the segment position
+                add(new Vertex( _seg, color )); //1
 
                 var tx = -y;
                 var ty = x;
@@ -126,10 +131,7 @@ class CircleGeometry extends Geometry {
 
             } //for
 
-                //wrap it up
-            add( new Vertex( _segment_pos[0], color ) );
-
-        //and finally, set the position
+            //and finally, set the position
         transform.pos = new Vector( _x, _y );
 
     } //set
