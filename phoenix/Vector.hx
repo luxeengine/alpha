@@ -80,6 +80,26 @@ class Vector {
 
     } //set
 
+    public function int() {
+
+        x = Math.round(x);
+        y = Math.round(y);
+        z = Math.round(z);
+
+    } //int
+
+    public function int_x() {
+        x = Math.round(x);
+    } //int_z
+
+    public function int_y() {
+        y = Math.round(y);
+    } //int_y
+
+    public function int_z() {
+        z = Math.round(z);
+    } //int_y
+
     public function toString() {
         return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
     } //toString
