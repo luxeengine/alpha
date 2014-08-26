@@ -152,20 +152,46 @@ class Entity extends Objects {
 
     } //new
 
+    public function init() {}
+    public function reset() {}
+    public function destroyed() {}
+
+    public function fixed_update() {}
+    public function update(dt:Float) {}
+
+    public function onkeyup(e:KeyEvent) {}
+    public function onkeydown(e:KeyEvent) {}
+
+    public function onmouseup(e:MouseEvent) {}
+    public function onmousedown(e:MouseEvent) {}
+    public function onmousemove(e:MouseEvent) {}
+    public function onmousewheel(e:MouseEvent) {}
+
+    public function ontouchup(e:TouchEvent) {}
+    public function ontouchdown(e:TouchEvent) {}
+    public function ontouchmove(e:TouchEvent) {}
+
+    public function ongamepadaxis(e:GamepadEvent) {}
+    public function ongamepaddown(e:GamepadEvent) {}
+    public function ongamepadup(e:GamepadEvent) {}
+
+    public function oninputdown(_name:String, e:InputEvent) {}
+    public function oninputup(_name:String, e:InputEvent) {}
+
     @:noCompletion public function _init() {
 
             //verbose debugging
         _verbose('${this} inside _init with options as $options' );
 
             //init the parent first
-        _call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
+        init();
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
             _verbose("          " + name + " calling init on component " + _component.name );
-            _call(_component, '_init');
+            _component.init();
         } //for each component
 
             //now init our children, so they do the same
@@ -184,12 +210,12 @@ class Entity extends Objects {
         _verbose('calling reset on ' + name);
 
             //reset the parent first
-        _call(this, 'reset');
+        reset();
 
             //reset all the components attached directly to us
         for(_component in components) {
             _verbose("         " + name + " calling reset on component " + _component.name );
-            _call(_component, 'reset');
+            _component.reset();
         } //for each component
 
             //now reset our children, so they do the same
@@ -222,11 +248,11 @@ class Entity extends Objects {
 
             //destroy all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'destroyed');
+            _component.destroyed();
         } //for each component
 
             //destroy the actual one last
-        _call(this, 'destroyed');
+        destroyed();
 
             //remove it from it's parent if any
         if(parent != null && !_from_parent) {
@@ -268,13 +294,13 @@ class Entity extends Objects {
         _verboser('calling _onkeyup on ' + name);
 
             //init the parent first
-        _call(this, 'onkeyup', [e]);
+        onkeyup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'onkeyup', [e]);
+            _component.onkeyup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -293,13 +319,13 @@ class Entity extends Objects {
         _verboser('calling _onkeydown on ' + name);
 
             //init the parent first
-        _call(this, 'onkeydown', [e]);
+        onkeydown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'onkeydown', [e]);
+            _component.onkeydown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -320,13 +346,13 @@ class Entity extends Objects {
         _verboser('calling _onmousedown on ' + name );
 
             //init the parent first
-        _call(this, 'onmousedown', [e]);
+        onmousedown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'onmousedown', [e]);
+            _component.onmousedown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -346,13 +372,13 @@ class Entity extends Objects {
         _verboser('calling _onmouseup on ' + name);
 
             //init the parent first
-        _call(this, 'onmouseup', [e]);
+        onmouseup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'onmouseup', [e]);
+            _component.onmouseup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -371,13 +397,13 @@ class Entity extends Objects {
         _verboser('calling _onmousewheel on ' + name);
 
             //init the parent first
-        _call(this, 'onmousewheel', [e]);
+        onmousewheel(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'onmousewheel', [e]);
+            _component.onmousewheel(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -396,13 +422,13 @@ class Entity extends Objects {
         _verboser('calling _onmousemove on ' + name);
 
             //init the parent first
-        _call(this, 'onmousemove', [e]);
+        onmousemove(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'onmousemove', [e]);
+            _component.onmousemove(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -422,13 +448,13 @@ class Entity extends Objects {
         _verboser('calling _ontouchdown on ' + name);
 
             //init the parent first
-        _call(this, 'ontouchdown', [e]);
+        ontouchdown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ontouchdown', [e]);
+            _component.ontouchdown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -447,13 +473,13 @@ class Entity extends Objects {
         _verboser('calling _ontouchup on ' + name);
 
             //init the parent first
-        _call(this, 'ontouchup', [e]);
+        ontouchup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ontouchup', [e]);
+            _component.ontouchup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -472,13 +498,13 @@ class Entity extends Objects {
         _verboser('calling _ontouchmove on ' + name);
 
             //init the parent first
-        _call(this, 'ontouchmove', [e]);
+        ontouchmove(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ontouchmove', [e]);
+            _component.ontouchmove(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -498,13 +524,13 @@ class Entity extends Objects {
         _verboser('calling _ongamepadaxis on ' + name);
 
             //init the parent first
-        _call(this, 'ongamepadaxis', [e]);
+        ongamepadaxis(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ongamepadaxis', [e]);
+            _component.ongamepadaxis(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -514,105 +540,55 @@ class Entity extends Objects {
 
     } //_ongamepadaxis
 
-    @:noCompletion public function _ongamepadball(e) {
+    @:noCompletion public function _ongamepaddown(e) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ongamepadball on ' + name);
+        _verboser('calling _ongamepaddown on ' + name);
 
             //init the parent first
-        _call(this, 'ongamepadball', [e]);
+        ongamepaddown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ongamepadball', [e]);
+            _component.ongamepaddown(e);
         } //for each component
 
             //now init our children, so they do the same
         for(_child in children) {
-            _child._ongamepadball(e);
+            _child._ongamepaddown(e);
         } //for each child
 
-    } //_ongamepadball
+    } //_ongamepaddown
 
-    @:noCompletion public function _ongamepadhat(e) {
+    @:noCompletion public function _ongamepadup(e) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ongamepadhat on ' + name);
+        _verboser('calling _ongamepadup on ' + name);
 
             //init the parent first
-        _call(this, 'ongamepadhat', [e]);
+        ongamepadup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'ongamepadhat', [e]);
+            _component.ongamepadup(e);
         } //for each component
 
             //now init our children, so they do the same
         for(_child in children) {
-            _child._ongamepadhat(e);
+            _child._ongamepadup(e);
         } //for each child
 
-    } //_ongamepadhat
-
-    @:noCompletion public function _ongamepadbuttondown(e) {
-
-        if(!active || !inited || !started) {
-            return;
-        }
-
-        _verboser('calling _ongamepadbuttondown on ' + name);
-
-            //init the parent first
-        _call(this, 'ongamepadbuttondown', [e]);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            _call(_component, 'ongamepadbuttondown', [e]);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ongamepadbuttondown(e);
-        } //for each child
-
-    } //_ongamepadbuttondown
-
-    @:noCompletion public function _ongamepadbuttonup(e) {
-
-        if(!active || !inited || !started) {
-            return;
-        }
-
-        _verboser('calling _ongamepadbuttonup on ' + name);
-
-            //init the parent first
-        _call(this, 'ongamepadbuttonup', [e]);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            _call(_component, 'ongamepadbuttonup', [e]);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ongamepadbuttonup(e);
-        } //for each child
-
-    } //_ongamepadbuttonup
+    } //_ongamepadup
 
 //Input
 
@@ -625,13 +601,13 @@ class Entity extends Objects {
         _verboser('calling _oninputdown on ' + name);
 
             //init the parent first
-        _call(this, 'oninputdown', [e]);
+        oninputdown(_name, e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'oninputdown', [_name, e]);
+            _component.oninputdown(_name, e);
         } //for each component
 
             //now init our children, so they do the same
@@ -650,13 +626,13 @@ class Entity extends Objects {
         _verboser('calling _oninputup on ' + name);
 
             //init the parent first
-        _call(this, 'oninputup', [e]);
+        oninputup(_name, e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'oninputup', [_name, e]);
+            _component.oninputup(_name, e);
         } //for each component
 
             //now init our children, so they do the same
@@ -684,7 +660,7 @@ class Entity extends Objects {
         transform.clean_check();
 
             //update the parent first
-        _call(this, 'update', [dt]);
+        update(dt);
 
         if(events != null) {
                 //update the events
@@ -693,7 +669,7 @@ class Entity extends Objects {
 
             //update all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'update', [dt]);
+            _component.update(dt);
         } //for each component
 
             //now update our children, so they do the same
@@ -721,11 +697,11 @@ class Entity extends Objects {
         _verboser('calling fixed_update on ' + name);
 
             //fixed_update the parent first
-        _call(this, 'fixed_update');
+        fixed_update();
 
             //fixed_update all the components attached directly to us
         for(_component in components) {
-            _call(_component, 'fixed_update');
+            _component.fixed_update();
         } //for each component
 
             //now fixed_update our children, so they do the same
@@ -771,12 +747,12 @@ class Entity extends Objects {
 
 //components
 
-    public function add<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
-        return _components.add( type, _name, _data );
+    public function add( _name:String, _component:Component ) {
+        _components.add( _name, _component );
     } //add
 
-    public function remove<T>(?_name:String='', ?_data:T ) : Bool {
-        return _components.remove( _name, _data );
+    public function remove( _name:String ) : Bool {
+        return _components.remove( _name );
     } //remove
 
     public function get<T>(_name:String, ?_in_children:Bool = false ) : T {

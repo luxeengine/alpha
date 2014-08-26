@@ -527,7 +527,7 @@ class SpriteAnimation extends Component {
 
     var uv_cache : Rectangle;
 
-    public function init() {
+    override function init() {
 
         uv_cache = new Rectangle();
 
@@ -770,7 +770,7 @@ class SpriteAnimation extends Component {
 
     } //refresh_sprite
 
-    @:noCompletion public function update( dt:Float ) {
+    @:noCompletion override function update( dt:Float ) {
 
         if(current == null) return;
         if(!playing) return;

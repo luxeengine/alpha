@@ -7,49 +7,64 @@ import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
-import luxe.options.StateOptions;
 
 class State extends Objects {
-
 
     public var machine : States;
     public var active : Bool = false;
 
-    var options : Dynamic;
-
-
-    public override function new<T>( ?_options:StateOptions<T> ) {
-
-        super();
-
-        options = _options;
-
-    }
-
-
     public function enable<T>( ?_enable_with:T ) {
+
         machine.enable( name, _enable_with );
-    }
+
+    } //enable
 
     public function disable<T>( ?_disable_with:T ) {
+
         machine.disable( name, _disable_with );
-    }
 
-    @:noCompletion public function _init() {
-        _call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
-    }
+    } //disable
 
-    @:noCompletion public function _update(dt:Float) {
+    public function init() {}
+    public function reset() {}
+    public function destroyed() {}
 
-        _call(this, 'update', [dt]);
+    public function leave<T>(d:T) {}
+    public function enter<T>(d:T) {}
+    public function added() {}
+    public function removed() {}
+    public function pre_render() {}
+    public function post_render() {}
 
-    } //update
+    public function enabled<T>(d:T) {}
+    public function disabled<T>(d:T) {}
 
+    public function fixed_update() {}
+    public function update(dt:Float) {}
+
+    public function onkeyup(e:KeyEvent) {}
+    public function onkeydown(e:KeyEvent) {}
+
+    public function onmouseup(e:MouseEvent) {}
+    public function onmousedown(e:MouseEvent) {}
+    public function onmousemove(e:MouseEvent) {}
+    public function onmousewheel(e:MouseEvent) {}
+
+    public function ontouchup(e:TouchEvent) {}
+    public function ontouchdown(e:TouchEvent) {}
+    public function ontouchmove(e:TouchEvent) {}
+
+    public function ongamepadaxis(e:GamepadEvent) {}
+    public function ongamepaddown(e:GamepadEvent) {}
+    public function ongamepadup(e:GamepadEvent) {}
+    public function ongamepaddevice(e:GamepadEvent) {}
+
+    public function oninputdown(_name:String, e:InputEvent) {}
+    public function oninputup(_name:String, e:InputEvent) {}
 
 } //State
 
-class States {
-
+class States extends Objects {
 
     @:noCompletion public var _states: Map<String,State>;
 
@@ -57,49 +72,36 @@ class States {
     public var current_state: State;
 
 
-    public function new() {
+    public function new( ?_name:String='' ) {
 
+        super();
+        name = _name == '' ? Luxe.utils.uniqueid() : _name;
         _states = new Map();
         active_states = new Array<State>();
 
     } //new
 
-    public function add_state<T1,T2>(type:Class<T1>, ?_name:String='', ?_construct_with:T2 ) : T1 {
+    public function add(_name:String, _state:State ) : Void {
 
-        var _temp_name = _name;
+            //set the name of the instance
+        _state.name = _name;
+            //store it in the state list
+        _states.set( _name, _state );
+            //store reference of the owner
+        _state.machine = this;
+            //let them know
+        _state.added();
 
-        if(_temp_name.length == 0) {
-            _temp_name = Luxe.utils.uniqueid();
-            trace("warning ; State being added with no name " + type + ", this means setting it by name requires using a uniqueid : " + _temp_name);
-        } else {
-            _temp_name = _name;
-        }
-
-            //create a class instance
-        var _state = Type.createInstance( type, [_construct_with] );
-            //create a state typed instance
-        var _state_instance : State = cast _state;
-
-                //set the name of the instance
-            _state_instance.name = _temp_name;
-                //store it in the state list
-            _states.set(_temp_name, _state_instance );
-                //store reference of the owner
-            _state_instance.machine = this;
-
-                    //debug stuff
-                _debug('adding a state called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
-
-            //return the state instance
-        return _state;
+            //debug stuff
+        _debug('states / $name / adding a state called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
 
     } //add_state
 
     public function enable<T>( _name:String, ?_enable_with:T ) {
         var state = _states.get( _name );
         if(state != null) {
-            _debug('enabling a state ' + _name );
-            _call(state, 'enabled',[_enable_with] );
+            _debug('states / $name / enabling a state ' + _name );
+            state.enabled(_enable_with);
             active_states.push(state);
         }
     } //enable
@@ -107,8 +109,8 @@ class States {
     public function disable<T>( _name:String, ?_disable_with:T  ) {
         var state = _states.get( _name );
         if(state != null) {
-            _debug('disabling a state ' + _name );
-            _call(state, 'disabled',[_disable_with] );
+            _debug('states / $name / disabling a state ' + _name );
+            state.disabled(_disable_with);
             active_states.remove( state );
         }
     } //disable
@@ -126,7 +128,7 @@ class States {
 
                 _debug('removed ${current_state.name}, now at ${Lambda.count(active_states)} active_states');
 
-            _call(current_state, 'leave',[_leave_with] );
+            current_state.leave(_leave_with);
 
             current_state = null;
 
@@ -141,7 +143,7 @@ class States {
 
                 _debug('calling enter on $name, now at ${Lambda.count(active_states)} active_states');
 
-            _call(current_state, 'enter',[_enter_with] );
+            current_state.enter(_enter_with);
 
         } //if states.exists(name)
 
@@ -150,109 +152,126 @@ class States {
     //entity router functions
     public function init() {
         for (state in _states) {
-            state._init();
+            state.init();
         }
     } //init
     public function reset() {
         for (state in active_states) {
-            _call(state, 'reset');
+            state.reset();
         }
     } //reset
     public function update(dt:Float) {
         for (state in active_states) {
-            state._update(dt);
+            state.update(dt);
         }
     } //update
     public function destroy() {
         for (state in _states) {
-            _call(state, 'destroyed', []);
+            state.destroyed();
         }
     } //destroy
     public function pre_render() {
         for (state in active_states) {
-            _call(state, 'pre_render', []);
+            state.pre_render();
         }
     } //pre_render
     public function post_render() {
         for (state in active_states) {
-            _call(state, 'post_render', []);
+            state.post_render();
         }
     } //post_render
 
 //Internal helper functions
 
-    function _call(_object:State, _name:String, ?_args:Array<Dynamic> ) {
-        var _func = Reflect.field(_object, _name);
-        if(_func != null) {
-            Reflect.callMethod(_object, _func, _args );
-        } //does function exist?
-    } //_call
-
     public function onkeydown( e:KeyEvent ) {
         for (state in active_states) {
-            _call(state, 'onkeydown', [e]);
+            state.onkeydown(e);
         }
     } //onkeydown
 
     public function onkeyup( e:KeyEvent ) {
         for (state in active_states) {
-            _call(state, 'onkeyup', [e]);
+            state.onkeyup(e);
         }
     } //onkeyup
 
     public function oninputup( name:String, e:InputEvent ) {
         for (state in active_states) {
-            _call(state, 'oninputup', [name,e]);
+            state.oninputup(name, e);
         }
     } //oninputup
 
     public function oninputdown( name:String, e:InputEvent ) {
         for (state in active_states) {
-            _call(state, 'oninputdown', [name,e]);
+            state.oninputdown(name, e);
         }
     } //oninputdown
 
     public function onmousedown( e:MouseEvent ) {
         for (state in active_states) {
-            _call(state, 'onmousedown', [e]);
+            state.onmousedown(e);
         }
     } //onmousedown
 
     public function onmousewheel( e:MouseEvent ) {
         for (state in active_states) {
-            _call(state, 'onmousewheel', [e]);
+            state.onmousewheel(e);
         }
     } //onmousewheel
 
     public function onmouseup( e:MouseEvent ) {
         for (state in active_states) {
-            _call(state, 'onmouseup', [e]);
+            state.onmouseup(e);
         }
     } //onmouseup
 
     public function onmousemove( e:MouseEvent ) {
         for (state in active_states) {
-            _call(state, 'onmousemove', [e]);
+            state.onmousemove(e);
         }
     } //onmousemove
 
     public function ontouchdown( e:TouchEvent ) {
         for (state in active_states) {
-            _call(state, 'ontouchdown', [e]);
+            state.ontouchdown(e);
         }
     } //ontouchdown
 
     public function ontouchup( e:TouchEvent ) {
         for (state in active_states) {
-            _call(state, 'ontouchup', [e]);
+            state.ontouchup(e);
         }
     } //ontouchup
 
     public function ontouchmove( e:TouchEvent ) {
         for (state in active_states) {
-            _call(state, 'ontouchmove', [e]);
+            state.ontouchmove(e);
         }
     } //ontouchmove
+
+    public function ongamepadaxis( e:GamepadEvent ) {
+        for (state in active_states) {
+            state.ongamepadaxis(e);
+        }
+    } //ongamepadaxis
+
+    public function ongamepadup( e:GamepadEvent ) {
+        for (state in active_states) {
+            state.ongamepadup(e);
+        }
+    } //ongamepadup
+
+    public function ongamepaddown( e:GamepadEvent ) {
+        for (state in active_states) {
+            state.ongamepaddown(e);
+        }
+    } //ongamepaddown
+
+    public function ongamepaddevice( e:GamepadEvent ) {
+        for (state in active_states) {
+            state.ongamepaddevice(e);
+        }
+    } //ongamepaddevice
 
 
 } //States

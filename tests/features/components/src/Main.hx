@@ -6,20 +6,6 @@ import luxe.Input;
 import luxe.Sprite;
 
 
-    /*
-        Things we want to test in components
-
-        1) components having parents successfully bootstraps the children functions (init, destroyed, reset, update)
-        2) components having a root transform aliases to the parent transform (pos,rotation,scale affect the root entity, not the child)
-        3) nested components affect the root transform as well  : see Child2 class changes rotation, pos and scale on the root sprite but its a child1 child
-        4) The default scene propogates events properly (Sprite will add itself)
-        5) fetching and referencing component functions from other classes and locally
-        6) todo ; A non dynamic (as in the type, .get() returns a Dynamic you could cast but it calls blindly )
-            what would be better is probably accessing through something similar to SendMessage (like  get('component').call('hello', args) ), i guess profiling is needed to test
-            but also add() returns the instance, so cacheing and calling functions directly is possible anyway.
-    */
-
-
 class Main extends luxe.Game {
 
 
@@ -30,11 +16,14 @@ class Main extends luxe.Game {
     override function ready() {
 
             //game object is a fake class below just for testing
-        var go = Luxe.scene.create(FakeGameObject, 'go');
+        var go = new FakeGameObject({name:'go'});
 
             //what we want to test is that more than one layer deep affect the parent transform
-        var child1 = go.add(Child1,'child1');
-        var child2 = child1.add(Child2,'child2');
+        var child1_comp = new Child1();
+            child1_comp.init_string = 'Test String';
+
+        go.add('child1', child1_comp);
+        child1_comp.add('child2', new Child2(123));
 
             //Actual entity classes (Sprite, Camera atm)
         sprite = new Sprite({
@@ -53,11 +42,15 @@ class Main extends luxe.Game {
         sprite2.rotation_z = 90;
         sprite2.radians = Math.PI;
 
-        var child1 = sprite.add(Child1,'child1', { init_with:'Test string' });
-        var child2 = child1.add(Child2,'child2', { init_with:565 });
+            var child1_comp2 = new Child1();
+                child1_comp2.init_string = 'Test String 2';
+
+        sprite.add('child1', child1_comp2);
+
+        child1_comp2.add('child2', new Child2(565));
 
             //default camera is an entity, so give it a component!
-        Luxe.camera.add(RandomCameraShaker,'shaker');
+        Luxe.camera.add('shaker', new RandomCameraShaker());
 
     } //ready
 
@@ -102,7 +95,7 @@ class RandomCameraShaker extends Component {
     private var next_shake : Float = 0;
 
 
-    public function init() {
+    override function init() {
         set_shake();
     } //init
 
@@ -110,17 +103,17 @@ class RandomCameraShaker extends Component {
         Luxe.camera.shake(amount);
     } //shake
 
-    private function set_shake() {
+    function set_shake() {
         next_shake = Luxe.time + (5+(Math.random()*5));
     } //set_shake
 
-    public function onkeyup(e:KeyEvent) {
+    override function onkeyup(e:KeyEvent) {
         if(e.keycode == Key.space) {
             shake();
         }
     }
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
         if(next_shake < Luxe.time) {
             Luxe.camera.shake(4);
             set_shake();
@@ -137,19 +130,19 @@ class FakeGameObject extends Entity {
     public var oncerun : Bool = false;
 
 
-    public function init() {
+    override function init() {
         trace('\tgameobject init');
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('\tgameobject reset');
     } //reset
 
-    public function destroyed() {
+    override function destroyed() {
         trace('\tgameobject destroyed');
     } //destroyed
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
         if(!oncerun){
             trace('\tgameobject first update ' + dt);
             oncerun = true;
@@ -164,21 +157,21 @@ class Child1 extends Component {
 
 
     public var oncerun : Bool = false;
+    public var init_string : String = '';
 
-
-    public function init( init_string:String ) {
+    override function init() {
         trace('\t\tchild1 init with string ' + init_string);
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('\t\tchild1 reset');
     } //reset
 
-    public function destroyed() {
+    override function destroyed() {
         trace('\t\tchild1 destroyed');
     } //destroyed
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
         if(!oncerun){
             trace('\t\tchild1 first update ' + dt);
             oncerun = true;
@@ -195,20 +188,26 @@ class Child2 extends Component {
     public var dir : Float = 1;
     public var z : Float = 0;
     public var oncerun : Bool = false;
+    public var unique_value : Int = 0;
 
-    public function init( from_add_value:Int ) {
-        trace('\t\t\tchild2 init with value ' + from_add_value);
+    public function new(_value:Int) {
+        super();
+        unique_value = _value;
+    }
+
+    override function init() {
+        trace('\t\t\tchild2 init with value ' + unique_value);
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('\t\t\tchild2 reset');
     } //reset
 
-    public function destroyed() {
+    override function destroyed() {
         trace('\t\t\tchild2 destroyed');
     } //destroyed
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         if(!oncerun){
             trace('\t\t\tchild2 first update ' + dt);

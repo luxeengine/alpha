@@ -12,26 +12,26 @@ import luxe.Vector;
 
 class Toggler extends Component {
 
-
     var sprite : Sprite;
 
-
-    public function init() {
+    override function added() {
+        trace('added toggler');
         sprite = cast entity;
+    }
+
+    override function init() {
         trace('init toggler ');
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('reset toggler');
-
         sprite.color = new Color().rgb(0xcc0000);
     } //reset
 
-    public function removed() {
+    override function removed() {
         sprite.color = new Color();
         trace('removed toggler');
     } //removed
-
 
 } //Toggler
 
@@ -70,7 +70,7 @@ class Main extends luxe.Game {
 
         if(new_value) {
             //add component again
-            entity_one.add(Toggler, 'toggler');
+            entity_one.add('toggler', new Toggler());
         } else {
             //remove component again
             trace( 'removed? ' + entity_one.remove('toggler') );

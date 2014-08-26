@@ -1,12 +1,9 @@
 package luxe;
 
-
 class Objects {
 
-
 	public var id : String;
-    public var name : String;
-
+    public var name : String = '';
 
     @:noCompletion public function new() {
     	id = Luxe.utils.uniqueid();

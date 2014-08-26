@@ -34,7 +34,7 @@ class Main extends luxe.Game {
         });
 
             //Local to entity event connections
-        entity = Luxe.scene.create(Entity,'temp');
+        entity = new Entity({name:'temp'});
 
 
         entity.events.listen('local event', function(e){

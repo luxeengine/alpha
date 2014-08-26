@@ -3,6 +3,7 @@ package luxe;
 import luxe.Quaternion;
 import luxe.Vector;
 import luxe.Transform;
+import luxe.Input;
 
 import luxe.Log.log;
 import luxe.Log._debug;
@@ -21,26 +22,21 @@ class Component extends Objects {
     public var origin           (get,set) : Vector;
     public var transform        (get,set) : Transform;
 
-        //the options for passing into init
-    @:noCompletion public var options : Dynamic;
-
-//Public API
-
 //components
 
-    public function add<T1,T2>( type:Class<T1>, ?_name:String='', ?_data:T2 ) : T1 {
-        return entity.add( type,_name,_data );
+    public function add( _name:String, component:Component ) : Void {
+        entity.add( _name, component );
     } //add
 
-    public function remove<T>(?_name:String='', ?_data:T ) : Bool {
-        return entity.remove( _name, _data );
+    public function remove( _name:String ) : Bool {
+        return entity.remove( _name );
     } //add
 
-    public function get<T>(_name:String, ?in_children:Bool = false ) : T {
+    public function get<T>( _name:String, ?in_children:Bool = false ) : T {
         return entity.get( _name, in_children );
     } //get
 
-    public function get_any<T>(_name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
+    public function get_any<T>( _name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
         return entity.get_any( _name, in_children, first_only );
     } //get_any
 
@@ -95,21 +91,34 @@ class Component extends Objects {
 
 //internal api
 
-    @:noCompletion public function _create() {
-        _verbose('        component $name create');
-        _call(this, 'create');
-    }
+    public function init() {}
+    public function reset() {}
+    public function destroyed() {}
 
-    @:noCompletion public function _init() {
-        _verbose('        component $name init with options $options ');
-        _call(this, 'init', [ (options == null) ? null : cast options.init_with ]);
-    }
+    public function added() {}
+    public function removed() {}
 
-    @:noCompletion public function _reset() {
-        _verbose('        component $name reset');
-        _call(this, 'reset');
-    }
+    public function fixed_update() {}
+    public function update(dt:Float) {}
 
+    public function onkeyup(e:KeyEvent) {}
+    public function onkeydown(e:KeyEvent) {}
+
+    public function onmouseup(e:MouseEvent) {}
+    public function onmousedown(e:MouseEvent) {}
+    public function onmousemove(e:MouseEvent) {}
+    public function onmousewheel(e:MouseEvent) {}
+
+    public function ontouchup(e:TouchEvent) {}
+    public function ontouchdown(e:TouchEvent) {}
+    public function ontouchmove(e:TouchEvent) {}
+
+    public function ongamepadaxis(e:GamepadEvent) {}
+    public function ongamepaddown(e:GamepadEvent) {}
+    public function ongamepadup(e:GamepadEvent) {}
+
+    public function oninputdown(_name:String, e:InputEvent) {}
+    public function oninputup(_name:String, e:InputEvent) {}
 
  //Serialization
 
@@ -125,7 +134,7 @@ class Component extends Objects {
 
     @:noCompletion public function serialize_to_disk( _destination_path:String ) {
 
-        var _data : Dynamic = get_serialize_data();        
+        var _data : Dynamic = get_serialize_data();
 
         var _type = Type.getClassName(Type.getClass(this));
 

@@ -84,6 +84,15 @@ class Luxe {
         /** the alpha time for a render between frame updates */
     public static var alpha (get,set) : Float;
 
+        /** listen for core events */
+    public static function on<T>(event:String, handler:T->Void ) {
+        core.emitter.on(event, handler);
+    }
+
+        /** stop listening for core eventsinput */
+    public static function off<T>(event:String, handler:T->Void ) {
+        return core.emitter.off(event, handler);
+    }
 
     static function get_screen() {
 
@@ -92,7 +101,6 @@ class Luxe {
     } //get_screen
 
     static function get_time() : Float {
-
 
         return core.app.time;
 

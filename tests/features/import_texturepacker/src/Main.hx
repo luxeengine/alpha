@@ -48,8 +48,11 @@ class Main extends luxe.Game {
                 size : new Vector(64,64)
             });
 
-            var sprite1_anim = sprite1.add( SpriteAnimation, 'anim' );
-            var sprite2_anim = sprite2.add( SpriteAnimation, 'anim' );
+            var sprite1_anim = new SpriteAnimation();
+            var sprite2_anim = new SpriteAnimation();
+
+            sprite1.add( 'anim', sprite1_anim );
+            sprite2.add( 'anim', sprite2_anim );
 
             sprite1_anim.add_from_json_object( json_sprite_1 );
             sprite2_anim.add_from_json_object( json_sprite_2 );

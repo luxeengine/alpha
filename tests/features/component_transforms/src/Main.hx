@@ -10,16 +10,16 @@ import luxe.Color;
 class FakeRigidBody extends Component {
 
 
-    public function init() {
+    override function init() {
         trace('init rigidbody');
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('reset rigidbody');
         trace('getting collider' + entity.get('collider'));
     } //reset
 
-    public function destroyed() {
+    override function destroyed() {
         trace('destroy rigidbody');
     } //destroyed
 
@@ -30,15 +30,15 @@ class FakeRigidBody extends Component {
 class FakeMeshComponent extends Component {
 
 
-    public function init() {
+    override function init() {
         trace('init FakeMeshComponent');
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('reset FakeMeshComponent');
     } //reset
 
-    public function destroyed() {
+    override function destroyed() {
         trace('destroy FakeMeshComponent');
     } //destroyed
 
@@ -48,15 +48,15 @@ class FakeMeshComponent extends Component {
 class FakeCollider extends Component {
 
 
-    public function init() {
+    override function init() {
         trace('init FakeCollider');
     } //init
 
-    public function reset() {
+    override function reset() {
         trace('reset FakeCollider');
     } //reset
 
-    public function destroyed() {
+    override function destroyed() {
         trace('destroy FakeCollider');
     } //destroy
 
@@ -98,11 +98,11 @@ class Main extends luxe.Game {
         spherechild.parent = spherething;
 
             //physics on the parent
-        spherething.add( FakeRigidBody, 'rigidbody');
-        spherething.add( FakeCollider, 'collider');
+        spherething.add( 'rigidbody', new FakeRigidBody());
+        spherething.add( 'collider', new FakeCollider());
 
             //add the mesh to the child
-        spherechild.add( FakeMeshComponent, 'mesh');
+        spherechild.add( 'mesh', new FakeMeshComponent());
 
             //test that get works, it should print the type names of all
         trace( spherething.get('collider') );
@@ -111,8 +111,6 @@ class Main extends luxe.Game {
         trace( spherething.get('rigidbody') );
 
             //test
-        spherething._init();
-        spherething._reset();
         spherething.destroy();
 
     } //ready
@@ -120,7 +118,7 @@ class Main extends luxe.Game {
     function draw_entities_transforms() {
 
         Luxe.draw.rectangle({
-            x : root.pos.x - 2, y : root.pos.y - 2,
+            x : root.transform.world.pos.x - 2, y : root.transform.world.pos.y - 2,
             w : 4, h : 4,
             color : new Color(0.2,0.6,1),
             immediate : true
@@ -145,9 +143,9 @@ class Main extends luxe.Game {
     override function onmousemove( e:MouseEvent ) {
 
         if(od) {
-            root.pos = new Vector(e.x,e.y);
+            root.pos = e.pos;
         } else {
-            child.pos = new Vector(e.x , e.y);
+            child.pos = e.pos;
         }
 
     } //onmousemove

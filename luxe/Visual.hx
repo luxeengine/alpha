@@ -199,7 +199,7 @@ class Visual extends Entity {
     } //create_geometry
 
 
-    function destroyed() {
+    override function destroyed() {
 
             //drop the geometry
         if(geometry != null && geometry.added ) {

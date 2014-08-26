@@ -36,44 +36,6 @@ class Scene extends Objects {
 
     } //entitycount
 
-    public function create<T1,T2>(type:Class<T1>, ?_name:String='', ?_data:EntityOptions<T2> ) : T1 {
-
-        var _temp_name = _name;
-
-        if(_temp_name.length == 0) {
-            _temp_name = Luxe.utils.uniqueid();
-        } else {
-            _temp_name = _name;
-        }
-
-            //we need to force the entity not to add itself
-            //to any scene, because we want to add it manually
-            //below, for logging purposes it will have its name etc
-            //attached already. This is ok to force values
-            //because it was called on an existing scene.create()
-        if(_data == null) {
-            _data = { no_scene : true };
-        } else {
-            _data.no_scene = true;
-        }
-
-            //create an instance
-        _debug("creating entity with " + type + " and data " + _data);
-
-        var _entity = Type.createInstance( type, [ _data ] );
-            //cast to entity so we can set its name
-        var _e_entity : Entity = cast _entity;
-            //apply it!
-        _e_entity.name = _temp_name;
-            //add it to this scene
-        add(_e_entity);
-
-        _debug("created and added entity to scene " + type + " named " + _temp_name + " with " + _data );
-
-            //entity
-        return _entity;
-    }
-
     public function add( entity:Entity ) {
 
         if(entity == null) {
@@ -204,38 +166,24 @@ class Scene extends Objects {
         }
     } //ontouchmove
 //Gamepad
-    public function ongamepadaxis(e) {
+    public function ongamepadaxis(e:GamepadEvent) {
         for(entity in entities) {
             if(entity != null) {
                 entity._ongamepadaxis(e);
             }
         }
     }
-    public function ongamepadball(e) {
+    public function ongamepadup(e:GamepadEvent) {
         for(entity in entities) {
             if(entity != null) {
-                entity._ongamepadball(e);
+                entity._ongamepadup(e);
             }
         }
     }
-    public function ongamepadhat(e) {
+    public function ongamepaddown(e:GamepadEvent) {
         for(entity in entities) {
             if(entity != null) {
-                entity._ongamepadhat(e);
-            }
-        }
-    }
-    public function ongamepadbuttonup(e) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ongamepadbuttonup(e);
-            }
-        }
-    }
-    public function ongamepadbuttondown(e) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ongamepadbuttondown(e);
+                entity._ongamepaddown(e);
             }
         }
     }

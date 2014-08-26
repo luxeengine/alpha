@@ -12,7 +12,7 @@ class ParticleSystem extends Entity {
     public var emitters : Map<String, ParticleEmitter>;
 
 
-    public function init( ) {
+    override function init( ) {
 
         if(emitters == null) {
             new Map<String, ParticleEmitter>();
@@ -35,8 +35,8 @@ class ParticleSystem extends Entity {
         } //_name.lengths
 
             //create the emitter instance
-        var _emitter = add( ParticleEmitter, _name, { init_with : { system:this, template:_template } } );
-        // var _emitter = new ParticleEmitter(_name, this, _template);
+        var _emitter = new ParticleEmitter({ system:this, template:_template });
+            add( _name, _emitter );
                 //store the reference of the emitter
             emitters.set(_name, _emitter);
 
@@ -56,13 +56,13 @@ class ParticleSystem extends Entity {
         }
     } //stop
 
-    function destroyed() {
+    override function destroyed() {
         for(emitter in emitters) {
             emitter.destroy();
         }
     } //destroy
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
         if(!enabled) return;
         // trace(">>> updating " + name);
         for(emitter in emitters) {
@@ -153,8 +153,13 @@ class ParticleEmitter extends Component {
     var _temp_speed : Vector;
     var _to_remove : Array<Particle>;
 
+    public function new( _data:ParticleEmitterInitData ) {
+        super();
+        particle_system = _data.system;
+        template = _data.template;
+    }
 
-    public function init( _data:ParticleEmitterInitData ) {
+    override function init() {
 
         active_particles = new Array<Particle>();
         particle_cache = new Array<Sprite>();
@@ -168,9 +173,6 @@ class ParticleEmitter extends Component {
         _to_remove = [];
 
         // name = _name;
-        particle_system = _data.system;
-        template = _data.template;
-
             //apply defaults
         apply(template);
 
@@ -457,7 +459,7 @@ class ParticleEmitter extends Component {
 
     } //init_particle
 
-    public function update(dt:Float) {
+    override function update(dt:Float) {
 
         if( enabled ) { // && emission_rate > 0
             // trace("updating " + name);

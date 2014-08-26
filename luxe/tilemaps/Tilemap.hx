@@ -17,9 +17,9 @@ class TilemapVisuals {
 
     public var geometry : Map<String, TilemapVisualsLayerGeometry>;
     public var map : Tilemap;
-    
+
     public function new( _map:Tilemap, options:Dynamic ) {
-        
+
         geometry = new Map();
         map = _map;
 
@@ -47,16 +47,16 @@ class TilemapVisuals {
 
         var _geom_layer : Array< Array<Geometry> > = geometry.get( _layer_name );
         if(_geom_layer != null) {
-                
+
                 //we need to know if the _x/_y fits inside the map because
                 //if the geometry is actually null, we need to create it first
             if(map.inside(_x,_y)) {
 
                 var _geom : QuadGeometry = cast _geom_layer[_y][_x];
-                    
+
                     //null geometry means the tile was either destroyed
                     //or created at 0 gid, which means we can create it now
-                if(_geom == null) { 
+                if(_geom == null) {
 
                         //don't create blank tiles, ever
                     if(_id != 0) {
@@ -65,9 +65,9 @@ class TilemapVisuals {
                         _geom = create_tile_for_layer(map.layer(_layer_name), _x, _y);
                             //store it back in the tilemap
                         _geom_layer[_y][_x] = _geom;
-                    
+
                     } //id != 0
-                
+
                 } else {
 
                     //if we have a geometry and the new id is 0, we should kill the geometry
@@ -95,7 +95,7 @@ class TilemapVisuals {
                     } // id == 0 else
 
                 } // geom == null else
-            
+
             } else { //inside
                 trace("cannot refresh tile " + _x + "," + _y + " because the coords were out of the map width/height : " + _layer_name + " and " + map.width + "," + map.height );
             }
@@ -139,11 +139,11 @@ class Tile {
 
     public function new( options : TileOptions ) {
 
-        uuid = Luxe.utils.uniqueid(); 
+        uuid = Luxe.utils.uniqueid();
         id = options.id;
         layer = options.layer;
-        map = options.layer.map;        
-        
+        map = options.layer.map;
+
         x = options.x;
         y = options.y;
 
@@ -186,7 +186,7 @@ class Tile {
 
 class TileLayer {
 
-    //the depth/ordering value 
+    //the depth/ordering value
     public var layer : Int;
         //the unique id of the layer
     public var id : String;
@@ -204,12 +204,12 @@ class TileLayer {
     public var properties : Map<String,String>;
 
     public function new( options:TileLayerOptions ) {
-        
+
         if(options.map == null) {
             throw "TileLayer requires a Tilemap passed into the options, as map:Tilemap";
         }
 
-            //required options 
+            //required options
         id = Luxe.utils.uniqueid();
         name = options.name;
         map = options.map;
@@ -227,13 +227,13 @@ class TileLayer {
 
 
 class Tileset {
-    
+
     public var texture : Texture;
     public var name : String;
     public var first_id : Int = 1;
     public var tile_width : Int = 0;
-    public var tile_height : Int = 0;   
-        //the image margin 
+    public var tile_height : Int = 0;
+        //the image margin
     public var margin : Int = 0;
         //the tile spacing
     public var spacing : Int = 0;
@@ -253,9 +253,9 @@ class Tileset {
         tile_width = options.tile_width;
         tile_height = options.tile_height;
 
-        first_id    = (options.first_id == null) ? 1 : options.first_id; 
-        margin      = (options.margin   == null) ? 0 : options.margin; 
-        spacing     = (options.spacing  == null) ? 0 : options.spacing; 
+        first_id    = (options.first_id == null) ? 1 : options.first_id;
+        margin      = (options.margin   == null) ? 0 : options.margin;
+        spacing     = (options.spacing  == null) ? 0 : options.spacing;
 
     } //new
 
@@ -273,14 +273,16 @@ class Tileset {
 
         //Returns the inner x-position of a texture with given _id
     public function texture_x(_id:Int):Int {
-        return (_id % Std.int(texture.width / tile_width));
+        var _tx = Std.int(texture.width / tile_width);
+        return _tx == 0 ? 0 : (_id % _tx);
     } //texture_x
-    
+
         //Returns the inner y-position of a texture with given _id
         //:todo : Is this making an assumption about the height of a tile?
     public function texture_y(_id):Int {
 
-        return Std.int(_id / Std.int(texture.width / tile_width));
+        var _ty = Std.int(texture.width / tile_width);
+        return _ty == 0 ? 0 : Std.int(_id / _ty);
 
     } //texture_y
 
@@ -306,7 +308,7 @@ class Tilemap {
     public var pos : Vector;
         //the size of the tiles in this map
     public var tile_width : Int = 0;
-    public var tile_height : Int = 0;    
+    public var tile_height : Int = 0;
         //the sizes of the layer
     public var width : Int = 0;
     public var height : Int = 0;
@@ -333,7 +335,7 @@ class Tilemap {
 
         orientation = (options.orientation == null) ? TilemapOrientation.none : options.orientation;
 
-        properties = new Map<String,String>();        
+        properties = new Map<String,String>();
         tilesets = new Map<String,Tileset>();
         layers = new Map<String,TileLayer>();
         layers_ordered = [];
@@ -354,7 +356,7 @@ class Tilemap {
 
         //If the position is inside the map or not
     public function inside( x:Int, y:Int ) : Bool {
-        
+
         if(width == 0 || height == 0) {
             return false;
         }
@@ -380,9 +382,9 @@ class Tilemap {
     } //inside
 
     public function tile_pos( layer_name:String, x:Int, y:Int, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
-        
+
         if(inside(x,y)) {
-           
+
             switch(orientation) {
 
                 case TilemapOrientation.ortho: {
@@ -396,7 +398,7 @@ class Tilemap {
                 }
 
                 default: {
-                    
+
                 }
 
             } //switch orientation
@@ -408,7 +410,7 @@ class Tilemap {
     } //tile_pos
 
     public function tile_at_pos( layer_name:String, worldpos:Vector ) {
-        
+
         switch(orientation) {
 
             case TilemapOrientation.ortho: {
@@ -419,7 +421,7 @@ class Tilemap {
             } //ortho
 
             case TilemapOrientation.isometric: {
-                
+
                 var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
                 return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
@@ -465,7 +467,7 @@ class Tilemap {
 
         //return a tile from a layer, in tile coordinates
     public function tile_at( layer_name:String, x:Int, y:Int ) {
-        
+
         if( inside(x,y) ) {
             var _layer = layers.get(layer_name);
             if(_layer != null) {
@@ -482,7 +484,7 @@ class Tilemap {
     } //tile_at
 
     public function iterator() : Iterator<TileLayer> {
-        
+
         return layers_ordered.iterator();
 
     } //iterator
@@ -515,7 +517,7 @@ class Tilemap {
         for(t in this.tilesets) {
             if(_id >= t.first_id && t.first_id >= max) {
                 max = t.first_id;
-                tileset = t;                
+                tileset = t;
             }
         }
 
@@ -531,7 +533,7 @@ class Tilemap {
             var _layer = layer(layer_name);
             if(_layer != null) {
                 _layer.tiles[y][x].id = 0;
-            } 
+            }
 
         }
 
@@ -540,7 +542,7 @@ class Tilemap {
     } //remove_tile
 
     public function remove_tileset( name:String, _destroy_textures:Bool = false ) : Bool {
-        
+
         var _tileset = tileset(name);
 
             if(_tileset != null && _destroy_textures) {
@@ -548,11 +550,11 @@ class Tilemap {
             }
 
         return tilesets.remove( name );
-    
+
     } //remove_tileset
 
     public function remove_layer( name:String ) : Bool {
-        
+
         var _layer = layer(name);
 
             if(_layer != null) {
@@ -564,7 +566,7 @@ class Tilemap {
     } //remove_layer
 
     public function add_layer( options:TileLayerOptions ) {
-            
+
         if(options.map == null) options.map = this;
 
         var new_layer = new TileLayer( options );
@@ -595,7 +597,7 @@ class Tilemap {
                 for(x in 0 ... width) {
 
                     var _tile = new Tile({
-                        layer : _layer, 
+                        layer : _layer,
                         id : _tileid,
                         x : x,
                         y : y
@@ -633,7 +635,7 @@ class Tilemap {
 
             _layer.tiles = null;
             _layer.tiles = [];
-            
+
             for(y in 0 ... height) {
 
                 var _tile_row = [];
@@ -641,7 +643,7 @@ class Tilemap {
 
                     var tileid = grid[y][x];
                     var _tile = new Tile({
-                        layer : _layer, 
+                        layer : _layer,
                         id : tileid,
                         x : x,
                         y : y

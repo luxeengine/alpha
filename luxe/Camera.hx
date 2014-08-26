@@ -170,7 +170,7 @@ class Camera extends Entity {
     } //shake
 
         //Called by the scene the camera belongs to, or manually if you want
-    @:noCompletion public function update(dt:Float) {
+    @:noCompletion override public function update(dt:Float) {
 
             //add camera shake
         if(shaking) {

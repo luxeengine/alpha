@@ -62,9 +62,9 @@ class Game {
         /** Called for you when a connected gamepad axis moves, use `gamepad` to determine gamepad id */
     public function ongamepadaxis( event:GamepadEvent ) {}
         /** Called for you when a connected gamepad button is pressed, use `gamepad` to determine gamepad id */
-    public function ongamepadbuttondown( event:GamepadEvent ) {}
+    public function ongamepaddown( event:GamepadEvent ) {}
         /** Called for you when a connected gamepad button is released, use `gamepad` to determine gamepad id */
-    public function ongamepadbuttonup( event:GamepadEvent ) {}
+    public function ongamepadup( event:GamepadEvent ) {}
         /** Called for you when a gamepad is connected or disconnected, use `gamepad` to determine gamepad id */
     public function ongamepaddevice( event:GamepadEvent ) {}
 

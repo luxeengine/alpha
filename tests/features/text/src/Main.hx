@@ -50,7 +50,7 @@ class Main extends luxe.Game {
             //This one wants to be in the scene, so that
             //it can update its components
 
-        var text_with_component = new Text({
+        text_with_component = new Text({
             name : 'enginetext',
             color : new Color().rgb(0xff4b03),
             font : Luxe.loadFont('font.fnt', 'assets/fonts/' ),
@@ -60,9 +60,11 @@ class Main extends luxe.Game {
             size : 25
         });
 
-        text_with_component.add(BounceTest, 'bounce');
+        text_with_component.add('bounce', new BounceTest());
 
     } //ready
+
+    var text_with_component:Text;
 
     override function onkeyup( e:KeyEvent ) {
 

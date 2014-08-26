@@ -8,6 +8,7 @@ import snow.window.Window;
 import Luxe;
 import luxe.Audio;
 import luxe.Events;
+import luxe.Emitter;
 import luxe.Input;
 import luxe.Scene;
 import luxe.Debug;
@@ -77,6 +78,7 @@ class Core extends snow.App {
 
 
 //Sub Systems, mostly in order of importance
+    public var emitter  : Emitter;
     public var debug    : Debug;
     public var draw     : Draw;
     public var timer    : Timer;
@@ -91,16 +93,6 @@ class Core extends snow.App {
 //Mouse and fake mouse touch
     var _mouse_pos : Vector;
     var _touch_pos : Vector;
-
-//Additional external internal updates
-        //the list of internal update handlers, for calling
-    var _update_handlers : Map<String,Float->Void>;
-        //add an internal update
-    public function add_internal_update( _update:Float->Void ) {
-        var _uuid = Luxe.utils.uniqueid();
-        _update_handlers.set(_uuid,_update);
-        return _uuid;
-    }
 
 //flags
 
@@ -124,7 +116,8 @@ class Core extends snow.App {
         #end //luxe_native
 
             //Create internal stuff
-        _update_handlers = new Map();
+        emitter = new Emitter();
+
         _mouse_pos = new Vector();
         _touch_pos = new Vector();
         Luxe.mouse = _mouse_pos;
@@ -178,7 +171,9 @@ class Core extends snow.App {
 
             //Order is important here
 
-        debug = new Debug( this ); Luxe.debug = debug;
+        debug = new Debug( this );
+        Luxe.debug = debug;
+
         draw = new Draw( this );
         timer = new Timer( this );
         events = new Events();
@@ -307,6 +302,18 @@ class Core extends snow.App {
 
     } //shutdown
 
+    public function on<T>(event:String, handler:T->Void ) {
+        emitter.on(event, handler);
+    }
+
+    public function off<T>(event:String, handler:T->Void ) {
+        return emitter.off(event, handler);
+    }
+
+    public function emit<T>(event:String, data:T) {
+        return emitter.emit(event, data);
+    }
+
         //called by snow
     override function update( dt:Float ) {
 
@@ -347,10 +354,7 @@ class Core extends snow.App {
 
 //Run update callbacks
             #if luxe_fullprofile debug.start(core_tag_updates); #end
-
-        for(_update in _update_handlers) {
-            _update(dt);
-        }
+        emitter.emit('update', dt);
             #if luxe_fullprofile debug.end(core_tag_updates); #end
 
 //Update the default scene
@@ -726,7 +730,7 @@ class Core extends snow.App {
 
     } //ongamepadaxis
 
-    override function ongamepadbuttondown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+    override function ongamepaddown( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
         var event : GamepadEvent = {
             timestamp : timestamp,
@@ -739,14 +743,14 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.ongamepadbuttondown(event);
+            scene.ongamepaddown(event);
         }
 
-        game.ongamepadbuttondown(event);
+        game.ongamepaddown(event);
 
     } //ongamepadbuttondown
 
-    override function ongamepadbuttonup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
+    override function ongamepadup( gamepad:Int, button:Int, value:Float, timestamp:Float ) {
 
         var event : GamepadEvent = {
             timestamp : timestamp,
@@ -759,12 +763,12 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.ongamepadbuttonup(event);
+            scene.ongamepadup(event);
         }
 
-        game.ongamepadbuttonup(event);
+        game.ongamepadup(event);
 
-    } //ongamepadbuttonup
+    } //ongamepadup
 
     override function ongamepaddevice( gamepad:Int, type:GamepadDeviceEventType, timestamp:Float ) {
 

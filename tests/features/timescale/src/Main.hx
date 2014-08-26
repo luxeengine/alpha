@@ -107,13 +107,13 @@ class Main extends luxe.Game {
 
     } //ongamepadaxis
 
-    override function ongamepadbuttonup( e:GamepadEvent ) {
+    override function ongamepadup( e:GamepadEvent ) {
         if(e.button == 0) {
             jump();
         }
     } //ongamepadbuttonup
 
-    override function ongamepadbuttondown( e:GamepadEvent ) {
+    override function ongamepaddown( e:GamepadEvent ) {
     } //ongamepadbuttondown
 
     override function onkeydown( e:KeyEvent ) {

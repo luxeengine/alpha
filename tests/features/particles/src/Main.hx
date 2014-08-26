@@ -32,7 +32,7 @@ class Main extends luxe.Game {
         var t2 = Luxe.loadTexture('assets/smoke.png');
         var t3 = Luxe.loadTexture('assets/embers.png');
 
-        particles = Luxe.scene.create(ParticleSystem, 'particles');
+        particles = new ParticleSystem({name:'particles'});
 
         particles.add_emitter({
             name : 'flames',
