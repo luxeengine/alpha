@@ -13,6 +13,12 @@ class State extends Objects {
     public var machine : States;
     public var active : Bool = false;
 
+    public function new( _name:String ) {
+
+        super(_name);
+
+    } //_name
+
     public function enable<T>( ?_enable_with:T ) {
 
         machine.enable( name, _enable_with );
@@ -26,41 +32,11 @@ class State extends Objects {
     } //disable
 
     public function init() {}
-    public function reset() {}
-    public function destroyed() {}
-
     public function leave<T>(d:T) {}
     public function enter<T>(d:T) {}
-    public function added() {}
-    public function removed() {}
-    public function pre_render() {}
-    public function post_render() {}
-
     public function enabled<T>(d:T) {}
     public function disabled<T>(d:T) {}
-
-    public function fixed_update() {}
     public function update(dt:Float) {}
-
-    public function onkeyup(e:KeyEvent) {}
-    public function onkeydown(e:KeyEvent) {}
-
-    public function onmouseup(e:MouseEvent) {}
-    public function onmousedown(e:MouseEvent) {}
-    public function onmousemove(e:MouseEvent) {}
-    public function onmousewheel(e:MouseEvent) {}
-
-    public function ontouchup(e:TouchEvent) {}
-    public function ontouchdown(e:TouchEvent) {}
-    public function ontouchmove(e:TouchEvent) {}
-
-    public function ongamepadaxis(e:GamepadEvent) {}
-    public function ongamepaddown(e:GamepadEvent) {}
-    public function ongamepadup(e:GamepadEvent) {}
-    public function ongamepaddevice(e:GamepadEvent) {}
-
-    public function oninputdown(_name:String, e:InputEvent) {}
-    public function oninputup(_name:String, e:InputEvent) {}
 
 } //State
 
@@ -71,29 +47,26 @@ class States extends Objects {
     public var active_states: Array<State>;
     public var current_state: State;
 
-
     public function new( ?_name:String='' ) {
 
-        super();
-        name = _name == '' ? Luxe.utils.uniqueid() : _name;
+        super(_name == '' ? Luxe.utils.uniqueid() : _name);
+
         _states = new Map();
         active_states = new Array<State>();
 
     } //new
 
-    public function add(_name:String, _state:State ) : Void {
+    public function add( _state:State ) : Void {
 
-            //set the name of the instance
-        _state.name = _name;
             //store it in the state list
-        _states.set( _name, _state );
+        _states.set( _state.name, _state );
             //store reference of the owner
         _state.machine = this;
             //let them know
         _state.added();
 
             //debug stuff
-        _debug('states / $name / adding a state called ' + _temp_name + ', now at ' + Lambda.count(_states) + ' states');
+        _debug('states / $name / adding a state called ' + _state.name + ', now at ' + Lambda.count(_states) + ' states');
 
     } //add_state
 

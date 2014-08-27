@@ -7,7 +7,7 @@ import phoenix.Quaternion;
 import phoenix.Matrix;
 
 
-class Transform extends Objects {
+class Transform extends ID {
 
         //access
     @:isVar public var parent (get,set) : Transform;
@@ -40,9 +40,7 @@ class Transform extends Objects {
 
     public function new() {
 
-        super();
-
-        name = 'transform';
+        super('transform');
 
         local = new Spatial();
         world = new Spatial();

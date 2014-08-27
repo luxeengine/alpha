@@ -65,26 +65,6 @@ class SpriteAnimationData {
         return frameset.length;
     }
 
-    public function get_serialize_data() : Dynamic {
-
-        var _frameset = [];
-
-        for(_set in frameset) {
-            _frameset.push({ image_frame: _set.image_frame, events: _set.events });
-        }
-
-        return {
-            name : name,
-            frameset : _frameset,
-            frame_size : frame_size.serialized,
-            frame_time : frame_time,
-            loop : loop,
-            pingpong : pingpong,
-            reverse : reverse
-        };
-
-    } //get_serialize_data
-
     public function new( _sprite:Sprite, ?_name:String = 'anim' ) {
         name = _name;
         sprite = _sprite;
@@ -862,29 +842,6 @@ class SpriteAnimation extends Component {
         } //time
 
     } //update
-
-    public override function get_serialize_data() : Dynamic {
-
-        var _data : Dynamic = super.get_serialize_data();
-
-        var _animation_list = [];
-
-        for(anim in animation_list) {
-            _animation_list.push(anim.get_serialize_data());
-        }
-
-        var _extra : Dynamic = {
-            name : name,
-            frame : frame,
-            image_frame : image_frame,
-            animation : animation,
-            animations : _animation_list,
-            playing : playing
-        };
-
-        return _merge_properties(_data, _extra);
-
-    } //get_serialize_data
 
 } //SpriteAnimation
 

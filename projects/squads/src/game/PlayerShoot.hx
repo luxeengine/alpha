@@ -38,7 +38,6 @@ class PlayerShoot extends Component {
                     //create the sprite
                 var bullet = new Sprite({
                     name : 'bullet' + i,
-                    serialize : false,
                     texture : bullet_texture,
                     visible : false,
                     depth : 4

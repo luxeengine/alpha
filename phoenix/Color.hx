@@ -19,9 +19,6 @@ class Color {
     var is_hsv : Bool = false;
     var refreshing : Bool = false;
 
-    @:isVar public var serialized(get, null) : Dynamic;
-    function get_serialized() : Dynamic { return {r:r,g:g,b:b,a:a} };
-
     public function new( _r:Float = 1.0, _g:Float = 1.0, _b:Float = 1.0, _a:Float = 1.0 ) {
 
         r = _r;

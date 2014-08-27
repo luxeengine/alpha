@@ -26,9 +26,12 @@ class Main extends luxe.Game {
 
         geom.create( new Vector(100, 200), 500, 260 );
 
+        on('mousemove', mousemove);
+        on('keyup', keyup);
+
     } //ready
 
-    override function onmousemove( e:MouseEvent ) {
+    function mousemove( e:MouseEvent ) {
 
         var m = new Vector(e.x,e.y);
         geom.pos = m;
@@ -41,7 +44,7 @@ class Main extends luxe.Game {
 
     } //sizechange
 
-    override function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
 
         if(e.keycode == Key.space) {
             var nsx : Int = Math.round( 100+(Math.random()*600) );

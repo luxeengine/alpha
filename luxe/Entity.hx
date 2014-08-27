@@ -25,13 +25,11 @@ class Entity extends Objects {
     public var children : Array<Entity>;
 
         ////whether or not this entity has been destroyed
-    public var _destroyed : Bool = false;
+    public var destroyed : Bool = false;
         //whether or not this entity has been inited yet
     public var inited : Bool = false;
         //whether or not this entity has been started
     public var started : Bool = false;
-        //whether or not this should be serialized
-    public var serialize : Bool = true;
 
         //The fixed rate timer if any
     @:isVar public var fixed_rate       (get,set) : Float = 0;
@@ -62,7 +60,10 @@ class Entity extends Objects {
 
     public function new<T>( ?_options:EntityOptions<T> ) {
 
-        super();
+        super('entity');
+
+            //default to name.id
+        name += '.$id';
 
         _verbose('create new entity with options ' + options);
 
@@ -79,8 +80,6 @@ class Entity extends Objects {
         transform.listen_origin(set_origin_from_transform);
         transform.listen_parent(set_parent_from_transform);
         transform.listen_rotation(set_rotation_from_transform);
-
-        name = 'entity.' + id; //default to the entity id
 
         if(options != null) {
 
@@ -142,8 +141,13 @@ class Entity extends Objects {
 
             //finally, add to the requested scene
         if(scene != null) {
+
             _verbose(" \tadding to scene " + scene.name);
+
             scene.add( this );
+
+                //we also want to listen for scene events
+
         } else {
             _verbose(" \tnot adding to any scene.");
         }
@@ -153,30 +157,8 @@ class Entity extends Objects {
     } //new
 
     public function init() {}
-    public function reset() {}
-    public function destroyed() {}
 
-    public function fixed_update() {}
     public function update(dt:Float) {}
-
-    public function onkeyup(e:KeyEvent) {}
-    public function onkeydown(e:KeyEvent) {}
-
-    public function onmouseup(e:MouseEvent) {}
-    public function onmousedown(e:MouseEvent) {}
-    public function onmousemove(e:MouseEvent) {}
-    public function onmousewheel(e:MouseEvent) {}
-
-    public function ontouchup(e:TouchEvent) {}
-    public function ontouchdown(e:TouchEvent) {}
-    public function ontouchmove(e:TouchEvent) {}
-
-    public function ongamepadaxis(e:GamepadEvent) {}
-    public function ongamepaddown(e:GamepadEvent) {}
-    public function ongamepadup(e:GamepadEvent) {}
-
-    public function oninputdown(_name:String, e:InputEvent) {}
-    public function oninputup(_name:String, e:InputEvent) {}
 
     @:noCompletion public function _init() {
 
@@ -185,8 +167,8 @@ class Entity extends Objects {
 
             //init the parent first
         init();
-
-        if(name == null) throw "name on entity is null? " + this;
+            //plus listeners
+        emit('init');
 
             //init all the components attached directly to us
         for(_component in components) {
@@ -205,23 +187,17 @@ class Entity extends Objects {
 
     } //_init
 
-    @:noCompletion public function _reset() {
+    @:noCompletion public function _reset(_) {
 
-        _verbose('calling reset on ' + name);
+        _debug('calling reset on ' + name);
 
-            //reset the parent first
-        reset();
-
-            //reset all the components attached directly to us
-        for(_component in components) {
-            _verbose("         " + name + " calling reset on component " + _component.name );
-            _component.reset();
-        } //for each component
+            //plus listeners
+        emit('reset');
 
             //now reset our children, so they do the same
         for(_child in children) {
-            _child._reset();
-            _verbose("         parent " + name + " calling reset on child " + _child.name );
+            _child._reset(_);
+            _debug("         parent " + name + " calling reset on child " + _child.name );
         } //for each child
 
             //start the fixed rate timer
@@ -231,6 +207,31 @@ class Entity extends Objects {
         started = true;
 
     } //_reset
+
+    override function emit<T>(event:String, ?data:T, ?pos:haxe.PosInfos  ) {
+
+        log('$name / emit / $event / ${pos.fileName}:${pos.lineNumber}');
+        super.emit(event, data);
+
+    }
+
+    override function on<T>(event:String, handler:Dynamic->Void, ?pos:haxe.PosInfos ) {
+
+        super.on(event, handler);
+        log('$name / on / $event / ${handlers.get(event).length} / ${pos.fileName}:${pos.lineNumber}');
+
+    }
+
+    override function off<T>(event:String, handler:Dynamic->Void, ?pos:haxe.PosInfos  ) {
+
+        var suc = super.off(event, handler);
+
+        var c = handlers.exists(event) ? handlers.get(event).length : 0;
+        log('$name / off / $event / $c / ${pos.fileName}:${pos.lineNumber}');
+
+        return suc;
+
+    }
 
     public function destroy( ?_from_parent:Bool=false ) {
 
@@ -246,13 +247,8 @@ class Entity extends Objects {
         children = null;
         children = [];
 
-            //destroy all the components attached directly to us
-        for(_component in components) {
-            _component.destroyed();
-        } //for each component
-
-            //destroy the actual one last
-        destroyed();
+            //tell listeners
+        emit('destroy');
 
             //remove it from it's parent if any
         if(parent != null && !_from_parent) {
@@ -264,7 +260,7 @@ class Entity extends Objects {
         _stop_fixed_rate_timer();
 
             //mark the flags
-        _destroyed = true;
+        destroyed = true;
         inited = false;
         started = false;
 
@@ -281,6 +277,8 @@ class Entity extends Objects {
             events = null;
         }
 
+        trace('destroyed ' + name);
+
     } //destroy
 
 //Keys
@@ -294,13 +292,13 @@ class Entity extends Objects {
         _verboser('calling _onkeyup on ' + name);
 
             //init the parent first
-        onkeyup(e);
+        // onkeyup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.onkeyup(e);
+            // _component.onkeyup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -319,13 +317,13 @@ class Entity extends Objects {
         _verboser('calling _onkeydown on ' + name);
 
             //init the parent first
-        onkeydown(e);
+        // onkeydown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.onkeydown(e);
+            // _component.onkeydown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -346,13 +344,13 @@ class Entity extends Objects {
         _verboser('calling _onmousedown on ' + name );
 
             //init the parent first
-        onmousedown(e);
+        // onmousedown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.onmousedown(e);
+            // _component.onmousedown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -372,13 +370,13 @@ class Entity extends Objects {
         _verboser('calling _onmouseup on ' + name);
 
             //init the parent first
-        onmouseup(e);
+        // onmouseup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.onmouseup(e);
+            // _component.onmouseup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -397,13 +395,13 @@ class Entity extends Objects {
         _verboser('calling _onmousewheel on ' + name);
 
             //init the parent first
-        onmousewheel(e);
+        // onmousewheel(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.onmousewheel(e);
+            // _component.onmousewheel(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -422,13 +420,13 @@ class Entity extends Objects {
         _verboser('calling _onmousemove on ' + name);
 
             //init the parent first
-        onmousemove(e);
+        // onmousemove(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.onmousemove(e);
+            // _component.onmousemove(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -448,13 +446,13 @@ class Entity extends Objects {
         _verboser('calling _ontouchdown on ' + name);
 
             //init the parent first
-        ontouchdown(e);
+        // ontouchdown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.ontouchdown(e);
+            // _component.ontouchdown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -473,13 +471,13 @@ class Entity extends Objects {
         _verboser('calling _ontouchup on ' + name);
 
             //init the parent first
-        ontouchup(e);
+        // ontouchup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.ontouchup(e);
+            // _component.ontouchup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -498,13 +496,13 @@ class Entity extends Objects {
         _verboser('calling _ontouchmove on ' + name);
 
             //init the parent first
-        ontouchmove(e);
+        // ontouchmove(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.ontouchmove(e);
+            // _component.ontouchmove(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -524,13 +522,13 @@ class Entity extends Objects {
         _verboser('calling _ongamepadaxis on ' + name);
 
             //init the parent first
-        ongamepadaxis(e);
+        // ongamepadaxis(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.ongamepadaxis(e);
+            // _component.ongamepadaxis(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -549,13 +547,13 @@ class Entity extends Objects {
         _verboser('calling _ongamepaddown on ' + name);
 
             //init the parent first
-        ongamepaddown(e);
+        // ongamepaddown(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.ongamepaddown(e);
+            // _component.ongamepaddown(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -574,13 +572,13 @@ class Entity extends Objects {
         _verboser('calling _ongamepadup on ' + name);
 
             //init the parent first
-        ongamepadup(e);
+        // ongamepadup(e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.ongamepadup(e);
+            // _component.ongamepadup(e);
         } //for each component
 
             //now init our children, so they do the same
@@ -601,13 +599,13 @@ class Entity extends Objects {
         _verboser('calling _oninputdown on ' + name);
 
             //init the parent first
-        oninputdown(_name, e);
+        // oninputdown(_name, e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.oninputdown(_name, e);
+            // _component.oninputdown(_name, e);
         } //for each component
 
             //now init our children, so they do the same
@@ -626,13 +624,13 @@ class Entity extends Objects {
         _verboser('calling _oninputup on ' + name);
 
             //init the parent first
-        oninputup(_name, e);
+        // oninputup(_name, e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            _component.oninputup(_name, e);
+            // _component.oninputup(_name, e);
         } //for each component
 
             //now init our children, so they do the same
@@ -645,7 +643,7 @@ class Entity extends Objects {
 
     @:noCompletion public function _update(dt:Float) {
 
-        if(_destroyed) {
+        if(destroyed) {
             _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
             return;
         }
@@ -686,7 +684,7 @@ class Entity extends Objects {
     @:noCompletion public function _fixed_update() {
 
             //Not allowed post destroy
-        if(_destroyed) {
+        if(destroyed) {
             return;
         }
 
@@ -696,18 +694,15 @@ class Entity extends Objects {
 
         _verboser('calling fixed_update on ' + name);
 
-            //fixed_update the parent first
-        fixed_update();
+        emit('fixed_update');
 
-            //fixed_update all the components attached directly to us
         for(_component in components) {
-            _component.fixed_update();
-        } //for each component
+            // _component.fixed_update();
+        }
 
-            //now fixed_update our children, so they do the same
         for(_child in children) {
             _child._fixed_update();
-        } //for each child
+        }
 
     } //_fixed_update
 
@@ -738,7 +733,7 @@ class Entity extends Objects {
     function _start_fixed_rate_timer( _rate:Float ) {
             //only top tier entities call this, all their children are fixed under the parent rate
             //for now, that is.
-        if(_rate != 0 && parent == null && !_destroyed) {
+        if(_rate != 0 && parent == null && !destroyed) {
             fixed_rate_timer = new snow.utils.Timer( _rate );
             fixed_rate_timer.run = _fixed_update;
         } //_rate
@@ -747,8 +742,8 @@ class Entity extends Objects {
 
 //components
 
-    public function add( _name:String, _component:Component ) {
-        _components.add( _name, _component );
+    public function add( _component:Component ) {
+        _components.add( _component );
     } //add
 
     public function remove( _name:String ) : Bool {
@@ -935,10 +930,33 @@ class Entity extends Objects {
     } //get_parent
 
 //scene
+    function detach_scene() {
+
+        if(scene != null) {
+            scene.off('reset', _reset);
+            scene.off('destroy', destroy);
+        }
+
+    } //detach_scene
+
+    function attach_scene() {
+
+        if(scene != null) {
+            scene.on('reset', _reset);
+            scene.on('destroy', destroy);
+        }
+
+    } //attach_scene
 
     function set_scene(_scene:Scene) {
 
-        return scene = _scene;
+        detach_scene();
+
+            scene = _scene;
+
+        attach_scene();
+
+        return scene;
 
     } //set_scene
 
@@ -961,70 +979,5 @@ class Entity extends Objects {
         return active;
 
     } //get_active
-
-
-//serialization
-
-
-    public function get_serialize_data() : Dynamic {
-
-        var _type = Type.getClassName(Type.getClass(this));
-
-        return {
-            entity : id,
-            name : name,
-            type : _type,
-            count_children : children.length,
-            count_components : Lambda.count(components),
-            pos : pos.serialized,
-            rotation : rotation.serialized,
-            scale : scale.serialized
-        };
-    } //get_serialize_data
-
-#if luxe_native
-        //save me and all my children and components to disk
-    public function serialize_to_disk(_destination_path:String, _parent_write:Bool=false) : Void {
-
-        if(!serialize) return;
-        if(parent != null && !_parent_write) return;
-
-        var _type = Type.getClassName(Type.getClass(this));
-        var _name_string = name ;//+ '.' +  id.substring(0,8);
-        var _destpath = _destination_path + _name_string;
-
-            //create the path folder
-        sys.FileSystem.createDirectory(_destpath);
-
-            //work out the meta file
-         var _destfile = _destpath + '/' + _name_string + '.' + _type + '.json';
-
-        var _data : Dynamic = get_serialize_data();
-
-        var _file : sys.io.FileOutput = sys.io.File.write( _destfile, false);
-            _file.writeString( luxe.utils.JSON.encode(_data) );
-            _file.close();
-
-            //write the children and their components
-        var _children_path = _destpath + '/children/';
-
-        sys.FileSystem.createDirectory(_children_path);
-
-        for(child in children) {
-            child.serialize_to_disk(_children_path, true);
-        }
-
-        var _component_path = _destpath + '/components/';
-
-            //now write the components
-        sys.FileSystem.createDirectory( _component_path );
-
-            //tell the components to write
-        for(component in components) {
-            component.serialize_to_disk(_component_path);
-        }
-
-    }
-#end //luxe_native
 
 } //Entity

@@ -105,7 +105,6 @@ class PlayerWeapon extends Component {
 
         image = new Sprite({ 
             name:'weapon', 
-            serialize:false, 
             pos : new Vector(32,32),
             size:new Vector(64,64),
             depth : 6

@@ -22,10 +22,16 @@ class Component extends Objects {
     public var origin           (get,set) : Vector;
     public var transform        (get,set) : Transform;
 
+    public function new( ?_name:String='' ) {
+
+        super(_name == '' ? Luxe.utils.uniqueid() : _name);
+
+    } //new
+
 //components
 
-    public function add( _name:String, component:Component ) : Void {
-        entity.add( _name, component );
+    public function add( component:Component ) : Void {
+        entity.add( component );
     } //add
 
     public function remove( _name:String ) : Bool {
@@ -92,60 +98,6 @@ class Component extends Objects {
 //internal api
 
     public function init() {}
-    public function reset() {}
-    public function destroyed() {}
-
-    public function added() {}
-    public function removed() {}
-
-    public function fixed_update() {}
     public function update(dt:Float) {}
-
-    public function onkeyup(e:KeyEvent) {}
-    public function onkeydown(e:KeyEvent) {}
-
-    public function onmouseup(e:MouseEvent) {}
-    public function onmousedown(e:MouseEvent) {}
-    public function onmousemove(e:MouseEvent) {}
-    public function onmousewheel(e:MouseEvent) {}
-
-    public function ontouchup(e:TouchEvent) {}
-    public function ontouchdown(e:TouchEvent) {}
-    public function ontouchmove(e:TouchEvent) {}
-
-    public function ongamepadaxis(e:GamepadEvent) {}
-    public function ongamepaddown(e:GamepadEvent) {}
-    public function ongamepadup(e:GamepadEvent) {}
-
-    public function oninputdown(_name:String, e:InputEvent) {}
-    public function oninputup(_name:String, e:InputEvent) {}
-
- //Serialization
-
-
-    public function get_serialize_data() : Dynamic {
-        return {
-            id : id,
-            entity : entity.id
-        };
-    } //get_serialize_data
-
- #if luxe_native
-
-    @:noCompletion public function serialize_to_disk( _destination_path:String ) {
-
-        var _data : Dynamic = get_serialize_data();
-
-        var _type = Type.getClassName(Type.getClass(this));
-
-        var _destfile = _destination_path + name  + '.' + _type + '.json';
-
-        var _file : sys.io.FileOutput = sys.io.File.write( _destfile, false);
-            _file.writeString( luxe.utils.JSON.encode(_data) );
-            _file.close();
-
-    } //serialize_to_disk
-
- #end //luxe_native
 
 } //Component

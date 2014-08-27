@@ -20,33 +20,32 @@ import luxe.Log._verbose;
 
     } //new
 
-    public function add( _name:String, _component:Component ) : Void {
+    public function add( _component:Component ) : Void {
 
         if(_component == null) {
-            trace('attempt to add null component under name $_name to ${entity.name}' );
+            trace('attempt to add null component to ${entity.name}' );
             return;
         }
 
-        _component.name = _name;
         _component.entity = entity;
 
-        components.set( _name, _component );
+        components.set( _component.name, _component );
 
-            _debug('    entity ${entity.name} added component $_name, now at ${Lambda.count(components)} components');
-            _debug('    entity ${entity.name} added component, calling added() on $_name');
+            _debug('    entity ${entity.name} added component ${_component.name}, now at ${Lambda.count(components)} components');
+            _debug('    entity ${entity.name} added component, calling added() on ${_component.name}');
 
-        _component.added();
+        // _component.added();
 
             //now check against the entity already being init'ed and reset'ed
             //and if so, call them manually
         if(entity.inited) {
-            _debug('\t entity ${entity.name} adding component after init, so doing init on $_name' );
+            _debug('\t entity ${entity.name} adding component after init, so doing init on ${_component.name}' );
             _component.init();
         }
 
         if(entity.started) {
-            _debug('\t entity ${entity.name} adding component after reset, so doing reset on $_name' );
-            _component.reset();
+            _debug('\t entity ${entity.name} adding component after reset, so doing reset on ${_component.name}' );
+            // _component.reset();
         }
 
     } //add component
@@ -63,7 +62,7 @@ import luxe.Log._verbose;
 
             //now, when removing a component we call "removed" on it, in case they care
         var _component = components.get( _name );
-            _component.removed();
+            // _component.removed();
 
         return components.remove(_name);
 

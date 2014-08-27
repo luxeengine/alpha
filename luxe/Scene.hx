@@ -3,6 +3,7 @@ package luxe;
 import luxe.Input;
 import luxe.options.EntityOptions;
 
+import luxe.Log._verboser;
 import luxe.Log._verbose;
 import luxe.Log._debug;
 import luxe.Log.log;
@@ -16,25 +17,34 @@ class Scene extends Objects {
     var _delayed_init_entities : Array<Entity>;
     var _delayed_reset_entities : Array<Entity>;
 
-    public var entitycount (get, null) : Int = 0;
+    public var length(get, null) : Int = 0;
 
-    public function new() {
-        super();
-        name = 'Untitled Scene';
+    public function new( ?_name:String='untitled scene' ) {
+
+        super(_name);
+
         entities = new Map<String,Entity>();
+
         _delayed_init_entities = [];
         _delayed_reset_entities = [];
-    }
 
-    public function toString() {
-        return "Luxe Scene: " + name + " entities:" + Lambda.count(entities) + " (" + id + ")";
-    }
+        Luxe.core.on('init', init);
+        Luxe.core.on('destroy', _destroy);
+        Luxe.core.on('update', update);
+        Luxe.core.on('keydown', keydown);
+        Luxe.core.on('keyup', keyup);
+        Luxe.core.on('mouseup', mouseup);
+        Luxe.core.on('mousedown', mousedown);
+        Luxe.core.on('mousemove', mousemove);
+        Luxe.core.on('mousewheel', mousewheel);
 
-    function get_entitycount() : Int {
+            //however, if we have already missed the internal init
+        if(Luxe.core.has_inited) {
+            init(null);
+        }
 
-        return Lambda.count(entities);
+    } //new
 
-    } //entitycount
 
     public function add( entity:Entity ) {
 
@@ -42,30 +52,24 @@ class Scene extends Objects {
             throw "can't put entity in a scene if the entity is null.";
         }
 
-        _debug('${name} / adding ${entity.name} with id : ${entity.id}');
+            _debug('${name} / adding ${entity.name} with id : ${entity.id}');
 
-        entities.set( entity.name, entity );
 
         entity.scene = this;
+        entities.set( entity.name, entity );
 
-        if(inited) {
-            _debug('adding a delayed entity to init list ' + entity.name);
-            _delayed_init_entities.push(entity);
-        } //inited
 
-        if(started) {
-            _debug('adding a delayed entity to reset list ' + entity.name);
-            _delayed_reset_entities.push(entity);
-        } //started
+            if(inited) {
+                _debug('adding a delayed entity to init list ' + entity.name);
+                _delayed_init_entities.push(entity);
+            } //inited
+
+            if(started) {
+                _debug('adding a delayed entity to reset list ' + entity.name);
+                _delayed_reset_entities.push(entity);
+            } //started
 
     } //add
-
-    function list_entities() {
-        trace("entity list");
-        for(entity in entities) {
-            trace("\tentity : " + entity.name + " / " + entity.id);
-        }
-    }
 
     public function remove( entity:Entity ) : Bool {
 
@@ -79,8 +83,10 @@ class Scene extends Objects {
             return entities.remove( entity.name );
 
         } else {
-            _debug("can't remove the entity from this scene, it is not mine (entity.scene != this)");
+
+            log("can't remove the entity from this scene, it is not mine (entity.scene != this)");
             return false;
+
         }
 
         return false;
@@ -88,134 +94,140 @@ class Scene extends Objects {
     } //remove
 
     public function empty() {
-        trace("cleaning up entities in scene");
+
         for(entity in entities) {
             if(entity != null) {
-                remove(entity);
+
+                remove( entity );
                 entity.destroy();
                 entity = null;
+
             }
-        }
-        trace("\tentities left " + Lambda.count(entities));
-    }
+        } //each entity
+
+    } //empty
 
 //Keys
-    public function onkeydown(e:KeyEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._onkeydown(e);
-            }
-        }
-    } //onkeydown
-    public function onkeyup(e:KeyEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._onkeyup(e);
-            }
-        }
-    } //onkeyup
+
+    function keydown(e:KeyEvent) {
+
+        _verboser('$name / key down / $e');
+
+        emit('keydown', e);
+
+    } //keydown
+
+    function keyup(e:KeyEvent) {
+
+        _verboser('$name / key up / $e');
+
+        emit('keyup', e);
+
+    } //keyup
+
 //Mouse
-    public function onmousedown(e:MouseEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._onmousedown(e);
-            }
-        }
+
+    function mousedown(e:MouseEvent) {
+
+        _verboser('$name / mousedown / $e');
+
+        trace(handlers.get('mousedown'));
+
+        emit('mousedown', e);
+
     } //onmousedown
-    public function onmousewheel(e:MouseEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._onmousewheel(e);
-            }
-        }
+
+    function mousewheel(e:MouseEvent) {
+
+        _verboser('$name / mousewheel / $e');
+
+        emit('mousewheel', e);
+
     } //onmousewheel
-    public function onmouseup(e:MouseEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._onmouseup(e);
-            }
-        }
+
+    function mouseup(e:MouseEvent) {
+
+        _verboser('$name / mouseup / $e');
+
+        emit('mouseup', e);
+
     } //onmouseup
-    public function onmousemove(e:MouseEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._onmousemove(e);
-            }
-        }
+
+    function mousemove(e:MouseEvent) {
+
+        _verboser('$name / mousemove / $e');
+
+        emit('mousemove', e);
+
     } //onmousemove
+
 //Touch
-    public function ontouchdown(e : TouchEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ontouchdown(e);
-            }
-        }
+
+    function touchdown(e : TouchEvent) {
+        emit('touchdown', e);
     } //ontouchdown
-    public function ontouchup(e : TouchEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ontouchup(e);
-            }
-        }
+
+    function touchup(e : TouchEvent) {
+        emit('touchup', e);
     } //ontouchup
-    public function ontouchmove(e : TouchEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ontouchmove(e);
-            }
-        }
+
+    function touchmove(e : TouchEvent) {
+        emit('touchmove', e);
     } //ontouchmove
+
 //Gamepad
-    public function ongamepadaxis(e:GamepadEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ongamepadaxis(e);
-            }
-        }
-    }
-    public function ongamepadup(e:GamepadEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ongamepadup(e);
-            }
-        }
-    }
-    public function ongamepaddown(e:GamepadEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._ongamepaddown(e);
-            }
-        }
-    }
+
+    function gamepadaxis(e:GamepadEvent) {
+        emit('gamepadaxis', e);
+    } //gamepadaxis
+
+    function gamepadup(e:GamepadEvent) {
+        emit('gamepadup', e);
+    } //gamepadup
+
+    function gamepaddown(e:GamepadEvent) {
+        emit('gamepaddown', e);
+    } //gamepaddown
+
+    function gamepaddevice(e:GamepadEvent) {
+        emit('gamepaddevice', e);
+    } //gamepaddown
+
 //Input
-    public function oninputdown(_name:String, e:InputEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._oninputdown(_name, e);
-            }
-        }
+
+    function oninputdown( event:{ _name:String, event:InputEvent } ) {
+        emit('inputdown', event);
     } //oninputdown
-    public function oninputup(_name:String, e:InputEvent) {
-        for(entity in entities) {
-            if(entity != null) {
-                entity._oninputup(_name, e);
-            }
-        }
+
+    function inputup( event:{ _name:String, event:InputEvent }) {
+        emit('inputup', event);
     } //oninputup
+
+//Cleanup
+
+    function _destroy(_) {
+        destroy();
+    }
 
     public function destroy() {
 
-        for(entity in entities) {
-            if(entity != null) {
-                entity.destroy();
-            }
-        }
+        Luxe.core.off('init', init);
+        Luxe.core.off('destroy', _destroy);
+        Luxe.core.off('update', update);
+        Luxe.core.off('keydown', keydown);
+        Luxe.core.off('keyup', keyup);
+        Luxe.core.off('mouseup', mouseup);
+        Luxe.core.off('mousedown', mousedown);
+        Luxe.core.off('mousemove', mousemove);
+        Luxe.core.off('mousewheel', mousewheel);
+
+        emit('destroy');
 
     } //destroy
 
     function _do_init() : Bool {
 
-        var _before_count = Lambda.count(entities);
+        var _before_count = length;
 
         for(entity in entities) {
             if(entity != null) {
@@ -226,7 +238,7 @@ class Scene extends Objects {
             }
         }
 
-        var _after_count = Lambda.count(entities);
+        var _after_count = length;
 
         return _before_count != _after_count;
 
@@ -234,7 +246,7 @@ class Scene extends Objects {
 
         //Entities themselves can create entities
         //inside of their init so we have to keep checking
-    public function init() {
+    public function init(_) {
 
         var keep_going : Bool = true;
         while(keep_going) {
@@ -243,26 +255,28 @@ class Scene extends Objects {
 
         inited = true;
 
+        reset();
+
     } //init
 
         //If entities are created during start they will
         // be inited and started in the next available frame
     public function reset() {
 
-        for(entity in entities) {
-            if(entity != null) {
-                entity._reset();
-            }
-        } //for each entity
+        started = false;
+
+            emit('reset');
 
         started = true;
 
     } //reset
 
-    public function update(dt:Float) {
+    function update(dt:Float) {
 
             //late scene additions get init'ed and start'ed
         handle_delayed_additions();
+            //just in case, as the entities are called directly
+        emit('update', dt);
 
             //finally update them
         for(entity in entities) {
@@ -272,16 +286,6 @@ class Scene extends Objects {
         } //for each entity
 
     } //update
-
-    public function fixed_update() {
-
-        for(entity in entities) {
-            if(entity != null) {
-                entity._fixed_update();
-            }
-        } //for each entity
-
-    } //fixed_update
 
     function handle_delayed_additions() {
 
@@ -300,44 +304,24 @@ class Scene extends Objects {
         if(_delayed_reset_entities.length > 0) {
             for(entity in _delayed_reset_entities) {
                 _debug('\t handling late entity reset ' + entity.name);
-                entity._reset();
+                entity._reset(null);
             }
             _delayed_reset_entities.splice(0, _delayed_reset_entities.length);
         }
 
     } //handle_delayed_additions
 
-    #if luxe_native
-        public function serialize_to_disk( _destination_path:String ) {
+    function get_length() : Int {
 
-                trace('Saving scene to ' + _destination_path);
+        return Lambda.count(entities);
 
-                    //write the scene metadata
-                var _metafile = _destination_path + 'scene.meta.luxe.json';
+    } //get_length
 
-                    var meta = {
-                        id : id,
-                        name : name,
-                        count_entities : Lambda.count(entities)
-                    }
+    function toString() {
 
-                var _file : sys.io.FileOutput = sys.io.File.write( _metafile, false);
-                    _file.writeString( luxe.utils.JSON.encode(meta) );
-                    _file.close();
+        return 'luxe Scene: $name / $length entities / id: $id';
 
-                var _entity_path = _destination_path + 'entities/';
+    } //toString
 
-                sys.FileSystem.createDirectory(_entity_path);
-
-                    //write out all the entities in the scene
-                for(entity in entities) {
-                    entity.serialize_to_disk( _entity_path );
-                }
-
-                trace('Done saving scene.');
-
-
-        } //serialize_to_disk
-    #end //luxe_native
 
 } //Scene

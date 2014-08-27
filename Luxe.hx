@@ -16,7 +16,7 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Screen;
 
-
+@:keep
 class Luxe {
 
         /** The last known mouse position */

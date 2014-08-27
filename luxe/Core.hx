@@ -99,6 +99,7 @@ class Core extends snow.App {
        //if we have started a shutdown
     public var shutting_down : Bool = false;
     public var has_shutdown : Bool = false;
+    public var has_inited : Bool = false;
 
 
     public function new( _game:Game ) {
@@ -147,11 +148,10 @@ class Core extends snow.App {
             //and send the ready event to the game
         game.ready();
 
-            //After we are ready we can init the scene
-        scene.init();
-            //We can also call start, for now, as this will be deferred later
-            //when there is a restart etc
-        scene.reset();
+            //emit the init event
+            //so that scene and others can start up
+        emitter.emit('init');
+        has_inited = true;
 
             //Reset the physics (starts the timer etc)
         physics.reset();
@@ -233,14 +233,11 @@ class Core extends snow.App {
 
         Luxe.physics = physics;
 
-        scene = new Scene();
-        scene.name = 'default scene';
+        scene = new Scene('default scene');
         Luxe.scene = scene;
 
-        if(!headless) scene.add(Luxe.camera);
-
-            //finally, create the debug console
         if(!headless) {
+            scene.add(Luxe.camera);
             debug.create_debug_console();
         }
 
@@ -266,10 +263,10 @@ class Core extends snow.App {
         shutting_down = true;
 
             //shutdown the game class
-        game.destroyed();
+        game.emit('destroy');
 
             //shutdown the default scene
-        scene.destroy();
+        emitter.emit('destroy');
 
             //Order is imporant here too
         if(renderer != null) {
@@ -283,8 +280,8 @@ class Core extends snow.App {
         events.destroy();
         debug.destroy();
 
-
             //Clear up for GC
+        emitter = null;
         input = null;
         audio = null;
         events = null;
@@ -310,13 +307,12 @@ class Core extends snow.App {
         return emitter.off(event, handler);
     }
 
-    public function emit<T>(event:String, data:T) {
+    public function emit<T>(event:String, ?data:T) {
         return emitter.emit(event, data);
     }
 
         //called by snow
     override function update( dt:Float ) {
-
 
         #if luxe_fullprofile
             _verbose('on_update ' + Luxe.time);
@@ -357,11 +353,6 @@ class Core extends snow.App {
         emitter.emit('update', dt);
             #if luxe_fullprofile debug.end(core_tag_updates); #end
 
-//Update the default scene
-            debug.start(core_tag_scene);
-        scene.update(dt);
-            debug.end(core_tag_scene);
-
 //Update the game class for the game
             debug.start( game_tag_update );
         game.update(dt);
@@ -381,7 +372,7 @@ class Core extends snow.App {
 
         debug.start(core_tag_render);
 
-        game.pre_render();
+        game.emit('pre_render');
 
             //note that this does not update the physics, simply processes the active engines
         physics.render();
@@ -390,7 +381,7 @@ class Core extends snow.App {
             renderer.process();
         }
 
-        game.post_render();
+        game.emit('post_render');
 
         debug.end(core_tag_render);
 
@@ -435,17 +426,12 @@ class Core extends snow.App {
         if(!shutting_down) {
                 //check for named input
             input.check_named_keys(event, true);
-                //pass to scene
-            scene.onkeydown(event);
-                //forward to debug module
-            if(debug != null) {
-                debug.onkeydown(event);
-            }
+            emitter.emit('keydown', event);
         }
 
-        game.onkeydown(event);
+        game.emit('keydown', event);
 
-        if(keycode == Key.backquote) {
+        if(scancode == Scan.grave) {
             show_console( !console_visible );
         }
 
@@ -466,37 +452,58 @@ class Core extends snow.App {
         if(!shutting_down) {
                 //check for named input
             input.check_named_keys(event);
-                //pass to scene
-            scene.onkeyup(event);
-                //forward to debug module
-            if(debug != null) {
-                debug.onkeyup(event);
-            }
+            emitter.emit('keyup', event);
         }
 
-        game.onkeyup(event);
+        game.emit('keyup', event);
 
     } //onkeyup
+
+    override function ontextinput( text:String, start:Int, length:Int, type:snow.types.TextEventType, timestamp:Float, window_id:Int ) {
+
+        var _type : TextEventType = TextEventType.unknown;
+
+        switch(type) {
+            case edit: _type = TextEventType.edit;
+            case input: _type = TextEventType.input;
+        }
+
+        var event : TextEvent = {
+            text : text,
+            start : start,
+            length : length,
+            type : _type,
+            timestamp : timestamp,
+            window_id : window_id
+        }
+
+        if(!shutting_down) {
+            emitter.emit('textinput', event);
+        }
+
+        game.emit('textinput', event);
+
+    } //ontextinput
 
 //input
 
     public function oninputdown( _name:String, e:InputEvent ) {
 
         if(!shutting_down) {
-            scene.oninputdown(_name,e);
+            emitter.emit('inputdown', { name:_name, event:e });
         }
 
-        game.oninputdown(_name,e);
+        game.emit('inputdown', { name:_name, event:e });
 
     } //oninputdown
 
     public function oninputup( _name:String, e:InputEvent ) {
 
         if(!shutting_down) {
-            scene.oninputup(_name,e);
+            emitter.emit('inputup', { name:_name, event:e });
         }
 
-        game.oninputup(_name,e);
+        game.emit('inputup', { name:_name, event:e });
 
     } //oninputup
 
@@ -538,11 +545,10 @@ class Core extends snow.App {
 
         if(!shutting_down) {
             input.check_named_mouse(event, true);
-            scene.onmousedown(event);
-            debug.onmousedown(event);
+            emitter.emit('mousedown', event);
         }
 
-        game.onmousedown(event);
+        game.emit('mousedown', event);
 
     } //onmousedown
 
@@ -564,12 +570,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            debug.onmouseup(event);
             input.check_named_mouse(event);
-            scene.onmouseup(event);
+            emitter.emit('mouseup', event);
         }
 
-        game.onmouseup(event);
+        game.emit('mouseup', event);
 
     } //onmouseup
 
@@ -591,11 +596,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.onmousemove(event);
-            debug.onmousemove(event);
+            emitter.emit('mousemove', event);
         }
 
-        game.onmousemove(event);
+        game.emit('mousemove', event);
 
     } //onmousemove
 
@@ -615,11 +619,10 @@ class Core extends snow.App {
 
         if(!shutting_down) {
             input.check_named_mouse(event, false);
-            scene.onmousewheel(event);
-            debug.onmousewheel(event);
+            emitter.emit('mousewheel', event);
         }
 
-        game.onmousewheel(event);
+        game.emit('mousewheel', event);
 
     } //onmousewheel
 
@@ -641,10 +644,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.ontouchdown(event);
+            emitter.emit('touchdown', event);
         }
 
-        game.ontouchdown(event);
+        game.emit('touchdown', event);
 
             //3 finger tap when console opens will switch tabs
         if(touch_id == 2) {
@@ -676,11 +679,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-                //pass to scene
-            scene.ontouchup( event );
+            emitter.emit('touchup', event);
         }
 
-        game.ontouchup( event );
+        game.emit('touchup', event);
 
     } //ontouchup
 
@@ -700,11 +702,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-                //pass to scene
-            scene.ontouchmove(event);
+            emitter.emit('touchmove', event);
         }
 
-        game.ontouchmove(event);
+        game.emit('touchmove', event);
 
     } //ontouchmove
 
@@ -723,10 +724,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.ongamepadaxis(event);
+            emitter.emit('gamepadaxis',event);
         }
 
-        game.ongamepadaxis(event);
+        game.emit('gamepadaxis',event);
 
     } //ongamepadaxis
 
@@ -743,10 +744,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.ongamepaddown(event);
+            emitter.emit('gamepaddown',event);
         }
 
-        game.ongamepaddown(event);
+        game.emit('gamepaddown',event);
 
     } //ongamepadbuttondown
 
@@ -763,10 +764,10 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            scene.ongamepadup(event);
+            emitter.emit('gamepadup', event);
         }
 
-        game.ongamepadup(event);
+        game.emit('gamepadup', event);
 
     } //ongamepadup
 
@@ -795,12 +796,14 @@ class Core extends snow.App {
             value : 0
         }
 
-        game.ongamepaddevice(event);
+        game.emit('gamepaddevice', event);
 
     }
 
         /** return what the game decides for runtime config */
     override function config( config:AppConfig ) : AppConfig {
+
+        config.window.title = 'luxe app';
 
        return game.config( config );
 

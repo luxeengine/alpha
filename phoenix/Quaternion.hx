@@ -13,10 +13,6 @@ class Quaternion {
 
     var euler : Vector;
 
-    public var serialized(get, null) : Dynamic;
-
-    function get_serialized() : Dynamic { return { x:x, y:y, z:z, w:w } };
-
     public var ignore_listeners : Bool = false;
 
     @:isVar public var listen_x(default,default) : Float -> Void;

@@ -1,0 +1,26 @@
+{
+
+  project : {
+    name : 'test_scene',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_scene',
+      package : 'org.luxeengine.test_scene'
+    },
+
+    build : {
+      flags:['--macro luxe.Log.level(2)', '--macro luxe.Log.filter("main, entity, scene, component")'],
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

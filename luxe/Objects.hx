@@ -1,39 +1,32 @@
 package luxe;
 
-class Objects {
+class ID {
 
-	public var id : String;
+    public var id : String;
     public var name : String = '';
 
-    @:noCompletion public function new() {
-    	id = Luxe.utils.uniqueid();
+    @:noCompletion public function new(?_name:String='', _id:String='') {
+
+        name = _name;
+        id = _id == '' ? Luxe.utils.uniqueid() : _id;
+
     } //new
 
-//Internal helper functions
+}
 
-	function _call(_object:Objects, _name : String, ?args:Array<Dynamic> = null ) {
 
-		var _func = Reflect.field( _object, _name );
-		if(_func != null) {
-			Reflect.callMethod( _object, _func, args == null ? [] : args );
-		} //does function exist?
+/** A simple base object, event emitter, and ID. */
+class Objects extends Emitter {
 
-	} //_call
+    public var id : String = '';
+    public var name : String = '';
 
-    function _merge_properties( _properties:Dynamic, _with:Dynamic) : Dynamic {
+    @:noCompletion public function new(?_name:String='', _id:String='') {
 
-        if(_with == null) {
-            _with = {};
-        }
+        super();
+        name = _name;
+        id = _id == '' ? Luxe.utils.uniqueid() : _id;
 
-        var fields = Reflect.fields(_with);
-        for(field in fields) {
-            Reflect.setField(_properties, field, Reflect.field(_with, field));
-        }
-
-        return _properties;
-
-    } //_merge_properties
-
+    } //new
 
 } //Objects

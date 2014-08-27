@@ -492,7 +492,6 @@ class Manager extends State {
 
     public function onkeyup(e:KeyEvent) {
         if(e.key == KeyValue.key_0) {
-            // Luxe.scene.serialize_to_disk('/Users/Sven/dev/lab/luxe/projects/squads/ProjectData/scenes/default/');
         }
     }
 

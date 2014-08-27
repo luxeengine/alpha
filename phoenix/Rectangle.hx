@@ -8,8 +8,6 @@ class Rectangle {
     @:isVar public var w (default, set) : Float = 0;
     @:isVar public var h (default, set) : Float = 0;
 
-     @:isVar public var serialized(get, null) : Dynamic;
-
     public var ignore_listeners : Bool = false;
 
     @:isVar public var listen_x (default,default) : Float -> Void;
@@ -163,11 +161,5 @@ class Rectangle {
         return h;
 
     } //set_h
-
-    function get_serialized() : Dynamic {
-
-        return { x:x, y:y, w:w, h:h }
-
-    } //get_serialized
 
 }

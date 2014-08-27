@@ -210,25 +210,6 @@ class Sprite extends Visual {
     } //set_centered
 
 
-//Serialize
-
-    @:noCompletion public override function get_serialize_data() : Dynamic {
-
-        var _data : Dynamic = super.get_serialize_data();
-
-        var _extra : Dynamic = {
-            centered    : centered,
-        };
-
-        if(uv != null)      _extra.uv = uv.serialized;
-        if(flipx)           _extra.flipx = true;
-        if(flipy)           _extra.flipy = true;
-
-        return _merge_properties(_data, _extra);
-
-    } //get_serialize_data
-
-
         //An internal callback for when x y or w or h on a transform changes
     function _uv_change(_v:Float) { this.set_uv(uv); }
 

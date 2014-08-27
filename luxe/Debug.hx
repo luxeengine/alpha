@@ -122,6 +122,12 @@ class Debug {
 
         #if !no_debug_console
 
+            core.on('keyup', keyup);
+            core.on('keydown', keydown);
+            core.on('mouseup', mouseup);
+            core.on('mousedown', mousedown);
+            core.on('mousemove', mousemove);
+
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
                 //create a camera
@@ -165,45 +171,45 @@ class Debug {
 
     } //create_debug_console
 
-    public function onmouseup(e:MouseEvent) {
+    function mouseup(e:MouseEvent) {
         if(visible) {
             for(view in views) {
                 view.onmouseup(e);
             }
         }
-    } //onmouseup
+    } //mouseup
 
-    public function onmousedown(e:MouseEvent) {
+    function mousedown(e:MouseEvent) {
         if(visible) {
             for(view in views) {
                 view.onmousedown(e);
             }
         }
-    } //onmousedown
+    } //mousedown
 
-    public function onmousewheel(e:MouseEvent) {
+    function mousewheel(e:MouseEvent) {
         if(visible) {
             for(view in views) {
                 view.onmousewheel(e);
             }
         }
-    } //onmousewheel
+    } //mousewheel
 
-    public function onmousemove(e:MouseEvent) {
+    function mousemove(e:MouseEvent) {
         if(visible) {
             for(view in views) {
                 view.onmousemove(e);
             }
         }
-    } //onmousemove
+    } //mousemove
 
-    public function onkeyup(e:KeyEvent) {
+    function keyup(e:KeyEvent) {
 
         if(visible) {
             for(view in views) {
                 view.onkeyup(e);
             }
-        } //onkeyup
+        } //visible
 
         #if profiler
             #if luxe_native
@@ -214,9 +220,10 @@ class Debug {
                 }
             #end //luxe_native
         #end //profiler
-    } //onkeyup
 
-    public function onkeydown(e:KeyEvent) {
+    } //keyup
+
+    function keydown(e:KeyEvent) {
 
         if(visible) {
 
@@ -240,7 +247,7 @@ class Debug {
             #end //luxe_native
         #end //profiler
 
-    } //onkeydown
+    } //keydown
 
     public function onresize(e) {
         view.viewport = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
@@ -316,6 +323,12 @@ class Debug {
     } //show_console
 
     public function destroy() {
+
+        core.off('keyup', keyup);
+        core.off('keydown', keydown);
+        core.off('mouseup', mouseup);
+        core.off('mousedown', mousedown);
+        core.off('mousemove', mousemove);
 
         shut_down = true;
         _debug('\t debug shut down.');

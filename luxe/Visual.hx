@@ -88,11 +88,6 @@ class Visual extends Entity {
             visible = options.visible;
         }
 
-//serialize
-        if(options.serialize != null) {
-            serialize = options.serialize;
-        }
-
 //size is interesting, as it's possibly based on texture
 
             //user specified a size
@@ -128,6 +123,9 @@ class Visual extends Entity {
             } //texture !=null
 
         } //
+
+        trace(name);
+        on('destroy', _destroy);
 
     } //new
 
@@ -199,7 +197,9 @@ class Visual extends Entity {
     } //create_geometry
 
 
-    override function destroyed() {
+    function _destroy(_) {
+
+        off('destroy', _destroy);
 
             //drop the geometry
         if(geometry != null && geometry.added ) {
@@ -210,7 +210,7 @@ class Visual extends Entity {
         geometry = null;
         texture = null;
 
-    } //destroyed
+    } //_destroy
 
     function on_geometry_created() {
 
@@ -415,26 +415,5 @@ class Visual extends Entity {
 
         //An internal callback for when x y or z on a size changes
     function _size_change( _v:Float ) { this.set_size( size ); }
-
-    public override function get_serialize_data() : Dynamic {
-
-        var _data : Dynamic = super.get_serialize_data();
-
-        var _extra : Dynamic = {
-            color   : color.serialized,
-            size    : size.serialized,
-            locked  : locked,
-            visible : visible,
-            radians : radians
-        };
-
-        if(texture != null)             _extra.texture = texture.id;
-        if(clip_rect !=null)            _extra.clip_rect = clip_rect.serialized;
-        if(origin != null)              _extra.origin = origin.serialized;
-
-        return _merge_properties(_data, _extra);
-
-    } //get_serialize_data
-
 
 } //Visual
