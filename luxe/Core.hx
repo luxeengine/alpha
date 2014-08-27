@@ -367,6 +367,10 @@ class Core extends snow.App {
 
     function render( window:Window ) {
 
+        if(shutting_down) {
+            return;
+        }
+
         debug.end(core_tag_renderdt);
         debug.start(core_tag_renderdt);
 

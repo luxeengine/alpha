@@ -1,36 +1,48 @@
 package luxe;
 
+import luxe.Log._debug;
+import luxe.Log._verbose;
+import luxe.Log._verboser;
+import luxe.Log.log;
+
 /** A simple event emitter, used as a base class for systems that want to handle direct connections to named events */
-@:noCompletion private typedef EmitNode = {
-    event : String, handler:Dynamic->Void
-}
+
+@:noCompletion typedef EmitHandler = Dynamic->Void;
+
+@:noCompletion private typedef EmitInfo = { event : String, ?pos:haxe.PosInfos }
+@:noCompletion private typedef EmitNode = { > EmitInfo, handler:EmitHandler }
 
 class Emitter {
 
-    public var handlers : Map<String, Array<Dynamic->Void> >;
+    public var bindings : Map<String, Array<EmitHandler> >;
 
+        //store the items to remove
     var _to_remove : Array<EmitNode>;
 
     public function new() {
 
-        handlers = new Map();
         _to_remove = [];
+
+        bindings = new Map();
 
     } //new
 
         /** Emit a named event */
-    public function emit<T>(event:String, ?data:T, ?pos:haxe.PosInfos  ) {
+    public function emit<T>( event:String, ?data:T, ?pos:haxe.PosInfos  ) {
 
         _check();
 
-        if(handlers.exists(event)) {
-            var list = handlers.get(event);
+        if(bindings.exists(event)) {
+            var list = bindings.get(event);
             if(list.length > 0) {
                 for(handler in list) {
+                    _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}');
                     handler(data);
                 }
             }
         }
+
+        _check();
 
     } //emit
 
@@ -39,10 +51,12 @@ class Emitter {
 
         _check();
 
-        if(!handlers.exists(event)) {
-            handlers.set(event, [handler]);
+        _debug('on / $event / ${pos.fileName}:${pos.lineNumber}');
+
+        if(!bindings.exists(event)) {
+            bindings.set(event, [handler]);
         } else {
-            var list = handlers.get(event);
+            var list = bindings.get(event);
             if(list.indexOf(handler) == -1) {
                 list.push(handler);
             }
@@ -57,7 +71,9 @@ class Emitter {
 
         var success = false;
 
-        if(handlers.exists(event)) {
+        if(bindings.exists(event)) {
+
+            _debug('off / $event / ${pos.fileName}:${pos.lineNumber}');
 
             _to_remove.push({ event:event, handler:handler });
                 //debateable :p
@@ -69,19 +85,26 @@ class Emitter {
 
     } //off
 
+    var _checking = false;
 
     function _check() {
+
+        if(_checking) {
+            return;
+        }
+
+        _checking = true;
 
         if(_to_remove.length > 0) {
 
             for(_node in _to_remove) {
 
-                var list = handlers.get(_node.event);
+                var list = bindings.get(_node.event);
                 list.remove( _node.handler );
 
-                    //clear the event list if there are no handlers
+                    //clear the event list if there are no bindings
                 if(list.length == 0) {
-                    handlers.remove(_node.event);
+                    bindings.remove(_node.event);
                 }
 
             } //each node
@@ -91,6 +114,8 @@ class Emitter {
 
         } //_to_remove length > 0
 
-    } //_update
+        _checking = false;
+
+    } //_check
 
 } //Emitter

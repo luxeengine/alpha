@@ -208,31 +208,6 @@ class Entity extends Objects {
 
     } //_reset
 
-    override function emit<T>(event:String, ?data:T, ?pos:haxe.PosInfos  ) {
-
-        log('$name / emit / $event / ${pos.fileName}:${pos.lineNumber}');
-        super.emit(event, data);
-
-    }
-
-    override function on<T>(event:String, handler:Dynamic->Void, ?pos:haxe.PosInfos ) {
-
-        super.on(event, handler);
-        log('$name / on / $event / ${handlers.get(event).length} / ${pos.fileName}:${pos.lineNumber}');
-
-    }
-
-    override function off<T>(event:String, handler:Dynamic->Void, ?pos:haxe.PosInfos  ) {
-
-        var suc = super.off(event, handler);
-
-        var c = handlers.exists(event) ? handlers.get(event).length : 0;
-        log('$name / off / $event / $c / ${pos.fileName}:${pos.lineNumber}');
-
-        return suc;
-
-    }
-
     public function destroy( ?_from_parent:Bool=false ) {
 
         _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);

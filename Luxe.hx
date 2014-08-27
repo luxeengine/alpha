@@ -109,7 +109,7 @@ class Luxe {
         /** shutdown the engine and quit */
     public static function shutdown() {
 
-        core.app.shutdown();
+        core.shutdown();
 
     } //shutdown
 
