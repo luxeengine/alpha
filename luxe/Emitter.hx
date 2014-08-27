@@ -9,19 +9,21 @@ import luxe.Log.log;
 
 @:noCompletion typedef EmitHandler = Dynamic->Void;
 
-@:noCompletion private typedef EmitInfo = { event : String, ?pos:haxe.PosInfos }
-@:noCompletion private typedef EmitNode = { > EmitInfo, handler:EmitHandler }
+@:noCompletion private typedef EmitNode = { event : String, handler:EmitHandler, ?pos:haxe.PosInfos }
 
 class Emitter {
 
     public var bindings : Map<String, Array<EmitHandler> >;
 
+        //store connections loosely, to find connected locations
+    var connected : List<EmitNode>;
         //store the items to remove
-    var _to_remove : Array<EmitNode>;
+    var _to_remove : List<EmitNode>;
 
     public function new() {
 
-        _to_remove = [];
+        _to_remove = new List();
+        connected = new List();
 
         bindings = new Map();
 
@@ -36,12 +38,14 @@ class Emitter {
             var list = bindings.get(event);
             if(list.length > 0) {
                 for(handler in list) {
-                    _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}');
+                    _verboser('emit / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
                     handler(data);
                 }
             }
         }
 
+            //needed because handlers
+            //might disconnect listeners
         _check();
 
     } //emit
@@ -51,14 +55,18 @@ class Emitter {
 
         _check();
 
-        _debug('on / $event / ${pos.fileName}:${pos.lineNumber}');
+        _verbose('on / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
 
         if(!bindings.exists(event)) {
+
             bindings.set(event, [handler]);
+            connected.push({ handler:handler, event:event, pos:pos });
+
         } else {
             var list = bindings.get(event);
             if(list.indexOf(handler) == -1) {
                 list.push(handler);
+                connected.push({ handler:handler, event:event, pos:pos });
             }
         }
 
@@ -73,9 +81,16 @@ class Emitter {
 
         if(bindings.exists(event)) {
 
-            _debug('off / $event / ${pos.fileName}:${pos.lineNumber}');
+            _verbose('off / $event / ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
 
             _to_remove.push({ event:event, handler:handler });
+
+            for(_info in connected) {
+                if(_info.event == event && _info.handler == handler) {
+                    connected.remove(_info);
+                }
+            }
+
                 //debateable :p
             success = true;
 
@@ -84,6 +99,20 @@ class Emitter {
         return success;
 
     } //off
+
+    public function connections( handler:EmitHandler ) {
+
+        var list : Array<EmitNode> = [];
+
+        for(_info in connected) {
+            if(_info.handler == handler) {
+                list.push(_info);
+            }
+        }
+
+        return list;
+
+    } //connections
 
     var _checking = false;
 
@@ -110,7 +139,7 @@ class Emitter {
             } //each node
 
             _to_remove = null;
-            _to_remove = [];
+            _to_remove = new List();
 
         } //_to_remove length > 0
 

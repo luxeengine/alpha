@@ -131,8 +131,6 @@ class Scene extends Objects {
 
         _verboser('$name / mousedown / $e');
 
-        trace(handlers.get('mousedown'));
-
         emit('mousedown', e);
 
     } //onmousedown

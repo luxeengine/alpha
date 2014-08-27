@@ -118,11 +118,9 @@ class RandomSlide extends Component {
 
     } //init
 
-    function mousedown(e:MouseEvent) {
+    function mousedown( e:MouseEvent ) {
 
         Actuate.tween(pos, 0.1, { x: e.pos.x });
-
-        trace('click? ' + e);
 
     } //mousedown
 
