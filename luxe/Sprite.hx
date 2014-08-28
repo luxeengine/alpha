@@ -100,6 +100,10 @@ class Sprite extends Visual {
         //:todo: this function is utilitarian and should be flagged for dirty state if used extensively
     public function point_inside( _p:Vector ) : Bool {
 
+        if(geometry == null) {
+            return false;
+        }
+
         return Luxe.utils.geometry.point_in_geometry(_p, geometry);
 
     } //point_inside
