@@ -1,5 +1,0 @@
-{{~#each type.args}}
-	{{~#if @index}}, {{/if}}
-	{{~escape_markdown name}}:{{#with t}}{{>type}}{{/with}}<span>
-		{{~#if value}}={{value}}{{/if}}</span>
-{{~/each~}}

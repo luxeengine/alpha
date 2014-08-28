@@ -1,8 +1,0 @@
-{
-	"input":"scribe.types.xml",
-	"flow_project":"../samples/simplest/project.flow",
-	"output":"generated_api.json",
-	"force":true,
-    "allowed_packages":"luxe,phoenix",
-	"allowed_from_empty_package":"Luxe"
-}

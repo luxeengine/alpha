@@ -1,9 +1,0 @@
-
-<h4 class="package-root">[{{full}}](#{{full}})</h4>
-
-&emsp;&emsp;
-{{#each packages ~}}
-    {{#unless (hidden_package .) ~}}
-        <span class="indent inline-block"> [{{ without_package .}}](#{{.}}) </span>
-    {{~/unless}}
-{{~/each~}}
