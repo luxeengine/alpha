@@ -21,7 +21,7 @@ class Main extends luxe.Game {
                     { "id" : "assets/texture1.png" },
                     { "id" : "assets/texture2.png" },
                     { "id" : "assets/texture3.png" },
-                    { "id" : "assets/texture4.png" },
+                    { "id" : "assets/texture4.jpg" },
                     { "id" : "assets/texture5.png" }
                 ],
                 "shaders" : [
@@ -37,11 +37,7 @@ class Main extends luxe.Game {
                     { "id" : "font5.fnt", "path" : "assets/fonts/" },
                 ],
                 "sounds" : [
-                    { "id" : "assets/sound1.ogg", "name" : "sound1", "is_stream" : false },
-                    { "id" : "assets/sound2.ogg", "name" : "sound2", "is_stream" : false },
-                    { "id" : "assets/sound3.ogg", "name" : "sound3", "is_stream" : false },
-                    { "id" : "assets/sound4.ogg", "name" : "sound4", "is_stream" : false },
-                    { "id" : "assets/sound5.ogg", "name" : "sound5", "is_stream" : false }
+                    { "id" : "assets/sound1.ogg", "name" : "sound1", "is_stream" : true },
                 ],
                 "text" : [
                     { "id" : "assets/text1.txt" },

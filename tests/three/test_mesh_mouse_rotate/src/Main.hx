@@ -78,7 +78,7 @@ class Main extends luxe.Game {
             //attach a mesh component
         var mesh = tower.add(MeshComponent, 'mesh');
             mesh.file = 'assets/tower.obj';
-            mesh.texture = Luxe.loadTexture('assets/tower.png');
+            mesh.texture = Luxe.loadTexture('assets/tower.jpg');
 
             //attach a mouse rotate component
         var mouserotate = tower.add(MouseRotate, 'rotate');

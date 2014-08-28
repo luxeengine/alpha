@@ -21,7 +21,7 @@ class Main extends luxe.Game {
     	Luxe.camera.pos.set_xyz(0,0.5,2);
 
     		//create the mesh
-    	mesh = new Mesh({ file:'assets/tower.obj', texture:Luxe.loadTexture('assets/tower.png') });
+    	mesh = new Mesh({ file:'assets/tower.obj', texture:Luxe.loadTexture('assets/tower.jpg') });
 
     } //ready
 

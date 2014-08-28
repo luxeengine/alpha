@@ -12,7 +12,7 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        var image = Luxe.loadTexture('assets/image.png');
+        var image = Luxe.loadTexture('assets/image.jpg');
         var image2 = Luxe.loadTexture('assets/luxe.png');
 
         sprites = [];
