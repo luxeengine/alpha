@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_simplest',
-      title : 'luxe simplest',
       package : 'com.luxeengine.simplest'
     },
 

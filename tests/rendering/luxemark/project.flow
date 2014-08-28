@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_luxemark',
-      title : 'luxe test luxemark',
       package : 'com.luxeengine.testluxemark'
     },
 

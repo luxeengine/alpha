@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_complexgeometry',
-      title : 'luxe test complexgeometry',
       package : 'com.luxeengine.testcomplexgeometry'
     },
 

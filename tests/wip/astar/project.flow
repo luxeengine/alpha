@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_astar',
-      title : 'luxe test astar',
       package : 'com.luxeengine.testastar'
     },
 

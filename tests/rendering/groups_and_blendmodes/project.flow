@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_groups',
-      title : 'luxe test groups',
       package : 'com.luxeengine.testgroups'
     },
 

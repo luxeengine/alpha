@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_text',
-      title : 'luxe test text',
       package : 'com.luxeengine.testfonts'
     },
 

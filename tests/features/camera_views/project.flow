@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_cameraviews',
-      title : 'luxe test cameraviews',
       package : 'com.luxeengine.testcameraviews'
     },
 

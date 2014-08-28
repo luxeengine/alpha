@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_colors',
-      title : 'luxe test colors',
       package : 'com.luxeengine.testcolors'
     },
 

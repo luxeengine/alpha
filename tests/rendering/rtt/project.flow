@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_rtt',
-      title : 'luxe test rtt',
       package : 'com.luxeengine.testrtt'
     },
 

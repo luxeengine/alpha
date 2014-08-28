@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_spriteanimsf',
-      title : 'luxe test spriteanimsf',
       package : 'com.luxeengine.testspriteanimsf'
     },
 

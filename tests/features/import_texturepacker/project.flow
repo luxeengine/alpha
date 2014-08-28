@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_texturepacker',
-      title : 'luxe test texturepacker',
       package : 'com.luxeengine.testtexturepacker'
     },
 

@@ -112,7 +112,7 @@ class RandomSlide extends Component {
         entity.on('reset', reset);
         entity.on('destroy', destroy);
 
-        entity.scene.on('mousedown', mousedown);
+        on('removed', removed);
 
         log('init');
 

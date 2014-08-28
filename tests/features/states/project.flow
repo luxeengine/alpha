@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_states',
-      title : 'luxe test states',
       package : 'com.luxeengine.teststates'
     },
 

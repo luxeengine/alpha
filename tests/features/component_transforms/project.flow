@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_componenttransforms',
-      title : 'luxe test componenttransforms',
       package : 'com.luxeengine.testcomponenttransforms'
     },
 

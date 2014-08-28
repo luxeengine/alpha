@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_mesh',
-      title : 'luxe test mesh',
       package : 'com.luxeengine.testmesh'
     },
 

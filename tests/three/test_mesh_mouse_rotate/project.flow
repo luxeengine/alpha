@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_mesh_mouse',
-      title : 'luxe test mesh mouse',
       package : 'com.luxeengine.test_mesh_mouse'
     },
 

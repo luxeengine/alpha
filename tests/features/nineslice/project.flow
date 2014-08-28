@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_nineslice',
-      title : 'luxe test nineslice',
       package : 'com.luxeengine.testnineslice'
     },
 

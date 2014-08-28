@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_parcel',
-      title : 'luxe test parcel',
       package : 'com.luxeengine.testparcel'
     },
 

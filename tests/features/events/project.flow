@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_events',
-      title : 'luxe test events',
       package : 'com.luxeengine.testevents'
     },
 

@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_spriteuv',
-      title : 'luxe test spriteuv',
       package : 'com.luxeengine.testspriteuv'
     },
 

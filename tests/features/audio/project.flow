@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_audio',
-      title : 'luxe test audio',
       package : 'com.luxeengine.testaudio'
     },
 

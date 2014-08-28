@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_transforms',
-      title : 'luxe test transforms',
       package : 'com.luxeengine.testtransforms'
     },
 

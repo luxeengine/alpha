@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_guide_1',
-      title : 'luxe guide 1',
       package : 'com.luxeengine.guide1'
     },
 

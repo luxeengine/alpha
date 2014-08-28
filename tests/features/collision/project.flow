@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_collision',
-      title : 'luxe test collision',
       package : 'com.luxeengine.testcollision'
     },
 

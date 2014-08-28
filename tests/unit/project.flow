@@ -15,7 +15,6 @@
       main : 'RunTests',
       codepaths : ['./'],
       name : 'luxe_unittest',
-      title : 'luxe unittest',
       package : 'com.luxeengine.unittest'
     },
 

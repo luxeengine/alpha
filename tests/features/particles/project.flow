@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_particles',
-      title : 'luxe test particles',
       package : 'com.luxeengine.testfonts'
     },
 

@@ -7,7 +7,6 @@
 
     app : {
       name : 'luxe_test_camera',
-      title : 'luxe test camera',
       package : 'com.luxeengine.testcamera'
     },
 
