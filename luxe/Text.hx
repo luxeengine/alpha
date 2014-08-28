@@ -1,5 +1,6 @@
 package luxe;
 
+import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Visual;
 
@@ -90,6 +91,37 @@ class Text extends Visual {
         text = _options.text;
 
     } //new
+
+    var size_rect_cache : Rectangle;
+    var scale_cache : Vector;
+
+    public function point_inside( p:Vector ) {
+
+        if(font == null) {
+            return false;
+        }
+
+        if(!ready) {
+            return false;
+        }
+
+        if(size_rect_cache == null) {
+            scale_cache = new Vector();
+            size_rect_cache = new Rectangle();
+        }
+
+        scale_cache.x = scale_cache.y = text_options.size/font.font_size;
+
+        var dim = font.get_text_dimensions(text, scale_cache);
+
+            size_rect_cache.x = pos.x-(dim.x / 2);
+            size_rect_cache.y = pos.y;
+            size_rect_cache.w = dim.x;
+            size_rect_cache.h = dim.y;
+
+        return size_rect_cache.point_inside(p);
+
+    } //point_inside
 
     @:noCompletion public function onloaded( font:BitmapFont ) {
 
