@@ -73,10 +73,14 @@ class Main extends luxe.Game {
         mouse = new Vector(480,320);
         bar_color = new ColorHSV(0,0.5,1);
 
+        on('keyup', keyup);
+        on('mousemove', mousemove);
+        on('mousedown', mousedown);
+
     } //ready
 
 
-    override function onmousemove( e:MouseEvent ) {
+    function mousemove( e:MouseEvent ) {
 
         mouse.set(e.x, e.y);
 
@@ -90,7 +94,7 @@ class Main extends luxe.Game {
 
     } //onmousemove
 
-    override function onmousedown( e:MouseEvent ) {
+    function mousedown( e:MouseEvent ) {
 
         sprite.color.tween(1.5, {
             r:Math.random(),
@@ -101,7 +105,7 @@ class Main extends luxe.Game {
 
     } //onmousedown
 
-    override function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
 
         if(e.keycode == Key.space) {
             bar_color.tween( 1, { h : 0.5, v : 0 } ).onUpdate(

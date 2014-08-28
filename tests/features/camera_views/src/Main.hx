@@ -109,11 +109,18 @@ class Main extends luxe.Game {
             trace(b.name + ' / ' + b.layer);
         }
 
+        on('keyup', keyup);
+        on('keydown', keydown);
+        on('mouseup', mouseup);
+        on('mousemove', mousemove);
+        on('mousedown', mousedown);
+        on('mousewheel', mousewheel);
+
     } //ready
 
     function create_hud() {
 
-            //For the hud, it has a unique batcher, layer 4 is > the batcher_1, and the default(1)
+        //For the hud, it has a unique batcher, layer 4 is > the batcher_1, and the default(1)
         hud_batcher = Luxe.renderer.create_batcher({ name:'hud_batcher', layer:4 });
 
             //Now draw some text and the bar
@@ -167,7 +174,7 @@ class Main extends luxe.Game {
 
     var view_move : Bool = false;
 
-    override function onmousemove( e:MouseEvent ) {
+    function mousemove( e:MouseEvent ) {
 
         if(view_move) {
             camera_1.viewport.x = e.pos.x;
@@ -217,14 +224,14 @@ class Main extends luxe.Game {
 
     }
 
-    override function onmousedown( e:MouseEvent ) {
+    function mousedown( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             mouse_down = true;
             drag_time = Luxe.time + drag_allowance;
         }
     }
 
-    override function onmousewheel( e:MouseEvent ) {
+    function mousewheel( e:MouseEvent ) {
 
         if(e.y < 0) {
                 //wheel_up
@@ -236,7 +243,7 @@ class Main extends luxe.Game {
 
     } //onmousewheel
 
-    override function onmouseup( e:MouseEvent ) {
+    function mouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
             mouse_down = false;
@@ -253,13 +260,13 @@ class Main extends luxe.Game {
 
     } //onmouseup
 
-    override function onkeydown( e:KeyEvent ) {
+    function keydown( e:KeyEvent ) {
         if(e.keycode == Key.space) {
             view_move = true;
         }
     }
 
-    override function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
 
         if(e.keycode == Key.space) {
             view_move = false;

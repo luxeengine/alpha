@@ -83,13 +83,17 @@ class Main extends luxe.Game {
         Luxe.camera.pos.x -= 100;
         Luxe.camera.pos.y -= 100;
 
+        on('keyup', keyup);
+        on('mousemove', mousemove);
+        on('mousedown', mousedown);
+
     } //ready
 
-    override function onmousedown( e:MouseEvent ) {
+    function mousedown( e:MouseEvent ) {
         mouse_is_hexagon = !mouse_is_hexagon;
     } //onmousedown
 
-    override function onmousemove( e:MouseEvent ) {
+    function mousemove( e:MouseEvent ) {
 
         mouse_pos = e.pos;
 
@@ -136,7 +140,7 @@ class Main extends luxe.Game {
 
     } //draw_collision_response
 
-    override function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();

@@ -62,7 +62,7 @@ import luxe.Log._verbose;
 
             //now, when removing a component we call "removed" on it, in case they care
         var _component = components.get( _name );
-            // _component.removed();
+            _component.emit('removed');
 
         return components.remove(_name);
 

@@ -46,7 +46,6 @@ class Component extends Objects {
         return entity.get_any( _name, in_children, first_only );
     } //get_any
 
-
 //transforms
 
     function set_pos( _p:Vector ) {

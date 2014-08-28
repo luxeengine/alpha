@@ -14,21 +14,28 @@ class Toggler extends Component {
 
     var sprite : Sprite;
 
-    override function added() {
-        trace('added toggler');
-        sprite = cast entity;
-    }
 
     override function init() {
         trace('init toggler ');
+
+        on('added', added);
+        on('removed', removed);
+
+        entity.on('reset', reset);
+
     } //init
 
-    override function reset() {
+    function reset(_) {
         trace('reset toggler');
         sprite.color = new Color().rgb(0xcc0000);
     } //reset
 
-    override function removed() {
+    function added(_) {
+        trace('added toggler');
+        sprite = cast entity;
+    }
+
+    function removed(_) {
         sprite.color = new Color();
         trace('removed toggler');
     } //removed
@@ -51,9 +58,11 @@ class Main extends luxe.Game {
             pos : Luxe.screen.mid
         });
 
+        on('keyup', keyup);
+
     } //ready
 
-    override function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_a) {
             toggle_value = !toggle_value;
@@ -70,7 +79,7 @@ class Main extends luxe.Game {
 
         if(new_value) {
             //add component again
-            entity_one.add('toggler', new Toggler());
+            entity_one.add(new Toggler('toggler'));
         } else {
             //remove component again
             trace( 'removed? ' + entity_one.remove('toggler') );

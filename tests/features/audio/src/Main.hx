@@ -16,6 +16,9 @@ class Main extends luxe.Game {
             Luxe.audio.loop('music');
         });
 
+        on('mouseup', mouseup);
+        on('keyup', keyup);
+
         // //pan from left to right and back
         // luxe.tween.Actuate.tween(this, 20, { pan:-1 })
         //     .repeat()
@@ -26,13 +29,13 @@ class Main extends luxe.Game {
 
     } //ready
 
-    override function onmouseup( e:MouseEvent ) {
+    function mouseup( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             Luxe.audio.play('sound');
         }
     }
 
-    override function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_r) {
             Luxe.audio.position('music', 0);
