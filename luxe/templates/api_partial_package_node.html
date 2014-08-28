@@ -1,0 +1,21 @@
+{{^isPrivate}}
+
+{{#with full~}}
+
+    <a name="{{.}}"><h3> [{{without_package (escape_markdown .)}}](#{{.}}) </h3></a>
+
+    {{~#each (names_in_package .) ~}}
+        {{#name_visible .~}}
+            <div class="package-node">&bull; [{{ without_package (escape_markdown .) }}]({{type_path .}}.html) </div> <br/>
+        {{~/name_visible}}
+    {{~/each}}
+
+{{/with}}
+
+
+{{#each packages~}}
+    {{>package_list_items}}
+{{/each}}
+
+
+{{/isPrivate}}

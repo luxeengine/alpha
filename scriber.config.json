@@ -1,0 +1,43 @@
+{
+    "project_name" : "luxe",
+    "project_git_url" : "http://github.com/underscorediscovery/luxe/",
+
+    "style_path" : "./luxe/style/",
+    "template_path" : "./luxe/templates/",
+    "images_path" : "./luxe/images/",
+    "samples_path" : "./luxe/samples/",
+    "apis_path" : "./luxe/apis/api/",
+    "md_path" : "./luxe/md/",
+
+    "md_input": ["**/+(*.md)"],
+    "api_input" : ["**/+(*.json)"],
+
+    "output_path" : "/Users/sven/dev/luxe_docs/",
+    "images_output_path" : "images/",
+    "samples_output_path" : "samples/",
+
+    "api_out_md_path" : "api/",
+    "api_source_json" : "./generated_api.json",
+    "api_index_out" : "index.md",
+    "api_template" : "api_page.html",
+    "api_index_template" : "api_index.html",
+    "template_index" : "index.html",
+    "api_packages" : ["luxe","phoenix"],
+    "api_partials" : [
+        { "name": "type", "path":"api_partial_type.html"},
+        { "name": "args", "path":"api_partial_args.html"},
+        { "name": "package_node", "path":"api_partial_package_node.html"},
+        { "name": "package_list", "path":"api_partial_package_list.html"},
+        { "name": "package_list_items", "path":"api_partial_package_list_items.html"},
+        { "name": "package", "path":"api_partial_package.html"}
+    ],
+
+    "git_features" : true,
+    "force_full" : true,
+    "force_copy_template" : true,
+
+    "replacements" : [
+        { "key":"Luxe", "link":"index.html" }
+    ]
+
+}

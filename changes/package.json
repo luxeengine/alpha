@@ -1,0 +1,22 @@
+{
+  "author": "Sven Bergström",
+  "name": "changes-md-for-luxe",
+  "description": "generates a long list md file for luxe docs output",
+  "license": "MIT",
+  "version": "1.0.0",
+  "dependencies": {
+    "graceful-fs" : "latest",
+    "wrench" : "latest",
+    "nodegit" : "latest"
+  },
+  "engine": {
+    "node": "0.10.x"
+  },
+  "subdomain": "",
+  "scripts": {
+    "start": "generate_changes.js"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}

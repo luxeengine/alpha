@@ -1,0 +1,31 @@
+
+[![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html)
+
+<hr/>
+
+## Packages
+
+{{#each doc.package_roots~}}
+    {{#with (get_type 'packages' . ) ~}}
+        {{#with this~}}
+            {{>package_list}}<br/>
+        {{~/with}}
+    {{~/with}}
+{{~/each}}
+
+---
+
+## Types
+
+{{#each doc.package_roots~}}
+    {{#with (get_type 'packages' . ) ~}}
+        {{#with this~}}
+            {{>package_node}}<br/>
+        {{~/with}}
+    {{~/with}}
+{{~/each}}
+
+---
+
+&nbsp;
+&nbsp;
