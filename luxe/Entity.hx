@@ -252,8 +252,6 @@ class Entity extends Objects {
             events = null;
         }
 
-        trace('destroyed ' + name);
-
     } //destroy
 
 //Keys

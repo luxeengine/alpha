@@ -124,7 +124,6 @@ class Visual extends Entity {
 
         } //
 
-        trace(name);
         on('destroy', _destroy);
 
     } //new
