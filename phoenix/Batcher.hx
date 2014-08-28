@@ -232,18 +232,6 @@ class Batcher {
 
     } //add_group
 
-    public function blend_mode(?_src_mode:BlendMode = null, _dst_mode:BlendMode = null) {
-
-        if(_src_mode == null) _src_mode = BlendMode.src_alpha;
-        if(_dst_mode == null) _dst_mode = BlendMode.one_minus_src_alpha;
-
-        var _src = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_src_mode);
-        var _dest = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_dst_mode);
-
-        GL.blendFunc(_src, _dest);
-
-    } //set blendmode
-
     public function compare_rule_to_string(r:Int) : String {
         switch(r) {
             case 0: {

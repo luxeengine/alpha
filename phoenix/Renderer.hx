@@ -200,6 +200,7 @@ class Renderer {
 
     } //create_batcher
 
+
     public function clear( _color:Color ) {
 
         if(_color == null) {
@@ -217,8 +218,21 @@ class Renderer {
 
     } //clear
 
+
+    public function blend_mode(?_src_mode:BlendMode = null, _dst_mode:BlendMode = null) {
+
+        if(_src_mode == null) _src_mode = BlendMode.src_alpha;
+        if(_dst_mode == null) _dst_mode = BlendMode.one_minus_src_alpha;
+
+        var _src = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_src_mode);
+        var _dest = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_dst_mode);
+
+        GL.blendFunc(_src, _dest);
+
+    } //set blendmode
+
         //The main render function
-    public function process() {
+    @:noCompletion public function process() {
 
         if(stop) { return; }
 
@@ -320,11 +334,11 @@ function get_target() : RenderTexture {
             font = new BitmapFont( resource_manager );
 
                 //create the font texture
-            var _font_texture = Texture.load_from_resource('din.png', 256, 256);
+            var _font_texture = Texture.load_from_resource('cabin.png', 512, 256);
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            font.from_string( haxe.Resource.getString('din.fnt'), 'luxe.font', null, [_font_texture] );
+            font.from_string( haxe.Resource.getString('cabin.fnt'), 'luxe.font', null, [_font_texture] );
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 
