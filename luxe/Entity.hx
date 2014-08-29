@@ -174,6 +174,7 @@ class Entity extends Objects {
         for(_component in components) {
             _verbose("          " + name + " calling init on component " + _component.name );
             _component.init();
+            _component.emit('init');
         } //for each component
 
             //now init our children, so they do the same

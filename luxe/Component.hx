@@ -13,7 +13,7 @@ import luxe.Log._verbose;
 class Component extends Objects {
 
         //the entity this component is attached to
-    public var entity : Entity;
+    @:isVar public var entity (get,set) : Entity;
 
         //the transfrom that affect the parent entity
     public var pos              (get,set) : Vector;
@@ -45,6 +45,57 @@ class Component extends Objects {
     public function get_any<T>( _name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
         return entity.get_any( _name, in_children, first_only );
     } //get_any
+
+//entity
+
+    function _reset(_) {
+
+        emit('reset');
+
+    } //_reset
+
+    function _destroy(_) {
+
+        emit('removed');
+        emit('destroy');
+
+    } //_reset
+
+    function detach_entity() {
+
+        if(entity != null) {
+            entity.off('reset', _reset);
+            entity.off('destroy', _destroy);
+        }
+
+    } //detach_entity
+
+    function attach_entity() {
+
+        if(entity != null) {
+            entity.on('reset', _reset);
+            entity.on('destroy', _destroy);
+        }
+
+    } //attach_entity
+
+    function set_entity(_entity:Entity) {
+
+        detach_entity();
+
+            entity = _entity;
+
+        attach_entity();
+
+        return entity;
+
+    } //set_entity
+
+    function get_entity() {
+
+        return entity;
+
+    } //get_entity
 
 //transforms
 
