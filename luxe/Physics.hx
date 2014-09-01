@@ -168,7 +168,13 @@ class PhysicsEngine {
 
     public function init() {
 
+        Luxe.on('render', _render);
+
     } //init
+
+    function _render(_) {
+        render();
+    }
 
     public function process() {
 

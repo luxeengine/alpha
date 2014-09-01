@@ -24,8 +24,6 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        on('keyup', keyup);
-
         create_hud();
 
         bg = new Sprite({
@@ -67,7 +65,7 @@ class Main extends luxe.Game {
 
     } //create_hude
 
-    function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();
@@ -109,22 +107,17 @@ class RandomSlide extends Component {
 
         start = pos.clone();
 
-        entity.on('reset', reset);
-        entity.on('destroy', destroy);
-
-        on('removed', removed);
-
         log('init');
 
     } //init
 
-    function mousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
 
         Actuate.tween(pos, 0.1, { x: e.pos.x });
 
     } //mousedown
 
-    function reset(_) {
+    override function onreset() {
 
         pos = start.clone();
 
@@ -132,7 +125,7 @@ class RandomSlide extends Component {
 
     } //reset
 
-    function destroy(_) {
+    override function ondestroy() {
 
         trace('destroy');
 

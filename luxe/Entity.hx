@@ -9,6 +9,7 @@ import luxe.Vector;
 import luxe.Scene;
 import luxe.components.Components;
 import luxe.Component;
+import luxe.Emitter;
 
 import luxe.options.EntityOptions;
 
@@ -17,6 +18,7 @@ import luxe.Log._debug;
 import luxe.Log._verbose;
 import luxe.Log._verboser;
 
+@:autoBuild(luxe.macros.EntityRules.apply())
 class Entity extends Objects {
 
 
@@ -57,6 +59,36 @@ class Entity extends Objects {
     var fixed_rate_timer : snow.utils.Timer;
         //the options passed in for giving to the init function
     var options : Dynamic;
+
+
+
+        //critical events, called directly
+    public function init() {}
+    public function update(dt:Float) {}
+
+        //scene events, called directly
+    public function onreset() {}
+    public function ondestroy() {}
+
+        //input events, connected only when overridden in child class
+    public function onkeyup( event:KeyEvent ) {}
+    public function onkeydown( event:KeyEvent ) {}
+
+    public function onmousedown( event:MouseEvent ) {}
+    public function onmouseup( event:MouseEvent ) {}
+    public function onmousemove( event:MouseEvent ) {}
+    public function onmousewheel( event:MouseEvent ) {}
+
+    public function ontouchdown( event:TouchEvent ) {}
+    public function ontouchup( event:TouchEvent ) {}
+    public function ontouchmove( event:TouchEvent ) {}
+
+    public function ongamepadup( event:GamepadEvent ) {}
+    public function ongamepaddown( event:GamepadEvent ) {}
+    public function ongamepadaxis( event:GamepadEvent ) {}
+    public function ongamepaddevice( event:GamepadEvent ) {}
+
+
 
     public function new<T>( ?_options:EntityOptions<T> ) {
 
@@ -156,9 +188,35 @@ class Entity extends Objects {
 
     } //new
 
-    public function init() {}
 
-    public function update(dt:Float) {}
+//components
+
+
+    public function add( _component:Component ) {
+        _components.add( _component );
+    } //add
+
+    public function remove( _name:String ) : Bool {
+        return _components.remove( _name );
+    } //remove
+
+    public function get<T>(_name:String, ?_in_children:Bool = false ) : T {
+        return _components.get( _name, _in_children );
+    } //get
+
+    public function get_any<T>(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Array<T> {
+        return _components.get_any( _name, _in_children, _first_only );
+    } //get
+
+    public function has( _name:String ) : Bool {
+        return _components.has( _name );
+    } //has
+
+
+
+
+//internal
+
 
     @:noCompletion public function _init() {
 
@@ -167,14 +225,14 @@ class Entity extends Objects {
 
             //init the parent first
         init();
-            //plus listeners
+            //for any potential listeners, after the init() direct call
+            //as there is likely connections made during init
         emit('init');
 
-            //init all the components attached directly to us
+            //init all the components attached
         for(_component in components) {
             _verbose("          " + name + " calling init on component " + _component.name );
             _component.init();
-            _component.emit('init');
         } //for each component
 
             //now init our children, so they do the same
@@ -192,8 +250,15 @@ class Entity extends Objects {
 
         _debug('calling reset on ' + name);
 
-            //plus listeners
+            //parent
+        onreset();
+            //potential listeners
         emit('reset');
+
+        for(_component in components) {
+            _verbose("          " + name + " calling reset on component " + _component.name );
+            _component.onreset();
+        } //for each component
 
             //now reset our children, so they do the same
         for(_child in children) {
@@ -223,8 +288,15 @@ class Entity extends Objects {
         children = null;
         children = [];
 
+        for(_component in components) {
+            _verbose("          " + name + " calling destroy on component " + _component.name );
+            _component.ondestroy();
+        } //for each component
+
             //tell listeners
         emit('destroy');
+            //then parent
+        ondestroy();
 
             //remove it from it's parent if any
         if(parent != null && !_from_parent) {
@@ -255,8 +327,94 @@ class Entity extends Objects {
 
     } //destroy
 
-//Keys
 
+    @:noCompletion public function _update(dt:Float) {
+
+        if(destroyed) {
+            _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
+            return;
+        }
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _verboser('calling update on ' + name);
+
+            //make sure transforms are resolved
+        transform.clean_check();
+
+            //update the parent first
+        update(dt);
+
+        if(events != null) {
+                //update the events
+            events.process();
+        }
+
+            //update all the components attached directly to us
+        for(_component in components) {
+            _component.update(dt);
+        } //for each component
+
+            //now update our children, so they do the same
+        if(children.length > 0) {
+            for(_child in children) {
+                _child._update(dt);
+            } //for each child
+        }
+
+    } //_update
+
+//timing
+
+    @:noCompletion public function _fixed_update() {
+
+        if(destroyed) {
+            return;
+        }
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _verboser('calling fixed_update on ' + name);
+
+        emit('fixed_update');
+
+        for(_component in components) {
+            _component.onfixedupdate();
+        }
+
+        for(_child in children) {
+            _child._fixed_update();
+        }
+
+    } //_fixed_update
+
+//scene
+
+    function _detach_scene() {
+
+        if(scene != null) {
+            scene.off('reset', _reset);
+            scene.off('destroy', destroy);
+        }
+
+    } //detach_scene
+
+    function _attach_scene() {
+
+        if(scene != null) {
+            scene.on('reset', _reset);
+            scene.on('destroy', destroy);
+        }
+
+    } //attach_scene
+
+
+//Keys
+/*
     @:noCompletion public function _onkeyup(e:KeyEvent) {
 
         if(!active || !inited || !started) {
@@ -307,6 +465,15 @@ class Entity extends Objects {
 
     } //_onkeydown
 
+    @:noCompletion public function _listen(e:String, h:EmitHandler) {
+
+        if(scene != null) {
+            scene.on(e, _onmousedown);
+            on(e, h);
+        }
+
+    } //_listen
+
 //Mouse
 
     @:noCompletion public function _onmousedown(e:MouseEvent) {
@@ -315,16 +482,17 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _onmousedown on ' + name );
+        trace('calling _onmousedown on ' + name );
 
             //init the parent first
         // onmousedown(e);
+        emit('mousedown', e);
 
         if(name == null) throw "name on entity is null? " + this;
 
             //init all the components attached directly to us
         for(_component in components) {
-            // _component.onmousedown(e);
+            //_component.emit('onmousedown',e);
         } //for each component
 
             //now init our children, so they do the same
@@ -613,72 +781,10 @@ class Entity extends Objects {
         } //for each child
 
     } //_oninputup
+*/
 
-
-    @:noCompletion public function _update(dt:Float) {
-
-        if(destroyed) {
-            _debug(" calling update AFTER DESTROYED on " + name + " / " + id );
-            return;
-        }
-
-        if(!active || !inited || !started) {
-            return;
-        }
-
-        _verboser('calling update on ' + name);
-
-            //make sure transforms are resolved
-        transform.clean_check();
-
-            //update the parent first
-        update(dt);
-
-        if(events != null) {
-                //update the events
-            events.process();
-        }
-
-            //update all the components attached directly to us
-        for(_component in components) {
-            _component.update(dt);
-        } //for each component
-
-            //now update our children, so they do the same
-        if(children.length > 0) {
-            for(_child in children) {
-                _child._update(dt);
-            } //for each child
-        }
-
-    } //_update
 
 //timing
-
-    @:noCompletion public function _fixed_update() {
-
-            //Not allowed post destroy
-        if(destroyed) {
-            return;
-        }
-
-        if(!active || !inited || !started) {
-            return;
-        }
-
-        _verboser('calling fixed_update on ' + name);
-
-        emit('fixed_update');
-
-        for(_component in components) {
-            // _component.fixed_update();
-        }
-
-        for(_child in children) {
-            _child._fixed_update();
-        }
-
-    } //_fixed_update
 
     function get_fixed_rate() : Float {
 
@@ -715,26 +821,6 @@ class Entity extends Objects {
     } //_start_fixed_rate_timer
 
 //components
-
-    public function add( _component:Component ) {
-        _components.add( _component );
-    } //add
-
-    public function remove( _name:String ) : Bool {
-        return _components.remove( _name );
-    } //remove
-
-    public function get<T>(_name:String, ?_in_children:Bool = false ) : T {
-        return _components.get( _name, _in_children );
-    } //get
-
-    public function get_any<T>(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Array<T> {
-        return _components.get_any( _name, _in_children, _first_only );
-    } //get
-
-    public function has( _name:String ) : Bool {
-        return _components.has( _name );
-    } //has
 
     function get_components() {
         return _components.components;
@@ -904,31 +990,14 @@ class Entity extends Objects {
     } //get_parent
 
 //scene
-    function detach_scene() {
-
-        if(scene != null) {
-            scene.off('reset', _reset);
-            scene.off('destroy', destroy);
-        }
-
-    } //detach_scene
-
-    function attach_scene() {
-
-        if(scene != null) {
-            scene.on('reset', _reset);
-            scene.on('destroy', destroy);
-        }
-
-    } //attach_scene
 
     function set_scene(_scene:Scene) {
 
-        detach_scene();
+        _detach_scene();
 
             scene = _scene;
 
-        attach_scene();
+        _attach_scene();
 
         return scene;
 

@@ -4,13 +4,14 @@ import luxe.Quaternion;
 import luxe.Vector;
 import luxe.Transform;
 import luxe.Input;
+import luxe.Objects.ID;
 
 import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
-@:autoBuild(luxe.components.ComponentRules.apply())
-class Component extends Objects {
+@:autoBuild(luxe.macros.ComponentRules.apply())
+class Component extends ID {
 
         //the entity this component is attached to
     @:isVar public var entity (get,set) : Entity;
@@ -21,6 +22,38 @@ class Component extends Objects {
     public var scale            (get,set) : Vector;
     public var origin           (get,set) : Vector;
     public var transform        (get,set) : Transform;
+
+        //critical events, called directly
+    public function init() {}
+    public function update(dt:Float) {}
+
+        //component events, called directly
+    public function onadded() {}
+    public function onremoved() {}
+
+        //entity events, called directly
+    public function onreset() {}
+    public function ondestroy() {}
+    public function onfixedupdate() {}
+
+        //input events, connected only when overriden in component class
+    public function onkeyup( event:KeyEvent ) {}
+    public function onkeydown( event:KeyEvent ) {}
+
+    public function onmousedown( event:MouseEvent ) {}
+    public function onmouseup( event:MouseEvent ) {}
+    public function onmousemove( event:MouseEvent ) {}
+    public function onmousewheel( event:MouseEvent ) {}
+
+    public function ontouchdown( event:TouchEvent ) {}
+    public function ontouchup( event:TouchEvent ) {}
+    public function ontouchmove( event:TouchEvent ) {}
+
+    public function ongamepadup( event:GamepadEvent ) {}
+    public function ongamepaddown( event:GamepadEvent ) {}
+    public function ongamepadaxis( event:GamepadEvent ) {}
+    public function ongamepaddevice( event:GamepadEvent ) {}
+
 
     public function new( ?_name:String='' ) {
 
@@ -46,46 +79,33 @@ class Component extends Objects {
         return entity.get_any( _name, in_children, first_only );
     } //get_any
 
+//Internal
+
 //entity
 
-    function _reset(_) {
-
-        emit('reset');
-
-    } //_reset
-
-    function _destroy(_) {
-
-        emit('removed');
-        emit('destroy');
-
-    } //_reset
-
-    function detach_entity() {
+    function _detach_entity() {
 
         if(entity != null) {
-            entity.off('reset', _reset);
-            entity.off('destroy', _destroy);
+            //entity.off('reset', _reset);
         }
 
     } //detach_entity
 
-    function attach_entity() {
+    function _attach_entity() {
 
         if(entity != null) {
-            entity.on('reset', _reset);
-            entity.on('destroy', _destroy);
+            //entity.on('reset', _reset);
         }
 
     } //attach_entity
 
     function set_entity(_entity:Entity) {
 
-        detach_entity();
+        _detach_entity();
 
             entity = _entity;
 
-        attach_entity();
+        _attach_entity();
 
         return entity;
 
@@ -146,8 +166,5 @@ class Component extends Objects {
     @:noCompletion public function entity_parent_change( _parent:Transform ) {}
 
 //internal api
-
-    public function init() {}
-    public function update(dt:Float) {}
 
 } //Component

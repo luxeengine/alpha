@@ -23,6 +23,7 @@ class Scene extends Objects {
 
         super(_name);
 
+
         entities = new Map<String,Entity>();
 
         _delayed_init_entities = [];
@@ -38,7 +39,7 @@ class Scene extends Objects {
         Luxe.core.on('mousemove', mousemove);
         Luxe.core.on('mousewheel', mousewheel);
 
-            //however, if we have already missed the internal init
+            //if we have already missed the internal init
         if(Luxe.core.has_inited) {
             init(null);
         }
@@ -161,51 +162,71 @@ class Scene extends Objects {
 
 //Touch
 
-    function touchdown(e : TouchEvent) {
-        emit('touchdown', e);
+    function touchdown( event : TouchEvent ) {
+
+        emit('touchdown', event);
+
     } //ontouchdown
 
-    function touchup(e : TouchEvent) {
-        emit('touchup', e);
+    function touchup( event : TouchEvent ) {
+
+        emit('touchup', event);
+
     } //ontouchup
 
-    function touchmove(e : TouchEvent) {
-        emit('touchmove', e);
+    function touchmove( event : TouchEvent ) {
+
+        emit('touchmove', event);
+
     } //ontouchmove
 
 //Gamepad
 
-    function gamepadaxis(e:GamepadEvent) {
-        emit('gamepadaxis', e);
+    function gamepadaxis( event:GamepadEvent ) {
+
+        emit('gamepadaxis', event);
+
     } //gamepadaxis
 
-    function gamepadup(e:GamepadEvent) {
-        emit('gamepadup', e);
+    function gamepadup( event:GamepadEvent ) {
+
+        emit('gamepadup', event);
+
     } //gamepadup
 
-    function gamepaddown(e:GamepadEvent) {
-        emit('gamepaddown', e);
+    function gamepaddown( event:GamepadEvent ) {
+
+        emit('gamepaddown', event);
+
     } //gamepaddown
 
-    function gamepaddevice(e:GamepadEvent) {
-        emit('gamepaddevice', e);
+    function gamepaddevice( event:GamepadEvent ) {
+
+        emit('gamepaddevice', event);
+
     } //gamepaddown
 
 //Input
 
     function oninputdown( event:{ _name:String, event:InputEvent } ) {
+
         emit('inputdown', event);
+
     } //oninputdown
 
     function inputup( event:{ _name:String, event:InputEvent }) {
+
         emit('inputup', event);
+
     } //oninputup
 
 //Cleanup
 
     function _destroy(_) {
+
         destroy();
-    }
+
+    } //destroy
 
     public function destroy() {
 

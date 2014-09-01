@@ -10,32 +10,34 @@ import luxe.Vector;
 //  The point of this test is to test the state of a component, like init, reset, remove, destroyed etc
 //
 
+
 class Toggler extends Component {
 
     var sprite : Sprite;
 
-
     override function init() {
         trace('init toggler ');
 
-        on('added', added);
-        on('removed', removed);
-
-        entity.on('reset', reset);
-
     } //init
 
-    function reset(_) {
+    override function onmousedown(e:MouseEvent) {
+
+        trace('hello');
+        trace(e);
+
+    } //mousedown
+
+    override function onreset() {
         trace('reset toggler');
         sprite.color = new Color().rgb(0xcc0000);
     } //reset
 
-    function added(_) {
+    override function onadded() {
         trace('added toggler');
         sprite = cast entity;
     }
 
-    function removed(_) {
+    override function onremoved() {
         sprite.color = new Color();
         trace('removed toggler');
     } //removed
@@ -58,11 +60,9 @@ class Main extends luxe.Game {
             pos : Luxe.screen.mid
         });
 
-        on('keyup', keyup);
-
     } //ready
 
-    function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_a) {
             toggle_value = !toggle_value;

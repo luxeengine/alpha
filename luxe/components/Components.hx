@@ -34,7 +34,7 @@ import luxe.Log._verbose;
             _debug('    entity ${entity.name} added component ${_component.name}, now at ${Lambda.count(components)} components');
             _debug('    entity ${entity.name} added component, calling added() on ${_component.name}');
 
-        _component.emit('added');
+        _component.onadded();
 
             //now check against the entity already being init'ed and reset'ed
             //and if so, call them manually
@@ -45,7 +45,7 @@ import luxe.Log._verbose;
 
         if(entity.started) {
             _debug('\t entity ${entity.name} adding component after reset, so doing reset on ${_component.name}' );
-            _component.emit('reset');
+            _component.onreset();
         }
 
     } //add component
@@ -60,9 +60,8 @@ import luxe.Log._verbose;
 
         _debug('\t entity ${entity.name} removing component $_name');
 
-            //now, when removing a component we emit "removed" on it, in case they care
         var _component = components.get( _name );
-            _component.emit('removed');
+            _component.onremoved();
 
             //we also set the entity to null
             _component.entity = null;
