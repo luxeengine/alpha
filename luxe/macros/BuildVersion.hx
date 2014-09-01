@@ -1,4 +1,4 @@
-package luxe;
+package luxe.macros;
 
 import haxe.macro.Expr;
 import haxe.macro.Context;

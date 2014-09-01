@@ -56,7 +56,7 @@ class Luxe {
         /** The version of the engine  */
     public static var version : String = 'dev';
         /** The version + build meta information, generated at compile time from a macro (luxe.BuildVersion) */
-    public static var build : String = luxe.BuildVersion.latest();
+    public static var build : String = luxe.macros.BuildVersion.latest();
 
 //Timing information proxy to the snow App timing
 
