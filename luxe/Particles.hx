@@ -155,7 +155,7 @@ class ParticleEmitter extends Component {
     var _to_remove : Array<Particle>;
 
     public function new( _data:ParticleEmitterInitData ) {
-        super(_data.name);
+        super({ name:_data.name });
         particle_system = _data.system;
         template = _data.template;
     }

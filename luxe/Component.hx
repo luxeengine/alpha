@@ -5,6 +5,7 @@ import luxe.Vector;
 import luxe.Transform;
 import luxe.Input;
 import luxe.Objects.ID;
+import luxe.options.ComponentOptions;
 
 import luxe.Log.log;
 import luxe.Log._debug;
@@ -55,7 +56,15 @@ class Component extends ID {
     public function ongamepaddevice( event:GamepadEvent ) {}
 
 
-    public function new( ?_name:String='' ) {
+    public function new( ?_options:ComponentOptions ) {
+
+        var _name = '';
+
+        if(_options != null) {
+            if(_options.name != null) {
+                _name = _options.name;
+            }
+        }
 
         super(_name == '' ? Luxe.utils.uniqueid() : _name);
 
