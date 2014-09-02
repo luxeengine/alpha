@@ -2,20 +2,21 @@ package luxe;
 
 import luxe.Input;
 import luxe.Objects;
+import luxe.options.StateOptions;
 
 import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
 
-class State extends Objects {
+class State extends ID {
 
     public var machine : States;
     public var active : Bool = false;
 
-    public function new( _name:String ) {
+    public function new( _options:StateOptions ) {
 
-        super(_name);
+        super( _options.name );
 
     } //_name
 
@@ -31,12 +32,49 @@ class State extends Objects {
 
     } //disable
 
+        //critical events
     public function init() {}
-    public function leave<T>(d:T) {}
-    public function enter<T>(d:T) {}
-    public function enabled<T>(d:T) {}
-    public function disabled<T>(d:T) {}
     public function update(dt:Float) {}
+    public function onfixedupdate() {}
+
+        //state specific events
+    public function onleave<T>(d:T) {}
+    public function onenter<T>(d:T) {}
+    public function onenabled<T>(d:T) {}
+    public function ondisabled<T>(d:T) {}
+    public function onadded() {}
+    public function onremoved() {}
+
+    public function onrender() {}
+    public function onprerender() {}
+    public function onpostrender() {}
+
+   //scene events, called directly
+    public function onreset() {}
+    public function ondestroy() {}
+
+        //input events, connected only when overridden in child class
+    public function onkeyup( event:KeyEvent ) {}
+    public function onkeydown( event:KeyEvent ) {}
+    public function ontextinput( event:TextEvent ) {}
+
+    public function oninputdown( name:String, event:InputEvent ) {}
+    public function oninputup( name:String, event:InputEvent ) {}
+
+    public function onmousedown( event:MouseEvent ) {}
+    public function onmouseup( event:MouseEvent ) {}
+    public function onmousemove( event:MouseEvent ) {}
+    public function onmousewheel( event:MouseEvent ) {}
+
+    public function ontouchdown( event:TouchEvent ) {}
+    public function ontouchup( event:TouchEvent ) {}
+    public function ontouchmove( event:TouchEvent ) {}
+
+    public function ongamepadup( event:GamepadEvent ) {}
+    public function ongamepaddown( event:GamepadEvent ) {}
+    public function ongamepadaxis( event:GamepadEvent ) {}
+    public function ongamepaddevice( event:GamepadEvent ) {}
+
 
 } //State
 
@@ -47,12 +85,47 @@ class States extends Objects {
     public var active_states: Array<State>;
     public var current_state: State;
 
-    public function new( ?_name:String='' ) {
+    public function new( ?_options:StatesOptions ) {
+
+        var _name = '';
+
+        if(_options != null && _options.name != null) {
+            _name = _options.name;
+        }
 
         super(_name == '' ? Luxe.utils.uniqueid() : _name);
 
         _states = new Map();
         active_states = new Array<State>();
+
+        Luxe.core.on('init', init);
+        Luxe.core.on('destroy', destroy);
+        Luxe.core.on('update', update);
+
+        Luxe.core.on('prerender', prerender);
+        Luxe.core.on('postrender', postrender);
+        Luxe.core.on('render', render);
+
+        Luxe.core.on('keydown', keydown);
+        Luxe.core.on('keyup', keyup);
+        Luxe.core.on('textinput', textinput);
+
+        Luxe.core.on('inputup', inputup);
+        Luxe.core.on('inputdown', inputdown);
+
+        Luxe.core.on('mouseup', mouseup);
+        Luxe.core.on('mousedown', mousedown);
+        Luxe.core.on('mousemove', mousemove);
+        Luxe.core.on('mousewheel', mousewheel);
+
+        Luxe.core.on('touchup', touchup);
+        Luxe.core.on('touchdown', touchdown);
+        Luxe.core.on('touchmove', touchmove);
+
+        Luxe.core.on('gamepadup', gamepadup);
+        Luxe.core.on('gamepaddown', gamepaddown);
+        Luxe.core.on('gamepadaxis', gamepadaxis);
+        Luxe.core.on('gamepaddevice', gamepaddevice);
 
     } //new
 
@@ -63,7 +136,7 @@ class States extends Objects {
             //store reference of the owner
         _state.machine = this;
             //let them know
-        _state.added();
+        _state.onadded();
 
             //debug stuff
         _debug('states / $name / adding a state called ' + _state.name + ', now at ' + Lambda.count(_states) + ' states');
@@ -74,7 +147,7 @@ class States extends Objects {
         var state = _states.get( _name );
         if(state != null) {
             _debug('states / $name / enabling a state ' + _name );
-            state.enabled(_enable_with);
+            state.onenabled(_enable_with);
             active_states.push(state);
         }
     } //enable
@@ -83,7 +156,7 @@ class States extends Objects {
         var state = _states.get( _name );
         if(state != null) {
             _debug('states / $name / disabling a state ' + _name );
-            state.disabled(_disable_with);
+            state.ondisabled(_disable_with);
             active_states.remove( state );
         }
     } //disable
@@ -101,7 +174,7 @@ class States extends Objects {
 
                 _debug('removed ${current_state.name}, now at ${Lambda.count(active_states)} active_states');
 
-            current_state.leave(_leave_with);
+            current_state.onleave(_leave_with);
 
             current_state = null;
 
@@ -116,131 +189,189 @@ class States extends Objects {
 
                 _debug('calling enter on $name, now at ${Lambda.count(active_states)} active_states');
 
-            current_state.enter(_enter_with);
+            current_state.onenter(_enter_with);
 
         } //if states.exists(name)
 
     } //set
 
     //entity router functions
-    public function init() {
+    function init(_) {
         for (state in _states) {
             state.init();
         }
     } //init
-    public function reset() {
+
+    function reset(_) {
         for (state in active_states) {
-            state.reset();
+            state.onreset();
         }
     } //reset
-    public function update(dt:Float) {
+
+    function update(dt:Float) {
         for (state in active_states) {
             state.update(dt);
         }
     } //update
-    public function destroy() {
+
+    function destroy(_) {
+
         for (state in _states) {
-            state.destroyed();
+            state.ondestroy();
         }
+
+        Luxe.core.off('init', init);
+        Luxe.core.off('destroy', destroy);
+        Luxe.core.off('update', update);
+
+        Luxe.core.off('prerender', prerender);
+        Luxe.core.off('postrender', postrender);
+        Luxe.core.off('render', render);
+
+        Luxe.core.off('keydown', keydown);
+        Luxe.core.off('keyup', keyup);
+        Luxe.core.off('textinput', textinput);
+
+        Luxe.core.off('inputup', inputup);
+        Luxe.core.off('inputdown', inputdown);
+
+        Luxe.core.off('mouseup', mouseup);
+        Luxe.core.off('mousedown', mousedown);
+        Luxe.core.off('mousemove', mousemove);
+        Luxe.core.off('mousewheel', mousewheel);
+
+        Luxe.core.off('touchup', touchup);
+        Luxe.core.off('touchdown', touchdown);
+        Luxe.core.off('touchmove', touchmove);
+
+        Luxe.core.off('gamepadup', gamepadup);
+        Luxe.core.off('gamepaddown', gamepaddown);
+        Luxe.core.off('gamepadaxis', gamepadaxis);
+        Luxe.core.off('gamepaddevice', gamepaddevice);
+
+        emit('destroy');
+
     } //destroy
-    public function pre_render() {
+
+    function render(_) {
         for (state in active_states) {
-            state.pre_render();
+            state.onrender();
         }
-    } //pre_render
-    public function post_render() {
+    } //render
+
+    function prerender(_) {
         for (state in active_states) {
-            state.post_render();
+            state.onprerender();
         }
-    } //post_render
+    } //prerender
+
+    function postrender(_) {
+        for (state in active_states) {
+            state.onpostrender();
+        }
+    } //postrender
 
 //Internal helper functions
 
-    public function onkeydown( e:KeyEvent ) {
+    function keydown( e:KeyEvent ) {
         for (state in active_states) {
             state.onkeydown(e);
         }
     } //onkeydown
 
-    public function onkeyup( e:KeyEvent ) {
+    function keyup( e:KeyEvent ) {
         for (state in active_states) {
             state.onkeyup(e);
         }
     } //onkeyup
 
-    public function oninputup( name:String, e:InputEvent ) {
+    function textinput( e:TextEvent ) {
         for (state in active_states) {
-            state.oninputup(name, e);
+            state.ontextinput(e);
+        }
+    } //ontextinput
+
+//inputbindings
+
+    function inputup( _event:{ name:String, event:InputEvent } ) {
+        for (state in active_states) {
+            state.oninputup( _event.name, _event.event );
         }
     } //oninputup
 
-    public function oninputdown( name:String, e:InputEvent ) {
+    function inputdown( _event:{ name:String, event:InputEvent } ) {
         for (state in active_states) {
-            state.oninputdown(name, e);
+            state.oninputdown( _event.name, _event.event );
         }
     } //oninputdown
 
-    public function onmousedown( e:MouseEvent ) {
+//mouse
+
+    function mousedown( e:MouseEvent ) {
         for (state in active_states) {
             state.onmousedown(e);
         }
     } //onmousedown
 
-    public function onmousewheel( e:MouseEvent ) {
+    function mousewheel( e:MouseEvent ) {
         for (state in active_states) {
             state.onmousewheel(e);
         }
     } //onmousewheel
 
-    public function onmouseup( e:MouseEvent ) {
+    function mouseup( e:MouseEvent ) {
         for (state in active_states) {
             state.onmouseup(e);
         }
     } //onmouseup
 
-    public function onmousemove( e:MouseEvent ) {
+    function mousemove( e:MouseEvent ) {
         for (state in active_states) {
             state.onmousemove(e);
         }
     } //onmousemove
 
-    public function ontouchdown( e:TouchEvent ) {
+//touch
+
+    function touchdown( e:TouchEvent ) {
         for (state in active_states) {
             state.ontouchdown(e);
         }
     } //ontouchdown
 
-    public function ontouchup( e:TouchEvent ) {
+    function touchup( e:TouchEvent ) {
         for (state in active_states) {
             state.ontouchup(e);
         }
     } //ontouchup
 
-    public function ontouchmove( e:TouchEvent ) {
+    function touchmove( e:TouchEvent ) {
         for (state in active_states) {
             state.ontouchmove(e);
         }
     } //ontouchmove
 
-    public function ongamepadaxis( e:GamepadEvent ) {
+//gamepad 
+
+    function gamepadaxis( e:GamepadEvent ) {
         for (state in active_states) {
             state.ongamepadaxis(e);
         }
     } //ongamepadaxis
 
-    public function ongamepadup( e:GamepadEvent ) {
+    function gamepadup( e:GamepadEvent ) {
         for (state in active_states) {
             state.ongamepadup(e);
         }
     } //ongamepadup
 
-    public function ongamepaddown( e:GamepadEvent ) {
+    function gamepaddown( e:GamepadEvent ) {
         for (state in active_states) {
             state.ongamepaddown(e);
         }
     } //ongamepaddown
 
-    public function ongamepaddevice( e:GamepadEvent ) {
+    function gamepaddevice( e:GamepadEvent ) {
         for (state in active_states) {
             state.ongamepaddevice(e);
         }

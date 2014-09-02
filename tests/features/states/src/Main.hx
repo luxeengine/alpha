@@ -13,8 +13,8 @@ class State1 extends State {
 
     var value : Int;
 
-    public function new( _value:Int ) {
-        super();
+    public function new( _name:String, _value:Int ) {
+        super({ name:_name });
         value = _value;
     }
 
@@ -22,13 +22,13 @@ class State1 extends State {
         trace("State1 inited with value : " + value);
 	} //init
 
-    override function leave<T>( _value:T ) {
+    override function onleave<T>( _value:T ) {
         trace("State 1 LEAVE with value " + _value);
-    } //leave
+    } //onleave
 
-    override function enter<T>( _value:T ) {
+    override function onenter<T>( _value:T ) {
         trace("State 1 ENTER with value " + _value);
-    } //enter
+    } //onenter
 
 
 } //State1
@@ -39,7 +39,7 @@ class State2 extends State {
     var data : State2TypedArgs;
 
     public function new( _data:State2TypedArgs ) {
-        super();
+        super({ name:_data.name });
         data = _data;
     }
 
@@ -47,13 +47,13 @@ class State2 extends State {
         trace("State 2 inited with data " + data);
     } //init
 
-    override function enter<T>( _data:T ) {
+    override function onenter<T>( _data:T ) {
         trace("State 2 ENTER with data " + _data);
-    } //enter
+    } //onenter
 
-    override function leave<T>( _data:T ) {
+    override function onleave<T>( _data:T ) {
         trace("State 2 LEAVE with data " + _data);
-    } //leave
+    } //onleave
 
 
 } //State2
@@ -63,7 +63,7 @@ class TransientState extends State {
 
     public var start : Float = 0;
 
-    override function enabled<T>( duration:T ) {
+    override function onenabled<T>( duration:T ) {
 
         trace("enabled transient state, will end in " + duration + 's' );
 
@@ -84,23 +84,6 @@ class TransientState extends State {
 } //TransientState
 
 
-class TestEmits extends luxe.Emitter {
-
-    public function new() {
-
-        super();
-
-        on('one', function(s:Float) { trace( s+0.1 ); });
-        on('two', function(d:{a:Int}) { trace( d ); });
-
-        emit('one', 0.1);
-        emit('two', { a:3 });
-        emit('two', { a:4 });
-
-    }
-
-} //TestEmits
-
 class Main extends luxe.Game {
 
 
@@ -109,15 +92,11 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        var s : TestEmits = new TestEmits();
+    	machine = new States({ name:'statemachine' });
 
-    	machine = new States('statemachine');
-
-        machine.add('state1', new State1(5) );
-        machine.add('state2', new State2({ name:"state2init", int:24, game:this }) );
-        machine.add('transient', new TransientState());
-
-        machine.init();
+        machine.add(new State1('state1', 5));
+        machine.add(new State2({ name:'state2', int:24, game:this }) );
+        machine.add(new TransientState({ name:'transient'}));
 
         machine.set('state1', 222 );
         machine.set('state2', { name:"state2enter", int:2536, game:this }, 223 );
@@ -141,12 +120,6 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
-
-    override function update(dt:Float) {
-
-        machine.update(dt);
-
-    } //update
 
 
 } //Main
