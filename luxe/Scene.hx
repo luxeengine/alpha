@@ -32,12 +32,31 @@ class Scene extends Objects {
         Luxe.core.on('init', init);
         Luxe.core.on('destroy', _destroy);
         Luxe.core.on('update', update);
+
+        Luxe.core.on('prerender', prerender);
+        Luxe.core.on('postrender', postrender);
+        Luxe.core.on('render', render);
+
         Luxe.core.on('keydown', keydown);
         Luxe.core.on('keyup', keyup);
+        Luxe.core.on('textinput', textinput);
+
+        Luxe.core.on('inputup', inputup);
+        Luxe.core.on('inputdown', inputdown);
+
         Luxe.core.on('mouseup', mouseup);
         Luxe.core.on('mousedown', mousedown);
         Luxe.core.on('mousemove', mousemove);
         Luxe.core.on('mousewheel', mousewheel);
+
+        Luxe.core.on('touchup', touchup);
+        Luxe.core.on('touchdown', touchdown);
+        Luxe.core.on('touchmove', touchmove);
+
+        Luxe.core.on('gamepadup', gamepadup);
+        Luxe.core.on('gamepaddown', gamepaddown);
+        Luxe.core.on('gamepadaxis', gamepadaxis);
+        Luxe.core.on('gamepaddevice', gamepaddevice);
 
             //if we have already missed the internal init
         if(Luxe.core.has_inited) {
@@ -108,6 +127,26 @@ class Scene extends Objects {
 
     } //empty
 
+//render
+
+    function render(_) {
+
+        emit('render');
+
+    } //render
+
+    function prerender(_) {
+
+        emit('prerender');
+
+    } //prerender
+
+    function postrender(_) {
+
+        emit('postrender');
+
+    } //postrender
+
 //Keys
 
     function keydown(e:KeyEvent) {
@@ -125,6 +164,14 @@ class Scene extends Objects {
         emit('keyup', e);
 
     } //keyup
+
+    function textinput(e:TextEvent) {
+
+        _verboser('$name / text event / $e');
+
+        emit('textinput', e);
+
+    } //textinput
 
 //Mouse
 
@@ -208,7 +255,7 @@ class Scene extends Objects {
 
 //Input
 
-    function oninputdown( event:{ _name:String, event:InputEvent } ) {
+    function inputdown( event:{ _name:String, event:InputEvent } ) {
 
         emit('inputdown', event);
 
@@ -233,12 +280,31 @@ class Scene extends Objects {
         Luxe.core.off('init', init);
         Luxe.core.off('destroy', _destroy);
         Luxe.core.off('update', update);
+
+        Luxe.core.off('prerender', prerender);
+        Luxe.core.off('postrender', postrender);
+        Luxe.core.off('render', render);
+
         Luxe.core.off('keydown', keydown);
         Luxe.core.off('keyup', keyup);
+        Luxe.core.off('textinput', textinput);
+
+        Luxe.core.off('inputup', inputup);
+        Luxe.core.off('inputdown', inputdown);
+
         Luxe.core.off('mouseup', mouseup);
         Luxe.core.off('mousedown', mousedown);
         Luxe.core.off('mousemove', mousemove);
         Luxe.core.off('mousewheel', mousewheel);
+
+        Luxe.core.off('touchup', touchup);
+        Luxe.core.off('touchdown', touchdown);
+        Luxe.core.off('touchmove', touchmove);
+
+        Luxe.core.off('gamepadup', gamepadup);
+        Luxe.core.off('gamepaddown', gamepaddown);
+        Luxe.core.off('gamepadaxis', gamepadaxis);
+        Luxe.core.off('gamepaddevice', gamepaddevice);
 
         emit('destroy');
 
