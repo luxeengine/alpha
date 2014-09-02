@@ -80,9 +80,6 @@ class Main extends luxe.Game {
 
         } //texture onload
 
-        on('keyup', keyup);
-        on('mousemove', mousemove);
-
     } //ready
 
     function random_int( max:Int ) {
@@ -114,11 +111,11 @@ class Main extends luxe.Game {
         } //_y
     } //create_map
 
-    function mousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
         // geom.quad_pos( mouse_quad, new Vector(e.x-32, e.y-32) );
-    }
+    } //onmousemove
 
-    function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.escape) {
             Luxe.shutdown();

@@ -47,12 +47,6 @@ class Main extends luxe.Game {
 
         create_hud();
 
-        on('keyup', keyup);
-        on('mouseup', mouseup);
-        on('mousemove', mousemove);
-        on('mousedown', mousedown);
-        on('mousewheel', mousewheel);
-
     } //ready
 
     function create_hud() {
@@ -116,7 +110,7 @@ class Main extends luxe.Game {
 
     } //create_hud
 
-    function mousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         screen_mouse = e.pos;
         world_mouse = Luxe.camera.screen_point_to_world( e.pos );
@@ -162,14 +156,14 @@ class Main extends luxe.Game {
     var drag_start_rotation : Float;
     var camera_start_rotation : Float;
 
-    function mousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             mouse_down = true;
             drag_time = Luxe.time + drag_allowance;
         }
     }
 
-    function mousewheel( e:MouseEvent ) {
+    override function onmousewheel( e:MouseEvent ) {
         if(e.y < 0) {
                 //wheel_up
             Luxe.camera.zoom += 0.1;
@@ -179,7 +173,7 @@ class Main extends luxe.Game {
         }
     }
 
-    function mouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
             mouse_down = false;
@@ -196,7 +190,7 @@ class Main extends luxe.Game {
     	}
     }
 
-    function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.left) {
             Luxe.camera.pos.x -= 960;

@@ -109,13 +109,6 @@ class Main extends luxe.Game {
             trace(b.name + ' / ' + b.layer);
         }
 
-        on('keyup', keyup);
-        on('keydown', keydown);
-        on('mouseup', mouseup);
-        on('mousemove', mousemove);
-        on('mousedown', mousedown);
-        on('mousewheel', mousewheel);
-
     } //ready
 
     function create_hud() {
@@ -174,7 +167,7 @@ class Main extends luxe.Game {
 
     var view_move : Bool = false;
 
-    function mousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         if(view_move) {
             camera_1.viewport.x = e.pos.x;
@@ -224,14 +217,14 @@ class Main extends luxe.Game {
 
     }
 
-    function mousedown( e:MouseEvent ) {
+    override function onmousedown( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             mouse_down = true;
             drag_time = Luxe.time + drag_allowance;
         }
     }
 
-    function mousewheel( e:MouseEvent ) {
+    override function onmousewheel( e:MouseEvent ) {
 
         if(e.y < 0) {
                 //wheel_up
@@ -243,7 +236,7 @@ class Main extends luxe.Game {
 
     } //onmousewheel
 
-    function mouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
 
     	if(e.button == MouseButton.left) {
             mouse_down = false;
@@ -260,13 +253,13 @@ class Main extends luxe.Game {
 
     } //onmouseup
 
-    function keydown( e:KeyEvent ) {
+    override function onkeydown( e:KeyEvent ) {
         if(e.keycode == Key.space) {
             view_move = true;
         }
     }
 
-    function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.space) {
             view_move = false;

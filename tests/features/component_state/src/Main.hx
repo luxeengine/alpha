@@ -17,7 +17,6 @@ class Toggler extends Component {
 
     override function init() {
         trace('init toggler ');
-
     } //init
 
     override function onmousedown(e:MouseEvent) {

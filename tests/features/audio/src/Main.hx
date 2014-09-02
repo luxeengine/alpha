@@ -14,28 +14,17 @@ class Main extends luxe.Game {
 
         Luxe.audio.on('music', 'load', function(s:snow.audio.Sound) {
             Luxe.audio.loop('music');
-        });
-
-        on('mouseup', mouseup);
-        on('keyup', keyup);
-
-        // //pan from left to right and back
-        // luxe.tween.Actuate.tween(this, 20, { pan:-1 })
-        //     .repeat()
-        //     .reflect()
-        //     .onUpdate(function(){
-        //         Luxe.audio.pan('music', pan);
-        //     });
+        }); //on load
 
     } //ready
 
-    function mouseup( e:MouseEvent ) {
+    override function onmouseup( e:MouseEvent ) {
         if(e.button == MouseButton.left) {
             Luxe.audio.play('sound');
         }
     }
 
-    function keyup( e:KeyEvent ) {
+    override function onkeyup( e:KeyEvent ) {
 
         if(e.keycode == Key.key_r) {
             Luxe.audio.position('music', 0);
