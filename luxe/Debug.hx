@@ -111,6 +111,10 @@ class Debug {
             untyped console.log('${inf.fileName}::$_line $v');
         #end
 
+        if(shut_down) {
+            return;
+        }
+
             //call listeners
         for(_callback in trace_callbacks) {
             _callback(v, inf);
@@ -330,8 +334,8 @@ class Debug {
         core.off('mousedown', mousedown);
         core.off('mousemove', mousemove);
 
+        trace('\t debug shut down.');
         shut_down = true;
-        _debug('\t debug shut down.');
 
     } //destroy
 
