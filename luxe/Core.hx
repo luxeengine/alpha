@@ -431,16 +431,18 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
+
                 //check for named input
             input.check_named_keys(event, true);
             emitter.emit('keydown', event);
-        }
 
-        game.onkeydown(event);
+            game.onkeydown(event);
 
-        if(scancode == Scan.grave) {
-            show_console( !console_visible );
-        }
+            if(scancode == Scan.grave) {
+                show_console( !console_visible );
+            }
+
+        } //!shutting down
 
     } //onkeydown
 
@@ -457,12 +459,14 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
+
                 //check for named input
             input.check_named_keys(event);
             emitter.emit('keyup', event);
-        }
 
-        game.onkeyup(event);
+            game.onkeyup(event);
+
+        } //!shutting down
 
     } //onkeyup
 
@@ -485,10 +489,12 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('textinput', event);
-        }
 
-        game.ontextinput(event);
+            emitter.emit('textinput', event);
+
+            game.ontextinput(event);
+
+        } //!shutting_down
 
     } //ontextinput
 
@@ -497,20 +503,24 @@ class Core extends snow.App {
     public function oninputdown( name:String, event:InputEvent ) {
 
         if(!shutting_down) {
-            emitter.emit('inputdown', { name:name, event:event });
-        }
 
-        game.oninputdown( name, event );
+            emitter.emit('inputdown', { name:name, event:event });
+
+            game.oninputdown( name, event );
+
+        } //!shutting_down
 
     } //oninputdown
 
     public function oninputup( name:String, event:InputEvent ) {
 
         if(!shutting_down) {
-            emitter.emit('inputup', { name:name, event:event });
-        }
 
-        game.oninputup( name, event );
+            emitter.emit('inputup', { name:name, event:event });
+
+            game.oninputup( name, event );
+
+        } //!shutting_down
 
     } //oninputup
 
@@ -551,11 +561,12 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
+
             input.check_named_mouse(event, true);
             emitter.emit('mousedown', event);
-        }
+            game.onmousedown(event);
 
-        game.onmousedown(event);
+        } //!shutting_down
 
     } //onmousedown
 
@@ -577,11 +588,12 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
+
             input.check_named_mouse(event);
             emitter.emit('mouseup', event);
-        }
+            game.onmouseup(event);
 
-        game.onmouseup(event);
+        } //!shutting_down
 
     } //onmouseup
 
@@ -603,10 +615,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('mousemove', event);
-        }
 
-        game.onmousemove(event);
+            emitter.emit('mousemove', event);
+            game.onmousemove(event);
+
+        } //!shutting_down
 
     } //onmousemove
 
@@ -625,11 +638,12 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
+
             input.check_named_mouse(event, false);
             emitter.emit('mousewheel', event);
-        }
+            game.onmousewheel(event);
 
-        game.onmousewheel(event);
+        } //!shutting_down
 
     } //onmousewheel
 
@@ -651,22 +665,24 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
+
             emitter.emit('touchdown', event);
-        }
 
-        game.ontouchdown(event);
+            game.ontouchdown(event);
 
-            //3 finger tap when console opens will switch tabs
-        if(touch_id == 2) {
-            if(console_visible) {
-                debug.switch_view();
+                //3 finger tap when console opens will switch tabs
+            if(touch_id == 2) {
+                if(console_visible) {
+                    debug.switch_view();
+                }
             }
-        }
 
-            //4 finger tap toggles console
-        if(touch_id == 3) {
-            show_console( !console_visible );
-        }
+                //4 finger tap toggles console
+            if(touch_id == 3) {
+                show_console( !console_visible );
+            }
+
+        } //!shutting_down
 
     } //ontouchdown
 
@@ -686,10 +702,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('touchup', event);
-        }
 
-        game.ontouchup(event);
+            emitter.emit('touchup', event);
+            game.ontouchup(event);
+
+        } //!shutting_down
 
     } //ontouchup
 
@@ -709,10 +726,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('touchmove', event);
-        }
 
-        game.ontouchmove(event);
+            emitter.emit('touchmove', event);
+            game.ontouchmove(event);
+
+        } //!shutting_down
 
     } //ontouchmove
 
@@ -731,10 +749,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('gamepadaxis',event);
-        }
 
-        game.ongamepadaxis(event);
+            emitter.emit('gamepadaxis',event);
+            game.ongamepadaxis(event);
+
+        } //!shutting_down
 
     } //ongamepadaxis
 
@@ -751,10 +770,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('gamepaddown',event);
-        }
 
-        game.ongamepaddown(event);
+            emitter.emit('gamepaddown',event);
+            game.ongamepaddown(event);
+
+        } //!shutting_down
 
     } //ongamepadbuttondown
 
@@ -771,10 +791,11 @@ class Core extends snow.App {
         }
 
         if(!shutting_down) {
-            emitter.emit('gamepadup', event);
-        }
 
-        game.ongamepadup(event);
+            emitter.emit('gamepadup', event);
+            game.ongamepadup(event);
+
+        } //!shutting_down
 
     } //ongamepadup
 
@@ -792,7 +813,6 @@ class Core extends snow.App {
             default:
         }
 
-
         var event : GamepadEvent = {
             timestamp : timestamp,
             type : _event_type,
@@ -803,9 +823,13 @@ class Core extends snow.App {
             value : 0
         }
 
-        game.ongamepaddevice(event);
+        if(!shutting_down) {
 
-    }
+            game.ongamepaddevice(event);
+
+        } //!shutting_down
+
+    } //ongamepaddevice
 
         /** return what the game decides for runtime config */
     override function config( config:AppConfig ) : AppConfig {
