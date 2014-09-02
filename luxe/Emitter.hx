@@ -13,7 +13,7 @@ import luxe.Log.log;
 
 class Emitter {
 
-    public var bindings : Map<String, Array<EmitHandler> >;
+    @:noCompletion public var bindings : Map<String, Array<EmitHandler> >;
 
         //store connections loosely, to find connected locations
     var connected : List<EmitNode>;

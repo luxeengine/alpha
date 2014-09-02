@@ -73,6 +73,10 @@ class Entity extends Objects {
         //input events, connected only when overridden in child class
     public function onkeyup( event:KeyEvent ) {}
     public function onkeydown( event:KeyEvent ) {}
+    public function ontextinput( event:TextEvent ) {}
+
+    public function oninputdown( name:String, event:InputEvent ) {}
+    public function oninputup( name:String, event:InputEvent ) {}
 
     public function onmousedown( event:MouseEvent ) {}
     public function onmouseup( event:MouseEvent ) {}
@@ -223,7 +227,7 @@ class Entity extends Objects {
             //verbose debugging
         _verbose('${this} inside _init with options as $options' );
 
-            //init the parent first
+
         init();
             //for any potential listeners, after the init() direct call
             //as there is likely connections made during init
@@ -394,14 +398,51 @@ class Entity extends Objects {
 
 //events
 
-    @:noCompletion public function _listen(e:String, h:EmitHandler) {
+    @:noCompletion public function _listen( _event:String, _handler:EmitHandler ) {
+
+        //this function is called when a component, or a subclass tries to override the onmousedown handler,
+        //at which point it makes sure this entity is connected to the scene handlers, and then makes sure
+        //that the calling component or this instance is connected to its own events to the requested handler
+
+        //the duplication of events&handler combo is handled internally by Emitter, so we don't have to worry
+        //todo: potential consolidation to avoid the switch here
+
+        on(_event, _handler);
 
         if(scene != null) {
-            scene.on(e, _onmousedown);
-            on(e, h);
+            switch(_event) {
+
+                case 'keyup'         : scene.on(_event, _keyup);
+                case 'keydown'       : scene.on(_event, _keydown);
+                case 'textinput'     : scene.on(_event, _textinput);
+
+                case 'mousedown'     : scene.on(_event, _mousedown);
+                case 'mouseup'       : scene.on(_event, _mouseup);
+                case 'mousemove'     : scene.on(_event, _mousemove);
+                case 'mousewheel'    : scene.on(_event, _mousewheel);
+
+                case 'touchdown'     : scene.on(_event, _touchdown);
+                case 'touchup'       : scene.on(_event, _touchup);
+                case 'touchmove'     : scene.on(_event, _touchmove);
+
+                case 'inputup'       : scene.on(_event, _inputup);
+                case 'inputdown'     : scene.on(_event, _inputdown);
+
+                case 'gamepaddown'   : scene.on(_event, _gamepaddown);
+                case 'gamepadup'     : scene.on(_event, _gamepadup);
+                case 'gamepadaxis'   : scene.on(_event, _gamepadaxis);
+                case 'gamepaddevice' : scene.on(_event, _gamepaddevice);
+
+            } //switch event
         }
 
     } //_listen
+
+    @:noCompletion public function _unlisten( _event:String, _handler:EmitHandler ) {
+
+        off(_event, _handler);
+
+    } //_unlisten
 
 
 //scene
@@ -409,9 +450,29 @@ class Entity extends Objects {
     function _detach_scene() {
 
         if(scene != null) {
+
             scene.off('reset', _reset);
             scene.off('destroy', destroy);
-        }
+
+                //precaution
+            scene.off('keyup', _keyup);
+            scene.off('keydown', _keydown);
+            scene.off('textinput', _textinput);
+            scene.off('mousedown', _mousedown);
+            scene.off('mouseup', _mouseup);
+            scene.off('mousemove', _mousemove);
+            scene.off('mousewheel', _mousewheel);
+            scene.off('touchdown', _touchdown);
+            scene.off('touchup', _touchup);
+            scene.off('touchmove', _touchmove);
+            scene.off('inputup', _inputup);
+            scene.off('inputdown', _inputdown);
+            scene.off('gamepaddown', _gamepaddown);
+            scene.off('gamepadup', _gamepadup);
+            scene.off('gamepadaxis', _gamepadaxis);
+            scene.off('gamepaddevice', _gamepaddevice);
+
+        } //scene != null
 
     } //detach_scene
 
@@ -426,221 +487,221 @@ class Entity extends Objects {
 
 //Keys
 
-    @:noCompletion public function _onkeyup( _event:KeyEvent ) {
+    @:noCompletion public function _keyup( _event:KeyEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _onkeyup on ' + name);
+        _verboser('calling _keyup on ' + name);
 
-            //init the parent first
+        onkeyup(_event);
         emit('onkeyup', _event);
 
-    } //_onkeyup
+    } //_keyup
 
-    @:noCompletion public function _onkeydown( _event:KeyEvent ) {
+    @:noCompletion public function _keydown( _event:KeyEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _onkeydown on ' + name);
+        _verboser('calling _keydown on ' + name);
 
-            //init the parent first
+        onkeydown(_event);
         emit('onkeydown', _event);
 
-    } //_onkeydown
+    } //_keydown
 
-    @:noCompletion public function _ontextinput( _event:TextEvent ) {
+    @:noCompletion public function _textinput( _event:TextEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ontextinput on ' + name);
+        _verboser('calling _textinput on ' + name);
 
-            //init the parent first
+        ontextinput(_event);
         emit('ontextinput', _event);
 
-    } //_ontextinput
+    } //_textinput
 
 
 //Mouse
 
-    @:noCompletion public function _onmousedown( _event:MouseEvent ) {
+    @:noCompletion public function _mousedown( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        trace('calling _onmousedown on ' + name );
+        _verboser('calling _mousedown on ' + name );
 
-            //init the parent first
+        onmousedown(_event);
         emit('mousedown', _event);
 
-    } //_onmousedown
+    } //_mousedown
 
 
-    @:noCompletion public function _onmouseup( _event:MouseEvent ) {
+    @:noCompletion public function _mouseup( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _onmouseup on ' + name);
+        _verboser('calling _mouseup on ' + name);
 
-            //init the parent first
+        onmouseup(_event);
         emit('onmouseup', _event);
 
-    } //_onmouseup
+    } //_mouseup
 
-    @:noCompletion public function _onmousewheel( _event:MouseEvent ) {
+    @:noCompletion public function _mousewheel( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _onmousewheel on ' + name);
+        _verboser('calling _mousewheel on ' + name);
 
-            //init the parent first
+        onmousewheel(_event);
         emit('onmousewheel', _event);
 
-    } //_onmousewheel
+    } //_mousewheel
 
-    @:noCompletion public function _onmousemove( _event:MouseEvent ) {
+    @:noCompletion public function _mousemove( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _onmousemove on ' + name);
+        _verboser('calling _mousemove on ' + name);
 
-            //init the parent first
+        onmousemove(_event);
         emit('onmousemove', _event);
 
-    } //_onmousemove
+    } //_mousemove
 
 //Touch
-    @:noCompletion public function _ontouchdown( _event:TouchEvent ) {
+    @:noCompletion public function _touchdown( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ontouchdown on ' + name);
+        _verboser('calling _touchdown on ' + name);
 
-            //init the parent first
+        ontouchdown(_event);
         emit('ontouchdown', _event);
 
-    } //_ontouchdown
+    } //_touchdown
 
-    @:noCompletion public function _ontouchup( _event:TouchEvent ) {
+    @:noCompletion public function _touchup( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ontouchup on ' + name);
+        _verboser('calling _touchup on ' + name);
 
-            //init the parent first
+        ontouchup(_event);
         emit('ontouchup', _event);
 
-    } //_ontouchup
+    } //_touchup
 
-    @:noCompletion public function _ontouchmove( _event:TouchEvent ) {
+    @:noCompletion public function _touchmove( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ontouchmove on ' + name);
+        _verboser('calling _touchmove on ' + name);
 
-            //init the parent first
+        ontouchmove(_event);
         emit('ontouchmove', _event);
 
-    } //_ontouchmove
+    } //_touchmove
 
 //Gamepad
-    @:noCompletion public function _ongamepadaxis( _event:GamepadEvent ) {
+    @:noCompletion public function _gamepadaxis( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ongamepadaxis on ' + name);
+        _verboser('calling _gamepadaxis on ' + name);
 
-            //init the parent first
+        ongamepadaxis(_event);
         emit('ongamepadaxis', _event);
 
-    } //_ongamepadaxis
+    } //_gamepadaxis
 
-    @:noCompletion public function _ongamepaddown( _event:GamepadEvent ) {
+    @:noCompletion public function _gamepaddown( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ongamepaddown on ' + name);
+        _verboser('calling _gamepaddown on ' + name);
 
-            //init the parent first
+        ongamepaddown(_event);
         emit('ongamepaddown', _event);
 
-    } //_ongamepaddown
+    } //_gamepaddown
 
-    @:noCompletion public function _ongamepadup( _event:GamepadEvent ) {
+    @:noCompletion public function _gamepadup( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ongamepadup on ' + name);
+        _verboser('calling _gamepadup on ' + name);
 
-            //init the parent first
+        ongamepadup(_event);
         emit('ongamepadup', _event);
 
-    } //_ongamepadup
+    } //_gamepadup
 
-    @:noCompletion public function _ongamepaddevice( _event:GamepadEvent ) {
+    @:noCompletion public function _gamepaddevice( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _ongamepaddevice on ' + name);
+        _verboser('calling _gamepaddevice on ' + name);
 
-            //init the parent first
+        ongamepaddevice(_event);
         emit('ongamepaddevice', _event);
 
-    } //_ongamepaddevice
+    } //_gamepaddevice
 
 //Input
 
-    @:noCompletion public function _oninputdown( _name:String, _event:InputEvent ) {
+    @:noCompletion public function _inputdown( _event : { name:String, event:InputEvent } ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _oninputdown on ' + name);
+        _verboser('calling _inputdown on ' + name);
 
-            //init the parent first
-        emit('oninputdown', { name:_name, event:_event });
+        oninputdown(_event.name, _event.event);
+        emit('oninputdown', _event);
 
-    } //_oninputdown
+    } //_inputdown
 
-    @:noCompletion public function _oninputup( _name:String, _event:InputEvent ) {
+    @:noCompletion public function _inputup( _event : { name:String, event:InputEvent } ) {
 
         if(!active || !inited || !started) {
             return;
         }
 
-        _verboser('calling _oninputup on ' + name);
+        _verboser('calling _inputup on ' + name);
 
-            //init the parent first
-        emit('oninputup', { name:_name, event:_event });
+        oninputup(_event.name, _event.event);
+        emit('oninputup', _event );
 
-    } //_oninputup
+    } //_inputup
 
 
 //timing

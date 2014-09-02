@@ -7,12 +7,21 @@ import haxe.macro.ExprTools;
 class ComponentRules {
 
     static var init_field : Field;
+    static var ondestroy_field : Field;
 
 	macro public static function apply() : Array<Field> {
 
-		var fields = Context.getBuildFields();
+		var _fields = Context.getBuildFields();
 
-		for(_field in fields) {
+            //do this first to ensure the values are set
+        for(_field in _fields) {
+            switch(_field.name) {
+                case 'init': init_field = _field;
+                case 'ondestroy': ondestroy_field = _field;
+            }
+        }
+
+		for(_field in _fields) {
 
             switch(_field.name) {
 
@@ -20,11 +29,24 @@ class ComponentRules {
     				check_entity_touch(_field);
     			} //new
 
-                case 'init': {
-                    init_field = _field;
-                }
-
-                case 'onmousedown': {
+                case
+                    'ontouchmove',
+                    'ontouchdown',
+                    'ontouchup',
+                    'onmousemove',
+                    'onmousedown',
+                    'onmouseup',
+                    'onmousewheel',
+                    'ongamepadaxis',
+                    'ongamepadup',
+                    'ongamepaddown',
+                    'ongamepaddevice',
+                    'onkeydown',
+                    'onkeyup',
+                    'ontextinput',
+                    'oninputdown',
+                    'oninputup' :
+                {
                     connect_event(_field);
                 }
 
@@ -32,7 +54,7 @@ class ComponentRules {
 
 		} //for field in fields
 
-		return fields;
+		return _fields;
 
 	} //apply
 
@@ -41,17 +63,28 @@ class ComponentRules {
 
         if(_field.access.indexOf(AOverride) != -1) {
 
-            switch(init_field.kind) {
+            var _event_name : String = _field.name.substr(2);
 
+                //inject the init connection
+            switch(init_field.kind) {
+                default:
                 case FFun(f):
                     switch(f.expr.expr) {
-                        case EBlock(exprs):
-                            var _event_name : String = _field.name.substr(2);
-                            //exprs.unshift( Context.parse('entity._listen( "$_event_name", ${_field.name} )', _field.pos) );
                         default:
+                        case EBlock(exprs):
+                            exprs.unshift( Context.parse('entity._listen( "$_event_name", ${_field.name} )', _field.pos) );
                     } //switch exp
-                default: {}
+            } //switch kind
 
+                //and inject the ondestroy connection
+            switch(ondestroy_field.kind) {
+                default:
+                case FFun(f):
+                    switch(f.expr.expr) {
+                        default:
+                        case EBlock(exprs):
+                            exprs.unshift( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                    } //switch exp
             } //switch kind
 
         } //if override
