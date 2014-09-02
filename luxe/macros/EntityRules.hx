@@ -21,6 +21,30 @@ class EntityRules {
             }
         }
 
+            //if no init field, insert one
+        if(init_field == null) {
+            init_field = {
+                name: 'init',
+                doc: null, meta: [],
+                access: [AOverride],
+                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                pos: Context.currentPos()
+            };
+            _fields.push(init_field);
+        }
+
+            //if no ondestroy field, insert one
+        if(ondestroy_field == null) {
+            ondestroy_field = {
+                name: 'ondestroy',
+                doc: null, meta: [],
+                access: [AOverride],
+                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                pos: Context.currentPos()
+            };
+            _fields.push(ondestroy_field);
+        }
+
         for(_field in _fields) {
 
             switch(_field.name) {

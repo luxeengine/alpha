@@ -8,6 +8,7 @@ class ComponentRules {
 
     static var init_field : Field;
     static var ondestroy_field : Field;
+    static var onremoved_field : Field;
 
 	macro public static function apply() : Array<Field> {
 
@@ -18,7 +19,44 @@ class ComponentRules {
             switch(_field.name) {
                 case 'init': init_field = _field;
                 case 'ondestroy': ondestroy_field = _field;
+                case 'onremoved': onremoved_field = _field;
             }
+        }
+
+            //if no init field, insert one
+        if(init_field == null) {
+            init_field = {
+                name: 'init',
+                doc: null, meta: [],
+                access: [AOverride],
+                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                pos: Context.currentPos()
+            };
+            _fields.push(init_field);
+        }
+
+            //if no ondestroy field, insert one
+        if(ondestroy_field == null) {
+            ondestroy_field = {
+                name: 'ondestroy',
+                doc: null, meta: [],
+                access: [AOverride],
+                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                pos: Context.currentPos()
+            };
+            _fields.push(ondestroy_field);
+        }
+
+            //if no onremoved field, insert one
+        if(ondestroy_field == null) {
+            onremoved_field = {
+                name: 'onremoved',
+                doc: null, meta: [],
+                access: [AOverride],
+                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                pos: Context.currentPos()
+            };
+            _fields.push(onremoved_field);
         }
 
 		for(_field in _fields) {
@@ -78,6 +116,17 @@ class ComponentRules {
 
                 //and inject the ondestroy connection
             switch(ondestroy_field.kind) {
+                default:
+                case FFun(f):
+                    switch(f.expr.expr) {
+                        default:
+                        case EBlock(exprs):
+                            exprs.unshift( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                    } //switch exp
+            } //switch kind
+
+                //and inject the onremoved connection
+            switch(onremoved_field.kind) {
                 default:
                 case FFun(f):
                     switch(f.expr.expr) {

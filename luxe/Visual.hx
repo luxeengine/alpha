@@ -124,8 +124,6 @@ class Visual extends Entity {
 
         } //
 
-        on('destroy', _destroy);
-
     } //new
 
     var _creating_geometry : Bool = false;
@@ -196,9 +194,7 @@ class Visual extends Entity {
     } //create_geometry
 
 
-    function _destroy(_) {
-
-        off('destroy', _destroy);
+    override function ondestroy() {
 
             //drop the geometry
         if(geometry != null && geometry.added ) {
@@ -209,7 +205,7 @@ class Visual extends Entity {
         geometry = null;
         texture = null;
 
-    } //_destroy
+    } //ondestroy
 
     function on_geometry_created() {
 

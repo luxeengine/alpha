@@ -96,8 +96,6 @@ class NineSlice extends luxe.Sprite {
 
         geometry = null;
 
-        on('destroy', _destroy_nineslice);
-
     } //new
 
     public function lock() {
@@ -357,15 +355,13 @@ class NineSlice extends luxe.Sprite {
 
     } //set_pos
 
-    function _destroy_nineslice(_) {
-
-        off('destroy', _destroy_nineslice);
+    override function ondestroy() {
 
         if(is_set) {
             _geometry.drop();
         }
 
-    } //_destroy_nineslice
+    } //ondestroy
 
     override function set_visible(_v:Bool) {
 
