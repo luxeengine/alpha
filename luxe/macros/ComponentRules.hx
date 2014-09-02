@@ -48,7 +48,7 @@ class ComponentRules {
         }
 
             //if no onremoved field, insert one
-        if(ondestroy_field == null) {
+        if(onremoved_field == null) {
             onremoved_field = {
                 name: 'onremoved',
                 doc: null, meta: [],
