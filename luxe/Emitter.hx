@@ -30,7 +30,7 @@ class Emitter {
     } //new
 
         /** Emit a named event */
-    public function emit<T>( event:String, ?data:T, ?pos:haxe.PosInfos  ) {
+    @:noCompletion public function emit<T>( event:String, ?data:T, ?pos:haxe.PosInfos  ) {
 
         _check();
 
@@ -51,7 +51,7 @@ class Emitter {
     } //emit
 
         /** connect a named event to a handler */
-    public function on<T>(event:String, handler: T->Void, ?pos:haxe.PosInfos ) {
+    @:noCompletion public function on<T>(event:String, handler: T->Void, ?pos:haxe.PosInfos ) {
 
         _check();
 
@@ -73,7 +73,7 @@ class Emitter {
     } //on
 
         /** disconnect a named event and handler. returns true on success, or false if event or handler not found */
-    public function off<T>(event:String, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
+    @:noCompletion public function off<T>(event:String, handler: T->Void, ?pos:haxe.PosInfos ) : Bool {
 
         _check();
 
@@ -100,7 +100,7 @@ class Emitter {
 
     } //off
 
-    public function connections( handler:EmitHandler ) {
+    @:noCompletion public function connections( handler:EmitHandler ) {
 
         var list : Array<EmitNode> = [];
 

@@ -35,19 +35,19 @@ class ParticleSystem extends Entity {
         } //_name.lengths
 
             //create the emitter instance
-        var _emitter = new ParticleEmitter({ system:this, template:_template });
-            add( _name, _emitter );
+        var _emitter = new ParticleEmitter({ name:_name, system:this, template:_template });
+            add( _emitter );
                 //store the reference of the emitter
             emitters.set(_name, _emitter);
 
     } //add_emitter
 
-    public function emit(duration:Float = -1) {
+    public function start(duration:Float = -1) {
         enabled = true;
         for(emitter in emitters) {
-            emitter.emit(duration);
+            emitter.start(duration);
         }
-    } //emit
+    } //start
 
     public function stop() {
         enabled = false;
@@ -56,11 +56,11 @@ class ParticleSystem extends Entity {
         }
     } //stop
 
-    override function destroyed() {
+    override function ondestroy() {
         for(emitter in emitters) {
             emitter.destroy();
         }
-    } //destroy
+    } //ondestroy
 
     override function update(dt:Float) {
         if(!enabled) return;
@@ -75,6 +75,7 @@ class ParticleSystem extends Entity {
 
 
 typedef ParticleEmitterInitData = {
+    ?name : String,
     system : ParticleSystem,
     template : ParticleEmitterOptions
 } //ParticleEmitterInitData
@@ -154,7 +155,7 @@ class ParticleEmitter extends Component {
     var _to_remove : Array<Particle>;
 
     public function new( _data:ParticleEmitterInitData ) {
-        super();
+        super(_data.name);
         particle_system = _data.system;
         template = _data.template;
     }
@@ -326,7 +327,7 @@ class ParticleEmitter extends Component {
 
     } //destroy
 
-    public function emit(t:Float) {
+    public function start(t:Float) {
 
         duration = t;
         enabled = true;
@@ -337,7 +338,8 @@ class ParticleEmitter extends Component {
         if(duration != -1) {
             finish_time = Luxe.time + duration;
         }
-    }
+
+    } //start
 
     public function stop() {
         enabled = false;

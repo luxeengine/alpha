@@ -334,7 +334,7 @@ class Debug {
         core.off('mousedown', mousedown);
         core.off('mousemove', mousemove);
 
-        trace('\t debug shut down.');
+        _debug('\t debug shut down.');
         shut_down = true;
 
     } //destroy
