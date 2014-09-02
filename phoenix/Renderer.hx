@@ -82,8 +82,8 @@ class Renderer {
         default_fbo = GL.getParameter(GL.FRAMEBUFFER_BINDING);
         default_rbo = GL.getParameter(GL.RENDERBUFFER_BINDING);
 
-        log("default Framebuffer set to " + default_fbo);
-        log("default Renderbuffer set to " + default_rbo);
+        _debug("default Framebuffer set to " + default_fbo);
+        _debug("default Renderbuffer set to " + default_rbo);
 
     } //new
 
