@@ -78,7 +78,7 @@ class Main extends luxe.Game {
 
         if(new_value) {
             //add component again
-            entity_one.add(new Toggler('toggler'));
+            entity_one.add(new Toggler({ name:'toggler' }));
         } else {
             //remove component again
             trace( 'removed? ' + entity_one.remove('toggler') );

@@ -59,7 +59,7 @@ class Main extends luxe.Game {
             scene : hud
         });
 
-        ui.add(new RandomSlide('slide'));
+        ui.add(new RandomSlide({ name:'slide' }));
 
         log(hud);
 
@@ -129,7 +129,7 @@ class RandomSlide extends Component {
 
         trace('destroy');
 
-    } //destroy
+    } //ondestroy
 
     override function update(dt:Float) {
 

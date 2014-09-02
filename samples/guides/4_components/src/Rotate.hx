@@ -14,11 +14,12 @@ class Rotate extends Component {
 	public var max_rotate_speed : Float = 60;
 
     var sprite : Sprite;
-    function init() {
+
+    override function init() {
         sprite = cast entity;
     }
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
     		//changes to the transform inside of components affect the entity directly!
         sprite.rotation_z += rotate_speed * dt;

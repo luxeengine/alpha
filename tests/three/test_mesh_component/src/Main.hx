@@ -21,12 +21,14 @@ class Main extends luxe.Game {
         Luxe.camera.pos.set(0,0.5,2);
 
             //create an empty entity
-        tower = Luxe.scene.create(Entity, 'tower');
+        tower = new Entity({ name:'tower' });
 
             //attach a mesh component
-        var mesh = tower.add(MeshComponent, 'mesh');
+        var mesh = new MeshComponent({ name:'mesh' });
             mesh.file = 'assets/tower.obj';
             mesh.texture = Luxe.loadTexture('assets/tower.jpg');
+
+        tower.add(mesh);
 
     } //ready
 

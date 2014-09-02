@@ -60,24 +60,24 @@ class Main extends luxe.Game {
             //for the first group, we set the blend mode to additive
         Luxe.renderer.batcher.add_group(1,
             function(b:Batcher){
-                b.blend_mode(BlendMode.src_alpha, BlendMode.one);
+                Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one);
             }
         );
 
             //for the second, we set it to negative
         Luxe.renderer.batcher.add_group(2,
             function(b:Batcher){
-                b.blend_mode(BlendMode.one_minus_src_color, BlendMode.zero);
+                Luxe.renderer.blend_mode(BlendMode.one_minus_src_color, BlendMode.zero);
             }
         );
 
             //for the third one, we maks sure it is reset as well
         Luxe.renderer.batcher.add_group(3,
             function(b:Batcher){
-                b.blend_mode(BlendMode.dst_color, BlendMode.one_minus_src_alpha);
+                Luxe.renderer.blend_mode(BlendMode.dst_color, BlendMode.one_minus_src_alpha);
             },
             function(b:Batcher){
-                b.blend_mode();
+                Luxe.renderer.blend_mode();
             }
         );
 

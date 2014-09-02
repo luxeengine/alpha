@@ -19,11 +19,10 @@ class Main extends luxe.Game {
         var go = new FakeGameObject({name:'go'});
 
             //what we want to test is that more than one layer deep affect the parent transform
-        var child1_comp = new Child1();
-            child1_comp.init_string = 'Test String';
+        var child1_comp = new Child1('child1', 'Test string 1');
 
-        go.add('child1', child1_comp);
-        child1_comp.add('child2', new Child2(123));
+        go.add(child1_comp);
+        child1_comp.add(new Child2('child2', 123));
 
             //Actual entity classes (Sprite, Camera atm)
         sprite = new Sprite({
@@ -42,15 +41,14 @@ class Main extends luxe.Game {
         sprite2.rotation_z = 90;
         sprite2.radians = Math.PI;
 
-            var child1_comp2 = new Child1();
-                child1_comp2.init_string = 'Test String 2';
+        var child1_comp2 = new Child1('child1', 'Test String 2');
 
-        sprite.add('child1', child1_comp2);
+            sprite.add(child1_comp2);
 
-        child1_comp2.add('child2', new Child2(565));
+        child1_comp2.add(new Child2('child2', 565));
 
             //default camera is an entity, so give it a component!
-        Luxe.camera.add('shaker', new RandomCameraShaker());
+        Luxe.camera.add(new RandomCameraShaker('shaker'));
 
     } //ready
 
@@ -134,13 +132,13 @@ class FakeGameObject extends Entity {
         trace('\tgameobject init');
     } //init
 
-    override function reset() {
+    override function onreset() {
         trace('\tgameobject reset');
-    } //reset
+    } //onreset
 
-    override function destroyed() {
+    override function ondestroy() {
         trace('\tgameobject destroyed');
-    } //destroyed
+    } //ondestroy
 
     override function update(dt:Float) {
         if(!oncerun){
@@ -159,17 +157,22 @@ class Child1 extends Component {
     public var oncerun : Bool = false;
     public var init_string : String = '';
 
+    public function new(_name:String, _str:String) {
+        super({ name:_name });
+        init_string = _str;
+    }
+
     override function init() {
         trace('\t\tchild1 init with string ' + init_string);
     } //init
 
-    override function reset() {
-        trace('\t\tchild1 reset');
-    } //reset
+    override function onreset() {
+        trace('\t\tchild1 onreset');
+    } //onreset
 
-    override function destroyed() {
+    override function ondestroy() {
         trace('\t\tchild1 destroyed');
-    } //destroyed
+    } //ondestroy
 
     override function update(dt:Float) {
         if(!oncerun){
@@ -190,22 +193,22 @@ class Child2 extends Component {
     public var oncerun : Bool = false;
     public var unique_value : Int = 0;
 
-    public function new(_value:Int) {
-        super();
-        unique_value = _value;
+    public function new(_name:String, val:Int) {
+        super({ name:_name });
+        unique_value = val;
     }
 
     override function init() {
         trace('\t\t\tchild2 init with value ' + unique_value);
     } //init
 
-    override function reset() {
-        trace('\t\t\tchild2 reset');
-    } //reset
+    override function onreset() {
+        trace('\t\t\tchild2 onreset');
+    } //onreset
 
-    override function destroyed() {
-        trace('\t\t\tchild2 destroyed');
-    } //destroyed
+    override function ondestroy() {
+        trace('\t\t\tchild2 ondestroy');
+    } //ondestroy
 
     override function update(dt:Float) {
 

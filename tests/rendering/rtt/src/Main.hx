@@ -71,7 +71,7 @@ class Main extends luxe.Game {
 
     } //onkeyup
 
-    override function pre_render() {
+    override function onprerender() {
 
             //Set the current rendering target
         Luxe.renderer.target = target_texture;
@@ -93,10 +93,5 @@ class Main extends luxe.Game {
         example.rotation_z += 40 * dt;
 
     } //update
-
-    override function destroyed() {
-
-    } //destroyed
-
 
 } //Main

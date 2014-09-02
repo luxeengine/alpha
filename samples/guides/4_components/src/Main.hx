@@ -21,15 +21,11 @@ class Main extends luxe.Game {
             texture : Luxe.loadTexture('assets/luxelogo.png'),
         });
 
-            //Now the important bit, we attach a component to an
-            //entity by calling .add(TypeOfComponent, 'NameOfComponent');
-            //It is important to note that the name of the component must be set
-            //if you want to fetch it later using .get('NameOfComponent').
-            //If no name is given, it uses a UUID.
-        rotator = logo.add(Rotate, 'rotator');
+        rotator = new Rotate({ name:'rotator' });
+        logo.add(rotator);
 
         	//we don't need to reference the bounce component, so we just add it.
-        logo.add(Bounce, 'bounce');
+        logo.add(new Bounce({ name:'bounce' }));
 
         delta_time_text = new luxe.Text({
             color : new Color(0,0,0,1).rgb(0xf6007b),

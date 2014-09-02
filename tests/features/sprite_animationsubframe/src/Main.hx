@@ -82,11 +82,11 @@ class Main extends luxe.Game {
                 origin: new Vector(0,0)
             });
 
-            var subanim = new SpriteAnimation(); 
-            var anim = new SpriteAnimation(); 
+            var subanim = new SpriteAnimation({ name:'anim' });
+            var anim = new SpriteAnimation({ name:'anim' });
 
-            animation.add( 'anim', anim );
-            subanimation.add( 'anim' , subanim );
+            animation.add( anim );
+            subanimation.add( subanim );
 
            var sub_anim_json = '
                 {

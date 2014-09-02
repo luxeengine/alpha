@@ -60,7 +60,7 @@ class Main extends luxe.Game {
             size : 25
         });
 
-        text_with_component.add('bounce', new BounceTest());
+        text_with_component.add(new BounceTest({ name:'bounce' }));
 
     } //ready
 

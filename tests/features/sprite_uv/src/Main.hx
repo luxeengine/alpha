@@ -57,8 +57,8 @@ class Main extends luxe.Game {
 
     override function update(dt:Float) {
 
-        stars.uv.y -= 0.2;
-        stars.uv.x += 0.4;
+        stars.uv.y -= 4 * dt;
+        stars.uv.x += 8 * dt;
 
     } //update
 

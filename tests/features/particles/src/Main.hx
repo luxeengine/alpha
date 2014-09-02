@@ -86,10 +86,10 @@ class Main extends luxe.Game {
 
         Luxe.renderer.batcher.add_group(5,
             function(b:Batcher){
-                b.blend_mode(BlendMode.src_alpha, BlendMode.one);
+                Luxe.renderer.blend_mode(BlendMode.src_alpha, BlendMode.one);
             },
             function(b:Batcher){
-                b.blend_mode();
+                Luxe.renderer.blend_mode();
             }
         );
 
@@ -109,7 +109,7 @@ class Main extends luxe.Game {
         if(particles.enabled) {
             particles.stop();
         } else {
-            particles.emit();
+            particles.start();
         }
     } //onmousedown
 

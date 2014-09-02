@@ -126,8 +126,8 @@ class Main extends luxe.Game {
 
     } //update
 
-    override function destroyed() {
+    override function ondestroy() {
 
-    } //destroyed
+    } //ondestroy
 
 } //Main

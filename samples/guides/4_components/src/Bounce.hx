@@ -9,7 +9,7 @@ class Bounce extends Component {
 	var speed : Int = 200;
 
 
-    public function update( dt:Float ) {
+    override function update( dt:Float ) {
 
         pos.y += speed * dir * dt;
         	//hit the bottom? go back up

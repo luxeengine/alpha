@@ -63,8 +63,8 @@ class Main extends luxe.Game {
 			});
 
 				//add a sprite animation component
-			var anim = new SpriteAnimation();
-            sprite.add( 'anim', anim );
+			var anim = new SpriteAnimation({ name:'anim' });
+            sprite.add( anim );
 
 			var animation_json = '
 				{
@@ -134,8 +134,8 @@ class Main extends luxe.Game {
             });
 
                 //add a sprite animation component
-            var anim2 = new SpriteAnimation();
-            sprite2.add( 'anim', anim2 );
+            var anim2 = new SpriteAnimation({ name:'anim' });
+            sprite2.add( anim2 );
             var animation_json2 = '
                 {
                     "idle" : {
