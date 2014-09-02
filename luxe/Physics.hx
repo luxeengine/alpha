@@ -163,12 +163,11 @@ class PhysicsEngine {
     public function new() {
 
         gravity = new Vector(0, -9.8, 0);
+        Luxe.on('render', _render);
 
     } //new
 
     public function init() {
-
-        Luxe.on('render', _render);
 
     } //init
 
