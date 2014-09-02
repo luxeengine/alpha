@@ -67,30 +67,30 @@ class Entity extends Objects {
     public function update(dt:Float) {}
 
         //scene events, called directly
-    public function onreset() {}
-    public function ondestroy() {}
+    @:noCompletion public function onreset() {}
+    @:noCompletion public function ondestroy() {}
 
         //input events, connected only when overridden in child class
-    public function onkeyup( event:KeyEvent ) {}
-    public function onkeydown( event:KeyEvent ) {}
-    public function ontextinput( event:TextEvent ) {}
+    @:noCompletion public function onkeyup( event:KeyEvent ) {}
+    @:noCompletion public function onkeydown( event:KeyEvent ) {}
+    @:noCompletion public function ontextinput( event:TextEvent ) {}
 
-    public function oninputdown( name:String, event:InputEvent ) {}
-    public function oninputup( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputdown( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputup( name:String, event:InputEvent ) {}
 
-    public function onmousedown( event:MouseEvent ) {}
-    public function onmouseup( event:MouseEvent ) {}
-    public function onmousemove( event:MouseEvent ) {}
-    public function onmousewheel( event:MouseEvent ) {}
+    @:noCompletion public function onmousedown( event:MouseEvent ) {}
+    @:noCompletion public function onmouseup( event:MouseEvent ) {}
+    @:noCompletion public function onmousemove( event:MouseEvent ) {}
+    @:noCompletion public function onmousewheel( event:MouseEvent ) {}
 
-    public function ontouchdown( event:TouchEvent ) {}
-    public function ontouchup( event:TouchEvent ) {}
-    public function ontouchmove( event:TouchEvent ) {}
+    @:noCompletion public function ontouchdown( event:TouchEvent ) {}
+    @:noCompletion public function ontouchup( event:TouchEvent ) {}
+    @:noCompletion public function ontouchmove( event:TouchEvent ) {}
 
-    public function ongamepadup( event:GamepadEvent ) {}
-    public function ongamepaddown( event:GamepadEvent ) {}
-    public function ongamepadaxis( event:GamepadEvent ) {}
-    public function ongamepaddevice( event:GamepadEvent ) {}
+    @:noCompletion public function ongamepadup( event:GamepadEvent ) {}
+    @:noCompletion public function ongamepaddown( event:GamepadEvent ) {}
+    @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
+    @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
 
 
 
