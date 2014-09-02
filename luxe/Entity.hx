@@ -392,6 +392,18 @@ class Entity extends Objects {
 
     } //_fixed_update
 
+//events
+
+    @:noCompletion public function _listen(e:String, h:EmitHandler) {
+
+        if(scene != null) {
+            scene.on(e, _onmousedown);
+            on(e, h);
+        }
+
+    } //_listen
+
+
 //scene
 
     function _detach_scene() {
@@ -412,10 +424,9 @@ class Entity extends Objects {
 
     } //attach_scene
 
-
 //Keys
-/*
-    @:noCompletion public function _onkeyup(e:KeyEvent) {
+
+    @:noCompletion public function _onkeyup( _event:KeyEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -424,23 +435,11 @@ class Entity extends Objects {
         _verboser('calling _onkeyup on ' + name);
 
             //init the parent first
-        // onkeyup(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.onkeyup(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._onkeyup(e);
-        } //for each child
+        emit('onkeyup', _event);
 
     } //_onkeyup
 
-    @:noCompletion public function _onkeydown(e:KeyEvent) {
+    @:noCompletion public function _onkeydown( _event:KeyEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -449,34 +448,27 @@ class Entity extends Objects {
         _verboser('calling _onkeydown on ' + name);
 
             //init the parent first
-        // onkeydown(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.onkeydown(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._onkeydown(e);
-        } //for each child
+        emit('onkeydown', _event);
 
     } //_onkeydown
 
-    @:noCompletion public function _listen(e:String, h:EmitHandler) {
+    @:noCompletion public function _ontextinput( _event:TextEvent ) {
 
-        if(scene != null) {
-            scene.on(e, _onmousedown);
-            on(e, h);
+        if(!active || !inited || !started) {
+            return;
         }
 
-    } //_listen
+        _verboser('calling _ontextinput on ' + name);
+
+            //init the parent first
+        emit('ontextinput', _event);
+
+    } //_ontextinput
+
 
 //Mouse
 
-    @:noCompletion public function _onmousedown(e:MouseEvent) {
+    @:noCompletion public function _onmousedown( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -485,25 +477,12 @@ class Entity extends Objects {
         trace('calling _onmousedown on ' + name );
 
             //init the parent first
-        // onmousedown(e);
-        emit('mousedown', e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            //_component.emit('onmousedown',e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._onmousedown(e);
-        } //for each child
+        emit('mousedown', _event);
 
     } //_onmousedown
 
 
-    @:noCompletion public function _onmouseup(e:MouseEvent) {
+    @:noCompletion public function _onmouseup( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -512,23 +491,11 @@ class Entity extends Objects {
         _verboser('calling _onmouseup on ' + name);
 
             //init the parent first
-        // onmouseup(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.onmouseup(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._onmouseup(e);
-        } //for each child
+        emit('onmouseup', _event);
 
     } //_onmouseup
 
-    @:noCompletion public function _onmousewheel(e:MouseEvent) {
+    @:noCompletion public function _onmousewheel( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -537,23 +504,11 @@ class Entity extends Objects {
         _verboser('calling _onmousewheel on ' + name);
 
             //init the parent first
-        // onmousewheel(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.onmousewheel(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._onmousewheel(e);
-        } //for each child
+        emit('onmousewheel', _event);
 
     } //_onmousewheel
 
-    @:noCompletion public function _onmousemove(e:MouseEvent) {
+    @:noCompletion public function _onmousemove( _event:MouseEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -562,24 +517,12 @@ class Entity extends Objects {
         _verboser('calling _onmousemove on ' + name);
 
             //init the parent first
-        // onmousemove(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.onmousemove(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._onmousemove(e);
-        } //for each child
+        emit('onmousemove', _event);
 
     } //_onmousemove
 
 //Touch
-    @:noCompletion public function _ontouchdown(e:TouchEvent) {
+    @:noCompletion public function _ontouchdown( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -588,23 +531,11 @@ class Entity extends Objects {
         _verboser('calling _ontouchdown on ' + name);
 
             //init the parent first
-        // ontouchdown(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.ontouchdown(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ontouchdown(e);
-        } //for each child
+        emit('ontouchdown', _event);
 
     } //_ontouchdown
 
-    @:noCompletion public function _ontouchup(e:TouchEvent) {
+    @:noCompletion public function _ontouchup( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -613,23 +544,11 @@ class Entity extends Objects {
         _verboser('calling _ontouchup on ' + name);
 
             //init the parent first
-        // ontouchup(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.ontouchup(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ontouchup(e);
-        } //for each child
+        emit('ontouchup', _event);
 
     } //_ontouchup
 
-    @:noCompletion public function _ontouchmove(e:TouchEvent) {
+    @:noCompletion public function _ontouchmove( _event:TouchEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -638,24 +557,12 @@ class Entity extends Objects {
         _verboser('calling _ontouchmove on ' + name);
 
             //init the parent first
-        // ontouchmove(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.ontouchmove(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ontouchmove(e);
-        } //for each child
+        emit('ontouchmove', _event);
 
     } //_ontouchmove
 
 //Gamepad
-    @:noCompletion public function _ongamepadaxis(e) {
+    @:noCompletion public function _ongamepadaxis( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -664,23 +571,11 @@ class Entity extends Objects {
         _verboser('calling _ongamepadaxis on ' + name);
 
             //init the parent first
-        // ongamepadaxis(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.ongamepadaxis(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ongamepadaxis(e);
-        } //for each child
+        emit('ongamepadaxis', _event);
 
     } //_ongamepadaxis
 
-    @:noCompletion public function _ongamepaddown(e) {
+    @:noCompletion public function _ongamepaddown( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -689,23 +584,11 @@ class Entity extends Objects {
         _verboser('calling _ongamepaddown on ' + name);
 
             //init the parent first
-        // ongamepaddown(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.ongamepaddown(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ongamepaddown(e);
-        } //for each child
+        emit('ongamepaddown', _event);
 
     } //_ongamepaddown
 
-    @:noCompletion public function _ongamepadup(e) {
+    @:noCompletion public function _ongamepadup( _event:GamepadEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -714,25 +597,26 @@ class Entity extends Objects {
         _verboser('calling _ongamepadup on ' + name);
 
             //init the parent first
-        // ongamepadup(e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.ongamepadup(e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._ongamepadup(e);
-        } //for each child
+        emit('ongamepadup', _event);
 
     } //_ongamepadup
 
+    @:noCompletion public function _ongamepaddevice( _event:GamepadEvent ) {
+
+        if(!active || !inited || !started) {
+            return;
+        }
+
+        _verboser('calling _ongamepaddevice on ' + name);
+
+            //init the parent first
+        emit('ongamepaddevice', _event);
+
+    } //_ongamepaddevice
+
 //Input
 
-    @:noCompletion public function _oninputdown(_name:String, e:InputEvent) {
+    @:noCompletion public function _oninputdown( _name:String, _event:InputEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -741,23 +625,11 @@ class Entity extends Objects {
         _verboser('calling _oninputdown on ' + name);
 
             //init the parent first
-        // oninputdown(_name, e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.oninputdown(_name, e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._oninputdown(_name, e);
-        } //for each child
+        emit('oninputdown', { name:_name, event:_event });
 
     } //_oninputdown
 
-    @:noCompletion public function _oninputup(_name:String, e:InputEvent) {
+    @:noCompletion public function _oninputup( _name:String, _event:InputEvent ) {
 
         if(!active || !inited || !started) {
             return;
@@ -766,22 +638,9 @@ class Entity extends Objects {
         _verboser('calling _oninputup on ' + name);
 
             //init the parent first
-        // oninputup(_name, e);
-
-        if(name == null) throw "name on entity is null? " + this;
-
-            //init all the components attached directly to us
-        for(_component in components) {
-            // _component.oninputup(_name, e);
-        } //for each component
-
-            //now init our children, so they do the same
-        for(_child in children) {
-            _child._oninputup(_name, e);
-        } //for each child
+        emit('oninputup', { name:_name, event:_event });
 
     } //_oninputup
-*/
 
 
 //timing
