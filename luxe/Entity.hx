@@ -494,10 +494,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _keyup on ' + name);
+        _debug('calling _keyup on ' + name);
 
         onkeyup(_event);
-        emit('onkeyup', _event);
+        emit('keyup', _event);
 
     } //_keyup
 
@@ -507,10 +507,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _keydown on ' + name);
+        _debug('calling _keydown on ' + name);
 
         onkeydown(_event);
-        emit('onkeydown', _event);
+        emit('keydown', _event);
 
     } //_keydown
 
@@ -520,10 +520,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _textinput on ' + name);
+        _debug('calling _textinput on ' + name);
 
         ontextinput(_event);
-        emit('ontextinput', _event);
+        emit('textinput', _event);
 
     } //_textinput
 
@@ -536,7 +536,7 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _mousedown on ' + name );
+        _debug('calling _mousedown on ' + name );
 
         onmousedown(_event);
         emit('mousedown', _event);
@@ -550,10 +550,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _mouseup on ' + name);
+        _debug('calling _mouseup on ' + name);
 
         onmouseup(_event);
-        emit('onmouseup', _event);
+        emit('mouseup', _event);
 
     } //_mouseup
 
@@ -563,10 +563,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _mousewheel on ' + name);
+        _debug('calling _mousewheel on ' + name);
 
         onmousewheel(_event);
-        emit('onmousewheel', _event);
+        emit('mousewheel', _event);
 
     } //_mousewheel
 
@@ -576,10 +576,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _mousemove on ' + name);
+        _debug('calling _mousemove on ' + name);
 
         onmousemove(_event);
-        emit('onmousemove', _event);
+        emit('mousemove', _event);
 
     } //_mousemove
 
@@ -590,10 +590,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _touchdown on ' + name);
+        _debug('calling _touchdown on ' + name);
 
         ontouchdown(_event);
-        emit('ontouchdown', _event);
+        emit('touchdown', _event);
 
     } //_touchdown
 
@@ -603,10 +603,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _touchup on ' + name);
+        _debug('calling _touchup on ' + name);
 
         ontouchup(_event);
-        emit('ontouchup', _event);
+        emit('touchup', _event);
 
     } //_touchup
 
@@ -616,10 +616,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _touchmove on ' + name);
+        _debug('calling _touchmove on ' + name);
 
         ontouchmove(_event);
-        emit('ontouchmove', _event);
+        emit('touchmove', _event);
 
     } //_touchmove
 
@@ -630,10 +630,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _gamepadaxis on ' + name);
+        _debug('calling _gamepadaxis on ' + name);
 
         ongamepadaxis(_event);
-        emit('ongamepadaxis', _event);
+        emit('gamepadaxis', _event);
 
     } //_gamepadaxis
 
@@ -643,10 +643,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _gamepaddown on ' + name);
+        _debug('calling _gamepaddown on ' + name);
 
         ongamepaddown(_event);
-        emit('ongamepaddown', _event);
+        emit('gamepaddown', _event);
 
     } //_gamepaddown
 
@@ -656,10 +656,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _gamepadup on ' + name);
+        _debug('calling _gamepadup on ' + name);
 
         ongamepadup(_event);
-        emit('ongamepadup', _event);
+        emit('gamepadup', _event);
 
     } //_gamepadup
 
@@ -669,10 +669,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _gamepaddevice on ' + name);
+        _debug('calling _gamepaddevice on ' + name);
 
         ongamepaddevice(_event);
-        emit('ongamepaddevice', _event);
+        emit('gamepaddevice', _event);
 
     } //_gamepaddevice
 
@@ -684,10 +684,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _inputdown on ' + name);
+        _debug('calling _inputdown on ' + name);
 
         oninputdown(_event.name, _event.event);
-        emit('oninputdown', _event);
+        emit('inputdown', _event);
 
     } //_inputdown
 
@@ -697,10 +697,10 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling _inputup on ' + name);
+        _debug('calling _inputup on ' + name);
 
         oninputup(_event.name, _event.event);
-        emit('oninputup', _event );
+        emit('inputup', _event );
 
     } //_inputup
 
