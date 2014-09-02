@@ -109,7 +109,7 @@ class Visual extends Entity {
                 } else {
 
                     texture.onload = function(_texture) {
-                        size = new Vector(texture.width, texture.height);
+                        size = new Vector(_texture.width, _texture.height);
                         _create_geometry();
                     }
                 } //texture is not loaded
