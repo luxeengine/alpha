@@ -12,6 +12,10 @@ class ComponentRules {
 
 	macro public static function apply() : Array<Field> {
 
+        init_field = null;
+        ondestroy_field = null;
+        onremoved_field = null;
+
 		var _fields = Context.getBuildFields();
 
             //do this first to ensure the values are set
@@ -91,6 +95,10 @@ class ComponentRules {
             } //switch _field.name
 
 		} //for field in fields
+
+        init_field = null;
+        ondestroy_field = null;
+        onremoved_field = null;
 
 		return _fields;
 

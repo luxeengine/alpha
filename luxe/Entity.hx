@@ -294,6 +294,7 @@ class Entity extends Objects {
 
         for(_component in components) {
             _verbose("          " + name + " calling destroy on component " + _component.name );
+            _component.onremoved();
             _component.ondestroy();
         } //for each component
 
