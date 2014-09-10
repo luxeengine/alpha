@@ -1,6 +1,7 @@
 package luxe;
 
 import luxe.Resource;
+import luxe.options.ParcelOptions;
 
 import luxe.Log._verbose;
 import luxe.Log._debug;
@@ -31,15 +32,6 @@ typedef SoundInfo = {
     id : String,
     name : String,
     is_stream : Bool
-}
-
-typedef ParcelOptions = {
-    ? sequential : Bool,
-    ? threaded : Bool,
-    ? load_spacing : Float,
-    ? start_spacing : Float,
-    ? oncomplete : Parcel->Void,
-    ? onprogress : Resource->Void
 }
 
 class Parcel extends luxe.ResourceManager {

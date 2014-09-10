@@ -46,7 +46,7 @@
     },
     snow_native : {
       build:{
-        defines:['luxe_native', 'luxe_parcel_logging', 'parcel_thread_disabled']
+        defines:['luxe_native', 'parcel_thread_disabled']
       }
     },
     snow_web : {
