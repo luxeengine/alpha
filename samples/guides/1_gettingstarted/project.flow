@@ -20,6 +20,14 @@
       assets : 'assets/'
     }
 
+  },
+
+  if:{
+    web:{
+      build:{
+        flags:['--dce full']
+      }
+    }
   }
 
 }

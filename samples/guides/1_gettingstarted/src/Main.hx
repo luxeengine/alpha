@@ -1,41 +1,27 @@
 
 import luxe.Input;
+import luxe.Sprite;
 import luxe.Color;
-
-import phoenix.geometry.RingGeometry;
-
+import luxe.Vector;
 
 class Main extends luxe.Game {
 
-
-    var ring : RingGeometry;
-
+    var block : Sprite;
 
     override function ready() {
 
-        var middle_screen_x = Luxe.screen.w / 2;
-        var middle_screen_y = Luxe.screen.h / 2;
-
-        var box = Luxe.draw.box({
-            x: middle_screen_x - 45,
-            y: middle_screen_y - 45,
-            w: 90,
-            h: 90,
-            color : new Color().rgb(0xff5917)
-        });
-
-        ring = Luxe.draw.ring({
-            x: middle_screen_x,
-            y: middle_screen_y,
-            r: 70
+        block = new Sprite({
+            name: 'a sprite',
+            pos: Luxe.screen.mid,
+            color: new Color().rgb(0xf94b04),
+            size: new Vector(128, 128)
         });
 
     } //ready
 
-    override function onmousemove( e:MouseEvent ) {
+    override function onmousemove( event:MouseEvent ) {
 
-            //move the ring to the mouse position
-        ring.transform.pos = e.pos;
+        block.pos = event.pos;
 
     } //onmousemove
 
@@ -46,6 +32,14 @@ class Main extends luxe.Game {
         }
 
     } //onkeyup
+
+    override function update( delta:Float ) {
+
+            //if we add 40 each frame, and scale it by the delta,
+            //it becomes 40 degrees per second!
+        block.rotation_z += 40 * delta;
+
+    } //update
 
 
 } //Main
