@@ -11,6 +11,9 @@ class EntityRules {
 
     macro public static function apply() : Array<Field> {
 
+        init_field = null;
+        ondestroy_field = null;
+
         var _fields = Context.getBuildFields();
 
             //do this first to ensure the values are set
@@ -93,7 +96,7 @@ class EntityRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('entity._listen( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.unshift( Context.parse('_listen( "$_event_name", ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -104,7 +107,7 @@ class EntityRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.unshift( Context.parse('_unlisten( "$_event_name", ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
