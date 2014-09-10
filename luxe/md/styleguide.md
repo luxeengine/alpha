@@ -11,7 +11,7 @@
 
 - Declared on the same line, `class Name extends Other {` 
 - Public members first, separated by properties/members
-- Private members second, preferably without `private` in front (unnecessary detail)
+- Private members second, without `private` in front (unnecessary)
 - Public members that are not public API require @:noCompletion
 - After `class Name {`, two empty lines before the first variable and
 - After members, two empty lines before constructor (if any), `public function new`

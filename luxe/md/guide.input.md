@@ -1,15 +1,14 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[To the prev guide](guide.sprites.html)
-###[To the next guide](guide.basiccomponents.html)
+###[To the prev guide](guide.two.html)
 ###[View all guides](guide.html)
 
 ---
 
 ## Handling input in luxe
 
-_This tutorial assumes you are familiar with the basics of [getting started with luxe](guide.gettingstarted.html), and [displaying stuff](guide.sprites.html) on screen._
+_This tutorial assumes you are familiar with the basics of [getting started with luxe](guide.one.html), and [displaying basic sprites stuff](guide.two.html) on screen._
 
 ###Different types of input
 ---

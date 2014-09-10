@@ -4,7 +4,7 @@
 
 ###[View all guides](guides.html)
 
-## What is Luxe and how does it work 
+## How luxe fits together, and how it's designed
 
 
 

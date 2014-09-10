@@ -10,7 +10,7 @@
     "md_path" : "./luxe/md/",
 
     "md_input": ["**/+(*.md)"],
-    "api_input" : ["**/+(*.json)"],
+    "_api_input" : ["**/+(*.json)"],
 
     "output_path" : "/Users/sven/dev/luxe_docs/",
     "images_output_path" : "images/",

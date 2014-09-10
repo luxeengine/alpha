@@ -7,41 +7,61 @@ Don't miss the [ setup guide ](setup.html) if you are only just getting things i
 ## Choose your destination
 ----
 ###[ Beginners guide ](#beginnersguide)   
-The beginners guide is a linear guide, following a semi logical progression about understanding how to get something on screen and move it around.
+**The beginners guide is a linear guide**,   
+it follows a semi logical progression about getting started with luxe.
 
-[ Getting Started with luxe ](#gettingstarted)    
-[ Drawing things on screen ](#basicdrawing)    
-[ Making things interactive ](#interactivity)
-  
-###[ Component/Entity guide ](#componentguide)
+[ Getting Started ](#gettingstarted)    
+[ Images and sprites ](#imagesandsprites)    
+[ Sprites and animation ](#spritesandanimation)    
 
-A guide about how Component and Entity systems work, and how they specifically work in Luxe    
-
-[ What are entities and components? ](#basiccomponents)    
-[ Creating and using custom components ](#createcomponents)    
-[ Creating and using custom entities ](#basiccomponents)    
 
 ###[ Feature guide ](#featureguide)   
-The feature guide is a piece by piece quick reference for specific features of the engine, designed to explain and teach what the engine can do.
+The feature guide is a piece by piece reference for specific features of the engine, designed to explain and teach what the engine can do.
 
-[ sprites ](#sprites) / [ sprite animation ](#spriteanimation)    
-[ events ](#events)   
-[ states ](#states)    
-[ tweening ](#tweening)    
+**gameplay**
+
+[ scene ](#scene)    
+[ physics ](#physics)    
+[ collision ](#collision)    
+[ transforms ](#transforms)    
+[ timing ](#timing)    
+[ timers ](#timers)    
+[ audio ](#audio)    
+
+**rendering**
+
+[ sprite ](#sprite)   
+[ sprite animation ](#spriteanimation)    
 [ color ](#color)    
-[ drawing ](#drawing)    
-[ particles ](#particles)    
+[ rendering ](#rendering)   
+[ render control ](#render_control)   
 [ shaders ](#shaders)    
 [ cameras ](#camera)    
-[ audio ](#audio)    
-[ font ](#fonts)    
-[ assets ](#assets)  
+[ tilemaps ](#tilemap)    
+[ drawing ](#drawing)    
+[ nineslice ](#nineslice)    
+[ particles ](#particles)    
+[ textures / render textures ](#textures)    
+[ fonts ](#fonts)    
 
-[ texture / render textures ](#textures)    
-[ rendering (depth,groups,blending) ](#rendering)    
+**systems**
+
+[ assets ](#assets)   
+[ maths ](#maths)   
+[ states ](#states)    
+[ events ](#events)   
+[ components ](#components)   
+[ tweening ](#tweening)    
+[ utils ](#utils)    
+
 
 ###[ Details guide ](#detailguide)   
 The detail guide is a look at the inner structure and design philosophy behind the engine and it's pieces, as well as elaborate on common questions.
+
+[ OpenGL API access ](#opengl)  
+[ OpenAL API access ](#openal)  
+[ snow API access ](#snow)  
+
 
 ###[ Advanced guide ](#advancedguide)   
 The advanced guide is for more experienced developers looking to fully understand and take advantage of squeezing more out of the engine.
@@ -53,31 +73,21 @@ The advanced guide is for more experienced developers looking to fully understan
 
 ## Beginners guide
 
-####Start here and go in order.
-
-They are short, but informative. Each one links to the next for you.   
-
-By following this guide, you should be able to get started making games quickly armed with all the information you need.
-
 <a name="gettingstarted"> </a>
-### [ Getting Started with luxe ](guide.gettingstarted.html)
-- Drawing and moving something on screen.
-[ ![getting started guide screenshot](images/guide.gettingstarted.png) ](guide.gettingstarted.html)
+### [ Getting Started with luxe ](guide.one.html)
+- Understanding the anatomy of a luxe game,   
+drawing a sprite, and moving it around.
+[ ![getting started guide screenshot](images/guide.one.png) ](guide.one.html)
 
-<a name="basicdrawing"> </a>
-### [ Drawing things on screen ](guide.sprites.html)
-- Drawing images and boxes as sprites, and looking at how drawing is ordered on screen
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.sprites.html)
+<a name="imagesandsprites"> </a>
+### [ Images and sprites ](guide.two.html)
+- Drawing static images, flipping, and movement
+[ ![sprites guide screenshot](images/guide.two.png) ](guide.two.html)
 
-<a name="interactivity"> </a>
-### [ Making things interactive ](guide.input.html)
-- A look at how to use the input functions and get mouse, keyboard, touch or gamepad information.
-[ ![input guide screenshot](images/guide.sprites.png) ](guide.input.html)
-
-<a name="basiccomponents"> </a>
-### [ Using components to create games ](guide.basiccomponents.html)
-- Attaching components to a sprite or entity to add different behaviors.
-[ ![components guide screenshot](images/guide.basiccomponents.png) ](guide.basiccomponents.html)
+<a name="spritesandanimation"> </a>
+### [ Sprites and animation ](guide.three.html)
+- Drawing animated sprites, preloading, and more
+[ ![input guide screenshot](images/guide.three.png) ](guide.three.html)
 
 ----
 <a class="toplink" href="#">back to top</a>

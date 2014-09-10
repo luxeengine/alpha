@@ -313,8 +313,8 @@ p {
 
 
 .sample {
-    width:645px;
-    height:450px;
+    width:640px;
+    height:427px;
     background:#ff4b03;
 }
 
@@ -337,6 +337,7 @@ user-select: none;
     margin-right: 0.9em;
     position: relative;
     display: inline-block;
+    vertical-align: middle;
 }
 
 .content {
