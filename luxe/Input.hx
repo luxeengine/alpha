@@ -211,10 +211,18 @@ class Input {
     var mouse_bindings : Map<String, Map<MouseButton,Bool> >;
 #end
 
+    var _named_input_released : Map<String, Bool>;
+    var _named_input_pressed : Map<String, Bool>;
+    var _named_input_down : Map<String, Bool>;
+
     @:noCompletion public function init() {
 
         key_bindings = new Map();
         mouse_bindings = new Map();
+
+        _named_input_down = new Map();
+        _named_input_pressed = new Map();
+        _named_input_released = new Map();
 
         _debug('\t input initialized.');
 
@@ -226,9 +234,48 @@ class Input {
 
     @:noCompletion public function process() {
 
+           //remove any stale named pressed value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_event in _named_input_pressed.keys()){
+
+            if(_named_input_pressed.get(_event)){
+                _named_input_pressed.remove(_event);
+            } else {
+                _named_input_pressed.set(_event, true);
+            }
+
+        } //each _named_input_pressed
+
+            //remove any stale key released value
+            //unless it wasn't alive for a full frame yet,
+            //then flag it so that it may be
+        for(_event in _named_input_released.keys()){
+
+            if(_named_input_released.get(_event)){
+                _named_input_released.remove(_event);
+            } else {
+                _named_input_released.set(_event, true);
+            }
+
+        } //each _named_input_released
+
     } //process
 
 //Input query
+
+    public function inputpressed( _event:String ) : Bool {
+        return _named_input_pressed.exists( _event );
+    } //inputpressed
+
+    public function inputreleased( _event:String ) : Bool{
+        return _named_input_released.exists( _event );
+    } //inputreleased
+
+    public function inputdown( _event:String ) : Bool{
+        return _named_input_down.exists( _event );
+    } //inputdown
+
 //Keys
 
     public function keypressed( _code:Int ) : Bool {
@@ -326,6 +373,8 @@ class Input {
 
     } //add
 
+
+
     @:noCompletion public function check_named_keys( e:KeyEvent, _down:Bool=false ) {
 
         var _fired : Array<String> = [];
@@ -342,20 +391,34 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
+
+                    //down but not yet processed
+                _named_input_pressed.set( _f, false);
+                    //down is true immediate, cos up removes it
+                _named_input_down.set( _f, true);
+
                 core.oninputdown( _f, {
                     name : _f,
                     type : InputType.keys,
                     state : InteractState.down,
                     key_event : e
                 });
+
             } else {
+
+                    //up but not yet processed
+                _named_input_released.set( _f, false);
+                    //remove down state
+                _named_input_down.remove( _f );
+
                 core.oninputup( _f, {
                     name : _f,
                     type : InputType.keys,
                     state : InteractState.up,
                     key_event : e
                 });
-            }
+
+            } //if _down
         } //_f in _fired
 
     } //check_named_keys
