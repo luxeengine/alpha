@@ -153,6 +153,10 @@ class Sprite extends Visual {
 
     function set_flipy(_v:Bool) {
 
+        if(_v == flipy) {
+            return flipy;
+        }
+
         if(geometry_quad != null) {
             geometry_quad.flipy = _v;
         }
@@ -162,6 +166,10 @@ class Sprite extends Visual {
     } //set_flipy
 
     function set_flipx(_v:Bool) {
+
+        if(_v == flipx) {
+            return flipx;
+        }
 
         if(geometry_quad != null) {
             geometry_quad.flipx = _v;
