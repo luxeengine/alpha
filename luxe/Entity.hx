@@ -197,7 +197,7 @@ class Entity extends Objects {
 
 
     public function add( _component:Component ) {
-        _components.add( _component );
+        return _components.add( _component );
     } //add
 
     public function remove( _name:String ) : Bool {

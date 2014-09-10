@@ -20,11 +20,11 @@ import luxe.Log._verbose;
 
     } //new
 
-    public function add( _component:Component ) : Void {
+    public function add( _component:Component ) {
 
         if(_component == null) {
             trace('attempt to add null component to ${entity.name}' );
-            return;
+            return _component;
         }
 
         _component.entity = entity;
@@ -47,6 +47,8 @@ import luxe.Log._verbose;
             _debug('\t entity ${entity.name} adding component after reset, so doing reset on ${_component.name}' );
             _component.onreset();
         }
+
+        return _component;
 
     } //add component
 

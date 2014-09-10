@@ -72,8 +72,8 @@ class Component extends ID {
 
 //components
 
-    public function add( component:Component ) : Void {
-        entity.add( component );
+    public function add( component:Component ) {
+        return entity.add( component );
     } //add
 
     public function remove( _name:String ) : Bool {
