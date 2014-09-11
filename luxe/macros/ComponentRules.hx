@@ -45,7 +45,7 @@ class ComponentRules {
                 name: 'ondestroy',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                kind: FFun({ params:[], args:[], ret:null, expr:Context.parse('super.ondestroy()', Context.currentPos()) }),
                 pos: Context.currentPos()
             };
             _fields.push(ondestroy_field);
@@ -57,7 +57,7 @@ class ComponentRules {
                 name: 'onremoved',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                kind: FFun({ params:[], args:[], ret:null, expr:Context.parse('super.onremoved()', Context.currentPos()) }),
                 pos: Context.currentPos()
             };
             _fields.push(onremoved_field);
@@ -118,7 +118,7 @@ class ComponentRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('entity._listen( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._listen( "$_event_name", ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -129,7 +129,7 @@ class ComponentRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -140,7 +140,7 @@ class ComponentRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('entity._unlisten( "$_event_name", ${_field.name} )', _field.pos) );
                     } //switch exp
             } //switch kind
 

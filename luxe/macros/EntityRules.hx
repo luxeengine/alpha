@@ -42,7 +42,7 @@ class EntityRules {
                 name: 'ondestroy',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                kind: FFun({ params:[], args:[], ret:null, expr:Context.parse('super.ondestroy()', Context.currentPos()) }),
                 pos: Context.currentPos()
             };
             _fields.push(ondestroy_field);
@@ -96,7 +96,7 @@ class EntityRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('_listen( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('_listen( "$_event_name", ${_field.name}, true )', _field.pos) );
                     } //switch exp
             } //switch kind
 
@@ -107,7 +107,7 @@ class EntityRules {
                     switch(f.expr.expr) {
                         default:
                         case EBlock(exprs):
-                            exprs.unshift( Context.parse('_unlisten( "$_event_name", ${_field.name} )', _field.pos) );
+                            exprs.push( Context.parse('_unlisten( "$_event_name", ${_field.name}, true )', _field.pos) );
                     } //switch exp
             } //switch kind
 
