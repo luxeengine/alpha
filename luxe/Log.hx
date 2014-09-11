@@ -15,29 +15,33 @@ class Log {
 
     macro public static function level( __level:Int ) : haxe.macro.Expr {
 
-        trace("/ luxe / set log level to " + __level );
+        #if !display
+            trace("/ luxe / set log level to " + __level );
+        #end
 
         _level = __level;
 
         return macro null;
 
     } //level
-    
+
     macro public static function filter( __filter:String ) : haxe.macro.Expr {
 
-        trace("/ luxe / setting filter : " + __filter );
+        #if !display
+            trace("/ luxe / setting filter : " + __filter );
+        #end
 
         _filter = __filter.split(',');
 
         var _index = 0;
-        for(_f in _filter) {            
+        for(_f in _filter) {
             _filter[_index] = StringTools.trim(_f);
             _index++;
         }
 
         return macro null;
 
-    } //filter    
+    } //filter
 
     macro public static function exclude( __exclude:String ) : haxe.macro.Expr {
 
@@ -46,7 +50,7 @@ class Log {
         _exclude = __exclude.split(',');
 
         var _index = 0;
-        for(_e in _exclude) {            
+        for(_e in _exclude) {
             _exclude[_index] = StringTools.trim(_e);
             _index++;
         }
@@ -65,9 +69,9 @@ class Log {
 
     } //width
 
-        //This macro uses the defined log level value to reject code that 
-        //shouldn't even exist at runtime , like low level debug information 
-        //and logging by injecting or not injecting code 
+        //This macro uses the defined log level value to reject code that
+        //shouldn't even exist at runtime , like low level debug information
+        //and logging by injecting or not injecting code
     macro public static function log( value:Dynamic ) : Expr {
 
         var _file = Path.withoutDirectory(_get_log_file());
@@ -95,18 +99,18 @@ class Log {
 
         if(_log) {
             return macro @:pos(Context.currentPos()) trace('${_spaces}i / $_context / ' + $value);
-        } 
+        }
 
         return macro null;
 
     } //log
 
     macro public static function _debug( value:Dynamic ) : Expr {
-        
+
         var _file = Path.withoutDirectory(_get_log_file());
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
-        
+
         for(meta in Context.getLocalClass().get().meta.get()) {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
@@ -139,7 +143,7 @@ class Log {
         var _file = Path.withoutDirectory(_get_log_file());
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
-        
+
         for(meta in Context.getLocalClass().get().meta.get()) {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
@@ -172,7 +176,7 @@ class Log {
         var _file = Path.withoutDirectory(_get_log_file());
         var _context = Path.withoutExtension(_file).toLowerCase();
         var _spaces = _get_spacing(_file);
-        
+
         for(meta in Context.getLocalClass().get().meta.get()) {
             if(meta.name == ':log_as') {
                 var _str = switch(meta.params[0].expr) {
@@ -222,7 +226,7 @@ class Log {
     } //_get_spacing
 
     macro static function _get_log_file() {
-        return macro Context.getPosInfos(Context.currentPos()).file;        
+        return macro Context.getPosInfos(Context.currentPos()).file;
     } //get_log_context
 
 } // Log
