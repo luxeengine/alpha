@@ -7,7 +7,14 @@ import luxe.Vector;
 class Main extends luxe.Game {
 
     var block : Sprite;
+    override function config(config:luxe.AppConfig) {
 
+        config.window.width = 400;
+        config.window.height = 289;
+
+        return config;
+
+    } //config
     override function ready() {
 
         block = new Sprite({

@@ -1,8 +1,5 @@
 {
     "textures" : [
-        { "id" : "assets/apartment.png" },
-        { "id" : "assets/stand.png" },
-        { "id" : "assets/idle.png" },
-        { "id" : "assets/walk.png" }
+        { "id" : "assets/stand.png" }
     ]
 }
