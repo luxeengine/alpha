@@ -10,6 +10,13 @@ import phoenix.Texture;
 import luxe.Log.log;
 import luxe.Log._debug;
 
+typedef SpriteAnimationEventData = {
+    animation : String,
+    event: String,
+    frame_event : SpriteAnimationFrameEvent,
+    frame: SpriteAnimationFrame,
+    image_frame : Int
+}
 
 typedef SpriteAnimationFrameEvent = {
     frame : Int,
@@ -105,7 +112,7 @@ class SpriteAnimationData {
         var _json_framesource_list : Array<Dynamic> = cast _animdata.frame_sources;
 
         //frameset
-        if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset. In anim : " + name; }
+        if(_json_frameset == null) { throw "SpriteAnimation passed invalid json, anim data requires frameset as an array of strings. In anim : " + name; }
 
         var _frameset : Array<Int> = parse_frameset( _json_frameset );
 
@@ -524,6 +531,7 @@ class SpriteAnimation extends Component {
     } //init
 
     public function add_from_json_object( _json_object : Dynamic ) {
+
         if(animation_list == null) {
             animation_list = new Map();
         }
