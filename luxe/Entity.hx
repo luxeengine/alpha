@@ -196,7 +196,7 @@ class Entity extends Objects {
 //components
 
 
-    public function add( _component:Component ) {
+    public function add<T:Component>( _component:T ) : T {
         return _components.add( _component );
     } //add
 

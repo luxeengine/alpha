@@ -72,7 +72,7 @@ class Component extends ID {
 
 //components
 
-    public function add( component:Component ) {
+    public function add<T:Component>( component:T ) : T {
         return entity.add( component );
     } //add
 

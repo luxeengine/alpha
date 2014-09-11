@@ -20,7 +20,7 @@ import luxe.Log._verbose;
 
     } //new
 
-    public function add( _component:Component ) {
+    public function add<T:Component>( _component:T ) : T {
 
         if(_component == null) {
             trace('attempt to add null component to ${entity.name}' );

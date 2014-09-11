@@ -14,7 +14,7 @@ import luxe.importers.texturepacker.TexturePackerData;
 // }
 
 class TexturePackerSpriteAnimation {
-    
+
 
     public static function parse( data:TexturePackerData, anim_name:String='anim' ) : Dynamic {
 
@@ -32,12 +32,12 @@ class TexturePackerSpriteAnimation {
 
             //frameset will be straight array, all frames
         json_anim.frameset = [ '"' + start + '-' + count + '"' ];
-        
+
         if(data != null && data.frames.length != 0) {
             json_anim.frame_size = { x:data.frames[0].sourceSize.w, y:data.frames[0].sourceSize.h };
         }
 
-            //now for each frame, add them as a frame_size 
+            //now for each frame, add them as a frame_size
             //and offset based on the data in the import
         var index : Int = 1;
         for(_frame in data.frames) {
@@ -58,10 +58,10 @@ class TexturePackerSpriteAnimation {
 
     } //parse
 
-        //given a single named animation sequence in the data, this will extract and return 
+        //given a single named animation sequence in the data, this will extract and return
         //any frames specific to the named animation
     @:noCompletion public static function parse_by_sequence( data:TexturePackerData, name:String ) : Dynamic {
-            
+
             //these defaults are changed later
             //post parsing anyway, but should be exposed
         var json_anim : Dynamic = {
@@ -77,13 +77,13 @@ class TexturePackerSpriteAnimation {
 
         var _type0_re : EReg = new EReg('('+name+')(\\d\\b)', 'gi');
         var _type1_re : EReg  = new EReg('('+name+')(_\\d\\b)', 'gi');
-        var _type2_re : EReg  = new EReg('('+name+')(-\\d\\b)', 'gi');        
+        var _type2_re : EReg  = new EReg('('+name+')(-\\d\\b)', 'gi');
 
             //now we search for the frames we are looking for
         var matched : Array<TexturePackerFrame> = [];
 
         for(_frame in data.frames) {
-            if( _type0_re.match(_frame.filename) ) {            
+            if( _type0_re.match(_frame.filename) ) {
                 matched.push(_frame);
             } else if(_type1_re.match(_frame.filename)) {
                 matched.push(_frame);
@@ -98,7 +98,7 @@ class TexturePackerSpriteAnimation {
 
             var src = parse_source(match);
                 src.frame = _index;
-            
+
             json_anim.frame_sources.push( src );
 
             _index++;
@@ -113,7 +113,7 @@ class TexturePackerSpriteAnimation {
 
         //this returns multiple named animations as a single blob
     public static function parse_by_sequences( data:TexturePackerData, names:Array<String> ) : Dynamic {
-        
+
         var frames : Array<Dynamic> = [];
 
         for(name in names) {
@@ -135,18 +135,18 @@ class TexturePackerSpriteAnimation {
    static function parse_source( _frame:TexturePackerFrame ) : Dynamic {
 
         var _frame_source : Dynamic = {};
-            
+
             _frame_source.pos = {
-                x:_frame.spriteSourceSize.x, 
-                y:_frame.spriteSourceSize.y 
+                x:_frame.spriteSourceSize.x,
+                y:_frame.spriteSourceSize.y
             };
 
-            _frame_source.size = { 
+            _frame_source.size = {
                 x:_frame.sourceSize.w,
-                y:_frame.sourceSize.h 
+                y:_frame.sourceSize.h
             };
 
-            _frame_source.source = { 
+            _frame_source.source = {
                 x: _frame.frame.x,
                 y: _frame.frame.y,
                 w: _frame.frame.w,
