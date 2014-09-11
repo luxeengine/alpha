@@ -79,11 +79,7 @@ class Parcel extends luxe.ResourceManager {
     var index_datas     : Int = 0;
     var index_texts     : Int = 0;
 
-
-    public function load() {
-
-        time_start_load = Luxe.time;
-        current_count = 0;
+    function refresh_total_items() {
 
         total_items =
             texture_list.length +
@@ -92,6 +88,14 @@ class Parcel extends luxe.ResourceManager {
             sound_list.length   +
             text_list.length    +
             data_list.length;
+    }
+
+    public function load() {
+
+        time_start_load = Luxe.time;
+        current_count = 0;
+
+        refresh_total_items();
 
         log('loading parcel in ${options.start_spacing}s');
 
@@ -218,6 +222,8 @@ class Parcel extends luxe.ResourceManager {
             } //json object data
 
         } //json_object
+
+        refresh_total_items();
 
     } //from_json
 
