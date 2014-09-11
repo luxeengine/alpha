@@ -399,7 +399,7 @@ class Entity extends Objects {
 
 //events
 
-    @:noCompletion public function _listen( _event:String, _handler:EmitHandler ) {
+    @:noCompletion public function _listen( _event:String, _handler:EmitHandler, ? _self:Bool=false ) {
 
         //this function is called when a component, or a subclass tries to override the onmousedown handler,
         //at which point it makes sure this entity is connected to the scene handlers, and then makes sure
@@ -408,7 +408,9 @@ class Entity extends Objects {
         //the duplication of events&handler combo is handled internally by Emitter, so we don't have to worry
         //todo: potential consolidation to avoid the switch here
 
-        on(_event, _handler);
+        if( !_self){
+            on(_event, _handler);
+        }
 
         if(scene != null) {
             switch(_event) {
@@ -439,9 +441,11 @@ class Entity extends Objects {
 
     } //_listen
 
-    @:noCompletion public function _unlisten( _event:String, _handler:EmitHandler ) {
+    @:noCompletion public function _unlisten( _event:String, _handler:EmitHandler, ?_self:Bool=false ) {
 
-        off(_event, _handler);
+        if(!_self) {
+            off(_event, _handler);
+        }
 
     } //_unlisten
 
