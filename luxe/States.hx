@@ -162,9 +162,9 @@ class States extends Objects {
         }
     } //disable
 
-    public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2 ) {
+    public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2, ?pos:haxe.PosInfos ) {
 
-        _debug('attempt to set state to $name');
+        _debug('attempt to set state to $name from ${pos.fileName}:${pos.lineNumber}@${pos.className}.${pos.methodName}');
 
         if (current_state != null) {
 
