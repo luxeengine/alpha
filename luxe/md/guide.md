@@ -20,47 +20,47 @@ The feature guide is a piece by piece reference for specific features of the eng
 
 **gameplay**
 
-[ scene ](#scene)    
-[ physics ](#physics)    
-[ collision ](#collision)    
-[ transforms ](#transforms)    
-[ timing ](#timing)    
-[ timers ](#timers)    
-[ audio ](#audio)    
+[ ~~scene~~ ](#scene)    
+[ ~~physics~~ ](#physics)    
+[ ~~collision~~ ](#collision)    
+[ ~~transforms~~ ](#transforms)    
+[ ~~timing~~ ](#timing)    
+[ ~~timers~~ ](#timers)    
+[ ~~audio~~ ](#audio)    
 
 **rendering**
 
 [ sprite ](#sprite)   
 [ sprite animation ](#spriteanimation)    
 [ color ](#color)    
-[ rendering ](#rendering)   
-[ render control ](#render_control)   
+[ ~~rendering~~ ](#rendering)   
+[ ~~render control~~ ](#render_control)   
 [ shaders ](#shaders)    
-[ cameras ](#camera)    
-[ tilemaps ](#tilemap)    
+[ ~~cameras~~ ](#camera)    
+[ ~~tilemaps~~ ](#tilemap)    
 [ drawing ](#drawing)    
-[ nineslice ](#nineslice)    
-[ particles ](#particles)    
-[ textures / render textures ](#textures)    
-[ fonts ](#fonts)    
+[ ~~nineslice~~ ](#nineslice)    
+[ ~~particles~~ ](#particles)    
+[ ~~textures / render textures~~ ](#textures)    
+[ ~~fonts~~ ](#fonts)    
 
 **systems**
 
-[ assets ](#assets)   
-[ maths ](#maths)   
-[ states ](#states)    
+[ ~~assets~~ ](#assets)   
+[ ~~maths~~ ](#maths)   
+[ ~~states~~ ](#states)    
 [ events ](#events)   
 [ components ](#components)   
 [ tweening ](#tweening)    
-[ utils ](#utils)    
+[ ~~utils~~ ](#utils)    
 
 
 ###[ Details guide ](#detailguide)   
 The detail guide is a look at the inner structure and design philosophy behind the engine and it's pieces, as well as elaborate on common questions.
 
-[ OpenGL API access ](#opengl)  
-[ OpenAL API access ](#openal)  
-[ snow API access ](#snow)  
+[ ~~OpenGL API access~~ ](#opengl)  
+[ ~~OpenAL API access~~ ](#openal)  
+[ ~~snow API access~~ ](#snow)  
 
 
 ###[ Advanced guide ](#advancedguide)   
@@ -96,81 +96,118 @@ drawing a sprite, and moving it around.
 ## Feature guide
 ####These can be used and read in any order
 
-Each one links to the others for you.   
+These vary from feature reference guides to in depth article guides.
 
-By following this guide, you should be able to see at a glance and in detail the features of luxe you can use to make games.
+---
+<a class="toplink" href="#">back to top</a>
 
-<a name="sprites"> </a>
-### [ sprites ](guide.sprites.html)
-- What sprites are used for, and their features.
-[ ![sprites screenshot](images/guide.spriteanimation.png) ](guide.spriteanimation.html)
+### Gameplay
+
+### scene
+- Scene/entity relationship
+
+### physics
+- Physics hook implementation
+![physics guide screenshot](images/guide.physics.png)
+
+### collision
+- SAT collision query helpers
+![collision guide screenshot](images/guide.collision.png)
+
+### transforms
+- transformation stack for spatial control (pos/rot/scale)
+![transform guide screenshot](images/guide.transforms.png)
+
+### timing
+- app timing, timescale, fixed rate, etc
+
+### timers
+- scheduling things in time, once or repeating
+
+### audio
+- playing music and sound effects
+
+---
+<a class="toplink" href="#">back to top</a>
+
+### Rendering
+
+<a name="sprite"> </a>
+### [ sprite ](guide.sprite.html)
+- Sprite feature guide
 
 <a name="spriteanimation"> </a>
 ### [ sprite animation ](guide.spriteanimation.html)
 - How to bring your sprites to life by importing sprite sheets or using separate images.
-[ ![sprite animation guide screenshot](images/guide.spriteanimation.png) ](guide.spriteanimation.html)
-
-<a name="events"> </a>
-### [ events ](guide.events.html)
-- Using the event system to communicate locally and globally.
-[ ![events guide screenshot](images/guide.sprites.png) ](guide.events.html)
-
-<a name="tweening"> </a>
-### [ tweening ](guide.tween.html)
-- Making things animate smoothly over time using tweening.
-[ ![tween guide screenshot](images/guide.tween.png) ](guide.tween.html)
 
 <a name="color"> </a>
 ### [ color guide ](guide.color.html)
 - The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
 [ ![color guide screenshot](images/guide.color.png) ](guide.color.html)
 
-<a name="drawing"> </a>
-### [ drawing guide ](guide.drawing.html)
-- How to draw shapes, text, and to create custom geometry in luxe.
-[ ![sprites guide screenshot](images/guide.drawing.png) ](guide.drawing.html)
+### rendering
+- understanding and using the batching system effectively
 
----
-<a class="toplink" href="#">back to top</a>
-
-<a name="textures"> </a>
-### [ texture guide ](guide.textures.html)
-- Understanding the options and loading of textures and images, including filtering and onload handling on web.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.textures.html)
-
-<a name="particles"> </a>
-### [ particle guide ](guide.particles.html)
-- How to use the built in particle system for effects
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.particles.html)
+### render control
+- controlling depth, blend mode, and render events
 
 <a name="shaders"> </a>
 ### [ shader guide ](guide.shaders.html)
 - Understanding how to use shaders on your sprites or geometry.
 [ ![shader guide screenshot](images/guide.shaders.png) ](guide.shaders.html)
 
-<a name="rendering"> </a>
-### [ rendering guide ](guide.rendering.html)
-- A closer look at how ordering and depth sorting works in luxe, as well as a breakdown of geometry groups, how they work, what they are, and how to use them for blending and post/pre render callbacks.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.depth.html)
+### cameras
+- creating and manipulating views
+![camera guide screenshot](images/guide.cameras.png)
+
+### tilemaps
+- creating manually, or loading tilemaps from Tiled
+![tiles guide screenshot](images/guide.tiles.png)
+
+<a name="drawing"> </a>
+### [ drawing guide ](guide.drawing.html)
+- How to draw shapes, text, and to create custom geometry
+[ ![sprites guide screenshot](images/guide.drawing.png) ](guide.drawing.html)
+
+### nineslice
+- "Nine slice" scaleable graphics helper guide
+
+### particles
+- using the default simple particle system
+![particle guide screenshot](images/guide.particles.png)
+
+### textures
+- managing and working with textures and render textures
+
+### fonts
+- loading and displaying custom bitmap fonts
+
 
 ---
 <a class="toplink" href="#">back to top</a>
 
+### Systems
 
-<a name="audio"> </a>
-### [ audio guide ](guide.audio.html)
-- Playing sounds and music in your game
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.audio.html)
+### assets
+- loading and using text, bytes, or other assets with parcels
 
-<a name="camera"> </a>
-### [ camera guide ](guide.camera.html)
-- How to use the camera class to pan, zoom, shake or move around your world. 
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.camera.html)
+### maths
+- using Matrix, Quaternion and Vector and Math utils
 
-<a name="fonts"> </a>
-### [ font guide ](guide.fonts.html)
-- Understanding how to use fonts in luxe.
-[ ![sprites guide screenshot](images/guide.sprites.png) ](guide.fonts.html)
+### states
+- using the built in state machine, for stackable, transient or modal states
+
+<a name="events"> </a>
+### [ events ](guide.events.html)
+- Using the event system to communicate locally and globally.
+
+<a name="tweening"> </a>
+### [ tweening ](guide.tween.html)
+- Making things animate smoothly over time using tweening.
+[ ![tween guide screenshot](images/guide.tween.png) ](guide.tween.html)
+
+### utils
+- find out about various utility functions and features in luxe
 
 
 ----
@@ -179,19 +216,17 @@ By following this guide, you should be able to see at a glance and in detail the
 
 ## Detail guide
 
-### [ What is luxe and how does it work ](guide.understandingluxe.html)
-- Looking at the structure and design philosophy beneath luxe
+:todo:
 
 ----
 <a class="toplink" href="#">back to top</a>
 
 <a name="advancedguide"> </a>
 
-## Advanced guide
+:todo:
 
-### [ Some advanced topic ](guide.html)
-- Yep. that is serious.
-
+----
+<a class="toplink" href="#">back to top</a>
 
 
 &nbsp;   
