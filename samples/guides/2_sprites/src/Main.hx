@@ -16,15 +16,6 @@ class Main extends luxe.Game {
         //set by the screen size later
     var move_speed : Float = 0;
 
-    override function config(config:luxe.AppConfig) {
-
-        config.window.width = 400;
-        config.window.height = 289;
-
-        return config;
-
-    } //config
-
     override function ready() {
 
         //it's important that if you want to build
