@@ -121,7 +121,7 @@ class Draw {
         var _two_pi : Float = 2 * Math.PI;
         var _sides_over_pi : Float = Math.PI / _sides;
         var _sides_over_twopi : Float = _two_pi / _sides;
-        var _angle_rad : Float = luxe.utils.Maths.degToRad(_angle);
+        var _angle_rad : Float = luxe.utils.Maths.radians(_angle);
 
         if(_solid) {
                 //add the center vertex

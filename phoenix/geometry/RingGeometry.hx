@@ -20,15 +20,15 @@ class RingGeometry extends CircleGeometry {
 
 	} //new
 
-	override public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle:Float=0, _end_angle:Float=360 ) {
+	override public function set( _x:Float, _y:Float, _rx:Float, _ry:Float, _steps:Int, _start_angle_degrees:Float=0, _end_angle_degrees:Float=360 ) {
 
             //adapted from
             //http://slabode.exofire.net/circle_draw.shtml
 
         primitive_type = PrimitiveType.triangles;
 
-            var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle);
-            var _end_angle_rad = luxe.utils.Maths.degToRad(_end_angle);
+            var _start_angle_rad = luxe.utils.Maths.radians(_start_angle_degrees);
+            var _end_angle_rad = luxe.utils.Maths.radians(_end_angle_degrees);
 
             var _range = _end_angle_rad - _start_angle_rad;
 

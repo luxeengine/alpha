@@ -155,7 +155,7 @@ class Matrix {
 
     public function make2D( _x:Float, _y:Float, _scale:Float = 1, _rotation:Float = 0 ) {
 
-        var theta = Maths.degToRad(_rotation);
+        var theta = Maths.radians(_rotation);
         var c = Math.cos(theta);
         var s = Math.sin(theta);
 
@@ -918,7 +918,7 @@ class Matrix {
 
     public function makePerspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) : Matrix {
 
-        var ymax = _near * Math.tan( Maths.degToRad(_fov * 0.5) );
+        var ymax = _near * Math.tan( Maths.radians(_fov * 0.5) );
         var ymin = -ymax;
         var xmin = ymin * _aspect;
         var xmax = ymax * _aspect;

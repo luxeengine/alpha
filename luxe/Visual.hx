@@ -360,15 +360,15 @@ class Visual extends Entity {
 
     function get_rotation_z() : Float {
 
-        return Maths.radToDeg(radians);
+        return Maths.degrees(radians);
 
     } //get_rotation
 
-    function set_rotation_z( _r:Float ) : Float {
+    function set_rotation_z( _degrees:Float ) : Float {
 
-        radians = Maths.degToRad(_r);
+        radians = Maths.radians(_degrees);
 
-        return _r;
+        return _degrees;
 
     } //set_rotation_z
 

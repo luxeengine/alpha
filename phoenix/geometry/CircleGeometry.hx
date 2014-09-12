@@ -72,8 +72,8 @@ class CircleGeometry extends Geometry {
         primitive_type = PrimitiveType.triangles;
 
             var half_pi : Float = Math.PI/2;
-            var _start_angle_rad = luxe.utils.Maths.degToRad(_start_angle) - half_pi;
-            var _end_angle_rad = luxe.utils.Maths.degToRad(_end_angle) - half_pi;
+            var _start_angle_rad = luxe.utils.Maths.radians(_start_angle) - half_pi;
+            var _end_angle_rad = luxe.utils.Maths.radians(_end_angle) - half_pi;
 
             var _range = _end_angle_rad - _start_angle_rad;
 

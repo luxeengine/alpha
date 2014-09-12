@@ -36,7 +36,7 @@ class Maths {
 
  	public static inline function wrap_angle( degrees:Float, lower:Float, upper:Float ) {
 
-    	var _radians:Float = degToRad(degrees);
+    	var _radians:Float = radians(degrees);
     	var _distance:Float = upper - lower;
       	var _times:Float = Math.floor((degrees - lower) / _distance);
 
@@ -114,13 +114,13 @@ class Maths {
 		return (x < 0) ? -1 : ((x > 0) ? 1 : 0);
 	} //sign
 
-	static inline public function degToRad( deg:Float ) : Float {
+	static inline public function radians( degrees:Float ) : Float {
 		return deg * DEG2RAD;
-	} //degToRad
+	} //radians
 
-	static inline public function radToDeg( rad:Float ) : Float {
+	static inline public function degrees( radians:Float ) : Float {
 		return rad * RAD2DEG;
-	} //radToDeg
+	} //degrees
 
 
 } //Maths

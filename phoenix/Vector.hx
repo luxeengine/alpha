@@ -625,18 +625,18 @@ class Vector {
 
     public function degrees() : Vector {
 
-        x = Maths.radToDeg(x);
-        y = Maths.radToDeg(y);
-        z = Maths.radToDeg(z);
+        x = Maths.degrees(x);
+        y = Maths.degrees(y);
+        z = Maths.degrees(z);
 
         return this;
     }
 
     public function radians() : Vector {
 
-        x = Maths.degToRad(x);
-        y = Maths.degToRad(y);
-        z = Maths.degToRad(z);
+        x = Maths.radians(x);
+        y = Maths.radians(y);
+        z = Maths.radians(z);
 
         return this;
     }

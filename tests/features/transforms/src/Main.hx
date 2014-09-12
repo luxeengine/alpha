@@ -29,7 +29,7 @@ class Main extends luxe.Game {
     override function ready() {
 
         // var pos = new Vector(100,200,300);
-        // var rot = new Quaternion().setFromEuler(new Vector( Maths.degToRad(180),Maths.degToRad(45),Maths.degToRad(90)));
+        // var rot = new Quaternion().setFromEuler(new Vector( Maths.radians(180),Maths.radians(45),Maths.radians(90)));
 
         // var dq = new DualQuaternion().setFromTranslationRotation(pos, rot);
 
