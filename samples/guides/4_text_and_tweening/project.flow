@@ -1,13 +1,13 @@
 {
 
   project : {
-    name : 'luxe - sample - simplest',
+    name : 'luxe - guide - text and tweening',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_simplest',
-      package : 'com.luxeengine.simplest'
+      name : 'luxe_guide_4',
+      package : 'com.luxeengine.guide4'
     },
 
     build : {
