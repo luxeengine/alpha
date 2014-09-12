@@ -2,6 +2,7 @@
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
 ###[To the prev guide](guide.two.html)
+###[To the next guide](guide.four.html)
 ###[View all guides](guide.html)
 
 ---
@@ -28,6 +29,8 @@ Press D/right to move right
 ---
 
 <div data-content="./samples/3_sprite_animation/index.html" class="sample"> <p>Click to run example</p> </div>
+
+[code listing](#code)
 
 ---
 
@@ -181,6 +184,7 @@ This is a snippet from the update function below :
 ---
 
 ###[To the prev guide](guide.two.html)
+###[To the next guide](guide.four.html)
 ###[Back to all guides](guide.html)
 
 ---

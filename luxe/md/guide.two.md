@@ -31,6 +31,8 @@ Press D/right to move right
 
 <div data-content="./samples/2_sprites/index.html" class="sample"> <p>Click to run example</p> </div>
 
+[code listing](#code)
+
 ---
 
 ### Loading an image asset
@@ -39,6 +41,12 @@ Assets are loaded via the luxe API, which offers functions such as `Luxe.loadTex
 Let's start by loading the image of a player sprite, so we can move it around later.
 
 It is important to take note that you don't want to be touching the image reference until it is finished loading and is valid. On platforms like the web, it will take some time for an image to load. **In the next tutorial the built in preloading system is shown for loading multiple assets**. For now, we just connect to the single texture onload handler.
+
+Secondly, the word texture. It's just an image! It's a more formal word that the hardware APIs use, but wherever you see it, think image.
+
+Lastly, before we continue, you will notice the use of the `phoenix` package pop up.   
+phoenix is the name of the rendering backend that luxe is built around. It is a name from a long history of the rendering pipeline that have since become a core part of the luxe engine.
+
 
 &nbsp;
 
