@@ -36,7 +36,7 @@ package luxe.utils.json;
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-@noCompletion: enum JSONTokenType {
+@:noCompletion enum JSONTokenType {
     tUNKNOWN;
     tCOMMA;
     tLEFT_BRACE;

@@ -115,11 +115,11 @@ class Maths {
 	} //sign
 
 	static inline public function radians( degrees:Float ) : Float {
-		return deg * DEG2RAD;
+		return degrees * DEG2RAD;
 	} //radians
 
 	static inline public function degrees( radians:Float ) : Float {
-		return rad * RAD2DEG;
+		return radians * RAD2DEG;
 	} //degrees
 
 
