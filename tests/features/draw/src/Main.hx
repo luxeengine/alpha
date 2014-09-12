@@ -178,7 +178,7 @@ class Main extends luxe.Game {
         }
     } //onkeyup
 
-    override function update(dt:Float) {
+    override function onrender() {
 
         Luxe.draw.rectangle({
                 //this line is important, as each frame it will create new geometry!
@@ -198,7 +198,7 @@ class Main extends luxe.Game {
             text : Luxe.dt
         });
 
-    } //update
+    } //onrender
 
 
 } //Main
