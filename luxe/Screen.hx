@@ -2,6 +2,67 @@ package luxe;
 
 import luxe.Vector;
 
+class Screen {
+
+    public var x : Float;
+    public var y : Float;
+    public var w : Float;
+    public var h : Float;
+
+    public var cursor : Cursor;
+    public var core : Core;
+
+    @:isVar public var mid (get,null) : Vector;
+    @:isVar public var size (get,null) : Vector;
+
+    public function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
+
+        core = _core;
+        cursor = new Cursor(this);
+
+        x = _x;
+        y = _y;
+        w = _w;
+        h = _h;
+
+        mid = new Vector( Math.round(w/2), Math.round(h/2) );
+        size = new Vector(w, h);
+
+    } //new
+
+    function toString() {
+        return 'luxe.Screen({ x:$x, y:$y, w:$w, h:$h })';
+    }
+
+
+    function get_mid() : Vector {
+
+        return mid.clone();
+
+    } //get_mid
+
+    function get_size() : Vector {
+
+        return size.clone();
+
+    } //get_size
+
+    public function point_inside(_p:Vector) {
+
+        if( _p.x < x )    return false;
+        if( _p.y < y )    return false;
+        if( _p.x > x+w )  return false;
+        if( _p.y > y+h )  return false;
+
+        return true;
+
+    } //point_inside
+
+
+} //Screen
+
+
+
 class Cursor {
 
 
@@ -86,54 +147,3 @@ class Cursor {
     } //set_pos
 
 } //Cursor
-
-class Screen {
-
-    public var x : Float;
-    public var y : Float;
-    public var w : Float;
-    public var h : Float;
-
-    public var cursor : Cursor;
-    public var core : Core;
-
-    @:isVar public var mid (get,null) : Vector;
-
-    public function new( ?_core:Core, _x:Int, _y:Int, _w:Int, _h:Int ) {
-
-        core = _core;
-        cursor = new Cursor(this);
-
-        x = _x;
-        y = _y;
-        w = _w;
-        h = _h;
-
-        mid = new Vector( Math.round(w/2), Math.round(h/2) );
-
-    } //new
-
-    function toString() {
-        return '{ x:$x, y:$y, w:$w, h:$h }';
-    }
-
-
-    function get_mid() : Vector {
-
-        return mid.clone();
-
-    } //get_mid
-
-    public function point_inside(_p:Vector) {
-
-        if( _p.x < x )    return false;
-        if( _p.y < y )    return false;
-        if( _p.x > x+w )  return false;
-        if( _p.y > y+h )  return false;
-
-        return true;
-
-    } //point_inside
-
-
-} //Screen
