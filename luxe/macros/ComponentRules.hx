@@ -33,7 +33,7 @@ class ComponentRules {
                 name: 'init',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr:{ expr:EBlock([]), pos:Context.currentPos() } }),
+                kind: FFun({ params:[], args:[], ret:null, expr: macro { } }),
                 pos: Context.currentPos()
             };
             _fields.push(init_field);
@@ -45,7 +45,7 @@ class ComponentRules {
                 name: 'ondestroy',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr:Context.parse('super.ondestroy()', Context.currentPos()) }),
+                kind: FFun({ params:[], args:[], ret:null, expr:macro { super.ondestroy(); } }),
                 pos: Context.currentPos()
             };
             _fields.push(ondestroy_field);
@@ -57,7 +57,7 @@ class ComponentRules {
                 name: 'onremoved',
                 doc: null, meta: [],
                 access: [AOverride],
-                kind: FFun({ params:[], args:[], ret:null, expr:Context.parse('super.onremoved()', Context.currentPos()) }),
+                kind: FFun({ params:[], args:[], ret:null, expr:macro { super.onremoved(); } }),
                 pos: Context.currentPos()
             };
             _fields.push(onremoved_field);
