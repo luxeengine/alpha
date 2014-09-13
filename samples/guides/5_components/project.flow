@@ -6,8 +6,8 @@
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_guide_4',
-      package : 'com.luxeengine.guide4'
+      name : 'luxe_guide_5',
+      package : 'com.luxeengine.guide5'
     },
 
     build : {
