@@ -6,11 +6,23 @@ import luxe.utils.Maths;
 
     //Ported from Three.js https://github.com/mrdoob/three.js
 
-typedef MatrixTransform = {
-    pos : Vector,
-    rotation : Quaternion,
-    scale : Vector
-}
+class MatrixTransform {
+
+    public var pos : Vector;
+    public var rotation : Quaternion;
+    public var scale : Vector;
+
+    public function new(p, r, s) {
+        pos = p;
+        rotation = r;
+        scale = s;
+    }
+
+    function destroy() {
+        pos = null; rotation = null; scale = null;
+    }
+
+} //MatrixTransform
 
 class Matrix {
 
@@ -844,52 +856,71 @@ class Matrix {
 
     } //compose
 
+    var _transform : MatrixTransform;
+
     public function decompose( _position:Vector = null, _quaternion:Quaternion = null, _scale:Vector = null ) : MatrixTransform {
 
         var te = elements;
-
-        var ax = new Vector(te[0], te[1], te[2]);
-        var ay = new Vector(te[4], te[5], te[6]);
-        var az = new Vector(te[8], te[9], te[10]);
-
         var matrix = new Matrix();
 
-        if (_position == null)      _position = new Vector();
-        if (_quaternion == null)    _quaternion = new Quaternion();
-        if (_scale == null)         _scale = new Vector(1,1,1);
+        var _ax_x = te[0]; var _ax_y = te[1]; var _ax_z = te[2];
+        var _ay_x = te[4]; var _ay_y = te[5]; var _ay_z = te[6];
+        var _az_x = te[8]; var _az_y = te[9]; var _az_z = te[10];
 
-            _scale.x = ax.length;
-            _scale.y = ay.length;
-            _scale.z = az.length;
+        var _ax_length = Math.sqrt( _ax_x * _ax_x + _ax_y * _ax_y + _ax_z * _ax_z );
+        var _ay_length = Math.sqrt( _ay_x * _ay_x + _ay_y * _ay_y + _ay_z * _ay_z );
+        var _az_length = Math.sqrt( _az_x * _az_x + _az_y * _az_y + _az_z * _az_z );
 
+
+        if (_quaternion == null) {
+            _quaternion = new Quaternion();
+        }
+
+        if (_position == null) {
+            _position = new Vector(te[12], te[13], te[14]);
+        } else {
             _position.x = te[12];
             _position.y = te[13];
             _position.z = te[14];
+        }
+
+        if (_scale == null) {
+            _scale = new Vector(_ax_length,_ay_length,_az_length);
+        } else {
+            _scale.x = _ax_length;
+            _scale.y = _ay_length;
+            _scale.z = _az_length;
+        }
 
                 //copy them without .copy()
             matrix.elements = elements.concat([]);
 
             var me = matrix.elements;
 
-                me[0]  /= _scale.x;
-                me[1]  /= _scale.x;
-                me[2]  /= _scale.x;
+                me[0]  /= _ax_length;
+                me[1]  /= _ax_length;
+                me[2]  /= _ax_length;
 
-                me[4]  /= _scale.y;
-                me[5]  /= _scale.y;
-                me[6]  /= _scale.y;
+                me[4]  /= _ay_length;
+                me[5]  /= _ay_length;
+                me[6]  /= _ay_length;
 
-                me[8]  /= _scale.z;
-                me[9]  /= _scale.z;
-                me[10] /= _scale.z;
+                me[8]  /= _az_length;
+                me[9]  /= _az_length;
+                me[10] /= _az_length;
 
-            _quaternion.setFromRotationMatrix(matrix);
+            _quaternion.setFromRotationMatrix( matrix );
 
-        return {
-            pos : _position,
-            rotation : _quaternion,
-            scale : _scale
-        };
+
+        if(_transform == null) {
+            _transform = new MatrixTransform(_position, _quaternion, _scale);
+        } else {
+            _transform.pos = _position;
+            _transform.rotation = _quaternion;
+            _transform.scale = _scale;
+        }
+
+        return _transform;
 
     } //decompose
 

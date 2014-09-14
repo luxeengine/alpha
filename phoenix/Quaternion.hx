@@ -20,14 +20,20 @@ class Quaternion {
     @:isVar public var listen_z(default,default) : Float -> Void;
     @:isVar public var listen_w(default,default) : Float -> Void;
 
+    var _construct = false;
+
     public function new(_x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 1) {
 
-        euler = new Vector();
+        _construct = true;
 
             x = _x;
             y = _y;
             z = _z;
             w = _w;
+
+        euler = new Vector();
+
+        _construct = false;
 
     } //new
 
@@ -39,10 +45,7 @@ class Quaternion {
 
     public function set( _x:Float, _y:Float, _z:Float, _w:Float ) : Quaternion {
 
-            x = _x;
-            y = _y;
-            z = _z;
-            w = _w;
+        set_xyzw(_x, _y, _z, _w);
 
         return this;
 
@@ -51,10 +54,10 @@ class Quaternion {
 
     public function copy( _quaternion :Quaternion ) : Quaternion {
 
-            x = _quaternion.x;
-            y = _quaternion.y;
-            z = _quaternion.z;
-            w = _quaternion.w;
+            set_xyzw( _quaternion.x,
+                      _quaternion.y,
+                      _quaternion.z,
+                      _quaternion.w );
 
         return this;
 
@@ -71,6 +74,11 @@ class Quaternion {
             //  20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
             //  content/SpinCalc.m
 
+        var _x = x;
+        var _y = y;
+        var _z = z;
+        var _w = w;
+
         var c1 = Math.cos( _euler.x / 2 );
         var c2 = Math.cos( _euler.y / 2 );
         var c3 = Math.cos( _euler.z / 2 );
@@ -81,47 +89,49 @@ class Quaternion {
 
             if ( _order == 'XYZ' ) {
 
-                x = s1 * c2 * c3 + c1 * s2 * s3;
-                y = c1 * s2 * c3 - s1 * c2 * s3;
-                z = c1 * c2 * s3 + s1 * s2 * c3;
-                w = c1 * c2 * c3 - s1 * s2 * s3;
+                _x = s1 * c2 * c3 + c1 * s2 * s3;
+                _y = c1 * s2 * c3 - s1 * c2 * s3;
+                _z = c1 * c2 * s3 + s1 * s2 * c3;
+                _w = c1 * c2 * c3 - s1 * s2 * s3;
 
             } else if ( _order == 'YXZ' ) {
 
-                x = s1 * c2 * c3 + c1 * s2 * s3;
-                y = c1 * s2 * c3 - s1 * c2 * s3;
-                z = c1 * c2 * s3 - s1 * s2 * c3;
-                w = c1 * c2 * c3 + s1 * s2 * s3;
+                _x = s1 * c2 * c3 + c1 * s2 * s3;
+                _y = c1 * s2 * c3 - s1 * c2 * s3;
+                _z = c1 * c2 * s3 - s1 * s2 * c3;
+                _w = c1 * c2 * c3 + s1 * s2 * s3;
 
             } else if ( _order == 'ZXY' ) {
 
-                x = s1 * c2 * c3 - c1 * s2 * s3;
-                y = c1 * s2 * c3 + s1 * c2 * s3;
-                z = c1 * c2 * s3 + s1 * s2 * c3;
-                w = c1 * c2 * c3 - s1 * s2 * s3;
+                _x = s1 * c2 * c3 - c1 * s2 * s3;
+                _y = c1 * s2 * c3 + s1 * c2 * s3;
+                _z = c1 * c2 * s3 + s1 * s2 * c3;
+                _w = c1 * c2 * c3 - s1 * s2 * s3;
 
             } else if ( _order == 'ZYX' ) {
 
-                x = s1 * c2 * c3 - c1 * s2 * s3;
-                y = c1 * s2 * c3 + s1 * c2 * s3;
-                z = c1 * c2 * s3 - s1 * s2 * c3;
-                w = c1 * c2 * c3 + s1 * s2 * s3;
+                _x = s1 * c2 * c3 - c1 * s2 * s3;
+                _y = c1 * s2 * c3 + s1 * c2 * s3;
+                _z = c1 * c2 * s3 - s1 * s2 * c3;
+                _w = c1 * c2 * c3 + s1 * s2 * s3;
 
             } else if ( _order == 'YZX' ) {
 
-                x = s1 * c2 * c3 + c1 * s2 * s3;
-                y = c1 * s2 * c3 + s1 * c2 * s3;
-                z = c1 * c2 * s3 - s1 * s2 * c3;
-                w = c1 * c2 * c3 - s1 * s2 * s3;
+                _x = s1 * c2 * c3 + c1 * s2 * s3;
+                _y = c1 * s2 * c3 + s1 * c2 * s3;
+                _z = c1 * c2 * s3 - s1 * s2 * c3;
+                _w = c1 * c2 * c3 - s1 * s2 * s3;
 
             } else if ( _order == 'XZY' ) {
 
-                x = s1 * c2 * c3 - c1 * s2 * s3;
-                y = c1 * s2 * c3 - s1 * c2 * s3;
-                z = c1 * c2 * s3 + s1 * s2 * c3;
-                w = c1 * c2 * c3 + s1 * s2 * s3;
+                _x = s1 * c2 * c3 - c1 * s2 * s3;
+                _y = c1 * s2 * c3 - s1 * c2 * s3;
+                _z = c1 * c2 * s3 + s1 * s2 * c3;
+                _w = c1 * c2 * c3 + s1 * s2 * s3;
 
             }
+
+        set_xyzw(_x, _y, _z, _w);
 
         return this;
 
@@ -136,10 +146,10 @@ class Quaternion {
         var _halfAngle = _angle / 2;
         var _s = Math.sin( _halfAngle );
 
-            x = _axis.x * _s;
-            y = _axis.y * _s;
-            z = _axis.z * _s;
-            w = Math.cos( _halfAngle );
+            set_xyzw( _axis.x * _s,
+                      _axis.y * _s,
+                      _axis.z * _s,
+                      Math.cos( _halfAngle ) );
 
         return this;
 
@@ -157,6 +167,11 @@ class Quaternion {
         var m21 = te[1], m22 = te[5], m23 = te[9];
         var m31 = te[2], m32 = te[6], m33 = te[10];
 
+        var _x = x;
+        var _y = y;
+        var _z = z;
+        var _w = w;
+
         var tr = m11 + m22 + m33;
 
         var s : Float;
@@ -165,39 +180,41 @@ class Quaternion {
 
                 s = 0.5 / Math.sqrt( tr + 1.0 );
 
-                w = 0.25 / s;
-                x = (m32 - m23) * s;
-                y = (m13 - m31) * s;
-                z = (m21 - m12) * s;
+                _w = 0.25 / s;
+                _x = (m32 - m23) * s;
+                _y = (m13 - m31) * s;
+                _z = (m21 - m12) * s;
 
             } else if (m11 > m22 && m11 > m33) {
 
                 s = 2.0 * Math.sqrt(1.0 + m11 - m22 - m33);
 
-                w = (m32 - m23) / s;
-                x = 0.25 * s;
-                y = (m12 + m21) / s;
-                z = (m13 + m31) / s;
+                _w = (m32 - m23) / s;
+                _x = 0.25 * s;
+                _y = (m12 + m21) / s;
+                _z = (m13 + m31) / s;
 
             } else if (m22 > m33) {
 
                 s = 2.0 * Math.sqrt(1.0 + m22 - m11 - m33);
 
-                w = (m13 - m31) / s;
-                x = (m12 + m21) / s;
-                y = 0.25 * s;
-                z = (m23 + m32) / s;
+                _w = (m13 - m31) / s;
+                _x = (m12 + m21) / s;
+                _y = 0.25 * s;
+                _z = (m23 + m32) / s;
 
             } else {
 
                 s = 2.0 * Math.sqrt(1.0 + m33 - m11 - m22);
 
-                w = (m21 - m12) / s;
-                x = (m13 + m31) / s;
-                y = (m23 + m32) / s;
-                z = 0.25 * s;
+                _w = (m21 - m12) / s;
+                _x = (m13 + m31) / s;
+                _y = (m23 + m32) / s;
+                _z = 0.25 * s;
 
             }
+
+        set_xyzw(_x, _y, _z, _w);
 
         return this;
 
@@ -213,9 +230,7 @@ class Quaternion {
 
     public function conjugate() : Quaternion {
 
-            this.x *= -1;
-            this.y *= -1;
-            this.z *= -1;
+        set_xyzw( x * -1, y * -1, z * -1, w);
 
         return this;
 
@@ -242,19 +257,13 @@ class Quaternion {
 
             if (l == 0) {
 
-                x = 0;
-                y = 0;
-                z = 0;
-                w = 1;
+                set_xyzw(0,0,0,1);
 
             } else {
 
                 l = 1 / l;
 
-                x *= l;
-                y *= l;
-                z *= l;
-                w *= l;
+                set_xyzw( x*l, y*l, z*l, w*l );
 
             }
 
@@ -302,10 +311,10 @@ class Quaternion {
         var qax = _a.x, qay = _a.y, qaz = _a.z, qaw = _a.w;
         var qbx = _b.x, qby = _b.y, qbz = _b.z, qbw = _b.w;
 
-            x = qax * qbw + qaw * qbx + qay * qbz - qaz * qby;
-            y = qay * qbw + qaw * qby + qaz * qbx - qax * qbz;
-            z = qaz * qbw + qaw * qbz + qax * qby - qay * qbx;
-            w = qaw * qbw - qax * qbx - qay * qby - qaz * qbz;
+            set_xyzw( qax * qbw + qaw * qbx + qay * qbz - qaz * qby,
+                      qay * qbw + qaw * qby + qaz * qbx - qax * qbz,
+                      qaz * qbw + qaw * qbz + qax * qby - qay * qbx,
+                      qaw * qbw - qax * qbx - qay * qby - qaz * qbz );
 
         return this;
 
@@ -340,10 +349,7 @@ class Quaternion {
 
         if ( cosHalfTheta >= 1.0 ) {
 
-            w = _w;
-            x = _x;
-            y = _y;
-            z = _z;
+            set_xyzw(_x, _y, _z, _w);
 
             return this;
 
@@ -354,10 +360,10 @@ class Quaternion {
 
         if ( Math.abs( sinHalfTheta ) < 0.001 ) {
 
-            w = 0.5 * ( _w + w );
-            x = 0.5 * ( _x + x );
-            y = 0.5 * ( _y + y );
-            z = 0.5 * ( _z + z );
+            set_xyzw( 0.5 * ( _w + w ),
+                      0.5 * ( _x + x ),
+                      0.5 * ( _y + y ),
+                      0.5 * ( _z + z ) );
 
             return this;
 
@@ -366,10 +372,10 @@ class Quaternion {
         var ratioA = Math.sin( ( 1 - _t ) * halfTheta ) / sinHalfTheta,
         ratioB = Math.sin( _t * halfTheta ) / sinHalfTheta;
 
-            w = ( _w * ratioA + w * ratioB );
-            x = ( _x * ratioA + x * ratioB );
-            y = ( _y * ratioA + y * ratioB );
-            z = ( _z * ratioA + z * ratioB );
+            set_xyzw( _w * ratioA + w * ratioB,
+                      _x * ratioA + x * ratioB,
+                      _y * ratioA + y * ratioB,
+                      _z * ratioA + z * ratioB );
 
         return this;
 
@@ -385,10 +391,7 @@ class Quaternion {
 
     public function fromArray( _a:Array<Float> ) : Quaternion {
 
-            x = _a[0];
-            y = _a[1];
-            z = _a[2];
-            w = _a[3];
+        set_xyzw(_a[0], _a[1], _a[2], _a[3]);
 
         return this;
 
@@ -423,13 +426,41 @@ class Quaternion {
 
     function update_euler() {
 
+        if( euler == null || ignore_euler || _construct) {
+            return;
+        }
+
         euler.setEulerFromQuaternion( this );
 
     } //update_euler
 
+    var ignore_euler = false;
+
+    public function set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) {
+
+        ignore_euler = true;
+
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
+
+        ignore_euler = false;
+
+        update_euler();
+
+        if(listen_x != null && !ignore_listeners) listen_x(x);
+        if(listen_y != null && !ignore_listeners) listen_y(y);
+        if(listen_z != null && !ignore_listeners) listen_z(z);
+        if(listen_w != null && !ignore_listeners) listen_w(w);
+
+    } //set_xyzw
+
     function set_x( _v:Float ) {
 
         x = _v;
+
+        if(_construct) return x;
 
         update_euler();
 
@@ -443,6 +474,8 @@ class Quaternion {
 
         y = _v;
 
+        if(_construct) return y;
+
         update_euler();
 
         if(listen_y != null && !ignore_listeners) listen_y(y);
@@ -455,6 +488,8 @@ class Quaternion {
 
         z = _v;
 
+        if(_construct) return z;
+
         update_euler();
 
         if(listen_z != null && !ignore_listeners) listen_z(z);
@@ -466,6 +501,8 @@ class Quaternion {
     function set_w( _v:Float ) {
 
         w = _v;
+
+        if(_construct) return w;
 
         update_euler();
 
