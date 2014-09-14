@@ -349,9 +349,9 @@ class Core extends snow.App {
         process_loading_thread();
 
 //Run update callbacks
-            #if luxe_fullprofile debug.start(core_tag_updates); #end
+            debug.start(core_tag_updates);
         emitter.emit('update', dt);
-            #if luxe_fullprofile debug.end(core_tag_updates); #end
+            debug.end(core_tag_updates);
 
 //Update the game class for the game
             debug.start( game_tag_update );
@@ -874,7 +874,7 @@ class Core extends snow.App {
     static var game_tag_update : String = 'game.update';
     static var core_tag_render : String = 'core.render';
     static var core_tag_debug : String = 'core.debug';
-    static var core_tag_updates : String = 'core.update_callbacks';
+    static var core_tag_updates : String = 'core.updates';
     static var core_tag_events : String = 'core.events';
     static var core_tag_audio : String = 'core.audio';
     static var core_tag_input : String = 'core.input';

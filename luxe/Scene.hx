@@ -358,6 +358,8 @@ class Scene extends Objects {
 
     function update(dt:Float) {
 
+        Luxe.core.debug.start('scene.' + name);
+
             //late scene additions get init'ed and start'ed
         handle_delayed_additions();
             //just in case, as the entities are called directly
@@ -369,6 +371,8 @@ class Scene extends Objects {
                 entity._update(dt);
             }
         } //for each entity
+
+        Luxe.core.debug.end('scene.' + name);
 
     } //update
 
