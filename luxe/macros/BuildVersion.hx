@@ -14,6 +14,16 @@ import sys.FileSystem;
 
 class BuildVersion {
 
+    public static var _save : Bool = false;
+
+    macro public static function save() : haxe.macro.Expr {
+
+        _save = true;
+
+        return macro null;
+
+    } //save
+
         //This is always called from Luxe.hx in the root folder,
         //which contains the .git repo, and build file directly
     macro public static function latest() {
@@ -25,9 +35,14 @@ class BuildVersion {
         var build : String = try_git( root );
 
         if(build != '') {
+
                 //the + is for semantic versioning
             build = '+' + build.substr(0,10);
-            File.saveContent(out, build);
+
+            if(_save) {
+                File.saveContent(out, build);
+            }
+
             Context.addResource('build', Bytes.ofString(build));
         }
 
