@@ -5,6 +5,7 @@ import luxe.Objects;
 import phoenix.Vector;
 import phoenix.Quaternion;
 import phoenix.Matrix;
+import snow.utils.Float32Array;
 
 
 class Transform extends ID {
@@ -223,7 +224,7 @@ class Transform extends ID {
             world.matrix = local.matrix.clone();
         }
 
-            //update world spatial
+            //update world spatial :todo: only do on request
         world.decompose();
 
             //clear flags
@@ -538,6 +539,7 @@ class Spatial {
 
     @:isVar public var matrix               (get,    set) : Matrix;
 
+    public var floats : Float32Array;
     public var ignore_listeners : Bool = false;
 
     @:noCompletion public var pos_changed : Vector -> Void;
@@ -549,6 +551,7 @@ class Spatial {
     public function new() {
 
         matrix = new Matrix();
+        floats = matrix.float32array();
 
         pos = new Vector();
         rotation = new Quaternion();
@@ -577,7 +580,12 @@ class Spatial {
 
     function set_matrix(_m:Matrix) {
 
-        return matrix = _m;
+        matrix = _m;
+
+            //when updating, update the float32array
+        floats = matrix.float32array();
+
+        return matrix;
 
     } //set_matrix
 

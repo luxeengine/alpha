@@ -29,6 +29,18 @@ class BatchState {
         last_geom_state = new GeometryState();
     }
 
+    public function active_shader() : phoenix.Shader {
+        if(geom_state.shader != null) {
+            return geom_state.shader;
+        } else {
+            if(geom_state.texture != null) {
+                return batcher.renderer.default_shader_textured;
+            } else {
+                 return batcher.renderer.default_shader;
+            }
+        }
+    }
+
     public function activate(batcher:Batcher) {
 
             // Handle texture state changes

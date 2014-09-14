@@ -584,6 +584,7 @@ class Batcher {
 
         //Run the batcher over the current list of geometry
         //and submit it to the graphics card for drawing
+    public var state : BatchState;
     public function batch( persist_immediate : Bool = false ) {
 
         //reset render stats before we start
@@ -597,7 +598,7 @@ class Batcher {
         normal_floats = 0;
 
             //The current batch state values
-        var state : BatchState = new BatchState(this);
+        state = new BatchState(this);
             //The current geometry in the set
         var geom : Geometry = null;
 
@@ -631,6 +632,7 @@ class Batcher {
                         //Static batched geometry gets sent on it's own
                     if(geom.locked) {
                         submit_static_geometry( geom );
+                        vert_count += geom.vertices.length;
                     }
 
                         // Do not accumulate for tri strips, line strips, line loops, triangle fans, quad strips, or polygons
@@ -822,19 +824,19 @@ class Batcher {
 
         GL.bindBuffer(GL.ARRAY_BUFFER, vertexBuffers[buffer_index] );
         GL.vertexAttribPointer( 0, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, (vert_floats) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(vertlist.buffer, 0, vert_floats) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, tcoordBuffers[buffer_index] );
         GL.vertexAttribPointer( 1, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, (tcoord_floats) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(tcoordlist.buffer, 0, tcoord_floats) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, vcolorBuffers[buffer_index] );
         GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, (color_floats) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, color_floats) );
 
         GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffers[buffer_index] );
         GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, (normal_floats) ) );
+        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, normal_floats) );
 
             //Draw
         GL.drawArrays(
