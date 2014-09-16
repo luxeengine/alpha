@@ -15,7 +15,7 @@
                     {{~escape_markdown name~}}
                 </a></a>
                 {{~#inherited~}}
-                    <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                    <a data-tooltip="inherited from <a href='{{type_link inherit_source @root.rel_path}}#{{escape_markdown name}}'>{{{inherit_source}}}</a>" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
                 {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
                 <div class="clear"></div>
@@ -51,7 +51,7 @@
                     {{~escape_markdown name~}}
                 </a></a> 
                 {{~#inherited~}}
-                    <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                    <a data-tooltip="inherited from <a href='{{type_link inherit_source @root.rel_path}}#{{escape_markdown name}}'>{{{inherit_source}}}</a>" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
                 {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}} 
                 <div class="clear"></div>
@@ -75,7 +75,7 @@
                 {{~escape_markdown name~}}
             </a></a> 
             {{~#inherited~}}
-                <a title="inherited from {{inherit_source}}" class="tooltip inherited">&gt;</a>
+                <a data-tooltip="inherited from <a href='{{type_link inherit_source @root.rel_path}}#{{escape_markdown name}}'>{{{inherit_source}}}</a>" class="tooltip inherited">&gt;</a>
             {{~/inherited~}}
             {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
             <div class="clear"></div>

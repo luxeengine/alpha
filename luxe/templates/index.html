@@ -40,8 +40,13 @@
                     $(this).html('<iframe src="'+content+'" sandbox="allow-same-origin allow-scripts" style="overflow:hidden; scrollbar:none; border: 0; width:640px; height:427px;"></iframe> ')
                 });
 
-                $('.tooltip').tooltipster({
-                    theme:'tooltipster-shadow'
+                $('.tooltip').each(function(e){
+                    var c = $(this).attr('data-tooltip');
+                    $(this).tooltipster({
+                        content:$('<span>' + c + '</span>'),
+                        interactive:true,
+                        theme:'tooltipster-shadow'
+                    });
                 });
 
             }); //document.ready

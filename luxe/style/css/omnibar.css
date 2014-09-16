@@ -1,0 +1,28 @@
+#omnibar {
+                position: fixed;
+                display: block;
+                width: 100%;
+                top:4em;
+                left:0;
+                height:3.5em;
+                background:#fff;
+                border:solid 1px #ddd;
+                box-shadow: 0 0 2em rgba(0,0,0,0.2);
+            }
+
+            #omnibar input {
+                width: 40%;
+                margin-left:auto;
+                margin-right:auto;
+                position: relative;
+                display: block;
+                height:1em;
+                top:0.6em;
+                padding:0.5em;
+                font-size: 1em;
+            }
+            .tooltipster-shadow .tooltipster-content {
+                max-height: 20em;
+                overflow-y:auto;
+                line-height: 1.5em;
+            }
