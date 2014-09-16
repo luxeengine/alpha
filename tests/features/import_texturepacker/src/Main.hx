@@ -7,7 +7,7 @@ import luxe.Color;
 
 import luxe.importers.texturepacker.TexturePackerData;
 import luxe.importers.texturepacker.TexturePackerJSON;
-import luxe.importers.TexturePackerSpriteAnimation;
+import luxe.importers.texturepacker.TexturePackerSpriteAnimation;
 
 class Main extends luxe.Game {
 

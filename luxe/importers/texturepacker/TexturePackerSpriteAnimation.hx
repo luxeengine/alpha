@@ -1,4 +1,4 @@
-package luxe.importers;
+package luxe.importers.texturepacker;
 
 import luxe.importers.texturepacker.TexturePackerJSON;
 import luxe.importers.texturepacker.TexturePackerData;
