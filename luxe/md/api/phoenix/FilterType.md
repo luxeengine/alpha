@@ -20,8 +20,12 @@
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 <h3>Values</h3> <hr/><span class="member signature apipage">`nearest`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`linear`<br/> </span>
@@ -30,6 +34,7 @@
         <span class="small_desc_flat"></span><span class="member signature apipage">`mip_nearest_linear`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`mip_linear_linear`<br/> </span>
         <span class="small_desc_flat"></span>
+
 
 
 

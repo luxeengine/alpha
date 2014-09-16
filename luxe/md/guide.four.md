@@ -16,11 +16,12 @@ _This tutorial follows on the previous guide. Read that one first._
 
 Below is a list of what we will cover, and a demo:
 
-- fading
+- tweening
 - text
 - timers and schedules
 - depth control
 - global events
+- audio
 
 ###Live demo
 

@@ -14,18 +14,27 @@
 
 `typedef`
 
+
 ---
+
 
 &nbsp;
 &nbsp;
+
+
+
+
 
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="value"><a class="lift" href="#value">value</a></a><div class="clear"></div><code class="signature apipage">value : [String](#)</code><br/></span>
+                <a name="value"><a class="lift" href="#value">value</a></a><div class="clear"></div>
+                <code class="signature apipage">value : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="key"><a class="lift" href="#key">key</a></a><div class="clear"></div><code class="signature apipage">key : [String](#)</code><br/></span>
+                <a name="key"><a class="lift" href="#key">key</a></a><div class="clear"></div>
+                <code class="signature apipage">key : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span>
+
 
 
 

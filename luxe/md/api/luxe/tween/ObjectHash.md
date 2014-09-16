@@ -12,12 +12,28 @@
 
 ---
 
-`typedef`
+`typedef`&nbsp;alias of `haxe.ds.ObjectMap`
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
 
 

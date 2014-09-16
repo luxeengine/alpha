@@ -5,8 +5,11 @@
 ----
 
 ## Setting up
+SKIP AHEAD FOR NOW
 
-### luxe setup helper
+
+<div style="opacity:0.1">
+### ~~luxe setup helper~~
 ---
 
 Download and run the setup helper for your platform.    
@@ -16,28 +19,15 @@ You continue to test the setup at each stage of installation.
 It also includes some samples and a link to the documentation.
 In future, it will check for updates, and install as many requirements as feasible.
 
+<br/>
 
 <a href=""> <img title="Mac" alt="Mac" src="images/mac64.png" class="platform-icon-64"/> mac </a> <br/>
 <a href=""> <img title="Linux" alt="Linux" src="images/linux64.png" class="platform-icon-64"/> linux </a> <br/>
 <a href=""> <img title="Windows" alt="Windows" src="images/windows64.png" class="platform-icon-64"/> windows </a>
 
-##What next?
+</div>
 
----
-
-###[Continue to the user guides](guide.html)
-###[Back to the index](index.html)
-
-&nbsp;   
-&nbsp;   
-&nbsp;   
-&nbsp;   
-
----
-
-###Troubleshooting
-
-**These sections only apply if the installer brings you here**
+###Manual setup
 
 ---
 
@@ -138,9 +128,35 @@ Only required for option 1. or 2.
 - [visit luxe on github](https://github.com/underscorediscovery/luxe)
 - repo url `https://github.com/underscorediscovery/luxe.git`
 
+---
+
 
 &nbsp;
 &nbsp;
+
+<a name="native"></a>
+
+##Native targets
+
+To build windows/mac/linux builds, you need to have c++ installed.
+
+Windows : Visual C++ (express is fine)
+Linux : gcc/g++
+Mac : Xcode (+command line tools)
+
+&nbsp;
+&nbsp;
+
+##Sublime text
+
+When using the sublime text plugin provided by the build tools, you get project management, building and running, and full code completion within sublime text.
+
+![](images/sublime.png)
+
+[Read the sublime text setup](http://underscorediscovery.com/wip/flow/guide/sublimetext.html) docs.
+
+
+---
 
 ###[Continue to the user guides](guide.html)
 ###[Back to the index](index.html)

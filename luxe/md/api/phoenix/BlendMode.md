@@ -20,8 +20,12 @@
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 <h3>Values</h3> <hr/><span class="member signature apipage">`zero`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`one`<br/> </span>
@@ -35,6 +39,7 @@
         <span class="small_desc_flat"></span><span class="member signature apipage">`one_minus_dst_color`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`src_alpha_saturate`<br/> </span>
         <span class="small_desc_flat"></span>
+
 
 
 

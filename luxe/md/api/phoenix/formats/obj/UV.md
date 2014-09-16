@@ -14,10 +14,16 @@
 
 `typedef`
 
+
 ---
+
 
 &nbsp;
 &nbsp;
+
+
+
+
 
 
 
@@ -26,6 +32,7 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="u"><a class="lift" href="#u">u</a></a><div class="clear"></div><code class="signature apipage">u : [Float](#)</code><br/></span>
             <span class="small_desc_flat"></span>
+
 
 
 

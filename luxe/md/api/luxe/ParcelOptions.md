@@ -14,10 +14,16 @@
 
 `typedef`
 
+
 ---
+
 
 &nbsp;
 &nbsp;
+
+
+
+
 
 
 
@@ -34,6 +40,7 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="load_spacing"><a class="lift" href="#load_spacing">load\_spacing</a></a><div class="clear"></div><code class="signature apipage">load\_spacing : [Null](#)&lt;[Float](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span>
+
 
 
 

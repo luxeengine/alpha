@@ -12,12 +12,28 @@
 
 ---
 
-`typedef`
+`typedef`&nbsp;alias of `phoenix.Vec`
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
 
 

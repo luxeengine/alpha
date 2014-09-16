@@ -13,11 +13,19 @@
 ---
 
 `class`
+<span class="meta">
+<br/>meta: @:keep
+</span>
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 
 
@@ -48,6 +56,7 @@
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_manager:[luxe.ResourceManager](#)<span></span>, \_type:[luxe.ResourceType](#)<span></span>, \_load\_time:[Float](#)<span>=null</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
+
 
 
 

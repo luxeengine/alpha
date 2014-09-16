@@ -4,6 +4,6 @@
 &emsp;&emsp;
 {{#each packages ~}}
     {{#unless (hidden_package .) ~}}
-        <span class="indent inline-block"> [{{ without_package .}}](#{{.}}) </span>
+        <span class="package_item inline-block"> [{{ without_package .}}](#{{.}}) </span>
     {{~/unless}}
 {{~/each~}}

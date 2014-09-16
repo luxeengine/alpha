@@ -12,12 +12,28 @@
 
 ---
 
-`typedef`
+`typedef`&nbsp;alias of `snow.input.Scancodes`
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
 
 

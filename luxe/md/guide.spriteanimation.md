@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to feature guide](guide.html#spriteanimation)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 ---
@@ -113,7 +113,7 @@ The animation frame JSON data consists of the following properties :
 
 &nbsp;   
 
-###[Back to feature guide](guide.html#spriteanimation)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 &nbsp;   

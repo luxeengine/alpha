@@ -15,14 +15,18 @@
 
 `class`
 <span class="meta">
-<br/>meta: @:noCompletion
+<br/>meta: @:keep, @:noCompletion
 </span>
 
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 
 
@@ -31,12 +35,15 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="calculate"><a class="lift" href="#calculate">calculate</a></a> <div class="clear"></div><code class="signature apipage">calculate(k:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="calculate"><a class="lift" href="#calculate">calculate</a></a><div class="clear"></div>
+            <code class="signature apipage">calculate(k:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="ease"><a class="lift" href="#ease">ease</a></a> <div class="clear"></div><code class="signature apipage">ease(t:[Float](#)<span></span>, b:[Float](#)<span></span>, c:[Float](#)<span></span>, d:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="ease"><a class="lift" href="#ease">ease</a></a><div class="clear"></div>
+            <code class="signature apipage">ease(t:[Float](#)<span></span>, b:[Float](#)<span></span>, c:[Float](#)<span></span>, d:[Float](#)<span></span>) : [Float](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
+
 
 
 

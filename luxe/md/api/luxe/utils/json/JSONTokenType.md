@@ -14,14 +14,18 @@
 
 `enum`
 <span class="meta">
-<br/>meta: @:flatEnum
+<br/>meta: @:flatEnum, @:noCompletion
 </span>
 
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 <h3>Values</h3> <hr/><span class="member signature apipage">`tUNKNOWN`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`tCOMMA`<br/> </span>
@@ -37,6 +41,7 @@
         <span class="small_desc_flat"></span><span class="member signature apipage">`tNUMBER`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`tNAN`<br/> </span>
         <span class="small_desc_flat"></span>
+
 
 
 

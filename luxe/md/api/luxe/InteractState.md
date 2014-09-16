@@ -20,8 +20,12 @@ A typed state for mouse, touch, or pressed/similar
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 <h3>Values</h3> <hr/><span class="member signature apipage">`unknown`<br/> </span>
         <span class="small_desc_flat">An unknown state</span><span class="member signature apipage">`none`<br/> </span>
@@ -31,6 +35,7 @@ A typed state for mouse, touch, or pressed/similar
         <span class="small_desc_flat">In a moving state</span><span class="member signature apipage">`wheel`<br/> </span>
         <span class="small_desc_flat">A mouse wheel state</span><span class="member signature apipage">`axis`<br/> </span>
         <span class="small_desc_flat">A gamepad axis state</span>
+
 
 
 

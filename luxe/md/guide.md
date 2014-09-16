@@ -1,8 +1,8 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-Don't miss the [ setup guide ](setup.html) if you are only just getting things installed.
-
+#### Just starting out?
+Don't miss the [ setup guide ](setup.html).
 
 ## Choose your destination
 ----
@@ -13,46 +13,47 @@ it follows a semi logical progression about getting started with luxe.
 [ Getting Started ](#gettingstarted)    
 [ Images and sprites ](#imagesandsprites)    
 [ Sprites and animation ](#spritesandanimation)    
+[ Text and tweening ](#textandtweening)    
 
-
+<a name="list"></a>
 ###[ Feature guide ](#featureguide)   
 The feature guide is a piece by piece reference for specific features of the engine, designed to explain and teach what the engine can do.
 
 **gameplay**
 
-[ ~~scene~~ ](#scene)    
-[ ~~physics~~ ](#physics)    
-[ ~~collision~~ ](#collision)    
-[ ~~transforms~~ ](#transforms)    
-[ ~~timing~~ ](#timing)    
-[ ~~timers~~ ](#timers)    
-[ ~~audio~~ ](#audio)    
+[ timers ](#timers)   
+~~transforms~~    
+~~app timing~~    
+~~audio~~    
+~~scene~~    
+~~physics~~    
+~~collision~~    
 
 **rendering**
 
 [ sprite ](#sprite)   
 [ sprite animation ](#spriteanimation)    
 [ color ](#color)    
-[ ~~rendering~~ ](#rendering)   
-[ ~~render control~~ ](#render_control)   
+~~render batching~~   
+[ render control ](#rendercontrol)   
 [ shaders ](#shaders)    
-[ ~~cameras~~ ](#camera)    
-[ ~~tilemaps~~ ](#tilemap)    
+~~cameras~~    
+~~tilemaps~~    
 [ drawing ](#drawing)    
-[ ~~nineslice~~ ](#nineslice)    
-[ ~~particles~~ ](#particles)    
-[ ~~textures / render textures~~ ](#textures)    
-[ ~~fonts~~ ](#fonts)    
+~~nineslice~~    
+~~particles~~    
+~~textures~~   
+[ fonts ](#fonts)    
 
 **systems**
 
-[ ~~assets~~ ](#assets)   
-[ ~~maths~~ ](#maths)   
-[ ~~states~~ ](#states)    
+[ assets ](#assets)   
+~~maths~~   
+~~states~~    
 [ events ](#events)   
-[ components ](#components)   
+~~components~~   
 [ tweening ](#tweening)    
-[ ~~utils~~ ](#utils)    
+[ utils ](#utils)    
 
 
 ###[ Details guide ](#detailguide)   
@@ -87,7 +88,12 @@ drawing a sprite, and moving it around.
 <a name="spritesandanimation"> </a>
 ### [ Sprites and animation ](guide.three.html)
 - Drawing animated sprites, preloading, and more
-[ ![input guide screenshot](images/guide.three.png) ](guide.three.html)
+[ ![sprite anim guide screenshot](images/guide.three.png) ](guide.three.html)
+
+<a name="textandtweening"> </a>
+### [ Text and tweening ](guide.four.html)
+- Playing some sounds, fading, simple events, text and more
+[ ![text guide screenshot](images/guide.four.png) ](guide.four.html)
 
 ----
 <a class="toplink" href="#">back to top</a>
@@ -118,10 +124,11 @@ These vary from feature reference guides to in depth article guides.
 - transformation stack for spatial control (pos/rot/scale)
 ![transform guide screenshot](images/guide.transforms.png)
 
-### timing
+### app timing
 - app timing, timescale, fixed rate, etc
 
-### timers
+<a name="timers"> </a>
+### [timers](guide.timers.html)
 - scheduling things in time, once or repeating
 
 ### audio
@@ -145,11 +152,13 @@ These vary from feature reference guides to in depth article guides.
 - The different types of color classes and utility functions for handling HSL, HSV, and RGB color.
 [ ![color guide screenshot](images/guide.color.png) ](guide.color.html)
 
-### rendering
+### render batching
 - understanding and using the batching system effectively
 
-### render control
-- controlling depth, blend mode, and render events
+<a name="rendercontrol"> </a>
+### [render control](guide.rendercontrol.html)
+- controlling depth, blend mode, and using render events like pre/post render
+[ ![render control guide screenshot](images/guide.rendercontrol.png) ](guide.rendercontrol.html)
 
 <a name="shaders"> </a>
 ### [ shader guide ](guide.shaders.html)
@@ -179,8 +188,9 @@ These vary from feature reference guides to in depth article guides.
 ### textures
 - managing and working with textures and render textures
 
-### fonts
-- loading and displaying custom bitmap fonts
+<a name="fonts"> </a>
+### [fonts](guide.fonts.html)
+- creating, loading and displaying custom bitmap fonts
 
 
 ---
@@ -188,7 +198,8 @@ These vary from feature reference guides to in depth article guides.
 
 ### Systems
 
-### assets
+<a name="assets"> </a>
+### [ assets ](guide.assets.html)
 - loading and using text, bytes, or other assets with parcels
 
 ### maths
@@ -201,13 +212,17 @@ These vary from feature reference guides to in depth article guides.
 ### [ events ](guide.events.html)
 - Using the event system to communicate locally and globally.
 
+### components
+- using the built in component entity system
+
 <a name="tweening"> </a>
 ### [ tweening ](guide.tween.html)
 - Making things animate smoothly over time using tweening.
 [ ![tween guide screenshot](images/guide.tween.png) ](guide.tween.html)
 
-### utils
-- find out about various utility functions and features in luxe
+<a name="utils"> </a>
+### [ utils ](guide.utils.html)
+- Find out about utilities like maths and geometry functions
 
 
 ----

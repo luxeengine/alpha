@@ -12,12 +12,28 @@
 
 ---
 
-`typedef`
+`typedef`&nbsp;alias of `snow.types.AppConfig`
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 
 
 

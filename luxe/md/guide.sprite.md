@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to feature guide](guide.html#sprite)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 ---
@@ -19,7 +19,7 @@ If you want other geometrical control, use `Visual` instead, as sprite is specif
 
 In concept a sprite is 2D, but no restriction on 3D rotation or positioning is employed. All 2D helpers will only affect x/y properties of the sprite.
 
-###Sprite specific features
+###list specific features
 
 #### centered
 
@@ -58,7 +58,7 @@ A convenience for setting the 2D rotation (around the z axis) _in radians_. Will
 
 &nbsp;   
 
-###[Back to feature guide](guide.html#sprite)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 &nbsp;   

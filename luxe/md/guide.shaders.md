@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to feature guide](guide.html#shaders)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 
@@ -18,7 +18,7 @@ Level background has a severe tilt shift shader that also desaturates the image.
 
 ---
 ## Wait, what are shaders exactly?
----
+
 I have written a comprehensive primer to shaders here!
 
 [Shaders : A primer](http://notes.underscorediscovery.com/shaders-a-primer/)
@@ -26,9 +26,6 @@ I have written a comprehensive primer to shaders here!
 The series talks about shaders in various ways,   
 but for getting started with shaders in luxe, let's move along.
 
----
-
-&nbsp;
 <a name="usage" href="#usage">
 ## Using shaders in luxe </a>
 ---
@@ -48,7 +45,7 @@ Take a look at the code from the demo, and you should be able to follow along as
 
 And finally, when we move the mouse, we send some information to the shader to change the color
 
-    public function onmousemove( e:MouseEvent ) {
+    override function onmousemove( e:MouseEvent ) {
 
         var percent = e.pos.x / Luxe.screen.w;
         var hue = (Math.PI*2) * percent;
@@ -58,8 +55,11 @@ And finally, when we move the mouse, we send some information to the shader to c
 
     }
 
- ## shader code for the sample
  ---
+
+## shader code
+
+This is one of the two shaders shown
 
 #### distort.glsl
 
@@ -82,7 +82,11 @@ void main() {
 }
 ```
 
-#### full code from sample
+---
+
+## full code 
+
+_can be found at tests/rendering/shaders/_
 
 ```
 
@@ -210,7 +214,7 @@ class Main extends luxe.Game {
 ```
 &nbsp;   
 
-###[Back to feature guide](guide.html#shaders)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 &nbsp;   

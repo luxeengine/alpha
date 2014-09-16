@@ -14,21 +14,27 @@
 
 `class`
 <span class="meta">
-<br/>meta: @:noCompletion
+<br/>meta: @:keep, @:noCompletion
 </span>
 
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="components"><a class="lift" href="#components">components</a></a><div class="clear"></div><code class="signature apipage">components : [Map](#)&lt;[String](#), [luxe.Component](#)&gt;</code><br/></span>
+                <a name="components"><a class="lift" href="#components">components</a></a><div class="clear"></div>
+                <code class="signature apipage">components : [Map](#)&lt;[String](#), [luxe.Component](#)&gt;</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
-                <a name="entity"><a class="lift" href="#entity">entity</a></a><div class="clear"></div><code class="signature apipage">entity : [luxe.Entity](#)</code><br/></span>
+                <a name="entity"><a class="lift" href="#entity">entity</a></a><div class="clear"></div>
+                <code class="signature apipage">entity : [luxe.Entity](#)</code><br/></span>
             <span class="small_desc_flat"></span>
 
 
@@ -36,24 +42,31 @@
 
 
 <h3>Methods</h3> <hr/><span class="method apipage">
-            <a name="add"><a class="lift" href="#add">add</a></a> <div class="clear"></div><code class="signature apipage">add(type:[Class](#)&lt;[add.T1](#)&gt;<span></span>, \_name:[String](#)<span>=&#x27;&#x27;</span>, \_data:[add.T2](#)<span>=null</span>) : [add.T1](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="add"><a class="lift" href="#add">add</a></a><div class="clear"></div>
+            <code class="signature apipage">add&lt;T&gt;(\_component:[add.T](#)<span></span>) : [add.T](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="remove"><a class="lift" href="#remove">remove</a></a> <div class="clear"></div><code class="signature apipage">remove(\_name:[String](#)<span>=&#x27;&#x27;</span>, \_data:[remove.T](#)<span>=null</span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="get"><a class="lift" href="#get">get</a></a><div class="clear"></div>
+            <code class="signature apipage">get&lt;T&gt;(\_name:[String](#)<span></span>, in\_children:[Bool](#)<span>=false</span>) : [get.T](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get"><a class="lift" href="#get">get</a></a> <div class="clear"></div><code class="signature apipage">get(\_name:[String](#)<span></span>, in\_children:[Bool](#)<span>=false</span>) : [get.T](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="get_any"><a class="lift" href="#get_any">get\_any</a></a><div class="clear"></div>
+            <code class="signature apipage">get\_any&lt;T&gt;(\_name:[String](#)<span></span>, in\_children:[Bool](#)<span>=false</span>, first\_only:[Bool](#)<span>=true</span>) : [Array](#)&lt;[get_any.T](#)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="get_any"><a class="lift" href="#get_any">get\_any</a></a> <div class="clear"></div><code class="signature apipage">get\_any(\_name:[String](#)<span></span>, in\_children:[Bool](#)<span>=false</span>, first\_only:[Bool](#)<span>=true</span>) : [Array](#)&lt;[get_any.T](#)&gt;</code><br/><span class="small_desc_flat"></span>
+            <a name="has"><a class="lift" href="#has">has</a></a><div class="clear"></div>
+            <code class="signature apipage">has(\_name:[String](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="has"><a class="lift" href="#has">has</a></a> <div class="clear"></div><code class="signature apipage">has(\_name:[String](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
+            <code class="signature apipage">new(\_entity:[luxe.Entity](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new(\_entity:[luxe.Entity](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="remove"><a class="lift" href="#remove">remove</a></a><div class="clear"></div>
+            <code class="signature apipage">remove(\_name:[String](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
+
 
 
 

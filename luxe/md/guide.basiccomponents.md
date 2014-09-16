@@ -46,20 +46,20 @@ Component classes have some default functions that are called for you, much like
 Have a look at the comments in the code below to see them.
 
 
-	import luxe.components.Components.Component;
+	import luxe.Component;
 
 	class MyComponent extends Component {
 
-	    public function init() {
+	    override function init() {
 	    	//called when initialising the component
 	    }
-	    
-	    public function start() {
-	    	//called when the scene starts or restarts
+
+	    override function update(dt:Float) {
+	    	//called every frame for you
 	    }
 
-	    public function update(dt:Float) {
-	    	//called every frame for you
+	    override function onreset() {
+	    	//called when the scene starts or restarts
 	    }
 
 	}
@@ -81,19 +81,13 @@ When you change the transform from a component class - it is changing the entity
 ## Creating and accessing entities
 ---
 
-### Creating entities via the scene class
+### Creating entities 
 ---
-The Scene class has a `create` function that will return an entity instance.
+Entities are created using the same common pattern of `new Entity(options)`. Remember to import `luxe.Entity`. This entity will automatically be added to the default scene unless you ask it not to be. See the [EntityOptions](api/luxe/options/EntityOptions.html)
 
-	var entity = Luxe.scene.create(Entity, 'entity_name');
+	var entity = new Entity({ name:'entity_name' });
 
-### Creating entities from classes
----
-Entites can also be created from the constructor but are not added to any scene. This gives you control, but take note of it when something isn't showing up.
-
-	var entity = new Entity();
-
-The `Sprite` and `Camera` class in luxe extend from the Entity class so that you can add components to them. Sprites are automatically added to the default scene unless you tell it not to, by passing `add : false` into the constructor of Sprite.
+The `Sprite` and `Camera` class in luxe extend from the Entity class so that you can add components to them. 
 
 ### Accessing entities from other entities and components
 ---
@@ -123,25 +117,25 @@ All components should extend from the luxe Components class in order to benefit 
 ### Adding components to entities
 ---
 
-Components are added to entities using the `add` function, and the `add` function returns the instance if you want to store a typed reference.
-The second parameter is the name of the entity or component, so you can use them by name later on.
+Components are added to entities using the `add` function _on the entity_, and the `add` function returns the instance for convenience.
+Remember to name things, as the name of the component is crucial for fetching a reference later on. The component name is the unique instance name of this specific component, so remember that!
 
-For example, inside of your game init function :
+When you create a custom component, the constructor is in your hands, but remember to call _super_ with the name of the instance. You can see this in the example later.
 
 	var component : Component;
 	var entity : Entity;
 
-	public function init() {
+	override function ready() {
 
 			// create an entity in the default scene
-		entity = Luxe.scene.create(Entity, 'some_entity');
+		entity = new Entity({ name:'some_entity' });
 
 			// add/attach a component to the entity.
-		component = entity.add(Component, 'some_component');
+		component = entity.add(new Component({ name:'some_component' });
 
 	}
 
-### Accessing the entity
+### Accessing the entity instance
 ---
 
 When you are inside of a component and want to access the entity that the component is connected to,    
@@ -150,9 +144,9 @@ there is a variable called `entity` that is declared in the Component class as `
 When the entity is attached to a sub class of Entity (like a Sprite, which `extends Entity`),   
 you can store a typed reference by using the `cast` keyword. Like below :
 
-	var sprite:Sprite;
+	var sprite : Sprite;
 
-	public function init() {
+	override function init() {
 
 		sprite = cast entity;
 
@@ -168,17 +162,21 @@ When you want to access other components attached to the entity, you can use the
 
 The `get` function is available from inside the component class, or from the entity.   
 
-The parameter passed into the get function is the name of the component instance (which is set when calling the `add` function, like above).
+The parameter passed into the get function is the _name of the component instance_ (which is passed into the constructor of the Component. when calling the new function).
 
 &nbsp;   
 
-	var other_component : Component2;
+	var move : Movement;
 
-	function init() {
+	override function init() {
 
-		other_component = cast get('other_component_name');
+		move = cast get('move');
 
-		var another_component = entity.get('another');
+			move.speed *= 2;
+
+		var health : Health = get('health');
+
+			health.amount += 10;
 
 	}
 
@@ -190,12 +188,161 @@ The parameter passed into the get function is the name of the component instance
 To further demonstrate component entity systems, we will do the following : 
 
 - Create a sprite (which is an entity)
-- Attach a component that will rotate the sprite
-- Attach a component that will make the sprite bounce
+- Attach a custom component that will rotate the sprite
+- Attach a custom component that will make the sprite bounce
 
 ![EntityComponentRelationship](http://luxeengine.com/docs/images/entitycomponents2.png)
 
-[Jump to the code for the full example](#code)
+
+#### Output image
+
+![getting started screenshot](images/guide.basiccomponents.png)
+
+<a name="code">
+#### Code listing 4
+</a>
+
+_(found in samples/guides/5_components/)_
+
+### Rotate.hx
+
+```
+
+import luxe.Vector;
+
+import luxe.Component;
+import luxe.Sprite;
+
+//This component will rotate the entity that it is attached to a small amount each frame.
+//It is assumed that the entity is a Sprite! 
+
+class Rotate extends Component {
+
+
+	public var rotate_speed : Float = 10;
+	public var max_rotate_speed : Float = 60;
+
+    var sprite : Sprite;
+
+    override function init() {
+        sprite = cast entity;
+    }
+
+    override function update( dt:Float ) {
+
+    		//changes to the transform inside of components affect the entity directly!
+        sprite.rotation_z += rotate_speed * dt;
+
+    } //update
+
+} //Rotate
+```
+
+### Bounce.hx
+
+```
+import luxe.Component;
+
+
+class Bounce extends Component {
+
+
+	var dir : Int = 1;
+	var speed : Int = 200;
+
+		//to demonstrate using custom constructor
+	public function new(_speed:Int) {
+
+		super({ name:'bounce' });
+		speed = _speed;
+
+	} //new
+
+    override function update( dt:Float ) {
+
+        pos.y += speed * dir * dt;
+        	//hit the bottom? go back up
+        if(pos.y > Luxe.screen.h) {
+        	dir = -1;
+        }
+        	//hit the middle? go down
+        if(pos.y < Luxe.screen.h/2) {
+        	dir = 1;
+        }
+
+    } //update
+
+
+} //Bounce
+
+```
+
+### Main.hx
+```
+
+import luxe.Input;
+import luxe.Sprite;
+import luxe.Text;
+import luxe.Vector;
+import luxe.Color;
+
+
+class Main extends luxe.Game {
+
+
+	var logo : Sprite;
+	var rotator : Rotate;
+    var delta_time_text : Text;
+
+
+    override function ready() {
+
+    	logo = new Sprite({
+            pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
+            texture : Luxe.loadTexture('assets/luxelogo.png'),
+        });
+
+        rotator = new Rotate({ name:'rotator' });
+        logo.add(rotator);
+
+        	//we don't need to reference the bounce component, so we just add it.
+        logo.add(new Bounce(230));
+
+        delta_time_text = new luxe.Text({
+            color : new Color(0,0,0,1).rgb(0xf6007b),
+            pos : new Vector(60,60),
+            font : Luxe.renderer.font,
+            size : 20
+        });
+
+    } //ready
+
+    override function update(dt:Float) {
+            //Update the text each frame
+        delta_time_text.text = 'dt : ' + dt + '\n average : ' + Luxe.debug.dt_average;
+
+    } //update
+
+    override function onmousemove( e:MouseEvent ) {
+
+    	var percent = e.pos.x / Luxe.screen.w;
+    	var new_speed = percent * rotator.max_rotate_speed;
+
+    		rotator.rotate_speed = new_speed;
+
+    } //onmousemove
+
+    override function onkeyup( e:KeyEvent ) {
+
+        if(e.keycode == Key.escape) {
+            Luxe.shutdown();
+        }
+
+    } //onkeyup
+
+
+} //Main
+```
 
 ---
 
@@ -209,107 +356,6 @@ To further demonstrate component entity systems, we will do the following :
 &nbsp;   
 
 ---
-
-#### Output image
-
-![getting started screenshot](images/guide.basiccomponents.png)
-
-<a name="code">
-#### Code listing 4
-</a>
-
-_(found in samples/guides/4_components/)_
-
-### Rotate.hx
-
-	import luxe.components.Components.Component;
-	import luxe.Vector;
-
-	//This component will rotate the entity that it is attached to a small amount each frame.
-	//It is assumed that the entity is a Sprite! 
-
-	class Rotate extends Component {
-
-		public var rotate_speed : Float = 10;
-		public var max_rotate_speed : Float = 60;
-
-	    public function update(dt:Float) {
-
-	    		//changes to the transform inside of components affect the entity directly!
-	        rotation.z += rotate_speed * dt;
-
-	    } //update
-
-	} //Rotate
-
-### Bounce.hx
-
-	import luxe.components.Components.Component;
-	
-	class Bounce extends Component {
-
-		var dir : Int = 1;
-		var speed : Int = 200;
-
-	    public function update(dt:Float) {
-	        pos.y += speed * dir * dt;
-	        	//hit the bottom? go back up
-	        if(pos.y > Luxe.screen.h) {
-	        	dir = -1;
-	        }
-	        	//hit the middle? go down
-	        if(pos.y < Luxe.screen.h/2) {
-	        	dir = 1;
-	        }
-	    } //update
-
-	} //Bounce
-
-### Main.hx
-
-	import luxe.Input;
-	import luxe.Sprite;
-	import luxe.Vector;
-
-	class Main extends luxe.Game {
-
-		var logo : Sprite;
-		var rotator : Rotate;
-
-	    public function ready() {
-
-	    	logo = new Sprite({
-	            pos : new Vector(Luxe.screen.w/2, Luxe.screen.h/2),
-	            texture : Luxe.loadTexture('assets/luxelogo.png'),
-	        }); 
-
-	            //Now the important bit, we attach a component to an 
-	            //entity by calling .add(TypeOfComponent, 'NameOfComponent');
-	            //It is important to note that the name of the component must be set 
-	            //if you want to fetch it later using .get('NameOfComponent').
-	            //If no name is given, it uses a UUID.
-	        rotator = logo.add(Rotate, 'rotator');
-	        
-	        	//we don't need to reference the bounce component, so we just add it.
-	        logo.add(Bounce, 'bounce');
-
-	    } //ready
-
-	    public function onmousemove( e:MouseEvent ) {
-	    		
-	    		//Change the sprite speed based on the mouse x position
-
-	    	var percent = e.pos.x / Luxe.screen.w;
-	    	var new_speed = percent * rotator.max_rotate_speed;
-
-	    		rotator.rotate_speed = new_speed;
-
-	    } //onmousemove
-
-	} //Main
-
-[Jump to the guide links](#links)
-
 &nbsp;   
 &nbsp;   
 &nbsp;   

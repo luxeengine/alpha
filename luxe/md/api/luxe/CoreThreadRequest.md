@@ -20,12 +20,17 @@
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 <h3>Values</h3> <hr/><span class="member signature apipage">`load_texture`<br/> </span>
         <span class="small_desc_flat"></span><span class="member signature apipage">`load_shader`<br/> </span>
         <span class="small_desc_flat"></span>
+
 
 
 

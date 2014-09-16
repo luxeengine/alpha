@@ -13,11 +13,19 @@
 ---
 
 `class`
+<span class="meta">
+<br/>meta: @:keep
+</span>
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 
 
@@ -32,6 +40,7 @@
             <a name="parse_by_sequences"><a class="lift" href="#parse_by_sequences">parse\_by\_sequences</a></a> <span class="inline-block static">static</span><div class="clear"></div><code class="signature apipage">parse\_by\_sequences(data:[luxe.importers.texturepacker.TexturePackerData](#)<span></span>, names:[Array](#)&lt;[String](#)&gt;<span></span>) : [Dynamic](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
+
 
 
 

@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to feature guide](guide.html#drawing)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 
@@ -58,7 +58,7 @@ You should notice a pattern here - a rectangle is an outline, and a box is fille
     });
 
 
-###Drawing options 
+###list options 
 Each drawing function takes an `options` parameter that can have the following values :
 
 ---
@@ -279,7 +279,7 @@ Each drawing function takes an `options` parameter that can have the following v
 
 &nbsp;   
 
-###[Back to feature guide](guide.html#drawing)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 &nbsp;   

@@ -14,10 +14,16 @@
 
 `typedef`
 
+
 ---
+
 
 &nbsp;
 &nbsp;
+
+
+
+
 
 
 
@@ -28,6 +34,7 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="normal"><a class="lift" href="#normal">normal</a></a><div class="clear"></div><code class="signature apipage">normal : [phoenix.formats.obj.Normal](#)</code><br/></span>
             <span class="small_desc_flat"></span>
+
 
 
 

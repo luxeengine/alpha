@@ -109,8 +109,8 @@ Read the design links for more info.
 
 - `Sprite` - visual backed class with animation, flipping etc <small> [design](#), [guide](#sprite) </small>
 - `Color` - handle HSV, HSL, RGB interchangeably <small> [design](#), [guide](#color) </small>
-- `Render` - auto or self managed, auto batching geometry <small> [design](#), [guide](#rendering) </small>
-- `Render` - flexible depth, batching, blending and group rendering <small> [design](#), [guide](#render_control) </small>
+- `Render` - automatic or self managed batching of geometry <small> [design](#), [guide](#rendering) </small>
+- `Render control` - flexible depth, blending and group rendering <small> [design](#), [guide](#render_control) </small>
 - `OpenGL` - direct or indirect access to WebGL spec API <small> [design](#), [guide](#opengl) </small>
 - `Shaders` - first class citizen, built into the core of rendering <small> [design](#), [guide](#) </small>
 - `Camera` - split views, focus, rotation, shake, etc built in <small> [design](#), [guide](#) </small>

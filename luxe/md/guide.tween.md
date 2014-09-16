@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to feature guide](guide.html#tweening)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 ---
@@ -136,7 +136,7 @@ This is how these curves look when drawn as graphs.
 
 ---
 
-###[Back to feature guide](guide.html#tweening)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 &nbsp;   

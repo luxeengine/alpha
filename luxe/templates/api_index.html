@@ -17,6 +17,12 @@
 
 ## Types
 
+
+{{#with doc.packages._empty_}}
+   {{>package_node}}
+{{~/with}}
+
+
 {{#each doc.package_roots~}}
     {{#with (get_type 'packages' . ) ~}}
         {{#with this~}}

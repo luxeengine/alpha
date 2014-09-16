@@ -13,11 +13,19 @@
 ---
 
 `class`
+<span class="meta">
+<br/>meta: @:keep
+</span>
+
 
 ---
 
+
 &nbsp;
 &nbsp;
+
+
+
 
 
 
@@ -93,6 +101,7 @@
             <a name="new"><a class="lift" href="#new">new</a></a> <div class="clear"></div><code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     
+
 
 
 

@@ -8,22 +8,33 @@
 <h1>ComponentOptions</h1>
 <small>`luxe.options.ComponentOptions`</small>
 
-
+Options for a luxe.Component instance
 
 ---
 
 `typedef`
 
+
 ---
+
 
 &nbsp;
 &nbsp;
+
+
+
+
 
 
 
 <h3>Members</h3> <hr/><span class="member apipage">
-                <a name="init_with"><a class="lift" href="#init_with">init\_with</a></a><div class="clear"></div><code class="signature apipage">init\_with : [luxe.options.ComponentOptions.T](#)</code><br/></span>
-            <span class="small_desc_flat"></span>
+                <a name="name"><a class="lift" href="#name">name</a></a><div class="clear"></div>
+                <code class="signature apipage">name : [String](#)</code><br/></span>
+            <span class="small_desc_flat">The component name. This is extremely important,
+            as it is the named under which this component will be attached,
+            and referenced in functions like `get`.
+            Think of the name like the attachment slot for a component.</span>
+
 
 
 

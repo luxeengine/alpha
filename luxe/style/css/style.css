@@ -157,7 +157,7 @@ b {
 
 a {
     text-decoration: none;
-    font-size: 0.95em;
+    font-size: 1em;
     color:#f6007b;
     border:0;
     outline: 0;
@@ -266,8 +266,15 @@ li code {
 }
 
 .indent {
-    padding-left: 1.1em;
+    padding-left: 1em;
     display: block;
+}
+
+.package_item {
+    margin: 0;
+    padding: 0;
+    text-align: justify;
+    white-space: pre;
 }
 
 p {
@@ -402,12 +409,16 @@ user-select: none;
 
 .inherited {
     cursor: pointer;
-    font-size:0.5em;
-    font-family:'dsm',monospace;
-    border-radius:0.1em;
-    height:auto; margin: 0.1em;
-    margin-right:0.1em;
+    font-size: 0.5em;
+    font-family: 'dsm',monospace;
+    border-radius: 0.1em;
+    height: 1.5em;
+    margin: 0.1em;
+    margin-right: 0.1em;
     padding-left: 0.5em;
+    top: -0.3em;
+    margin-left: 1em;
+    position: relative;
     padding-right: 0.5em;
     color:#f6007b; border:solid 1px rgba(39,40,34,0.3);
 }

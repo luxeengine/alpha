@@ -1,7 +1,7 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-###[Back to feature guide](guide.html#events)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 ---
@@ -73,8 +73,8 @@ Events make this problem a lot more elegant and flexible. Instead of handlings s
 
 Now, no matter what the entity is - it is up to the entity (encapsulated, decoupled from the arrow!) to handle the situation.
 
-	//Inside the Player class
-	public function init() {
+		//Inside the Player class
+	override function init() {
 
 		events.listen('takes_damage', on_take_damage );
 
@@ -128,7 +128,7 @@ For this, you can use event namespaces, and wildcards in the events. Let's make 
 	...
 
 		//Inside the Player class
-	public function init() {
+	override function init() {
 
 		events.listen('takes_damage.arrow', on_take_damage_from_arrow );
 		events.listen('takes_damage.explosion', on_take_damage_from_explosion );
@@ -180,7 +180,7 @@ As mentioned above, many listeners can listen for a single event, and can react 
 All of the above examples were sending events directly INTO an entity, only that entity would see it. There is also a way to send messages globally, for every class/function to listen for in the entire game. Let's go back to the example of the player taking damage from anything, and tell the entire game that there was damage lost.
 
 		//In the player class
-	public function init() {			
+	override function init() {			
 		events.listen('takes_damage.*', on_take_damage_from_anything );
 	}
 
@@ -371,7 +371,7 @@ i.e `Luxe.events.listen('game.player.*')`, which can be used to filter events by
 
 &nbsp;   
 
-###[Back to feature guide](guide.html#events)
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
 &nbsp;   

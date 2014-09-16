@@ -1,52 +1,62 @@
 
 [![Logo](http://luxeengine.com/images/logo.png)](index.html)
 
-
+###[Back to feature guide](guide.html#list)
 ###[View all guides](guide.html)
 
+---
+## Assets
 
-### Assets
+The following asset types are supported directly by the API for convenience :
 
-Currently luxe supports loading assets and resources from the assets paths described in your [project file](guide.projects.html). 
-**Take note** that the id specified for an asset is relative to the `<assets />` tag inside your project file. See the section marked `the asset tag` below.
-The following asset types are supported by the API for convenience :
-
-- **textures** ( images, currently png/jpg )
-- **text assets** ( any format, json, xml, txt )
-- **bitmap fonts** ( usually a text description + image files )
-- **shader files** ( currently glsl shaders )
+- **textures** ( images, png, jpg, tga, psd, gif, bmp )
+- **text assets** ( any format, xml, txt etc )
+- **json assets** ( parses and returns a usable json object )
+- **sound assets** ( audio, ogg/wav/pcm )
+- **bitmap fonts** ( a text .fnt description + image files [see font guide](guide.fonts.html) )
+- **shader files** ( glsl shaders, with custom vertex or fragment shaders )
 - **binary files** ( any binary byte data )
 
 &nbsp;
 ### Loading assets via the luxe API
-&nbsp;
 
-    loadText(_id:String) : String
+---
 
-Loads a text asset by id, and returns the data as string. If you are looking for binary files, see `loadData`.
+To load assets from luxe you simply use the `Luxe` object, and call any of the functions :
 
-    loadTexture(_id:String, ?_onloaded:Texture->Void ) : Texture
 
-Loads an image file ( png/jpg ) by id, and takes an optional callback for when the loading is complete. **On native platforms loading is synchronous.** The callback is especially helpful for html5.
+- Luxe.loadText : `TextResource`
+- Luxe.loadJSON : `JSONResource`
+- Luxe.loadData : `DataResource`
+- Luxe.loadSound : `SoundResource`
+- Luxe.loadTexture : `Phoenix.texture`
+- Luxe.loadTextures : `Array<phoenix.Texture>`
+- Luxe.loadFont : `phoenix.BitmapFont`
+- Luxe.loadShader : `phoenix.Shader`
 
-    loadFont( _id:String, ?_path:String, ?_onloaded:Void->Void ) : BitmapFont
 
-    var font = Luxe.loadFont('font.fnt', 'assets/fonts/');
+It's important to note that a `Resource` instance holds the data inside of it, where some asset types (like a Texture) are already a Resource instance. What this means is that a TextResource, DataResource, or SoundResource are not the "final" object. A text resource holds a string, yet it does not return a string. This is because the resource manager will hold onto your assets for you, so you can manually control their lifetime if you need to, or reload them from the source asset.
 
-Loads a bitmap font file by id, but the path must be specified separately at the moment because fonts store the images separately. Also takes an optional callback for when the loading is complete. _On native platforms loading is synchronous._ The callback is especially helpful for html5.
+To access to information itself, you would access the `text` property on the `TextResource`. For JSON, it's data is named `json`. For data, it's named `data` and so on. The resource [API docs](api/index.html#luxe) have all the details.
 
-    loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:Shader->Void ) : Shader
+### Async 
 
-    var shader = Luxe.loadShader('textured', 'assets/shaders/customvert.glsl');
-    var shader = Luxe.loadShader('assets/shaders/cooleffect.glsl');
+By design, and by default, you should always consider asset loading to be asynchronous. If you load assets in a background thread, you wait. If you load assets on web, you wait. For this reason, [parcels](guide.parcels.html) are used to simplify this work, but also all loading functions have an oncomplete handler that you can leverage.
 
-Loads a shader, with a pixel shader and vertex shader file. If the fragment id (`_ps_id`) is `default`, the untextured colored geometry shader is used. If the fragment id is `textured`, the default internal textured shader is used. If the vertex shader id (`_vs_id`) is `default` the default vertex shader is used. Also takes an optional callback for when the loading is complete. _On native platforms loading is synchronous._ The callback is especially helpful for html5.
+Where things can load in safely (like a texture) the engine will account for asset loading allowing immediate use of the instance without anything breaking down. This of course will result in textures popping into place or geometry not showing up until it has loaded (and if the asset is not found, not at all) so preloading or loading your assets async-aware is very important.
 
-    loadData( _id:String , ?_onloaded:Shader->Void ) : ByteArray
+It is not an optional design pattern for small to large games, but as much as possible, luxe will gracefully wait for assets to complete to ease development. This will continue to be the case and improve over time as well.
 
-    var file_contents = Luxe.loadData('assets/binary_file.file');    
+_note : async loading implies that the calling code returns immediately, not that the asset itself will be loaded in the background. Loading can still block, and any GPU resources (like shaders or textures) will always block the main loop, as this is unnavoidable and how GPU resources work._
 
-Loads a binary file from the assets. _(to confirm this works with bytes --> )_ Also takes an optional callback for when the loading is complete. _On native platforms loading is synchronous._ The callback is especially helpful for html5 .
 
-&nbsp;
-&nbsp;
+---
+
+&nbsp;   
+
+###[Back to feature guide](guide.html#list)
+###[View all guides](guide.html)
+
+&nbsp;   
+&nbsp;   
+&nbsp;   
