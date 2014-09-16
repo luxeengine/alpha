@@ -4,21 +4,17 @@
 ---
 
 
-
 <h1>BinarySearchTraverseMethod</h1>
 <small>`luxe.structural.BinarySearchTraverseMethod`</small>
 
 
 
----
+<hr/>
 
-`enum`
-<span class="meta">
-<br/>meta: @:flatEnum
-</span>
+`enum`<br/><span class="meta">
+meta: @:flatEnum</span>
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -26,20 +22,20 @@
 
 
 
+<h3>Values</h3> <hr/><span class="member signature apipage">
+            <a name="PreOrder"><a class="lift" href="#PreOrder">PreOrder</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="InOrder"><a class="lift" href="#InOrder">InOrder</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="PostOrder"><a class="lift" href="#PostOrder">PostOrder</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span>
 
-<h3>Values</h3> <hr/><span class="member signature apipage">`PreOrder`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`InOrder`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`PostOrder`<br/> </span>
-        <span class="small_desc_flat"></span>
 
 
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

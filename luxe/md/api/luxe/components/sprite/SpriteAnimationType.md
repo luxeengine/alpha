@@ -4,21 +4,17 @@
 ---
 
 
-
 <h1>SpriteAnimationType</h1>
 <small>`luxe.components.sprite.SpriteAnimationType`</small>
 
 
 
----
+<hr/>
 
-`enum`
-<span class="meta">
-<br/>meta: @:flatEnum
-</span>
+`enum`<br/><span class="meta">
+meta: @:flatEnum</span>
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -26,19 +22,17 @@
 
 
 
-
-<h3>Values</h3> <hr/><span class="member signature apipage">`animated_texture`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`animated_uv`<br/> </span>
-        <span class="small_desc_flat"></span>
-
-
-
-
-
+<h3>Values</h3> <hr/><span class="member signature apipage">
+            <a name="animated_texture"><a class="lift" href="#animated_texture">animated\_texture</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="animated_uv"><a class="lift" href="#animated_uv">animated\_uv</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span>
 
 
 
----
+<hr/>
 
 &nbsp;
 &nbsp;

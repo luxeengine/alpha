@@ -4,24 +4,20 @@
 ---
 
 
-
 <h1>Matrix</h1>
 <small>`luxe.Matrix`</small>
 
 
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `phoenix.Matrix`
+`typedef`&nbsp;alias of `phoenix.Matrix`   
 
-
----
+<hr/>
 
 
 &nbsp;
 &nbsp;
-
-
 
 
 
@@ -29,268 +25,348 @@
 
 <h3>Members</h3> <hr/><span class="member apipage">
                 <a name="elements"><a class="lift" href="#elements">elements</a></a><div class="clear"></div>
-                <code class="signature apipage">elements : [Array](#)&lt;[Float](#)&gt;</code><br/></span>
-            <span class="small_desc_flat"></span>
-
-
+                <code class="signature apipage">elements : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/></span>
+            <span class="small_desc_flat"></span><br/>
 
 <h3>Properties</h3> <hr/><span class="member apipage">
                 <a name="M11"><a class="lift" href="#M11">M11</a></a><div class="clear"></div>
-                <code class="signature apipage">M11 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M11 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M12"><a class="lift" href="#M12">M12</a></a><div class="clear"></div>
-                <code class="signature apipage">M12 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M12 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M13"><a class="lift" href="#M13">M13</a></a><div class="clear"></div>
-                <code class="signature apipage">M13 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M13 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M14"><a class="lift" href="#M14">M14</a></a><div class="clear"></div>
-                <code class="signature apipage">M14 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M14 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M21"><a class="lift" href="#M21">M21</a></a><div class="clear"></div>
-                <code class="signature apipage">M21 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M21 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M22"><a class="lift" href="#M22">M22</a></a><div class="clear"></div>
-                <code class="signature apipage">M22 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M22 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M23"><a class="lift" href="#M23">M23</a></a><div class="clear"></div>
-                <code class="signature apipage">M23 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M23 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M24"><a class="lift" href="#M24">M24</a></a><div class="clear"></div>
-                <code class="signature apipage">M24 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M24 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M31"><a class="lift" href="#M31">M31</a></a><div class="clear"></div>
-                <code class="signature apipage">M31 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M31 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M32"><a class="lift" href="#M32">M32</a></a><div class="clear"></div>
-                <code class="signature apipage">M32 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M32 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M33"><a class="lift" href="#M33">M33</a></a><div class="clear"></div>
-                <code class="signature apipage">M33 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M33 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M34"><a class="lift" href="#M34">M34</a></a><div class="clear"></div>
-                <code class="signature apipage">M34 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M34 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M41"><a class="lift" href="#M41">M41</a></a><div class="clear"></div>
-                <code class="signature apipage">M41 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M41 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M42"><a class="lift" href="#M42">M42</a></a><div class="clear"></div>
-                <code class="signature apipage">M42 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M42 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M43"><a class="lift" href="#M43">M43</a></a><div class="clear"></div>
-                <code class="signature apipage">M43 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M43 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="M44"><a class="lift" href="#M44">M44</a></a><div class="clear"></div>
-                <code class="signature apipage">M44 : [Float](#)</code><br/></span>
+                <code class="signature apipage">M44 : [Float](http://api.haxe.org/Float.html)</code><br/></span>
             <span class="small_desc_flat"></span>
-
-
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="backward"><a class="lift" href="#backward">backward</a></a><div class="clear"></div>
-            <code class="signature apipage">backward() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">backward() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="clone"><a class="lift" href="#clone">clone</a></a><div class="clear"></div>
-            <code class="signature apipage">clone() : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">clone() : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="compose"><a class="lift" href="#compose">compose</a></a><div class="clear"></div>
-            <code class="signature apipage">compose(\_position:[phoenix.Vector](#)<span></span>, \_quaternion:[phoenix.Quaternion](#)<span></span>, \_scale:[phoenix.Vector](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">compose(\_position:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_quaternion:[phoenix.Quaternion](../../api/phoenix/Quaternion.html)<span></span>, \_scale:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="compose_with_origin"><a class="lift" href="#compose_with_origin">compose\_with\_origin</a></a><div class="clear"></div>
-            <code class="signature apipage">compose\_with\_origin(\_position:[phoenix.Vector](#)<span></span>, \_origin:[phoenix.Vector](#)<span></span>, \_quaternion:[phoenix.Quaternion](#)<span></span>, \_scale:[phoenix.Vector](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">compose\_with\_origin(\_position:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_origin:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_quaternion:[phoenix.Quaternion](../../api/phoenix/Quaternion.html)<span></span>, \_scale:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="copy"><a class="lift" href="#copy">copy</a></a><div class="clear"></div>
-            <code class="signature apipage">copy(m:[phoenix.Matrix](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">copy(m:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="copyPosition"><a class="lift" href="#copyPosition">copyPosition</a></a><div class="clear"></div>
-            <code class="signature apipage">copyPosition(m:[phoenix.Matrix](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">copyPosition(m:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="decompose"><a class="lift" href="#decompose">decompose</a></a><div class="clear"></div>
-            <code class="signature apipage">decompose(\_position:[phoenix.Vector](#)<span>=null</span>, \_quaternion:[phoenix.Quaternion](#)<span>=null</span>, \_scale:[phoenix.Vector](#)<span>=null</span>) : [phoenix.MatrixTransform](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">decompose(\_position:[phoenix.Vector](../../api/phoenix/Vector.html)<span>=null</span>, \_quaternion:[phoenix.Quaternion](../../api/phoenix/Quaternion.html)<span>=null</span>, \_scale:[phoenix.Vector](../../api/phoenix/Vector.html)<span>=null</span>) : [phoenix.MatrixTransform](../../api/phoenix/MatrixTransform.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="determinant"><a class="lift" href="#determinant">determinant</a></a><div class="clear"></div>
-            <code class="signature apipage">determinant() : [Float](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">determinant() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="down"><a class="lift" href="#down">down</a></a><div class="clear"></div>
-            <code class="signature apipage">down() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">down() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="extractRotation"><a class="lift" href="#extractRotation">extractRotation</a></a><div class="clear"></div>
-            <code class="signature apipage">extractRotation(m:[phoenix.Matrix](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">extractRotation(m:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="flattenToArray"><a class="lift" href="#flattenToArray">flattenToArray</a></a><div class="clear"></div>
-            <code class="signature apipage">flattenToArray(\_flat:[Array](#)&lt;[Float](#)&gt;<span>=null</span>) : [Array](#)&lt;[Float](#)&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">flattenToArray(\_flat:[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;<span>=null</span>) : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="flattenToArrayOffset"><a class="lift" href="#flattenToArrayOffset">flattenToArrayOffset</a></a><div class="clear"></div>
-            <code class="signature apipage">flattenToArrayOffset(\_flat:[Array](#)&lt;[Float](#)&gt;<span></span>, \_offset:[Int](#)<span></span>) : [Array](#)&lt;[Float](#)&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">flattenToArrayOffset(\_flat:[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;<span></span>, \_offset:[Int](http://api.haxe.org/Int.html)<span></span>) : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="float32array"><a class="lift" href="#float32array">float32array</a></a><div class="clear"></div>
             <code class="signature apipage">float32array() : [snow.utils.Float32Array](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+
+
+</span>
+<span class="method apipage">
             <a name="forward"><a class="lift" href="#forward">forward</a></a><div class="clear"></div>
-            <code class="signature apipage">forward() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">forward() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="fromArray"><a class="lift" href="#fromArray">fromArray</a></a><div class="clear"></div>
-            <code class="signature apipage">fromArray(\_from:[Array](#)&lt;[Float](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">fromArray(\_from:[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="getInverse"><a class="lift" href="#getInverse">getInverse</a></a><div class="clear"></div>
-            <code class="signature apipage">getInverse(\_m:[phoenix.Matrix](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">getInverse(\_m:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="getMaxScaleOnAxis"><a class="lift" href="#getMaxScaleOnAxis">getMaxScaleOnAxis</a></a><div class="clear"></div>
-            <code class="signature apipage">getMaxScaleOnAxis() : [Float](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">getMaxScaleOnAxis() : [Float](http://api.haxe.org/Float.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="getPosition"><a class="lift" href="#getPosition">getPosition</a></a><div class="clear"></div>
-            <code class="signature apipage">getPosition() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">getPosition() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="identity"><a class="lift" href="#identity">identity</a></a><div class="clear"></div>
-            <code class="signature apipage">identity() : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">identity() : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="inverse"><a class="lift" href="#inverse">inverse</a></a><div class="clear"></div>
-            <code class="signature apipage">inverse() : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">inverse() : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="left"><a class="lift" href="#left">left</a></a><div class="clear"></div>
-            <code class="signature apipage">left() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">left() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="lookAt"><a class="lift" href="#lookAt">lookAt</a></a><div class="clear"></div>
-            <code class="signature apipage">lookAt(\_eye:[phoenix.Vector](#)<span></span>, \_target:[phoenix.Vector](#)<span></span>, \_up:[phoenix.Vector](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">lookAt(\_eye:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_target:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_up:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="make2D"><a class="lift" href="#make2D">make2D</a></a><div class="clear"></div>
-            <code class="signature apipage">make2D(\_x:[Float](#)<span></span>, \_y:[Float](#)<span></span>, \_scale:[Float](#)<span>=1</span>, \_rotation:[Float](#)<span>=0</span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">make2D(\_x:[Float](http://api.haxe.org/Float.html)<span></span>, \_y:[Float](http://api.haxe.org/Float.html)<span></span>, \_scale:[Float](http://api.haxe.org/Float.html)<span>=1</span>, \_rotation:[Float](http://api.haxe.org/Float.html)<span>=0</span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeFrustum"><a class="lift" href="#makeFrustum">makeFrustum</a></a><div class="clear"></div>
-            <code class="signature apipage">makeFrustum(\_left:[Float](#)<span></span>, \_right:[Float](#)<span></span>, \_bottom:[Float](#)<span></span>, \_top:[Float](#)<span></span>, \_near:[Float](#)<span></span>, \_far:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeFrustum(\_left:[Float](http://api.haxe.org/Float.html)<span></span>, \_right:[Float](http://api.haxe.org/Float.html)<span></span>, \_bottom:[Float](http://api.haxe.org/Float.html)<span></span>, \_top:[Float](http://api.haxe.org/Float.html)<span></span>, \_near:[Float](http://api.haxe.org/Float.html)<span></span>, \_far:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeOrthographic"><a class="lift" href="#makeOrthographic">makeOrthographic</a></a><div class="clear"></div>
-            <code class="signature apipage">makeOrthographic(\_left:[Float](#)<span></span>, \_right:[Float](#)<span></span>, \_top:[Float](#)<span></span>, \_bottom:[Float](#)<span></span>, \_near:[Float](#)<span></span>, \_far:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeOrthographic(\_left:[Float](http://api.haxe.org/Float.html)<span></span>, \_right:[Float](http://api.haxe.org/Float.html)<span></span>, \_top:[Float](http://api.haxe.org/Float.html)<span></span>, \_bottom:[Float](http://api.haxe.org/Float.html)<span></span>, \_near:[Float](http://api.haxe.org/Float.html)<span></span>, \_far:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makePerspective"><a class="lift" href="#makePerspective">makePerspective</a></a><div class="clear"></div>
-            <code class="signature apipage">makePerspective(\_fov:[Float](#)<span></span>, \_aspect:[Float](#)<span></span>, \_near:[Float](#)<span></span>, \_far:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makePerspective(\_fov:[Float](http://api.haxe.org/Float.html)<span></span>, \_aspect:[Float](http://api.haxe.org/Float.html)<span></span>, \_near:[Float](http://api.haxe.org/Float.html)<span></span>, \_far:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeRotationAxis"><a class="lift" href="#makeRotationAxis">makeRotationAxis</a></a><div class="clear"></div>
-            <code class="signature apipage">makeRotationAxis(\_axis:[phoenix.Vector](#)<span></span>, \_angle:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeRotationAxis(\_axis:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_angle:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeRotationFromEuler"><a class="lift" href="#makeRotationFromEuler">makeRotationFromEuler</a></a><div class="clear"></div>
-            <code class="signature apipage">makeRotationFromEuler(\_v:[phoenix.Vector](#)<span></span>, \_order:[String](#)<span>=&#x27;XYZ&#x27;</span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeRotationFromEuler(\_v:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>, \_order:[String](http://api.haxe.org/String.html)<span>=&#x27;XYZ&#x27;</span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeRotationFromQuaternion"><a class="lift" href="#makeRotationFromQuaternion">makeRotationFromQuaternion</a></a><div class="clear"></div>
-            <code class="signature apipage">makeRotationFromQuaternion(q:[phoenix.Quaternion](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeRotationFromQuaternion(q:[phoenix.Quaternion](../../api/phoenix/Quaternion.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeRotationX"><a class="lift" href="#makeRotationX">makeRotationX</a></a><div class="clear"></div>
-            <code class="signature apipage">makeRotationX(\_theta:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeRotationX(\_theta:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeRotationY"><a class="lift" href="#makeRotationY">makeRotationY</a></a><div class="clear"></div>
-            <code class="signature apipage">makeRotationY(\_theta:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeRotationY(\_theta:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeRotationZ"><a class="lift" href="#makeRotationZ">makeRotationZ</a></a><div class="clear"></div>
-            <code class="signature apipage">makeRotationZ(\_theta:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeRotationZ(\_theta:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeScale"><a class="lift" href="#makeScale">makeScale</a></a><div class="clear"></div>
-            <code class="signature apipage">makeScale(\_x:[Float](#)<span></span>, \_y:[Float](#)<span></span>, \_z:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeScale(\_x:[Float](http://api.haxe.org/Float.html)<span></span>, \_y:[Float](http://api.haxe.org/Float.html)<span></span>, \_z:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="makeTranslation"><a class="lift" href="#makeTranslation">makeTranslation</a></a><div class="clear"></div>
-            <code class="signature apipage">makeTranslation(\_x:[Float](#)<span></span>, \_y:[Float](#)<span></span>, \_z:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">makeTranslation(\_x:[Float](http://api.haxe.org/Float.html)<span></span>, \_y:[Float](http://api.haxe.org/Float.html)<span></span>, \_z:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="multiply"><a class="lift" href="#multiply">multiply</a></a><div class="clear"></div>
-            <code class="signature apipage">multiply(\_m:[phoenix.Matrix](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">multiply(\_m:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="multiplyMatrices"><a class="lift" href="#multiplyMatrices">multiplyMatrices</a></a><div class="clear"></div>
-            <code class="signature apipage">multiplyMatrices(\_a:[phoenix.Matrix](#)<span></span>, \_b:[phoenix.Matrix](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">multiplyMatrices(\_a:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>, \_b:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="multiplyScalar"><a class="lift" href="#multiplyScalar">multiplyScalar</a></a><div class="clear"></div>
-            <code class="signature apipage">multiplyScalar(\_s:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">multiplyScalar(\_s:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="multiplyToArray"><a class="lift" href="#multiplyToArray">multiplyToArray</a></a><div class="clear"></div>
-            <code class="signature apipage">multiplyToArray(\_a:[phoenix.Matrix](#)<span></span>, \_b:[phoenix.Matrix](#)<span></span>, \_r:[Array](#)&lt;[Float](#)&gt;<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">multiplyToArray(\_a:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>, \_b:[phoenix.Matrix](../../api/phoenix/Matrix.html)<span></span>, \_r:[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="multiplyVector3Array"><a class="lift" href="#multiplyVector3Array">multiplyVector3Array</a></a><div class="clear"></div>
-            <code class="signature apipage">multiplyVector3Array(\_a:[Array](#)&lt;[Float](#)&gt;<span></span>) : [Array](#)&lt;[Float](#)&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">multiplyVector3Array(\_a:[Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;<span></span>) : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
-            <code class="signature apipage">new(n11:[Float](#)<span>=1</span>, n12:[Float](#)<span>=0</span>, n13:[Float](#)<span>=0</span>, n14:[Float](#)<span>=0</span>, n21:[Float](#)<span>=0</span>, n22:[Float](#)<span>=1</span>, n23:[Float](#)<span>=0</span>, n24:[Float](#)<span>=0</span>, n31:[Float](#)<span>=0</span>, n32:[Float](#)<span>=0</span>, n33:[Float](#)<span>=1</span>, n34:[Float](#)<span>=0</span>, n41:[Float](#)<span>=0</span>, n42:[Float](#)<span>=0</span>, n43:[Float](#)<span>=0</span>, n44:[Float](#)<span>=1</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">new(n11:[Float](http://api.haxe.org/Float.html)<span>=1</span>, n12:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n13:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n14:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n21:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n22:[Float](http://api.haxe.org/Float.html)<span>=1</span>, n23:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n24:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n31:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n32:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n33:[Float](http://api.haxe.org/Float.html)<span>=1</span>, n34:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n41:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n42:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n43:[Float](http://api.haxe.org/Float.html)<span>=0</span>, n44:[Float](http://api.haxe.org/Float.html)<span>=1</span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="right"><a class="lift" href="#right">right</a></a><div class="clear"></div>
-            <code class="signature apipage">right() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">right() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="scale"><a class="lift" href="#scale">scale</a></a><div class="clear"></div>
-            <code class="signature apipage">scale(\_v:[phoenix.Vector](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">scale(\_v:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="set"><a class="lift" href="#set">set</a></a><div class="clear"></div>
-            <code class="signature apipage">set(n11:[Float](#)<span></span>, n12:[Float](#)<span></span>, n13:[Float](#)<span></span>, n14:[Float](#)<span></span>, n21:[Float](#)<span></span>, n22:[Float](#)<span></span>, n23:[Float](#)<span></span>, n24:[Float](#)<span></span>, n31:[Float](#)<span></span>, n32:[Float](#)<span></span>, n33:[Float](#)<span></span>, n34:[Float](#)<span></span>, n41:[Float](#)<span></span>, n42:[Float](#)<span></span>, n43:[Float](#)<span></span>, n44:[Float](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">set(n11:[Float](http://api.haxe.org/Float.html)<span></span>, n12:[Float](http://api.haxe.org/Float.html)<span></span>, n13:[Float](http://api.haxe.org/Float.html)<span></span>, n14:[Float](http://api.haxe.org/Float.html)<span></span>, n21:[Float](http://api.haxe.org/Float.html)<span></span>, n22:[Float](http://api.haxe.org/Float.html)<span></span>, n23:[Float](http://api.haxe.org/Float.html)<span></span>, n24:[Float](http://api.haxe.org/Float.html)<span></span>, n31:[Float](http://api.haxe.org/Float.html)<span></span>, n32:[Float](http://api.haxe.org/Float.html)<span></span>, n33:[Float](http://api.haxe.org/Float.html)<span></span>, n34:[Float](http://api.haxe.org/Float.html)<span></span>, n41:[Float](http://api.haxe.org/Float.html)<span></span>, n42:[Float](http://api.haxe.org/Float.html)<span></span>, n43:[Float](http://api.haxe.org/Float.html)<span></span>, n44:[Float](http://api.haxe.org/Float.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="setPosition"><a class="lift" href="#setPosition">setPosition</a></a><div class="clear"></div>
-            <code class="signature apipage">setPosition(\_v:[phoenix.Vector](#)<span></span>) : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">setPosition(\_v:[phoenix.Vector](../../api/phoenix/Vector.html)<span></span>) : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><div class="clear"></div>
-            <code class="signature apipage">toArray() : [Array](#)&lt;[Float](#)&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">toArray() : [Array](http://api.haxe.org/Array.html)&lt;[Float](http://api.haxe.org/Float.html)&gt;</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="transpose"><a class="lift" href="#transpose">transpose</a></a><div class="clear"></div>
-            <code class="signature apipage">transpose() : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">transpose() : [phoenix.Matrix](../../api/phoenix/Matrix.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="up"><a class="lift" href="#up">up</a></a><div class="clear"></div>
-            <code class="signature apipage">up() : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    
+            <code class="signature apipage">up() : [phoenix.Vector](../../api/phoenix/Vector.html)</code><br/><span class="small_desc_flat"></span>
 
 
-
-    
-
+</span>
 
 
 
 
 
 
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

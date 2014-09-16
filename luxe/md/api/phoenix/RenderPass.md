@@ -4,29 +4,21 @@
 ---
 
 
-
 <h1>RenderPass</h1>
 <small>`phoenix.RenderPass`</small>
 
 
 
----
+<hr/>
 
-`class`extends <code><span>phoenix.Batcher</span></code>
-<span class="meta">
-<br/>meta: @:keep
-</span>
+`class`extends <code><span>phoenix.Batcher</span></code><br/><span class="meta">
+meta: @:keep</span>
 
-
----
+<hr/>
 
 
 &nbsp;
 &nbsp;
-
-
-
-
 
 
 
@@ -35,16 +27,14 @@
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
-            <code class="signature apipage">new(\_r:[phoenix.Renderer](#)<span></span>, \_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    
+            <code class="signature apipage">new(\_r:[phoenix.Renderer](../../api/phoenix/Renderer.html)<span></span>, \_name:[String](http://api.haxe.org/String.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
 
 
 
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

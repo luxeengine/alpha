@@ -2,7 +2,7 @@
 
     { {{#each fields~}}
         {{#if @index}}, {{/if~}}
-        {{~name}} : [{{type.name}}](#)
+        {{~name}} : [{{type.name}}]({{type_link name @root.rel_path}})
       {{~/each}} }
 
 {{~else~}}
@@ -10,22 +10,22 @@
 
     {{#each args~}}
         {{#if @index}} -&gt; {{/if~}}
-        [{{t.name}}](#)&nbsp;
+        [{{t.name}}]({{type_link t.name @root.rel_path }})&nbsp;
     {{~/each~}}
-    -&gt; [{{~return_type.name~}}](#)
+    -&gt; [{{~return_type.name~}}]({{type_link return_type.name @root.rel_path}})
     {{~else~}}
 
         {{#if params.length~}}
-            [{{name}}](#)&lt;
+            [{{name}}]({{type_link name @root.rel_path}})&lt;
             {{~#each params~}}
                 {{#if @index}}, {{/if~}}
-                [{{~name}}](#)
+                [{{~name}}]({{type_link name @root.rel_path}})
             {{~/each~}}&gt;
         {{~else~}}
             {{#if name~}}
-                [{{name}}](#)
+                [{{name}}]({{type_link name @root.rel_path}})
             {{~else~}}
-                [Dynamic](#)
+                [Dynamic]({{type_link name @root.rel_path}})
             {{~/if}}
         {{~/if}}
 

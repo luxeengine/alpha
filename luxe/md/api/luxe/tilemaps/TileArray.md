@@ -4,18 +4,16 @@
 ---
 
 
-
 <h1>TileArray</h1>
 <small>`luxe.tilemaps.TileArray`</small>
 
 
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `Array`
+`typedef`&nbsp;alias of `Array`   
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -31,19 +29,7 @@
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

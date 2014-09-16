@@ -4,21 +4,17 @@
 ---
 
 
-
 <h1>JSONTokenType</h1>
 <small>`luxe.utils.json.JSONTokenType`</small>
 
 
 
----
+<hr/>
 
-`enum`
-<span class="meta">
-<br/>meta: @:flatEnum, @:noCompletion
-</span>
+`enum`<br/><span class="meta">
+meta: @:flatEnum, @:noCompletion</span>
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -26,30 +22,50 @@
 
 
 
+<h3>Values</h3> <hr/><span class="member signature apipage">
+            <a name="tUNKNOWN"><a class="lift" href="#tUNKNOWN">tUNKNOWN</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tCOMMA"><a class="lift" href="#tCOMMA">tCOMMA</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tLEFT_BRACE"><a class="lift" href="#tLEFT_BRACE">tLEFT\_BRACE</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tRIGHT_BRACE"><a class="lift" href="#tRIGHT_BRACE">tRIGHT\_BRACE</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tLEFT_BRACKET"><a class="lift" href="#tLEFT_BRACKET">tLEFT\_BRACKET</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tRIGHT_BRACKET"><a class="lift" href="#tRIGHT_BRACKET">tRIGHT\_BRACKET</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tCOLON"><a class="lift" href="#tCOLON">tCOLON</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tTRUE"><a class="lift" href="#tTRUE">tTRUE</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tFALSE"><a class="lift" href="#tFALSE">tFALSE</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tNULL"><a class="lift" href="#tNULL">tNULL</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tSTRING"><a class="lift" href="#tSTRING">tSTRING</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tNUMBER"><a class="lift" href="#tNUMBER">tNUMBER</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="tNAN"><a class="lift" href="#tNAN">tNAN</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span>
 
-<h3>Values</h3> <hr/><span class="member signature apipage">`tUNKNOWN`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tCOMMA`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tLEFT_BRACE`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tRIGHT_BRACE`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tLEFT_BRACKET`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tRIGHT_BRACKET`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tCOLON`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tTRUE`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tFALSE`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tNULL`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tSTRING`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tNUMBER`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`tNAN`<br/> </span>
-        <span class="small_desc_flat"></span>
 
 
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

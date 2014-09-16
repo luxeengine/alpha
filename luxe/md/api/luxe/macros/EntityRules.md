@@ -4,21 +4,17 @@
 ---
 
 
-
 <h1>EntityRules</h1>
 <small>`luxe.macros.EntityRules`</small>
 
 
 
----
+<hr/>
 
-`class`
-<span class="meta">
-<br/>meta: @:keep, @:noCompletion
-</span>
+`class`<br/><span class="meta">
+meta: @:keep, @:noCompletion</span>
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -30,13 +26,7 @@
 
 
 
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

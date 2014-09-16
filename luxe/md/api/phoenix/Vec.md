@@ -4,17 +4,15 @@
 ---
 
 
-
 <h1>Vec</h1>
 <small>`phoenix.Vec`</small>
 
 
 
----
+<hr/>
 
 `abstract`
-
----
+<hr/>
 
 
 &nbsp;
@@ -26,13 +24,7 @@
 
 
 
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

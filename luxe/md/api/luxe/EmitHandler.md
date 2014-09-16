@@ -4,22 +4,18 @@
 ---
 
 
-
 <h1>EmitHandler</h1>
 <small>`luxe.EmitHandler`</small>
 
 A simple event emitter, used as a base class for systems that want to handle direct connections to named events
 
----
+<hr/>
 
-`typedef`&nbsp;alias of ``
+`typedef`&nbsp;alias of ``   
+<br/><span class="meta">
+meta: @:noCompletion</span>
 
-<span class="meta">
-<br/>meta: @:noCompletion
-</span>
-
-
----
+<hr/>
 
 
 &nbsp;
@@ -35,19 +31,7 @@ A simple event emitter, used as a base class for systems that want to handle dir
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

@@ -10,14 +10,15 @@
 
 {{{doc}}}
 
----
+<hr/>
 
-`{{type}}` 
+`{{{type}}}`
+
 
 {{~#if type '==' 'typedef'}}
     {{~^if members~}}
-        &nbsp;alias of `{{types.cpp.name}}`
-    {{~/if}}
+        &nbsp;alias of `{{types.cpp.name}}`   
+    {{/if~}}
 {{/if}}
 
 {{~#with superClass}}
@@ -33,16 +34,16 @@
 {{~/each~}}
 
 {{#if meta.length}}
-<span class="meta">
+<br/><span class="meta">
 {{#each meta~}}
-    {{~#unless @index}}<br/>meta: {{/unless~}}
+    {{~#unless @index}}meta: {{/unless~}}
     {{~#if @index}}, {{/if~}}
     @{{name}}{{#if params.length}}({{params}}){{/if}}
 {{~/each}}
 </span>
 {{/if}}
 
----
+<hr/>
 
 
 &nbsp;
@@ -52,7 +53,7 @@
 
 {{/item}}
 
----
+<hr/>
 
 &nbsp;
 &nbsp;

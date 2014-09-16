@@ -4,7 +4,6 @@
 ---
 
 
-
 <h1>Heap</h1>
 <small>`luxe.structural.Heap`</small>
 
@@ -33,95 +32,106 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
----
+<hr/>
 
-`class`
-<span class="meta">
-<br/>meta: @:keep
-</span>
+`class`<br/><span class="meta">
+meta: @:keep</span>
 
-
----
+<hr/>
 
 
 &nbsp;
 &nbsp;
-
-
 
 
 
 
 <h3>Members</h3> <hr/>
 
-
-
 <h3>Properties</h3> <hr/><span class="member apipage">
                 <a name="length"><a class="lift" href="#length">length</a></a><div class="clear"></div>
-                <code class="signature apipage">length : [Int](#)</code><br/></span>
+                <code class="signature apipage">length : [Int](http://api.haxe.org/Int.html)</code><br/></span>
             <span class="small_desc_flat"></span>
-
-
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="clear"><a class="lift" href="#clear">clear</a></a><div class="clear"></div>
-            <code class="signature apipage">clear() : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">clear() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="contains"><a class="lift" href="#contains">contains</a></a><div class="clear"></div>
-            <code class="signature apipage">contains(obj:[Null](#)&lt;[luxe.structural.Heap.T](#)&gt;<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat">Checks if a given item exists in the heap</span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">contains(obj:[Null](http://api.haxe.org/Null.html)&lt;[luxe.structural.Heap.T](../../../api/luxe/structural/Heap/T.html)&gt;<span></span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Checks if a given item exists in the heap</span>
+
+
+</span>
+<span class="method apipage">
             <a name="dequeue"><a class="lift" href="#dequeue">dequeue</a></a><div class="clear"></div>
-            <code class="signature apipage">dequeue() : [Null](#)&lt;[luxe.structural.Heap.T](#)&gt;</code><br/><span class="small_desc_flat">Dequeues and returns the front item. If the hash is empty, this returns
+            <code class="signature apipage">dequeue() : [Null](http://api.haxe.org/Null.html)&lt;[luxe.structural.Heap.T](../../../api/luxe/structural/Heap/T.html)&gt;</code><br/><span class="small_desc_flat">Dequeues and returns the front item. If the hash is empty, this returns
         null.</span>
-        </span>
-    <span class="method apipage">
+
+
+</span>
+<span class="method apipage">
             <a name="dump"><a class="lift" href="#dump">dump</a></a><div class="clear"></div>
-            <code class="signature apipage">dump() : [String](#)</code><br/><span class="small_desc_flat">Prints out all elements (for debug/demo purposes).</span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">dump() : [String](http://api.haxe.org/String.html)</code><br/><span class="small_desc_flat">Prints out all elements (for debug/demo purposes).</span>
+
+
+</span>
+<span class="method apipage">
             <a name="enqueue"><a class="lift" href="#enqueue">enqueue</a></a><div class="clear"></div>
-            <code class="signature apipage">enqueue(obj:[Null](#)&lt;[luxe.structural.Heap.T](#)&gt;<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat">Enqueues an object. Returns false if the hash is full, otherwise true.</span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">enqueue(obj:[Null](http://api.haxe.org/Null.html)&lt;[luxe.structural.Heap.T](../../../api/luxe/structural/Heap/T.html)&gt;<span></span>) : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat">Enqueues an object. Returns false if the hash is full, otherwise true.</span>
+
+
+</span>
+<span class="method apipage">
             <a name="getFront"><a class="lift" href="#getFront">getFront</a></a><div class="clear"></div>
-            <code class="signature apipage">getFront() : [Null](#)&lt;[luxe.structural.Heap.T](#)&gt;</code><br/><span class="small_desc_flat">The heap's front item.</span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">getFront() : [Null](http://api.haxe.org/Null.html)&lt;[luxe.structural.Heap.T](../../../api/luxe/structural/Heap/T.html)&gt;</code><br/><span class="small_desc_flat">The heap's front item.</span>
+
+
+</span>
+<span class="method apipage">
             <a name="getMaxSize"><a class="lift" href="#getMaxSize">getMaxSize</a></a><div class="clear"></div>
-            <code class="signature apipage">getMaxSize() : [Int](#)</code><br/><span class="small_desc_flat">The heap's maximum capacity.</span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">getMaxSize() : [Int](http://api.haxe.org/Int.html)</code><br/><span class="small_desc_flat">The heap's maximum capacity.</span>
+
+
+</span>
+<span class="method apipage">
             <a name="isEmpty"><a class="lift" href="#isEmpty">isEmpty</a></a><div class="clear"></div>
-            <code class="signature apipage">isEmpty() : [Bool](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">isEmpty() : [Bool](http://api.haxe.org/Bool.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="iterator"><a class="lift" href="#iterator">iterator</a></a><div class="clear"></div>
-            <code class="signature apipage">iterator() : [Iterator](#)&lt;[Null](#)&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">iterator() : [Iterator](#)&lt;[Null](http://api.haxe.org/Null.html)&gt;</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
-            <code class="signature apipage">new(\_size:[Int](#)<span></span>, \_compare:[Null](#)&nbsp; -&gt; [Null](#)&nbsp;-&gt; [Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">Initializes a new heap.
+            <code class="signature apipage">new(\_size:[Int](http://api.haxe.org/Int.html)<span></span>, \_compare:[Null](http://api.haxe.org/Null.html)&nbsp; -&gt; [Null](http://api.haxe.org/Null.html)&nbsp;-&gt; [Float](http://api.haxe.org/Float.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat">Initializes a new heap.
         [size] is the heap's maximum capacity.
         [compare] is a comparison function for sorting the heap's data.</span>
-        </span>
-    <span class="method apipage">
+
+
+</span>
+<span class="method apipage">
             <a name="reset"><a class="lift" href="#reset">reset</a></a><div class="clear"></div>
-            <code class="signature apipage">reset() : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
+            <code class="signature apipage">reset() : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="toArray"><a class="lift" href="#toArray">toArray</a></a><div class="clear"></div>
-            <code class="signature apipage">toArray() : [Array](#)&lt;[Null](#)&gt;</code><br/><span class="small_desc_flat"></span>
-        </span>
-    
+            <code class="signature apipage">toArray() : [Array](http://api.haxe.org/Array.html)&lt;[Null](http://api.haxe.org/Null.html)&gt;</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
 
 
 
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

@@ -4,18 +4,15 @@
 ---
 
 
-
 <h1>ParticleOptions</h1>
 <small>`luxe.options.ParticleOptions`</small>
 
 
 
----
+<hr/>
 
 `typedef`
-
-
----
+<hr/>
 
 
 &nbsp;
@@ -27,14 +24,7 @@
 
 
 
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

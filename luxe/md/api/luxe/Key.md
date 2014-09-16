@@ -4,18 +4,16 @@
 ---
 
 
-
 <h1>Key</h1>
 <small>`luxe.Key`</small>
 
 A named list of keycodes. Use to compare against key event `keycode` values
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `snow.input.Keycodes`
+`typedef`&nbsp;alias of `snow.input.Keycodes`   
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -31,19 +29,7 @@ A named list of keycodes. Use to compare against key event `keycode` values
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

@@ -4,21 +4,17 @@
 ---
 
 
-
 <h1>JSON</h1>
 <small>`luxe.utils.JSON`</small>
 
 
 
----
+<hr/>
 
-`class`
-<span class="meta">
-<br/>meta: @:keep
-</span>
+`class`<br/><span class="meta">
+meta: @:keep</span>
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -30,13 +26,7 @@
 
 
 
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

@@ -4,18 +4,16 @@
 ---
 
 
-
 <h1>ObjectHash</h1>
 <small>`luxe.tween.ObjectHash`</small>
 
 
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `haxe.ds.ObjectMap`
+`typedef`&nbsp;alias of `haxe.ds.ObjectMap`   
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -31,19 +29,7 @@
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

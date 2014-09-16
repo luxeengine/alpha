@@ -4,18 +4,16 @@
 ---
 
 
-
 <h1>Vec</h1>
 <small>`luxe.Vec`</small>
 
 
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `phoenix.Vec`
+`typedef`&nbsp;alias of `phoenix.Vec`   
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -31,19 +29,7 @@
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

@@ -4,21 +4,17 @@
 ---
 
 
-
 <h1>TiledObjectType</h1>
 <small>`luxe.tilemaps.tiled.TiledObjectType`</small>
 
 
 
----
+<hr/>
 
-`enum`
-<span class="meta">
-<br/>meta: @:flatEnum
-</span>
+`enum`<br/><span class="meta">
+meta: @:flatEnum</span>
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -26,21 +22,23 @@
 
 
 
+<h3>Values</h3> <hr/><span class="member signature apipage">
+            <a name="polyline"><a class="lift" href="#polyline">polyline</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="polygon"><a class="lift" href="#polygon">polygon</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="rectangle"><a class="lift" href="#rectangle">rectangle</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span><span class="member signature apipage">
+            <a name="ellipse"><a class="lift" href="#ellipse">ellipse</a></a>
+        </span>
+        <span class="small_desc_flat"> _no description_ </span>
 
-<h3>Values</h3> <hr/><span class="member signature apipage">`polyline`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`polygon`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`rectangle`<br/> </span>
-        <span class="small_desc_flat"></span><span class="member signature apipage">`ellipse`<br/> </span>
-        <span class="small_desc_flat"></span>
 
 
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

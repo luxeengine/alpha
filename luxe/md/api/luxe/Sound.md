@@ -4,18 +4,16 @@
 ---
 
 
-
 <h1>Sound</h1>
 <small>`luxe.Sound`</small>
 
 
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `snow.audio.Sound`
+`typedef`&nbsp;alias of `snow.audio.Sound`   
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -31,19 +29,7 @@
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

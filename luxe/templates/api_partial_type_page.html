@@ -21,7 +21,7 @@
                 <div class="clear"></div>
                 <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
             </span>
-            <span class="small_desc_flat">{{{doc}}}</span>
+            <span class="small_desc_flat">{{{doc}}}</span><br/>
         {{~/if}}
     {{~else~}}
         no public members
@@ -32,8 +32,12 @@
 {{~#if constructors.length~}}
 <h3>Values</h3> <hr/>
     {{~#constructors~}}
-        <span class="member signature apipage">`{{name}}`<br/> </span>
-        <span class="small_desc_flat">{{{doc}}}</span> 
+        <span class="member signature apipage">
+            <a name="{{~name~}}"><a class="lift" href="#{{name}}">
+                    {{~escape_markdown name~}}
+            </a></a>
+        </span>
+        <span class="small_desc_flat">{{#if doc}} {{{doc}}} {{else}} _no description_ {{/if}}</span> 
     {{~/constructors~}}
 {{~/if}}
 
@@ -75,8 +79,12 @@
             {{~/inherited~}}
             {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
             <div class="clear"></div>
-            <code class="signature apipage">{{escape_markdown name}}{{#if params.length}}&lt;{{#each params}}{{#if @index}}, {{/if~}}{{.}}&gt;{{/each}}{{/if}}({{>args}}) : {{#if type.return_type.name~}} {{#with type.return_type}}{{>type}}{{/with}} {{~else}}[Dynamic](#){{/if}}</code><br/>{{noop~}}
+            <code class="signature apipage">{{escape_markdown name}}{{#if params.length}}&lt;{{#each params}}{{#if @index}}, {{/if~}}{{.}}&gt;{{/each}}{{/if}}({{>args}}) : {{#if type.return_type.name~}} {{#with type.return_type}}{{>type}}{{/with}} {{~else}}[Dynamic]({{type_link name @root.rel_path}}){{/if}}</code><br/>{{noop~}}
             <span class="small_desc_flat">{{{doc}}}</span>
+
+{{noop~}}   {{{ example_code ../../path name }}}
+{{noop~}}
+
         </span>
     {{/if}}
 {{~else~}}

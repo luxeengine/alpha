@@ -1,5 +1,4 @@
-
-{{#unless (hidden_package .) }}
+{{#unless (hidden_package .) ~}}
 <div class="indent">
 
 <a name="{{.}}"><h3> [{{without_package (escape_markdown .)}}](#{{.}}) </h3></a>
@@ -14,12 +13,11 @@
     {{#each packages~}}
         {{#with (get_type 'packages' . )~}}
             <div class="indent">
-                {{>package_node~}}
+                {{~>package_node~}}
             </div>
         {{~/with~}}
     {{/each~}}
 {{/with}}
 
 </div>
-
-{{/unless}}
+{{~/unless~}}

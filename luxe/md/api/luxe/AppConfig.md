@@ -4,18 +4,16 @@
 ---
 
 
-
 <h1>AppConfig</h1>
 <small>`luxe.AppConfig`</small>
 
 
 
----
+<hr/>
 
-`typedef`&nbsp;alias of `snow.types.AppConfig`
+`typedef`&nbsp;alias of `snow.types.AppConfig`   
 
-
----
+<hr/>
 
 
 &nbsp;
@@ -31,19 +29,7 @@
 
 
 
-    
-
-
-
-
-
-
-
-
-
-
-
----
+<hr/>
 
 &nbsp;
 &nbsp;

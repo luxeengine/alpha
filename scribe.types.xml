@@ -6668,7 +6668,7 @@
 </f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<typedef path="luxe.Slice" params="" file="/Users/sven/dev/luxe/luxe/luxe/NineSlice.hx" module="luxe.NineSlice"><a>
+	<typedef path="luxe._NineSlice.Slice" params="" file="/Users/sven/dev/luxe/luxe/luxe/NineSlice.hx" private="1" module="luxe.NineSlice"><a>
 	<width><x path="Float"/></width>
 	<source_y><x path="Float"/></source_y>
 	<source_x><x path="Float"/></source_x>
@@ -6916,7 +6916,7 @@
 			<meta><m n=":noCompletion"/></meta>
 		</midheight>
 		<slices public="1">
-			<c path="Array"><t path="luxe.Slice"/></c>
+			<c path="Array"><t path="luxe._NineSlice.Slice"/></c>
 			<meta><m n=":noCompletion"/></meta>
 		</slices>
 		<added public="1">

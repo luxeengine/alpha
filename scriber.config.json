@@ -8,6 +8,7 @@
     "samples_path" : "./luxe/samples/",
     "api_path" : "./luxe/apis/api/",
     "md_path" : "./luxe/md/",
+    "api_example_file" : "./luxe/md/api/examples.md",
 
     "md_input": ["**/+(*.md)"],
     "api_input" : ["**/+(*.json)"],
