@@ -80,12 +80,12 @@ pre {
 }
 
 code {
-  display: inline-block;
+  display: inline;
   font-size: 0.8em;
   padding-bottom: 0.1em;
   padding-left: 0.4em;
   padding-right: 0.4em;
   border-radius: 0.2em;
-  background-color: transparent;  
+  background-color: transparent;
   white-space: pre;
 }

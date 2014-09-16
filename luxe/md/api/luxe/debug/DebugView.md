@@ -32,10 +32,10 @@
 <h3>Members</h3> <hr/><span class="member apipage">
                 <a name="id"><a class="lift" href="#id">id</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">id : [String](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the id</span><span class="member apipage">
                 <a name="name"><a class="lift" href="#name">name</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">name : [String](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the name</span><span class="member apipage">
                 <a name="visible"><a class="lift" href="#visible">visible</a></a><div class="clear"></div>
                 <code class="signature apipage">visible : [Bool](#)</code><br/></span>
             <span class="small_desc_flat"></span>
@@ -53,7 +53,7 @@
             <code class="signature apipage">hide() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Objects" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
             <code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

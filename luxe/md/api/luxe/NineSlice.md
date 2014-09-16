@@ -8,7 +8,7 @@
 <h1>NineSlice</h1>
 <small>`luxe.NineSlice`</small>
 
-
+A nineslice based sprite, for scaling
 
 ---
 
@@ -102,8 +102,8 @@
             <code class="signature apipage">lock() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Sprite" class="tooltip inherited">&gt;</a><div class="clear"></div>
-            <code class="signature apipage">new(\_options:[luxe.options.NineSliceOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
+            <code class="signature apipage">new(\_options:[luxe.options.NineSliceOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">create a new nineslice with given options</span>
         </span>
     <span class="method apipage">
             <a name="ondestroy"><a class="lift" href="#ondestroy">ondestroy</a></a><a title="inherited from luxe.Sprite" class="tooltip inherited">&gt;</a><div class="clear"></div>

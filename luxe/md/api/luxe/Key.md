@@ -8,7 +8,7 @@
 <h1>Key</h1>
 <small>`luxe.Key`</small>
 
-
+A named list of keycodes. Use to compare against key event `keycode` values
 
 ---
 

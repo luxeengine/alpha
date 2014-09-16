@@ -138,7 +138,7 @@
             <code class="signature apipage">lock() : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from phoenix.Texture" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
             <code class="signature apipage">new(\_manager:[luxe.resource.ResourceManager](#)<span></span>, \_size:[phoenix.Vector](#)<span>=null</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

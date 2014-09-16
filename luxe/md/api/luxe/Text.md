@@ -48,34 +48,34 @@
 <h3>Properties</h3> <hr/><span class="member apipage">
                 <a name="clip_rect"><a class="lift" href="#clip_rect">clip\_rect</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">clip\_rect : [luxe.Rectangle](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">If note null, the geometry will be clipped to this rectangle region (in world space).</span><span class="member apipage">
                 <a name="color"><a class="lift" href="#color">color</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">color : [luxe.Color](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the base color</span><span class="member apipage">
                 <a name="depth"><a class="lift" href="#depth">depth</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">depth : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the geometry depth value (see guides)</span><span class="member apipage">
                 <a name="geometry"><a class="lift" href="#geometry">geometry</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">geometry : [phoenix.geometry.Geometry](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the geometry this visual contains</span><span class="member apipage">
                 <a name="group"><a class="lift" href="#group">group</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">group : [Int](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the geometry group id (see guides)</span><span class="member apipage">
                 <a name="locked"><a class="lift" href="#locked">locked</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">locked : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the geometry static flag. This is a hint on how to render the geometry for performance</span><span class="member apipage">
                 <a name="radians"><a class="lift" href="#radians">radians</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">radians : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">convenience: controls the rotation around the z axis, in radians.</span><span class="member apipage">
                 <a name="rotation_z"><a class="lift" href="#rotation_z">rotation\_z</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">rotation\_z : [Float](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">convenience: controls the rotation around the z axis, in degrees.</span><span class="member apipage">
                 <a name="shader"><a class="lift" href="#shader">shader</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">shader : [phoenix.Shader](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the shader for the geometry</span><span class="member apipage">
                 <a name="size"><a class="lift" href="#size">size</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">size : [luxe.Vector](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the size of this geometry (only makes sense for QuadGeometry)</span><span class="member apipage">
                 <a name="text"><a class="lift" href="#text">text</a></a><div class="clear"></div>
                 <code class="signature apipage">text : [String](#)</code><br/></span>
             <span class="small_desc_flat"></span><span class="member apipage">
@@ -84,10 +84,10 @@
             <span class="small_desc_flat"></span><span class="member apipage">
                 <a name="texture"><a class="lift" href="#texture">texture</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">texture : [phoenix.Texture](#)</code><br/></span>
-            <span class="small_desc_flat"></span><span class="member apipage">
+            <span class="small_desc_flat">the texture for the geometry</span><span class="member apipage">
                 <a name="visible"><a class="lift" href="#visible">visible</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
                 <code class="signature apipage">visible : [Bool](#)</code><br/></span>
-            <span class="small_desc_flat"></span>
+            <span class="small_desc_flat">the visibility</span>
 
 
 
@@ -96,7 +96,7 @@
             <code class="signature apipage">init() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.Visual" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
             <code class="signature apipage">new(\_options:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

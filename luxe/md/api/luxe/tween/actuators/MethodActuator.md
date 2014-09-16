@@ -55,7 +55,7 @@
             <code class="signature apipage">move() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><a title="inherited from luxe.tween.actuators.SimpleActuator" class="tooltip inherited">&gt;</a><div class="clear"></div>
+            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
             <code class="signature apipage">new(target:[Dynamic](#)<span></span>, duration:[Float](#)<span></span>, properties:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">

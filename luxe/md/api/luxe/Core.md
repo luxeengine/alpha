@@ -105,10 +105,6 @@
             <code class="signature apipage">init() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
-            <code class="signature apipage">new(\_game:[luxe.Game](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="off"><a class="lift" href="#off">off</a></a><div class="clear"></div>
             <code class="signature apipage">off&lt;T&gt;(event:[String](#)<span></span>, handler:[off.T](#)&nbsp;-&gt; [Void](#)<span></span>) : [Bool](#)</code><br/><span class="small_desc_flat"></span>
         </span>

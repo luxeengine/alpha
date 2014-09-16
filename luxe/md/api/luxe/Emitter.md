@@ -37,7 +37,7 @@
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
-            <code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">new() : [Void](#)</code><br/><span class="small_desc_flat">create a new emitter instance, for binding functions easily to named events. similar to `Events`</span>
         </span>
     
 

@@ -8,7 +8,7 @@
 <h1>ModState</h1>
 <small>`luxe.ModState`</small>
 
-
+A modifier state for key events
 
 ---
 

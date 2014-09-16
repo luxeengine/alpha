@@ -918,7 +918,7 @@
 		</bindings>
 		<connected><c path="List"><t path="luxe._Emitter.EmitNode"/></c></connected>
 		<_to_remove><c path="List"><t path="luxe._Emitter.EmitNode"/></c></_to_remove>
-		<emit public="1" params="T" set="method" line="33">
+		<emit public="1" params="T" set="method" line="34">
 			<f a="event:?data:?pos" v=":null:null">
 				<c path="String"/>
 				<c path="emit.T"/>
@@ -928,7 +928,7 @@
 			<meta><m n=":noCompletion"/></meta>
 			<haxe_doc>Emit a named event</haxe_doc>
 		</emit>
-		<on public="1" params="T" set="method" line="54">
+		<on public="1" params="T" set="method" line="55">
 			<f a="event:handler:?pos" v="::null">
 				<c path="String"/>
 				<f a="">
@@ -941,7 +941,7 @@
 			<meta><m n=":noCompletion"/></meta>
 			<haxe_doc>connect a named event to a handler</haxe_doc>
 		</on>
-		<off public="1" params="T" set="method" line="76">
+		<off public="1" params="T" set="method" line="77">
 			<f a="event:handler:?pos" v="::null">
 				<c path="String"/>
 				<f a="">
@@ -954,7 +954,7 @@
 			<meta><m n=":noCompletion"/></meta>
 			<haxe_doc>disconnect a named event and handler. returns true on success, or false if event or handler not found</haxe_doc>
 		</off>
-		<connections public="1" set="method" line="103">
+		<connections public="1" set="method" line="104">
 			<f a="handler">
 				<t path="luxe.EmitHandler"/>
 				<c path="Array"><t path="luxe._Emitter.EmitNode"/></c>
@@ -962,8 +962,11 @@
 			<meta><m n=":noCompletion"/></meta>
 		</connections>
 		<_checking><x path="Bool"/></_checking>
-		<_check set="method" line="119"><f a=""><x path="Void"/></f></_check>
-		<new public="1" set="method" line="23"><f a=""><x path="Void"/></f></new>
+		<_check set="method" line="120"><f a=""><x path="Void"/></f></_check>
+		<new public="1" set="method" line="24">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>create a new emitter instance, for binding functions easily to named events. similar to `Events`</haxe_doc>
+		</new>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.Game" params="" file="/Users/sven/dev/luxe/luxe/luxe/Game.hx">
@@ -4212,9 +4215,15 @@
 	<typedef path="luxe.ProjectionType" params="" file="/Users/sven/dev/luxe/luxe/luxe/Camera.hx" module="luxe.Camera"><e path="phoenix.ProjectionType"/></typedef>
 	<class path="luxe.Objects" params="" file="/Users/sven/dev/luxe/luxe/luxe/Objects.hx">
 		<extends path="luxe.Emitter"/>
-		<id public="1"><c path="String"/></id>
-		<name public="1"><c path="String"/></name>
-		<new public="1" set="method" line="24">
+		<id public="1">
+			<c path="String"/>
+			<haxe_doc>the id</haxe_doc>
+		</id>
+		<name public="1">
+			<c path="String"/>
+			<haxe_doc>the name</haxe_doc>
+		</name>
+		<new public="1" set="method" line="28">
 			<f a="?_name:?_id" v="'':''">
 				<c path="String"/>
 				<c path="String"/>
@@ -4227,216 +4236,304 @@
 	</class>
 	<class path="luxe.Entity" params="" file="/Users/sven/dev/luxe/luxe/luxe/Entity.hx">
 		<extends path="luxe.Objects"/>
-		<components public="1" get="accessor" set="null"><x path="Map">
-	<c path="String"/>
-	<c path="luxe.Component"/>
-</x></components>
-		<events public="1"><c path="luxe.Events"/></events>
-		<children public="1"><c path="Array"><c path="luxe.Entity"/></c></children>
-		<destroyed public="1"><x path="Bool"/></destroyed>
-		<inited public="1"><x path="Bool"/></inited>
-		<started public="1"><x path="Bool"/></started>
+		<components public="1" get="accessor" set="null">
+			<x path="Map">
+				<c path="String"/>
+				<c path="luxe.Component"/>
+			</x>
+			<haxe_doc>The map of attached components, by name. use .get to find components in children and from other components instead of accessing this unless you need to</haxe_doc>
+		</components>
+		<events public="1">
+			<c path="luxe.Events"/>
+			<haxe_doc>A local event system for sending and receiving named events through the entity. Helps communicate between components, and more.</haxe_doc>
+		</events>
+		<children public="1">
+			<c path="Array"><c path="luxe.Entity"/></c>
+			<haxe_doc>The list of children this entity is parenting. Use `child.parent = null;` to remove, or `child.parent = entity;` to assign.</haxe_doc>
+		</children>
+		<destroyed public="1">
+			<x path="Bool"/>
+			<haxe_doc>whether or not this entity has been destroyed</haxe_doc>
+		</destroyed>
+		<inited public="1">
+			<x path="Bool"/>
+			<haxe_doc>whether or not this entity has been inited yet</haxe_doc>
+		</inited>
+		<started public="1">
+			<x path="Bool"/>
+			<haxe_doc>whether or not this entity has been started/reset by the scene</haxe_doc>
+		</started>
 		<fixed_rate public="1" get="accessor" set="accessor">
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>per entity fixed rate timer, if any. if 0 (default) no fixed update is called on this entity.</haxe_doc>
 		</fixed_rate>
 		<parent public="1" get="accessor" set="accessor">
 			<c path="luxe.Entity"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The parent entity if any, set to null for no parent</haxe_doc>
 		</parent>
 		<scene public="1" get="accessor" set="accessor">
 			<c path="luxe.Scene"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>if the entity is in a scene, this is not null</haxe_doc>
 		</scene>
 		<active public="1" get="accessor" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>if the entity is active in the scene or not. set to inactive to stop scene events propogating into this entity and it's components and children</haxe_doc>
 		</active>
-		<transform public="1"><t path="luxe.Transform"/></transform>
-		<pos public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></pos>
-		<rotation public="1" get="accessor" set="accessor"><t path="luxe.Quaternion"/></rotation>
-		<scale public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></scale>
-		<origin public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></origin>
-		<_components><c path="luxe.components.Components"/></_components>
-		<fixed_rate_timer><c path="snow.utils.Timer"/></fixed_rate_timer>
-		<options><d/></options>
-		<init public="1" set="method" line="66"><f a=""><x path="Void"/></f></init>
-		<update public="1" set="method" line="67"><f a="dt">
-	<x path="Float"/>
-	<x path="Void"/>
-</f></update>
-		<onreset public="1" set="method" line="70">
+		<transform public="1">
+			<t path="luxe.Transform"/>
+			<haxe_doc>The spatial transform of the entity.</haxe_doc>
+		</transform>
+		<pos public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The local position of the spatial transform</haxe_doc>
+		</pos>
+		<rotation public="1" get="accessor" set="accessor">
+			<t path="luxe.Quaternion"/>
+			<haxe_doc>The local rotation of the spatial transform</haxe_doc>
+		</rotation>
+		<scale public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The local scale of the spatial transform</haxe_doc>
+		</scale>
+		<origin public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The local origin of the spatial transform</haxe_doc>
+		</origin>
+		<_components>
+			<c path="luxe.components.Components"/>
+			<haxe_doc>the system for the entity</haxe_doc>
+		</_components>
+		<fixed_rate_timer>
+			<c path="snow.utils.Timer"/>
+			<haxe_doc>the timer for the fixed update</haxe_doc>
+		</fixed_rate_timer>
+		<options>
+			<d/>
+			<haxe_doc>the options passed in for giving to the init function</haxe_doc>
+		</options>
+		<init public="1" set="method" line="67">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>called when the scene is initiated. **use this instead of new** for state setup. it respects the order of creations, children, and component ordering.</haxe_doc>
+		</init>
+		<update public="1" set="method" line="69">
+			<f a="dt">
+				<x path="Float"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>called once per frame, passing the delta time</haxe_doc>
+		</update>
+		<onreset public="1" set="method" line="72">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>called when the scene starts or is reset. use this to reset state.</haxe_doc>
 		</onreset>
-		<ondestroy public="1" set="method" line="71">
+		<ondestroy public="1" set="method" line="74">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>called when the scene, parent or entity is destroyed. use this to clean up state.</haxe_doc>
 		</ondestroy>
-		<onkeyup public="1" set="method" line="74">
+		<onkeyup public="1" set="method" line="77">
 			<f a="event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a key is released. only called if overridden.</haxe_doc>
 		</onkeyup>
-		<onkeydown public="1" set="method" line="75">
+		<onkeydown public="1" set="method" line="79">
 			<f a="event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a key is pressed. only called if overridden.</haxe_doc>
 		</onkeydown>
-		<ontextinput public="1" set="method" line="76">
+		<ontextinput public="1" set="method" line="81">
 			<f a="event">
 				<t path="luxe.TextEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a text input event happens. only called if overridden.</haxe_doc>
 		</ontextinput>
-		<oninputdown public="1" set="method" line="78">
+		<oninputdown public="1" set="method" line="84">
 			<f a="name:event">
 				<c path="String"/>
 				<t path="luxe.InputEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a named input event happens. only called if overridden.</haxe_doc>
 		</oninputdown>
-		<oninputup public="1" set="method" line="79">
+		<oninputup public="1" set="method" line="86">
 			<f a="name:event">
 				<c path="String"/>
 				<t path="luxe.InputEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a named input event happens. only called if overridden.</haxe_doc>
 		</oninputup>
-		<onmousedown public="1" set="method" line="81">
+		<onmousedown public="1" set="method" line="89">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a mouse button is pressed. only called if overridden.</haxe_doc>
 		</onmousedown>
-		<onmouseup public="1" set="method" line="82">
+		<onmouseup public="1" set="method" line="91">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a mouse button is pressed. only called if overridden.</haxe_doc>
 		</onmouseup>
-		<onmousemove public="1" set="method" line="83">
+		<onmousemove public="1" set="method" line="93">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a mouse is moved. only called if overridden.</haxe_doc>
 		</onmousemove>
-		<onmousewheel public="1" set="method" line="84">
+		<onmousewheel public="1" set="method" line="95">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when the mouse wheel/trackpad is scrolled. only called if overridden.</haxe_doc>
 		</onmousewheel>
-		<ontouchdown public="1" set="method" line="86">
+		<ontouchdown public="1" set="method" line="98">
 			<f a="event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a touch begins. only called if overridden.</haxe_doc>
 		</ontouchdown>
-		<ontouchup public="1" set="method" line="87">
+		<ontouchup public="1" set="method" line="100">
 			<f a="event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a touch ends. only called if overridden.</haxe_doc>
 		</ontouchup>
-		<ontouchmove public="1" set="method" line="88">
+		<ontouchmove public="1" set="method" line="102">
 			<f a="event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a touch moves. only called if overridden.</haxe_doc>
 		</ontouchmove>
-		<ongamepadup public="1" set="method" line="90">
+		<ongamepadup public="1" set="method" line="105">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad button is released. only called if overridden.</haxe_doc>
 		</ongamepadup>
-		<ongamepaddown public="1" set="method" line="91">
+		<ongamepaddown public="1" set="method" line="107">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad button is pressed. only called if overridden.</haxe_doc>
 		</ongamepaddown>
-		<ongamepadaxis public="1" set="method" line="92">
+		<ongamepadaxis public="1" set="method" line="109">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad axis changes. only called if overridden.</haxe_doc>
 		</ongamepadaxis>
-		<ongamepaddevice public="1" set="method" line="93">
+		<ongamepaddevice public="1" set="method" line="111">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad device event happens. only called if overridden.</haxe_doc>
 		</ongamepaddevice>
-		<add public="1" params="T" set="method" line="199"><f a="_component">
-	<c path="add.T"/>
-	<c path="add.T"/>
-</f></add>
-		<remove public="1" set="method" line="203"><f a="_name">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></remove>
-		<get public="1" params="T" set="method" line="207"><f a="_name:?_in_children" v=":false">
-	<c path="String"/>
-	<x path="Bool"/>
-	<c path="get.T"/>
-</f></get>
-		<get_any public="1" params="T" set="method" line="211"><f a="_name:?_in_children:?_first_only" v=":false:true">
-	<c path="String"/>
-	<x path="Bool"/>
-	<x path="Bool"/>
-	<c path="Array"><c path="get_any.T"/></c>
-</f></get_any>
-		<has public="1" set="method" line="215"><f a="_name">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></has>
-		<_init public="1" set="method" line="225">
+		<add public="1" params="T" set="method" line="218">
+			<f a="_component">
+				<c path="add.T"/>
+				<c path="add.T"/>
+			</f>
+			<haxe_doc>attach a component to the entity</haxe_doc>
+		</add>
+		<remove public="1" set="method" line="223">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>remove a component from the entity</haxe_doc>
+		</remove>
+		<get public="1" params="T" set="method" line="228">
+			<f a="_name:?_in_children" v=":false">
+				<c path="String"/>
+				<x path="Bool"/>
+				<c path="get.T"/>
+			</f>
+			<haxe_doc>get a component from the entity, by name</haxe_doc>
+		</get>
+		<get_any public="1" params="T" set="method" line="233">
+			<f a="_name:?_in_children:?_first_only" v=":false:true">
+				<c path="String"/>
+				<x path="Bool"/>
+				<x path="Bool"/>
+				<c path="Array"><c path="get_any.T"/></c>
+			</f>
+			<haxe_doc>get all component from the entity, by name</haxe_doc>
+		</get_any>
+		<has public="1" set="method" line="238">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>returns true if the entity has a component by the given name</haxe_doc>
+		</has>
+		<_init public="1" set="method" line="247">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_init>
-		<_reset public="1" set="method" line="253">
+		<_reset public="1" set="method" line="275">
 			<f a="_">
 				<unknown/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_reset>
-		<destroy public="1" set="method" line="281"><f a="?_from_parent" v="false">
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></destroy>
-		<_update public="1" set="method" line="336">
+		<destroy public="1" set="method" line="304">
+			<f a="?_from_parent" v="false">
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>destroy this entity. removes it from the scene if any, from the parent etc.</haxe_doc>
+		</destroy>
+		<_update public="1" set="method" line="359">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_update>
-		<_fixed_update public="1" set="method" line="376">
+		<_fixed_update public="1" set="method" line="399">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_fixed_update>
-		<_listen public="1" set="method" line="402">
+		<_listen public="1" set="method" line="425">
 			<f a="_event:_handler:?_self" v="::false">
 				<c path="String"/>
 				<t path="luxe.EmitHandler"/>
@@ -4445,7 +4542,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_listen>
-		<_unlisten public="1" set="method" line="444">
+		<_unlisten public="1" set="method" line="467">
 			<f a="_event:_handler:?_self" v="::false">
 				<c path="String"/>
 				<t path="luxe.EmitHandler"/>
@@ -4454,107 +4551,107 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_unlisten>
-		<_detach_scene set="method" line="455"><f a=""><x path="Void"/></f></_detach_scene>
-		<_attach_scene set="method" line="484"><f a=""><x path="Void"/></f></_attach_scene>
-		<_keyup public="1" set="method" line="495">
+		<_detach_scene set="method" line="478"><f a=""><x path="Void"/></f></_detach_scene>
+		<_attach_scene set="method" line="507"><f a=""><x path="Void"/></f></_attach_scene>
+		<_keyup public="1" set="method" line="518">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_keyup>
-		<_keydown public="1" set="method" line="508">
+		<_keydown public="1" set="method" line="531">
 			<f a="_event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_keydown>
-		<_textinput public="1" set="method" line="521">
+		<_textinput public="1" set="method" line="544">
 			<f a="_event">
 				<t path="luxe.TextEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_textinput>
-		<_mousedown public="1" set="method" line="537">
+		<_mousedown public="1" set="method" line="560">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_mousedown>
-		<_mouseup public="1" set="method" line="551">
+		<_mouseup public="1" set="method" line="574">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_mouseup>
-		<_mousewheel public="1" set="method" line="564">
+		<_mousewheel public="1" set="method" line="587">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_mousewheel>
-		<_mousemove public="1" set="method" line="577">
+		<_mousemove public="1" set="method" line="600">
 			<f a="_event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_mousemove>
-		<_touchdown public="1" set="method" line="591">
+		<_touchdown public="1" set="method" line="614">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_touchdown>
-		<_touchup public="1" set="method" line="604">
+		<_touchup public="1" set="method" line="627">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_touchup>
-		<_touchmove public="1" set="method" line="617">
+		<_touchmove public="1" set="method" line="640">
 			<f a="_event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_touchmove>
-		<_gamepadaxis public="1" set="method" line="631">
+		<_gamepadaxis public="1" set="method" line="654">
 			<f a="_event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_gamepadaxis>
-		<_gamepaddown public="1" set="method" line="644">
+		<_gamepaddown public="1" set="method" line="667">
 			<f a="_event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_gamepaddown>
-		<_gamepadup public="1" set="method" line="657">
+		<_gamepadup public="1" set="method" line="680">
 			<f a="_event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_gamepadup>
-		<_gamepaddevice public="1" set="method" line="670">
+		<_gamepaddevice public="1" set="method" line="693">
 			<f a="_event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_gamepaddevice>
-		<_inputdown public="1" set="method" line="685">
+		<_inputdown public="1" set="method" line="708">
 			<f a="_event">
 				<a>
 					<name><c path="String"/></name>
@@ -4564,7 +4661,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_inputdown>
-		<_inputup public="1" set="method" line="698">
+		<_inputup public="1" set="method" line="721">
 			<f a="_event">
 				<a>
 					<name><c path="String"/></name>
@@ -4574,93 +4671,96 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_inputup>
-		<get_fixed_rate set="method" line="714"><f a=""><x path="Float"/></f></get_fixed_rate>
-		<set_fixed_rate set="method" line="720"><f a="_rate">
+		<get_fixed_rate set="method" line="737"><f a=""><x path="Float"/></f></get_fixed_rate>
+		<set_fixed_rate set="method" line="743"><f a="_rate">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_fixed_rate>
-		<_stop_fixed_rate_timer set="method" line="731"><f a=""><x path="Void"/></f></_stop_fixed_rate_timer>
-		<_start_fixed_rate_timer set="method" line="738"><f a="_rate">
+		<_stop_fixed_rate_timer set="method" line="754"><f a=""><x path="Void"/></f></_stop_fixed_rate_timer>
+		<_start_fixed_rate_timer set="method" line="761"><f a="_rate">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_start_fixed_rate_timer>
-		<get_components set="method" line="750"><f a=""><x path="Map">
+		<get_components set="method" line="773"><f a=""><x path="Map">
 	<c path="String"/>
 	<c path="luxe.Component"/>
 </x></f></get_components>
-		<_add_child public="1" set="method" line="756">
+		<_add_child public="1" set="method" line="779">
 			<f a="child">
 				<c path="luxe.Entity"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_add_child>
-		<_remove_child public="1" set="method" line="773">
+		<_remove_child public="1" set="method" line="796">
 			<f a="child">
 				<c path="luxe.Entity"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</_remove_child>
-		<set_pos_from_transform set="method" line="781"><f a="_pos">
+		<set_pos_from_transform set="method" line="804"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_pos_from_transform>
-		<set_rotation_from_transform set="method" line="790"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="813"><f a="_rotation">
 	<t path="luxe.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_scale_from_transform set="method" line="799"><f a="_scale">
+		<set_scale_from_transform set="method" line="822"><f a="_scale">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_scale_from_transform>
-		<set_origin_from_transform set="method" line="808"><f a="_origin">
+		<set_origin_from_transform set="method" line="831"><f a="_origin">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_origin_from_transform>
-		<set_parent_from_transform set="method" line="817"><f a="_parent">
+		<set_parent_from_transform set="method" line="840"><f a="_parent">
 	<t path="luxe.Transform"/>
 	<x path="Void"/>
 </f></set_parent_from_transform>
-		<set_pos set="method" line="828"><f a="_p">
+		<set_pos set="method" line="851"><f a="_p">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_pos>
-		<get_pos set="method" line="834"><f a=""><c path="phoenix.Vector"/></f></get_pos>
-		<set_rotation set="method" line="842"><f a="_r">
+		<get_pos set="method" line="857"><f a=""><c path="phoenix.Vector"/></f></get_pos>
+		<set_rotation set="method" line="865"><f a="_r">
 	<t path="luxe.Quaternion"/>
 	<c path="phoenix.Quaternion"/>
 </f></set_rotation>
-		<get_rotation set="method" line="848"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
-		<set_scale set="method" line="856"><f a="_s">
+		<get_rotation set="method" line="871"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
+		<set_scale set="method" line="879"><f a="_s">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_scale>
-		<get_scale set="method" line="862"><f a=""><c path="phoenix.Vector"/></f></get_scale>
-		<set_origin set="method" line="870"><f a="_origin">
+		<get_scale set="method" line="885"><f a=""><c path="phoenix.Vector"/></f></get_scale>
+		<set_origin set="method" line="893"><f a="_origin">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_origin>
-		<get_origin set="method" line="877"><f a=""><c path="phoenix.Vector"/></f></get_origin>
-		<set_parent set="method" line="885"><f a="other">
+		<get_origin set="method" line="900"><f a=""><c path="phoenix.Vector"/></f></get_origin>
+		<set_parent set="method" line="908"><f a="other">
 	<c path="luxe.Entity"/>
 	<c path="luxe.Entity"/>
 </f></set_parent>
-		<get_parent set="method" line="911"><f a=""><c path="luxe.Entity"/></f></get_parent>
-		<set_scene set="method" line="919"><f a="_scene">
+		<get_parent set="method" line="934"><f a=""><c path="luxe.Entity"/></f></get_parent>
+		<set_scene set="method" line="942"><f a="_scene">
 	<c path="luxe.Scene"/>
 	<c path="luxe.Scene"/>
 </f></set_scene>
-		<get_scene set="method" line="931"><f a=""><c path="luxe.Scene"/></f></get_scene>
-		<set_active set="method" line="939"><f a="_active">
+		<get_scene set="method" line="954"><f a=""><c path="luxe.Scene"/></f></get_scene>
+		<set_active set="method" line="962"><f a="_active">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_active>
-		<get_active set="method" line="945"><f a=""><x path="Bool"/></f></get_active>
-		<new public="1" set="method" line="97"><f a="?_options" v="null">
-	<t path="luxe.options.EntityOptions"/>
-	<x path="Void"/>
-</f></new>
+		<get_active set="method" line="968"><f a=""><x path="Bool"/></f></get_active>
+		<new public="1" set="method" line="115">
+			<f a="?_options" v="null">
+				<t path="luxe.options.EntityOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new entity with the given options</haxe_doc>
+		</new>
 		<meta>
 			<m n=":keep"/>
 			<m n=":autoBuild"><e>'???'</e></m>
@@ -4668,72 +4768,119 @@
 	</class>
 	<class path="luxe.Camera" params="" file="/Users/sven/dev/luxe/luxe/luxe/Camera.hx">
 		<extends path="luxe.Entity"/>
-		<viewport public="1" get="accessor" set="accessor"><t path="luxe.Rectangle"/></viewport>
-		<center public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></center>
-		<zoom public="1" get="accessor" set="accessor"><x path="Float"/></zoom>
-		<minimum_zoom public="1" get="accessor" set="accessor"><x path="Float"/></minimum_zoom>
-		<view public="1"><c path="phoenix.Camera"/></view>
-		<bounds public="1"><t path="luxe.Rectangle"/></bounds>
-		<shake_vector public="1"><t path="luxe.Vector"/></shake_vector>
-		<shake_amount public="1"><x path="Float"/></shake_amount>
-		<shaking public="1"><x path="Bool"/></shaking>
-		<minimum_shake public="1"><x path="Float"/></minimum_shake>
+		<viewport public="1" get="accessor" set="accessor">
+			<t path="luxe.Rectangle"/>
+			<haxe_doc>The viewport size for this camera, proxy to the view</haxe_doc>
+		</viewport>
+		<center public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The center point of this camera, proxy to the view</haxe_doc>
+		</center>
+		<zoom public="1" get="accessor" set="accessor">
+			<x path="Float"/>
+			<haxe_doc>The current zoom value this camera can be set to, proxy to the view</haxe_doc>
+		</zoom>
+		<minimum_zoom public="1" get="accessor" set="accessor">
+			<x path="Float"/>
+			<haxe_doc>The minimum zoom value this camera can be set to, proxy to the view</haxe_doc>
+		</minimum_zoom>
+		<view public="1">
+			<c path="phoenix.Camera"/>
+			<haxe_doc>the view camera this entity wraps</haxe_doc>
+		</view>
+		<bounds public="1">
+			<t path="luxe.Rectangle"/>
+			<haxe_doc>if set, the camera will not move outside of this region (world space)</haxe_doc>
+		</bounds>
+		<shake_vector public="1">
+			<t path="luxe.Vector"/>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>the current shake vector amounts in x,y,z</haxe_doc>
+		</shake_vector>
+		<shake_amount public="1">
+			<x path="Float"/>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>the last shake amount</haxe_doc>
+		</shake_amount>
+		<shaking public="1">
+			<x path="Bool"/>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>if true, shake is busy happening</haxe_doc>
+		</shaking>
+		<minimum_shake public="1">
+			<x path="Float"/>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>the threshold cutoff for shaking</haxe_doc>
+		</minimum_shake>
 		<update_view_pos><t path="luxe.Vector"/></update_view_pos>
 		<_final_pos><t path="luxe.Vector"/></_final_pos>
 		<_rotation_radian><t path="luxe.Vector"/></_rotation_radian>
 		<_rotation_cache><c path="phoenix.Quaternion"/></_rotation_cache>
-		<get_viewport set="method" line="69"><f a=""><t path="luxe.Rectangle"/></f></get_viewport>
-		<set_viewport set="method" line="73"><f a="_v">
+		<get_viewport set="method" line="80"><f a=""><t path="luxe.Rectangle"/></f></get_viewport>
+		<set_viewport set="method" line="84"><f a="_v">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_viewport>
-		<get_center set="method" line="77"><f a=""><t path="luxe.Vector"/></f></get_center>
-		<set_center set="method" line="81"><f a="_c">
+		<get_center set="method" line="88"><f a=""><t path="luxe.Vector"/></f></get_center>
+		<set_center set="method" line="92"><f a="_c">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_center>
-		<get_minimum_zoom set="method" line="88"><f a=""><x path="Float"/></f></get_minimum_zoom>
-		<set_minimum_zoom set="method" line="92"><f a="_m">
+		<get_minimum_zoom set="method" line="99"><f a=""><x path="Float"/></f></get_minimum_zoom>
+		<set_minimum_zoom set="method" line="103"><f a="_m">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_minimum_zoom>
-		<get_zoom set="method" line="96"><f a=""><x path="Float"/></f></get_zoom>
-		<set_zoom set="method" line="100"><f a="_z">
+		<get_zoom set="method" line="107"><f a=""><x path="Float"/></f></get_zoom>
+		<set_zoom set="method" line="111"><f a="_z">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_zoom>
-		<focus public="1" set="method" line="106"><f a="_p:?_t:?oncomplete" v=":0.6f:null">
-	<t path="luxe.Vector"/>
-	<x path="Float"/>
-	<f a=""><x path="Void"/></f>
-	<x path="Void"/>
-</f></focus>
-		<screen_point_to_world public="1" set="method" line="117"><f a="_vector">
-	<t path="luxe.Vector"/>
-	<t path="luxe.Vector"/>
-</f></screen_point_to_world>
-		<world_point_to_screen public="1" set="method" line="123"><f a="_vector:?_viewport" v=":null">
-	<t path="luxe.Vector"/>
-	<t path="luxe.Rectangle"/>
-	<t path="luxe.Vector"/>
-</f></world_point_to_screen>
-		<set_pos_from_transform set="method" line="129" override="1"><f a="_pos">
+		<focus public="1" set="method" line="117">
+			<f a="_p:?_t:?oncomplete" v=":0.6f:null">
+				<t path="luxe.Vector"/>
+				<x path="Float"/>
+				<f a=""><x path="Void"/></f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Focus the camera on a specific point, for Ortho only.
+        Use `.target` for a focus in perspective</haxe_doc>
+		</focus>
+		<screen_point_to_world public="1" set="method" line="129">
+			<f a="_vector">
+				<t path="luxe.Vector"/>
+				<t path="luxe.Vector"/>
+			</f>
+			<haxe_doc>convert a screen point to world space for this camera. handles zoom, rotation, scale, etc</haxe_doc>
+		</screen_point_to_world>
+		<world_point_to_screen public="1" set="method" line="136">
+			<f a="_vector:?_viewport" v=":null">
+				<t path="luxe.Vector"/>
+				<t path="luxe.Rectangle"/>
+				<t path="luxe.Vector"/>
+			</f>
+			<haxe_doc>convert a world point to screen space for this camera. handles zoom, rotation, scale, etc</haxe_doc>
+		</world_point_to_screen>
+		<set_pos_from_transform set="method" line="142" override="1"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_pos_from_transform>
-		<set_rotation_from_transform set="method" line="145" override="1"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="158" override="1"><f a="_rotation">
 	<c path="phoenix.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_scale_from_transform set="method" line="155" override="1"><f a="_scale">
+		<set_scale_from_transform set="method" line="168" override="1"><f a="_scale">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_scale_from_transform>
-		<shake public="1" set="method" line="165"><f a="amount">
-	<x path="Float"/>
-	<x path="Void"/>
-</f></shake>
-		<update public="1" set="method" line="173" override="1">
+		<shake public="1" set="method" line="179">
+			<f a="amount">
+				<x path="Float"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Shake the camera a given amount</haxe_doc>
+		</shake>
+		<update public="1" set="method" line="187" override="1">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
@@ -4742,10 +4889,13 @@
 		</update>
 		<init public="1" set="method" line="21" override="1"><f a=""><x path="Void"/></f></init>
 		<ondestroy public="1" set="method" line="21" override="1"><f a=""><x path="Void"/></f></ondestroy>
-		<new public="1" set="method" line="37"><f a="?options" v="null">
-	<t path="luxe.options.LuxeCameraOptions"/>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="48">
+			<f a="?options" v="null">
+				<t path="luxe.options.LuxeCameraOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>create a new camera with the given options</haxe_doc>
+		</new>
 		<meta>
 			<m n=":keep"/>
 			<m n=":build"><e>'???'</e></m>
@@ -4757,9 +4907,15 @@
 	<typedef path="luxe.ColorHSV" params="" file="/Users/sven/dev/luxe/luxe/luxe/Color.hx" module="luxe.Color"><c path="phoenix.ColorHSV"/></typedef>
 	<typedef path="luxe.ColorHSL" params="" file="/Users/sven/dev/luxe/luxe/luxe/Color.hx" module="luxe.Color"><c path="phoenix.ColorHSL"/></typedef>
 	<class path="luxe.ID" params="" file="/Users/sven/dev/luxe/luxe/luxe/Objects.hx" module="luxe.Objects">
-		<id public="1"><c path="String"/></id>
-		<name public="1"><c path="String"/></name>
-		<new public="1" set="method" line="8">
+		<id public="1">
+			<c path="String"/>
+			<haxe_doc>the id</haxe_doc>
+		</id>
+		<name public="1">
+			<c path="String"/>
+			<haxe_doc>the name</haxe_doc>
+		</name>
+		<new public="1" set="method" line="10">
 			<f a="?_name:?_id" v="'':''">
 				<c path="String"/>
 				<c path="String"/>
@@ -4774,170 +4930,310 @@
 		<entity public="1" get="accessor" set="accessor">
 			<c path="luxe.Entity"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the entity this component is attached to</haxe_doc>
 		</entity>
-		<pos public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></pos>
-		<rotation public="1" get="accessor" set="accessor"><t path="luxe.Quaternion"/></rotation>
-		<scale public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></scale>
-		<origin public="1" get="accessor" set="accessor"><t path="luxe.Vector"/></origin>
-		<transform public="1" get="accessor" set="accessor"><t path="luxe.Transform"/></transform>
-		<init public="1" set="method" line="28"><f a=""><x path="Void"/></f></init>
-		<update public="1" set="method" line="29"><f a="dt">
-	<x path="Float"/>
-	<x path="Void"/>
-</f></update>
-		<onadded public="1" set="method" line="32"><f a=""><x path="Void"/></f></onadded>
-		<onremoved public="1" set="method" line="33"><f a=""><x path="Void"/></f></onremoved>
-		<onreset public="1" set="method" line="36"><f a=""><x path="Void"/></f></onreset>
-		<ondestroy public="1" set="method" line="37"><f a=""><x path="Void"/></f></ondestroy>
-		<onfixedupdate public="1" set="method" line="38"><f a=""><x path="Void"/></f></onfixedupdate>
-		<onkeyup public="1" set="method" line="41"><f a="event">
-	<t path="luxe.KeyEvent"/>
-	<x path="Void"/>
-</f></onkeyup>
-		<onkeydown public="1" set="method" line="42"><f a="event">
-	<t path="luxe.KeyEvent"/>
-	<x path="Void"/>
-</f></onkeydown>
-		<onmousedown public="1" set="method" line="44"><f a="event">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmousedown>
-		<onmouseup public="1" set="method" line="45"><f a="event">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmouseup>
-		<onmousemove public="1" set="method" line="46"><f a="event">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmousemove>
-		<onmousewheel public="1" set="method" line="47"><f a="event">
-	<t path="luxe.MouseEvent"/>
-	<x path="Void"/>
-</f></onmousewheel>
-		<ontouchdown public="1" set="method" line="49"><f a="event">
-	<t path="luxe.TouchEvent"/>
-	<x path="Void"/>
-</f></ontouchdown>
-		<ontouchup public="1" set="method" line="50"><f a="event">
-	<t path="luxe.TouchEvent"/>
-	<x path="Void"/>
-</f></ontouchup>
-		<ontouchmove public="1" set="method" line="51"><f a="event">
-	<t path="luxe.TouchEvent"/>
-	<x path="Void"/>
-</f></ontouchmove>
-		<ongamepadup public="1" set="method" line="53"><f a="event">
-	<t path="luxe.GamepadEvent"/>
-	<x path="Void"/>
-</f></ongamepadup>
-		<ongamepaddown public="1" set="method" line="54"><f a="event">
-	<t path="luxe.GamepadEvent"/>
-	<x path="Void"/>
-</f></ongamepaddown>
-		<ongamepadaxis public="1" set="method" line="55"><f a="event">
-	<t path="luxe.GamepadEvent"/>
-	<x path="Void"/>
-</f></ongamepadaxis>
-		<ongamepaddevice public="1" set="method" line="56"><f a="event">
-	<t path="luxe.GamepadEvent"/>
-	<x path="Void"/>
-</f></ongamepaddevice>
-		<add public="1" params="T" set="method" line="75"><f a="component">
-	<c path="add.T"/>
-	<c path="add.T"/>
-</f></add>
-		<remove public="1" set="method" line="79"><f a="_name">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></remove>
-		<get public="1" params="T" set="method" line="83"><f a="_name:?in_children" v=":false">
-	<c path="String"/>
-	<x path="Bool"/>
-	<c path="get.T"/>
-</f></get>
-		<get_any public="1" params="T" set="method" line="87"><f a="_name:?in_children:?first_only" v=":false:true">
-	<c path="String"/>
-	<x path="Bool"/>
-	<x path="Bool"/>
-	<c path="Array"><c path="get_any.T"/></c>
-</f></get_any>
-		<_detach_entity set="method" line="95"><f a=""><x path="Void"/></f></_detach_entity>
-		<_attach_entity set="method" line="103"><f a=""><x path="Void"/></f></_attach_entity>
-		<set_entity set="method" line="111"><f a="_entity">
+		<transform public="1">
+			<t path="luxe.Transform"/>
+			<haxe_doc>The spatial transform of the attached entity. direct proxy to the entity transform</haxe_doc>
+		</transform>
+		<pos public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The local position of the spatial transform. direct proxy to the entity transform</haxe_doc>
+		</pos>
+		<rotation public="1" get="accessor" set="accessor">
+			<t path="luxe.Quaternion"/>
+			<haxe_doc>The local rotation of the spatial transform. direct proxy to the entity transform</haxe_doc>
+		</rotation>
+		<scale public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The local scale of the spatial transform. direct proxy to the entity transform</haxe_doc>
+		</scale>
+		<origin public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<haxe_doc>The local origin of the spatial transform. direct proxy to the entity transform</haxe_doc>
+		</origin>
+		<init public="1" set="method" line="32">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>called when the scene is initiated. **use this instead of new** for state setup. it respects the order of creations, children, and component ordering.</haxe_doc>
+		</init>
+		<update public="1" set="method" line="34">
+			<f a="dt">
+				<x path="Float"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>called once per frame, passing the delta time</haxe_doc>
+		</update>
+		<onadded public="1" set="method" line="37">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>called when the component is attached to an entity</haxe_doc>
+		</onadded>
+		<onremoved public="1" set="method" line="39">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>called when the component is removed from an entity</haxe_doc>
+		</onremoved>
+		<onfixedupdate public="1" set="method" line="42">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>called when the fixed update is triggered, if the entity has a fixed_rate set</haxe_doc>
+		</onfixedupdate>
+		<onreset public="1" set="method" line="44">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>called when the scene starts or is reset. use this to reset state.</haxe_doc>
+		</onreset>
+		<ondestroy public="1" set="method" line="46">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>called when the scene, parent or entity is destroyed. use this to clean up state.</haxe_doc>
+		</ondestroy>
+		<onkeyup public="1" set="method" line="49">
+			<f a="event">
+				<t path="luxe.KeyEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a key is released. only called if overridden.</haxe_doc>
+		</onkeyup>
+		<onkeydown public="1" set="method" line="51">
+			<f a="event">
+				<t path="luxe.KeyEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a key is pressed. only called if overridden.</haxe_doc>
+		</onkeydown>
+		<ontextinput public="1" set="method" line="53">
+			<f a="event">
+				<t path="luxe.TextEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a text input event happens. only called if overridden.</haxe_doc>
+		</ontextinput>
+		<oninputdown public="1" set="method" line="56">
+			<f a="name:event">
+				<c path="String"/>
+				<t path="luxe.InputEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a named input event happens. only called if overridden.</haxe_doc>
+		</oninputdown>
+		<oninputup public="1" set="method" line="58">
+			<f a="name:event">
+				<c path="String"/>
+				<t path="luxe.InputEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a named input event happens. only called if overridden.</haxe_doc>
+		</oninputup>
+		<onmousedown public="1" set="method" line="61">
+			<f a="event">
+				<t path="luxe.MouseEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a mouse button is pressed. only called if overridden.</haxe_doc>
+		</onmousedown>
+		<onmouseup public="1" set="method" line="63">
+			<f a="event">
+				<t path="luxe.MouseEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a mouse button is pressed. only called if overridden.</haxe_doc>
+		</onmouseup>
+		<onmousemove public="1" set="method" line="65">
+			<f a="event">
+				<t path="luxe.MouseEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a mouse is moved. only called if overridden.</haxe_doc>
+		</onmousemove>
+		<onmousewheel public="1" set="method" line="67">
+			<f a="event">
+				<t path="luxe.MouseEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when the mouse wheel/trackpad is scrolled. only called if overridden.</haxe_doc>
+		</onmousewheel>
+		<ontouchdown public="1" set="method" line="70">
+			<f a="event">
+				<t path="luxe.TouchEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a touch begins. only called if overridden.</haxe_doc>
+		</ontouchdown>
+		<ontouchup public="1" set="method" line="72">
+			<f a="event">
+				<t path="luxe.TouchEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a touch ends. only called if overridden.</haxe_doc>
+		</ontouchup>
+		<ontouchmove public="1" set="method" line="74">
+			<f a="event">
+				<t path="luxe.TouchEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a touch moves. only called if overridden.</haxe_doc>
+		</ontouchmove>
+		<ongamepadup public="1" set="method" line="77">
+			<f a="event">
+				<t path="luxe.GamepadEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad button is released. only called if overridden.</haxe_doc>
+		</ongamepadup>
+		<ongamepaddown public="1" set="method" line="79">
+			<f a="event">
+				<t path="luxe.GamepadEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad button is pressed. only called if overridden.</haxe_doc>
+		</ongamepaddown>
+		<ongamepadaxis public="1" set="method" line="81">
+			<f a="event">
+				<t path="luxe.GamepadEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad axis changes. only called if overridden.</haxe_doc>
+		</ongamepadaxis>
+		<ongamepaddevice public="1" set="method" line="83">
+			<f a="event">
+				<t path="luxe.GamepadEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>override this to get notified when a gamepad device event happens. only called if overridden.</haxe_doc>
+		</ongamepaddevice>
+		<add public="1" params="T" set="method" line="103">
+			<f a="component">
+				<c path="add.T"/>
+				<c path="add.T"/>
+			</f>
+			<haxe_doc>attach a component to the entity</haxe_doc>
+		</add>
+		<remove public="1" set="method" line="108">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>remove a component from the entity</haxe_doc>
+		</remove>
+		<get public="1" params="T" set="method" line="113">
+			<f a="_name:?in_children" v=":false">
+				<c path="String"/>
+				<x path="Bool"/>
+				<c path="get.T"/>
+			</f>
+			<haxe_doc>get a component from the entity, by name</haxe_doc>
+		</get>
+		<get_any public="1" params="T" set="method" line="118">
+			<f a="_name:?in_children:?first_only" v=":false:true">
+				<c path="String"/>
+				<x path="Bool"/>
+				<x path="Bool"/>
+				<c path="Array"><c path="get_any.T"/></c>
+			</f>
+			<haxe_doc>get all component from the entity, by name</haxe_doc>
+		</get_any>
+		<has public="1" set="method" line="123">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>returns true if the entity has a component by the given name</haxe_doc>
+		</has>
+		<_detach_entity set="method" line="131"><f a=""><x path="Void"/></f></_detach_entity>
+		<_attach_entity set="method" line="139"><f a=""><x path="Void"/></f></_attach_entity>
+		<set_entity set="method" line="147"><f a="_entity">
 	<c path="luxe.Entity"/>
 	<c path="luxe.Entity"/>
 </f></set_entity>
-		<get_entity set="method" line="123"><f a=""><c path="luxe.Entity"/></f></get_entity>
-		<set_pos set="method" line="131"><f a="_p">
+		<get_entity set="method" line="159"><f a=""><c path="luxe.Entity"/></f></get_entity>
+		<set_pos set="method" line="167"><f a="_p">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_pos>
-		<get_pos set="method" line="135"><f a=""><c path="phoenix.Vector"/></f></get_pos>
-		<set_rotation set="method" line="139"><f a="_r">
+		<get_pos set="method" line="171"><f a=""><c path="phoenix.Vector"/></f></get_pos>
+		<set_rotation set="method" line="175"><f a="_r">
 	<t path="luxe.Quaternion"/>
 	<c path="phoenix.Quaternion"/>
 </f></set_rotation>
-		<get_rotation set="method" line="143"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
-		<set_scale set="method" line="147"><f a="_s">
+		<get_rotation set="method" line="179"><f a=""><c path="phoenix.Quaternion"/></f></get_rotation>
+		<set_scale set="method" line="183"><f a="_s">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_scale>
-		<get_scale set="method" line="151"><f a=""><c path="phoenix.Vector"/></f></get_scale>
-		<set_origin set="method" line="155"><f a="_o">
+		<get_scale set="method" line="187"><f a=""><c path="phoenix.Vector"/></f></get_scale>
+		<set_origin set="method" line="191"><f a="_o">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_origin>
-		<get_origin set="method" line="159"><f a=""><c path="phoenix.Vector"/></f></get_origin>
-		<set_transform set="method" line="163"><f a="_o">
+		<get_origin set="method" line="195"><f a=""><c path="phoenix.Vector"/></f></get_origin>
+		<set_transform set="method" line="199"><f a="_o">
 	<t path="luxe.Transform"/>
 	<t path="luxe.Transform"/>
 </f></set_transform>
-		<get_transform set="method" line="167"><f a=""><t path="luxe.Transform"/></f></get_transform>
-		<entity_pos_change public="1" set="method" line="171">
+		<get_transform set="method" line="203"><f a=""><t path="luxe.Transform"/></f></get_transform>
+		<entity_pos_change public="1" set="method" line="207">
 			<f a="_pos">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_pos_change>
-		<entity_scale_change public="1" set="method" line="172">
+		<entity_scale_change public="1" set="method" line="208">
 			<f a="_scale">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_scale_change>
-		<entity_rotation_change public="1" set="method" line="173">
+		<entity_rotation_change public="1" set="method" line="209">
 			<f a="_rotation">
 				<t path="luxe.Quaternion"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_rotation_change>
-		<entity_origin_change public="1" set="method" line="174">
+		<entity_origin_change public="1" set="method" line="210">
 			<f a="_origin">
 				<t path="luxe.Vector"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_origin_change>
-		<entity_parent_change public="1" set="method" line="175">
+		<entity_parent_change public="1" set="method" line="211">
 			<f a="_parent">
 				<t path="luxe.Transform"/>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</entity_parent_change>
-		<new public="1" set="method" line="59"><f a="?_options" v="null">
-	<t path="luxe.options.ComponentOptions"/>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="86">
+			<f a="?_options" v="null">
+				<t path="luxe.options.ComponentOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Use this to pass instance specific data and values to the component.</haxe_doc>
+		</new>
 		<meta>
 			<m n=":keep"/>
 			<m n=":autoBuild"><e>'???'</e></m>
 		</meta>
 	</class>
-	<typedef path="luxe.LoadTextureInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx" module="luxe.Core"><a>
+	<typedef path="luxe._Core.LoadTextureInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx" private="1" module="luxe.Core"><a>
 	<onloaded><f a="">
 	<c path="phoenix.Texture"/>
 	<x path="Void"/>
@@ -4945,7 +5241,7 @@
 	<id><c path="String"/></id>
 	<bytes><t path="snow.utils.ByteArray"/></bytes>
 </a></typedef>
-	<typedef path="luxe.LoadShaderInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx" module="luxe.Core"><a>
+	<typedef path="luxe._Core.LoadShaderInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx" private="1" module="luxe.Core"><a>
 	<vs_id><c path="String"/></vs_id>
 	<ps_id><c path="String"/></ps_id>
 	<onloaded><f a="">
@@ -4953,7 +5249,7 @@
 	<x path="Void"/>
 </f></onloaded>
 </a></typedef>
-	<enum path="luxe.CoreThreadRequest" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx" module="luxe.Core">
+	<enum path="luxe._Core.CoreThreadRequest" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx" private="1" module="luxe.Core">
 		<load_texture/>
 		<load_shader/>
 		<meta><m n=":flatEnum"/></meta>
@@ -5415,10 +5711,13 @@
 			<haxe_doc>return what the game decides for runtime config</haxe_doc>
 		</config>
 		<process_loading_thread set="method" line="843"><f a=""><x path="Void"/></f></process_loading_thread>
-		<new public="1" set="method" line="105"><f a="_game">
-	<c path="luxe.Game"/>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="105">
+			<f a="_game">
+				<c path="luxe.Game"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</new>
 		<meta>
 			<m n=":keep"/>
 			<m n=":noCompletion"/>
@@ -5437,11 +5736,14 @@
 		<x path="Void"/>
 	</f>
 </x></trace_callbacks>
-		<internal_trace public="1" set="method" line="103" static="1"><f a="v:?inf" v=":null">
-	<d/>
-	<t path="haxe.PosInfos"/>
-	<x path="Void"/>
-</f></internal_trace>
+		<internal_trace public="1" set="method" line="108" static="1">
+			<f a="v:?inf" v=":null">
+				<d/>
+				<t path="haxe.PosInfos"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</internal_trace>
 		<core public="1"><c path="luxe.Core"/></core>
 		<visible public="1"><x path="Bool"/></visible>
 		<debug_inspector public="1"><c path="luxe.debug.Inspector"/></debug_inspector>
@@ -5460,71 +5762,108 @@
 		<started public="1"><x path="Bool"/></started>
 		<profile_path public="1"><c path="String"/></profile_path>
 		<profiling public="1"><x path="Bool"/></profiling>
-		<init public="1" set="method" line="62"><f a=""><x path="Void"/></f></init>
-		<start public="1" set="method" line="85"><f a="_name">
-	<c path="String"/>
-	<x path="Void"/>
-</f></start>
-		<end public="1" set="method" line="90"><f a="_name">
-	<c path="String"/>
-	<x path="Void"/>
-</f></end>
-		<remove_trace_listener public="1" set="method" line="96"><f a="_name">
-	<c path="String"/>
-	<x path="Void"/>
-</f></remove_trace_listener>
-		<add_trace_listener public="1" set="method" line="99"><f a="_name:_callback">
-	<c path="String"/>
-	<f a=":?">
-		<d/>
-		<t path="haxe.PosInfos"/>
-		<x path="Void"/>
-	</f>
-	<x path="Void"/>
-</f></add_trace_listener>
-		<create_debug_console public="1" set="method" line="125"><f a=""><x path="Void"/></f></create_debug_console>
-		<mouseup set="method" line="178"><f a="e">
+		<init public="1" set="method" line="62">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</init>
+		<start public="1" set="method" line="86">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>start a profiling section for the profiler debug view</haxe_doc>
+		</start>
+		<end public="1" set="method" line="93">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>end a profiling section for the profiler debug view</haxe_doc>
+		</end>
+		<remove_trace_listener public="1" set="method" line="99">
+			<f a="_name">
+				<c path="String"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>remove a trace listener added via add_trace_listener</haxe_doc>
+		</remove_trace_listener>
+		<add_trace_listener public="1" set="method" line="104">
+			<f a="_name:_callback">
+				<c path="String"/>
+				<f a=":?">
+					<d/>
+					<t path="haxe.PosInfos"/>
+					<x path="Void"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>since luxe captures the haxe `trace` log, you can add listeners to catch trace values for yourself.</haxe_doc>
+		</add_trace_listener>
+		<create_debug_console public="1" set="method" line="130">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</create_debug_console>
+		<mouseup set="method" line="183"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mouseup>
-		<mousedown set="method" line="186"><f a="e">
+		<mousedown set="method" line="191"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mousedown>
-		<mousewheel set="method" line="194"><f a="e">
+		<mousewheel set="method" line="199"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mousewheel>
-		<mousemove set="method" line="202"><f a="e">
+		<mousemove set="method" line="207"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mousemove>
-		<keyup set="method" line="210"><f a="e">
+		<keyup set="method" line="215"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></keyup>
-		<keydown set="method" line="230"><f a="e">
+		<keydown set="method" line="235"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></keydown>
-		<onresize public="1" set="method" line="256"><f a="e">
-	<unknown/>
-	<x path="Void"/>
-</f></onresize>
-		<refresh set="method" line="260"><f a=""><x path="Void"/></f></refresh>
-		<switch_view public="1" set="method" line="264"><f a=""><x path="Void"/></f></switch_view>
+		<onresize public="1" set="method" line="261">
+			<f a="e">
+				<unknown/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</onresize>
+		<refresh set="method" line="265"><f a=""><x path="Void"/></f></refresh>
+		<switch_view public="1" set="method" line="270">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>programmatically switch the debug console view. currently cycles the view.</haxe_doc>
+		</switch_view>
 		<last_cursor_shown><x path="Bool"/></last_cursor_shown>
 		<last_cursor_grab><x path="Bool"/></last_cursor_grab>
-		<show_console public="1" set="method" line="289"><f a="?_show" v="true">
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></show_console>
-		<destroy public="1" set="method" line="329"><f a=""><x path="Void"/></f></destroy>
-		<process public="1" set="method" line="342"><f a=""><x path="Void"/></f></process>
-		<new public="1" set="method" line="58"><f a="_core">
-	<c path="luxe.Core"/>
-	<x path="Void"/>
-</f></new>
+		<show_console public="1" set="method" line="295">
+			<f a="?_show" v="true">
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</show_console>
+		<destroy public="1" set="method" line="335">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</destroy>
+		<process public="1" set="method" line="348">
+			<f a=""><x path="Void"/></f>
+			<meta><m n=":noCompletion"/></meta>
+		</process>
+		<new public="1" set="method" line="58">
+			<f a="_core">
+				<c path="luxe.Core"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+		</new>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.Draw" params="" file="/Users/sven/dev/luxe/luxe/luxe/Draw.hx">
@@ -5671,57 +6010,85 @@
 			</x>
 			<meta><m n=":noCompletion"/></meta>
 		</event_schedules>
-		<destroy public="1" set="method" line="24"><f a=""><x path="Void"/></f></destroy>
-		<clear public="1" set="method" line="28"><f a=""><x path="Void"/></f></clear>
-		<does_filter_event public="1" set="method" line="54"><f a="_filter:_event">
-	<c path="String"/>
-	<c path="String"/>
-	<x path="Bool"/>
-</f></does_filter_event>
-		<listen public="1" params="T" set="method" line="68"><f a="_event_name:_listener">
-	<c path="String"/>
-	<f a="">
-		<c path="listen.T"/>
-		<x path="Void"/>
-	</f>
-	<c path="String"/>
-</f></listen>
-		<disconnect public="1" set="method" line="113"><f a="event_id">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></disconnect>
-		<queue public="1" params="T" set="method" line="145"><f a="event_name:?properties" v=":null">
+		<destroy public="1" set="method" line="27">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>destroy this `Events` instance</haxe_doc>
+		</destroy>
+		<clear public="1" set="method" line="34">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>clear any scheduled or bound events. called on destroy.</haxe_doc>
+		</clear>
+		<does_filter_event public="1" set="method" line="60">
+			<f a="_filter:_event">
+				<c path="String"/>
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>helper. Exposed for learning/testing api.</haxe_doc>
+		</does_filter_event>
+		<listen public="1" params="T" set="method" line="74">
+			<f a="_event_name:_listener">
+				<c path="String"/>
+				<f a="">
+					<c path="listen.T"/>
+					<x path="Void"/>
+				</f>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Bind a signal (listener) to a slot (event_name)   
+            event_name : The event id   
+            listener : A function handler that should get called on event firing</haxe_doc>
+		</listen>
+		<disconnect public="1" set="method" line="119">
+			<f a="event_id">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>Disconnect a vound signal   
+            event connection id, returned from connect()   
+            returns true if the event existed and was removed</haxe_doc>
+		</disconnect>
+		<queue public="1" params="T" set="method" line="151"><f a="event_name:?properties" v=":null">
 	<c path="String"/>
 	<c path="queue.T"/>
 	<c path="String"/>
 </f></queue>
-		<dequeue public="1" set="method" line="159"><f a="event_id">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></dequeue>
-		<process public="1" set="method" line="172"><f a=""><x path="Void"/></f></process>
-		<fire public="1" params="T" set="method" line="192"><f a="_event_name:?_properties" v=":null">
+		<dequeue public="1" set="method" line="166">
+			<f a="event_id">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>Remove an event from the queue by id returned from queue.</haxe_doc>
+		</dequeue>
+		<process public="1" set="method" line="181">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>Process/update the events, firing any events in the queue. if you create a custom instance, call this when you want to process.</haxe_doc>
+		</process>
+		<fire public="1" params="T" set="method" line="201"><f a="_event_name:?_properties" v=":null">
 	<c path="String"/>
 	<c path="fire.T"/>
 	<x path="Bool"/>
 </f></fire>
-		<schedule public="1" params="T" set="method" line="240"><f a="time:event_name:?properties" v="::null">
+		<schedule public="1" params="T" set="method" line="249"><f a="time:event_name:?properties" v="::null">
 	<x path="Float"/>
 	<c path="String"/>
 	<c path="schedule.T"/>
 	<c path="String"/>
 </f></schedule>
-		<unschedule public="1" set="method" line="257"><f a="schedule_id">
+		<unschedule public="1" set="method" line="266"><f a="schedule_id">
 	<c path="String"/>
 	<x path="Bool"/>
 </f></unschedule>
-		<tag_properties set="method" line="274"><f a="_properties:_name:_count">
+		<tag_properties set="method" line="283"><f a="_properties:_name:_count">
 	<d/>
 	<c path="String"/>
 	<x path="Int"/>
 	<c path="fire.T"/>
 </f></tag_properties>
-		<new public="1" set="method" line="15"><f a=""><x path="Void"/></f></new>
+		<new public="1" set="method" line="15">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>create a new instance for sending/receiving events</haxe_doc>
+		</new>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe._Events.EventConnection" params="" file="/Users/sven/dev/luxe/luxe/luxe/Events.hx" private="1" module="luxe.Events">
@@ -5731,7 +6098,7 @@
 </f></listener>
 		<id public="1"><c path="String"/></id>
 		<event_name public="1"><c path="String"/></event_name>
-		<new public="1" set="method" line="298"><f a="_id:_event_name:_listener">
+		<new public="1" set="method" line="307"><f a="_id:_event_name:_listener">
 	<c path="String"/>
 	<c path="String"/>
 	<f a="">
@@ -5746,7 +6113,7 @@
 		<id public="1"><c path="String"/></id>
 		<name public="1"><c path="String"/></name>
 		<properties public="1"><d/></properties>
-		<new public="1" set="method" line="317"><f a="_id:_event_name:_event_properties">
+		<new public="1" set="method" line="326"><f a="_id:_event_name:_event_properties">
 	<c path="String"/>
 	<c path="String"/>
 	<d/>
@@ -5754,9 +6121,18 @@
 </f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<typedef path="luxe.ModState" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input"><t path="snow.types.ModState"/></typedef>
-	<typedef path="luxe.Key" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input"><c path="snow.input.Keycodes"/></typedef>
-	<typedef path="luxe.Scan" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input"><c path="snow.input.Scancodes"/></typedef>
+	<typedef path="luxe.ModState" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<t path="snow.types.ModState"/>
+		<haxe_doc>A modifier state for key events</haxe_doc>
+	</typedef>
+	<typedef path="luxe.Key" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<c path="snow.input.Keycodes"/>
+		<haxe_doc>A named list of keycodes. Use to compare against key event `keycode` values</haxe_doc>
+	</typedef>
+	<typedef path="luxe.Scan" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<c path="snow.input.Scancodes"/>
+		<haxe_doc>A named list of scancodes. Use to compare against key event `scancode` values</haxe_doc>
+	</typedef>
 	<enum path="luxe.MouseButton" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
 		<none><haxe_doc>no mouse buttons</haxe_doc></none>
 		<left><haxe_doc>left mouse button</haxe_doc></left>
@@ -5801,7 +6177,7 @@
 			</state>
 			<scancode>
 				<x path="Int"/>
-				<haxe_doc>The `snow.input.Scan` code value for this event</haxe_doc>
+				<haxe_doc>The `Scan` code value for this event</haxe_doc>
 			</scancode>
 			<repeat>
 				<x path="Bool"/>
@@ -5813,7 +6189,7 @@
 			</mod>
 			<keycode>
 				<x path="Int"/>
-				<haxe_doc>The `snow.input.Key` code value for this event</haxe_doc>
+				<haxe_doc>The `Key` code value for this event</haxe_doc>
 			</keycode>
 		</a>
 		<haxe_doc>Information about a keyboard event</haxe_doc>
@@ -5927,72 +6303,92 @@
 		</a>
 		<haxe_doc>Information about a gamepad event</haxe_doc>
 	</typedef>
-	<typedef path="luxe.MouseEvent" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input"><a>
-	<yrel>
-		<x path="Int"/>
-		<haxe_doc>The relative y position if `state` is `move` or a window has grabbed state</haxe_doc>
-	</yrel>
-	<y>
-		<x path="Int"/>
-		<haxe_doc>The y position in the window of the mouse event</haxe_doc>
-	</y>
-	<xrel>
-		<x path="Int"/>
-		<haxe_doc>The relative x position if `state` is `move` or a window has grabbed state</haxe_doc>
-	</xrel>
-	<x>
-		<x path="Int"/>
-		<haxe_doc>The x position in the window of the mouse event</haxe_doc>
-	</x>
-	<window_id>
-		<x path="Int"/>
-		<haxe_doc>The window id this event originated from</haxe_doc>
-	</window_id>
-	<timestamp>
-		<x path="Float"/>
-		<haxe_doc>The time in seconds when this touch event occurred, use for deltas</haxe_doc>
-	</timestamp>
-	<state>
-		<e path="luxe.InteractState"/>
-		<haxe_doc>The state this event is in</haxe_doc>
-	</state>
-	<pos>
-		<t path="luxe.Vector"/>
-		<haxe_doc>A convenience vector access of the x and y position</haxe_doc>
-	</pos>
-	<button>
-		<e path="luxe.MouseButton"/>
-		<haxe_doc>The button id, if the event `state` is `down` or `up`</haxe_doc>
-	</button>
-</a></typedef>
+	<typedef path="luxe.MouseEvent" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<a>
+			<yrel>
+				<x path="Int"/>
+				<haxe_doc>The relative y position if `state` is `move` or a window has grabbed state</haxe_doc>
+			</yrel>
+			<y>
+				<x path="Int"/>
+				<haxe_doc>The y position in the window of the mouse event</haxe_doc>
+			</y>
+			<xrel>
+				<x path="Int"/>
+				<haxe_doc>The relative x position if `state` is `move` or a window has grabbed state</haxe_doc>
+			</xrel>
+			<x>
+				<x path="Int"/>
+				<haxe_doc>The x position in the window of the mouse event</haxe_doc>
+			</x>
+			<window_id>
+				<x path="Int"/>
+				<haxe_doc>The window id this event originated from</haxe_doc>
+			</window_id>
+			<timestamp>
+				<x path="Float"/>
+				<haxe_doc>The time in seconds when this touch event occurred, use for deltas</haxe_doc>
+			</timestamp>
+			<state>
+				<e path="luxe.InteractState"/>
+				<haxe_doc>The state this event is in</haxe_doc>
+			</state>
+			<pos>
+				<t path="luxe.Vector"/>
+				<haxe_doc>A convenience vector access of the x and y position</haxe_doc>
+			</pos>
+			<button>
+				<e path="luxe.MouseButton"/>
+				<haxe_doc>The button id, if the event `state` is `down` or `up`</haxe_doc>
+			</button>
+		</a>
+		<haxe_doc>Information about a mouse event</haxe_doc>
+	</typedef>
 	<enum path="luxe.InputType" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
-		<mouse/>
-		<touch/>
-		<keys/>
-		<gamepad/>
+		<mouse><haxe_doc>A mouse input event</haxe_doc></mouse>
+		<touch><haxe_doc>A touch input event</haxe_doc></touch>
+		<keys><haxe_doc>A key input event</haxe_doc></keys>
+		<gamepad><haxe_doc>A gampad input event</haxe_doc></gamepad>
+		<haxe_doc>A type for a named input event</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
-	<typedef path="luxe.InputEvent" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input"><a>
-	<type><e path="luxe.InputType"/></type>
-	<touch_event>
-		<t path="luxe.TouchEvent"/>
-		<meta><m n=":optional"/></meta>
-	</touch_event>
-	<state><e path="luxe.InteractState"/></state>
-	<name><c path="String"/></name>
-	<mouse_event>
-		<t path="luxe.MouseEvent"/>
-		<meta><m n=":optional"/></meta>
-	</mouse_event>
-	<key_event>
-		<t path="luxe.KeyEvent"/>
-		<meta><m n=":optional"/></meta>
-	</key_event>
-	<gamepad_event>
-		<t path="luxe.GamepadEvent"/>
-		<meta><m n=":optional"/></meta>
-	</gamepad_event>
-</a></typedef>
+	<typedef path="luxe.InputEvent" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx" module="luxe.Input">
+		<a>
+			<type>
+				<e path="luxe.InputType"/>
+				<haxe_doc>the type of input this event was generated for</haxe_doc>
+			</type>
+			<touch_event>
+				<t path="luxe.TouchEvent"/>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>null, unless type is `touch`</haxe_doc>
+			</touch_event>
+			<state>
+				<e path="luxe.InteractState"/>
+				<haxe_doc>The state of the event</haxe_doc>
+			</state>
+			<name>
+				<c path="String"/>
+				<haxe_doc>the name of the input event</haxe_doc>
+			</name>
+			<mouse_event>
+				<t path="luxe.MouseEvent"/>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>null, unless type is `mouse`</haxe_doc>
+			</mouse_event>
+			<key_event>
+				<t path="luxe.KeyEvent"/>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>null, unless type is `keys`</haxe_doc>
+			</key_event>
+			<gamepad_event>
+				<t path="luxe.GamepadEvent"/>
+				<meta><m n=":optional"/></meta>
+				<haxe_doc>null, unless type is `gamepad`</haxe_doc>
+			</gamepad_event>
+		</a>
+		<haxe_doc>Information about a named input event</haxe_doc>
+	</typedef>
 	<class path="luxe.Input" params="" file="/Users/sven/dev/luxe/luxe/luxe/Input.hx">
 		<core public="1">
 			<c path="luxe.Core"/>
@@ -6024,102 +6420,153 @@
 	<c path="String"/>
 	<x path="Bool"/>
 </x></_named_input_down>
-		<init public="1" set="method" line="218">
+		<init public="1" set="method" line="237">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</init>
-		<destroy public="1" set="method" line="231">
+		<destroy public="1" set="method" line="250">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</destroy>
-		<process public="1" set="method" line="235">
+		<process public="1" set="method" line="254">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</process>
-		<inputpressed public="1" set="method" line="267"><f a="_event">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></inputpressed>
-		<inputreleased public="1" set="method" line="271"><f a="_event">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></inputreleased>
-		<inputdown public="1" set="method" line="275"><f a="_event">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></inputdown>
-		<keypressed public="1" set="method" line="281"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></keypressed>
-		<keyreleased public="1" set="method" line="285"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></keyreleased>
-		<keydown public="1" set="method" line="289"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></keydown>
-		<scanpressed public="1" set="method" line="294"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></scanpressed>
-		<scanreleased public="1" set="method" line="298"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></scanreleased>
-		<scandown public="1" set="method" line="302"><f a="_code">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></scandown>
-		<mousepressed public="1" set="method" line="308"><f a="_button">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></mousepressed>
-		<mousereleased public="1" set="method" line="312"><f a="_button">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></mousereleased>
-		<mousedown public="1" set="method" line="316"><f a="_button">
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></mousedown>
-		<gamepadpressed public="1" set="method" line="322"><f a="_gamepad:_button">
-	<x path="Int"/>
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></gamepadpressed>
-		<gamepadreleased public="1" set="method" line="326"><f a="_gamepad:_button">
-	<x path="Int"/>
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></gamepadreleased>
-		<gamepaddown public="1" set="method" line="330"><f a="_gamepad:_button">
-	<x path="Int"/>
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></gamepaddown>
-		<gamepadaxis public="1" set="method" line="334"><f a="_gamepad:_axis">
-	<x path="Int"/>
-	<x path="Int"/>
-	<x path="Float"/>
-</f></gamepadaxis>
-		<add_key_binding set="method" line="341"><f a="_name:_value">
+		<inputpressed public="1" set="method" line="287">
+			<f a="_event">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the pressed state of a named input. only true if pressed within one frame</haxe_doc>
+		</inputpressed>
+		<inputreleased public="1" set="method" line="292">
+			<f a="_event">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the released state of a named input. only true if released within one frame</haxe_doc>
+		</inputreleased>
+		<inputdown public="1" set="method" line="297">
+			<f a="_event">
+				<c path="String"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the down state of a named input. only true while the key is down</haxe_doc>
+		</inputdown>
+		<keypressed public="1" set="method" line="304">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the pressed state of a `keycode`, use `Key` for named keycodes. only true if pressed within one frame</haxe_doc>
+		</keypressed>
+		<keyreleased public="1" set="method" line="309">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the released state of a `keycode`, use `Key` for named keycodes. only true if released within one frame</haxe_doc>
+		</keyreleased>
+		<keydown public="1" set="method" line="314">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the down state of a `keycode`, use `Key` for named keycodes. only true while the key is down</haxe_doc>
+		</keydown>
+		<scanpressed public="1" set="method" line="320">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the pressed state of a `scancode`, use `Scan` for named scancodes. only true if pressed within one frame</haxe_doc>
+		</scanpressed>
+		<scanreleased public="1" set="method" line="325">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the released state of a `scancode`, use `Scan` for named scancodes. only true if released within one frame</haxe_doc>
+		</scanreleased>
+		<scandown public="1" set="method" line="330">
+			<f a="_code">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the down state of a `scancode`, use `Scan` for named scancodes. only true while the key is down</haxe_doc>
+		</scandown>
+		<mousepressed public="1" set="method" line="337">
+			<f a="_button">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the pressed state of a mouse button. only true if pressed within one frame</haxe_doc>
+		</mousepressed>
+		<mousereleased public="1" set="method" line="342">
+			<f a="_button">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the released state of a mouse button. only true if released within one frame</haxe_doc>
+		</mousereleased>
+		<mousedown public="1" set="method" line="347">
+			<f a="_button">
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the down state of a mouse button. only true while the button is down. :todo: use `MouseButton` like it should be.</haxe_doc>
+		</mousedown>
+		<gamepadpressed public="1" set="method" line="354">
+			<f a="_gamepad:_button">
+				<x path="Int"/>
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the pressed state of a gamepad button. only true if pressed within one frame</haxe_doc>
+		</gamepadpressed>
+		<gamepadreleased public="1" set="method" line="359">
+			<f a="_gamepad:_button">
+				<x path="Int"/>
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the released state of a gamepad button. only true if released within one frame</haxe_doc>
+		</gamepadreleased>
+		<gamepaddown public="1" set="method" line="364">
+			<f a="_gamepad:_button">
+				<x path="Int"/>
+				<x path="Int"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>immediate query of the down state of a gamepad button. only true while the button is down</haxe_doc>
+		</gamepaddown>
+		<gamepadaxis public="1" set="method" line="369">
+			<f a="_gamepad:_axis">
+				<x path="Int"/>
+				<x path="Int"/>
+				<x path="Float"/>
+			</f>
+			<haxe_doc>immediate query of the axis value of a gamepad axis.</haxe_doc>
+		</gamepadaxis>
+		<add_key_binding set="method" line="376"><f a="_name:_value">
 	<c path="String"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></add_key_binding>
-		<add_mouse_binding set="method" line="352"><f a="_name:_value">
+		<add_mouse_binding set="method" line="387"><f a="_name:_value">
 	<c path="String"/>
 	<e path="luxe.MouseButton"/>
 	<x path="Void"/>
 </f></add_mouse_binding>
-		<add public="1" params="T" set="method" line="363"><f a="_name:_binding_value">
-	<c path="String"/>
-	<c path="add.T"/>
-	<x path="Void"/>
-</f></add>
-		<check_named_keys public="1" set="method" line="378">
+		<add public="1" params="T" set="method" line="399">
+			<f a="_name:_binding_value">
+				<c path="String"/>
+				<c path="add.T"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>add a named input binding to a `Key` keycode, a `MouseButton`. :todo: add gamepad</haxe_doc>
+		</add>
+		<check_named_keys public="1" set="method" line="414">
 			<f a="e:?_down" v=":false">
 				<t path="luxe.KeyEvent"/>
 				<x path="Bool"/>
@@ -6127,7 +6574,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</check_named_keys>
-		<check_named_mouse public="1" set="method" line="426">
+		<check_named_mouse public="1" set="method" line="462">
 			<f a="e:?_down" v=":false">
 				<t path="luxe.MouseEvent"/>
 				<x path="Bool"/>
@@ -6135,7 +6582,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</check_named_mouse>
-		<new public="1" set="method" line="204">
+		<new public="1" set="method" line="223">
 			<f a="_core">
 				<c path="luxe.Core"/>
 				<x path="Void"/>
@@ -6145,14 +6592,27 @@
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.Log" params="" file="/Users/sven/dev/luxe/luxe/luxe/Log.hx">
-		<_level public="1" line="10" static="1"><x path="Int"/></_level>
-		<_filter public="1" static="1"><c path="Array"><c path="String"/></c></_filter>
-		<_exclude public="1" static="1"><c path="Array"><c path="String"/></c></_exclude>
-		<_log_width public="1" line="14" static="1"><x path="Int"/></_log_width>
-		<_get_spacing set="method" line="211" static="1"><f a="_file">
+		<_level public="1" line="11" static="1">
+			<x path="Int"/>
+			<meta><m n=":noCompletion"/></meta>
+		</_level>
+		<_filter public="1" static="1">
+			<c path="Array"><c path="String"/></c>
+			<meta><m n=":noCompletion"/></meta>
+		</_filter>
+		<_exclude public="1" static="1">
+			<c path="Array"><c path="String"/></c>
+			<meta><m n=":noCompletion"/></meta>
+		</_exclude>
+		<_log_width public="1" line="15" static="1">
+			<x path="Int"/>
+			<meta><m n=":noCompletion"/></meta>
+		</_log_width>
+		<_get_spacing set="method" line="212" static="1"><f a="_file">
 	<c path="String"/>
 	<c path="String"/>
 </f></_get_spacing>
+		<haxe_doc>A macro based logging class. See the logging guide for full details.</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<typedef path="luxe.Matrix" params="" file="/Users/sven/dev/luxe/luxe/luxe/Matrix.hx"><c path="phoenix.Matrix"/></typedef>
@@ -6223,126 +6683,143 @@
 		<size public="1" set="accessor">
 			<t path="luxe.Vector"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the size of this geometry (only makes sense for QuadGeometry)</haxe_doc>
 		</size>
 		<geometry public="1" set="accessor">
 			<c path="phoenix.geometry.Geometry"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the geometry this visual contains</haxe_doc>
 		</geometry>
 		<locked public="1" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the geometry static flag. This is a hint on how to render the geometry for performance</haxe_doc>
 		</locked>
 		<texture public="1" set="accessor">
 			<c path="phoenix.Texture"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the texture for the geometry</haxe_doc>
 		</texture>
 		<shader public="1" set="accessor">
 			<c path="phoenix.Shader"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the shader for the geometry</haxe_doc>
 		</shader>
 		<color public="1" set="accessor">
 			<t path="luxe.Color"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the base color</haxe_doc>
 		</color>
 		<visible public="1" set="accessor">
 			<x path="Bool"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the visibility</haxe_doc>
 		</visible>
 		<depth public="1" set="accessor">
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the geometry depth value (see guides)</haxe_doc>
 		</depth>
 		<group public="1" set="accessor">
 			<x path="Int"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>the geometry group id (see guides)</haxe_doc>
 		</group>
 		<clip_rect public="1" set="accessor">
 			<t path="luxe.Rectangle"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>If note null, the geometry will be clipped to this rectangle region (in world space).</haxe_doc>
 		</clip_rect>
 		<radians public="1" get="accessor" set="accessor">
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>convenience: controls the rotation around the z axis, in radians.</haxe_doc>
 		</radians>
-		<rotation_z public="1" get="accessor" set="accessor"><x path="Float"/></rotation_z>
+		<rotation_z public="1" get="accessor" set="accessor">
+			<x path="Float"/>
+			<haxe_doc>convenience: controls the rotation around the z axis, in degrees.</haxe_doc>
+		</rotation_z>
 		<_rotation_euler><t path="luxe.Vector"/></_rotation_euler>
 		<_rotation_quat><c path="phoenix.Quaternion"/></_rotation_quat>
 		<_has_custom_origin><x path="Bool"/></_has_custom_origin>
 		<_creating_geometry><x path="Bool"/></_creating_geometry>
-		<_create_geometry public="1" set="method" line="130">
+		<_create_geometry public="1" set="method" line="141">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</_create_geometry>
-		<ondestroy public="1" set="method" line="197" override="1"><f a=""><x path="Void"/></f></ondestroy>
-		<on_geometry_created set="method" line="210"><f a=""><x path="Void"/></f></on_geometry_created>
-		<set_visible set="method" line="218"><f a="_v">
+		<ondestroy public="1" set="method" line="207" override="1"><f a=""><x path="Void"/></f></ondestroy>
+		<on_geometry_created set="method" line="220"><f a=""><x path="Void"/></f></on_geometry_created>
+		<set_visible set="method" line="228"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_visible>
-		<set_depth set="method" line="231"><f a="_v">
+		<set_depth set="method" line="241"><f a="_v">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_depth>
-		<set_group set="method" line="241"><f a="_v">
+		<set_group set="method" line="251"><f a="_v">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_group>
-		<set_color set="method" line="253"><f a="_c">
+		<set_color set="method" line="263"><f a="_c">
 	<t path="luxe.Color"/>
 	<t path="luxe.Color"/>
 </f></set_color>
-		<set_texture set="method" line="263"><f a="_t">
+		<set_texture set="method" line="273"><f a="_t">
 	<c path="phoenix.Texture"/>
 	<c path="phoenix.Texture"/>
 </f></set_texture>
-		<set_shader set="method" line="272"><f a="_s">
+		<set_shader set="method" line="282"><f a="_s">
 	<c path="phoenix.Shader"/>
 	<c path="phoenix.Shader"/>
 </f></set_shader>
 		<ignore_texture_on_geometry_change><x path="Bool"/></ignore_texture_on_geometry_change>
-		<set_geometry set="method" line="285"><f a="_g">
+		<set_geometry set="method" line="295"><f a="_g">
 	<c path="phoenix.geometry.Geometry"/>
 	<c path="phoenix.geometry.Geometry"/>
 </f></set_geometry>
-		<set_parent_from_transform set="method" line="326" override="1"><f a="_parent">
+		<set_parent_from_transform set="method" line="336" override="1"><f a="_parent">
 	<t path="luxe.Transform"/>
 	<x path="Void"/>
 </f></set_parent_from_transform>
-		<set_rotation_from_transform set="method" line="337" override="1"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="347" override="1"><f a="_rotation">
 	<c path="phoenix.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_size set="method" line="349"><f a="_v">
+		<set_size set="method" line="359"><f a="_v">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_size>
-		<get_rotation_z set="method" line="361"><f a=""><x path="Float"/></f></get_rotation_z>
-		<set_rotation_z set="method" line="367"><f a="_degrees">
+		<get_rotation_z set="method" line="371"><f a=""><x path="Float"/></f></get_rotation_z>
+		<set_rotation_z set="method" line="377"><f a="_degrees">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_rotation_z>
-		<set_radians set="method" line="375"><f a="_r">
+		<set_radians set="method" line="385"><f a="_r">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_radians>
-		<get_radians set="method" line="386"><f a=""><x path="Float"/></f></get_radians>
-		<set_locked set="method" line="392"><f a="_l">
+		<get_radians set="method" line="396"><f a=""><x path="Float"/></f></get_radians>
+		<set_locked set="method" line="402"><f a="_l">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_locked>
-		<set_clip_rect set="method" line="405"><f a="val">
+		<set_clip_rect set="method" line="415"><f a="val">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_clip_rect>
-		<_size_change set="method" line="412"><f a="_v">
+		<_size_change set="method" line="422"><f a="_v">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></_size_change>
 		<init public="1" set="method" line="21" override="1"><f a=""><x path="Void"/></f></init>
-		<new public="1" set="method" line="47"><f a="_options">
-	<t path="luxe.options.VisualOptions"/>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="58">
+			<f a="_options">
+				<t path="luxe.options.VisualOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new visual based on the given options</haxe_doc>
+		</new>
 		<meta>
 			<m n=":keep"/>
 			<m n=":build"><e>'???'</e></m>
@@ -6455,9 +6932,9 @@
 			<meta><m n=":noCompletion"/></meta>
 		</_geometry>
 		<_batcher><c path="phoenix.Batcher"/></_batcher>
-		<lock public="1" set="method" line="101"><f a=""><x path="Void"/></f></lock>
-		<dirty public="1" set="method" line="107"><f a=""><x path="Void"/></f></dirty>
-		<update_size public="1" set="method" line="113">
+		<lock public="1" set="method" line="103"><f a=""><x path="Void"/></f></lock>
+		<dirty public="1" set="method" line="109"><f a=""><x path="Void"/></f></dirty>
+		<update_size public="1" set="method" line="115">
 			<f a="_width:_height">
 				<x path="Float"/>
 				<x path="Float"/>
@@ -6465,7 +6942,7 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</update_size>
-		<set public="1" set="method" line="206">
+		<set public="1" set="method" line="208">
 			<f a="_width:_height">
 				<x path="Float"/>
 				<x path="Float"/>
@@ -6473,39 +6950,39 @@
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</set>
-		<set_size set="method" line="328" override="1"><f a="_v">
+		<set_size set="method" line="330" override="1"><f a="_v">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_size>
-		<set_pos set="method" line="344" override="1"><f a="_v">
+		<set_pos set="method" line="346" override="1"><f a="_v">
 	<t path="luxe.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></set_pos>
-		<ondestroy public="1" set="method" line="358" override="1"><f a=""><x path="Void"/></f></ondestroy>
-		<set_visible set="method" line="366" override="1"><f a="_v">
+		<ondestroy public="1" set="method" line="360" override="1"><f a=""><x path="Void"/></f></ondestroy>
+		<set_visible set="method" line="368" override="1"><f a="_v">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_visible>
-		<set_depth set="method" line="378" override="1"><f a="_d">
+		<set_depth set="method" line="380" override="1"><f a="_d">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_depth>
-		<set_clip_rect set="method" line="391" override="1"><f a="val">
+		<set_clip_rect set="method" line="393" override="1"><f a="val">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_clip_rect>
-		<set_color set="method" line="402" override="1"><f a="_color">
+		<set_color set="method" line="404" override="1"><f a="_color">
 	<t path="luxe.Color"/>
 	<t path="luxe.Color"/>
 </f></set_color>
-		<_create set="method" line="412"><f a="_pos:_w:_h:?_reset" v=":::false">
+		<_create set="method" line="414"><f a="_pos:_w:_h:?_reset" v=":::false">
 	<t path="luxe.Vector"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></_create>
-		<create public="1" set="method" line="451"><f a="_pos:_w:_h:?_reset" v=":::false">
+		<create public="1" set="method" line="453"><f a="_pos:_w:_h:?_reset" v=":::false">
 	<t path="luxe.Vector"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -6513,25 +6990,29 @@
 	<x path="Void"/>
 </f></create>
 		<init public="1" set="method" line="21" override="1"><f a=""><x path="Void"/></f></init>
-		<new public="1" set="method" line="49"><f a="_options">
-	<t path="luxe.options.NineSliceOptions"/>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="51">
+			<f a="_options">
+				<t path="luxe.options.NineSliceOptions"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>create a new nineslice with given options</haxe_doc>
+		</new>
+		<haxe_doc>A nineslice based sprite, for scaling</haxe_doc>
 		<meta>
 			<m n=":keep"/>
 			<m n=":build"><e>'???'</e></m>
 			<m n=":autoBuild"><e>'???'</e></m>
 		</meta>
 	</class>
-	<typedef path="luxe.ShaderInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Parcel.hx" module="luxe.Parcel"><a>
+	<typedef path="luxe._Parcel.ShaderInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Parcel.hx" private="1" module="luxe.Parcel"><a>
 	<vs_id><c path="String"/></vs_id>
 	<ps_id><c path="String"/></ps_id>
 </a></typedef>
-	<typedef path="luxe.FontInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Parcel.hx" module="luxe.Parcel"><a>
+	<typedef path="luxe._Parcel.FontInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Parcel.hx" private="1" module="luxe.Parcel"><a>
 	<path><c path="String"/></path>
 	<id><c path="String"/></id>
 </a></typedef>
-	<typedef path="luxe.SoundInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Parcel.hx" module="luxe.Parcel"><a>
+	<typedef path="luxe._Parcel.SoundInfo" params="" file="/Users/sven/dev/luxe/luxe/luxe/Parcel.hx" private="1" module="luxe.Parcel"><a>
 	<name><c path="String"/></name>
 	<is_stream><x path="Bool"/></is_stream>
 	<id><c path="String"/></id>
@@ -6635,9 +7116,9 @@
 		<time_to_load public="1"><x path="Float"/></time_to_load>
 		<time_start_load><x path="Float"/></time_start_load>
 		<texture_list><c path="Array"><c path="String"/></c></texture_list>
-		<shader_list><c path="Array"><t path="luxe.ShaderInfo"/></c></shader_list>
-		<font_list><c path="Array"><t path="luxe.FontInfo"/></c></font_list>
-		<sound_list><c path="Array"><t path="luxe.SoundInfo"/></c></sound_list>
+		<shader_list><c path="Array"><t path="luxe._Parcel.ShaderInfo"/></c></shader_list>
+		<font_list><c path="Array"><t path="luxe._Parcel.FontInfo"/></c></font_list>
+		<sound_list><c path="Array"><t path="luxe._Parcel.SoundInfo"/></c></sound_list>
 		<text_list><c path="Array"><c path="String"/></c></text_list>
 		<data_list><c path="Array"><c path="String"/></c></data_list>
 		<total_items public="1"><x path="Int"/></total_items>
@@ -6705,7 +7186,7 @@
 	<x path="Void"/>
 </f></add_shader>
 		<add_shaders public="1" set="method" line="657"><f a="list">
-	<c path="Array"><t path="luxe.ShaderInfo"/></c>
+	<c path="Array"><t path="luxe._Parcel.ShaderInfo"/></c>
 	<x path="Void"/>
 </f></add_shaders>
 		<add_font public="1" set="method" line="665"><f a="_id:_path">
@@ -6714,7 +7195,7 @@
 	<x path="Void"/>
 </f></add_font>
 		<add_fonts public="1" set="method" line="669"><f a="list">
-	<c path="Array"><t path="luxe.FontInfo"/></c>
+	<c path="Array"><t path="luxe._Parcel.FontInfo"/></c>
 	<x path="Void"/>
 </f></add_fonts>
 		<add_sound public="1" set="method" line="677"><f a="_id:_name:?_is_stream" v="::false">
@@ -6724,7 +7205,7 @@
 	<x path="Void"/>
 </f></add_sound>
 		<add_sounds public="1" set="method" line="681"><f a="list">
-	<c path="Array"><t path="luxe.SoundInfo"/></c>
+	<c path="Array"><t path="luxe._Parcel.SoundInfo"/></c>
 	<x path="Void"/>
 </f></add_sounds>
 		<add_text public="1" set="method" line="689"><f a="_id">
@@ -6752,7 +7233,7 @@
 	<x path="Void"/>
 </f></load_texture>
 		<load_shader set="method" line="746"><f a="_shader:_complete">
-	<t path="luxe.ShaderInfo"/>
+	<t path="luxe._Parcel.ShaderInfo"/>
 	<t path="Null"><f a="">
 	<c path="phoenix.Shader"/>
 	<x path="Void"/>
@@ -6760,7 +7241,7 @@
 	<x path="Void"/>
 </f></load_shader>
 		<load_font set="method" line="771"><f a="_font:_complete">
-	<t path="luxe.FontInfo"/>
+	<t path="luxe._Parcel.FontInfo"/>
 	<t path="Null"><f a="">
 	<c path="phoenix.BitmapFont"/>
 	<x path="Void"/>
@@ -6784,7 +7265,7 @@
 	<x path="Void"/>
 </f></load_text>
 		<load_sound set="method" line="798"><f a="_sound:_complete">
-	<t path="luxe.SoundInfo"/>
+	<t path="luxe._Parcel.SoundInfo"/>
 	<t path="Null"><f a="">
 	<c path="luxe.resource.SoundResource"/>
 	<x path="Void"/>
@@ -7076,115 +7557,127 @@
 		<_delayed_init_entities><c path="Array"><c path="luxe.Entity"/></c></_delayed_init_entities>
 		<_delayed_reset_entities><c path="Array"><c path="luxe.Entity"/></c></_delayed_reset_entities>
 		<length public="1" get="accessor" set="null"><x path="Int"/></length>
-		<add public="1" set="method" line="69"><f a="entity">
-	<c path="luxe.Entity"/>
-	<x path="Void"/>
-</f></add>
-		<remove public="1" set="method" line="94"><f a="entity">
-	<c path="luxe.Entity"/>
-	<x path="Bool"/>
-</f></remove>
-		<empty public="1" set="method" line="116"><f a=""><x path="Void"/></f></empty>
-		<render set="method" line="132"><f a="_">
+		<add public="1" set="method" line="69">
+			<f a="entity">
+				<c path="luxe.Entity"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>add given entity to this scene</haxe_doc>
+		</add>
+		<remove public="1" set="method" line="95">
+			<f a="entity">
+				<c path="luxe.Entity"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>removes given entity from this scene</haxe_doc>
+		</remove>
+		<empty public="1" set="method" line="118">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>destroy all entities in this scene, emptying it.</haxe_doc>
+		</empty>
+		<render set="method" line="134"><f a="_">
 	<unknown/>
 	<x path="Void"/>
 </f></render>
-		<prerender set="method" line="138"><f a="_">
+		<prerender set="method" line="140"><f a="_">
 	<unknown/>
 	<x path="Void"/>
 </f></prerender>
-		<postrender set="method" line="144"><f a="_">
+		<postrender set="method" line="146"><f a="_">
 	<unknown/>
 	<x path="Void"/>
 </f></postrender>
-		<keydown set="method" line="152"><f a="e">
+		<keydown set="method" line="154"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></keydown>
-		<keyup set="method" line="160"><f a="e">
+		<keyup set="method" line="162"><f a="e">
 	<t path="luxe.KeyEvent"/>
 	<x path="Void"/>
 </f></keyup>
-		<textinput set="method" line="168"><f a="e">
+		<textinput set="method" line="170"><f a="e">
 	<t path="luxe.TextEvent"/>
 	<x path="Void"/>
 </f></textinput>
-		<mousedown set="method" line="178"><f a="e">
+		<mousedown set="method" line="180"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mousedown>
-		<mousewheel set="method" line="186"><f a="e">
+		<mousewheel set="method" line="188"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mousewheel>
-		<mouseup set="method" line="194"><f a="e">
+		<mouseup set="method" line="196"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mouseup>
-		<mousemove set="method" line="202"><f a="e">
+		<mousemove set="method" line="204"><f a="e">
 	<t path="luxe.MouseEvent"/>
 	<x path="Void"/>
 </f></mousemove>
-		<touchdown set="method" line="212"><f a="event">
+		<touchdown set="method" line="214"><f a="event">
 	<t path="luxe.TouchEvent"/>
 	<x path="Void"/>
 </f></touchdown>
-		<touchup set="method" line="218"><f a="event">
+		<touchup set="method" line="220"><f a="event">
 	<t path="luxe.TouchEvent"/>
 	<x path="Void"/>
 </f></touchup>
-		<touchmove set="method" line="224"><f a="event">
+		<touchmove set="method" line="226"><f a="event">
 	<t path="luxe.TouchEvent"/>
 	<x path="Void"/>
 </f></touchmove>
-		<gamepadaxis set="method" line="232"><f a="event">
+		<gamepadaxis set="method" line="234"><f a="event">
 	<t path="luxe.GamepadEvent"/>
 	<x path="Void"/>
 </f></gamepadaxis>
-		<gamepadup set="method" line="238"><f a="event">
+		<gamepadup set="method" line="240"><f a="event">
 	<t path="luxe.GamepadEvent"/>
 	<x path="Void"/>
 </f></gamepadup>
-		<gamepaddown set="method" line="244"><f a="event">
+		<gamepaddown set="method" line="246"><f a="event">
 	<t path="luxe.GamepadEvent"/>
 	<x path="Void"/>
 </f></gamepaddown>
-		<gamepaddevice set="method" line="250"><f a="event">
+		<gamepaddevice set="method" line="252"><f a="event">
 	<t path="luxe.GamepadEvent"/>
 	<x path="Void"/>
 </f></gamepaddevice>
-		<inputdown set="method" line="258"><f a="event">
+		<inputdown set="method" line="260"><f a="event">
 	<a>
 		<event><t path="luxe.InputEvent"/></event>
 		<_name><c path="String"/></_name>
 	</a>
 	<x path="Void"/>
 </f></inputdown>
-		<inputup set="method" line="264"><f a="event">
+		<inputup set="method" line="266"><f a="event">
 	<a>
 		<event><t path="luxe.InputEvent"/></event>
 		<_name><c path="String"/></_name>
 	</a>
 	<x path="Void"/>
 </f></inputup>
-		<_destroy set="method" line="272"><f a="_">
+		<_destroy set="method" line="274"><f a="_">
 	<unknown/>
 	<x path="Void"/>
 </f></_destroy>
-		<destroy public="1" set="method" line="278"><f a=""><x path="Void"/></f></destroy>
-		<_do_init set="method" line="313"><f a=""><x path="Bool"/></f></_do_init>
-		<init public="1" set="method" line="334"><f a="_">
+		<destroy public="1" set="method" line="280"><f a=""><x path="Void"/></f></destroy>
+		<_do_init set="method" line="315"><f a=""><x path="Bool"/></f></_do_init>
+		<init public="1" set="method" line="336"><f a="_">
 	<unknown/>
 	<x path="Void"/>
 </f></init>
-		<reset public="1" set="method" line="349"><f a=""><x path="Void"/></f></reset>
-		<update set="method" line="359"><f a="dt">
+		<reset public="1" set="method" line="350">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>reset this scene, allowing all entities, children and attached components to be notified of the reset</haxe_doc>
+		</reset>
+		<update set="method" line="360"><f a="dt">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></update>
-		<handle_delayed_additions set="method" line="379"><f a=""><x path="Void"/></f></handle_delayed_additions>
-		<get_length set="method" line="403"><f a=""><x path="Int"/></f></get_length>
-		<toString set="method" line="409"><f a=""><c path="String"/></f></toString>
+		<handle_delayed_additions set="method" line="380"><f a=""><x path="Void"/></f></handle_delayed_additions>
+		<get_length set="method" line="404"><f a=""><x path="Int"/></f></get_length>
+		<toString set="method" line="410"><f a=""><c path="String"/></f></toString>
 		<new public="1" set="method" line="22"><f a="?_name" v="'untitled scene'">
 	<c path="String"/>
 	<x path="Void"/>

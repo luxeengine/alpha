@@ -9,7 +9,7 @@
 <h4 class="package-root">[luxe](#luxe)</h4>
 
 &emsp;&emsp;
-<span class="package_item inline-block"> [collision](#luxe.collision) </span><span class="package_item inline-block"> [components](#luxe.components) </span><span class="package_item inline-block"> [debug](#luxe.debug) </span><span class="package_item inline-block"> [importers](#luxe.importers) </span><span class="package_item inline-block"> [options](#luxe.options) </span><span class="package_item inline-block"> [resource](#luxe.resource) </span><span class="package_item inline-block"> [structural](#luxe.structural) </span><span class="package_item inline-block"> [tilemaps](#luxe.tilemaps) </span><span class="package_item inline-block"> [tween](#luxe.tween) </span><span class="package_item inline-block"> [utils](#luxe.utils) </span><br/>
+<span class="package_item inline-block"> [importers](#luxe.importers) </span><span class="package_item inline-block"> [collision](#luxe.collision) </span><span class="package_item inline-block"> [components](#luxe.components) </span><span class="package_item inline-block"> [debug](#luxe.debug) </span><span class="package_item inline-block"> [options](#luxe.options) </span><span class="package_item inline-block"> [resource](#luxe.resource) </span><span class="package_item inline-block"> [structural](#luxe.structural) </span><span class="package_item inline-block"> [tilemaps](#luxe.tilemaps) </span><span class="package_item inline-block"> [tween](#luxe.tween) </span><span class="package_item inline-block"> [utils](#luxe.utils) </span><br/>
 <h4 class="package-root">[phoenix](#phoenix)</h4>
 
 &emsp;&emsp;
@@ -33,7 +33,38 @@
 
 
 
-<a name="luxe"><h3> [luxe](#luxe) </h3></a><div class="package-node">&bull; [AppConfig](luxe/AppConfig.html) </div> <br/><div class="package-node">&bull; [Audio](luxe/Audio.html) </div> <br/><div class="package-node">&bull; [Camera](luxe/Camera.html) </div> <br/><div class="package-node">&bull; [Circle](luxe/Circle.html) </div> <br/><div class="package-node">&bull; [Color](luxe/Color.html) </div> <br/><div class="package-node">&bull; [ColorHSL](luxe/ColorHSL.html) </div> <br/><div class="package-node">&bull; [ColorHSV](luxe/ColorHSV.html) </div> <br/><div class="package-node">&bull; [Component](luxe/Component.html) </div> <br/><div class="package-node">&bull; [CoreThreadRequest](luxe/CoreThreadRequest.html) </div> <br/><div class="package-node">&bull; [Cursor](luxe/Cursor.html) </div> <br/><div class="package-node">&bull; [Debug](luxe/Debug.html) </div> <br/><div class="package-node">&bull; [Draw](luxe/Draw.html) </div> <br/><div class="package-node">&bull; [Emitter](luxe/Emitter.html) </div> <br/><div class="package-node">&bull; [Entity](luxe/Entity.html) </div> <br/><div class="package-node">&bull; [Events](luxe/Events.html) </div> <br/><div class="package-node">&bull; [FontInfo](luxe/FontInfo.html) </div> <br/><div class="package-node">&bull; [GamepadEvent](luxe/GamepadEvent.html) </div> <br/><div class="package-node">&bull; [GamepadEventType](luxe/GamepadEventType.html) </div> <br/><div class="package-node">&bull; [ID](luxe/ID.html) </div> <br/><div class="package-node">&bull; [Input](luxe/Input.html) </div> <br/><div class="package-node">&bull; [InputEvent](luxe/InputEvent.html) </div> <br/><div class="package-node">&bull; [InputType](luxe/InputType.html) </div> <br/><div class="package-node">&bull; [InteractState](luxe/InteractState.html) </div> <br/><div class="package-node">&bull; [Key](luxe/Key.html) </div> <br/><div class="package-node">&bull; [KeyEvent](luxe/KeyEvent.html) </div> <br/><div class="package-node">&bull; [LoadShaderInfo](luxe/LoadShaderInfo.html) </div> <br/><div class="package-node">&bull; [LoadTextureInfo](luxe/LoadTextureInfo.html) </div> <br/><div class="package-node">&bull; [Log](luxe/Log.html) </div> <br/><div class="package-node">&bull; [Matrix](luxe/Matrix.html) </div> <br/><div class="package-node">&bull; [Mesh](luxe/Mesh.html) </div> <br/><div class="package-node">&bull; [ModState](luxe/ModState.html) </div> <br/><div class="package-node">&bull; [MouseButton](luxe/MouseButton.html) </div> <br/><div class="package-node">&bull; [MouseEvent](luxe/MouseEvent.html) </div> <br/><div class="package-node">&bull; [NineSlice](luxe/NineSlice.html) </div> <br/><div class="package-node">&bull; [Objects](luxe/Objects.html) </div> <br/><div class="package-node">&bull; [Parcel](luxe/Parcel.html) </div> <br/><div class="package-node">&bull; [ParcelProgress](luxe/ParcelProgress.html) </div> <br/><div class="package-node">&bull; [Particle](luxe/Particle.html) </div> <br/><div class="package-node">&bull; [ParticleEmitter](luxe/ParticleEmitter.html) </div> <br/><div class="package-node">&bull; [ParticleEmitterInitData](luxe/ParticleEmitterInitData.html) </div> <br/><div class="package-node">&bull; [ParticleSystem](luxe/ParticleSystem.html) </div> <br/><div class="package-node">&bull; [Physics](luxe/Physics.html) </div> <br/><div class="package-node">&bull; [PhysicsEngine](luxe/PhysicsEngine.html) </div> <br/><div class="package-node">&bull; [ProjectionType](luxe/ProjectionType.html) </div> <br/><div class="package-node">&bull; [Quaternion](luxe/Quaternion.html) </div> <br/><div class="package-node">&bull; [Rectangle](luxe/Rectangle.html) </div> <br/><div class="package-node">&bull; [Scan](luxe/Scan.html) </div> <br/><div class="package-node">&bull; [Scene](luxe/Scene.html) </div> <br/><div class="package-node">&bull; [Screen](luxe/Screen.html) </div> <br/><div class="package-node">&bull; [ShaderInfo](luxe/ShaderInfo.html) </div> <br/><div class="package-node">&bull; [Slice](luxe/Slice.html) </div> <br/><div class="package-node">&bull; [Sound](luxe/Sound.html) </div> <br/><div class="package-node">&bull; [SoundInfo](luxe/SoundInfo.html) </div> <br/><div class="package-node">&bull; [Sprite](luxe/Sprite.html) </div> <br/><div class="package-node">&bull; [State](luxe/State.html) </div> <br/><div class="package-node">&bull; [States](luxe/States.html) </div> <br/><div class="package-node">&bull; [Text](luxe/Text.html) </div> <br/><div class="package-node">&bull; [TextAlign](luxe/TextAlign.html) </div> <br/><div class="package-node">&bull; [TextEvent](luxe/TextEvent.html) </div> <br/><div class="package-node">&bull; [TextEventType](luxe/TextEventType.html) </div> <br/><div class="package-node">&bull; [Timer](luxe/Timer.html) </div> <br/><div class="package-node">&bull; [TouchEvent](luxe/TouchEvent.html) </div> <br/><div class="package-node">&bull; [Transform](luxe/Transform.html) </div> <br/><div class="package-node">&bull; [Vec](luxe/Vec.html) </div> <br/><div class="package-node">&bull; [Vector](luxe/Vector.html) </div> <br/><div class="package-node">&bull; [Visual](luxe/Visual.html) </div> <br/>
+<a name="luxe"><h3> [luxe](#luxe) </h3></a><div class="package-node">&bull; [AppConfig](luxe/AppConfig.html) </div> <br/><div class="package-node">&bull; [Audio](luxe/Audio.html) </div> <br/><div class="package-node">&bull; [Camera](luxe/Camera.html) </div> <br/><div class="package-node">&bull; [Circle](luxe/Circle.html) </div> <br/><div class="package-node">&bull; [Color](luxe/Color.html) </div> <br/><div class="package-node">&bull; [ColorHSL](luxe/ColorHSL.html) </div> <br/><div class="package-node">&bull; [ColorHSV](luxe/ColorHSV.html) </div> <br/><div class="package-node">&bull; [Component](luxe/Component.html) </div> <br/><div class="package-node">&bull; [Cursor](luxe/Cursor.html) </div> <br/><div class="package-node">&bull; [Debug](luxe/Debug.html) </div> <br/><div class="package-node">&bull; [Draw](luxe/Draw.html) </div> <br/><div class="package-node">&bull; [Emitter](luxe/Emitter.html) </div> <br/><div class="package-node">&bull; [Entity](luxe/Entity.html) </div> <br/><div class="package-node">&bull; [Events](luxe/Events.html) </div> <br/><div class="package-node">&bull; [GamepadEvent](luxe/GamepadEvent.html) </div> <br/><div class="package-node">&bull; [GamepadEventType](luxe/GamepadEventType.html) </div> <br/><div class="package-node">&bull; [ID](luxe/ID.html) </div> <br/><div class="package-node">&bull; [Input](luxe/Input.html) </div> <br/><div class="package-node">&bull; [InputEvent](luxe/InputEvent.html) </div> <br/><div class="package-node">&bull; [InputType](luxe/InputType.html) </div> <br/><div class="package-node">&bull; [InteractState](luxe/InteractState.html) </div> <br/><div class="package-node">&bull; [Key](luxe/Key.html) </div> <br/><div class="package-node">&bull; [KeyEvent](luxe/KeyEvent.html) </div> <br/><div class="package-node">&bull; [Log](luxe/Log.html) </div> <br/><div class="package-node">&bull; [Matrix](luxe/Matrix.html) </div> <br/><div class="package-node">&bull; [Mesh](luxe/Mesh.html) </div> <br/><div class="package-node">&bull; [ModState](luxe/ModState.html) </div> <br/><div class="package-node">&bull; [MouseButton](luxe/MouseButton.html) </div> <br/><div class="package-node">&bull; [MouseEvent](luxe/MouseEvent.html) </div> <br/><div class="package-node">&bull; [NineSlice](luxe/NineSlice.html) </div> <br/><div class="package-node">&bull; [Objects](luxe/Objects.html) </div> <br/><div class="package-node">&bull; [Parcel](luxe/Parcel.html) </div> <br/><div class="package-node">&bull; [ParcelProgress](luxe/ParcelProgress.html) </div> <br/><div class="package-node">&bull; [Particle](luxe/Particle.html) </div> <br/><div class="package-node">&bull; [ParticleEmitter](luxe/ParticleEmitter.html) </div> <br/><div class="package-node">&bull; [ParticleEmitterInitData](luxe/ParticleEmitterInitData.html) </div> <br/><div class="package-node">&bull; [ParticleSystem](luxe/ParticleSystem.html) </div> <br/><div class="package-node">&bull; [Physics](luxe/Physics.html) </div> <br/><div class="package-node">&bull; [PhysicsEngine](luxe/PhysicsEngine.html) </div> <br/><div class="package-node">&bull; [ProjectionType](luxe/ProjectionType.html) </div> <br/><div class="package-node">&bull; [Quaternion](luxe/Quaternion.html) </div> <br/><div class="package-node">&bull; [Rectangle](luxe/Rectangle.html) </div> <br/><div class="package-node">&bull; [Scan](luxe/Scan.html) </div> <br/><div class="package-node">&bull; [Scene](luxe/Scene.html) </div> <br/><div class="package-node">&bull; [Screen](luxe/Screen.html) </div> <br/><div class="package-node">&bull; [Slice](luxe/Slice.html) </div> <br/><div class="package-node">&bull; [Sound](luxe/Sound.html) </div> <br/><div class="package-node">&bull; [Sprite](luxe/Sprite.html) </div> <br/><div class="package-node">&bull; [State](luxe/State.html) </div> <br/><div class="package-node">&bull; [States](luxe/States.html) </div> <br/><div class="package-node">&bull; [Text](luxe/Text.html) </div> <br/><div class="package-node">&bull; [TextAlign](luxe/TextAlign.html) </div> <br/><div class="package-node">&bull; [TextEvent](luxe/TextEvent.html) </div> <br/><div class="package-node">&bull; [TextEventType](luxe/TextEventType.html) </div> <br/><div class="package-node">&bull; [Timer](luxe/Timer.html) </div> <br/><div class="package-node">&bull; [TouchEvent](luxe/TouchEvent.html) </div> <br/><div class="package-node">&bull; [Transform](luxe/Transform.html) </div> <br/><div class="package-node">&bull; [Vec](luxe/Vec.html) </div> <br/><div class="package-node">&bull; [Vector](luxe/Vector.html) </div> <br/><div class="package-node">&bull; [Visual](luxe/Visual.html) </div> <br/>
+
+
+
+
+
+<div class="indent">
+
+<a name="luxe.importers"><h3> [importers](#luxe.importers) </h3></a>
+
+<div class="indent">
+                
+<a name="luxe.importers.obj"><h3> [obj](#luxe.importers.obj) </h3></a><div class="package-node">&bull; [Data](luxe/importers/obj/Data.html) </div> <br/><div class="package-node">&bull; [Normal](luxe/importers/obj/Normal.html) </div> <br/><div class="package-node">&bull; [Reader](luxe/importers/obj/Reader.html) </div> <br/><div class="package-node">&bull; [UV](luxe/importers/obj/UV.html) </div> <br/><div class="package-node">&bull; [Vector](luxe/importers/obj/Vector.html) </div> <br/><div class="package-node">&bull; [Vertex](luxe/importers/obj/Vertex.html) </div> <br/>
+
+
+
+
+
+
+</div><div class="indent">
+                
+<a name="luxe.importers.texturepacker"><h3> [texturepacker](#luxe.importers.texturepacker) </h3></a><div class="package-node">&bull; [TexturePackerData](luxe/importers/texturepacker/TexturePackerData.html) </div> <br/><div class="package-node">&bull; [TexturePackerFrame](luxe/importers/texturepacker/TexturePackerFrame.html) </div> <br/><div class="package-node">&bull; [TexturePackerJSON](luxe/importers/texturepacker/TexturePackerJSON.html) </div> <br/><div class="package-node">&bull; [TexturePackerJSONType](luxe/importers/texturepacker/TexturePackerJSONType.html) </div> <br/><div class="package-node">&bull; [TexturePackerMeta](luxe/importers/texturepacker/TexturePackerMeta.html) </div> <br/><div class="package-node">&bull; [TexturePackerRect](luxe/importers/texturepacker/TexturePackerRect.html) </div> <br/><div class="package-node">&bull; [TexturePackerSize](luxe/importers/texturepacker/TexturePackerSize.html) </div> <br/><div class="package-node">&bull; [TexturePackerSpriteAnimation](luxe/importers/texturepacker/TexturePackerSpriteAnimation.html) </div> <br/>
+
+
+
+
+
+
+</div>
+
+</div>
+
 
 
 
@@ -119,33 +150,6 @@
 </div>
 
 
-
-
-<div class="indent">
-
-<a name="luxe.importers"><h3> [importers](#luxe.importers) </h3></a>
-
-<div class="indent">
-                
-<a name="luxe.importers.obj"><h3> [obj](#luxe.importers.obj) </h3></a><div class="package-node">&bull; [Data](luxe/importers/obj/Data.html) </div> <br/><div class="package-node">&bull; [Normal](luxe/importers/obj/Normal.html) </div> <br/><div class="package-node">&bull; [Reader](luxe/importers/obj/Reader.html) </div> <br/><div class="package-node">&bull; [UV](luxe/importers/obj/UV.html) </div> <br/><div class="package-node">&bull; [Vector](luxe/importers/obj/Vector.html) </div> <br/><div class="package-node">&bull; [Vertex](luxe/importers/obj/Vertex.html) </div> <br/>
-
-
-
-
-
-
-</div><div class="indent">
-                
-<a name="luxe.importers.texturepacker"><h3> [texturepacker](#luxe.importers.texturepacker) </h3></a><div class="package-node">&bull; [TexturePackerData](luxe/importers/texturepacker/TexturePackerData.html) </div> <br/><div class="package-node">&bull; [TexturePackerFrame](luxe/importers/texturepacker/TexturePackerFrame.html) </div> <br/><div class="package-node">&bull; [TexturePackerJSON](luxe/importers/texturepacker/TexturePackerJSON.html) </div> <br/><div class="package-node">&bull; [TexturePackerJSONType](luxe/importers/texturepacker/TexturePackerJSONType.html) </div> <br/><div class="package-node">&bull; [TexturePackerMeta](luxe/importers/texturepacker/TexturePackerMeta.html) </div> <br/><div class="package-node">&bull; [TexturePackerRect](luxe/importers/texturepacker/TexturePackerRect.html) </div> <br/><div class="package-node">&bull; [TexturePackerSize](luxe/importers/texturepacker/TexturePackerSize.html) </div> <br/><div class="package-node">&bull; [TexturePackerSpriteAnimation](luxe/importers/texturepacker/TexturePackerSpriteAnimation.html) </div> <br/>
-
-
-
-
-
-
-</div>
-
-</div>
 
 
 

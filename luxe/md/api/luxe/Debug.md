@@ -97,55 +97,19 @@
 
 <h3>Methods</h3> <hr/><span class="method apipage">
             <a name="add_trace_listener"><a class="lift" href="#add_trace_listener">add\_trace\_listener</a></a><div class="clear"></div>
-            <code class="signature apipage">add\_trace\_listener(\_name:[String](#)<span></span>, \_callback:[](#)&nbsp; -&gt; [haxe.PosInfos](#)&nbsp;-&gt; [Void](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="create_debug_console"><a class="lift" href="#create_debug_console">create\_debug\_console</a></a><div class="clear"></div>
-            <code class="signature apipage">create\_debug\_console() : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="destroy"><a class="lift" href="#destroy">destroy</a></a><div class="clear"></div>
-            <code class="signature apipage">destroy() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">add\_trace\_listener(\_name:[String](#)<span></span>, \_callback:[](#)&nbsp; -&gt; [haxe.PosInfos](#)&nbsp;-&gt; [Void](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">since luxe captures the haxe `trace` log, you can add listeners to catch trace values for yourself.</span>
         </span>
     <span class="method apipage">
             <a name="end"><a class="lift" href="#end">end</a></a><div class="clear"></div>
-            <code class="signature apipage">end(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="init"><a class="lift" href="#init">init</a></a><div class="clear"></div>
-            <code class="signature apipage">init() : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="internal_trace"><a class="lift" href="#internal_trace">internal\_trace</a></a><span class="inline-block static">static</span><div class="clear"></div>
-            <code class="signature apipage">internal\_trace(v:[Dynamic](#)<span></span>, inf:[haxe.PosInfos](#)<span>=null</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
-            <code class="signature apipage">new(\_core:[luxe.Core](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="onresize"><a class="lift" href="#onresize">onresize</a></a><div class="clear"></div>
-            <code class="signature apipage">onresize(e:[Dynamic](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="process"><a class="lift" href="#process">process</a></a><div class="clear"></div>
-            <code class="signature apipage">process() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">end(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">end a profiling section for the profiler debug view</span>
         </span>
     <span class="method apipage">
             <a name="remove_trace_listener"><a class="lift" href="#remove_trace_listener">remove\_trace\_listener</a></a><div class="clear"></div>
-            <code class="signature apipage">remove\_trace\_listener(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="show_console"><a class="lift" href="#show_console">show\_console</a></a><div class="clear"></div>
-            <code class="signature apipage">show\_console(\_show:[Bool](#)<span>=true</span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">remove\_trace\_listener(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">remove a trace listener added via add_trace_listener</span>
         </span>
     <span class="method apipage">
             <a name="start"><a class="lift" href="#start">start</a></a><div class="clear"></div>
-            <code class="signature apipage">start(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
-            <a name="switch_view"><a class="lift" href="#switch_view">switch\_view</a></a><div class="clear"></div>
-            <code class="signature apipage">switch\_view() : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">start(\_name:[String](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat">start a profiling section for the profiler debug view</span>
         </span>
     
 

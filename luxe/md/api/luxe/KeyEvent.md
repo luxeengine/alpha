@@ -39,7 +39,7 @@ Information about a keyboard event
             <span class="small_desc_flat">The state of the key in this event</span><span class="member apipage">
                 <a name="scancode"><a class="lift" href="#scancode">scancode</a></a><div class="clear"></div>
                 <code class="signature apipage">scancode : [Int](#)</code><br/></span>
-            <span class="small_desc_flat">The `snow.input.Scan` code value for this event</span><span class="member apipage">
+            <span class="small_desc_flat">The `Scan` code value for this event</span><span class="member apipage">
                 <a name="repeat"><a class="lift" href="#repeat">repeat</a></a><div class="clear"></div>
                 <code class="signature apipage">repeat : [Bool](#)</code><br/></span>
             <span class="small_desc_flat">If this value is bigger than 0 this is a key repeat event of a key held down</span><span class="member apipage">
@@ -48,7 +48,7 @@ Information about a keyboard event
             <span class="small_desc_flat">The modifier state of this event</span><span class="member apipage">
                 <a name="keycode"><a class="lift" href="#keycode">keycode</a></a><div class="clear"></div>
                 <code class="signature apipage">keycode : [Int](#)</code><br/></span>
-            <span class="small_desc_flat">The `snow.input.Key` code value for this event</span>
+            <span class="small_desc_flat">The `Key` code value for this event</span>
 
 
 

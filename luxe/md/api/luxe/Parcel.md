@@ -61,7 +61,7 @@
         </span>
     <span class="method apipage">
             <a name="add_fonts"><a class="lift" href="#add_fonts">add\_fonts</a></a><div class="clear"></div>
-            <code class="signature apipage">add\_fonts(list:[Array](#)&lt;[luxe.FontInfo](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">add\_fonts(list:[Array](#)&lt;[luxe._Parcel.FontInfo](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="add_shader"><a class="lift" href="#add_shader">add\_shader</a></a><div class="clear"></div>
@@ -69,7 +69,7 @@
         </span>
     <span class="method apipage">
             <a name="add_shaders"><a class="lift" href="#add_shaders">add\_shaders</a></a><div class="clear"></div>
-            <code class="signature apipage">add\_shaders(list:[Array](#)&lt;[luxe.ShaderInfo](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">add\_shaders(list:[Array](#)&lt;[luxe._Parcel.ShaderInfo](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="add_sound"><a class="lift" href="#add_sound">add\_sound</a></a><div class="clear"></div>
@@ -77,7 +77,7 @@
         </span>
     <span class="method apipage">
             <a name="add_sounds"><a class="lift" href="#add_sounds">add\_sounds</a></a><div class="clear"></div>
-            <code class="signature apipage">add\_sounds(list:[Array](#)&lt;[luxe.SoundInfo](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
+            <code class="signature apipage">add\_sounds(list:[Array](#)&lt;[luxe._Parcel.SoundInfo](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
             <a name="add_text"><a class="lift" href="#add_text">add\_text</a></a><div class="clear"></div>

@@ -8,7 +8,7 @@
 <h1>MouseEvent</h1>
 <small>`luxe.MouseEvent`</small>
 
-
+Information about a mouse event
 
 ---
 
