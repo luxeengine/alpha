@@ -41,12 +41,12 @@ class NineSlice extends luxe.Sprite {
     @:noCompletion public var midheight : Float = 0.0;
     @:noCompletion public var slices : Array<Slice>;
     @:noCompletion public var added : Bool = false;
-    @:noCompletion public var nineslice_options : NineSliceOptions<Dynamic>;
+    @:noCompletion public var nineslice_options : NineSliceOptions;
     @:noCompletion public var _geometry : ComplexGeometry;
 
     var _batcher : Batcher;
 
-    public function new<T>( _options:NineSliceOptions<T> ) {
+    public function new( _options:NineSliceOptions ) {
 
             //default to internal batcher
         slices = new Array<Slice>();

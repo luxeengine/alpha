@@ -94,7 +94,7 @@ class Entity extends Objects {
 
 
 
-    public function new<T>( ?_options:EntityOptions<T> ) {
+    public function new( ?_options:EntityOptions ) {
 
         super('entity');
 
