@@ -21,79 +21,97 @@ import luxe.Log._verboser;
 @:autoBuild(luxe.macros.EntityRules.apply())
 class Entity extends Objects {
 
-
+        /** The map of attached components, by name. use .get to find components in children and from other components instead of accessing this unless you need to */
     public var components (get,never) : Map<String, Component>;
+        /** A local event system for sending and receiving named events through the entity. Helps communicate between components, and more. */
     public var events : luxe.Events;
+        /** The list of children this entity is parenting. Use `child.parent = null;` to remove, or `child.parent = entity;` to assign. */
     public var children : Array<Entity>;
 
-        ////whether or not this entity has been destroyed
+        /** whether or not this entity has been destroyed */
     public var destroyed : Bool = false;
-        //whether or not this entity has been inited yet
+        /** whether or not this entity has been inited yet */
     public var inited : Bool = false;
-        //whether or not this entity has been started
+        /** whether or not this entity has been started/reset by the scene */
     public var started : Bool = false;
 
-        //The fixed rate timer if any
+        /** per entity fixed rate timer, if any. if 0 (default) no fixed update is called on this entity. */
     @:isVar public var fixed_rate       (get,set) : Float = 0;
-        //The parent entity if any, set to null for no parent
+        /** The parent entity if any, set to null for no parent */
     @:isVar public var parent           (get,set) : Entity;
-        //if the entity is in a scene, this is not null
+        /** if the entity is in a scene, this is not null */
     @:isVar public var scene            (get,set) : Scene;
-        //if the entity is active in the scene or not
+        /** if the entity is active in the scene or not. set to inactive to stop scene events propogating into this entity and it's components and children */
     @:isVar public var active           (get,set) : Bool = true;
 
-        //The spatial transform of the entity
+        /** The spatial transform of the entity. */
     public var transform : Transform;
-        //The local position of the transform
+        /** The local position of the spatial transform */
     public var pos              (get,set) : Vector;
-        //The local rotation of the transform
+        /** The local rotation of the spatial transform */
     public var rotation         (get,set) : Quaternion;
-        //The local scale of the transform
+        /** The local scale of the spatial transform */
     public var scale            (get,set) : Vector;
-        //The local origin of the transform
+        /** The local origin of the spatial transform */
     public var origin           (get,set) : Vector;
 
-        //the system for the entity
+        /** the system for the entity */
     var _components : Components;
-        //the timer for the fixed update
+        /** the timer for the fixed update */
     var fixed_rate_timer : snow.utils.Timer;
-        //the options passed in for giving to the init function
+        /** the options passed in for giving to the init function */
     var options : Dynamic;
 
 
-
-        //critical events, called directly
+        /** called when the scene is initiated. **use this instead of new** for state setup. it respects the order of creations, children, and component ordering. */
     public function init() {}
+        /** called once per frame, passing the delta time */
     public function update(dt:Float) {}
 
-        //scene events, called directly
+        /** called when the scene starts or is reset. use this to reset state. */
     @:noCompletion public function onreset() {}
+        /** called when the scene, parent or entity is destroyed. use this to clean up state. */
     @:noCompletion public function ondestroy() {}
 
-        //input events, connected only when overridden in child class
+        /** override this to get notified when a key is released. only called if overridden. */
     @:noCompletion public function onkeyup( event:KeyEvent ) {}
+        /** override this to get notified when a key is pressed. only called if overridden. */
     @:noCompletion public function onkeydown( event:KeyEvent ) {}
+        /** override this to get notified when a text input event happens. only called if overridden. */
     @:noCompletion public function ontextinput( event:TextEvent ) {}
 
+        /** override this to get notified when a named input event happens. only called if overridden. */
     @:noCompletion public function oninputdown( name:String, event:InputEvent ) {}
+        /** override this to get notified when a named input event happens. only called if overridden. */
     @:noCompletion public function oninputup( name:String, event:InputEvent ) {}
 
+        /** override this to get notified when a mouse button is pressed. only called if overridden. */
     @:noCompletion public function onmousedown( event:MouseEvent ) {}
+        /** override this to get notified when a mouse button is pressed. only called if overridden. */
     @:noCompletion public function onmouseup( event:MouseEvent ) {}
+        /** override this to get notified when a mouse is moved. only called if overridden. */
     @:noCompletion public function onmousemove( event:MouseEvent ) {}
+        /** override this to get notified when the mouse wheel/trackpad is scrolled. only called if overridden. */
     @:noCompletion public function onmousewheel( event:MouseEvent ) {}
 
+        /** override this to get notified when a touch begins. only called if overridden. */
     @:noCompletion public function ontouchdown( event:TouchEvent ) {}
+        /** override this to get notified when a touch ends. only called if overridden. */
     @:noCompletion public function ontouchup( event:TouchEvent ) {}
+        /** override this to get notified when a touch moves. only called if overridden. */
     @:noCompletion public function ontouchmove( event:TouchEvent ) {}
 
+        /** override this to get notified when a gamepad button is released. only called if overridden. */
     @:noCompletion public function ongamepadup( event:GamepadEvent ) {}
+        /** override this to get notified when a gamepad button is pressed. only called if overridden. */
     @:noCompletion public function ongamepaddown( event:GamepadEvent ) {}
+        /** override this to get notified when a gamepad axis changes. only called if overridden. */
     @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
+        /** override this to get notified when a gamepad device event happens. only called if overridden. */
     @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
 
 
-
+        /** Create a new entity with the given options */
     public function new( ?_options:EntityOptions ) {
 
         super('entity');
@@ -196,26 +214,30 @@ class Entity extends Objects {
 //components
 
 
+        /** attach a component to the entity */
     public function add<T:Component>( _component:T ) : T {
         return _components.add( _component );
     } //add
 
+        /** remove a component from the entity */
     public function remove( _name:String ) : Bool {
         return _components.remove( _name );
     } //remove
 
+        /** get a component from the entity, by name */
     public function get<T>(_name:String, ?_in_children:Bool = false ) : T {
         return _components.get( _name, _in_children );
     } //get
 
+        /** get all component from the entity, by name */
     public function get_any<T>(_name:String, ?_in_children:Bool = false, ?_first_only:Bool = true ) : Array<T> {
         return _components.get_any( _name, _in_children, _first_only );
     } //get
 
+        /** returns true if the entity has a component by the given name */
     public function has( _name:String ) : Bool {
         return _components.has( _name );
     } //has
-
 
 
 
@@ -278,6 +300,7 @@ class Entity extends Objects {
 
     } //_reset
 
+        /** destroy this entity. removes it from the scene if any, from the parent etc. */
     public function destroy( ?_from_parent:Bool=false ) {
 
         _debug('destroy ' + name + ' with ' + children.length + ' children and ' + Lambda.count(components) + " components / " + id);

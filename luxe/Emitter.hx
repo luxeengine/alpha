@@ -20,6 +20,7 @@ class Emitter {
         //store the items to remove
     var _to_remove : List<EmitNode>;
 
+        /** create a new emitter instance, for binding functions easily to named events. similar to `Events` */
     public function new() {
 
         _to_remove = new List();

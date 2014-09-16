@@ -24,34 +24,45 @@ import luxe.Log._debug;
 class Visual extends Entity {
 
 
+        /** the size of this geometry (only makes sense for QuadGeometry) */
     @:isVar public var size         (default,set) : Vector;
+        /** the geometry this visual contains */
     @:isVar public var geometry     (default,set) : Geometry;
+        /** the geometry static flag. This is a hint on how to render the geometry for performance */
     @:isVar public var locked       (default,set) : Bool = false;
+        /** the texture for the geometry */
     @:isVar public var texture      (default,set) : Texture;
+        /** the shader for the geometry */
     @:isVar public var shader       (default,set) : Shader;
+        /** the base color */
     @:isVar public var color        (default,set) : Color;
+        /** the visibility */
     @:isVar public var visible      (default,set) : Bool = true;
+        /** the geometry depth value (see guides)*/
     @:isVar public var depth        (default,set) : Float = 0.0;
+        /** the geometry group id (see guides)*/
     @:isVar public var group        (default,set) : Int = 0;
+        /** If note null, the geometry will be clipped to this rectangle region (in world space). */
     @:isVar public var clip_rect    (default,set) : Rectangle;
-
+        /** convenience: controls the rotation around the z axis, in radians. */
     @:isVar public var radians      (get,set) : Float = 0.0;
+        /** convenience: controls the rotation around the z axis, in degrees. */
     public var rotation_z           (get,set) : Float;
 
+        //private
     var _rotation_euler : Vector;
     var _rotation_quat : Quaternion;
-
     var _has_custom_origin : Bool = false;
 
-
+        /** Create a new visual based on the given options */
     public function new( _options:VisualOptions ) {
 
-//safe
+        //safe
         if(_options == null) {
             throw "Visual needs not-null options at the moment";
         }
 
-//cached values
+            //cached values
             //these need to be before super
         _rotation_euler = new Vector();
         _rotation_quat = new Quaternion();
@@ -63,32 +74,32 @@ class Visual extends Entity {
         color = new Color();
         size = new Vector();
 
-//texture
+            //texture
         if(options.texture != null) {
             texture = options.texture;
         }
-//shader
+            //shader
         if(options.shader != null) {
             shader = options.shader;
         }
-//color
+            //color
         if(options.color != null) {
             color = options.color;
         }
-//depth
+            //depth
         if(options.depth != null) {
             depth = options.depth;
         }
-//group
+            //group
         if(options.group != null) {
             group = options.group;
         }
-//visible
+            //visible
         if(options.visible != null) {
             visible = options.visible;
         }
 
-//size is interesting, as it's possibly based on texture
+            //size is interesting, as it's possibly based on texture
 
             //user specified a size
         if(options.size != null) {
@@ -192,7 +203,6 @@ class Visual extends Entity {
         }
 
     } //create_geometry
-
 
     override function ondestroy() {
 

@@ -55,11 +55,11 @@ class Debug {
 
     static var trace_callbacks : Map<String, Dynamic->?haxe.PosInfos->Void>;
 
-    public function new( _core:Core ) {
+    @:noCompletion public function new( _core:Core ) {
         core = _core;
     } //new
 
-    public function init() {
+    @:noCompletion public function init() {
 
         trace_callbacks = new Map();
 
@@ -82,25 +82,30 @@ class Debug {
 
     } //init
 
+        /** start a profiling section for the profiler debug view */
     public function start(_name:String) {
         #if !no_debug_console
             ProfilerDebugView.start(_name);
         #end
     }
+
+        /** end a profiling section for the profiler debug view */
     public function end(_name:String) {
         #if !no_debug_console
             ProfilerDebugView.end(_name);
         #end
     }
-
+        /** remove a trace listener added via add_trace_listener */
     public function remove_trace_listener( _name:String ) {
         trace_callbacks.remove(_name);
     }
+
+        /** since luxe captures the haxe `trace` log, you can add listeners to catch trace values for yourself. */
     public function add_trace_listener( _name:String, _callback: Dynamic->?haxe.PosInfos->Void ) {
         trace_callbacks.set(_name, _callback);
     }
 
-    public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
+    @:noCompletion public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
         var _line = StringTools.rpad(Std.string(inf.lineNumber), ' ', 4);
         #if luxe_native
@@ -122,7 +127,7 @@ class Debug {
 
     } //internal_trace
 
-    public function create_debug_console() {
+    @:noCompletion public function create_debug_console() {
 
         #if !no_debug_console
 
@@ -253,7 +258,7 @@ class Debug {
 
     } //keydown
 
-    public function onresize(e) {
+    @:noCompletion public function onresize(e) {
         view.viewport = new Rectangle(0,0,Luxe.screen.w, Luxe.screen.h);
     } //onresize
 
@@ -261,7 +266,8 @@ class Debug {
         current_view.refresh();
     } //refresh
 
-    public function switch_view() {
+        /** programmatically switch the debug console view. currently cycles the view. */
+    @:noCompletion public function switch_view() {
 
             //keep knowledge of this
         last_view_index = current_view_index;
@@ -286,7 +292,7 @@ class Debug {
     var last_cursor_shown : Bool = true;
     var last_cursor_grab : Bool = false;
 
-    public function show_console(_show:Bool = true) {
+    @:noCompletion public function show_console(_show:Bool = true) {
 
         #if no_debug_console
             return;
@@ -326,7 +332,7 @@ class Debug {
 
     } //show_console
 
-    public function destroy() {
+    @:noCompletion public function destroy() {
 
         core.off('keyup', keyup);
         core.off('keydown', keydown);
@@ -339,7 +345,7 @@ class Debug {
 
     } //destroy
 
-    public function process() {
+    @:noCompletion public function process() {
 
         dt_average_accum += Luxe.dt;
         dt_average_count++;

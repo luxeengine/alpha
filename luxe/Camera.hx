@@ -15,18 +15,28 @@ typedef ProjectionType = phoenix.Camera.ProjectionType;
 
 class Camera extends Entity {
 
+        /** The viewport size for this camera, proxy to the view */
     public var viewport (get,set) : Rectangle;
+        /** The center point of this camera, proxy to the view */
     public var center (get,set) : Vector;
+        /** The current zoom value this camera can be set to, proxy to the view */
     public var zoom (get,set) : Float;
+        /** The minimum zoom value this camera can be set to, proxy to the view */
     public var minimum_zoom (get,set) : Float;
 
+        /** the view camera this entity wraps */
     public var view : phoenix.Camera;
+        /** if set, the camera will not move outside of this region (world space) */
     public var bounds : Rectangle;
 
-    public var shake_vector : Vector;
-    public var shake_amount : Float;
-    public var shaking : Bool = false;
-    public var minimum_shake : Float = 0.1;
+        /** the current shake vector amounts in x,y,z */
+    @:noCompletion public var shake_vector : Vector;
+        /** the last shake amount */
+    @:noCompletion public var shake_amount : Float;
+        /** if true, shake is busy happening */
+    @:noCompletion public var shaking : Bool = false;
+        /** the threshold cutoff for shaking */
+    @:noCompletion public var minimum_shake : Float = 0.1;
 
     var update_view_pos : Vector;
 
@@ -34,6 +44,7 @@ class Camera extends Entity {
     var _rotation_radian : Vector;
     var _rotation_cache : Quaternion;
 
+        /** create a new camera with the given options */
     public function new( ?options:LuxeCameraOptions ) {
 
             //cache for later
@@ -101,8 +112,8 @@ class Camera extends Entity {
         return view.zoom = _z;
     } //set_zoom
 
-        //Focus the camera on a specific point, for Ortho only.
-        //Use .target : Vector for focus in perspective
+        /**Focus the camera on a specific point, for Ortho only.
+        Use `.target` for a focus in perspective */
     public function focus( _p:Vector, _t:Float = 0.6, ?oncomplete:Void->Void=null ) {
 
         Actuate.tween(view.center, _t, { x:_p.x, y:_p.y }, true )
@@ -114,12 +125,14 @@ class Camera extends Entity {
 
     } //focus
 
+        /** convert a screen point to world space for this camera. handles zoom, rotation, scale, etc */
     public function screen_point_to_world( _vector:Vector ) : Vector {
 
         return view.screen_point_to_world( _vector );
 
     } //screen_point_to_world
 
+        /** convert a world point to screen space for this camera. handles zoom, rotation, scale, etc */
     public function world_point_to_screen( _vector:Vector, ?_viewport:Rectangle=null ) : Vector {
 
         return view.world_point_to_screen( _vector, _viewport );
@@ -162,6 +175,7 @@ class Camera extends Entity {
 
     } //set_scale_from_transform
 
+        /** Shake the camera a given amount */
     public function shake(amount:Float) {
 
         shake_amount = amount;

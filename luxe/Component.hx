@@ -14,48 +14,75 @@ import luxe.Log._verbose;
 @:autoBuild(luxe.macros.ComponentRules.apply())
 class Component extends ID {
 
-        //the entity this component is attached to
+        /** the entity this component is attached to */
     @:isVar public var entity (get,set) : Entity;
 
-        //the transfrom that affect the parent entity
+        /** The spatial transform of the attached entity. direct proxy to the entity transform */
+    public var transform : Transform;
+        /** The local position of the spatial transform. direct proxy to the entity transform */
     public var pos              (get,set) : Vector;
+        /** The local rotation of the spatial transform. direct proxy to the entity transform */
     public var rotation         (get,set) : Quaternion;
+        /** The local scale of the spatial transform. direct proxy to the entity transform */
     public var scale            (get,set) : Vector;
+        /** The local origin of the spatial transform. direct proxy to the entity transform */
     public var origin           (get,set) : Vector;
-    public var transform        (get,set) : Transform;
 
-        //critical events, called directly
+        /** called when the scene is initiated. **use this instead of new** for state setup. it respects the order of creations, children, and component ordering. */
     public function init() {}
+        /** called once per frame, passing the delta time */
     public function update(dt:Float) {}
 
-        //component events, called directly
+        /** called when the component is attached to an entity */
     public function onadded() {}
+        /** called when the component is removed from an entity */
     public function onremoved() {}
 
-        //entity events, called directly
-    public function onreset() {}
-    public function ondestroy() {}
-    public function onfixedupdate() {}
+        /** called when the fixed update is triggered, if the entity has a fixed_rate set */
+    @:noCompletion public function onfixedupdate() {}
+       /** called when the scene starts or is reset. use this to reset state. */
+    @:noCompletion public function onreset() {}
+        /** called when the scene, parent or entity is destroyed. use this to clean up state. */
+    @:noCompletion public function ondestroy() {}
 
-        //input events, connected only when overriden in component class
-    public function onkeyup( event:KeyEvent ) {}
-    public function onkeydown( event:KeyEvent ) {}
+        /** override this to get notified when a key is released. only called if overridden. */
+    @:noCompletion public function onkeyup( event:KeyEvent ) {}
+        /** override this to get notified when a key is pressed. only called if overridden. */
+    @:noCompletion public function onkeydown( event:KeyEvent ) {}
+        /** override this to get notified when a text input event happens. only called if overridden. */
+    @:noCompletion public function ontextinput( event:TextEvent ) {}
 
-    public function onmousedown( event:MouseEvent ) {}
-    public function onmouseup( event:MouseEvent ) {}
-    public function onmousemove( event:MouseEvent ) {}
-    public function onmousewheel( event:MouseEvent ) {}
+        /** override this to get notified when a named input event happens. only called if overridden. */
+    @:noCompletion public function oninputdown( name:String, event:InputEvent ) {}
+        /** override this to get notified when a named input event happens. only called if overridden. */
+    @:noCompletion public function oninputup( name:String, event:InputEvent ) {}
 
-    public function ontouchdown( event:TouchEvent ) {}
-    public function ontouchup( event:TouchEvent ) {}
-    public function ontouchmove( event:TouchEvent ) {}
+        /** override this to get notified when a mouse button is pressed. only called if overridden. */
+    @:noCompletion public function onmousedown( event:MouseEvent ) {}
+        /** override this to get notified when a mouse button is pressed. only called if overridden. */
+    @:noCompletion public function onmouseup( event:MouseEvent ) {}
+        /** override this to get notified when a mouse is moved. only called if overridden. */
+    @:noCompletion public function onmousemove( event:MouseEvent ) {}
+        /** override this to get notified when the mouse wheel/trackpad is scrolled. only called if overridden. */
+    @:noCompletion public function onmousewheel( event:MouseEvent ) {}
 
-    public function ongamepadup( event:GamepadEvent ) {}
-    public function ongamepaddown( event:GamepadEvent ) {}
-    public function ongamepadaxis( event:GamepadEvent ) {}
-    public function ongamepaddevice( event:GamepadEvent ) {}
+        /** override this to get notified when a touch begins. only called if overridden. */
+    @:noCompletion public function ontouchdown( event:TouchEvent ) {}
+        /** override this to get notified when a touch ends. only called if overridden. */
+    @:noCompletion public function ontouchup( event:TouchEvent ) {}
+        /** override this to get notified when a touch moves. only called if overridden. */
+    @:noCompletion public function ontouchmove( event:TouchEvent ) {}
 
+        /** override this to get notified when a gamepad button is released. only called if overridden. */
+    @:noCompletion public function ongamepadup( event:GamepadEvent ) {}
+        /** override this to get notified when a gamepad button is pressed. only called if overridden. */
+    @:noCompletion public function ongamepaddown( event:GamepadEvent ) {}
+        /** override this to get notified when a gamepad axis changes. only called if overridden. */
+    @:noCompletion public function ongamepadaxis( event:GamepadEvent ) {}
+        /** override this to get notified when a gamepad device event happens. only called if overridden. */
+    @:noCompletion public function ongamepaddevice( event:GamepadEvent ) {}
 
+        /** Use this to pass instance specific data and values to the component. */
     public function new( ?_options:ComponentOptions ) {
 
         var _name = '';
@@ -72,21 +99,30 @@ class Component extends ID {
 
 //components
 
+        /** attach a component to the entity */
     public function add<T:Component>( component:T ) : T {
         return entity.add( component );
     } //add
 
+        /** remove a component from the entity */
     public function remove( _name:String ) : Bool {
         return entity.remove( _name );
     } //add
 
+        /** get a component from the entity, by name */
     public function get<T>( _name:String, ?in_children:Bool = false ) : T {
         return entity.get( _name, in_children );
     } //get
 
+        /** get all component from the entity, by name */
     public function get_any<T>( _name:String, ?in_children:Bool = false, ?first_only:Bool = true ) : Array<T> {
         return entity.get_any( _name, in_children, first_only );
     } //get_any
+
+        /** returns true if the entity has a component by the given name */
+    public function has( _name:String ) : Bool {
+        return entity.has( _name );
+    } //has
 
 //Internal
 

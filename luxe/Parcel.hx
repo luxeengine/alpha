@@ -18,17 +18,17 @@ import luxe.Log.log;
 #end //parcel_thread_disabled
 
 
-typedef ShaderInfo = {
+private typedef ShaderInfo = {
     ps_id : String,
     vs_id : String
 }
 
-typedef FontInfo = {
+private typedef FontInfo = {
     id : String,
     path : String
 }
 
-typedef SoundInfo = {
+private typedef SoundInfo = {
     id : String,
     name : String,
     is_stream : Bool

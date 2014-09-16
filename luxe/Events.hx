@@ -11,20 +11,26 @@ class Events {
     @:noCompletion public var event_filters : Map< String, Array<EventConnection> >; //event name, array of connections
     @:noCompletion public var event_schedules : Map< String, snow.utils.Timer >; //event id, timer
 
-
+        /** create a new instance for sending/receiving events */
     public function new( ) {
+
             //create the queue, lists and map
         event_connections = new Map();
         event_slots = new Map();
         event_filters = new Map();
         event_queue = new Map();
         event_schedules = new Map();
-    }
 
+    } //new
+
+        /** destroy this `Events` instance */
     public function destroy() {
-        clear();
-    }
 
+        clear();
+
+    } //destroy
+
+        /** clear any scheduled or bound events. called on destroy. */
     public function clear() {
 
         for(schedule in event_schedules) {
@@ -50,7 +56,7 @@ class Events {
 
     }
 
-        //exposed for learning/testing api
+        /** helper. Exposed for learning/testing api. */
     public function does_filter_event( _filter:String, _event:String ) {
 
         var _replace_stars : EReg = ~/\*/gi;
@@ -62,9 +68,9 @@ class Events {
     } //does_filter_event
 
 
-        //Bind a signal (listener) to a slot (event_name)
-            //event_name : The event id
-            //listener : A function handler that should get called on event firing
+        /**Bind a signal (listener) to a slot (event_name)   
+            event_name : The event id   
+            listener : A function handler that should get called on event firing*/
     public function listen<T>( _event_name : String, _listener : T -> Void ):String {
 
             //we need an ID and a connection to store
@@ -107,9 +113,9 @@ class Events {
 
     } //listen
 
-        //Disconnect a vound signal
-            //event connection id, returned from connect()
-            //returns true if the event existed and was removed
+        /**Disconnect a vound signal   
+            event connection id, returned from connect()   
+            returns true if the event existed and was removed */
     public function disconnect( event_id : String ) : Bool {
 
         if(event_connections.exists(event_id)) {
@@ -138,10 +144,10 @@ class Events {
 
     } //disconnect
 
-        //Queue an event in the next update loop
-            //event_name : The event (register listeners with connect())
-            //properties : A dynamic pass-through value to hand off data
-            //  -- Returns a String, the ID of the event
+        /*Queue an event in the next update loop   
+            event_name : The event (register listeners with connect())   
+            properties : A dynamic pass-through value to hand off data   
+            returns : a String, the unique ID of the event */
     public function queue<T>( event_name : String, ?properties : T ) : String {
 
         var id : String = Luxe.utils.uniqueid();
@@ -156,6 +162,7 @@ class Events {
         return id;
     } //queue
 
+        /** Remove an event from the queue by id returned from queue. */
     public function dequeue( event_id: String ) {
 
         if(event_queue.exists(event_id)) {
@@ -167,8 +174,10 @@ class Events {
         }
 
         return false;
+
     } //dequeue
 
+        /** Process/update the events, firing any events in the queue. if you create a custom instance, call this when you want to process. */
     public function process() {
 
             //fire each event in the queue

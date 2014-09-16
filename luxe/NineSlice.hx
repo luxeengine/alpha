@@ -23,6 +23,7 @@ typedef Slice = {
     geometry_id : String
 };
 
+/** A nineslice based sprite, for scaling */
 class NineSlice extends luxe.Sprite {
 
     public var top : Float = 32;
@@ -46,6 +47,7 @@ class NineSlice extends luxe.Sprite {
 
     var _batcher : Batcher;
 
+        /** create a new nineslice with given options */
     public function new( _options:NineSliceOptions ) {
 
             //default to internal batcher

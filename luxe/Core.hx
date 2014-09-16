@@ -37,19 +37,19 @@ import luxe.Log.log;
         import cpp.vm.Mutex;
     #end
 
-    typedef LoadTextureInfo = {
+    private typedef LoadTextureInfo = {
         onloaded : Texture->Void,
         bytes : ByteArray,
         id : String
     }
 
-    typedef LoadShaderInfo = {
+    private typedef LoadShaderInfo = {
         onloaded:Shader->Void,
         ps_id : String,
         vs_id : String
     }
 
-    enum CoreThreadRequest {
+    private enum CoreThreadRequest {
         load_texture;
         load_shader;
     }
@@ -102,7 +102,7 @@ class Core extends snow.App {
     public var has_inited : Bool = false;
 
 
-    public function new( _game:Game ) {
+    @:noCompletion public function new( _game:Game ) {
 
         super();
 

@@ -4,8 +4,11 @@ import luxe.Core;
 import luxe.Log._debug;
 import snow.types.Types;
 
+    /** A modifier state for key events */
 typedef ModState        =   snow.types.Types.ModState;
+    /** A named list of keycodes. Use to compare against key event `keycode` values */
 typedef Key             =   snow.input.Keycodes.Keycodes;
+    /** A named list of scancodes. Use to compare against key event `scancode` values */
 typedef Scan            =   snow.input.Keycodes.Scancodes;
 
 /** A typed mouse button id */
@@ -61,9 +64,9 @@ enum TextEventType {
 /** Information about a keyboard event */
 typedef KeyEvent = {
 
-        /** The `snow.input.Scan` code value for this event */
+        /** The `Scan` code value for this event */
     var scancode : Int;
-        /** The `snow.input.Key` code value for this event */
+        /** The `Key` code value for this event */
     var keycode : Int;
         /** The state of the key in this event */
     var state : InteractState;
@@ -156,6 +159,7 @@ typedef GamepadEvent = {
 
 } //GamepadEvent
 
+/** Information about a mouse event */
 typedef MouseEvent = {
 
         /** The time in seconds when this touch event occurred, use for deltas */
@@ -179,23 +183,38 @@ typedef MouseEvent = {
 
 } //MouseEvent
 
+/** A type for a named input event */
 enum InputType {
 
+        /** A mouse input event */
     mouse;
+        /** A touch input event */
     touch;
+        /** A key input event */
     keys;
+        /** A gampad input event */
     gamepad;
 
 } //InputType
 
+/** Information about a named input event */
 typedef InputEvent = {
-    name             : String,
-    type             : InputType,
-    state            : InteractState,
-    ?touch_event     : TouchEvent,
-    ?mouse_event     : MouseEvent,
-    ?key_event       : KeyEvent,
-    ?gamepad_event   : GamepadEvent
+
+        /** the name of the input event */
+    var name : String;
+        /** the type of input this event was generated for */
+    var type  : InputType;
+        /** The state of the event */
+    var state : InteractState;
+        /** null, unless type is `touch` */
+    @:optional var touch_event : TouchEvent;
+        /** null, unless type is `mouse` */
+    @:optional var mouse_event : MouseEvent;
+        /** null, unless type is `keys` */
+    @:optional var key_event : KeyEvent;
+        /** null, unless type is `gamepad` */
+    @:optional var gamepad_event : GamepadEvent;
+
 }
 
 class Input {
@@ -264,73 +283,89 @@ class Input {
 
 //Input query
 
+        /** immediate query of the pressed state of a named input. only true if pressed within one frame */
     public function inputpressed( _event:String ) : Bool {
         return _named_input_pressed.exists( _event );
     } //inputpressed
 
+        /** immediate query of the released state of a named input. only true if released within one frame */
     public function inputreleased( _event:String ) : Bool{
         return _named_input_released.exists( _event );
     } //inputreleased
 
+        /** immediate query of the down state of a named input. only true while the key is down */
     public function inputdown( _event:String ) : Bool{
         return _named_input_down.exists( _event );
     } //inputdown
 
 //Keys
 
+        /** immediate query of the pressed state of a `keycode`, use `Key` for named keycodes. only true if pressed within one frame */
     public function keypressed( _code:Int ) : Bool {
         return core.app.input.keypressed( _code );
     } //keypressed
 
+        /** immediate query of the released state of a `keycode`, use `Key` for named keycodes. only true if released within one frame */
     public function keyreleased( _code:Int ) : Bool{
         return core.app.input.keyreleased( _code );
     } //keyreleased
 
+        /** immediate query of the down state of a `keycode`, use `Key` for named keycodes. only true while the key is down */
     public function keydown( _code:Int ) : Bool{
         return core.app.input.keydown( _code );
     } //keydown
 
 
+        /** immediate query of the pressed state of a `scancode`, use `Scan` for named scancodes. only true if pressed within one frame */
     public function scanpressed( _code:Int ) : Bool {
         return core.app.input.scanpressed( _code );
     } //scanpressed
 
+        /** immediate query of the released state of a `scancode`, use `Scan` for named scancodes. only true if released within one frame */
     public function scanreleased( _code:Int ) : Bool{
         return core.app.input.scanreleased( _code );
     } //scanreleased
 
+        /** immediate query of the down state of a `scancode`, use `Scan` for named scancodes. only true while the key is down */
     public function scandown( _code:Int ) : Bool{
         return core.app.input.scandown( _code );
     } //scandown
 
 //Mouse
 
+        /** immediate query of the pressed state of a mouse button. only true if pressed within one frame */
     public function mousepressed( _button:Int ) : Bool {
         return core.app.input.mousepressed( _button );
     } //mousepressed
 
+        /** immediate query of the released state of a mouse button. only true if released within one frame */
     public function mousereleased( _button:Int ) : Bool{
         return core.app.input.mousereleased( _button );
     } //mousereleased
 
+        /** immediate query of the down state of a mouse button. only true while the button is down. :todo: use `MouseButton` like it should be. */
     public function mousedown( _button:Int ) : Bool{
         return core.app.input.mousedown( _button );
     } //mousedown
 
 //Gamepad
 
+        /** immediate query of the pressed state of a gamepad button. only true if pressed within one frame */
     public function gamepadpressed( _gamepad:Int, _button:Int ) : Bool {
         return core.app.input.gamepadpressed( _gamepad, _button );
     } //gamepadpressed
 
+        /** immediate query of the released state of a gamepad button. only true if released within one frame */
     public function gamepadreleased( _gamepad:Int, _button:Int ) : Bool{
         return core.app.input.gamepadreleased( _gamepad, _button );
     } //gamepadreleased
 
+        /** immediate query of the down state of a gamepad button. only true while the button is down */
     public function gamepaddown( _gamepad:Int, _button:Int ) : Bool{
         return core.app.input.gamepaddown( _gamepad, _button );
     } //gamepaddown
 
+        /** immediate query of the axis value of a gamepad axis. */
     public function gamepadaxis( _gamepad:Int, _axis:Int ) : Float {
         return core.app.input.gamepadaxis( _gamepad, _axis );
     } //gamepadaxis
@@ -360,6 +395,7 @@ class Input {
 
     } //add_key_binding
 
+        /** add a named input binding to a `Key` keycode, a `MouseButton`. :todo: add gamepad  */
     public function add<T>( _name:String, _binding_value:T ) {
 
         if(Std.is(_binding_value, Int)) {

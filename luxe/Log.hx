@@ -4,14 +4,15 @@ import haxe.io.Path;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
+/** A macro based logging class. See the logging guide for full details. */
 class Log {
 
         //default to log
-    public static var _level : Int = 1;
-    public static var _filter : Array<String>;
-    public static var _exclude : Array<String>;
+    @:noCompletion public static var _level : Int = 1;
+    @:noCompletion public static var _filter : Array<String>;
+    @:noCompletion public static var _exclude : Array<String>;
 
-    public static var _log_width : Int = 16;
+    @:noCompletion public static var _log_width : Int = 16;
 
     macro public static function level( __level:Int ) : haxe.macro.Expr {
 

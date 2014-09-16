@@ -65,7 +65,7 @@ class Scene extends Objects {
 
     } //new
 
-
+        /** add given entity to this scene */
     public function add( entity:Entity ) {
 
         if(entity == null) {
@@ -91,6 +91,7 @@ class Scene extends Objects {
 
     } //add
 
+        /** removes given entity from this scene */
     public function remove( entity:Entity ) : Bool {
 
         if(entity == null) {
@@ -113,6 +114,7 @@ class Scene extends Objects {
 
     } //remove
 
+        /** destroy all entities in this scene, emptying it. */
     public function empty() {
 
         for(entity in entities) {
@@ -344,8 +346,7 @@ class Scene extends Objects {
 
     } //init
 
-        //If entities are created during start they will
-        // be inited and started in the next available frame
+        /** reset this scene, allowing all entities, children and attached components to be notified of the reset */
     public function reset() {
 
         started = false;
