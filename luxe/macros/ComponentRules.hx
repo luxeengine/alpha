@@ -4,7 +4,9 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 import haxe.macro.ExprTools;
 
-class ComponentRules {
+@:noCompletion class ComponentRules {
+
+#if macro
 
     static var init_field : Field;
     static var ondestroy_field : Field;
@@ -182,5 +184,7 @@ class ComponentRules {
             } //case EField
         }
     } //check_entity_field_access
+
+#end //macro
 
 } //ComponentRules

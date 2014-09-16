@@ -4,7 +4,9 @@ import haxe.macro.Context;
 import haxe.macro.Expr;
 import haxe.macro.ExprTools;
 
-class EntityRules {
+@:noCompletion class EntityRules {
+
+#if macro
 
     static var init_field : Field;
     static var ondestroy_field : Field;
@@ -114,5 +116,7 @@ class EntityRules {
         } //if override
 
     } //connect_event
+
+#end //macro
 
 } //EntityRules

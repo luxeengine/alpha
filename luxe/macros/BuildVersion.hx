@@ -12,7 +12,7 @@ import sys.io.File;
 import sys.FileSystem;
 #end
 
-class BuildVersion {
+@:noCompletion class BuildVersion {
 
     public static var _save : Bool = false;
 
