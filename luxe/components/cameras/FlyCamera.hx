@@ -167,7 +167,7 @@ class FlyCamera extends luxe.Camera {
 
     } //move_look
 
-    public function onmouseup(e:MouseEvent) {
+    override function onmouseup(e:MouseEvent) {
 
         if(e.button == MouseButton.left && !ready) {
             enable();
@@ -190,7 +190,7 @@ class FlyCamera extends luxe.Camera {
 
     } //enable
 
-    public function onmousemove(e:MouseEvent) {
+    override function onmousemove(e:MouseEvent) {
 
         if(!ready) return;
         if(Luxe.core.console_visible) {
@@ -201,7 +201,7 @@ class FlyCamera extends luxe.Camera {
 
     } //onmousemove
 
-    public function onkeydown(e) {
+    override function onkeydown(e) {
 
             //disabling console, don't allow spinning to new position
         if(e.scancode == Scan.grave && Luxe.core.console_visible == true) {
@@ -227,7 +227,7 @@ class FlyCamera extends luxe.Camera {
 
     } //onkeydown
 
-    public function onkeyup(e) {
+    override function onkeyup(e) {
 
         if(e.keycode == Key.up || e.keycode == Key.key_w) {
             move_forward = false;
