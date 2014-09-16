@@ -92,10 +92,6 @@
             <code class="signature apipage">toColorHSV() : [phoenix.ColorHSV](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="tween"><a class="lift" href="#tween">tween</a></a><div class="clear"></div>
             <code class="signature apipage">tween(\_time\_in\_seconds:[Float](#)<span>=0.5f</span>, \_properties\_to\_tween:[luxe.options.ColorOptions](#)<span>=null</span>, \_override:[Bool](#)<span>=true</span>) : [luxe.tween.actuators.IGenericActuator](#)</code><br/><span class="small_desc_flat"></span>
         </span>

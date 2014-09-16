@@ -267,10 +267,6 @@
             <code class="signature apipage">toArray() : [Array](#)&lt;[Float](#)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="transpose"><a class="lift" href="#transpose">transpose</a></a><div class="clear"></div>
             <code class="signature apipage">transpose() : [phoenix.Matrix](#)</code><br/><span class="small_desc_flat"></span>
         </span>

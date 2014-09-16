@@ -255,10 +255,6 @@
             <a name="submit_static_geometry"><a class="lift" href="#submit_static_geometry">submit\_static\_geometry</a></a><div class="clear"></div>
             <code class="signature apipage">submit\_static\_geometry(geom:[phoenix.geometry.Geometry](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 

@@ -59,10 +59,6 @@
             <a name="set"><a class="lift" href="#set">set</a></a><div class="clear"></div>
             <code class="signature apipage">set(\_u:[Float](#)<span>=null</span>, \_v:[Float](#)<span>=null</span>, \_w:[Float](#)<span>=null</span>, \_t:[Float](#)<span>=null</span>) : [phoenix.geometry.TextureCoord](#)</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 

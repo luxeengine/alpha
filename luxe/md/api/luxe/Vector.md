@@ -251,10 +251,6 @@
             <code class="signature apipage">subtractScalar(v:[Float](#)<span></span>) : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="transform"><a class="lift" href="#transform">transform</a></a><div class="clear"></div>
             <code class="signature apipage">transform(\_m:[phoenix.Matrix](#)<span></span>) : [phoenix.Vector](#)</code><br/><span class="small_desc_flat"></span>
         </span>

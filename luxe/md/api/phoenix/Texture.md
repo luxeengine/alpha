@@ -148,10 +148,6 @@
             <code class="signature apipage">set\_pixel(\_pos:[phoenix.Vector](#)<span></span>, \_color:[phoenix.Color](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="unlock"><a class="lift" href="#unlock">unlock</a></a><div class="clear"></div>
             <code class="signature apipage">unlock() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>

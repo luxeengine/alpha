@@ -72,10 +72,6 @@ A class for bitmap font based text.
             <code class="signature apipage">replace(\_geometry:[Array](#)&lt;[phoenix.geometry.Geometry](#)&gt;<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><a title="inherited from phoenix.geometry.CompositeGeometry" class="tooltip inherited">&gt;</a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="translate"><a class="lift" href="#translate">translate</a></a><a title="inherited from phoenix.geometry.CompositeGeometry" class="tooltip inherited">&gt;</a><div class="clear"></div>
             <code class="signature apipage">translate(\_offset:[phoenix.Vector](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>

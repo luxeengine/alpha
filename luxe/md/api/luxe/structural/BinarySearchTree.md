@@ -110,10 +110,6 @@
             <code class="signature apipage">toArray() : [Array](#)&lt;[luxe.structural.BinarySearchTree.T](#)&gt;</code><br/><span class="small_desc_flat"></span>
         </span>
     <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
-    <span class="method apipage">
             <a name="traverse"><a class="lift" href="#traverse">traverse</a></a><div class="clear"></div>
             <code class="signature apipage">traverse(\_node:[luxe.structural.BinarySearchTreeNode](#)&lt;[luxe.structural.BinarySearchTree.K](#), [luxe.structural.BinarySearchTree.T](#)&gt;<span></span>, \_traverse\_method:[luxe.structural.BinarySearchTraverseMethod](#)<span></span>, \_process\_node\_function:[luxe.structural.BinarySearchTreeNode](#)&nbsp;-&gt; [Void](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>

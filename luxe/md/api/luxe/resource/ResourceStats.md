@@ -73,10 +73,6 @@
             <a name="reset"><a class="lift" href="#reset">reset</a></a><div class="clear"></div>
             <code class="signature apipage">reset() : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 

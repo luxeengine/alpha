@@ -111,10 +111,6 @@
             <a name="set_kerning"><a class="lift" href="#set_kerning">set\_kerning</a></a><div class="clear"></div>
             <code class="signature apipage">set\_kerning(\_glyph:[Int](#)<span></span>, \_index:[Int](#)<span></span>, \_amount:[Float](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 

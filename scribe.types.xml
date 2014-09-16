@@ -10953,7 +10953,7 @@
 		<datas public="1"><x path="Int"/></datas>
 		<sounds public="1"><x path="Int"/></sounds>
 		<unknown public="1"><x path="Int"/></unknown>
-		<toString public="1" set="method" line="31"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="31"><f a=""><c path="String"/></f></toString>
 		<reset public="1" set="method" line="48"><f a=""><x path="Void"/></f></reset>
 		<new public="1" set="method" line="27"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
@@ -11006,7 +11006,7 @@
 	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
 	<x path="Int"/>
 </f></compare>
-		<toString public="1" set="method" line="16"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="16"><f a=""><c path="String"/></f></toString>
 		<empty public="1" set="method" line="21"><f a=""><x path="Bool"/></f></empty>
 		<size public="1" set="method" line="25"><f a=""><x path="Int"/></f></size>
 		<height public="1" set="method" line="29"><f a=""><x path="Int"/></f></height>
@@ -11312,7 +11312,7 @@
 	<c path="luxe.structural.BinarySearchTree.K"/>
 	<x path="Int"/>
 </f></compare>
-		<toString public="1" set="method" line="12"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="12"><f a=""><c path="String"/></f></toString>
 		<size public="1" set="method" line="18"><f a=""><x path="Int"/></f></size>
 		<_size set="method" line="23"><f a="_node">
 	<c path="luxe.structural.BinarySearchTreeNode">
@@ -11567,7 +11567,7 @@
 		<get_length set="method" line="182"><f a=""><x path="Int"/></f></get_length>
 		<isEmpty public="1" set="method" line="187"><f a=""><x path="Bool"/></f></isEmpty>
 		<toArray public="1" set="method" line="191"><f a=""><c path="Array"><t path="Null"><c path="luxe.structural.Heap.T"/></t></c></f></toArray>
-		<toString public="1" set="method" line="199">
+		<toString set="method" line="199">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>Prints out a string representing the current object.
         Example: "[Heap, max_size=4]"</haxe_doc>
@@ -11947,7 +11947,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<x path="Int"/>
 			<meta><m n=":isVar"/></meta>
 		</id>
-		<toString public="1" set="method" line="163"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="163"><f a=""><c path="String"/></f></toString>
 		<set_id set="method" line="167"><f a="_id">
 	<x path="Int"/>
 	<x path="Int"/>
@@ -11984,7 +11984,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<tile_height public="1"><x path="Int"/></tile_height>
 		<margin public="1"><x path="Int"/></margin>
 		<spacing public="1"><x path="Int"/></spacing>
-		<toString public="1" set="method" line="262"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="262"><f a=""><c path="String"/></f></toString>
 		<pos_in_texture public="1" set="method" line="267"><f a="_id">
 	<x path="Int"/>
 	<t path="luxe.Vector"/>
@@ -12073,7 +12073,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<c path="String"/>
 	<c path="String"/>
 </x></properties>
-		<toString public="1" set="method" line="50"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="50"><f a=""><c path="String"/></f></toString>
 		<is_valid_xml_element set="method" line="54"><f a="element">
 	<c path="Xml"/>
 	<x path="Bool"/>
@@ -14008,7 +14008,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
      *
      * @return The string in which the error occurred</haxe_doc>
 		</get_text>
-		<toString public="1" set="method" line="81"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="81"><f a=""><c path="String"/></f></toString>
 		<new public="1" set="method" line="55">
 			<f a="?message:?location:?text" v="'':0:''">
 				<c path="String"/>
@@ -14320,7 +14320,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_layer>
-		<toString public="1" set="method" line="211"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="211"><f a=""><c path="String"/></f></toString>
 		<compare public="1" set="method" line="216"><f a="other">
 	<c path="phoenix.Batcher"/>
 	<x path="Int"/>
@@ -14467,7 +14467,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<x path="Void"/>
 </f></onload>
 		<line_widths><c path="Array"><x path="Float"/></c></line_widths>
-		<toString public="1" set="method" line="92"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="92"><f a=""><c path="String"/></f></toString>
 		<_tokenize_font_line set="method" line="111"><f a="_line_tokens">
 	<c path="Array"><c path="String"/></c>
 	<x path="Map">
@@ -14720,7 +14720,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<x public="1"><x path="Float"/></x>
 		<y public="1"><x path="Float"/></y>
 		<r public="1"><x path="Float"/></r>
-		<toString public="1" set="method" line="16"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="16"><f a=""><c path="String"/></f></toString>
 		<point_inside public="1" set="method" line="20"><f a="_p">
 	<c path="phoenix.Vector"/>
 	<x path="Bool"/>
@@ -14803,7 +14803,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<c path="phoenix.ColorHSL"/>
 	<c path="phoenix.Color"/>
 </f></fromColorHSL>
-		<toString public="1" set="method" line="258"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="258"><f a=""><c path="String"/></f></toString>
 		<from_int set="method" line="262"><f a="_i">
 	<x path="Int"/>
 	<x path="Void"/>
@@ -15103,7 +15103,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<x path="Float"/>
 	<c path="phoenix.Matrix"/>
 </f></set>
-		<toString public="1" set="method" line="88"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="88"><f a=""><c path="String"/></f></toString>
 		<get_M11 set="method" line="97"><f a=""><x path="Float"/></f></get_M11>
 		<get_M12 set="method" line="98"><f a=""><x path="Float"/></f></get_M12>
 		<get_M13 set="method" line="99"><f a=""><x path="Float"/></f></get_M13>
@@ -15444,7 +15444,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<meta><m n=":isVar"/></meta>
 		</listen_w>
 		<_construct><x path="Bool"/></_construct>
-		<toString public="1" set="method" line="40"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="40"><f a=""><c path="String"/></f></toString>
 		<set public="1" set="method" line="46"><f a="_x:_y:_z:_w">
 	<x path="Float"/>
 	<x path="Float"/>
@@ -15623,7 +15623,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			</f>
 			<meta><m n=":isVar"/></meta>
 		</listen_h>
-		<toString public="1" set="method" line="27"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="27"><f a=""><c path="String"/></f></toString>
 		<point_inside public="1" set="method" line="40"><f a="_p">
 	<c path="phoenix.Vector"/>
 	<x path="Bool"/>
@@ -15818,7 +15818,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	</f>
 </f></set_onload>
 		<do_onload public="1" set="method" line="84"><f a=""><x path="Void"/></f></do_onload>
-		<toString public="1" set="method" line="98"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="98"><f a=""><c path="String"/></f></toString>
 		<estimated_memory public="1" set="method" line="102"><f a=""><c path="String"/></f></estimated_memory>
 		<create_from_bytes_html public="1" set="method" line="110"><f a="_asset_name:_asset_bytes:_width:_height">
 	<c path="String"/>
@@ -16035,7 +16035,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<group_count public="1"><x path="Int"/></group_count>
 		<vert_count public="1"><x path="Int"/></vert_count>
 		<reset public="1" set="method" line="363"><f a=""><x path="Void"/></f></reset>
-		<toString public="1" set="method" line="373"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="373"><f a=""><c path="String"/></f></toString>
 		<new public="1" set="method" line="353"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
@@ -16747,7 +16747,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<int_x public="1" set="method" line="87"><f a=""><x path="Void"/></f></int_x>
 		<int_y public="1" set="method" line="91"><f a=""><x path="Void"/></f></int_y>
 		<int_z public="1" set="method" line="95"><f a=""><x path="Void"/></f></int_z>
-		<toString public="1" set="method" line="99"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="99"><f a=""><c path="String"/></f></toString>
 		<equals public="1" set="method" line="103"><f a="other">
 	<c path="phoenix.Vector"/>
 	<x path="Bool"/>
@@ -17462,7 +17462,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<class path="phoenix.geometry.CompositeGeometry" params="" file="/Users/sven/dev/luxe/luxe/phoenix/geometry/CompositeGeometry.hx">
 		<extends path="phoenix.geometry.Geometry"/>
 		<geometry public="1"><c path="Array"><c path="phoenix.geometry.Geometry"/></c></geometry>
-		<toString public="1" set="method" line="28"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="28"><f a=""><c path="String"/></f></toString>
 		<clear public="1" set="method" line="34"><f a=""><x path="Void"/></f></clear>
 		<replace public="1" set="method" line="42"><f a="_geometry">
 	<c path="Array"><c path="phoenix.geometry.Geometry"/></c>
@@ -17778,7 +17778,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<x path="Float"/>
 	<c path="phoenix.geometry.TextureCoord"/>
 </f></set>
-		<toString public="1" set="method" line="97"><f a=""><c path="String"/></f></toString>
+		<toString set="method" line="97"><f a=""><c path="String"/></f></toString>
 		<new public="1" set="method" line="60"><f a="?_u:?_v:?_w:?_t" v="0.0f:0.0f:0.0f:0.0f">
 	<x path="Float"/>
 	<x path="Float"/>

@@ -65,10 +65,6 @@
             <a name="new"><a class="lift" href="#new">new</a></a><div class="clear"></div>
             <code class="signature apipage">new(options:[luxe.options.TileOptions](#)<span></span>) : [Void](#)</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 

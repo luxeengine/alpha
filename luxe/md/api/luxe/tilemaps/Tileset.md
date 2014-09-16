@@ -72,10 +72,6 @@
             <a name="texture_y"><a class="lift" href="#texture_y">texture\_y</a></a><div class="clear"></div>
             <code class="signature apipage">texture\_y(\_id:[Int](#)<span></span>) : [Int](#)</code><br/><span class="small_desc_flat"></span>
         </span>
-    <span class="method apipage">
-            <a name="toString"><a class="lift" href="#toString">toString</a></a><div class="clear"></div>
-            <code class="signature apipage">toString() : [String](#)</code><br/><span class="small_desc_flat"></span>
-        </span>
     
 
 
