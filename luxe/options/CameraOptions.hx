@@ -3,35 +3,37 @@ package luxe.options;
 import phoenix.Rectangle;
 import phoenix.Camera.ProjectionType;
 
+
 typedef CameraOptions = {
 
-    ? name : String,
-
-    ? projection : ProjectionType,
-        //ortho: false, persp: true
-    ? cull_backfaces : Bool,
-        //ortho: false, persp: true
-    ? depth_test : Bool,
-        //perspective only
-    ? fov       : Float,
-        //perspective only
-    ? aspect    : Float,
-        //near clipping plane, common
-    ? near      : Float,
-        //far clipping plane, common
-    ? far       : Float,
-        //the bounds of the viewport, common
-    ? viewport  : Rectangle
+        /** The camera view name. highly recommended you set this. */
+    @:optional var camera_name : String;
+        /** The type of projection to use. ortho, perspective */
+    @:optional var projection : ProjectionType;
+        /** Whether or not to cull backfaces, defaults: ortho(false), perspective(true) */
+    @:optional var cull_backfaces : Bool;
+        /** Whether or not depth testing should be enabled. defaults: ortho(false), perspective(true) */
+    @:optional var depth_test : Bool;
+        /** the vertical field of view, in degrees. perspective only */
+    @:optional var fov       : Float;
+        /** The aspect ratio. usually `view width/view height`. perspective only */
+    @:optional var aspect    : Float;
+        /** the near clipping plane, common to ortho + perspective */
+    @:optional var near      : Float;
+        /** the far clipping plane, common to ortho + perspective */
+    @:optional var far       : Float;
+        /** the bounds of the viewport, common to ortho + perspective */
+    @:optional var viewport  : Rectangle;
 
 } //CameraOptions
 
-    //Don't like this naming here,
-    //but will have to do for now.
+    /**Don't like this naming here, tentative. Will have to do for now. */
 typedef LuxeCameraOptions = {
 
     > CameraOptions,
+    > EntityOptions,
 
-    ? view : phoenix.Camera,
-    ? no_scene : Bool,
+        /** Give this luxe entity camera a pre-existing phoenix view camera */
+    @:optional var view : phoenix.Camera;
 
-}
+} //LuxeCameraOptions

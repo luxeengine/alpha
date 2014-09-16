@@ -81,8 +81,8 @@ class Camera {
         }
 
             //store the name if any
-        if(options.name != null) {
-            name = options.name;
+        if(options.camera_name != null) {
+            name = options.camera_name;
         }
 
             //default to ortho unless specified otherwise

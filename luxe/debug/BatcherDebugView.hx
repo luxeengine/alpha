@@ -21,7 +21,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
 
         batcher = Luxe.renderer.create_batcher({
             name:'debug_batcher_view',
-            camera : new phoenix.Camera({ name : 'batcher_debug_view' }),
+            camera : new phoenix.Camera({ camera_name : 'batcher_debug_view' }),
             layer : 1000
         });
 
