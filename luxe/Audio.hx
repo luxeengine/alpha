@@ -23,15 +23,15 @@ class Audio {
     } //destroy
 
         /**
-            Create a named audio reference, with optional stream flag   
-            **name** The name to assign this audio reference   
+            Create a named audio reference, with optional streaming flag   
+            **name** The name to assign this audio reference.   
             **file** The asset file id from which the audio is loaded/streamed   
             **stream** Whether or not to stream the audio, default `false`   
-            **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.
+            **returns** The `Sound` instance, if needed. can be manipulated through named api.
         */
     public function create( _name:String, _file:String, ?_stream:Bool = false ) : luxe.Sound {
         return core.app.audio.create( _name, _file, _stream );
-    } //create      
+    } //create
 
         /**
             Destroy a named audio reference.

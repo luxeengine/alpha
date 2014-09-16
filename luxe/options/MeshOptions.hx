@@ -6,7 +6,7 @@ import phoenix.Texture;
 import phoenix.geometry.Geometry;
 
 typedef MeshOptions = {
-    
+
     ? batcher : Batcher,
     ? file : String,
     ? texture : Texture,
@@ -14,5 +14,5 @@ typedef MeshOptions = {
     ? rotation : Quaternion,
     ? scale : Vector,
     ? geometry : Geometry
-    
+
 }

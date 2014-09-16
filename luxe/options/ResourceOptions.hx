@@ -8,9 +8,9 @@ typedef ResourceOptions = {
     ? silent : Bool
 } //ResourceOptions
 
-typedef FontOptions<T> = {
+typedef FontOptions = {
     > ResourceOptions,
-    ? onloaded : BitmapFont   
+    ? onloaded : BitmapFont
 } //FontOptions
 
 typedef TextureOptions = {

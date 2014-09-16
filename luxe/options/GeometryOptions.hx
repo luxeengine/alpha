@@ -11,100 +11,126 @@ import phoenix.Batcher;
 
 typedef GeometryOptions = {
 
-    ? id : String,
+        /** The geometry id. if none given, a unique id is generated. */
+    @:optional var id : String;
 
-    ? no_batcher_add : Bool,
-    ? batcher : Batcher,
+        /** if specified, the geometry will not be added to any batcher. */
+    @:optional var no_batcher_add : Bool;
+        /** the batcher to add this geometry to (unless no_batcher_add). If not specified, the default batcher is used. */
+    @:optional var batcher : Batcher;
 
-    ? pos : Vector,
-    ? rotation : Quaternion,
-    ? scale : Vector,
-    ? origin : Vector,
+        /** the transform position */
+    @:optional var pos : Vector;
+        /** the transform rotation */
+    @:optional var rotation : Quaternion;
+        /** the transform scale */
+    @:optional var scale : Vector;
+        /** the transform origin */
+    @:optional var origin : Vector;
 
-    ? color : Color,
-    ? immediate : Bool,
-    ? visible : Bool,
+        /** the base color */
+    @:optional var color : Color;
+        /** if immediate, this geometry is dropped from the batcher at the end of the frame. */
+    @:optional var immediate : Bool;
+        /** the visibility */
+    @:optional var visible : Bool;
 
-    ? depth : Float,
-    ? group : Int,
-    ? texture : Texture,
-    ? primitive_type : PrimitiveType,
-    ? shader : Shader,
-    ? clip_rect : Rectangle
+        /** the geometry depth value (see guides)*/
+    @:optional var depth : Float;
+        /** the geometry group id (see guides)*/
+    @:optional var group : Int;
+        /** the texture for the geometry */
+    @:optional var texture : Texture;
+        /** the shader for the geometry */
+    @:optional var shader : Shader;
+        /** the primitive type of the geometry. lines, triangles, point etc */
+    @:optional var primitive_type : PrimitiveType;
+        /** If specified, the geometry will be clipped to this rectangle region (in world space). */
+    @:optional var clip_rect : Rectangle;
 
 } //GeometryOptions
 
+/** Options for drawing or creating rectangle based geometry, phoenix.geometry.RectangleGeometry */
 typedef RectangleGeometryOptions = {
 
     > GeometryOptions,
 
-    ? x : Float,
-    ? y : Float,
-    ? w : Float,
-    ? h : Float
+        /** x position */
+    @:optional var x : Float;
+        /** y position */
+    @:optional var y : Float;
+        /** width */
+    @:optional var w : Float;
+        /** height */
+    @:optional var h : Float;
 
 } //RectangleGeometryOptions
 
+/** Options for drawing or creating quad based geometry, phoenix.geometry.QuadGeometry */
 typedef QuadGeometryOptions = {
 
     > RectangleGeometryOptions,
 
-    ? flipx : Bool,
-    ? flipy : Bool
+        /** Whether or not the quad is flipped horizontally */
+    @:optional var flipx : Bool;
+        /** Whether or not the quad is flipped vertically */
+    @:optional var flipy : Bool;
 
 } //QuadGeometryOptions
 
-
+/** Options for drawing or creating line based geometry, phoenix.geometry.LineGeometry */
 typedef LineGeometryOptions = {
 
     > GeometryOptions,
 
         /** the start point of the line */
-    ? p0 : Vector,
+    @:optional var p0 : Vector;
         /** the end point of the line */
-    ? p1 : Vector,
+    @:optional var p1 : Vector;
 
         /** specified only if per vertex color is desired, use .color for both */
-    ? color0 : Color,
+    @:optional var color0 : Color;
         /** specified only if per vertex color is desired, use .color for both */
-    ? color1 : Color
+    @:optional var color1 : Color;
 
 } //LineGeometryOptions
 
-
+/** Options for drawing or creating circle based geometry, phoenix.geometry.CircleGeometry */
 typedef CircleGeometryOptions = {
 
     > GeometryOptions,
 
-        //x position
-    ? x : Float,
-        //y position
-    ? y : Float,
-        //radius
-    ? r : Float,
-        //x radius (ellipse, optional!)
-    ? rx : Float,
-        //y radius (ellipse, optional!)
-    ? ry : Float,
+        /** x position */
+    @:optional var x : Float;
+        /** y position */
+    @:optional var y : Float;
+        /** radius */
+    @:optional var r : Float;
+        /** x radius. For an ellipse, optional. */
+    @:optional var rx : Float;
+        /** y radius. For an ellipse, optional. */
+    @:optional var ry : Float;
 
-        //starting angle of circle (pie/arc)
-    ? start_angle : Float,
-        //ending angle of circle (pie/arc)
-    ? end_angle : Float,
+        /** Starting angle of circle, in degrees (pie/arc) */
+    @:optional var start_angle : Float;
+        /** Ending angle of circle, in degrees (pie/arc) */
+    @:optional var end_angle : Float;
 
-        //the smoothing steps to apply when auto stepping
-    ? smooth : Float,
-        //a fixed number of steps/sides, will auto step smoothly if not specified (using smooth above)
-    ? steps : Int
+        /** the smoothing factor to auto calculate steps */
+    @:optional var smooth : Float;
+        /** a fixed number of steps/sides, will auto step smoothly if not specified (using smooth above) */
+    @:optional var steps : Int;
 
 } //CircleGeometryOptions
 
 
-typedef PlaneGeometryOptions = {
+//:todo: hidden until 3d api is more official.
+@:noCompletion typedef PlaneGeometryOptions = {
 
     > QuadGeometryOptions,
 
-    ? z : Float
+        /** z position */
+    @:optional var z : Float;
 
 } //PlaneGeometryOptions
 

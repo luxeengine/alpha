@@ -11,22 +11,35 @@ import phoenix.geometry.Geometry;
 
 import luxe.options.EntityOptions;
 
-typedef VisualOptions<T> = {
+typedef VisualOptions = {
 
-  > EntityOptions<T>,
+  > EntityOptions,
 
-    ?size : Vector,
-    ?origin : Vector,
-    ?color : Color,
-    ?batcher : Batcher,
-    ?texture : Texture,
-    ?shader : Shader,
-    ?depth : Float,
-    ?group : Int,
-    ?rotation_z : Float,
-    ?visible : Bool,
-    ?geometry : Geometry,
-    ?no_geometry : Bool,
-    ?no_batcher_add : Bool
+        /** the size of the geometry to create */
+    @:optional var size : Vector;
+        /** the transform origin. */
+    @:optional var origin : Vector;
+        /** the base color for the geometry */
+    @:optional var color : Color;
+        /** the batcher to add this geometry to (unless no_batcher_add). If not specified, the default batcher is used. */
+    @:optional var batcher : Batcher;
+        /** the texture for the geometry */
+    @:optional var texture : Texture;
+        /** the shader for the geometry */
+    @:optional var shader : Shader;
+        /** the geometry depth value (see guides)*/
+    @:optional var depth : Float;
+        /** the geometry group id (see guides)*/
+    @:optional var group : Int;
+        /** the rotation around the z access, in degrees. convenience. */
+    @:optional var rotation_z : Float;
+        /** the visibility */
+    @:optional var visible : Bool;
+        /** if specified, this geometry will be used instead. */
+    @:optional var geometry : Geometry;
+        /** if specified, no geometry will be created. */
+    @:optional var no_geometry : Bool;
+        /** if specified, the geometry will not be added to any batcher. */
+    @:optional var no_batcher_add : Bool;
 
 } //VisualOptions
