@@ -1,6 +1,6 @@
-package phoenix.formats.obj;
+package luxe.importers.obj;
 
-import phoenix.formats.obj.Data;
+import luxe.importers.obj.Data;
 
 class Reader {
     var i : haxe.io.Input;
@@ -26,17 +26,17 @@ class Reader {
 
     function parse( lines : Array<String> )  {
 
-        var data : phoenix.formats.obj.Data = {
-            vertices : new Array<phoenix.formats.obj.Vertex>()
+        var data : luxe.importers.obj.Data = {
+            vertices : new Array<luxe.importers.obj.Vertex>()
         };
 
         vertexIndices = new Array<Int>();
         normalIndices = new Array<Int>();
         uvIndices = new Array<Int>();
 
-        var temp_verts : Array<phoenix.formats.obj.Vector> = new Array<phoenix.formats.obj.Vector>();
-        var temp_uvs : Array<phoenix.formats.obj.UV> = new Array<phoenix.formats.obj.UV>();
-        var temp_normals : Array<phoenix.formats.obj.Normal> = new Array<phoenix.formats.obj.Normal>();
+        var temp_verts : Array<luxe.importers.obj.Vector> = new Array<luxe.importers.obj.Vector>();
+        var temp_uvs : Array<luxe.importers.obj.UV> = new Array<luxe.importers.obj.UV>();
+        var temp_normals : Array<luxe.importers.obj.Normal> = new Array<luxe.importers.obj.Normal>();
 
         for(line in lines) {
 
@@ -85,7 +85,7 @@ class Reader {
         return data;
     }
 
-    function parse_vert(line:String) : phoenix.formats.obj.Vector {
+    function parse_vert(line:String) : luxe.importers.obj.Vector {
 
             //note items[0] is the identifier
         var items = line.split(' ');
@@ -98,7 +98,7 @@ class Reader {
             }
         } //for each element
 
-        var v : phoenix.formats.obj.Vector = {
+        var v : luxe.importers.obj.Vector = {
             x : Std.parseFloat( items[1] ),
             y : Std.parseFloat( items[2] ),
             z : Std.parseFloat( items[3] ),
@@ -109,7 +109,7 @@ class Reader {
 
     } //parse_vert
 
-    function parse_uv(line:String) : phoenix.formats.obj.UV {
+    function parse_uv(line:String) : luxe.importers.obj.UV {
 
             //note items[0] is the identifier
         var items = line.split(' ');
@@ -122,7 +122,7 @@ class Reader {
             }
         } //for each element
 
-        var uv : phoenix.formats.obj.UV = {
+        var uv : luxe.importers.obj.UV = {
             u : Std.parseFloat( items[1] ),
             v : Std.parseFloat( items[2] )
         };
@@ -130,7 +130,7 @@ class Reader {
         return uv;
     }
 
-    function parse_normal(line:String) : phoenix.formats.obj.Normal {
+    function parse_normal(line:String) : luxe.importers.obj.Normal {
 
             //note items[0] is the identifier
         var items = line.split(' ');
@@ -143,7 +143,7 @@ class Reader {
             }
         } //for each element
 
-        var n : phoenix.formats.obj.Normal = {
+        var n : luxe.importers.obj.Normal = {
             x : Std.parseFloat( items[1] ),
             y : Std.parseFloat( items[2] ),
             z : Std.parseFloat( items[3] ),

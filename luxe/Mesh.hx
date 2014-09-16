@@ -133,7 +133,7 @@ class Mesh {
 //Create a mesh from an Obj file
 
 
-    function _obj_add_vert( v:phoenix.formats.obj.Data.Vertex, _scale:Vector ) {
+    function _obj_add_vert( v:luxe.importers.obj.Data.Vertex, _scale:Vector ) {
 
         var normal : Vector = new Vector();
 
@@ -158,7 +158,7 @@ class Mesh {
 
         var obj_file = Luxe.loadText(asset_id);
         var file_input = new haxe.io.StringInput( obj_file.text );
-        var obj_mesh_data = new phoenix.formats.obj.Reader(file_input).read();
+        var obj_mesh_data = new luxe.importers.obj.Reader(file_input).read();
 
         geometry = new Geometry({
             texture : texture,

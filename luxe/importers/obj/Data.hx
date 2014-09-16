@@ -1,7 +1,7 @@
-package phoenix.formats.obj;
+package luxe.importers.obj;
 
 typedef Data = {
-    var vertices : Array<phoenix.formats.obj.Vertex>;    
+    var vertices : Array<luxe.importers.obj.Vertex>;
 }
 
 typedef Vertex = {
@@ -11,15 +11,15 @@ typedef Vertex = {
 }
 
 typedef Normal = {
-    var x : Float;   
-    var y : Float;   
+    var x : Float;
+    var y : Float;
     var z : Float;
     var w : Float;
 }
 
 typedef Vector = {
-    var x : Float;   
-    var y : Float;   
+    var x : Float;
+    var y : Float;
     var z : Float;
     var w : Float;
 }
