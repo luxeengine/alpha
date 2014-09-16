@@ -10,7 +10,7 @@ import luxe.Log._verbose;
 
 import luxe.Core;
 import luxe.Rectangle;
-import luxe.ResourceManager;
+import luxe.resource.ResourceManager;
 
 import phoenix.Batcher;
 import phoenix.RenderPath;
@@ -370,7 +370,7 @@ class RendererStats {
         vert_count = 0;
     }
 
-    public function toString() {
+    function toString() {
         return
             'Renderer Statistics\n' +
             '\tbatcher count : ' + batchers + '\n' +

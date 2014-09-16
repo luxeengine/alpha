@@ -1,4 +1,4 @@
-package luxe;
+package luxe.resource;
 
 import snow.utils.ByteArray;
 
@@ -7,7 +7,7 @@ import phoenix.Shader;
 import phoenix.Texture;
 import phoenix.RenderTexture;
 
-import luxe.Resource;
+import luxe.resource.Resource;
 
 class ResourceStats {
 
@@ -28,7 +28,7 @@ class ResourceStats {
 
     } //new
 
-    public function toString() {
+    function toString() {
 
         return
             'Resource Statistics\n' +

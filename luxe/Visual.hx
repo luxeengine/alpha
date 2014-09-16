@@ -5,7 +5,7 @@ import luxe.Entity;
 import luxe.Vector;
 import luxe.Rectangle;
 import luxe.utils.Maths;
-import luxe.Resource;
+import luxe.resource.Resource;
 
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
@@ -44,7 +44,7 @@ class Visual extends Entity {
     var _has_custom_origin : Bool = false;
 
 
-    public function new<T>( _options:VisualOptions<T> ) {
+    public function new( _options:VisualOptions ) {
 
 //safe
         if(_options == null) {

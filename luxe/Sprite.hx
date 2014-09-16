@@ -4,7 +4,7 @@ import luxe.Visual;
 import luxe.Vector;
 import luxe.Rectangle;
 
-import luxe.Resource;
+import luxe.resource.Resource;
 import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 
@@ -21,7 +21,7 @@ class Sprite extends Visual {
     public var geometry_quad : QuadGeometry;
 
 
-    public function new<T>( options:SpriteOptions<T> ) {
+    public function new( options:SpriteOptions ) {
 
         uv = new Rectangle();
 

@@ -2,7 +2,7 @@ package luxe.debug;
 
 import luxe.Input.KeyEvent;
 import luxe.Input;
-import luxe.Resource;
+import luxe.resource.Resource;
 
 typedef RenderStats = {
     batchers : Int,

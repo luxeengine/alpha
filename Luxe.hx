@@ -7,10 +7,7 @@ import phoenix.Texture;
 import phoenix.Shader;
 import phoenix.Batcher;
 
-import luxe.Resource.DataResource;
-import luxe.Resource.JSONResource;
-import luxe.Resource.TextResource;
-import luxe.Resource.SoundResource;
+import luxe.resource.Resource;
 
 import luxe.Rectangle;
 import luxe.Vector;
@@ -45,7 +42,7 @@ class Luxe {
         /** Access to the default camera */
     public static var camera    : luxe.Camera;
         /** Access to the default resource manager  */
-    public static var resources : luxe.ResourceManager;
+    public static var resources : luxe.resource.ResourceManager;
         /** Access to the rendering system */
     public static var renderer  : phoenix.Renderer;
 

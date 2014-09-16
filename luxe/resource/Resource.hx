@@ -1,8 +1,8 @@
-package luxe;
+package luxe.resource;
 
 import snow.utils.ByteArray;
 
-import luxe.ResourceManager;
+import luxe.resource.ResourceManager;
 
 
 enum ResourceType {

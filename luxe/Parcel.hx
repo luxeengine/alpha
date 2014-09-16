@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Resource;
+import luxe.resource.Resource;
 import luxe.options.ParcelOptions;
 
 import luxe.Log._verbose;
@@ -34,7 +34,7 @@ typedef SoundInfo = {
     is_stream : Bool
 }
 
-class Parcel extends luxe.ResourceManager {
+class Parcel extends luxe.resource.ResourceManager {
 
     public var time_to_load : Float = 0;
     var time_start_load : Float = 0;

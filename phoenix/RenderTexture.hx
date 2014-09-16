@@ -4,8 +4,8 @@ import snow.render.opengl.GL;
 import phoenix.Batcher;
 import phoenix.Texture;
 
-import luxe.Resource;
-import luxe.ResourceManager;
+import luxe.resource.Resource;
+import luxe.resource.ResourceManager;
 
 
     //A render texture just extends texture so it can be assigned to meshes etc

@@ -9,8 +9,8 @@ import snow.utils.ArrayBuffer;
 import phoenix.Color;
 import phoenix.Vector;
 
-import luxe.Resource;
-import luxe.ResourceManager;
+import luxe.resource.Resource;
+import luxe.resource.ResourceManager;
 
 import luxe.Log._verbose;
 import luxe.Log.log;
@@ -95,7 +95,7 @@ class Texture extends Resource {
 
     } //do_onload
 
-    public function toString() {
+    function toString() {
         return 'Texture (' + texture + ') ('+ width + 'x' + height +') real size('+ width_actual + 'x' + height_actual +') ' + filter + ' filtering. ' + clamp + ' clamp. id: ' + id;
     } //toString
 

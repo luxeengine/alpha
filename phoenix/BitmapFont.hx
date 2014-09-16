@@ -1,8 +1,8 @@
 package phoenix;
 
 import luxe.Vector;
-import luxe.Resource;
-import luxe.ResourceManager;
+import luxe.resource.Resource;
+import luxe.resource.ResourceManager;
 
 import phoenix.Batcher;
 import phoenix.BitmapFont.TextAlign;
@@ -89,7 +89,7 @@ class BitmapFont extends Resource {
 
     }
 
-    public function toString() {
+    function toString() {
         return "BitmapFont(" + id + ")";
     }
 

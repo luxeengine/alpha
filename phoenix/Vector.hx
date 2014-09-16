@@ -96,7 +96,7 @@ class Vector {
         z = Math.round(z);
     } //int_y
 
-    public function toString() {
+    function toString() {
         return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
     } //toString
 

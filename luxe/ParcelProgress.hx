@@ -1,6 +1,6 @@
 package luxe;
 
-import luxe.Resource;
+import luxe.resource.Resource;
 
 import luxe.Parcel;
 import luxe.Sprite;

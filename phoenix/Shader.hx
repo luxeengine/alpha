@@ -1,8 +1,8 @@
 package phoenix;
 
 
-import luxe.Resource;
-import luxe.ResourceManager;
+import luxe.resource.Resource;
+import luxe.resource.ResourceManager;
 
 import luxe.Log.log;
 import luxe.Log._debug;

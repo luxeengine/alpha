@@ -1,6 +1,6 @@
 package luxe.options;
 
-import luxe.Resource;
+import luxe.resource.Resource;
 import luxe.Parcel;
 
 typedef ParcelOptions = {
