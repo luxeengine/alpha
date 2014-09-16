@@ -37,7 +37,7 @@ class Quaternion {
 
     } //new
 
-    public function toString() {
+    function toString() {
 
         return "{ x:"+x + ", y:" + y + ", z:" + z  + ", w:" + w  +  " }" ;
 

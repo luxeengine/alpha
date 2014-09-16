@@ -9,7 +9,7 @@ class BinarySearchTree<K,T> {
         compare = compare_function;
     }
 
-    public function toString() : String {
+    function toString() : String {
         return "";
     } //toString
 

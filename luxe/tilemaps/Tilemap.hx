@@ -160,7 +160,7 @@ class Tile {
 
     } //new
 
-    public function toString() {
+    function toString() {
         return "Tile: id:"+id+" x,y:" + x + "," + y + " layer(" + layer.name + ") coord("+x+","+y+") pos("+pos.x+","+pos.y+") size("+size.x+","+size.y+")";
     }
 
@@ -259,7 +259,7 @@ class Tileset {
 
     } //new
 
-    public function toString() : String {
+    function toString() : String {
         return "Tileset; " + name + " tw(" + tile_width + ") th(" + tile_height + ") first_id(" + first_id + ") margin(" + margin + ") spacing(" + spacing + ")";
     }
 

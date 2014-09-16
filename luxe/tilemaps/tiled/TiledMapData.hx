@@ -47,7 +47,7 @@ class TiledMapData {
 
     }
 
-    public function toString() {
+    function toString() {
         return "TiledMap : layers(" + layers.length + ") tilesets(" + tilesets.length + ")" + " tilew,tileh(" + tile_width + "," + tile_height + ")" ;
     }
 

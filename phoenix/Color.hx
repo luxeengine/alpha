@@ -255,7 +255,7 @@ class Color {
     } // fromColorHSL
 
         //make it traceable
-    public function toString() : String {
+    function toString() : String {
         return "{ r:"+r+" , g:"+g+" , b:"+b+" , a:"+a+" }";
     }
 

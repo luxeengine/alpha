@@ -94,7 +94,7 @@ class TextureCoord {
 
     } //set
 
-    public function toString() {
+    function toString() {
 
         return  "{ u:"+u + ", v:" + v +" }";
 

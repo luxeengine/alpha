@@ -208,7 +208,7 @@ class Batcher {
 
     } //set_layer
 
-    public function toString() {
+    function toString() {
         return "Batcher(" + name + ")";
     }
 

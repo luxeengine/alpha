@@ -25,7 +25,7 @@ class CompositeGeometry extends Geometry {
 
     } //new
 
-    public function toString() {
+    function toString() {
 
         return "CompositeGeometry " + geometry + ' : ' + Std.string(geometry);
 

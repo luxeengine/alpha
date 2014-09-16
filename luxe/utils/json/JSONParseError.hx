@@ -78,7 +78,7 @@ package luxe.utils.json;
         return _text;
     }
 
-    public function toString():String {
+    function toString():String {
         return name + ": " + message + " at position: " + _location + " near \"" + _text+"\"";
     }
 }

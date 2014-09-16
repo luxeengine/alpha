@@ -13,7 +13,7 @@ class Circle {
         r = _r;
     } //new
 
-    public function toString() {
+    function toString() {
         return "{ x:"+x + ", y:" + y + ", r:" + r + " }" ;
     } //toString
 
