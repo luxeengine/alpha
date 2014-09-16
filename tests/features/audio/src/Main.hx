@@ -12,7 +12,7 @@ class Main extends luxe.Game {
         Luxe.audio.create('assets/sound.ogg', 'sound');
         Luxe.audio.create('assets/ambience.ogg', 'music');
 
-        Luxe.audio.on('music', 'load', function(s:snow.audio.Sound) {
+        Luxe.audio.on('music', 'load', function(s:luxe.Sound) {
             Luxe.audio.loop('music');
         }); //on load
 

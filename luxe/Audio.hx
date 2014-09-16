@@ -29,7 +29,7 @@ class Audio {
             **stream** Whether or not to stream the audio, default `false`   
             **returns** The `Sound` instance, but the audio API stores this, use the API to manipulate it by name.
         */
-    public function create( _name:String, _file:String, ?_stream:Bool = false ) : snow.audio.Sound {
+    public function create( _name:String, _file:String, ?_stream:Bool = false ) : luxe.Sound {
         return core.app.audio.create( _name, _file, _stream );
     } //create      
 
@@ -41,12 +41,12 @@ class Audio {
     } //uncreate
 
         /** Listen for an event on a named sound. `load` and `end` are valid */
-    public function on(_name:String, _event:String, _handler:snow.audio.Sound->Void) {
+    public function on(_name:String, _event:String, _handler:luxe.Sound->Void) {
         return core.app.audio.on(_name, _event, _handler);
     } //on
 
         /** Stop listening for an event on a named sound. See `on` */
-    public function off(_name:String, _event:String, _handler:snow.audio.Sound->Void) {
+    public function off(_name:String, _event:String, _handler:luxe.Sound->Void) {
         return core.app.audio.off(_name, _event, _handler);
     } //off
 
@@ -55,7 +55,7 @@ class Audio {
             **name** The name to acquire audio reference   
             **returns** The `Sound` instance
         */
-    public function get( _name:String ) : snow.audio.Sound {
+    public function get( _name:String ) : luxe.Sound {
         return core.app.audio.get(_name);
     } //get
 
