@@ -2,16 +2,10 @@
 [![Logo]({{{rel_path}}}images/logo.png)]({{{rel_path}}}index.html)
 
 <hr/>
-start type anywhere, to search API
+<a href="#" id="search_bar" onclick="return;"><div> search API <em>(or start typing anywhere)</em> </div></a>
 <hr/>
 
-
-
-<script src="{{{rel_path}}}js/omnibar.js"> </script>
-<link rel="stylesheet" type="text/css" href="{{{rel_path}}}css/omnibar.css" media="all">
-
-<div id="omnibar"> <input id="omnibar_text" type="text" placeholder="search types..."></input></div>
-<script  id="typelist" data-relpath="{{{rel_path}}}" data-types="{{doc.names}}"></script>
+{{>omnibar}}
 
 ## Packages
 

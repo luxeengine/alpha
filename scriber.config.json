@@ -28,6 +28,7 @@
     "api_classes" : ["Luxe"],
     "api_partials" : [
         { "name": "type", "path":"api_partial_type.html"},
+        { "name": "omnibar", "path":"api_partial_omnibar.html"},
         { "name": "type_page", "path":"api_partial_type_page.html"},
         { "name": "args", "path":"api_partial_args.html"},
         { "name": "package_node", "path":"api_partial_package_node.html"},
