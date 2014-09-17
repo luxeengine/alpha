@@ -12,7 +12,7 @@ import phoenix.geometry.TextureCoord;
 
 import luxe.options.NineSliceOptions;
 
-typedef Slice = {
+private typedef Slice = {
     pos : Vector,
     width : Float,
     height : Float,

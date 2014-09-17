@@ -46,7 +46,7 @@ class Luxe {
         /** Access to the rendering system */
     public static var renderer  : phoenix.Renderer;
 
-        /** The current time in seconds, highest precision from the platform */
+        /** The current time in seconds, highest precision from the platform. */
     @:isVar public static var time(get, never) : Float;
         /** Access to information about the game window (sizes, cursor etc) */
     @:isVar public static var screen(get, never) : Screen;
@@ -86,7 +86,7 @@ class Luxe {
         core.emitter.on(event, handler);
     }
 
-        /** stop listening for core eventsinput */
+        /** stop listening for core events */
     public static function off<T>(event:String, handler:T->Void ) {
         return core.emitter.off(event, handler);
     }
