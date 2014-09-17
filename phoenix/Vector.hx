@@ -82,6 +82,8 @@ class Vector {
         y = Math.round(y);
         z = Math.round(z);
 
+        return this;
+
     } //int
 
     public function int_x() {
