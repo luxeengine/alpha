@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'camera_scale',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_camera_scale',
+      package : 'com.luxeengine.camera_scale'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
