@@ -26,9 +26,6 @@ import phoenix.BitmapFont;
 import snow.utils.UInt8Array;
 import snow.utils.ArrayBuffer;
 
-import luxe.structural.BalancedBinarySearchTree;
-
-
 typedef BatcherKey = {
     uuid : String,
     layer : Int
@@ -38,7 +35,6 @@ class Renderer {
 
     public var resource_manager : ResourceManager;
     public var batchers : Array<Batcher>;
-    // public var batchers : BalancedBinarySearchTree<BatcherKey,Batcher>;
 
     public var core : Core;
     public var state : RenderState;

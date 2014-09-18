@@ -11,7 +11,6 @@ import phoenix.Texture;
 import phoenix.Batcher;
 
 import luxe.options.GeometryOptions;
-import luxe.structural.BinarySearchTree;
 
 import snow.utils.ByteArray;
 import snow.utils.Float32Array;

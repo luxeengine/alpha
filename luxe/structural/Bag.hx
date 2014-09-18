@@ -1,72 +1,81 @@
-
 package luxe.structural;
 
-//This class is part of the haxe Structural library,
-//https://github.com/underscorediscovery/structural
 
-// See http://algs4.cs.princeton.edu/home/
+/**
+    Copyright 2014 Sven Bergström
+    A simple generic linked list based Bag.
 
-// A generic bag or multiset, implemented using a linked list.
-//      A bag is a collection where removing items is not supported.
-//      Its purpose is to provide the ability to collect items and
-//      then to iterate through the collected items.
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT license
+*/
 
 class Bag<T> {
 
+        /** The length of this stack. If 0, the stack is empty */
     @:isVar public var length (default, null) : Int = 0;
-    @:isVar public var empty (get, null) : Bool = true;
 
-    var first : BagNode<T>;
+        /** The first node in the bag, or null if empty */
+    public var root : BagNode<T>;
 
+        /** construct a new bag */
     public function new() {
-        first = null;
-        empty = true;
+
+        root = null;
         length = 0;
+
     } //new
 
-        //getter
-    function get_empty() {
-        return first == null;
-    } //empty
-
-    public function size() : Int {
-        return length;
-    } //size
-
+        /** Add an item to this bag */
     public function add( item:T ) : Void {
 
-        var oldfirst : BagNode<T> = first;
+        var oldroot : BagNode<T> = root;
 
-            first = new BagNode<T>();
-            first.item = item;
-            first.next = oldfirst;
+            root = new BagNode<T>();
+            root.value = item;
+            root.next = oldroot;
 
         ++length;
+
     } //add
 
-    public function iterator() : Iterator<T> {
-        return toArray().iterator();
-    } //iterator
-
+        /** Convert the items in the bag to an array */
     public function toArray() : Array<T> {
 
-        if(empty) return [];
+        if(length == 0) {
+            return [];
+        }
+
             //start at the top of the bag
         var a : Array<T> = [];
-        var current = first;
-        while(current != null) {
-            a.push( current.item );
-            current = current.next;
-        }
+        var current = root;
+
+            while(current != null) {
+                a.push( current.value );
+                current = current.next;
+            }
 
         return a;
 
     } //toArray
 
+        /** create an iterator for the bag. Usable as `for(item in bag)` */
+    public function iterator() : Iterator<T> {
+
+        return toArray().iterator();
+
+    } //iterator
+
 } //Bag
 
 private class BagNode<T> {
-    public var item : T;
+
+        /** the node value */
+    public var value : T;
+        /** The next node in the linked list */
     public var next : BagNode<T>;
+
     public function new() {}
-}
+
+} //BagNode

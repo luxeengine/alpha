@@ -4,7 +4,7 @@ import luxe.Input.MouseEvent;
 import luxe.Vector;
 import phoenix.Batcher;
 import phoenix.geometry.CompositeGeometry;
-import luxe.structural.BalancedBinarySearchTree.BalancedBinarySearchTreeNode;
+import luxe.structural.BalancedBST.BalancedBSTNode;
 import phoenix.geometry.Geometry;
 
 
@@ -82,7 +82,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
             'clip: '+ key.clip;
     }
 
-    public function draw_geom_node(l:Bool, _leaf : BalancedBinarySearchTreeNode<GeometryKey,Geometry>, _p:Vector, _bbw:Float=20 ) {
+    public function draw_geom_node(l:Bool, _leaf : BalancedBSTNode<GeometryKey,Geometry>, _p:Vector, _bbw:Float=20 ) {
 
         var _bw:Float = 128;
         var _bwhalf:Float = _bw /2;
@@ -172,7 +172,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
         ); //node text
     }
 
-    public function draw_geom_leaf( L:Bool, _leaf : BalancedBinarySearchTreeNode<GeometryKey,Geometry>, _p:Vector ) {
+    public function draw_geom_leaf( L:Bool, _leaf : BalancedBSTNode<GeometryKey,Geometry>, _p:Vector ) {
 
         if(_leaf == null) {
             return;

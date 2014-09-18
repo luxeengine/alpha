@@ -3,7 +3,6 @@ package phoenix;
 import snow.render.opengl.GL;
 import phoenix.Renderer;
 import phoenix.Batcher;
-import luxe.structural.BalancedBinarySearchTree;
 
 //Default base class will do forward rendering
 
@@ -14,7 +13,6 @@ class RenderPath {
         renderer = _renderer;
     }
 
-    // public function render( _batchers: BalancedBinarySearchTree<BatcherKey,Batcher>, _stats:RendererStats ) {
     public function render( _batchers: Array<Batcher>, _stats:RendererStats ) {
 
         for(batch in _batchers) {

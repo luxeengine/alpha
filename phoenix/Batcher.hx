@@ -10,7 +10,7 @@ import phoenix.BatchState;
 import snow.render.opengl.GL;
 import snow.utils.Float32Array;
 
-import luxe.structural.BalancedBinarySearchTree;
+import luxe.structural.BalancedBST;
 
 import luxe.Log.log;
 import luxe.Log._debug;
@@ -55,7 +55,7 @@ class Batcher {
     @:isVar public var layer (default, set) : Int = 0;
     public var enabled : Bool = true;
 
-    public var geometry : BalancedBinarySearchTree< GeometryKey, Geometry >;
+    public var geometry : BalancedBST< GeometryKey, Geometry >;
     public var groups : Map<Int, Array<BatchGroup> >;
     public var tree_changed : Bool = false;
 
@@ -128,7 +128,7 @@ class Batcher {
         id = Luxe.utils.uniqueid();
         renderer = _r;
 
-        geometry = new BalancedBinarySearchTree<GeometryKey,Geometry>( geometry_compare );
+        geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();
 
         max_verts = Std.int(Math.pow(2, 16));
