@@ -7,6 +7,7 @@ import luxe.options.StateOptions;
 import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
+import luxe.Log._verboser;
 
 
 class State extends ID {
@@ -140,25 +141,27 @@ class States extends Objects {
         _state.onadded();
 
             //debug stuff
-        _debug('states / $name / adding a state called ' + _state.name + ', now at ' + Lambda.count(_states) + ' states');
+        _debug('$name / adding a state called ' + _state.name + ', now at ' + Lambda.count(_states) + ' states');
 
     } //add_state
 
     public function enable<T>( _name:String, ?_enable_with:T ) {
         var state = _states.get( _name );
         if(state != null) {
-            _debug('states / $name / enabling a state ' + _name );
+            _debug('$name / enabling a state ' + _name );
             state.onenabled(_enable_with);
             active_states.push(state);
+            _debug('$name / now at ${active_states.length} active states');
         }
     } //enable
 
     public function disable<T>( _name:String, ?_disable_with:T  ) {
         var state = _states.get( _name );
         if(state != null) {
-            _debug('states / $name / disabling a state ' + _name );
+            _debug('$name / disabling a state ' + _name );
             state.ondisabled(_disable_with);
             active_states.remove( state );
+            _debug('$name / now at ${active_states.length} active states');
         }
     } //disable
 
@@ -211,6 +214,7 @@ class States extends Objects {
 
     function update(dt:Float) {
         for (state in active_states) {
+            _verboser('${state.name} / update / $dt');
             state.update(dt);
         }
     } //update
