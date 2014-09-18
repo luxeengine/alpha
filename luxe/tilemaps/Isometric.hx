@@ -17,7 +17,7 @@ import luxe.options.TilemapOptions;
 class Isometric {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
-        
+
         var tile_pos = new Vector();
 
             var tile_width_half = tile_width / 2;
@@ -30,34 +30,36 @@ class Isometric {
 
     } //worldpos_to_tile_coord
 
-    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int, 
+    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int,
                                                    ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
         var world_pos = new Vector();
 
             var tile_width_half = tile_width / 2;
             var tile_height_half = tile_height / 2;
-        
+
             world_pos.x = (tile_x - tile_y) * tile_width_half;
             world_pos.y = (tile_x + tile_y) * tile_height_half;
+
+            //:todo: conversion for offsets
 
             //top left by default
         if(offset_x == null) {  offset_x = TileOffset.left;  };
         if(offset_y == null) {  offset_y = TileOffset.top;   };
 
             // switch(offset_x) {
-            //     case TileOffset.center:    { _world_x += (tile_width/2) }            
+            //     case TileOffset.center:    { _world_x += (tile_width/2) }
             //     case TileOffset.right:     { _world_x += tile_width; }
             //     case TileOffset.left:      { }
             // }
 
             // switch(offset_y) {
-            //     case TileOffset.center:    { _world_y += (tile_height/2) }            
+            //     case TileOffset.center:    { _world_y += (tile_height/2) }
             //     case TileOffset.bottom:    { _world_y += tile_height; }
             //     case TileOffset.top:       { }
             // }
 
         return world_pos;
-        
+
     } //tile_coord_to_worldpos
 
 
@@ -76,14 +78,14 @@ class IsometricVisuals extends TilemapVisuals {
         for( layer in map ) {
 
             var _layer_geom : TilemapVisualsLayerGeometry = [];
-            
+
             for( y in 0 ... map.height ) {
-                    
+
                     //the geometry row
                 var _geom_row : Array<Geometry> = [];
 
                 for( x in 0 ... map.width ) {
-                    
+
                     var _tile_geom = create_tile_for_layer(layer, x, y, _scale, options.filter);
 
                         //we want to push nulls into here,
@@ -92,7 +94,7 @@ class IsometricVisuals extends TilemapVisuals {
                         //changing the tile gid later
                     _geom_row.push( _tile_geom );
 
-                } //for each tile in the x 
+                } //for each tile in the x
 
                     //add the geometry to the bunches
                 _layer_geom.push(_geom_row);
@@ -109,11 +111,11 @@ class IsometricVisuals extends TilemapVisuals {
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
             for(x in 0 ... map.width+1) {
-                
+
                 var ip = Isometric.tile_coord_to_worldpos(x, 0, _scaled_tilewidth, _scaled_tileheight);
                 var ip_bot = Isometric.tile_coord_to_worldpos(x, map.height, _scaled_tilewidth, _scaled_tileheight);
 
-                Luxe.draw.line({ 
+                Luxe.draw.line({
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y ),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
@@ -126,7 +128,7 @@ class IsometricVisuals extends TilemapVisuals {
                 var ip = Isometric.tile_coord_to_worldpos(0, y, _scaled_tilewidth, _scaled_tileheight);
                 var ip_bot = Isometric.tile_coord_to_worldpos(map.width, y, _scaled_tilewidth, _scaled_tileheight);
 
-                Luxe.draw.line({ 
+                Luxe.draw.line({
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
@@ -139,7 +141,7 @@ class IsometricVisuals extends TilemapVisuals {
     } //create
 
     override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType ) {
-        
+
         _filter = (_filter != null) ? _filter: FilterType.nearest;
 
             //map tile size scaled up
@@ -162,14 +164,14 @@ class IsometricVisuals extends TilemapVisuals {
             //the half tile size in world space, not tile space
         var _half_world_tile_width = _scaled_tilewidth / 2;
         var _half_world_tile_height = _scaled_tileheight / 2;
-        
+
             //create the tile to the geometry
         var _tile_geom = Luxe.draw.box({
                 //the positions are based on the map tile width, not the texture tilesize
             x : (map.pos.x + ((x - y) * _half_world_tile_width)) - _half_world_tile_width,
             y : (map.pos.y + ((x + y) * _half_world_tile_height)) - _half_world_tile_height,
                 //the geometry size is based on the texture/tileset size, not the map size
-            w : _scaled_tileset_tilewidth, 
+            w : _scaled_tileset_tilewidth,
             h : _scaled_tileset_tileheight,
             texture : (tileset != null) ? tileset.texture : null,
             visible : layer.visible,
@@ -182,7 +184,7 @@ class IsometricVisuals extends TilemapVisuals {
 
                     var image_coord = tileset.pos_in_texture( tile.id );
 
-                    _tile_geom.uv( 
+                    _tile_geom.uv(
                         new Rectangle(
                             tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
                             tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),

@@ -1,20 +1,20 @@
-package luxe.tilemaps;
+package luxe.importers.tiled;
 
 import luxe.Vector;
 import luxe.Rectangle;
-import luxe.tilemaps.tiled.TiledMapData;
+import luxe.importers.tiled.TiledMapData;
 import luxe.tilemaps.Tilemap;
 
 typedef TiledMapOptions = {
     file : String,
-    ?pos : Vector,    
+    ?pos : Vector,
     ?format : String,
-    ?asset_path : String,
+    ?asset_path : String
 }
 
 class TiledMap extends Tilemap {
 
-    public var tiledmap_data : TiledMapData;    
+    public var tiledmap_data : TiledMapData;
 
     public function new( options:TiledMapOptions ) {
 
@@ -36,20 +36,20 @@ class TiledMap extends Tilemap {
             if(map_text.length > 0) {
                 tiledmap_data.parseFromXML( Xml.parse( map_text ) );
             } else {
-                throw(options.file + " file contains no data?" );                
+                throw(options.file + " file contains no data?" );
             }
         }
 
-            //create the luxe tilemap 
+            //create the luxe tilemap
             //from the data we are given
         super({
-            x           : Std.int(options.pos.x), 
-            y           : Std.int(options.pos.y), 
+            x           : Std.int(options.pos.x),
+            y           : Std.int(options.pos.y),
             w           : tiledmap_data.width,
-            h           : tiledmap_data.height, 
-            tile_width  : tiledmap_data.tile_width, 
+            h           : tiledmap_data.height,
+            tile_width  : tiledmap_data.tile_width,
             tile_height : tiledmap_data.tile_height
-        }); 
+        });
 
             //Then load the tilesets and layers
         _load_tilesets( options );
@@ -63,10 +63,10 @@ class TiledMap extends Tilemap {
     function _load_tilesets( options:TiledMapOptions ) {
 
         for(_tileset in tiledmap_data.tilesets) {
-            
+
             add_tileset({
 
-                name : _tileset.name, 
+                name : _tileset.name,
                 texture : Luxe.loadTexture( options.asset_path + _tileset.texture_name),
                 first_id : _tileset.first_id,
                 tile_width : _tileset.tile_width,
@@ -76,20 +76,20 @@ class TiledMap extends Tilemap {
 
             });
 
-        } //for all tilesets  
+        } //for all tilesets
 
     } //load_tilesets
-    
+
     function _load_layers( options:TiledMapOptions ) {
 
         var layer_index : Int = 0;
         for(_layer in tiledmap_data.layers) {
-                
+
                 //add the layer
             add_layer({
-                name : _layer.name, 
+                name : _layer.name,
                 layer : layer_index,
-                opacity : _layer.opacity,  
+                opacity : _layer.opacity,
                 visible : _layer.visible
             });
 
@@ -102,9 +102,9 @@ class TiledMap extends Tilemap {
 
             for(_y in 0 ... _layer.height) {
                 for(_x in 0 ... _layer.width) {
-                    
+
                     var next_id = _layer.tiles[_gid_counter].id;
-                    
+
                         if(next_id != 0) {
                             tilemap_layer.tiles[_y][_x].id = next_id;
                         }

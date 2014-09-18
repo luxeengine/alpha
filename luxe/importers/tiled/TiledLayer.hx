@@ -1,9 +1,11 @@
-package luxe.tilemaps.tiled;
+package luxe.importers.tiled;
 
-import luxe.tilemaps.tiled.TiledTile;
-import luxe.tilemaps.tiled.TiledMapData;
+import luxe.importers.tiled.TiledTile;
+import luxe.importers.tiled.TiledMapData;
 
 import snow.utils.ByteArray;
+
+// Parts adapted from https://github.com/kasoki/openfl-tiled by Christopher "Kasoki" Kaster
 
 class TiledLayer {
 

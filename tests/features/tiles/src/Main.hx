@@ -1,13 +1,14 @@
 
 import luxe.Rectangle;
-import luxe.tilemaps.tiled.TiledObjectGroup;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
 
-import luxe.tilemaps.TiledMap;
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
+
+import luxe.importers.tiled.TiledMap;
+import luxe.importers.tiled.TiledObjectGroup;
 
 class Main extends luxe.Game {
 

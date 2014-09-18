@@ -1,9 +1,9 @@
-package luxe.tilemaps.tiled;
+package luxe.importers.tiled;
 
-import luxe.tilemaps.tiled.TiledObjectGroup;
-import luxe.tilemaps.tiled.TiledTileset;
-import luxe.tilemaps.tiled.TiledLayer;
-import luxe.tilemaps.tiled.TiledObjectGroup;
+import luxe.importers.tiled.TiledObjectGroup;
+import luxe.importers.tiled.TiledTileset;
+import luxe.importers.tiled.TiledLayer;
+import luxe.importers.tiled.TiledObjectGroup;
 
 import luxe.tilemaps.Tilemap;
 
@@ -31,7 +31,7 @@ class TiledMapData {
     public var object_groups:Array<TiledObjectGroup>;
         //All map properties
     public var properties:Map<String, String>;
-    
+
     public function new() {
 
         width = 0;
@@ -73,7 +73,7 @@ class TiledMapData {
     public function parseFromXML( xml:Xml ) {
 
         var root = xml.firstElement();
-        
+
         version = root.get("version");
         background_color = root.get("backgroundcolor");
         width = Std.parseInt(root.get("width"));
@@ -81,7 +81,7 @@ class TiledMapData {
         orientation = orientation_from_string( root.get("orientation") );
         tile_width = Std.parseInt(root.get("tilewidth"));
         tile_height = Std.parseInt(root.get("tileheight"));
-        
+
         for (child in root) {
             if(is_valid_xml_element(child)) {
                 switch( child.nodeName ) {
@@ -105,8 +105,8 @@ class TiledMapData {
                     case "properties" : {
                         for (property in child) {
 
-                            if (!is_valid_xml_element(property)) { 
-                                continue; 
+                            if (!is_valid_xml_element(property)) {
+                                continue;
                             } //!valid
 
                             properties.set(property.get("name"), property.get("value"));
@@ -135,7 +135,7 @@ class TiledMapData {
                 } //switch child nodename
             } //if valid element
         } //for each child in root
-    
+
     } //from_xml
 
     public function parseFromJSON( json:Dynamic ) {
@@ -150,23 +150,23 @@ class TiledMapData {
 
         var fields = Reflect.fields(json);
         for( nodename in fields ) {
-            
+
             var child = Reflect.field(json, nodename);
 
             switch( nodename ) {
 
                 case "tilesets" : {
-                    
+
                     var list:Array<Dynamic> = cast child;
                     for(_tileset_json in list) {
 
                         var tileset:TiledTileset = new TiledTileset();
-                            
+
                             tileset.from_json( _tileset_json );
                             tileset.first_id = Std.parseInt(Reflect.field(_tileset_json, "firstgid"));
 
                         tilesets.push(tileset);
-                    
+
                     } //each tileset json
 
                 } //tileset
@@ -217,10 +217,10 @@ class TiledPropertyTile {
 
     public var id:Int;
     public var properties:Map<String, String>;
-    
+
     public function new(_id:Int, _properties:Map<String, String>) {
         id = _id;
         properties = _properties;
     }
-    
+
 }
