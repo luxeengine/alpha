@@ -13,6 +13,19 @@ import luxe.options.CameraOptions;
 
 typedef ProjectionType = phoenix.Camera.ProjectionType;
 
+    /** A value to use when controlling the camera size property only. */
+enum SizeMode {
+
+        /** fit the size into the camera viewport (possible letter/pillar box) */
+    fit;
+        /** cover the viewport with the size (possible cropping) */
+    cover;
+        /** contain the size (stretch to fit the viewport)*/
+    contain;
+
+} //SizeMode
+
+    /** An entity based camera class */
 class Camera extends Entity {
 
         /** The viewport size for this camera, proxy to the view */
@@ -23,6 +36,11 @@ class Camera extends Entity {
     public var zoom (get,set) : Float;
         /** The minimum zoom value this camera can be set to, proxy to the view */
     public var minimum_zoom (get,set) : Float;
+
+        /** The virtual size of this camera. allows simple upscaling world coordinates, using `size_mode`. Note that this changes the view `scale` values and the `center` property. */
+    @:isVar public var size (get,set) : Vector;
+        /** When the size of the world is set using the `size` property, this controls how the scaling will apply. */
+    @:isVar public var size_mode (get,set) : SizeMode;
 
         /** the view camera this entity wraps */
     public var view : phoenix.Camera;
@@ -40,6 +58,7 @@ class Camera extends Entity {
 
     var update_view_pos : Vector;
 
+    var _size_factor : Vector;
     var _final_pos : Vector;
     var _rotation_radian : Vector;
     var _rotation_cache : Quaternion;
@@ -48,8 +67,10 @@ class Camera extends Entity {
     public function new( ?options:LuxeCameraOptions ) {
 
             //cache for later
+        _size_factor = new Vector();
         _rotation_radian = new Vector();
         _rotation_cache = new Quaternion();
+        size_mode = SizeMode.fit;
 
         var _name = 'untitled camera';
 
@@ -109,8 +130,91 @@ class Camera extends Entity {
     } //get_zoom
 
     function set_zoom( _z:Float ) : Float {
-        return view.zoom = _z;
+
+            //assign the base zoom
+        view.zoom = _z;
+
+            //handle size mode scale factor
+        if(size != null) {
+            view.scale.x *= (1/_size_factor.x);
+            view.scale.y *= (1/_size_factor.y);
+        }
+
+        return view.zoom;
+
     } //set_zoom
+
+    function get_size() : Vector {
+        return size;
+    } //get_size
+
+    function get_size_mode() : SizeMode {
+        return size_mode;
+    } //get_size
+
+    function set_size_mode( _m:SizeMode ) : SizeMode {
+
+        if(size_mode != null) {
+            size_mode = _m;
+            if(size != null) {
+                set_size( size );
+            }
+        }
+
+        return size_mode = _m;
+
+    } //get_size
+
+    function set_size( _size:Vector ) : Vector {
+
+            //disable size
+        if( _size == null ) {
+            center = new Vector(viewport.w/2, viewport.h/2);
+            size = _size;
+            _size_factor.x = _size_factor.y = 1;
+            set_zoom(zoom);
+            return size;
+        }
+
+            //setting the size is an explicit action,
+            //making the center point fixed to the middle of the size,
+            //and making the scale of the view a ratio between the viewport
+            //size and the actual "world" size given
+        var _ratio_x = viewport.w / _size.x;
+        var _ratio_y = viewport.h / _size.y;
+        var _shortest = Math.max( _ratio_x, _ratio_y );
+        var _longest = Math.min( _ratio_x, _ratio_y );
+
+        switch(size_mode) {
+
+            case fit:{
+                _ratio_x = _ratio_y = _longest;
+            }
+
+            case cover: {
+                _ratio_x = _ratio_y = _shortest;
+            }
+
+            case contain: {
+                //use actual size
+            }
+
+        } //size_mode
+
+            //assign the scale values
+        _size_factor.x = _ratio_x;
+        _size_factor.y = _ratio_y;
+
+        view.scale.x = 1/(_size_factor.x * zoom);
+        view.scale.y = 1/(_size_factor.y * zoom);
+
+            //set the center
+        center = new Vector( _size.x/2, _size.y/2 );
+
+            //return
+        return size = _size.clone();
+
+    } //set_size
 
         /**Focus the camera on a specific point, for Ortho only.
         Use `.target` for a focus in perspective */
