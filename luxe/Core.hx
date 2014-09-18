@@ -257,7 +257,7 @@ class Core extends snow.App {
 
     public function shutdown() {
 
-        _debug('shutting down...');
+        log('shutting down...');
 
             //Make sure all systems know we are going down
         shutting_down = true;
@@ -292,7 +292,7 @@ class Core extends snow.App {
             //Flag it
         has_shutdown = true;
 
-        _debug('goodbye.');
+        log('goodbye.');
 
             //shutdown snow
         app.shutdown();

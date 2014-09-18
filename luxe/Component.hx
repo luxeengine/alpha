@@ -38,8 +38,8 @@ class Component extends ID {
         /** called when the component is removed from an entity */
     public function onremoved() {}
 
-        /** called when the fixed update is triggered, if the entity has a fixed_rate set */
-    @:noCompletion public function onfixedupdate() {}
+        /** called when the fixed update is triggered, if the entity has a fixed_rate set. hands the fixed_rate for interchangeable update/fixedupdate convenience */
+    @:noCompletion public function onfixedupdate(rate:Float) {}
        /** called when the scene starts or is reset. use this to reset state. */
     @:noCompletion public function onreset() {}
         /** called when the scene, parent or entity is destroyed. use this to clean up state. */

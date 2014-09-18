@@ -67,6 +67,8 @@ class Entity extends Objects {
     public function init() {}
         /** called once per frame, passing the delta time */
     public function update(dt:Float) {}
+        /** called once per fixed rate, only if fixed_rate != 0 */
+    public function onfixedupdate(rate:Float) {}
 
         /** called when the scene starts or is reset. use this to reset state. */
     @:noCompletion public function onreset() {}
@@ -406,12 +408,14 @@ class Entity extends Objects {
             return;
         }
 
-        _verboser('calling fixed_update on ' + name);
+        _verboser('calling fixedupdate on ' + name);
 
-        emit('fixed_update');
+        emit('fixedupdate');
+
+        onfixedupdate(fixed_rate);
 
         for(_component in components) {
-            _component.onfixedupdate();
+            _component.onfixedupdate(fixed_rate);
         }
 
         for(_child in children) {
