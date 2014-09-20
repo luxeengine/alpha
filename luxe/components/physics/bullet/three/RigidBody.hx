@@ -59,7 +59,7 @@ package luxe.components.physics.bullet.three;
 
         var construct_info : RigidBodyConstructInfo;
 
-        public function init() {
+        override function init() {
 
             inertia = new Vector(0,0,0);
             _rotation = new Quaternion(0,0,0,1);
@@ -92,17 +92,17 @@ package luxe.components.physics.bullet.three;
 
         } //init
 
-        public function reset() {
+        override function onreset() {
 
             rigid_body = new BtRigidBody( collider.shape, mass, pos, _rotation, construct_info );
 
                 //Add to the world for updates
             Luxe.physics.bullet.add_rigidbody( rigid_body );
 
-        } //reset
+        } //onreset
 
 
-        public function update(dt:Float) {
+        override function update(dt:Float) {
 
             if(mass > 0 && !kinematic) {
                     //apply origin

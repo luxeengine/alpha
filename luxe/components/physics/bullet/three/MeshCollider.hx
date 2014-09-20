@@ -17,7 +17,7 @@ package luxe.components.physics.bullet.three;
         public var quantization : Bool = true;
         public var build_bvh : Bool = true;
 
-        public function init() {
+        override function init() {
             
             var mesh_vertices : Array<Float> = [];
             

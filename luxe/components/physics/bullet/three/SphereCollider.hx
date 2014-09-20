@@ -15,7 +15,7 @@ package luxe.components.physics.bullet.three;
         
         public var radius : Float;
 
-        public function init() {
+        override function init() {
 
             radius = 1.0;
 

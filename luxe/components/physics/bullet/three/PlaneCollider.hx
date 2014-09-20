@@ -15,7 +15,7 @@ package luxe.components.physics.bullet.three;
 
         public var normal : Vector;
 
-        public function init() {
+        override function init() {
 
             normal = new Vector(0,1,0);
 
