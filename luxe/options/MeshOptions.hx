@@ -9,6 +9,7 @@ typedef MeshOptions = {
 
     ? batcher : Batcher,
     ? file : String,
+    ? string : String,
     ? texture : Texture,
     ? pos : Vector,
     ? rotation : Quaternion,

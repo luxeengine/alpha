@@ -49,6 +49,10 @@ class Mesh {
 
         } //options.file
 
+        if(_options.string != null) {
+            fromString(_options.string, _options.texture, null, _options.batcher);
+        }
+
         if(_options.geometry != null){
             geometry = _options.geometry;
         }
@@ -152,12 +156,11 @@ class Mesh {
 
     } //_obj_add_vert
 
-    public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
+    public function fromString( string_data:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
 
         if(_scale == null) _scale = new Vector(1,1,1);
 
-        var obj_file = Luxe.loadText(asset_id);
-        var file_input = new haxe.io.StringInput( obj_file.text );
+        var file_input = new haxe.io.StringInput( string_data );
         var obj_mesh_data = new luxe.importers.obj.Reader(file_input).read();
 
         geometry = new Geometry({
@@ -173,6 +176,16 @@ class Mesh {
             _obj_add_vert(v, _scale);
 
         } //for all verts
+
+    } //fromString
+
+    public function fromOBJFile( asset_id:String, texture:Texture, ?_scale:Vector, _batcher:Batcher ) {
+
+        if(_scale == null) _scale = new Vector(1,1,1);
+
+        var obj_file = Luxe.loadText(asset_id);
+
+        fromString(obj_file.text, texture, _scale, _batcher);
 
     } // from obj file
 
