@@ -71,7 +71,7 @@ a:hover h2 {
 
 .topmenu {
     text-align: right;
-    margin-right: 1.4em;
+    margin-right: 1.1em;
     margin-bottom: 0.5em;
     display: block;
     position: relative;
@@ -268,20 +268,23 @@ li code {
 
 
 .version {
+    border-top: 1px solid rgba(0,0,0,0);
     color:#CFCFCF;
     font-size: 0.75em;
     text-align: right;
     margin-right: 1.7em;
     margin-bottom: -2.5em;
+    margin-top: 1em;
     vertical-align: middle;
+    position: relative;
+    display: block;
 }
 .version code {
     padding: 0;
     padding-top: 0.1em;
     padding-bottom: 0.2em;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    margin-top: -0.05em;
+    padding-right: 0.5em;
+    /*margin-top: -0.05em;*/
 }
 
 .small-image {

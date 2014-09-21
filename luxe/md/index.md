@@ -5,7 +5,11 @@
 
 A free and open cross platform game development engine.   
 
---- 
+---
+
+<script src="{{{rel_path}}}js/release.version.js"> </script>
+<div class="version">current version <a href="#" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="#"> latest </a></code> </div>
+
 ##About
 
 luxe is a free, open source cross platform rapid development haxe based game engine    
@@ -40,6 +44,22 @@ luxe is built on top of open source technologies, and proudly powered by [Haxe](
     });
 
 ---
+
+###Alpha
+
+<small>
+Please note   
+
+luxe is currently considered alpha, which means there may be bugs, inconsistencies, incomplete implementations, and possible minor API changes.
+It is still considered fairly stable and is being used by multiple tools and games,
+but there are things to tighten up before 1.0.0 release can be called final. 
+
+Join us in developing and testing the engine and tools, below.
+</small>
+
+
+---
+
 ### brief design philosophy
 
 ####luxe is a facilitator
@@ -70,6 +90,19 @@ For more concrete examples of this in practice, read the [design philosophy](des
 
 ---
 
+
+##Editor support
+
+Where possible, full code completion and building from the editor is supplied.
+
+[Sublime Text](https://underscorediscovery.github.io/flow/guide/sublimetext.html) (mac/windows/linux) <br/><br/>
+[![](images/plugins/1.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+
+[FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
+[![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
+
+---
+
 ##Features
 
 Take note there are features that are not listed,   
@@ -86,7 +119,7 @@ Read the design links for more info.
 
 **Short list and focuses**
 
-- `Open` - Free and Open Source, under the [UPDATEME] license
+- `Open` - Free and Open Source, under the [MIT license](https://github.com/underscorediscovery/luxe/blob/master/LICENSE.md)
 - `Approachable` - high pace through an expressive, easy to use API. 
 - `Rapid` Fits jam games and long form projects alike.
 - `Documentation` - continuous focus on documenting with high standards

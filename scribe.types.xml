@@ -599,7 +599,7 @@
 		<time public="1" get="accessor" set="null" static="1">
 			<x path="Float"/>
 			<meta><m n=":isVar"/></meta>
-			<haxe_doc>The current time in seconds, highest precision from the platform</haxe_doc>
+			<haxe_doc>The current time in seconds, highest precision from the platform.</haxe_doc>
 		</time>
 		<screen public="1" get="accessor" set="null" static="1">
 			<c path="luxe.Screen"/>
@@ -674,7 +674,7 @@
 				</f>
 				<x path="Bool"/>
 			</f>
-			<haxe_doc>stop listening for core eventsinput</haxe_doc>
+			<haxe_doc>stop listening for core events</haxe_doc>
 		</off>
 		<get_screen set="method" line="94" static="1"><f a=""><c path="luxe.Screen"/></f></get_screen>
 		<get_time set="method" line="100" static="1"><f a=""><x path="Float"/></f></get_time>
@@ -4213,6 +4213,13 @@
 		<meta><m n=":keep"/></meta>
 	</class>
 	<typedef path="luxe.ProjectionType" params="" file="/Users/sven/dev/luxe/luxe/luxe/Camera.hx" module="luxe.Camera"><e path="phoenix.ProjectionType"/></typedef>
+	<enum path="luxe.SizeMode" params="" file="/Users/sven/dev/luxe/luxe/luxe/Camera.hx" module="luxe.Camera">
+		<fit><haxe_doc>fit the size into the camera viewport (possible letter/pillar box)</haxe_doc></fit>
+		<cover><haxe_doc>cover the viewport with the size (possible cropping)</haxe_doc></cover>
+		<contain><haxe_doc>contain the size (stretch to fit the viewport)</haxe_doc></contain>
+		<haxe_doc>A value to use when controlling the camera size property only.</haxe_doc>
+		<meta><m n=":flatEnum"/></meta>
+	</enum>
 	<class path="luxe.Objects" params="" file="/Users/sven/dev/luxe/luxe/luxe/Objects.hx">
 		<extends path="luxe.Emitter"/>
 		<id public="1">
@@ -4784,6 +4791,16 @@
 			<x path="Float"/>
 			<haxe_doc>The minimum zoom value this camera can be set to, proxy to the view</haxe_doc>
 		</minimum_zoom>
+		<size public="1" get="accessor" set="accessor">
+			<t path="luxe.Vector"/>
+			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The virtual size of this camera. allows simple upscaling world coordinates, using `size_mode`. Note that this changes the view `scale` values and the `center` property.</haxe_doc>
+		</size>
+		<size_mode public="1" get="accessor" set="accessor">
+			<e path="luxe.SizeMode"/>
+			<meta><m n=":isVar"/></meta>
+			<haxe_doc>When the size of the world is set using the `size` property, this controls how the scaling will apply.</haxe_doc>
+		</size_mode>
 		<view public="1">
 			<c path="phoenix.Camera"/>
 			<haxe_doc>the view camera this entity wraps</haxe_doc>
@@ -4813,30 +4830,41 @@
 			<haxe_doc>the threshold cutoff for shaking</haxe_doc>
 		</minimum_shake>
 		<update_view_pos><t path="luxe.Vector"/></update_view_pos>
+		<_size_factor><t path="luxe.Vector"/></_size_factor>
 		<_final_pos><t path="luxe.Vector"/></_final_pos>
 		<_rotation_radian><t path="luxe.Vector"/></_rotation_radian>
 		<_rotation_cache><c path="phoenix.Quaternion"/></_rotation_cache>
-		<get_viewport set="method" line="80"><f a=""><t path="luxe.Rectangle"/></f></get_viewport>
-		<set_viewport set="method" line="84"><f a="_v">
+		<get_viewport set="method" line="101"><f a=""><t path="luxe.Rectangle"/></f></get_viewport>
+		<set_viewport set="method" line="105"><f a="_v">
 	<t path="luxe.Rectangle"/>
 	<t path="luxe.Rectangle"/>
 </f></set_viewport>
-		<get_center set="method" line="88"><f a=""><t path="luxe.Vector"/></f></get_center>
-		<set_center set="method" line="92"><f a="_c">
+		<get_center set="method" line="109"><f a=""><t path="luxe.Vector"/></f></get_center>
+		<set_center set="method" line="113"><f a="_c">
 	<t path="luxe.Vector"/>
 	<t path="luxe.Vector"/>
 </f></set_center>
-		<get_minimum_zoom set="method" line="99"><f a=""><x path="Float"/></f></get_minimum_zoom>
-		<set_minimum_zoom set="method" line="103"><f a="_m">
+		<get_minimum_zoom set="method" line="120"><f a=""><x path="Float"/></f></get_minimum_zoom>
+		<set_minimum_zoom set="method" line="124"><f a="_m">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_minimum_zoom>
-		<get_zoom set="method" line="107"><f a=""><x path="Float"/></f></get_zoom>
-		<set_zoom set="method" line="111"><f a="_z">
+		<get_zoom set="method" line="128"><f a=""><x path="Float"/></f></get_zoom>
+		<set_zoom set="method" line="132"><f a="_z">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_zoom>
-		<focus public="1" set="method" line="117">
+		<get_size set="method" line="147"><f a=""><t path="luxe.Vector"/></f></get_size>
+		<get_size_mode set="method" line="151"><f a=""><e path="luxe.SizeMode"/></f></get_size_mode>
+		<set_size_mode set="method" line="155"><f a="_m">
+	<e path="luxe.SizeMode"/>
+	<e path="luxe.SizeMode"/>
+</f></set_size_mode>
+		<set_size set="method" line="168"><f a="_size">
+	<t path="luxe.Vector"/>
+	<t path="luxe.Vector"/>
+</f></set_size>
+		<focus public="1" set="method" line="221">
 			<f a="_p:?_t:?oncomplete" v=":0.6f:null">
 				<t path="luxe.Vector"/>
 				<x path="Float"/>
@@ -4846,14 +4874,14 @@
 			<haxe_doc>Focus the camera on a specific point, for Ortho only.
         Use `.target` for a focus in perspective</haxe_doc>
 		</focus>
-		<screen_point_to_world public="1" set="method" line="129">
+		<screen_point_to_world public="1" set="method" line="233">
 			<f a="_vector">
 				<t path="luxe.Vector"/>
 				<t path="luxe.Vector"/>
 			</f>
 			<haxe_doc>convert a screen point to world space for this camera. handles zoom, rotation, scale, etc</haxe_doc>
 		</screen_point_to_world>
-		<world_point_to_screen public="1" set="method" line="136">
+		<world_point_to_screen public="1" set="method" line="240">
 			<f a="_vector:?_viewport" v=":null">
 				<t path="luxe.Vector"/>
 				<t path="luxe.Rectangle"/>
@@ -4861,26 +4889,26 @@
 			</f>
 			<haxe_doc>convert a world point to screen space for this camera. handles zoom, rotation, scale, etc</haxe_doc>
 		</world_point_to_screen>
-		<set_pos_from_transform set="method" line="142" override="1"><f a="_pos">
+		<set_pos_from_transform set="method" line="246" override="1"><f a="_pos">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_pos_from_transform>
-		<set_rotation_from_transform set="method" line="158" override="1"><f a="_rotation">
+		<set_rotation_from_transform set="method" line="262" override="1"><f a="_rotation">
 	<c path="phoenix.Quaternion"/>
 	<x path="Void"/>
 </f></set_rotation_from_transform>
-		<set_scale_from_transform set="method" line="168" override="1"><f a="_scale">
+		<set_scale_from_transform set="method" line="272" override="1"><f a="_scale">
 	<t path="luxe.Vector"/>
 	<x path="Void"/>
 </f></set_scale_from_transform>
-		<shake public="1" set="method" line="179">
+		<shake public="1" set="method" line="283">
 			<f a="amount">
 				<x path="Float"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Shake the camera a given amount</haxe_doc>
 		</shake>
-		<update public="1" set="method" line="187" override="1">
+		<update public="1" set="method" line="291" override="1">
 			<f a="dt">
 				<x path="Float"/>
 				<x path="Void"/>
@@ -4889,13 +4917,14 @@
 		</update>
 		<init public="1" set="method" line="21" override="1"><f a=""><x path="Void"/></f></init>
 		<ondestroy public="1" set="method" line="21" override="1"><f a=""><x path="Void"/></f></ondestroy>
-		<new public="1" set="method" line="48">
+		<new public="1" set="method" line="67">
 			<f a="?options" v="null">
 				<t path="luxe.options.LuxeCameraOptions"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>create a new camera with the given options</haxe_doc>
 		</new>
+		<haxe_doc>An entity based camera class</haxe_doc>
 		<meta>
 			<m n=":keep"/>
 			<m n=":build"><e>'???'</e></m>
@@ -9030,7 +9059,7 @@
 </f></keystr>
 		<draw_geom_node public="1" set="method" line="85"><f a="l:_leaf:_p:?_bbw" v=":::20">
 	<x path="Bool"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
+	<c path="luxe.structural.BalancedBSTNode">
 		<t path="phoenix.geometry.GeometryKey"/>
 		<c path="phoenix.geometry.Geometry"/>
 	</c>
@@ -9040,7 +9069,7 @@
 </f></draw_geom_node>
 		<draw_geom_leaf public="1" set="method" line="175"><f a="L:_leaf:_p">
 	<x path="Bool"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
+	<c path="luxe.structural.BalancedBSTNode">
 		<t path="phoenix.geometry.GeometryKey"/>
 		<c path="phoenix.geometry.Geometry"/>
 	</c>
@@ -9471,6 +9500,395 @@
 	<t path="luxe.importers.texturepacker.TexturePackerFrame"/>
 	<d/>
 </f></parse_source>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledLayer" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledLayer.hx">
+		<tiled_base64_to_IntArray set="method" line="172" static="1"><f a="base64_data:lineWidth:compression">
+	<c path="String"/>
+	<x path="Int"/>
+	<c path="String"/>
+	<c path="Array"><x path="Int"/></c>
+</f></tiled_base64_to_IntArray>
+		<opacity public="1"><x path="Float"/></opacity>
+		<visible public="1"><x path="Bool"/></visible>
+		<name public="1"><c path="String"/></name>
+		<width public="1"><x path="Int"/></width>
+		<height public="1"><x path="Int"/></height>
+		<map public="1"><c path="luxe.importers.tiled.TiledMapData"/></map>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<tiles public="1"><c path="Array"><c path="luxe.importers.tiled.TiledTile"/></c></tiles>
+		<is_valid_xml_element set="method" line="28"><f a="element">
+	<c path="Xml"/>
+	<x path="Bool"/>
+</f></is_valid_xml_element>
+		<from_xml public="1" set="method" line="32"><f a="xml">
+	<c path="Xml"/>
+	<x path="Void"/>
+</f></from_xml>
+		<from_json public="1" set="method" line="113"><f a="json">
+	<d/>
+	<x path="Void"/>
+</f></from_json>
+		<csv_to_IntArray set="method" line="149"><f a="input">
+	<c path="String"/>
+	<c path="Array"><x path="Int"/></c>
+</f></csv_to_IntArray>
+		<new public="1" set="method" line="22"><f a="_map">
+	<c path="luxe.importers.tiled.TiledMapData"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<typedef path="luxe.importers.tiled.TiledMapOptions" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledMap.hx" module="luxe.importers.tiled.TiledMap"><a>
+	<pos>
+		<t path="luxe.Vector"/>
+		<meta><m n=":optional"/></meta>
+	</pos>
+	<format>
+		<c path="String"/>
+		<meta><m n=":optional"/></meta>
+	</format>
+	<file><c path="String"/></file>
+	<asset_path>
+		<c path="String"/>
+		<meta><m n=":optional"/></meta>
+	</asset_path>
+</a></typedef>
+	<class path="luxe.tilemaps.Tilemap" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/Tilemap.hx">
+		<layers public="1"><x path="Map">
+	<c path="String"/>
+	<c path="luxe.tilemaps.TileLayer"/>
+</x></layers>
+		<layers_ordered public="1"><c path="Array"><c path="luxe.tilemaps.TileLayer"/></c></layers_ordered>
+		<tilesets public="1"><x path="Map">
+	<c path="String"/>
+	<c path="luxe.tilemaps.Tileset"/>
+</x></tilesets>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<orientation public="1"><e path="luxe.tilemaps.TilemapOrientation"/></orientation>
+		<visuals public="1"><c path="luxe.tilemaps.TilemapVisuals"/></visuals>
+		<pos public="1"><t path="luxe.Vector"/></pos>
+		<tile_width public="1"><x path="Int"/></tile_width>
+		<tile_height public="1"><x path="Int"/></tile_height>
+		<width public="1"><x path="Int"/></width>
+		<height public="1"><x path="Int"/></height>
+		<total_width public="1" get="accessor" set="null">
+			<x path="Int"/>
+			<meta><m n=":isVar"/></meta>
+		</total_width>
+		<total_height public="1" get="accessor" set="null">
+			<x path="Int"/>
+			<meta><m n=":isVar"/></meta>
+		</total_height>
+		<bounds public="1" get="accessor" set="null">
+			<t path="luxe.Rectangle"/>
+			<meta><m n=":isVar"/></meta>
+		</bounds>
+		<display public="1" set="method" line="345"><f a="options">
+	<d/>
+	<x path="Void"/>
+</f></display>
+		<inside public="1" set="method" line="358"><f a="x:y">
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Bool"/>
+</f></inside>
+		<tile_pos public="1" set="method" line="384"><f a="layer_name:x:y:?offset_x:?offset_y" v=":::null:null">
+	<c path="String"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<e path="luxe.tilemaps.TileOffset"/>
+	<e path="luxe.tilemaps.TileOffset"/>
+	<c path="phoenix.Vector"/>
+</f></tile_pos>
+		<tile_at_pos public="1" set="method" line="412"><f a="layer_name:worldpos">
+	<c path="String"/>
+	<t path="luxe.Vector"/>
+	<c path="luxe.tilemaps.Tile"/>
+</f></tile_at_pos>
+		<worldpos_to_map public="1" set="method" line="440"><f a="worldpos">
+	<t path="luxe.Vector"/>
+	<t path="luxe.Vector"/>
+</f></worldpos_to_map>
+		<layer public="1" set="method" line="460"><f a="layer_name">
+	<c path="String"/>
+	<t path="Null"><c path="luxe.tilemaps.TileLayer"/></t>
+</f></layer>
+		<tileset public="1" set="method" line="464"><f a="layer_name">
+	<c path="String"/>
+	<t path="Null"><c path="luxe.tilemaps.Tileset"/></t>
+</f></tileset>
+		<tile_at public="1" set="method" line="469"><f a="layer_name:x:y">
+	<c path="String"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<c path="luxe.tilemaps.Tile"/>
+</f></tile_at>
+		<iterator public="1" set="method" line="486"><f a=""><t path="Iterator"><c path="luxe.tilemaps.TileLayer"/></t></f></iterator>
+		<add_tileset public="1" set="method" line="492"><f a="options">
+	<t path="luxe.options.TilesetOptions"/>
+	<c path="luxe.tilemaps.Tileset"/>
+</f></add_tileset>
+		<_sort_layers set="method" line="502"><f a="a:b">
+	<c path="luxe.tilemaps.TileLayer"/>
+	<c path="luxe.tilemaps.TileLayer"/>
+	<x path="Int"/>
+</f></_sort_layers>
+		<sort_layers set="method" line="508"><f a=""><x path="Void"/></f></sort_layers>
+		<tileset_from_id public="1" set="method" line="512"><f a="_id">
+	<x path="Int"/>
+	<c path="luxe.tilemaps.Tileset"/>
+</f></tileset_from_id>
+		<remove_tile public="1" set="method" line="529"><f a="layer_name:x:y">
+	<c path="String"/>
+	<x path="Int"/>
+	<x path="Int"/>
+	<x path="Bool"/>
+</f></remove_tile>
+		<remove_tileset public="1" set="method" line="544"><f a="name:?_destroy_textures" v=":false">
+	<c path="String"/>
+	<x path="Bool"/>
+	<x path="Bool"/>
+</f></remove_tileset>
+		<remove_layer public="1" set="method" line="556"><f a="name">
+	<c path="String"/>
+	<x path="Bool"/>
+</f></remove_layer>
+		<add_layer public="1" set="method" line="568"><f a="options">
+	<t path="luxe.options.TileLayerOptions"/>
+	<c path="luxe.tilemaps.TileLayer"/>
+</f></add_layer>
+		<add_tiles_fill_by_id public="1" set="method" line="585"><f a="layer_name:?_tileid" v=":0">
+	<c path="String"/>
+	<x path="Int"/>
+	<x path="Void"/>
+</f></add_tiles_fill_by_id>
+		<add_tiles_from_grid public="1" set="method" line="621"><f a="layer_name:grid">
+	<c path="String"/>
+	<c path="Array"><c path="Array"><x path="Int"/></c></c>
+	<x path="Void"/>
+</f></add_tiles_from_grid>
+		<get_total_width set="method" line="666"><f a=""><x path="Int"/></f></get_total_width>
+		<get_total_height set="method" line="670"><f a=""><x path="Int"/></f></get_total_height>
+		<get_bounds set="method" line="674"><f a=""><t path="luxe.Rectangle"/></f></get_bounds>
+		<new public="1" set="method" line="321"><f a="options">
+	<t path="luxe.options.TilemapOptions"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledMap" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledMap.hx">
+		<extends path="luxe.tilemaps.Tilemap"/>
+		<tiledmap_data public="1"><c path="luxe.importers.tiled.TiledMapData"/></tiledmap_data>
+		<_load_tilesets set="method" line="63"><f a="options">
+	<t path="luxe.importers.tiled.TiledMapOptions"/>
+	<x path="Void"/>
+</f></_load_tilesets>
+		<_load_layers set="method" line="83"><f a="options">
+	<t path="luxe.importers.tiled.TiledMapOptions"/>
+	<x path="Void"/>
+</f></_load_layers>
+		<new public="1" set="method" line="19"><f a="options">
+	<t path="luxe.importers.tiled.TiledMapOptions"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledMapData" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledMapData.hx">
+		<version public="1"><c path="String"/></version>
+		<background_color public="1"><c path="String"/></background_color>
+		<width public="1"><x path="Int"/></width>
+		<height public="1"><x path="Int"/></height>
+		<orientation public="1"><e path="luxe.tilemaps.TilemapOrientation"/></orientation>
+		<tile_width public="1"><x path="Int"/></tile_width>
+		<tile_height public="1"><x path="Int"/></tile_height>
+		<tilesets public="1"><c path="Array"><c path="luxe.importers.tiled.TiledTileset"/></c></tilesets>
+		<layers public="1"><c path="Array"><c path="luxe.importers.tiled.TiledLayer"/></c></layers>
+		<object_groups public="1"><c path="Array"><c path="luxe.importers.tiled.TiledObjectGroup"/></c></object_groups>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<toString set="method" line="50"><f a=""><c path="String"/></f></toString>
+		<is_valid_xml_element set="method" line="54"><f a="element">
+	<c path="Xml"/>
+	<x path="Bool"/>
+</f></is_valid_xml_element>
+		<orientation_from_string set="method" line="58"><f a="_orientation_string">
+	<c path="String"/>
+	<e path="luxe.tilemaps.TilemapOrientation"/>
+</f></orientation_from_string>
+		<parseFromXML public="1" set="method" line="73"><f a="xml">
+	<c path="Xml"/>
+	<x path="Void"/>
+</f></parseFromXML>
+		<parseFromJSON public="1" set="method" line="141"><f a="json">
+	<d/>
+	<x path="Void"/>
+</f></parseFromJSON>
+		<new public="1" set="method" line="35"><f a=""><x path="Void"/></f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledPropertyTile" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledMapData.hx" module="luxe.importers.tiled.TiledMapData">
+		<id public="1"><x path="Int"/></id>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<new public="1" set="method" line="221"><f a="_id:_properties">
+	<x path="Int"/>
+	<x path="Map">
+		<c path="String"/>
+		<c path="String"/>
+	</x>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<enum path="luxe.importers.tiled.TiledObjectType" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledObjectGroup.hx" module="luxe.importers.tiled.TiledObjectGroup">
+		<polyline/>
+		<polygon/>
+		<rectangle/>
+		<ellipse/>
+		<meta><m n=":flatEnum"/></meta>
+	</enum>
+	<class path="luxe.importers.tiled.TiledPolyObject" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledObjectGroup.hx" module="luxe.importers.tiled.TiledObjectGroup">
+		<origin public="1"><t path="luxe.Vector"/></origin>
+		<points public="1"><c path="Array"><t path="luxe.Vector"/></c></points>
+		<new public="1" set="method" line="16"><f a="_origin:_points">
+	<t path="luxe.Vector"/>
+	<c path="Array"><t path="luxe.Vector"/></c>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledObject" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledObjectGroup.hx" module="luxe.importers.tiled.TiledObjectGroup">
+		<group public="1"><c path="luxe.importers.tiled.TiledObjectGroup"/></group>
+		<gid public="1"><x path="Int"/></gid>
+		<name public="1"><c path="String"/></name>
+		<type public="1"><c path="String"/></type>
+		<visible public="1"><x path="Bool"/></visible>
+		<pos public="1"><t path="luxe.Vector"/></pos>
+		<width public="1"><x path="Int"/></width>
+		<height public="1"><x path="Int"/></height>
+		<polyobject public="1"><c path="luxe.importers.tiled.TiledPolyObject"/></polyobject>
+		<object_type public="1"><e path="luxe.importers.tiled.TiledObjectType"/></object_type>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<is_valid_xml_element set="method" line="52"><f a="element">
+	<c path="Xml"/>
+	<x path="Bool"/>
+</f></is_valid_xml_element>
+		<polyobject_from_xml set="method" line="56"><f a="xml">
+	<c path="Xml"/>
+	<c path="luxe.importers.tiled.TiledPolyObject"/>
+</f></polyobject_from_xml>
+		<polyobject_from_json set="method" line="71"><f a="json">
+	<d/>
+	<c path="luxe.importers.tiled.TiledPolyObject"/>
+</f></polyobject_from_json>
+		<from_xml public="1" set="method" line="87"><f a="xml">
+	<c path="Xml"/>
+	<x path="Void"/>
+</f></from_xml>
+		<from_json public="1" set="method" line="140"><f a="json">
+	<d/>
+	<x path="Void"/>
+</f></from_json>
+		<new public="1" set="method" line="46"><f a="_group">
+	<c path="luxe.importers.tiled.TiledObjectGroup"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledObjectGroup" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledObjectGroup.hx">
+		<map public="1"><c path="luxe.importers.tiled.TiledMapData"/></map>
+		<name public="1"><c path="String"/></name>
+		<width public="1"><x path="Int"/></width>
+		<height public="1"><x path="Int"/></height>
+		<visible public="1"><x path="Bool"/></visible>
+		<opacity public="1"><x path="Float"/></opacity>
+		<color public="1"><c path="String"/></color>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<objects public="1"><c path="Array"><c path="luxe.importers.tiled.TiledObject"/></c></objects>
+		<is_valid_xml_element set="method" line="221"><f a="element">
+	<c path="Xml"/>
+	<x path="Bool"/>
+</f></is_valid_xml_element>
+		<from_xml public="1" set="method" line="225"><f a="xml">
+	<c path="Xml"/>
+	<x path="Void"/>
+</f></from_xml>
+		<from_json public="1" set="method" line="254"><f a="json">
+	<d/>
+	<x path="Void"/>
+</f></from_json>
+		<new public="1" set="method" line="209"><f a="_map">
+	<c path="luxe.importers.tiled.TiledMapData"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledTile" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledTile.hx">
+		<layer public="1"><c path="luxe.importers.tiled.TiledLayer"/></layer>
+		<id public="1"><x path="Int"/></id>
+		<width public="1" get="accessor" set="null">
+			<x path="Int"/>
+			<meta><m n=":isVar"/></meta>
+		</width>
+		<height public="1" get="accessor" set="null">
+			<x path="Int"/>
+			<meta><m n=":isVar"/></meta>
+		</height>
+		<get_width public="1" set="method" line="18"><f a=""><x path="Int"/></f></get_width>
+		<get_height public="1" set="method" line="22"><f a=""><x path="Int"/></f></get_height>
+		<new public="1" set="method" line="13"><f a="_layer:_id">
+	<c path="luxe.importers.tiled.TiledLayer"/>
+	<x path="Int"/>
+	<x path="Void"/>
+</f></new>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.importers.tiled.TiledTileset" params="" file="/Users/sven/dev/luxe/luxe/luxe/importers/tiled/TiledTileset.hx">
+		<name public="1"><c path="String"/></name>
+		<texture_name public="1"><c path="String"/></texture_name>
+		<first_id public="1"><x path="Int"/></first_id>
+		<tile_width public="1"><x path="Int"/></tile_width>
+		<tile_height public="1"><x path="Int"/></tile_height>
+		<margin public="1"><x path="Int"/></margin>
+		<spacing public="1"><x path="Int"/></spacing>
+		<properties public="1"><x path="Map">
+	<c path="String"/>
+	<c path="String"/>
+</x></properties>
+		<property_tiles public="1"><x path="Map">
+	<x path="Int"/>
+	<c path="luxe.importers.tiled.TiledPropertyTile"/>
+</x></property_tiles>
+		<is_valid_xml_element set="method" line="27"><f a="element">
+	<c path="Xml"/>
+	<x path="Bool"/>
+</f></is_valid_xml_element>
+		<from_xml public="1" set="method" line="31"><f a="xml">
+	<c path="Xml"/>
+	<x path="Void"/>
+</f></from_xml>
+		<from_json public="1" set="method" line="93"><f a="json">
+	<d/>
+	<x path="Void"/>
+</f></from_json>
+		<new public="1" set="method" line="20"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.macros.BuildVersion" params="" file="/Users/sven/dev/luxe/luxe/luxe/macros/BuildVersion.hx">
@@ -11451,570 +11869,900 @@
 		<new public="1" set="method" line="27"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
+	<class path="luxe.structural.BST" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BST.hx">
+		<root public="1">
+			<c path="luxe.structural.BSTNode">
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BST.T"/>
+			</c>
+			<haxe_doc>The tree root node</haxe_doc>
+		</root>
+		<compare public="1">
+			<f a=":">
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BST.K"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>The current comparison functoin</haxe_doc>
+		</compare>
+		<empty public="1" get="accessor" set="null">
+			<x path="Bool"/>
+			<haxe_doc>Whether or not the tree is empty (i.e root == null)</haxe_doc>
+		</empty>
+		<size public="1" set="method" line="39">
+			<f a=""><x path="Int"/></f>
+			<haxe_doc>Return the number of nodes in the tree</haxe_doc>
+		</size>
+		<depth public="1" set="method" line="46">
+			<f a=""><x path="Int"/></f>
+			<haxe_doc>Return the depth of the tree</haxe_doc>
+		</depth>
+		<insert public="1" set="method" line="53">
+			<f a="_key:_value">
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BST.T"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Insert a node into the tree</haxe_doc>
+		</insert>
+		<contains public="1" set="method" line="60">
+			<f a="_key">
+				<c path="luxe.structural.BST.K"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>Returns true if the tree contains the key for this node</haxe_doc>
+		</contains>
+		<find public="1" set="method" line="68">
+			<f a="_key">
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BST.T"/>
+			</f>
+			<haxe_doc>Returns a node by key, if found. null otherwise</haxe_doc>
+		</find>
+		<rank public="1" set="method" line="76">
+			<f a="_key">
+				<c path="luxe.structural.BST.K"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>Return the number of nodes to the left of this node, by key.   
+            http://en.wikipedia.org/wiki/Order_statistic_tree</haxe_doc>
+		</rank>
+		<select public="1" set="method" line="84">
+			<f a="_rank">
+				<x path="Int"/>
+				<c path="luxe.structural.BST.K"/>
+			</f>
+			<haxe_doc>Find a key by rank in the tree, i.e given a number of nodes, the key at this point.   
+            http://en.wikipedia.org/wiki/Order_statistic_tree</haxe_doc>
+		</select>
+		<smallest public="1" set="method" line="97">
+			<f a=""><c path="luxe.structural.BST.K"/></f>
+			<haxe_doc>return the smallest node (key) in the tree (most left)</haxe_doc>
+		</smallest>
+		<largest public="1" set="method" line="110">
+			<f a=""><c path="luxe.structural.BST.K"/></f>
+			<haxe_doc>return the largest node (key) in the tree (most right)</haxe_doc>
+		</largest>
+		<remove public="1" set="method" line="123">
+			<f a="_key">
+				<c path="luxe.structural.BST.K"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>remove a node by key. return false if the operation fails (i.e the node is not stored in this tree)</haxe_doc>
+		</remove>
+		<remove_smallest public="1" set="method" line="136">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>remove the smallest node in the tree (most left)</haxe_doc>
+		</remove_smallest>
+		<remove_largest public="1" set="method" line="143">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>remove the largest node in the tree (most right)</haxe_doc>
+		</remove_largest>
+		<floor public="1" set="method" line="150">
+			<f a="_key">
+				<c path="luxe.structural.BST.K"/>
+				<t path="Null"><c path="luxe.structural.BST.K"/></t>
+			</f>
+			<haxe_doc>tree floor http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</floor>
+		<ceil public="1" set="method" line="163">
+			<f a="_key">
+				<c path="luxe.structural.BST.K"/>
+				<t path="Null"><c path="luxe.structural.BST.K"/></t>
+			</f>
+			<haxe_doc>tree ceiling http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</ceil>
+		<toArray public="1" set="method" line="176">
+			<f a=""><c path="Array"><c path="luxe.structural.BST.T"/></c></f>
+			<haxe_doc>return an array of the values in this tree</haxe_doc>
+		</toArray>
+		<keys public="1" set="method" line="189">
+			<f a=""><c path="Array"><c path="luxe.structural.BST.K"/></c></f>
+			<haxe_doc>Return an array of the keys in this tree</haxe_doc>
+		</keys>
+		<iterator public="1" set="method" line="203">
+			<f a=""><t path="Iterator"><c path="luxe.structural.BST.T"/></t></f>
+			<haxe_doc>returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)`
+            :todo: This should traverse directly and implement IIterator</haxe_doc>
+		</iterator>
+		<traverse_node public="1" set="method" line="210">
+			<f a="_node:_method:_on_traverse">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<e path="luxe.structural.BSTTraverseMethod"/>
+				<f a="">
+					<c path="luxe.structural.BSTNode">
+						<c path="luxe.structural.BST.K"/>
+						<c path="luxe.structural.BST.T"/>
+					</c>
+					<x path="Void"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Traverse a node with the given method, and call the given function for each node traversed</haxe_doc>
+		</traverse_node>
+		<get_empty set="method" line="240"><f a=""><x path="Bool"/></f></get_empty>
+		<node_depth set="method" line="247">
+			<f a="_node">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>the depth of a single node</haxe_doc>
+		</node_depth>
+		<node_count set="method" line="263">
+			<f a="_node">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>the node count/children of a single node</haxe_doc>
+		</node_count>
+		<node_insert set="method" line="270">
+			<f a="_node:_key:_value">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BST.T"/>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>insert a single node</haxe_doc>
+		</node_insert>
+		<node_update_count set="method" line="300"><f a="_node">
+	<c path="luxe.structural.BSTNode">
+		<c path="luxe.structural.BST.K"/>
+		<c path="luxe.structural.BST.T"/>
+	</c>
+	<c path="luxe.structural.BSTNode">
+		<c path="luxe.structural.BST.K"/>
+		<c path="luxe.structural.BST.T"/>
+	</c>
+</f></node_update_count>
+		<node_find set="method" line="309">
+			<f a="_node:_key">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BST.T"/>
+			</f>
+			<haxe_doc>find a single node</haxe_doc>
+		</node_find>
+		<node_rank set="method" line="328">
+			<f a="_key:_node">
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>find rank of single node</haxe_doc>
+		</node_rank>
+		<node_select set="method" line="347">
+			<f a="_node:_rank">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<x path="Int"/>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>find key of node by rank</haxe_doc>
+		</node_select>
+		<node_smallest set="method" line="366">
+			<f a="_node">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>find smallest of the given node</haxe_doc>
+		</node_smallest>
+		<node_largest set="method" line="377">
+			<f a="_node">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>find largest of the given node</haxe_doc>
+		</node_largest>
+		<node_floor set="method" line="388">
+			<f a="_node:_key">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>node floor http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</node_floor>
+		<node_ceil set="method" line="413">
+			<f a="_node:_key">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>node ceiling http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</node_ceil>
+		<node_remove_smallest set="method" line="442">
+			<f a="_node">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>remove the smallest node in the tree (most left)</haxe_doc>
+		</node_remove_smallest>
+		<node_remove_largest set="method" line="456">
+			<f a="_node">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>remove the largest node in the tree (most right)</haxe_doc>
+		</node_remove_largest>
+		<node_remove set="method" line="470">
+			<f a="_node:_key">
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+				<c path="luxe.structural.BST.K"/>
+				<c path="luxe.structural.BSTNode">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.T"/>
+				</c>
+			</f>
+			<haxe_doc>remove a single node by key</haxe_doc>
+		</node_remove>
+		<new public="1" set="method" line="30">
+			<f a="compare_function">
+				<f a=":">
+					<c path="luxe.structural.BST.K"/>
+					<c path="luxe.structural.BST.K"/>
+					<x path="Int"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new BST with the given comparison function</haxe_doc>
+		</new>
+		<haxe_doc>Copyright 2014 Sven Bergström
+
+    A unbalanced binary search tree,
+    implemented based on various stack overflow answers,
+    wikipedia articles and books read over the years.
+    some other references : https://github.com/polygonal/ds
+
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT license</haxe_doc>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="luxe.structural.BSTNode" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BST.hx" module="luxe.structural.BST">
+		<left public="1">
+			<c path="luxe.structural.BSTNode">
+				<c path="luxe.structural.BSTNode.K"/>
+				<c path="luxe.structural.BSTNode.T"/>
+			</c>
+			<haxe_doc>The node left of this node (less than)</haxe_doc>
+		</left>
+		<right public="1">
+			<c path="luxe.structural.BSTNode">
+				<c path="luxe.structural.BSTNode.K"/>
+				<c path="luxe.structural.BSTNode.T"/>
+			</c>
+			<haxe_doc>The node right of this node (bigger than)</haxe_doc>
+		</right>
+		<nodecount public="1">
+			<x path="Int"/>
+			<haxe_doc>The node count of this node, including itself</haxe_doc>
+		</nodecount>
+		<key public="1">
+			<c path="luxe.structural.BSTNode.K"/>
+			<haxe_doc>The key used to compare this node</haxe_doc>
+		</key>
+		<value public="1">
+			<c path="luxe.structural.BSTNode.T"/>
+			<haxe_doc>The value this node holds</haxe_doc>
+		</value>
+		<new public="1" set="method" line="525">
+			<f a="_key:_value:_nodecount">
+				<c path="luxe.structural.BSTNode.K"/>
+				<c path="luxe.structural.BSTNode.T"/>
+				<x path="Int"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new node with given key, value, count. Use `insert` on the tree instead.</haxe_doc>
+		</new>
+		<haxe_doc>A binary search tree node by `K` key and `T` value (type)</haxe_doc>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<enum path="luxe.structural.BSTTraverseMethod" params="" file="/Users/sven/dev/luxe/luxe/luxe/structural/BST.hx" module="luxe.structural.BST">
+		<order_pre/>
+		<order_retain/>
+		<order_post/>
+		<haxe_doc>A traversal method for iterating a node in the tree</haxe_doc>
+		<meta><m n=":flatEnum"/></meta>
+	</enum>
 	<class path="luxe.structural.Bag" params="T" file="/Users/sven/dev/luxe/luxe/luxe/structural/Bag.hx">
 		<length public="1" set="null">
 			<x path="Int"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The length of this stack. If 0, the stack is empty</haxe_doc>
 		</length>
-		<empty public="1" get="accessor" set="null">
-			<x path="Bool"/>
-			<meta><m n=":isVar"/></meta>
-		</empty>
-		<first><c path="luxe.structural._Bag.BagNode"><c path="luxe.structural.Bag.T"/></c></first>
-		<get_empty set="method" line="28"><f a=""><x path="Bool"/></f></get_empty>
-		<size public="1" set="method" line="32"><f a=""><x path="Int"/></f></size>
-		<add public="1" set="method" line="36"><f a="item">
-	<c path="luxe.structural.Bag.T"/>
-	<x path="Void"/>
-</f></add>
-		<iterator public="1" set="method" line="47"><f a=""><t path="Iterator"><c path="luxe.structural.Bag.T"/></t></f></iterator>
-		<toArray public="1" set="method" line="51"><f a=""><c path="Array"><c path="luxe.structural.Bag.T"/></c></f></toArray>
-		<new public="1" set="method" line="21"><f a=""><x path="Void"/></f></new>
+		<root public="1">
+			<c path="luxe.structural._Bag.BagNode"><c path="luxe.structural.Bag.T"/></c>
+			<haxe_doc>The first node in the bag, or null if empty</haxe_doc>
+		</root>
+		<add public="1" set="method" line="31">
+			<f a="item">
+				<c path="luxe.structural.Bag.T"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Add an item to this bag</haxe_doc>
+		</add>
+		<toArray public="1" set="method" line="44">
+			<f a=""><c path="Array"><c path="luxe.structural.Bag.T"/></c></f>
+			<haxe_doc>Convert the items in the bag to an array</haxe_doc>
+		</toArray>
+		<iterator public="1" set="method" line="64">
+			<f a=""><t path="Iterator"><c path="luxe.structural.Bag.T"/></t></f>
+			<haxe_doc>create an iterator for the bag. Usable as `for(item in bag)`</haxe_doc>
+		</iterator>
+		<new public="1" set="method" line="23">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>construct a new bag</haxe_doc>
+		</new>
+		<haxe_doc>Copyright 2014 Sven Bergström
+    A simple generic linked list based Bag.
+
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT license</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.structural._Bag.BagNode" params="T" file="/Users/sven/dev/luxe/luxe/luxe/structural/Bag.hx" private="1" module="luxe.structural.Bag">
-		<item public="1"><c path="luxe.structural._Bag.BagNode.T"/></item>
-		<next public="1"><c path="luxe.structural._Bag.BagNode"><c path="luxe.structural._Bag.BagNode.T"/></c></next>
-		<new public="1" set="method" line="71"><f a=""><x path="Void"/></f></new>
+		<value public="1">
+			<c path="luxe.structural._Bag.BagNode.T"/>
+			<haxe_doc>the node value</haxe_doc>
+		</value>
+		<next public="1">
+			<c path="luxe.structural._Bag.BagNode"><c path="luxe.structural._Bag.BagNode.T"/></c>
+			<haxe_doc>The next node in the linked list</haxe_doc>
+		</next>
+		<new public="1" set="method" line="79"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<class path="luxe.structural.BalancedBinarySearchTree" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BalancedBinarySearchTree.hx">
-		<RED public="1" get="inline" set="null" line="6" static="1">
-			<x path="Bool"/>
-			<meta>
-				<m n=":noCompletion"/>
-				<m n=":noCompletion"/>
-			</meta>
-		</RED>
-		<BLACK public="1" get="inline" set="null" line="7" static="1">
+	<class path="luxe.structural.BalancedBST" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BalancedBST.hx">
+		<red public="1" get="inline" set="null" line="669" static="1">
 			<x path="Bool"/>
 			<meta><m n=":noCompletion"/></meta>
-		</BLACK>
-		<root public="1"><c path="luxe.structural.BalancedBinarySearchTreeNode">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-</c></root>
-		<compare public="1"><f a=":">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<x path="Int"/>
-</f></compare>
-		<toString set="method" line="16"><f a=""><c path="String"/></f></toString>
-		<empty public="1" set="method" line="21"><f a=""><x path="Bool"/></f></empty>
-		<size public="1" set="method" line="25"><f a=""><x path="Int"/></f></size>
-		<height public="1" set="method" line="29"><f a=""><x path="Int"/></f></height>
-		<_height set="method" line="33"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+		</red>
+		<black public="1" get="inline" set="null" line="671" static="1">
+			<x path="Bool"/>
+			<meta><m n=":noCompletion"/></meta>
+		</black>
+		<root public="1">
+			<c path="luxe.structural.BalancedBSTNode">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBST.T"/>
+			</c>
+			<haxe_doc>The tree root node</haxe_doc>
+		</root>
+		<compare public="1">
+			<f a=":">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBST.K"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>The current comparison functoin</haxe_doc>
+		</compare>
+		<empty public="1" get="accessor" set="null">
+			<x path="Bool"/>
+			<haxe_doc>Whether or not the tree is empty (i.e root == null)</haxe_doc>
+		</empty>
+		<size public="1" set="method" line="39">
+			<f a=""><x path="Int"/></f>
+			<haxe_doc>Return the number of nodes in the tree</haxe_doc>
+		</size>
+		<depth public="1" set="method" line="46">
+			<f a=""><x path="Int"/></f>
+			<haxe_doc>Return the depth of the tree</haxe_doc>
+		</depth>
+		<insert public="1" set="method" line="53">
+			<f a="_key:_value">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBST.T"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Insert a node into the tree</haxe_doc>
+		</insert>
+		<contains public="1" set="method" line="61">
+			<f a="_key">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>Returns true if the tree contains the key for this node</haxe_doc>
+		</contains>
+		<find public="1" set="method" line="69">
+			<f a="_key">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBST.T"/>
+			</f>
+			<haxe_doc>Returns a node by key, if found. null otherwise</haxe_doc>
+		</find>
+		<rank public="1" set="method" line="77">
+			<f a="_key">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>Return the number of nodes to the left of this node, by key.   
+            http://en.wikipedia.org/wiki/Order_statistic_tree</haxe_doc>
+		</rank>
+		<select public="1" set="method" line="85">
+			<f a="_rank">
+				<x path="Int"/>
+				<c path="luxe.structural.BalancedBST.K"/>
+			</f>
+			<haxe_doc>Find a key by rank in the tree, i.e given a number of nodes, the key at this point.   
+            http://en.wikipedia.org/wiki/Order_statistic_tree</haxe_doc>
+		</select>
+		<smallest public="1" set="method" line="98">
+			<f a=""><c path="luxe.structural.BalancedBST.K"/></f>
+			<haxe_doc>return the smallest node (key) in the tree (most left)</haxe_doc>
+		</smallest>
+		<largest public="1" set="method" line="111">
+			<f a=""><c path="luxe.structural.BalancedBST.K"/></f>
+			<haxe_doc>return the largest node (key) in the tree (most right)</haxe_doc>
+		</largest>
+		<remove public="1" set="method" line="124">
+			<f a="_key">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<x path="Bool"/>
+			</f>
+			<haxe_doc>remove a node by key. return false if the operation fails (i.e the node is not stored in this tree)</haxe_doc>
+		</remove>
+		<remove_smallest public="1" set="method" line="145">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>remove the smallest node in the tree (most left)</haxe_doc>
+		</remove_smallest>
+		<remove_largest public="1" set="method" line="160">
+			<f a=""><x path="Void"/></f>
+			<haxe_doc>remove the largest node in the tree (most right)</haxe_doc>
+		</remove_largest>
+		<floor public="1" set="method" line="176">
+			<f a="_key">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<t path="Null"><c path="luxe.structural.BalancedBST.K"/></t>
+			</f>
+			<haxe_doc>tree floor http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</floor>
+		<ceil public="1" set="method" line="189">
+			<f a="_key">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<t path="Null"><c path="luxe.structural.BalancedBST.K"/></t>
+			</f>
+			<haxe_doc>tree ceiling http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</ceil>
+		<toArray public="1" set="method" line="202">
+			<f a=""><c path="Array"><c path="luxe.structural.BalancedBST.T"/></c></f>
+			<haxe_doc>return an array of the values in this tree</haxe_doc>
+		</toArray>
+		<keys public="1" set="method" line="215">
+			<f a=""><c path="Array"><c path="luxe.structural.BalancedBST.K"/></c></f>
+			<haxe_doc>Return an array of the keys in this tree</haxe_doc>
+		</keys>
+		<iterator public="1" set="method" line="229">
+			<f a=""><t path="Iterator"><c path="luxe.structural.BalancedBST.T"/></t></f>
+			<haxe_doc>returns an iterator from a conversion to array of this tree. Usable as `for(item in tree)`   
+            :todo: This should traverse directly and implement IIterator</haxe_doc>
+		</iterator>
+		<traverse_node public="1" set="method" line="236">
+			<f a="_node:_method:_on_traverse">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<e path="luxe.structural.BalancedBSTTraverseMethod"/>
+				<f a="">
+					<c path="luxe.structural.BalancedBSTNode">
+						<c path="luxe.structural.BalancedBST.K"/>
+						<c path="luxe.structural.BalancedBST.T"/>
+					</c>
+					<x path="Void"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Traverse a node with the given method, and call the given function for each node traversed</haxe_doc>
+		</traverse_node>
+		<get_empty set="method" line="266"><f a=""><x path="Bool"/></f></get_empty>
+		<node_depth set="method" line="273">
+			<f a="_node">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>the depth of a single node</haxe_doc>
+		</node_depth>
+		<node_count set="method" line="289">
+			<f a="_node">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>the node count/children of a single node</haxe_doc>
+		</node_count>
+		<node_insert set="method" line="296">
+			<f a="_node:_key:_value">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBST.T"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>insert a single node</haxe_doc>
+		</node_insert>
+		<node_update_count set="method" line="340"><f a="_node">
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
-	<x path="Int"/>
-</f></_height>
-		<_size set="method" line="40"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
-	<x path="Int"/>
-</f></_size>
-		<insert public="1" set="method" line="49"><f a="_key:_value">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	<x path="Void"/>
-</f></insert>
-		<_insert set="method" line="54"><f a="_node:_key:_value">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_insert>
-		<contains public="1" set="method" line="89"><f a="_key">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<x path="Bool"/>
-</f></contains>
-		<find public="1" set="method" line="95"><f a="_key">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-</f></find>
-		<_find set="method" line="99"><f a="_node:_key">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-</f></_find>
-		<rank public="1" set="method" line="119"><f a="_key">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<x path="Int"/>
-</f></rank>
-		<_rank set="method" line="123"><f a="_key:_node">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<x path="Int"/>
-</f></_rank>
-		<select public="1" set="method" line="138"><f a="_rank">
-	<x path="Int"/>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-</f></select>
-		<_select set="method" line="142"><f a="_node:_rank">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<x path="Int"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_select>
-		<min public="1" set="method" line="159"><f a=""><c path="luxe.structural.BalancedBinarySearchTree.K"/></f></min>
-		<_min set="method" line="163"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_min>
-		<max public="1" set="method" line="168"><f a=""><c path="luxe.structural.BalancedBinarySearchTree.K"/></f></max>
-		<_max set="method" line="172"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_max>
-		<floor public="1" set="method" line="180"><f a="_key">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<t path="Null"><c path="luxe.structural.BalancedBinarySearchTree.K"/></t>
-</f></floor>
-		<_floor set="method" line="189"><f a="_node:_key">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_floor>
-		<ceil public="1" set="method" line="207"><f a="_key">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<t path="Null"><c path="luxe.structural.BalancedBinarySearchTree.K"/></t>
-</f></ceil>
-		<_ceil set="method" line="216"><f a="_node:_key">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_ceil>
-		<deleteMin public="1" set="method" line="235"><f a=""><x path="Void"/></f></deleteMin>
-		<_deleteMin set="method" line="249"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_deleteMin>
-		<deleteMax public="1" set="method" line="265"><f a=""><x path="Void"/></f></deleteMax>
-		<_deleteMax set="method" line="280"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_deleteMax>
-		<remove public="1" set="method" line="300"><f a="_key">
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<x path="Bool"/>
-</f></remove>
-		<_remove set="method" line="322"><f a="_node:_key">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-</f></_remove>
-		<is_red set="method" line="370"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+</f></node_update_count>
+		<node_find set="method" line="349">
+			<f a="_node:_key">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBST.T"/>
+			</f>
+			<haxe_doc>find a single node</haxe_doc>
+		</node_find>
+		<node_rank set="method" line="368">
+			<f a="_key:_node">
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<x path="Int"/>
+			</f>
+			<haxe_doc>find rank of single node</haxe_doc>
+		</node_rank>
+		<node_select set="method" line="387">
+			<f a="_node:_rank">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<x path="Int"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>find key of node by rank</haxe_doc>
+		</node_select>
+		<node_smallest set="method" line="406">
+			<f a="_node">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>find smallest of the given node</haxe_doc>
+		</node_smallest>
+		<node_largest set="method" line="417">
+			<f a="_node">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>find largest of the given node</haxe_doc>
+		</node_largest>
+		<node_floor set="method" line="428">
+			<f a="_node:_key">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>node floor http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</node_floor>
+		<node_ceil set="method" line="453">
+			<f a="_node:_key">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>node ceiling http://en.wikipedia.org/wiki/Floor_and_ceiling_functions</haxe_doc>
+		</node_ceil>
+		<node_remove_smallest set="method" line="482">
+			<f a="_node">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>remove the smallest node in the tree (most left)</haxe_doc>
+		</node_remove_smallest>
+		<node_remove_largest set="method" line="500">
+			<f a="_node">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>remove the largest node in the tree (most right)</haxe_doc>
+		</node_remove_largest>
+		<node_remove set="method" line="522">
+			<f a="_node:_key">
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+				<c path="luxe.structural.BalancedBST.K"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
+				</c>
+			</f>
+			<haxe_doc>remove a single node by key</haxe_doc>
+		</node_remove>
+		<is_red set="method" line="569"><f a="_node">
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
 	<x path="Bool"/>
 </f></is_red>
-		<rotate_left public="1" set="method" line="375">
+		<rotate_left public="1" set="method" line="579">
 			<f a="_node">
-				<c path="luxe.structural.BalancedBinarySearchTreeNode">
-					<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-					<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
 				</c>
-				<c path="luxe.structural.BalancedBinarySearchTreeNode">
-					<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-					<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
 				</c>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</rotate_left>
-		<rotate_right public="1" set="method" line="386">
+		<rotate_right public="1" set="method" line="598">
 			<f a="_node">
-				<c path="luxe.structural.BalancedBinarySearchTreeNode">
-					<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-					<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
 				</c>
-				<c path="luxe.structural.BalancedBinarySearchTreeNode">
-					<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-					<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
 				</c>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</rotate_right>
-		<flip_colors public="1" set="method" line="397">
+		<swap_color public="1" set="method" line="617">
 			<f a="_node">
-				<c path="luxe.structural.BalancedBinarySearchTreeNode">
-					<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-					<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+				<c path="luxe.structural.BalancedBSTNode">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.T"/>
 				</c>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
-		</flip_colors>
-		<move_red_left set="method" line="405"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+		</swap_color>
+		<move_red_left set="method" line="625"><f a="_node">
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
 </f></move_red_left>
-		<move_red_right set="method" line="419"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+		<move_red_right set="method" line="637"><f a="_node">
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
 </f></move_red_right>
-		<balance set="method" line="431"><f a="_node">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+		<balance set="method" line="648"><f a="_node">
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
+	<c path="luxe.structural.BalancedBSTNode">
+		<c path="luxe.structural.BalancedBST.K"/>
+		<c path="luxe.structural.BalancedBST.T"/>
 	</c>
 </f></balance>
-		<toArray public="1" set="method" line="451"><f a=""><c path="Array"><c path="luxe.structural.BalancedBinarySearchTree.T"/></c></f></toArray>
-		<keys public="1" set="method" line="461"><f a=""><c path="Array"><c path="luxe.structural.BalancedBinarySearchTree.K"/></c></f></keys>
-		<iterator public="1" set="method" line="471"><f a=""><t path="Iterator"><c path="luxe.structural.BalancedBinarySearchTree.T"/></t></f></iterator>
-		<traverse public="1" set="method" line="477"><f a="_node:_traverse_method:_process_node_function">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-	</c>
-	<e path="luxe.structural.BalancedBinarySearchTraverseMethod"/>
-	<f a="">
-		<c path="luxe.structural.BalancedBinarySearchTreeNode">
-			<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-			<c path="luxe.structural.BalancedBinarySearchTree.T"/>
-		</c>
-		<x path="Void"/>
-	</f>
-	<x path="Void"/>
-</f></traverse>
-		<new public="1" set="method" line="12"><f a="compare_function">
-	<f a=":">
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<c path="luxe.structural.BalancedBinarySearchTree.K"/>
-		<x path="Int"/>
-	</f>
-	<x path="Void"/>
-</f></new>
+		<new public="1" set="method" line="30">
+			<f a="compare_function">
+				<f a=":">
+					<c path="luxe.structural.BalancedBST.K"/>
+					<c path="luxe.structural.BalancedBST.K"/>
+					<x path="Int"/>
+				</f>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new balanced BST with the given comparison function</haxe_doc>
+		</new>
+		<haxe_doc>Copyright 2014 Sven Bergström
+
+    A balanced binary search tree,
+    implemented based on various stack overflow answers,
+    wikipedia articles and books read over the years.
+    some other references : https://github.com/polygonal/ds
+
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT License</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<class path="luxe.structural.BalancedBinarySearchTreeNode" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BalancedBinarySearchTree.hx" module="luxe.structural.BalancedBinarySearchTree">
-		<left public="1"><c path="luxe.structural.BalancedBinarySearchTreeNode">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode.T"/>
-</c></left>
-		<right public="1"><c path="luxe.structural.BalancedBinarySearchTreeNode">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode.T"/>
-</c></right>
-		<nodecount public="1"><x path="Int"/></nodecount>
-		<color public="1"><x path="Bool"/></color>
-		<key public="1"><c path="luxe.structural.BalancedBinarySearchTreeNode.K"/></key>
-		<value public="1"><c path="luxe.structural.BalancedBinarySearchTreeNode.T"/></value>
-		<new public="1" set="method" line="525"><f a="_key:_value:_nodecount:_color">
-	<c path="luxe.structural.BalancedBinarySearchTreeNode.K"/>
-	<c path="luxe.structural.BalancedBinarySearchTreeNode.T"/>
-	<x path="Int"/>
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></new>
+	<class path="luxe.structural.BalancedBSTNode" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BalancedBST.hx" module="luxe.structural.BalancedBST">
+		<left public="1">
+			<c path="luxe.structural.BalancedBSTNode">
+				<c path="luxe.structural.BalancedBSTNode.K"/>
+				<c path="luxe.structural.BalancedBSTNode.T"/>
+			</c>
+			<haxe_doc>The node left of this node (less than)</haxe_doc>
+		</left>
+		<right public="1">
+			<c path="luxe.structural.BalancedBSTNode">
+				<c path="luxe.structural.BalancedBSTNode.K"/>
+				<c path="luxe.structural.BalancedBSTNode.T"/>
+			</c>
+			<haxe_doc>The node right of this node (bigger than)</haxe_doc>
+		</right>
+		<nodecount public="1">
+			<x path="Int"/>
+			<haxe_doc>The node count of this node, including itself</haxe_doc>
+		</nodecount>
+		<color public="1">
+			<x path="Bool"/>
+			<haxe_doc>The node color, red or black, for maintaining balance</haxe_doc>
+		</color>
+		<key public="1">
+			<c path="luxe.structural.BalancedBSTNode.K"/>
+			<haxe_doc>The key used to compare this node</haxe_doc>
+		</key>
+		<value public="1">
+			<c path="luxe.structural.BalancedBSTNode.T"/>
+			<haxe_doc>The value this node holds</haxe_doc>
+		</value>
+		<new public="1" set="method" line="696">
+			<f a="_key:_value:_node_count:_color">
+				<c path="luxe.structural.BalancedBSTNode.K"/>
+				<c path="luxe.structural.BalancedBSTNode.T"/>
+				<x path="Int"/>
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new node with given key, value, count and color. Use `insert` on the tree instead.</haxe_doc>
+		</new>
+		<haxe_doc>A balanced binary search tree node by `K` key and `T` value (type)</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<enum path="luxe.structural.BalancedBinarySearchTraverseMethod" params="" file="/Users/sven/dev/luxe/luxe/luxe/structural/BalancedBinarySearchTree.hx" module="luxe.structural.BalancedBinarySearchTree">
-		<PreOrder/>
-		<InOrder/>
-		<PostOrder/>
-		<meta><m n=":flatEnum"/></meta>
-	</enum>
-	<class path="luxe.structural.BinarySearchTree" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BinarySearchTree.hx">
-		<root public="1"><c path="luxe.structural.BinarySearchTreeNode">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTree.T"/>
-</c></root>
-		<compare public="1"><f a=":">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<x path="Int"/>
-</f></compare>
-		<toString set="method" line="12"><f a=""><c path="String"/></f></toString>
-		<size public="1" set="method" line="18"><f a=""><x path="Int"/></f></size>
-		<_size set="method" line="23"><f a="_node">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<x path="Int"/>
-</f></_size>
-		<insert public="1" set="method" line="32"><f a="_key:_value">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTree.T"/>
-	<x path="Void"/>
-</f></insert>
-		<_insert set="method" line="36"><f a="_node:_key:_value">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTree.T"/>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_insert>
-		<contains public="1" set="method" line="59"><f a="_key">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<x path="Bool"/>
-</f></contains>
-		<find public="1" set="method" line="64"><f a="_key">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTree.T"/>
-</f></find>
-		<_find set="method" line="68"><f a="_node:_key">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTree.T"/>
-</f></_find>
-		<rank public="1" set="method" line="87"><f a="_key">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<x path="Int"/>
-</f></rank>
-		<_rank set="method" line="91"><f a="_key:_node">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<x path="Int"/>
-</f></_rank>
-		<select public="1" set="method" line="106"><f a="_rank">
-	<x path="Int"/>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-</f></select>
-		<_select set="method" line="110"><f a="_node:_rank">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<x path="Int"/>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_select>
-		<min public="1" set="method" line="127"><f a=""><c path="luxe.structural.BinarySearchTree.K"/></f></min>
-		<_min set="method" line="131"><f a="_node">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_min>
-		<max public="1" set="method" line="136"><f a=""><c path="luxe.structural.BinarySearchTree.K"/></f></max>
-		<_max set="method" line="140"><f a="_node">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_max>
-		<floor public="1" set="method" line="148"><f a="_key">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<t path="Null"><c path="luxe.structural.BinarySearchTree.K"/></t>
-</f></floor>
-		<_floor set="method" line="157"><f a="_node:_key">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_floor>
-		<ceil public="1" set="method" line="175"><f a="_key">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<t path="Null"><c path="luxe.structural.BinarySearchTree.K"/></t>
-</f></ceil>
-		<_ceil set="method" line="184"><f a="_node:_key">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_ceil>
-		<deleteMin public="1" set="method" line="203"><f a=""><x path="Void"/></f></deleteMin>
-		<_deleteMin set="method" line="207"><f a="_node">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_deleteMin>
-		<deleteMax public="1" set="method" line="220"><f a=""><x path="Void"/></f></deleteMax>
-		<_deleteMax set="method" line="224"><f a="_node">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_deleteMax>
-		<remove public="1" set="method" line="237"><f a="_key">
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<x path="Void"/>
-</f></remove>
-		<_remove set="method" line="241"><f a="_node:_key">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<c path="luxe.structural.BinarySearchTree.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-</f></_remove>
-		<toArray public="1" set="method" line="276"><f a=""><c path="Array"><c path="luxe.structural.BinarySearchTree.T"/></c></f></toArray>
-		<keys public="1" set="method" line="286"><f a=""><c path="Array"><c path="luxe.structural.BinarySearchTree.K"/></c></f></keys>
-		<iterator public="1" set="method" line="296"><f a=""><t path="Iterator"><c path="luxe.structural.BinarySearchTree.T"/></t></f></iterator>
-		<traverse public="1" set="method" line="302"><f a="_node:_traverse_method:_process_node_function">
-	<c path="luxe.structural.BinarySearchTreeNode">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.T"/>
-	</c>
-	<e path="luxe.structural.BinarySearchTraverseMethod"/>
-	<f a="">
-		<c path="luxe.structural.BinarySearchTreeNode">
-			<c path="luxe.structural.BinarySearchTree.K"/>
-			<c path="luxe.structural.BinarySearchTree.T"/>
-		</c>
-		<x path="Void"/>
-	</f>
-	<x path="Void"/>
-</f></traverse>
-		<new public="1" set="method" line="8"><f a="compare_function">
-	<f a=":">
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<c path="luxe.structural.BinarySearchTree.K"/>
-		<x path="Int"/>
-	</f>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.structural.BinarySearchTreeNode" params="K:T" file="/Users/sven/dev/luxe/luxe/luxe/structural/BinarySearchTree.hx" module="luxe.structural.BinarySearchTree">
-		<left public="1"><c path="luxe.structural.BinarySearchTreeNode">
-	<c path="luxe.structural.BinarySearchTreeNode.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode.T"/>
-</c></left>
-		<right public="1"><c path="luxe.structural.BinarySearchTreeNode">
-	<c path="luxe.structural.BinarySearchTreeNode.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode.T"/>
-</c></right>
-		<nodecount public="1"><x path="Int"/></nodecount>
-		<key public="1"><c path="luxe.structural.BinarySearchTreeNode.K"/></key>
-		<value public="1"><c path="luxe.structural.BinarySearchTreeNode.T"/></value>
-		<new public="1" set="method" line="349"><f a="_key:_value:_nodecount">
-	<c path="luxe.structural.BinarySearchTreeNode.K"/>
-	<c path="luxe.structural.BinarySearchTreeNode.T"/>
-	<x path="Int"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<enum path="luxe.structural.BinarySearchTraverseMethod" params="" file="/Users/sven/dev/luxe/luxe/luxe/structural/BinarySearchTree.hx" module="luxe.structural.BinarySearchTree">
-		<PreOrder/>
-		<InOrder/>
-		<PostOrder/>
+	<enum path="luxe.structural.BalancedBSTTraverseMethod" params="" file="/Users/sven/dev/luxe/luxe/luxe/structural/BalancedBST.hx" module="luxe.structural.BalancedBST">
+		<order_pre/>
+		<order_retain/>
+		<order_post/>
+		<haxe_doc>A traversal method for iterating a node in the tree</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<class path="luxe.structural.Heap" params="T" file="/Users/sven/dev/luxe/luxe/luxe/structural/Heap.hx">
@@ -12110,50 +12858,104 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.structural.Pool" params="T" file="/Users/sven/dev/luxe/luxe/luxe/structural/Pool.hx">
-		<length public="1"><x path="Int"/></length>
-		<items public="1"><c path="Array"><c path="luxe.structural.Pool.T"/></c></items>
-		<index public="1"><x path="Int"/></index>
+		<length public="1">
+			<x path="Int"/>
+			<haxe_doc>The size of the pool</haxe_doc>
+		</length>
+		<items public="1">
+			<c path="Array"><c path="luxe.structural.Pool.T"/></c>
+			<haxe_doc>The items in the pool</haxe_doc>
+		</items>
+		<index public="1">
+			<x path="Int"/>
+			<haxe_doc>The current index in the pool</haxe_doc>
+		</index>
 		<precache><x path="Bool"/></precache>
 		<_create><f a=":">
 	<x path="Int"/>
 	<x path="Int"/>
 	<c path="luxe.structural.Pool.T"/>
 </f></_create>
-		<get public="1" set="method" line="27"><f a=""><c path="luxe.structural.Pool.T"/></f></get>
-		<new public="1" set="method" line="12"><f a="pool_size:create_callback:?_precache" v="::true">
-	<x path="Int"/>
-	<f a=":">
-		<x path="Int"/>
-		<x path="Int"/>
-		<c path="luxe.structural.Pool.T"/>
-	</f>
-	<x path="Bool"/>
-	<x path="Void"/>
-</f></new>
+		<get public="1" set="method" line="43">
+			<f a=""><c path="luxe.structural.Pool.T"/></f>
+			<haxe_doc>get the next available item from the pool, creating if needed, or from the cache. If the pool max has been reached the pool will wrap around to the oldest item in the pool.</haxe_doc>
+		</get>
+		<new public="1" set="method" line="27">
+			<f a="pool_size:create_callback:?_precache" v="::true">
+				<x path="Int"/>
+				<f a=":">
+					<x path="Int"/>
+					<x path="Int"/>
+					<c path="luxe.structural.Pool.T"/>
+				</f>
+				<x path="Bool"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Create a new pool with fixed size, on_create callback and cache flag. By default precache sis true.</haxe_doc>
+		</new>
+		<haxe_doc>Copyright 2014 Sven Bergström
+    A simple cacheable pool type with on create callback
+
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT license</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.structural.Stack" params="T" file="/Users/sven/dev/luxe/luxe/luxe/structural/Stack.hx">
 		<length public="1" set="null">
 			<x path="Int"/>
 			<meta><m n=":isVar"/></meta>
+			<haxe_doc>The length of this stack. If 0, the stack is empty</haxe_doc>
 		</length>
-		<first public="1"><c path="luxe.structural.StackNode"><c path="luxe.structural.Stack.T"/></c></first>
-		<empty public="1" set="method" line="15"><f a=""><x path="Bool"/></f></empty>
-		<push public="1" set="method" line="19"><f a="element">
-	<c path="luxe.structural.Stack.T"/>
-	<x path="Void"/>
-</f></push>
-		<pop public="1" set="method" line="34"><f a=""><c path="luxe.structural.Stack.T"/></f></pop>
-		<top public="1" set="method" line="45"><f a=""><c path="luxe.structural.Stack.T"/></f></top>
-		<iterator public="1" set="method" line="50"><f a=""><t path="Iterator"><c path="luxe.structural.Stack.T"/></t></f></iterator>
-		<toArray public="1" set="method" line="54"><f a=""><c path="Array"><c path="luxe.structural.Stack.T"/></c></f></toArray>
-		<new public="1" set="method" line="10"><f a=""><x path="Void"/></f></new>
+		<root public="1">
+			<c path="luxe.structural.StackNode"><c path="luxe.structural.Stack.T"/></c>
+			<haxe_doc>The first node in the stack, or null if empty</haxe_doc>
+		</root>
+		<push public="1" set="method" line="29">
+			<f a="node">
+				<c path="luxe.structural.Stack.T"/>
+				<x path="Void"/>
+			</f>
+			<haxe_doc>Push a node onto the back of the queue. node cannot be null</haxe_doc>
+		</push>
+		<pop public="1" set="method" line="47">
+			<f a=""><c path="luxe.structural.Stack.T"/></f>
+			<haxe_doc>Pop the back item off the stack. If the queue is empty, returns null</haxe_doc>
+		</pop>
+		<top public="1" set="method" line="63">
+			<f a=""><c path="luxe.structural.Stack.T"/></f>
+			<haxe_doc>Return the top item of the stack, or null if empty</haxe_doc>
+		</top>
+		<toArray public="1" set="method" line="74">
+			<f a=""><c path="Array"><c path="luxe.structural.Stack.T"/></c></f>
+			<haxe_doc>Convert the items in the stack to an array</haxe_doc>
+		</toArray>
+		<iterator public="1" set="method" line="94">
+			<f a=""><t path="Iterator"><c path="luxe.structural.Stack.T"/></t></f>
+			<haxe_doc>create an iterator for the stack. Usable as `for(item in stack)`</haxe_doc>
+		</iterator>
+		<new public="1" set="method" line="21"><f a=""><x path="Void"/></f></new>
+		<haxe_doc>Copyright 2014 Sven Bergström
+    A simple generic linked list based Stack.
+
+    Part of the structural library for haxe
+    http://github.com/underscorediscovery/structural
+
+    MIT license</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.structural.StackNode" params="T" file="/Users/sven/dev/luxe/luxe/luxe/structural/Stack.hx" module="luxe.structural.Stack">
-		<item public="1"><c path="luxe.structural.StackNode.T"/></item>
-		<next public="1"><c path="luxe.structural.StackNode"><c path="luxe.structural.StackNode.T"/></c></next>
-		<new public="1" set="method" line="75"><f a=""><x path="Void"/></f></new>
+		<value public="1">
+			<c path="luxe.structural.StackNode.T"/>
+			<haxe_doc>the node value</haxe_doc>
+		</value>
+		<next public="1">
+			<c path="luxe.structural.StackNode"><c path="luxe.structural.StackNode.T"/></c>
+			<haxe_doc>The next node in the linked list</haxe_doc>
+		</next>
+		<new public="1" set="method" line="110"><f a=""><x path="Void"/></f></new>
+		<haxe_doc>A single stack node holding</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="luxe.tilemaps.Isometric" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/Isometric.hx">
@@ -12210,11 +13012,11 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	</class>
 	<class path="luxe.tilemaps.IsometricVisuals" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/Isometric.hx" module="luxe.tilemaps.Isometric">
 		<extends path="luxe.tilemaps.TilemapVisuals"/>
-		<create public="1" set="method" line="68" override="1"><f a="options">
+		<create public="1" set="method" line="70" override="1"><f a="options">
 	<t path="luxe.options.TilemapVisualOptions"/>
 	<x path="Void"/>
 </f></create>
-		<create_tile_for_layer set="method" line="141" override="1"><f a="layer:x:y:?_scale:?_filter" v=":::1:null">
+		<create_tile_for_layer set="method" line="143" override="1"><f a="layer:x:y:?_scale:?_filter" v=":::1:null">
 	<c path="luxe.tilemaps.TileLayer"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -12222,7 +13024,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<e path="phoenix.FilterType"/>
 	<c path="phoenix.geometry.QuadGeometry"/>
 </f></create_tile_for_layer>
-		<new public="1" set="method" line="66"><f a="_map:options">
+		<new public="1" set="method" line="68"><f a="_map:options">
 	<c path="luxe.tilemaps.Tilemap"/>
 	<d/>
 	<x path="Void"/>
@@ -12265,164 +13067,6 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<new public="1" set="method" line="59"><f a="_map:options">
 	<c path="luxe.tilemaps.Tilemap"/>
 	<d/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<typedef path="luxe.tilemaps.TiledMapOptions" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/TiledMap.hx" module="luxe.tilemaps.TiledMap"><a>
-	<pos>
-		<t path="luxe.Vector"/>
-		<meta><m n=":optional"/></meta>
-	</pos>
-	<format>
-		<c path="String"/>
-		<meta><m n=":optional"/></meta>
-	</format>
-	<file><c path="String"/></file>
-	<asset_path>
-		<c path="String"/>
-		<meta><m n=":optional"/></meta>
-	</asset_path>
-</a></typedef>
-	<class path="luxe.tilemaps.Tilemap" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/Tilemap.hx">
-		<layers public="1"><x path="Map">
-	<c path="String"/>
-	<c path="luxe.tilemaps.TileLayer"/>
-</x></layers>
-		<layers_ordered public="1"><c path="Array"><c path="luxe.tilemaps.TileLayer"/></c></layers_ordered>
-		<tilesets public="1"><x path="Map">
-	<c path="String"/>
-	<c path="luxe.tilemaps.Tileset"/>
-</x></tilesets>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<orientation public="1"><e path="luxe.tilemaps.TilemapOrientation"/></orientation>
-		<visuals public="1"><c path="luxe.tilemaps.TilemapVisuals"/></visuals>
-		<pos public="1"><t path="luxe.Vector"/></pos>
-		<tile_width public="1"><x path="Int"/></tile_width>
-		<tile_height public="1"><x path="Int"/></tile_height>
-		<width public="1"><x path="Int"/></width>
-		<height public="1"><x path="Int"/></height>
-		<total_width public="1" get="accessor" set="null">
-			<x path="Int"/>
-			<meta><m n=":isVar"/></meta>
-		</total_width>
-		<total_height public="1" get="accessor" set="null">
-			<x path="Int"/>
-			<meta><m n=":isVar"/></meta>
-		</total_height>
-		<bounds public="1" get="accessor" set="null">
-			<t path="luxe.Rectangle"/>
-			<meta><m n=":isVar"/></meta>
-		</bounds>
-		<display public="1" set="method" line="345"><f a="options">
-	<d/>
-	<x path="Void"/>
-</f></display>
-		<inside public="1" set="method" line="358"><f a="x:y">
-	<x path="Int"/>
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></inside>
-		<tile_pos public="1" set="method" line="384"><f a="layer_name:x:y:?offset_x:?offset_y" v=":::null:null">
-	<c path="String"/>
-	<x path="Int"/>
-	<x path="Int"/>
-	<e path="luxe.tilemaps.TileOffset"/>
-	<e path="luxe.tilemaps.TileOffset"/>
-	<c path="phoenix.Vector"/>
-</f></tile_pos>
-		<tile_at_pos public="1" set="method" line="412"><f a="layer_name:worldpos">
-	<c path="String"/>
-	<t path="luxe.Vector"/>
-	<c path="luxe.tilemaps.Tile"/>
-</f></tile_at_pos>
-		<worldpos_to_map public="1" set="method" line="440"><f a="worldpos">
-	<t path="luxe.Vector"/>
-	<t path="luxe.Vector"/>
-</f></worldpos_to_map>
-		<layer public="1" set="method" line="460"><f a="layer_name">
-	<c path="String"/>
-	<t path="Null"><c path="luxe.tilemaps.TileLayer"/></t>
-</f></layer>
-		<tileset public="1" set="method" line="464"><f a="layer_name">
-	<c path="String"/>
-	<t path="Null"><c path="luxe.tilemaps.Tileset"/></t>
-</f></tileset>
-		<tile_at public="1" set="method" line="469"><f a="layer_name:x:y">
-	<c path="String"/>
-	<x path="Int"/>
-	<x path="Int"/>
-	<c path="luxe.tilemaps.Tile"/>
-</f></tile_at>
-		<iterator public="1" set="method" line="486"><f a=""><t path="Iterator"><c path="luxe.tilemaps.TileLayer"/></t></f></iterator>
-		<add_tileset public="1" set="method" line="492"><f a="options">
-	<t path="luxe.options.TilesetOptions"/>
-	<c path="luxe.tilemaps.Tileset"/>
-</f></add_tileset>
-		<_sort_layers set="method" line="502"><f a="a:b">
-	<c path="luxe.tilemaps.TileLayer"/>
-	<c path="luxe.tilemaps.TileLayer"/>
-	<x path="Int"/>
-</f></_sort_layers>
-		<sort_layers set="method" line="508"><f a=""><x path="Void"/></f></sort_layers>
-		<tileset_from_id public="1" set="method" line="512"><f a="_id">
-	<x path="Int"/>
-	<c path="luxe.tilemaps.Tileset"/>
-</f></tileset_from_id>
-		<remove_tile public="1" set="method" line="529"><f a="layer_name:x:y">
-	<c path="String"/>
-	<x path="Int"/>
-	<x path="Int"/>
-	<x path="Bool"/>
-</f></remove_tile>
-		<remove_tileset public="1" set="method" line="544"><f a="name:?_destroy_textures" v=":false">
-	<c path="String"/>
-	<x path="Bool"/>
-	<x path="Bool"/>
-</f></remove_tileset>
-		<remove_layer public="1" set="method" line="556"><f a="name">
-	<c path="String"/>
-	<x path="Bool"/>
-</f></remove_layer>
-		<add_layer public="1" set="method" line="568"><f a="options">
-	<t path="luxe.options.TileLayerOptions"/>
-	<c path="luxe.tilemaps.TileLayer"/>
-</f></add_layer>
-		<add_tiles_fill_by_id public="1" set="method" line="585"><f a="layer_name:?_tileid" v=":0">
-	<c path="String"/>
-	<x path="Int"/>
-	<x path="Void"/>
-</f></add_tiles_fill_by_id>
-		<add_tiles_from_grid public="1" set="method" line="621"><f a="layer_name:grid">
-	<c path="String"/>
-	<c path="Array"><c path="Array"><x path="Int"/></c></c>
-	<x path="Void"/>
-</f></add_tiles_from_grid>
-		<get_total_width set="method" line="666"><f a=""><x path="Int"/></f></get_total_width>
-		<get_total_height set="method" line="670"><f a=""><x path="Int"/></f></get_total_height>
-		<get_bounds set="method" line="674"><f a=""><t path="luxe.Rectangle"/></f></get_bounds>
-		<new public="1" set="method" line="321"><f a="options">
-	<t path="luxe.options.TilemapOptions"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.TiledMap" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/TiledMap.hx">
-		<extends path="luxe.tilemaps.Tilemap"/>
-		<tiledmap_data public="1"><c path="luxe.tilemaps.tiled.TiledMapData"/></tiledmap_data>
-		<_load_tilesets set="method" line="63"><f a="options">
-	<t path="luxe.tilemaps.TiledMapOptions"/>
-	<x path="Void"/>
-</f></_load_tilesets>
-		<_load_layers set="method" line="83"><f a="options">
-	<t path="luxe.tilemaps.TiledMapOptions"/>
-	<x path="Void"/>
-</f></_load_layers>
-		<new public="1" set="method" line="19"><f a="options">
-	<t path="luxe.tilemaps.TiledMapOptions"/>
 	<x path="Void"/>
 </f></new>
 		<meta><m n=":keep"/></meta>
@@ -12511,237 +13155,6 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<meta><m n=":flatEnum"/></meta>
 	</enum>
 	<typedef path="luxe.tilemaps.TileArray" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/Tilemap.hx" module="luxe.tilemaps.Tilemap"><c path="Array"><c path="luxe.tilemaps.Tile"/></c></typedef>
-	<class path="luxe.tilemaps.tiled.TiledLayer" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledLayer.hx">
-		<tiled_base64_to_IntArray set="method" line="170" static="1"><f a="base64_data:lineWidth:compression">
-	<c path="String"/>
-	<x path="Int"/>
-	<c path="String"/>
-	<c path="Array"><x path="Int"/></c>
-</f></tiled_base64_to_IntArray>
-		<opacity public="1"><x path="Float"/></opacity>
-		<visible public="1"><x path="Bool"/></visible>
-		<name public="1"><c path="String"/></name>
-		<width public="1"><x path="Int"/></width>
-		<height public="1"><x path="Int"/></height>
-		<map public="1"><c path="luxe.tilemaps.tiled.TiledMapData"/></map>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<tiles public="1"><c path="Array"><c path="luxe.tilemaps.tiled.TiledTile"/></c></tiles>
-		<is_valid_xml_element set="method" line="26"><f a="element">
-	<c path="Xml"/>
-	<x path="Bool"/>
-</f></is_valid_xml_element>
-		<from_xml public="1" set="method" line="30"><f a="xml">
-	<c path="Xml"/>
-	<x path="Void"/>
-</f></from_xml>
-		<from_json public="1" set="method" line="111"><f a="json">
-	<d/>
-	<x path="Void"/>
-</f></from_json>
-		<csv_to_IntArray set="method" line="147"><f a="input">
-	<c path="String"/>
-	<c path="Array"><x path="Int"/></c>
-</f></csv_to_IntArray>
-		<new public="1" set="method" line="20"><f a="_map">
-	<c path="luxe.tilemaps.tiled.TiledMapData"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.tiled.TiledMapData" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledMapData.hx">
-		<version public="1"><c path="String"/></version>
-		<background_color public="1"><c path="String"/></background_color>
-		<width public="1"><x path="Int"/></width>
-		<height public="1"><x path="Int"/></height>
-		<orientation public="1"><e path="luxe.tilemaps.TilemapOrientation"/></orientation>
-		<tile_width public="1"><x path="Int"/></tile_width>
-		<tile_height public="1"><x path="Int"/></tile_height>
-		<tilesets public="1"><c path="Array"><c path="luxe.tilemaps.tiled.TiledTileset"/></c></tilesets>
-		<layers public="1"><c path="Array"><c path="luxe.tilemaps.tiled.TiledLayer"/></c></layers>
-		<object_groups public="1"><c path="Array"><c path="luxe.tilemaps.tiled.TiledObjectGroup"/></c></object_groups>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<toString set="method" line="50"><f a=""><c path="String"/></f></toString>
-		<is_valid_xml_element set="method" line="54"><f a="element">
-	<c path="Xml"/>
-	<x path="Bool"/>
-</f></is_valid_xml_element>
-		<orientation_from_string set="method" line="58"><f a="_orientation_string">
-	<c path="String"/>
-	<e path="luxe.tilemaps.TilemapOrientation"/>
-</f></orientation_from_string>
-		<parseFromXML public="1" set="method" line="73"><f a="xml">
-	<c path="Xml"/>
-	<x path="Void"/>
-</f></parseFromXML>
-		<parseFromJSON public="1" set="method" line="141"><f a="json">
-	<d/>
-	<x path="Void"/>
-</f></parseFromJSON>
-		<new public="1" set="method" line="35"><f a=""><x path="Void"/></f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.tiled.TiledPropertyTile" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledMapData.hx" module="luxe.tilemaps.tiled.TiledMapData">
-		<id public="1"><x path="Int"/></id>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<new public="1" set="method" line="221"><f a="_id:_properties">
-	<x path="Int"/>
-	<x path="Map">
-		<c path="String"/>
-		<c path="String"/>
-	</x>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<enum path="luxe.tilemaps.tiled.TiledObjectType" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledObjectGroup.hx" module="luxe.tilemaps.tiled.TiledObjectGroup">
-		<polyline/>
-		<polygon/>
-		<rectangle/>
-		<ellipse/>
-		<meta><m n=":flatEnum"/></meta>
-	</enum>
-	<class path="luxe.tilemaps.tiled.TiledPolyObject" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledObjectGroup.hx" module="luxe.tilemaps.tiled.TiledObjectGroup">
-		<origin public="1"><t path="luxe.Vector"/></origin>
-		<points public="1"><c path="Array"><t path="luxe.Vector"/></c></points>
-		<new public="1" set="method" line="16"><f a="_origin:_points">
-	<t path="luxe.Vector"/>
-	<c path="Array"><t path="luxe.Vector"/></c>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.tiled.TiledObject" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledObjectGroup.hx" module="luxe.tilemaps.tiled.TiledObjectGroup">
-		<group public="1"><c path="luxe.tilemaps.tiled.TiledObjectGroup"/></group>
-		<gid public="1"><x path="Int"/></gid>
-		<name public="1"><c path="String"/></name>
-		<type public="1"><c path="String"/></type>
-		<visible public="1"><x path="Bool"/></visible>
-		<pos public="1"><t path="luxe.Vector"/></pos>
-		<width public="1"><x path="Int"/></width>
-		<height public="1"><x path="Int"/></height>
-		<polyobject public="1"><c path="luxe.tilemaps.tiled.TiledPolyObject"/></polyobject>
-		<object_type public="1"><e path="luxe.tilemaps.tiled.TiledObjectType"/></object_type>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<is_valid_xml_element set="method" line="52"><f a="element">
-	<c path="Xml"/>
-	<x path="Bool"/>
-</f></is_valid_xml_element>
-		<polyobject_from_xml set="method" line="56"><f a="xml">
-	<c path="Xml"/>
-	<c path="luxe.tilemaps.tiled.TiledPolyObject"/>
-</f></polyobject_from_xml>
-		<polyobject_from_json set="method" line="71"><f a="json">
-	<d/>
-	<c path="luxe.tilemaps.tiled.TiledPolyObject"/>
-</f></polyobject_from_json>
-		<from_xml public="1" set="method" line="87"><f a="xml">
-	<c path="Xml"/>
-	<x path="Void"/>
-</f></from_xml>
-		<from_json public="1" set="method" line="140"><f a="json">
-	<d/>
-	<x path="Void"/>
-</f></from_json>
-		<new public="1" set="method" line="46"><f a="_group">
-	<c path="luxe.tilemaps.tiled.TiledObjectGroup"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.tiled.TiledObjectGroup" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledObjectGroup.hx">
-		<map public="1"><c path="luxe.tilemaps.tiled.TiledMapData"/></map>
-		<name public="1"><c path="String"/></name>
-		<width public="1"><x path="Int"/></width>
-		<height public="1"><x path="Int"/></height>
-		<visible public="1"><x path="Bool"/></visible>
-		<opacity public="1"><x path="Float"/></opacity>
-		<color public="1"><c path="String"/></color>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<objects public="1"><c path="Array"><c path="luxe.tilemaps.tiled.TiledObject"/></c></objects>
-		<is_valid_xml_element set="method" line="221"><f a="element">
-	<c path="Xml"/>
-	<x path="Bool"/>
-</f></is_valid_xml_element>
-		<from_xml public="1" set="method" line="225"><f a="xml">
-	<c path="Xml"/>
-	<x path="Void"/>
-</f></from_xml>
-		<from_json public="1" set="method" line="254"><f a="json">
-	<d/>
-	<x path="Void"/>
-</f></from_json>
-		<new public="1" set="method" line="209"><f a="_map">
-	<c path="luxe.tilemaps.tiled.TiledMapData"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.tiled.TiledTile" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledTile.hx">
-		<layer public="1"><c path="luxe.tilemaps.tiled.TiledLayer"/></layer>
-		<id public="1"><x path="Int"/></id>
-		<width public="1" get="accessor" set="null">
-			<x path="Int"/>
-			<meta><m n=":isVar"/></meta>
-		</width>
-		<height public="1" get="accessor" set="null">
-			<x path="Int"/>
-			<meta><m n=":isVar"/></meta>
-		</height>
-		<get_width public="1" set="method" line="18"><f a=""><x path="Int"/></f></get_width>
-		<get_height public="1" set="method" line="22"><f a=""><x path="Int"/></f></get_height>
-		<new public="1" set="method" line="13"><f a="_layer:_id">
-	<c path="luxe.tilemaps.tiled.TiledLayer"/>
-	<x path="Int"/>
-	<x path="Void"/>
-</f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
-	<class path="luxe.tilemaps.tiled.TiledTileset" params="" file="/Users/sven/dev/luxe/luxe/luxe/tilemaps/tiled/TiledTileset.hx">
-		<name public="1"><c path="String"/></name>
-		<texture_name public="1"><c path="String"/></texture_name>
-		<first_id public="1"><x path="Int"/></first_id>
-		<tile_width public="1"><x path="Int"/></tile_width>
-		<tile_height public="1"><x path="Int"/></tile_height>
-		<margin public="1"><x path="Int"/></margin>
-		<spacing public="1"><x path="Int"/></spacing>
-		<properties public="1"><x path="Map">
-	<c path="String"/>
-	<c path="String"/>
-</x></properties>
-		<property_tiles public="1"><x path="Map">
-	<x path="Int"/>
-	<c path="luxe.tilemaps.tiled.TiledPropertyTile"/>
-</x></property_tiles>
-		<is_valid_xml_element set="method" line="27"><f a="element">
-	<c path="Xml"/>
-	<x path="Bool"/>
-</f></is_valid_xml_element>
-		<from_xml public="1" set="method" line="31"><f a="xml">
-	<c path="Xml"/>
-	<x path="Void"/>
-</f></from_xml>
-		<from_json public="1" set="method" line="93"><f a="json">
-	<d/>
-	<x path="Void"/>
-</f></from_json>
-		<new public="1" set="method" line="20"><f a=""><x path="Void"/></f></new>
-		<meta><m n=":keep"/></meta>
-	</class>
 	<class path="luxe.tween.actuators.IGenericActuator" params="" file="/Users/sven/dev/luxe/luxe/luxe/tween/actuators/GenericActuator.hx" module="luxe.tween.actuators.GenericActuator" interface="1">
 		<autoVisible public="1" set="method">
 			<f a="?value">
@@ -14753,7 +15166,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<meta><m n=":isVar"/></meta>
 		</layer>
 		<enabled public="1"><x path="Bool"/></enabled>
-		<geometry public="1"><c path="luxe.structural.BalancedBinarySearchTree">
+		<geometry public="1"><c path="luxe.structural.BalancedBST">
 	<t path="phoenix.geometry.GeometryKey"/>
 	<c path="phoenix.geometry.Geometry"/>
 </c></geometry>
@@ -16177,12 +16590,12 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	</class>
 	<class path="phoenix.RenderPath" params="" file="/Users/sven/dev/luxe/luxe/phoenix/RenderPath.hx">
 		<renderer public="1"><c path="phoenix.Renderer"/></renderer>
-		<render public="1" set="method" line="18"><f a="_batchers:_stats">
+		<render public="1" set="method" line="16"><f a="_batchers:_stats">
 	<c path="Array"><c path="phoenix.Batcher"/></c>
 	<c path="phoenix.RendererStats"/>
 	<x path="Void"/>
 </f></render>
-		<new public="1" set="method" line="13"><f a="_renderer">
+		<new public="1" set="method" line="12"><f a="_renderer">
 	<c path="phoenix.Renderer"/>
 	<x path="Void"/>
 </f></new>
@@ -16458,9 +16871,9 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<stop_count public="1"><x path="Int"/></stop_count>
 		<clear_color public="1"><c path="phoenix.Color"/></clear_color>
 		<stats public="1"><c path="phoenix.RendererStats"/></stats>
-		<init public="1" set="method" line="90"><f a=""><x path="Void"/></f></init>
-		<destroy public="1" set="method" line="141"><f a=""><x path="Void"/></f></destroy>
-		<sort_batchers public="1" set="method" line="147">
+		<init public="1" set="method" line="86"><f a=""><x path="Void"/></f></init>
+		<destroy public="1" set="method" line="137"><f a=""><x path="Void"/></f></destroy>
+		<sort_batchers public="1" set="method" line="143">
 			<f a="a:b">
 				<c path="phoenix.Batcher"/>
 				<c path="phoenix.Batcher"/>
@@ -16468,51 +16881,51 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 		</sort_batchers>
-		<add_batch public="1" set="method" line="153"><f a="batch">
+		<add_batch public="1" set="method" line="149"><f a="batch">
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></add_batch>
-		<remove_batch public="1" set="method" line="160"><f a="batch">
+		<remove_batch public="1" set="method" line="156"><f a="batch">
 	<c path="phoenix.Batcher"/>
 	<x path="Void"/>
 </f></remove_batch>
-		<create_batcher public="1" set="method" line="167">
+		<create_batcher public="1" set="method" line="163">
 			<f a="?options" v="null">
 				<t path="luxe.options.BatcherOptions"/>
 				<c path="phoenix.Batcher"/>
 			</f>
 			<haxe_doc>Create a batcher, convenience for create batcher, add batcher (option), and create a camera for the batcher.</haxe_doc>
 		</create_batcher>
-		<clear public="1" set="method" line="204"><f a="_color">
+		<clear public="1" set="method" line="200"><f a="_color">
 	<c path="phoenix.Color"/>
 	<x path="Void"/>
 </f></clear>
-		<blend_mode public="1" set="method" line="222"><f a="?_src_mode:?_dst_mode" v="null:null">
+		<blend_mode public="1" set="method" line="218"><f a="?_src_mode:?_dst_mode" v="null:null">
 	<e path="phoenix.BlendMode"/>
 	<e path="phoenix.BlendMode"/>
 	<x path="Void"/>
 </f></blend_mode>
-		<process public="1" set="method" line="235">
+		<process public="1" set="method" line="231">
 			<f a=""><x path="Void"/></f>
 			<meta><m n=":noCompletion"/></meta>
 		</process>
-		<onresize public="1" set="method" line="256"><f a="e">
+		<onresize public="1" set="method" line="252"><f a="e">
 	<d/>
 	<x path="Void"/>
 </f></onresize>
-		<set_vsync set="method" line="260"><f a="_vsync">
+		<set_vsync set="method" line="256"><f a="_vsync">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_vsync>
-		<get_vsync set="method" line="268"><f a=""><x path="Bool"/></f></get_vsync>
-		<get_target set="method" line="274"><f a=""><c path="phoenix.RenderTexture"/></f></get_target>
-		<set_target set="method" line="280"><f a="_target">
+		<get_vsync set="method" line="264"><f a=""><x path="Bool"/></f></get_vsync>
+		<get_target set="method" line="270"><f a=""><c path="phoenix.RenderTexture"/></f></get_target>
+		<set_target set="method" line="276"><f a="_target">
 	<c path="phoenix.RenderTexture"/>
 	<c path="phoenix.RenderTexture"/>
 </f></set_target>
-		<create_default_shaders set="method" line="302"><f a=""><x path="Void"/></f></create_default_shaders>
-		<create_default_font set="method" line="330"><f a=""><x path="Void"/></f></create_default_font>
-		<new public="1" set="method" line="75"><f a="_core">
+		<create_default_shaders set="method" line="298"><f a=""><x path="Void"/></f></create_default_shaders>
+		<create_default_font set="method" line="326"><f a=""><x path="Void"/></f></create_default_font>
+		<new public="1" set="method" line="71"><f a="_core">
 	<c path="luxe.Core"/>
 	<x path="Void"/>
 </f></new>
@@ -16527,9 +16940,9 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<draw_calls public="1"><x path="Int"/></draw_calls>
 		<group_count public="1"><x path="Int"/></group_count>
 		<vert_count public="1"><x path="Int"/></vert_count>
-		<reset public="1" set="method" line="363"><f a=""><x path="Void"/></f></reset>
-		<toString set="method" line="373"><f a=""><c path="String"/></f></toString>
-		<new public="1" set="method" line="353"><f a=""><x path="Void"/></f></new>
+		<reset public="1" set="method" line="359"><f a=""><x path="Void"/></f></reset>
+		<toString set="method" line="369"><f a=""><c path="String"/></f></toString>
+		<new public="1" set="method" line="349"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<enum path="phoenix.UniformValueType" params="" file="/Users/sven/dev/luxe/luxe/phoenix/Shader.hx" module="phoenix.Shader">
@@ -17083,57 +17496,57 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="phoenix.Vector" params="" file="/Users/sven/dev/luxe/luxe/phoenix/Vector.hx">
-		<Add public="1" set="method" line="145" static="1"><f a="a:b">
+		<Add public="1" set="method" line="147" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></Add>
-		<Subtract public="1" set="method" line="153" static="1"><f a="a:b">
+		<Subtract public="1" set="method" line="155" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></Subtract>
-		<MultiplyVector public="1" set="method" line="161" static="1"><f a="a:b">
+		<MultiplyVector public="1" set="method" line="163" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></MultiplyVector>
-		<DivideVector public="1" set="method" line="169" static="1"><f a="a:b">
+		<DivideVector public="1" set="method" line="171" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></DivideVector>
-		<Multiply public="1" set="method" line="177" static="1"><f a="a:b">
+		<Multiply public="1" set="method" line="179" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></Multiply>
-		<Divide public="1" set="method" line="185" static="1"><f a="a:b">
+		<Divide public="1" set="method" line="187" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></Divide>
-		<AddScalar public="1" set="method" line="193" static="1"><f a="a:b">
+		<AddScalar public="1" set="method" line="195" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></AddScalar>
-		<SubtractScalar public="1" set="method" line="201" static="1"><f a="a:b">
+		<SubtractScalar public="1" set="method" line="203" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></SubtractScalar>
-		<Cross public="1" set="method" line="209" static="1"><f a="a:b">
+		<Cross public="1" set="method" line="211" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></Cross>
-		<RotationTo public="1" set="method" line="217" static="1"><f a="a:b">
+		<RotationTo public="1" set="method" line="219" static="1"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 </f></RotationTo>
-		<listen public="1" set="method" line="221" static="1"><f a="_v:listener">
+		<listen public="1" set="method" line="223" static="1"><f a="_v:listener">
 	<c path="phoenix.Vector"/>
 	<f a="">
 		<x path="Float"/>
@@ -17141,11 +17554,11 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	</f>
 	<x path="Void"/>
 </f></listen>
-		<Degrees public="1" set="method" line="650" static="1"><f a="_radian_vector">
+		<Degrees public="1" set="method" line="652" static="1"><f a="_radian_vector">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></Degrees>
-		<Radians public="1" set="method" line="654" static="1"><f a="_degree_vector">
+		<Radians public="1" set="method" line="656" static="1"><f a="_degree_vector">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></Radians>
@@ -17236,120 +17649,120 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></set>
-		<int public="1" set="method" line="79"><f a=""><x path="Void"/></f></int>
-		<int_x public="1" set="method" line="87"><f a=""><x path="Void"/></f></int_x>
-		<int_y public="1" set="method" line="91"><f a=""><x path="Void"/></f></int_y>
-		<int_z public="1" set="method" line="95"><f a=""><x path="Void"/></f></int_z>
-		<toString set="method" line="99"><f a=""><c path="String"/></f></toString>
-		<equals public="1" set="method" line="103"><f a="other">
+		<int public="1" set="method" line="79"><f a=""><c path="phoenix.Vector"/></f></int>
+		<int_x public="1" set="method" line="89"><f a=""><x path="Void"/></f></int_x>
+		<int_y public="1" set="method" line="93"><f a=""><x path="Void"/></f></int_y>
+		<int_z public="1" set="method" line="97"><f a=""><x path="Void"/></f></int_z>
+		<toString set="method" line="101"><f a=""><c path="String"/></f></toString>
+		<equals public="1" set="method" line="105"><f a="other">
 	<c path="phoenix.Vector"/>
 	<x path="Bool"/>
 </f></equals>
-		<clone public="1" set="method" line="107"><f a=""><c path="phoenix.Vector"/></f></clone>
-		<normalize public="1" set="method" line="111"><f a=""><c path="phoenix.Vector"/></f></normalize>
-		<dot public="1" set="method" line="116"><f a="other">
+		<clone public="1" set="method" line="109"><f a=""><c path="phoenix.Vector"/></f></clone>
+		<normalize public="1" set="method" line="113"><f a=""><c path="phoenix.Vector"/></f></normalize>
+		<dot public="1" set="method" line="118"><f a="other">
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 </f></dot>
-		<cross public="1" set="method" line="123"><f a="a:b">
+		<cross public="1" set="method" line="125"><f a="a:b">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></cross>
-		<invert public="1" set="method" line="133"><f a=""><c path="phoenix.Vector"/></f></invert>
-		<add public="1" set="method" line="229"><f a="other">
+		<invert public="1" set="method" line="135"><f a=""><c path="phoenix.Vector"/></f></invert>
+		<add public="1" set="method" line="231"><f a="other">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></add>
-		<subtract public="1" set="method" line="243"><f a="other">
+		<subtract public="1" set="method" line="245"><f a="other">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></subtract>
-		<multiply public="1" set="method" line="257"><f a="other">
+		<multiply public="1" set="method" line="259"><f a="other">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></multiply>
-		<divide public="1" set="method" line="271"><f a="other">
+		<divide public="1" set="method" line="273"><f a="other">
 	<c path="phoenix.Vector"/>
 	<c path="phoenix.Vector"/>
 </f></divide>
-		<addScalar public="1" set="method" line="285"><f a="v">
+		<addScalar public="1" set="method" line="287"><f a="v">
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></addScalar>
-		<subtractScalar public="1" set="method" line="295"><f a="v">
+		<subtractScalar public="1" set="method" line="297"><f a="v">
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></subtractScalar>
-		<multiplyScalar public="1" set="method" line="305"><f a="v">
+		<multiplyScalar public="1" set="method" line="307"><f a="v">
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></multiplyScalar>
-		<divideScalar public="1" set="method" line="315"><f a="v">
+		<divideScalar public="1" set="method" line="317"><f a="v">
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></divideScalar>
-		<set_length set="method" line="334"><f a="value">
+		<set_length set="method" line="336"><f a="value">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_length>
-		<get_length set="method" line="342"><f a=""><x path="Float"/></f></get_length>
-		<get_lengthsq set="method" line="349"><f a=""><x path="Float"/></f></get_lengthsq>
-		<get_normalized set="method" line="355"><f a=""><c path="phoenix.Vector"/></f></get_normalized>
-		<set_x set="method" line="361"><f a="_x">
+		<get_length set="method" line="344"><f a=""><x path="Float"/></f></get_length>
+		<get_lengthsq set="method" line="351"><f a=""><x path="Float"/></f></get_lengthsq>
+		<get_normalized set="method" line="357"><f a=""><c path="phoenix.Vector"/></f></get_normalized>
+		<set_x set="method" line="363"><f a="_x">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_x>
-		<set_y set="method" line="371"><f a="_y">
+		<set_y set="method" line="373"><f a="_y">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_y>
-		<set_z set="method" line="381"><f a="_z">
+		<set_z set="method" line="383"><f a="_z">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_z>
-		<get_inverted set="method" line="391"><f a=""><c path="phoenix.Vector"/></f></get_inverted>
-		<set_angle2D set="method" line="400"><f a="value">
+		<get_inverted set="method" line="393"><f a=""><c path="phoenix.Vector"/></f></get_inverted>
+		<set_angle2D set="method" line="402"><f a="value">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_angle2D>
-		<get_angle2D set="method" line="411"><f a=""><x path="Float"/></f></get_angle2D>
-		<truncate public="1" set="method" line="422"><f a="max">
+		<get_angle2D set="method" line="413"><f a=""><x path="Float"/></f></get_angle2D>
+		<truncate public="1" set="method" line="424"><f a="max">
 	<x path="Float"/>
 	<c path="phoenix.Vector"/>
 </f></truncate>
-		<rotationTo public="1" set="method" line="430"><f a="other">
+		<rotationTo public="1" set="method" line="432"><f a="other">
 	<c path="phoenix.Vector"/>
 	<x path="Float"/>
 </f></rotationTo>
-		<applyQuaternion public="1" set="method" line="438"><f a="q">
+		<applyQuaternion public="1" set="method" line="440"><f a="q">
 	<c path="phoenix.Quaternion"/>
 	<c path="phoenix.Vector"/>
 </f></applyQuaternion>
-		<applyProjection public="1" set="method" line="458"><f a="m">
+		<applyProjection public="1" set="method" line="460"><f a="m">
 	<c path="phoenix.Matrix"/>
 	<c path="phoenix.Vector"/>
 </f></applyProjection>
-		<transform public="1" set="method" line="472"><f a="_m">
+		<transform public="1" set="method" line="474"><f a="_m">
 	<c path="phoenix.Matrix"/>
 	<c path="phoenix.Vector"/>
 </f></transform>
-		<transformDirection public="1" set="method" line="488"><f a="m">
+		<transformDirection public="1" set="method" line="490"><f a="m">
 	<c path="phoenix.Matrix"/>
 	<c path="phoenix.Vector"/>
 </f></transformDirection>
-		<setEulerFromRotationMatrix public="1" set="method" line="503"><f a="m:?order" v=":'XYZ'">
+		<setEulerFromRotationMatrix public="1" set="method" line="505"><f a="m:?order" v=":'XYZ'">
 	<c path="phoenix.Matrix"/>
 	<c path="String"/>
 	<c path="phoenix.Vector"/>
 </f></setEulerFromRotationMatrix>
-		<setEulerFromQuaternion public="1" set="method" line="589"><f a="q:?order" v=":'XYZ'">
+		<setEulerFromQuaternion public="1" set="method" line="591"><f a="q:?order" v=":'XYZ'">
 	<c path="phoenix.Quaternion"/>
 	<c path="String"/>
 	<c path="phoenix.Vector"/>
 </f></setEulerFromQuaternion>
-		<degrees public="1" set="method" line="632"><f a=""><c path="phoenix.Vector"/></f></degrees>
-		<radians public="1" set="method" line="641"><f a=""><c path="phoenix.Vector"/></f></radians>
+		<degrees public="1" set="method" line="634"><f a=""><c path="phoenix.Vector"/></f></degrees>
+		<radians public="1" set="method" line="643"><f a=""><c path="phoenix.Vector"/></f></radians>
 		<new public="1" set="method" line="24"><f a="?_x:?_y:?_z:?_w" v="0:0:0:0">
 	<x path="Float"/>
 	<x path="Float"/>
@@ -17364,7 +17777,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<this><c path="phoenix.Vector"/></this>
 		<to><icast><c path="phoenix.Vector"/></icast></to>
 		<impl><class path="phoenix._Vector.Vec_Impl_" params="" file="/Users/sven/dev/luxe/luxe/phoenix/Vector.hx" private="1" module="phoenix.Vector">
-	<_new public="1" get="inline" set="null" line="664" static="1">
+	<_new public="1" get="inline" set="null" line="666" static="1">
 		<f a="?_x:?_y:?_z:?_w" v="null:null:null:null">
 			<x path="Float"/>
 			<x path="Float"/>
@@ -17374,7 +17787,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		</f>
 		<meta><m n=":impl"/></meta>
 	</_new>
-	<_multiply public="1" set="method" line="668" static="1">
+	<_multiply public="1" set="method" line="670" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="phoenix.Vec"/>
@@ -17385,7 +17798,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A*B</e></m>
 		</meta>
 	</_multiply>
-	<_multiply_scalar public="1" set="method" line="671" static="1">
+	<_multiply_scalar public="1" set="method" line="673" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Float"/>
@@ -17396,7 +17809,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A*B</e></m>
 		</meta>
 	</_multiply_scalar>
-	<_multiply_scalar_int public="1" set="method" line="674" static="1">
+	<_multiply_scalar_int public="1" set="method" line="676" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Int"/>
@@ -17407,7 +17820,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A*B</e></m>
 		</meta>
 	</_multiply_scalar_int>
-	<_divide public="1" set="method" line="678" static="1">
+	<_divide public="1" set="method" line="680" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="phoenix.Vec"/>
@@ -17418,7 +17831,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A/B</e></m>
 		</meta>
 	</_divide>
-	<_divide_scalar public="1" set="method" line="681" static="1">
+	<_divide_scalar public="1" set="method" line="683" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Float"/>
@@ -17429,7 +17842,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A/B</e></m>
 		</meta>
 	</_divide_scalar>
-	<_divide_scalar_int public="1" set="method" line="684" static="1">
+	<_divide_scalar_int public="1" set="method" line="686" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Int"/>
@@ -17440,7 +17853,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A/B</e></m>
 		</meta>
 	</_divide_scalar_int>
-	<_add public="1" set="method" line="688" static="1">
+	<_add public="1" set="method" line="690" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="phoenix.Vec"/>
@@ -17451,7 +17864,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A+B</e></m>
 		</meta>
 	</_add>
-	<_add_scalar public="1" set="method" line="691" static="1">
+	<_add_scalar public="1" set="method" line="693" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Float"/>
@@ -17462,7 +17875,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A+B</e></m>
 		</meta>
 	</_add_scalar>
-	<_add_scalar_int public="1" set="method" line="694" static="1">
+	<_add_scalar_int public="1" set="method" line="696" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Int"/>
@@ -17473,7 +17886,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A+B</e></m>
 		</meta>
 	</_add_scalar_int>
-	<_subtract public="1" set="method" line="698" static="1">
+	<_subtract public="1" set="method" line="700" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="phoenix.Vec"/>
@@ -17484,7 +17897,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A-B</e></m>
 		</meta>
 	</_subtract>
-	<_subtract_scalar public="1" set="method" line="701" static="1">
+	<_subtract_scalar public="1" set="method" line="703" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Float"/>
@@ -17495,7 +17908,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			<m n=":op"><e>A-B</e></m>
 		</meta>
 	</_subtract_scalar>
-	<_subtract_scalar_int public="1" set="method" line="704" static="1">
+	<_subtract_scalar_int public="1" set="method" line="706" static="1">
 		<f a="lhs:rhs">
 			<x path="phoenix.Vec"/>
 			<x path="Int"/>
@@ -17510,7 +17923,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 </class></impl>
 	</abstract>
 	<class path="phoenix._Vector.Vec_Impl_" params="" file="/Users/sven/dev/luxe/luxe/phoenix/Vector.hx" private="1" module="phoenix.Vector">
-		<_new public="1" get="inline" set="null" line="664" static="1">
+		<_new public="1" get="inline" set="null" line="666" static="1">
 			<f a="?_x:?_y:?_z:?_w" v="null:null:null:null">
 				<x path="Float"/>
 				<x path="Float"/>
@@ -17520,7 +17933,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 			</f>
 			<meta><m n=":impl"/></meta>
 		</_new>
-		<_multiply public="1" set="method" line="668" static="1">
+		<_multiply public="1" set="method" line="670" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="phoenix.Vec"/>
@@ -17531,7 +17944,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A*B</e></m>
 			</meta>
 		</_multiply>
-		<_multiply_scalar public="1" set="method" line="671" static="1">
+		<_multiply_scalar public="1" set="method" line="673" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Float"/>
@@ -17542,7 +17955,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A*B</e></m>
 			</meta>
 		</_multiply_scalar>
-		<_multiply_scalar_int public="1" set="method" line="674" static="1">
+		<_multiply_scalar_int public="1" set="method" line="676" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Int"/>
@@ -17553,7 +17966,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A*B</e></m>
 			</meta>
 		</_multiply_scalar_int>
-		<_divide public="1" set="method" line="678" static="1">
+		<_divide public="1" set="method" line="680" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="phoenix.Vec"/>
@@ -17564,7 +17977,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A/B</e></m>
 			</meta>
 		</_divide>
-		<_divide_scalar public="1" set="method" line="681" static="1">
+		<_divide_scalar public="1" set="method" line="683" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Float"/>
@@ -17575,7 +17988,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A/B</e></m>
 			</meta>
 		</_divide_scalar>
-		<_divide_scalar_int public="1" set="method" line="684" static="1">
+		<_divide_scalar_int public="1" set="method" line="686" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Int"/>
@@ -17586,7 +17999,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A/B</e></m>
 			</meta>
 		</_divide_scalar_int>
-		<_add public="1" set="method" line="688" static="1">
+		<_add public="1" set="method" line="690" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="phoenix.Vec"/>
@@ -17597,7 +18010,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A+B</e></m>
 			</meta>
 		</_add>
-		<_add_scalar public="1" set="method" line="691" static="1">
+		<_add_scalar public="1" set="method" line="693" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Float"/>
@@ -17608,7 +18021,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A+B</e></m>
 			</meta>
 		</_add_scalar>
-		<_add_scalar_int public="1" set="method" line="694" static="1">
+		<_add_scalar_int public="1" set="method" line="696" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Int"/>
@@ -17619,7 +18032,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A+B</e></m>
 			</meta>
 		</_add_scalar_int>
-		<_subtract public="1" set="method" line="698" static="1">
+		<_subtract public="1" set="method" line="700" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="phoenix.Vec"/>
@@ -17630,7 +18043,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A-B</e></m>
 			</meta>
 		</_subtract>
-		<_subtract_scalar public="1" set="method" line="701" static="1">
+		<_subtract_scalar public="1" set="method" line="703" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Float"/>
@@ -17641,7 +18054,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 				<m n=":op"><e>A-B</e></m>
 			</meta>
 		</_subtract_scalar>
-		<_subtract_scalar_int public="1" set="method" line="704" static="1">
+		<_subtract_scalar_int public="1" set="method" line="706" static="1">
 			<f a="lhs:rhs">
 				<x path="phoenix.Vec"/>
 				<x path="Int"/>
@@ -17655,7 +18068,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		<meta><m n=":keep"/></meta>
 	</class>
 	<class path="phoenix.geometry.Geometry" params="" file="/Users/sven/dev/luxe/luxe/phoenix/geometry/Geometry.hx">
-		<_sequence_key line="100" static="1"><x path="Int"/></_sequence_key>
+		<_sequence_key line="99" static="1"><x path="Int"/></_sequence_key>
 		<transform public="1"><c path="phoenix.Transform"/></transform>
 		<vertices public="1"><c path="Array"><c path="phoenix.geometry.Vertex"/></c></vertices>
 		<submitted public="1"><x path="Bool"/></submitted>
@@ -17734,23 +18147,23 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 		</clip>
 		<_final_vert_position><c path="phoenix.Vector"/></_final_vert_position>
 		<key public="1"><t path="phoenix.geometry.GeometryKey"/></key>
-		<key_string public="1" set="method" line="178"><f a=""><c path="String"/></f></key_string>
-		<refresh_key public="1" set="method" line="192"><f a=""><x path="Void"/></f></refresh_key>
-		<short_id public="1" set="method" line="208"><f a=""><c path="String"/></f></short_id>
-		<str public="1" set="method" line="214"><f a=""><x path="Void"/></f></str>
-		<drop public="1" set="method" line="222"><f a="?remove" v="true">
+		<key_string public="1" set="method" line="177"><f a=""><c path="String"/></f></key_string>
+		<refresh_key public="1" set="method" line="191"><f a=""><x path="Void"/></f></refresh_key>
+		<short_id public="1" set="method" line="207"><f a=""><c path="String"/></f></short_id>
+		<str public="1" set="method" line="213"><f a=""><x path="Void"/></f></str>
+		<drop public="1" set="method" line="221"><f a="?remove" v="true">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></drop>
-		<add public="1" set="method" line="241"><f a="v">
+		<add public="1" set="method" line="240"><f a="v">
 	<c path="phoenix.geometry.Vertex"/>
 	<x path="Void"/>
 </f></add>
-		<remove public="1" set="method" line="252"><f a="v">
+		<remove public="1" set="method" line="251"><f a="v">
 	<c path="phoenix.geometry.Vertex"/>
 	<x path="Void"/>
 </f></remove>
-		<batch public="1" set="method" line="258"><f a="vert_index:tcoord_index:color_index:normal_index:vertlist:tcoordlist:colorlist:normallist">
+		<batch public="1" set="method" line="257"><f a="vert_index:tcoord_index:color_index:normal_index:vertlist:tcoordlist:colorlist:normallist">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -17761,72 +18174,72 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 	<t path="snow.utils.Float32Array"/>
 	<x path="Void"/>
 </f></batch>
-		<batch_into_arrays public="1" set="method" line="305"><f a="vertlist:tcoordlist:colorlist:normallist">
+		<batch_into_arrays public="1" set="method" line="304"><f a="vertlist:tcoordlist:colorlist:normallist">
 	<c path="Array"><x path="Float"/></c>
 	<c path="Array"><x path="Float"/></c>
 	<c path="Array"><x path="Float"/></c>
 	<c path="Array"><x path="Float"/></c>
 	<x path="Void"/>
 </f></batch_into_arrays>
-		<translate public="1" set="method" line="345"><f a="_offset">
+		<translate public="1" set="method" line="344"><f a="_offset">
 	<c path="phoenix.Vector"/>
 	<x path="Void"/>
 </f></translate>
-		<set_locked set="method" line="351"><f a="_locked">
+		<set_locked set="method" line="350"><f a="_locked">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_locked>
-		<get_locked set="method" line="357"><f a=""><x path="Bool"/></f></get_locked>
-		<set_dirty set="method" line="363"><f a="_dirty">
+		<get_locked set="method" line="356"><f a=""><x path="Bool"/></f></get_locked>
+		<set_dirty set="method" line="362"><f a="_dirty">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_dirty>
-		<get_dirty set="method" line="369"><f a=""><x path="Bool"/></f></get_dirty>
-		<refresh set="method" line="377"><f a=""><x path="Void"/></f></refresh>
-		<get_primitive_type set="method" line="426"><f a=""><e path="phoenix.PrimitiveType"/></f></get_primitive_type>
-		<set_primitive_type set="method" line="432"><f a="val">
+		<get_dirty set="method" line="368"><f a=""><x path="Bool"/></f></get_dirty>
+		<refresh set="method" line="376"><f a=""><x path="Void"/></f></refresh>
+		<get_primitive_type set="method" line="425"><f a=""><e path="phoenix.PrimitiveType"/></f></get_primitive_type>
+		<set_primitive_type set="method" line="431"><f a="val">
 	<e path="phoenix.PrimitiveType"/>
 	<e path="phoenix.PrimitiveType"/>
 </f></set_primitive_type>
-		<get_texture set="method" line="446"><f a=""><c path="phoenix.Texture"/></f></get_texture>
-		<set_texture set="method" line="452"><f a="val">
+		<get_texture set="method" line="445"><f a=""><c path="phoenix.Texture"/></f></get_texture>
+		<set_texture set="method" line="451"><f a="val">
 	<c path="phoenix.Texture"/>
 	<c path="phoenix.Texture"/>
 </f></set_texture>
-		<set_visible set="method" line="466"><f a="val">
+		<set_visible set="method" line="465"><f a="val">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_visible>
-		<set_color set="method" line="474"><f a="val">
+		<set_color set="method" line="473"><f a="val">
 	<c path="phoenix.Color"/>
 	<c path="phoenix.Color"/>
 </f></set_color>
-		<get_shader set="method" line="486"><f a=""><c path="phoenix.Shader"/></f></get_shader>
-		<set_shader set="method" line="492"><f a="val">
+		<get_shader set="method" line="485"><f a=""><c path="phoenix.Shader"/></f></get_shader>
+		<set_shader set="method" line="491"><f a="val">
 	<c path="phoenix.Shader"/>
 	<c path="phoenix.Shader"/>
 </f></set_shader>
-		<get_depth set="method" line="506"><f a=""><x path="Float"/></f></get_depth>
-		<set_depth set="method" line="513"><f a="val">
+		<get_depth set="method" line="505"><f a=""><x path="Float"/></f></get_depth>
+		<set_depth set="method" line="512"><f a="val">
 	<x path="Float"/>
 	<x path="Float"/>
 </f></set_depth>
-		<get_group set="method" line="527"><f a=""><x path="Int"/></f></get_group>
-		<set_group set="method" line="533"><f a="val">
+		<get_group set="method" line="526"><f a=""><x path="Int"/></f></get_group>
+		<set_group set="method" line="532"><f a="val">
 	<x path="Int"/>
 	<x path="Int"/>
 </f></set_group>
-		<get_clip set="method" line="547"><f a=""><x path="Bool"/></f></get_clip>
-		<set_clip set="method" line="553"><f a="val">
+		<get_clip set="method" line="546"><f a=""><x path="Bool"/></f></get_clip>
+		<set_clip set="method" line="552"><f a="val">
 	<x path="Bool"/>
 	<x path="Bool"/>
 </f></set_clip>
-		<get_clip_rect set="method" line="567"><f a=""><c path="phoenix.Rectangle"/></f></get_clip_rect>
-		<set_clip_rect set="method" line="573"><f a="val">
+		<get_clip_rect set="method" line="566"><f a=""><c path="phoenix.Rectangle"/></f></get_clip_rect>
+		<set_clip_rect set="method" line="572"><f a="val">
 	<c path="phoenix.Rectangle"/>
 	<c path="phoenix.Rectangle"/>
 </f></set_clip_rect>
-		<new public="1" set="method" line="102"><f a="?options" v="null">
+		<new public="1" set="method" line="101"><f a="?options" v="null">
 	<t path="luxe.options.GeometryOptions"/>
 	<x path="Void"/>
 </f></new>
