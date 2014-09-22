@@ -21,85 +21,124 @@ class Vector {
     @:isVar public var listen_y(default,default) : Float -> Void;
     @:isVar public var listen_z(default,default) : Float -> Void;
 
+    var _construct = false;
+
     public function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0) {
 
-        x = _x;
-        y = _y;
-        z = _z;
-        w = _w;
+        _construct = true;
+
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
+
+        _construct = false;
 
     } //new
 
     public function copy_from( _other:Vector ) {
-        x = _other.x;
-        y = _other.y;
-        z = _other.z;
-        w = _other.w;
-    }
 
-    public function set_xyz( _x:Float, _y:Float, _z:Float ) {
-        x = _x;
-        y = _y;
-        z = _z;
-    }
-    public function set_xyzw( _x:Float, _y:Float, _z:Float, _w:Float ) {
-        x = _x;
-        y = _y;
-        z = _z;
-        w = _w;
-    }
+        set( _other.x, _other.y, _other.z, _other.w );
 
-    public function set_xy( _x:Float, _y:Float ) {
-        x = _x;
-        y = _y;
-    }
+        return this;
 
-    public function set( ?_x:Float, ?_y:Float, ?_z:Float, ?_w:Float ) : Vector {
+    } //copy_from
 
-        var _setx = x;
-        var _sety = y;
-        var _setz = z;
-        var _setw = w;
+    public function set( _x:Float, _y:Float, _z:Float, _w:Float ) {
 
-            //assign new values
-        if(_x != null) _setx = _x;
-        if(_y != null) _sety = _y;
-        if(_z != null) _setz = _z;
-        if(_w != null) _setw = _w;
+        var prev = ignore_listeners;
 
-        x = _setx;
-        y = _sety;
-        z = _setz;
-        w = _setw;
+        ignore_listeners = true;
+
+            x = _x;
+            y = _y;
+            z = _z;
+            w = _w;
+
+        ignore_listeners = prev;
+
+        if(listen_x != null && !ignore_listeners) listen_x(x);
+        if(listen_y != null && !ignore_listeners) listen_y(y);
+        if(listen_z != null && !ignore_listeners) listen_z(z);
 
         return this;
 
     } //set
 
+    public function set_xy( _x:Float, _y:Float ) {
+
+        var prev = ignore_listeners;
+
+        ignore_listeners = true;
+
+            x = _x;
+            y = _y;
+
+        ignore_listeners = prev;
+
+        if(listen_x != null && !ignore_listeners) listen_x(x);
+        if(listen_y != null && !ignore_listeners) listen_y(y);
+
+        return this;
+
+    } //set_xy
+
+    public function set_xyz( _x:Float, _y:Float, _z:Float ) {
+
+        var prev = ignore_listeners;
+
+        ignore_listeners = true;
+
+            x = _x;
+            y = _y;
+            z = _z;
+
+        ignore_listeners = prev;
+
+        if(listen_x != null && !ignore_listeners) listen_x(x);
+        if(listen_y != null && !ignore_listeners) listen_y(y);
+        if(listen_z != null && !ignore_listeners) listen_z(z);
+
+        return this;
+
+    } //set_xyz
+
     public function int() {
 
-        x = Math.round(x);
-        y = Math.round(y);
-        z = Math.round(z);
+        set( Math.round(x), Math.round(y), Math.round(z), w );
 
         return this;
 
     } //int
 
     public function int_x() {
+
         x = Math.round(x);
+
+        return this;
+
     } //int_z
 
     public function int_y() {
+
         y = Math.round(y);
+
+        return this;
+
     } //int_y
 
     public function int_z() {
+
         z = Math.round(z);
+
+        return this;
+
     } //int_y
 
     function toString() {
+
         return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
+
     } //toString
 
     public function equals(other:Vector) {
@@ -107,13 +146,12 @@ class Vector {
     }
 
     public function clone() {
-        return new Vector(x,y,z,w);
+        return new Vector(x, y, z, w);
     } //clone
 
     public function normalize() {
         return divideScalar( length );
     } //normalize
-
 
     public function dot(other:Vector) {
 
@@ -124,9 +162,9 @@ class Vector {
 
     public function cross( a:Vector, b:Vector ) {
 
-        x = a.y * b.z - a.z * b.y;
-        y = a.z * b.x - a.x * b.z;
-        z = a.x * b.y - a.y * b.x;
+        set_xyz( a.y * b.z - a.z * b.y,
+                 a.z * b.x - a.x * b.z,
+                 a.x * b.y - a.y * b.x );
 
         return this;
 
@@ -134,9 +172,7 @@ class Vector {
 
     public function invert() : Vector {
 
-            x = -x;
-            y = -y;
-            z = -z;
+            set_xyz(-x, -y, -z);
 
         return this;
 
@@ -217,7 +253,9 @@ class Vector {
     } //Cross
 
     public static function RotationTo(a:Vector,b:Vector) {
+
         return a.rotationTo(b);
+
     } //RotationTo
 
     public static function listen( _v:Vector, listener ) {
@@ -234,9 +272,7 @@ class Vector {
             throw "vector.add other was handed in as null";
         }
 
-        x += other.x;
-        y += other.y;
-        z += other.z;
+        set_xyz( x + other.x, y + other.y, z + other.z );
 
         return this;
 
@@ -248,9 +284,7 @@ class Vector {
             throw "vector.subtract other was handed in as null";
         }
 
-        x -= other.x;
-        y -= other.y;
-        z -= other.z;
+        set_xyz( x - other.x, y - other.y, z - other.z );
 
         return this;
 
@@ -262,9 +296,7 @@ class Vector {
             throw "vector.multiply other was handed in as null";
         }
 
-        x *= other.x;
-        y *= other.y;
-        z *= other.z;
+        set_xyz( x * other.x, y * other.y, z * other.z );
 
         return this;
 
@@ -276,9 +308,7 @@ class Vector {
             throw "vector.divide other was handed in as null";
         }
 
-        x /= other.x;
-        y /= other.y;
-        z /= other.z;
+        set_xyz( x / other.x, y / other.y, z / other.z );
 
         return this;
 
@@ -286,9 +316,7 @@ class Vector {
 
     public function addScalar( v:Float ) {
 
-        x += v;
-        y += v;
-        z += v;
+        set_xyz( x + v, y + v, z + v );
 
         return this;
 
@@ -296,9 +324,7 @@ class Vector {
 
     public function subtractScalar( v:Float ) {
 
-        x -= v;
-        y -= v;
-        z -= v;
+        set_xyz( x - v, y - v, z - v );
 
         return this;
 
@@ -306,9 +332,7 @@ class Vector {
 
      public function multiplyScalar( v:Float ) {
 
-        x *= v;
-        y *= v;
-        z *= v;
+        set_xyz( x * v, y * v, z * v );
 
         return this;
 
@@ -317,13 +341,13 @@ class Vector {
     public function divideScalar( v:Float ) : Vector {
 
         if ( v != 0 ) {
-            x /= v;
-            y /= v;
-            z /= v;
+
+            set_xyz( x / v, y / v, z / v );
+
         } else {
-            x = 0;
-            y = 0;
-            z = 0;
+
+            set_xyz(0,0,0);
+
         }
 
         return this;
@@ -364,6 +388,8 @@ class Vector {
 
         x = _x;
 
+        if(_construct) return x;
+
             if(listen_x != null && !ignore_listeners) listen_x(_x);
 
         return x;
@@ -374,6 +400,8 @@ class Vector {
 
         y = _y;
 
+        if(_construct) return y;
+
             if(listen_y != null && !ignore_listeners) listen_y(_y);
 
         return y;
@@ -383,6 +411,8 @@ class Vector {
     function set_z(_z:Float) : Float {
 
         z = _z;
+
+        if(_construct) return z;
 
             if(listen_z != null && !ignore_listeners) listen_z(_z);
 
@@ -403,8 +433,7 @@ class Vector {
 
         var len:Float = length;
 
-            x = Math.cos(value) * len;
-            y = Math.sin(value) * len;
+            set_xy(Math.cos(value) * len, Math.sin(value) * len);
 
         return value;
     }
@@ -449,9 +478,9 @@ class Vector {
         var iz = qw * z + qx * y - qy * x;
         var iw = -qx * x - qy * y - qz * z;
 
-            x = ix * qw + iw * -qx + iy * -qz - iz * -qy;
-            y = iy * qw + iw * -qy + iz * -qx - ix * -qz;
-            z = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+            set_xyz( ix * qw + iw * -qx + iy * -qz - iz * -qy,
+                     iy * qw + iw * -qy + iz * -qx - ix * -qz,
+                     iz * qw + iw * -qz + ix * -qy - iy * -qx );
 
         return this;
 
@@ -463,9 +492,9 @@ class Vector {
         var x = this.x, y = this.y, z = this.z;
         var d:Float = 1 / (e[3] * x + e[7] * y + e[11] * z + e[15]);
 
-            this.x = (e[0] * x + e[4] * y + e[8] * z + e[12]) * d;
-            this.y = (e[1] * x + e[5] * y + e[9] * z + e[13]) * d;
-            this.z = (e[2] * x + e[6] * y + e[10] * z + e[14]) * d;
+            set_xyz( (e[0] * x + e[4] * y + e[8] * z + e[12]) * d,
+                     (e[1] * x + e[5] * y + e[9] * z + e[13]) * d,
+                     (e[2] * x + e[6] * y + e[10] * z + e[14]) * d );
 
         return this;
 
@@ -479,9 +508,9 @@ class Vector {
 
         var e = _m.elements;
 
-            x = e[0] * _x + e[4] * _y + e[8]  * _z + e[12];
-            y = e[1] * _x + e[5] * _y + e[9]  * _z + e[13];
-            z = e[2] * _x + e[6] * _y + e[10] * _z + e[14];
+            set_xyz( e[0] * _x + e[4] * _y + e[8]  * _z + e[12],
+                     e[1] * _x + e[5] * _y + e[9]  * _z + e[13],
+                     e[2] * _x + e[6] * _y + e[10] * _z + e[14] );
 
         return this;
 
@@ -492,9 +521,9 @@ class Vector {
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
 
-            this.x = e[0] * x + e[4] * y + e[8] * z;
-            this.y = e[1] * x + e[5] * y + e[9] * z;
-            this.z = e[2] * x + e[6] * y + e[10] * z;
+            set_xyz( e[0] * x + e[4] * y + e[8] * z,
+                     e[1] * x + e[5] * y + e[9] * z,
+                     e[2] * x + e[6] * y + e[10] * z );
 
         normalize();
 
@@ -509,80 +538,86 @@ class Vector {
         var m21 = te[1], m22 = te[5], m23 = te[9];
         var m31 = te[2], m32 = te[6], m33 = te[10];
 
+        var _x = x;
+        var _y = y;
+        var _z = z;
+
         if (order == 'XYZ') {
 
-            y = Math.asin( Maths.clamp( m13, -1, 1 ) );
+            _y = Math.asin( Maths.clamp( m13, -1, 1 ) );
 
             if (Math.abs(m13) < 0.99999)
             {
-                x = Math.atan2( -m23, m33);
-                z = Math.atan2( -m12, m11);
+                _x = Math.atan2( -m23, m33);
+                _z = Math.atan2( -m12, m11);
             } else {
-                x = Math.atan2( m32, m22 );
-                z = 0;
+                _x = Math.atan2( m32, m22 );
+                _z = 0;
             }
 
         }  else if ( order == 'YXZ' ) {
 
-            x = Math.asin( -Maths.clamp( m23, -1, 1 ) );
+            _x = Math.asin( -Maths.clamp( m23, -1, 1 ) );
 
             if ( Math.abs( m23 ) < 0.99999 ) {
-                y = Math.atan2( m13, m33 );
-                z = Math.atan2( m21, m22 );
+                _y = Math.atan2( m13, m33 );
+                _z = Math.atan2( m21, m22 );
             } else {
-                y = Math.atan2( -m31, m11 );
-                z = 0;
+                _y = Math.atan2( -m31, m11 );
+                _z = 0;
             }
 
         } else if ( order == 'ZXY' ) {
 
-            x = Math.asin( Maths.clamp( m32, -1, 1 ) );
+            _x = Math.asin( Maths.clamp( m32, -1, 1 ) );
 
             if ( Math.abs( m32 ) < 0.99999 ) {
-                y = Math.atan2( -m31, m33 );
-                z = Math.atan2( -m12, m22 );
+                _y = Math.atan2( -m31, m33 );
+                _z = Math.atan2( -m12, m22 );
             } else {
-                y = 0;
-                z = Math.atan2( m21, m11 );
+                _y = 0;
+                _z = Math.atan2( m21, m11 );
             }
 
         } else if ( order == 'ZYX' ) {
 
-            y = Math.asin( -Maths.clamp( m31, -1, 1 ) );
+            _y = Math.asin( -Maths.clamp( m31, -1, 1 ) );
 
             if ( Math.abs( m31 ) < 0.99999 ) {
-                x = Math.atan2( m32, m33 );
-                z = Math.atan2( m21, m11 );
+                _x = Math.atan2( m32, m33 );
+                _z = Math.atan2( m21, m11 );
             } else {
-                x = 0;
-                z = Math.atan2( -m12, m22 );
+                _x = 0;
+                _z = Math.atan2( -m12, m22 );
             }
 
         } else if ( order == 'YZX' ) {
 
-            z = Math.asin( Maths.clamp( m21, -1, 1 ) );
+            _z = Math.asin( Maths.clamp( m21, -1, 1 ) );
 
             if ( Math.abs( m21 ) < 0.99999 ) {
-                x = Math.atan2( -m23, m22 );
-                y = Math.atan2( -m31, m11 );
+                _x = Math.atan2( -m23, m22 );
+                _y = Math.atan2( -m31, m11 );
             } else {
-                x = 0;
-                y = Math.atan2( m13, m33 );
+                _x = 0;
+                _y = Math.atan2( m13, m33 );
             }
 
         } else if ( order == 'XZY' ) {
 
-            z = Math.asin( -Maths.clamp( m12, -1, 1 ) );
+            _z = Math.asin( -Maths.clamp( m12, -1, 1 ) );
 
             if ( Math.abs( m12 ) < 0.99999 ) {
-                x = Math.atan2( m32, m22 );
-                y = Math.atan2( m13, m11 );
+                _x = Math.atan2( m32, m22 );
+                _y = Math.atan2( m13, m11 );
             } else {
-                x = Math.atan2( -m23, m33 );
-                y = 0;
+                _x = Math.atan2( -m23, m33 );
+                _y = 0;
             }
 
         } //order
+
+        set_xyz(_x, _y, _z);
 
         return this;
 
@@ -633,29 +668,31 @@ class Vector {
 
     public function degrees() : Vector {
 
-        x = Maths.degrees(x);
-        y = Maths.degrees(y);
-        z = Maths.degrees(z);
+        set_xyz( Maths.degrees(x), Maths.degrees(y), Maths.degrees(z) );
 
         return this;
-    }
+
+    } //degrees
 
     public function radians() : Vector {
 
-        x = Maths.radians(x);
-        y = Maths.radians(y);
-        z = Maths.radians(z);
+        set_xyz( Maths.radians(x), Maths.radians(y), Maths.radians(z) );
 
         return this;
-    }
+
+    } //radians
 
     public static function Degrees( _radian_vector:Vector ) : Vector {
+
         return _radian_vector.clone().degrees();
-    }
+
+    } //Degrees
 
     public static function Radians( _degree_vector:Vector ) : Vector {
+
         return _degree_vector.clone().radians();
-    }
+
+    } //Radians
 
 } //Vector class
 

@@ -125,7 +125,7 @@ class NineSlice extends luxe.Sprite {
             slices[0].source_height = top;
             slices[0].source_x = source_x;
             slices[0].source_y = source_y;
-            slices[0].pos.set(0,0);
+            slices[0].pos.set_xy(0,0);
             slices[0].width = left;
             slices[0].height = top;
 
@@ -134,7 +134,7 @@ class NineSlice extends luxe.Sprite {
             slices[1].source_height = top;
             slices[1].source_x = source_x+left;
             slices[1].source_y = source_y;
-            slices[1].pos.set(left,0);
+            slices[1].pos.set_xy(left,0);
             slices[1].width = width - left - right;
             slices[1].height = top;
 
@@ -143,7 +143,7 @@ class NineSlice extends luxe.Sprite {
             slices[2].source_height = top;
             slices[2].source_x = source_x+ (source_w - right);
             slices[2].source_y = source_y;
-            slices[2].pos.set(left + midwidth,0);
+            slices[2].pos.set_xy(left + midwidth,0);
             slices[2].width = right;
             slices[2].height = top;
 
@@ -153,7 +153,7 @@ class NineSlice extends luxe.Sprite {
             slices[3].source_height = source_h - top - bottom;
             slices[3].source_x = source_x;
             slices[3].source_y = source_y+top;
-            slices[3].pos.set(0,top);
+            slices[3].pos.set_xy(0,top);
             slices[3].width = left;
             slices[3].height = height - top - bottom;
 
@@ -162,7 +162,7 @@ class NineSlice extends luxe.Sprite {
             slices[4].source_height = source_h - top - bottom;
             slices[4].source_x = source_x+left;
             slices[4].source_y = source_y+top;
-            slices[4].pos.set(left,top);
+            slices[4].pos.set_xy(left,top);
             slices[4].width = width - left - right;
             slices[4].height = height - top - bottom;
 
@@ -171,7 +171,7 @@ class NineSlice extends luxe.Sprite {
             slices[5].source_height = source_h - top - bottom;
             slices[5].source_x = source_x+(source_w - right);
             slices[5].source_y = source_y+top;
-            slices[5].pos.set(left + midwidth,top);
+            slices[5].pos.set_xy(left + midwidth,top);
             slices[5].width = right;
             slices[5].height = height - top - bottom;
 
@@ -181,7 +181,7 @@ class NineSlice extends luxe.Sprite {
             slices[6].source_height = bottom;
             slices[6].source_x = source_x;
             slices[6].source_y = source_y+ (source_h - bottom);
-            slices[6].pos.set(0,top + midheight);
+            slices[6].pos.set_xy(0,top + midheight);
             slices[6].width = left;
             slices[6].height = bottom;
 
@@ -190,7 +190,7 @@ class NineSlice extends luxe.Sprite {
             slices[7].source_height = bottom;
             slices[7].source_x = source_x+left;
             slices[7].source_y = source_y+(source_h - bottom);
-            slices[7].pos.set(left,top + midheight);
+            slices[7].pos.set_xy(left,top + midheight);
             slices[7].width = width - left - right;
             slices[7].height = bottom;
 
@@ -199,7 +199,7 @@ class NineSlice extends luxe.Sprite {
             slices[8].source_height = bottom;
             slices[8].source_x = source_x+(source_w - right);
             slices[8].source_y = source_y+(source_h - bottom);
-            slices[8].pos.set(left + midwidth, top + midheight);
+            slices[8].pos.set_xy(left + midwidth, top + midheight);
             slices[8].width = right;
             slices[8].height = bottom;
 

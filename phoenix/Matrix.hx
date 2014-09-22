@@ -201,9 +201,9 @@ class Matrix {
         var _temp = new Vector();
         var me = m.elements;
 
-        var _scale_x = 1 / _temp.set( me[0], me[1], me[2]  ).length;
-        var _scale_y = 1 / _temp.set( me[4], me[5], me[6]  ).length;
-        var _scale_z = 1 / _temp.set( me[8], me[9], me[10] ).length;
+        var _scale_x = 1 / _temp.set_xyz( me[0], me[1], me[2]  ).length;
+        var _scale_y = 1 / _temp.set_xyz( me[4], me[5], me[6]  ).length;
+        var _scale_z = 1 / _temp.set_xyz( me[8], me[9], me[10] ).length;
 
         elements[0] =  me[0]  * _scale_x;
         elements[1] =  me[1]  * _scale_x;

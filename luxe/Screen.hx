@@ -127,7 +127,7 @@ class Cursor {
     function get_pos() : Vector {
 
         if(pos != null) {
-            pos.set( Luxe.mouse.x, Luxe.mouse.y );
+            pos.set_xy( Luxe.mouse.x, Luxe.mouse.y );
         }
 
         return pos;

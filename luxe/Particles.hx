@@ -401,10 +401,10 @@ class ParticleEmitter extends Component {
         // }
 
         var new_dir = (direction + direction_random * random_1_to_1() ) * ( Math.PI / 180 ); // convert to radians
-            direction_vector.set( Math.cos( new_dir ), Math.sin( new_dir ) );
+            direction_vector.set_xy( Math.cos( new_dir ), Math.sin( new_dir ) );
 
         var _point_speed = speed + speed_random * random_1_to_1();
-            particle.speed.set(_point_speed, _point_speed);
+            particle.speed.set_xy(_point_speed, _point_speed);
 
 
         particle.direction.x = direction_vector.x;// * particle.speed.x;
@@ -519,7 +519,7 @@ class ParticleEmitter extends Component {
                 if(r > 1) { r = 1; } if(g > 1) { g = 1; } if(b > 1) { b = 1; } if(a > 1) { a = 1; }
 
                 current_particle.draw_color.set( r,g,b,a );
-                current_particle.draw_size.set( xx, yy );
+                current_particle.draw_size.set_xy( xx, yy );
 
             } else {
 

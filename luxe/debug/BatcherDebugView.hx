@@ -121,8 +121,8 @@ class BatcherDebugView extends luxe.debug.DebugView {
             })
         ); //node text
 
-        var t = _p.clone().set( _p.x, _p.y-16 );
-        var t2 = _p.clone().set( _p.x, _p.y+_bw+2 );
+        var t = _p.clone().set_xy( _p.x, _p.y-16 );
+        var t2 = _p.clone().set_xy( _p.x, _p.y+_bw+2 );
         var talign = luxe.Text.TextAlign.center;
         // if(l) {
             // t.x = _p.x - (_bwhalf*1.5);

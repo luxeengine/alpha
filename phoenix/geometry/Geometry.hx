@@ -261,7 +261,7 @@ class Geometry {
         for(v in vertices) {
 
                 //the base position of the vert
-            _final_vert_position.set_xyzw( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
+            _final_vert_position.set( v.pos.x, v.pos.y, v.pos.z, v.pos.w );
                 //apply the transform to the vert
             _final_vert_position.transform( transform.world.matrix );
 
@@ -343,7 +343,7 @@ class Geometry {
 
     public function translate( _offset:Vector ) {
 
-        transform.pos.set( transform.pos.x+_offset.x, transform.pos.y+_offset.y, transform.pos.x+_offset.z );
+        transform.pos.set_xyz( transform.pos.x+_offset.x, transform.pos.y+_offset.y, transform.pos.x+_offset.z );
 
     } // translate
 
