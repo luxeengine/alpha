@@ -161,15 +161,15 @@ class Main extends luxe.Game {
     } //ready
 
     override function onmousemove( e:MouseEvent ) {
-        mouse.set(e.x,e.y);
+        mouse.set_xy(e.x,e.y);
     } //onmousemove
 
     override function onmousedown( e:MouseEvent ) {
-        mouse.set(e.x,e.y);
+        mouse.set_xy(e.x,e.y);
     } //onmousedown
 
     override function onmouseup( e:MouseEvent ) {
-        mouse.set(e.x,e.y);
+        mouse.set_xy(e.x,e.y);
     } //onmouseup
 
     override function onkeyup( e:KeyEvent ) {

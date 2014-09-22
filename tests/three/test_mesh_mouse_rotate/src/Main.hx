@@ -72,7 +72,7 @@ class Main extends luxe.Game {
         });
 
             //move up and back a bit
-        Luxe.camera.pos.set(0,0.5,2);
+        Luxe.camera.pos.set_xyz(0,0.5,2);
 
             //create an empty entity
         tower = new Entity({ name:'tower' });

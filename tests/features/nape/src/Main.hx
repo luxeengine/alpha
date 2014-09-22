@@ -32,6 +32,8 @@ class Main extends luxe.Game {
         Luxe.physics.nape.velocity_iterations = 240;
         Luxe.physics.nape.position_iterations = 240;
 
+        Luxe.renderer.state.lineWidth(2);
+
         reset_world();
 
     } //ready

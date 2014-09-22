@@ -97,7 +97,7 @@ class Main extends luxe.Game {
 
     override function onmousemove( e:MouseEvent ) {
 
-        mouse.set(e.x,e.y);
+        mouse.set_xy(e.x,e.y);
         particles.pos = mouse;
 
         ss.pos = mouse;
@@ -105,7 +105,7 @@ class Main extends luxe.Game {
     } //onmousemove
 
     override function onmousedown( e:MouseEvent ) {
-        mouse.set(e.x,e.y);
+        mouse.set_xy(e.x,e.y);
         if(particles.enabled) {
             particles.stop();
         } else {
@@ -114,7 +114,7 @@ class Main extends luxe.Game {
     } //onmousedown
 
     override function onmouseup( e:MouseEvent ) {
-        mouse.set(e.x,e.y);
+        mouse.set_xy(e.x,e.y);
     } //onmouseup
 
     override function onkeyup( e:KeyEvent ) {
