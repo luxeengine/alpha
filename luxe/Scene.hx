@@ -342,6 +342,8 @@ class Scene extends Objects {
 
         inited = true;
 
+        emit('init');
+
         reset();
 
     } //init
