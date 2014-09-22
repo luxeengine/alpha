@@ -131,7 +131,7 @@ class States extends Objects {
 
     } //new
 
-    public function add( _state:State ) : Void {
+    public function add<T:State>( _state:T ) : T {
 
             //store it in the state list
         _states.set( _state.name, _state );
@@ -142,6 +142,8 @@ class States extends Objects {
 
             //debug stuff
         _debug('$name / adding a state called ' + _state.name + ', now at ' + Lambda.count(_states) + ' states');
+
+        return _state;
 
     } //add_state
 
