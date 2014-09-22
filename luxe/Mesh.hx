@@ -142,7 +142,7 @@ class Mesh {
         var normal : Vector = new Vector();
 
            if(v.normal != null) {
-                normal.set(v.normal.x, v.normal.y, v.normal.z);
+                normal.set_xyz(v.normal.x, v.normal.y, v.normal.z);
            }
 
        var _v = new Vertex( new Vector( (v.pos.x * _scale.x) , (v.pos.y * _scale.y), (v.pos.z * _scale.z) ), new Color(), normal );

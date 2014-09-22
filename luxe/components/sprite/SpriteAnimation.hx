@@ -133,7 +133,7 @@ class SpriteAnimationData {
             if(_json_frame_size != null) {
                 var _x : Float = Std.parseFloat(_json_frame_size.x);
                 var _y : Float = Std.parseFloat(_json_frame_size.y);
-                _frame_size.set(_x, _y);
+                _frame_size.set_xy(_x, _y);
             }
 
         //pingpong

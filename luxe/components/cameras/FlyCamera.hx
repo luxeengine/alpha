@@ -75,7 +75,7 @@ class FlyCamera extends luxe.Camera {
         }
 
             //start from our existing position
-        newpos.set(pos.x, pos.y, pos.z);
+        newpos.set_xyz(pos.x, pos.y, pos.z);
 
         var move_diff = move_speed * move_speed_scale * dt;
 
@@ -114,7 +114,7 @@ class FlyCamera extends luxe.Camera {
             }
 
                 //Make sure this stays set
-            mouse_delta.set(0,0);
+            mouse_delta.set_xy(0, 0);
 
         }
 
@@ -184,7 +184,7 @@ class FlyCamera extends luxe.Camera {
 
     public function enable() {
 
-        mouse_delta.set( 0,0 );
+        mouse_delta.set_xy( 0,0 );
 
         ready = true;
 
@@ -197,7 +197,7 @@ class FlyCamera extends luxe.Camera {
             return;
         }
 
-        mouse_delta.set(e.xrel, e.yrel);
+        mouse_delta.set_xy(e.xrel, e.yrel);
 
     } //onmousemove
 
@@ -205,7 +205,7 @@ class FlyCamera extends luxe.Camera {
 
             //disabling console, don't allow spinning to new position
         if(e.scancode == Scan.grave && Luxe.core.console_visible == true) {
-            mouse_delta.set(0,0);
+            mouse_delta.set_xy(0,0);
         }
 
         if(e.keycode == Key.up || e.keycode == Key.key_w) {
