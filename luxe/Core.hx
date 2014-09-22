@@ -163,6 +163,46 @@ class Core extends snow.App {
 
     } //ready
 
+    override function ondestroy() {
+
+            //Make sure all systems know we are going down
+        shutting_down = true;
+
+        log('shutting down...');
+
+            //shutdown the game class
+        game.ondestroy();
+
+            //shutdown the default scene
+        emitter.emit('destroy');
+
+            //Order is imporant here too
+        if(renderer != null) {
+            renderer.destroy();
+        }
+
+        physics.destroy();
+        input.destroy();
+        audio.destroy();
+        timer.destroy();
+        events.destroy();
+        debug.destroy();
+
+            //Clear up for GC
+        emitter = null;
+        input = null;
+        audio = null;
+        events = null;
+        timer = null;
+        debug = null;
+        Luxe.utils = null;
+
+            //Flag it
+        has_shutdown = true;
+
+        log('goodbye.');
+
+    }
 
     public function init() {
 
@@ -257,44 +297,10 @@ class Core extends snow.App {
 
     public function shutdown() {
 
-        log('shutting down...');
-
             //Make sure all systems know we are going down
         shutting_down = true;
 
-            //shutdown the game class
-        game.ondestroy();
-
-            //shutdown the default scene
-        emitter.emit('destroy');
-
-            //Order is imporant here too
-        if(renderer != null) {
-            renderer.destroy();
-        }
-
-        physics.destroy();
-        input.destroy();
-        audio.destroy();
-        timer.destroy();
-        events.destroy();
-        debug.destroy();
-
-            //Clear up for GC
-        emitter = null;
-        input = null;
-        audio = null;
-        events = null;
-        timer = null;
-        debug = null;
-        Luxe.utils = null;
-
-            //Flag it
-        has_shutdown = true;
-
-        log('goodbye.');
-
-            //shutdown snow
+            //shutdown snow, which calls ondestroy for us
         app.shutdown();
 
     } //shutdown
