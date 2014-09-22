@@ -84,7 +84,7 @@ class Main extends luxe.Game {
             //reset the target back to no target (i.e the screen)
         Luxe.renderer.target = null;
 
-    } //pre_render
+    } //onprerender
 
     override function update( dt:Float ) {
 
