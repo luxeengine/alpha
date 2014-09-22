@@ -223,8 +223,7 @@ class Camera extends Entity {
         Actuate.tween(view.center, _t, { x:_p.x, y:_p.y }, true )
             .onComplete( oncomplete ).ease( Quad.easeInOut )
             .onUpdate( function() {
-                pos = view.pos.clone();
-                _final_pos.set_xyz( pos.x, pos.y, pos.z );
+                transform.pos.set_xy(view.pos.x, view.pos.y);
             });
 
     } //focus
@@ -245,14 +244,14 @@ class Camera extends Entity {
 
     override function set_pos_from_transform(_pos:Vector) {
 
-        super.set_pos_from_transform(_pos);
-
         if(bounds != null) {
             if(_pos.x < bounds.x) _pos.x = bounds.x;
             if(_pos.y < bounds.y) _pos.y = bounds.y;
             if(_pos.x > bounds.w-view.viewport.w) _pos.x = bounds.w-view.viewport.w;
             if(_pos.y > bounds.h-view.viewport.h) _pos.y = bounds.h-view.viewport.h;
         }
+
+        super.set_pos_from_transform(_pos);
 
             //flag for update
         update_view_pos = _pos;
