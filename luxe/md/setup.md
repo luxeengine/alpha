@@ -130,7 +130,16 @@ Only required for option 1. or 2.
 
 ---
 
+##Test if setup is correct
 
+The simplest way to test is to 
+
+- `cd /path/to/luxe/tests/features/draw/`
+- `haxelib run flow run web`
+
+You should see something similar to this open in your browser
+
+![](images/guide.drawing.png)
 &nbsp;
 &nbsp;
 
@@ -147,13 +156,26 @@ Mac : Xcode (+command line tools)
 &nbsp;
 &nbsp;
 
-##Sublime text
+##Editor setup
+
+---
+
+###Sublime text
 
 When using the sublime text plugin provided by the build tools, you get project management, building and running, and full code completion within sublime text.
 
 ![](images/sublime.png)
 
 [Read the sublime text setup](http://underscorediscovery.com/wip/flow/guide/sublimetext.html) docs.
+
+
+###Flash develop
+
+When using the flash develop template provided, you also get project management, building and running, and full code completion.
+
+![](images/plugins/5.png)
+
+[Read the flash develop setup](http://underscorediscovery.com/wip/flow/guide/flashdevelop.html) docs.
 
 
 ---

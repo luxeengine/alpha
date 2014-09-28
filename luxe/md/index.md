@@ -99,6 +99,9 @@ Where possible, full code completion and building from the editor is supplied.
 [![](images/plugins/1.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
 [FlashDevelop](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) (windows only)<br/><br/>
+
+template is in `setup/`, but here is a [Download link](https://github.com/underscorediscovery/luxe/blob/master/setup/luxe_FlashDevelopTemplate.fdz?raw=true)   
+
 [![](images/plugins/5.png)](https://underscorediscovery.github.io/flow/guide/sublimetext.html)
 
 ---
