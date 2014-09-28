@@ -1,1 +1,0 @@
-A luxe engine project written in the Haxe language. (Haxe 3, cpp/neko/html5)
