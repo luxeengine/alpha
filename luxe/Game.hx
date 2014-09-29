@@ -25,6 +25,9 @@ class Game extends Emitter {
         /** Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide}) */
     public function update(dt:Float) {}
 
+        /** very low level event handler from snow core. Often handled by the subsystems and by luxe, so check there first! */
+    @:noCompletion public function onevent( event:snow.types.Types.SystemEvent ) { }
+
        /** Your exit point. Called for you when you should shut down your application */
    public function ondestroy() {}
 

@@ -129,6 +129,7 @@ class Core extends snow.App {
 
     } //new
 
+
         //This gets called once snow has booted us - this is
     override function ready() {
 
@@ -316,6 +317,14 @@ class Core extends snow.App {
     public function emit<T>(event:String, ?data:T) {
         return emitter.emit(event, data);
     }
+
+        //called by snow
+    override function onevent( event:snow.types.Types.SystemEvent ) {
+
+            //forward to game class
+        game.onevent( event );
+
+    } //onevent
 
         //called by snow
     override function update( dt:Float ) {
