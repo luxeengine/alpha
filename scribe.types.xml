@@ -994,23 +994,31 @@
 			</f>
 			<haxe_doc>Your update loop. Called every frame for you. The dt value depends on the timing configuration (see the {App Guide})</haxe_doc>
 		</update>
-		<ondestroy public="1" set="method" line="29">
+		<onevent public="1" set="method" line="29">
+			<f a="event">
+				<t path="snow.types.SystemEvent"/>
+				<x path="Void"/>
+			</f>
+			<meta><m n=":noCompletion"/></meta>
+			<haxe_doc>very low level event handler from snow core. Often handled by the subsystems and by luxe, so check there first!</haxe_doc>
+		</onevent>
+		<ondestroy public="1" set="method" line="32">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Your exit point. Called for you when you should shut down your application</haxe_doc>
 		</ondestroy>
-		<onprerender public="1" set="method" line="32">
+		<onprerender public="1" set="method" line="35">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Called when the application is about to render</haxe_doc>
 		</onprerender>
-		<onrender public="1" set="method" line="34">
+		<onrender public="1" set="method" line="37">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Called when the application is rendering</haxe_doc>
 		</onrender>
-		<onpostrender public="1" set="method" line="36">
+		<onpostrender public="1" set="method" line="39">
 			<f a=""><x path="Void"/></f>
 			<haxe_doc>Called when the application is done rendering</haxe_doc>
 		</onpostrender>
-		<oninputdown public="1" set="method" line="39">
+		<oninputdown public="1" set="method" line="42">
 			<f a="_name:e">
 				<c path="String"/>
 				<t path="luxe.InputEvent"/>
@@ -1018,7 +1026,7 @@
 			</f>
 			<haxe_doc>Called when a named input down event occurs</haxe_doc>
 		</oninputdown>
-		<oninputup public="1" set="method" line="41">
+		<oninputup public="1" set="method" line="44">
 			<f a="_name:e">
 				<c path="String"/>
 				<t path="luxe.InputEvent"/>
@@ -1026,98 +1034,98 @@
 			</f>
 			<haxe_doc>Called when a named input up event occurs</haxe_doc>
 		</oninputup>
-		<onmousedown public="1" set="method" line="44">
+		<onmousedown public="1" set="method" line="47">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a mouse button is pressed</haxe_doc>
 		</onmousedown>
-		<onmouseup public="1" set="method" line="46">
+		<onmouseup public="1" set="method" line="49">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a mouse button is released</haxe_doc>
 		</onmouseup>
-		<onmousewheel public="1" set="method" line="48">
+		<onmousewheel public="1" set="method" line="51">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when the mouse wheel moves</haxe_doc>
 		</onmousewheel>
-		<onmousemove public="1" set="method" line="50">
+		<onmousemove public="1" set="method" line="53">
 			<f a="event">
 				<t path="luxe.MouseEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when the mouse moves</haxe_doc>
 		</onmousemove>
-		<onkeydown public="1" set="method" line="53">
+		<onkeydown public="1" set="method" line="56">
 			<f a="event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a key is pressed down</haxe_doc>
 		</onkeydown>
-		<onkeyup public="1" set="method" line="55">
+		<onkeyup public="1" set="method" line="58">
 			<f a="event">
 				<t path="luxe.KeyEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a key is released</haxe_doc>
 		</onkeyup>
-		<ontextinput public="1" set="method" line="57">
+		<ontextinput public="1" set="method" line="60">
 			<f a="event">
 				<t path="luxe.TextEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc.</haxe_doc>
 		</ontextinput>
-		<ontouchdown public="1" set="method" line="60">
+		<ontouchdown public="1" set="method" line="63">
 			<f a="event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a touch is released, use the `touch_id` to track which</haxe_doc>
 		</ontouchdown>
-		<ontouchup public="1" set="method" line="62">
+		<ontouchup public="1" set="method" line="65">
 			<f a="event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a touch is first pressed, use the `touch_id` to track which</haxe_doc>
 		</ontouchup>
-		<ontouchmove public="1" set="method" line="64">
+		<ontouchmove public="1" set="method" line="67">
 			<f a="event">
 				<t path="luxe.TouchEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a touch is moved, use the `touch_id` to track which</haxe_doc>
 		</ontouchmove>
-		<ongamepadaxis public="1" set="method" line="67">
+		<ongamepadaxis public="1" set="method" line="70">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a connected gamepad axis moves, use `gamepad` to determine gamepad id</haxe_doc>
 		</ongamepadaxis>
-		<ongamepaddown public="1" set="method" line="69">
+		<ongamepaddown public="1" set="method" line="72">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a connected gamepad button is pressed, use `gamepad` to determine gamepad id</haxe_doc>
 		</ongamepaddown>
-		<ongamepadup public="1" set="method" line="71">
+		<ongamepadup public="1" set="method" line="74">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
 			</f>
 			<haxe_doc>Called for you when a connected gamepad button is released, use `gamepad` to determine gamepad id</haxe_doc>
 		</ongamepadup>
-		<ongamepaddevice public="1" set="method" line="73">
+		<ongamepaddevice public="1" set="method" line="76">
 			<f a="event">
 				<t path="luxe.GamepadEvent"/>
 				<x path="Void"/>
@@ -5050,18 +5058,22 @@
 			<haxe_doc>override this to get notified when a text input event happens. only called if overridden.</haxe_doc>
 		</ontextinput>
 		<oninputdown public="1" set="method" line="56">
-			<f a="name:event">
-				<c path="String"/>
-				<t path="luxe.InputEvent"/>
+			<f a="event">
+				<a>
+					<name><c path="String"/></name>
+					<event><t path="luxe.InputEvent"/></event>
+				</a>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
 			<haxe_doc>override this to get notified when a named input event happens. only called if overridden.</haxe_doc>
 		</oninputdown>
 		<oninputup public="1" set="method" line="58">
-			<f a="name:event">
-				<c path="String"/>
-				<t path="luxe.InputEvent"/>
+			<f a="event">
+				<a>
+					<name><c path="String"/></name>
+					<event><t path="luxe.InputEvent"/></event>
+				</a>
 				<x path="Void"/>
 			</f>
 			<meta><m n=":noCompletion"/></meta>
@@ -5548,17 +5560,17 @@
 	</class>
 	<class path="luxe.Core" params="" file="/Users/sven/dev/luxe/luxe/luxe/Core.hx">
 		<extends path="snow.App"/>
-		<core_tag_update line="878" static="1"><c path="String"/></core_tag_update>
-		<core_tag_renderdt line="879" static="1"><c path="String"/></core_tag_renderdt>
-		<game_tag_update line="880" static="1"><c path="String"/></game_tag_update>
-		<core_tag_render line="881" static="1"><c path="String"/></core_tag_render>
-		<core_tag_debug line="882" static="1"><c path="String"/></core_tag_debug>
-		<core_tag_updates line="883" static="1"><c path="String"/></core_tag_updates>
-		<core_tag_events line="884" static="1"><c path="String"/></core_tag_events>
-		<core_tag_audio line="885" static="1"><c path="String"/></core_tag_audio>
-		<core_tag_input line="886" static="1"><c path="String"/></core_tag_input>
-		<core_tag_timer line="887" static="1"><c path="String"/></core_tag_timer>
-		<core_tag_scene line="888" static="1"><c path="String"/></core_tag_scene>
+		<core_tag_update line="887" static="1"><c path="String"/></core_tag_update>
+		<core_tag_renderdt line="888" static="1"><c path="String"/></core_tag_renderdt>
+		<game_tag_update line="889" static="1"><c path="String"/></game_tag_update>
+		<core_tag_render line="890" static="1"><c path="String"/></core_tag_render>
+		<core_tag_debug line="891" static="1"><c path="String"/></core_tag_debug>
+		<core_tag_updates line="892" static="1"><c path="String"/></core_tag_updates>
+		<core_tag_events line="893" static="1"><c path="String"/></core_tag_events>
+		<core_tag_audio line="894" static="1"><c path="String"/></core_tag_audio>
+		<core_tag_input line="895" static="1"><c path="String"/></core_tag_input>
+		<core_tag_timer line="896" static="1"><c path="String"/></core_tag_timer>
+		<core_tag_scene line="897" static="1"><c path="String"/></core_tag_scene>
 		<game public="1"><c path="luxe.Game"/></game>
 		<core_thread public="1"><c path="cpp.vm.Thread"/></core_thread>
 		<thread_message public="1"><d/></thread_message>
@@ -5583,11 +5595,11 @@
 		<shutting_down public="1"><x path="Bool"/></shutting_down>
 		<has_shutdown public="1"><x path="Bool"/></has_shutdown>
 		<has_inited public="1"><x path="Bool"/></has_inited>
-		<ready public="1" set="method" line="133" override="1"><f a=""><x path="Void"/></f></ready>
-		<ondestroy public="1" set="method" line="166" override="1"><f a=""><x path="Void"/></f></ondestroy>
-		<init public="1" set="method" line="207"><f a=""><x path="Void"/></f></init>
-		<shutdown public="1" set="method" line="298"><f a=""><x path="Void"/></f></shutdown>
-		<on public="1" params="T" set="method" line="308"><f a="event:handler">
+		<ready public="1" set="method" line="134" override="1"><f a=""><x path="Void"/></f></ready>
+		<ondestroy public="1" set="method" line="167" override="1"><f a=""><x path="Void"/></f></ondestroy>
+		<init public="1" set="method" line="208"><f a=""><x path="Void"/></f></init>
+		<shutdown public="1" set="method" line="299"><f a=""><x path="Void"/></f></shutdown>
+		<on public="1" params="T" set="method" line="309"><f a="event:handler">
 	<c path="String"/>
 	<f a="">
 		<c path="on.T"/>
@@ -5595,7 +5607,7 @@
 	</f>
 	<x path="Void"/>
 </f></on>
-		<off public="1" params="T" set="method" line="312"><f a="event:handler">
+		<off public="1" params="T" set="method" line="313"><f a="event:handler">
 	<c path="String"/>
 	<f a="">
 		<c path="off.T"/>
@@ -5603,24 +5615,28 @@
 	</f>
 	<x path="Bool"/>
 </f></off>
-		<emit public="1" params="T" set="method" line="316"><f a="event:?data" v=":null">
+		<emit public="1" params="T" set="method" line="317"><f a="event:?data" v=":null">
 	<c path="String"/>
 	<c path="emit.T"/>
 	<x path="Void"/>
 </f></emit>
-		<update public="1" set="method" line="321" override="1"><f a="dt">
+		<onevent public="1" set="method" line="322" override="1"><f a="event">
+	<t path="snow.types.SystemEvent"/>
+	<x path="Void"/>
+</f></onevent>
+		<update public="1" set="method" line="330" override="1"><f a="dt">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></update>
-		<render set="method" line="374"><f a="window">
+		<render set="method" line="383"><f a="window">
 	<c path="snow.window.Window"/>
 	<x path="Void"/>
 </f></render>
-		<show_console public="1" set="method" line="403"><f a="?_show" v="true">
+		<show_console public="1" set="method" line="412"><f a="?_show" v="true">
 	<x path="Bool"/>
 	<x path="Void"/>
 </f></show_console>
-		<onkeydown public="1" set="method" line="427" override="1"><f a="keycode:scancode:repeat:mod:timestamp:window_id">
+		<onkeydown public="1" set="method" line="436" override="1"><f a="keycode:scancode:repeat:mod:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Bool"/>
@@ -5629,7 +5645,7 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onkeydown>
-		<onkeyup public="1" set="method" line="455" override="1"><f a="keycode:scancode:repeat:mod:timestamp:window_id">
+		<onkeyup public="1" set="method" line="464" override="1"><f a="keycode:scancode:repeat:mod:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Bool"/>
@@ -5638,7 +5654,7 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onkeyup>
-		<ontextinput public="1" set="method" line="479" override="1"><f a="text:start:length:type:timestamp:window_id">
+		<ontextinput public="1" set="method" line="488" override="1"><f a="text:start:length:type:timestamp:window_id">
 	<c path="String"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5647,21 +5663,21 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></ontextinput>
-		<oninputdown public="1" set="method" line="509"><f a="name:event">
+		<oninputdown public="1" set="method" line="518"><f a="name:event">
 	<c path="String"/>
 	<t path="luxe.InputEvent"/>
 	<x path="Void"/>
 </f></oninputdown>
-		<oninputup public="1" set="method" line="521"><f a="name:event">
+		<oninputup public="1" set="method" line="530"><f a="name:event">
 	<c path="String"/>
 	<t path="luxe.InputEvent"/>
 	<x path="Void"/>
 </f></oninputup>
-		<mouse_button_from_number set="method" line="534"><f a="button">
+		<mouse_button_from_number set="method" line="543"><f a="button">
 	<x path="Int"/>
 	<e path="luxe.MouseButton"/>
 </f></mouse_button_from_number>
-		<onmousedown public="1" set="method" line="551" override="1"><f a="x:y:button:timestamp:window_id">
+		<onmousedown public="1" set="method" line="560" override="1"><f a="x:y:button:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5669,7 +5685,7 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmousedown>
-		<onmouseup public="1" set="method" line="579" override="1"><f a="x:y:button:timestamp:window_id">
+		<onmouseup public="1" set="method" line="588" override="1"><f a="x:y:button:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5677,7 +5693,7 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmouseup>
-		<onmousemove public="1" set="method" line="606" override="1"><f a="x:y:xrel:yrel:timestamp:window_id">
+		<onmousemove public="1" set="method" line="615" override="1"><f a="x:y:xrel:yrel:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Int"/>
@@ -5686,28 +5702,28 @@
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmousemove>
-		<onmousewheel public="1" set="method" line="632" override="1"><f a="x:y:timestamp:window_id">
+		<onmousewheel public="1" set="method" line="641" override="1"><f a="x:y:timestamp:window_id">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Void"/>
 </f></onmousewheel>
-		<ontouchdown public="1" set="method" line="658" override="1"><f a="x:y:touch_id:timestamp">
+		<ontouchdown public="1" set="method" line="667" override="1"><f a="x:y:touch_id:timestamp">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ontouchdown>
-		<ontouchup public="1" set="method" line="695" override="1"><f a="x:y:touch_id:timestamp">
+		<ontouchup public="1" set="method" line="704" override="1"><f a="x:y:touch_id:timestamp">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ontouchup>
-		<ontouchmove public="1" set="method" line="719" override="1"><f a="x:y:dx:dy:touch_id:timestamp">
+		<ontouchmove public="1" set="method" line="728" override="1"><f a="x:y:dx:dy:touch_id:timestamp">
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Float"/>
@@ -5716,41 +5732,41 @@
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ontouchmove>
-		<ongamepadaxis public="1" set="method" line="745" override="1"><f a="gamepad:axis:value:timestamp">
+		<ongamepadaxis public="1" set="method" line="754" override="1"><f a="gamepad:axis:value:timestamp">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepadaxis>
-		<ongamepaddown public="1" set="method" line="766" override="1"><f a="gamepad:button:value:timestamp">
+		<ongamepaddown public="1" set="method" line="775" override="1"><f a="gamepad:button:value:timestamp">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepaddown>
-		<ongamepadup public="1" set="method" line="787" override="1"><f a="gamepad:button:value:timestamp">
+		<ongamepadup public="1" set="method" line="796" override="1"><f a="gamepad:button:value:timestamp">
 	<x path="Int"/>
 	<x path="Int"/>
 	<x path="Float"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepadup>
-		<ongamepaddevice public="1" set="method" line="808" override="1"><f a="gamepad:type:timestamp">
+		<ongamepaddevice public="1" set="method" line="817" override="1"><f a="gamepad:type:timestamp">
 	<x path="Int"/>
 	<e path="snow.types.GamepadDeviceEventType"/>
 	<x path="Float"/>
 	<x path="Void"/>
 </f></ongamepaddevice>
-		<config public="1" set="method" line="841" override="1">
+		<config public="1" set="method" line="850" override="1">
 			<f a="config">
 				<t path="snow.types.AppConfig"/>
 				<t path="snow.types.AppConfig"/>
 			</f>
 			<haxe_doc>return what the game decides for runtime config</haxe_doc>
 		</config>
-		<process_loading_thread set="method" line="849"><f a=""><x path="Void"/></f></process_loading_thread>
+		<process_loading_thread set="method" line="858"><f a=""><x path="Void"/></f></process_loading_thread>
 		<new public="1" set="method" line="105">
 			<f a="_game">
 				<c path="luxe.Game"/>

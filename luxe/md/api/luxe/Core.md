@@ -128,6 +128,12 @@ meta: @:keep, @:noCompletion, @:keep, @:log_as(&quot;luxe&quot;)</span>
 
 </span>
 <span class="method apipage">
+            <a name="onevent"><a class="lift" href="#onevent">onevent</a></a><div class="clear"></div>
+            <code class="signature apipage">onevent(event:[snow.types.SystemEvent](#)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
+
+
+</span>
+<span class="method apipage">
             <a name="ongamepadaxis"><a class="lift" href="#ongamepadaxis">ongamepadaxis</a></a><div class="clear"></div>
             <code class="signature apipage">ongamepadaxis(gamepad:[Int](http://api.haxe.org/Int.html)<span></span>, axis:[Int](http://api.haxe.org/Int.html)<span></span>, value:[Float](http://api.haxe.org/Float.html)<span></span>, timestamp:[Float](http://api.haxe.org/Float.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
 
