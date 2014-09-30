@@ -9,6 +9,13 @@ class Main extends luxe.Game {
 	var mesh : Mesh;
 
 
+    override function config( config:luxe.AppConfig ) {
+
+        config.window.depth_bits = 24;
+
+        return config;
+    }
+
     override function ready() {
 
     	Luxe.camera.view.set_perspective({

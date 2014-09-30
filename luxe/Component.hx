@@ -53,9 +53,9 @@ class Component extends ID {
     @:noCompletion public function ontextinput( event:TextEvent ) {}
 
         /** override this to get notified when a named input event happens. only called if overridden. */
-    @:noCompletion public function oninputdown( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputdown( event:{ name:String, event:InputEvent } ) {}
         /** override this to get notified when a named input event happens. only called if overridden. */
-    @:noCompletion public function oninputup( name:String, event:InputEvent ) {}
+    @:noCompletion public function oninputup( event:{ name:String, event:InputEvent } ) {}
 
         /** override this to get notified when a mouse button is pressed. only called if overridden. */
     @:noCompletion public function onmousedown( event:MouseEvent ) {}
