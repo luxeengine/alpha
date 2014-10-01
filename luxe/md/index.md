@@ -8,7 +8,7 @@ A free and open cross platform game development engine.
 ---
 
 <script src="{{{rel_path}}}js/release.version.js"> </script>
-<div class="version">current version <a href="#" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="#"> latest </a></code> </div>
+<div class="version">current version <a href="https://github.com/underscorediscovery/luxe/" id="version_notes_link" target="_blank">notes</a> <code> <a id="version_tag" target="_blank" href="https://github.com/underscorediscovery/luxe/"> master </a></code> </div>
 
 ##About
 
@@ -57,6 +57,11 @@ but there are things to tighten up before 1.0.0 release can be called final.
 Join us in developing and testing the engine and tools, below.
 </small>
 
+####2D focus
+
+For version 1.0.0 luxe will focus solely on being a really solid, flexible 2D game engine first. That doesn't mean that 3D is not possible, there are already 3D tests and examples around the repo but please be aware there is no lighting model, very little 3D file imports this is intentional.
+
+The roadmap will speak more of this soon.
 
 ---
 
@@ -72,7 +77,9 @@ luxe contains many helpers, functions and systems for you to use when building y
 luxe is minimilistic in core and design, in that application domain features are left up to libraries and the application itself.
 
 It might not supply every feature you need for your specific game, but it will make it very easy to get there quickly.
-For more concrete examples of this in practice, read the [design philosophy](design.html) page.
+For more concrete examples of this in practice. Click the diagram below for a full picture of the architecture/design.
+
+<a href="./images/luxe-design.png" target="_blank"> <img src="./images/luxe-design-small.png" /> </a>
 
 ----
 <a name="docs"></a>

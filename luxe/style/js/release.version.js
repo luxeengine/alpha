@@ -52,7 +52,7 @@ $(document).ready(function() {
 
     get_github_latest_release({
         user:'underscorediscovery',
-        repo:'hxcollision',
+        repo:'luxe',
         selector_notes_link:'#version_notes_link',
         selector_tag:'#version_tag',
         done : function() {

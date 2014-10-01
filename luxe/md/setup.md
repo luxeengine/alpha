@@ -166,7 +166,7 @@ When using the sublime text plugin provided by the build tools, you get project 
 
 ![](images/sublime.png)
 
-[Read the sublime text setup](http://underscorediscovery.com/wip/flow/guide/sublimetext.html) docs.
+[Read the sublime text setup](https://underscorediscovery.github.io/flow/guide/sublimetext.html) docs.
 
 
 ###Flash develop
@@ -175,7 +175,7 @@ When using the flash develop template provided, you also get project management,
 
 ![](images/plugins/5.png)
 
-[Read the flash develop setup](http://underscorediscovery.com/wip/flow/guide/flashdevelop.html) docs.
+[Read the flash develop setup](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) docs.
 
 
 ---
