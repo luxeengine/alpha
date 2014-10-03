@@ -61,7 +61,7 @@ class CompositeGeometry extends Geometry {
     public function add_geometry( geom:Geometry ) {
 
         if(geom != null) {
-            geom.transform = transform;
+            geom.transform.parent = transform;
             geometry.push(geom);
         }
 
