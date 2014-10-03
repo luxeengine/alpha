@@ -1,0 +1,24 @@
+{
+
+  project : {
+    name : 'composite_geometry',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_composite_geometry',
+      package : 'com.luxeengine.composite_geometry'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+    }
+
+  }
+
+}
