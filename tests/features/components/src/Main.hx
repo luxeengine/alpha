@@ -48,7 +48,7 @@ class Main extends luxe.Game {
         child1_comp2.add(new Child2('child2', 565));
 
             //default camera is an entity, so give it a component!
-        Luxe.camera.add(new RandomCameraShaker('shaker'));
+        Luxe.camera.add(new RandomCameraShaker({'name': 'shaker'}));
 
     } //ready
 

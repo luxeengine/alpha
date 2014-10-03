@@ -77,12 +77,12 @@ import haxe.Utf8;
      */
     function convertToString(value:Dynamic):String {
 
-        if (Std.is(value, List) || Std.is(value,Map)) {
+        if (Std.is(value, List) || Std.is(value, haxe.ds.StringMap)) {
             value = Lambda.array(value);
             _trace("convertToString: was List or Map");
         }
 
-        if (Std.is(value, Map)) {
+        if (Std.is(value, haxe.ds.StringMap)) {
             value = mapHash(value);
             _trace("convertToString: was Hash");
         }
