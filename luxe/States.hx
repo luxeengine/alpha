@@ -14,6 +14,7 @@ class State extends ID {
 
     public var machine : States;
     public var active : Bool = false;
+    public var enabled : Bool = false;
 
     public function new( _options:StateOptions ) {
 
@@ -32,6 +33,12 @@ class State extends ID {
         machine.disable( name, _disable_with );
 
     } //disable
+
+    public function destroy() {
+
+        machine.kill( name );
+
+    } //destroy
 
         //critical events
     public function init() {}
@@ -101,7 +108,7 @@ class States extends Objects {
         active_states = new Array<State>();
 
         Luxe.core.on('init', init);
-        Luxe.core.on('destroy', destroy);
+        Luxe.core.on('destroy', ondestroy);
         Luxe.core.on('update', update);
 
         Luxe.core.on('prerender', prerender);
@@ -145,13 +152,63 @@ class States extends Objects {
 
         return _state;
 
-    } //add_state
+    } //add
+
+    public function remove<T:State>( _name:String ) : T {
+
+        if(_states.exists(_name)) {
+
+            var _state:T = cast _states.get(_name);
+
+            if(_state != null) {
+
+                    //if it's running unset it
+                if(_state.active) {
+
+                    leave(_state);
+
+                    if(_state == current_state) {
+                        current_state = null;
+                    }
+
+                } //_state.active
+
+                    //if it's stacked, disable it
+                if(_state.enabled) {
+                    disable(_state.name);
+                }
+
+                    //tell user
+                _state.onremoved();
+
+            } //state != null
+
+            return _state;
+
+        } //remove
+
+        return null;
+
+    } //remove
+
+    public function kill( _name:String ) {
+
+        if( _states.exists(_name) ) {
+            var _state : State = remove( _name );
+            if(_state != null) {
+                _state.ondestroy();
+            }
+        }
+
+    } //kill
 
     public function enable<T>( _name:String, ?_enable_with:T ) {
         var state = _states.get( _name );
         if(state != null) {
             _debug('$name / enabling a state ' + _name );
             state.onenabled(_enable_with);
+            state.active = true;
+            state.enabled = true;
             active_states.push(state);
             _debug('$name / now at ${active_states.length} active states');
         }
@@ -162,10 +219,30 @@ class States extends Objects {
         if(state != null) {
             _debug('$name / disabling a state ' + _name );
             state.ondisabled(_disable_with);
+            state.active = false;
+            state.enabled = false;
             active_states.remove( state );
             _debug('$name / now at ${active_states.length} active states');
         }
     } //disable
+
+    function enter<T>( _state:State, ?_enter_with:T ) {
+
+            //order matters
+        _state.onenter( _enter_with );
+        active_states.push( _state );
+        _state.active = true;
+
+    } //enter
+
+    function leave<T>( _state:State, ?_leave_with:T ) {
+
+            //order matters
+        _state.active = false;
+        active_states.remove( _state );
+        _state.onleave( _leave_with );
+
+    } //leave
 
     public function set<T1,T2>(name:String, ?_enter_with:T1, ?_leave_with:T2, ?pos:haxe.PosInfos ) {
 
@@ -176,11 +253,9 @@ class States extends Objects {
                 _debug('current state was valid, leaving current state : ${current_state.name} (${current_state.active})');
                 _debug('currently at ${Lambda.count(active_states)} active_states');
 
-            active_states.remove( current_state );
+            leave( current_state, _leave_with );
 
                 _debug('removed ${current_state.name}, now at ${Lambda.count(active_states)} active_states');
-
-            current_state.onleave(_leave_with);
 
             current_state = null;
 
@@ -191,44 +266,22 @@ class States extends Objects {
                 _debug('found state named $name, calling enter');
 
             current_state = _states.get(name);
-            active_states.push( current_state );
+            enter( current_state );
 
-                _debug('calling enter on $name, now at ${Lambda.count(active_states)} active_states');
-
-            current_state.onenter(_enter_with);
+                _debug('called enter on $name, now at ${Lambda.count(active_states)} active_states');
 
         } //if states.exists(name)
 
     } //set
 
-    //entity router functions
-    function init(_) {
-        for (state in _states) {
-            state.init();
-        }
-    } //init
-
-    function reset(_) {
-        for (state in active_states) {
-            state.onreset();
-        }
-    } //reset
-
-    function update(dt:Float) {
-        for (state in active_states) {
-            _verboser('${state.name} / update / $dt');
-            state.update(dt);
-        }
-    } //update
-
-    function destroy(_) {
+    public function destroy() {
 
         for (state in _states) {
-            state.ondestroy();
+            state.destroy();
         }
 
         Luxe.core.off('init', init);
-        Luxe.core.off('destroy', destroy);
+        Luxe.core.off('destroy', ondestroy);
         Luxe.core.off('update', update);
 
         Luxe.core.off('prerender', prerender);
@@ -259,6 +312,32 @@ class States extends Objects {
         emit('destroy');
 
     } //destroy
+
+    //entity router functions
+    function init(_) {
+        for (state in _states) {
+            state.init();
+        }
+    } //init
+
+    function reset(_) {
+        for (state in active_states) {
+            state.onreset();
+        }
+    } //reset
+
+    function update(dt:Float) {
+        for (state in active_states) {
+            _verboser('${state.name} / update / $dt');
+            state.update(dt);
+        }
+    } //update
+
+    function ondestroy(_) {
+
+        destroy();
+
+    } //ondestroy
 
     function render(_) {
         for (state in active_states) {
@@ -358,7 +437,7 @@ class States extends Objects {
         }
     } //ontouchmove
 
-//gamepad 
+//gamepad
 
     function gamepadaxis( e:GamepadEvent ) {
         for (state in active_states) {
