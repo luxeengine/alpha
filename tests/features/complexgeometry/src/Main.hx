@@ -74,7 +74,7 @@ class Main extends luxe.Game {
 
             next_anim = Luxe.time + anim_delay;
 
-            // geom.locked = true;
+            geom.locked = true;
 
             loaded = true;
 
@@ -92,17 +92,21 @@ class Main extends luxe.Game {
 
         map_tiles = new Array< Array<MapTile> >();
 
-        for(_y in 0 ... maph) {
-            var _row = new Array<MapTile>();
-            for(_x in 0 ... mapw) {
+        var tilew = 8;
+        var tilecx : Int = Std.int(Luxe.screen.w / tilew);
+        var tilecy : Int = Std.int(Luxe.screen.h / tilew);
 
-                var map_x = _x * 16;
-                var map_y = _y * 16;
-                var _quad = geom.quad_add({x:map_x, y:map_y, w:16, h:16});
+        for(_y in 0 ... tilecy) {
+            var _row = new Array<MapTile>();
+            for(_x in 0 ... tilecx) {
+
+                var map_x = _x * tilew;
+                var map_y = _y * tilew;
+                var _quad = geom.quad_add({x:map_x, y:map_y, w:tilew, h:tilew});
                 var _tilex = random_int(13);
                 var _tiley = random_int(5);
 
-                geom.quad_uv(_quad, new Rectangle((_tilex * 16),(_tiley * 16), 16, 16) );
+                geom.quad_uv(_quad, new Rectangle((_tilex * tilew),(_tiley * tilew), tilew, tilew) );
 
                 _row.push( { quad:_quad, tilex:_tilex, tiley:_tiley } );
 
