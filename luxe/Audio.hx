@@ -24,13 +24,13 @@ class Audio {
 
         /**
             Create a named audio reference, with optional streaming flag   
-            **name** The name to assign this audio reference.   
-            **file** The asset file id from which the audio is loaded/streamed   
-            **stream** Whether or not to stream the audio, default `false`   
-            **returns** The `Sound` instance, if needed. can be manipulated through named api.
+            **id** The asset file id from which the audio is loaded/streamed.   
+            **name** The name to assign the sound for the named api    
+            **streaming** Whether or not to stream the audio, default `false`   
+            **returns** The `Sound` instance, if needed. can be manipulated through named api as well.
         */
-    public function create( _name:String, _file:String, ?_stream:Bool = false ) : luxe.Sound {
-        return core.app.audio.create( _name, _file, _stream );
+    public function create( _id:String, ?_name:String = '', ?_streaming:Bool = false ) : luxe.Sound {
+        return core.app.audio.create( _id, _name, _streaming );
     } //create
 
         /**
