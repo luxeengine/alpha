@@ -78,7 +78,7 @@ class Main extends luxe.Game {
 
     override function onmousemove( e:MouseEvent ) {
 
-        mouse.set(e.x, e.y);
+        mouse.set_xy(e.x, e.y);
 
         sprite.pos = mouse;
 
