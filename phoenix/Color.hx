@@ -437,8 +437,8 @@ class ColorHSL extends Color {
         }
 
             h = _h;
-            s = _h;
-            l = _h;
+            s = _s;
+            l = _l;
             a = _color.a;
 
         return this;
