@@ -492,6 +492,9 @@ class Core extends snow.App {
         switch(type) {
             case edit: _type = TextEventType.edit;
             case input: _type = TextEventType.input;
+            default: {
+                return;
+            }
         }
 
         var event : TextEvent = {
