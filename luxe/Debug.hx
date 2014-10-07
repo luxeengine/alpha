@@ -105,11 +105,30 @@ class Debug {
         trace_callbacks.set(_name, _callback);
     }
 
+
+#if cpp
+    static function default_native_trace( v : Dynamic, ?infos : haxe.PosInfos ) {
+
+        if (infos!=null && infos.customParams!=null) {
+
+            var extra:String = "";
+
+            for( v in infos.customParams ) { extra += "," + v; }
+
+            untyped __trace(v + extra,infos);
+
+        } else {
+            untyped __trace(v,infos);
+        }
+
+    } //default_native_trace
+#end //cpp
+
     @:noCompletion public static function internal_trace( v : Dynamic, ?inf : haxe.PosInfos ) {
 
         var _line = StringTools.rpad(Std.string(inf.lineNumber), ' ', 4);
         #if luxe_native
-            Sys.println('${inf.fileName}:$_line $v');
+            default_native_trace(v, inf);
         #end
 
         #if luxe_web
