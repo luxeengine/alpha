@@ -55,25 +55,4 @@ class Rendering {
         }
     } //get_opengl_type_length
 
-    public static function get_opengl_primitive_type( type:PrimitiveType ) {
-        switch( type ) {
-            case points:
-                return GL.POINTS;
-            case lines:
-                return GL.LINES;
-            case line_strip:
-                return GL.LINE_STRIP;
-            case line_loop:
-                return GL.LINE_LOOP;
-            case triangle_strip:
-                return GL.TRIANGLE_STRIP;
-            case triangles:
-                return GL.TRIANGLES;
-            case triangle_fan:
-                return GL.TRIANGLE_FAN;
-            case none:
-                return GL.TRIANGLE_STRIP;
-        }
-    }
-
 } //Rendering

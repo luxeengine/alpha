@@ -215,15 +215,9 @@ class Renderer {
     } //clear
 
 
-    public function blend_mode(?_src_mode:BlendMode = null, _dst_mode:BlendMode = null) {
+    public function blend_mode(?_src_mode:BlendMode = BlendMode.src_alpha, _dst_mode:BlendMode = BlendMode.one_minus_src_alpha) {
 
-        if(_src_mode == null) _src_mode = BlendMode.src_alpha;
-        if(_dst_mode == null) _dst_mode = BlendMode.one_minus_src_alpha;
-
-        var _src = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_src_mode);
-        var _dest = phoenix.utils.Rendering.gl_blend_mode_from_BlendMode(_dst_mode);
-
-        GL.blendFunc(_src, _dest);
+        GL.blendFunc(_src_mode, _dst_mode);
 
     } //set blendmode
 
