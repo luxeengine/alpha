@@ -12,13 +12,13 @@ class MatrixTransform {
     public var rotation : Quaternion;
     public var scale : Vector;
 
-    public function new(p, r, s) {
+    public inline function new(p, r, s) {
         pos = p;
         rotation = r;
         scale = s;
     }
 
-    function destroy() {
+    inline function destroy() {
         pos = null; rotation = null; scale = null;
     }
 
@@ -27,6 +27,7 @@ class MatrixTransform {
 class Matrix {
 
     public var elements:Array<Float>;
+    var _float32array : snow.utils.Float32Array;
 
     @:isVar public var M11 (get,set) : Float = 1;
     @:isVar public var M21 (get,set) : Float = 0;
@@ -48,7 +49,7 @@ class Matrix {
     @:isVar public var M34 (get,set) : Float = 0;
     @:isVar public var M44 (get,set) : Float = 1;
 
-    public function new(
+    public inline function new(
         n11:Float = 1, n12:Float = 0, n13:Float = 0, n14:Float = 0,
         n21:Float = 0, n22:Float = 1, n23:Float = 0, n24:Float = 0,
         n31:Float = 0, n32:Float = 0, n33:Float = 1, n34:Float = 0,
@@ -57,7 +58,9 @@ class Matrix {
         elements = new Array<Float>();
 
         var i = 0;
-        while (i++ < 16) elements.push(0.0);
+        while (i++ < 16) {
+            elements.push(0.0);
+        }
 
         set(
             n11, n12, n13, n14,
@@ -65,10 +68,13 @@ class Matrix {
             n31, n32, n33, n34,
             n41, n42, n43, n44
         );
+
+        _float32array = new snow.utils.Float32Array( elements );
+
     }
 
 
-    public function set(
+    public inline function set(
         n11:Float, n12:Float, n13:Float, n14:Float,
         n21:Float, n22:Float, n23:Float, n24:Float,
         n31:Float, n32:Float, n33:Float, n34:Float,
@@ -85,7 +91,7 @@ class Matrix {
         return this;
     }
 
-    function toString() {
+    inline function toString() {
         var e = elements;
         var str = '{ 11:' + Maths.fixed(e[0], 3) + ', 12:' + Maths.fixed(e[4], 3)  + ', 13:' + Maths.fixed(e[ 8], 3)  + ', 14:' + Maths.fixed(e[12], 3) + ' }, ' +
                   '{ 21:' + Maths.fixed(e[1], 3) + ', 22:' + Maths.fixed(e[5], 3)  + ', 23:' + Maths.fixed(e[ 9], 3)  + ', 24:' + Maths.fixed(e[13], 3) + ' }, ' +
@@ -94,51 +100,63 @@ class Matrix {
         return str;
     }
 
-    function get_M11() : Float { return elements[0]; }
-    function get_M12() : Float { return elements[1]; }
-    function get_M13() : Float { return elements[2]; }
-    function get_M14() : Float { return elements[3]; }
+    inline function get_M11() : Float { return elements[0]; }
+    inline function get_M12() : Float { return elements[1]; }
+    inline function get_M13() : Float { return elements[2]; }
+    inline function get_M14() : Float { return elements[3]; }
 
-    function get_M21() : Float { return elements[4]; }
-    function get_M22() : Float { return elements[5]; }
-    function get_M23() : Float { return elements[6]; }
-    function get_M24() : Float { return elements[7]; }
+    inline function get_M21() : Float { return elements[4]; }
+    inline function get_M22() : Float { return elements[5]; }
+    inline function get_M23() : Float { return elements[6]; }
+    inline function get_M24() : Float { return elements[7]; }
 
-    function get_M31() : Float { return elements[8]; }
-    function get_M32() : Float { return elements[9]; }
-    function get_M33() : Float { return elements[10]; }
-    function get_M34() : Float { return elements[11]; }
+    inline function get_M31() : Float { return elements[8]; }
+    inline function get_M32() : Float { return elements[9]; }
+    inline function get_M33() : Float { return elements[10]; }
+    inline function get_M34() : Float { return elements[11]; }
 
-    function get_M41() : Float { return elements[12]; }
-    function get_M42() : Float { return elements[13]; }
-    function get_M43() : Float { return elements[14]; }
-    function get_M44() : Float { return elements[15]; }
+    inline function get_M41() : Float { return elements[12]; }
+    inline function get_M42() : Float { return elements[13]; }
+    inline function get_M43() : Float { return elements[14]; }
+    inline function get_M44() : Float { return elements[15]; }
 
-    function set_M11( _value:Float ) : Float { elements[0] = _value; return _value; }
-    function set_M12( _value:Float ) : Float { elements[1] = _value; return _value; }
-    function set_M13( _value:Float ) : Float { elements[2] = _value; return _value; }
-    function set_M14( _value:Float ) : Float { elements[3] = _value; return _value; }
+    inline function set_M11( _value:Float ) : Float { elements[0] = _value; return _value; }
+    inline function set_M12( _value:Float ) : Float { elements[1] = _value; return _value; }
+    inline function set_M13( _value:Float ) : Float { elements[2] = _value; return _value; }
+    inline function set_M14( _value:Float ) : Float { elements[3] = _value; return _value; }
 
-    function set_M21( _value:Float ) : Float { elements[4] = _value; return _value; }
-    function set_M22( _value:Float ) : Float { elements[5] = _value; return _value; }
-    function set_M23( _value:Float ) : Float { elements[6] = _value; return _value; }
-    function set_M24( _value:Float ) : Float { elements[7] = _value; return _value; }
+    inline function set_M21( _value:Float ) : Float { elements[4] = _value; return _value; }
+    inline function set_M22( _value:Float ) : Float { elements[5] = _value; return _value; }
+    inline function set_M23( _value:Float ) : Float { elements[6] = _value; return _value; }
+    inline function set_M24( _value:Float ) : Float { elements[7] = _value; return _value; }
 
-    function set_M31( _value:Float ) : Float { elements[8] = _value; return _value; }
-    function set_M32( _value:Float ) : Float { elements[9] = _value; return _value; }
-    function set_M33( _value:Float ) : Float { elements[10] = _value; return _value; }
-    function set_M34( _value:Float ) : Float { elements[11] = _value; return _value; }
+    inline function set_M31( _value:Float ) : Float { elements[8] = _value; return _value; }
+    inline function set_M32( _value:Float ) : Float { elements[9] = _value; return _value; }
+    inline function set_M33( _value:Float ) : Float { elements[10] = _value; return _value; }
+    inline function set_M34( _value:Float ) : Float { elements[11] = _value; return _value; }
 
-    function set_M41( _value:Float ) : Float { elements[12] = _value; return _value; }
-    function set_M42( _value:Float ) : Float { elements[13] = _value; return _value; }
-    function set_M43( _value:Float ) : Float { elements[14] = _value; return _value; }
-    function set_M44( _value:Float ) : Float { elements[15] = _value; return _value; }
+    inline function set_M41( _value:Float ) : Float { elements[12] = _value; return _value; }
+    inline function set_M42( _value:Float ) : Float { elements[13] = _value; return _value; }
+    inline function set_M43( _value:Float ) : Float { elements[14] = _value; return _value; }
+    inline function set_M44( _value:Float ) : Float { elements[15] = _value; return _value; }
 
-    public function float32array() : snow.utils.Float32Array {
-        return new snow.utils.Float32Array(elements);
-    }
+    public inline function float32array() : snow.utils.Float32Array {
 
-    public function identity () : Matrix {
+            //this is temporary, looks like a misnomer in the Float32Array js bindings
+        #if luxe_native
+
+            _float32array.set( elements );
+            return new snow.utils.Float32Array( _float32array );
+
+        #else
+
+            return new snow.utils.Float32Array( elements );
+
+        #end
+
+    } //float32array
+
+    public inline function identity () : Matrix {
 
             set(
                 1, 0, 0, 0,
@@ -148,10 +166,11 @@ class Matrix {
             );
 
         return this;
-    }
+
+    } //identity
 
 
-    public function copy( m:Matrix ) : Matrix {
+    public inline function copy( m:Matrix ) : Matrix {
 
         var me = m.elements;
 
@@ -165,7 +184,7 @@ class Matrix {
         return this;
     }
 
-    public function make2D( _x:Float, _y:Float, _scale:Float = 1, _rotation:Float = 0 ) {
+    public inline function make2D( _x:Float, _y:Float, _scale:Float = 1, _rotation:Float = 0 ) {
 
         var theta = Maths.radians(_rotation);
         var c = Math.cos(theta);
@@ -182,7 +201,7 @@ class Matrix {
    }
 
 
-    public function copyPosition( m:Matrix ) : Matrix {
+    public inline function copyPosition( m:Matrix ) : Matrix {
 
         elements[12] = m.elements[12];
         elements[13] = m.elements[13];
@@ -192,11 +211,11 @@ class Matrix {
     }
 
 
-    public function getPosition() : Vector {
+    public inline function getPosition() : Vector {
         return new Vector(elements[12], elements[13], elements[14],1);
     }
 
-    public function extractRotation( m:Matrix ) : Matrix {
+    public inline function extractRotation( m:Matrix ) : Matrix {
 
         var _temp = new Vector();
         var me = m.elements;
@@ -220,7 +239,7 @@ class Matrix {
         return this;
     }
 
-    public function makeRotationFromEuler( _v:Vector, _order:String = 'XYZ') : Matrix {
+    public inline function makeRotationFromEuler( _v:Vector, _order:String = 'XYZ') : Matrix {
 
         var te = elements;
 
@@ -345,7 +364,7 @@ class Matrix {
 
     } //makeRotationFromEuler
 
-    public function makeRotationFromQuaternion( q:Quaternion ) : Matrix {
+    public inline function makeRotationFromQuaternion( q:Quaternion ) : Matrix {
 
         var te = elements;
 
@@ -382,7 +401,7 @@ class Matrix {
     } //makeRotationFromQuaternion
 
 
-    public function lookAt( _eye:Vector, _target:Vector, _up:Vector ) : Matrix {
+    public inline function lookAt( _eye:Vector, _target:Vector, _up:Vector ) : Matrix {
 
         var _x = new Vector();
         var _y = new Vector();
@@ -414,14 +433,14 @@ class Matrix {
     } //lookAt
 
 
-    public function multiply( _m:Matrix ) : Matrix {
+    public inline function multiply( _m:Matrix ) : Matrix {
 
         return multiplyMatrices(this, _m);
 
     } //multiply
 
 
-    public function multiplyMatrices( _a:Matrix, _b:Matrix ) : Matrix {
+    public inline function multiplyMatrices( _a:Matrix, _b:Matrix ) : Matrix {
 
         var ae = _a.elements;
         var be = _b.elements;
@@ -462,7 +481,7 @@ class Matrix {
     } //multiplyMatrices
 
 
-    public function multiplyToArray( _a:Matrix, _b:Matrix, _r:Array<Float> ) : Matrix {
+    public inline function multiplyToArray( _a:Matrix, _b:Matrix, _r:Array<Float> ) : Matrix {
 
         var te = elements;
 
@@ -478,7 +497,7 @@ class Matrix {
     } //multiplyToArray
 
 
-    public function multiplyScalar( _s:Float ) : Matrix {
+    public inline function multiplyScalar( _s:Float ) : Matrix {
 
         var te = elements;
 
@@ -492,7 +511,7 @@ class Matrix {
     } //multiplyScalar
 
 
-    public function multiplyVector3Array( _a:Array<Float> ) : Array<Float> {
+    public inline function multiplyVector3Array( _a:Array<Float> ) : Array<Float> {
 
         var v1 = new Vector();
         var i = 0;
@@ -518,7 +537,7 @@ class Matrix {
 
     } //multiplyVector3Array
 
-    public function determinant() : Float {
+    public inline function determinant() : Float {
 
         var te = elements;
 
@@ -563,7 +582,7 @@ class Matrix {
         );
     } //determinant
 
-    public function transpose() : Matrix {
+    public inline function transpose() : Matrix {
 
         var te = elements;
         var tmp:Float;
@@ -580,7 +599,7 @@ class Matrix {
 
     } //transpose
 
-    public function flattenToArray( _flat:Array<Float> = null ) : Array<Float> {
+    public inline function flattenToArray( _flat:Array<Float> = null ) : Array<Float> {
 
         if (_flat == null) {
             _flat = new Array<Float>();
@@ -599,7 +618,7 @@ class Matrix {
     } //flattenToArray
 
 
-    public function flattenToArrayOffset( _flat:Array<Float>, _offset:Int ) : Array<Float> {
+    public inline function flattenToArrayOffset( _flat:Array<Float>, _offset:Int ) : Array<Float> {
 
         var te = elements;
 
@@ -628,7 +647,7 @@ class Matrix {
     } //flattenToArrayOffset
 
 
-    public function setPosition( _v:Vector ) : Matrix {
+    public inline function setPosition( _v:Vector ) : Matrix {
 
         var te = elements;
 
@@ -640,11 +659,11 @@ class Matrix {
 
     } //setPosition
 
-    public function inverse() : Matrix {
+    public inline function inverse() : Matrix {
         return clone().getInverse(this);
     }
 
-    public function getInverse( _m:Matrix ) : Matrix {
+    public inline function getInverse( _m:Matrix ) : Matrix {
 
         // based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm
 
@@ -692,7 +711,7 @@ class Matrix {
     } //getInverse
 
 
-    public function scale( _v:Vector ) : Matrix {
+    public inline function scale( _v:Vector ) : Matrix {
 
         var te = elements;
 
@@ -710,7 +729,7 @@ class Matrix {
     } //scale
 
 
-    public function getMaxScaleOnAxis() : Float {
+    public inline function getMaxScaleOnAxis() : Float {
 
         var te = elements;
 
@@ -723,7 +742,7 @@ class Matrix {
     } //getMaxScaleOnAxis
 
 
-    public function makeTranslation( _x:Float, _y:Float, _z:Float ) : Matrix {
+    public inline function makeTranslation( _x:Float, _y:Float, _z:Float ) : Matrix {
 
         set(
             1, 0, 0, _x,
@@ -737,7 +756,7 @@ class Matrix {
     } //makeTranslation
 
 
-    public function makeRotationX( _theta:Float ) : Matrix {
+    public inline function makeRotationX( _theta:Float ) : Matrix {
 
         var _c = Math.cos(_theta);
         var _s = Math.sin(_theta);
@@ -754,7 +773,7 @@ class Matrix {
     } //makeRotationX
 
 
-    public function makeRotationY(_theta:Float) : Matrix {
+    public inline function makeRotationY(_theta:Float) : Matrix {
 
         var _c = Math.cos(_theta);
         var _s = Math.sin(_theta);
@@ -771,7 +790,7 @@ class Matrix {
     } //makeRotationY
 
 
-    public function makeRotationZ(_theta:Float) : Matrix {
+    public inline function makeRotationZ(_theta:Float) : Matrix {
 
         var _c = Math.cos(_theta);
         var _s = Math.sin(_theta);
@@ -788,7 +807,7 @@ class Matrix {
     } //makeRotationZ
 
 
-    public function makeRotationAxis( _axis:Vector, _angle:Float ) : Matrix {
+    public inline function makeRotationAxis( _axis:Vector, _angle:Float ) : Matrix {
 
         var _c = Math.cos( _angle );
         var _s = Math.sin( _angle );
@@ -813,7 +832,7 @@ class Matrix {
     } //makeRotationAxis
 
 
-    public function makeScale( _x:Float, _y:Float, _z:Float) : Matrix {
+    public inline function makeScale( _x:Float, _y:Float, _z:Float) : Matrix {
 
             set(
                 _x,  0,  0,  0,
@@ -827,8 +846,9 @@ class Matrix {
     } //makeScale
 
 
-    public function compose_with_origin( _position:Vector, _origin:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix {
+    public inline function compose_with_origin( _position:Vector, _origin:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix {
 
+        //this isn't very optimized
         //translate to origin -> scale -> rotate -> translate -origin -> apply position
 
             //origin ->
@@ -846,7 +866,7 @@ class Matrix {
 
     }
 
-    public function compose( _position:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix {
+    public inline function compose( _position:Vector, _quaternion:Quaternion, _scale:Vector ) : Matrix {
 
             makeRotationFromQuaternion( _quaternion );
             scale( _scale );
@@ -858,7 +878,7 @@ class Matrix {
 
     var _transform : MatrixTransform;
 
-    public function decompose( _position:Vector = null, _quaternion:Quaternion = null, _scale:Vector = null ) : MatrixTransform {
+    public inline function decompose( _position:Vector = null, _quaternion:Quaternion = null, _scale:Vector = null ) : MatrixTransform {
 
         var te = elements;
         var matrix = new Matrix();
@@ -925,7 +945,7 @@ class Matrix {
     } //decompose
 
 
-    public function makeFrustum( _left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float ) : Matrix {
+    public inline function makeFrustum( _left:Float, _right:Float, _bottom:Float, _top:Float, _near:Float, _far:Float ) : Matrix {
 
         var te = elements;
 
@@ -947,7 +967,7 @@ class Matrix {
     } //makeFrustum
 
 
-    public function makePerspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) : Matrix {
+    public inline function makePerspective( _fov:Float, _aspect:Float, _near:Float, _far:Float ) : Matrix {
 
         var ymax = _near * Math.tan( Maths.radians(_fov * 0.5) );
         var ymin = -ymax;
@@ -959,7 +979,7 @@ class Matrix {
     } //makePerspective
 
 
-    public function makeOrthographic( _left:Float, _right:Float, _top:Float, _bottom:Float, _near:Float, _far:Float ) : Matrix {
+    public inline function makeOrthographic( _left:Float, _right:Float, _top:Float, _bottom:Float, _near:Float, _far:Float ) : Matrix {
 
         var te = elements;
 
@@ -980,13 +1000,13 @@ class Matrix {
 
     } //makeOrthographic
 
-    public function fromArray(_from:Array<Float>) {
+    public inline function fromArray(_from:Array<Float>) {
 
         elements = _from.concat([]);
 
     } //fromArray
 
-    public function toArray() : Array<Float> {
+    public inline function toArray() : Array<Float> {
 
         var te = elements;
 
@@ -999,7 +1019,7 @@ class Matrix {
 
     } //toArray
 
-    public function clone() : Matrix {
+    public inline function clone() : Matrix {
 
         var te = elements;
 
@@ -1012,27 +1032,27 @@ class Matrix {
 
     } //clone
 
-    public function up() {
+    public inline function up() {
         return new Vector( elements[4], elements[5], elements[10] );
     } //up
 
-    public function down() : Vector {
+    public inline function down() : Vector {
         return up().inverted;
     } //down
 
-    public function left() : Vector {
+    public inline function left() : Vector {
         return right().inverted;
     } //left
 
-    public function right() : Vector {
+    public inline function right() : Vector {
         return new Vector( elements[0], elements[1], elements[2] );
     } //right
 
-    public function backward() {
+    public inline function backward() {
         return new Vector( elements[8], elements[9], elements[10] );
     } //backward
 
-    public function forward() : Vector {
+    public inline function forward() : Vector {
         return backward().inverted;
     } //forward
 

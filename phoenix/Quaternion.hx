@@ -230,7 +230,7 @@ class Quaternion {
 
     public function conjugate() : Quaternion {
 
-        set_xyzw( x * -1, y * -1, z * -1, w);
+        set_xyz( x * -1, y * -1, z * -1);
 
         return this;
 
@@ -424,7 +424,7 @@ class Quaternion {
         return new Quaternion(_a.x,_a.y,_a.z,_a.w).dot(_b);
     }
 
-    function update_euler() {
+    inline function update_euler() {
 
         if( euler == null || ignore_euler || _construct) {
             return;
@@ -436,7 +436,7 @@ class Quaternion {
 
     var ignore_euler = false;
 
-    public function set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) {
+    public inline function set_xyzw(_x:Float, _y:Float, _z:Float, _w:Float) {
 
         ignore_euler = true;
 
@@ -456,7 +456,25 @@ class Quaternion {
 
     } //set_xyzw
 
-    function set_x( _v:Float ) {
+    public inline function set_xyz(_x:Float, _y:Float, _z:Float) {
+
+        ignore_euler = true;
+
+            x = _x;
+            y = _y;
+            z = _z;
+
+        ignore_euler = false;
+
+        update_euler();
+
+        if(listen_x != null && !ignore_listeners) listen_x(x);
+        if(listen_y != null && !ignore_listeners) listen_y(y);
+        if(listen_z != null && !ignore_listeners) listen_z(z);
+
+    } //set_xyzw
+
+    inline function set_x( _v:Float ) {
 
         x = _v;
 
@@ -470,7 +488,7 @@ class Quaternion {
 
     } //set_x
 
-    function set_y( _v:Float ) {
+    inline function set_y( _v:Float ) {
 
         y = _v;
 
@@ -484,7 +502,7 @@ class Quaternion {
 
     } //set_y
 
-    function set_z( _v:Float ) {
+    inline function set_z( _v:Float ) {
 
         z = _v;
 
@@ -498,7 +516,7 @@ class Quaternion {
 
     } //set_z
 
-    function set_w( _v:Float ) {
+    inline function set_w( _v:Float ) {
 
         w = _v;
 
@@ -512,7 +530,7 @@ class Quaternion {
 
     } //set_w
 
-    public static function listen( _q : Quaternion, listener ) {
+    public static inline function Listen( _q : Quaternion, listener ) {
 
         _q.listen_x = listener;
         _q.listen_y = listener;
