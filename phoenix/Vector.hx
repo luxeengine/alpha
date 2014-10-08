@@ -23,7 +23,7 @@ class Vector {
 
     var _construct = false;
 
-    public function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0) {
+    public inline function new( _x:Float = 0, _y:Float = 0, _z:Float = 0, _w:Float = 0 ) {
 
         _construct = true;
 
@@ -36,7 +36,7 @@ class Vector {
 
     } //new
 
-    public function copy_from( _other:Vector ) {
+    public inline function copy_from( _other:Vector ) {
 
         set( _other.x, _other.y, _other.z, _other.w );
 
@@ -44,7 +44,7 @@ class Vector {
 
     } //copy_from
 
-    public function set( _x:Float, _y:Float, _z:Float, _w:Float ) {
+    public inline function set( _x:Float, _y:Float, _z:Float, _w:Float ) {
 
         var prev = ignore_listeners;
 
@@ -65,7 +65,7 @@ class Vector {
 
     } //set
 
-    public function set_xy( _x:Float, _y:Float ) {
+    public inline function set_xy( _x:Float, _y:Float ) {
 
         var prev = ignore_listeners;
 
@@ -83,7 +83,7 @@ class Vector {
 
     } //set_xy
 
-    public function set_xyz( _x:Float, _y:Float, _z:Float ) {
+    public inline function set_xyz( _x:Float, _y:Float, _z:Float ) {
 
         var prev = ignore_listeners;
 
@@ -103,15 +103,15 @@ class Vector {
 
     } //set_xyz
 
-    public function int() {
+    public inline function int() {
 
-        set( Math.round(x), Math.round(y), Math.round(z), w );
+        set_xyz( Math.round(x), Math.round(y), Math.round(z) );
 
         return this;
 
     } //int
 
-    public function int_x() {
+    public inline function int_x() {
 
         x = Math.round(x);
 
@@ -119,7 +119,7 @@ class Vector {
 
     } //int_z
 
-    public function int_y() {
+    public inline function int_y() {
 
         y = Math.round(y);
 
@@ -127,7 +127,7 @@ class Vector {
 
     } //int_y
 
-    public function int_z() {
+    public inline function int_z() {
 
         z = Math.round(z);
 
@@ -135,32 +135,32 @@ class Vector {
 
     } //int_y
 
-    function toString() {
+    inline function toString() {
 
         return "{ x:"+x + ", y:" + y + ", z:" + z  + " }" ;
 
     } //toString
 
-    public function equals(other:Vector) {
+    public inline function equals(other:Vector) {
         return (x == other.x && y == other.y && z == other.z && w == other.w);
     }
 
-    public function clone() {
+    public inline function clone() {
         return new Vector(x, y, z, w);
     } //clone
 
-    public function normalize() {
+    public inline function normalize() {
         return divideScalar( length );
     } //normalize
 
-    public function dot(other:Vector) {
+    public inline function dot(other:Vector) {
 
         return x * other.x + y * other.y + z * other.z;
 
     } //dot
 
 
-    public function cross( a:Vector, b:Vector ) {
+    public inline function cross( a:Vector, b:Vector ) {
 
         set_xyz( a.y * b.z - a.z * b.y,
                  a.z * b.x - a.x * b.z,
@@ -180,7 +180,7 @@ class Vector {
 
 //Static Functions
 
-    public static function Add(a:Vector, b:Vector) {
+    public static inline function Add(a:Vector, b:Vector) {
         return new Vector(
             a.x + b.x,
             a.y + b.y,
@@ -188,7 +188,7 @@ class Vector {
         );
     } //Add
 
-    public static function Subtract(a:Vector, b:Vector) {
+    public static inline function Subtract(a:Vector, b:Vector) {
         return new Vector(
             a.x - b.x,
             a.y - b.y,
@@ -196,7 +196,7 @@ class Vector {
         );
     } //Subtract
 
-    public static function MultiplyVector(a:Vector, b:Vector) : Vector {
+    public static inline function MultiplyVector(a:Vector, b:Vector) : Vector {
         return new Vector(
             a.x * b.x,
             a.y * b.y,
@@ -204,7 +204,7 @@ class Vector {
         );
     } //MultiplyVector
 
-    public static function DivideVector(a:Vector, b:Vector) {
+    public static inline function DivideVector(a:Vector, b:Vector) {
         return new Vector(
             a.x / b.x,
             a.y / b.y,
@@ -220,7 +220,7 @@ class Vector {
         );
     } //Multiply
 
-    public static function Divide(a:Vector, b:Float) {
+    public static inline function Divide(a:Vector, b:Float) {
         return new Vector(
             a.x / b,
             a.y / b,
@@ -228,7 +228,7 @@ class Vector {
         );
     } //Divide
 
-    public static function AddScalar(a:Vector, b:Float) {
+    public static inline function AddScalar(a:Vector, b:Float) {
         return new Vector(
             a.x + b,
             a.y + b,
@@ -236,7 +236,7 @@ class Vector {
         );
     } //AddScalar
 
-    public static function SubtractScalar(a:Vector, b:Float) {
+    public static inline function SubtractScalar(a:Vector, b:Float) {
         return new Vector(
             a.x - b,
             a.y - b,
@@ -244,7 +244,7 @@ class Vector {
         );
     } //SubtractScalar
 
-    public static function Cross(a:Vector, b:Vector) {
+    public static inline function Cross(a:Vector, b:Vector) {
         return new Vector(
              a.y * b.z - a.z * b.y,
              a.z * b.x - a.x * b.z,
@@ -252,21 +252,23 @@ class Vector {
         );
     } //Cross
 
-    public static function RotationTo(a:Vector,b:Vector) {
+    public static inline function RotationTo(a:Vector,b:Vector) {
 
         return a.rotationTo(b);
 
     } //RotationTo
 
-    public static function listen( _v:Vector, listener ) {
+    public static function Listen( _v:Vector, listener ) {
+
         _v.listen_x = listener;
         _v.listen_y = listener;
         _v.listen_z = listener;
+
     } //Listen
 
 // Operations
 
-    public function add(other:Vector) {
+    public inline function add(other:Vector) {
 
         if(other == null) {
             throw "vector.add other was handed in as null";
@@ -278,7 +280,16 @@ class Vector {
 
     } //add
 
-    public function subtract(other:Vector) {
+    public inline function add_xyz( _x:Float = 0, _y:Float = 0, _z:Float = 0 ) {
+
+        set_xyz( x + _x, y + _y, z + _z);
+
+        return this;
+
+    } //add_xyz
+
+
+    public inline function subtract(other:Vector) {
 
         if(other == null) {
             throw "vector.subtract other was handed in as null";
@@ -290,7 +301,15 @@ class Vector {
 
     } //subtract
 
-    public function multiply(other:Vector) {
+    public inline function subtract_xyz( _x:Float = 0, _y:Float = 0, _z:Float = 0 ) {
+
+        set_xyz( x - _x, y - _y, z - _z);
+
+        return this;
+
+    } //subtract_xyz
+
+    public inline function multiply(other:Vector) {
 
         if(other == null) {
             throw "vector.multiply other was handed in as null";
@@ -302,7 +321,16 @@ class Vector {
 
     } //multiply
 
-    public function divide(other:Vector) {
+    public inline function multiply_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
+
+        set_xyz( x * _x, y * _y, z * _z);
+
+        return this;
+
+    } //multiply_xyz
+
+        //:todo: check for division by 0
+    public inline function divide(other:Vector) {
 
         if(other == null) {
             throw "vector.divide other was handed in as null";
@@ -314,7 +342,16 @@ class Vector {
 
     } //divide
 
-    public function addScalar( v:Float ) {
+    public inline function divide_xyz( _x:Float = 1, _y:Float = 1, _z:Float = 1 ) {
+
+        set_xyz( x / _x, y / _y, z / _z);
+
+        return this;
+
+    } //multiply_xyz
+
+
+    public inline function addScalar( v:Float ) {
 
         set_xyz( x + v, y + v, z + v );
 
@@ -322,7 +359,7 @@ class Vector {
 
     } //addScalar
 
-    public function subtractScalar( v:Float ) {
+    public inline function subtractScalar( v:Float ) {
 
         set_xyz( x - v, y - v, z - v );
 
@@ -330,7 +367,7 @@ class Vector {
 
     } //subtractScalar
 
-     public function multiplyScalar( v:Float ) {
+     public inline function multiplyScalar( v:Float ) {
 
         set_xyz( x * v, y * v, z * v );
 
@@ -338,7 +375,7 @@ class Vector {
 
     } //multiplyScalar
 
-    public function divideScalar( v:Float ) : Vector {
+    public inline function divideScalar( v:Float ) : Vector {
 
         if ( v != 0 ) {
 
@@ -346,7 +383,7 @@ class Vector {
 
         } else {
 
-            set_xyz(0,0,0);
+            set_xyz(0, 0, 0);
 
         }
 
@@ -357,34 +394,34 @@ class Vector {
 
 //Properties
 
-    function set_length( value:Float ) : Float {
+    inline function set_length( value:Float ) : Float {
 
-        normalize().multiplyScalar(value);
+        normalize().multiplyScalar( value );
 
         return value;
 
     } //set_length
 
-    function get_length() : Float {
+    inline function get_length() : Float {
 
         return Math.sqrt( x * x + y * y + z * z );
 
     } //get_length
 
 
-    function get_lengthsq() : Float {
+    inline function get_lengthsq() : Float {
 
         return x * x + y * y + z * z;
 
     } //get_lengthsq
 
-    function get_normalized() {
+    inline function get_normalized() {
 
         return Vector.Divide( this, length );
 
     } //get_normalized
 
-    function set_x(_x:Float) : Float {
+    inline function set_x(_x:Float) : Float {
 
         x = _x;
 
@@ -396,7 +433,7 @@ class Vector {
 
     } //set_x
 
-    function set_y(_y:Float) : Float {
+    inline function set_y(_y:Float) : Float {
 
         y = _y;
 
@@ -408,7 +445,7 @@ class Vector {
 
     } //set_y
 
-    function set_z(_z:Float) : Float {
+    inline function set_z(_z:Float) : Float {
 
         z = _z;
 
@@ -420,7 +457,7 @@ class Vector {
 
     } //set_z
 
-    function get_inverted() : Vector {
+    inline function get_inverted() : Vector {
 
         return new Vector(-x,-y,-z);
 
@@ -429,7 +466,7 @@ class Vector {
 
         //Changes the angle of the vector.
         //X and Y will change, length stays the same.
-    function set_angle2D( value : Float ) : Float {
+    inline function set_angle2D( value : Float ) : Float {
 
         var len:Float = length;
 
@@ -439,7 +476,7 @@ class Vector {
     }
 
         //Get the angle of this vector.
-    function get_angle2D():Float {
+    inline function get_angle2D():Float {
 
         return Math.atan2(y, x);
 
@@ -450,7 +487,7 @@ class Vector {
         //Sets the length under the given value.
         //Nothing is done if the vector is already shorter.
         //max The max length this vector can be.
-    public function truncate( max:Float ) : Vector {
+    public inline function truncate( max:Float ) : Vector {
 
         length = Math.min(max, length);
 
@@ -458,7 +495,7 @@ class Vector {
 
     } //truncate
 
-    public function rotationTo( other:Vector ) : Float {
+    public inline function rotationTo( other:Vector ) : Float {
         var theta =  Math.atan2(  other.x - x , other.y - y );
         var r = -(180.0 + (theta*180.0/Math.PI));
         return r;
@@ -466,7 +503,7 @@ class Vector {
 
 //Transforms
 
-    public function applyQuaternion( q:Quaternion ) : Vector {
+    public inline function applyQuaternion( q:Quaternion ) : Vector {
 
         var qx = q.x;
         var qy = q.y;
@@ -486,7 +523,7 @@ class Vector {
 
     } //applyQuaternion
 
-    public function applyProjection( m:Matrix ) : Vector {
+    public inline function applyProjection( m:Matrix ) : Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
@@ -500,7 +537,7 @@ class Vector {
 
     } //applyProjection
 
-    public function transform( _m:Matrix ) : Vector {
+    public inline function transform( _m:Matrix ) : Vector {
 
         var _x = x;
         var _y = y;
@@ -516,7 +553,7 @@ class Vector {
 
     } //transform
 
-    public function transformDirection( m:Matrix ) : Vector {
+    public inline function transformDirection( m:Matrix ) : Vector {
 
         var e = m.elements;
         var x = this.x, y = this.y, z = this.z;
@@ -531,7 +568,7 @@ class Vector {
 
     } //transformDirection
 
-    public function setEulerFromRotationMatrix (m:Matrix, order:String = 'XYZ') : Vector {
+    public inline function setEulerFromRotationMatrix (m:Matrix, order:String = 'XYZ') : Vector {
 
         var te = m.elements;
         var m11 = te[0], m12 = te[4], m13 = te[8];
@@ -623,7 +660,7 @@ class Vector {
 
     } //setEulerFromRotationMatrix
 
-    public function setEulerFromQuaternion (q:Quaternion, order:String = 'XYZ') : Vector {
+    public inline function setEulerFromQuaternion (q:Quaternion, order:String = 'XYZ') : Vector {
 
         var sqx : Float = q.x * q.x;
         var sqy : Float = q.y * q.y;
@@ -666,7 +703,7 @@ class Vector {
 
     } //setEulerFromQuaternion
 
-    public function degrees() : Vector {
+    public inline function degrees() : Vector {
 
         set_xyz( Maths.degrees(x), Maths.degrees(y), Maths.degrees(z) );
 
@@ -674,7 +711,7 @@ class Vector {
 
     } //degrees
 
-    public function radians() : Vector {
+    public inline function radians() : Vector {
 
         set_xyz( Maths.radians(x), Maths.radians(y), Maths.radians(z) );
 
@@ -704,43 +741,43 @@ abstract Vec(Vector) from Vector to Vector {
         this = new Vector(_x,_y,_z,_w);
     }
 //multiply
-    @:communitative @:op(A * B) static public function _multiply(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A * B) static public inline function _multiply(lhs:Vec, rhs:Vec) : Vec {
         return Vector.MultiplyVector(lhs, rhs);
     }
-    @:communitative @:op(A * B) static public function _multiply_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A * B) static public inline function _multiply_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.Multiply(lhs, rhs);
     }
-    @:communitative @:op(A * B) static public function _multiply_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A * B) static public inline function _multiply_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.Multiply(lhs, rhs);
     }
 // divide
-    @:communitative @:op(A / B) static public function _divide(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A / B) static public inline function _divide(lhs:Vec, rhs:Vec) : Vec {
         return Vector.DivideVector(lhs, rhs);
     }
-    @:communitative @:op(A / B) static public function _divide_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A / B) static public inline function _divide_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.Divide(lhs, rhs);
     }
-    @:communitative @:op(A / B) static public function _divide_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A / B) static public inline function _divide_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.Divide(lhs, rhs);
     }
 // add
-    @:communitative @:op(A + B) static public function _add(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A + B) static public inline function _add(lhs:Vec, rhs:Vec) : Vec {
         return Vector.Add(lhs, rhs);
     }
-    @:communitative @:op(A + B) static public function _add_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A + B) static public inline function _add_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.AddScalar(lhs, rhs);
     }
-    @:communitative @:op(A + B) static public function _add_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A + B) static public inline function _add_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.AddScalar(lhs, rhs);
     }
 // subract
-    @:communitative @:op(A - B) static public function _subtract(lhs:Vec, rhs:Vec) : Vec {
+    @:communitative @:op(A - B) static public inline function _subtract(lhs:Vec, rhs:Vec) : Vec {
         return Vector.Subtract(lhs,rhs);
     }
-    @:communitative @:op(A - B) static public function _subtract_scalar(lhs:Vec, rhs:Float) : Vec {
+    @:communitative @:op(A - B) static public inline function _subtract_scalar(lhs:Vec, rhs:Float) : Vec {
         return Vector.SubtractScalar(lhs,rhs);
     }
-    @:communitative @:op(A - B) static public function _subtract_scalar_int(lhs:Vec, rhs:Int) : Vec {
+    @:communitative @:op(A - B) static public inline function _subtract_scalar_int(lhs:Vec, rhs:Int) : Vec {
         return Vector.SubtractScalar(lhs,rhs);
     }
 } //Vec
