@@ -88,6 +88,8 @@ class CompositeGeometry extends Geometry {
 
     public override function drop( ?remove:Bool = true ) {
 
+        super.drop( remove );
+
         for(geom in geometry) {
             geom.drop( remove );
             geom = null;
