@@ -11,6 +11,7 @@ package luxe.structural;
     MIT license
 */
 
+@:generic
 class Stack<T> {
 
         /** The length of this stack. If 0, the stack is empty */

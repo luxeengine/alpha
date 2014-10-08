@@ -11,6 +11,7 @@ package luxe.structural;
     MIT license
 */
 
+@:generic
 class Pool<T> {
 
         /** The size of the pool */

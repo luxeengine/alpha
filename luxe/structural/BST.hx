@@ -15,7 +15,7 @@ package luxe.structural;
     MIT license
 */
 
-
+@:generic
 class BST<K,T> {
 
         /** The tree root node */
@@ -507,6 +507,7 @@ class BST<K,T> {
 
 
     /** A binary search tree node by `K` key and `T` value (type) */
+@:generic
 class BSTNode<K,T> {
 
         /** The node left of this node (less than) */

@@ -33,6 +33,7 @@ OTHER DEALINGS IN THE SOFTWARE.
     binary tree. It can be used as an efficient priority queue.
 **/
 
+@:generic
 class Heap<T> {
 
     public var length(get, never) : Int;
