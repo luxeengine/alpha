@@ -15,30 +15,34 @@ import luxe.structural.BalancedBST;
 import luxe.Log.log;
 import luxe.Log._debug;
 
-enum PrimitiveType {
-    none;
-    line_strip;
-    line_loop;
-    lines;
-    triangle_strip;
-    triangles;
-    triangle_fan;
-    points;
-}
+@:enum abstract PrimitiveType(Int) from Int to Int {
 
-enum BlendMode {
-    zero;
-    one;
-    src_color;
-    one_minus_src_color;
-    src_alpha;
-    one_minus_src_alpha;
-    dst_alpha;
-    one_minus_dst_alpha;
-    dst_color;
-    one_minus_dst_color;
-    src_alpha_saturate;
-}
+    var none            = 0;
+    var line_strip      = GL.LINE_STRIP;
+    var line_loop       = GL.LINE_LOOP;
+    var lines           = GL.LINES;
+    var triangle_strip  = GL.TRIANGLE_STRIP;
+    var triangles       = GL.TRIANGLES;
+    var triangle_fan    = GL.TRIANGLE_FAN;
+    var points          = GL.POINTS;
+
+} //PrimitiveType
+
+@:enum abstract BlendMode(Int) from Int to Int {
+
+    var zero                    = GL.ZERO;
+    var one                     = GL.ONE;
+    var src_color               = GL.SRC_COLOR;
+    var one_minus_src_color     = GL.ONE_MINUS_SRC_COLOR;
+    var src_alpha               = GL.SRC_ALPHA;
+    var one_minus_src_alpha     = GL.ONE_MINUS_SRC_ALPHA;
+    var dst_alpha               = GL.DST_ALPHA;
+    var one_minus_dst_alpha     = GL.ONE_MINUS_DST_ALPHA;
+    var dst_color               = GL.DST_COLOR;
+    var one_minus_dst_color     = GL.ONE_MINUS_DST_COLOR;
+    var src_alpha_saturate      = GL.SRC_ALPHA_SATURATE;
+
+} //BlendMode
 
 class BatchGroup {
     public function new(_pre, _post) {
@@ -82,7 +86,7 @@ class Batcher {
     public var static_normal_floats  : Int = 0;
 
         //the current number of active buffers in the ring
-    public var buffer_count : Int = 16;
+    public var buffer_count : Int = 6;
 
         //the index we are on
     public var buffer_index : Int = 0;
@@ -93,7 +97,7 @@ class Batcher {
     public var vertexBuffers : Array<GLBuffer>;
     public var tcoordBuffers : Array<GLBuffer>;
     public var vcolorBuffers : Array<GLBuffer>;
-    public var normalBuffers : Array<GLBuffer>;
+    // public var normalBuffers : Array<GLBuffer>;
 
     public var projectionmatrix_attribute : GLUniformLocation;
     public var modelviewmatrix_attribute : GLUniformLocation;
@@ -101,7 +105,7 @@ class Batcher {
     public var vert_attribute   : Int = 0;
     public var tcoord_attribute : Int = 1;
     public var color_attribute  : Int = 2;
-    public var normal_attribute : Int = 3;
+    // public var normal_attribute : Int = 3;
 
     public var tex0_attribute : GLUniformLocation;
     public var tex1_attribute : GLUniformLocation;
@@ -138,12 +142,12 @@ class Batcher {
         vertlist = new Float32Array( max_floats );
         tcoordlist = new Float32Array( max_floats );
         colorlist = new Float32Array( max_floats );
-        normallist = new Float32Array( max_floats );
+        // normallist = new Float32Array( max_floats );
 
         static_vertlist = new Float32Array( max_floats );
         static_tcoordlist = new Float32Array( max_floats );
         static_colorlist = new Float32Array( max_floats );
-        static_normallist = new Float32Array( max_floats );
+        // static_normallist = new Float32Array( max_floats );
 
             //The default view so we see stuff
         view = renderer.camera;
@@ -152,7 +156,7 @@ class Batcher {
         vertexBuffers = [];
         tcoordBuffers = [];
         vcolorBuffers = [];
-        normalBuffers = [];
+        // normalBuffers = [];
 
         for(i in 0 ... buffer_count) {
 
@@ -163,21 +167,21 @@ class Batcher {
 
     //VERTEX
             GL.bindBuffer(GL.ARRAY_BUFFER, _vb);
-            GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.DYNAMIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, vertlist, GL.STATIC_DRAW);
     //TCOORD
             GL.bindBuffer(GL.ARRAY_BUFFER, _tb);
-            GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.DYNAMIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, tcoordlist, GL.STATIC_DRAW);
     //COLOR
             GL.bindBuffer(GL.ARRAY_BUFFER, _cb);
-            GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.DYNAMIC_DRAW);
+            GL.bufferData(GL.ARRAY_BUFFER, colorlist, GL.STATIC_DRAW);
     //NORMALS
-            GL.bindBuffer(GL.ARRAY_BUFFER, _nb);
-            GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.DYNAMIC_DRAW);
+            // GL.bindBuffer(GL.ARRAY_BUFFER, _nb);
+            // GL.bufferData(GL.ARRAY_BUFFER, normallist, GL.STATIC_DRAW);
 
             vertexBuffers.push(_vb);
             tcoordBuffers.push(_tb);
             vcolorBuffers.push(_cb);
-            normalBuffers.push(_nb);
+            // normalBuffers.push(_nb);
 
         } //for the total buffer count
 
@@ -185,7 +189,7 @@ class Batcher {
         GL.enableVertexAttribArray( vert_attribute );
         GL.enableVertexAttribArray( tcoord_attribute );
         GL.enableVertexAttribArray( color_attribute );
-        GL.enableVertexAttribArray( normal_attribute );
+        // GL.enableVertexAttribArray( normal_attribute );
 
             //A default name
         if(_name.length == 0) {
@@ -356,8 +360,8 @@ class Batcher {
         }
 
             //same texture and shader, so primitive type
-        var a_primitive_index = Type.enumIndex( a.primitive_type );
-        var b_primitive_index = Type.enumIndex( b.primitive_type );
+        var a_primitive_index : Int = a.primitive_type;
+        var b_primitive_index : Int = b.primitive_type;
 
         if( a_primitive_index < b_primitive_index )
             { return 11; }
@@ -454,8 +458,8 @@ class Batcher {
         }
 
             //same texture and shader, so primitive type
-        var a_primitive_index = Type.enumIndex( a.primitive_type );
-        var b_primitive_index = Type.enumIndex( b.primitive_type );
+        var a_primitive_index : Int = a.primitive_type;
+        var b_primitive_index : Int = b.primitive_type;
 
         if( a_primitive_index < b_primitive_index )
             { return -1; }
@@ -724,7 +728,8 @@ class Batcher {
         }
 
             //and counts
-        static_vert_floats = 0; static_tcoord_floats = 0; static_color_floats = 0; static_normal_floats = 0;
+        static_vert_floats = 0; static_tcoord_floats = 0; static_color_floats = 0; 
+        // static_normal_floats = 0;
 
         if(!geom.submitted || geom.dirty) {
 
@@ -736,7 +741,7 @@ class Batcher {
             static_vert_floats    = geom.vertices.length * 4;
             static_tcoord_floats  = geom.vertices.length * 4;
             static_color_floats   = geom.vertices.length * 4;
-            static_normal_floats  = geom.vertices.length * 4;
+            // static_normal_floats  = geom.vertices.length * 4;
 
         }
 
@@ -745,7 +750,7 @@ class Batcher {
             geom.static_vertex_buffer = GL.createBuffer();
             geom.static_tcoord_buffer = GL.createBuffer();
             geom.static_vcolor_buffer = GL.createBuffer();
-            geom.static_normal_buffer = GL.createBuffer();
+            // geom.static_normal_buffer = GL.createBuffer();
         }
 
             //enable the shader attributes
@@ -775,17 +780,17 @@ class Batcher {
             GL.bufferData(GL.ARRAY_BUFFER, static_colorlist, GL.STATIC_DRAW);
         }
 
-            //set the normal directions in the shader, but to static buffers
-        GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_normal_buffer);
-        GL.vertexAttribPointer(normal_attribute, 4, GL.FLOAT, false, 0, 0);
+        //     //set the normal directions in the shader, but to static buffers
+        // GL.bindBuffer(GL.ARRAY_BUFFER, geom.static_normal_buffer);
+        // GL.vertexAttribPointer(normal_attribute, 4, GL.FLOAT, false, 0, 0);
 
-        if(!geom.submitted || geom.dirty) {
-            GL.bufferData(GL.ARRAY_BUFFER, static_normallist, GL.STATIC_DRAW);
-        }
+        // if(!geom.submitted || geom.dirty) {
+        //     GL.bufferData(GL.ARRAY_BUFFER, static_normallist, GL.STATIC_DRAW);
+        // }
 
             //Draw
         GL.drawArrays(
-            phoenix.utils.Rendering.get_opengl_primitive_type(geom.primitive_type), 0,
+            geom.primitive_type, 0,
             phoenix.utils.Rendering.get_elements_for_type(geom.primitive_type, static_vert_floats)
         );
 
@@ -799,7 +804,7 @@ class Batcher {
         static_vert_floats = 0;
         static_tcoord_floats = 0;
         static_color_floats = 0;
-        static_normal_floats = 0;
+        // static_normal_floats = 0;
 
             //clear the geometry flags
         geom.dirty = false;
@@ -834,13 +839,13 @@ class Batcher {
         GL.vertexAttribPointer( 2, 4, GL.FLOAT, false, 0, 0 );
         GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(colorlist.buffer, 0, color_floats) );
 
-        GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffers[buffer_index] );
-        GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
-        GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, normal_floats) );
+        // GL.bindBuffer(GL.ARRAY_BUFFER, normalBuffers[buffer_index] );
+        // GL.vertexAttribPointer( 3, 4, GL.FLOAT, false, 0, 0 );
+        // GL.bufferSubData( GL.ARRAY_BUFFER , 0, new Float32Array(normallist.buffer, 0, normal_floats) );
 
             //Draw
         GL.drawArrays(
-            phoenix.utils.Rendering.get_opengl_primitive_type(type),     0,
+            type, 0,
             phoenix.utils.Rendering.get_elements_for_type(type, vert_floats)
         );
 
@@ -880,7 +885,7 @@ class Batcher {
         vert_floats      += geom.vertices.length * 4;
         tcoord_floats    += geom.vertices.length * 4;
         color_floats     += geom.vertices.length * 4;
-        normal_floats    += geom.vertices.length * 4;
+        // normal_floats    += geom.vertices.length * 4;
 
     } //geometry_batch
 
@@ -894,13 +899,13 @@ class Batcher {
         static_vert_floats      += geom.vertices.length * 4;
         static_tcoord_floats    += geom.vertices.length * 4;
         static_color_floats     += geom.vertices.length * 4;
-        static_normal_floats    += geom.vertices.length * 4;
+        // static_normal_floats    += geom.vertices.length * 4;
 
     } //geometry_batch_static
 
 //Shader related attribute setup
 
-    function _enable_attributes() {
+    @:noCompletion public function _enable_attributes() {
 
             //Update the GL Matrices
         GL.uniformMatrix4fv( projectionmatrix_attribute, false, view.projection_float32array );
