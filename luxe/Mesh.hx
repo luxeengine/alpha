@@ -149,7 +149,7 @@ class Mesh {
 
                 //todo;multiple uv sets
            if(v.uv != null) {
-               _v.uv.uv0.set( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space
+               _v.uv.uv0.set_uv( v.uv.u, 1.0 - v.uv.v ); // inverted from texture space
            }
 
        geometry.add( _v );
