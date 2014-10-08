@@ -15,7 +15,7 @@ package luxe.structural;
     MIT License
 */
 
-
+@:generic
 class BalancedBST<K,T> {
 
         /** The tree root node */
@@ -25,11 +25,14 @@ class BalancedBST<K,T> {
         /** Whether or not the tree is empty (i.e root == null) */
     public var empty (get, null) : Bool;
 
+        /** Internal array cache for iterator :todo : short term */
+    @:noCompletion public var _array:Array<T>;
 
         /** Create a new balanced BST with the given comparison function */
     public function new( compare_function : K->K->Int ) {
 
         compare = compare_function;
+        _array = [];
 
     } //new
 
@@ -53,7 +56,10 @@ class BalancedBST<K,T> {
     public function insert( _key:K, _value:T ) {
 
         root = node_insert( root, _key, _value );
-        root.color = black;
+        root.color = NodeColor.black;
+
+        _array = null;
+        _array = toArray();
 
     } //insert
 
@@ -124,7 +130,7 @@ class BalancedBST<K,T> {
     public function remove( _key:K ) : Bool {
 
         if( !is_red(root.left) && !is_red(root.right) ) {
-            root.color = red;
+            root.color = NodeColor.red;
         }
 
         if(!contains(_key)) {
@@ -134,8 +140,11 @@ class BalancedBST<K,T> {
         root = node_remove(root, _key);
 
         if( root != null  ) {
-            root.color = black;
+            root.color = NodeColor.black;
         }
+
+        _array = null;
+        _array = toArray();
 
         return true;
 
@@ -145,14 +154,19 @@ class BalancedBST<K,T> {
     public function remove_smallest() {
 
         if( !is_red(root.left) && !is_red(root.right) ) {
-            root.color = red;
+            root.color = NodeColor.red;
         }
 
         root = node_remove_smallest(root);
 
         if(root != null) {
-            root.color = black;
+            root.color = NodeColor.black;
         }
+
+        _array = null;
+        _array = toArray();
+
+        return true;
 
     } //remove_smallest
 
@@ -161,14 +175,19 @@ class BalancedBST<K,T> {
 
             // if both children of root are black, set root to red
         if (!is_red(root.left) && !is_red(root.right)) {
-            root.color = red;
+            root.color = NodeColor.red;
         }
 
         root = node_remove_largest(root);
 
         if(root != null ) {
-            root.color = black;
+            root.color = NodeColor.black;
         }
+
+        _array = null;
+        _array = toArray();
+
+        return true;
 
     } //remove_largest
 
@@ -228,7 +247,8 @@ class BalancedBST<K,T> {
             :todo: This should traverse directly and implement IIterator */
     public function iterator() : Iterator<T> {
 
-        return toArray().iterator();
+        return _array.iterator();
+        // return toArray().iterator();
 
     } //iterator
 
@@ -297,7 +317,7 @@ class BalancedBST<K,T> {
 
         if(_node == null) {
 
-            return new BalancedBSTNode<K,T>(_key, _value, 1, red);
+            return new BalancedBSTNode<K,T>(_key, _value, 1, NodeColor.red);
 
         } //_node
 
@@ -566,13 +586,13 @@ class BalancedBST<K,T> {
 
     } //_delete
 
-    function is_red( _node:BalancedBSTNode<K,T> ) {
+    inline function is_red( _node:BalancedBSTNode<K,T> ) {
 
         if(_node == null) {
-            return black;
+            return NodeColor.black;
         }
 
-        return _node.color == red;
+        return _node.color == NodeColor.red;
 
     } //is_red
 
@@ -582,7 +602,7 @@ class BalancedBST<K,T> {
 
                 //update colors
             _n.color = _node.color;
-            _node.color = red;
+            _node.color = NodeColor.red;
                 //swap the right with left node
             _node.right = _n.left;
             _n.left = _node;
@@ -601,7 +621,7 @@ class BalancedBST<K,T> {
 
                 //update node colors
             _n.color = _node.color;
-            _node.color = red;
+            _node.color = NodeColor.red;
                 //swap the left and right node
             _node.left = _n.right;
             _n.right = _node;
@@ -665,16 +685,16 @@ class BalancedBST<K,T> {
 
     } //balance
 
-       @:noCompletion
-    public static inline var red : Bool = true;
-       @:noCompletion
-    public static inline var black : Bool = false;
-
 } //BalancedBST
 
-
+@:noCompletion
+private class NodeColor {
+    public static inline var red = true;
+    public static inline var black = false;
+}
 
     /** A balanced binary search tree node by `K` key and `T` value (type) */
+@:generic
 class BalancedBSTNode<K,T> {
 
 
