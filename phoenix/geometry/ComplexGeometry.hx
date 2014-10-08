@@ -307,13 +307,13 @@ class ComplexGeometry extends Geometry {
 
                 } //flipx
 
-            _complex_quad.verts[0].uv.uv0.set( tl_x , tl_y );
-            _complex_quad.verts[1].uv.uv0.set( tr_x , tr_y );
-            _complex_quad.verts[2].uv.uv0.set( br_x , br_y );
+            _complex_quad.verts[0].uv.uv0.set_uv( tl_x , tl_y );
+            _complex_quad.verts[1].uv.uv0.set_uv( tr_x , tr_y );
+            _complex_quad.verts[2].uv.uv0.set_uv( br_x , br_y );
 
-            _complex_quad.verts[3].uv.uv0.set( bl_x , bl_y );
-            _complex_quad.verts[4].uv.uv0.set( tl_x , tl_y );
-            _complex_quad.verts[5].uv.uv0.set( br_x , br_y );
+            _complex_quad.verts[3].uv.uv0.set_uv( bl_x , bl_y );
+            _complex_quad.verts[4].uv.uv0.set_uv( tl_x , tl_y );
+            _complex_quad.verts[5].uv.uv0.set_uv( br_x , br_y );
 
                 //for locked geometry
             dirty = true;

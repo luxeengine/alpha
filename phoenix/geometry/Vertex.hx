@@ -15,23 +15,23 @@ class Vertex {
 	public var normal : Vector;
 
 
-	public function new( _pos : Vector, ?_color:Color = null, ?_normal:Vector = null ) {
+	public inline function new( _pos : Vector, ?_color:Color = null, ?_normal:Vector = null ) {
 
 		uv = new TextureCoordSet();
-		
+
 		pos = _pos;
 		color = (_color == null) ? new Color() : _color;
 		normal = (_normal == null) ? new Vector() : _normal;
 
 	} //new
 
-	public function clone() : Vertex {
+	public inline function clone() : Vertex {
 
 		var _new = new Vertex( pos.clone(), color.clone(), normal.clone() );
 			_new.uv = uv.clone();
 
 		return _new;
-	
+
 	} //clone
 
 

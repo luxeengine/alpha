@@ -28,31 +28,31 @@ class RectangleGeometry extends Geometry {
 
             //tl
         var vert0 : Vertex = new Vertex( new Vector( 0, 0 ) );
-            vert0.uv.uv0.set(0,0);
+            vert0.uv.uv0.set_uv(0,0);
             //tr
         var vert1 : Vertex = new Vertex( new Vector( options.w, 0 ) );
-            vert1.uv.uv0.set(1,0);
+            vert1.uv.uv0.set_uv(1,0);
 
             //tr
         var vert2 : Vertex = new Vertex( new Vector( options.w, 0 ) );
-            vert2.uv.uv0.set(1,0);
+            vert2.uv.uv0.set_uv(1,0);
             //br
         var vert3 : Vertex = new Vertex( new Vector( options.w, options.h ) );
-            vert3.uv.uv0.set(1,1);
+            vert3.uv.uv0.set_uv(1,1);
 
             //br
         var vert4 : Vertex = new Vertex( new Vector( options.w, options.h ) );
-            vert4.uv.uv0.set(1,1);
+            vert4.uv.uv0.set_uv(1,1);
             //bl
         var vert5 : Vertex = new Vertex( new Vector( 0, options.h ) );
-            vert5.uv.uv0.set(0,1);
+            vert5.uv.uv0.set_uv(0,1);
 
             //bl
         var vert6 : Vertex = new Vertex( new Vector( 0, options.h ) );
-            vert6.uv.uv0.set(0,1);
+            vert6.uv.uv0.set_uv(0,1);
             //tl
         var vert7 : Vertex = new Vertex( new Vector( 0, 0 ) );
-            vert7.uv.uv0.set(0,0);
+            vert7.uv.uv0.set_uv(0,0);
 
         add(vert0); add(vert1); add(vert2); add(vert3);
         add(vert4); add(vert5); add(vert6); add(vert7);

@@ -60,10 +60,10 @@ class LineGeometry extends Geometry {
 
         //p0
         var vert0 : Vertex = new Vertex( new Vector( options.p0.x, options.p0.y, options.p0.z ), options.color0 );
-            vert0.uv.uv0.set(0,0);
+            vert0.uv.uv0.set_uv(0,0);
 
         var vert1 : Vertex = new Vertex( new Vector( options.p1.x, options.p1.y, options.p1.z ), options.color1 );
-            vert1.uv.uv0.set(1,0);
+            vert1.uv.uv0.set_uv(1,0);
 
         add(vert0);
         add(vert1);

@@ -14,7 +14,7 @@ class TextureCoordSet {
     public var uv7 : TextureCoord;
 
 
-    public function new() {
+    public inline function new() {
 
         uv0 = new TextureCoord();
         uv1 = new TextureCoord();
@@ -27,18 +27,18 @@ class TextureCoordSet {
 
     } //new
 
-    public function clone() {
+    public inline function clone() {
 
         var _set = new TextureCoordSet();
 
-            _set.uv0 = uv0.clone();
-            _set.uv1 = uv1.clone();
-            _set.uv2 = uv2.clone();
-            _set.uv3 = uv3.clone();
-            _set.uv4 = uv4.clone();
-            _set.uv5 = uv5.clone();
-            _set.uv6 = uv6.clone();
-            _set.uv7 = uv7.clone();
+            _set.uv0.set(uv0.u, uv0.v, uv0.w, uv0.t);
+            _set.uv1.set(uv1.u, uv1.v, uv1.w, uv1.t);
+            _set.uv2.set(uv2.u, uv2.v, uv2.w, uv2.t);
+            _set.uv3.set(uv3.u, uv3.v, uv3.w, uv3.t);
+            _set.uv4.set(uv4.u, uv4.v, uv4.w, uv4.t);
+            _set.uv5.set(uv5.u, uv5.v, uv5.w, uv5.t);
+            _set.uv6.set(uv6.u, uv6.v, uv6.w, uv6.t);
+            _set.uv7.set(uv7.u, uv7.v, uv7.w, uv7.t);
 
         return _set;
 
@@ -57,7 +57,7 @@ class TextureCoord {
     public var t : Float = 0.0;
 
 
-    public function new(_u:Float = 0.0, _v:Float = 0.0, _w:Float = 0.0, _t:Float = 0.0) {
+    public inline function new(_u:Float = 0.0, _v:Float = 0.0, _w:Float = 0.0, _t:Float = 0.0) {
 
         u = _u;
         v = _v;
@@ -66,37 +66,35 @@ class TextureCoord {
 
     } //new
 
-    public function clone() {
+    public inline function clone() {
 
-        return new TextureCoord(u,v,w,t);
+        return new TextureCoord( u, v, w, t );
 
     } //clone
 
-    public function set( ?_u : Float, ?_v : Float, ?_w : Float, ?_t:Float ) : TextureCoord {
+    public inline function set( _u : Float, _v : Float, _w : Float, _t:Float ) : TextureCoord {
 
-        var _setu = u;
-        var _setv = v;
-        var _setw = w;
-        var _sett = t;
-
-            //assign new values
-        if(_u != null) _setu = _u;
-        if(_v != null) _setv = _v;
-        if(_w != null) _setw = _w;
-        if(_t != null) _sett = _t;
-
-        u = _setu;
-        v = _setv;
-        w = _setw;
-        t = _sett;
+        u = _u;
+        v = _v;
+        w = _w;
+        t = _t;
 
         return this;
 
     } //set
 
-    function toString() {
+    public inline function set_uv( _u : Float, _v : Float ) : TextureCoord {
 
-        return  "{ u:"+u + ", v:" + v +" }";
+        u = _u;
+        v = _v;
+
+        return this;
+
+    } //set_uv
+
+    inline function toString() {
+
+        return  '{ u:$v, v:$v }';
 
     } //toString
 
