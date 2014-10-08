@@ -60,8 +60,11 @@ class Main extends luxe.Game {
 
 
         p1 = new Transform();
+        p1.world.auto_decompose = true;
         p2 = new Transform();
+        p2.world.auto_decompose = true;
         p3 = new Transform();
+        p3.world.auto_decompose = true;
 
         p1.name = 'root';
         p2.name = 'child';

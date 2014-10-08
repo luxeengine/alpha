@@ -80,10 +80,13 @@ class Main extends luxe.Game {
     override function ready() {
 
         root = new Entity();
+        root.transform.world.auto_decompose = true;
         root.pos = new Vector(10,10,10);
 
         child = new Entity();
+        child.transform.world.auto_decompose = true;
         child_of_child = new Entity();
+        child_of_child.transform.world.auto_decompose = true;
 
         child_of_child.parent = child;
         child.parent = root;
