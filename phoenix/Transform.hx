@@ -10,7 +10,7 @@ import snow.utils.Float32Array;
 
 class Transform extends ID {
 
-        //access
+    //access
     @:isVar public var parent (get,set) : Transform;
     @:isVar public var local (get,set) : Spatial;
     @:isVar public var world (get,set) : Spatial;
@@ -39,7 +39,7 @@ class Transform extends ID {
     var _origin_handlers : Array< Vector->Void >;
     var _parent_handlers : Array< Transform->Void >;
 
-    public function new() {
+    public inline function new() {
 
         super('transform');
 
@@ -61,7 +61,12 @@ class Transform extends ID {
 
     } //new
 
+
+    var _destroying = false;
+
     public function destroy() {
+
+        _destroying = true;
 
             //no longer listening
         if(parent != null) {
@@ -78,15 +83,19 @@ class Transform extends ID {
         _parent_handlers = null;
 
             //clean up
+        local.destroy();
+        world.destroy();
+
         local = null;
         world = null;
+        origin = null;
         _origin_undo_matrix = null;
         _pos_matrix = null;
         _rotation_matrix = null;
 
     } //destroy
 
-    function set_dirty( _dirty:Bool ) : Bool {
+    inline function set_dirty( _dirty:Bool ) : Bool {
 
         dirty = _dirty;
 
@@ -103,7 +112,7 @@ class Transform extends ID {
     } //set_dirty
 
         //when the local transforms change we become dirty
-    function on_local_pos_change( v:Vector ) {
+    inline function on_local_pos_change( v:Vector ) {
 
         dirty = true;
 
@@ -114,7 +123,7 @@ class Transform extends ID {
 
     } //local pos changed
 
-    function on_local_rotation_change( r:Quaternion ) {
+    inline function on_local_rotation_change( r:Quaternion ) {
 
         dirty = true;
 
@@ -125,7 +134,7 @@ class Transform extends ID {
 
     } //local rotation changed
 
-    function on_local_scale_change( s:Vector ) {
+    inline function on_local_scale_change( s:Vector ) {
 
         dirty = true;
 
@@ -136,44 +145,46 @@ class Transform extends ID {
 
     } //local scale changed
 
-    function on_parent_cleaned( p:Transform ) {
+    inline function on_parent_cleaned( p:Transform ) {
 
         dirty = true;
 
     } //on_parent_cleaned
 
-    function get_local() : Spatial {
+    inline function get_local() : Spatial {
 
         return local;
 
     } //get_local
 
-    function set_local(l:Spatial) : Spatial {
+    inline function set_local( l:Spatial ) : Spatial {
 
-        if(l == null) {
-            return local = l;
+        if(l != null) {
+
+            dirty = true;
+
+            l.pos_changed = on_local_pos_change;
+            l.rotation_changed = on_local_rotation_change;
+            l.scale_changed = on_local_scale_change;
+
         }
-
-        dirty = true;
-
-        l.pos_changed = on_local_pos_change;
-        l.rotation_changed = on_local_rotation_change;
-        l.scale_changed = on_local_scale_change;
 
         return local = l;
 
     } //set_local
 
         //whenever the world transform is requested, make sure it's up to date
-    function get_world() : Spatial {
+    inline function get_world() : Spatial {
 
-        clean_check();
+        if( !_destroying ) {
+            clean_check();
+        }
 
         return world;
 
     } //get_world
 
-    @:noCompletion public function clean_check() {
+    @:noCompletion public inline function clean_check() {
 
             //make sure the parent is updated
         if(parent != null) {
@@ -190,7 +201,7 @@ class Transform extends ID {
 
     }//clean_check
 
-    @:noCompletion public function clean() {
+    @:noCompletion public inline function clean() {
 
         if(!dirty) {
             return;
@@ -224,8 +235,10 @@ class Transform extends ID {
             world.matrix = local.matrix.clone();
         }
 
-            //update world spatial :todo: only do on request
-        world.decompose();
+            //update world spatial,
+            //saying false allows it to decide
+            //if this code happens or not
+        world.decompose(false);
 
             //clear flags
         dirty = false;
@@ -238,17 +251,17 @@ class Transform extends ID {
 
     } //clean
 
-    function toString() {
+    inline function toString() {
         return 'Transform ($id)';
     } //toString
 
-    function get_origin() : Vector {
+    inline function get_origin() : Vector {
 
         return origin;
 
     } //get_origin
 
-    function set_origin(o:Vector) : Vector {
+    inline function set_origin(o:Vector) : Vector {
 
         dirty = true;
 
@@ -263,7 +276,7 @@ class Transform extends ID {
 
     } //set_origin
 
-    function set_world(w:Spatial) : Spatial {
+    inline function set_world(w:Spatial) : Spatial {
 
         if(w == null) {
             return world = w;
@@ -275,13 +288,13 @@ class Transform extends ID {
 
     } //set_world
 
-    function get_parent() : Transform {
+    inline function get_parent() : Transform {
 
         return parent;
 
     } //get_parent
 
-    function set_parent( _p:Transform ) {
+    inline function set_parent( _p:Transform ) {
 
         dirty = true;
 
@@ -307,33 +320,33 @@ class Transform extends ID {
 
     } //set_parent
 
-    function get_pos() {
+    inline function get_pos() {
         return local.pos;
     } //get_pos
 
-    function get_rotation() {
+    inline function get_rotation() {
         return local.rotation;
     } //get_rotation
 
-    function get_scale() {
+    inline function get_scale() {
         return local.scale;
     } //get_scale
 
 
-    function set_pos(value:Vector) {
+    inline function set_pos(value:Vector) {
         return local.pos = value;
     } //set_pos
 
-    function set_rotation(value:Quaternion) {
+    inline function set_rotation(value:Quaternion) {
         return local.rotation = value;
     } //set_rotation
 
-    function set_scale(value:Vector) {
+    inline function set_scale(value:Vector) {
         return local.scale = value;
     } //set_scale
 
 
-    function propagate_clean() {
+    inline function propagate_clean() {
         for(_handler in _clean_handlers) {
             if(_handler != null) {
                 _handler(this);
@@ -341,7 +354,7 @@ class Transform extends ID {
         }
     } //propagate clean
 
-    function propagate_dirty() {
+    inline function propagate_dirty() {
         for(_handler in _dirty_handlers) {
             if(_handler != null) {
                 _handler(this);
@@ -349,7 +362,7 @@ class Transform extends ID {
         }
     } //propagate dirty
 
-    function propagate_pos( _pos:Vector ) {
+    inline function propagate_pos( _pos:Vector ) {
         for(_handler in _pos_handlers) {
             if(_handler != null) {
                 _handler(_pos);
@@ -357,7 +370,7 @@ class Transform extends ID {
         }
     } //propagate pos
 
-    function propagate_rotation( _rotation:Quaternion ) {
+    inline function propagate_rotation( _rotation:Quaternion ) {
         for(_handler in _rotation_handlers) {
             if(_handler != null) {
                 _handler(_rotation);
@@ -365,7 +378,7 @@ class Transform extends ID {
         }
     } //propagate rotation
 
-    function propagate_scale( _scale:Vector ) {
+    inline function propagate_scale( _scale:Vector ) {
         for(_handler in _scale_handlers) {
             if(_handler != null) {
                 _handler(_scale);
@@ -373,7 +386,7 @@ class Transform extends ID {
         }
     } //propagate scale
 
-    function propagate_origin( _origin:Vector ) {
+    inline function propagate_origin( _origin:Vector ) {
         for(_handler in _origin_handlers) {
             if(_handler != null) {
                 _handler(_origin);
@@ -381,7 +394,7 @@ class Transform extends ID {
         }
     } //propagate origin
 
-    function propagate_parent( _parent:Transform ) {
+    inline function propagate_parent( _parent:Transform ) {
         for(_handler in _parent_handlers) {
             if(_handler != null) {
                 _handler(_parent);
@@ -389,7 +402,7 @@ class Transform extends ID {
         }
     } //propagate parent
 
-    public function listen( _handler : Transform->Void ) {
+    public inline function listen( _handler : Transform->Void ) {
 
         if(_clean_handlers == null) {
             _clean_handlers = [];
@@ -399,7 +412,7 @@ class Transform extends ID {
 
     } //listen
 
-    public function unlisten( _handler : Transform->Void ) {
+    public inline function unlisten( _handler : Transform->Void ) {
 
         if(_clean_handlers == null) {
             return false;
@@ -409,7 +422,7 @@ class Transform extends ID {
 
     } //unlisten
 
-    public function listen_dirty( _handler : Transform->Void ) {
+    public inline function listen_dirty( _handler : Transform->Void ) {
 
         if(_dirty_handlers == null) {
             _dirty_handlers = [];
@@ -419,7 +432,7 @@ class Transform extends ID {
 
     } //listen_dirty
 
-    public function unlisten_dirty( _handler : Transform->Void ) {
+    public inline function unlisten_dirty( _handler : Transform->Void ) {
 
         if(_dirty_handlers == null) {
             return false;
@@ -429,7 +442,7 @@ class Transform extends ID {
 
     } //unlisten_dirty
 
-    public function listen_pos( _handler : Vector->Void ) {
+    public inline function listen_pos( _handler : Vector->Void ) {
 
         if(_pos_handlers == null) {
             _pos_handlers = [];
@@ -439,7 +452,7 @@ class Transform extends ID {
 
     } //listen_pos
 
-    public function unlisten_pos( _handler : Vector->Void ) {
+    public inline function unlisten_pos( _handler : Vector->Void ) {
 
         if(_pos_handlers == null) {
             return false;
@@ -449,7 +462,7 @@ class Transform extends ID {
 
     } //unlisten_pos
 
-    public function listen_scale( _handler : Vector->Void ) {
+    public inline function listen_scale( _handler : Vector->Void ) {
 
         if(_scale_handlers == null) {
             _scale_handlers = [];
@@ -459,7 +472,7 @@ class Transform extends ID {
 
     } //listen_scale
 
-    public function unlisten_scale( _handler : Vector->Void ) {
+    public inline function unlisten_scale( _handler : Vector->Void ) {
 
         if(_scale_handlers == null) {
             return false;
@@ -469,7 +482,7 @@ class Transform extends ID {
 
     } //unlisten_scale
 
-    public function listen_rotation( _handler : Quaternion->Void ) {
+    public inline function listen_rotation( _handler : Quaternion->Void ) {
 
         if(_rotation_handlers == null) {
             _rotation_handlers = [];
@@ -479,7 +492,7 @@ class Transform extends ID {
 
     } //listen_rotation
 
-    public function unlisten_rotation( _handler : Quaternion->Void ) {
+    public inline function unlisten_rotation( _handler : Quaternion->Void ) {
 
         if(_rotation_handlers == null) {
             return false;
@@ -489,7 +502,7 @@ class Transform extends ID {
 
     } //unlisten_rotation
 
-    public function listen_origin( _handler : Vector->Void ) {
+    public inline function listen_origin( _handler : Vector->Void ) {
 
         if(_origin_handlers == null) {
             _origin_handlers = [];
@@ -499,7 +512,7 @@ class Transform extends ID {
 
     } //listen_origin
 
-    public function unlisten_origin( _handler : Vector->Void ) {
+    public inline function unlisten_origin( _handler : Vector->Void ) {
 
         if(_origin_handlers == null) {
             return false;
@@ -509,7 +522,7 @@ class Transform extends ID {
 
     } //unlisten_origin
 
-    public function listen_parent( _handler : Transform->Void ) {
+    public inline function listen_parent( _handler : Transform->Void ) {
 
         if(_parent_handlers == null) {
             _parent_handlers = [];
@@ -519,7 +532,7 @@ class Transform extends ID {
 
     } //listen_parent
 
-    public function unlisten_parent( _handler : Transform->Void ) {
+    public inline function unlisten_parent( _handler : Transform->Void ) {
 
         if(_parent_handlers == null) {
             return false;
@@ -541,6 +554,7 @@ class Spatial {
 
     public var floats : Float32Array;
     public var ignore_listeners : Bool = false;
+    public var auto_decompose : Bool = false;
 
     @:noCompletion public var pos_changed : Vector -> Void;
     @:noCompletion public var rotation_changed : Quaternion -> Void;
@@ -548,7 +562,7 @@ class Spatial {
 
     var _setup : Bool = true;
 
-    public function new() {
+    public inline function new() {
 
         matrix = new Matrix();
         floats = matrix.float32array();
@@ -561,83 +575,115 @@ class Spatial {
 
     } //new
 
+    public inline function destroy() {
+
+        matrix = null;
+        floats = null;
+        pos = null;
+        rotation = null;
+        scale = null;
+
+    } //destroy
+
         //assigns the local values (pos/rotation/scale) according to the matrix
-    public function decompose() {
+        //when called manually, will make sure it happens using force.
+        //if force is false, auto_decompose will apply
+    public inline function decompose( _force:Bool = true ) {
 
-        var _transform = matrix.decompose();
+        if( auto_decompose || _force ) {
 
-        pos = _transform.pos;
-        rotation = _transform.rotation;
-        scale = _transform.scale;
+            var _transform = matrix.decompose();
+
+            pos = _transform.pos;
+            rotation = _transform.rotation;
+            scale = _transform.scale;
+
+        } //auto_decompose
+
+        return this;
 
     } //decompose
 
-    function get_matrix() : Matrix {
+    inline function get_matrix() : Matrix {
 
         return matrix;
 
     } //get_matrix
 
-    function set_matrix(_m:Matrix) {
+    inline function set_matrix(_m:Matrix) {
 
         matrix = _m;
 
             //when updating, update the float32array
-        floats = matrix.float32array();
+        if( _m != null ) {
+            floats = matrix.float32array();
+        }
 
         return matrix;
 
     } //set_matrix
 
-    function propagate_pos( _p:Vector ) {
+    inline function propagate_pos( _p:Vector ) {
         if(pos_changed != null && !ignore_listeners) {
             pos_changed(_p);
         }
     } //propagate pos
 
-    function propagate_rotation( _r:Quaternion ) {
+    inline function propagate_rotation( _r:Quaternion ) {
         if(rotation_changed != null && !ignore_listeners) {
             rotation_changed(_r);
         }
     } //propagate rotation
 
-    function propagate_scale( _s:Vector ) {
+    inline function propagate_scale( _s:Vector ) {
         if(scale_changed != null && !ignore_listeners) {
             scale_changed(_s);
         }
     } //propagate scale
 
-    function set_pos( _p:Vector ) {
+    inline function set_pos( _p:Vector ) {
 
         pos = _p;
 
-        Vector.listen( pos, _pos_change );
+        if( _p != null ) {
 
-        propagate_pos(pos);
+            Vector.Listen( pos, _pos_change );
+
+            propagate_pos(pos);
+
+        } //
 
         return pos;
 
     } //set_pos
 
-    function set_rotation( _r:Quaternion ) {
+    inline function set_rotation( _r:Quaternion ) {
 
         rotation = _r;
 
-        Quaternion.listen( rotation, _rotation_change );
+        if( _r != null ) {
 
-        propagate_rotation(rotation);
+            Quaternion.Listen( rotation, _rotation_change );
+
+            propagate_rotation(rotation);
+
+        } //
 
         return rotation;
 
     } //set_rotation
 
-    function set_scale( _s:Vector ) {
+    inline function set_scale( _s:Vector ) {
 
         scale = _s;
 
-        Vector.listen( scale, _scale_change );
+        if( _s != null ) {
 
-        propagate_scale(scale);
+            Vector.Listen( scale, _scale_change );
+
+            propagate_scale(scale);
+
+        } //
 
         return scale;
 
@@ -646,10 +692,10 @@ class Spatial {
  //Sub component change listeners
 
         //An internal callback for when x y or z on a transform changes
-    function _pos_change(_v:Float) { this.set_pos(pos); }
+    inline function _pos_change(_v:Float) { this.set_pos(pos); }
         //An internal callback for when x y or z on a transform changes
-    function _scale_change(_v:Float) { this.set_scale(scale); }
+    inline function _scale_change(_v:Float) { this.set_scale(scale); }
         //An internal callback for when x y or z on a transform changes
-    function _rotation_change(_v:Float) { this.set_rotation(rotation); }
+    inline function _rotation_change(_v:Float) { this.set_rotation(rotation); }
 
 } //Spatial
