@@ -360,7 +360,7 @@ class Visual extends Entity {
 
         size = _v;
 
-        Vector.listen( size, _size_change );
+        Vector.Listen( size, _size_change );
 
         return size;
 

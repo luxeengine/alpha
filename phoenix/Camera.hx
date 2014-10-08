@@ -492,7 +492,7 @@ class Camera {
 
         } //switch projection
 
-        Vector.listen(center, _center_changed);
+        Vector.Listen(center, _center_changed);
 
         return center;
 
@@ -583,7 +583,7 @@ class Camera {
 
         } //switch projection
 
-        Vector.listen(pos, _pos_changed);
+        Vector.Listen(pos, _pos_changed);
 
         return pos;
 
