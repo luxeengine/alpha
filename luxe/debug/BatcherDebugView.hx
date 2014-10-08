@@ -73,7 +73,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
          return
             'ts: '+ key.timestamp + '\n' +
             'seq: '+ key.sequence + '\n' +
-            'primitive_type: '+ key.primitive_type + " " + (Type.enumIndex( key.primitive_type )) + '\n' +
+            'primitive_type: '+ key.primitive_type + " " + (key.primitive_type) + '\n' +
             'texture: '+ (key.texture == null ? 'null' : Std.string(key.texture.texture)) + '\n' +
             'texture id: '+ (key.texture == null ? 'null' : key.texture.id) + '\n' +
             'shader: '+ (key.shader == null ? 'null' : key.shader.id) + '\n' +
