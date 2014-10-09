@@ -534,6 +534,22 @@ class Batcher {
 
     } //add
 
+        /** :todo: this is a temporary construct as part of #119 */
+    public function empty( _drop:Bool=true ) {
+
+        if(_drop) {
+            for(geom in geometry) {
+                geom.drop(true);
+                geom = null;
+            }
+        } else {
+            for(geom in geometry) {
+                geometry.remove(geom.key);
+            }
+        }
+
+    } //empty
+
     public function remove( _geom:Geometry, ?_remove_batcher_from_geometry:Bool = true ) {
 
         if(_remove_batcher_from_geometry) {
@@ -550,7 +566,7 @@ class Batcher {
         var countafter = geometry.size();
 
         if(countbefore == countafter) {
-            //:todo: this fail state should never happen but it comes up on html5 rarely
+            //:todo: this fail state should never happen but it comes up on web rarely
             // throw("GEOMETRY NOT REMOVED " + _geom.key);
         }
 
