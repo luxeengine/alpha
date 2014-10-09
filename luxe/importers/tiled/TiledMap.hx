@@ -67,7 +67,7 @@ class TiledMap extends Tilemap {
             add_tileset({
 
                 name : _tileset.name,
-                texture : Luxe.loadTexture( options.asset_path + _tileset.texture_name),
+                texture : Luxe.loadTexture( Path.normalize( options.asset_path + _tileset.texture_name ) ),
                 first_id : _tileset.first_id,
                 tile_width : _tileset.tile_width,
                 tile_height : _tileset.tile_height,
