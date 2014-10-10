@@ -4,8 +4,8 @@
 	"license": "MIT",
 	"tags": [],
 	"description": "A cross platform haxe based game development engine",
-	"version": "1.0.0-alpha.2",
-	"releasenote": " Unreleased",
+	"version": "1.0.0-alpha",
+	"releasenote": "alpha http://notes.underscorediscovery.com/announcing-snowkit/",
 	"contributors": [ "underscorediscovery" ],
 	"dependencies": {}
 }
