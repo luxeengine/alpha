@@ -82,6 +82,8 @@ For example, on ubuntu 12+ you could use `sudo apt-get install git-core`.
 
 [ ![deps](images/deps.png) ](http://luxeengine.com/)
 
+[flow](https://github.com/underscorediscovery/flow) | [snow] (https://github.com/underscorediscovery/snow) | [luxe] (https://github.com/underscorediscovery/luxe)
+
 This process is the same for all 3 libraries.   
 This process is easiest using the github app for Windows/Mac.
 
