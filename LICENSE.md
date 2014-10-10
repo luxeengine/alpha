@@ -1,6 +1,6 @@
 The MIT License
 
-Copyright (c) 2013-2014 Sven Bergström http://underscorediscovery.com
+Copyright (c) 2013-2014 Sven Bergström http://underscorediscovery.com   
 Copyright (c) 2013-2014 other luxe contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
