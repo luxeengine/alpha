@@ -324,7 +324,7 @@ function get_target() : RenderTexture {
             font = new BitmapFont( resource_manager );
 
                 //create the font texture
-            var _font_texture = Texture.load_from_resource('cabin.png', 512, 256);
+            var _font_texture = Texture.load_from_resource('cabin.png');
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data

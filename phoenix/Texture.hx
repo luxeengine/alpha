@@ -2,6 +2,7 @@ package phoenix;
 
 import snow.assets.AssetImage;
 import snow.render.opengl.GL;
+import snow.utils.ByteArray;
 import snow.utils.UInt8Array;
 import snow.utils.Libs;
 import snow.utils.ArrayBuffer;
@@ -107,38 +108,6 @@ class Texture extends Resource {
 
     } //estimated_memory
 
-    public function create_from_bytes_html(_asset_name:String, _asset_bytes, _width, _height ) {
-
-        var max_size = GL.getParameter(GL.MAX_TEXTURE_SIZE);
-
-        texture = GL.createTexture();
-
-            //if no problems
-        id = _asset_name;
-        width = Std.int(_width);
-        height = Std.int(_height);
-
-        width_actual = width;
-        height_actual = height;
-
-        if(_width > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
-        if(_height > max_size) throw "texture bigger than MAX_TEXTURE_SIZE (" + max_size + ") " + _asset_name;
-
-        //Now we can bind it
-        bind();
-
-            //And send GL the data
-        GL.texImage2D(GL.TEXTURE_2D, 0, GL.RGBA, width, height, 0, GL.RGBA, GL.UNSIGNED_BYTE, cast _asset_bytes );
-
-            //Set the properties
-        _set_filter( FilterType.linear );
-        _set_clamp( ClampType.edge );
-
-        // image_bytes = null;
-        // data = null; //:todo : - sven use lock/unlock
-
-    } //create_from_bytes_html
-
     public static function load( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) {
 
             //:todo:which resources
@@ -203,25 +172,39 @@ class Texture extends Resource {
     } //load
 
 
-    public static function load_from_resource( _name:String, _width:Int, _height:Int, ?_cache:Bool = true ) {
+    public static function load_from_resource( _name:String, ?_cache:Bool = true ) {
 
         var texture_bytes : haxe.io.Bytes = haxe.Resource.getBytes(_name);
 
         if(texture_bytes != null) {
 
+            var texture = load_from_bytearray( _name, ByteArray.fromBytes(texture_bytes), _cache );
+
+            texture_bytes = null;
+
+            return texture;
+
+        } //texture_bytes != null
+
+        return null;
+
+    } //load_texture_from_resource_bytes
+
+
+    public static function load_from_bytearray( _name:String, _bytes:ByteArray, ?_cache:Bool = true ) {
+
+        if(_bytes != null) {
+
                 //:todo: which resource manager...
             var resources = Luxe.renderer.resource_manager;
             var texture = new Texture(resources);
 
-            var _asset = Luxe.core.app.assets.image(_name, {
-                bytes:snow.utils.ByteArray.fromBytes(texture_bytes)
-            });
+            var _asset = Luxe.core.app.assets.image(_name, { bytes:_bytes });
 
             if(_asset != null) {
 
                 texture.from_asset(_asset);
 
-                texture_bytes = null;
                 texture.reset();
                 texture.do_onload();
 
@@ -237,7 +220,7 @@ class Texture extends Resource {
 
         return null;
 
-    } //load_texture_from_resource_bytes
+    } //load_from_bytearray
 
     function check_size() {
 

@@ -41,8 +41,8 @@ typedef DebugInspectorOptions = {
         pos = new Vector((Luxe.screen.w/2) - (size.x/2), (Luxe.screen.h/2) - (size.y/2));
 
             //load the images
-        uitexture = Texture.load_from_resource('tiny.ui.png', 128, 128);
-        uibutton =  Texture.load_from_resource('tiny.button.png', 32, 16);
+        uitexture = Texture.load_from_resource('tiny.ui.png');
+        uibutton =  Texture.load_from_resource('tiny.button.png');
 
             //default to the internal batcher
         _batcher = Luxe.renderer.batcher;
