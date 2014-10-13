@@ -191,6 +191,7 @@ class Texture extends Resource {
     } //load_texture_from_resource_bytes
 
 
+        /** create and load a texture from a ByteArray. Take note this accepts image formats, not raw pixels/bytes.  */
     public static function load_from_bytearray( _name:String, _bytes:ByteArray, ?_cache:Bool = true ) {
 
         if(_bytes != null) {
@@ -221,6 +222,34 @@ class Texture extends Resource {
         return null;
 
     } //load_from_bytearray
+
+    public static function load_from_pixels( _id:String, _width:Int, _height:Int, _pixels:snow.utils.UInt8Array, ?_cache:Bool = true ) {
+
+        if(_pixels == null) {
+            return null;
+        }
+
+        var resources = Luxe.renderer.resource_manager;
+        var texture = new Texture(resources);
+
+        var _asset_info = Luxe.core.app.assets.info_from_id(_id, 'image');
+        var _asset = new snow.assets.AssetImage( Luxe.core.app.assets, _asset_info );
+
+        _asset.load_from_pixels(_id, _width, _height, _pixels);
+
+
+            texture.from_asset(_asset);
+
+            texture.reset();
+            texture.do_onload();
+
+            if(_cache) {
+                resources.cache(texture);
+            }
+
+        return texture;
+
+    } //load_from_pixels
 
     function check_size() {
 
