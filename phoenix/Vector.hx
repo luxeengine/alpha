@@ -103,6 +103,54 @@ class Vector {
 
     } //set_xyz
 
+        //_t is between 0 and 1
+    public inline function lerp_xy( _dest_x:Float, _dest_y:Float, _t: Float ) {
+
+        set_xy(
+            Maths.lerp(x, _dest_x, _t),
+            Maths.lerp(y, _dest_y, _t)
+        );
+
+        return this;
+
+    } //lerp_xy
+
+        //_t is between 0 and 1
+    public inline function lerp_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _t: Float ) {
+
+        set_xyz(
+            Maths.lerp(x, _dest_x, _t),
+            Maths.lerp(y, _dest_y, _t),
+            Maths.lerp(z, _dest_z, _t)
+        );
+
+        return this;
+
+    } //lerp_xyz
+
+    public inline function weighted_average_xy( _dest_x:Float, _dest_y:Float, _slowness:Float ) {
+
+        set_xy(
+            Maths.weighted_average(x, _dest_x, _slowness),
+            Maths.weighted_average(y, _dest_y, _slowness)
+        );
+
+        return this;
+
+    } //weighted_average_xy
+
+    public inline function weighted_average_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _slowness:Float ) {
+
+        set_xyz(
+            Maths.weighted_average(x, _dest_x, _slowness),
+            Maths.weighted_average(y, _dest_y, _slowness),
+            Maths.weighted_average(z, _dest_z, _slowness)
+        );
+
+        return this;
+
+    } //weighted_average_xyz
+
     public inline function int() {
 
         set_xyz( Math.round(x), Math.round(y), Math.round(z) );
