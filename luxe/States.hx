@@ -154,7 +154,7 @@ class States extends Objects {
 
     } //add
 
-    public function remove<T:State>( _name:String ) : T {
+    public function remove<T:State, T1>( _name:String, ?_leave_with:T1 ) : T {
 
         if(_states.exists(_name)) {
 
@@ -165,7 +165,7 @@ class States extends Objects {
                     //if it's running unset it
                 if(_state.active) {
 
-                    leave(_state);
+                    leave(_state, _leave_with);
 
                     if(_state == current_state) {
                         current_state = null;
@@ -266,7 +266,7 @@ class States extends Objects {
                 _debug('found state named $name, calling enter');
 
             current_state = _states.get(name);
-            enter( current_state );
+            enter( current_state, _enter_with );
 
                 _debug('called enter on $name, now at ${Lambda.count(active_states)} active_states');
 
