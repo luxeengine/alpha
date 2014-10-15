@@ -179,7 +179,8 @@ class QuadGeometry extends Geometry {
 
  	} //set
 
-    public function set_flipx(_val:Bool) {
+    function set_flipx(_val:Bool) {
+
             //set before calling uv_space
         flipx = _val;
 
@@ -190,7 +191,7 @@ class QuadGeometry extends Geometry {
         return flipx;
     } //set_flipx
 
-    public function set_flipy(_val:Bool) {
+    function set_flipy(_val:Bool) {
 
             //set before calling uv_space
         flipy = _val;
@@ -200,6 +201,7 @@ class QuadGeometry extends Geometry {
         }
 
         return flipy;
+
     } //set_flipy
 
 
