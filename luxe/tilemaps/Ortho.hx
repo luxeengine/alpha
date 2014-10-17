@@ -15,7 +15,7 @@ import luxe.options.TilemapOptions;
 class Ortho {
 
     public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
-        
+
         var tile_coord = new Vector();
 
             tile_coord.x = Math.floor(world_x / tile_width);
@@ -25,9 +25,9 @@ class Ortho {
 
     } //worldpos_to_tile_coord
 
-    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int, 
+    public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int,
                                                    ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
-            
+
         var world_pos = new Vector();
 
             world_pos.x = tile_x * tile_width;
@@ -38,36 +38,44 @@ class Ortho {
         if(offset_y == null) { offset_y = TileOffset.top; };
 
             switch(offset_x) {
-                case TileOffset.center:    { world_pos.x += (tile_width/2); }            
+                case TileOffset.center:    { world_pos.x += (tile_width/2); }
                 case TileOffset.right:     { world_pos.x += tile_width; }
                 default:
             }
 
             switch(offset_y) {
-                case TileOffset.center:    { world_pos.y += (tile_height/2); }            
+                case TileOffset.center:    { world_pos.y += (tile_height/2); }
                 case TileOffset.bottom:    { world_pos.y += tile_height; }
                 default:
             }
 
         return world_pos;
-        
+
     } //tile_coord_to_worldpos
 
 
 } //Ortho
 
-class OrthoVisuals extends TilemapVisuals {    
+class OrthoVisuals extends TilemapVisual {
 
-    public override function create( options:TilemapVisualOptions ) {
+    var options : TilemapVisualOptions;
 
-        var _scale = (options.scale != null) ? options.scale : 1;        
+    public override function create( _options:TilemapVisualOptions ) {
+
+        options = _options;
+
+        if(options.batcher == null) options.batcher = Luxe.renderer.batcher;
+        if(options.depth == null)   options.depth = 0.0;
+        if(options.group == null)   options.group = 0;
+
+        var _scale = (options.scale != null) ? options.scale : 1;
 
         var _map_scaled_tw = map.tile_width*_scale;
         var _map_scaled_th = map.tile_height*_scale;
 
         for( layer in map ) {
 
-            var _layer_geom : TilemapVisualsLayerGeometry = [];
+            var _layer_geom : TilemapVisualLayerGeometry = [];
 
             for( y in 0 ... map.height ) {
 
@@ -82,7 +90,7 @@ class OrthoVisuals extends TilemapVisuals {
                     var _tile_geom = create_tile_for_layer( layer, x, y, _scale, options.filter );
 
                     _geom_row.push( _tile_geom );
-                    
+
                 } //for each tile
 
                 _layer_geom.push(_geom_row);
@@ -100,20 +108,24 @@ class OrthoVisuals extends TilemapVisuals {
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
             for(x in 0 ... map.width+1) {
-                Luxe.draw.line({ 
+                Luxe.draw.line({
                     p0 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + 0 ),
                     p1 : new Vector(map.pos.x + (x * _map_scaled_tw), map.pos.y + (map.height * _map_scaled_th)),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.0001, //:todo :
+                    group : options.group,
+                    batcher : options.batcher
                 });
             }
 
             for(y in 0 ... map.height+1) {
-                Luxe.draw.line({ 
+                Luxe.draw.line({
                     p0 : new Vector(map.pos.x + (0), map.pos.y + (y * _map_scaled_th)),
                     p1 : new Vector(map.pos.x + (map.width * _map_scaled_tw), map.pos.y + (y * _map_scaled_th)),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.0001,
+                    group : options.group,
+                    batcher : options.batcher
                 });
             }
 
@@ -145,21 +157,24 @@ class OrthoVisuals extends TilemapVisuals {
 
             //create the tile geometry
         var _tile_geom = Luxe.draw.box({
-            x: map.pos.x + (tile.x * _map_scaled_tw) - (_offset_x), 
+            x: map.pos.x + (tile.x * _map_scaled_tw) - (_offset_x),
             y: map.pos.y + (tile.y * _map_scaled_th) - (_offset_y),
             w: _scaled_tilewidth,
             h: _scaled_tileheight,
             visible : layer.visible,
             texture : (tileset != null) ? tileset.texture : null,
-            color : new Color(1,1,1, layer.opacity)
+            color : new Color(1,1,1, layer.opacity),
+            depth : options.depth,
+            group : options.group,
+            batcher : options.batcher
         });
 
         if(tileset != null) {
             if(tileset.texture != null) {
                 tileset.texture.onload = function(t) {
-                    
+
                     var image_coord = tileset.pos_in_texture( tile.id );
-                    
+
                     _tile_geom.uv(
                         new Rectangle(
                             tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),

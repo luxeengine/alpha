@@ -1,12 +1,16 @@
 package luxe.options;
 
 import phoenix.Texture;
+import phoenix.Batcher;
 import luxe.tilemaps.Tilemap;
 
 
 typedef TilemapVisualOptions = {
     ? scale : Float,
     ? grid : Bool,
+    ? batcher : Batcher,
+    ? depth : Float,
+    ? group : Int,
     ? filter : FilterType
 }
 

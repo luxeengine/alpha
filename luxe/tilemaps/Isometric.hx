@@ -65,9 +65,17 @@ class Isometric {
 
 } //Ortho
 
-class IsometricVisuals extends TilemapVisuals {
+class IsometricVisuals extends TilemapVisual {
 
-    public override function create( options:TilemapVisualOptions ) {
+    var options : TilemapVisualOptions;
+
+    public override function create( _options:TilemapVisualOptions ) {
+
+        options = _options;
+
+        if(options.batcher == null) options.batcher = Luxe.renderer.batcher;
+        if(options.depth == null)   options.depth = 0.0;
+        if(options.group == null)   options.group = 0;
 
         var _scale : Float = (options.scale != null) ? options.scale : 1;
 
@@ -77,7 +85,7 @@ class IsometricVisuals extends TilemapVisuals {
 
         for( layer in map ) {
 
-            var _layer_geom : TilemapVisualsLayerGeometry = [];
+            var _layer_geom : TilemapVisualLayerGeometry = [];
 
             for( y in 0 ... map.height ) {
 
@@ -132,7 +140,9 @@ class IsometricVisuals extends TilemapVisuals {
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y),
                     p1 : new Vector(map.pos.x + ip_bot.x, map.pos.y + ip_bot.y),
                     color : color,
-                    depth : 2
+                    depth : options.depth+0.001,
+                    group : options.group,
+                    batcher : options.batcher
                 });
             }
 
@@ -175,7 +185,10 @@ class IsometricVisuals extends TilemapVisuals {
             h : _scaled_tileset_tileheight,
             texture : (tileset != null) ? tileset.texture : null,
             visible : layer.visible,
-            color : new Color(1,1,1,layer.opacity)
+            color : new Color(1,1,1,layer.opacity),
+            depth : options.depth,
+            group : options.group,
+            batcher : options.batcher
         });
 
         if(tileset != null) {

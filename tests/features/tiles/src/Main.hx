@@ -22,10 +22,13 @@ class Main extends luxe.Game {
         //text to display a position
     public var tile_text : luxe.Text;
 
+    var batcher : phoenix.Batcher;
 
     override function ready() {
 
         Luxe.renderer.clear_color = new Color().rgb(0xaf663a);
+
+        batcher = Luxe.renderer.create_batcher({ name:'separate tile view' });
 
             //we create a custom tilemap
         create_small_handmade_tilemap();
@@ -131,7 +134,7 @@ class Main extends luxe.Game {
         small_tiles.tile_at('fg', 0, 0).id = 1;
 
             //finally, tell it to display
-        small_tiles.display({ scale:1 });
+        small_tiles.display({ scale:1, batcher:batcher, depth:2 });
 
             //and change a tile after we display it
         small_tiles.tile_at('fg', 1, 0).id = 1;
