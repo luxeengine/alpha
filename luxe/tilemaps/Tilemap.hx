@@ -11,11 +11,11 @@ import luxe.tilemaps.Isometric.IsometricVisuals;
 
 import luxe.options.TilemapOptions;
 
-typedef TilemapVisualsLayerGeometry = Array< Array<Geometry> >;
+typedef TilemapVisualLayerGeometry = Array< Array<Geometry> >;
 
-class TilemapVisuals {
+class TilemapVisual {
 
-    public var geometry : Map<String, TilemapVisualsLayerGeometry>;
+    public var geometry : Map<String, TilemapVisualLayerGeometry>;
     public var map : Tilemap;
 
     public function new( _map:Tilemap, options:Dynamic ) {
@@ -122,7 +122,7 @@ class TilemapVisuals {
 
     } //destroy
 
-} //TilemapVisuals
+} //TilemapVisual
 
 class Tile {
 
@@ -302,7 +302,7 @@ class Tilemap {
         //the orientation if any of this map
     public var orientation : TilemapOrientation;
         //the visual representation if any of this map
-    public var visuals : TilemapVisuals;
+    public var visuals : TilemapVisual;
 
         //the position of the tilemap in world space
     public var pos : Vector;
@@ -342,7 +342,7 @@ class Tilemap {
 
     } //new
 
-    public function display( options:Dynamic ) {
+    public function display( options:TilemapVisualOptions ) {
 
         switch(orientation) {
             case TilemapOrientation.ortho :
