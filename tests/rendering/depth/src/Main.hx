@@ -3,18 +3,30 @@ import luxe.Sprite;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
+import phoenix.Texture;
 
 class Main extends luxe.Game {
 
 
-    public var sprites : Array<Sprite>;
-
+    var sprites : Array<Sprite>;
+    var image : Texture;
+    var image2 : Texture;
 
     override function ready() {
 
-        var image = Luxe.loadTexture('assets/image.jpg');
-        var image2 = Luxe.loadTexture('assets/luxe.png');
+        image = Luxe.loadTexture('assets/image.jpg');
 
+            //wait for images to load first
+        image.onload = function(_) {
+            image2 = Luxe.loadTexture('assets/luxe.png');
+            image2.onload = function(_) {
+                create();
+            }
+        }
+
+    } //ready
+
+    function create() {
         sprites = [];
 
         for(i in 1 ... 20) {
@@ -38,8 +50,7 @@ class Main extends luxe.Game {
             }));
 
         } //for loop
-
-    } //ready
+    }
 
     override function onmousemove( e:MouseEvent ) {
 
