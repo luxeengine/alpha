@@ -66,9 +66,8 @@ class BitmapFont extends Resource {
     public var characters : Map<Int, Character>;
     public var kernings : Map< KerningKey, Float >;
     public var scale : Vector;
-    public var on_pages_loaded : Void -> Void;
-    public var pages_loaded : Int = 0;
     public var onload : BitmapFont -> Void;
+    public var loaded : Bool = false;
 
     var line_widths : Array<Float>;
 
@@ -85,8 +84,6 @@ class BitmapFont extends Resource {
         scale = new Vector(1,1);
         pages = new Map();
 
-        on_pages_loaded = on_all_pages_loaded;
-
     }
 
     function toString() {
@@ -98,11 +95,14 @@ class BitmapFont extends Resource {
 
             //:todo: which resource manager...
         var new_font = new BitmapFont( Luxe.resources );
-        var font_data = Luxe.loadText( haxe.io.Path.join([_path, _fontid]) );
+        var file_path = haxe.io.Path.join([_path, _fontid]);
+
+        Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
 
             new_font.from_string( font_data.text, _path, _onloaded );
-
             Luxe.resources.cache(new_font);
+
+        });
 
         return new_font;
 
@@ -117,18 +117,30 @@ class BitmapFont extends Resource {
         return _item_map;
     }
 
-    public function on_all_pages_loaded() {
+    function on_completely_loaded() {
+
+        loaded = true;
+
         if(onload != null) {
             onload( this );
         }
-    }
 
-    public function one_page_loaded(t:Texture) {
-        pages_loaded++;
-        if(pages_loaded == Lambda.count(pages)) {
-            on_all_pages_loaded();
+    } //on_completely_loaded
+
+    var items_loaded : Int = 0;
+
+    public function one_item_loaded(t:Texture) {
+
+        var total_items = Lambda.count(pages);
+            //increment the current count
+        items_loaded++;
+
+            //if completely done
+        if(items_loaded == total_items) {
+            on_completely_loaded();
         }
-    }
+
+    } //one_item_loaded
 
     public function from_string( _bitmap_file : String = '',
                                       _folder : String = 'assets/',
@@ -239,14 +251,19 @@ class BitmapFont extends Resource {
 
             for(_page_item in _pages) {
                     //fetch the texture
-                var _t = Luxe.loadTexture( _folder + _page_item.file, one_page_loaded );
+                var _t = Luxe.loadTexture( _folder + _page_item.file );
+
                     //store the texture in the map for use
-                _t.onload = function(t_t) {
+                _t.onload = function(t_t:Texture) {
+
                     pages.set(_page_item.id, _t);
                     // _t.generate_mipmaps();
                     _t.filter_min = FilterType.linear;
                     // _t.filter_mag = FilterType.linear;
-                }
+
+                    one_item_loaded(_t);
+
+                } //onload
 
             }
 
@@ -259,8 +276,8 @@ class BitmapFont extends Resource {
                 ++_id;
             } //for each custom page
 
-                //still do the callback in case
-            on_all_pages_loaded();
+                //still do the callback for explicit textures
+            on_completely_loaded();
 
         } //if custom pages
 
