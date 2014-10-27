@@ -202,6 +202,18 @@ class States extends Objects {
 
     } //kill
 
+    public function enabled( _name:String ) {
+
+        var state = _states.get( _name );
+
+        if(state != null) {
+            return state.enabled;
+        }
+
+        return false;
+
+    } //enabled
+
     public function enable<T>( _name:String, ?_enable_with:T ) {
         var state = _states.get( _name );
         if(state != null) {
