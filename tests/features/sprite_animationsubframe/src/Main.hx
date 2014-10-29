@@ -38,7 +38,7 @@ class Main extends luxe.Game {
             color : new Color(0,0,0,0.3),
         });
 
-            //html5 safe
+            //web safe
         texture2.onload = function(t) {
 
             texture2.filter = FilterType.nearest;

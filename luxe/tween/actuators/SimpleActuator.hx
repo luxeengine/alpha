@@ -138,7 +138,7 @@ class SimpleActuator extends GenericActuator {
             var isField = true;
 
             if ( Reflect.hasField (target, i)
-                    #if html5 && (!target.__properties__ || untyped !target.__properties__["set_" + i]) #end
+                    #if web && (!target.__properties__ || untyped !target.__properties__["set_" + i]) #end
                ) {
 
                 start = Reflect.field (target, i);

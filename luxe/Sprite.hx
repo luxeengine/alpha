@@ -58,7 +58,7 @@ class Sprite extends Visual {
             texture.onload = function(t) {
 
                     //because the default is 0,0,1,1 uv for the quad, we don't want that when
-                    //textures are padded (like on html5)
+                    //textures are padded (like on web)
                 if(options.uv == null) {
 
                     // if(texture.width_actual != texture.width || texture.height_actual != texture.height) {

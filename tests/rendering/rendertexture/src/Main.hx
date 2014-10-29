@@ -49,7 +49,7 @@ class Main extends luxe.Game {
             //by adding to the renderer, it will also render it as well.
         // Luxe.renderer.add_batch(batcher);
 
-            //using onload like this lets you work with html5 late loading textures,
+            //using onload like this lets you work with web late loading textures,
             //on desktop it will always call this, so it will work across all targets
         example.texture.onload = function(t) {
 

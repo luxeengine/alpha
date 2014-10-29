@@ -177,7 +177,7 @@ class TiledLayer {
             //handle zip compression
         if(compression != 'none') {
             #if js
-                throw "No support for compressed maps in html5 target";
+                throw "No support for compressed maps in web target";
             #else
                 switch(compression) {
 

@@ -297,7 +297,7 @@ function get_target() : RenderTexture {
         default_frag_source = haxe.Resource.getString('default.frag.glsl');
         default_frag_textured_source = haxe.Resource.getString('default.frag.textured.glsl');
 
-            //for html5 + mobile, these are required
+            //for web + mobile, these are required
         #if !desktop
             default_frag_source = "precision mediump float;\n" + default_frag_source;
             default_frag_textured_source = "precision mediump float;\n" + default_frag_textured_source;
