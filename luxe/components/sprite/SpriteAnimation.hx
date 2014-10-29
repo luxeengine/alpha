@@ -181,7 +181,7 @@ class SpriteAnimationData {
         //frame_sources
 
             //store the default frame size here so we can fill in blanks
-            //after we pares the sources
+            //after we parse the sources
         frame_size = _frame_size;
 
         var _frame_sources : Array<SpriteAnimationFrameSource> = null;
@@ -285,7 +285,7 @@ class SpriteAnimationData {
             //unless an explicit frame source was given
         if(_explicit_source == null) {
 
-            var result = new Rectangle();
+            var result = new Rectangle(0, 0, frame_size.x, frame_size.y);
 
             if(sprite.texture != null) {
                 switch(type) {
@@ -308,13 +308,16 @@ class SpriteAnimationData {
                     default : {}
 
                 } //type
-            } //sprite.texture
+
+            } //texture != null
 
             return result;
 
         } else {
+
             return _explicit_source;
-        }
+
+        } //if explicit source
 
     } //parse_source_for_frame
 
@@ -708,8 +711,14 @@ class SpriteAnimation extends Component {
         } else if(current.type == SpriteAnimationType.animated_texture) {
 
             if(_frame <= current.image_set.length-1 ) {
+
                 sprite.texture = current.image_set[_frame-1];
-            }
+
+                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
+
+                sprite.uv = uv_cache;
+
+            } //inside image set
 
         } //SpriteAnimationType.animated_texture
 
@@ -751,8 +760,14 @@ class SpriteAnimation extends Component {
         } else if(current.type == SpriteAnimationType.animated_texture) {
 
             if( image_frame <= current.image_set.length ) {
+
                 sprite.texture = current.image_set[image_frame-1];
-            }
+
+                uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
+
+                sprite.uv = uv_cache;
+
+            } //image_frame inside image set
 
         }
 
