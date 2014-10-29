@@ -65,7 +65,7 @@ class Isometric {
 
 } //Ortho
 
-class IsometricVisuals extends TilemapVisual {
+class IsometricVisual extends TilemapVisual {
 
     var options : TilemapVisualOptions;
 
@@ -218,4 +218,4 @@ class IsometricVisuals extends TilemapVisual {
     } //create_tile_for_layer
 
 
-} //IsometricVisuals
+} //IsometricVisual

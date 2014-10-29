@@ -56,7 +56,7 @@ class Ortho {
 
 } //Ortho
 
-class OrthoVisuals extends TilemapVisual {
+class OrthoVisual extends TilemapVisual {
 
     var options : TilemapVisualOptions;
 
@@ -196,4 +196,4 @@ class OrthoVisuals extends TilemapVisual {
     } //create_tile_for_layer
 
 
-} //OrhtoVisuals
+} //OrhtoVisual

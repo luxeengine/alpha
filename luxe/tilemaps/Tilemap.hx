@@ -6,8 +6,8 @@ import phoenix.geometry.QuadGeometry;
 import phoenix.Texture;
 import phoenix.geometry.Geometry;
 
-import luxe.tilemaps.Ortho.OrthoVisuals;
-import luxe.tilemaps.Isometric.IsometricVisuals;
+import luxe.tilemaps.Ortho.OrthoVisual;
+import luxe.tilemaps.Isometric.IsometricVisual;
 
 import luxe.options.TilemapOptions;
 
@@ -167,13 +167,13 @@ class Tile {
     function set_id( _id:Int ) {
 
             //update first, so
-            //visuals have the latest
+            //visual have the latest
             //values
         id = _id;
 
         if(map != null) {
-            if(map.visuals != null) {
-                map.visuals.refresh_tile_id( layer.name, x, y, _id );
+            if(map.visual != null) {
+                map.visual.refresh_tile_id( layer.name, x, y, _id );
             }
         }
 
@@ -302,7 +302,7 @@ class Tilemap {
         //the orientation if any of this map
     public var orientation : TilemapOrientation;
         //the visual representation if any of this map
-    public var visuals : TilemapVisual;
+    public var visual : TilemapVisual;
 
         //the position of the tilemap in world space
     public var pos : Vector;
@@ -346,9 +346,9 @@ class Tilemap {
 
         switch(orientation) {
             case TilemapOrientation.ortho :
-                visuals = new OrthoVisuals( this, options );
+                visual = new OrthoVisual( this, options );
             case TilemapOrientation.isometric :
-                visuals = new IsometricVisuals( this, options );
+                visual = new IsometricVisual( this, options );
             case TilemapOrientation.none :
         } //orientation
 
