@@ -358,7 +358,8 @@ class Shader extends Resource {
 
         var _shader : Shader = null;
 
-        if(_frag_shader.length > 0 && _vert_shader.length > 0) {
+        if( _frag_shader != null && _frag_shader.length > 0 &&
+            _vert_shader != null && _vert_shader.length > 0 ) {
 
             var prefixes = '';
             #if luxe_web
