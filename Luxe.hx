@@ -118,64 +118,87 @@ class Luxe {
     } //showConsole
 
         /** Load a text resource */
-    public static function loadJSON( _id:String, ?_onloaded:JSONResource->Void ) : JSONResource {
+    public static function loadJSON( _id:String, ?_onload:JSONResource->Void, ?_async:Bool=false ) : JSONResource {
 
-        var raw = core.app.assets.text(_id).text;
-        var json = luxe.utils.JSON.parse(raw);
-        var res = new JSONResource( _id, json, Luxe.resources );
+        var res = new JSONResource( _id, null, Luxe.resources );
 
-            if(_onloaded != null) {
-                _onloaded( res );
-            } //_onloaded
+        core.app.assets.text(_id, {
+            async:_async,
+            onload : function( _asset:snow.assets.AssetText) {
 
-        Luxe.resources.cache(res);
+                res.json = luxe.utils.JSON.parse(_asset.text);
+
+                if(_onload != null) {
+                    _onload( res );
+                } //_onload
+
+                Luxe.resources.cache(res);
+
+            } //onload
+        }); //app.assets.text
 
         return res;
 
     } //loadJSON
 
-    public static function loadText( _id:String, ?_onloaded:TextResource->Void ) : TextResource {
+    public static function loadText( _id:String, ?_onload:TextResource->Void, ?_async:Bool=false ) : TextResource {
 
-        var string = core.app.assets.text(_id).text;
-        var res = new TextResource( _id, string, Luxe.resources );
+        var res = new TextResource( _id, null, Luxe.resources );
 
-            if(_onloaded != null) {
-                _onloaded( res );
-            } //_onloaded
+        core.app.assets.text(_id, {
+            async:_async,
+            onload : function( _asset:snow.assets.AssetText) {
 
-        Luxe.resources.cache(res);
+                res.text = _asset.text;
+
+                if(_onload != null) {
+                    _onload( res );
+                } //_onload
+
+                Luxe.resources.cache(res);
+
+            } //onload
+        }); //app.assets.text
 
         return res;
 
     } //loadText
 
         /** Load a bytes/data resource */
-    public static function loadData( _id:String, ?_onloaded:DataResource->Void ) : DataResource {
+    public static function loadData( _id:String, ?_onload:DataResource->Void, ?_async:Bool=false ) : DataResource {
 
-        var bytes = core.app.assets.bytes(_id).bytes;
-        var res = new DataResource( _id, bytes, Luxe.resources);
+        var res = new DataResource( _id, null, Luxe.resources);
 
-            if(_onloaded != null) {
-                _onloaded( res );
-            } //_onloaded
+        core.app.assets.bytes(_id, {
+            async: _async,
+            onload: function( _asset:snow.assets.AssetBytes ) {
 
-        Luxe.resources.cache(res);
+                res.data = _asset.bytes;
+
+                if(_onload != null) {
+                    _onload( res );
+                }
+
+                Luxe.resources.cache(res);
+
+            } //onload
+        }); //app.assets.bytes
 
         return res;
 
     } //loadData
 
         /** Load a sound resource */
-    public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onloaded:SoundResource->Void ) : SoundResource {
+    public static function loadSound( _name:String, _id:String, ?_is_music:Bool = false, ?_onload:SoundResource->Void ) : SoundResource {
 
         var existing = Luxe.resources.find_sound(_id);
         if(existing != null) {
 
             luxe.Log.log('sound at ${_id} was already a registered resource, returning existing instance');
 
-            if(_onloaded != null) {
-                _onloaded( existing );
-            } //_onloaded
+            if(_onload != null) {
+                _onload( existing );
+            } //_onload
 
             return existing;
         }
@@ -184,9 +207,9 @@ class Luxe {
 
         var res = new SoundResource( _id, _name, Luxe.resources );
 
-            if(_onloaded != null) {
-                _onloaded( res );
-            } //_onloaded
+            if(_onload != null) {
+                _onload( res );
+            } //_onload
 
         Luxe.resources.cache(res);
 
@@ -195,14 +218,14 @@ class Luxe {
     } //loadData
 
         /** Load a texture/image resource */
-    public static function loadTexture( _id:String, ?_onloaded:Texture->Void, ?_silent:Bool=false ) : Texture {
+    public static function loadTexture( _id:String, ?_onload:Texture->Void, ?_silent:Bool=false ) : Texture {
 
-        return Texture.load( _id, _onloaded, _silent );
+        return Texture.load( _id, _onload, _silent );
 
     } //loadTexture
 
         /** Load multiple texture/image resources, useful for preloading */
-    public static function loadTextures( _ids:Array<String>, ?_onloaded:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
+    public static function loadTextures( _ids:Array<String>, ?_onload:Array<Texture>->Void, ?_silent:Bool=false ) : Void {
 
         var total_count : Int = _ids.length;
         var loaded_count : Int = 0;
@@ -214,7 +237,7 @@ class Luxe {
             loaded_count++;
 
             if(loaded_count == total_count) {
-                _onloaded(loaded);
+                _onload(loaded);
             }
 
         }
@@ -226,16 +249,16 @@ class Luxe {
     } //loadTextures
 
         /** Load a font resource */
-    public static function loadFont( _id:String, ?_path:String, ?_onloaded : BitmapFont->Void ) : BitmapFont {
+    public static function loadFont( _id:String, ?_path:String, ?_onload : BitmapFont->Void ) : BitmapFont {
 
-        return BitmapFont.load(_id, _path, _onloaded);
+        return BitmapFont.load(_id, _path, _onload);
 
     } //loadFont
 
         /** Load a shader resource */
-    public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onloaded:Shader->Void ) : Shader {
+    public static function loadShader( ?_ps_id:String='default', ?_vs_id:String='default', ?_onload:Shader->Void ) : Shader {
 
-        return Shader.load(_ps_id, _vs_id, _onloaded);
+        return Shader.load(_ps_id, _vs_id, _onload);
 
     } //loadShader
 
