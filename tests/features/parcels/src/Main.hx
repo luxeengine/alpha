@@ -44,7 +44,7 @@ class Main extends luxe.Game {
                     { "id" : "assets/text2.txt" },
                     { "id" : "assets/text3.txt" },
                     { "id" : "assets/text4.txt" },
-                    { "id" : "assets/text5.txt" }
+                    { "id" : "assets/text5.txt", "async":true }
                 ],
                 "data" : [
                     { "id" : "assets/bytes1" },
@@ -59,8 +59,6 @@ class Main extends luxe.Game {
         var parcel1 = new Parcel();
 
             parcel1.from_json( luxe.utils.JSON.parse(json_string) );
-
-        // parcel1.load();
 
             //show an animation to test background thread
         sprites = [];

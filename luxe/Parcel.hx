@@ -28,6 +28,13 @@ private typedef FontInfo = {
     path : String
 }
 
+private typedef DataInfo = {
+    id : String,
+    async : Bool
+}
+
+private typedef TextInfo = DataInfo;
+
 private typedef SoundInfo = {
     id : String,
     name : String,
@@ -43,8 +50,8 @@ class Parcel extends luxe.resource.ResourceManager {
     var shader_list : Array<ShaderInfo>;
     var font_list : Array<FontInfo>;
     var sound_list : Array<SoundInfo>;
-    var text_list : Array<String>;
-    var data_list : Array<String>;
+    var text_list : Array<TextInfo>;
+    var data_list : Array<DataInfo>;
 
     public var total_items : Int = 0;
     public var current_count : Int = 0;
@@ -97,7 +104,7 @@ class Parcel extends luxe.resource.ResourceManager {
 
         refresh_total_items();
 
-        log('loading parcel in ${options.start_spacing}s');
+        log('loading parcel ${options.start_spacing}s from now');
 
         Luxe.timer.schedule(options.start_spacing, function(){
 
@@ -198,8 +205,9 @@ class Parcel extends luxe.resource.ResourceManager {
                 for(item in _texts) {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
+                        var async : Bool = item.async == null ? false : cast item.async;
                         if(id != '') {
-                            add_text( id );
+                            add_text( id, async );
                         }  else {
                             log("text not added due to incomplete info: " + item);
                         }//id != ''
@@ -212,8 +220,9 @@ class Parcel extends luxe.resource.ResourceManager {
                 for(item in _datas) {
                     if(item != null) {
                         var id : String = item.id == null ? '' : cast item.id;
+                        var async : Bool = item.async == null ? false : cast item.async;
                         if(id != '') {
-                            add_data( id );
+                            add_data( id, async );
                         } else {
                             log("data not added due to incomplete info: " + item);
                         }
@@ -367,7 +376,7 @@ class Parcel extends luxe.resource.ResourceManager {
 
             } else {
 
-                    //load all fonts immediately
+                    //load all datas immediately
                     //whether that's sequential or not
                 load_datas();
 
@@ -686,23 +695,23 @@ class Parcel extends luxe.resource.ResourceManager {
 
 //Text
 
-    public function add_text( _id:String ) {
-        text_list.push( _id );
+    public function add_text( _id:String, ?_async:Bool=false ) {
+        text_list.push({ id:_id, async:_async });
     } //add_text
 
-    public function add_texts( list:Array<String> ) {
-        for(text in list) {
-            text_list.push( text );
+    public function add_texts( list:Array<TextInfo> ) {
+        for(text_info in list) {
+            text_list.push( text_info );
         }
     } //add_texts
 
 //Data
 
-    public function add_data( _id:String ) {
-        data_list.push( _id );
+    public function add_data( _id:String, ?_async:Bool=false ) {
+        data_list.push({ id:_id, async:_async });
     } //add_text
 
-    public function add_datas( list:Array<String> ) {
+    public function add_datas( list:Array<DataInfo> ) {
         for(data in list) {
             data_list.push( data );
         }
@@ -777,20 +786,20 @@ class Parcel extends luxe.resource.ResourceManager {
 
     } //load_font
 
-    function load_data( _data_path:String, _complete ) {
-        #if luxe_parcel_logging log("    loading data " + _data_path ); #end
+    function load_data( _data_info:DataInfo, _complete ) {
+        #if luxe_parcel_logging log("    loading data " + _data_info ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadData( _data_path, _complete );
+            Luxe.loadData( _data_info.id, _complete, _data_info.async );
         });
 
     } //load_data_path
 
-    function load_text( _text_path:String, _complete ) {
-        #if luxe_parcel_logging log("    loading text " + _text_path ); #end
+    function load_text( _text_info:TextInfo, _complete ) {
+        #if luxe_parcel_logging log('    loading text $_text_info' ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadText( _text_path, _complete );
+            Luxe.loadText( _text_info.id, _complete, _text_info.async );
         });
 
     } //load_datafile
