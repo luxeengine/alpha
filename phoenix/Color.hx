@@ -166,6 +166,26 @@ class Color {
         from_int(_rgb);
         return this;
     } //rgb
+	
+	public function argb(_argb:UInt = 0xFFFFFFFF):Color{
+		from_int_a(_argb);
+		return this;
+	} //argb
+	
+	public function toRGBInt():Int {
+		var _r = Std.int(r * 255);
+		var _g = Std.int(g * 255);
+		var _b=  Std.int(b * 255);
+		return _r << 16 | _g << 8 | _b;
+	}//toRGBInt
+	
+	public function toARGBInt():Int {
+		var _a = Std.int(a * 255);
+		var _r = Std.int(r * 255);
+		var _g = Std.int(g * 255);
+		var _b=  Std.int(b * 255);
+		return _a << 24 | _r << 16 | _g << 8 | _b;
+	}//toARGBInt
 
     public function toColorHSL() : ColorHSL {
         return new ColorHSL().fromColor(this);
@@ -274,6 +294,19 @@ class Color {
             //but we don't need to clobber it,
             //it was set in the member list
         // a = 1.0;
+    }
+	
+	function from_int_a(_i:Int) {
+		var _a = _i >> 24 & 0xFF;
+        var _r = _i >> 16 & 0xFF;
+        var _g = _i >> 8 & 0xFF;
+        var _b = _i & 0xFF;
+
+            //convert to 0-1
+		a = _a / 255;
+        r = _r / 255;
+        g = _g / 255;
+        b = _b / 255;
     }
 
 } //Color
