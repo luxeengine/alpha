@@ -48,9 +48,9 @@ package luxe.utils.json;
     var message:String;
 
     /**
-     * Constructs a new JSONParseError.
-     *
-     * @param message The error message that occured during parsing
+      Constructs a new JSONParseError.   
+        
+      @param message The error message that occured during parsing   
      */
     public function new(message:String = "",location:Int = 0,text:String = "") {
         //super( message );
@@ -61,18 +61,18 @@ package luxe.utils.json;
     }
 
     /**
-     * Provides read-only access to the location variable.
-     *
-     * @return The location in the string where the error occurred
+      Provides read-only access to the location variable.   
+        
+      @return The location in the string where the error occurred   
      */
     public function get_location():Int {
         return _location;
     }
 
     /**
-     * Provides read-only access to the text variable.
-     *
-     * @return The string in which the error occurred
+      Provides read-only access to the text variable.   
+        
+      @return The string in which the error occurred   
      */
     public function get_text():String {
         return _text;

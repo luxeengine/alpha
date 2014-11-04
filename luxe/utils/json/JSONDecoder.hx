@@ -66,10 +66,10 @@ package luxe.utils.json;
     var token:JSONToken;
 
     /**
-     * Constructs a new JSONDecoder to parse a JSON string
-     * into a native object.
-     *
-     * @param s The JSON string to be converted into a native object
+      Constructs a new JSONDecoder to parse a JSON string   
+      into a native object.   
+        
+      @param s The JSON string to be converted into a native object   
      */
     public function new(s:String, strict:Bool) {
         this.strict = strict;
@@ -81,26 +81,26 @@ package luxe.utils.json;
     }
 
     /**
-     * Gets the internal object that was created by parsing
-     * the JSON string passed to the constructor.
-     *
-     * @return The internal object representation of the JSON
-     *      string that was passed to the constructor
+      Gets the internal object that was created by parsing   
+      the JSON string passed to the constructor.   
+        
+      @return The internal object representation of the JSON   
+           string that was passed to the constructor   
      */
     public function getValue():Dynamic {
         return value;
     }
 
     /**
-     * Returns the next token from the tokenzier reading
-     * the JSON string
+      Returns the next token from the tokenzier reading   
+      the JSON string   
      */
     function nextToken():JSONToken {
         return token = tokenizer.getNextToken();
     }
 
     /**
-     * Attempt to parse an array
+      Attempt to parse an array   
      */
     function parseArray():Array < Dynamic > {
         // create an array internally that we're going to attempt
@@ -155,7 +155,7 @@ package luxe.utils.json;
     }
 
     /**
-     * Attempt to parse an object
+      Attempt to parse an object   
      */
     function parseObject():Dynamic {
         // create the object internally that we're going to
@@ -230,7 +230,7 @@ package luxe.utils.json;
     }
 
     /**
-     * Attempt to parse a value
+      Attempt to parse a value   
      */
     function parseValue():Dynamic   {
         // Catch errors when the input stream ends abruptly
