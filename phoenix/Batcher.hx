@@ -44,6 +44,12 @@ import luxe.Log._debug;
 
 } //BlendMode
 
+@:enum abstract BlendEquation(Int) from Int to Int {
+	var add						= GL.FUNC_ADD;
+	var substract				= GL.FUNC_SUBTRACT;
+	var reverse_substract		= GL.FUNC_REVERSE_SUBTRACT;
+} //BlendEquation
+
 class BatchGroup {
     public function new(_pre, _post) {
         pre_render = _pre;

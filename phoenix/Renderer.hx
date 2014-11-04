@@ -213,13 +213,18 @@ class Renderer {
         }
 
     } //clear
-
-
+	
     public function blend_mode(?_src_mode:BlendMode = BlendMode.src_alpha, _dst_mode:BlendMode = BlendMode.one_minus_src_alpha) {
 
         GL.blendFunc(_src_mode, _dst_mode);
 
     } //set blendmode
+	
+	public function blend_equation(?_equation:BlendEquation = BlendEquation.add) {
+		
+		GL.blendEquation(_equation);
+		
+	} //set blend equation
 
         //The main render function
     @:noCompletion public function process() {
