@@ -48,7 +48,7 @@ import luxe.Log._debug;
 
     var add                     = GL.FUNC_ADD;
     var subtract               = GL.FUNC_SUBTRACT;
-    var reverse_substract       = GL.FUNC_REVERSE_SUBTRACT;
+    var reverse_subtract       = GL.FUNC_REVERSE_SUBTRACT;
 
 } //BlendEquation
 
