@@ -220,11 +220,11 @@ class Renderer {
 
     } //set blendmode
 	
-	public function blend_equation(?_equation:BlendEquation = BlendEquation.add) {
-		
-		GL.blendEquation(_equation);
-		
-	} //set blend equation
+    public function blend_equation(?_equation:BlendEquation = BlendEquation.add) {
+
+        GL.blendEquation(_equation);
+
+    } //set blend equation
 
         //The main render function
     @:noCompletion public function process() {
