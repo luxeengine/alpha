@@ -53,6 +53,8 @@ class Camera extends Entity {
     @:noCompletion public var shake_amount : Float;
         /** if true, shake is busy happening */
     @:noCompletion public var shaking : Bool = false;
+        /** if true, shake will be pixel perfect */
+    @:noCompletion public var shake_pixelperfect : Bool = false;
         /** the threshold cutoff for shaking */
     @:noCompletion public var minimum_shake : Float = 0.1;
 
@@ -279,9 +281,10 @@ class Camera extends Entity {
     } //set_scale_from_transform
 
         /** Shake the camera a given amount */
-    public function shake(amount:Float) {
+    public function shake(amount:Float, ?pixelPerfect:Bool=false) {
 
         shake_amount = amount;
+        shake_pixelperfect = pixelPerfect;
         shaking = true;
 
     } //shake
@@ -313,7 +316,14 @@ class Camera extends Entity {
             }
 
                 //add the shake to the final position and apply it to the view
-            _final_pos.set_xyz(_final_pos.x+shake_vector.x, _final_pos.y+shake_vector.y, _final_pos.z+shake_vector.z);
+            if(shake_pixelperfect)
+                _final_pos.set_xyz(Std.int(_final_pos.x+shake_vector.x),
+                                   Std.int(_final_pos.y+shake_vector.y),
+                                   Std.int(_final_pos.z+shake_vector.z));
+            else
+                _final_pos.set_xyz(_final_pos.x+shake_vector.x,
+                                   _final_pos.y+shake_vector.y,
+                                   _final_pos.z+shake_vector.z);
 
                 //tell it to update the view
             update_view_pos = _final_pos;
