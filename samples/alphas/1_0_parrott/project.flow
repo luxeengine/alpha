@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'alpha_1_0_parrott',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'alpha_1_0_parrott',
+      package : 'com.luxeengine.samples.parrott'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}
