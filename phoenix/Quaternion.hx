@@ -68,7 +68,7 @@ class Quaternion {
     }
 
 
-    public function setFromEuler( _euler:Vector, _order:String = 'XYZ' ) : Quaternion {
+    public function setFromEuler( _euler:Vector, _order:ComponentOrder = XYZ ) : Quaternion {
 
             // http://www.mathworks.com/matlabcentral/fileexchange/
             //  20696-function-to-convert-between-dcm-euler-angles-quaternions-and-euler-vectors/
@@ -87,42 +87,42 @@ class Quaternion {
         var s2 = Math.sin( _euler.y / 2 );
         var s3 = Math.sin( _euler.z / 2 );
 
-            if ( _order == 'XYZ' ) {
+            if ( _order == XYZ ) {
 
                 _x = s1 * c2 * c3 + c1 * s2 * s3;
                 _y = c1 * s2 * c3 - s1 * c2 * s3;
                 _z = c1 * c2 * s3 + s1 * s2 * c3;
                 _w = c1 * c2 * c3 - s1 * s2 * s3;
 
-            } else if ( _order == 'YXZ' ) {
+            } else if ( _order == YXZ ) {
 
                 _x = s1 * c2 * c3 + c1 * s2 * s3;
                 _y = c1 * s2 * c3 - s1 * c2 * s3;
                 _z = c1 * c2 * s3 - s1 * s2 * c3;
                 _w = c1 * c2 * c3 + s1 * s2 * s3;
 
-            } else if ( _order == 'ZXY' ) {
+            } else if ( _order == ZXY ) {
 
                 _x = s1 * c2 * c3 - c1 * s2 * s3;
                 _y = c1 * s2 * c3 + s1 * c2 * s3;
                 _z = c1 * c2 * s3 + s1 * s2 * c3;
                 _w = c1 * c2 * c3 - s1 * s2 * s3;
 
-            } else if ( _order == 'ZYX' ) {
+            } else if ( _order == ZYX ) {
 
                 _x = s1 * c2 * c3 - c1 * s2 * s3;
                 _y = c1 * s2 * c3 + s1 * c2 * s3;
                 _z = c1 * c2 * s3 - s1 * s2 * c3;
                 _w = c1 * c2 * c3 + s1 * s2 * s3;
 
-            } else if ( _order == 'YZX' ) {
+            } else if ( _order == YZX ) {
 
                 _x = s1 * c2 * c3 + c1 * s2 * s3;
                 _y = c1 * s2 * c3 + s1 * c2 * s3;
                 _z = c1 * c2 * s3 - s1 * s2 * c3;
                 _w = c1 * c2 * c3 - s1 * s2 * s3;
 
-            } else if ( _order == 'XZY' ) {
+            } else if ( _order == XZY ) {
 
                 _x = s1 * c2 * c3 - c1 * s2 * s3;
                 _y = c1 * s2 * c3 - s1 * c2 * s3;

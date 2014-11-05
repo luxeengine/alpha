@@ -239,7 +239,7 @@ class Matrix {
         return this;
     }
 
-    public inline function makeRotationFromEuler( _v:Vector, _order:String = 'XYZ') : Matrix {
+    public inline function makeRotationFromEuler( _v:Vector, _order:ComponentOrder = XYZ) : Matrix {
 
         var te = elements;
 
@@ -251,7 +251,7 @@ class Matrix {
         var c = Math.cos( y ), d = Math.sin( y );
         var e = Math.cos( z ), f = Math.sin( z );
 
-        if ( _order == 'XYZ' ) {
+        if ( _order == XYZ ) {
 
             var ae = a * e, af = a * f, be = b * e, bf = b * f;
 
@@ -267,7 +267,7 @@ class Matrix {
             te[6] = be + af * d;
             te[10] = a * c;
 
-        } else if ( _order == 'YXZ' ) {
+        } else if ( _order == YXZ ) {
 
             var ce = c * e, cf = c * f, de = d * e, df = d * f;
 
@@ -283,7 +283,7 @@ class Matrix {
             te[6] = df + ce * b;
             te[10] = a * c;
 
-        } else if ( _order == 'ZXY' ) {
+        } else if ( _order == ZXY ) {
 
             var ce = c * e, cf = c * f, de = d * e, df = d * f;
 
@@ -299,7 +299,7 @@ class Matrix {
             te[6] = b;
             te[10] = a * c;
 
-        } else if ( _order == 'ZYX' ) {
+        } else if ( _order == ZYX ) {
 
             var ae = a * e, af = a * f, be = b * e, bf = b * f;
 
@@ -315,7 +315,7 @@ class Matrix {
             te[6] = b * c;
             te[10] = a * c;
 
-        } else if ( _order == 'YZX' ) {
+        } else if ( _order == YZX ) {
 
             var ac = a * c, ad = a * d, bc = b * c, bd = b * d;
 
@@ -331,7 +331,7 @@ class Matrix {
             te[6] = ad * f + bc;
             te[10] = ac - bd * f;
 
-        } else if ( _order == 'XZY' ) {
+        } else if ( _order == XZY ) {
 
             var ac = a * c, ad = a * d, bc = b * c, bd = b * d;
 

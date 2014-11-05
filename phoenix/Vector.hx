@@ -616,7 +616,7 @@ class Vector {
 
     } //transformDirection
 
-    public inline function setEulerFromRotationMatrix (m:Matrix, order:String = 'XYZ') : Vector {
+    public inline function setEulerFromRotationMatrix (m:Matrix, order:ComponentOrder = XYZ) : Vector {
 
         var te = m.elements;
         var m11 = te[0], m12 = te[4], m13 = te[8];
@@ -627,7 +627,7 @@ class Vector {
         var _y = y;
         var _z = z;
 
-        if (order == 'XYZ') {
+        if (order == XYZ) {
 
             _y = Math.asin( Maths.clamp( m13, -1, 1 ) );
 
@@ -640,7 +640,7 @@ class Vector {
                 _z = 0;
             }
 
-        }  else if ( order == 'YXZ' ) {
+        }  else if ( order == YXZ ) {
 
             _x = Math.asin( -Maths.clamp( m23, -1, 1 ) );
 
@@ -652,7 +652,7 @@ class Vector {
                 _z = 0;
             }
 
-        } else if ( order == 'ZXY' ) {
+        } else if ( order == ZXY ) {
 
             _x = Math.asin( Maths.clamp( m32, -1, 1 ) );
 
@@ -664,7 +664,7 @@ class Vector {
                 _z = Math.atan2( m21, m11 );
             }
 
-        } else if ( order == 'ZYX' ) {
+        } else if ( order == ZYX ) {
 
             _y = Math.asin( -Maths.clamp( m31, -1, 1 ) );
 
@@ -676,7 +676,7 @@ class Vector {
                 _z = Math.atan2( -m12, m22 );
             }
 
-        } else if ( order == 'YZX' ) {
+        } else if ( order == YZX ) {
 
             _z = Math.asin( Maths.clamp( m21, -1, 1 ) );
 
@@ -688,7 +688,7 @@ class Vector {
                 _y = Math.atan2( m13, m33 );
             }
 
-        } else if ( order == 'XZY' ) {
+        } else if ( order == XZY ) {
 
             _z = Math.asin( -Maths.clamp( m12, -1, 1 ) );
 
@@ -708,7 +708,7 @@ class Vector {
 
     } //setEulerFromRotationMatrix
 
-    public inline function setEulerFromQuaternion (q:Quaternion, order:String = 'XYZ') : Vector {
+    public inline function setEulerFromQuaternion (q:Quaternion, order:ComponentOrder = XYZ) : Vector {
 
         var sqx : Float = q.x * q.x;
         var sqy : Float = q.y * q.y;
@@ -719,27 +719,27 @@ class Vector {
         var _y = y;
         var _z = z;
 
-        if (order == 'XYZ') {
+        if (order == XYZ) {
             _x = Math.atan2( 2 * ( q.x * q.w - q.y * q.z ), ( sqw - sqx - sqy + sqz ) );
             _y = Math.asin(  Maths.clamp( 2 * ( q.x * q.z + q.y * q.w ), -1, 1 ) );
             _z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw + sqx - sqy - sqz ) );
-        } else if ( order ==  'YXZ' ) {
+        } else if ( order ==  YXZ ) {
             _x = Math.asin(  Maths.clamp( 2 * ( q.x * q.w - q.y * q.z ), -1, 1 ) );
             _y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw - sqx - sqy + sqz ) );
             _z = Math.atan2( 2 * ( q.x * q.y + q.z * q.w ), ( sqw - sqx + sqy - sqz ) );
-        } else if ( order == 'ZXY' ) {
+        } else if ( order == ZXY ) {
             _x = Math.asin(  Maths.clamp( 2 * ( q.x * q.w + q.y * q.z ), -1, 1 ) );
             _y = Math.atan2( 2 * ( q.y * q.w - q.z * q.x ), ( sqw - sqx - sqy + sqz ) );
             _z = Math.atan2( 2 * ( q.z * q.w - q.x * q.y ), ( sqw - sqx + sqy - sqz ) );
-        } else if ( order == 'ZYX' ) {
+        } else if ( order == ZYX ) {
             _x = Math.atan2( 2 * ( q.x * q.w + q.z * q.y ), ( sqw - sqx - sqy + sqz ) );
             _y = Math.asin(  Maths.clamp( 2 * ( q.y * q.w - q.x * q.z ), -1, 1 ) );
             _z = Math.atan2( 2 * ( q.x * q.y + q.z * q.w ), ( sqw + sqx - sqy - sqz ) );
-        } else if ( order == 'YZX' ) {
+        } else if ( order == YZX ) {
             _x = Math.atan2( 2 * ( q.x * q.w - q.z * q.y ), ( sqw - sqx + sqy - sqz ) );
             _y = Math.atan2( 2 * ( q.y * q.w - q.x * q.z ), ( sqw + sqx - sqy - sqz ) );
             _z = Math.asin(  Maths.clamp( 2 * ( q.x * q.y + q.z * q.w ), -1, 1 ) );
-        } else if ( order == 'XZY' ) {
+        } else if ( order == XZY ) {
             _x = Math.atan2( 2 * ( q.x * q.w + q.y * q.z ), ( sqw - sqx + sqy - sqz ) );
             _y = Math.atan2( 2 * ( q.x * q.z + q.y * q.w ), ( sqw + sqx - sqy - sqz ) );
             _z = Math.asin(  Maths.clamp( 2 * ( q.z * q.w - q.x * q.y ), -1, 1 ) );
@@ -781,6 +781,18 @@ class Vector {
 
 } //Vector class
 
+
+
+@:enum abstract ComponentOrder(Int) from Int to Int {
+
+    var XYZ = 0;
+    var YXZ = 1;
+    var ZXY = 2;
+    var ZYX = 3;
+    var YZX = 4;
+    var XZY = 5;
+
+} //ComponentOrder
 
 
 abstract Vec(Vector) from Vector to Vector {
