@@ -30,13 +30,14 @@ class Maths {
 
     } //lerp
 
-    static inline public function weighted_average( value:Float, target:Float, slowness:Float ) {
+    static inline public function weighted_avg( value:Float, target:Float, slowness:Float ) {
 
+            //:todo: use an epsilon
         if( slowness == 0 ) { slowness = 0.00000001; }
 
         return ((value * (slowness - 1)) + target) / slowness;
 
-    } //weighted_average
+    } //weighted_avg
 
     static inline public function clamp( value:Float, a:Float, b:Float ) : Float {
         return ( value < a ) ? a : ( ( value > b ) ? b : value );
