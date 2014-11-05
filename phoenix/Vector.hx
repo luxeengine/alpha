@@ -131,8 +131,8 @@ class Vector {
     public inline function weighted_average_xy( _dest_x:Float, _dest_y:Float, _slowness:Float ) {
 
         set_xy(
-            Maths.weighted_average(x, _dest_x, _slowness),
-            Maths.weighted_average(y, _dest_y, _slowness)
+            Maths.weighted_avg(x, _dest_x, _slowness),
+            Maths.weighted_avg(y, _dest_y, _slowness)
         );
 
         return this;
@@ -142,9 +142,9 @@ class Vector {
     public inline function weighted_average_xyz( _dest_x:Float, _dest_y:Float, _dest_z:Float, _slowness:Float ) {
 
         set_xyz(
-            Maths.weighted_average(x, _dest_x, _slowness),
-            Maths.weighted_average(y, _dest_y, _slowness),
-            Maths.weighted_average(z, _dest_z, _slowness)
+            Maths.weighted_avg(x, _dest_x, _slowness),
+            Maths.weighted_avg(y, _dest_y, _slowness),
+            Maths.weighted_avg(z, _dest_z, _slowness)
         );
 
         return this;
