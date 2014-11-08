@@ -43,11 +43,13 @@ class Main extends luxe.Game {
             if(!inside) {
                 inside = true;
                 test_sprite1.color.tween(0.1, {r:0.8, b:0, g:0});
+                luxe.tween.Actuate.tween(test_sprite1.scale, 0.1, {x:1.2, y:1.2});
             }
         } else {
             if(inside) {
                 inside = false;
                 test_sprite1.color.tween(0.1, {r:1, b:1, g:1});
+                luxe.tween.Actuate.tween(test_sprite1.scale, 0.1, {x:1, y:1});
             }
         }
     } //hittest
