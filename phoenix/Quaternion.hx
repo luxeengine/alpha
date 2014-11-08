@@ -271,7 +271,18 @@ class Quaternion {
 
     } //normalize
 
-
+    public static function Add( _a:Quaternion, _b:Quaternion ):Quaternion {
+        return _a.copy().add(_b);
+    }
+    
+    public static function Multiply( _a:Quaternion, _b:Quaternion ):Quaternion {
+        return _a.copy().multiply(_b);
+    }
+    
+    public static function MultiplyScalar(_quaternion:Quaternion, _scalar:Float):Quaternion {
+        return _quaternion.copy().multiplyScalar(_scalar);
+    }
+    
     public function multiply( _quaternion:Quaternion ) : Quaternion {
 
         return multiplyQuaternions( this, _quaternion );
