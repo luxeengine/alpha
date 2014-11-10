@@ -48,19 +48,19 @@ import haxe.Utf8;
     var jsonString:String;
 
     /**
-     * Creates a new JSONEncoder.
-     *
-     * @param o The object to encode as a JSON string
+      Creates a new JSONEncoder.   
+        
+      @param o The object to encode as a JSON string   
      */
     public function new(value:Dynamic) {
         jsonString = convertToString(value);
     }
 
     /**
-     * Gets the JSON string from the encoder.
-     *
-     * @return The JSON string representation of the object
-     *      that was passed to the constructor
+      Gets the JSON string from the encoder.   
+        
+      @return The JSON string representation of the object   
+           that was passed to the constructor   
      */
     public function getString():String {
         return jsonString;
@@ -70,10 +70,10 @@ import haxe.Utf8;
     public function _trace(e) { if(debug) trace(e); }
 
     /**
-     * Converts a value to it's JSON string equivalent.
-     *
-     * @param value The value to convert.  Could be any
-     *      type (object, number, array, etc)
+      Converts a value to it's JSON string equivalent.   
+        
+      @param value The value to convert.  Could be any   
+           type (object, number, array, etc)   
      */
     function convertToString(value:Dynamic):String {
 
@@ -131,11 +131,11 @@ import haxe.Utf8;
     }
 
     /**
-     * Escapes a string accoding to the JSON specification.
-     *
-     * @param str The string to be escaped
-     * @return The string with escaped special characters
-     *      according to the JSON specification
+      Escapes a string accoding to the JSON specification.   
+        
+      @param str The string to be escaped   
+      @return The string with escaped special characters   
+           according to the JSON specification   
      */
     function escapeString( str:String ):String {
         // create a string to store the string's jsonstring value
@@ -217,10 +217,10 @@ import haxe.Utf8;
     }
 
     /**
-     * Converts an array to it's JSON string equivalent
-     *
-     * @param a The array to convert
-     * @return The JSON string representation of <code>a</code>
+      Converts an array to it's JSON string equivalent   
+        
+      @param a The array to convert   
+      @return The JSON string representation of <code>a</code>   
      */
     function arrayToString( a:Array < Dynamic > ):String {
         //trace("arrayToString");
@@ -260,10 +260,10 @@ import haxe.Utf8;
     }
 
     /**
-     * Converts an object to it's JSON string equivalent
-     *
-     * @param o The object to convert
-     * @return The JSON string representation of <code>o</code>
+      Converts an object to it's JSON string equivalent   
+        
+      @param o The object to convert   
+      @return The JSON string representation of <code>o</code>   
      */
     function objectToString(o:Dynamic):String {
         //trace("objectToString");
@@ -291,11 +291,11 @@ import haxe.Utf8;
     }
 
   /**
-   * Converts an instance object to it's JSON string equivalent
-   *
-   * @param o The instance object to convert
-   * @param cls The class of instance object
-   * @return The JSON string representation of <code>o</code>
+    Converts an instance object to it's JSON string equivalent   
+      
+    @param o The instance object to convert   
+    @param cls The class of instance object   
+    @return The JSON string representation of <code>o</code>   
    */
   function instanceToString (o : Dynamic, cls : Class <Dynamic>) : String {
     var s : String = "";

@@ -2,8 +2,8 @@ package luxe.tween;
 
 
 /**
- * @author Joshua Granick
- * @author Aleš Tomeček (for RotationPath)
+  @author Joshua Granick   
+  @author Aleš Tomeček (for RotationPath)   
  */
 class MotionPath {
 
@@ -28,13 +28,13 @@ class MotionPath {
 
 
     /**
-     * Adds a bezier curve to the current motion path
-     * @param   x       The x position of the end point for the curve
-     * @param   y       The y position of the end point for the curve
-     * @param   controlX        The x position of the control point for the curve, which affects the angle and midpoint
-     * @param   controlX        The x position of the control point for the curve, which affects the angle and midpoint
-     * @param   strength        The degree of emphasis that should be placed on this segment. If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
-     * @return      The current motion path instance
+      Adds a bezier curve to the current motion path   
+      @param   x       The x position of the end point for the curve   
+      @param   y       The y position of the end point for the curve   
+      @param   controlX        The x position of the control point for the curve, which affects the angle and midpoint   
+      @param   controlX        The x position of the control point for the curve, which affects the angle and midpoint   
+      @param   strength        The degree of emphasis that should be placed on this segment. If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)   
+      @return      The current motion path instance   
      */
     public function bezier (x:Float, y:Float, controlX:Float, controlY:Float, strength:Float = 1):MotionPath {
 
@@ -47,11 +47,11 @@ class MotionPath {
 
 
     /**
-     * Adds a line to the current motion path
-     * @param   x       The x position of the end point for the line
-     * @param   x       The y position of the end point for the line
-     * @param   strength        The degree of emphasis that should be placed on this segment . If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)
-     * @return      The current motion path instance
+      Adds a line to the current motion path   
+      @param   x       The x position of the end point for the line   
+      @param   x       The y position of the end point for the line   
+      @param   strength        The degree of emphasis that should be placed on this segment . If a motion path contains multiple segments with the same strength, they all receive equal emphasis (Default is 1)   
+      @return      The current motion path instance   
      */
     public function line (x:Float, y:Float, strength:Float = 1):MotionPath {
 

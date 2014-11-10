@@ -43,40 +43,40 @@ import luxe.utils.json.JSONEncoder;
 class JSON {
 
 	/**
-	 * Encodes a object into a JSON string.
-	 *
-	 * @param o The object to create a JSON string for
-	 * @return the JSON string representing o
+	  Encodes a object into a JSON string.   
+	    
+	  @param o The object to create a JSON string for   
+	  @return the JSON string representing o   
 	 */
 	public inline static function encode(o:Dynamic):String {		
 		return new JSONEncoder(o).getString();
 	} //encode
 	
 	/**
-	 * Decodes a JSON string into a native object.
-	 * 
-	 * @param s The JSON string representing the object
-	 * @return A native object as specified by s
+	  Decodes a JSON string into a native object.   
+	     
+	  @param s The JSON string representing the object   
+	  @return A native object as specified by s   
 	 */
 	public inline static function decode(s:String,strict:Bool=true):Dynamic {		
 		return new JSONDecoder(s,strict).getValue();
 	} //decode
 	
 	/**
-	 * Encodes a object into a JSON string.
-	 *
-	 * @param o The object to create a JSON string for
-	 * @return the JSON string representing o
+	  Encodes a object into a JSON string.   
+	    
+	  @param o The object to create a JSON string for   
+	  @return the JSON string representing o   
 	 */
 	public inline static function stringify(o:Dynamic):String {			
 		return new JSONEncoder(o).getString();
 	} //stringify
 	
 	/**
-	 * Decodes a JSON string into a native object.
-	 * 
-	 * @param s The JSON string representing the object
-	 * @return A native object as specified by s
+	  Decodes a JSON string into a native object.   
+	     
+	  @param s The JSON string representing the object   
+	  @return A native object as specified by s   
 	 */
 	public inline static function parse(s:String,strict:Bool=false):Dynamic {		
 		return new JSONDecoder(s,strict).getValue();
