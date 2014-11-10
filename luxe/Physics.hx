@@ -4,9 +4,9 @@ import luxe.Core;
 import luxe.Vector;
 import snow.utils.Timer;
 
-#if haxebullet
-    import luxe.physics.bullet.PhysicsBullet;
-#end //haxebullet
+#if deflect
+    import luxe.physics.deflect.PhysicsDeflect;
+#end //deflect
 
 #if nape
     import luxe.physics.nape.PhysicsNape;
@@ -16,9 +16,9 @@ import snow.utils.Timer;
 class Physics {
 
 
-    #if haxebullet
-        public var bullet : PhysicsBullet;
-    #end //haxebullet
+    #if deflect
+        public var deflect : PhysicsDeflect;
+    #end //deflect
 
     #if nape
         public var nape : PhysicsNape;
@@ -45,9 +45,9 @@ class Physics {
 
         engines = [];
 
-        #if haxebullet
-            bullet = add_engine(PhysicsBullet);
-        #end //haxebullet
+        #if deflect
+            deflect = add_engine(PhysicsDeflect);
+        #end //deflect
 
         #if nape
             nape = add_engine(PhysicsNape);

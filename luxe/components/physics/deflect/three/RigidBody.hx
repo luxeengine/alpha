@@ -1,46 +1,28 @@
-package luxe.components.physics.bullet.three;
+package luxe.components.physics.deflect.three;
 
 
-#if haxebullet
+#if deflect
 
 
-    import bullet.bulletCollision.collisionShapes.BtSphereShape;
-    import bullet.bulletDynamics.dynamics.BtRigidBody;
+    import deflect.collision.shapes.BtSphereShape;
+    import deflect.dynamics.dynamics.BtRigidBody;
 
-    import luxe.components.physics.bullet.three.ShapeCollider;
+    import luxe.components.physics.deflect.three.ShapeCollider;
     import luxe.Component;
 
-    import luxe.Quaternion;
-    import luxe.Vector;
     import luxe.utils.Maths;
-
-    typedef RigidBodyConstructInfo = {
-        localInertia : Vector,
-        linearDamping : Float,
-        angularDamping : Float,
-        friction : Float,
-        rollingFriction : Float,
-        restitution : Float,
-        linearSleepingThreshold : Float,
-        angularSleepingThreshold : Float,
-        additionalDamping : Bool,
-        additionalDampingFactor : Float,
-        additionalLinearDampingThresholdSqr : Float,
-        additionalAngularDampingThresholdSqr : Float,
-        additionalAngularDampingFactor : Float
-    }
 
     class RigidBody extends Component {
 
         public var rigid_body : BtRigidBody;
         public var collider : ShapeCollider;
 
-        public var inertia : Vector;
+        public var inertia : deflect.math.Vector;
         public var mass : Float = 1;
         public var kinematic : Bool = false;
-        public var _rotation : Quaternion;
+        public var _rotation : deflect.math.Quaternion;
 
-        public var localInertia : Vector;
+        public var localInertia : deflect.math.Vector;
         public var linearDamping : Float = 0;
         public var angularDamping : Float = 0;
         public var friction : Float = 0.5;
@@ -57,12 +39,12 @@ package luxe.components.physics.bullet.three;
         public var additionalAngularDampingThresholdSqr : Float = 0.01;
         public var additionalAngularDampingFactor : Float = 0.01;
 
-        var construct_info : RigidBodyConstructInfo;
+        var construct_info : BtRigidBodyConstructOptions;
 
         override function init() {
 
-            inertia = new Vector(0,0,0);
-            _rotation = new Quaternion(0,0,0,1);
+            inertia = new deflect.math.Vector(0,0,0);
+            _rotation = new deflect.math.Quaternion(0,0,0,1);
 
             if(collider == null) {
                 var _collider : ShapeCollider = get('collider');
@@ -74,6 +56,7 @@ package luxe.components.physics.bullet.three;
             construct_info = {
 
                 localInertia : inertia,
+                mass : mass,
                 linearDamping : linearDamping,
                 angularDamping : angularDamping,
                 friction : friction,
@@ -94,10 +77,10 @@ package luxe.components.physics.bullet.three;
 
         override function onreset() {
 
-            rigid_body = new BtRigidBody( collider.shape, mass, pos, _rotation, construct_info );
+            rigid_body = new BtRigidBody( collider.shape, new deflect.math.Vector(pos.x,pos.y,pos.z), _rotation, construct_info );
 
                 //Add to the world for updates
-            Luxe.physics.bullet.add_rigidbody( rigid_body );
+            Luxe.physics.deflect.add_rigidbody( rigid_body );
 
         } //onreset
 
@@ -106,9 +89,9 @@ package luxe.components.physics.bullet.three;
 
             if(mass > 0 && !kinematic) {
                     //apply origin
-                pos = rigid_body.origin;
+                pos.set_xyz(rigid_body.origin.x, rigid_body.origin.y, rigid_body.origin.z);
                      //set to the entity
-                rotation = rigid_body.rotation;
+                rotation.set(rigid_body.rotation.x, rigid_body.rotation.y, rigid_body.rotation.z, rigid_body.rotation.w);
 
             } //only if not static
 
@@ -120,4 +103,4 @@ package luxe.components.physics.bullet.three;
 
     } //RigidBody
 
-#end //haxebullet
+#end //deflect

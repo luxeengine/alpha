@@ -1,18 +1,18 @@
-package luxe.components.physics.bullet.three;
-    
+package luxe.components.physics.deflect.three;
 
-#if haxebullet
+
+#if deflect
 
 
     import luxe.Vector;
 
-    import bullet.bulletCollision.collisionShapes.BtConeShape;
+    import deflect.collision.shapes.BtConeShape;
 
-    import luxe.components.physics.bullet.three.ShapeCollider;
+    import luxe.components.physics.deflect.three.ShapeCollider;
 
 
     class ConeCollider extends ShapeCollider {
-        
+
         public var radius : Float = 1;
         public var height : Float = 1;
 
@@ -25,4 +25,4 @@ package luxe.components.physics.bullet.three;
     } //ConeCollider
 
 
-#end //haxebullet
+#end //deflect
