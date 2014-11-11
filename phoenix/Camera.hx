@@ -592,27 +592,27 @@ class Camera {
 
     function _merge_options( _options:CameraOptions ) {
 
-        if(options.aspect != null) {
+        if(_options.aspect != null) {
             options.aspect = _options.aspect;
             aspect = options.aspect;
         }
 
-        if(options.far != null) {
+        if(_options.far != null) {
             options.far = _options.far;
             far = options.far;
         }
 
-        if(options.fov != null) {
+        if(_options.fov != null) {
             options.fov = _options.fov;
             fov = options.fov;
         }
 
-        if(options.near != null) {
+        if(_options.near != null) {
             options.near = _options.near;
             near = options.near;
         }
 
-        if(options.viewport != null) {
+        if(_options.viewport != null) {
             options.viewport = _options.viewport;
             viewport = options.viewport;
         }
