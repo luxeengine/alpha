@@ -142,7 +142,9 @@ class Renderer {
 
     @:noCompletion public function sort_batchers( a:Batcher, b:Batcher ) {
         if(a.layer < b.layer) return -1;
-        if(a.layer >= b.layer) return 1;
+        if(a.layer > b.layer) return 1;
+        if(a.sequence < b.sequence) return -1;
+        if(a.sequence > b.sequence) return 1;
         return 1;
     } //sort_batchers
 
