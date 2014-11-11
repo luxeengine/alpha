@@ -65,10 +65,10 @@ class Main extends luxe.Game {
     function load_ortho_tiledmap() {
 
             //create from xml file, with various encodings, or from JSON
-        tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx'} );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx'} );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx'} );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx', pos : new Vector(512,0) } );
+        tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx', pos : new Vector(512,0) } );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx', pos : new Vector(512,0) } );
 
         var scale = 2;
 
