@@ -49,13 +49,17 @@ class Transforms extends Mohxa {
 
                     it('should update the world values when local values change, without a parent', function(){
 
-                        log('transform pos 10,10,10');
-                        log('transform rotation 0,90,0');
-                        log('transform scale 2,2,2');
-
                         t1.pos = new luxe.Vector(10,10,10);
                         t1.rotation = new luxe.Quaternion().setFromEuler(new luxe.Vector(0,90,0).radians());
                         t1.scale = new luxe.Vector(2,2,2);
+
+                        log('transform pos ' + t1.pos);
+                        log('transform rotation ' + t1.rotation);
+                        log('transform scale ' + t1.scale);
+
+                        log('transform world pos ' + t1.world.pos);
+                        log('transform world rotation ' + t1.world.rotation);
+                        log('transform world scale ' + t1.world.scale);
 
                             //watch out for round errors, especially on neko
 
@@ -153,7 +157,7 @@ class Transforms extends Mohxa {
                     });
 
                     after(function(){
-                        log('resetting parent transform to 100,100,100 0,0,0 2,2,2');
+                        log('resetting parent transform rotation to new quaternion');
                         tparent.rotation = new luxe.Quaternion();
                     });
 
