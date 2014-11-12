@@ -24,14 +24,6 @@ class Main extends luxe.Game {
     var end : Float = 0;
     override function ready() {
 
-        Luxe.renderer.vsync = false;
-        Luxe.physics.step_rate = 1/60;
-        Luxe.core.update_rate = 1/60;
-        Luxe.core.render_rate = 1/60;
-
-        Luxe.physics.nape.velocity_iterations = 240;
-        Luxe.physics.nape.position_iterations = 240;
-
         Luxe.renderer.state.lineWidth(2);
 
         reset_world();

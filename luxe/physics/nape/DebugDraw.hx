@@ -33,6 +33,8 @@ import phoenix.Vector;
         public var drawShapeAngleIndicators:Bool = true;
          // If true, then representations of the active constraints will be drawn.
         public var drawConstraints:Bool = false;
+         // The depth to draw the geometry at :todo:
+        public var depth:Float = 0.0;
 
         public var geometry : Array<Geometry>;
 
@@ -161,11 +163,12 @@ import phoenix.Vector;
         function draw_circle( position:Vec2, radius:Float, color:Color, _immediate:Bool = true ) {
 
             var g = Luxe.draw.ring({
-                x:position.x,
-                y:position.y,
-                r:radius,
-                color : color,
-                immediate:_immediate
+                x: position.x,
+                y: position.y,
+                r: radius,
+                color: color,
+                depth: depth,
+                immediate: _immediate
             });
 
             geometry.push( g );
@@ -180,11 +183,12 @@ import phoenix.Vector;
 
             geometry.push(
                 Luxe.draw.ring({
-                    x:_p.x,
-                    y:_p.y,
-                    r:2,
-                    color : color,
-                    immediate:_immediate
+                    x: _p.x,
+                    y: _p.y,
+                    r: 2,
+                    color: color,
+                    depth: depth,
+                    immediate: _immediate
                 })
             );
 
@@ -194,11 +198,12 @@ import phoenix.Vector;
 
             geometry.push(
                 Luxe.draw.rectangle({
-                    x:_bounds.x,
-                    y:_bounds.y,
-                    w:_bounds.width,
-                    h:_bounds.height,
-                    color : color,
+                    x: _bounds.x,
+                    y: _bounds.y,
+                    w: _bounds.width,
+                    h: _bounds.height,
+                    depth: depth,
+                    color: color,
                     immediate:_immediate
                 })
             );
@@ -209,8 +214,9 @@ import phoenix.Vector;
 
             var g = new Geometry({
                 primitive_type : phoenix.Batcher.PrimitiveType.lines,
-                immediate : true,
-                batcher : Luxe.renderer.batcher
+                immediate: true,
+                depth: depth,
+                batcher: Luxe.renderer.batcher
             });
 
             var i = 0;
