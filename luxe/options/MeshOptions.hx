@@ -7,6 +7,7 @@ import phoenix.geometry.Geometry;
 
 typedef MeshOptions = {
 
+    ? name : String,
     ? batcher : Batcher,
     ? file : String,
     ? string : String,
