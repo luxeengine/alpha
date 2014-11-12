@@ -140,17 +140,27 @@ class Entity extends Objects {
         if(options != null) {
 
     //name
+                //default to non-unique name
+            if(options.name_unique == null) {
+                options.name_unique = false;
+            }
+
             if(options.name != null) {
                 name = options.name;
+                if(options.name_unique) {
+                    name += '';
+                }
             }
 
     //position
             if(options.pos != null) {
-                pos = options.pos.clone();
+                var _op : Vector = options.pos;
+                pos = _op.clone();
             }
     //scale
             if(options.scale != null) {
-                scale = options.scale.clone();
+                var _os : Vector = options.scale;
+                scale = _os.clone();
             }
 
     //scene

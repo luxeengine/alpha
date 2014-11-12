@@ -2,7 +2,7 @@
 import luxe.Vector;
 import luxe.Input;
 import luxe.Sprite;
-
+import luxe.Color;
 
 class Main extends luxe.Game {
 
@@ -13,12 +13,34 @@ class Main extends luxe.Game {
     override function ready() {
 
         test_sprite1 = new Sprite({
+            name:'example',
+            name_unique:true,
             texture : Luxe.loadTexture('assets/luxe.png'),
             pos : Luxe.screen.mid,
             centered : false,
             flipx:true,
             flipy:true
         });
+
+        new Sprite({
+            name:'example',
+            name_unique:true,
+            pos : Luxe.screen.mid,
+            color : Color.random(),
+            rotation_z:60,
+            depth:2,
+        });
+
+        new Sprite({
+            name:'example',
+            name_unique:true,
+            pos : Luxe.screen.mid,
+            rotation_z:30,
+            color : Color.random(),
+            depth:2,
+        });
+
+        trace(Luxe.scene.entities);
 
         test_sprite1.centered = true;
         test_sprite1.flipx = false;

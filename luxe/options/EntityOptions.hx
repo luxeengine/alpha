@@ -7,6 +7,13 @@ typedef EntityOptions = {
 
         /** the entity name. highly recommended you set this. */
     @:optional var name : String;
+        /**
+            If shared names prefer a unique name, set this to true.   
+            For example, `{ name:'enemy', name_unique:true }` would   
+            generate a unique enemy.tp28h type of name for later filtering,   
+            where the unique part would be the entity id
+        */
+    @:optional var name_unique : Bool;
         /** the transform position */
     @:optional var pos : Vector;
         /** the transform scale */
