@@ -648,11 +648,6 @@ class Camera {
 
             //start at defaults
         apply_default_camera_options();
-        
-        if (_options.fov_type != null) {
-            options.fov_type = _options.fov_type;
-            fov_type = options.fov_type;
-        }
 
         if(_options.cull_backfaces != null) {
             options.cull_backfaces = _options.cull_backfaces;
