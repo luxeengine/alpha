@@ -15,7 +15,7 @@ class MeshComponent extends Component {
     public var file : String;
     public var batcher : Batcher;
 
-    public funciton new( ?_options:MeshOptions, ?_name:String = 'mesh' )
+    public function new( ?_options:MeshOptions, ?_name:String = 'mesh' )
     {
         // allows the user to optionally pass the MeshOptions that they would 
         // usually pass to a regular Mesh constructor.
