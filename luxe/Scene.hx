@@ -74,6 +74,11 @@ class Scene extends Objects {
 
             _debug('${name} / adding ${entity.name} with id : ${entity.id}');
 
+        if(entities.exists(entity.name)) {
+            log('${name} / adding a second entity named ${entity.name}!
+                This will replace the existing one, possibly leaving the previous one in limbo.
+                Use EntityOptions name_unique flag to automatically handle this for similar named entities.');
+        }
 
         entity.scene = this;
         entities.set( entity.name, entity );

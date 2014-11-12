@@ -14,7 +14,6 @@ class Main extends luxe.Game {
 
         test_sprite1 = new Sprite({
             name:'example',
-            name_unique:true,
             texture : Luxe.loadTexture('assets/luxe.png'),
             pos : Luxe.screen.mid,
             centered : false,
@@ -22,6 +21,18 @@ class Main extends luxe.Game {
             flipy:true
         });
 
+            //This should give a warning
+            //about duplicate names
+        new Sprite({
+            name:'example',
+            pos : Luxe.screen.mid,
+            color : Color.random(),
+            rotation_z:90,
+            depth:2,
+        });
+
+            //This should handle auto unique names
+            //due to name_unique flags
         new Sprite({
             name:'example',
             name_unique:true,
