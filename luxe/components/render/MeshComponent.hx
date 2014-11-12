@@ -10,41 +10,28 @@ import phoenix.Batcher;
 class MeshComponent extends Component {
 
     public var mesh : Mesh;
-    public var texture : Texture;
-    public var file : String;
-    public var batcher : Batcher;
+    public var options : MeshOptions;
 
-    public function new( ?_options:MeshOptions, ?_name:String = 'mesh' ) {
-            // allows the user to optionally pass the MeshOptions that they would 
-            // usually pass to a regular Mesh constructor.
+    public function new( _options:MeshOptions ) {
+        var name : String = 'mesh';
         
-        if(_options != null) {
-            if(_options.texture != null) {
-                this.texture = _options.texture;
-            }
-                
-            if(_options.batcher != null) {
-                this.batcher = _options.batcher;
-            }
-                
-            if(_options.file != null) {
-                this.file = _options.file;
-            }
+        if(_options == null) {
+            throw "MeshComponent requires non-null options at the moment";
+        }
             
-        } // _options != null
-        
-        super({name:_name});
+        if(_options.name != null) {
+            name = _options.name;
+        } 
+            
+        options = _options;
+        super({name:name});
     } // new
 
     override function init() {
 
         if(mesh == null) {
 
-            mesh = new Mesh({
-                file: file,
-                texture: texture,
-                batcher: batcher
-            });
+            mesh = new Mesh(options);
 
             mesh.pos = entity.pos;
             mesh.rotation = entity.rotation;
