@@ -267,7 +267,7 @@ class Debug {
 
         #if profiler
             #if luxe_native
-                if(e.keycode == Key.key_p && e.mod.ctrl) {
+                if(e.keycode == Key.key_p && e.mod.ctrl && !e.repeat) {
                     trace("starting profiler ... let go of key to stop profiling.");
                     cpp.vm.Profiler.start( profile_path );
                     profiling = true;
