@@ -8,6 +8,8 @@ class Main extends luxe.Game {
         Luxe.camera.view.set_perspective( {
            near:0.1,
            far:1000,
+           fov_type:FOVType.vertical,
+           fov:60,
            aspect:Luxe.screen.w / Luxe.screen.h
         });
         
@@ -35,6 +37,13 @@ class Main extends luxe.Game {
             else {
                 Luxe.camera.view.fov_type = FOVType.horizontal;
             }
+        }
+        
+        if (event.keycode == Key.up) {
+            Luxe.camera.view.fov += 10;
+        }
+        else if (event.keycode == Key.down) {
+            Luxe.camera.view.fov -= 10;
         }
     }
 
