@@ -51,7 +51,15 @@ class Main extends luxe.Game {
             depth:2,
         });
 
+            //prints the full list
         trace(Luxe.scene.entities);
+            //prints []
+        trace(Luxe.scene.get_named_like('none', []));
+            //find only the two
+        var found = Luxe.scene.get_named_like('example', []);
+        for( item in found ) {
+            trace(item.name);
+        }
 
         test_sprite1.centered = true;
         test_sprite1.flipx = false;

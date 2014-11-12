@@ -134,6 +134,29 @@ class Scene extends Objects {
 
     } //empty
 
+        /**
+            Return a list of similarly named entities in the scene.
+            For example, enemy.1 enemy.2 enemy.3 with 'enemy' will return all of these.
+            Useful for the EntityOptions name_unique flag.
+            Iterates all entities in the scene, use carefully.
+            Note that this is a function that will likely become a part of a set of functions so it may change slightly.
+            Current behavior works based on (name.)* from the beginning of the name only.
+            `enemy.1` will match, `enemy` will not (no .), `this.enemy.name` will not.
+            `^((?:enemy)[.]{1})`
+        */
+    public function get_named_like(_name:String, into:Array<Entity> ) {
+
+        var _filter : EReg = new EReg('^((?:' + _name + ')[.]{1})', 'g');
+        for(_entity in entities) {
+            if( _filter.match(_entity.name) ) {
+                into.push(_entity);
+            }
+        }
+
+        return into;
+
+    } //get_named_like
+
 //render
 
     function render(_) {
