@@ -148,7 +148,7 @@ class Entity extends Objects {
             if(options.name != null) {
                 name = options.name;
                 if(options.name_unique) {
-                    name += '';
+                    name += '.$id';
                 }
             }
 
