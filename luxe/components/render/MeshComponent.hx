@@ -3,9 +3,7 @@ package luxe.components.render;
 import luxe.Component;
 import luxe.Mesh;
 import luxe.Quaternion;
-import luxe.options.MeshOptions
-import phoenix.Texture;
-import phoenix.Batcher;
+import luxe.options.MeshOptions;
 
 class MeshComponent extends Component {
 
