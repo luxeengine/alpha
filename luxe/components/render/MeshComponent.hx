@@ -11,18 +11,19 @@ class MeshComponent extends Component {
     public var options : MeshOptions;
 
     public function new( _options:MeshOptions ) {
-        var name : String = 'mesh';
-        
-        if(_options == null) {
+
+        options = _options;
+
+        if(options == null) {
             throw "MeshComponent requires non-null options at the moment";
         }
-            
-        if(_options.name != null) {
-            name = _options.name;
-        } 
-            
-        options = _options;
-        super({name:name});
+
+        if(options.name == null) {
+            options.name = 'mesh';
+        }
+
+        super({ name:options.name });
+
     } // new
 
     override function init() {
@@ -34,7 +35,8 @@ class MeshComponent extends Component {
             mesh.pos = entity.pos;
             mesh.rotation = entity.rotation;
             mesh.scale = entity.scale;
-        }
+
+        } //mesh != null
 
     } //init
 
