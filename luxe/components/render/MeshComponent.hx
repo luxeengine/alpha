@@ -3,8 +3,10 @@ package luxe.components.render;
 import luxe.Component;
 import luxe.Mesh;
 import luxe.Quaternion;
+import luxe.options.MeshOptions
 import phoenix.Texture;
 import phoenix.Batcher;
+
 
 class MeshComponent extends Component {
 
@@ -12,6 +14,26 @@ class MeshComponent extends Component {
     public var texture : Texture;
     public var file : String;
     public var batcher : Batcher;
+
+    public funciton new( ?_options:MeshOptions, ?_name:String = 'mesh' )
+    {
+        // allows the user to optionally pass the MeshOptions that they would 
+        // usually pass to a regular Mesh constructor.
+        
+        if(_options != null)
+        {
+            if(_options.texture != null)
+                this.texture = _options.texture;
+                
+            if(_options.batcher != null)
+                this.batcher = _options.batcher;
+                
+            if(_options.file != null)
+                this.file = _options.file;
+        } // _options != null
+        
+        super({name:_name});
+    } // new
 
     override function init() {
 
