@@ -418,7 +418,7 @@ class Camera {
         options.fov_type = _fov_type;
         fov_type = _fov_type;
         //trigger fov_y update
-        fov = fov;
+        set_fov(fov);
         return fov_type;
     }
 
