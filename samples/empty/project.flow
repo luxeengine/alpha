@@ -7,7 +7,7 @@
 
     app : {
       name : 'luxe_empty',
-      package : 'org.luxeengine.empty'
+      package : 'com.luxeengine.empty'
     },
 
     build : {
