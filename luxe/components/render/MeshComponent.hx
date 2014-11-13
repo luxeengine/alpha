@@ -65,6 +65,12 @@ class MeshComponent extends Component {
 
     override function update(dt:Float) {
 
-    }
+    } // update
+    
+    override function ondestroy() {
+        if(mesh != null) {
+            mesh.destroy();
+        }
+    } // ondestroy
 
 } //MeshComponent
