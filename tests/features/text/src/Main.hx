@@ -16,7 +16,7 @@ class Main extends luxe.Game {
             //Create three horizontally aligned texts, pos based
 
         var _size = 16.0;
-        var _line_h = Luxe.renderer.font.heightof(' \n ', _size);
+        var _line_h = Luxe.renderer.font.height_of(' \n ', _size);
         var _y = 20.0;
         var _x = 270;
 
@@ -97,8 +97,8 @@ class Main extends luxe.Game {
 
         _size = 12;
 
-        var _box_h = Luxe.renderer.font.heightof(wrapped, _size) * 1.4;
-        var _box_w = Luxe.renderer.font.widthof(wrapped, _size) * 2;
+        var _box_h = Luxe.renderer.font.height_of(wrapped, _size) * 1.4;
+        var _box_w = Luxe.renderer.font.width_of(wrapped, _size) * 2;
 
         _y = _y+_h+20;
         var _pad = 18;

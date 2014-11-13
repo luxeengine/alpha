@@ -121,7 +121,7 @@ class BitmapFont extends Resource {
 
         } //kerning
 
-    public inline function widthof( _string:String, _point_size:Float = 1.0, ?_line_widths:Array<Float> ) : Float {
+    public inline function width_of( _string:String, _point_size:Float = 1.0, ?_line_widths:Array<Float> ) : Float {
 
         //:todo: #98 hardcoded tab width
         var _tab_width = 4;
@@ -177,21 +177,21 @@ class BitmapFont extends Resource {
             //adjust for any last additions
         return Math.max( _max_w, _cur_x );
 
-    } //widthof
+    } //width_of
 
-    public inline function heightof( _string:String, _point_size:Float ) : Float {
+    public inline function height_of( _string:String, _point_size:Float ) : Float {
 
-        return heightof_lines(_string.split('\n'), _point_size);
+        return height_of_lines(_string.split('\n'), _point_size);
 
-    } //heightof
+    } //height_of
 
 
         /** Return the dimensions of a given string, at the specified point size.
-            You can also use widthof or heightof, this is a convenience for those */
+            You can also use width_of or height_of, this is a convenience for those */
     public inline function dimensions( _string:String, _point_size:Float, _into:Vector ) : Vector {
 
-        var _width = widthof(_string, _point_size);
-        var _height = heightof(_string, _point_size);
+        var _width = width_of(_string, _point_size);
+        var _height = height_of(_string, _point_size);
 
         return _into.set_xy( _width, _height );
 
@@ -221,12 +221,12 @@ class BitmapFont extends Resource {
 
     //internal
 
-        inline function heightof_lines( _lines:Array<String>, _point_size:Float ) : Float {
+        inline function height_of_lines( _lines:Array<String>, _point_size:Float ) : Float {
 
             var _ratio = _point_size / info.point_size;
             return _lines.length * (info.line_height * _ratio);
 
-        } //heightof
+        } //height_of
 
         function default_options() {
 
@@ -402,8 +402,8 @@ class BitmapFont extends Resource {
 
         var _line_idx = 0;
         var _line_widths = [];
-        var _txt_width = widthof(opt.text, opt.point_size, _line_widths);
-        var _txt_height = heightof_lines(_lines, opt.point_size);
+        var _txt_width = width_of(opt.text, opt.point_size, _line_widths);
+        var _txt_height = height_of_lines(_lines, opt.point_size);
         var _txt_half_w = _txt_width / 2;
         var _txt_half_h = _txt_height / 2;
 
