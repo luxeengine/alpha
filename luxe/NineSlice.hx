@@ -439,6 +439,7 @@ class NineSlice extends luxe.Sprite {
 
             _geometry.quad_uv( slice.geometry_id, new Rectangle(slice.source_x, slice.source_y, slice.source_width, slice.source_height) );
             _geometry.quad_pos( slice.geometry_id, new Vector(slice.pos.x, slice.pos.y) );
+            _geometry.quad_color( slice.geometry_id, nineslice_options.color );
 
         } //each slice
 
