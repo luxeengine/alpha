@@ -93,7 +93,7 @@ class Text extends Visual {
     } //new
 
     var size_rect_cache : Rectangle;
-    var scale_cache : Vector;
+    var dim_cache : Vector;
 
     public function point_inside( p:Vector ) {
 
@@ -106,18 +106,16 @@ class Text extends Visual {
         }
 
         if(size_rect_cache == null) {
-            scale_cache = new Vector();
+            dim_cache = new Vector();
             size_rect_cache = new Rectangle();
         }
 
-        scale_cache.x = scale_cache.y = text_options.size/font.font_size;
+        font.dimensions(text, text_options.size, dim_cache);
 
-        var dim = font.get_text_dimensions(text, scale_cache);
-
-            size_rect_cache.x = pos.x-(dim.x / 2);
+            size_rect_cache.x = pos.x-(dim_cache.x / 2);
             size_rect_cache.y = pos.y;
-            size_rect_cache.w = dim.x;
-            size_rect_cache.h = dim.y;
+            size_rect_cache.w = dim_cache.x;
+            size_rect_cache.h = dim_cache.y;
 
         return size_rect_cache.point_inside(p);
 

@@ -26,340 +26,223 @@ enum TextAlign {
     bottom;
 }
 
-typedef Character = {
-    var id : Int;
-    var x : Float;
-    var y : Float;
-    var width : Float;
-    var height : Float;
-    var xoffset : Float;
-    var yoffset : Float;
-    var xadvance : Float;
-    var page : Int;
+private typedef Character = {
+    var id: Int;
+    var x: Float;
+    var y: Float;
+    var width: Float;
+    var height: Float;
+    var xoffset: Float;
+    var yoffset: Float;
+    var xadvance: Float;
+    var page: Int;
 }
 
-typedef KerningKey = {
-    var glyph : Int;
-    var index : Int;
+
+typedef FontInfo = {
+    var face: String;
+    var point_size: Float;
+    var base_size: Float;
+    var chars: Map<Int, Character>;
+    var char_count: Int;
+    var pages: Array<{ id : Int, file : String }>;
+    var line_height: Float;
+    var kernings: Map< Int, Map<Int, Float> >;
 }
 
-//this is not the best option
-typedef KeyValuePair = {
-    var key : String;
-    var value : String;
-}
-
-typedef PageInfo = {
-    id : Int,
-    file : String
-}
 
 class BitmapFont extends Resource {
 
-        //  _font_name:String = '', _bitmap_file : String = ''
-    public var dimensions : Vector;
-    public var spacing : Float = 0.0;
-    public var line_height : Float = 0.0;
-    public var font_size : Float = 0.0;
-    public var font_character_count : Int = 0;
-    public var pages : Map<Int, Texture>;
-    public var characters : Map<Int, Character>;
-    public var kernings : Map< KerningKey, Float >;
-    public var scale : Vector;
-    public var onload : BitmapFont -> Void;
-    public var loaded : Bool = false;
+        public var pages : Map<Int, Texture>;
+        public var info : FontInfo;
 
-    var line_widths : Array<Float>;
+        public var onload : BitmapFont -> Void;
+        public var loaded : Bool = false;
 
-    public function new( ?_resource_manager : ResourceManager = null ) {
+            //cached refrence of the ' '(32)
+            //character for sizing on tabs/spaces
+        var space_char:Character;
 
-        super( _resource_manager, ResourceType.font);
+        public function new( ?_resource_manager : ResourceManager = null ) {
 
-        id  = 'Unnamed font';
+            super( _resource_manager, ResourceType.font);
+            id = 'font.${Luxe.utils.uniqueid()}';
 
-        line_widths = new Array<Float>();
-        dimensions = new Vector();
-        characters = new Map();
-        kernings = new Map();
-        scale = new Vector(1,1);
-        pages = new Map();
+            pages = new Map();
 
-    }
+        } //new
 
-    function toString() {
-        return "BitmapFont(" + id + ")";
-    }
-
-
-    public static function load( _fontid:String, ?_path:String = 'assets/', ?_onloaded:BitmapFont->Void ) : BitmapFont {
+        public static function load( _fontid:String, ?_path:String = 'assets/', ?_onload:BitmapFont->Void ) : BitmapFont {
 
             //:todo: which resource manager...
-        var new_font = new BitmapFont( Luxe.resources );
-        var file_path = haxe.io.Path.join([_path, _fontid]);
+            var new_font = new BitmapFont( Luxe.resources );
+            var file_path = haxe.io.Path.join([_path, _fontid]);
 
-        Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
+            Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
 
-            new_font.from_string( font_data.text, _path, _onloaded );
-            Luxe.resources.cache(new_font);
+                new_font.from_string( font_data.text, _path, _onload );
+                Luxe.resources.cache(new_font);
 
-        });
+            });
 
-        return new_font;
+            return new_font;
 
-    } //load
+        } //load
 
-    function _tokenize_font_line(_line_tokens:Array<String>) {
-        var _item_map : Map<String, KeyValuePair> = new Map();
-        for(_line_token in _line_tokens) {
-            var _items = _line_token.split("=");
-            _item_map.set( _items[0], { key:_items[0], value:_items[1] } );
-        }
-        return _item_map;
-    }
+        function on_completely_loaded() {
 
-    function on_completely_loaded() {
+            loaded = true;
 
-        loaded = true;
+            if(onload != null) {
+                onload( this );
+            }
 
-        if(onload != null) {
-            onload( this );
-        }
+        } //on_completely_loaded
 
-    } //on_completely_loaded
+        var items_loaded : Int = 0;
 
-    var items_loaded : Int = 0;
+        public function one_item_loaded(t:Texture) {
 
-    public function one_item_loaded(t:Texture) {
+            var total_items = Lambda.count(pages);
+                //increment the current count
+            items_loaded++;
 
-        var total_items = Lambda.count(pages);
-            //increment the current count
-        items_loaded++;
+                //if completely done
+            if(items_loaded == total_items) {
+                on_completely_loaded();
+            }
 
-            //if completely done
-        if(items_loaded == total_items) {
-            on_completely_loaded();
-        }
+        } //one_item_loaded
 
-    } //one_item_loaded
-
-    public function from_string( _bitmap_file : String = '',
-                                      _folder : String = 'assets/',
-                                      ?onloaded : BitmapFont->Void = null,
-                                      ?custom_pages:Array<Texture> = null ) {
-
-        var lines : Array<String> = _bitmap_file.split("\n");
-        var _pages : Array<PageInfo> = [];
+    public function from_string( _bitmap_file : String,
+                                 ?_path : String = 'assets/',
+                                 ?_onload : BitmapFont->Void ,
+                                 ?_custom_pages:Array<Texture> ) {
 
             //store the listener
-        onload = onloaded;
+        onload = _onload;
+            //parse the file
+        info = Parser.parse(_bitmap_file);
+            //set the id to the face name
+        id = 'font.${info.face}';
+            //store cached values
+        space_char = info.chars.get(32);
+            //load any texture pages
+        load_pages(_path, _custom_pages);
 
-        for(line in lines) {
-            var _initial_tokens = line.split(" ");
-            switch (_initial_tokens[0]) {
+    } //from_string
 
-                case "info":
+    function load_pages( ?_path:String = 'assets/', ?_custom_pages:Array<Texture> ) {
 
-                    _initial_tokens.remove("info");
-                    var _items = _tokenize_font_line(_initial_tokens);
+        if(_custom_pages == null) {
 
-                    var _id = _items["face"].value;
-                    if(_id.indexOf('"') != -1) {
-                        _id = StringTools.replace(_id,'"', '');
-                    }
+            for(_page in info.pages) {
 
-                        //font size value for scale later
-                    font_size = Std.parseFloat(_items["size"].value);
+                var _t = Luxe.loadTexture( _path + _page.file );
+                _t.onload = function(_) {
 
-                    id = _id;
-
-                case "common":
-
-                    _initial_tokens.remove("common");
-                    var _items = _tokenize_font_line(_initial_tokens);
-
-                            //parse the line height
-                        line_height = Std.parseFloat( _items["lineHeight"].value );
-                        // font_size = Std.parseFloat(_items["base"].value);
-
-                case "page":
-
-                    _initial_tokens.remove("page");
-                    var _items = _tokenize_font_line(_initial_tokens);
-
-                            //parse the page info
-                        var _id = Std.parseInt( _items["id"].value );
-                        var _file = _items["file"].value;
-
-                            //remove arbitrary quotes ""
-                        if(_file.indexOf('"') != -1) {
-                            _file = StringTools.replace(_file,'"', '');
-                        }
-
-                            //remove arbitrary new lines
-                        _file = StringTools.trim( _file );
-
-                            //Store the texture id's in the list
-                        _pages.push({ id:_id, file:_file });
-                            //Set this so the count is maintained
-                        pages.set(_id, null);
-
-                case "chars":
-
-                    _initial_tokens.remove("chars");
-                    var _items = _tokenize_font_line(_initial_tokens);
-
-                            //parse the character count
-                        font_character_count = Std.parseInt( _items["count"].value );
-
-                case "char":
-
-                    _initial_tokens.remove("char");
-                    var _items = _tokenize_font_line(_initial_tokens);
-
-                    //parse character info
-                    var _character_info : Character = {
-                        id : Std.parseInt(_items["id"].value),
-                        x : Std.parseFloat(_items["x"].value),
-                        y : Std.parseFloat(_items["y"].value),
-                        width : Std.parseFloat(_items["width"].value),
-                        height : Std.parseFloat(_items["height"].value),
-                        xoffset : Std.parseFloat(_items["xoffset"].value),
-                        yoffset : Std.parseFloat(_items["yoffset"].value),
-                        xadvance : Std.parseFloat(_items["xadvance"].value),
-                        page : Std.parseInt(_items["page"].value)
-                    };
-
-                    set_character(_character_info.id, _character_info);
-
-                case "kerning":
-
-                    _initial_tokens.remove("char");
-                    var _items = _tokenize_font_line(_initial_tokens);
-
-                        var first = Std.parseInt(_items["first"].value);
-                        var second = Std.parseInt(_items["second"].value);
-                        var amount = Std.parseFloat(_items["amount"].value);
-
-                        set_kerning( first, second, amount );
-
-            } //switch
-        } //line in lines
-
-        //once all loaded, we can load up the pages textures
-        //but only if the custom pages wasn't specified
-        if(custom_pages == null) {
-
-            for(_page_item in _pages) {
-                    //fetch the texture
-                var _t = Luxe.loadTexture( _folder + _page_item.file );
-
-                    //store the texture in the map for use
-                _t.onload = function(t_t:Texture) {
-
-                    pages.set(_page_item.id, _t);
-                    // _t.generate_mipmaps();
+                    pages.set(_page.id, _t);
                     _t.filter_min = FilterType.linear;
+                    //:todo:options
                     // _t.filter_mag = FilterType.linear;
+                    // _t.generate_mipmaps();
 
                     one_item_loaded(_t);
 
                 } //onload
 
-            }
+            } //each page
 
         } else {
 
             var _id : Int = 0;
 
-            for(_page in custom_pages) {
+            for(_page in _custom_pages) {
                 pages.set(_id, _page);
                 ++_id;
-            } //for each custom page
+            }
 
-                //still do the callback for explicit textures
+                //still need the callback for explicit textures
             on_completely_loaded();
 
         } //if custom pages
 
-    } //from_string
+    } //load_pages
 
-    public function set_kerning(_glyph:Int, _index:Int, _amount:Float) {
-        kernings.set({ glyph:_glyph, index:_index}, _amount);
-    }
+        /** Get the kerning between two glyphs, 0 if none */
+    public inline function kerning(_first:Int, _second:Int) {
 
-    public function get_kerning(_glyph:Int, _index:Int) {
-        var key = { glyph:_glyph, index:_index };
-        if(kernings.exists(key)) {
-            return kernings.get(key);
-        } else {
-            return 0;
+        var _map = info.kernings.get(_first);
+
+        if(_map != null && _map.exists(_second)) {
+            return _map.get(_second);
         }
-    }
 
-        //return the size of a piece of text for this font, at the given scale
-    public function get_text_dimensions(_string:String, _scale:Vector) {
+        return 0;
 
-            // Set up variables
-            //line_widths caches the sizes for quicker renderering in a loop
-        line_widths.splice(0, line_widths.length);
+    } //kerning
+
+        /** Return the dimensions of a given string, at the specified point size */
+    public function dimensions( _string:String, _point_size:Float, _into:Vector ) : Vector {
 
             //for calculating the entire size
-        var cumulative_x : Float = 0.0;
-        var cumulative_y : Float = 0.0;
-        var max_x : Float = 0.0;
-        var spc = characters[(' ').charCodeAt(0)];
+        var _cur_x = 0.0;
+        var _cur_y = 0.0;
+        var _max_x = 0.0;
+
+            //calculate the ratio between ours and the given size
+            //we keep them separate for potential use case of
+            //stretching text for whatever reason, for now the same.
+        var _ratio_y = _point_size / info.point_size;
+        var _ratio_x = _ratio_y;
 
             //Iterate over each character, calculating size
-
         for( i in 0 ... _string.length) {
 
-            var glyph = _string.charAt(i);
+            var _glyph = _string.charAt(i);
+            var _index = _glyph.charCodeAt(0);
 
-            if( glyph == '\n' ){
-                cumulative_y += line_height * _scale.y;
-                max_x = Math.max( max_x, cumulative_x );
-                line_widths.push(cumulative_x);
-                cumulative_x = 0;
+            if( _glyph == '\n' ){
+                _cur_y += info.line_height * _ratio_y;
+                _max_x = Math.max( _max_x, _cur_x );
+                _cur_x = 0;
                 continue;
             }
 
-            var c = characters[ glyph.charCodeAt(0) ];
+            var _x_advance = 0.0;
+            var _char = info.chars.get(_index);
 
-            // var _x : Float = cumulative_x + ( c.xoffset * _scale.x );
-            // var _y : Float = cumulative_y + ( c.yoffset * _scale.y );
-            // var _w : Float = c.width * _scale.x;
-            // var _h : Float = c.height * _scale.y;
-            var _x_advance : Float = 0.0;
-            if(c != null) {
-                _x_advance = c.xadvance;
+            if(_char != null) {
+                _x_advance = _char.xadvance;
             }
 
-                //adjust culmative x value
-            var x_inc : Float = _x_advance;
+                //adjust xadvance by kerning values, if any
             if( i < _string.length - 1 ){
-                x_inc += get_kerning( glyph.charCodeAt(0), _string.charAt(i).charCodeAt(0) );
+                var _next_index = _string.charAt(i+1).charCodeAt(0);
+                _x_advance += kerning( _index, _next_index );
             }
 
-            if( glyph == '\t' ){
-                x_inc += spc.xadvance * 4;
+                //adjust for tab spacing
+                //:todo: harcoded tab width
+            if( _glyph == '\t' ){
+                _x_advance += space_char.xadvance * 4;
             }
 
-            cumulative_x += x_inc * _scale.x;
+            _cur_x += _x_advance * _ratio_x;
 
         } //for each char
 
-            //account for the last line/only line
-        line_widths.push(cumulative_x);
-        max_x = Math.max( max_x, cumulative_x );
+            //account for the longest line/only line
+        _max_x = Math.max( _max_x, _cur_x );
 
             //Add one line of height. We do this because we want the
             //total height and the culmative y is (at this point)
             //the y at the *top* of the last line.
-        cumulative_y += line_height * _scale.y;
+        _cur_y += info.line_height * _ratio_y;
 
-        return new Vector( max_x, cumulative_y );
-    }
+        return _into.set_xy( _max_x, _cur_y );
 
+    } //dimensions
 
     public function draw_text( options : Dynamic ) {
 
@@ -370,7 +253,7 @@ class BitmapFont extends Resource {
          var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
          var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
          var _depth: Float = (options.depth == null) ? 0 : options.depth;
-         var _size : Float = (options.size == null) ? 22 : options.size;
+         var _point_size : Float = (options.size == null) ? 22 : options.size;
          var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.batcher : options.batcher;
          var _visible : Bool = (options.visible == null) ? true : options.visible;
          var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
@@ -411,108 +294,106 @@ class BitmapFont extends Resource {
 
         } //for each page
 
-            //so, the font is a %
-        var point_size : Float = _size/font_size;
-        // point_size = luxe.utils.Maths.fixed(point_size, 3);
-        var _scale : Vector = new Vector(point_size,point_size);
+        var _ratio_y = _point_size / info.point_size;
+        var _ratio_x = _ratio_y;
 
         if(!_immediate) {
             // trace('$_string font_size:$font_size    size:$_size    point_size:$point_size');
         }
 
-        var _cumulative_x : Float = 0.0;
-        var _cumulative_y : Float = 0.0;
+        var _cur_x = 0.0;
+        var _cur_y = 0.0;
 
-            //a cached size of a space, if we need it
-        var spc = characters[(' ').charCodeAt(0)];
-
-        var _line_number : Int = 0;
-        var _dimensions : Vector = get_text_dimensions(_string, _scale);
-        var _max_line_width : Float = _dimensions.x;
+        var _line_number = 0;
+        var _dimensions = dimensions(_string, _point_size, new Vector());
+        var _max_line_width = _dimensions.x;
 
         var _lines = _string.split('\n');
 
         for(_line in _lines) {
 
-            var _align_x_offset : Float = 0.0;
+            var _align_x_offset = 0.0;
 
                 //Calculate alignment position
                 //Left is at 0, so it's handled already
-            if( _align == TextAlign.center ) {
-                _align_x_offset = (_max_line_width/2.0) - (line_widths[_line_number]/2.0);
-            } else
-            if( _align == TextAlign.right ) {
-                _align_x_offset = _max_line_width - line_widths[_line_number];
-            }
+            // if( _align == TextAlign.center ) {
+            //     _align_x_offset = (_max_line_width/2.0) - (line_widths[_line_number]/2.0);
+            // } else
+            // if( _align == TextAlign.right ) {
+            //     _align_x_offset = _max_line_width - line_widths[_line_number];
+            // }
 
                 //if not the first line, add height
             if( _line_number != 0 ){
-                _cumulative_y += line_height * _scale.y;
-                _cumulative_x = 0;
+                _cur_y += info.line_height * _ratio_y;
+                _cur_x = 0;
             }
 
             for(i in 0 ... _line.length) {
 
-                var _char = _line.charAt(i);
-                var c = characters[ _char.charCodeAt(0) ];
+                var _glyph = _line.charAt(i);
+                var _index = _glyph.charCodeAt(0);
+                var _char = info.chars.get(_index);
 
-                if(c == null) {
                     //hmm, a null character code?
-                    //probably insert a black block or something?
-                    c = spc;
+                    //maybe insert something visible?
+                if(_char == null) {
+                    _char = space_char;
                 }
 
                     //find the geometry to add it to
-                var _geom = _geoms[c.page];
+                var _geom = _geoms[_char.page];
 
                     //Texture size for this page
-                var _tw = pages[c.page].width_actual;
-                var _th = pages[c.page].height_actual;
+                var _tw = pages[_char.page].width_actual;
+                var _th = pages[_char.page].height_actual;
 
                     //work out the coordinates for the uv's
-                var _u  : Float = c.x/_tw;
-                var _v  : Float = c.y/_th;
-                var _u2 : Float = (c.x + c.width) / _tw;
-                var _v2 : Float = (c.y + c.height) / _th;
-                var _x  : Float = _align_x_offset + _cumulative_x + ( c.xoffset * _scale.x );
-                var _y  : Float = _cumulative_y + c.yoffset * _scale.y;
-                var _w  : Float = c.width * _scale.x;
-                var _h  : Float = c.height * _scale.y;
+                var _u  = _char.x/_tw;
+                var _v  = _char.y/_th;
+                var _u2 = (_char.x + _char.width) / _tw;
+                var _v2 = (_char.y + _char.height) / _th;
+                var _x  = _align_x_offset + _cur_x + ( _char.xoffset * _ratio_x );
+                var _y  = _cur_y + _char.yoffset * _ratio_y;
+                var _w  = _char.width * _ratio_x;
+                var _h  = _char.height * _ratio_y;
 
-                var _x_inc : Float = c.xadvance;
+                var _x_inc : Float = _char.xadvance;
                 if( i < _line.length-1 ){
-                    _x_inc += get_kerning( c.id, _char.charCodeAt(0) );
+                    var _next_index = _line.charAt(i+1).charCodeAt(0);
+                    _x_inc += kerning( _index, _next_index );
                 }
 
-                if( _char == '\t' ){
-                    _x_inc += spc.xadvance * 4; //:todo:, hardcoded 4 tab size
+                if( _glyph == '\t' ){
+                    //:todo:, hardcoded 4 tab size
+                    _x_inc += space_char.xadvance * 4;
                 }
 
-                _cumulative_x += _x_inc * _scale.x;
+                _cur_x += _x_inc * _ratio_x;
 
                 // _x = Math.round(_x);
                 // _y = Math.round(_y);
 
                     //First triangle
 
-               var vert0 : Vertex = new Vertex( new Vector( _x, _y ), _col );
+               var vert0 = new Vertex( new Vector( _x, _y ), _col );
                    vert0.uv.uv0.set_uv(_u,_v);
 
-                var vert1 : Vertex = new Vertex( new Vector( _x+_w, _y ), _col );
+                var vert1 = new Vertex( new Vector( _x+_w, _y ), _col );
                    vert1.uv.uv0.set_uv(_u2, _v);
 
-                var vert2 : Vertex = new Vertex( new Vector( _x+_w, _y+_h ), _col );
+                var vert2 = new Vertex( new Vector( _x+_w, _y+_h ), _col );
                     vert2.uv.uv0.set_uv(_u2, _v2);
 
                    //Second triangle
 
-                var vert3 : Vertex = new Vertex( new Vector( _x, _y+_h ), _col );
+                var vert3 = new Vertex( new Vector( _x, _y+_h ), _col );
                     vert3.uv.uv0.set_uv(_u, _v2);
 
-                var vert4 : Vertex = new Vertex( new Vector( _x, _y ), _col );
+                var vert4 = new Vertex( new Vector( _x, _y ), _col );
                     vert4.uv.uv0.set_uv(_u, _v);
 
-                var vert5 : Vertex = new Vertex( new Vector( _x+_w, _y+_h), _col );
+                var vert5 = new Vertex( new Vector( _x+_w, _y+_h), _col );
                     vert5.uv.uv0.set_uv(_u2, _v2);
 
                    //Add to the geomery
@@ -570,16 +451,139 @@ class BitmapFont extends Resource {
 
         // _verbose('drew text ${_string.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
 
-        _final_geom.id = 'drawn_text- ' + _string.substr(0,10);
-        // _final_geom.transform.id = 'drawn_text- ' + _string.substr(0,10);
+        _final_geom.id += 'drawn_text- ' + _string.substr(0,10);
         _final_geom.immediate = _immediate;
         _final_geom.visible = _visible;
 
         return _final_geom;
 
+    } //draw_text
+
+    function toString() {
+        return "BitmapFont(" + id + ")";
     }
 
-    public function set_character( _index:Int,  _char_info : Character ) {
-        characters.set( _index, _char_info);
-    }
-}
+} //BitmapFont
+
+
+private class Parser {
+
+    public static function parse( _font_data:String ) : FontInfo {
+
+        if(_font_data.length == 0) {
+            throw "BitmapFont:Parser: _font_data is 0 length";
+        }
+
+        var _info : FontInfo = {
+            face : '',
+            chars : new Map(),
+            point_size : 0, base_size : 0,
+            char_count : 0, line_height : 0,
+            pages : [], kernings : new Map()
+        };
+
+        var _lines : Array<String> = _font_data.split("\n");
+
+        for(_line in _lines) {
+            var _tokens = _line.split(" ");
+            for(_current in _tokens) {
+                parse_token(_current, _tokens, _info);
+            }
+        }
+
+        return _info;
+
+    } //parse
+
+    static function parse_token( _token:String, _tokens:Array<String>, _info:FontInfo ) {
+
+            //remove the first token
+        _tokens.shift();
+            //fetch the items from the line
+        var _items = tokenize_line(_tokens);
+
+        switch (_token) {
+
+            case 'info': {
+                _info.face = unquote(_items['face']);
+                _info.point_size = Std.parseFloat(_items['size']);
+            }
+
+            case 'common': {
+                _info.line_height = Std.parseFloat(_items['lineHeight']);
+                _info.base_size = Std.parseFloat(_items['base']);
+            }
+
+            case 'page': {
+                _info.pages.push({
+                    id : Std.parseInt(_items['id']),
+                    file : trim(unquote(_items['file']))
+                });
+            }
+
+            case 'chars': {
+                _info.char_count = Std.parseInt(_items["count"]);
+            }
+
+            case 'char': {
+
+                var _char : Character = {
+                    id : Std.parseInt(_items["id"]),
+                    x : Std.parseFloat(_items["x"]),
+                    y : Std.parseFloat(_items["y"]),
+                    width : Std.parseFloat(_items["width"]),
+                    height : Std.parseFloat(_items["height"]),
+                    xoffset : Std.parseFloat(_items["xoffset"]),
+                    yoffset : Std.parseFloat(_items["yoffset"]),
+                    xadvance : Std.parseFloat(_items["xadvance"]),
+                    page : Std.parseInt(_items["page"])
+                }
+
+                _info.chars.set(_char.id, _char);
+
+            }
+
+            case 'kerning': {
+
+                var _first = Std.parseInt(_items["first"]);
+                var _second = Std.parseInt(_items["second"]);
+                var _amount = Std.parseFloat(_items["amount"]);
+
+                var _map = _info.kernings.get(_first);
+                if(_map == null) {
+                    _map = new Map();
+                    _info.kernings.set(_first, _map);
+                }
+
+                _map.set(_second, _amount);
+
+            }
+
+            default:
+        }
+
+    } //parse_token
+
+
+    static function tokenize_line( _tokens:Array<String> ) {
+
+        var _item_map : Map<String, String> = new Map();
+
+            for(_token in _tokens) {
+                var _items = _token.split("=");
+                _item_map.set( _items[0], _items[1] );
+            }
+
+        return _item_map;
+
+    } //tokenize_line
+
+    inline static function trim(_s:String) { return StringTools.trim(_s); }
+    inline static function unquote(_s:String) {
+        if(_s.indexOf('"') != -1) {
+            _s = StringTools.replace(_s,'"', '');
+        } return _s;
+    } //unquote
+
+} //BitmapFontParser
+
