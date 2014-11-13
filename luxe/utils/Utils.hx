@@ -117,7 +117,18 @@ class Utils {
 
     } //find_assets_image_sequence
 
-    public function bytes_to_string( bytes:Int ) : String {
+        /** Soft wrap a string by maximum character count. brk default:'\n', col default:80 */
+    public inline function text_wrap_column( _text:String, _brk:String='\n', _column:Int=80) {
+
+            //based on http://blog.macromates.com/2006/wrapping-text-with-regular-expressions/
+            //take note that the ${_column} is string interpolation, not part of the regex.
+            //i.e (.{1,80})( +|$)\n?|(.{80})
+
+        return new EReg('(.{1,${_column}})( +|$)\n?|(.{${_column}})','gim').replace(_text, '$1${_brk}');
+
+    } //text_wrap_column
+
+    public inline function bytes_to_string( bytes:Int ) : String {
 
         var index : Int = Math.floor( Math.log(bytes) / Math.log(1024) );
         var _byte_value = ( bytes / Math.pow(1024, index));
@@ -126,7 +137,7 @@ class Utils {
 
     } //bytes_to_string
 
-    public function array_to_bytes(array:Array<Int>):haxe.io.Bytes {
+    public inline function array_to_bytes(array:Array<Int>):haxe.io.Bytes {
 
         if (array == null) return null;
         var bytes:haxe.io.Bytes = haxe.io.Bytes.alloc(array.length);
