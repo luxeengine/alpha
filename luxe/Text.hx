@@ -3,6 +3,8 @@ package luxe;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Visual;
+import luxe.options.VisualOptions;
+import luxe.options.TextOptions;
 
 import phoenix.Batcher;
 import phoenix.BitmapFont;
@@ -21,36 +23,24 @@ class Text extends Visual {
     @:isVar public var textsize (default,set) : Float = 32;
 
     public var ready : Bool = false;
-    public var text_options : Dynamic;
+    public var text_options : TextOptions;
 
-
-    public function new( _options : Dynamic ) {
+    public function new( _options : TextOptions ) {
 
         _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
 
-        if(_options.pos == null) {
-            _options.pos = new Vector();
-        }
+            //these are handled here because of the Visual
+            //right now, WIP:#98, and because text_options is used later
 
-        if(_options.color == null) {
-            _options.color = new Color();
-        }
-
-        if(_options.depth == null) {
-            _options.depth = 0;
-        }
-
-        if(_options.group == null) {
-            _options.group = 0;
-        }
-
-        if(_options.visible == null) {
-            _options.visible = true;
-        }
+        if(_options.pos == null)     _options.pos = new Vector();
+        if(_options.color == null)   _options.color = new Color();
+        if(_options.depth == null)   _options.depth = 0;
+        if(_options.group == null)   _options.group = 0;
+        if(_options.visible == null) _options.visible = true;
 
         text_options = _options;
 
-        super({
+        var visual_opt : VisualOptions = {
             name : _options.name,
             no_scene : _options.no_scene,
             batcher : _batcher,
@@ -61,7 +51,9 @@ class Text extends Visual {
             depth : _options.depth,
             group : _options.group,
             no_geometry : true
-        });
+        };
+
+        super(visual_opt);
 
     //font
         var _font : Dynamic = (_options.font == null) ? null : _options.font;

@@ -3,7 +3,9 @@ package phoenix;
 import luxe.Vector;
 import luxe.resource.Resource;
 import luxe.resource.ResourceManager;
+
 import luxe.options.FontOptions;
+import luxe.options.TextOptions;
 
 import phoenix.Batcher;
 import phoenix.BitmapFont.TextAlign;
@@ -299,23 +301,38 @@ class BitmapFont extends Resource {
 
         } //load_pages
 
-    public function draw_text( options : Dynamic ) {
 
-         var _string : String = (options.text == null) ? Std.string("") : Std.string(options.text);
-         var _pos: Vector = (options.pos == null) ? new Vector() : options.pos;
-         var _col: Color = (options.color == null) ? new Color() : options.color;
-         var _bounds: Rectangle = (options.bounds == null) ? null : options.bounds;
-         var _align: TextAlign = (options.align == null) ? TextAlign.left : options.align;
-         var _valign: TextAlign = (options.align_vertical == null) ? TextAlign.top : options.align_vertical;
-         var _depth: Float = (options.depth == null) ? 0 : options.depth;
-         var _point_size : Float = (options.size == null) ? 22 : options.size;
-         var _batcher : Batcher = (options.batcher == null) ? Luxe.renderer.batcher : options.batcher;
-         var _visible : Bool = (options.visible == null) ? true : options.visible;
-         var _immediate : Bool = (options.immediate == null) ? false : options.immediate;
-         var _final_geom = (options.geometry == null) ? new CompositeGeometry(null) : options.geometry;
+            //Wip refactoring, see #98
+    public function draw_text( opt : TextOptions ) {
 
-         var _bounds_based : Bool = false;
-         if(_bounds != null) {
+        inline function def_text_options(_opt:TextOptions) {
+
+            if(_opt.text == null)       _opt.text = '';
+            if(_opt.pos == null)        _opt.pos = new Vector();
+            if(_opt.color == null)      _opt.color = new Color();
+
+            if(opt.size != null && opt.point_size == null) opt.point_size = opt.size;
+            if(_opt.point_size == null) _opt.point_size = info.point_size;
+
+            if(_opt.depth == null)      _opt.depth = 0.0;
+            if(_opt.group == null)      _opt.group = 0;
+            if(_opt.visible == null)    _opt.visible = true;
+            if(_opt.immediate == null)  _opt.immediate = false;
+            if(_opt.batcher == null)    _opt.batcher = Luxe.renderer.batcher;
+
+            if(_opt.align == null)      _opt.align = TextAlign.left;
+            if(_opt.align_vertical == null) _opt.align_vertical = TextAlign.top;
+
+            return _opt;
+
+        } //def_text_options
+
+        opt = def_text_options(opt);
+
+        var _final_geom = (opt.geometry == null) ? new CompositeGeometry(null) : opt.geometry;
+
+        var _bounds_based : Bool = false;
+         if(opt.bounds != null) {
             _bounds_based = true;
          }
 
@@ -329,41 +346,41 @@ class BitmapFont extends Resource {
         var _geoms : Array<Geometry> = new Array<Geometry>();
         var _page_count = Lambda.count(pages);
 
-        _verbose('creating geometry for each unique texture : ' + _page_count + ' at ' + _depth + '\n with ' + _col + ' and ' + _align + ' and at ' + _pos );
+        _verbose('creating geometry for each unique texture : ' + _page_count + ' at ' + opt.depth + '\n with ' + opt.color + ' and ' + opt.align + ' and at ' + opt.pos );
 
         for(i in 0 ... _page_count ) {
 
             var _g = new Geometry({
                 texture : pages[i],
-                color : _col,
-                depth : _depth,
-                visible : _visible,
-                immediate : _immediate
+                color : opt.color,
+                depth : opt.depth,
+                visible : opt.visible,
+                immediate : opt.immediate
             });
 
-            _g.id = 'text.page'+i+'.'+_string;//.substr(0,8);
+            _g.id = 'text.page'+i+'.'+opt.text.substr(0,8);
 
             _g.primitive_type = PrimitiveType.triangles;
-            _g.immediate = _immediate;
+            _g.immediate = opt.immediate;
             _geoms.push( _g );
 
         } //for each page
 
-        var _ratio_y = _point_size / info.point_size;
+        var _ratio_y = opt.point_size / info.point_size;
         var _ratio_x = _ratio_y;
 
-        if(!_immediate) {
-            // trace('$_string font_size:$font_size    size:$_size    point_size:$point_size');
+        if(!opt.immediate) {
+            // trace('$opt.text font_size:$font_size    size:$_size    point_size:$point_size');
         }
 
         var _cur_x = 0.0;
         var _cur_y = 0.0;
 
         var _line_number = 0;
-        var _dimensions = dimensions(_string, _point_size, new Vector());
+        var _dimensions = dimensions(opt.text, opt.point_size, new Vector());
         var _max_line_width = _dimensions.x;
 
-        var _lines = _string.split('\n');
+        var _lines = opt.text.split('\n');
 
         for(_line in _lines) {
 
@@ -371,6 +388,7 @@ class BitmapFont extends Resource {
 
                 //Calculate alignment position
                 //Left is at 0, so it's handled already
+                //:todo: refactoring #98
             // if( _align == TextAlign.center ) {
             //     _align_x_offset = (_max_line_width/2.0) - (line_widths[_line_number]/2.0);
             // } else
@@ -431,24 +449,24 @@ class BitmapFont extends Resource {
 
                     //First triangle
 
-               var vert0 = new Vertex( new Vector( _x, _y ), _col );
+               var vert0 = new Vertex( new Vector( _x, _y ), opt.color );
                    vert0.uv.uv0.set_uv(_u,_v);
 
-                var vert1 = new Vertex( new Vector( _x+_w, _y ), _col );
+                var vert1 = new Vertex( new Vector( _x+_w, _y ), opt.color );
                    vert1.uv.uv0.set_uv(_u2, _v);
 
-                var vert2 = new Vertex( new Vector( _x+_w, _y+_h ), _col );
+                var vert2 = new Vertex( new Vector( _x+_w, _y+_h ), opt.color );
                     vert2.uv.uv0.set_uv(_u2, _v2);
 
                    //Second triangle
 
-                var vert3 = new Vertex( new Vector( _x, _y+_h ), _col );
+                var vert3 = new Vertex( new Vector( _x, _y+_h ), opt.color );
                     vert3.uv.uv0.set_uv(_u, _v2);
 
-                var vert4 = new Vertex( new Vector( _x, _y ), _col );
+                var vert4 = new Vertex( new Vector( _x, _y ), opt.color );
                     vert4.uv.uv0.set_uv(_u, _v);
 
-                var vert5 = new Vertex( new Vector( _x+_w, _y+_h), _col );
+                var vert5 = new Vertex( new Vector( _x+_w, _y+_h), opt.color );
                     vert5.uv.uv0.set_uv(_u2, _v2);
 
                    //Add to the geomery
@@ -465,50 +483,50 @@ class BitmapFont extends Resource {
 
             //replace the composite with the children geometry we just created
         _final_geom.replace( _geoms );
-        _final_geom.add_to_batcher(_batcher);
+        _final_geom.add_to_batcher( opt.batcher );
 
         if(!_bounds_based) {
 
                 //translate all of the new text according to the alignment alignment
-            var _po = _pos.clone();
+            var _po = opt.pos.clone();
 
-            if( _align == TextAlign.center ) {
-                _po.x = _pos.x - (_max_line_width/2);
-            } else if( _align == TextAlign.right ) {
-                _po.x = _pos.x - (_max_line_width);
+            if( opt.align == TextAlign.center ) {
+                _po.x = opt.pos.x - (_max_line_width/2);
+            } else if( opt.align == TextAlign.right ) {
+                _po.x = opt.pos.x - (_max_line_width);
             }
                 //translate all of the new text according to the actual position
-            _final_geom.transform.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
-            _final_geom.transform.pos = _pos.clone();
+            _final_geom.transform.origin = new Vector( opt.pos.x-_po.x, opt.pos.y-_po.y );
+            _final_geom.transform.pos = opt.pos.clone();
 
         } else {
 
                 //translate all of the new text according to the alignment alignment
-            var _po = new Vector(_bounds.x, _bounds.y);
+            var _po = new Vector(opt.bounds.x, opt.bounds.y);
 
-            if( _align == TextAlign.center ) {
-                _po.x = _po.x + ((_bounds.w/2) - (_dimensions.x/2));
-            } else if( _align == TextAlign.right ) {
-                _po.x = _po.x + ((_bounds.w) - (_dimensions.x));
+            if( opt.align == TextAlign.center ) {
+                _po.x = _po.x + ((opt.bounds.w/2) - (_dimensions.x/2));
+            } else if( opt.align == TextAlign.right ) {
+                _po.x = _po.x + ((opt.bounds.w) - (_dimensions.x));
             }
 
-            if( _valign == TextAlign.center ) {
-                _po.y = _po.y + ((_bounds.h/2) - (_dimensions.y/2));
-            } else if( _valign == TextAlign.bottom ) {
-                _po.y = _po.y + ((_bounds.h) - (_dimensions.y));
+            if( opt.align_vertical == TextAlign.center ) {
+                _po.y = _po.y + ((opt.bounds.h/2) - (_dimensions.y/2));
+            } else if( opt.align_vertical == TextAlign.bottom ) {
+                _po.y = _po.y + ((opt.bounds.h) - (_dimensions.y));
             }
                 //translate all of the new text according to the actual position
-            _final_geom.transform.origin = new Vector( _pos.x-_po.x, _pos.y-_po.y );
-            _final_geom.transform.pos = _pos.clone();
+            _final_geom.transform.origin = new Vector( opt.pos.x-_po.x, opt.pos.y-_po.y );
+            _final_geom.transform.pos = opt.pos.clone();
 
 
         } //_bounds_based
 
-        // _verbose('drew text ${_string.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
+        // _verbose('drew text ${opt.text.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
 
-        _final_geom.id += 'drawn_text- ' + _string.substr(0,10);
-        _final_geom.immediate = _immediate;
-        _final_geom.visible = _visible;
+        _final_geom.id += 'drawn_text- ' + opt.text.substr(0,10);
+        _final_geom.immediate = opt.immediate;
+        _final_geom.visible = opt.visible;
 
         return _final_geom;
 
