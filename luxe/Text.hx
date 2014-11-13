@@ -102,7 +102,7 @@ class Text extends Visual {
             size_rect_cache = new Rectangle();
         }
 
-        font.dimensions(text, text_options.size, dim_cache);
+        font.dimensions_of(text, text_options.size, dim_cache);
 
             size_rect_cache.x = pos.x-(dim_cache.x / 2);
             size_rect_cache.y = pos.y;

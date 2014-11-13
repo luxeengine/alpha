@@ -188,7 +188,7 @@ class BitmapFont extends Resource {
 
         /** Return the dimensions of a given string, at the specified point size.
             You can also use width_of or height_of, this is a convenience for those */
-    public inline function dimensions( _string:String, _point_size:Float, _into:Vector ) : Vector {
+    public inline function dimensions_of( _string:String, _point_size:Float, _into:Vector ) : Vector {
 
         var _width = width_of(_string, _point_size);
         var _height = height_of(_string, _point_size);
