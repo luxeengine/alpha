@@ -121,65 +121,79 @@ class BitmapFont extends Resource {
 
         } //kerning
 
-        /** Return the dimensions of a given string, at the specified point size */
-    public function dimensions( _string:String, _point_size:Float, _into:Vector ) : Vector {
+    public inline function widthof( _string:String, _point_size:Float = 1.0, ?_line_widths:Array<Float> ) : Float {
 
-            //for calculating the entire size
+        //:todo: #98 hardcoded tab width
+        var _tab_width = 4;
+            //current width counter
         var _cur_x = 0.0;
-        var _cur_y = 0.0;
-        var _max_x = 0.0;
+            //maximum width found
+        var _max_w = 0.0;
+            //the size ratio between font and given size
+        var _ratio = _point_size / info.point_size;
+            //if given an array to cache line widths into
+        var _push_widths = (_line_widths != null);
 
-            //calculate the ratio between ours and the given size
-            //we keep them separate for potential use case of
-            //stretching text for whatever reason, for now the same.
-        var _ratio_y = _point_size / info.point_size;
-        var _ratio_x = _ratio_y;
-
-            //Iterate over each character, calculating size
-        for( i in 0 ... _string.length) {
+            //Iterate over each character,
+            //acculumating the size
+        var i = 0;
+        while( i < _string.length ) {
 
             var _glyph = _string.charAt(i);
-            var _index = _glyph.charCodeAt(0);
 
-            if( _glyph == '\n' ){
-                _cur_y += info.line_height * _ratio_y;
-                _max_x = Math.max( _max_x, _cur_x );
+            if( _glyph == '\n' ) {
+
+                _max_w = Math.max( _max_w, _cur_x );
+                if(_push_widths) _line_widths.push(_cur_x);
                 _cur_x = 0;
-                continue;
+
+            } else {
+
+                var _spacing = 0.0;
+                var _index = _glyph.charCodeAt(0);
+                var _char = info.chars.get(_index);
+
+                    //insert character width
+                if(_char != null) _spacing = _char.xadvance;
+                    //insert tabs spacing
+                if( _glyph == '\t' ) _spacing += space_char.xadvance * _tab_width;
+                    //insert kerning values, if any
+                if( i < _string.length - 1 ){
+                    var _next_index = _string.charAt(i+1).charCodeAt(0);
+                    _spacing += kerning( _index, _next_index );
+                }
+
+                _cur_x += (_spacing * _ratio);
+
             }
 
-            var _x_advance = 0.0;
-            var _char = info.chars.get(_index);
+            ++i;
 
-            if(_char != null) {
-                _x_advance = _char.xadvance;
-            }
+        } //while char in string
 
-                //adjust xadvance by kerning values, if any
-            if( i < _string.length - 1 ){
-                var _next_index = _string.charAt(i+1).charCodeAt(0);
-                _x_advance += kerning( _index, _next_index );
-            }
+            //account for the remaining length
+        if(_push_widths) _line_widths.push(_cur_x);
 
-                //adjust for tab spacing
-                //:todo: harcoded tab width
-            if( _glyph == '\t' ){
-                _x_advance += space_char.xadvance * 4;
-            }
+            //adjust for any last additions
+        return Math.max( _max_w, _cur_x );
 
-            _cur_x += _x_advance * _ratio_x;
+    } //widthof
 
-        } //for each char
+    public inline function heightof( _string:String, _point_size:Float ) : Float {
 
-            //account for the longest line/only line
-        _max_x = Math.max( _max_x, _cur_x );
+        return heightof_lines(_string.split('\n'), _point_size);
 
-            //Add one line of height. We do this because we want the
-            //total height and the culmative y is (at this point)
-            //the y at the *top* of the last line.
-        _cur_y += info.line_height * _ratio_y;
+    } //heightof
 
-        return _into.set_xy( _max_x, _cur_y );
+
+        /** Return the dimensions of a given string, at the specified point size.
+            You can also use widthof or heightof, this is a convenience for those */
+    public inline function dimensions( _string:String, _point_size:Float, _into:Vector ) : Vector {
+
+        var _width = widthof(_string, _point_size);
+        var _height = heightof(_string, _point_size);
+
+        return _into.set_xy( _width, _height );
 
     } //dimensions
 
@@ -206,6 +220,13 @@ class BitmapFont extends Resource {
         } //load
 
     //internal
+
+        inline function heightof_lines( _lines:Array<String>, _point_size:Float ) : Float {
+
+            var _ratio = _point_size / info.point_size;
+            return _lines.length * (info.line_height * _ratio);
+
+        } //heightof
 
         function default_options() {
 
@@ -331,10 +352,15 @@ class BitmapFont extends Resource {
 
         var _final_geom = (opt.geometry == null) ? new CompositeGeometry(null) : opt.geometry;
 
+        var _pos_x = opt.pos.x;
+        var _pos_y = opt.pos.y;
         var _bounds_based : Bool = false;
-         if(opt.bounds != null) {
+
+        if(opt.bounds != null) {
             _bounds_based = true;
-         }
+            _pos_x = opt.bounds.x;
+            _pos_y = opt.bounds.y;
+        }
 
             //no texture? return empty geometry
         if(pages[0] == null) {
@@ -366,21 +392,20 @@ class BitmapFont extends Resource {
 
         } //for each page
 
-        var _ratio_y = opt.point_size / info.point_size;
-        var _ratio_x = _ratio_y;
-
-        if(!opt.immediate) {
-            // trace('$opt.text font_size:$font_size    size:$_size    point_size:$point_size');
-        }
+        var _ratio_x = 0.0,
+            _ratio_y = _ratio_x = opt.point_size / info.point_size;
 
         var _cur_x = 0.0;
         var _cur_y = 0.0;
 
-        var _line_number = 0;
-        var _dimensions = dimensions(opt.text, opt.point_size, new Vector());
-        var _max_line_width = _dimensions.x;
-
         var _lines = opt.text.split('\n');
+
+        var _line_idx = 0;
+        var _line_widths = [];
+        var _txt_width = widthof(opt.text, opt.point_size, _line_widths);
+        var _txt_height = heightof_lines(_lines, opt.point_size);
+        var _txt_half_w = _txt_width / 2;
+        var _txt_half_h = _txt_height / 2;
 
         for(_line in _lines) {
 
@@ -388,16 +413,14 @@ class BitmapFont extends Resource {
 
                 //Calculate alignment position
                 //Left is at 0, so it's handled already
-                //:todo: refactoring #98
-            // if( _align == TextAlign.center ) {
-            //     _align_x_offset = (_max_line_width/2.0) - (line_widths[_line_number]/2.0);
-            // } else
-            // if( _align == TextAlign.right ) {
-            //     _align_x_offset = _max_line_width - line_widths[_line_number];
-            // }
+            _align_x_offset = switch(opt.align) {
+                case center: _txt_half_w - (_line_widths[_line_idx]/2.0);
+                case right: _txt_width - _line_widths[_line_idx];
+                default: 0.0;
+            }
 
                 //if not the first line, add height
-            if( _line_number != 0 ){
+            if( _line_idx != 0 ){
                 _cur_y += info.line_height * _ratio_y;
                 _cur_x = 0;
             }
@@ -477,50 +500,48 @@ class BitmapFont extends Resource {
             } //for each string
 
                 //next line (if any)
-            _line_number++;
+            _line_idx++;
 
         } //line in lines
+
+            //alignment offsets
+        var _offset_x = 0.0;
+        var _offset_y = 0.0;
+
+        if(!_bounds_based) {
+
+            _offset_x = switch(opt.align) {
+                case center: _txt_half_w;
+                case right: _txt_width;
+                case _: 0.0;
+            }
+
+        } else {
+
+            var _b_w_h = (opt.bounds.w/2);
+            var _b_h_h = (opt.bounds.h/2);
+
+            _offset_x = switch(opt.align) {
+                case center: -(_b_w_h - _txt_half_w);
+                case right: -(opt.bounds.w - _txt_width);
+                case _: 0.0;
+            }
+
+            _offset_y = switch(opt.align_vertical) {
+                case center:  -(_b_h_h - _txt_half_h);
+                case bottom:  -(opt.bounds.h - _txt_height);
+                case _: 0.0;
+            }
+
+        } //_bounds_based
 
             //replace the composite with the children geometry we just created
         _final_geom.replace( _geoms );
         _final_geom.add_to_batcher( opt.batcher );
 
-        if(!_bounds_based) {
-
-                //translate all of the new text according to the alignment alignment
-            var _po = opt.pos.clone();
-
-            if( opt.align == TextAlign.center ) {
-                _po.x = opt.pos.x - (_max_line_width/2);
-            } else if( opt.align == TextAlign.right ) {
-                _po.x = opt.pos.x - (_max_line_width);
-            }
-                //translate all of the new text according to the actual position
-            _final_geom.transform.origin = new Vector( opt.pos.x-_po.x, opt.pos.y-_po.y );
-            _final_geom.transform.pos = opt.pos.clone();
-
-        } else {
-
-                //translate all of the new text according to the alignment alignment
-            var _po = new Vector(opt.bounds.x, opt.bounds.y);
-
-            if( opt.align == TextAlign.center ) {
-                _po.x = _po.x + ((opt.bounds.w/2) - (_dimensions.x/2));
-            } else if( opt.align == TextAlign.right ) {
-                _po.x = _po.x + ((opt.bounds.w) - (_dimensions.x));
-            }
-
-            if( opt.align_vertical == TextAlign.center ) {
-                _po.y = _po.y + ((opt.bounds.h/2) - (_dimensions.y/2));
-            } else if( opt.align_vertical == TextAlign.bottom ) {
-                _po.y = _po.y + ((opt.bounds.h) - (_dimensions.y));
-            }
-                //translate all of the new text according to the actual position
-            _final_geom.transform.origin = new Vector( opt.pos.x-_po.x, opt.pos.y-_po.y );
-            _final_geom.transform.pos = opt.pos.clone();
-
-
-        } //_bounds_based
+            //translate all of the new text according to the actual position
+        _final_geom.transform.origin.set_xy( _offset_x, _offset_y );
+        _final_geom.transform.pos.set_xy( _pos_x, _pos_y );
 
         // _verbose('drew text ${opt.text.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
 
