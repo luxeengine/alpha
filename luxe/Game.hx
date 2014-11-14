@@ -59,9 +59,9 @@ class Game extends Emitter {
        /** Called for you when text input is happening. Use this for textfields, as it handles the complexity of unicode etc. */
    public function ontextinput( event:TextEvent ) {}
 
-       /** Called for you when a touch is released, use the `touch_id` to track which */
-   public function ontouchdown( event:TouchEvent ) {}
        /** Called for you when a touch is first pressed, use the `touch_id` to track which */
+   public function ontouchdown( event:TouchEvent ) {}
+       /** Called for you when a touch is released, use the `touch_id` to track which */
    public function ontouchup( event:TouchEvent ) {}
        /** Called for you when a touch is moved, use the `touch_id` to track which */
    public function ontouchmove( event:TouchEvent ) {}
