@@ -177,6 +177,11 @@ When using the flash develop template provided, you also get project management,
 
 ![](images/plugins/5.png)
 
+The FD template is located at [snowkit-fd](https://github.com/Chman/Snowkit-FD),   
+and here is a direct [Download link](https://github.com/Chman/Snowkit-FD/blob/master/SnowkitTemplate.fdz?raw=true)
+
+**Be sure to read the setup guide!**
+
 [Read the flash develop setup](https://underscorediscovery.github.io/flow/guide/flashdevelop.html) docs.
 
 

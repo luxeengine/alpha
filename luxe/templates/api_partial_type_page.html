@@ -17,6 +17,7 @@
                 {{~#inherited~}}
                     <a data-tooltip="inherited from <a href='{{type_link inherit_source @root.rel_path}}#{{escape_markdown name}}'>{{{inherit_source}}}</a>" class="tooltip inherited">&gt;</a>
                 {{~/inherited~}}
+                {{#if get '==' 'inline'}}<span class="inline-block static">inline</span>{{/if~}}
                 {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
                 <div class="clear"></div>
                 <code class="signature apipage">{{escape_markdown name}} : {{#type}}{{>type}}{{/type}}</code><br/>{{noop~}}
@@ -69,6 +70,7 @@
 
 <h3>Methods</h3> <hr/>
 {{~#each methods~}}
+
     {{~#if (member_visible ../path 'methods' name)~}}
         <span class="method apipage">
             <a name="{{~name~}}"><a class="lift" href="#{{name}}">
@@ -77,6 +79,7 @@
             {{~#inherited~}}
                 <a data-tooltip="inherited from <a href='{{type_link inherit_source @root.rel_path}}#{{escape_markdown name}}'>{{{inherit_source}}}</a>" class="tooltip inherited">&gt;</a>
             {{~/inherited~}}
+            {{#if get '==' 'inline'}}<span class="inline-block static">inline</span>{{/if~}}
             {{#isStatic}}<span class="inline-block static">static</span>{{/isStatic~}}
             <div class="clear"></div>
             <code class="signature apipage">{{escape_markdown name}}{{#if params.length}}&lt;{{#each params}}{{#if @index}}, {{/if~}}{{.}}&gt;{{/each}}{{/if}}({{>args}}) : {{#if type.return_type.name~}} {{#with type.return_type}}{{>type}}{{/with}} {{~else}}[Dynamic]({{type_link name @root.rel_path}}){{/if}}</code><br/>{{noop~}}

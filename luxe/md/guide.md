@@ -51,7 +51,7 @@ The feature guide is a piece by piece reference for specific features of the eng
 ~~maths~~   
 ~~states~~    
 [ events ](#events)   
-~~components~~   
+[ components ](#components)   
 [ tweening ](#tweening)    
 [ utils ](#utils)    
 
@@ -212,7 +212,8 @@ These vary from feature reference guides to in depth article guides.
 ### [ events ](guide.events.html)
 - Using the event system to communicate locally and globally.
 
-### components
+<a name="components"> </a>
+### [ components ](guide.basiccomponents.html)
 - using the built in component entity system
 
 <a name="tweening"> </a>
