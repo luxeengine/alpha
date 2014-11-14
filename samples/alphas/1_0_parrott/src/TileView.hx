@@ -4,7 +4,7 @@ import luxe.Input;
 import luxe.Rectangle;
 import luxe.Log.log;
 
-import phoenix.geometry.ComplexGeometry;
+import phoenix.geometry.QuadPackGeometry;
 
 typedef MapTile = {
     quad:String,
@@ -16,7 +16,7 @@ class TileView extends State {
 
     var root : Parrott;
 
-    var geom : ComplexGeometry;
+    var geom : QuadPackGeometry;
     var map_tiles : Array< Array<MapTile> >;
 
     public function new( _root:Parrott ) {
@@ -34,7 +34,7 @@ class TileView extends State {
 
         log('onenter tileview');
 
-        geom = new phoenix.geometry.ComplexGeometry({
+        geom = new phoenix.geometry.QuadPackGeometry({
             texture : Luxe.loadTexture('assets/tileset.png'),
             batcher : Luxe.renderer.batcher
         });
