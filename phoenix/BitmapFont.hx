@@ -272,7 +272,7 @@ class BitmapFont extends Resource {
 
         } //on_completely_loaded
 
-        public function one_item_loaded(t:Texture) {
+        function one_item_loaded(t:Texture) {
 
             var total_items = Lambda.count(pages);
                 //increment the current count
