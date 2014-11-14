@@ -37,7 +37,7 @@ class Main extends luxe.Game {
         load_ortho_tiledmap();
         load_isometric_tiledmap();
 
-         tile_text = new luxe.Text({
+        tile_text = new luxe.Text({
             color : new Color(1,1,1,1),
             pos : new Vector(10,10),
             font : Luxe.renderer.font,
@@ -65,9 +65,9 @@ class Main extends luxe.Game {
     function load_ortho_tiledmap() {
 
             //create from xml file, with various encodings, or from JSON
-        // tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
+        tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
         // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx', pos : new Vector(512,0) } );
-        tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx', pos : new Vector(512,0) } );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx', pos : new Vector(512,0) } );
         // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx', pos : new Vector(512,0) } );
 
         var scale = 2;
@@ -185,8 +185,9 @@ class Main extends luxe.Game {
             // Get the tile position that the mouse is hovering.
         var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
 
-        var tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos );
-        var world = tiled_iso.worldpos_to_map( mouse_pos );
+        var _scale = tiled_ortho.visual.options.scale;
+        var tile = tiled_ortho.tile_at_pos('walls', mouse_pos, _scale );
+        var world = tiled_ortho.worldpos_to_map( mouse_pos, _scale );
 
         tile_text.text = world + "\n" + tile;
 

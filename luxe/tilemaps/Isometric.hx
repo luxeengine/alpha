@@ -67,17 +67,9 @@ class Isometric {
 
 class IsometricVisual extends TilemapVisual {
 
-    var options : TilemapVisualOptions;
+    public override function create() {
 
-    public override function create( _options:TilemapVisualOptions ) {
-
-        options = _options;
-
-        if(options.batcher == null) options.batcher = Luxe.renderer.batcher;
-        if(options.depth == null)   options.depth = 0.0;
-        if(options.group == null)   options.group = 0;
-
-        var _scale : Float = (options.scale != null) ? options.scale : 1;
+        var _scale = options.scale;
 
             //map tile size scaled up
         var _scaled_tilewidth = Std.int(map.tile_width*_scale);
@@ -114,7 +106,7 @@ class IsometricVisual extends TilemapVisual {
 
         } //for each layer
 
-        if(options.grid != null && options.grid == true) {
+        if(options.grid) {
 
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 

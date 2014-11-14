@@ -17,24 +17,40 @@ class TilemapVisual {
 
     public var geometry : Map<String, TilemapVisualLayerGeometry>;
     public var map : Tilemap;
+    public var options : TilemapVisualOptions;
 
-    public function new( _map:Tilemap, options:Dynamic ) {
+    public function new( _map:Tilemap, _options:TilemapVisualOptions ) {
 
         geometry = new Map();
         map = _map;
+        options = _options;
 
-        create( options );
-    }
+        default_options();
 
-    public function create( options:Dynamic ) {
+        create();
+
+    } //new
+
+    public function create() {
 
         if(options.no_destroy == null) {
             destroy();
+            geometry = new Map();
         }
 
         //implemented in subclass
 
     } //create
+
+    function default_options() {
+
+        if(options.batcher == null)     options.batcher = Luxe.renderer.batcher;
+        if(options.depth == null)       options.depth = 0.0;
+        if(options.group == null)       options.group = 0;
+        if(options.scale == null)       options.scale = 1;
+        if(options.grid == null)        options.grid = false;
+
+    } //default_options
 
     function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType  ) : QuadGeometry {
 
@@ -161,7 +177,7 @@ class Tile {
     } //new
 
     function toString() {
-        return "Tile: id:"+id+" x,y:" + x + "," + y + " layer(" + layer.name + ") coord("+x+","+y+") pos("+pos.x+","+pos.y+") size("+size.x+","+size.y+")";
+        return 'Tile: id:$id x,y:$x,$y layer(${layer.name}) coord($x,$y) pos(${pos.x},${pos.y}) size(${size.x},${size.y})';
     }
 
     function set_id( _id:Int ) {
@@ -409,20 +425,20 @@ class Tilemap {
 
     } //tile_pos
 
-    public function tile_at_pos( layer_name:String, worldpos:Vector ) {
+    public function tile_at_pos( layer_name:String, worldpos:Vector, ?_scale:Float = 1.0 ) {
 
         switch(orientation) {
 
             case TilemapOrientation.ortho: {
 
-                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
                 return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //ortho
 
             case TilemapOrientation.isometric: {
 
-                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
                 return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //isometric
@@ -437,16 +453,16 @@ class Tilemap {
 
     } //tile_at_pos
 
-    public function worldpos_to_map( worldpos:Vector ) {
+    public function worldpos_to_map( worldpos:Vector, ?_scale:Float = 1.0 ) {
 
          switch(orientation) {
 
             case TilemapOrientation.ortho: {
-                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
             }
 
             case TilemapOrientation.isometric: {
-                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height );
+                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
             }
 
             default:{}

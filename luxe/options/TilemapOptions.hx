@@ -11,7 +11,8 @@ typedef TilemapVisualOptions = {
     ? batcher : Batcher,
     ? depth : Float,
     ? group : Int,
-    ? filter : FilterType
+    ? filter : FilterType,
+    ? no_destroy : Bool
 }
 
 typedef TilemapOptions = {

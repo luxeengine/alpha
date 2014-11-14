@@ -58,17 +58,11 @@ class Ortho {
 
 class OrthoVisual extends TilemapVisual {
 
-    var options : TilemapVisualOptions;
+    public override function create() {
 
-    public override function create( _options:TilemapVisualOptions ) {
+        super.create();
 
-        options = _options;
-
-        if(options.batcher == null) options.batcher = Luxe.renderer.batcher;
-        if(options.depth == null)   options.depth = 0.0;
-        if(options.group == null)   options.group = 0;
-
-        var _scale = (options.scale != null) ? options.scale : 1;
+        var _scale = options.scale;
 
         var _map_scaled_tw = map.tile_width*_scale;
         var _map_scaled_th = map.tile_height*_scale;
@@ -103,7 +97,7 @@ class OrthoVisual extends TilemapVisual {
         } //for each map
 
 
-        if(options.grid != null && options.grid == true) {
+        if(options.grid) {
 
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
