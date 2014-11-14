@@ -54,5 +54,9 @@ class Rendering {
                 return Std.int(length/4);
         }
     } //get_opengl_type_length
+    
+    public static inline function fovx_to_y(fovx:Float, aspect:Float):Float {
+        return (180 / Math.PI) * (2 * Math.atan(Math.tan(fovx * (Math.PI / 180) / 2) * (1 / aspect)));
+    } //fovx_to_y
 
 } //Rendering

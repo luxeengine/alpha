@@ -2,7 +2,7 @@ package luxe.options;
 
 import phoenix.Rectangle;
 import phoenix.Camera.ProjectionType;
-
+import phoenix.Camera.FOVType;
 
 typedef CameraOptions = {
 
@@ -16,6 +16,8 @@ typedef CameraOptions = {
     @:optional var depth_test : Bool;
         /** the vertical field of view, in degrees. perspective only */
     @:optional var fov       : Float;
+        /** the field of view type (vertical or horizontal). perspective only */
+    @:optional var fov_type  : FOVType;
         /** The aspect ratio. usually `view width/view height`. perspective only */
     @:optional var aspect    : Float;
         /** the near clipping plane, common to ortho + perspective */
