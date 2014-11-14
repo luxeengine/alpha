@@ -23,11 +23,46 @@ class Utils {
 
     }  //new
 
-    public function uniqueid() : String {
+        /** Generate a short, unique string ID for use ("base62"). */
+    public function uniqueid(?val:Int) : String {
+
+        // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
+
+        if(val == null) val = Std.random(0x7fffffff);
+
+        function to_char(value:Int) : String {
+            if (value > 9) {
+                var ascii = (65 + (value - 10));
+                if (ascii > 90) { ascii += 6; }
+                return String.fromCharCode(ascii);
+            } else return Std.string(value).charAt(0);
+        } //to_char
+
+        var r = Std.int(val % 62);
+        var q = Std.int(val / 62);
+        if (q > 0) return uniqueid(q) + to_char(r);
+        else return Std.string(to_char(r));
+
+    } //uniqueid
+
+        /** Generates a fixed integer hash of a string */
+    public function hashstring(string:String) : Int {
+
+            //http://www.cse.yorku.ca/~oz/hash.html
+        var _hash : Int = 5381;
+        for(i in 0...string.length) {
+            _hash = ((_hash << 5) + _hash) + string.charCodeAt(i);
+        }
+
+        return _hash;
+
+    } //hashstring
+
+    public function uniqueid2() : String {
 
         return haxe.crypto.Md5.encode(Std.string(Luxe.time*Math.random()));
 
-    } //uniqueid
+    } //uniqueid2
 
     public function uuid() : String {
 
