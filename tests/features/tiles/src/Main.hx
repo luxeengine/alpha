@@ -182,6 +182,33 @@ class Main extends luxe.Game {
 
     } //onkeydown
 
+    override function onmouseup( e:MouseEvent ) {
+
+            // Get the tile position that the mouse is hovering.
+        var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
+
+            //for the ortho map
+        var _scale = tiled_ortho.visual.options.scale;
+        var tile = tiled_ortho.tile_at_pos('walls', mouse_pos, _scale );
+
+        if( tile != null ) {
+            var oldid = tile.id;
+            tile.id = 1+Std.random(70);
+            trace('ORTHO set a new id from $oldid to ${tile.id}!');
+        }
+
+            //for the iso map
+        _scale = tiled_iso.visual.options.scale;
+        tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos, _scale );
+
+        if( tile != null ) {
+            var oldid = tile.id;
+            tile.id = 1+Std.random(16);
+            trace('ISO set a new id from $oldid to ${tile.id}!');
+        }
+
+    } //onmouseup
+
     override function onmousemove( e:MouseEvent ) {
 
             // Get the tile position that the mouse is hovering.
