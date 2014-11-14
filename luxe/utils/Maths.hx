@@ -12,8 +12,11 @@ class Maths {
 
     }
 
-    static inline public var DEG2RAD:Float = 3.14159265358979 / 180;
-    static inline public var RAD2DEG:Float = 180 / 3.14159265358979;
+        /** Used by `degrees()` and `radians()`, use those to convert, unless needed */
+    static inline public var _PI_OVER_180:Float = 3.14159265358979 / 180;
+        /** Used by `degrees()` and `radians()`, use those to convert, unless needed */
+    static inline public var _180_OVER_PI:Float = 180 / 3.14159265358979;
+
 
     static inline public function fixed( value:Float, precision:Int ) {
 
@@ -132,11 +135,11 @@ class Maths {
     } //sign
 
     static inline public function radians( degrees:Float ) : Float {
-        return degrees * DEG2RAD;
+        return degrees * _PI_OVER_180;
     } //radians
 
     static inline public function degrees( radians:Float ) : Float {
-        return radians * RAD2DEG;
+        return radians * _180_OVER_PI;
     } //degrees
 
 
