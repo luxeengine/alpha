@@ -36,6 +36,7 @@ typedef TileLayerOptions = {
     name : String,
     ?opacity : Float,
     ?visible : Bool,
+    ?fixed : Bool,
     ?map : Tilemap,
     ?layer : Int
 } //TileLayerOptions
