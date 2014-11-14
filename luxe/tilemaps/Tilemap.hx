@@ -1,8 +1,9 @@
 package luxe.tilemaps;
 
+import luxe.Log.log;
+
 import luxe.Rectangle;
 import luxe.Vector;
-import phoenix.geometry.QuadGeometry;
 import phoenix.Texture;
 import phoenix.geometry.Geometry;
 
@@ -33,7 +34,7 @@ class TilemapVisual {
 
     public function create() {
 
-        if(options.no_destroy == null) {
+        if(options.no_destroy == null && options.no_destroy != true) {
             destroy();
             geometry = new Map();
         }
@@ -41,6 +42,29 @@ class TilemapVisual {
         //implemented in subclass
 
     } //create
+
+    public function geometry_for_tile( _layer:String, x:Int, y:Int ) : Geometry {
+
+        if(!geometry.exists(_layer)) {
+            log('visual / geometry_for_layer / $_layer does not exist in tilemap visual');
+            return null;
+        }
+
+        var geomlayer = geometry_for_layer(_layer);
+
+        return geomlayer[y][x];
+
+    } //geometry_for_tile
+
+    public function geometry_for_layer( _layer:String ) : TilemapVisualLayerGeometry {
+
+        if(!geometry.exists(_layer)) {
+            log('visual / geometry_for_layer / $_layer does not exist in tilemap visual');
+        }
+
+        return geometry.get(_layer);
+
+    } //geometry_for_layer
 
     function default_options() {
 
@@ -53,23 +77,33 @@ class TilemapVisual {
 
     } //default_options
 
-    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : QuadGeometry {
+    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : Geometry {
 
         //implemented in subclass
         return null;
 
     } //create_tile_for_layer
 
+    function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+
+        //implemented in subclass
+
+    } //update_tile_id
+
+        /** Update the visual to match a new tile id at a given coordinate.
+            This is called automatically when you set a `Tile` ID in a map, if it has a visual assigned. */
     public function refresh_tile_id( _layer_name:String, _x:Int, _y:Int, _id:Int ) {
 
-        var _geom_layer : Array< Array<Geometry> > = geometry.get( _layer_name );
+        var _tile_layer = map.layer(_layer_name);
+        var _geom_layer = geometry_for_layer(_layer_name);
+
         if(_geom_layer != null) {
 
                 //we need to know if the _x/_y fits inside the map because
                 //if the geometry is actually null, we need to create it first
             if(map.inside(_x,_y)) {
 
-                var _geom : QuadGeometry = cast _geom_layer[_y][_x];
+                var _geom = _geom_layer[_y][_x];
 
                     //null geometry means the tile was either destroyed
                     //or created at 0 gid, which means we can create it now
@@ -96,18 +130,7 @@ class TilemapVisual {
 
                     } else { //id == 0
 
-                        //now we know the geometry is there, we just set it's uv's
-                        var tileset = map.tileset_from_id( _id );
-                        var image_coord = tileset.pos_in_texture( _id );
-
-                        _geom.uv(
-                            new Rectangle(
-                                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
-                                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
-                                tileset.tile_width,
-                                tileset.tile_height
-                            ) //Rectangle
-                        ); //uv
+                        update_tile_id(_geom, _layer_name, _x, _y, _id);
 
                     } // id == 0 else
 
@@ -123,15 +146,24 @@ class TilemapVisual {
 
     } //refresh_tile_id
 
+        /** Destroy the geometry this visual contains and clean up */
     public function destroy( ) {
 
         if(geometry != null) {
-            for(layer in geometry) {
+            for(_name in geometry.keys()) {
+
+                var layer = geometry.get(_name);
+
                 for(row in layer) {
                     for(tile in row) {
                         tile.drop();
+                        tile = null;
                     } //tile
+                    row = null;
                 } //row
+
+                geometry.remove(_name);
+
             } //layer
         } //!null
 
@@ -203,21 +235,24 @@ class Tile {
 
 class TileLayer {
 
-    //the depth/ordering value
+        /** the depth/ordering value */
     public var layer : Int;
-        //the unique id of the layer
+        /** the unique id of the layer */
     public var id : String;
-        //the name of the layer
+        /** the name of the layer */
     public var name : String;
-        //the name of the layer
+        /** the layer opacity. default: 1 */
     public var opacity : Float = 1.0;
-        //the name of the layer
+        /** the layer visibility. default: true */
     public var visible : Bool = true;
-        //the map this tilemap belongs to
+        /** The layer static state.
+            When fixed, visuals can optimize the geometry */
+    public var fixed : Bool = true;
+        /** the map this tilemap belongs to */
     public var map : Tilemap;
-        //array of array of tiles
+        /** array of array of tiles */
     public var tiles : Array<TileArray>;
-        //layer properties
+        /** layer properties */
     public var properties : Map<String,String>;
 
     public function new( options:TileLayerOptions ) {
@@ -230,10 +265,11 @@ class TileLayer {
         id = Luxe.utils.uniqueid();
         name = options.name;
         map = options.map;
-            //optional layer index
+
         layer = (options.layer == null) ? 0 : options.layer;
         opacity = (options.opacity == null) ? 1.0 : options.opacity;
         visible = (options.visible == null) ? true : options.visible;
+        fixed = (options.fixed == null) ? true : options.fixed;
 
         tiles = [];
         properties = new Map();

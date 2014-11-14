@@ -128,6 +128,24 @@ class OrthoVisual extends TilemapVisual {
 
     } //create
 
+    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int ) {
+
+        var tileset = map.tileset_from_id( _id );
+        var image_coord = tileset.pos_in_texture( _id );
+
+        var g : QuadGeometry = cast _geom;
+
+        g.uv(
+            new Rectangle(
+                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                tileset.tile_width,
+                tileset.tile_height
+            ) //Rectangle
+        ); //uv
+
+    } //update_tile_id
+
     override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) {
 
         var _map_scaled_tw = map.tile_width*options.scale;
