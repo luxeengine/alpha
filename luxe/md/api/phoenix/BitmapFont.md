@@ -93,12 +93,6 @@ meta: @:keep</span>
 
 </span>
 <span class="method apipage">
-            <a name="one_item_loaded"><a class="lift" href="#one_item_loaded">one\_item\_loaded</a></a><div class="clear"></div>
-            <code class="signature apipage">one\_item\_loaded(t:[phoenix.Texture](../../api/phoenix/Texture.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
-
-
-</span>
-<span class="method apipage">
             <a name="onload"><a class="lift" href="#onload">onload</a></a><div class="clear"></div>
             <code class="signature apipage">onload(:[phoenix.BitmapFont](../../api/phoenix/BitmapFont.html)<span></span>) : [Void](http://api.haxe.org/Void.html)</code><br/><span class="small_desc_flat"></span>
 

@@ -16414,7 +16414,7 @@ OTHER DEALINGS IN THE SOFTWARE.</haxe_doc>
 </f></height_of_lines>
 		<default_options set="method" line="231"><f a=""><x path="Void"/></f></default_options>
 		<on_completely_loaded set="method" line="265"><f a=""><x path="Void"/></f></on_completely_loaded>
-		<one_item_loaded public="1" set="method" line="275"><f a="t">
+		<one_item_loaded set="method" line="275"><f a="t">
 	<c path="phoenix.Texture"/>
 	<x path="Void"/>
 </f></one_item_loaded>
