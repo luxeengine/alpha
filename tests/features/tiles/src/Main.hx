@@ -3,6 +3,7 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
+import phoenix.Texture;
 
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
@@ -41,6 +42,7 @@ class Main extends luxe.Game {
             color : new Color(1,1,1,1),
             pos : new Vector(10,10),
             font : Luxe.renderer.font,
+            batcher : batcher,
             size : 24,
             text : "move the mouse"
         });
@@ -73,7 +75,7 @@ class Main extends luxe.Game {
         var scale = 2;
 
             //tell the map to display
-        tiled_ortho.display({ scale:scale, grid:true });
+        tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
 
             //draw the additional objects
         draw_tiled_object_groups( scale );

@@ -49,10 +49,11 @@ class TilemapVisual {
         if(options.group == null)       options.group = 0;
         if(options.scale == null)       options.scale = 1;
         if(options.grid == null)        options.grid = false;
+        if(options.filter == null)      options.filter = FilterType.nearest;
 
     } //default_options
 
-    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType  ) : QuadGeometry {
+    function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) : QuadGeometry {
 
         //implemented in subclass
         return null;
@@ -397,19 +398,19 @@ class Tilemap {
 
     } //inside
 
-    public function tile_pos( layer_name:String, x:Int, y:Int, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
+    public function tile_pos( layer_name:String, x:Int, y:Int, ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) {
 
         if(inside(x,y)) {
 
             switch(orientation) {
 
                 case TilemapOrientation.ortho: {
-                    var _worldpos = Ortho.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    var _worldpos = Ortho.tile_coord_to_worldpos(x, y, tile_width, tile_height, scale, offset_x, offset_y );
                     return _worldpos.add( pos );
                 }
 
                 case TilemapOrientation.isometric: {
-                    var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, offset_x, offset_y );
+                    var _worldpos = Isometric.tile_coord_to_worldpos(x, y, tile_width, tile_height, scale, offset_x, offset_y );
                     return _worldpos.add( pos );
                 }
 
@@ -431,14 +432,14 @@ class Tilemap {
 
             case TilemapOrientation.ortho: {
 
-                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
+                var _tile_pos = Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
                 return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //ortho
 
             case TilemapOrientation.isometric: {
 
-                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
+                var _tile_pos = Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
                 return tile_at( layer_name, Math.floor(_tile_pos.x), Math.floor(_tile_pos.y) );
 
             } //isometric
@@ -458,11 +459,11 @@ class Tilemap {
          switch(orientation) {
 
             case TilemapOrientation.ortho: {
-                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
+                return Ortho.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
             }
 
             case TilemapOrientation.isometric: {
-                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, Math.floor(tile_width*_scale), Math.floor(tile_height*_scale) );
+                return Isometric.worldpos_to_tile_coord( worldpos.x - pos.x, worldpos.y - pos.y, tile_width, tile_height, _scale );
             }
 
             default:{}
