@@ -12,9 +12,7 @@ http://snowkit.org/
 
 ## dev cycle
 
-####active focus sheet
-
-**alpha-1.0**   
+####focus sheet : alpha-1.0+parrott
 
 ####[read focus sheet](http://snowkit.org/2014/10/27/luxe-alpha-1-0/)   
 
