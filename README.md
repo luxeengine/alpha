@@ -20,7 +20,7 @@ http://snowkit.org/
 
 [follow on waffle](https://waffle.io/underscorediscovery/luxe)   
 
-![badge](https://badge.waffle.io/underscorediscovery/luxe.svg?label=alpha-1.0&title=active%20focus%20sheet)
+[![badge](https://badge.waffle.io/underscorediscovery/luxe.svg?label=alpha-1.0&title=active%20focus%20sheet)](https://waffle.io/underscorediscovery/luxe)
 
 ### license
 
