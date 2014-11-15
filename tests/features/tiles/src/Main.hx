@@ -4,9 +4,11 @@ import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
 import phoenix.Texture;
+import phoenix.geometry.CircleGeometry;
 
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
+import luxe.tilemaps.Ortho;
 
 import luxe.importers.tiled.TiledMap;
 import luxe.importers.tiled.TiledObjectGroup;
@@ -24,6 +26,8 @@ class Main extends luxe.Game {
     public var tile_text : luxe.Text;
 
     var batcher : phoenix.Batcher;
+
+    var tile_offset_circle : CircleGeometry;
 
     override function ready() {
 
@@ -47,6 +51,14 @@ class Main extends luxe.Game {
             text : "move the mouse"
         });
 
+
+        tile_offset_circle =  Luxe.draw.circle({
+            x : 0,
+            y : 0,
+            r : 3,
+            color : new Color(0,1.0,0,1.0),
+            depth : 700
+        });
     } //ready
 
     function load_isometric_tiledmap() {
@@ -217,6 +229,52 @@ class Main extends luxe.Game {
         var _scale = tiled_ortho.visual.options.scale;
         var tile = tiled_ortho.tile_at_pos('walls', mouse_pos, _scale );
         var world = tiled_ortho.worldpos_to_map( mouse_pos, _scale );
+        
+        if ( tile != null )
+        {
+                //  Translate the mouse position so that it is relative to the tiled map.
+            var mouse_pos_relative = new Vector(mouse_pos.x - tiled_ortho.pos.x, mouse_pos.y - tiled_ortho.pos.y);
+                //  Get the position in world coords of the tile that is being hovered.
+            var tile_pos = Ortho.tile_coord_to_worldpos(tile.x, tile.y, tiled_ortho.tile_width, tiled_ortho.tile_height, _scale);
+                //  Find out the position of the mouse relative to the tile.
+            mouse_pos_relative.x -= tile_pos.x;
+            mouse_pos_relative.y -= tile_pos.y;
+
+                //  Find out by how many percent of the tiles total width and height that the mouse has penetrated the bounds of the tile. 
+            var in_tile_percent = new Vector(mouse_pos_relative.x / (tile.size.x * _scale), mouse_pos_relative.y / (tile.size.y * _scale));
+
+                //  Create the offset depending on which corner is closest to the mouse position. 
+            var offset_x = TileOffset.right;
+            var offset_y = TileOffset.bottom;
+            if (in_tile_percent.x <= 0.33)
+            {
+                offset_x = TileOffset.left;
+            }
+            else if (in_tile_percent.x <= 0.66)
+            {
+                offset_x = TileOffset.center;
+            }
+
+            if (in_tile_percent.y <= 0.33)
+            {
+                offset_y = TileOffset.top;
+            }
+            else if (in_tile_percent.y <= 0.66)
+            {
+                offset_y = TileOffset.center;
+            }
+
+                //  Get the offset tile position in world coords.
+            tile_pos = Ortho.tile_coord_to_worldpos(tile.x, tile.y, tiled_ortho.tile_width, tiled_ortho.tile_height, _scale, offset_x, offset_y);
+                //  Translate coords with the position of the map.
+            tile_pos.x += tiled_ortho.pos.x;
+            tile_pos.y += tiled_ortho.pos.y;
+
+                //  Move the circle to the corner of the tile that is closest to the mouse.
+            tile_offset_circle.transform.pos.x = tile_pos.x;
+            tile_offset_circle.transform.pos.y = tile_pos.y;
+            
+        }
 
         tile_text.text = world + "\n" + tile;
 
