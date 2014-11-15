@@ -98,7 +98,7 @@ class BitmapFont extends Resource {
                 //parse the file
             info = Parser.parse(_bitmapfont_data);
                 //set the id to the face name
-            id = 'font.${info.face}';
+            id = '${info.face}';
                 //store cached values
             space_char = info.chars.get(32);
                 //load any texture pages
