@@ -68,6 +68,8 @@ class BitmapFont extends Resource {
     var space_char:Character;
     var items_loaded : Int = 0;
 
+    static var generic_names : Array<String> = ['font','', ' '];
+
     public function new( ?_options:BitmapFontOptions ) {
 
         id = 'font.${Luxe.utils.uniqueid()}';
@@ -103,6 +105,13 @@ class BitmapFont extends Resource {
             space_char = info.chars.get(32);
                 //load any texture pages
             load_pages(_path, _custom_pages);
+
+            if(generic_names.indexOf(id) != -1) {
+                var _warning = 'warning / font loaded with a generic or no name as "$id". ';
+                    _warning += 'This could lead to bugs or confusion, or not being able to retrieve the font ';
+                    _warning += 'later from the resources. The font name is set in the "face" property inside the .fnt file.';
+                log(_warning);
+            }
 
         } //from_string
 
