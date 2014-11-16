@@ -46,10 +46,10 @@ import luxe.utils.json.JSONDecoder;
   public var value:Dynamic;
   
   /**
-   * Creates a new JSONToken with a specific token type and value.
-   *
-   * @param type The JSONTokenType of the token
-   * @param value The value of the token
+    Creates a new JSONToken with a specific token type and value.   
+      
+    @param type The JSONTokenType of the token   
+    @param value The value of the token   
    */
   public function new(?type:JSONTokenType,?value:Dynamic = null) {
     this.type = type==null?tUNKNOWN:type;

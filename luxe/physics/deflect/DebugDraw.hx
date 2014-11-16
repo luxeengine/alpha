@@ -1,9 +1,8 @@
-package luxe.physics.bullet;
+package luxe.physics.deflect;
 
-#if haxebullet
+#if deflect
 
-    import bullet.bulletDynamics.dynamics.BtDiscreteDynamicsWorld;
-
+    import deflect.dynamics.dynamics.BtDiscreteDynamicsWorld;
 
     	//:todo : This class has a lack of options, and is really quick and dirty, since bullet features will be for 3D release
 
@@ -67,5 +66,5 @@ package luxe.physics.bullet;
 
     } //DebugDraw
 
-#end //haxebullet
+#end //deflect
 

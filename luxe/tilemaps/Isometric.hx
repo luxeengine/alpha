@@ -16,7 +16,7 @@ import luxe.options.TilemapOptions;
 
 class Isometric {
 
-    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int ) : Vector {
+    public static function worldpos_to_tile_coord( world_x:Float, world_y:Float, tile_width:Int, tile_height:Int, ?scale:Float=1.0 ) : Vector {
 
         var tile_pos = new Vector();
 
@@ -31,20 +31,24 @@ class Isometric {
     } //worldpos_to_tile_coord
 
     public static function tile_coord_to_worldpos(  tile_x:Int, tile_y:Int, tile_width:Int, tile_height:Int,
-                                                   ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
+                                                   ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
         var world_pos = new Vector();
 
-            var tile_width_half = tile_width / 2;
-            var tile_height_half = tile_height / 2;
+            var scaled_tw = tile_width * scale;
+            var scaled_th = tile_height * scale;
+
+            var tile_width_half = scaled_tw / 2;
+            var tile_height_half = scaled_th / 2;
 
             world_pos.x = (tile_x - tile_y) * tile_width_half;
             world_pos.y = (tile_x + tile_y) * tile_height_half;
 
-            //:todo: conversion for offsets
-
             //top left by default
         if(offset_x == null) {  offset_x = TileOffset.left;  };
         if(offset_y == null) {  offset_y = TileOffset.top;   };
+
+            //:todo: conversion for offsets
+            //must use the scaled_tw and _scaled_th only
 
             // switch(offset_x) {
             //     case TileOffset.center:    { _world_x += (tile_width/2) }
@@ -67,21 +71,7 @@ class Isometric {
 
 class IsometricVisual extends TilemapVisual {
 
-    var options : TilemapVisualOptions;
-
-    public override function create( _options:TilemapVisualOptions ) {
-
-        options = _options;
-
-        if(options.batcher == null) options.batcher = Luxe.renderer.batcher;
-        if(options.depth == null)   options.depth = 0.0;
-        if(options.group == null)   options.group = 0;
-
-        var _scale : Float = (options.scale != null) ? options.scale : 1;
-
-            //map tile size scaled up
-        var _scaled_tilewidth = Std.int(map.tile_width*_scale);
-        var _scaled_tileheight = Std.int(map.tile_height*_scale);
+    public override function create() {
 
         for( layer in map ) {
 
@@ -94,7 +84,7 @@ class IsometricVisual extends TilemapVisual {
 
                 for( x in 0 ... map.width ) {
 
-                    var _tile_geom = create_tile_for_layer(layer, x, y, _scale, options.filter);
+                    var _tile_geom = create_tile_for_layer(layer, x, y);
 
                         //we want to push nulls into here,
                         //because otherwise the sizes won't match
@@ -114,14 +104,14 @@ class IsometricVisual extends TilemapVisual {
 
         } //for each layer
 
-        if(options.grid != null && options.grid == true) {
+        if(options.grid) {
 
             var color = new Color(1,1,1,0.8).rgb(0xcc0000);
 
             for(x in 0 ... map.width+1) {
 
-                var ip = Isometric.tile_coord_to_worldpos(x, 0, _scaled_tilewidth, _scaled_tileheight);
-                var ip_bot = Isometric.tile_coord_to_worldpos(x, map.height, _scaled_tilewidth, _scaled_tileheight);
+                var ip = Isometric.tile_coord_to_worldpos(x, 0, map.tile_width, map.tile_height, options.scale);
+                var ip_bot = Isometric.tile_coord_to_worldpos(x, map.height, map.tile_width, map.tile_height, options.scale);
 
                 Luxe.draw.line({
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y ),
@@ -133,8 +123,8 @@ class IsometricVisual extends TilemapVisual {
 
             for(y in 0 ... map.height+1) {
 
-                var ip = Isometric.tile_coord_to_worldpos(0, y, _scaled_tilewidth, _scaled_tileheight);
-                var ip_bot = Isometric.tile_coord_to_worldpos(map.width, y, _scaled_tilewidth, _scaled_tileheight);
+                var ip = Isometric.tile_coord_to_worldpos(0, y, map.tile_width, map.tile_height, options.scale);
+                var ip_bot = Isometric.tile_coord_to_worldpos(map.width, y, map.tile_width, map.tile_height, options.scale);
 
                 Luxe.draw.line({
                     p0 : new Vector(map.pos.x + ip.x, map.pos.y + ip.y),
@@ -150,13 +140,29 @@ class IsometricVisual extends TilemapVisual {
 
     } //create
 
-    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int, ?_scale:Float=1, ?_filter:FilterType ) {
+    override function update_tile_id( _geom:Geometry, _layer_name:String, _x:Int, _y:Int, _id:Int ) {
 
-        _filter = (_filter != null) ? _filter: FilterType.nearest;
+        var tileset = map.tileset_from_id( _id );
+        var image_coord = tileset.pos_in_texture( _id );
+
+        var g : QuadGeometry = cast _geom;
+
+        g.uv(
+            new Rectangle(
+                tileset.margin + ((image_coord.x * tileset.tile_width) + (image_coord.x * tileset.spacing)),
+                tileset.margin + ((image_coord.y * tileset.tile_height) + (image_coord.y * tileset.spacing)),
+                tileset.tile_width,
+                tileset.tile_height
+            ) //Rectangle
+        ); //uv
+
+    } //update_tile_id
+
+    override function create_tile_for_layer( layer:TileLayer, x:Int, y:Int ) {
 
             //map tile size scaled up
-        var _scaled_tilewidth = map.tile_width*_scale;
-        var _scaled_tileheight = map.tile_height*_scale;
+        var _scaled_tilewidth = map.tile_width*options.scale;
+        var _scaled_tileheight = map.tile_height*options.scale;
 
         var tile = layer.tiles[y][x];
 
@@ -168,8 +174,8 @@ class IsometricVisual extends TilemapVisual {
         var tileset = map.tileset_from_id( tile.id );
 
             //specific to each tileset
-        var _scaled_tileset_tilewidth = tileset.tile_width*_scale;
-        var _scaled_tileset_tileheight = tileset.tile_height*_scale;
+        var _scaled_tileset_tilewidth = tileset.tile_width*options.scale;
+        var _scaled_tileset_tileheight = tileset.tile_height*options.scale;
 
             //the half tile size in world space, not tile space
         var _half_world_tile_width = _scaled_tilewidth / 2;
@@ -206,9 +212,7 @@ class IsometricVisual extends TilemapVisual {
                         ) //Rectangle
                     ); //uv
 
-                    if(_filter != null) {
-                        tileset.texture.filter = _filter;
-                    } //_filter != null
+                    tileset.texture.filter = options.filter;
                 }
             }
         } //tileset != null

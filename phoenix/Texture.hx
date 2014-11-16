@@ -61,7 +61,7 @@ class Texture extends Resource {
         super( _manager, _type );
         _onload_handlers = new Array<Texture -> Void>();
 
-        id = 'Untitled';
+        id = Luxe.utils.uniqueid();
         filter = FilterType.linear;
         clamp = ClampType.edge;
 

@@ -5,13 +5,13 @@ import luxe.structural.Heap;
 import pathing.core.Grid;
 import pathing.finders.AStarFinder;
 import pathing.Pathing;
-import phoenix.geometry.ComplexGeometry;
+import phoenix.geometry.QuadPackGeometry;
 
 class Main extends luxe.Game {
 
 
     var grid : Grid;
-    var geom : ComplexGeometry;
+    var geom : QuadPackGeometry;
     var geom_quads : Map<String, String>;
 
     var gridx : Int = 200;
@@ -20,7 +20,7 @@ class Main extends luxe.Game {
     var gridh : Int = 32;
     var grid_space : Int = 2;
 
-    function draw_grid( _geom:ComplexGeometry, _grid:Grid ) {
+    function draw_grid( _geom:QuadPackGeometry, _grid:Grid ) {
         if(geom_quads == null) { geom_quads = new Map(); }
         _geom.clear();
         for( y in 0 ... _grid.height ) {
@@ -43,7 +43,7 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        geom = new ComplexGeometry({ batcher:Luxe.renderer.batcher });
+        geom = new QuadPackGeometry({ batcher:Luxe.renderer.batcher });
     	grid = new Grid( 10,10 );
 
         grid.setWalkableAt(5,3, false);

@@ -1,6 +1,7 @@
 package phoenix;
 
 
+import phoenix.utils.Rendering;
 import snow.render.opengl.GL;
 import snow.utils.Float32Array;
 
@@ -32,7 +33,8 @@ class Camera {
     @:isVar public var near (default,set) : Float = 1000;
     @:isVar public var far (default,set) : Float = -1000;
         //specific to perspective
-    @:isVar public var fov (default,set) : Float = 60;
+    @:isVar public var fov (default, set) : Float = 60;
+    public var fov_type(default, set) : FOVType = FOVType.horizontal;
     @:isVar public var aspect (default,set) : Float = 1.5;
     @:isVar public var target (default,set) : Vector;
 
@@ -58,6 +60,8 @@ class Camera {
     @:noCompletion public var projection_float32array : Float32Array;
     @:noCompletion public var view_inverse_float32array : Float32Array;
 
+        //Internal rendering fov, always vertical
+    var fov_y:Float;
         //when the transform changes, the camera needs to refresh the view matrix
     var transform_dirty : Bool = true;
         //when the projection changes we need to update refresh the matrix
@@ -273,7 +277,7 @@ class Camera {
         switch(projection) {
 
             case ProjectionType.perspective:
-                projection_matrix.makePerspective( fov, aspect, near, far );
+                projection_matrix.makePerspective( fov_y, aspect, near, far );
             case ProjectionType.ortho:
                 projection_matrix.makeOrthographic( 0, viewport.w, 0, viewport.h, near, far );
             case ProjectionType.custom: {}
@@ -399,10 +403,24 @@ class Camera {
 
         projection_dirty = true;
         options.fov = _fov;
-
+        
+        if (fov_type == FOVType.horizontal) {
+            fov_y = Rendering.fovx_to_y(_fov, aspect);
+        }
+        else {
+            fov_y = _fov;
+        }
         return fov = _fov;
 
     } //set_fov
+    
+    function set_fov_type(_fov_type:FOVType) : FOVType {
+        options.fov_type = _fov_type;
+        fov_type = _fov_type;
+        //trigger fov_y update
+        set_fov(fov);
+        return fov_type;
+    }
 
     function set_aspect( _aspect:Float ) : Float {
 
@@ -592,27 +610,38 @@ class Camera {
 
     function _merge_options( _options:CameraOptions ) {
 
-        if(options.aspect != null) {
+        if(_options.aspect != null) {
             options.aspect = _options.aspect;
             aspect = options.aspect;
         }
 
-        if(options.far != null) {
+        if(_options.far != null) {
             options.far = _options.far;
             far = options.far;
         }
-
-        if(options.fov != null) {
+        
+        
+        if(_options.fov != null) {
             options.fov = _options.fov;
             fov = options.fov;
         }
+        
+        if (_options.fov_type != null) {
+            options.fov_type = _options.fov_type;
+            fov_type = _options.fov_type;
+        }
+        else {
+            //apply default to make sure fov_y is set
+            options.fov_type = FOVType.horizontal;
+            fov_type = FOVType.horizontal;
+        }
 
-        if(options.near != null) {
+        if(_options.near != null) {
             options.near = _options.near;
             near = options.near;
         }
 
-        if(options.viewport != null) {
+        if(_options.viewport != null) {
             options.viewport = _options.viewport;
             viewport = options.viewport;
         }
@@ -643,3 +672,8 @@ class Camera {
     } //_center_changed
 
 } //Camera
+
+enum FOVType {
+    vertical;
+    horizontal;
+} //FOVType

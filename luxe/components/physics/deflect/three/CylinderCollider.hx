@@ -1,18 +1,18 @@
-package luxe.components.physics.bullet.three;
+package luxe.components.physics.deflect.three;
 
 
-#if haxebullet
+#if deflect
 
-    
+
     import luxe.Vector;
 
-    import bullet.bulletCollision.collisionShapes.BtCylinderShape;
+    import deflect.collision.shapes.BtCylinderShape;
 
-    import luxe.components.physics.bullet.three.ShapeCollider;
+    import luxe.components.physics.deflect.three.ShapeCollider;
 
 
     class CylinderCollider extends ShapeCollider {
-        
+
         public var width : Float = 1;
         public var height : Float = 1;
         public var depth : Float = 1;
@@ -25,4 +25,4 @@ package luxe.components.physics.bullet.three;
 
     } //CylinderCollider
 
-#end //haxebullet
+#end //deflect

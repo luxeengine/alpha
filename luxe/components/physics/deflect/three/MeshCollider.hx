@@ -1,26 +1,26 @@
-package luxe.components.physics.bullet.three;
+package luxe.components.physics.deflect.three;
 
 
-#if haxebullet
+#if deflect
 
 
     import luxe.Vector;
 
-    import bullet.bulletCollision.collisionShapes.BtBvhTriangleMeshShape;
+    import deflect.collision.shapes.BtBvhTriangleMeshShape;
 
-    import luxe.components.physics.bullet.three.ShapeCollider;
+    import luxe.components.physics.deflect.three.ShapeCollider;
 
 
     class MeshCollider extends ShapeCollider {
-        
+
         public var mesh : Mesh;
         public var quantization : Bool = true;
         public var build_bvh : Bool = true;
 
         override function init() {
-            
+
             var mesh_vertices : Array<Float> = [];
-            
+
             for(_vert in mesh.geometry.vertices) {
                 mesh_vertices.push(_vert.pos.x);
                 mesh_vertices.push(_vert.pos.y);
@@ -34,4 +34,4 @@ package luxe.components.physics.bullet.three;
     } //MeshCollider
 
 
-#end //haxebullet
+#end //deflect

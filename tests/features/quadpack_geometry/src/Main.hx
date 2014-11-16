@@ -3,11 +3,11 @@ import luxe.Color;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Input;
-import phoenix.geometry.ComplexGeometry;
+import phoenix.geometry.QuadPackGeometry;
 
 
 typedef MapTile = {
-    quad:String,
+    quad : Int,
     tilex : Int,
     tiley : Int
 };
@@ -15,9 +15,9 @@ typedef MapTile = {
 class Main extends luxe.Game {
 
 
-    var geom : ComplexGeometry;
-    var big_quad : String;
-    var mouse_quad : String;
+    var geom : QuadPackGeometry;
+    var big_quad : Int;
+    var mouse_quad : Int;
     var next_anim:Float = 1;
     var rowx : Int = 0;
     var rowy : Int = 0;
@@ -32,7 +32,7 @@ class Main extends luxe.Game {
 
     override function ready() {
 
-        geom = new phoenix.geometry.ComplexGeometry({
+        geom = new phoenix.geometry.QuadPackGeometry({
             texture : Luxe.loadTexture('assets/tileset.png'),
             batcher : Luxe.renderer.batcher
         });

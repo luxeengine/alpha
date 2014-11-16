@@ -7,7 +7,7 @@
 
     app : {
       name : 'luxe_test_scene',
-      package : 'org.luxeengine.test_scene'
+      package : 'com.luxeengine.test_scene'
     },
 
     build : {

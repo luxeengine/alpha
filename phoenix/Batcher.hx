@@ -135,10 +135,16 @@ class Batcher {
     public var log : Bool = false;
     public var name : String = '';
 
+        //This is a failsafe against identical layer values
+        //being sorted differently by target etc. Not reset intentionally.
+    static var _sequence_key : Int = -1;
+    @:noCompletion public var sequence : Int = -1;
+
     public function new( _r : Renderer, ?_name:String = '' ) {
 
         id = Luxe.utils.uniqueid();
         renderer = _r;
+        sequence = ++_sequence_key;
 
         geometry = new BalancedBST<GeometryKey,Geometry>( geometry_compare );
         groups = new Map();

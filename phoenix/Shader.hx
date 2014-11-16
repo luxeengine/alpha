@@ -363,7 +363,7 @@ class Shader extends Resource {
 
             var prefixes = '';
             #if luxe_web
-                prefixes += "precision mediump float;";
+                prefixes += "precision mediump float;\n";
             #end //luxe_web
 
                 //:todo: which resource manager...

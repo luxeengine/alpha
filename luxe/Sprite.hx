@@ -108,23 +108,28 @@ class Sprite extends Visual {
 
     } //point_inside
 
-        //Returns true if a point is inside the AABB unrotated/scaled
+        /** Returns true if a point is inside the AABB unrotated */
     public function point_inside_AABB(_p:Vector) : Bool {
 
         if(pos == null) return false;
         if(size == null) return false;
+
+            //scaled size
+        var _s_x = size.x * scale.x;
+        var _s_y = size.y * scale.y;
+
         if(centered) {
-            var hx = size.x / 2;
-            var hy = size.y / 2;
-            if(_p.x < pos.x-hx) return false;
-            if(_p.y < pos.y-hy) return false;
-            if(_p.x > pos.x+size.x-hx) return false;
-            if(_p.y > pos.y+size.y-hy) return false;
+            var _hx = _s_x / 2;
+            var _hy = _s_y / 2;
+            if(_p.x < pos.x - _hx) return false;
+            if(_p.y < pos.y - _hy) return false;
+            if(_p.x > pos.x+_s_x - _hx) return false;
+            if(_p.y > pos.y+_s_y - _hy) return false;
         } else {
             if(_p.x < pos.x) return false;
             if(_p.y < pos.y) return false;
-            if(_p.x > pos.x+size.x) return false;
-            if(_p.y > pos.y+size.y) return false;
+            if(_p.x > pos.x+_s_x) return false;
+            if(_p.y > pos.y+_s_y) return false;
         }
 
         return true;

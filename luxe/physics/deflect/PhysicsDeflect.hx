@@ -1,25 +1,17 @@
-package luxe.physics.bullet;
+package luxe.physics.deflect;
 
-#if haxebullet
+#if deflect
 
-    import bullet.bulletCollision.broadphaseCollision.BtDbvtBroadphase;
-    import bullet.bulletCollision.collisionDispatch.BtCollisionDispatcher;
-    import bullet.bulletCollision.collisionDispatch.BtDefaultCollisionConfiguration;
-    import bullet.bulletDynamics.constraintSolver.BtSequentialImpulseConstraintSolver;
-    import bullet.bulletDynamics.dynamics.BtDiscreteDynamicsWorld;
+    import deflect.collision.broadphaseCollision.BtDbvtBroadphase;
+    import deflect.collision.collisionDispatch.BtCollisionDispatcher;
+    import deflect.collision.collisionDispatch.BtDefaultCollisionConfiguration;
+    import deflect.dynamics.constraintSolver.BtSequentialImpulseConstraintSolver;
+    import deflect.dynamics.dynamics.BtDiscreteDynamicsWorld;
+    import deflect.dynamics.dynamics.BtRigidBody;
 
-    import bullet.bulletDynamics.dynamics.BtRigidBody;
+    import luxe.physics.deflect.DebugDraw;
 
-    import luxe.physics.bullet.DebugDraw;
-
-    #if luxe_web
-
-        import bullet.AmmoBinding;
-        import luxe.Vector;
-
-    #end //luxe_web
-
-    class PhysicsBullet extends luxe.Physics.PhysicsEngine {
+    class PhysicsDeflect extends luxe.Physics.PhysicsEngine {
 
         public var debugdraw : DebugDraw;
             //read http://bulletphysics.org/mediawiki-1.5.8/index.php/Stepping_The_World
@@ -46,7 +38,7 @@ package luxe.physics.bullet;
                 // Create the world
             world = new BtDiscreteDynamicsWorld( dispatcher, broadphase, solver, config );
                 // Set the default gravity
-            gravity = new Vector( 0, -10, 0 );
+            gravity = new luxe.Vector( 0, -10, 0 );
 
                 // Create the debug draw
             #if !luxe_web
@@ -55,13 +47,15 @@ package luxe.physics.bullet;
 
         }  //init
 
-        override function set_gravity( _gravity:Vector ) {
+        override function set_gravity( _gravity:luxe.Vector ) {
+
+            super.set_gravity(_gravity);
 
             if(world != null) {
-                world.setGravity( _gravity );
+                world.setGravity( new deflect.math.Vector(_gravity.x, _gravity.y, _gravity.z) );
             }
 
-            return super.set_gravity(_gravity);
+            return gravity;
 
         } //setGravity
 
@@ -127,7 +121,7 @@ package luxe.physics.bullet;
 
         } //destroy
 
-    } //PhysicsBullet
+    } //PhysicsDeflect
 
-#end //haxebullet
+#end //deflect
 

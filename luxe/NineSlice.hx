@@ -5,7 +5,7 @@ import luxe.Rectangle;
 import luxe.Sprite;
 import luxe.Vector;
 import phoenix.Batcher;
-import phoenix.geometry.ComplexGeometry;
+import phoenix.geometry.QuadPackGeometry;
 import phoenix.geometry.CompositeGeometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
@@ -20,7 +20,7 @@ private typedef Slice = {
     source_y : Float,
     source_width : Float,
     source_height : Float,
-    geometry_id : String
+    geometry_id : Int
 };
 
 /** A nineslice based sprite, for scaling */
@@ -43,7 +43,7 @@ class NineSlice extends luxe.Sprite {
     @:noCompletion public var slices : Array<Slice>;
     @:noCompletion public var added : Bool = false;
     @:noCompletion public var nineslice_options : NineSliceOptions;
-    @:noCompletion public var _geometry : ComplexGeometry;
+    @:noCompletion public var _geometry : QuadPackGeometry;
 
     var _batcher : Batcher;
 
@@ -228,7 +228,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(0,0),
             width : left,
             height : top,
-            geometry_id : ''
+            geometry_id : 0
         });
             //top middle
         slices.push({
@@ -239,7 +239,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(left,0),
             width : width - left - right,
             height : top,
-            geometry_id : ''
+            geometry_id : 0
         });
             //top right
         slices.push({
@@ -250,7 +250,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(left + midwidth,0),
             width : right,
             height : top,
-            geometry_id : ''
+            geometry_id : 0
         });
 
 
@@ -263,7 +263,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(0,top),
             width : left,
             height : height - top - bottom,
-            geometry_id : ''
+            geometry_id : 0
         });
             //middle middle
         slices.push({
@@ -274,7 +274,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(left,top),
             width : width - left - right,
             height : height - top - bottom,
-            geometry_id : ''
+            geometry_id : 0
         });
             //middle right
         slices.push({
@@ -285,7 +285,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(left + midwidth,top),
             width : right,
             height : height - top - bottom,
-            geometry_id : ''
+            geometry_id : 0
         });
 
 
@@ -298,7 +298,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(0,top + midheight),
             width : left,
             height : bottom,
-            geometry_id : ''
+            geometry_id : 0
         });
             //bottom middle
         slices.push({
@@ -309,7 +309,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(left,top + midheight),
             width : width - left - right,
             height : bottom,
-            geometry_id : ''
+            geometry_id : 0
         });
             //bottom right
         slices.push({
@@ -320,7 +320,7 @@ class NineSlice extends luxe.Sprite {
             pos : new Vector(left + midwidth, top + midheight),
             width : right,
             height : bottom,
-            geometry_id : ''
+            geometry_id : 0
         });
 
         is_set = true;
@@ -419,7 +419,7 @@ class NineSlice extends luxe.Sprite {
 
         var _color = new Color();
 
-        _geometry = new ComplexGeometry({
+        _geometry = new QuadPackGeometry({
             texture : texture,
             color : _color,
             depth : nineslice_options.depth,
@@ -434,16 +434,17 @@ class NineSlice extends luxe.Sprite {
                 x: slice.pos.x,
                 y: slice.pos.y,
                 w: slice.width,
-                h: slice.height
+                h: slice.height,
+                color: nineslice_options.color,
+                uv: new Rectangle(slice.source_x, slice.source_y, slice.source_width, slice.source_height)
             });
 
-            _geometry.quad_uv( slice.geometry_id, new Rectangle(slice.source_x, slice.source_y, slice.source_width, slice.source_height) );
-            _geometry.quad_pos( slice.geometry_id, new Vector(slice.pos.x, slice.pos.y) );
+            // _geometry.quad_pos( slice.geometry_id, new Vector(slice.pos.x, slice.pos.y) );
 
         } //each slice
 
         _geometry.transform.pos = _pos;
-        _geometry.id = 'NineSlice';
+        _geometry.id = 'NineSlice' + _geometry.id;
 
         added = true;
         is_set = true;

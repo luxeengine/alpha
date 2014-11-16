@@ -9,8 +9,8 @@ class BounceTest extends Component {
     var top : Float = 0;
 
     override function init() {
-        bottom = Luxe.screen.mid.y + (Luxe.screen.mid.y * 0.2);
-        top = Luxe.screen.mid.y;
+        bottom = pos.y + 50;
+        top = pos.y;
     }
 
     override function update(dt:Float) {

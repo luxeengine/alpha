@@ -12,8 +12,8 @@ import haxe.Timer;
 
 
 /**
- * @author Joshua Granick
- * @version 1.2
+  @author Joshua Granick   
+  @version 1.2   
  */
 class SimpleActuator extends GenericActuator {
 
@@ -66,7 +66,7 @@ class SimpleActuator extends GenericActuator {
 
 
     /**
-     * @inheritDoc
+      @inheritDoc   
      */
     public override function autoVisible (?value:Null<Bool>):IGenericActuator {
 
@@ -96,7 +96,7 @@ class SimpleActuator extends GenericActuator {
 
 
     /**
-     * @inheritDoc
+      @inheritDoc   
      */
     public override function delay (duration:Float):IGenericActuator {
 
@@ -186,7 +186,7 @@ class SimpleActuator extends GenericActuator {
 
 
     /**
-     * @inheritDoc
+      @inheritDoc   
      */
     public override function onUpdate (handler:Dynamic, parameters:Array <Dynamic> = null):IGenericActuator {
 

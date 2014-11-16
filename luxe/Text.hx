@@ -3,6 +3,8 @@ package luxe;
 import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Visual;
+import luxe.options.VisualOptions;
+import luxe.options.TextOptions;
 
 import phoenix.Batcher;
 import phoenix.BitmapFont;
@@ -21,36 +23,24 @@ class Text extends Visual {
     @:isVar public var textsize (default,set) : Float = 32;
 
     public var ready : Bool = false;
-    public var text_options : Dynamic;
+    public var text_options : TextOptions;
 
-
-    public function new( _options : Dynamic ) {
+    public function new( _options : TextOptions ) {
 
         _batcher = (_options.batcher == null) ? Luxe.renderer.batcher : _options.batcher;
 
-        if(_options.pos == null) {
-            _options.pos = new Vector();
-        }
+            //these are handled here because of the Visual
+            //right now, WIP:#98, and because text_options is used later
 
-        if(_options.color == null) {
-            _options.color = new Color();
-        }
-
-        if(_options.depth == null) {
-            _options.depth = 0;
-        }
-
-        if(_options.group == null) {
-            _options.group = 0;
-        }
-
-        if(_options.visible == null) {
-            _options.visible = true;
-        }
+        if(_options.pos == null)     _options.pos = new Vector();
+        if(_options.color == null)   _options.color = new Color();
+        if(_options.depth == null)   _options.depth = 0;
+        if(_options.group == null)   _options.group = 0;
+        if(_options.visible == null) _options.visible = true;
 
         text_options = _options;
 
-        super({
+        var visual_opt : VisualOptions = {
             name : _options.name,
             no_scene : _options.no_scene,
             batcher : _batcher,
@@ -61,7 +51,9 @@ class Text extends Visual {
             depth : _options.depth,
             group : _options.group,
             no_geometry : true
-        });
+        };
+
+        super(visual_opt);
 
     //font
         var _font : Dynamic = (_options.font == null) ? null : _options.font;
@@ -93,7 +85,7 @@ class Text extends Visual {
     } //new
 
     var size_rect_cache : Rectangle;
-    var scale_cache : Vector;
+    var dim_cache : Vector;
 
     public function point_inside( p:Vector ) {
 
@@ -106,18 +98,16 @@ class Text extends Visual {
         }
 
         if(size_rect_cache == null) {
-            scale_cache = new Vector();
+            dim_cache = new Vector();
             size_rect_cache = new Rectangle();
         }
 
-        scale_cache.x = scale_cache.y = text_options.size/font.font_size;
+        font.dimensions_of(text, text_options.size, dim_cache);
 
-        var dim = font.get_text_dimensions(text, scale_cache);
-
-            size_rect_cache.x = pos.x-(dim.x / 2);
+            size_rect_cache.x = pos.x-(dim_cache.x / 2);
             size_rect_cache.y = pos.y;
-            size_rect_cache.w = dim.x;
-            size_rect_cache.h = dim.y;
+            size_rect_cache.w = dim_cache.x;
+            size_rect_cache.h = dim_cache.y;
 
         return size_rect_cache.point_inside(p);
 

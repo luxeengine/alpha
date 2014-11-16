@@ -417,7 +417,8 @@ class Input {
         for(_name in key_bindings.keys()) {
 
             var _b = key_bindings.get(_name);
-            if(_b.exists(e.keycode) && !e.repeat) {
+            var _is_down_repeat = _down && e.repeat;
+            if(_b.exists(e.keycode) && !_is_down_repeat) {
                 if( !Lambda.has(_fired, _name)) {
                     _fired.push(_name);
                 }

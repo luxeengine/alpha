@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'luxe - test - quadpack',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_quadpack',
+      package : 'com.luxeengine.testquadpack'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

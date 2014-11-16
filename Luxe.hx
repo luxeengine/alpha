@@ -251,7 +251,7 @@ class Luxe {
         /** Load a font resource */
     public static function loadFont( _id:String, ?_path:String, ?_onload : BitmapFont->Void ) : BitmapFont {
 
-        return BitmapFont.load(_id, _path, _onload);
+        return BitmapFont.load({ id:_id, path:_path, onload:_onload });
 
     } //loadFont
 

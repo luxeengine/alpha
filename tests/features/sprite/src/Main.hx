@@ -2,7 +2,7 @@
 import luxe.Vector;
 import luxe.Input;
 import luxe.Sprite;
-
+import luxe.Color;
 
 class Main extends luxe.Game {
 
@@ -13,12 +13,53 @@ class Main extends luxe.Game {
     override function ready() {
 
         test_sprite1 = new Sprite({
+            name:'example',
             texture : Luxe.loadTexture('assets/luxe.png'),
             pos : Luxe.screen.mid,
             centered : false,
             flipx:true,
             flipy:true
         });
+
+            //This should give a warning
+            //about duplicate names
+        new Sprite({
+            name:'example',
+            pos : Luxe.screen.mid,
+            color : Color.random(),
+            rotation_z:90,
+            depth:2,
+        });
+
+            //This should handle auto unique names
+            //due to name_unique flags
+        new Sprite({
+            name:'example',
+            name_unique:true,
+            pos : Luxe.screen.mid,
+            color : Color.random(),
+            rotation_z:60,
+            depth:2,
+        });
+
+        new Sprite({
+            name:'example',
+            name_unique:true,
+            pos : Luxe.screen.mid,
+            rotation_z:30,
+            color : Color.random(),
+            depth:2,
+        });
+
+            //prints the full list
+        trace(Luxe.scene.entities);
+            //prints []
+        trace(Luxe.scene.get_named_like('none', []));
+            //find only the two
+        var found = Luxe.scene.get_named_like('example', []);
+        for( item in found ) {
+            trace(item.name);
+        }
 
         test_sprite1.centered = true;
         test_sprite1.flipx = false;
@@ -43,11 +84,13 @@ class Main extends luxe.Game {
             if(!inside) {
                 inside = true;
                 test_sprite1.color.tween(0.1, {r:0.8, b:0, g:0});
+                luxe.tween.Actuate.tween(test_sprite1.scale, 0.1, {x:1.2, y:1.2});
             }
         } else {
             if(inside) {
                 inside = false;
                 test_sprite1.color.tween(0.1, {r:1, b:1, g:1});
+                luxe.tween.Actuate.tween(test_sprite1.scale, 0.1, {x:1, y:1});
             }
         }
     } //hittest

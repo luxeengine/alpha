@@ -1,0 +1,25 @@
+{
+
+  project : {
+    name : 'luxe - test - camera bounds',
+    version : '1.0.0',
+    author : 'luxeengine',
+
+    app : {
+      name : 'luxe_test_camera_bounds',
+      package : 'com.luxeengine.testcamerabounds'
+    },
+
+    build : {
+      dependencies : {
+        luxe : '*',
+      }
+    },
+
+    files : {
+      assets : 'assets/'
+    }
+
+  }
+
+}

@@ -1,13 +1,13 @@
 {
-
   project : {
-    name : 'luxe - test - complexgeometry',
+    name : 'fov_test',
     version : '1.0.0',
     author : 'luxeengine',
 
     app : {
-      name : 'luxe_test_complexgeometry',
-      package : 'com.luxeengine.testcomplexgeometry'
+      name : 'luxe_empty',
+      package : 'com.luxeengine.fov',
+      main : 'Main'
     },
 
     build : {
@@ -17,9 +17,8 @@
     },
 
     files : {
+      config : 'config.json',
       assets : 'assets/'
     }
-
   }
-
 }

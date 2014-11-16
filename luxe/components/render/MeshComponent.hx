@@ -3,30 +3,40 @@ package luxe.components.render;
 import luxe.Component;
 import luxe.Mesh;
 import luxe.Quaternion;
-import phoenix.Texture;
-import phoenix.Batcher;
+import luxe.options.MeshOptions;
 
 class MeshComponent extends Component {
 
     public var mesh : Mesh;
-    public var texture : Texture;
-    public var file : String;
-    public var batcher : Batcher;
+    public var options : MeshOptions;
+
+    public function new( _options:MeshOptions ) {
+
+        options = _options;
+
+        if(options == null) {
+            throw "MeshComponent requires non-null options at the moment";
+        }
+
+        if(options.name == null) {
+            options.name = 'mesh';
+        }
+
+        super({ name:options.name });
+
+    } // new
 
     override function init() {
 
         if(mesh == null) {
 
-            mesh = new Mesh({
-                file: file,
-                texture: texture,
-                batcher: batcher
-            });
+            mesh = new Mesh(options);
 
             mesh.pos = entity.pos;
             mesh.rotation = entity.rotation;
             mesh.scale = entity.scale;
-        }
+
+        } //mesh != null
 
     } //init
 
@@ -55,6 +65,12 @@ class MeshComponent extends Component {
 
     override function update(dt:Float) {
 
-    }
+    } // update
+    
+    override function ondestroy() {
+        if(mesh != null) {
+            mesh.destroy();
+        }
+    } // ondestroy
 
 } //MeshComponent

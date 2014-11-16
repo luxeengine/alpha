@@ -1,7 +1,7 @@
-package luxe.components.physics.bullet.three;
+package luxe.components.physics.deflect.three;
 
 
-#if haxebullet
+#if deflect
 
 
     import luxe.Component;
@@ -14,4 +14,4 @@ package luxe.components.physics.bullet.three;
     } //PlaneCollider
 
 
-#end //haxebullet
+#end //deflect

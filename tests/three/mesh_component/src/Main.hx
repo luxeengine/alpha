@@ -31,9 +31,10 @@ class Main extends luxe.Game {
         tower = new Entity({ name:'tower' });
 
             //attach a mesh component
-        var mesh = new MeshComponent({ name:'mesh' });
-            mesh.file = 'assets/tower.obj';
-            mesh.texture = Luxe.loadTexture('assets/tower.jpg');
+        var mesh = new MeshComponent({
+            file : 'assets/tower.obj',
+            texture : Luxe.loadTexture('assets/tower.jpg')
+        });
 
         tower.add(mesh);
 

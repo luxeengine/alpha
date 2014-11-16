@@ -55,11 +55,11 @@ import haxe.Utf8;
     var strict:Bool;
 
     /**
-     * Constructs a new JSONDecoder to parse a JSON string
-     * into a native object.
-     *
-     * @param s The JSON string to be converted
-     *      into a native object
+      Constructs a new JSONDecoder to parse a JSON string   
+      into a native object.   
+        
+      @param s The JSON string to be converted   
+           into a native object   
      */
     public function new(s:String,strict:Bool) {
         jsonString = s;
@@ -70,8 +70,8 @@ import haxe.Utf8;
     }
 
     /**
-     * Gets the next token in the input sting and advances
-    * the character to the next character after the token
+      Gets the next token in the input sting and advances   
+      the character to the next character after the token   
      */
     public function getNextToken():JSONToken {
         var token:JSONToken = new JSONToken();
@@ -188,12 +188,12 @@ import haxe.Utf8;
     }
 
     /**
-     * Attempts to read a string from the input string.  Places
-     * the character location at the first character after the
-     * string.  It is assumed that ch is " before this method is called.
-     *
-     * @return the JSONToken with the string value if a string could
-     *      be read.  Throws an error otherwise.
+      Attempts to read a string from the input string.  Places   
+      the character location at the first character after the   
+      string.  It is assumed that ch is " before this method is called.   
+        
+      @return the JSONToken with the string value if a string could   
+           be read.  Throws an error otherwise.   
      */
     function readString():JSONToken {
         // the string to store the string we'll try to read
@@ -308,12 +308,12 @@ import haxe.Utf8;
     }
 
     /**
-     * Attempts to read a number from the input string.  Places
-     * the character location at the first character after the
-     * number.
-     *
-     * @return The JSONToken with the number value if a number could
-     *      be read.  Throws an error otherwise.
+      Attempts to read a number from the input string.  Places   
+      the character location at the first character after the   
+      number.   
+        
+      @return The JSONToken with the number value if a number could   
+           be read.  Throws an error otherwise.   
      */
     function readNumber():JSONToken {
         // the string to accumulate the number characters
@@ -418,19 +418,19 @@ import haxe.Utf8;
     }
 
     /**
-     * Reads the next character in the input
-     * string and advances the character location.
-     *
-     * @return The next character in the input string, or
-     *      null if we've read past the end.
+      Reads the next character in the input   
+      string and advances the character location.   
+        
+      @return The next character in the input string, or   
+           null if we've read past the end.   
      */
     function nextChar():String {
         return ch = jsonString.charAt( loc++ );
     }
 
     /**
-     * Advances the character location past any
-     * sort of white space and comments
+      Advances the character location past any   
+      sort of white space and comments   
      */
     function skipIgnored():Void {
         var originalLoc:Int;
@@ -444,9 +444,9 @@ import haxe.Utf8;
     }
 
     /**
-     * Skips comments in the input string, either
-     * single-line or multi-line.  Advances the character
-     * to the first position after the end of the comment.
+      Skips comments in the input string, either   
+      single-line or multi-line.  Advances the character   
+      to the first position after the end of the comment.   
      */
     function skipComments():Void {
         if ( ch == '/' ) {
@@ -493,9 +493,9 @@ import haxe.Utf8;
 
 
     /**
-     * Skip any whitespace in the input string and advances
-     * the character to the first character after any possible
-     * whitespace.
+      Skip any whitespace in the input string and advances   
+      the character to the first character after any possible   
+      whitespace.   
      */
     function skipWhite():Void {
         // As long as there are spaces in the input
@@ -507,19 +507,19 @@ import haxe.Utf8;
     }
 
     /**
-     * Determines if a character is whitespace or not.
-     *
-     * @return True if the character passed in is a whitespace
-     *  character
+      Determines if a character is whitespace or not.   
+        
+      @return True if the character passed in is a whitespace   
+       character   
      */
     function isWhiteSpace( ch:String ):Bool {
         return ( ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' );
     }
 
     /**
-     * Determines if a character is a digit [0-9].
-     *
-     * @return True if the character passed in is a digit
+      Determines if a character is a digit [0-9].   
+        
+      @return True if the character passed in is a digit   
      */
     function isDigit( ch:String ):Bool {
         #if php
@@ -530,9 +530,9 @@ import haxe.Utf8;
     }
 
     /**
-     * Determines if a character is a digit [0-9].
-     *
-     * @return True if the character passed in is a digit
+      Determines if a character is a digit [0-9].   
+        
+      @return True if the character passed in is a digit   
      */
     function isHexDigit( ch:String ):Bool {
         // get the uppercase value of ch so we only have
@@ -544,10 +544,10 @@ import haxe.Utf8;
     }
 
     /**
-     * Raises a parsing error with a specified message, tacking
-     * on the error location and the original string.
-     *
-     * @param message The message indicating why the error occurred
+      Raises a parsing error with a specified message, tacking   
+      on the error location and the original string.   
+        
+      @param message The message indicating why the error occurred   
      */
     public function parseError( message:String ):Void {
         throw new JSONParseError( message, loc, jsonString );

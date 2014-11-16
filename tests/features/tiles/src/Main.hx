@@ -3,6 +3,7 @@ import luxe.Rectangle;
 import luxe.Vector;
 import luxe.Input;
 import luxe.Color;
+import phoenix.Texture;
 
 import luxe.tilemaps.Tilemap;
 import luxe.tilemaps.Isometric;
@@ -37,10 +38,11 @@ class Main extends luxe.Game {
         load_ortho_tiledmap();
         load_isometric_tiledmap();
 
-         tile_text = new luxe.Text({
+        tile_text = new luxe.Text({
             color : new Color(1,1,1,1),
             pos : new Vector(10,10),
             font : Luxe.renderer.font,
+            batcher : batcher,
             size : 24,
             text : "move the mouse"
         });
@@ -66,14 +68,14 @@ class Main extends luxe.Game {
 
             //create from xml file, with various encodings, or from JSON
         tiled_ortho = new TiledMap( { file:'assets/tiles.json', format:'json', pos : new Vector(512,0) } );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx'} );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx'} );
-        // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx'} );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64_zlib.tmx', pos : new Vector(512,0) } );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles_base64.tmx', pos : new Vector(512,0) } );
+        // tiled_ortho = new TiledMap( { file:'assets/tiles_csv.tmx', pos : new Vector(512,0) } );
 
         var scale = 2;
 
             //tell the map to display
-        tiled_ortho.display({ scale:scale, grid:true });
+        tiled_ortho.display({ scale:scale, grid:true, filter:FilterType.nearest });
 
             //draw the additional objects
         draw_tiled_object_groups( scale );
@@ -180,13 +182,41 @@ class Main extends luxe.Game {
 
     } //onkeydown
 
+    override function onmouseup( e:MouseEvent ) {
+
+            // Get the tile position that the mouse is hovering.
+        var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
+
+            //for the ortho map
+        var _scale = tiled_ortho.visual.options.scale;
+        var tile = tiled_ortho.tile_at_pos('walls', mouse_pos, _scale );
+
+        if( tile != null ) {
+            var oldid = tile.id;
+            tile.id = 1+Std.random(70);
+            trace('ORTHO set a new id from $oldid to ${tile.id}!');
+        }
+
+            //for the iso map
+        _scale = tiled_iso.visual.options.scale;
+        tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos, _scale );
+
+        if( tile != null ) {
+            var oldid = tile.id;
+            tile.id = 1+Std.random(16);
+            trace('ISO set a new id from $oldid to ${tile.id}!');
+        }
+
+    } //onmouseup
+
     override function onmousemove( e:MouseEvent ) {
 
             // Get the tile position that the mouse is hovering.
         var mouse_pos = Luxe.camera.screen_point_to_world( e.pos );
 
-        var tile = tiled_iso.tile_at_pos('Tile Layer 2', mouse_pos );
-        var world = tiled_iso.worldpos_to_map( mouse_pos );
+        var _scale = tiled_ortho.visual.options.scale;
+        var tile = tiled_ortho.tile_at_pos('walls', mouse_pos, _scale );
+        var world = tiled_ortho.worldpos_to_map( mouse_pos, _scale );
 
         tile_text.text = world + "\n" + tile;
 
