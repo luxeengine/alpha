@@ -104,6 +104,11 @@ class Parcel extends luxe.resource.ResourceManager {
 
         refresh_total_items();
 
+        if( total_items == 0 ) {
+            do_complete();
+            return;
+        }
+
         log('loading parcel ${options.start_spacing}s from now');
 
         Luxe.timer.schedule(options.start_spacing, function(){
