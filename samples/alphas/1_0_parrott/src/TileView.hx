@@ -7,7 +7,7 @@ import luxe.Log.log;
 import phoenix.geometry.QuadPackGeometry;
 
 typedef MapTile = {
-    quad:String,
+    quad : Int,
     tilex : Int,
     tiley : Int
 }
