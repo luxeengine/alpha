@@ -66,8 +66,7 @@ class QuadPackGeometry extends Geometry {
         if(_options.flipx == null) _options.flipx = false;
         if(_options.flipy == null) _options.flipy = false;
 
-        var _uid = Luxe.utils.hashstring(Luxe.utils.uniqueid());
-
+        var _uid = Luxe.utils.uniquehash();
 
             //First triangle
         var vert0 = new Vertex( new Vector( _options.x,            _options.y ), _options.color );

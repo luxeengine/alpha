@@ -2,29 +2,29 @@ package luxe.utils;
 
 import luxe.Core;
 import luxe.utils.UUID;
+import luxe.utils.Murmur3;
 
 class Utils {
 
     public var geometry : luxe.utils.GeometryUtils;
 
-    @:noCompletion public var luxe:Core;
+    @:noCompletion public var core:Core;
 
     var _byte_levels : Array<String>;
-
 
     @:noCompletion public function new( _luxe:Core ) {
 
             //store the reference
-        luxe = _luxe;
+        core = _luxe;
             //initialise the helpers
-        geometry = new luxe.utils.GeometryUtils(luxe);
+        geometry = new luxe.utils.GeometryUtils(core);
             //initialize the byte text helpers
         _byte_levels = ['bytes', 'Kb', 'MB', 'GB', 'TB'];
 
     }  //new
 
         /** Generate a short, unique string ID for use ("base62"). */
-    public function uniqueid(?val:Int) : String {
+    public inline function uniqueid(?val:Int) : String {
 
         // http://www.anotherchris.net/csharp/friendly-unique-id-generation-part-2/#base62
 
@@ -45,8 +45,24 @@ class Utils {
 
     } //uniqueid
 
-        /** Generates a fixed integer hash of a string */
-    public function hashstring(string:String) : Int {
+        /** Generates and returns a uniqueid converted to a hashed integer for convenience.
+            Uses the default `uniqueid` and `hash` implementation detail. */
+    public inline function uniquehash() : Int {
+        return hash( uniqueid() );
+    } //uniquehash
+
+        /** Generates a integer hash from a string using the default algorithm (murmur3) */
+    public inline function hash( string:String ) : Int {
+        return hashmurmur( haxe.io.Bytes.ofString(string) );
+    } //hash
+
+        /** Generates an integer hash of a string using the murmur 3 algorithm */
+    public inline function hashmurmur( _bytes:haxe.io.Bytes, ?_seed:Int=0 ) : Int {
+        return Murmur3.hash( _bytes, _seed );
+    } //hashmurmur
+
+        /** Generates an integer hash of a string using the djb2 algorithm */
+    public inline function hashdjb2(string:String) : Int {
 
             //http://www.cse.yorku.ca/~oz/hash.html
         var _hash : Int = 5381;
@@ -56,7 +72,7 @@ class Utils {
 
         return _hash;
 
-    } //hashstring
+    } //hashdjb2
 
     public function uniqueid2() : String {
 
@@ -124,13 +140,13 @@ class Utils {
             var _type2_re : EReg  = new EReg('('+_name+')(-\\d\\b)', 'gi');
 
                 //check name0 ->
-            if(luxe.app.assets.listed(_type0)) {
+            if(core.app.assets.listed(_type0)) {
                 _sequence_type = _type0;
                 _pattern_regex = _type0_re;
-            } else if(luxe.app.assets.listed(_type1)) {
+            } else if(core.app.assets.listed(_type1)) {
                 _sequence_type = _type1;
                 _pattern_regex = _type1_re;
-            } else if(luxe.app.assets.listed(_type2)) {
+            } else if(core.app.assets.listed(_type2)) {
                 _sequence_type = _type2;
                 _pattern_regex = _type2_re;
             } else {
@@ -138,7 +154,7 @@ class Utils {
             }
 
         if(_sequence_type != '') {
-            for(_asset in luxe.app.assets.list) {
+            for(_asset in core.app.assets.list) {
                 //check for continuations of the sequence, matching by pattern rather than just brute force, so we can catch missing frames etc
                 if(_pattern_regex.match(_asset.id)) {
                     _final.push( _asset.id );
