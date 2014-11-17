@@ -85,14 +85,18 @@ class Debug {
         /** start a profiling section for the profiler debug view */
     public function start(_name:String) {
         #if !no_debug_console
+        if(!core.headless) {
             ProfilerDebugView.start(_name);
+        }
         #end
     }
 
         /** end a profiling section for the profiler debug view */
     public function end(_name:String) {
         #if !no_debug_console
+        if(!core.headless) {
             ProfilerDebugView.end(_name);
+        }
         #end
     }
         /** remove a trace listener added via add_trace_listener */
