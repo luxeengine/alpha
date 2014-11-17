@@ -36,8 +36,10 @@ class Shader extends Resource {
     public var errors : String = '';
     public var log : String = '';
 
+    public var vertex_source : String = '';
+    public var frag_source : String = '';
     public var vertex_source_name : String = '';
-    public var fragment_source_name : String = '';
+    public var frag_source_name : String = '';
 
     public var vert_shader : GLShader;
     public var frag_shader : GLShader;
@@ -74,10 +76,7 @@ class Shader extends Resource {
 
     public function activate() {
         if(program != null) {
-            // trace('\t\t activating shader ' + id + ' ' + program);
             Luxe.renderer.state.useProgram( program );
-        } else {
-            //GL.useProgram( null );
         }
     } //activate
 
@@ -85,7 +84,19 @@ class Shader extends Resource {
         Luxe.renderer.state.useProgram( null );
     } //deactivate
 
-   public function set_uniform_int( _name:String, _value:Int ) : Void {
+        /** Create a new shader based on the source of this shader. */
+    public function clone() {
+
+        var _clone = new Shader( manager );
+
+            _clone.id = id + '.clone.' + Luxe.utils.uniqueid();
+            _clone.from_string( vertex_source, frag_source, vertex_source_name, frag_source_name, false );
+
+        return _clone;
+
+    } //clone
+
+   public function set_int( _name:String, _value:Int ) : Void {
         if(uniforms.exists(_name)) {
             var _uniformvalue : UniformValue<Int> = uniforms.get(_name);
                 _uniformvalue.value = _value;
@@ -100,8 +111,8 @@ class Shader extends Resource {
 
             uniforms.set(_name, _uniformvalue);
         }
-    } //set_uniform_int
-   public function set_uniform_float( _name:String, _value:Float ) : Void {
+    } //set_int
+   public function set_float( _name:String, _value:Float ) : Void {
         if(uniforms.exists(_name)) {
             var _uniformvalue : UniformValue<Float> = uniforms.get(_name);
                 _uniformvalue.value = _value;
@@ -116,9 +127,9 @@ class Shader extends Resource {
 
             uniforms.set(_name, _uniformvalue);
         }
-    } //set_uniform_float
+    } //set_float
 
-    public function set_uniform_vector2( _name:String, _value:Vector ) : Void {
+    public function set_vector2( _name:String, _value:Vector ) : Void {
 
         if(uniforms.exists(_name)) {
 
@@ -136,9 +147,9 @@ class Shader extends Resource {
 
             uniforms.set(_name, _uniformvalue);
         }
-    } //set_uniform_vector2
+    } //set_vector2
 
-    public function set_uniform_vector3( _name:String, _value:Vector ) : Void {
+    public function set_vector3( _name:String, _value:Vector ) : Void {
 
         if(uniforms.exists(_name)) {
 
@@ -158,9 +169,9 @@ class Shader extends Resource {
 
         }
 
-    } //set_uniform_vector3
+    } //set_vector3
 
-    public function set_uniform_vector4( _name:String, _value:Vector ) : Void {
+    public function set_vector4( _name:String, _value:Vector ) : Void {
 
         if(uniforms.exists(_name)) {
 
@@ -180,9 +191,9 @@ class Shader extends Resource {
 
         } //if exists
 
-    } //set_uniform_vector4
+    } //set_vector4
 
-    public function set_uniform_color( _name:String, _value:Color ) : Void {
+    public function set_color( _name:String, _value:Color ) : Void {
 
         if(uniforms.exists(_name)) {
 
@@ -202,9 +213,9 @@ class Shader extends Resource {
 
         }
 
-    } //set_uniform_color
+    } //set_color
 
-    public function set_uniform_texture( _name:String, _value:Texture ) : Void {
+    public function set_texture( _name:String, _value:Texture ) : Void {
         if(uniforms.exists(_name)) {
 
             var _uniformvalue : UniformValue<Texture> = uniforms.get(_name);
@@ -222,10 +233,9 @@ class Shader extends Resource {
             uniforms.set(_name, _uniformvalue);
             uniform_textures.set(_name, _value);
         }
-    } //set_uniform_texture
+    } //set_texture
 
 
-        //GL.FRAGMENT_SHADER
     public function compile( _type : Int, _source:String, _verbose:Bool = false ) : GLShader {
 
         var _shader = GL.createShader( _type );
@@ -253,7 +263,7 @@ class Shader extends Resource {
         if (GL.getShaderParameter(_shader, GL.COMPILE_STATUS) == 0) {
 
             var _info = ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" );
-                _info += ((_type == GL.FRAGMENT_SHADER) ? '($fragment_source_name)' : '($vertex_source_name)' );
+                _info += ((_type == GL.FRAGMENT_SHADER) ? '($frag_source_name)' : '($vertex_source_name)' );
 
             addError("\tFailed to compile shader (" + _info + ") : \n");
 
@@ -368,7 +378,7 @@ class Shader extends Resource {
 
                 //:todo: which resource manager...
             _shader = new Shader( Luxe.resources );
-            _shader.from_string( _vert_shader , prefixes + _frag_shader, _psid, _vsid, false );
+            _shader.from_string( _vert_shader , prefixes + _frag_shader, _vsid, _psid, false );
 
         } //
 
@@ -391,18 +401,20 @@ class Shader extends Resource {
     } //load_shader
 
         /** Loads shaders from a string, compiles, and links them */
-    public function from_string( _vertex_source:String, _fragment_source:String, _frag_name:String='', _vertex_name:String='', _verbose:Bool = false ) {
+    public function from_string( _vertex_source:String, _fragment_source:String, _vertex_name:String='', _frag_name:String='', _verbose:Bool = false ) {
 
             //First clean up
         destroy();
 
             //store the names
-        fragment_source_name = _frag_name;
+        frag_source = _fragment_source;
+        vertex_source = _vertex_source;
+        frag_source_name = _frag_name;
         vertex_source_name = _vertex_name;
 
             //compile the sources
-        vert_shader = compile( GL.VERTEX_SHADER, _vertex_source, _verbose );
-        frag_shader = compile( GL.FRAGMENT_SHADER, _fragment_source, _verbose );
+        vert_shader = compile( GL.VERTEX_SHADER, vertex_source, _verbose );
+        frag_shader = compile( GL.FRAGMENT_SHADER, frag_source, _verbose );
 
             //Any errors? fail
         if( vert_shader == null || frag_shader == null ) {

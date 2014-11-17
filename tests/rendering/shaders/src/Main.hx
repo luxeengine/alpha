@@ -102,9 +102,9 @@ class Main extends luxe.Game {
             var hue = (Math.PI*2) * percent;
 
                 //distort based on mouse x
-            distort_shader.set_uniform_float('distortamount', percent);
+            distort_shader.set_float('distortamount', percent);
                 //hue based on mouse x
-            hue_shader.set_uniform_float('in_hue', hue);
+            hue_shader.set_float('in_hue', hue);
         }
 
     } //ontouchmove
@@ -117,9 +117,9 @@ class Main extends luxe.Game {
     		var hue = (Math.PI*2) * percent;
 
     			//distort based on mouse x
-    		distort_shader.set_uniform_float('distortamount', percent);
+    		distort_shader.set_float('distortamount', percent);
     			//hue based on mouse x
-    		hue_shader.set_uniform_float('in_hue', hue);
+    		hue_shader.set_float('in_hue', hue);
     	}
 
     } //onmousemove

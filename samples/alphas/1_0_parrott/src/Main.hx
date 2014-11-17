@@ -42,7 +42,7 @@ class Main extends luxe.Game {
             /** This is the shader we will apply to the overall drawing */
         final_shader = Luxe.loadShader('assets/lowres.glsl');
             //set the default shader grid size so it shows something at least
-        final_shader.set_uniform_float('grid_size', Luxe.screen.size.x*0.2 );
+        final_shader.set_float('grid_size', Luxe.screen.size.x*0.2 );
 
             /**
                 To display the whole default rendering into a texture,
@@ -130,7 +130,7 @@ class Main extends luxe.Game {
         var val = min+ Math.round( (x/Luxe.screen.w) * (max-min) );
 
             //update the value inside the shader to the new value
-        final_shader.set_uniform_float('grid_size', val);
+        final_shader.set_float('grid_size', val);
 
     } //change_size
 
