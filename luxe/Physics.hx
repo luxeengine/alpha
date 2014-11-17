@@ -122,7 +122,10 @@ class Physics {
 
     public function destroy() {
 
-        timer.stop();
+        if(timer != null) {
+            timer.stop();
+        }
+
         timer = null;
 
         for(engine in engines) {
