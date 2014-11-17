@@ -197,7 +197,7 @@ class Texture extends Resource {
         if(_bytes != null) {
 
                 //:todo: which resource manager...
-            var resources = Luxe.renderer.resource_manager;
+            var resources = Luxe.resources;
             var texture = new Texture(resources);
 
             var _asset = Luxe.core.app.assets.image(_name, { bytes:_bytes });
@@ -229,7 +229,7 @@ class Texture extends Resource {
             return null;
         }
 
-        var resources = Luxe.renderer.resource_manager;
+        var resources = Luxe.resources;
         var texture = new Texture(resources);
 
         var _asset_info = Luxe.core.app.assets.info_from_id(_id, 'image');

@@ -10,7 +10,6 @@ import luxe.Log._verbose;
 
 import luxe.Core;
 import luxe.Rectangle;
-import luxe.resource.ResourceManager;
 
 import phoenix.Batcher;
 import phoenix.RenderPath;
@@ -33,7 +32,6 @@ typedef BatcherKey = {
 
 class Renderer {
 
-    public var resource_manager : ResourceManager;
     public var batchers : Array<Batcher>;
 
     public var core : Core;
@@ -88,8 +86,6 @@ class Renderer {
         state = new RenderState(this);
         clear_color = new Color().rgb(0x1a1a1a);
         stats = new RendererStats();
-
-        resource_manager = new ResourceManager();
         batchers = [];
 
             //The default view
@@ -311,10 +307,10 @@ function get_target() : RenderTexture {
         #end
 
             //create the default rendering shader
-        default_shader = new Shader( resource_manager );
+        default_shader = new Shader( core.resources );
         default_shader.id = 'default_shader';
 
-        default_shader_textured = new Shader( resource_manager );
+        default_shader_textured = new Shader( core.resources );
         default_shader_textured.id = 'default_shader_textured';
 
         default_shader.from_string( default_vert_source, default_frag_source, false );
@@ -328,7 +324,7 @@ function get_target() : RenderTexture {
 
         _debug("creating the default font...");
 
-            font = new BitmapFont({ resources:this.resource_manager });
+            font = new BitmapFont({ resources:core.resources });
 
                 //create the font texture
             var _font_texture = Texture.load_from_resource('cabin.png');

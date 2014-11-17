@@ -14,6 +14,7 @@ import luxe.Scene;
 import luxe.Debug;
 import luxe.Timer;
 import luxe.Physics;
+import luxe.resource.ResourceManager;
 
 import luxe.debug.ProfilerDebugView;
 
@@ -78,17 +79,18 @@ class Core extends snow.App {
 
 
 //Sub Systems, mostly in order of importance
-    public var emitter  : Emitter;
-    public var debug    : Debug;
-    public var draw     : Draw;
-    public var timer    : Timer;
-    public var events   : Events;
-    public var input    : Input;
-    public var audio    : Audio;
-    public var scene    : Scene;
-    public var renderer : Renderer;
-    public var screen   : luxe.Screen;
-    public var physics  : Physics;
+    public var emitter   : Emitter;
+    public var debug     : Debug;
+    public var draw      : Draw;
+    public var timer     : Timer;
+    public var events    : Events;
+    public var input     : Input;
+    public var audio     : Audio;
+    public var scene     : Scene;
+    public var resources : ResourceManager;
+    public var renderer  : Renderer;
+    public var screen    : luxe.Screen;
+    public var physics   : Physics;
 
 //Mouse and fake mouse touch
     var _mouse_pos : Vector;
@@ -149,18 +151,23 @@ class Core extends snow.App {
             //and send the ready event to the game
         game.ready();
 
-            //emit the init event
-            //so that scene and others can start up
-        emitter.emit('init');
-        has_inited = true;
+            //shutdown can come from the ready function
+        if(!shutting_down) {
 
-            //Reset the physics (starts the timer etc)
-        physics.reset();
+                //emit the init event
+                //so that scene and others can start up
+            emitter.emit('init');
+            has_inited = true;
 
-            //Now, if no main loop is requested we should immediately shutdown
-        if(!app.snow_config.has_loop) {
-            shutdown();
-        }
+                //Reset the physics (starts the timer etc)
+            physics.reset();
+
+                //Now, if no main loop is requested we should immediately shutdown
+            if(!app.snow_config.has_loop) {
+                shutdown();
+            }
+
+        } //!shutting down
 
     } //ready
 
@@ -222,6 +229,10 @@ class Core extends snow.App {
         input = new Input( this );
         physics = new Physics( this );
 
+            //should be up earlier
+        resources = new ResourceManager();
+        Luxe.resources = resources;
+
             //flag for later
         if(app.window == null) {
             headless = true;
@@ -269,7 +280,6 @@ class Core extends snow.App {
 
         if(!headless) {
             Luxe.camera = new luxe.Camera({ name:'default camera', view:renderer.camera });
-            Luxe.resources = renderer.resource_manager;
         }
 
         Luxe.physics = physics;
