@@ -63,6 +63,8 @@ typedef RectangleGeometryOptions = {
     @:optional var w : Float;
         /** height */
     @:optional var h : Float;
+        /** optional existing rect. oveerrides x/y/w/h */
+    @:optional var rect : Rectangle;
 
 } //RectangleGeometryOptions
 
