@@ -1,11 +1,14 @@
+
+#define OUTLINE 1
+#define GLOW 1
+#define SUPERSAMPLE 1
+
 uniform sampler2D tex0;
 varying vec2 tcoord;
 varying vec4 color;
 
 uniform float smoothness;
 uniform float thickness;
-
-vec4 color_tint = vec4(1,1,1,1);
 
 uniform vec4 outline_color;
 uniform float outline;
@@ -14,52 +17,94 @@ uniform vec4 glow_color;
 uniform float glow_threshold;
 uniform float glow_amount;
 
+
+float edge(float value, float amount, float t) {
+    return smoothstep(value - amount, value + amount, t);
+}
+
+float get(vec2 uv, float width) {
+    return smoothstep(0.5 - width, 0.5 + width, texture2D(tex0, uv).a);
+}
+
 void main() {
 
 //basic sdf
 
     float dist = texture2D(tex0, tcoord).a;
-    float smoothing = fwidth(dist) * smoothness;
+        //fwidth keeps width similar despite scaling, see below for options
+    float smoothamt = smoothness * fwidth(dist);
+    // float smoothamt = smoothness * length(vec2(dFdx(dist), dFdy(dist)));
 
-    // float smoothing = smoothness * length(vec2(dFdx(dist), dFdy(dist)));
+        //calculate the edge smoothing
+    float alpha = edge(1.0 - thickness, smoothamt, dist);
 
-    float alpha = smoothstep(thickness - smoothing, thickness + smoothing, dist);
-          // alpha = clamp(alpha,0.0,1.0);
+//super sampling
 
+        #if SUPERSAMPLE == 1
+
+                //these values can be exposed later
+                //the current being 0.25/sqrt(2)
+            float factor = 0.1767766953;
+            float sampleamt = 0.5;
+                //this is a simple box filter around the point,
+                //we use a separate width for now
+            float samplew = sampleamt * fwidth(dist);
+            vec2 sampleoffset = factor * (dFdx(tcoord) + dFdy(tcoord));
+            vec4 fltr = vec4(tcoord - sampleoffset, tcoord + sampleoffset);
+
+            float total = get( fltr.xy, samplew ) + get( fltr.zw, samplew ) +
+                          get( fltr.xw, samplew ) + get( fltr.zy, samplew );
+
+            alpha = (alpha + 0.5 * total) / 3.0;
+
+        #endif //SUPERSAMPLE
+
+        //the base color + scaled by the new alpha
     vec4 finalColor = vec4(color.rgb, color.a * alpha);
 
 //outline
 
-    if(outline > 0.0) {
+    #if OUTLINE == 1
 
-                //range of 1.0 ~ 0.1, we get 0 ~ 1
-        float _outline = 0.9 - (outline * 0.9);
-        float outlineAlpha = smoothstep(_outline - smoothing, _outline + smoothing, dist);
+            //wip
+        if(outline > 0.0) {
 
-        vec4 outline_c = vec4(outline_color.rgb, outline_color.a * outlineAlpha);
-        finalColor = mix(outline_c, finalColor, alpha);
+            //range of 1.0 ~ 0.1, we get 0 ~ 1
+            float _outline = 0.9 - (outline * 0.9);
+            float _outline_a = edge(_outline, smoothamt, dist);
+            vec4 _outline_c = vec4(outline_color.rgb, outline_color.a * _outline_a);
 
-    } //outline
+            finalColor = mix(_outline_c, finalColor, alpha);
 
-// //glow
+        } //outline > 0.0
 
-    if(glow_amount > 0.0) {
+    #endif //OUTLINE
 
-        float amt = 1.0 - glow_amount;
-        float start = amt * glow_threshold;
-        float glowAlpha = smoothstep(start, amt, dist);
-        finalColor = mix(vec4(glow_color.rgb, glow_color.a * glowAlpha), finalColor, finalColor.a);
+// glow
 
-    }
+    #if GLOW == 1
 
-//global tint
+            //wip
+        if(glow_amount > 0.0) {
 
-    finalColor *= color_tint;
+            //:todo: expose offset for directional shadow
+            // vec2 _glow_offs = vec2(0,0);
+            // float _glow_dist = texture2D(tex0, tcoord - _glow_offset).a;
+
+            float _glow_amt = 1.0 - glow_amount;
+            float _glow_limit = (_glow_amt * glow_threshold);
+            float _glow_a = edge(_glow_amt, _glow_limit, dist);
+            vec4  _glow_c = vec4(glow_color.rgb, glow_color.a * _glow_a);
+
+            finalColor = mix(_glow_c, finalColor, finalColor.a);
+
+        } //glow_amount > 0
+
+    #endif //GLOW
 
 //done
 
     gl_FragColor = finalColor;
 
-}
 
-
+} //main
