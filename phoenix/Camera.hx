@@ -469,6 +469,7 @@ class Camera {
                     //scale the visual view based on the value
                 transform.scale.x = 1/_new_zoom;
                 transform.scale.y = 1/_new_zoom;
+                transform.scale.z = 1/_new_zoom;
 
             case ProjectionType.perspective: {
 
