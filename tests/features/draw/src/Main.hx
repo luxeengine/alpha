@@ -137,7 +137,7 @@ class Main extends luxe.Game {
         Luxe.draw.text({
             color : new Color(1,1,1,1),
             pos : Luxe.screen.mid.add(new Vector(0,50)),
-            size : 24,
+            point_size : 24,
             text :
 "Luxe.draw.ring({
         x : Luxe.screen.mid.x,
@@ -195,7 +195,7 @@ class Main extends luxe.Game {
             align : TextAlign.center,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5),
             pos : mouse,
-            text : Luxe.dt
+            text : Std.string(luxe.utils.Maths.fixed(Luxe.dt, 6))
         });
 
     } //onrender
