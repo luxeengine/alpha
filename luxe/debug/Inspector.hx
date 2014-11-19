@@ -106,11 +106,11 @@ typedef DebugInspectorOptions = {
             no_scene : true,
             depth : 999.2,
             color : new Color().rgb(0xf6007b),
-            pos : new Vector( pos.x+(size.x/2), pos.y+5 ),
-            align : TextAlign.center,
+            pos : new Vector( pos.x+14, pos.y+9 ),
+            align : TextAlign.left,
             font : font,
             text : title,
-            point_size : 16,
+            point_size : 15,
             visible : false
         });
 
@@ -120,7 +120,7 @@ typedef DebugInspectorOptions = {
             no_scene : true,
             depth : 999.2,
             color : new Color().rgb(0x333333),
-            pos : new Vector( pos.x+(size.x-14), pos.y+5 ),
+            pos : new Vector( pos.x+(size.x-14), pos.y+9 ),
             align : TextAlign.right,
             font : font,
             text : '${Luxe.build}',
