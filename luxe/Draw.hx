@@ -11,6 +11,7 @@ import phoenix.geometry.RingGeometry;
 import phoenix.geometry.ArcGeometry;
 import phoenix.geometry.PlaneGeometry;
 import phoenix.geometry.Vertex;
+import phoenix.geometry.TextGeometry;
 
 import luxe.options.GeometryOptions;
 import luxe.options.DrawOptions;
@@ -228,16 +229,12 @@ class Draw {
 
     } //texture
 
-        /** Draw `text` at `pos` using `font` (or no font for default font) with options */
-    public function text( options:Dynamic ) {
+        /** Draw `text` with options (default font used if none specified) */
+    public function text( options:TextGeometryOptions ) {
 
-        if(options.id == null) { options.id = 'text.geometry'; };
-        if(options.font == null) { options.font = Luxe.renderer.font; }
         if(options.batcher == null) { options.batcher = Luxe.renderer.batcher; }
 
-        var _text = options.font.draw_text(options);
-
-        return _text;
+        return new TextGeometry(options);
 
     } //text
 
