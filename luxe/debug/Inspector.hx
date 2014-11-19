@@ -110,7 +110,7 @@ typedef DebugInspectorOptions = {
             align : TextAlign.center,
             font : font,
             text : title,
-            size : 16,
+            point_size : 16,
             visible : false
         });
 
@@ -124,7 +124,7 @@ typedef DebugInspectorOptions = {
             align : TextAlign.right,
             font : font,
             text : '${Luxe.build}',
-            size : 16,
+            point_size : 16,
             visible : false
         });
 

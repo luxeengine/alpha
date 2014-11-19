@@ -191,7 +191,7 @@ private class ProfilerBar {
             name : 'profiler.text.' + _name,
             pos : new Vector(0,0),
             color : _color,
-            size : height*1.8,
+            point_size : height*1.8,
             depth : 999.3,
             text : '32ms',
             batcher : Luxe.debug.batcher
@@ -264,7 +264,7 @@ private class ProfilerBar {
             if(i < (history-1)) {
                 var v1 = graph_geometry.vertices[i+1];
                 if(v1 != null) {
-                    v.pos.y = v1.pos.y;
+                    v.pos.y = Math.floor(v1.pos.y);
                     v.color = v1.color;
                 }
             }
@@ -283,7 +283,7 @@ private class ProfilerBar {
             _p = 0.001;
         }
 
-        graph_geometry.vertices[history-1].pos.y = ((height2)*(1.0-_p));
+        graph_geometry.vertices[history-1].pos.y = Math.floor(((height2)*(1.0-_p)));
 
         return ping = _v;
     }

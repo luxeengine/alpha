@@ -38,7 +38,7 @@ class TraceDebugView extends luxe.debug.DebugView {
             font : Luxe.renderer.font,
             text : '',
             align_vertical : luxe.Text.TextAlign.bottom,
-            size : 12,
+            point_size : 12,
             batcher : debug.batcher,
             visible : false
         });
