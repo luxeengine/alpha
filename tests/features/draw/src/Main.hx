@@ -195,7 +195,7 @@ class Main extends luxe.Game {
             align : TextAlign.center,
             color : new Color(Math.random(),Math.random(),Math.random(),0.5),
             pos : mouse,
-            text : Luxe.dt
+            text : Std.string(Luxe.dt)
         });
 
     } //onrender
