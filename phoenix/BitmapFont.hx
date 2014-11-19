@@ -14,6 +14,7 @@ import phoenix.geometry.Geometry;
 import phoenix.geometry.QuadGeometry;
 import phoenix.geometry.TextureCoord;
 import phoenix.geometry.Vertex;
+import phoenix.geometry.TextGeometry;
 import phoenix.Rectangle;
 import phoenix.Texture;
 
@@ -21,15 +22,16 @@ import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
-enum TextAlign {
-    left;
-    right;
-    center;
-    top;
-    bottom;
-}
 
-private typedef Character = {
+@:enum abstract TextAlign(Int) from Int to Int {
+    var left = 0;
+    var right = 1;
+    var center = 2;
+    var top = 3;
+    var bottom = 4;
+} //TextAlign
+
+typedef Character = {
     var id: Int;
     var x: Float;
     var y: Float;
@@ -65,8 +67,10 @@ class BitmapFont extends Resource {
 
         //cached refrence of the ' '(32)
         //character for sizing on tabs/spaces
-    var space_char:Character;
-    var items_loaded : Int = 0;
+    public var space_char: Character;
+        //for loading pages and reporting done
+    var items_loaded: Int = 0;
+    var items_total: Int = 0;
 
     static var generic_names : Array<String> = ['font','', ' '];
 
@@ -230,7 +234,7 @@ class BitmapFont extends Resource {
 
     //internal
 
-        inline function height_of_lines( _lines:Array<String>, _point_size:Float ) : Float {
+        public inline function height_of_lines( _lines:Array<String>, _point_size:Float ) : Float {
 
             var _ratio = _point_size / info.point_size;
             return _lines.length * (info.line_height * _ratio);
@@ -271,7 +275,7 @@ class BitmapFont extends Resource {
 
     //internal load handlers
 
-        function on_completely_loaded() {
+        function do_onload() {
 
             loaded = true;
 
@@ -279,58 +283,109 @@ class BitmapFont extends Resource {
                 onload( this );
             }
 
-        } //on_completely_loaded
+        } //do_onload
 
-        function one_item_loaded(t:Texture) {
+        function page_loaded(t:Texture) {
 
-            var total_items = Lambda.count(pages);
                 //increment the current count
             items_loaded++;
 
                 //if completely done
-            if(items_loaded == total_items) {
-                on_completely_loaded();
+            if(items_loaded == items_total) {
+                do_onload();
             }
 
-        } //one_item_loaded
+        } //page_loaded
 
         function load_pages( ?_path:String = 'assets/', ?_custom_pages:Array<Texture> ) {
 
             if(_custom_pages == null) {
 
+                items_total = Lambda.count(info.pages);
+
                 for(_page in info.pages) {
 
                     var _t = Luxe.loadTexture( _path + _page.file );
-                    _t.onload = function(_) {
+                    if(_t != null) {
+                        _t.onload = function(_) {
 
-                        pages.set(_page.id, _t);
-                        _t.filter_min = FilterType.linear;
-                        //:todo:options
-                        // _t.filter_mag = FilterType.linear;
-                        // _t.generate_mipmaps();
+                            pages.set(_page.id, _t);
 
-                        one_item_loaded(_t);
+                            _t.slot = _page.id;
+                            _t.filter = options.filter;
+                            _t.filter_min = options.filter_min;
+                            _t.filter_mag = options.filter_mag;
 
-                    } //onload
+                            if(options.mipmaps) {
+                                _t.generate_mipmaps();
+                            }
+
+                            page_loaded(_t);
+
+                        } //onload
+                    } else {
+                        throw 'BitmapFont: "${info.face}" specified a page "${_page.file}" with a missing texture at $_path';
+                    }
 
                 } //each page
 
             } else {
 
-                var _id : Int = 0;
+                items_total = _custom_pages.length;
 
+                var _id : Int = 0;
                 for(_page in _custom_pages) {
+                    _page.slot = _id;
                     pages.set(_id, _page);
                     ++_id;
                 }
 
                     //still need the callback for explicit textures
-                on_completely_loaded();
+                do_onload();
 
             } //if custom pages
 
         } //load_pages
 
+        /** Calculates the offset for the given alignment to be subtracted from the position (or used as the transform origin).
+            This is used internally but is exposed for flexibility.
+            If bounds_w is specified the width and bounds will be used to align, otherwise just the text width.
+            To get the text width you can use `width_of` or `dimensions_of`. */
+    public inline function get_align_xoffset( _align:TextAlign, _text_width:Float, ?_bounds_w:Null<Float> ) : Float {
+
+        var _offset_x = 0.0;
+        var _txt_half_w = _text_width/2.0;
+
+            if(_bounds_w != null) {
+                _offset_x = switch(_align) {
+                    case center: -((_bounds_w/2) - _txt_half_w);
+                    case right: -(_bounds_w - _text_width);
+                    case _: 0.0;
+                }
+            } else {
+                _offset_x = switch(_align) {
+                    case center: _txt_half_w;
+                    case right: _text_width;
+                    case _: 0.0;
+                }
+            } //bounds
+
+        return _offset_x;
+
+    } //get_align_xoffset
+
+        /** Calculates the offset for the given alignment to be subtracted from the position (or used as the transform origin).
+            This is used internally but is exposed for flexibility.
+            bounds_h is required to align vertically. To get the text height you can use `height_of` or `dimensions_of`. */
+    public inline function get_align_yoffset( _align_vertical:TextAlign, _text_height:Float, _bounds_h:Float ) : Float {
+
+        return switch(_align_vertical) {
+            case center:  -((_bounds_h/2) - (_text_height/2));
+            case bottom:  -(_bounds_h - _text_height);
+            case _: 0.0;
+        }
+
+    } //get_align_yoffset
 
             //Wip refactoring, see #98
     public function draw_text( opt : TextOptions ) {
@@ -341,13 +396,11 @@ class BitmapFont extends Resource {
             if(_opt.pos == null)        _opt.pos = new Vector();
             if(_opt.color == null)      _opt.color = new Color();
 
-            if(opt.size != null && opt.point_size == null) opt.point_size = opt.size;
             if(_opt.point_size == null) _opt.point_size = info.point_size;
 
             if(_opt.depth == null)      _opt.depth = 0.0;
             if(_opt.group == null)      _opt.group = 0;
             if(_opt.visible == null)    _opt.visible = true;
-            if(_opt.immediate == null)  _opt.immediate = false;
             if(_opt.batcher == null)    _opt.batcher = Luxe.renderer.batcher;
 
             if(_opt.align == null)      _opt.align = TextAlign.left;
@@ -371,35 +424,37 @@ class BitmapFont extends Resource {
             _pos_y = opt.bounds.y;
         }
 
-            //no texture? return empty geometry
-        if(pages[0] == null) {
-            log("Warning ; " + id + " font trying to draw without a texture.");
-            return _final_geom;
-        }
+        //
+                    //no texture? return empty geometry
+                if(pages[0] == null) {
+                    log("Warning ; " + id + " font trying to draw without a texture.");
+                    return _final_geom;
+                }
 
-            //an array of geometry items, one for each unique texture
-        var _geoms : Array<Geometry> = new Array<Geometry>();
-        var _page_count = Lambda.count(pages);
+                    //an array of geometry items, one for each unique texture
+                var _geoms : Array<Geometry> = new Array<Geometry>();
+                var _page_count = Lambda.count(pages);
 
-        _verbose('creating geometry for each unique texture : ' + _page_count + ' at ' + opt.depth + '\n with ' + opt.color + ' and ' + opt.align + ' and at ' + opt.pos );
+                _verbose('creating geometry for each unique texture : ' + _page_count + ' at ' + opt.depth + '\n with ' + opt.color + ' and ' + opt.align + ' and at ' + opt.pos );
 
-        for(i in 0 ... _page_count ) {
+                for(i in 0 ... _page_count ) {
 
-            var _g = new Geometry({
-                texture : pages[i],
-                color : opt.color,
-                depth : opt.depth,
-                visible : opt.visible,
-                immediate : opt.immediate
-            });
+                    var _g = new Geometry({
+                        texture : pages[i],
+                        color : opt.color,
+                        depth : opt.depth,
+                        visible : opt.visible
+                    });
 
-            _g.id = 'text.page'+i+'.'+opt.text.substr(0,8);
+                    _g.id = 'text.page'+i+'.'+opt.text.substr(0,8);
 
-            _g.primitive_type = PrimitiveType.triangles;
-            _g.immediate = opt.immediate;
-            _geoms.push( _g );
+                    _g.primitive_type = PrimitiveType.triangles;
+                    // _g.immediate = opt.immediate;
+                    _geoms.push( _g );
 
-        } //for each page
+                } //for each page
+
+        //
 
         var _ratio_x = 0.0,
             _ratio_y = _ratio_x = opt.point_size / info.point_size;
@@ -448,10 +503,11 @@ class BitmapFont extends Resource {
 
                     //find the geometry to add it to
                 var _geom = _geoms[_char.page];
+                var _page = pages[_char.page];
 
                     //Texture size for this page
-                var _tw = pages[_char.page].width_actual;
-                var _th = pages[_char.page].height_actual;
+                var _tw = _page.width_actual;
+                var _th = _page.height_actual;
 
                     //work out the coordinates for the uv's
                 var _u  = _char.x/_tw;
@@ -518,45 +574,25 @@ class BitmapFont extends Resource {
         var _offset_y = 0.0;
 
         if(!_bounds_based) {
-
-            _offset_x = switch(opt.align) {
-                case center: _txt_half_w;
-                case right: _txt_width;
-                case _: 0.0;
-            }
-
+            _offset_x = get_align_xoffset( opt.align, _txt_width );
         } else {
-
-            var _b_w_h = (opt.bounds.w/2);
-            var _b_h_h = (opt.bounds.h/2);
-
-            _offset_x = switch(opt.align) {
-                case center: -(_b_w_h - _txt_half_w);
-                case right: -(opt.bounds.w - _txt_width);
-                case _: 0.0;
-            }
-
-            _offset_y = switch(opt.align_vertical) {
-                case center:  -(_b_h_h - _txt_half_h);
-                case bottom:  -(opt.bounds.h - _txt_height);
-                case _: 0.0;
-            }
-
+            _offset_x = get_align_xoffset( opt.align, _txt_width, opt.bounds.w );
+            _offset_y = get_align_yoffset( opt.align_vertical, _txt_height, opt.bounds.h );
         } //_bounds_based
 
             //replace the composite with the children geometry we just created
-        _final_geom.replace( _geoms );
-        _final_geom.add_to_batcher( opt.batcher );
+        // _final_geom.replace( _geoms );
+        // _final_geom.add_to_batcher( opt.batcher );
 
             //translate all of the new text according to the actual position
-        _final_geom.transform.origin.set_xy( _offset_x, _offset_y );
-        _final_geom.transform.pos.set_xy( _pos_x, _pos_y );
+        // _final_geom.transform.origin.set_xy( _offset_x, _offset_y );
+        // _final_geom.transform.pos.set_xy( _pos_x, _pos_y );
 
         // _verbose('drew text ${opt.text.substr(0,10)} at ${_final_geom.transform.pos} with origin ${_final_geom.transform.origin}');
 
-        _final_geom.id += 'drawn_text- ' + opt.text.substr(0,10);
-        _final_geom.immediate = opt.immediate;
-        _final_geom.visible = opt.visible;
+        // _final_geom.id += 'drawn_text- ' + opt.text.substr(0,10);
+        // _final_geom.immediate = opt.immediate;
+        // _final_geom.visible = opt.visible;
 
         return _final_geom;
 
