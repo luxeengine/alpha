@@ -316,10 +316,10 @@ class Visual extends Entity {
                 geometry.group = group;
                 geometry.depth = depth;
                 geometry.visible = visible;
-                geometry.shader = shader;
+                // geometry.shader = shader;
 
                 if(!ignore_texture_on_geometry_change) {
-                    geometry.texture = texture;
+                    // geometry.texture = texture;
                 }
 
             } //_creating_geometry == false
