@@ -34,6 +34,7 @@ typedef TextGeometryOptions = {
     ? glow_threshold: Float,
     ? glow_amount: Float,
     ? glow_color: Color
+
 }
 
 class TextGeometry extends Geometry {

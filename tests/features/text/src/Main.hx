@@ -12,111 +12,31 @@ import phoenix.geometry.TextGeometry;
 
 class Main extends luxe.Game {
 
-    var font : BitmapFont;
     var dttext : TextGeometry;
-    var text : TextGeometry;
     var batcher : Batcher;
 
 
     override function config(c:luxe.AppConfig) {
-        c.window.antialiasing = 2;
+        // c.window.antialiasing = 2;
         return c;
     }
 
     override function ready() {
 
-        batcher = Luxe.renderer.create_batcher({ name:'notmoving' });
-
         // Luxe.renderer.clear_color.set(1,1,1,1);
-         var drag = Luxe.camera.add( new CameraDrag({name:'drag'}) );
+
+        var drag = Luxe.camera.add( new CameraDrag({name:'drag'}) );
             drag.zoom_speed = 0.05;
 
-        font = Luxe.loadFont('cabin.fnt', 'assets/fonts/cabin/');
-        font.onload = function(_){
-
-            var unique = Luxe.renderer.shaders.bitmapfont.shader.clone();
-
-                text = new TextGeometry({
-                    color: new Color(1,1,1,1), text: 'luxe is a free, open source cross platform game engine',
-                    pos: new Vector(30, 200), batcher:Luxe.renderer.batcher,
-                    point_size: 32, font: Luxe.renderer.font, padding:0,
-                    sdf: true, shader: unique
-                });
-
-                // text.outline = 0.1;
-                text.glow_threshold = 0;
-                text.glow_amount = 0;
-                text.outline_color = new Color().rgb(0xff4b03);
-                text.glow_color = new Color(1,1,1,1).rgb(0x9dc963);
-
-            // for(i in 0 ... 16) {
-
-            //     var _s = 8 + (i * 4);
-            //     var _s_prev = 8 + (i-1 * 4);
-            //     var _t = '${_s} : luxe is a free, open source cross platform game engine';
-            //     var _text = new TextGeometry({
-            //         color: new Color(1,1,1,1),
-            //         text: _t,
-            //         pos: new Vector(100,130 + (i * (1.1*font.height_of(_t, _s_prev)))),
-            //         batcher:Luxe.renderer.batcher,
-            //         point_size: _s,
-            //         font: Luxe.renderer.font, padding:0,
-            //         sdf: true
-            //     });
-
-            // }
-
-            setup();
-        }
+        setup();
 
         dttext = new TextGeometry({
             pos: new Vector(10,10),
             point_size: 16,
-            batcher:batcher
+            batcher: Luxe.renderer.batcher
         });
 
-        s_b = new Rectangle(40,00,Luxe.screen.w-80,15);
-        t_b = new Rectangle(40,40,Luxe.screen.w-80,15);
-        o_b = new Rectangle(40,80,Luxe.screen.w-80,15);
-        g_s = new Rectangle(40,120,Luxe.screen.w-80,15);
-        g_e = new Rectangle(40,160,Luxe.screen.w-80,15);
-
-        Luxe.draw.rectangle({ rect:s_b, batcher:batcher });
-        Luxe.draw.rectangle({ rect:t_b, batcher:batcher });
-        Luxe.draw.rectangle({ rect:o_b, batcher:batcher });
-        Luxe.draw.rectangle({ rect:g_s, batcher:batcher });
-        Luxe.draw.rectangle({ rect:g_e, batcher:batcher });
-
     } //ready
-
-    var s_b : Rectangle;
-    var t_b : Rectangle;
-    var o_b : Rectangle;
-    var g_s : Rectangle;
-    var g_e : Rectangle;
-
-    var ctrl = false;
-    override function onmousemove( e:MouseEvent ) {
-        if(text != null && Luxe.input.keydown(Key.lshift)) {
-            var p = (e.pos.x-40) / (Luxe.screen.w-80);
-            if(s_b.point_inside(e.pos)) {
-                text.smoothness = p;
-            }
-            if(t_b.point_inside(e.pos)) {
-                text.thickness = p;
-            }
-            if(o_b.point_inside(e.pos)) {
-                text.outline = p;
-            }
-            if(g_s.point_inside(e.pos)) {
-                text.glow_threshold = p;
-            }
-            if(g_e.point_inside(e.pos)) {
-                text.glow_amount = p;
-            }
-        }
-    }
-
 
     override function onkeyup( e:KeyEvent ) {
 
@@ -128,14 +48,26 @@ class Main extends luxe.Game {
 
     override function update(dt:Float) {
 
-        if(text != null) {
-            dttext.text = '$dt\nsmoothness:${text.smoothness}\nthickness:${text.thickness}\noutline:${text.outline}\nglow_threshold:${text.glow_threshold}\nglow_amount:${text.glow_amount}';
-        }
+        dttext.text = '$dt';
 
     } //update
 
-
     function setup() {
+
+            for(i in 0 ... 16) {
+
+                var _s = 8 + (i * 4);
+                var _s_prev = 8 + (i-1 * 4);
+                var _t = '${_s} : luxe is a free, open source cross platform game engine';
+                var _text = new TextGeometry({
+                    color: new Color(1,1,1,1),
+                    text: _t,
+                    pos: new Vector(100,130 + (i * (1.2*Luxe.renderer.font.height_of(_t, _s_prev)))),
+                    batcher: Luxe.renderer.batcher,
+                    point_size: _s,
+                });
+
+            }
 
             //Some don't need to exist in the default scene
             //so we can tell it not to add them there with no_scene : true
@@ -159,27 +91,20 @@ class Main extends luxe.Game {
             color: dim
         });
 
-        var b = new Text({
+        new Text({
             no_scene : true,
             text : "left\naside", align : left,
             pos : new Vector(_x, _y),
             point_size : _size,
-            color: red,
-            // font:font, sdf:true
+            color: red
         });
-
-        b.smoothness = 0.1;
-        b.thickness = 1;
-        b.outline_color = new Color(1,1,1,1);
-        b.outline = 0.1;
 
         new Text({
             no_scene : true,
             text : "center\naligned", align : center,
             pos : new Vector(_x, _y+_line_h),
             point_size : _size,
-            color: green,
-            font:font, sdf:true
+            color: green
         });
 
         new Text({
@@ -187,8 +112,7 @@ class Main extends luxe.Game {
             text : "right\nalongside", align : right,
             pos : new Vector(_x, _y+_line_h*2),
             point_size : _size,
-            color: blue,
-            font:font, sdf:true
+            color: blue
         });
 
         var _w = 220;
