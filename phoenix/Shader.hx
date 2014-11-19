@@ -13,23 +13,7 @@ import phoenix.Texture;
 
 import snow.render.opengl.GL;
 
-enum UniformValueType {
-    int;
-    float;
-    vector2;
-    vector3;
-    vector4;
-    color;
-    texture;
-    unknown;
-}
-
-typedef UniformValue<T> = {
-    var name : String;
-    var value : T;
-    var type : UniformValueType;
-    var location : GLUniformLocation;
-}
+private typedef Location = GLUniformLocation;
 
 class Shader extends Resource {
 
@@ -51,25 +35,25 @@ class Shader extends Resource {
     public var color_attribute  : Int = 2;
     public var normal_attribute : Int = 3;
 
-    public var projectionmatrix_attribute : GLUniformLocation;
-    public var modelviewmatrix_attribute : GLUniformLocation;
-    public var tex0_attribute : GLUniformLocation;
-    public var tex1_attribute : GLUniformLocation;
-    public var tex2_attribute : GLUniformLocation;
-    public var tex3_attribute : GLUniformLocation;
-    public var tex4_attribute : GLUniformLocation;
-    public var tex5_attribute : GLUniformLocation;
-    public var tex6_attribute : GLUniformLocation;
-    public var tex7_attribute : GLUniformLocation;
+    public var projectionmatrix_attribute : Location;
+    public var modelviewmatrix_attribute : Location;
+    public var tex0_attribute : Location;
+    public var tex1_attribute : Location;
+    public var tex2_attribute : Location;
+    public var tex3_attribute : Location;
+    public var tex4_attribute : Location;
+    public var tex5_attribute : Location;
+    public var tex6_attribute : Location;
+    public var tex7_attribute : Location;
 
-    public var uniforms : Map<String, UniformValue<Dynamic> >;
+    public var uniforms : Map<String, Uniform<Dynamic> >;
 
     var uniform_textures : Map<String,Texture>;
 
     public function new( _manager : ResourceManager ) {
 
         super( _manager, ResourceType.shader );
-        uniforms = new Map<String, UniformValue<Dynamic> >();
+        uniforms = new Map<String, Uniform<Dynamic> >();
         uniform_textures = new Map();
 
     } //new
@@ -98,34 +82,34 @@ class Shader extends Resource {
 
    public function set_int( _name:String, _value:Int ) : Void {
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue<Int> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Int> = uniforms.get(_name);
+                _uniform.value = _value;
         } else {
 
-            var _uniformvalue : UniformValue<Int> = {
+            var _uniform = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.int,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.int,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
         }
     } //set_int
    public function set_float( _name:String, _value:Float ) : Void {
         if(uniforms.exists(_name)) {
-            var _uniformvalue : UniformValue<Float> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Float> = uniforms.get(_name);
+                _uniform.value = _value;
         } else {
 
-            var _uniformvalue : UniformValue<Float> = {
+            var _uniform = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.float,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.float,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
         }
     } //set_float
 
@@ -133,19 +117,19 @@ class Shader extends Resource {
 
         if(uniforms.exists(_name)) {
 
-            var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Vector> = uniforms.get(_name);
+                _uniform.value = _value;
 
         } else {
 
-            var _uniformvalue : UniformValue<Vector> = {
+            var _uniform = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.vector2,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.vector2,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
         }
     } //set_vector2
 
@@ -153,19 +137,19 @@ class Shader extends Resource {
 
         if(uniforms.exists(_name)) {
 
-            var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Vector> = uniforms.get(_name);
+                _uniform.value = _value;
 
         } else {
 
-            var _uniformvalue : UniformValue<Vector> = {
+            var _uniform = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.vector3,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.vector3,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
 
         }
 
@@ -175,19 +159,19 @@ class Shader extends Resource {
 
         if(uniforms.exists(_name)) {
 
-            var _uniformvalue : UniformValue<Vector> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Vector> = uniforms.get(_name);
+                _uniform.value = _value;
 
         } else {
 
-            var _uniformvalue : UniformValue<Vector> = {
+            var _uniform = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.vector4,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.vector4,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
 
         } //if exists
 
@@ -197,19 +181,19 @@ class Shader extends Resource {
 
         if(uniforms.exists(_name)) {
 
-            var _uniformvalue : UniformValue<Color> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Color> = uniforms.get(_name);
+                _uniform.value = _value;
 
         } else {
 
-            var _uniformvalue : UniformValue<Color> = {
+            var _uniform = {
                 name : _name,
                 value : _value,
-                type : UniformValueType.color,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.color,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
 
         }
 
@@ -218,19 +202,19 @@ class Shader extends Resource {
     public function set_texture( _name:String, _value:Texture ) : Void {
         if(uniforms.exists(_name)) {
 
-            var _uniformvalue : UniformValue<Texture> = uniforms.get(_name);
-                _uniformvalue.value = _value;
+            var _uniform : Uniform<Texture> = uniforms.get(_name);
+                _uniform.value = _value;
                 uniform_textures.set(_name, _value);
 
         } else {
 
-            var _uniformvalue : UniformValue<Texture> = {
+            var _uniform : Uniform<Texture> = {
                 name : _name, value : _value,
-                type : UniformValueType.texture,
-                location : GL.getUniformLocation( program, _name )
+                type : UniformType.texture,
+                location : location( _name )
             }
 
-            uniforms.set(_name, _uniformvalue);
+            uniforms.set(_name, _uniform);
             uniform_textures.set(_name, _value);
         }
     } //set_texture
@@ -250,11 +234,11 @@ class Shader extends Resource {
 
             if(shader_log.length > 0) {
 
-                addLog("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
+                add_log("\n\t :: start -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id + '\n');
 
-                addLog("\t\t" + shader_log + '\n');
+                add_log("\t\t" + shader_log + '\n');
 
-                addLog("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
+                add_log("\t :: end -- (" + ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" ) + ") Shader compile log -- " + id);
 
             } //shader_log.length
 
@@ -265,14 +249,14 @@ class Shader extends Resource {
             var _info = ((_type == GL.FRAGMENT_SHADER) ? "fragment" : "vertex" );
                 _info += ((_type == GL.FRAGMENT_SHADER) ? '($frag_source_name)' : '($vertex_source_name)' );
 
-            addError("\tFailed to compile shader (" + _info + ") : \n");
+            add_error("\tFailed to compile shader (" + _info + ") : \n");
 
                 //only fetch if we haven't already above
             if(!_verbose) {
                 shader_log = GL.getShaderInfoLog(_shader);
             }
 
-            addError( "\t\t"+ shader_log );
+            add_error( "\t\t"+ shader_log );
 
             GL.deleteShader(_shader);
             _shader = null;
@@ -286,51 +270,47 @@ class Shader extends Resource {
 
     public function link() {
 
-        var _program = GL.createProgram();
+        program = GL.createProgram();
 
-        GL.attachShader(_program, vert_shader);
-        GL.attachShader(_program, frag_shader);
+        GL.attachShader(program, vert_shader);
+        GL.attachShader(program, frag_shader);
 
             //Now we want to ensure that our locations are static
-        GL.bindAttribLocation( _program, vert_attribute,    'vertexPosition');
-        GL.bindAttribLocation( _program, tcoord_attribute,  'vertexTCoord');
-        GL.bindAttribLocation( _program, color_attribute,   'vertexColor');
-        GL.bindAttribLocation( _program, normal_attribute,  'vertexNormal');
+        GL.bindAttribLocation( program, vert_attribute,    'vertexPosition');
+        GL.bindAttribLocation( program, tcoord_attribute,  'vertexTCoord');
+        GL.bindAttribLocation( program, color_attribute,   'vertexColor');
+        GL.bindAttribLocation( program, normal_attribute,  'vertexNormal');
 
-        GL.linkProgram(_program);
+        GL.linkProgram(program);
 
-        if( GL.getProgramParameter(_program, GL.LINK_STATUS) == 0) {
-            addError("\tFailed to link shader program:");
-            addError( "\t\t"+ GL.getProgramInfoLog(_program) );
-            GL.deleteProgram(_program);
-            _program = null;
-            return null;
+        if( GL.getProgramParameter(program, GL.LINK_STATUS) == 0) {
+            add_error("\tFailed to link shader program:");
+            add_error( "\t\t"+ GL.getProgramInfoLog(program) );
+            GL.deleteProgram(program);
+            program = null;
+            return;
         }
 
             //first bind it
         activate();
 
-            //if success, store all fixed attributes and uniforms
-        // vert_attribute =    GL.getAttribLocation( _program ,   "vertexPosition");
-        // tcoord_attribute =  GL.getAttribLocation( _program,  "vertexTCoord");
-        // color_attribute =   GL.getAttribLocation( _program,   "vertexColor");
-        // normal_attribute =  GL.getAttribLocation( _program,  "vertexNormal");
+            //:todo: this is being refactored for the new
+            //way more flexible shaders and rendering :}
 
-            //Matrices
-        projectionmatrix_attribute = GL.getUniformLocation( _program,   "projectionMatrix");
-        modelviewmatrix_attribute = GL.getUniformLocation( _program,    "modelViewMatrix");
+                //Matrices
+            projectionmatrix_attribute = location("projectionMatrix");
+            modelviewmatrix_attribute = location("modelViewMatrix");
 
-            //Textures
-        tex0_attribute = GL.getUniformLocation( _program, "tex0" );
-        tex1_attribute = GL.getUniformLocation( _program, "tex1" );
-        tex2_attribute = GL.getUniformLocation( _program, "tex2" );
-        tex3_attribute = GL.getUniformLocation( _program, "tex3" );
-        tex4_attribute = GL.getUniformLocation( _program, "tex4" );
-        tex5_attribute = GL.getUniformLocation( _program, "tex5" );
-        tex6_attribute = GL.getUniformLocation( _program, "tex6" );
-        tex7_attribute = GL.getUniformLocation( _program, "tex7" );
+                //Textures
+            tex0_attribute = location( "tex0" );
+            tex1_attribute = location( "tex1" );
+            tex2_attribute = location( "tex2" );
+            tex3_attribute = location( "tex3" );
+            tex4_attribute = location( "tex4" );
+            tex5_attribute = location( "tex5" );
+            tex6_attribute = location( "tex6" );
+            tex7_attribute = location( "tex7" );
 
-        return _program;
     }
 
     public override function drop() {
@@ -341,7 +321,7 @@ class Shader extends Resource {
     public function destroy() {
         if( vert_shader != null ) GL.deleteShader( vert_shader );
         if( frag_shader != null ) GL.deleteShader( frag_shader );
-        if( program != null ) GL.deleteProgram( program );
+        if( program != null )     GL.deleteProgram( program );
     }
 
     public static function load( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
@@ -350,18 +330,18 @@ class Shader extends Resource {
         var _vert_shader = '';
 
         if(_vsid == 'default' || _vsid == '') {
-            _vsid = 'default shader';
-            _vert_shader = Luxe.renderer.default_vert_source;
+            _vsid = 'default vert';
+            _vert_shader = Luxe.renderer.shaders.plain.source.vert;
         } else {
             _vert_shader = Luxe.loadText(_vsid).text;
         }
 
         if(_psid == 'default' || _psid == '') {
-            _psid = 'default shader';
-            _frag_shader = Luxe.renderer.default_frag_source;
+            _psid = 'default frag';
+            _frag_shader = Luxe.renderer.shaders.plain.source.frag;
         } else if(_psid == 'textured') {
             _psid = 'default textured';
-            _frag_shader = Luxe.renderer.default_frag_textured_source;
+            _frag_shader = Luxe.renderer.shaders.textured.source.frag;
         } else {
             _frag_shader = Luxe.loadText(_psid).text;
         }
@@ -427,7 +407,7 @@ class Shader extends Resource {
         }
 
             //Link shader
-        program = link();
+        link();
 
             //Check compile status and throw errors if there are any
         if(program == null) {
@@ -450,6 +430,10 @@ class Shader extends Resource {
         return true;
     }
 
+    function toString() {
+        return 'Shader($id) vert:$vertex_source_name / frag: $frag_source_name';
+    }
+
     @:noCompletion public function apply_uniforms() {
 
         GL.uniform1i( tex0_attribute, 0 );
@@ -464,59 +448,82 @@ class Shader extends Resource {
         for(uniform in uniforms) {
 
             switch(uniform.type) {
-                case UniformValueType.int:
-                    setUniformInt(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.float:
-                    setUniformFloat(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.vector2:
-                    setUniformVector2(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.vector3:
-                    setUniformVector3(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.vector4:
-                    setUniformVector4(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.color:
-                    setUniformColor(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.texture:
-                    setUniformTexture(uniform.name, uniform.value, uniform.location);
-                case UniformValueType.unknown:
+                case int:       apply_int( uniform.location, uniform.value );
+                case float:     apply_float( uniform.location, uniform.value );
+                case vector2:   apply_vec2( uniform.location, uniform.value );
+                case vector3:   apply_vec3( uniform.location, uniform.value );
+                case vector4:   apply_vec4( uniform.location, uniform.value );
+                case color:     apply_color( uniform.location, uniform.value );
+                case texture:   apply_texture( uniform.location, uniform.value );
+                case unknown:
             } //switch type
 
         } //for each uniform
     }
 
-    @:noCompletion public function getUniform( uniform_name : String  ) : GLUniformLocation {
-        return GL.getUniformLocation( program, uniform_name );
+    inline function location( _name : String ) : Location {
+        return GL.getUniformLocation( program, _name );
     }
 
-    @:noCompletion public function setUniformInt( uniform_name:String, value:Int, location:GLUniformLocation = null) {
-        GL.uniform1i( location, value );
-    }
-    @:noCompletion public function setUniformFloat( uniform_name:String, value:Float, location:GLUniformLocation = null ) {
-        GL.uniform1f( location, value );
-    }
-    @:noCompletion public function setUniformVector2( uniform_name:String, value:Vector, location:GLUniformLocation = null ) {
-        GL.uniform2f( location, value.x, value.y);
-    }
-    @:noCompletion public function setUniformVector3( uniform_name:String, value:Vector, location:GLUniformLocation = null ) {
-        GL.uniform3f( location, value.x, value.y, value.z );
-    }
-    @:noCompletion public function setUniformVector4( uniform_name:String, value:Vector, location:GLUniformLocation = null ) {
-        GL.uniform4f( location, value.x, value.y, value.z, value.w );
-    }
-    @:noCompletion public function setUniformColor( uniform_name:String, value:Color, location:GLUniformLocation = null ) {
-        GL.uniform4f( location, value.r, value.g, value.b, value.a );
-    }
-    @:noCompletion public function setUniformTexture( uniform_name:String, value:Texture, location:GLUniformLocation = null ) {
-        GL.uniform1i( location, value.slot );
-        value.bind();
+    inline function apply_int( _location:Location, _int:Int ) {
+        GL.uniform1i( _location, _int );
     }
 
-    public function addLog( _log:String ) {
+    inline function apply_float( _location:Location, _float:Float ) {
+        GL.uniform1f( _location, _float );
+    }
+
+    inline function apply_vec2( _location:Location, _vec:Vector ) {
+        GL.uniform2f( _location, _vec.x, _vec.y);
+    }
+
+    inline function apply_vec3( _location:Location, _vec:Vector ) {
+        GL.uniform3f( _location, _vec.x, _vec.y, _vec.z );
+    }
+
+    inline function apply_vec4( _location:Location, _vec:Vector ) {
+        GL.uniform4f( _location, _vec.x, _vec.y, _vec.z, _vec.w );
+    }
+
+    inline function apply_color( _location:Location, _color:Color ) {
+        GL.uniform4f( _location, _color.r, _color.g, _color.b, _color.a );
+    }
+
+    inline function apply_texture( _location:Location, _tex:Texture ) {
+        GL.uniform1i( _location, _tex.slot );
+        _tex.bind();
+    }
+
+    inline function add_log( _log:String ) {
         log += _log;
     }
 
-    public function addError( _error:String ) {
+    inline function add_error( _error:String ) {
         errors += _error;
     }
 
+} //Shader
+
+
+@:enum abstract UniformType(Int) from Int to Int {
+    var unknown = 0;
+    var int = 1;
+    var float = 2;
+    var vector2 = 3;
+    var vector3 = 4;
+    var vector4 = 5;
+    var color = 6;
+    var texture = 7;
 }
+
+typedef Uniform<T> = {
+
+    var name : String;
+    var value : T;
+    var type : UniformType;
+    var location : Location;
+
+} //Uniform
+
+
+
