@@ -91,6 +91,7 @@ class TraceDebugView extends luxe.debug.DebugView {
             }
         }//
 
+        _final = Luxe.utils.text_wrap_column(_final, '\n', 80); //
         lines.text = _final;
 
         if(lines.geometry != null) {
