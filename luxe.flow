@@ -26,7 +26,8 @@
 
           "-resource phoenix/defaults/shaders/vert.glsl@default.vert.glsl",
           "-resource phoenix/defaults/shaders/frag.glsl@default.frag.glsl",
-          "-resource phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl"
+          "-resource phoenix/defaults/shaders/frag.textured.glsl@default.frag.textured.glsl",
+          "-resource phoenix/defaults/shaders/frag.bitmapfont.glsl@default.frag.bitmapfont.glsl"
       ],
       dependencies : {
         snow : '*'
