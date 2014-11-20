@@ -12,7 +12,10 @@ import phoenix.geometry.TextGeometry;
 
 class Main extends luxe.Game {
 
-    var dttext : TextGeometry;
+    var dtl : TextGeometry;
+    var dtr : TextGeometry;
+    var dtc : TextGeometry;
+
     var batcher : Batcher;
 
 
@@ -30,8 +33,28 @@ class Main extends luxe.Game {
 
         setup();
 
-        dttext = new TextGeometry({
-            pos: new Vector(10,10),
+        Luxe.draw.line({
+            p0:new Vector(120,0),
+            p1:new Vector(120,100)
+        });
+
+        dtl = new TextGeometry({
+            pos: new Vector(120,10),
+            align: left,
+            point_size: 16,
+            batcher: Luxe.renderer.batcher
+        });
+
+        dtc = new TextGeometry({
+            pos: new Vector(120,42),
+            align: center,
+            point_size: 16,
+            batcher: Luxe.renderer.batcher
+        });
+
+        dtr = new TextGeometry({
+            pos: new Vector(120,74),
+            align: right,
             point_size: 16,
             batcher: Luxe.renderer.batcher
         });
@@ -48,7 +71,9 @@ class Main extends luxe.Game {
 
     override function update(dt:Float) {
 
-        dttext.text = '$dt';
+        dtl.text = 'left\n$dt';
+        dtr.text = 'right\n$dt';
+        dtc.text = 'center\n$dt';
 
     } //update
 
