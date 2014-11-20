@@ -112,6 +112,7 @@ class TextGeometry extends Geometry {
         cache = [];
         line_widths = [];
         line_xoffsets = [];
+        line_yoffsets = [];
         lines = [];
         outline_color = new Color();
         glow_color = new Color();
@@ -201,7 +202,7 @@ class TextGeometry extends Geometry {
 
         if(_diff > 0) {
 
-            trace('tidy: remove $_diff from cache');
+            // _verbose('tidy: remove $_diff from cache');
 
             var extra = cache.splice(_vertidx, _diff);
             var c = extra.length;
@@ -217,6 +218,7 @@ class TextGeometry extends Geometry {
 
     var line_widths : Array<Float>;
     var line_xoffsets : Array<Float>;
+    var line_yoffsets : Array<Float>;
     var lines : Array<String>;
 
     var text_width : Float = 0;
@@ -229,7 +231,7 @@ class TextGeometry extends Geometry {
     #if !debug inline #end
     function update_text() {
 
-        // trace('update_text $text');
+        // _debug('update_text $text');
 
             //:todo:
         var _tab_width = 4;
@@ -250,6 +252,7 @@ class TextGeometry extends Geometry {
         var _line_idx = 0;
         var _total_idx = 0;
 
+        line_widths.splice(0, line_widths.length);
         text_width = font.width_of(text, point_size, line_widths);
         text_height = font.height_of_lines(lines, point_size);
         text_h_w = text_width / 2;
@@ -257,16 +260,36 @@ class TextGeometry extends Geometry {
 
         for(_line in lines) {
 
-                //Calculate alignment position
-                //Left is at 0, so it's handled already
-            var _line_x_offset = switch(align) {
-                case center: text_h_w - (line_widths[_line_idx]/2.0);
-                case right: text_width - line_widths[_line_idx];
-                default: 0.0;
-            }
+                //Calculate alignment offsets
+                //Left is at 0, so it's handled already, same as top
+            var _line_x_offset = 0.0;
+            var _line_y_offset = 0.0;
+
+                if(!_bounds_based) {
+                    _line_x_offset = switch(align) {
+                        case center: -(line_widths[_line_idx]/2.0);
+                        case right: -line_widths[_line_idx];
+                        default: 0.0;
+                    }
+                } else {
+                    _line_x_offset = switch(align) {
+                        case center: -(line_widths[_line_idx]/2.0) + (bounds.w/2);
+                        case right: -line_widths[_line_idx] + (bounds.w);
+                        default: 0.0;
+                    }
+                }
+
+                if(_bounds_based) {
+                    _line_y_offset = switch(align_vertical) {
+                        case center: (bounds.h/2) - text_h_h;
+                        case bottom: (bounds.h) - text_height;
+                        default: 0.0;
+                    }
+                }
 
                 //store it in the cache for later
-            line_xoffsets[_line_idx] = _line_idx;
+            line_xoffsets[_line_idx] = _line_x_offset;
+            line_yoffsets[_line_idx] = _line_y_offset;
 
                 //if not the first line, add line height
                 //:todo: text specific leading
@@ -296,7 +319,7 @@ class TextGeometry extends Geometry {
 
                     //the geometry size
                 var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * _ratio );
-                var _quad_y  = _cur_y + ( _char.yoffset * _ratio );
+                var _quad_y  = _line_y_offset + _cur_y + ( _char.yoffset * _ratio );
                 var _quad_w  = _char_w * _ratio;
                 var _quad_h  = _char_h * _ratio;
 
@@ -337,25 +360,13 @@ class TextGeometry extends Geometry {
 
         } //each line
 
-            //finally, handle the bounding/alignment
-        var _offset_x = 0.0;
-        var _offset_y = 0.0;
-
-        if(!_bounds_based) {
-            _offset_x = font.get_align_xoffset( align, text_width );
-        } else {
-            _offset_x = font.get_align_xoffset( align, text_width, bounds.w );
-            _offset_y = font.get_align_yoffset( align_vertical, text_height, bounds.h );
-        } //_bounds_based
-
-        transform.origin.set_xy( _offset_x, _offset_y );
-
             //for unused cache, we remove
             //them from the visible set,
             //keeping them in cache. only tidy() cleans cache
         var _vertidx = Math.floor(vertices.length / 6);
         var _textlen = text.length;
         var _diff = _vertidx - _textlen;
+
 
         if(_diff > 0) {
             vertices.splice(_textlen * 6, vertices.length);
@@ -374,7 +385,7 @@ class TextGeometry extends Geometry {
             //if no cache at this index we need to add vertices
         if(quad == null) {
 
-            // trace(' idx $_idx out of cache range, adding cache index');
+            // _debug(' idx $_idx out of cache range, adding cache index');
 
             vert0 = new Vertex( new Vector( _x, _y ), _color );
             vert1 = new Vertex( new Vector( _x+_w, _y ), _color );
@@ -389,7 +400,7 @@ class TextGeometry extends Geometry {
 
         } else {
 
-            // trace(' idx $_idx in cache, setting cache index');
+            // _debug(' idx $_idx in cache, setting cache index');
             //this cache index existed as vertices so we fetch them
 
             vert0 = quad[0]; vert1 = quad[1]; vert2 = quad[2];
