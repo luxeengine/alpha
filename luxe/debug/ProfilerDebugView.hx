@@ -193,7 +193,7 @@ private class ProfilerBar {
             color : _color,
             point_size : height*1.8,
             depth : 999.3,
-            text : '32ms',
+            text : '',
             batcher : Luxe.debug.batcher
         });
 

@@ -137,7 +137,7 @@ class BatcherDebugView extends luxe.debug.DebugView {
                 color : c,
                 batcher : batcher,
                 depth : 999.4,
-                text : _g.short_id(),
+                text : _g.id,
                 align : talign
             })
         ); //node text
