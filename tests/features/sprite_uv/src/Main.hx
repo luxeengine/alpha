@@ -31,7 +31,7 @@ class Main extends luxe.Game {
 
         mousetext = new Text({
             pos : new Vector(20,20),
-            size : 20,
+            point_size : 20,
             color : new Color().rgb(0xff440b),
             text : "mouse pos :"
         });

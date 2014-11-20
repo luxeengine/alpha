@@ -73,7 +73,7 @@ class Main extends luxe.Game {
             pos : new Vector(Luxe.screen.w - 16, 16),
             batcher : final_batch,
             depth : 2,
-            size : 20
+            point_size : 20
         });
 
 

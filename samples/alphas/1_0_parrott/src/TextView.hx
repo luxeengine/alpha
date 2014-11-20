@@ -41,7 +41,7 @@ class TextView extends State {
                     font : font,    //use the custom font
                     depth : 3,      //make sure its above the tiles
                     pos : new Vector(start + (letters.length*32), Luxe.screen.mid.y ),
-                    size:72
+                    point_size:72
                 });
 
                 letters.push(_text);

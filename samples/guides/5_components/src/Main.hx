@@ -31,7 +31,7 @@ class Main extends luxe.Game {
             color : new Color(0,0,0,1).rgb(0xf6007b),
             pos : new Vector(60,60),
             font : Luxe.renderer.font,
-            size : 20
+            point_size : 20
         });
 
     } //ready

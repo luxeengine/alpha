@@ -16,7 +16,7 @@ class Main extends luxe.Game {
 	var composite:CompositeGeometry;
 	var box:Geometry;
 	var visual:Visual;
-	
+
     override function config( config:luxe.AppConfig ) {
 
         config.window.width = 640;
@@ -34,15 +34,15 @@ class Main extends luxe.Game {
 			color:new Color().rgb(0xf94b04),
 			no_batcher_add:true
 		});
-		
+
 		//Move the box to modify its transform
 		box.translate(new Vector().set_xy(30, 30));
-		
+
 		composite = new CompositeGeometry();
 		//add the box to the composite, linking the transforms
 		composite.add_geometry(box);
-		
-		visual = new Visual( {
+
+		visual = new Visual({
 			name:'Visual',
 			geometry:composite
 		});
@@ -54,8 +54,8 @@ class Main extends luxe.Game {
     override function onmousemove( e:MouseEvent ) {
        visual.pos = e.pos;
     }
-	
-	override public function onmousedown(event:MouseEvent) 
+
+	override public function onmousedown(event:MouseEvent)
 	{
 		if (composite.has_geometry(box)) {
 			composite.remove_geometry(box);
