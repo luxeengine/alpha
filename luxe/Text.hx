@@ -76,6 +76,22 @@ class Text extends Visual {
             //create the text geometry
         geom = new TextGeometry({
 
+                //render properties
+            batcher: _batcher,
+            depth : _options.depth,
+            group : _options.group,
+            visible : _options.visible,
+            immediate : _options.immediate,
+                //transform properties
+            // pos : _options.pos,
+            // rotation : _options.rotation,
+            // scale : _options.scale,
+            // origin : _options.origin,
+                //geometry specific
+            color : _options.color,
+            shader : _options.shader,
+            texture : _options.texture,
+                //text geometry specific
             text: _options.text,
             font: _options.font,
             point_size: _options.point_size,
@@ -93,8 +109,7 @@ class Text extends Visual {
 
             glow_threshold: _options.glow_threshold,
             glow_amount: _options.glow_amount,
-            glow_color: _options.glow_color,
-            batcher: _batcher
+            glow_color: _options.glow_color
 
         });
 
