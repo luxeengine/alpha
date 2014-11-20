@@ -358,7 +358,7 @@ class TextGeometry extends Geometry {
         var _diff = _vertidx - _textlen;
 
         if(_diff > 0) {
-            vertices.splice(_textlen * 6, _diff * 6);
+            vertices.splice(_textlen * 6, vertices.length);
         }
 
     } //update_text
