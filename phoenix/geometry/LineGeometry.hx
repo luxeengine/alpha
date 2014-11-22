@@ -44,7 +44,7 @@ class LineGeometry extends Geometry {
 
     public function set_p1(_p:Vector) : Vector {
 
-        if(vertices.length == 0) return p0 = _p;
+        if(vertices.length == 0) return p1 = _p;
 
             vertices[1].pos.x = _p.x;
             vertices[1].pos.y = _p.y;
