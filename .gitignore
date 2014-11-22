@@ -9,3 +9,4 @@ builds/
 users/
 flow/icons/mac/luxe.icns
 **/ios.project/**
+*.hxproj
