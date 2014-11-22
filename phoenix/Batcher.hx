@@ -46,7 +46,7 @@ import luxe.Log._debug;
 
 @:enum abstract BlendEquation(Int) from Int to Int {
 
-    var add                     = GL.FUNC_ADD;
+    var add                    = GL.FUNC_ADD;
     var subtract               = GL.FUNC_SUBTRACT;
     var reverse_subtract       = GL.FUNC_REVERSE_SUBTRACT;
 
