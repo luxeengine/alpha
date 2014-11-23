@@ -335,7 +335,7 @@ class TextGeometry extends Geometry {
                 }
 
                     //increase tab spacing
-                if( _index == 8 ) {
+                if( _index == 9 ) {
                     _x_inc += font.space_char.xadvance * _tab_width;
                 }
 
