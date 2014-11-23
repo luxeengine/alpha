@@ -86,7 +86,7 @@ class Main extends luxe.Game {
 	    		//move to second slot
 	    	distort_map.slot = 1;
 	    		//set the uniform
-	    	distort_shader.set_uniform_texture('tex1', distort_map);
+	    	distort_shader.set_texture('tex1', distort_map);
 
 	    	loaded = true;
 
