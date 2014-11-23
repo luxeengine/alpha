@@ -104,6 +104,11 @@ class TextGeometry extends Geometry {
                 }
             }
 
+                //we need to enforce clarity on usage
+            if(options.pos != null && options.bounds != null) {
+                throw 'TextGeometry; specified both pos and bounds options which is an invalid combination. You use either pos, or bounds, not both at the same time';
+            }
+
             super( options );
             primitive_type = PrimitiveType.triangles;
 
@@ -231,13 +236,11 @@ class TextGeometry extends Geometry {
     #if !debug inline #end
     function update_text() {
 
-        // _debug('update_text $text');
-
             //:todo:
         var _tab_width = 4;
 
-        var _pos_x = transform.pos.x;
-        var _pos_y = transform.pos.y;
+        var _pos_x = 0.0;
+        var _pos_y = 0.0;
         var _bounds_based = (bounds != null);
 
         if(_bounds_based) {
@@ -266,37 +269,49 @@ class TextGeometry extends Geometry {
             var _line_y_offset = 0.0;
 
                 if(!_bounds_based) {
+
                     _line_x_offset = switch(align) {
                         case center: -(line_widths[_line_idx]/2.0);
                         case right: -line_widths[_line_idx];
                         default: 0.0;
                     }
+
+                    _line_y_offset = switch(align_vertical) {
+                        case center: -text_h_h;
+                        case bottom: -text_height;
+                        default: 0.0;
+                    }
+
                 } else {
+
                     _line_x_offset = switch(align) {
                         case center: -(line_widths[_line_idx]/2.0) + (bounds.w/2);
                         case right: -line_widths[_line_idx] + (bounds.w);
                         default: 0.0;
                     }
-                }
 
-                if(_bounds_based) {
                     _line_y_offset = switch(align_vertical) {
                         case center: (bounds.h/2) - text_h_h;
                         case bottom: (bounds.h) - text_height;
                         default: 0.0;
                     }
+
                 }
 
                 //store it in the cache for later
             line_xoffsets[_line_idx] = _line_x_offset;
             line_yoffsets[_line_idx] = _line_y_offset;
 
-                //if not the first line, add line height
                 //:todo: text specific leading
+
             if( _line_idx != 0 ){
+
+                    //if not the first line, add line height
                 _cur_y += font.info.line_height * _ratio;
+                    //reset x offset for line
                 _cur_x = 0;
-            }
+
+            } //_line_idx
 
                 //for each character in the line
             var _len = _line.length;
@@ -313,27 +328,7 @@ class TextGeometry extends Geometry {
                     _char = font.space_char;
                 }
 
-                    //the character size with padding
-                var _char_w = _char.width + padding;
-                var _char_h = _char.height + padding;
-
-                    //the geometry size
-                var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * _ratio );
-                var _quad_y  = _line_y_offset + _cur_y + ( _char.yoffset * _ratio );
-                var _quad_w  = _char_w * _ratio;
-                var _quad_h  = _char_h * _ratio;
-
-                    //the texture page
-                var _page = font.pages[_char.page];
-                var _page_w = _page.width_actual;
-                var _page_h = _page.height_actual;
-
-                    //work out the coordinates for the uv's
-                var _u1 = _char.x/_page_w;
-                var _v1 = _char.y/_page_h;
-                var _u2 = (_char.x + _char.width) / _page_w;
-                var _v2 = (_char.y + _char.height) / _page_h;
-
+                    //the x movement forward
                 var _x_inc = _char.xadvance;
 
                     //adjust for kerning
@@ -346,30 +341,57 @@ class TextGeometry extends Geometry {
                     _x_inc += font.space_char.xadvance * _tab_width;
                 }
 
+                if(_char != font.space_char) {
+
+                        //the character size with padding
+                    var _char_w = _char.width + padding;
+                    var _char_h = _char.height + padding;
+
+                        //the geometry size
+                    var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * _ratio );
+                    var _quad_y  = _line_y_offset + _cur_y + ( _char.yoffset * _ratio );
+                    var _quad_w  = _char_w * _ratio;
+                    var _quad_h  = _char_h * _ratio;
+
+                        //the texture page
+                    var _page = font.pages[_char.page];
+                    var _page_w = _page.width_actual;
+                    var _page_h = _page.height_actual;
+
+                        //work out the coordinates for the uv's
+                    var _u1 = _char.x/_page_w;
+                    var _v1 = _char.y/_page_h;
+                    var _u2 = (_char.x + _char.width) / _page_w;
+                    var _v2 = (_char.y + _char.height) / _page_h;
+
+                    update_char( _total_idx, _glyph,
+                                 _quad_x, _quad_y, _quad_w, _quad_h,
+                                 _u1, _v1, _u2, _v2, color );
+
+                        //this should only count
+                        //visual characters
+                    _total_idx++;
+
+                }
+
+                    //after the letter, increase the cur x
                 _cur_x += _x_inc * _ratio;
-
-                update_char( _total_idx, _glyph,
-                             _quad_x, _quad_y, _quad_w, _quad_h,
-                             _u1, _v1, _u2, _v2, color );
-
-                _total_idx++;
 
             } //for each letter in string
 
+                //increase the line counter
             _line_idx++;
 
         } //each line
 
-            //for unused cache, we remove
+            //for unused vertices, we remove
             //them from the visible set,
-            //keeping them in cache. only tidy() cleans cache
-        var _vertidx = Math.floor(vertices.length / 6);
-        var _textlen = text.length;
-        var _diff = _vertidx - _textlen;
-
+            //keeping them in cache (only tidy() cleans cache)
+        var _vertidx = Std.int(vertices.length / 6);
+        var _diff = _vertidx - _total_idx;
 
         if(_diff > 0) {
-            vertices.splice(_textlen * 6, vertices.length);
+            vertices.splice(_total_idx * 6, _diff * 6);
         }
 
     } //update_text
