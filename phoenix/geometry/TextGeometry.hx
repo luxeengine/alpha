@@ -20,7 +20,6 @@ typedef TextGeometryOptions = {
     ? text: String,
     ? font: BitmapFont,
     ? point_size: Float,
-    ? padding: Float,
 
     ? bounds : Rectangle,
     ? align : TextAlign,
@@ -141,7 +140,6 @@ class TextGeometry extends Geometry {
 
         //normal font stuff
 
-            if(options.padding != null) padding = options.padding;
             if(options.point_size != null) point_size = options.point_size;
             if(options.bounds != null) bounds = options.bounds;
 
@@ -233,8 +231,6 @@ class TextGeometry extends Geometry {
     var text_h_w : Float = 0;
     var text_h_h : Float = 0;
 
-    public var padding : Float = 0;
-
     #if !debug inline #end
     function update_text() {
 
@@ -316,11 +312,11 @@ class TextGeometry extends Geometry {
             } //_line_idx
 
                 //for each character in the line
-            var _len = _line.uLength();
-            for(_idx in 0 ... _len) {
 
-                var _glyph = _line.uCharAt(_idx);
-                var _index = _glyph.uCharCodeAt(0);
+            var _idx = 0;
+            for(_uglyph in _line.uIterator()) {
+
+                var _index = _uglyph.toInt();
                 var _char = font.info.chars.get(_index);
 
                     //fill in missing characters with a space
@@ -339,35 +335,25 @@ class TextGeometry extends Geometry {
                 }
 
                     //increase tab spacing
-                if( _glyph == '\t' ) {
+                if( _index == 8 ) {
                     _x_inc += font.space_char.xadvance * _tab_width;
                 }
 
                 if(_char != font.space_char) {
 
-                        //the character size with padding
-                    var _char_w = _char.width + padding;
-                    var _char_h = _char.height + padding;
-
-                        //the geometry size
+                        //the geometry positioning
                     var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * _ratio );
                     var _quad_y  = _line_y_offset + _cur_y + ( _char.yoffset * _ratio );
-                    var _quad_w  = _char_w * _ratio;
-                    var _quad_h  = _char_h * _ratio;
-
                         //the texture page
                     var _page = font.pages[_char.page];
-                    var _page_w = _page.width_actual;
-                    var _page_h = _page.height_actual;
-
                         //work out the coordinates for the uv's
-                    var _u1 = _char.x/_page_w;
-                    var _v1 = _char.y/_page_h;
-                    var _u2 = (_char.x + _char.width) / _page_w;
-                    var _v2 = (_char.y + _char.height) / _page_h;
+                    var _u1 = _char.x/_page.width_actual;
+                    var _v1 = _char.y/_page.height_actual;
+                    var _u2 = (_char.x + _char.width) / _page.width_actual;
+                    var _v2 = (_char.y + _char.height) / _page.height_actual;
 
-                    update_char( _total_idx, _glyph,
-                                 _quad_x, _quad_y, _quad_w, _quad_h,
+                    update_char( _total_idx,
+                                 _quad_x, _quad_y, _char.width*_ratio, _char.height*_ratio,
                                  _u1, _v1, _u2, _v2, color );
 
                         //this should only count
@@ -378,6 +364,8 @@ class TextGeometry extends Geometry {
 
                     //after the letter, increase the cur x
                 _cur_x += _x_inc * _ratio;
+                    //increment char index
+                _idx++;
 
             } //for each letter in string
 
@@ -399,17 +387,17 @@ class TextGeometry extends Geometry {
     } //update_text
 
     #if !debug inline #end
-    function update_char( _idx:Int, _glyph:String, _x:Float, _y:Float, _w:Float, _h:Float, _u:Float, _v:Float, _u2:Float, _v2:Float, _color:Color ) {
+    function update_char( _letteridx:Int, _x:Float, _y:Float, _w:Float, _h:Float, _u:Float, _v:Float, _u2:Float, _v2:Float, _color:Color ) {
 
         var vert0:Vertex; var vert1:Vertex; var vert2:Vertex;
         var vert3:Vertex; var vert4:Vertex; var vert5:Vertex;
 
-        var quad = cache[_idx];
+        var quad = cache[_letteridx];
 
             //if no cache at this index we need to add vertices
         if(quad == null) {
 
-            // _debug(' idx $_idx out of cache range, adding cache index');
+            // _debug(' idx $_letteridx out of cache range, adding cache index');
 
             vert0 = new Vertex( new Vector( _x, _y ), _color );
             vert1 = new Vertex( new Vector( _x+_w, _y ), _color );
@@ -420,11 +408,11 @@ class TextGeometry extends Geometry {
             vert5 = new Vertex( new Vector( _x+_w, _y+_h), _color );
 
             quad = [vert0, vert1, vert2, vert3, vert4, vert5];
-            cache[_idx] = quad;
+            cache[_letteridx] = quad;
 
         } else {
 
-            // _debug(' idx $_idx in cache, setting cache index');
+            // _debug(' idx $_letteridx in cache, setting cache index');
             //this cache index existed as vertices so we fetch them
 
             vert0 = quad[0]; vert1 = quad[1]; vert2 = quad[2];
@@ -452,7 +440,7 @@ class TextGeometry extends Geometry {
             //the vertices length potentially changes after each char
         var _vertidx = Math.floor(vertices.length / 6);
 
-        if(_vertidx <= _idx) {
+        if(_vertidx <= _letteridx) {
             add( vert0 ); add( vert1 );  add( vert2 );
             add( vert3 ); add( vert4 );  add( vert5 );
         }
@@ -569,7 +557,8 @@ class TextGeometry extends Geometry {
 
     } //set_glow_amount
 
-    #if !debug inline #end    function set_outline_color(c:Color) {
+    #if !debug inline #end
+    function set_outline_color(c:Color) {
 
         if(shader != null && sdf && unique) {
             shader.set_color('outline_color', c);
