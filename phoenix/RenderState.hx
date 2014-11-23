@@ -24,7 +24,7 @@ class RenderState {
                     GL.enable(GL.CULL_FACE);
                 } //!cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.app.window.config.depth_bits > 0) {
+                if(Luxe.core.app.window.asked_config.depth_bits > 0) {
                     if(!depth_test) {
                         depth_test = true;
                         GL.enable(GL.DEPTH_TEST);
@@ -41,7 +41,7 @@ class RenderState {
                     GL.disable(GL.CULL_FACE);
                 } //cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.app.window.config.depth_bits > 0) {
+                if(Luxe.core.app.window.asked_config.depth_bits > 0) {
                     if(depth_test) {
                         depth_test = false;
                         GL.disable(GL.DEPTH_TEST);
@@ -49,6 +49,14 @@ class RenderState {
                 } //depth_test
         } //switch
     } //disable_if_not
+
+    var depth_func : Int = -1;
+    public function depth_function( what:Int ) {
+        if(depth_func != depth_func) {
+            GL.depthFunc( what );
+            depth_func = what;
+        }
+    } //depth_function
 
     public function viewport( x:Float, y:Float, w:Float, h:Float ) {
 

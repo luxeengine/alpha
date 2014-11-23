@@ -403,17 +403,17 @@ class Camera {
 
         projection_dirty = true;
         options.fov = _fov;
-        
+
         if (fov_type == FOVType.horizontal) {
             fov_y = Rendering.fovx_to_y(_fov, aspect);
-        }
-        else {
+        } else {
             fov_y = _fov;
         }
+
         return fov = _fov;
 
     } //set_fov
-    
+
     function set_fov_type(_fov_type:FOVType) : FOVType {
         options.fov_type = _fov_type;
         fov_type = _fov_type;
@@ -469,6 +469,7 @@ class Camera {
                     //scale the visual view based on the value
                 transform.scale.x = 1/_new_zoom;
                 transform.scale.y = 1/_new_zoom;
+                transform.scale.z = 1/_new_zoom;
 
             case ProjectionType.perspective: {
 
@@ -538,6 +539,8 @@ class Camera {
 
     function set_viewport(_r:Rectangle) : Rectangle {
 
+        projection_dirty = true;
+
         viewport = _r;
 
         switch(projection) {
@@ -554,6 +557,7 @@ class Camera {
             case ProjectionType.custom: {}
 
         } //switch projection
+
 
         return viewport;
 
@@ -619,13 +623,13 @@ class Camera {
             options.far = _options.far;
             far = options.far;
         }
-        
-        
+
+
         if(_options.fov != null) {
             options.fov = _options.fov;
             fov = options.fov;
         }
-        
+
         if (_options.fov_type != null) {
             options.fov_type = _options.fov_type;
             fov_type = _options.fov_type;

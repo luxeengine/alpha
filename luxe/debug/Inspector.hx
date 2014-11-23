@@ -19,7 +19,7 @@ typedef DebugInspectorOptions = {
     public var title:String;
     public var font : BitmapFont;
     public var pos:Vector;
-    public var size:Vector;
+    @:isVar public var size (default,set): Vector;
 
         //pieces
     public var _title_text : Text;
@@ -79,6 +79,15 @@ typedef DebugInspectorOptions = {
         _window.visible = false;
         _title_text.visible = false;
         _version_text.visible = false;
+    }
+
+    function set_size(_size:Vector) {
+
+        if(size != null && _window != null) {
+            _window.size = _size;
+        }
+
+        return size = _size;
     }
 
     function _create_window() {

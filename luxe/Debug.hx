@@ -192,6 +192,16 @@ class Debug {
 
             debug_inspector.onrefresh = refresh;
 
+                //:todo:wip: initial testing for alpha-2.0
+            core.on('window.resized', function(_event:snow.types.Types.WindowEvent){
+                var _w = _event.event.x;
+                var _h = _event.event.y;
+
+                overlay.resize(new Vector(_w, _h));
+                view.viewport = new Rectangle(0,0, _w, _h);
+                debug_inspector.size = new Vector(_w-(padding.x*2), _h-(padding.y*2));
+            });
+
                 //no need to process this while we are here.
             batcher.enabled = false;
 

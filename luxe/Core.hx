@@ -234,11 +234,11 @@ class Core extends snow.App {
         Luxe.resources = resources;
 
             //flag for later
-        if(app.window == null) {
-            headless = true;
-        }
+        headless == (app.window == null);
 
         if(!headless) {
+                //listen for window events
+            app.window.onevent = window_event;
                 //create the renderer
             renderer = new Renderer( this );
                 //assign the globals
@@ -389,6 +389,46 @@ class Core extends snow.App {
             #if luxe_fullprofile debug.end(core_tag_debug); #end
 
     } //update
+
+    function window_event( _event:snow.types.Types.WindowEvent ) {
+
+        if(shutting_down) {
+            return;
+        }
+
+        emitter.emit('window.event', _event );
+
+        switch(_event.type) {
+
+            case WindowEventType.moved : {
+                emitter.emit('window.moved', _event );
+            } //moved
+
+            case WindowEventType.resized : {
+                screen.internal_resized(_event.event.x, _event.event.y);
+                renderer.internal_resized(_event.event.x, _event.event.y);
+                emitter.emit('window.resized', _event );
+            } //resized
+
+            case WindowEventType.size_changed : {
+                screen.internal_resized(_event.event.x, _event.event.y);
+                renderer.internal_resized(_event.event.x, _event.event.y);
+                emitter.emit('window.size_changed', _event );
+            } //size_changed
+
+            case WindowEventType.minimized : {
+                emitter.emit('window.minimized', _event );
+            } //minimized
+
+            case WindowEventType.restored : {
+                emitter.emit('window.restored', _event );
+            } //restored
+
+            default: {}
+
+        } //switch
+
+    } //window_event
 
     function render( window:Window ) {
 

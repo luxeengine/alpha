@@ -23,8 +23,17 @@ class LineGeometry extends Geometry {
         if(options.color0 == null) { options.color0 = options.color; }
         if(options.color1 == null) { options.color1 = options.color; }
 
-            p0 = new Vector();
-            p1 = new Vector();
+            if(options.p0 != null) {
+                p0 = options.p0;
+            } else {
+                p0 = new Vector();
+            }
+
+            if(options.p1 != null) {
+                p1 = options.p1;
+            } else {
+                p1 = new Vector();
+            }
 
         set(options);
 
@@ -44,7 +53,7 @@ class LineGeometry extends Geometry {
 
     public function set_p1(_p:Vector) : Vector {
 
-        if(vertices.length == 0) return p0 = _p;
+        if(vertices.length == 0) return p1 = _p;
 
             vertices[1].pos.x = _p.x;
             vertices[1].pos.y = _p.y;

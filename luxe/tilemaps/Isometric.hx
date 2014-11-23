@@ -34,34 +34,39 @@ class Isometric {
                                                    ?scale:Float=1.0, ?offset_x:TileOffset, ?offset_y:TileOffset ) : Vector {
         var world_pos = new Vector();
 
-            var scaled_tw = tile_width * scale;
-            var scaled_th = tile_height * scale;
+		var _scaled_tw = tile_width * scale;
+		var _scaled_th = tile_height * scale;
+		
+		
 
-            var tile_width_half = scaled_tw / 2;
-            var tile_height_half = scaled_th / 2;
+		var tile_width_half = _scaled_tw / 2;
+		var tile_height_half = _scaled_th / 2;
+		
+			//	Top left by default
+		if(offset_x == null) { offset_x = TileOffset.left; };
+		if (offset_y == null) { offset_y = TileOffset.top; };
+		
+		var tile_offset_x : Float = 0;
+		var tile_offset_y : Float = 0;
 
-            world_pos.x = (tile_x - tile_y) * tile_width_half;
-            world_pos.y = (tile_x + tile_y) * tile_height_half;
+			switch(offset_x) {
+				case TileOffset.center:    { tile_offset_x += (_scaled_tw / 2); tile_offset_x /= tile_width; }
+				case TileOffset.right:     { tile_offset_x += _scaled_tw; tile_offset_x /= tile_width; }
+				default:
+			}
 
-            //top left by default
-        if(offset_x == null) {  offset_x = TileOffset.left;  };
-        if(offset_y == null) {  offset_y = TileOffset.top;   };
+			switch(offset_y) {
+				case TileOffset.center:    { tile_offset_y += (_scaled_th/2); tile_offset_y /= tile_height; }
+				case TileOffset.bottom:    { tile_offset_y += _scaled_th; tile_offset_y /= tile_height; }
+				default:
+			}
+		
+		tile_offset_x += tile_x;
+		tile_offset_y += tile_y;
 
-            //:todo: conversion for offsets
-            //must use the scaled_tw and _scaled_th only
-
-            // switch(offset_x) {
-            //     case TileOffset.center:    { _world_x += (tile_width/2) }
-            //     case TileOffset.right:     { _world_x += tile_width; }
-            //     case TileOffset.left:      { }
-            // }
-
-            // switch(offset_y) {
-            //     case TileOffset.center:    { _world_y += (tile_height/2) }
-            //     case TileOffset.bottom:    { _world_y += tile_height; }
-            //     case TileOffset.top:       { }
-            // }
-
+		world_pos.x = (tile_offset_x - tile_offset_y) * tile_width_half;
+		world_pos.y = (tile_offset_x + tile_offset_y) * tile_height_half;
+		
         return world_pos;
 
     } //tile_coord_to_worldpos
