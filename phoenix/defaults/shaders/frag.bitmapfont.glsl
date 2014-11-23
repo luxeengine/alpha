@@ -1,4 +1,3 @@
-
 #define OUTLINE 1
 #define GLOW 1
 #define SUPERSAMPLE 1

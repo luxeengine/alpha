@@ -308,11 +308,15 @@ function get_target() : RenderTexture {
         var frag_textured = haxe.Resource.getString('default.frag.textured.glsl');
         var frag_bitmapfont = haxe.Resource.getString('default.frag.bitmapfont.glsl');
 
+        #if luxe_web
+            var ext = snow.platform.web.render.opengl.GL.current_context.getExtension('OES_standard_derivatives');
+        #end
+
             //for web + mobile, these are required
         #if !desktop
             frag = "precision mediump float;\n" + frag;
             frag_textured = "precision mediump float;\n" + frag_textured;
-            frag_bitmapfont = "precision mediump float;\n" + frag_bitmapfont;
+            frag_bitmapfont = "#extension GL_OES_standard_derivatives : enable\n#extension OES_standard_derivatives : enable\nprecision mediump float;\n" + frag_bitmapfont;
         #end
 
         var _plain = new Shader( core.resources );
