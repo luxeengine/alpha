@@ -53,7 +53,8 @@ class Utils {
 
         /** Generates a integer hash from a string using the default algorithm (murmur3) */
     public inline function hash( string:String ) : Int {
-        return hashdjb2( haxe.io.Bytes.ofString(string) );
+        return hashdjb2( string );
+        // return hashmurmur( haxe.io.Bytes.ofString(string) );
     } //hash
 
         /** Generates an integer hash of a string using the murmur 3 algorithm */
