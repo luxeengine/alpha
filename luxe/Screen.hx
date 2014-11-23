@@ -2,6 +2,7 @@ package luxe;
 
 import luxe.Vector;
 
+@:allow(luxe.Core)
 class Screen {
 
     public var x : Float;
@@ -40,6 +41,15 @@ class Screen {
         return mid.clone();
 
     } //get_mid
+
+    @:noCompletion function internal_resized(_w:Float, _h:Float) {
+
+        w = _w;
+        h = _h;
+        size.set_xy(w, h);
+        mid.set_xy(w/2, h/2);
+
+    } //set_size
 
     function get_size() : Vector {
 

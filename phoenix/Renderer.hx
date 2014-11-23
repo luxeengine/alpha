@@ -30,6 +30,7 @@ typedef BatcherKey = {
     layer : Int
 }
 
+
 class Renderer {
 
     public var batchers : Array<Batcher>;
@@ -136,7 +137,8 @@ class Renderer {
 
     } //destroy
 
-    @:noCompletion public function sort_batchers( a:Batcher, b:Batcher ) {
+    @:allow(phoenix.Batcher)
+    function sort_batchers( a:Batcher, b:Batcher ) {
         if(a.layer < b.layer) return -1;
         if(a.layer > b.layer) return 1;
         if(a.sequence < b.sequence) return -1;
@@ -211,21 +213,32 @@ class Renderer {
         }
 
     } //clear
-	
+
     public function blend_mode(?_src_mode:BlendMode = BlendMode.src_alpha, _dst_mode:BlendMode = BlendMode.one_minus_src_alpha) {
 
         GL.blendFunc(_src_mode, _dst_mode);
 
     } //set blendmode
-	
+
     public function blend_equation(?_equation:BlendEquation = BlendEquation.add) {
 
         GL.blendEquation(_equation);
 
     } //set blend equation
 
+        //The resize handler
+    @:allow(luxe.Core)
+    function internal_resized(_w:Int, _h:Int) {
+
+        if(target == null) {
+            target_size.set_xy(_w, _h);
+        }
+
+    } //internal_resized
+
         //The main render function
-    @:noCompletion public function process() {
+    @:allow(luxe.Core)
+    function process() {
 
         if(stop) { return; }
 
