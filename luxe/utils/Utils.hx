@@ -176,7 +176,7 @@ class Utils {
             //take note that the ${_column} is string interpolation, not part of the regex.
             //i.e (.{1,80})( +|$)\n?|(.{80})
 
-        return new EReg('(.{1,${_column}})( +|$)\n?|(.{${_column}})','gim').replace(_text, '$1${_brk}');
+        return new EReg('(.{1,${_column}})(?: +|$)\n?|(.{${_column}})','gimu').replace(_text, '$1$2${_brk}');
 
     } //text_wrap_column
 
