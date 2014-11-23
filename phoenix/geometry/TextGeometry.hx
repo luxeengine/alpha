@@ -11,6 +11,8 @@ import phoenix.Color;
 import phoenix.Rectangle;
 
 
+using unifill.Unifill;
+
 typedef TextGeometryOptions = {
 
     > GeometryOptions,
@@ -314,11 +316,11 @@ class TextGeometry extends Geometry {
             } //_line_idx
 
                 //for each character in the line
-            var _len = _line.length;
+            var _len = _line.uLength();
             for(_idx in 0 ... _len) {
 
-                var _glyph = _line.charAt(_idx);
-                var _index = _glyph.charCodeAt(0);
+                var _glyph = _line.uCharAt(_idx);
+                var _index = _glyph.uCharCodeAt(0);
                 var _char = font.info.chars.get(_index);
 
                     //fill in missing characters with a space
@@ -333,7 +335,7 @@ class TextGeometry extends Geometry {
 
                     //adjust for kerning
                 if( _idx < _line.length-1 ) {
-                    _x_inc += font.kerning( _index, _line.charAt(_idx+1).charCodeAt(0) );
+                    _x_inc += font.kerning( _index, _line.uCharAt(_idx+1).uCharCodeAt(0) );
                 }
 
                     //increase tab spacing
