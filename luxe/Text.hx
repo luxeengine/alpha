@@ -27,6 +27,12 @@ class Text extends Visual {
         public var point_size (get,set) : Float;
             function get_point_size() return geom.point_size;
             function set_point_size(_s) return geom.point_size = _s;
+        public var letter_spacing (get,set) : Float;
+            function get_letter_spacing() return geom.letter_spacing;
+            function set_letter_spacing(_s) return geom.letter_spacing = _s;
+        public var line_spacing (get,set) : Float;
+            function get_line_spacing() return geom.line_spacing;
+            function set_line_spacing(_s) return geom.line_spacing = _s;
         public var align (get,set) : TextAlign;
             function get_align() return geom.align;
             function set_align(_a) return geom.align = _a;
@@ -95,6 +101,8 @@ class Text extends Visual {
             text: _options.text,
             font: _options.font,
             point_size: _options.point_size,
+            line_spacing: _options.line_spacing,
+            letter_spacing: _options.letter_spacing,
 
             bounds : _options.bounds,
             align : _options.align,

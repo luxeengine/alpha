@@ -20,6 +20,8 @@ typedef TextGeometryOptions = {
     ? text: String,
     ? font: BitmapFont,
     ? point_size: Float,
+    ? line_spacing: Float,
+    ? letter_spacing: Float,
 
     ? bounds : Rectangle,
     ? align : TextAlign,
@@ -44,7 +46,9 @@ class TextGeometry extends Geometry {
 
         @:isVar public var text (default,set) : String = '';
         @:isVar public var font (default,default) : BitmapFont;
-        @:isVar public var point_size (default,set) : Float = 32;
+        @:isVar public var point_size (default,set) : Float = 32.0;
+        @:isVar public var line_spacing (default,set) : Float = 0.0;
+        @:isVar public var letter_spacing (default,set) : Float = 0.0;
         @:isVar public var bounds (default,set) : Rectangle;
         @:isVar public var align (default,set) : TextAlign;
         @:isVar public var align_vertical (default,set) : TextAlign;
@@ -64,10 +68,25 @@ class TextGeometry extends Geometry {
         @:isVar public var glow_amount (default,set) : Float = 0;
         @:isVar public var glow_color (default,set) : Color;
 
+    //sizing cached information
+
+        public var line_widths : Array<Float>;
+        public var text_width : Float = 0;
+        public var text_height : Float = 0;
+        public var line_offsets : Array< Array<Float> >;
+
     //internal
 
         var cache : Array< Array<Vertex> >;
         var options : TextGeometryOptions;
+
+        var lines : Array<String>;
+        var text_h_w : Float = 0;
+        var text_h_h : Float = 0;
+        var point_ratio : Float = 1;
+
+        var dirty_sizing (default,set) : Bool = true;
+        var dirty_align: Bool = true;
 
     //common
 
@@ -117,8 +136,7 @@ class TextGeometry extends Geometry {
 
         cache = [];
         line_widths = [];
-        line_xoffsets = [];
-        line_yoffsets = [];
+        line_offsets = [[],[]];
         lines = [];
         outline_color = new Color();
         glow_color = new Color();
@@ -126,6 +144,35 @@ class TextGeometry extends Geometry {
         default_options();
 
     } //new
+
+//Public API
+
+        /** Remove any cached vertices that are unused by the current text. */
+    #if !debug inline #end
+    public function tidy() {
+
+        var _vertidx = Math.floor(vertices.length / 6);
+        var _diff = cache.length - _vertidx;
+
+        if(_diff > 0) {
+
+            // _verbose('tidy: remove $_diff from cache');
+
+            var extra = cache.splice(_vertidx, _diff);
+            var c = extra.length;
+            while(c > 0) {
+                c--;
+                var vert = extra.pop();
+                    vert = null;
+            }
+
+        } //diff>0
+
+    } //tidy
+
+
+//Internal
+
 
     function default_options() {
 
@@ -140,6 +187,8 @@ class TextGeometry extends Geometry {
 
         //normal font stuff
 
+            if(options.letter_spacing != null) letter_spacing = options.letter_spacing;
+            if(options.line_spacing != null) line_spacing = options.line_spacing;
             if(options.point_size != null) point_size = options.point_size;
             if(options.bounds != null) bounds = options.bounds;
 
@@ -169,7 +218,8 @@ class TextGeometry extends Geometry {
 
     } //default_options
 
-    inline function set_text(_text:String) : String {
+    #if !debug inline #end
+    function set_text(_text:String) : String {
 
             //don't care if it's the same value
         if(text != _text) {
@@ -178,13 +228,16 @@ class TextGeometry extends Geometry {
             text = _text;
 
             if(text != '') {
-                    //first remove \r\n for consistency
+                    //always flag as dirty
+                dirty_sizing = true;
+                    //first remove \r\n
                 text = newline_regex.replace(text, '\n');
-                    //cache lines already split up
+                    //cache lines cut up
                 lines.splice(0,lines.length);
-                lines = _text.split('\n');
+                lines = text.split('\n');
                     //refresh the text
                 update_text();
+
             } else {
                 vertices.splice(0, vertices.length);
             }
@@ -195,49 +248,36 @@ class TextGeometry extends Geometry {
 
     } //set_text
 
-    public inline function stats() {
+    #if !debug inline #end
+    function stats() {
         return 'letters:${(vertices.length/6)} / cache:${ cache.length }';
     }
 
-        /** Remove any cached vertices that are unused by the current text. */
-    public inline function tidy() {
 
-        var _vertidx = Math.floor(vertices.length / 6);
-        var _diff = cache.length - _vertidx;
+    #if !debug inline #end
+    function update_sizes() {
 
-        if(_diff > 0) {
+        if(!dirty_sizing) return false;
 
-            // _verbose('tidy: remove $_diff from cache');
+            line_widths.splice(0, line_widths.length);
+            text_width = font.width_of(text, point_size, letter_spacing, line_widths);
+            text_height = font.height_of_lines(lines, point_size, line_spacing);
+            text_h_w = text_width / 2;
+            text_h_h = text_height / 2;
+            point_ratio = point_size / font.info.point_size;
 
-            var extra = cache.splice(_vertidx, _diff);
-            var c = extra.length;
-            while(c > 0) {
-                c--;
-                var vert = extra.pop();
-                    vert = null;
-            }
+            dirty_sizing = false;
 
-        } //diff>0
+        return true;
 
-    } //tidy
+    } //update_sizes
 
-    var line_widths : Array<Float>;
-    var line_xoffsets : Array<Float>;
-    var line_yoffsets : Array<Float>;
-    var lines : Array<String>;
-
-    var text_width : Float = 0;
-    var text_height : Float = 0;
-    var text_h_w : Float = 0;
-    var text_h_h : Float = 0;
 
     #if !debug inline #end
     function update_text() {
 
-            //:todo:
+        //:todo :
         var _tab_width = 4;
-            //if the char is not visual/drawn
-        var _is_char = true;
 
         var _pos_x = 0.0;
         var _pos_y = 0.0;
@@ -248,18 +288,12 @@ class TextGeometry extends Geometry {
             transform.pos.y = _pos_y = bounds.y;
         }
 
-        var _ratio = point_size / font.info.point_size;
         var _cur_x = 0.0;
         var _cur_y = 0.0;
-
         var _line_idx = 0;
         var _total_idx = 0;
-
-        line_widths.splice(0, line_widths.length);
-        text_width = font.width_of(text, point_size, line_widths);
-        text_height = font.height_of_lines(lines, point_size);
-        text_h_w = text_width / 2;
-        text_h_h = text_height / 2;
+        var _is_char = true;
+        var _was_dirty = update_sizes();
 
         for(_line in lines) {
 
@@ -267,6 +301,8 @@ class TextGeometry extends Geometry {
                 //Left is at 0, so it's handled already, same as top
             var _line_x_offset = 0.0;
             var _line_y_offset = 0.0;
+
+            if(dirty_align) {
 
                 if(!_bounds_based) {
 
@@ -298,16 +334,21 @@ class TextGeometry extends Geometry {
 
                 }
 
-                //store it in the cache for later
-            line_xoffsets[_line_idx] = _line_x_offset;
-            line_yoffsets[_line_idx] = _line_y_offset;
+                    //store it in the cache for later
+                line_offsets[0][_line_idx] = _line_x_offset;
+                line_offsets[1][_line_idx] = _line_y_offset;
 
-                //:todo: text specific leading
+            } else {
+
+                _line_x_offset = line_offsets[0][_line_idx];
+                _line_y_offset = line_offsets[1][_line_idx];
+
+            }
 
             if( _line_idx != 0 ){
 
                     //if not the first line, add line height
-                _cur_y += font.info.line_height * _ratio;
+                _cur_y += (font.info.line_height + line_spacing) * point_ratio;
                     //reset x offset for line
                 _cur_x = 0;
 
@@ -320,42 +361,19 @@ class TextGeometry extends Geometry {
 
                 var _index = _uglyph.toInt();
                 var _char = font.info.chars.get(_index);
-                _is_char = (_char != null);
+                _is_char = (_char != null && _index > 32);
 
-                    //fill in missing characters with a ?
                     //:todo: make this a small preset vert set matching �
-                    //or the missing char box style char
-                if(_char == null) {
+                    //or the missing char box style char, rather than just a space
+                if(!_is_char) {
                     _char = font.space_char;
-                    var _missingchar = 63; //63 = ? // � = 65533
-                    if(_index > 32 && font.info.chars.exists(_missingchar)) {
-                        _char = font.info.chars.get(_missingchar);
-                    }
-                }
-
-                    //non visual characters
-                if(_index <= 32) {
-                    _is_char = false;
-                }
-
-                    //the x movement forward
-                var _x_inc = _char.xadvance;
-
-                    //adjust for kerning
-                if( _idx < _line.length-1 ) {
-                    _x_inc += font.kerning( _index, _line.uCharAt(_idx+1).uCharCodeAt(0) );
-                }
-
-                    //increase tab spacing
-                if( _index == 9 ) {
-                    _x_inc += font.space_char.xadvance * _tab_width;
                 }
 
                 if(_is_char) {
 
                         //the geometry positioning
-                    var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * _ratio );
-                    var _quad_y  = _line_y_offset + _cur_y + ( _char.yoffset * _ratio );
+                    var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * point_ratio );
+                    var _quad_y  = _line_y_offset + _cur_y + ( _char.yoffset * point_ratio );
                         //the texture page
                     var _page = font.pages[_char.page];
                         //work out the coordinates for the uv's
@@ -365,7 +383,7 @@ class TextGeometry extends Geometry {
                     var _v2 = (_char.y + _char.height) / _page.height_actual;
 
                     update_char( _total_idx,
-                                 _quad_x, _quad_y, _char.width*_ratio, _char.height*_ratio,
+                                 _quad_x, _quad_y, _char.width*point_ratio, _char.height*point_ratio,
                                  _u1, _v1, _u2, _v2, color );
 
                         //this should only count
@@ -374,8 +392,28 @@ class TextGeometry extends Geometry {
 
                 } //don't draw non visible char
 
-                    //after the letter, increase the cur x
-                _cur_x += _x_inc * _ratio;
+                    //after the letter,
+                    //the x movement forward
+                var _x_inc = _char.xadvance;
+
+                    //adjust for kerning + tracking(letterspace)
+                if( _idx < _line.length-1 ) {
+                    _x_inc += font.kerning( _index, _line.uCharCodeAt(_idx+1) );
+                    if(_index >= 32) {
+                        _x_inc += letter_spacing;
+                    }
+                }
+
+                    //if this char was a tab,
+                    //we move forward tab_width-1 amount
+                    //because we start with xadvance already
+                if( _index == 9 ) {
+                    _x_inc += _char.xadvance * (_tab_width-1);
+                }
+
+                    //apply it with the point size ratio
+                _cur_x += _x_inc * point_ratio;
+
                     //increment char index
                 _idx++;
 
@@ -395,6 +433,9 @@ class TextGeometry extends Geometry {
         if(_diff > 0) {
             vertices.splice(_total_idx * 6, _diff * 6);
         }
+
+            //if it was true, it's false now
+        dirty_align = false;
 
     } //update_text
 
@@ -459,23 +500,60 @@ class TextGeometry extends Geometry {
 
     } //update_char
 
+//Setters
+
+    #if !debug inline #end
+    function set_dirty_sizing(_b:Bool) {
+
+            dirty_align = true;
+
+        return dirty_sizing = _b;
+
+    } //set_dirty_sizing
+
     #if !debug inline #end
     function set_bounds( _bounds:Rectangle ) {
 
         bounds = _bounds;
 
-            // update_text();
+            dirty_sizing = true;
+            update_text();
 
         return bounds;
 
     } //set_bounds
 
     #if !debug inline #end
+    function set_line_spacing(_line_spacing:Float) {
+
+        line_spacing = _line_spacing;
+
+            dirty_sizing = true;
+            update_text();
+
+        return line_spacing;
+
+    } //set_line_spacing
+
+    #if !debug inline #end
+    function set_letter_spacing(_letter_spacing:Float) {
+
+        letter_spacing = _letter_spacing;
+
+            dirty_sizing = true;
+            update_text();
+
+        return letter_spacing;
+
+    } //set_leading
+
+    #if !debug inline #end
     function set_align( _align:TextAlign ) {
 
         align = _align;
 
-            // update_text();
+            dirty_align = true;
+            update_text();
 
         return align;
 
@@ -486,7 +564,8 @@ class TextGeometry extends Geometry {
 
         align_vertical = _align_vertical;
 
-            // update_text();
+            dirty_align = true;
+            update_text();
 
         return align_vertical;
 
@@ -498,11 +577,16 @@ class TextGeometry extends Geometry {
         if(s < 0) s = 0;
         point_size = s;
 
-            // update_text();
+            dirty_sizing = true;
+            update_text();
 
         return point_size;
 
     } //set_point_size
+
+
+//SDF specific features
+
 
     #if !debug inline #end
     function set_smoothness(s:Float) {
@@ -580,6 +664,7 @@ class TextGeometry extends Geometry {
 
     } //set_outline_color
 
+    #if !debug inline #end
     function set_glow_color(c:Color) {
 
         if(shader != null && sdf && unique) {

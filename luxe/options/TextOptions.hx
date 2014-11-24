@@ -13,6 +13,10 @@ typedef TextOptions = {
     @:optional var font: BitmapFont;
         /** */
     @:optional var point_size: Float;
+        /** */
+    @:optional var line_spacing: Float;
+        /** */
+    @:optional var letter_spacing: Float;
 
         /** */
     @:optional var bounds : Rectangle;
