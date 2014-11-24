@@ -236,6 +236,8 @@ class TextGeometry extends Geometry {
 
             //:todo:
         var _tab_width = 4;
+            //if the char is not visual/drawn
+        var _is_char = true;
 
         var _pos_x = 0.0;
         var _pos_y = 0.0;
@@ -318,12 +320,22 @@ class TextGeometry extends Geometry {
 
                 var _index = _uglyph.toInt();
                 var _char = font.info.chars.get(_index);
+                _is_char = (_char != null);
 
-                    //fill in missing characters with a space
-                    //:todo: there is probably a better option
-                    //to visualize this is missing
+                    //fill in missing characters with a ?
+                    //:todo: make this a small preset vert set matching �
+                    //or the missing char box style char
                 if(_char == null) {
                     _char = font.space_char;
+                    var _missingchar = 63; //63 = ? // � = 65533
+                    if(_index > 32 && font.info.chars.exists(_missingchar)) {
+                        _char = font.info.chars.get(_missingchar);
+                    }
+                }
+
+                    //non visual characters
+                if(_index <= 32) {
+                    _is_char = false;
                 }
 
                     //the x movement forward
@@ -339,7 +351,7 @@ class TextGeometry extends Geometry {
                     _x_inc += font.space_char.xadvance * _tab_width;
                 }
 
-                if(_char != font.space_char) {
+                if(_is_char) {
 
                         //the geometry positioning
                     var _quad_x  = _line_x_offset + _cur_x + ( _char.xoffset * _ratio );
@@ -360,7 +372,7 @@ class TextGeometry extends Geometry {
                         //visual characters
                     _total_idx++;
 
-                }
+                } //don't draw non visible char
 
                     //after the letter, increase the cur x
                 _cur_x += _x_inc * _ratio;
