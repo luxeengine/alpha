@@ -22,7 +22,7 @@ The feature guide is a piece by piece reference for specific features of the eng
 **gameplay**
 
 [ timers ](#timers)   
-~~transforms~~    
+[ transforms ](#transforms)
 ~~app timing~~    
 ~~audio~~    
 ~~scene~~    
@@ -120,7 +120,8 @@ These vary from feature reference guides to in depth article guides.
 - SAT collision query helpers
 ![collision guide screenshot](images/guide.collision.png)
 
-### transforms
+<a name="transforms"> </a>
+### [transforms](guide.transforms.html)
 - transformation stack for spatial control (pos/rot/scale)
 ![transform guide screenshot](images/guide.transforms.png)
 
