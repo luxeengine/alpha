@@ -22,7 +22,7 @@ import luxe.Log.log;
 import luxe.Log._debug;
 import luxe.Log._verbose;
 
-using unifill.Unifill;
+using luxe.utils.unifill.Unifill;
 
 @:enum abstract TextAlign(Int) from Int to Int {
     var left = 0;
