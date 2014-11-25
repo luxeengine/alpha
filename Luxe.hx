@@ -126,7 +126,7 @@ class Luxe {
             async:_async,
             onload : function( _asset:snow.assets.AssetText) {
 
-                res.json = luxe.utils.JSON.parse(_asset.text);
+                res.json = haxe.Json.parse(_asset.text);
 
                 if(_onload != null) {
                     _onload( res );
