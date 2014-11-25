@@ -156,7 +156,9 @@ class TilemapVisual {
 
                 for(row in layer) {
                     for(tile in row) {
-                        tile.drop();
+                        if(tile != null) {
+                            tile.drop();
+                        }
                         tile = null;
                     } //tile
                     row = null;
