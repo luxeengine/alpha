@@ -24,7 +24,7 @@ class RenderState {
                     GL.enable(GL.CULL_FACE);
                 } //!cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.app.window.asked_config.depth_bits > 0) {
+                if(Luxe.core.app.config.render.depth) {
                     if(!depth_test) {
                         depth_test = true;
                         GL.enable(GL.DEPTH_TEST);
@@ -41,7 +41,7 @@ class RenderState {
                     GL.disable(GL.CULL_FACE);
                 } //cull_face
             case GL.DEPTH_TEST:
-                if(Luxe.core.app.window.asked_config.depth_bits > 0) {
+                if(Luxe.core.app.config.render.depth) {
                     if(depth_test) {
                         depth_test = false;
                         GL.disable(GL.DEPTH_TEST);
