@@ -96,7 +96,7 @@ class BitmapFont extends Resource {
         {
 
                 //store the listener
-            onload = _onload;
+            if(_onload != null) onload = _onload;
                 //parse the file
             info = Parser.parse(_bitmapfont_data);
                 //set the id to the face name
@@ -222,7 +222,7 @@ class BitmapFont extends Resource {
                 font.from_string( font_data.text, font.options.path, font.options.onload );
                 font.options.resources.cache(font);
 
-            });
+            }, true);
 
             return font;
 

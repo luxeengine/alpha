@@ -11,11 +11,13 @@ import luxe.Vector;
 
 class Collision {
 
-        /** Test a single shape against another shape. 
+        /** Test a single shape against another shape.
             When no collision is found between them, this function returns null.
             Returns a `CollisionData` if a collision is found.
         */
     public static function test( shape1:Shape, shape2:Shape ): CollisionData {
+
+        if(shape1 == shape2) return null;
 
         var result1:CollisionData;
         var result2:CollisionData;
@@ -47,13 +49,13 @@ class Collision {
         return null;
 
     } //test
-   
-        /** Test a single shape against multiple other shapes. 
-            Will never return null, always length 0 array. 
+
+        /** Test a single shape against multiple other shapes.
+            Will never return null, always length 0 array.
             Returns a list of `CollisionData` information for each collision found.
         */
     public static function testShapes( shape1:Shape, shapes:Array<Shape> ) : Array<CollisionData> {
-        
+
         var results : Array<CollisionData> = [];
 
         for(other_shape in shapes) {
@@ -67,16 +69,16 @@ class Collision {
 
     } //testShapes
 
-        /** Test a line between two points against a list of shapes. 
+        /** Test a line between two points against a list of shapes.
             If a collision is found, returns true, otherwise false.
         */
     public static function ray( lineStart:Vector, lineEnd:Vector, shapes:Array<Shape> ) : Bool {
-            
+
             //check against each shape
         for(_shape in shapes) {
 
                 //if the shape is a circle
-            if( Std.is(_shape,Circle) ) { 
+            if( Std.is(_shape,Circle) ) {
 
                 if( testCircleLine( cast _shape, lineStart, lineEnd) ) {
                     return true;
@@ -100,7 +102,7 @@ class Collision {
         return false;
 
     } //ray
-        
+
         /** Test a circle vs a line between two points */
     public static function testCircleLine( circle:Circle, lineStart:Vector, lineEnd:Vector ) : Bool {
 
@@ -120,7 +122,7 @@ class Collision {
         } else {
 
             discrm = Math.sqrt(discrm);
-            
+
             var t1:Float = (-b + discrm) / (2 * a);
             var t2:Float = (-b - discrm) / (2 * a);
 
@@ -131,7 +133,7 @@ class Collision {
                 }
 
         }
-            
+
         return false;
 
     } //testCircleLine
@@ -147,13 +149,13 @@ class Collision {
 
         for(i in 0 ... sides) {
 
-            if( (poly.transformedVertices[i].y < point.y && poly.transformedVertices[j].y >= point.y) || 
-                (poly.transformedVertices[j].y < point.y && poly.transformedVertices[i].y >= point.y)) 
+            if( (poly.transformedVertices[i].y < point.y && poly.transformedVertices[j].y >= point.y) ||
+                (poly.transformedVertices[j].y < point.y && poly.transformedVertices[i].y >= point.y))
             {
-                if( poly.transformedVertices[i].x + 
-                    (point.y - poly.transformedVertices[i].y) / 
-                    (poly.transformedVertices[j].y - poly.transformedVertices[i].y) * 
-                    (poly.transformedVertices[j].x - poly.transformedVertices[i].x) < point.x) 
+                if( poly.transformedVertices[i].x +
+                    (point.y - poly.transformedVertices[i].y) /
+                    (poly.transformedVertices[j].y - poly.transformedVertices[i].y) *
+                    (poly.transformedVertices[j].x - poly.transformedVertices[i].x) < point.x)
                 {
                     oddNodes = !oddNodes;
                 } //second if
@@ -164,9 +166,9 @@ class Collision {
 
         } //for each side
 
-        return oddNodes; 
+        return oddNodes;
 
-    } //pointInPoly     
+    } //pointInPoly
 
 //Internal API
 
@@ -176,16 +178,16 @@ class Collision {
 
         /** Internal api - generate a bresenham line between given start and end points */
     @:noCompletion public static function bresenhamLine( start:Vector, end:Vector ) : Array<Vector> {
-            
+
             //the array of all the points on the line
-        var points:Array<Vector> = []; 
+        var points:Array<Vector> = [];
         var steep:Bool = Math.abs(end.y - start.y) > Math.abs(end.x - start.x);
         //check if rise is greater than run
         var swapped:Bool = false;
 
         if(steep) {
                 //reflect the line
-            start = swap(start.x, start.y); 
+            start = swap(start.x, start.y);
             end = swap(end.x, end.y);
         } //if steep
 
@@ -193,7 +195,7 @@ class Collision {
         if(start.x > end.x) {
 
             var t:Float = start.x;
-            
+
             start.x = end.x;
             end.x = t;
             t = start.y;
@@ -204,11 +206,11 @@ class Collision {
         } //if start.x > end.x
 
             //x slope
-        var deltax:Float = end.x - start.x; 
+        var deltax:Float = end.x - start.x;
             //y slope, positive because the lines always go  down
-        var deltay:Float = Math.abs(end.y - start.y); 
+        var deltay:Float = Math.abs(end.y - start.y);
             //error is used instead of tracking the y values.
-        var error:Float = deltax / 2; 
+        var error:Float = deltax / 2;
         var ystep:Float;
         var y:Float = start.y;
 
@@ -220,13 +222,13 @@ class Collision {
 
         var x:Int = Std.int(start.x);
         for(x in Std.int(start.x) ... Std.int(end.x)) { //for each point
-            
+
             if(steep) {
                 points.push(new Vector(y, x)); //if its steep, push flipped version
             } else {
                 points.push(new Vector(x, y)); //push normal
             }
-            
+
             error -= deltay; //change the error
 
             if(error < 0) {
@@ -249,7 +251,7 @@ class Collision {
         var test1 : Float; //numbers for testing max/mins
         var test2 : Float;
         var test : Float;
-        
+
         var min1 : Float = 0; //same as above
         var max1 : Float = 0x3FFFFFFF;
         var min2 : Float = 0;
@@ -265,24 +267,24 @@ class Collision {
         var distance : Float = 0xFFFFFFFF;
         var testDistance : Float = 0x3FFFFFFF;
         var closestVector:Vector = new Vector(); //the vector to use to find the normal
-        
+
         // find offset
         vectorOffset = new Vector(-circle.x,-circle.y);
         vectors = polygon.transformedVertices.copy();
-        
+
         //adds some padding to make it more accurate
         if(vectors.length == 2) {
             var temp:Vector = new Vector(-(vectors[1].y - vectors[0].y), vectors[1].x - vectors[0].x);
             temp.truncate(0.0000000001);
             vectors.push( vectors[1].clone().add(temp) );
         }
-        
+
         // find the closest vertex to use to find normal
         for(i in 0 ... vectors.length) {
 
             // trace(i + ' @ ' + vectors[i]);
 
-            distance =  (circle.x - (vectors[i].x)) * (circle.x - (vectors[i].x)) + 
+            distance =  (circle.x - (vectors[i].x)) * (circle.x - (vectors[i].x)) +
                         (circle.y - (vectors[i].y)) * (circle.y - (vectors[i].y));
 
             if(distance < testDistance) { //closest has the lowest distance
@@ -290,17 +292,17 @@ class Collision {
                 closestVector.x = vectors[i].x;
                 closestVector.y = vectors[i].y;
             }
-            
+
         } //for
-        
+
         //get the normal vector
         normalAxis = new Vector(closestVector.x - circle.x, closestVector.y - circle.y);
         normalAxis.normalize(); //normalize is(set its length to 1)
-        
+
         // project the polygon's points
         min1 = normalAxis.dot(vectors[0]);
         max1 = min1; //set max and min
-        
+
         for(j in 1 ... vectors.length) { //project all its points, starting with the first(the 0th was done up there^)
             test = normalAxis.dot(vectors[j]); //dot to project
             if(test < min1) {
@@ -310,20 +312,20 @@ class Collision {
                 max1 = test;
             } //largest max is wanted
         }
-        
+
         // project the circle
         max2 = circle.transformedRadius; //max is radius
         min2 -= circle.transformedRadius; //min is negative radius
-        
+
         // offset the polygon's max/min
         offset = normalAxis.dot(vectorOffset);
         min1 += offset;
         max1 += offset;
-        
+
         // do the big test
         test1 = min1 - max2;
         test2 = min2 - max1;
-        
+
         if(test1 > 0 || test2 > 0) { //if either test is greater than 0, there is a gap, we can give up now.
             return null;
         }
@@ -341,11 +343,11 @@ class Collision {
         for(i in 0 ... vectors.length) {
 
             normalAxis = findNormalAxis(vectors, i);
-            
+
             // project the polygon(again? yes, circles vs. polygon require more testing...)
             min1 = normalAxis.dot(vectors[0]); //project
             max1 = min1; //set max and min
-            
+
             //project all the other points(see, cirlces v. polygons use lots of this...)
             for(j in 1 ... vectors.length) {
                 test = normalAxis.dot(vectors[j]); //more projection
@@ -356,27 +358,27 @@ class Collision {
                     max1 = test;
                 } //largest max
             }
-            
+
             // project the circle(again)
             max2 = circle.transformedRadius; //max is radius
             min2 = -circle.transformedRadius; //min is negative radius
-            
+
             //offset points
             offset = normalAxis.dot(vectorOffset);
             min1 += offset;
             max1 += offset;
-            
+
             // do the test, again
             test1 = min1 - max2;
             test2 = min2 - max1;
-            
+
             if(test1 > 0 || test2 > 0) {
-                
+
                 //failed.. quit now
                 return null;
-                
+
             }
-            
+
             distMin = -(max2 - min1);
             if(flip) distMin *= -1;
             if(Math.abs(distMin) < shortestDistance) {
@@ -386,7 +388,7 @@ class Collision {
             }
 
         } //for
-        
+
         //if you made it here, there is a collision!!!!!
 
         collisionData.shape2 = if(flip) polygon else circle;
@@ -395,7 +397,7 @@ class Collision {
                                                 -collisionData.unitVector.y * collisionData.overlap); //return the separation distance
         if(flip) collisionData.unitVector.invert();
         return collisionData;
-    
+
     } //checkCircleVsPolygon
 
         /** Internal api - check a circle against a circle */
@@ -403,7 +405,7 @@ class Collision {
 
         var totalRadius : Float = circle1.transformedRadius + circle2.transformedRadius; //add both radii together to get the colliding distance
         var distanceSquared : Float = (circle1.x - circle2.x) * (circle1.x - circle2.x) + (circle1.y - circle2.y) * (circle1.y - circle2.y); //find the distance between the two circles using Pythagorean theorem. No square roots for optimization
-        
+
         if(distanceSquared < totalRadius * totalRadius) { //if your distance is less than the totalRadius square(because distance is squared)
             var difference : Float = totalRadius - Math.sqrt(distanceSquared); //find the difference. Square roots are needed here.
             var collisionData:CollisionData = new CollisionData(); //new CollisionData class to hold all the data for this collision
@@ -420,7 +422,7 @@ class Collision {
         return null;
 
     } //checkCircles
-        
+
         /** Internal api - check a polygon against a polygon */
     static function checkPolygons(polygon1:Polygon, polygon2:Polygon, flip:Bool):CollisionData {
 
@@ -450,17 +452,17 @@ class Collision {
             temp.truncate(0.0000000001);
             vectors2.push(vectors2[1].add(temp));
         }
-        
+
         // loop to begin projection
         for(i in 0 ... vectors1.length) {
 
             // get the normal axis, and begin projection
             axis = findNormalAxis(vectors1, i);
-            
+
             // project polygon1
             min1 = axis.dot(vectors1[0]);
             max1 = min1; //set max and min equal
-            
+
             for(j in 1 ... vectors1.length) {
                 testNum = axis.dot(vectors1[j]); //project each point
                 if(testNum < min1) {
@@ -470,11 +472,11 @@ class Collision {
                     max1 = testNum;
                 } //test for new largest
             }
-            
+
             // project polygon2
             min2 = axis.dot(vectors2[0]);
             max2 = min2; //set 2's max and min
-            
+
             for(j in 1 ... vectors2.length) {
                 testNum = axis.dot(vectors2[j]); //project the point
                 if(testNum < min2) {
@@ -484,7 +486,7 @@ class Collision {
                     max2 = testNum;
                 } //test for new max
             }
-            
+
             // and test if they are touching
             test1 = min1 - max2; //test min1 and max2
             test2 = min2 - max1; //test min2 and max1
@@ -500,7 +502,7 @@ class Collision {
                 shortestDistance = Math.abs(distMin);
             }
         }
-        
+
         //if you're here, there is a collision
 
         collisionData.shape1 = if(flip) polygon2 else polygon1;
@@ -508,17 +510,17 @@ class Collision {
         collisionData.separation = new Vector(-collisionData.unitVector.x * collisionData.overlap,
                                                 -collisionData.unitVector.y * collisionData.overlap); //return the separation, apply it to a polygon to separate the two shapes.
         if(flip) collisionData.unitVector.invert();
-        
+
         return collisionData;
 
     } //checkPolygons
-        
+
         /** Internal api - find the normal axis of a vert in the list at index */
     static function findNormalAxis(vertices:Array<Vector>, index:Int):Vector {
 
         var vector1:Vector = vertices[index];
         var vector2:Vector = (index >= vertices.length - 1) ? vertices[0] : vertices[index + 1]; //make sure you get a real vertex, not one that is outside the length of the vector.
-        
+
         var normalAxis:Vector = new Vector(-(vector2.y - vector1.y), vector2.x - vector1.x); //take the two vertices, make a line out of them, and find the normal of the line
             normalAxis.normalize(); //normalize the line(set its length to 1)
 
@@ -530,8 +532,8 @@ class Collision {
     static function swap(a:Float, b:Float) : Vector {
 
         var t : Float = a;
-        
-            a = b; 
+
+            a = b;
             b = t;
 
         return new Vector(a,b);
