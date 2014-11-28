@@ -169,7 +169,7 @@ class Visual extends Entity {
                         batcher : _batcher,
                         depth : (options.depth == null) ? 0 : options.depth,
                         group : (options.group == null) ? 0 : options.group,
-                        visible : (options.visible == null) ? true : options.visible
+                        visible : (options.visible == null) ? visible : options.visible
                     });
 
                 _creating_geometry = false;
