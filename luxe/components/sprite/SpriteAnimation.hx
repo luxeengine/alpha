@@ -500,7 +500,7 @@ class SpriteAnimation extends Component {
     @:isVar public var animation (get,set) : String;
     @:isVar public var speed (get,set) : Float;
 
-    public var frame : Int = 0;
+    public var frame : Int = 1;
     public var image_frame : Int = 0;
 
     var time : Float = 0;
@@ -527,7 +527,7 @@ class SpriteAnimation extends Component {
 
         sprite = cast entity;
 
-        set_frame(1);
+        set_frame(frame);
         refresh_sprite();
 
         if(sprite == null) {
