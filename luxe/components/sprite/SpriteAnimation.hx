@@ -527,6 +527,9 @@ class SpriteAnimation extends Component {
 
         sprite = cast entity;
 
+        set_frame(1);
+        refresh_sprite();
+
         if(sprite == null) {
             throw "SpriteAnimation belongs on a Sprite instance";
         } //sprite test
@@ -671,6 +674,7 @@ class SpriteAnimation extends Component {
             next_frame_time = time;
 
             return animation = _name;
+
         }
 
         trace('SpriteAnimation on ' + entity.name + ' was asked for ' + animation + ' but it is not found in the component. ');
@@ -695,6 +699,7 @@ class SpriteAnimation extends Component {
     public function set_frame( _frame:Int ) {
 
         if(sprite == null) return;
+        if(current == null) return;
         if(current.type == SpriteAnimationType.animated_uv) {
 
             if(sprite.texture == null) return;
@@ -723,7 +728,7 @@ class SpriteAnimation extends Component {
         } //SpriteAnimationType.animated_texture
 
             //the current animation frame
-        var _anim_frame = current.frameset[frame-1];
+        var _anim_frame = current.frameset[_frame-1];
 
             //set the image frame from the current frameset
         image_frame = _anim_frame.image_frame;
@@ -731,15 +736,20 @@ class SpriteAnimation extends Component {
             //set the current frame frame
         current_frame = _anim_frame;
 
+            //keep the frame
+        frame = _frame;
+
     } //set_frame
 
         //sync the state to the sprite itself
     function refresh_sprite() {
 
-        if(sprite == null) return;
+        if(sprite == null) { return; }
+        if(current == null) { return; }
+        if(current_frame == null) { return; }
         if(current.type == SpriteAnimationType.animated_uv) {
 
-            if(sprite.texture == null) return;
+            if(sprite.texture == null) { return; }
 
                     //cache the uv so we don't allocate for no good reason
                 uv_cache.set( current_frame.frame_source.x, current_frame.frame_source.y, current_frame.frame_source.w, current_frame.frame_source.h );
