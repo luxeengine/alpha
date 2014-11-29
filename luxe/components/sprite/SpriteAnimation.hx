@@ -700,6 +700,7 @@ class SpriteAnimation extends Component {
 
         if(sprite == null) return;
         if(current == null) return;
+        if(current_frame == null) return;
         if(current.type == SpriteAnimationType.animated_uv) {
 
             if(sprite.texture == null) return;
