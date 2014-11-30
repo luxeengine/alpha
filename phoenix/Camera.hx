@@ -310,25 +310,15 @@ class Camera {
 
             case ProjectionType.ortho: {
 
-                if(options.cull_backfaces == null) {
-                    options.cull_backfaces = false;
-                }
-
-                if(options.depth_test == null) {
-                    options.depth_test = false;
-                }
+                options.cull_backfaces = false;
+                options.depth_test = false;
 
             } //ortho
 
             case ProjectionType.perspective: {
 
-                if(options.cull_backfaces == null) {
-                    options.cull_backfaces = true;
-                }
-
-                if(options.depth_test == null) {
-                    options.depth_test = true;
-                }
+                options.cull_backfaces = true;
+                options.depth_test = true;
 
             } //perspective
 
