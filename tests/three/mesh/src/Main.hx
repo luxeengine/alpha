@@ -2,18 +2,22 @@
 import luxe.Input;
 import luxe.Mesh;
 import luxe.Vector;
+import phoenix.geometry.Geometry;
 
 class Main extends luxe.Game {
 
 
-	var mesh : Mesh;
+    var mesh : Mesh;
+	var mesh2 : Mesh;
 
 
     override function config( config:luxe.AppConfig ) {
 
-        config.window.depth_bits = 24;
+        config.render.depth_bits = 24;
+        config.render.depth = true;
 
         return config;
+
     }
 
     override function ready() {
@@ -29,6 +33,15 @@ class Main extends luxe.Game {
 
     		//create the mesh
     	mesh = new Mesh({ file:'assets/tower.obj', texture:Luxe.loadTexture('assets/tower.jpg') });
+
+            //create a second mesh based on the first one
+        mesh2 = new Mesh({
+            geometry : new Geometry({ batcher:Luxe.renderer.batcher }),
+            texture : mesh.geometry.texture
+        });
+
+        mesh2.geometry.vertices = [].concat(mesh.geometry.vertices);
+        mesh2.transform.pos.set_xy(1,2);
 
     } //ready
 

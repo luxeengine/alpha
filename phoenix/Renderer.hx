@@ -117,7 +117,7 @@ class Renderer {
 
         #end //no_debug_console
 
-        if(core.app.window.asked_config.depth_bits > 0) {
+        if(Luxe.core.app.config.render.depth) {
                 // Enable z buffer use
             state.enable(GL.DEPTH_TEST);
                 // Accept fragment if it closer or equal away from the other
@@ -211,7 +211,7 @@ class Renderer {
 
         GL.clearColor( _color.r, _color.g, _color.b, _color.a );
 
-        if( core.app.window.asked_config.depth_bits > 0 ) {
+        if( Luxe.core.app.config.render.depth ) {
             GL.clear( GL.COLOR_BUFFER_BIT | GL.DEPTH_BUFFER_BIT );
             GL.clearDepth(1.0);
         } else {

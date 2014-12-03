@@ -44,7 +44,8 @@ class Main extends luxe.Game {
     } //onkeyup
 
     override function config( config:luxe.AppConfig ) {
-        config.window.depth_bits = 24;
+        config.render.depth_bits = 24;
+        config.render.depth = true;
         return config;
     }
 

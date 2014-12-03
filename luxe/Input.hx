@@ -476,13 +476,26 @@ class Input {
 
         for(_f in _fired) {
             if(_down) {
+
+                    //down but not yet processed
+                _named_input_pressed.set( _f, false);
+                    //down is true immediate, cos up removes it
+                _named_input_down.set( _f, true);
+
                 core.oninputdown( _f, {
                     name : _f,
                     type : InputType.mouse,
                     state : InteractState.down,
                     mouse_event : e
                 });
+
             } else {
+
+                    //up but not yet processed
+                _named_input_released.set( _f, false);
+                    //remove down state
+                _named_input_down.remove( _f );
+
                 core.oninputup( _f, {
                     name : _f,
                     type : InputType.mouse,
