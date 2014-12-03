@@ -10,6 +10,7 @@ import phoenix.Batcher;
 import phoenix.Color;
 import phoenix.Rectangle;
 
+import luxe.Log.log;
 
 using luxe.utils.unifill.Unifill;
 
@@ -227,6 +228,11 @@ class TextGeometry extends Geometry {
 
     #if !debug inline #end
     function set_text(_text:String) : String {
+
+        if(_text == null) {
+            log('null text passed into TextGeometry!');
+            _text = '';
+        }
 
             //don't care if it's the same value
         if(text != _text) {
