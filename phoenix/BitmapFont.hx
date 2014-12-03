@@ -135,6 +135,72 @@ class BitmapFont extends Resource {
 
         } //kerning
 
+    public function wrap_string_to_bounds( _string:String, _bounds:Rectangle, _point_size:Float=1.0, _letter_spc:Float=0.0 ) : String {
+
+        if(_bounds == null) {
+            return _string;
+        }
+
+        var _cur_x = 0.0; var _idx = 0;
+        var _final_str = '';
+
+        inline function _wordw(_str:String) {
+            return width_of(_str, _point_size, _letter_spc);
+        }
+
+        var _spacew = _wordw(' ');
+
+        inline function _dowrap(_w:Float, _str:String) {
+            if(_cur_x + _w > _bounds.w) {
+                _cur_x = 0;
+                _final_str += '\n';
+            }
+
+            _cur_x += _w;
+            _final_str += _str;
+        } //_dowrap
+
+            var _strings = _string.split(' ');
+            var _count = _strings.length;
+
+            for(_str in _strings) {
+                if(_str.uIndexOf('\n') == -1) {
+                    if(_str == '') _str = ' ';
+                    _dowrap( _wordw(_str), _str );
+                } else {
+                    var _widx = 0;
+                    var _words = _str.split('\n');
+                    for(_word in _words) {
+
+                        if(_word != '') {
+                            _dowrap( _wordw(_word), _word );
+                        } else {
+                            _cur_x = 0;
+                        }
+
+                        if(_widx < _words.length-1) {
+                            _final_str += '\n';
+                            _cur_x = 0;
+                        }
+
+                        _widx++;
+
+                    } //each word
+                } //no spaces
+
+                if(_idx < _count-1) {
+                    _final_str += ' ';
+                    _cur_x += _spacew + _letter_spc;
+                }
+
+                _idx++;
+
+            } //each word
+
+        return _final_str;
+
+    } //wrap_string_to_bounds
+
     public inline function width_of( _string:String, _point_size:Float = 1.0, _letter_spc:Float = 0.0, ?_line_widths:Array<Float> ) : Float {
 
             //current width counter
