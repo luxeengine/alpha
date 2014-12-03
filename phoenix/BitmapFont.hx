@@ -137,8 +137,6 @@ class BitmapFont extends Resource {
 
     public inline function width_of( _string:String, _point_size:Float = 1.0, _letter_spc:Float = 0.0, ?_line_widths:Array<Float> ) : Float {
 
-        //:todo: #98 hardcoded tab width
-        var _tab_width = 4;
             //current width counter
         var _cur_x = 0.0;
             //maximum width found
@@ -171,13 +169,6 @@ class BitmapFont extends Resource {
                 }
 
                 var _spacing = _char.xadvance;
-
-                    //account for tab spacing,
-                    //but tab_width-1 because one xadvance is there
-                    //from above already in spacing
-                if( _index == 9 ) {
-                    _spacing += _char.xadvance * (_tab_width-1);
-                }
 
                     //insert kerning values, if any
                 if( i < _len - 1 ) {
