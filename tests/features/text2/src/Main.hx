@@ -21,6 +21,8 @@ class Main extends luxe.Game {
 
     override function ready() {
 
+        trace(_line);
+
         Luxe.renderer.clear_color.rgb(0x4f5b5c);
 
         var drag = Luxe.camera.add(new CameraDrag({name:'drag'}));

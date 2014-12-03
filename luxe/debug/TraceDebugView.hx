@@ -35,6 +35,7 @@ class TraceDebugView extends luxe.debug.DebugView {
             depth : 999.3,
             color : new Color().rgb(0x888888),
             bounds : new luxe.Rectangle( debug.padding.x+20, debug.padding.y+40, Luxe.screen.w-(debug.padding.x*2)-20, Luxe.screen.h-(debug.padding.y*2)-40 ),
+            bounds_wrap : true,
             font : Luxe.renderer.font,
             text : '',
             align_vertical : luxe.Text.TextAlign.bottom,
@@ -91,7 +92,6 @@ class TraceDebugView extends luxe.debug.DebugView {
             }
         }//
 
-        _final = Luxe.utils.text_wrap_column(_final, '\n', 80); //
         lines.text = _final;
 
         if(lines.geometry != null) {
