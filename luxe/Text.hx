@@ -33,6 +33,14 @@ class Text extends Visual {
         public var line_spacing (get,set) : Float;
             function get_line_spacing() return geom.line_spacing;
             function set_line_spacing(_s) return geom.line_spacing = _s;
+
+        public var bounds (get,set) : Rectangle;
+            function get_bounds() return geom.bounds;
+            function set_bounds(_b) return geom.bounds = _b;
+        public var bounds_wrap (get,set) : Bool;
+            function get_bounds_wrap() return geom.bounds_wrap;
+            function set_bounds_wrap(_b) return geom.bounds_wrap = _b;
+
         public var align (get,set) : TextAlign;
             function get_align() return geom.align;
             function set_align(_a) return geom.align = _a;
@@ -105,6 +113,7 @@ class Text extends Visual {
             letter_spacing: _options.letter_spacing,
 
             bounds : _options.bounds,
+            bounds_wrap : _options.bounds_wrap,
             align : _options.align,
             align_vertical : _options.align_vertical,
 

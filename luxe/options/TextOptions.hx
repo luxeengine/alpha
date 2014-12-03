@@ -21,6 +21,8 @@ typedef TextOptions = {
         /** */
     @:optional var bounds : Rectangle;
         /** */
+    @:optional var bounds_wrap : Bool;
+        /** */
     @:optional var align : TextAlign;
         /** */
     @:optional var align_vertical : TextAlign;
