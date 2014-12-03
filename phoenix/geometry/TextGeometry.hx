@@ -24,6 +24,8 @@ typedef TextGeometryOptions = {
     ? letter_spacing: Float,
 
     ? bounds : Rectangle,
+    ? bounds_wrap : Bool,
+
     ? align : TextAlign,
     ? align_vertical : TextAlign,
 
@@ -49,7 +51,10 @@ class TextGeometry extends Geometry {
         @:isVar public var point_size (default,set) : Float = 32.0;
         @:isVar public var line_spacing (default,set) : Float = 0.0;
         @:isVar public var letter_spacing (default,set) : Float = 0.0;
+
         @:isVar public var bounds (default,set) : Rectangle;
+        @:isVar public var bounds_wrap (default,set) : Bool = false;
+
         @:isVar public var align (default,set) : TextAlign;
         @:isVar public var align_vertical (default,set) : TextAlign;
 
@@ -74,13 +79,13 @@ class TextGeometry extends Geometry {
         public var text_width : Float = 0;
         public var text_height : Float = 0;
         public var line_offsets : Array< Array<Float> >;
+        public var lines : Array<String>;
 
     //internal
 
         var cache : Array< Array<Vertex> >;
         var options : TextGeometryOptions;
 
-        var lines : Array<String>;
         var text_h_w : Float = 0;
         var text_h_h : Float = 0;
         var point_ratio : Float = 1;
@@ -90,7 +95,7 @@ class TextGeometry extends Geometry {
 
     //common
 
-        static var newline_regex : EReg = new EReg('\r\n','gim');
+        static var tab_regex : EReg = new EReg('\t','gim');
 
     public function new( _options:TextGeometryOptions ) {
 
@@ -190,7 +195,9 @@ class TextGeometry extends Geometry {
             if(options.letter_spacing != null) letter_spacing = options.letter_spacing;
             if(options.line_spacing != null) line_spacing = options.line_spacing;
             if(options.point_size != null) point_size = options.point_size;
+
             if(options.bounds != null) bounds = options.bounds;
+            if(options.bounds_wrap != null) bounds_wrap = options.bounds_wrap;
 
             if(options.align == null) options.align = TextAlign.left;
             if(options.align_vertical == null) options.align_vertical = TextAlign.left;
@@ -228,14 +235,8 @@ class TextGeometry extends Geometry {
             text = _text;
 
             if(text != '') {
-                    //always flag as dirty
+
                 dirty_sizing = true;
-                    //first remove \r\n
-                text = newline_regex.replace(text, '\n');
-                    //cache lines cut up
-                lines.splice(0,lines.length);
-                lines = text.split('\n');
-                    //refresh the text
                 update_text();
 
             } else {
@@ -253,14 +254,23 @@ class TextGeometry extends Geometry {
         return 'letters:${(vertices.length/6)} / cache:${ cache.length }';
     }
 
-
     #if !debug inline #end
     function update_sizes() {
 
         if(!dirty_sizing) return false;
 
+            //:todo: tab width
+        var drawn_text = tab_regex.replace(text, '    ');
+        if(bounds_wrap && bounds != null) {
+            drawn_text = font.wrap_string_to_bounds(drawn_text, bounds, point_size, letter_spacing);
+        }
+
+        lines.splice(0, lines.length);
+        lines = drawn_text.split('\n');
+
             line_widths.splice(0, line_widths.length);
-            text_width = font.width_of(text, point_size, letter_spacing, line_widths);
+
+            text_width = font.width_of(drawn_text, point_size, letter_spacing, line_widths);
             text_height = font.height_of_lines(lines, point_size, line_spacing);
             text_h_w = text_width / 2;
             text_h_h = text_height / 2;
@@ -275,9 +285,6 @@ class TextGeometry extends Geometry {
 
     #if !debug inline #end
     function update_text() {
-
-        //:todo :
-        var _tab_width = 4;
 
         var _pos_x = 0.0;
         var _pos_y = 0.0;
@@ -294,6 +301,11 @@ class TextGeometry extends Geometry {
         var _total_idx = 0;
         var _is_char = true;
         var _was_dirty = update_sizes();
+
+        inline function _step() {
+            _cur_y += (font.info.line_height + line_spacing) * point_ratio;
+            _cur_x = 0;
+        }
 
         for(_line in lines) {
 
@@ -346,12 +358,7 @@ class TextGeometry extends Geometry {
             }
 
             if( _line_idx != 0 ){
-
-                    //if not the first line, add line height
-                _cur_y += (font.info.line_height + line_spacing) * point_ratio;
-                    //reset x offset for line
-                _cur_x = 0;
-
+                _step();
             } //_line_idx
 
                 //for each character in the line
@@ -402,13 +409,6 @@ class TextGeometry extends Geometry {
                     if(_index >= 32) {
                         _x_inc += letter_spacing;
                     }
-                }
-
-                    //if this char was a tab,
-                    //we move forward tab_width-1 amount
-                    //because we start with xadvance already
-                if( _index == 9 ) {
-                    _x_inc += _char.xadvance * (_tab_width-1);
                 }
 
                     //apply it with the point size ratio
@@ -522,6 +522,18 @@ class TextGeometry extends Geometry {
         return bounds;
 
     } //set_bounds
+
+    #if !debug inline #end
+    function set_bounds_wrap( _wrap:Bool ) {
+
+        bounds_wrap = _wrap;
+
+            dirty_sizing = true;
+            update_text();
+
+        return bounds_wrap;
+
+    } //set_bounds_wrap
 
     #if !debug inline #end
     function set_line_spacing(_line_spacing:Float) {
