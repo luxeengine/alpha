@@ -105,7 +105,7 @@ class Main extends luxe.Game {
                             { "frame":9,  "source": { "x":0,    "y":96,     "w":32,     "h":52 }, "pos":{ "x":16,"y":6 }, "size":{ "x":64, "y":64 }  },
                             { "frame":10, "source": { "x":32,   "y":96,     "w":52,     "h":44 }, "pos":{ "x":9,"y":13 }, "size":{ "x":64, "y":64 }  },
                             { "frame":11, "source": { "x":84,   "y":96,     "w":44,     "h":34 }, "pos":{ "x":5,"y":20 }, "size":{ "x":64, "y":64 }  },
-                            { "frame":12, "source": { "x":0,    "y":148,    "w":18,     "h":34 }, "pos":{ "x":4,"y":19 }, "size":{ "x":64, "y":64 }  },
+                            { "frame":12, "source": { "x":0,    "y":148,    "w":18,     "h":34 }, "pos":{ "x":4,"y":19 }, "size":{ "x":64, "y":64 }  }
                         ],
                         "pingpong":"false",
                         "loop": "true",
