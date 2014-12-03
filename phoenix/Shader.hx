@@ -324,7 +324,7 @@ class Shader extends Resource {
         if( program != null )     GL.deleteProgram( program );
     }
 
-    public static function load( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void ) : Shader {
+    public static function load( _psid:String, ?_vsid:String, ?_onloaded:Shader->Void, ?_silent:Bool=false ) : Shader {
 
         var _frag_shader = '';
         var _vert_shader = '';
@@ -370,7 +370,7 @@ class Shader extends Resource {
                 _onloaded( _shader );
             }
 
-            log("shader loaded " + _shader.id );
+            if(!_silent) log("shader loaded " + _shader.id );
 
             return _shader;
 

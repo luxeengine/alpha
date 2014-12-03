@@ -95,9 +95,10 @@ class BitmapFont extends Resource {
                 and if textures are already loaded, a custom array of pages */
         public function from_string(
             _bitmapfont_data : String,
-            ?_path : String = 'assets/',
-            ?_onload : BitmapFont->Void ,
-            ?_custom_pages:Array<Texture> )
+            ?_path: String = 'assets/',
+            ?_onload: BitmapFont->Void ,
+            ?_custom_pages: Array<Texture>,
+            ?_silent: Bool = false )
         {
 
                 //store the listener
@@ -290,12 +291,14 @@ class BitmapFont extends Resource {
                 throw "BitmapFont: load cannot work without a file id to load from.";
             }
 
+            if(_options.silent == null) _options.silent = false;
+
             var font = new BitmapFont( _options );
             var file_path = haxe.io.Path.join([font.options.path, font.options.id]);
 
             Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
 
-                font.from_string( font_data.text, font.options.path, font.options.onload );
+                font.from_string( font_data.text, font.options.path, font.options.onload, null, font.options.silent );
                 font.options.resources.cache(font);
 
             }, true);
@@ -377,7 +380,7 @@ class BitmapFont extends Resource {
 
                 for(_page in info.pages) {
 
-                    var _t = Luxe.loadTexture( _path + _page.file );
+                    var _t = Luxe.loadTexture( _path + _page.file, null, options.silent );
                     if(_t != null) {
                         _t.onload = function(_) {
 

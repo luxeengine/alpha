@@ -22,6 +22,8 @@ typedef BitmapFontOptions = {
     @:optional var path : String;
         /** The callback to call when the font finishes loading */
     @:optional var onload : BitmapFont->Void;
+        /** Whether or not this and it's resources load without logging. default: false */
+    @:optional var silent : Bool;
 
         /** Whether or not the texture pages generate mipmaps automatically. default: false */
     @:optional var mipmaps : Bool;

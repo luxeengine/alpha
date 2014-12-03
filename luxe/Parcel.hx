@@ -67,6 +67,7 @@ class Parcel extends luxe.resource.ResourceManager {
         if( options.start_spacing == null ) { options.start_spacing = 0.4; }
         if( options.sequential == null ) { options.sequential = false; }
         if( options.threaded == null ) { options.threaded = false; }
+        if( options.silent == null ) { options.silent = false; }
 
         texture_list    = [];
         font_list       = [];
@@ -109,11 +110,11 @@ class Parcel extends luxe.resource.ResourceManager {
             return;
         }
 
-        log('loading parcel ${options.start_spacing}s from now');
+        _debug('loading parcel ${options.start_spacing}s from now');
 
         Luxe.timer.schedule(options.start_spacing, function(){
 
-            log("starting load");
+            if(!options.silent) log("starting load");
 
         #if (luxe_native && !parcel_thread_disabled)
             Thread.create(function(){
@@ -733,7 +734,8 @@ class Parcel extends luxe.resource.ResourceManager {
             // Sys.println("loading from thread?");
             var now = Luxe.time;
 
-            var asset_bytes = lime.utils.Assets.getBytes( _tex );
+                //:todo:
+            // var asset_bytes = Luxe.loadData( _tex );
 
             // Sys.println('done in ' + (Luxe.time - now) + '  ' + asset_bytes.length);
 
@@ -750,7 +752,7 @@ class Parcel extends luxe.resource.ResourceManager {
         #else
 
             Luxe.timer.schedule( options.load_spacing, function(){
-                Luxe.loadTexture( _tex, _complete );
+                Luxe.loadTexture( _tex, _complete, options.silent );
             });
 
         #end
@@ -775,7 +777,7 @@ class Parcel extends luxe.resource.ResourceManager {
         #else
 
             Luxe.timer.schedule( options.load_spacing, function(){
-                Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete );
+                Luxe.loadShader( _shader.ps_id, _shader.vs_id, _complete, options.silent );
             });
 
         #end //end
@@ -786,7 +788,7 @@ class Parcel extends luxe.resource.ResourceManager {
         #if luxe_parcel_logging log("    loading font " + _font.path + _font.id ); #end
 
         Luxe.timer.schedule( options.load_spacing, function(){
-            Luxe.loadFont( _font.id, _font.path, _complete );
+            Luxe.loadFont( _font.id, _font.path, _complete, options.silent );
         });
 
     } //load_font
