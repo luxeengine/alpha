@@ -180,6 +180,75 @@ class Utils {
 
     } //find_assets_image_sequence
 
+        /** :WIP: Wrap text using a knuth plass algorithm for column breaking. */
+    #if !debug inline #end
+    public function text_wrap_column_knuth_plass( _string:String, _column:Int=80) {
+
+        var result = [];
+
+        inline function splitwords(_str:String, _into:Array<String>) {
+            var s = _str;
+            var rgx = new EReg('(\\b[^\\s]+\\b)', 'gm');
+            while (rgx.match(s)) {
+                _into.push(rgx.matched(1));
+                s = rgx.matchedRight();
+            }
+                //no matches?
+            if(_into.length == 0) _into.push(_str);
+            return _into;
+        } //splitwords
+
+        inline function findlen(_lens:Array<Int>, _start:Int, _end:Int) {
+            var total = 0;
+            for(i in (_start-1) ... _end) total += _lens[i];
+            return total + (_end - _start + 1);
+        } //findlen
+
+        inline function getmin(_from:Map<Int,Int>):Int {
+            var min = 0x3FFFFFFF;
+            for(item in _from.keys()) if(item < min) min = item;
+            return min;
+        } //getmin
+
+        var words = [];
+        var lengths = [];
+        var badness = [ 0 => 0 ];
+        var extra = new Map<Int,Int>();
+
+        splitwords(_string, words);
+        words.map(function(w){ lengths.push(w.length); });
+
+        var n = words.length;
+
+        for( i in 1 ... n+1 ) {
+
+            var sums = new Map<Int,Int>();
+            var k = i;
+
+            while( findlen(lengths, k, i) <= _column && k > 0) {
+                var a = (_column - findlen(lengths, k, i));
+                sums[ Std.int(Math.pow(a,3) + badness[k - 1]) ] = k;
+                k -= 1;
+            }
+
+            var mn = getmin(sums);
+            badness[i] = mn;
+            extra[i] = sums[mn];
+
+        } //each word
+
+        var line = 1;
+        while(n > 1) {
+            result.unshift( words.slice(extra[n]-1, n).join(' ') );
+            n = extra[n] - 1;
+            line += 1;
+        }
+
+        if(result.length == 0) result.push(_string);
+        return result;
+
+    } //text_wrap_column_knuth
+
         /** Soft wrap a string by maximum character count. brk default:'\n', col default:80 */
     #if !debug inline #end
     public function text_wrap_column( _text:String, _brk:String='\n', _column:Int=80) {
