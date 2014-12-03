@@ -562,7 +562,7 @@ class SpriteAnimation extends Component {
     public function add_from_json( _json_string : String ) {
 
             //parse json first
-        var _json_object = luxe.utils.JSON.decode(_json_string,false);
+        var _json_object = haxe.Json.parse(_json_string);
             //and add directly
         add_from_json_object( _json_object );
 

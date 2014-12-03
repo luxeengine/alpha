@@ -136,7 +136,6 @@ class Utils {
 
     } //path_is_relative
 
-    #if !debug inline #end
     public function find_assets_image_sequence( _name:String, _ext:String='.png', _start:String='1' ) : Array<String> {
 
         var _final : Array<String> = [];

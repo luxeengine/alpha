@@ -41,7 +41,7 @@ class Main extends luxe.Game {
         text = new Text({
             pos : new Vector(Luxe.screen.w/2, 100),
             color : new Color().rgb(0x797d76),
-            size : 20,
+            point_size : 20,
             align : TextAlign.center,
             text : _text
         });
