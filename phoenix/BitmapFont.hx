@@ -94,6 +94,7 @@ class BitmapFont extends Resource {
                 with path to search for textures, onload callback
                 and if textures are already loaded, a custom array of pages */
         public function from_string(
+            _id : String,
             _bitmapfont_data : String,
             ?_path: String = 'assets/',
             ?_onload: BitmapFont->Void ,
@@ -105,6 +106,17 @@ class BitmapFont extends Resource {
             if(_onload != null) onload = _onload;
                 //parse the file
             info = Parser.parse(_bitmapfont_data);
+
+                //check validity of the font
+            if( info.char_count == 0 || 
+                info.face == null || 
+                (info.pages.length == 0 && _custom_pages.length == 0)
+            ) {
+                log('error / $_id / invalid font data specified for this font, cannot load. This font will not be valid.');
+                do_onload( false );
+                return;
+            }
+
                 //set the id to the face name
             id = '${info.face}';
                 //store cached values
@@ -298,7 +310,7 @@ class BitmapFont extends Resource {
 
             Luxe.loadText( file_path, function( font_data:luxe.resource.TextResource ) {
 
-                font.from_string( font_data.text, font.options.path, font.options.onload, null, font.options.silent );
+                font.from_string( _options.id, font_data.text, font.options.path, font.options.onload, null, font.options.silent );
                 font.options.resources.cache(font);
 
             }, true);
@@ -350,9 +362,9 @@ class BitmapFont extends Resource {
 
     //internal load handlers
 
-        function do_onload() {
+        function do_onload(success:Bool=true) {
 
-            loaded = true;
+            loaded = success;
 
             if(onload != null) {
                 onload( this );
@@ -451,7 +463,7 @@ private class Parser {
             }
 
             var _info : FontInfo = {
-                face : '',
+                face : null,
                 chars : new Map(),
                 point_size : 0, base_size : 0,
                 char_count : 0, line_height : 0,
@@ -459,6 +471,13 @@ private class Parser {
             };
 
             var _lines : Array<String> = _font_data.split("\n");
+
+            if(_lines.length == 0) throw "BitmapFont; invalid font data specified for parser.";
+
+            var _first = _lines[0];
+            if( StringTools.ltrim(_first).substr(0, 4) != 'info') {
+                throw "BitmapFont; invalid font data specified for parser. Format should be plain ascii text .fnt file only currently.";
+            }
 
             for(_line in _lines) {
                 var _tokens = _line.split(" ");
