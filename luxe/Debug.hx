@@ -159,6 +159,7 @@ class Debug {
             core.on('mouseup', mouseup);
             core.on('mousedown', mousedown);
             core.on('mousemove', mousemove);
+            core.on('mousewheel', mousewheel);
 
                 //create the debug renderer and view
             batcher = new Batcher( Luxe.renderer, 'debug_batcher' );
@@ -372,6 +373,7 @@ class Debug {
         core.off('mouseup', mouseup);
         core.off('mousedown', mousedown);
         core.off('mousemove', mousemove);
+        core.off('mousewheel', mousewheel);
 
         _debug('\t debug shut down.');
         shut_down = true;
