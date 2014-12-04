@@ -130,11 +130,6 @@ class TextGeometry extends Geometry {
                 }
             }
 
-                //we need to enforce clarity on usage
-            if(options.pos != null && options.bounds != null) {
-                throw 'TextGeometry; specified both pos and bounds options which is an invalid combination. You use either pos, or bounds, not both at the same time';
-            }
-
             super( options );
             primitive_type = PrimitiveType.triangles;
 
