@@ -425,6 +425,8 @@ class BitmapFont extends Resource {
             //Wip refactoring, see #98
     public function draw_text( opt : TextGeometryOptions ) {
 
+        if(opt.batcher == null) opt.batcher = Luxe.renderer.batcher;
+
             opt.font = this;
 
         return new TextGeometry(opt);
