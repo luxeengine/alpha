@@ -312,7 +312,7 @@ class Core extends snow.App {
         shutting_down = true;
 
             //shutdown snow, which calls ondestroy for us
-        app.shutdown();
+        snow.Snow.next(app.shutdown);
 
     } //shutdown
 
