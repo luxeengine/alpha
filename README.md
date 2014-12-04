@@ -31,8 +31,6 @@ http://snowkit.org/
 [read focus sheet](http://snowkit.org/2014/10/27/luxe-alpha-1-0/)   
 [milestone on github](https://github.com/underscorediscovery/luxe/milestones/alpha-1.0+parrott)   
 
-[![badge](https://badge.waffle.io/underscorediscovery/luxe.svg?label=alpha-1.0&title=active%20focus%20sheet)](https://waffle.io/underscorediscovery/luxe)
-
 ### license
 
 MIT (see LICENSE.md)
