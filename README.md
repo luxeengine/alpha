@@ -8,17 +8,28 @@ http://luxeengine.com/docs
 
 ## community
 
-http://snowkit.org/
+http://snowkit.org/   
+[community chat](http://snowkit.org/2014/12/03/alpha-1-0parrott-recap/#communitychat)   
 
 ## dev cycle
 
-####focus sheet : alpha-1.0+parrott
+####focus sheet : alpha-2.0+  -- currently being setup --
 
-####[read focus sheet](http://snowkit.org/2014/10/27/luxe-alpha-1-0/)   
+####[read focus sheet](#)   
 
-[follow on github](https://github.com/underscorediscovery/luxe/milestones/alpha-1.0+parrott)
+[follow on github](https://github.com/underscorediscovery/luxe/milestones/alpha-2.0)   
 
 [follow on waffle](https://waffle.io/underscorediscovery/luxe)   
+
+[![badge](https://badge.waffle.io/underscorediscovery/luxe.svg?label=alpha-2.0&title=active%20focus%20sheet)](https://waffle.io/underscorediscovery/luxe)
+
+#### previous focus sheets
+
+##### alpha-1.0+parrott
+
+**[read recap](http://snowkit.org/2014/12/03/alpha-1-0parrott-recap/)**   
+[read focus sheet](http://snowkit.org/2014/10/27/luxe-alpha-1-0/)   
+[milestone on github](https://github.com/underscorediscovery/luxe/milestones/alpha-1.0+parrott)   
 
 [![badge](https://badge.waffle.io/underscorediscovery/luxe.svg?label=alpha-1.0&title=active%20focus%20sheet)](https://waffle.io/underscorediscovery/luxe)
 
