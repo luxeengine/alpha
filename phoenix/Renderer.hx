@@ -372,7 +372,7 @@ function get_target() : RenderTexture {
                 _font_texture.filter_min = FilterType.linear;
 
                 //load the font string data
-            font.from_string( haxe.Resource.getString('default.fnt'), '', null, [_font_texture] );
+            font.from_string( 'default.fnt', haxe.Resource.getString('default.fnt'), '', null, [_font_texture] );
 
         _debug("done. " + _font_texture.width + 'x' + _font_texture.height );
 
