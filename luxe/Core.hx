@@ -234,7 +234,7 @@ class Core extends snow.App {
         Luxe.resources = resources;
 
             //flag for later
-        headless == (app.window == null);
+        headless = (app.window == null);
 
         if(!headless) {
                 //listen for window events
