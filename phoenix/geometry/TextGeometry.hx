@@ -284,7 +284,7 @@ class TextGeometry extends Geometry {
     } //update_sizes
 
 
-    #if !debug inline #end
+    // #if !debug inline #end
     function update_text() {
 
         var _pos_x = 0.0;
@@ -440,7 +440,7 @@ class TextGeometry extends Geometry {
 
     } //update_text
 
-    #if !debug inline #end
+    // #if !debug inline #end
     function update_char( _letteridx:Int, _x:Float, _y:Float, _w:Float, _h:Float, _u:Float, _v:Float, _u2:Float, _v2:Float, _color:Color ) {
 
         var vert0:Vertex; var vert1:Vertex; var vert2:Vertex;
