@@ -109,7 +109,8 @@ These vary from feature reference guides to in depth article guides.
 
 ### Gameplay
 
-### scene
+<a name= "scene"> </a>
+### [scene](guide.scene.html)
 - Scene/entity relationship
 
 ### physics
