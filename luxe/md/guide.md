@@ -25,7 +25,7 @@ The feature guide is a piece by piece reference for specific features of the eng
 [ transforms ](#transforms)
 ~~app timing~~    
 ~~audio~~    
-~~scene~~    
+[ scene ](#scene)   
 ~~physics~~    
 ~~collision~~    
 
